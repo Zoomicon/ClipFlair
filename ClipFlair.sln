@@ -1,0 +1,20 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{F088123C-0E9E-452A-89E6-6BA2F21D5CAC}") = "ClipFlair_UML", "ClipFlair_UML\ClipFlair_UML.modelproj", "{5DA25550-CBA7-4005-ACB8-1E4CF70B6E9B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5DA25550-CBA7-4005-ACB8-1E4CF70B6E9B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5DA25550-CBA7-4005-ACB8-1E4CF70B6E9B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5DA25550-CBA7-4005-ACB8-1E4CF70B6E9B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5DA25550-CBA7-4005-ACB8-1E4CF70B6E9B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

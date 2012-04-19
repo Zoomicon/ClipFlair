@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<layerModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/SimpleShapesModel" dslVersion="1.0.0.0" Id="5d14bf96-b6d0-4125-afd8-db993210e723" xmlns="http://schemas.microsoft.com/VisualStudio/TeamArchitect/LayerDesigner">
+  <comments>
+    <comment Id="09bc252a-9b6b-4ec0-b810-44c3b4f1938c" name="Comment1">
+      <body>Source: Microsoft Application Architecture Guide, 2nd Edition.
+Refer to "Chapter 23: Designing Rich Internet Applications" for more information.
+
+URL: http://msdn.microsoft.com/en-us/library/ee658083.aspx</body>
+    </comment>
+  </comments>
+  <layers>
+    <layer Id="fe6f9387-704b-4100-aa98-56effc9e5aac" name="Cross Cutting">
+      <childLayers>
+        <layer Id="208df500-dc1e-4176-9dae-eb3edecace44" name="Security" />
+        <layer Id="8c9d671a-c407-4326-a421-c59d757794eb" name="Communication" />
+        <layer Id="bd67332c-0d7e-40b3-a7e4-3e94aaad4622" name="Operational Management" />
+      </childLayers>
+    </layer>
+    <layer Id="d684aa17-34a4-4cb4-94db-ec0db8f5fc6f" name="Client">
+      <childLayers>
+        <layer Id="620a9afd-9292-4494-8989-24cc9e3b990f" name="Isolated Storage" />
+        <layer Id="71a613b1-5c85-4409-a2f2-09c1c83071cf" name="Browser">
+          <childLayers>
+            <layer Id="9218a822-11b6-4887-bd3b-1114dde30868" name="Plug-in Execution Container">
+              <childLayers>
+                <layer Id="35ce10d1-42a8-48ee-998c-f0a178f29174" name="Rich UI Engine" />
+                <layer Id="6206a2e8-9824-403c-be8a-e9fd50628163" name="Business Processing Components" />
+                <layer Id="54bbf44a-1263-4df0-8475-ef06a2885a5f" name="Presentation Layer" />
+              </childLayers>
+            </layer>
+          </childLayers>
+        </layer>
+      </childLayers>
+    </layer>
+    <layer Id="3942c9a0-90d5-4d69-8e7b-cb42f5ec3598" name="Web Server">
+      <childLayers>
+        <layer Id="38fb3949-b09f-4f38-b87f-5772db070df3" name="Services Layer">
+          <childLayers>
+            <layer Id="308c41bf-bc0c-4d29-afe8-7ef7ea7a7184" name="Service Interfaces" />
+            <layer Id="2055af09-f5a5-432f-904b-1f3aa8ef0c6a" name="Message Types" />
+          </childLayers>
+        </layer>
+        <layer Id="6a60d60b-10f9-404e-b8a8-7fe588ee64d4" name="Data Layer">
+          <childLayers>
+            <layer Id="fea4e2b8-0ddb-4b56-989e-fb573757c7f4" name="Data Access Components" />
+            <layer Id="be2c4152-1f45-40f9-83fb-00e4b5e78c8a" name="Data Helpers/ Utilities" />
+            <layer Id="877c39b9-3a15-4f36-9672-9ab61eda6317" name="Service Agents" />
+          </childLayers>
+        </layer>
+        <layer Id="a81fc681-82a3-4c0a-8588-2bf0d2f61d0f" name="Business Layer">
+          <childLayers>
+            <layer Id="9ada1033-2df0-4048-b2b6-8288eb14cb91" name="Application Facade" />
+            <layer Id="57d21f5b-0ca6-477b-ae83-28f24e9d937c" name="Business Workflow" />
+            <layer Id="4903ca74-7d22-45a2-8add-05d3561ae9f8" name="Business Components" />
+            <layer Id="188d5c98-e616-4aa6-8eb0-fbc0a012da45" name="Business Entities" />
+          </childLayers>
+        </layer>
+      </childLayers>
+    </layer>
+  </layers>
+</layerModel>
