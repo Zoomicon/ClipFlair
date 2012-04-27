@@ -1,9 +1,12 @@
-﻿namespace PropertyPagesSupport
+﻿//Version: 20120428
+
+namespace PropertyPagesSupport
 {
  
-  public interface IPropertyPagesProvider
+  public interface IPropertyPagesConsumer
   {
-    IPropertyPages PropertyPages { get; }
+    IPropertyPages PropertyPages { set; }
   }
 
 }
+ 
