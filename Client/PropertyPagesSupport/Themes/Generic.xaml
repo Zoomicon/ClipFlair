@@ -1,0 +1,41 @@
+<ResourceDictionary xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk" 
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="clr-namespace:PropertyPagesSupport">
+
+  <Style TargetType="local:PropertyPagesHost">
+
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="local:PropertyPagesHost">
+
+          <Border Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}">
+
+            <sdk:TabControl ItemsSource="{TemplateBinding PropertyPages}" DisplayMemberPath="Title">
+   
+              <!-- if can't combine DisplayMemberPath (to set the header) with ItemTemplate (to show the content),
+                   then need to set header of TabItem via implicit data template to show Title of respective property page -->
+       <!--    
+              <Style TargetType="TabItem">
+                <Setter Property="Header" Value="{Binding Title}" />
+              </Style>
+       -->
+                   
+              <sdk:TabControl.ItemTemplate>
+                <DataTemplate>
+                  <ContentPresenter Content="{Binding UI}"></ContentPresenter>
+                </DataTemplate>
+              </sdk:TabControl.ItemTemplate>
+            </sdk:TabControl>
+        
+          </Border>  
+            
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+
+  </Style>
+  
+</ResourceDictionary>
