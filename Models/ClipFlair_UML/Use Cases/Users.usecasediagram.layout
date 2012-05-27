@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<useCaseDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="UMLUseCaseDiagram1">
+  <useCaseModelRootMoniker Id="4fb8b25a-6dce-4ed2-b090-01f7aaff8f5a" />
+  <nestedChildShapes>
+    <actorShape Id="9131285c-0d79-4b1f-8049-121c2eb0ca45" absoluteBounds="4.125, 1.25, 0.5, 0.5" isReference="false" heightOffset="0">
+      <actorMoniker Id="5a926455-c333-4fe4-ba93-6e489b94f270" LastKnownName="ClipFlair user" />
+      <relativeChildShapes />
+    </actorShape>
+    <actorShape Id="8508cbbe-86f9-48ea-8ece-1bed54443e65" absoluteBounds="1, 1.25, 0.5, 0.5" isReference="false" heightOffset="0">
+      <actorMoniker Id="d4ac8ef4-8c8d-4495-a6a7-53bc2b4231cc" LastKnownName="Administrator" />
+      <relativeChildShapes />
+    </actorShape>
+    <actorShape Id="ca6fdcf8-587f-4d8c-984c-d81c30b7b848" absoluteBounds="2.5, 1.25, 0.5, 0.5" isReference="false" heightOffset="0">
+      <actorMoniker Id="19b5cda4-5bb7-43a3-a0a0-19df474a0ab7" LastKnownName="Moderator" />
+      <relativeChildShapes />
+    </actorShape>
+  </nestedChildShapes>
+</useCaseDiagram>
