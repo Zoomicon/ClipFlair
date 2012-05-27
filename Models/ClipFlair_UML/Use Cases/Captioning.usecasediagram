@@ -1,0 +1,155 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<useCaseModelRoot xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm4="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm5="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/ModelStore" xmlns:dm9="http://schemas.microsoft.com/dsltools/SimpleShapesModel" dslVersion="1.0.0.0" Id="ce4b5454-5fca-4a88-a5c0-7506c701bc72" name="Captioning" linkedPackageId="dc9ddb8d-ffa0-473e-a490-9e8f2c40e346" xmlns="http://schemas.microsoft.com/dsltools/UseCaseModel">
+  <profileInstances>
+    <packageHasProfileInstances Id="a6124799-976f-46dd-ba19-eeb7929e45ed">
+      <profileInstance Id="38ab65a2-7fa5-42fa-ab75-72c902a5aeb2" name="StandardProfileL2">
+        <elementDefinition Id="e34d544e-0fea-4ed6-ac5e-1b74119ac791" />
+      </profileInstance>
+      <elementDefinition Id="0caec977-1f8c-4ba3-a7db-8cc9ad9cc73b" />
+    </packageHasProfileInstances>
+    <packageHasProfileInstances Id="c3578515-e55c-4546-9326-6d4d2850392a">
+      <profileInstance Id="5e17c3ed-2d5e-47f5-b0a8-11079596532c" name="StandardProfileL3">
+        <elementDefinition Id="532ea607-fb19-44b8-8502-3351b05452be" />
+      </profileInstance>
+      <elementDefinition Id="29349502-908c-4fda-9054-c48619c59ed0" />
+    </packageHasProfileInstances>
+  </profileInstances>
+  <packagedElements>
+    <useCaseModelRootHasTypes>
+      <useCase Id="f63503ca-7e6f-4901-92d0-0362a209e7b8" name="Captioning" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="76a53c6a-31e9-424d-892a-fe150b1c6f33" />
+        <additions>
+          <include Id="1cb04759-4afe-4040-b7d0-0bf1771e778b">
+            <useCaseMoniker Id="60f91e08-8ab4-4446-8ff6-1072209de09c" LastKnownName="Create caption" />
+            <elementDefinition Id="f057a047-7570-493f-bb9d-422b005f8036" />
+          </include>
+          <include Id="95e951dc-6d45-4cce-8200-7829ac604fc7">
+            <useCaseMoniker Id="e0b81029-b111-4eb1-aedf-fcf28565e133" LastKnownName="Select caption" />
+            <elementDefinition Id="7ca55728-514a-4127-9249-9ae8c86c421e" />
+          </include>
+          <include Id="21022bfa-8a48-4930-a85f-6a8769b52318">
+            <useCaseMoniker Id="3684687a-ea92-431f-8c75-a07efc38253a" LastKnownName="Edit caption" />
+            <elementDefinition Id="61859abc-a84e-4f7b-b81f-ada296004f2a" />
+          </include>
+          <include Id="290967fa-69a6-4ec5-8c47-44bb63ce475a">
+            <useCaseMoniker Id="f091e61b-0f98-4873-86ca-42b4e4a3ab76" LastKnownName="Delete caption" />
+            <elementDefinition Id="bd2fda16-6bf0-4d40-82cd-f00afc1857d5" />
+          </include>
+        </additions>
+      </useCase>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <useCase Id="60f91e08-8ab4-4446-8ff6-1072209de09c" name="Create caption" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="c84fc605-ca66-4f48-9b58-78853bc11dee" />
+        <additions>
+          <include Id="4c81967c-217b-47ad-9723-604964d9cefc">
+            <useCaseMoniker Id="3684687a-ea92-431f-8c75-a07efc38253a" LastKnownName="Edit caption" />
+            <elementDefinition Id="d0763efc-280c-44fc-8ce7-3543f7cab7c5" />
+          </include>
+        </additions>
+      </useCase>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <useCase Id="e0b81029-b111-4eb1-aedf-fcf28565e133" name="Select caption" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="5d9aaab5-e1a1-46b0-b005-64038959fb99" />
+      </useCase>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <useCase Id="f091e61b-0f98-4873-86ca-42b4e4a3ab76" name="Delete caption" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="fe7b7d19-1292-46c9-bfbb-4349090e90a9" />
+        <suppliersInternal>
+          <dependency Id="74bf63b2-1047-4198-8f64-09ab490f1972">
+            <useCaseMoniker Id="e0b81029-b111-4eb1-aedf-fcf28565e133" LastKnownName="Select caption" />
+            <elementDefinition Id="b264f229-d3d5-4e4e-87d6-2283931dfb6e" />
+          </dependency>
+        </suppliersInternal>
+      </useCase>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <useCase Id="3684687a-ea92-431f-8c75-a07efc38253a" name="Edit caption" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="e59c3f5e-38de-415d-9626-50940211478d" />
+        <suppliersInternal>
+          <dependency Id="0d2eb3c6-f8b8-4419-9ec8-ae3f2fbfc1f3">
+            <useCaseMoniker Id="e0b81029-b111-4eb1-aedf-fcf28565e133" LastKnownName="Select caption" />
+            <elementDefinition Id="2384be78-9e09-4d22-82f4-238d23170ea9" />
+          </dependency>
+        </suppliersInternal>
+        <additions>
+          <include Id="d681507f-48a0-448a-bdd7-364e203728dc">
+            <useCaseMoniker Id="cc22a838-6aae-4fa8-8820-4fa8c1ec0782" LastKnownName="Edit caption start time" />
+            <elementDefinition Id="198108a8-ed3c-420d-bfab-f24b44b4d866" />
+          </include>
+          <include Id="7a3d8c96-56ab-47b7-a84c-dd91d97c0c20">
+            <useCaseMoniker Id="f4641a37-f771-4dc7-887c-0be1649840b7" LastKnownName="Edit caption end time" />
+            <elementDefinition Id="be57b93f-75fb-4516-98b1-8364cab52b3a" />
+          </include>
+          <include Id="83b8848a-2727-49a6-9add-c6d15095ed71">
+            <useCaseMoniker Id="57d7adad-0e02-40b8-bc8f-d5e3e66a76d2" LastKnownName="Edit caption text" />
+            <elementDefinition Id="797b2290-4bab-4001-846e-c482d539f090" />
+          </include>
+          <include Id="fb2e760f-c67b-473e-8ebc-4492df11a184">
+            <useCaseMoniker Id="d8b08ce6-f1c7-4858-97a8-a8bff5b23104" LastKnownName="Edit caption position" />
+            <elementDefinition Id="8f60c97b-1ea2-464e-a513-6824e1f491ee" />
+          </include>
+        </additions>
+      </useCase>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <useCase Id="cc22a838-6aae-4fa8-8820-4fa8c1ec0782" name="Edit caption start time" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="c61d9a4a-1322-4d50-bdcb-6b79126c5850" />
+      </useCase>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <useCase Id="f4641a37-f771-4dc7-887c-0be1649840b7" name="Edit caption end time" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="0b93f788-3719-4b04-888f-0fba119e5721" />
+      </useCase>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <actor Id="ca0f58f3-b6a6-44e8-a343-4f68d758e16a" name="ClipFlair user" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="9742ba0b-b8a8-4efb-aa2c-4f263ff20a28" />
+        <targetEnds>
+          <association Id="5a5aab88-96ba-4291-a53d-d10d27bfda75" isDerived="false" sourceEndRoleName="ClipFlair user" targetEndRoleName="Subtitling1" isLeaf="false" isAbstract="false">
+            <useCaseMoniker Id="f63503ca-7e6f-4901-92d0-0362a209e7b8" LastKnownName="Captioning" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="0d601c3d-bcc5-4926-8c2b-0ff4443bd0d9" name="ClipFlair user" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="b9a4ac57-19a0-457c-8c15-e9bc16d9bc51" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="fe4f4b6c-6a85-47ac-a78d-c751c7c293e6" name="Subtitling1" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="53b92a29-03e4-4fc7-bc19-ba2a723a357b" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="a2dfdc9a-bca4-44b7-a9ba-67bb2f9c55d8" />
+          </association>
+        </targetEnds>
+      </actor>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <useCase Id="57d7adad-0e02-40b8-bc8f-d5e3e66a76d2" name="Edit caption text" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="25b1fa50-cd8c-46a1-a1c0-ffb7ec93e431" />
+        <additions>
+          <include Id="018b46c0-9de1-4562-aed2-deeda3347f0f">
+            <useCaseMoniker Id="a2f1a79d-d1b4-4857-a348-2e011376424c" LastKnownName="Edit caption formatting" />
+            <elementDefinition Id="13c0cb44-4593-4b21-a40b-f3b62cc6f2df" />
+          </include>
+        </additions>
+      </useCase>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <useCase Id="a2f1a79d-d1b4-4857-a348-2e011376424c" name="Edit caption formatting" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="cdd14a98-621d-43d7-b307-e70b24bf179a" />
+      </useCase>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <useCase Id="d8b08ce6-f1c7-4858-97a8-a8bff5b23104" name="Edit caption position" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="c001abb3-36c1-4615-8b95-e963ef84d0ee" />
+      </useCase>
+    </useCaseModelRootHasTypes>
+  </packagedElements>
+  <package Id="dc9ddb8d-ffa0-473e-a490-9e8f2c40e346" name="ClipFlair">
+    <elementDefinition Id="932621b2-5f91-42d5-909b-e824a279f791" />
+  </package>
+</useCaseModelRoot>
