@@ -1,28 +1,28 @@
-﻿using System;
-using System.Net;
+﻿//Filename: Visual
+//Version: 20120606
+//Author: George Birbilis <birbilis@kagi.com>
+
+#if SILVERLIGHT
+
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Documents;
-using System.Windows.Ink;
-using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Animation;
 using System.Windows.Media.Effects;
 using System.Windows.Shapes;
 
 namespace WPFCompatibility
 {
+
     public class Visual //: FrameworkElement
     {
 
-        #region --- Fields ---
+        #region Fields
         
         private UIElement _element;
 
         #endregion
-
-        
-        #region --- Properties ---
+                
+        #region Properties
 
         public UIElement Element {
             get { return _element; }
@@ -103,7 +103,7 @@ namespace WPFCompatibility
 
         #endregion
 
-        #region --- Methods ---
+        #region Methods
 
         public GeneralTransform TransformToAncestor(UIElement visual)
         {
@@ -123,3 +123,5 @@ namespace WPFCompatibility
     }
     
 }
+
+#endif

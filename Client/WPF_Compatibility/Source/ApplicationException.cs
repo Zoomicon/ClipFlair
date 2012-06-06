@@ -1,4 +1,10 @@
-﻿namespace System
+﻿//Filename: ApplicationException
+//Version: 20120606
+//Author: George Birbilis <birbilis@kagi.com>
+
+#if SILVERLIGHT
+
+namespace System
 {
     /// <summary>
     /// Silverlight does not offer support for exceptions of type ApplicationException
@@ -23,3 +29,5 @@
     }
 
 }
+
+#endif
