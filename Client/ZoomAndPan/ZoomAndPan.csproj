@@ -56,13 +56,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AnimationHelper.cs" />
-    <Compile Include="WPFCompatibility\ApplicationException.cs" />
-    <Compile Include="WPFCompatibility\WPF_ScaleTransform.cs" />
     <Compile Include="ZoomAndPanControl_IScrollInfo_WPFCompatibility.cs" />
-    <Compile Include="WPFCompatibility\Visual.cs" />
-    <Compile Include="WPFCompatibility\WPF_UIElement.cs" />
-    <Compile Include="WPFCompatibility\FrameworkPropertyMetadata.cs" />
-    <Compile Include="WPFCompatibility\WPF_Rect.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ZoomAndPanControl.cs" />
     <Compile Include="ZoomAndPanControl_IScrollInfo.cs" />
@@ -72,6 +66,12 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\WPF_Compatibility\Silverlight\WPF_Compatibility.Silverlight.csproj">
+      <Project>{7DC832CC-2D97-4DBC-B963-3F77C1F20730}</Project>
+      <Name>WPF_Compatibility.Silverlight</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Silverlight\$(SilverlightVersion)\Microsoft.Silverlight.CSharp.targets" />
   <ProjectExtensions>

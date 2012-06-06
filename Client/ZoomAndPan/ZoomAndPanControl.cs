@@ -1,4 +1,10 @@
-﻿//TODO: checkout if we manually need to call the _Coerce methods in Silveright (maybe at the _PropertyChanged methods)
+﻿//Filename: ZoomAndPan
+//Version: 20120606
+//Editor: George Birbilis <birbilis@kagi.com>
+
+//Based on:
+//- WPF: http://www.codeproject.com/Articles/85603/A-WPF-custom-control-for-zooming-and-panning
+//- Silerlight: http://www.codeproject.com/Articles/167453/A-Silverlight-custom-control-for-zooming-and-panni
 
 using System;
 using System.Net;
@@ -11,16 +17,17 @@ using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 using System.Windows.Controls.Primitives;
-using WPFCompatibility;
+using WPFCompatibility; //Birbilis
 
 namespace ZoomAndPan
 {
     /// <summary>
     /// A class that wraps up zooming and panning of it's content.
     /// </summary>
-    [TemplatePart(Name = "PART_Content", Type = typeof(FrameworkElement))] //Silverlight needs this, WPF detects the PART_ prefix in Generic.xaml automatically
+    [TemplatePart(Name = "PART_Content", Type = typeof(FrameworkElement))] //Silverlight needs this, WPF controls can also use, but sometimes just detect PART_ prefix in Generic.xaml
     public partial class ZoomAndPanControl : ContentControl, IScrollInfo
     {
+
         #region Internal Data Members
 
         /// <summary>
@@ -120,58 +127,43 @@ namespace ZoomAndPan
         //
 
         public static readonly DependencyProperty ContentScaleProperty =
-                DependencyProperty.Register("ContentScale", typeof(double), typeof(ZoomAndPanControl),
-                                    //WPF// new FrameworkPropertyMetadata(1.0, ContentScale_PropertyChanged, ContentScale_Coerce)
-                                            new PropertyMetadata(1.0, ContentScale_PropertyChanged)
-                                           );
+                WPF_DependencyProperty.Register("ContentScale", typeof(double), typeof(ZoomAndPanControl), new FrameworkPropertyMetadata(1.0, ContentScale_PropertyChanged, ContentScale_Coerce));
 
         public static readonly DependencyProperty MinContentScaleProperty =
-                DependencyProperty.Register("MinContentScale", typeof(double), typeof(ZoomAndPanControl),
-                                    //WPF// new FrameworkPropertyMetadata(0.01, MinOrMaxContentScale_PropertyChanged)
-                                            new PropertyMetadata(0.01, MinOrMaxContentScale_PropertyChanged)
-                                           );
+                WPF_DependencyProperty.Register("MinContentScale", typeof(double), typeof(ZoomAndPanControl), new FrameworkPropertyMetadata(0.01, MinOrMaxContentScale_PropertyChanged));
 
         public static readonly DependencyProperty MaxContentScaleProperty =
-                DependencyProperty.Register("MaxContentScale", typeof(double), typeof(ZoomAndPanControl),
-                                    //WPF// new FrameworkPropertyMetadata(10.0, MinOrMaxContentScale_PropertyChanged)
-                                            new PropertyMetadata(10.0, MinOrMaxContentScale_PropertyChanged)
-                                           );
+                WPF_DependencyProperty.Register("MaxContentScale", typeof(double), typeof(ZoomAndPanControl), new FrameworkPropertyMetadata(10.0, MinOrMaxContentScale_PropertyChanged));
 
         public static readonly DependencyProperty ContentOffsetXProperty =
-                DependencyProperty.Register("ContentOffsetX", typeof(double), typeof(ZoomAndPanControl),
-                                    //WPF// new FrameworkPropertyMetadata(0.0, ContentOffsetX_PropertyChanged, ContentOffsetX_Coerce)
-                                            new PropertyMetadata(0.0, ContentOffsetX_PropertyChanged)
-                                           );
+                WPF_DependencyProperty.Register("ContentOffsetX", typeof(double), typeof(ZoomAndPanControl), new FrameworkPropertyMetadata(0.0, ContentOffsetX_PropertyChanged, ContentOffsetX_Coerce));
 
         public static readonly DependencyProperty ContentOffsetYProperty =
-                DependencyProperty.Register("ContentOffsetY", typeof(double), typeof(ZoomAndPanControl),
-                                    //WPF// new FrameworkPropertyMetadata(0.0, ContentOffsetY_PropertyChanged, ContentOffsetY_Coerce)
-                                            new PropertyMetadata(0.0, ContentOffsetY_PropertyChanged)
-                                           );
+                WPF_DependencyProperty.Register("ContentOffsetY", typeof(double), typeof(ZoomAndPanControl), new FrameworkPropertyMetadata(0.0, ContentOffsetY_PropertyChanged, ContentOffsetY_Coerce));
 
         public static readonly DependencyProperty AnimationDurationProperty =
-                DependencyProperty.Register("AnimationDuration", typeof(double), typeof(ZoomAndPanControl), new FrameworkPropertyMetadata(0.4));
+                WPF_DependencyProperty.Register("AnimationDuration", typeof(double), typeof(ZoomAndPanControl), new FrameworkPropertyMetadata(0.4));
 
         public static readonly DependencyProperty ContentZoomFocusXProperty =
-                DependencyProperty.Register("ContentZoomFocusX", typeof(double), typeof(ZoomAndPanControl), new FrameworkPropertyMetadata(0.0));
+                WPF_DependencyProperty.Register("ContentZoomFocusX", typeof(double), typeof(ZoomAndPanControl), new FrameworkPropertyMetadata(0.0));
 
         public static readonly DependencyProperty ContentZoomFocusYProperty =
-                DependencyProperty.Register("ContentZoomFocusY", typeof(double), typeof(ZoomAndPanControl), new FrameworkPropertyMetadata(0.0));
+                WPF_DependencyProperty.Register("ContentZoomFocusY", typeof(double), typeof(ZoomAndPanControl), new FrameworkPropertyMetadata(0.0));
 
         public static readonly DependencyProperty ViewportZoomFocusXProperty =
-                DependencyProperty.Register("ViewportZoomFocusX", typeof(double), typeof(ZoomAndPanControl), new FrameworkPropertyMetadata(0.0));
+                WPF_DependencyProperty.Register("ViewportZoomFocusX", typeof(double), typeof(ZoomAndPanControl), new FrameworkPropertyMetadata(0.0));
 
         public static readonly DependencyProperty ViewportZoomFocusYProperty =
-                DependencyProperty.Register("ViewportZoomFocusY", typeof(double), typeof(ZoomAndPanControl), new FrameworkPropertyMetadata(0.0));
+                WPF_DependencyProperty.Register("ViewportZoomFocusY", typeof(double), typeof(ZoomAndPanControl), new FrameworkPropertyMetadata(0.0));
 
         public static readonly DependencyProperty ContentViewportWidthProperty =
-                DependencyProperty.Register("ContentViewportWidth", typeof(double), typeof(ZoomAndPanControl), new FrameworkPropertyMetadata(0.0));
+                WPF_DependencyProperty.Register("ContentViewportWidth", typeof(double), typeof(ZoomAndPanControl), new FrameworkPropertyMetadata(0.0));
 
         public static readonly DependencyProperty ContentViewportHeightProperty =
-                DependencyProperty.Register("ContentViewportHeight", typeof(double), typeof(ZoomAndPanControl), new FrameworkPropertyMetadata(0.0));
+                WPF_DependencyProperty.Register("ContentViewportHeight", typeof(double), typeof(ZoomAndPanControl), new FrameworkPropertyMetadata(0.0));
 
         public static readonly DependencyProperty IsMouseWheelScrollingEnabledProperty =
-                DependencyProperty.Register("IsMouseWheelScrollingEnabled", typeof(bool), typeof(ZoomAndPanControl), new FrameworkPropertyMetadata(false));
+                WPF_DependencyProperty.Register("IsMouseWheelScrollingEnabled", typeof(bool), typeof(ZoomAndPanControl), new FrameworkPropertyMetadata(false));
 
         #endregion Dependency Property Definitions
 

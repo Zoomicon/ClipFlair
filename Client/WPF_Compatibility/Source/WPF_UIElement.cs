@@ -1,19 +1,17 @@
-﻿using System;
-using System.Net;
+﻿//Filename: WPF_UIElement
+//Version: 20120606
+//Author: George Birbilis <birbilis@kagi.com>
+
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Documents;
-using System.Windows.Ink;
-using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Animation;
-using System.Windows.Shapes;
 
 namespace WPFCompatibility
 {
 
     public static class WPF_UIElement
     {
+
+#if SILVERLIGHT
 
         public static bool IsAncestorOf(this UIElement target, Visual visual)
         {
@@ -42,6 +40,8 @@ namespace WPFCompatibility
 
             return false;
         }
+
+#endif
 
     }
 
