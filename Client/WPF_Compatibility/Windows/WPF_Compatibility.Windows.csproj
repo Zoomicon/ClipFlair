@@ -8,7 +8,7 @@
     <ProjectGuid>{DC154E89-74E8-4ADC-95B5-0772CA254F71}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>WPF_Compatibility.Windows</RootNamespace>
+    <RootNamespace>WPF_Compatibility</RootNamespace>
     <AssemblyName>WPF_Compatibility.Windows</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>

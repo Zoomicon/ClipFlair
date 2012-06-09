@@ -8,8 +8,8 @@
     <ProjectGuid>{CB775AA5-8BA0-43F5-A2DC-15E29D00E031}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>WPF_Compatibility.Windows</RootNamespace>
-    <AssemblyName>WPF_Compatibility.Windows</AssemblyName>
+    <RootNamespace>ZoomAndPan</RootNamespace>
+    <AssemblyName>ZoomAndPan</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
