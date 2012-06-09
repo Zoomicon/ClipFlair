@@ -1,10 +1,10 @@
 ﻿//Filename: WPF_ScaleTransform
-//Version: 20120606
+//Version: 20120610
 //Author: George Birbilis <birbilis@kagi.com>
 
 using System.Windows.Media;
 
-namespace ZoomAndPan.WPFCompatibility
+namespace WPFCompatibility
 {
     
     public static class WPF_ScaleTransform
