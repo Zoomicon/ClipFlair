@@ -24,8 +24,8 @@ namespace ZoomAndPan
     /// <summary>
     /// A class that wraps up zooming and panning of it's content.
     /// </summary>
-    [TemplatePart(Name = "PART_Content", Type = typeof(FrameworkElement))] //Silverlight needs this, WPF controls can also use, but sometimes just detect PART_ prefix in Generic.xaml
-    public partial class ZoomAndPanControl : ContentControl, IScrollInfo
+  [TemplatePart(Name = "PART_Content", Type = typeof(FrameworkElement))] //Silverlight needs this, WPF controls can also use, but sometimes just detect PART_ prefix in Generic.xaml
+  public partial class ZoomAndPanControl : ContentControl, IScrollInfo
     {
 
         #region Internal Data Members

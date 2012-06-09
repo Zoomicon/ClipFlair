@@ -5,7 +5,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZoomAndPan.Silverlight", "S
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPF_Compatibility.Silverlight", "..\WPF_Compatibility\Silverlight\WPF_Compatibility.Silverlight.csproj", "{7DC832CC-2D97-4DBC-B963-3F77C1F20730}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZoomAndPan.Windows", "Windows\ZoomAndPan.Windows.csproj", "{CB775AA5-8BA0-43F5-A2DC-15E29D00E031}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZoomAndPan.Windows", "Windows\ZoomAndPan.Windows.csproj", "{468ADEDE-6F5E-40C0-99C9-C6DAC4FAC934}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPF_Compatibility.Windows", "..\WPF_Compatibility\Windows\WPF_Compatibility.Windows.csproj", "{DC154E89-74E8-4ADC-95B5-0772CA254F71}"
 EndProject
@@ -23,10 +23,10 @@ Global
 		{7DC832CC-2D97-4DBC-B963-3F77C1F20730}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7DC832CC-2D97-4DBC-B963-3F77C1F20730}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7DC832CC-2D97-4DBC-B963-3F77C1F20730}.Release|Any CPU.Build.0 = Release|Any CPU
-		{CB775AA5-8BA0-43F5-A2DC-15E29D00E031}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{CB775AA5-8BA0-43F5-A2DC-15E29D00E031}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{CB775AA5-8BA0-43F5-A2DC-15E29D00E031}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{CB775AA5-8BA0-43F5-A2DC-15E29D00E031}.Release|Any CPU.Build.0 = Release|Any CPU
+		{468ADEDE-6F5E-40C0-99C9-C6DAC4FAC934}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{468ADEDE-6F5E-40C0-99C9-C6DAC4FAC934}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{468ADEDE-6F5E-40C0-99C9-C6DAC4FAC934}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{468ADEDE-6F5E-40C0-99C9-C6DAC4FAC934}.Release|Any CPU.Build.0 = Release|Any CPU
 		{DC154E89-74E8-4ADC-95B5-0772CA254F71}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{DC154E89-74E8-4ADC-95B5-0772CA254F71}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DC154E89-74E8-4ADC-95B5-0772CA254F71}.Release|Any CPU.ActiveCfg = Release|Any CPU
