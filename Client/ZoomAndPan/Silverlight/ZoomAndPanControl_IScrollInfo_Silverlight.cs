@@ -1,13 +1,10 @@
-﻿using System;
-using System.Net;
+﻿//Filename: ZoomAndPanControl_IScrollInfo_Silverlight
+//Version: 20120609
+//Author: George Birbilis <birbilis@kagi.com>
+
+#if SILVERLIGHT
+
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Documents;
-using System.Windows.Ink;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Animation;
-using System.Windows.Shapes;
 using WPFCompatibility;
 
 namespace ZoomAndPan
@@ -36,3 +33,4 @@ namespace ZoomAndPan
 
 }
 
+#endif
