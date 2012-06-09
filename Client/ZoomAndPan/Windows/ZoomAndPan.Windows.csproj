@@ -5,7 +5,7 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{DC154E89-74E8-4ADC-95B5-0772CA254F71}</ProjectGuid>
+    <ProjectGuid>{CB775AA5-8BA0-43F5-A2DC-15E29D00E031}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>WPF_Compatibility.Windows</RootNamespace>
@@ -35,6 +35,7 @@
     <Reference Include="PresentationFramework" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Xaml" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -43,35 +44,30 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\Source\ApplicationException.cs">
-      <Link>ApplicationException.cs</Link>
+    <Compile Include="..\Source\AnimationHelper.cs">
+      <Link>AnimationHelper.cs</Link>
     </Compile>
-    <Compile Include="..\Source\CoerceValueCallback.cs">
-      <Link>CoerceValueCallback.cs</Link>
+    <Compile Include="..\Source\ZoomAndPanControl.cs">
+      <Link>ZoomAndPanControl.cs</Link>
     </Compile>
-    <Compile Include="..\Source\FrameworkPropertyMetadata.cs">
-      <Link>FrameworkPropertyMetadata.cs</Link>
-    </Compile>
-    <Compile Include="..\Source\Visual.cs">
-      <Link>Visual.cs</Link>
-    </Compile>
-    <Compile Include="..\Source\WPF_DependencyObject.cs">
-      <Link>WPF_DependencyObject.cs</Link>
-    </Compile>
-    <Compile Include="..\Source\WPF_DependencyProperty.cs">
-      <Link>WPF_DependencyProperty.cs</Link>
-    </Compile>
-    <Compile Include="..\Source\WPF_Rect.cs">
-      <Link>WPF_Rect.cs</Link>
-    </Compile>
-    <Compile Include="..\Source\WPF_ScaleTransform.cs">
-      <Link>WPF_ScaleTransform.cs</Link>
-    </Compile>
-    <Compile Include="..\Source\WPF_UIElement.cs">
-      <Link>WPF_UIElement.cs</Link>
+    <Compile Include="..\Source\ZoomAndPanControl_IScrollInfo.cs">
+      <Link>ZoomAndPanControl_IScrollInfo.cs</Link>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <Page Include="Themes\Generic.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\WPF_Compatibility\Windows\WPF_Compatibility.Windows.csproj">
+      <Project>{DC154E89-74E8-4ADC-95B5-0772CA254F71}</Project>
+      <Name>WPF_Compatibility.Windows</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
