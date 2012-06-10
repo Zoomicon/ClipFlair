@@ -15,9 +15,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PropertyPagesSupport", "Cli
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClipFlairModels", "Models\ClipFlairModels\ClipFlairModels.csproj", "{5BCE670D-C942-4C1E-A369-E8FC1AD3D34F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZoomAndPan", "Client\ZoomAndPan\ZoomAndPan.csproj", "{8E75887A-A164-41B8-86D5-8DC37768B5A3}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPF_Compatibility.Silverlight", "Client\WPF_Compatibility\Silverlight\WPF_Compatibility.Silverlight.csproj", "{7DC832CC-2D97-4DBC-B963-3F77C1F20730}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZoomAndPan.Silverlight", "Client\ZoomAndPan\Silverlight\ZoomAndPan.Silverlight.csproj", "{8E75887A-A164-41B8-86D5-8DC37768B5A3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,14 +45,14 @@ Global
 		{5BCE670D-C942-4C1E-A369-E8FC1AD3D34F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5BCE670D-C942-4C1E-A369-E8FC1AD3D34F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5BCE670D-C942-4C1E-A369-E8FC1AD3D34F}.Release|Any CPU.Build.0 = Release|Any CPU
-		{8E75887A-A164-41B8-86D5-8DC37768B5A3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{8E75887A-A164-41B8-86D5-8DC37768B5A3}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{8E75887A-A164-41B8-86D5-8DC37768B5A3}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{8E75887A-A164-41B8-86D5-8DC37768B5A3}.Release|Any CPU.Build.0 = Release|Any CPU
 		{7DC832CC-2D97-4DBC-B963-3F77C1F20730}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{7DC832CC-2D97-4DBC-B963-3F77C1F20730}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7DC832CC-2D97-4DBC-B963-3F77C1F20730}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7DC832CC-2D97-4DBC-B963-3F77C1F20730}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8E75887A-A164-41B8-86D5-8DC37768B5A3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8E75887A-A164-41B8-86D5-8DC37768B5A3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8E75887A-A164-41B8-86D5-8DC37768B5A3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8E75887A-A164-41B8-86D5-8DC37768B5A3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
