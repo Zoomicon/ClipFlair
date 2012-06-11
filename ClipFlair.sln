@@ -19,6 +19,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPF_Compatibility.Silverlig
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZoomAndPan.Silverlight", "Client\ZoomAndPan\Silverlight\ZoomAndPan.Silverlight.csproj", "{8E75887A-A164-41B8-86D5-8DC37768B5A3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FlipPanel.Silverlight", "Client\FlipPanel\FlipPanel.Silverlight\FlipPanel.Silverlight.csproj", "{245ABF59-8751-46FB-A37E-E5EE253342AD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -53,6 +55,10 @@ Global
 		{8E75887A-A164-41B8-86D5-8DC37768B5A3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8E75887A-A164-41B8-86D5-8DC37768B5A3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8E75887A-A164-41B8-86D5-8DC37768B5A3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{245ABF59-8751-46FB-A37E-E5EE253342AD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{245ABF59-8751-46FB-A37E-E5EE253342AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{245ABF59-8751-46FB-A37E-E5EE253342AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{245ABF59-8751-46FB-A37E-E5EE253342AD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
