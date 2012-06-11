@@ -11,7 +11,7 @@ Version: 20120611
     <ResourceDictionary Source="/FlipPanel;component/Themes/RotateHorizontalTheme.xaml" />
   </ResourceDictionary.MergedDictionaries>
 
-  <Style x:Key="FlipPanel_DefaultStyle" TargetType="local:FlipPanel">
+  <Style TargetType="local:FlipPanel">
     <Setter Property="Template" Value="{StaticResource FlipPanel_RotateHorizontalTemplate}"/>
   </Style>
 
