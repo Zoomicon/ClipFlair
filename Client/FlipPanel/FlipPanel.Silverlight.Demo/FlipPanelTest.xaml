@@ -1,29 +1,69 @@
 ﻿<UserControl x:Class="FlipPanelTest.FlipPanelTest"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
-    xmlns:lib="clr-namespace:FlipPanel;assembly=FlipPanel" >
-    <Grid x:Name="LayoutRoot" Background="White">
-        <lib:FlipPanel x:Name="panel" BorderBrush="DarkOrange" BorderThickness="3"
-         CornerRadius="4" Margin="10" Background="White">
-            <lib:FlipPanel.FrontContent>                 
-                <StackPanel Margin="6">                
-                    <TextBlock TextWrapping="Wrap" Margin="3" FontSize="16" Foreground="DarkOrange">This is the front side of the FlipPanel.</TextBlock>
-                    <Button Margin="3" Padding="3" Content="Button One"></Button>
-                    <Button Margin="3" Padding="3" Content="Button Two"></Button>
-                    <Button Margin="3" Padding="3" Content="Button Three"></Button>
-                    <Button Margin="3" Padding="3" Content="Button Four"></Button>                    
-                </StackPanel>                
-            </lib:FlipPanel.FrontContent>
-            <lib:FlipPanel.BackContent>
-                <Grid Margin="6">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"></RowDefinition>
-                        <RowDefinition></RowDefinition>
-                    </Grid.RowDefinitions>
-                    <TextBlock TextWrapping="Wrap" Margin="3" FontSize="16" Foreground="DarkMagenta">This is the back side of the FlipPanel.</TextBlock>
-                    <Button Grid.Row="2" Margin="3" Padding="10" Content="Flip Back to Front" HorizontalAlignment="Center" VerticalAlignment="Center" Click="cmdFlip_Click"></Button> 
-                </Grid>                
-            </lib:FlipPanel.BackContent>
-        </lib:FlipPanel>
-    </Grid>
+    xmlns:flip="clr-namespace:FlipPanel;assembly=FlipPanel" >
+
+  <UserControl.Resources>
+    <ResourceDictionary>
+      <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="/FlipPanel;component/Themes/DropDownTheme.xaml" />
+        <ResourceDictionary Source="/FlipPanel;component/Themes/RotateHorizontalTheme.xaml" />
+      </ResourceDictionary.MergedDictionaries>
+    </ResourceDictionary>
+  </UserControl.Resources>
+
+  <Grid x:Name="LayoutRoot" Background="White" Width="400">
+
+    <Grid.RowDefinitions>
+      <RowDefinition Height="300"></RowDefinition>
+      <RowDefinition Height="300"></RowDefinition>
+    </Grid.RowDefinitions>
+
+    <flip:FlipPanel x:Name="panel1" Grid.Row="0" BorderBrush="DarkOrange" BorderThickness="3"
+         CornerRadius="4" Margin="10" Background="White" Template="{StaticResource FlipPanel_DropDownTemplate}" > <!-- Style="{StaticResource FlipPanel_DropDownStyle} -->
+      <flip:FlipPanel.FrontContent>
+        <StackPanel Margin="6">
+          <TextBlock TextWrapping="Wrap" Margin="3" FontSize="16" Foreground="DarkOrange">This is the front side of the FlipPanel.</TextBlock>
+          <Button Margin="3" Padding="3" Content="Button One"></Button>
+          <Button Margin="3" Padding="3" Content="Button Two"></Button>
+          <Button Margin="3" Padding="3" Content="Button Three"></Button>
+          <Button Margin="3" Padding="3" Content="Button Four"></Button>
+        </StackPanel>
+      </flip:FlipPanel.FrontContent>
+      <flip:FlipPanel.BackContent>
+        <Grid Margin="6">
+          <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition></RowDefinition>
+          </Grid.RowDefinitions>
+          <TextBlock TextWrapping="Wrap" Margin="3" FontSize="16" Foreground="DarkMagenta">This is the back side of the FlipPanel.</TextBlock>
+          <Button Grid.Row="2" Margin="3" Padding="10" Content="Flip Back to Front" HorizontalAlignment="Center" VerticalAlignment="Center" Click="cmdFlip1_Click"></Button>
+        </Grid>
+      </flip:FlipPanel.BackContent>
+    </flip:FlipPanel>
+
+    <flip:FlipPanel x:Name="panel2" Grid.Row="1" BorderBrush="DarkOrange" BorderThickness="3"
+         CornerRadius="4" Margin="10" Background="White" Template="{StaticResource FlipPanel_RotateHorizontalTemplate}" > <!-- Style="{StaticResource FlipPanel_RotateHorizontalStyle} -->
+      <flip:FlipPanel.FrontContent>
+        <StackPanel Margin="6">
+          <TextBlock TextWrapping="Wrap" Margin="3" FontSize="16" Foreground="DarkOrange">This is the front side of the FlipPanel.</TextBlock>
+          <Button Margin="3" Padding="3" Content="Button One"></Button>
+          <Button Margin="3" Padding="3" Content="Button Two"></Button>
+          <Button Margin="3" Padding="3" Content="Button Three"></Button>
+          <Button Margin="3" Padding="3" Content="Button Four"></Button>
+        </StackPanel>
+      </flip:FlipPanel.FrontContent>
+      <flip:FlipPanel.BackContent>
+        <Grid Margin="6">
+          <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition></RowDefinition>
+          </Grid.RowDefinitions>
+          <TextBlock TextWrapping="Wrap" Margin="3" FontSize="16" Foreground="DarkMagenta">This is the back side of the FlipPanel.</TextBlock>
+          <Button Grid.Row="2" Margin="3" Padding="10" Content="Flip Back to Front" HorizontalAlignment="Center" VerticalAlignment="Center" Click="cmdFlip2_Click"></Button>
+        </Grid>
+      </flip:FlipPanel.BackContent>
+    </flip:FlipPanel>
+
+  </Grid>
 </UserControl>
