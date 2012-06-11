@@ -20,9 +20,15 @@ namespace FlipPanelTest
             InitializeComponent();
         }
 
-        private void cmdFlip_Click(object sender, RoutedEventArgs e)
+        private void cmdFlip1_Click(object sender, RoutedEventArgs e)
         {            
-            panel.IsFlipped = !panel.IsFlipped;
+            panel1.IsFlipped = !panel1.IsFlipped;
         }
+
+        private void cmdFlip2_Click(object sender, RoutedEventArgs e)
+        {
+          panel2.IsFlipped = !panel2.IsFlipped;
+        }
+
     }
 }

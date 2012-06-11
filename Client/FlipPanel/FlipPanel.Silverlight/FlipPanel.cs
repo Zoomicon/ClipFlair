@@ -25,46 +25,29 @@ namespace FlipPanel
 
         public object FrontContent
         {
-            get
-            {
-                return GetValue(FrontContentProperty);
-            }
-            set
-            {
-                SetValue(FrontContentProperty, value);
-            }
+            get { return GetValue(FrontContentProperty); }
+
+            set { SetValue(FrontContentProperty, value); }
         }
 
         public object BackContent
         {
-            get
-            {
-                return GetValue(BackContentProperty);
-            }
-            set
-            {
-                SetValue(BackContentProperty, value);
-            }
+            get { return GetValue(BackContentProperty); }
+
+            set { SetValue(BackContentProperty, value); }
         }
 
         public CornerRadius CornerRadius
         {
-            get
-            {
-                return (CornerRadius)GetValue(CornerRadiusProperty);
-            }
-            set
-            {
-                SetValue(CornerRadiusProperty, value);
-            }
+            get { return (CornerRadius)GetValue(CornerRadiusProperty); }
+
+            set { SetValue(CornerRadiusProperty, value); }
         }
 
         public bool IsFlipped
         {
-            get
-            {
-                return (bool)GetValue(IsFlippedProperty);
-            }
+            get { return (bool)GetValue(IsFlippedProperty); }
+            
             set
             {
                 SetValue(IsFlippedProperty, value);
@@ -88,8 +71,7 @@ namespace FlipPanel
             // that places the flip button outside of the panel sides, like the 
             // default template does.
             ToggleButton flipButtonAlternate = base.GetTemplateChild("FlipButtonAlternate") as ToggleButton;
-            if (flipButtonAlternate != null)
-                flipButtonAlternate.Click += flipButton_Click;
+            if (flipButtonAlternate != null) flipButtonAlternate.Click += flipButton_Click;
 
             this.ChangeVisualState(false);
         }
@@ -102,14 +84,8 @@ namespace FlipPanel
 
         private void ChangeVisualState(bool useTransitions)
         {
-            if (!this.IsFlipped)
-            {                
-                VisualStateManager.GoToState(this, "Normal", useTransitions);
-            }
-            else
-            {
-                VisualStateManager.GoToState(this, "Flipped", useTransitions);                
-            }
+            if (!this.IsFlipped) { VisualStateManager.GoToState(this, "Normal", useTransitions); }
+            else { VisualStateManager.GoToState(this, "Flipped", useTransitions); }
         }                             
                 
     }

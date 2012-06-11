@@ -26,7 +26,7 @@ namespace FlipPanelTest
 
         private void Application_Startup(object sender, StartupEventArgs e)
         {
-            this.RootVisual = new MenuPage();
+            this.RootVisual = new FlipPanelTest();
         }
 
         private void Application_Exit(object sender, EventArgs e)
