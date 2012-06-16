@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Microsoft.SilverlightMediaFramework.Plugins.Advertising.Adaptive</name>
+    </assembly>
+    <members>
+        <member name="T:Microsoft.SilverlightMediaFramework.Plugins.Advertising.VPAID.AdaptiveVideoAdPlayer">
+            <summary>
+            A VPAID ad player that can play adaptive video ads
+            </summary>
+        </member>
+        <member name="T:Microsoft.SilverlightMediaFramework.Plugins.Advertising.VPAID.Plugins.AdaptiveVideoAdPlayerFactory">
+            <summary>
+            Provides an IVpaidFactory implementation for the AdaptiveVideoAdPlayer
+            </summary>
+        </member>
+    </members>
+</doc>
