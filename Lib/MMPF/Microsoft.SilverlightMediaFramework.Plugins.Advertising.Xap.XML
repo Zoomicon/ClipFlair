@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Microsoft.SilverlightMediaFramework.Plugins.Advertising.Xap</name>
+    </assembly>
+    <members>
+        <member name="T:Microsoft.SilverlightMediaFramework.Plugins.Advertising.VPAID.XapAdPlayer">
+            <summary>
+            A VPAID Ad player that can play a Silverlight ad creative from a .xap file
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.Advertising.VPAID.XapAdPlayer.Linear">
+            <summary>
+            Indicates whether or not the ad is linear
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.Advertising.VPAID.XapAdPlayer.Dimensions">
+            <summary>
+            Returns the dimensions of the ad
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.Advertising.VPAID.XapAdPlayer.ExpandedDimensions">
+            <summary>
+            Returns the dimensions of the ad
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.Advertising.VPAID.XapAdPlayer.Scalable">
+            <summary>
+            Indicates that the ad is scalable.
+            </summary>
+        </member>
+    </members>
+</doc>
