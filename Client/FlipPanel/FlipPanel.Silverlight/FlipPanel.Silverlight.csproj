@@ -74,7 +74,9 @@
     <Reference Include="System.Windows.Browser" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="FlipPanel.cs" />
+    <Compile Include="..\Source\FlipPanel.cs">
+      <Link>FlipPanel.cs</Link>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
