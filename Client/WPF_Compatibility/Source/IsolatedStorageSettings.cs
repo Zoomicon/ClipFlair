@@ -98,7 +98,7 @@ namespace System.IO.IsolatedStorage {
         if (site_settings == null) {
           site_settings = new IsolatedStorageSettings (
             (System.Threading.Thread.GetDomain().ActivationContext!=null)?
-              IsolatedStorageFile.GetUserStoreForApplication() : //for WPF, apps deployed via ClickOnce will have a non-null ActivationContent
+              IsolatedStorageFile.GetUserStoreForApplication() : //for WPF, apps deployed via ClickOnce will have a non-null ActivationContext
               IsolatedStorageFile.GetUserStoreForAssembly());
               //IsolatedStorageFile.GetUserStoreForSite() works only for Silverlight applications
         }
