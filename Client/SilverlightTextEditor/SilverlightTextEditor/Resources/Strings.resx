@@ -177,4 +177,28 @@
   <data name="tooltip_Hyperlink" xml:space="preserve">
     <value>Insert Hyperlink</value>
   </data>
+  <data name="txt_Clipboard" xml:space="preserve">
+    <value>Clipboard</value>
+  </data>
+  <data name="txt_Display" xml:space="preserve">
+    <value>Display</value>
+  </data>
+  <data name="txt_File" xml:space="preserve">
+    <value>File</value>
+  </data>
+  <data name="txt_Font" xml:space="preserve">
+    <value>Font</value>
+  </data>
+  <data name="txt_Highlight" xml:space="preserve">
+    <value>Highlight</value>
+  </data>
+  <data name="txt_Insert" xml:space="preserve">
+    <value>Insert</value>
+  </data>
+  <data name="txt_Print" xml:space="preserve">
+    <value>Print</value>
+  </data>
+  <data name="txt_XAML" xml:space="preserve">
+    <value>Source</value>
+  </data>
 </root>
