@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SilverlightTextEditor", "SilverlightTextEditor\SilverlightTextEditor.csproj", "{52F76969-E7CD-414F-8E98-4FF90EE48B05}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SilverlightTextEditor", "TextEditor.Silverlight\SilverlightTextEditor.csproj", "{52F76969-E7CD-414F-8E98-4FF90EE48B05}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
