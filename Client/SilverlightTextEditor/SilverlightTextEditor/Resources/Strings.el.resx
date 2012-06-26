@@ -118,63 +118,87 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="color_Black" xml:space="preserve">
-    <value>שחור</value>
+    <value>Μαύρο</value>
   </data>
   <data name="color_Blue" xml:space="preserve">
-    <value>כחול</value>
+    <value>Μπλέ</value>
   </data>
   <data name="color_Green" xml:space="preserve">
-    <value>ירוק</value>
+    <value>Πράσινο</value>
   </data>
   <data name="color_Red" xml:space="preserve">
-    <value>אדום</value>
+    <value>Κόκκινο</value>
   </data>
   <data name="color_Yellow" xml:space="preserve">
-    <value>צהוב</value>
+    <value>Κίτρινο</value>
   </data>
   <data name="RTL_Button_Caption" xml:space="preserve">
-    <value>RTL</value>
+    <value>LTR</value>
   </data>
   <data name="tooltip_Bold" xml:space="preserve">
-    <value>עבה</value>
+    <value>Έντονα</value>
   </data>
   <data name="tooltip_Copy" xml:space="preserve">
-    <value>העתק טקסט</value>
+    <value>Αντιγραφή κειμένου</value>
   </data>
   <data name="tooltip_Cut" xml:space="preserve">
-    <value>גזור טקסט</value>
+    <value>Αποκοπή κειμένου</value>
   </data>
   <data name="tooltip_Hyperlink" xml:space="preserve">
-    <value>הכנס קישור</value>
+    <value>Εισαγωγή συνδέσμου</value>
   </data>
   <data name="tooltip_Image" xml:space="preserve">
-    <value>הוסף תמונה</value>
+    <value>Εισαγωγή εικόνας</value>
   </data>
   <data name="tooltip_Italic" xml:space="preserve">
-    <value>נטוי</value>
+    <value>Πλάγια</value>
   </data>
   <data name="tooltip_New" xml:space="preserve">
-    <value>צור מסמך חדש</value>
+    <value>Δημιουργία νέου εγγράφου</value>
   </data>
   <data name="tooltip_Open" xml:space="preserve">
-    <value>פתח מסמך קיים</value>
+    <value>Άνοιγμα υπάρχοντος εγγράφου</value>
   </data>
   <data name="tooltip_Paste" xml:space="preserve">
-    <value>הדבק טקסט</value>
+    <value>Επικόλληση κειμένου</value>
   </data>
   <data name="tooltip_Print" xml:space="preserve">
-    <value>הדפס מסמך</value>
+    <value>Εκτύπωση εγγράφου</value>
   </data>
   <data name="tooltip_Save" xml:space="preserve">
-    <value>שמור שינויים</value>
+    <value>Αποθήκευση αλλαγών</value>
   </data>
   <data name="tooltip_Underline" xml:space="preserve">
-    <value>קו תחתון</value>
+    <value>Υπογραμμισμένα</value>
   </data>
   <data name="txt_Header_Direction" xml:space="preserve">
-    <value>מימין לשמאל</value>
+    <value>Από αριστερά προς δεξιά</value>
   </data>
   <data name="txt_Status_Ready" xml:space="preserve">
-    <value>מוכן</value>
+    <value>Έτοιμο</value>
+  </data>
+  <data name="txt_Clipboard" xml:space="preserve">
+    <value>Πρόχειρο</value>
+  </data>
+  <data name="txt_Display" xml:space="preserve">
+    <value>Εμφάνιση</value>
+  </data>
+  <data name="txt_File" xml:space="preserve">
+    <value>Αρχείο</value>
+  </data>
+  <data name="txt_Font" xml:space="preserve">
+    <value>Γραμματοσειρά</value>
+  </data>
+  <data name="txt_Highlight" xml:space="preserve">
+    <value>Επισήμανση</value>
+  </data>
+  <data name="txt_Insert" xml:space="preserve">
+    <value>Εισαγωγή</value>
+  </data>
+  <data name="txt_Print" xml:space="preserve">
+    <value>Εκτύπωση</value>
+  </data>
+  <data name="txt_XAML" xml:space="preserve">
+    <value>Πηγή</value>
   </data>
 </root>

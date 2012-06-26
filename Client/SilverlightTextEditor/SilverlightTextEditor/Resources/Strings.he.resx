@@ -118,63 +118,87 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="color_Black" xml:space="preserve">
-    <value>أسود</value>
+    <value>שחור</value>
   </data>
   <data name="color_Blue" xml:space="preserve">
-    <value>أزرق</value>
+    <value>כחול</value>
   </data>
   <data name="color_Green" xml:space="preserve">
-    <value>أخضر</value>
+    <value>ירוק</value>
   </data>
   <data name="color_Red" xml:space="preserve">
-    <value>أحمر</value>
+    <value>אדום</value>
   </data>
   <data name="color_Yellow" xml:space="preserve">
-    <value>أصفر</value>
+    <value>צהוב</value>
   </data>
   <data name="RTL_Button_Caption" xml:space="preserve">
     <value>RTL</value>
   </data>
   <data name="tooltip_Bold" xml:space="preserve">
-    <value>جريئة</value>
+    <value>עבה</value>
   </data>
   <data name="tooltip_Copy" xml:space="preserve">
-    <value>نسخ النص</value>
+    <value>העתק טקסט</value>
   </data>
   <data name="tooltip_Cut" xml:space="preserve">
-    <value>قص النص</value>
+    <value>גזור טקסט</value>
   </data>
   <data name="tooltip_Hyperlink" xml:space="preserve">
-    <value>إدراج ارتباط تشعبي</value>
+    <value>הכנס קישור</value>
   </data>
   <data name="tooltip_Image" xml:space="preserve">
-    <value>إدراج صورة</value>
+    <value>הוסף תמונה</value>
   </data>
   <data name="tooltip_Italic" xml:space="preserve">
-    <value>مائل</value>
+    <value>נטוי</value>
   </data>
   <data name="tooltip_New" xml:space="preserve">
-    <value>إنشاء مستند جديد</value>
+    <value>צור מסמך חדש</value>
   </data>
   <data name="tooltip_Open" xml:space="preserve">
-    <value>فتح مستند موجود</value>
+    <value>פתח מסמך קיים</value>
   </data>
   <data name="tooltip_Paste" xml:space="preserve">
-    <value>لصق النص</value>
+    <value>הדבק טקסט</value>
   </data>
   <data name="tooltip_Print" xml:space="preserve">
-    <value>طباعة المستند</value>
+    <value>הדפס מסמך</value>
   </data>
   <data name="tooltip_Save" xml:space="preserve">
-    <value>حفظ التغييرات</value>
+    <value>שמור שינויים</value>
   </data>
   <data name="tooltip_Underline" xml:space="preserve">
-    <value>وأكد</value>
+    <value>קו תחתון</value>
   </data>
   <data name="txt_Header_Direction" xml:space="preserve">
-    <value>من اليمين إلى اليسار</value>
+    <value>מימין לשמאל</value>
   </data>
   <data name="txt_Status_Ready" xml:space="preserve">
-    <value>جاهز</value>
+    <value>מוכן</value>
+  </data>
+  <data name="txt_Clipboard" xml:space="preserve">
+    <value>Clipboard</value>
+  </data>
+  <data name="txt_Display" xml:space="preserve">
+    <value>Display</value>
+  </data>
+  <data name="txt_File" xml:space="preserve">
+    <value>File</value>
+  </data>
+  <data name="txt_Font" xml:space="preserve">
+    <value>Font</value>
+  </data>
+  <data name="txt_Highlight" xml:space="preserve">
+    <value>Highlight</value>
+  </data>
+  <data name="txt_Insert" xml:space="preserve">
+    <value>Insert</value>
+  </data>
+  <data name="txt_Print" xml:space="preserve">
+    <value>Print</value>
+  </data>
+  <data name="txt_XAML" xml:space="preserve">
+    <value>Source</value>
   </data>
 </root>

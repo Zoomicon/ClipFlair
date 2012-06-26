@@ -1,4 +1,7 @@
-﻿using System;
+﻿//Version: 20120626
+//Editor: George Birbilis <birbilis@kagi.com>
+
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -27,7 +30,7 @@ namespace SilverlightTextEditor
             Loaded += new RoutedEventHandler(MainPage_Loaded);
         }
 
-        //Initialize the RichTextBox. The intial text is saved as XAML inthe Hamlet.docx file.
+        //Initialize the RichTextBox. The intial text is saved as XAML in the sample.sav file.
         void MainPage_Loaded(object sender, RoutedEventArgs e)
         {
            rtb.Xaml = XElement.Load("/SilverlightTextEditor;component/sample.sav").ToString();
@@ -124,7 +127,7 @@ namespace SilverlightTextEditor
         {
             InlineUIContainer container = new InlineUIContainer();
 
-            container.Child = MainPage.createImageFromUri(new Uri("/SilverlightTextEditor;component/images/Desert.jpg", UriKind.RelativeOrAbsolute), 200, 150);
+            container.Child = MainPage.createImageFromUri(new Uri("/SilverlightTextEditor;component/Images/Desert.jpg", UriKind.RelativeOrAbsolute), 200, 150);
 
             rtb.Selection.Insert(container);
             ReturnFocus();
@@ -286,9 +289,9 @@ namespace SilverlightTextEditor
         {
             //Set the button image based on the state of the toggle button. 
             if(btnRTL.IsChecked.Value)
-                btnRTL.Content = MainPage.createImageFromUri(new Uri("/SilverlightTextEditor;component/images/rtl.png", UriKind.RelativeOrAbsolute), 30, 32);
+                btnRTL.Content = MainPage.createImageFromUri(new Uri("/SilverlightTextEditor;component/Images/rtl.png", UriKind.RelativeOrAbsolute), 30, 32);
             else
-                btnRTL.Content = MainPage.createImageFromUri(new Uri("/SilverlightTextEditor;component/images/ltr.png", UriKind.RelativeOrAbsolute), 30, 32);
+                btnRTL.Content = MainPage.createImageFromUri(new Uri("/SilverlightTextEditor;component/Images/ltr.png", UriKind.RelativeOrAbsolute), 30, 32);
 
             ApplicationBorder.FlowDirection = (ApplicationBorder.FlowDirection == System.Windows.FlowDirection.LeftToRight) ? System.Windows.FlowDirection.RightToLeft : System.Windows.FlowDirection.LeftToRight;
             ReturnFocus();
@@ -330,9 +333,9 @@ namespace SilverlightTextEditor
 
             //Set the button image based on the state of the toggle button.
             if (rtb.IsReadOnly)
-                btnRO.Content = MainPage.createImageFromUri(new Uri("/SilverlightTextEditor;component/images/view.png", UriKind.RelativeOrAbsolute), 29, 32);
+                btnRO.Content = MainPage.createImageFromUri(new Uri("/SilverlightTextEditor;component/Images/view.png", UriKind.RelativeOrAbsolute), 29, 32);
             else
-                btnRO.Content = MainPage.createImageFromUri(new Uri("/SilverlightTextEditor;component/images/edit.png", UriKind.RelativeOrAbsolute), 29, 32);
+                btnRO.Content = MainPage.createImageFromUri(new Uri("/SilverlightTextEditor;component/Images/edit.png", UriKind.RelativeOrAbsolute), 29, 32);
             ReturnFocus();
         }
 
@@ -661,5 +664,6 @@ namespace SilverlightTextEditor
                 rtb.Focus();
         }
         #endregion 
+
     }
 }

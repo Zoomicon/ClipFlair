@@ -1,4 +1,6 @@
-﻿using System;
+﻿//Version: 20120620
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -9,6 +11,9 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
+
+using System.Globalization;
+using System.Threading;
 
 namespace SilverlightTextEditor
 {
@@ -26,6 +31,12 @@ namespace SilverlightTextEditor
 
         private void Application_Startup(object sender, StartupEventArgs e)
         {
+            /*
+            CultureInfo c = new CultureInfo("el");
+            Thread.CurrentThread.CurrentCulture = c;
+            Thread.CurrentThread.CurrentUICulture = c;
+            */
+
             this.RootVisual = new MainPage();
         }
 
