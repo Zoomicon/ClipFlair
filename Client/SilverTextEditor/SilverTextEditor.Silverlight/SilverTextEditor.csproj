@@ -90,8 +90,8 @@
     <Compile Include="InsertURL.xaml.cs">
       <DependentUpon>InsertURL.xaml</DependentUpon>
     </Compile>
-    <Compile Include="MainPage.xaml.cs">
-      <DependentUpon>MainPage.xaml</DependentUpon>
+    <Compile Include="SilverTextEditor.xaml.cs">
+      <DependentUpon>SilverTextEditor.xaml</DependentUpon>
     </Compile>
     <Compile Include="PrintPreview.xaml.cs">
       <DependentUpon>PrintPreview.xaml</DependentUpon>
@@ -113,7 +113,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="MainPage.xaml">
+    <Page Include="SilverTextEditor.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
