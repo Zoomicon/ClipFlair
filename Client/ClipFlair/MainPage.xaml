@@ -4,19 +4,14 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
-    d:DesignHeight="300" d:DesignWidth="400" Name="Page" MouseWheel="Page_MouseWheel">
+    d:DesignHeight="300" d:DesignWidth="400"
+    Name="Page" 
+    xmlns:my="clr-namespace:ZoomAndPan;assembly=ZoomAndPan" 
+    xmlns:my1="clr-namespace:SilverFlow.Controls;assembly=SilverFlow.Controls" >
 
   <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
-
-    <Viewbox x:Name="viewbox" Height="250" Width="350">
-
-      <Grid Background="White" Height="250" Width="250">
-      
-        <TextBlock Text="TEST"/>
-    
-      </Grid>
-    
-    </Viewbox>
-    
-  </ScrollViewer>
+        <my:ZoomAndPanControl Name="zoomAndPanControl1" >
+            <my1:FloatingWindowHost Name="floatingWindowHost1" Width="350" Height="250"/>
+        </my:ZoomAndPanControl>
+    </ScrollViewer>
 </UserControl>

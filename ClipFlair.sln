@@ -23,6 +23,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZoomAndPan.Silverlight", "C
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FloatingWindow.Silverlight", "Client\FloatingWindow\FloatingWindow.Silverlight\FloatingWindow.Silverlight.csproj", "{3F3D3C8C-9724-4531-A04D-B92049F64686}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SilverTextEditor.Silverlight", "Client\SilverTextEditor\SilverTextEditor.Silverlight\SilverTextEditor.Silverlight.csproj", "{52F76969-E7CD-414F-8E98-4FF90EE48B05}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -65,6 +67,10 @@ Global
 		{3F3D3C8C-9724-4531-A04D-B92049F64686}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3F3D3C8C-9724-4531-A04D-B92049F64686}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3F3D3C8C-9724-4531-A04D-B92049F64686}.Release|Any CPU.Build.0 = Release|Any CPU
+		{52F76969-E7CD-414F-8E98-4FF90EE48B05}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{52F76969-E7CD-414F-8E98-4FF90EE48B05}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{52F76969-E7CD-414F-8E98-4FF90EE48B05}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{52F76969-E7CD-414F-8E98-4FF90EE48B05}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
