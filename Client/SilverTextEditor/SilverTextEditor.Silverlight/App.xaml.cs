@@ -15,7 +15,7 @@ using System.Windows.Shapes;
 using System.Globalization;
 using System.Threading;
 
-namespace SilverlightTextEditor
+namespace SilverTextEditor
 {
     public partial class App : Application
     {
@@ -37,7 +37,7 @@ namespace SilverlightTextEditor
             Thread.CurrentThread.CurrentUICulture = c;
             */
 
-            this.RootVisual = new MainPage();
+            this.RootVisual = new SilverTextEditor();
         }
 
         private void Application_Exit(object sender, EventArgs e)

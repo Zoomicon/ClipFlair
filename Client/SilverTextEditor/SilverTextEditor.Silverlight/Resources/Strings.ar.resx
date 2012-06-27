@@ -201,4 +201,7 @@
   <data name="txt_XAML" xml:space="preserve">
     <value>Source</value>
   </data>
+  <data name="tooltip_Timestamp" xml:space="preserve">
+    <value>Insert timestamp</value>
+  </data>
 </root>

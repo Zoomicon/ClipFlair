@@ -11,7 +11,7 @@ using System.Windows.Shapes;
 using System.Windows.Media.Effects;
 using System.Windows.Media.Imaging;
 
-namespace SilverlightTextEditor
+namespace SilverTextEditor
 {
     //Derives from the abstract class ContextMenu that provides the boilerplate code for displaying a popup window. 
 
@@ -47,7 +47,7 @@ namespace SilverlightTextEditor
             StackPanel sp = new StackPanel() { Orientation = Orientation.Horizontal };
 
             Image cutImage = new Image() { HorizontalAlignment = HorizontalAlignment.Left, Width = 16, Height = 16, Margin = new Thickness(1, 0, 0, 0) };
-            cutImage.Source = new BitmapImage(new Uri("/SilverlightTextEditor;component/images/cut.png", UriKind.RelativeOrAbsolute));
+            cutImage.Source = new BitmapImage(new Uri("/SilverTextEditor;component/images/cut.png", UriKind.RelativeOrAbsolute));
             sp.Children.Add(cutImage);
 
             TextBlock cutText = new TextBlock() { Text = "Cut", HorizontalAlignment = HorizontalAlignment.Left, Margin = new Thickness(16, 0, 0, 0) };
@@ -66,7 +66,7 @@ namespace SilverlightTextEditor
             sp = new StackPanel() { Orientation = Orientation.Horizontal };
 
             Image copyImage = new Image() { HorizontalAlignment = HorizontalAlignment.Left, Width = 16, Height = 16, Margin = new Thickness(1, 0, 0, 0) };
-            copyImage.Source = new BitmapImage(new Uri("/SilverlightTextEditor;component/images/copy.png", UriKind.RelativeOrAbsolute));
+            copyImage.Source = new BitmapImage(new Uri("/SilverTextEditor;component/images/copy.png", UriKind.RelativeOrAbsolute));
             sp.Children.Add(copyImage);
 
             TextBlock copyText = new TextBlock() { Text = "Copy", HorizontalAlignment = HorizontalAlignment.Left, Margin = new Thickness(16, 0, 0, 0) };
@@ -85,7 +85,7 @@ namespace SilverlightTextEditor
             sp = new StackPanel() { Orientation = Orientation.Horizontal };
 
             Image pasteImage = new Image() { HorizontalAlignment = HorizontalAlignment.Left, Width = 16, Height = 16, Margin = new Thickness(1, 0, 0, 0) };
-            pasteImage.Source = new BitmapImage(new Uri("/SilverlightTextEditor;component/images/paste.png", UriKind.RelativeOrAbsolute));
+            pasteImage.Source = new BitmapImage(new Uri("/SilverTextEditor;component/images/paste.png", UriKind.RelativeOrAbsolute));
             sp.Children.Add(pasteImage);
 
             TextBlock pasteText = new TextBlock() { Text = "Paste", HorizontalAlignment = HorizontalAlignment.Left, Margin = new Thickness(16, 0, 0, 0) };
