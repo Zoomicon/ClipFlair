@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace SilverlightTextEditor.Resources {
+namespace SilverTextEditor.Resources {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace SilverlightTextEditor.Resources {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("SilverlightTextEditor.Resources.Strings", typeof(Strings).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("SilverTextEditor.Resources.Strings", typeof(Strings).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -210,6 +210,15 @@ namespace SilverlightTextEditor.Resources {
         public static string tooltip_Save {
             get {
                 return ResourceManager.GetString("tooltip_Save", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Insert timestamp.
+        /// </summary>
+        public static string tooltip_Timestamp {
+            get {
+                return ResourceManager.GetString("tooltip_Timestamp", resourceCulture);
             }
         }
         

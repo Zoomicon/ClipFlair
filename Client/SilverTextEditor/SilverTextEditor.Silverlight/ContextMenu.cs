@@ -4,7 +4,7 @@ using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Controls.Primitives;
 
-namespace SilverlightTextEditor
+namespace SilverTextEditor
 {
     // This is an abstract base class that captures the building block functionality for a context menu
     // including constructing and displaying a blank menu and method for closing the menu (called by default when 

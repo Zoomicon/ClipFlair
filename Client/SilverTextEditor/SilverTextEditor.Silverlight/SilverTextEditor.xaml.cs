@@ -1,6 +1,9 @@
 ﻿//Version: 20120626
 //Editor: George Birbilis <birbilis@kagi.com>
 
+//Note: localization uses "PublicResxFileCodeGeneratorEx" custom build tool for the "Strings.resx" file
+//      can download installer for VisualStudio from http://resxfilecodegenex.codeplex.com/
+
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -10,7 +13,6 @@ using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
-using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
@@ -20,20 +22,20 @@ using System.Windows.Resources;
 using System.Windows.Shapes;
 using System.Xml.Linq;
 
-namespace SilverlightTextEditor
+namespace SilverTextEditor
 {
-    public partial class MainPage : UserControl
+    public partial class SilverTextEditor : UserControl
     {
-        public MainPage()
+        public SilverTextEditor()
         {
             InitializeComponent();
-            Loaded += new RoutedEventHandler(MainPage_Loaded);
+            Loaded += new RoutedEventHandler(SilverTextEditor_Loaded);
         }
 
         //Initialize the RichTextBox. The intial text is saved as XAML in the sample.sav file.
-        void MainPage_Loaded(object sender, RoutedEventArgs e)
+        void SilverTextEditor_Loaded(object sender, RoutedEventArgs e)
         {
-           rtb.Xaml = XElement.Load("/SilverlightTextEditor;component/sample.sav").ToString();
+           rtb.Xaml = XElement.Load("/SilverTextEditor;component/sample.sav").ToString();
         }
 
         #region Bold, Italics & Underline
@@ -127,7 +129,7 @@ namespace SilverlightTextEditor
         {
             InlineUIContainer container = new InlineUIContainer();
 
-            container.Child = MainPage.createImageFromUri(new Uri("/SilverlightTextEditor;component/Images/Desert.jpg", UriKind.RelativeOrAbsolute), 200, 150);
+            container.Child = SilverTextEditor.createImageFromUri(new Uri("/SilverTextEditor;component/Images/Desert.jpg", UriKind.RelativeOrAbsolute), 200, 150);
 
             rtb.Selection.Insert(container);
             ReturnFocus();
@@ -145,49 +147,11 @@ namespace SilverlightTextEditor
             return img;
         }
 
-        //Insert a Datagrid into the RichTextBox
-        private void btnDatagrid_Click(object sender, RoutedEventArgs e)
+        //Insert timestamp into the RichTextBox
+        private void btnTimestamp_Click(object sender, RoutedEventArgs e)
         {
-            InlineUIContainer container = new InlineUIContainer();
-
-            container.Child = getDataGrid();
-
-            rtb.Selection.Insert(container);
+            rtb.Selection.Text = "[" + DateTime.UtcNow.ToString() + " UTC" + "]";
             ReturnFocus();
-        }
-
-        private DataGrid getDataGrid()
-        {
-            DataGrid dg = new DataGrid();
-            dg.AutoGenerateColumns = true;
-            dg.Width = 500;
-            dg.Height = 150;
-            dg.ItemsSource = Customer.GetSampleCustomerList();
-            dg.Style = (Style)this.Resources["DataGridStyle1"];
-
-            return dg;
-        }
-
-        //Insert a Calendar into the RichTextBox
-        private void btnCalendar_Click(object sender, RoutedEventArgs e)
-        {
-            InlineUIContainer container = new InlineUIContainer();
-
-            container.Child = getCalendar();
-
-            rtb.Selection.Insert(container);
-            ReturnFocus();
-        }
-
-        private Calendar getCalendar()
-        {
-            Calendar cal = new Calendar();
-            cal.Width = 179;
-            cal.Height = 169;
-            cal.FontFamily = new FontFamily("Portable User Interface");
-            cal.Style = (Style)this.Resources["CalendarStyle1"];
-
-            return cal;
         }
 
         #endregion 
@@ -273,7 +237,7 @@ namespace SilverlightTextEditor
                         MessageBox.Show("The document printed successfully", "Text Editor", MessageBoxButton.OK);
                     };
 
-                    theDoc.Print("Silverlight 4 Text Editor");
+                    //theDoc.Print("SilverTextEditor");
                     ReturnFocus();
                 }
             };
@@ -289,9 +253,9 @@ namespace SilverlightTextEditor
         {
             //Set the button image based on the state of the toggle button. 
             if(btnRTL.IsChecked.Value)
-                btnRTL.Content = MainPage.createImageFromUri(new Uri("/SilverlightTextEditor;component/Images/rtl.png", UriKind.RelativeOrAbsolute), 30, 32);
+                btnRTL.Content = SilverTextEditor.createImageFromUri(new Uri("/SilverTextEditor;component/Images/rtl.png", UriKind.RelativeOrAbsolute), 30, 32);
             else
-                btnRTL.Content = MainPage.createImageFromUri(new Uri("/SilverlightTextEditor;component/Images/ltr.png", UriKind.RelativeOrAbsolute), 30, 32);
+                btnRTL.Content = SilverTextEditor.createImageFromUri(new Uri("/SilverTextEditor;component/Images/ltr.png", UriKind.RelativeOrAbsolute), 30, 32);
 
             ApplicationBorder.FlowDirection = (ApplicationBorder.FlowDirection == System.Windows.FlowDirection.LeftToRight) ? System.Windows.FlowDirection.RightToLeft : System.Windows.FlowDirection.LeftToRight;
             ReturnFocus();
@@ -333,9 +297,9 @@ namespace SilverlightTextEditor
 
             //Set the button image based on the state of the toggle button.
             if (rtb.IsReadOnly)
-                btnRO.Content = MainPage.createImageFromUri(new Uri("/SilverlightTextEditor;component/Images/view.png", UriKind.RelativeOrAbsolute), 29, 32);
+                btnRO.Content = SilverTextEditor.createImageFromUri(new Uri("/SilverTextEditor;component/Images/view.png", UriKind.RelativeOrAbsolute), 29, 32);
             else
-                btnRO.Content = MainPage.createImageFromUri(new Uri("/SilverlightTextEditor;component/Images/edit.png", UriKind.RelativeOrAbsolute), 29, 32);
+                btnRO.Content = SilverTextEditor.createImageFromUri(new Uri("/SilverTextEditor;component/Images/edit.png", UriKind.RelativeOrAbsolute), 29, 32);
             ReturnFocus();
         }
 

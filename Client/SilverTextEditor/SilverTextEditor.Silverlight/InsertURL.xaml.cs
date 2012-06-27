@@ -11,7 +11,7 @@ using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 using System.Text.RegularExpressions;
 
-namespace SilverlightTextEditor
+namespace SilverTextEditor
 {
     public partial class InsertURL : ChildWindow
     {
