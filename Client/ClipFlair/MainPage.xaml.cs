@@ -19,20 +19,5 @@ namespace ClipFlair
       InitializeComponent();
     }
 
-   
-    private void Page_MouseWheel(object sender, MouseWheelEventArgs e)
-    {
-      double scalingFactor = (double)e.Delta / 110;
-      if (scalingFactor > 0)
-      {
-        viewbox.Width *= scalingFactor;
-        viewbox.Height *= scalingFactor;
-      }
-      else
-      {
-        viewbox.Width /= -scalingFactor;
-        viewbox.Height /= -scalingFactor;
-      }
-    }
   }
 }
