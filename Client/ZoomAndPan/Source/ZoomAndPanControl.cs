@@ -1,5 +1,5 @@
 ﻿//Filename: ZoomAndPan
-//Version: 20120606
+//Version: 20120630
 //Editor: George Birbilis <birbilis@kagi.com>
 
 //Based on:
@@ -566,14 +566,24 @@ namespace ZoomAndPan
         #region Internal Methods
 
 
+//#if SILVERLIGHT
         /// <summary>
-        /// /*Static*/ constructor to define metadata for the control (and link it to the style in Generic.xaml).
+        /// Constructor to define metadata for the control (and link it to the style in Generic.xaml).
         /// </summary>
-        /*static*/ public ZoomAndPanControl()
+        public ZoomAndPanControl()
         {
-            //WPF// DefaultStyleKeyProperty.OverrideMetadata(typeof(ZoomAndPanControl), new FrameworkPropertyMetadata(typeof(ZoomAndPanControl)));
-            this.DefaultStyleKey = typeof(ZoomAndPanControl);
+            this.DefaultStyleKey = typeof(ZoomAndPanControl); //this should be enough for both WPF and Silerlight, if not uncomment the #if/#else/#endif
         }
+/*//#else
+        /// <summary>
+        /// Static constructor to define metadata for the control (and link it to the style in Generic.xaml).
+        /// </summary>
+        static ZoomAndPanControl()
+        {
+            DefaultStyleKeyProperty.OverrideMetadata(typeof(ZoomAndPanControl), new FrameworkPropertyMetadata(typeof(ZoomAndPanControl)));
+        }
+//#endif
+*/
 
         /// <summary>
         /// Called when a template has been applied to the control.
