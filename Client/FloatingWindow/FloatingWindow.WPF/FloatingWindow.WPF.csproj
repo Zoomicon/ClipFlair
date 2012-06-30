@@ -90,6 +90,9 @@
     <Compile Include="..\Source\FloatingWindow\BootstrapButton.cs">
       <Link>FloatingWindow\BootstrapButton.cs</Link>
     </Compile>
+    <Compile Include="..\Source\FloatingWindow\FloatingWindowCollection.cs">
+      <Link>FloatingWindow\FloatingWindowCollection.cs</Link>
+    </Compile>
     <Compile Include="..\Source\FloatingWindow\FloatingWindowHost.cs">
       <Link>FloatingWindow\FloatingWindowHost.cs</Link>
     </Compile>

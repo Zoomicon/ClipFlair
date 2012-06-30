@@ -107,6 +107,7 @@
 	                </HyperlinkButton>
 	            </Grid>
 	        </Border>
+            
 	        <my:FloatingWindowHost x:Name="host" Grid.Column="2" MinWidth="100"
 	                               SnapinEnabled="{Binding ElementName=cbxEnableSnapin, Path=IsChecked}"
 	                               SnapinDistance="{Binding ElementName=txtSnapinDistance, Path=Text}"
@@ -122,6 +123,7 @@
                     </LinearGradientBrush>
                 </my:FloatingWindowHost.Background>
             </my:FloatingWindowHost>
+            
 		</Grid>
 	</Grid>
 </UserControl>

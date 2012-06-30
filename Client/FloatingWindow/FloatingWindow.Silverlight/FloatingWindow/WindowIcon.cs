@@ -1,4 +1,6 @@
-﻿using System;
+﻿//Version: 20120630
+
+using System;
 using System.Globalization;
 using System.Windows;
 using System.Windows.Controls;
@@ -28,6 +30,12 @@ namespace SilverFlow.Controls
         // Style typed properties
         private const string PROPERTY_IconBorderStyle = "IconBorderStyle";
 
+
+        public WindowIcon()
+        {
+            DefaultStyleKey = typeof(WindowIcon); //This is required, else GetTemplatePart will fail to get PART_Border etc. for the WindowIcon
+        }
+        
         #region public Style IconBorderStyle
 
         /// <summary>
