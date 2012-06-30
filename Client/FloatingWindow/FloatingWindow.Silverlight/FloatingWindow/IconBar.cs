@@ -1,4 +1,6 @@
-﻿using System;
+﻿//Version: 20120630
+
+using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Globalization;
@@ -235,7 +237,7 @@ namespace SilverFlow.Controls
         /// <param name="window">The window to remove from the IconBar.</param>
         public void Remove(FloatingWindow window)
         {
-            if (window != null)
+            if (window != null && carousel != null)
             {
                 var icon = (from windowIcon in carousel.Children.OfType<WindowIcon>()
                             where windowIcon.Window == window

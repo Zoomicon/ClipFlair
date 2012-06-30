@@ -84,9 +84,6 @@
     <Compile Include="DetailsForm.xaml.cs">
       <DependentUpon>DetailsForm.xaml</DependentUpon>
     </Compile>
-    <None Include="FloatingWindowTemplate.xaml.cs">
-      <DependentUpon>FloatingWindowTemplate.xaml</DependentUpon>
-    </None>
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
@@ -123,10 +120,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <None Include="FloatingWindowTemplate.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </None>
     <Page Include="MainPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

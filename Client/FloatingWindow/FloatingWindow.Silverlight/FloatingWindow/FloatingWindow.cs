@@ -1,4 +1,6 @@
-﻿using System;
+﻿//Version: 20120630
+
+using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
@@ -890,6 +892,15 @@ namespace SilverFlow.Controls
         public WindowState WindowState
         {
             get { return windowState; }
+            set
+            {
+                switch (value)
+                {
+                    case WindowState.Normal: RestoreWindow(); break;
+                    case WindowState.Maximized: MaximizeWindow(); break;
+                    case WindowState.Minimized: MinimizeWindow(); break;
+                }
+            }
         }
 
         /// <summary>

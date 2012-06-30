@@ -1,4 +1,6 @@
-﻿using System;
+﻿//Version: 20120630
+
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
@@ -7,6 +9,10 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
 using SilverFlow.Controls.Extensions;
+
+using System.Collections;
+using System.Collections.Specialized;
+using System.Windows.Markup;
 
 namespace SilverFlow.Controls
 {
@@ -28,6 +34,7 @@ namespace SilverFlow.Controls
     [StyleTypedProperty(Property = PROPERTY_BottomBarStyle, StyleTargetType = typeof(Border))]
     [StyleTypedProperty(Property = PROPERTY_BootstrapButtonStyle, StyleTargetType = typeof(BootstrapButton))]
     [StyleTypedProperty(Property = PROPERTY_WindowIconStyle, StyleTargetType = typeof(WindowIcon))]
+    [ContentProperty("Windows")]
     public class FloatingWindowHost : ContentControl
     {
         #region Constants
@@ -463,6 +470,73 @@ namespace SilverFlow.Controls
             get { return hostCanvas.Children.OfType<FloatingWindow>(); }
         }
 
+        #region Windows Property
+
+        /// <summary>
+        /// Gets or Sets the floating windows collection.
+        /// </summary>
+        /// <value>The floating windows collection.</value>
+        public FloatingWindowCollection Windows
+        {
+            get
+            {
+                FloatingWindowCollection c = (FloatingWindowCollection)GetValue(WindowsProperty);
+                if (c == null)
+                {
+                    c = new FloatingWindowCollection();
+                    SetValue(WindowsProperty, c); //must do this to register CollectionChanged event listener to handle item addition/removal
+                }
+                return c;
+            }
+            set { SetValue(WindowsProperty, value); }
+        }
+
+        public static readonly DependencyProperty WindowsProperty = DependencyProperty.Register("Windows", typeof(FloatingWindowCollection), typeof(FloatingWindowHost), new PropertyMetadata(/*new FloatingWindowCollection(),*/ WindowsChanged));
+
+        private static void WindowsChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            FloatingWindowHost host = d as FloatingWindowHost;
+            if (host != null)
+            {
+                FloatingWindowCollection oldItems = (FloatingWindowCollection)e.OldValue;
+                FloatingWindowCollection newItems = (FloatingWindowCollection)e.NewValue;
+
+                if (oldItems != null)
+                {
+                    //remove all items existing in oldItems but not in newItems
+                    foreach (FloatingWindow v in oldItems) { if (newItems == null || !newItems.Contains(v)) { host._Remove(v); } }  //must call _Remove, not Remove
+
+                    //oldItems.CollectionChanged -= WindowsCollectionChanged;
+                }
+
+                if (newItems != null)
+                {
+                    //newItems.CollectionChanged += WindowsCollectionChanged;
+
+                    newItems.CollectionChanged += (sender, args) =>
+                    {
+                        if (args.Action == NotifyCollectionChangedAction.Add)
+                            foreach (object item in args.NewItems)
+                            {
+                                host._Add((FloatingWindow)item);
+                            }
+                        if (args.Action == NotifyCollectionChangedAction.Remove)
+                            foreach (object item in args.OldItems)
+                            {
+                                host._Remove((FloatingWindow)item);
+                            }
+
+                    };
+
+                    //add all items existing in newItems but not in oldItems
+                    foreach (FloatingWindow v in newItems) { if (oldItems == null || !oldItems.Contains(v)) { host._Add(v); } } //must call _Add, not Add
+                }
+
+            }
+        } //TODO: THE IMPLEMENTATION ABOVE WILL CHANGE ORDER OF CONTROLS, SEE IF THIS PLAYS ROLE IN Z-ORDERING, IF NOT KEEP AS IS, ELSE DO REMOVE/ADD ALL WITHOUT THE EXTRA OPTIMIZATION CHECKS
+
+        #endregion
+
         /// <summary>
         /// Gets or sets a value indicating whether the layout of the FloatingWindowHost is updated.
         /// </summary>
@@ -517,6 +591,14 @@ namespace SilverFlow.Controls
             SubscribeToEvents();
 
             templateIsApplied = true;
+
+            if (Windows != null)
+                foreach (FloatingWindow w in Windows)
+                {
+                    _Add(w);
+                    //w.ApplyTemplate();
+                    if (w.WindowState != WindowState.Minimized) { w.Show(); }
+                }
         }
 
         #region Events
@@ -538,17 +620,24 @@ namespace SilverFlow.Controls
         /// </summary>
         /// <param name="window">The floating window.</param>
         /// <exception cref="ArgumentNullException">Floating window is null.</exception>
-        public void Add(FloatingWindow window)
+        public FloatingWindow Add(FloatingWindow window)
+        {
+            Windows.Add(window);
+            return window;
+        }
+
+        protected void _Add(FloatingWindow window)
         {
             if (window == null)
                 throw new ArgumentNullException("window");
 
-            // Guarantee that the visual tree of the control is complete
+            // Guarantee that the visual tree of the control is complete (NOT GUARANTEED IF ADD IS CALLED FROM XAML LOADING, ADDING ITEMS TO CANVAS LATER AT APPLYTEMPLATE FOR THAT CASE)
             if (!templateIsApplied)
                 templateIsApplied = ApplyTemplate();
 
-            if (!hostCanvas.Children.Contains(window))
+            if (hostCanvas != null && !hostCanvas.Children.Contains(window))
             {
+                //TODO: maybe should tell window to detach from its current FloatingWindowHost here (if any)
                 hostCanvas.Children.Add(window);
                 window.FloatingWindowHost = this;
             }
@@ -558,7 +647,13 @@ namespace SilverFlow.Controls
         /// Removes the specified floating window from the collection of child elements of the host.
         /// </summary>
         /// <param name="window">The floating window.</param>
-        public void Remove(FloatingWindow window)
+        public FloatingWindow Remove(FloatingWindow window)
+        {
+            Windows.Remove(window);
+            return window;
+        }
+
+        protected void _Remove(FloatingWindow window)
         {
             if (window != null)
             {
