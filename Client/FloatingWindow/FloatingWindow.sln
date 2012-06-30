@@ -13,6 +13,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FloatingWindow.WPF.Demo", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPF_Compatibility.WPF", "..\WPF_Compatibility\WPF_Compatibility.WPF\WPF_Compatibility.WPF.csproj", "{DC154E89-74E8-4ADC-95B5-0772CA254F71}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FloatingWindow.Silverlight.Demo.Simple", "FloatingWindow.Silverlight.Demo.Simple\FloatingWindow.Silverlight.Demo.Simple\FloatingWindow.Silverlight.Demo.Simple.csproj", "{E0C38766-30EE-4ED8-82B8-CBDD2185FE39}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FloatingWindow.Silverlight.Demo.Simple.Web", "FloatingWindow.Silverlight.Demo.Simple\FloatingWindow.Silverlight.Demo.Simple.Web\FloatingWindow.Silverlight.Demo.Simple.Web.csproj", "{CAEA4540-2DAB-4681-B261-A11C3A3E4FD9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -83,6 +87,26 @@ Global
 		{DC154E89-74E8-4ADC-95B5-0772CA254F71}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{DC154E89-74E8-4ADC-95B5-0772CA254F71}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{DC154E89-74E8-4ADC-95B5-0772CA254F71}.Release|x86.ActiveCfg = Release|Any CPU
+		{E0C38766-30EE-4ED8-82B8-CBDD2185FE39}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E0C38766-30EE-4ED8-82B8-CBDD2185FE39}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E0C38766-30EE-4ED8-82B8-CBDD2185FE39}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{E0C38766-30EE-4ED8-82B8-CBDD2185FE39}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{E0C38766-30EE-4ED8-82B8-CBDD2185FE39}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{E0C38766-30EE-4ED8-82B8-CBDD2185FE39}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E0C38766-30EE-4ED8-82B8-CBDD2185FE39}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E0C38766-30EE-4ED8-82B8-CBDD2185FE39}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{E0C38766-30EE-4ED8-82B8-CBDD2185FE39}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{E0C38766-30EE-4ED8-82B8-CBDD2185FE39}.Release|x86.ActiveCfg = Release|Any CPU
+		{CAEA4540-2DAB-4681-B261-A11C3A3E4FD9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CAEA4540-2DAB-4681-B261-A11C3A3E4FD9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CAEA4540-2DAB-4681-B261-A11C3A3E4FD9}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{CAEA4540-2DAB-4681-B261-A11C3A3E4FD9}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{CAEA4540-2DAB-4681-B261-A11C3A3E4FD9}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{CAEA4540-2DAB-4681-B261-A11C3A3E4FD9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CAEA4540-2DAB-4681-B261-A11C3A3E4FD9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CAEA4540-2DAB-4681-B261-A11C3A3E4FD9}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{CAEA4540-2DAB-4681-B261-A11C3A3E4FD9}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{CAEA4540-2DAB-4681-B261-A11C3A3E4FD9}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

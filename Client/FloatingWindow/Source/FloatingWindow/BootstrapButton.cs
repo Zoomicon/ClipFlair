@@ -1,4 +1,6 @@
-﻿using System.Windows;
+﻿//Version: 20120630
+
+using System.Windows;
 using System.Windows.Controls;
 
 namespace SilverFlow.Controls
@@ -16,6 +18,11 @@ namespace SilverFlow.Controls
         // VSM states
         private const string VSMSTATE_StateOpen = "Open";
         private const string VSMSTATE_StateClose = "Close";
+
+        public BootstrapButton()
+        {
+           DefaultStyleKey = typeof(BootstrapButton); //REQUIRED
+        }
 
         #region public bool IsOpen
 
