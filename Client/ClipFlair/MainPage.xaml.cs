@@ -20,9 +20,8 @@ namespace ClipFlair
     {
       InitializeComponent();
 
-      floatHost.Add((FloatingWindow)XamlReader.Load("<clipflair:MediaPlayerWindow Width=\"Auto\" Height=\"Auto\" MinWidth=\"100\" MinHeight=\"100\" Title=\"4 Media Player\" IconText=\"1Media Player\" Tag=\"1MediaPlayer\" xmlns:clipflair=\"clr-namespace:ClipFlair;assembly=ClipFlair\"/>"));
-      floatHost.Add(new MediaPlayerWindow()).Show();
-      //floatHost.Add(new MediaPlayerWindow());
+      //floatHost.Add((FloatingWindow)XamlReader.Load("<clipflair:MediaPlayerWindow Width=\"Auto\" Height=\"Auto\" MinWidth=\"100\" MinHeight=\"100\" Title=\"4 Media Player\" IconText=\"1Media Player\" Tag=\"1MediaPlayer\" xmlns:clipflair=\"clr-namespace:ClipFlair;assembly=ClipFlair\"/>"));
+      //floatHost.Add(new MediaPlayerWindow()).Show();
 
       //floatHost.FloatingWindows.First<FloatingWindow>().Show();
     }

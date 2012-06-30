@@ -7,17 +7,21 @@
     xmlns:float="clr-namespace:SilverFlow.Controls;assembly=SilverFlow.Controls"
     xmlns:clipflair="clr-namespace:ClipFlair"
     Name="Page">
+    
+    <UserControl.Resources>
+ <!--
+        <ResourceDictionary>
+ 
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/SilverFlow.Controls;component/Themes/generic.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+            
+        </ResourceDictionary>
+ -->
+    </UserControl.Resources>
 
-    <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" x:Name="LayoutRoot" Background="White">
         
-        <Grid.RowDefinitions>
-            <RowDefinition Height="50"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
-
-
-        
-        <ScrollViewer Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+        <ScrollViewer HorizontalAlignment="Stretch" VerticalAlignment="Stretch" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
 
             <zui:ZoomAndPanControl Name="zuiHost" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                 
@@ -53,7 +57,5 @@
             </zui:ZoomAndPanControl>
 
         </ScrollViewer>
-
-    </Grid>
 
 </UserControl>

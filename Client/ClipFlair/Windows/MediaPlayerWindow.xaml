@@ -7,9 +7,11 @@
     xmlns:float="clr-namespace:SilverFlow.Controls;assembly=SilverFlow.Controls"
     xmlns:smf="http://schemas.microsoft.com/smf/2010/xaml/player" >
 
+<!--
     <clipflair:FlipWindow.Icon>
-        <Image Source="component/Images/Filmroll.png" Width="48" Height="48"></Image>
+        <Image Source="/ClipFlair;component/Images/Filmroll.png" Width="48" Height="48"></Image>
     </clipflair:FlipWindow.Icon>
+-->    
 
     <smf:SMFPlayer Name="player" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
             

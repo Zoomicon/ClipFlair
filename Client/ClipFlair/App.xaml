@@ -3,6 +3,14 @@
              x:Class="ClipFlair.App"
              >
     <Application.Resources>
-        
+
+        <ResourceDictionary>
+            <!--
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/SilverFlow.Controls;component/Themes/generic.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+            -->
+        </ResourceDictionary>
+      
     </Application.Resources>
 </Application>
