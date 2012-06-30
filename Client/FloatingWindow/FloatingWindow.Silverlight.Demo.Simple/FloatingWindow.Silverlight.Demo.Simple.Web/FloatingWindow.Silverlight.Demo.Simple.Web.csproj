@@ -6,14 +6,14 @@
     <ProductVersion>
     </ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{70608BF1-0310-45D0-96A6-744A2F00DB83}</ProjectGuid>
+    <ProjectGuid>{CAEA4540-2DAB-4681-B261-A11C3A3E4FD9}</ProjectGuid>
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>FloatingWindowControl.Web</RootNamespace>
     <AssemblyName>FloatingWindowControl.Web</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
-    <SilverlightApplicationList>{48FCE6B6-BFFA-48A4-B871-27A5F8640AB1}|..\FloatingWindowControl\FloatingWindowControl.csproj|ClientBin|False</SilverlightApplicationList>
+    <SilverlightApplicationList>{E0C38766-30EE-4ED8-82B8-CBDD2185FE39}|..\FloatingWindow.Silverlight.Demo.Simple\FloatingWindow.Silverlight.Demo.Simple.csproj|ClientBin|False</SilverlightApplicationList>
     <UseIISExpress>false</UseIISExpress>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -53,6 +53,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="ClientBin\FloatingWindowControl.xap" />
+    <Content Include="FloatingWindow.Silverlight.Demo.SimpleTestPage.aspx" />
+    <Content Include="FloatingWindow.Silverlight.Demo.SimpleTestPage.html" />
     <Content Include="FloatingWindowDemo.aspx" />
     <Content Include="FloatingWindowDemo.html" />
     <Content Include="Silverlight.js" />
@@ -103,7 +105,7 @@
         <WebProjectProperties>
           <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>22698</DevelopmentServerPort>
+          <DevelopmentServerPort>1360</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>
           </IISUrl>

@@ -478,20 +478,11 @@ namespace SilverFlow.Controls
         /// <value>The floating windows collection.</value>
         public FloatingWindowCollection Windows
         {
-            get
-            {
-                FloatingWindowCollection c = (FloatingWindowCollection)GetValue(WindowsProperty);
-                if (c == null)
-                {
-                    c = new FloatingWindowCollection();
-                    SetValue(WindowsProperty, c); //must do this to register CollectionChanged event listener to handle item addition/removal
-                }
-                return c;
-            }
+            get { return (FloatingWindowCollection)GetValue(WindowsProperty); }
             set { SetValue(WindowsProperty, value); }
         }
 
-        public static readonly DependencyProperty WindowsProperty = DependencyProperty.Register("Windows", typeof(FloatingWindowCollection), typeof(FloatingWindowHost), new PropertyMetadata(/*new FloatingWindowCollection(),*/ WindowsChanged));
+        public static readonly DependencyProperty WindowsProperty = DependencyProperty.Register("Windows", typeof(FloatingWindowCollection), typeof(FloatingWindowHost), new PropertyMetadata(WindowsChanged)); //must not pass a default value to PropertyMetadata here, it would be a singleton collection (setting the property in the constructor instead)
 
         private static void WindowsChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
@@ -559,6 +550,7 @@ namespace SilverFlow.Controls
         /// </summary>
         public FloatingWindowHost()
         {
+            Windows = new FloatingWindowCollection(); //must set this here and not in the DependencyProperty definition's default value (that would be a singleton collection!)
             DefaultStyleKey = typeof(FloatingWindowHost);
         }
 
@@ -626,7 +618,7 @@ namespace SilverFlow.Controls
             return window;
         }
 
-        protected void _Add(FloatingWindow window)
+        private void _Add(FloatingWindow window)
         {
             if (window == null)
                 throw new ArgumentNullException("window");
@@ -637,7 +629,10 @@ namespace SilverFlow.Controls
 
             if (hostCanvas != null && !hostCanvas.Children.Contains(window))
             {
-                //TODO: maybe should tell window to detach from its current FloatingWindowHost here (if any)
+                //tell window to detach from its current FloatingWindowHost here (if any)
+                window.RemoveFromContainer();
+                window.FloatingWindowHost = null;
+
                 hostCanvas.Children.Add(window);
                 window.FloatingWindowHost = this;
             }
@@ -653,7 +648,7 @@ namespace SilverFlow.Controls
             return window;
         }
 
-        protected void _Remove(FloatingWindow window)
+        private void _Remove(FloatingWindow window)
         {
             if (window != null)
             {

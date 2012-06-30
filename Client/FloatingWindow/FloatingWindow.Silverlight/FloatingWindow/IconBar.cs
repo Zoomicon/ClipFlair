@@ -203,6 +203,8 @@ namespace SilverFlow.Controls
         {
             if (!IsOpen)
             {
+                //ApplyTemplate(); //!!!
+
                 FillCarousel();
                 SetSlidingBarPosition(0);
                 VisualStateManager.GoToState(this, VSMSTATE_StateOpen, true);
