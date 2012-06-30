@@ -3,6 +3,7 @@
 
 //Note: localization could use "PublicResxFileCodeGeneratorEx" custom build tool for the "Strings.resx" file
 //      from http://resxfilecodegenex.codeplex.com/ if that is fixed to generate public constuctor instead of protected (see issue tracker there)
+//      (Currently one needs to open Resources\Strings.Designer.cs and change internal constructor to public)
 
 using System;
 using System.Collections.Generic;
