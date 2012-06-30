@@ -4,9 +4,9 @@ using System;
 
 namespace ClipFlair
 {
-    public partial class TextEditorWindow : FlipWindow
+    public partial class MediaPlayerWindow : FlipWindow
     {
-        public TextEditorWindow()
+        public MediaPlayerWindow()
         {
             InitializeComponent();
         }

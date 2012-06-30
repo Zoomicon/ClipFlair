@@ -59,7 +59,11 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.SilverlightMediaFramework.Core, Version=2.2012.605.0, Culture=neutral, PublicKeyToken=6687ff884a90c6a6" />
+    <Reference Include="Microsoft.SilverlightMediaFramework.Plugins, Version=2.2012.605.0, Culture=neutral, PublicKeyToken=3dd5df9571bfd1e7" />
+    <Reference Include="Microsoft.SilverlightMediaFramework.Utilities, Version=2.2012.605.0, Culture=neutral, PublicKeyToken=2018901a52f7a62c" />
     <Reference Include="mscorlib" />
+    <Reference Include="System.ComponentModel.Composition, Version=5.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" />
     <Reference Include="System.ComponentModel.DataAnnotations, Version=5.0.5.0, Culture=neutral, PublicKeyToken=ddd0da4d3e678217, processorArchitecture=MSIL" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceModel" />
@@ -70,6 +74,7 @@
     <Reference Include="system" />
     <Reference Include="System.Core" />
     <Reference Include="System.Net" />
+    <Reference Include="System.Windows.Controls.Navigation, Version=5.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Windows.Browser" />
   </ItemGroup>
@@ -77,11 +82,18 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Windows\TextEditorWindow.xaml.cs">
-      <DependentUpon>TextEditorWindow.xaml</DependentUpon>
-    </Compile>
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Windows\FlipWindow.xaml.cs">
+      <DependentUpon>FlipWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\MediaPlayerWindow.xaml.cs">
+      <DependentUpon>MediaPlayerWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\TextEditorWindow.xaml.cs">
+      <DependentUpon>TextEditorWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -90,11 +102,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </ApplicationDefinition>
-    <Page Include="Windows\TextEditorWindow.xaml">
+    <Page Include="MainPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="MainPage.xaml">
+    <Page Include="Windows\FlipWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Windows\MediaPlayerWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Windows\TextEditorWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -103,6 +123,10 @@
     <None Include="Properties\AppManifest.xml" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\FlipPanel\FlipPanel.Silverlight\FlipPanel.Silverlight.csproj">
+      <Project>{245ABF59-8751-46FB-A37E-E5EE253342AD}</Project>
+      <Name>FlipPanel.Silverlight</Name>
+    </ProjectReference>
     <ProjectReference Include="..\FloatingWindow\FloatingWindow.Silverlight\FloatingWindow.Silverlight.csproj">
       <Project>{3F3D3C8C-9724-4531-A04D-B92049F64686}</Project>
       <Name>FloatingWindow.Silverlight</Name>
@@ -119,6 +143,13 @@
       <Project>{8E75887A-A164-41B8-86D5-8DC37768B5A3}</Project>
       <Name>ZoomAndPan.Silverlight</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Images\Filmroll.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Silverlight\$(SilverlightVersion)\Microsoft.Silverlight.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

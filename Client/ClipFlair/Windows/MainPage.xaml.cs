@@ -10,15 +10,14 @@ using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 
-namespace PropertyPagesSupport.Controls
+namespace ClipFlair
 {
-  public class PropertyPagesHost : Control, IPropertyPagesHost
-  {    
-    public PropertyPagesHost()
+  public partial class MainPage : UserControl
+  {
+    public MainPage()
     {
-      this.DefaultStyleKey = typeof(PropertyPagesHost);
+      InitializeComponent();
     }
 
-    public IPropertyPages PropertyPages { get; set; }
   }
 }
