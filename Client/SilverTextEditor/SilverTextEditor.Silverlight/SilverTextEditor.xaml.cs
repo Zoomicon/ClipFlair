@@ -1,8 +1,8 @@
-﻿//Version: 20120626
+﻿//Version: 20120630
 //Editor: George Birbilis <birbilis@kagi.com>
 
-//Note: localization uses "PublicResxFileCodeGeneratorEx" custom build tool for the "Strings.resx" file
-//      can download installer for VisualStudio from http://resxfilecodegenex.codeplex.com/
+//Note: localization could use "PublicResxFileCodeGeneratorEx" custom build tool for the "Strings.resx" file
+//      from http://resxfilecodegenex.codeplex.com/ if that is fixed to generate public constuctor instead of protected (see issue tracker there)
 
 using System;
 using System.Collections.Generic;
@@ -29,6 +29,7 @@ namespace SilverTextEditor
         public SilverTextEditor()
         {
             InitializeComponent();
+            //DefaultStyleKey = typeof(SilverTextEditor); //if we convert this to Control, need to do this
             Loaded += new RoutedEventHandler(SilverTextEditor_Loaded);
         }
 
