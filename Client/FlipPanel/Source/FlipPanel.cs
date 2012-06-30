@@ -1,4 +1,6 @@
-﻿using System;
+﻿//Version: 20120628
+
+using System;
 using System.Net;
 using System.Windows;
 using System.Windows.Controls;
@@ -9,13 +11,15 @@ using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 using System.Windows.Controls.Primitives;
+using System.Windows.Markup;
 
 namespace FlipPanel
 {
-    [TemplatePart(Name = "FlipButton", Type = typeof(ToggleButton)),
-    TemplatePart(Name = "FlipButtonAlternate", Type = typeof(ToggleButton)),
-    TemplateVisualState(Name = "Normal", GroupName = "ViewStates"),
-    TemplateVisualState(Name = "Flipped", GroupName = "ViewStates")]
+    [TemplatePart(Name = "FlipButton", Type = typeof(ToggleButton))]
+    [TemplatePart(Name = "FlipButtonAlternate", Type = typeof(ToggleButton))]
+    [TemplateVisualState(Name = "Normal", GroupName = "ViewStates")]
+    [TemplateVisualState(Name = "Flipped", GroupName = "ViewStates")]
+    [ContentProperty("FrontContent")]
     public class FlipPanel : Control
     {
         public static readonly DependencyProperty FrontContentProperty = DependencyProperty.Register("FrontContent", typeof(object), typeof(FlipPanel), null);
