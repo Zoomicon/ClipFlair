@@ -8,6 +8,12 @@
     xmlns:text="clr-namespace:SilverTextEditor;assembly=SilverTextEditor"
     >
 
-    <text:SilverTextEditor /> 
-    
+    <!--<clipflair:FlipWindow.FrontContent>-->
+        <text:SilverTextEditor />
+    <!--</clipflair:FlipWindow.FrontContent>-->
+
+    <clipflair:FlipWindow.BackContent>
+        <Button Content="Test" />
+    </clipflair:FlipWindow.BackContent>
+
 </clipflair:FlipWindow>

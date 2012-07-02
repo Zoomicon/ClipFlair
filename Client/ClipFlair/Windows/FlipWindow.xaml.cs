@@ -19,6 +19,13 @@ namespace ClipFlair
             set { FlipPanel.FrontContent = value; }
         }
 
+        public object BackContent
+        {
+            get { return FlipPanel.BackContent; }
+            set { FlipPanel.BackContent = value; }
+        }
+
+
     }
 
 }

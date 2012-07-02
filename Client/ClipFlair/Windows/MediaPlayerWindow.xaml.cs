@@ -1,6 +1,9 @@
-﻿//Version: 20120628
+﻿//Version: 20120702
 
-using System;
+using Microsoft.SilverlightMediaFramework;
+using Microsoft.SilverlightMediaFramework.Core.Media;
+
+using ClipFlair.Extensions;
 
 namespace ClipFlair
 {
@@ -10,5 +13,14 @@ namespace ClipFlair
         {
             InitializeComponent();
         }
+
+        private void edMediaURL_LostFocus(object sender, System.Windows.RoutedEventArgs e)
+        {
+            PlaylistItem[] p= new PlaylistItem[player.Playlist.Count];
+            player.Playlist.CopyTo(p, 0);
+            p[0].MediaSource = edMediaURL.Text.ToUri();
+            //...
+        }
+
     }
 }
