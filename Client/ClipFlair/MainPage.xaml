@@ -42,8 +42,8 @@
 
                 <!--<float:FloatingWindowHost.Windows>-->
                 <!--<float:FloatingWindowCollection>-->
-                <clipflair:MediaPlayerWindow Width="Auto" Height="Auto" MinWidth="100" MinHeight="100" Title="Media Player" IconText="Media Player" Tag="MediaPlayer" />
                 <clipflair:TextEditorWindow Width="Auto" Height="Auto" MinWidth="100" MinHeight="100" Title="Text Editor" IconText="Text Editor" Tag="TextEditor" />
+                <clipflair:MediaPlayerWindow Width="800" Height="550" MinWidth="100" MinHeight="100" Title="Media Player" IconText="Media Player" Tag="MediaPlayer" />
                 <!--</float:FloatingWindowCollection>-->
                 <!--</float:FloatingWindowHost.Windows>-->
 
