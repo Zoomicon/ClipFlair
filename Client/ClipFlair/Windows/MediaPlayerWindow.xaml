@@ -22,13 +22,14 @@
 -->
     
     <!--<clipflair:FlipWindow.FrontContent>-->
-    <smf:SMFPlayer Name="player" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0" d:LayoutOverrides="Width, Height">
+    <smf:SMFPlayer Name="player" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+        <!-- Margin="0" d:LayoutOverrides="Width, Height" -->
         <smf:SMFPlayer.Playlist>
             <smf_media:PlaylistItem DeliveryMethod="AdaptiveStreaming" MediaSource="http://video3.smoothhd.com.edgesuite.net/ondemand/Big%20Buck%20Bunny%20Adaptive.ism/Manifest">
                 <!-- can't use MediaSource="{Binding ElementName=edMediaURL, Path=Text, Converter={StaticResource StringToUriConverter}, Mode=TwoWay}", it's not a DependencyProperty -->
 
                 <smf_media:PlaylistItem.MarkerResources>
-                    <smf_media:MarkerResource Source="examplecaptions.xml"/>
+                    <smf_media:MarkerResource Source="ExampleCaptions.xml"/>
                 </smf_media:PlaylistItem.MarkerResources>
                 
                 <!--                <smf_media:PlaylistItem.Captions>
