@@ -21,6 +21,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZoomAndPan.Demo.Simple.WPF"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZoomAndPan.Demo.TestZoom.Silverlight", "ZoomAndPan.Demo.TestZoom\ZoomAndPan.Demo.TestZoom.Silverlight\ZoomAndPan.Demo.TestZoom.Silverlight.csproj", "{94616396-F9C8-4EB8-82A4-9B1C3994CFBB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZoomAndPan.Demo.TestZoom.Silverlight.Web", "ZoomAndPan.Demo.TestZoom\ZoomAndPan.Demo.TestZoom.Silverlight.Web\ZoomAndPan.Demo.TestZoom.Silverlight.Web.csproj", "{70608BF1-0310-45D0-96A6-744A2F00DB83}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -67,6 +69,10 @@ Global
 		{94616396-F9C8-4EB8-82A4-9B1C3994CFBB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{94616396-F9C8-4EB8-82A4-9B1C3994CFBB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{94616396-F9C8-4EB8-82A4-9B1C3994CFBB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{70608BF1-0310-45D0-96A6-744A2F00DB83}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{70608BF1-0310-45D0-96A6-744A2F00DB83}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{70608BF1-0310-45D0-96A6-744A2F00DB83}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{70608BF1-0310-45D0-96A6-744A2F00DB83}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
