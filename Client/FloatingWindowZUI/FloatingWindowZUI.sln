@@ -1,0 +1,44 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FloatingWindowZUI.Silverlight", "FloatingWindowZUI.Silverlight\FloatingWindowZUI.Silverlight.csproj", "{245ABF59-8751-46FB-A37E-E5EE253342AD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FloatingWindowZUI.Silverlight.Demo.Simple", "FloatingWindowZUI.Silverlight.Demo.Simple\FloatingWindowZUI.Silverlight.Demo.Simple\FloatingWindowZUI.Silverlight.Demo.Simple.csproj", "{E0C38766-30EE-4ED8-82B8-CBDD2185FE39}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FloatingWindowZUI.Silverlight.Demo.Simple.Web", "FloatingWindowZUI.Silverlight.Demo.Simple\FloatingWindowZUI.Silverlight.Demo.Simple.Web\FloatingWindowZUI.Silverlight.Demo.Simple.Web.csproj", "{CAEA4540-2DAB-4681-B261-A11C3A3E4FD9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FloatingWindow.Silverlight", "..\FloatingWindow\FloatingWindow.Silverlight\FloatingWindow.Silverlight.csproj", "{3F3D3C8C-9724-4531-A04D-B92049F64686}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZoomAndPan.Silverlight", "..\ZoomAndPan\ZoomAndPan.Silverlight\ZoomAndPan.Silverlight.csproj", "{8E75887A-A164-41B8-86D5-8DC37768B5A3}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{245ABF59-8751-46FB-A37E-E5EE253342AD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{245ABF59-8751-46FB-A37E-E5EE253342AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{245ABF59-8751-46FB-A37E-E5EE253342AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{245ABF59-8751-46FB-A37E-E5EE253342AD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E0C38766-30EE-4ED8-82B8-CBDD2185FE39}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E0C38766-30EE-4ED8-82B8-CBDD2185FE39}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E0C38766-30EE-4ED8-82B8-CBDD2185FE39}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E0C38766-30EE-4ED8-82B8-CBDD2185FE39}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CAEA4540-2DAB-4681-B261-A11C3A3E4FD9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CAEA4540-2DAB-4681-B261-A11C3A3E4FD9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CAEA4540-2DAB-4681-B261-A11C3A3E4FD9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CAEA4540-2DAB-4681-B261-A11C3A3E4FD9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3F3D3C8C-9724-4531-A04D-B92049F64686}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3F3D3C8C-9724-4531-A04D-B92049F64686}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3F3D3C8C-9724-4531-A04D-B92049F64686}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3F3D3C8C-9724-4531-A04D-B92049F64686}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8E75887A-A164-41B8-86D5-8DC37768B5A3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8E75887A-A164-41B8-86D5-8DC37768B5A3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8E75887A-A164-41B8-86D5-8DC37768B5A3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8E75887A-A164-41B8-86D5-8DC37768B5A3}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

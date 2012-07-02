@@ -1,0 +1,114 @@
+﻿<ResourceDictionary
+  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+  xmlns:vsm="clr-namespace:System.Windows;assembly=System.Windows"     
+  xmlns:System="clr-namespace:System;assembly=mscorlib"
+  xmlns:controls="clr-namespace:SilverFlow.Controls;assembly=SilverFlow.Controls"    
+  xmlns:zoom="clr-namespace:ZoomAndPan;assembly=ZoomAndPan"
+  xmlns:zui="clr-namespace:FloatingWindowZUI;assembly=FloatingWindowZUI"
+  >
+
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="/SilverFlow.Controls;component/Themes/generic.xaml"/>
+    </ResourceDictionary.MergedDictionaries>
+
+    <Style TargetType="zui:FloatingWindowHostZUI">
+        <Setter Property="Width" Value="Auto" />
+        <Setter Property="Height" Value="Auto" />
+        <Setter Property="SnapinEnabled" Value="True" />
+        <Setter Property="SnapinDistance" Value="5" />
+        <Setter Property="SnapinMargin" Value="0" />
+        <Setter Property="ShowMinimizedOnlyInIconbar" Value="False" />
+        <Setter Property="HorizontalAlignment" Value="Stretch" />
+        <Setter Property="VerticalAlignment" Value="Stretch" />
+        <Setter Property="OverlayBrush" Value="#90202030" />
+        <Setter Property="Background" Value="#FF7ED2E9" />
+
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="controls:FloatingWindowHost">
+                    <Grid x:Name="PART_Root" Background="{TemplateBinding Background}" 
+                          Width="{TemplateBinding Width}" Height="{TemplateBinding Height}">
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="OverlayStates">
+                                <VisualState x:Name="VisibleOverlay">
+                                    <Storyboard>
+                                        <DoubleAnimationUsingKeyFrames BeginTime="0" Storyboard.TargetName="PART_Overlay" Storyboard.TargetProperty="Opacity">
+                                            <SplineDoubleKeyFrame KeyTime="0:0:0.3" Value="1"/>
+                                        </DoubleAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Duration="0" Storyboard.TargetName="PART_Overlay" Storyboard.TargetProperty="Visibility">
+                                            <DiscreteObjectKeyFrame KeyTime="0">
+                                                <DiscreteObjectKeyFrame.Value>
+                                                    <Visibility>Visible</Visibility>
+                                                </DiscreteObjectKeyFrame.Value>
+                                            </DiscreteObjectKeyFrame>
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="HiddenOverlay">
+                                    <Storyboard>
+                                        <DoubleAnimationUsingKeyFrames BeginTime="0" Storyboard.TargetName="PART_Overlay" Storyboard.TargetProperty="Opacity">
+                                            <SplineDoubleKeyFrame KeyTime="0:0:0.3" Value="0"/>
+                                        </DoubleAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Overlay" Storyboard.TargetProperty="Visibility">
+                                            <DiscreteObjectKeyFrame KeyTime="0:0:0.3">
+                                                <DiscreteObjectKeyFrame.Value>
+                                                    <Visibility>Collapsed</Visibility>
+                                                </DiscreteObjectKeyFrame.Value>
+                                            </DiscreteObjectKeyFrame>
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+
+                        <Grid x:Name="PART_ContentRoot">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+
+                            <ScrollViewer VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Visible" >
+                                <!-- HorizontalAlignment="Stretch" VerticalAlignment="Stretch" -->
+
+                                <zoom:ZoomAndPanControl Width="1000" Height="1000" Name="PART_ZUIHost" ContentScale="2">
+                                    <!-- HorizontalAlignment="Stretch" VerticalAlignment="Stretch" -->
+                                    <Grid>
+                                    <Canvas x:Name="PART_HostCanvas" />
+                                       </Grid>
+                                </zoom:ZoomAndPanControl>
+                            </ScrollViewer>
+
+                            <Grid x:Name="PART_IconBarContainer" VerticalAlignment="Bottom">
+                                <controls:IconBar x:Name="PART_IconBar"/>
+                            </Grid>
+
+                            <Border x:Name="PART_BottomBar" Grid.Row="1" Style="{StaticResource BottomBarStyle}">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+
+                                    <controls:BootstrapButton x:Name="PART_BootstrapButton" Style="{StaticResource BootstrapButtonStyle}"
+										Margin="10,-4,10,0" IsOpen="{Binding IsOpen, ElementName=PART_IconBar}" />
+
+                                    <Border Grid.Column="1">
+                                        <ContentControl x:Name="PART_BarContent" Content="{TemplateBinding Bar}" 
+                                                        VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch" />
+                                    </Border>
+                                </Grid>
+                            </Border>
+                        </Grid>
+
+                        <Grid x:Name="PART_Overlay" Background="{TemplateBinding OverlayBrush}" Opacity="0" Visibility="Collapsed" />
+                        <Canvas x:Name="PART_ModalCanvas" />
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+
+</ResourceDictionary>
