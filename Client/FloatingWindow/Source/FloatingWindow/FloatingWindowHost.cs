@@ -1,4 +1,4 @@
-﻿//Version: 20120630
+﻿//Version: 20120701
 
 using System;
 using System.Collections.Generic;
@@ -8,11 +8,11 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
-using SilverFlow.Controls.Extensions;
 
-using System.Collections;
 using System.Collections.Specialized;
 using System.Windows.Markup;
+
+using SilverFlow.Controls.Extensions;
 
 namespace SilverFlow.Controls
 {
@@ -40,28 +40,28 @@ namespace SilverFlow.Controls
         #region Constants
 
         // Template parts
-        private const string PART_Root = "PART_Root";
-        private const string PART_ContentRoot = "PART_ContentRoot";
-        private const string PART_HostCanvas = "PART_HostCanvas";
-        private const string PART_ModalCanvas = "PART_ModalCanvas";
-        private const string PART_IconBarContainer = "PART_IconBarContainer";
-        private const string PART_Overlay = "PART_Overlay";
-        private const string PART_IconBar = "PART_IconBar";
-        private const string PART_BottomBar = "PART_BottomBar";
-        private const string PART_BootstrapButton = "PART_BootstrapButton";
-        private const string PART_BarContent = "PART_BarContent";
+        protected const string PART_Root = "PART_Root";
+        protected const string PART_ContentRoot = "PART_ContentRoot";
+        protected const string PART_HostCanvas = "PART_HostCanvas";
+        protected const string PART_ModalCanvas = "PART_ModalCanvas";
+        protected const string PART_IconBarContainer = "PART_IconBarContainer";
+        protected const string PART_Overlay = "PART_Overlay";
+        protected const string PART_IconBar = "PART_IconBar";
+        protected const string PART_BottomBar = "PART_BottomBar";
+        protected const string PART_BootstrapButton = "PART_BootstrapButton";
+        protected const string PART_BarContent = "PART_BarContent";
 
         // VSM groups
-        private const string VSMGROUP_Overlay = "OverlayStates";
+        protected const string VSMGROUP_Overlay = "OverlayStates";
 
         // VSM states
-        private const string VSMSTATE_VisibleOverlay = "VisibleOverlay";
-        private const string VSMSTATE_HiddenOverlay = "HiddenOverlay";
+        protected const string VSMSTATE_VisibleOverlay = "VisibleOverlay";
+        protected const string VSMSTATE_HiddenOverlay = "HiddenOverlay";
 
         // Style typed properties
-        private const string PROPERTY_BottomBarStyle = "BottomBarStyle";
-        private const string PROPERTY_BootstrapButtonStyle = "BootstrapButtonStyle";
-        private const string PROPERTY_WindowIconStyle = "WindowIconStyle";
+        protected const string PROPERTY_BottomBarStyle = "BottomBarStyle";
+        protected const string PROPERTY_BootstrapButtonStyle = "BootstrapButtonStyle";
+        protected const string PROPERTY_WindowIconStyle = "WindowIconStyle";
 
         // Thickness of resizing area.
         private const double SnapinDistanceDefaultValue = 5.0;
@@ -631,7 +631,7 @@ namespace SilverFlow.Controls
             {
                 //tell window to detach from its current FloatingWindowHost here (if any)
                 window.RemoveFromContainer();
-                window.FloatingWindowHost = null;
+                window.FloatingWindowHost = null; //could change the implementation of that property to call RemoveFromContainer if needed
 
                 hostCanvas.Children.Add(window);
                 window.FloatingWindowHost = this;
