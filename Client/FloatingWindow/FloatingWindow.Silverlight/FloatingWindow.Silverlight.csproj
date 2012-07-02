@@ -130,13 +130,13 @@
     <Compile Include="FloatingWindow\IconBar.cs" />
     <Compile Include="FloatingWindow\WindowIcon.cs" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Page Include="Themes\generic.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Silverlight\$(SilverlightVersion)\Microsoft.Silverlight.CSharp.targets" />
   <ProjectExtensions>
     <VisualStudio>

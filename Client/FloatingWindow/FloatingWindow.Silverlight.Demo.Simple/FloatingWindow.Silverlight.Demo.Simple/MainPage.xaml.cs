@@ -9,7 +9,6 @@ namespace FloatingWindowControl
     public partial class MainPage : UserControl
     {
         private int nWindows = 1;
-        private int nCharts = 1;
         private Point startPoint = new Point(50, 50);
 
         public MainPage()
