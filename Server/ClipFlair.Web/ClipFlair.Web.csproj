@@ -54,8 +54,8 @@
   <ItemGroup>
     <Content Include="ClientBin\ClipFlair.xap" />
     <Content Include="ClientBin\ExampleCaptions.xml" />
-    <Content Include="ClipFlairTestPage.aspx" />
-    <Content Include="ClipFlairTestPage.html" />
+    <Content Include="default.aspx" />
+    <Content Include="default.html" />
     <Content Include="Silverlight.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -78,8 +78,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>22381</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>
-          </IISUrl>
+          <IISUrl>http://localhost/ClipFlair.Web</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>
