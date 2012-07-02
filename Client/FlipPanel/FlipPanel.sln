@@ -5,6 +5,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FlipPanel.Silverlight", "Fl
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FlipPanel.Silverlight.Demo", "FlipPanel.Silverlight.Demo\FlipPanel.Silverlight.Demo.csproj", "{7944BE92-030E-4A43-832B-DCA543EFCFDE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FlipPanel.Silverlight.Demo.Web", "FlipPanel.Silverlight.Demo.Web\FlipPanel.Silverlight.Demo.Web.csproj", "{70608BF1-0310-45D0-96A6-744A2F00DB83}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -19,6 +21,10 @@ Global
 		{7944BE92-030E-4A43-832B-DCA543EFCFDE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7944BE92-030E-4A43-832B-DCA543EFCFDE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7944BE92-030E-4A43-832B-DCA543EFCFDE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{70608BF1-0310-45D0-96A6-744A2F00DB83}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{70608BF1-0310-45D0-96A6-744A2F00DB83}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{70608BF1-0310-45D0-96A6-744A2F00DB83}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{70608BF1-0310-45D0-96A6-744A2F00DB83}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
