@@ -6,8 +6,17 @@
     xmlns:flip="clr-namespace:FlipPanel;assembly=FlipPanel"
     xmlns:float="clr-namespace:SilverFlow.Controls;assembly=SilverFlow.Controls"                      
     >
-    
-    <Grid x:Name="LayoutRoot">
-        <flip:FlipPanel Name="FlipPanel" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
+
+    <Grid x:Name="LayoutRoot" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <flip:FlipPanel Grid.Row="0" Grid.Column="0" Name="FlipPanel" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
+        
     </Grid>
+    
 </float:FloatingWindow>

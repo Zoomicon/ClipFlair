@@ -7,9 +7,9 @@
     xmlns:float="clr-namespace:SilverFlow.Controls;assembly=SilverFlow.Controls"
     xmlns:clipflair="clr-namespace:ClipFlair"
     Name="Page">
-    
+
     <UserControl.Resources>
- <!--
+        <!--
         <ResourceDictionary>
  
             <ResourceDictionary.MergedDictionaries>
@@ -20,42 +20,37 @@
  -->
     </UserControl.Resources>
 
-        
-        <ScrollViewer HorizontalAlignment="Stretch" VerticalAlignment="Stretch" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+    <ScrollViewer HorizontalAlignment="Stretch" VerticalAlignment="Stretch" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
 
-            <zui:ZoomAndPanControl Name="zuiHost" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                
-                <float:FloatingWindowHost Name="floatHost" MinWidth="1000" MinHeight="800" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" SnapinEnabled="True" ShowMinimizedOnlyInIconbar="False">
+        <zui:ZoomAndPanControl Name="zuiHost" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" ContentScale="1"> 
 
+            <float:FloatingWindowHost Name="floatHost" MinWidth="1000" MinHeight="750" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" SnapinEnabled="True" ShowMinimizedOnlyInIconbar="False">
 
-<!--
+                <!--
                     <float:FloatingWindowHost.Bar>
                         <TextBlock Text="Windows" VerticalAlignment="Center" />
                     </float:FloatingWindowHost.Bar>
--->
-<!--                
+                 -->
+                <!--                
                     <float:FloatingWindowHost.Background>
                         <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                             <GradientStop Color="#FF00AEEF" Offset="0" />
                             <GradientStop Color="#FF89E0FF" Offset="1" />
                         </LinearGradientBrush>
                     </float:FloatingWindowHost.Background>
--->
+                -->
 
-                    <!--<float:FloatingWindowHost.Windows>-->
-                    <!--<float:FloatingWindowCollection>-->
+                <!--<float:FloatingWindowHost.Windows>-->
+                <!--<float:FloatingWindowCollection>-->
+                <clipflair:MediaPlayerWindow Width="Auto" Height="Auto" MinWidth="100" MinHeight="100" Title="Media Player" IconText="Media Player" Tag="MediaPlayer" />
+                <clipflair:TextEditorWindow Width="Auto" Height="Auto" MinWidth="100" MinHeight="100" Title="Text Editor" IconText="Text Editor" Tag="TextEditor" />
+                <!--</float:FloatingWindowCollection>-->
+                <!--</float:FloatingWindowHost.Windows>-->
 
-                    <clipflair:MediaPlayerWindow Width="Auto" Height="Auto" MinWidth="100" MinHeight="100" Title="Media Player" IconText="Media Player" Tag="MediaPlayer" />
-                    <clipflair:MediaPlayerWindow  Width="Auto" Height="Auto" MinWidth="100" MinHeight="100" Title="2" IconText="Media Player1" Tag="MediaPlayer1" />
-                    <clipflair:TextEditorWindow Width="Auto" Height="Auto" MinWidth="100" MinHeight="100" Title="3" IconText="Text1" Tag="Text1" />
+            </float:FloatingWindowHost>
 
-                    <!--</float:FloatingWindowCollection>-->
-                    <!--</float:FloatingWindowHost.Windows>-->
+        </zui:ZoomAndPanControl>
 
-                </float:FloatingWindowHost>
-
-            </zui:ZoomAndPanControl>
-
-        </ScrollViewer>
+    </ScrollViewer>
 
 </UserControl>
