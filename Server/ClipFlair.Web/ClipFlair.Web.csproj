@@ -53,6 +53,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="ClientBin\ClipFlair.xap" />
+    <Content Include="ClientBin\ExampleCaptions.xml" />
     <Content Include="ClipFlairTestPage.aspx" />
     <Content Include="ClipFlairTestPage.html" />
     <Content Include="Silverlight.js" />
