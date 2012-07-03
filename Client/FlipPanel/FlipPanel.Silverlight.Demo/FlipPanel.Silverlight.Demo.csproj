@@ -20,7 +20,7 @@
     </SupportedCultures>
     <XapOutputs>true</XapOutputs>
     <GenerateSilverlightManifest>true</GenerateSilverlightManifest>
-    <XapFilename>CustomControlConsumer.xap</XapFilename>
+    <XapFilename>FlipPanel.xap</XapFilename>
     <SilverlightManifestTemplate>Properties\AppManifest.xml</SilverlightManifestTemplate>
     <SilverlightAppEntry>FlipPanelTest.App</SilverlightAppEntry>
     <TestPageFileName>TestPage.html</TestPageFileName>
