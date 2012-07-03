@@ -52,8 +52,7 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="ClientBin\CustomControlConsumer.xap" />
-    <Content Include="ClientBin\FloatingWindowControl.xap" />
+    <Content Include="ClientBin\FlipPanel.xap" />
     <Content Include="FlipPanel.Silverlight.DemoTestPage.aspx" />
     <Content Include="FlipPanel.Silverlight.DemoTestPage.html" />
     <Content Include="Silverlight.js" />
