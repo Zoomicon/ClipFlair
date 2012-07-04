@@ -1,8 +1,14 @@
-﻿using System;
+﻿//Version: 20120704
+
+using System;
 using System.Windows;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using SilverFlow.Controls.Extensions;
+
+#if SILVERLIGHT
+using System.Windows.Controls;
+#endif
 
 namespace SilverFlow.Controls.Helpers
 {
@@ -23,16 +29,38 @@ namespace SilverFlow.Controls.Helpers
             int width = element.Width.IsNotSet() ? (int)element.ActualWidth : (int)element.Width;
             int height = element.Height.IsNotSet() ? (int)element.ActualHeight : (int)element.Height;
 
-            // Scale down the element to fit it into the window's thumbnail
-            double scaleX = imageWidth / width;
-            double scaleY = imageHeight / height;
-            double minScale = Math.Min(scaleX, scaleY);
+#if SILVERLIGHT
 
-            if (minScale < 1)
+            ScaleTransform transform = null;
+
+            // If the element is an image - do not scale it
+            if (!(element is Image))
             {
-                width = (int)(width * minScale);
-                height = (int)(height * minScale);
+
+#endif
+                // Scale down the element to fit it into the window's thumbnail
+                double scaleX = imageWidth / width;
+                double scaleY = imageHeight / height;
+                double minScale = Math.Min(scaleX, scaleY);
+
+                if (minScale < 1)
+                {
+
+#if SILVERLIGHT                  
+                    transform = new ScaleTransform { ScaleX = minScale, ScaleY = minScale };
+#endif
+                    width = (int)(width * minScale);
+                    height = (int)(height * minScale);
+                }
+
+#if SILVERLIGHT
             }
+
+            WriteableBitmap bitmap = new WriteableBitmap(width, height);
+            bitmap.Render(element, transform);
+            bitmap.Invalidate();
+
+#else
 
             // Get current dpi
             PresentationSource presentationSource = PresentationSource.FromVisual(Application.Current.MainWindow);
@@ -40,7 +68,7 @@ namespace SilverFlow.Controls.Helpers
             double dpiX = m.M11 * 96;
             double dpiY = m.M22 * 96;
 
-            RenderTargetBitmap elementBitmap = new RenderTargetBitmap(width, height, dpiX, dpiY, PixelFormats.Default);
+            RenderTargetBitmap bitmap = new RenderTargetBitmap(width, height, dpiX, dpiY, PixelFormats.Default);
 
             DrawingVisual drawingVisual = new DrawingVisual();
             using (DrawingContext drawingContext = drawingVisual.RenderOpen())
@@ -50,9 +78,11 @@ namespace SilverFlow.Controls.Helpers
             }
 
             // Draw the element
-            elementBitmap.Render(drawingVisual);
+            bitmap.Render(drawingVisual);
 
-            return elementBitmap;
+#endif
+
+            return bitmap;
         }
     }
 }

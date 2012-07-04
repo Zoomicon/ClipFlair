@@ -78,6 +78,12 @@
     <Compile Include="..\Source\Enums\ResizeAnchor.cs">
       <Link>Enums\ResizeAnchor.cs</Link>
     </Compile>
+    <Compile Include="..\Source\Enums\WindowAction.cs">
+      <Link>Enums\WindowAction.cs</Link>
+    </Compile>
+    <Compile Include="..\Source\Extensions\ControlExtensions.cs">
+      <Link>Extensions\ControlExtensions.cs</Link>
+    </Compile>
     <Compile Include="..\Source\Extensions\GeometryExtensions.cs">
       <Link>Extensions\GeometryExtensions.cs</Link>
     </Compile>
@@ -105,6 +111,9 @@
     <Compile Include="..\Source\Geometry\Vector2.cs">
       <Link>Geometry\Vector2.cs</Link>
     </Compile>
+    <Compile Include="..\Source\Helpers\BitmapHelper.cs">
+      <Link>Helpers\BitmapHelper.cs</Link>
+    </Compile>
     <Compile Include="..\Source\Helpers\IBitmapHelper.cs">
       <Link>Helpers\IBitmapHelper.cs</Link>
     </Compile>
@@ -114,13 +123,10 @@
     <Compile Include="..\Source\Helpers\LocalStorage.cs">
       <Link>Helpers\LocalStorage.cs</Link>
     </Compile>
-    <Compile Include="Enums\WindowAction.cs" />
     <Compile Include="Extensions\AnimationExtensions.cs" />
-    <Compile Include="Extensions\ControlExtensions.cs" />
     <Compile Include="FloatingWindow\FloatingWindow.cs" />
     <Compile Include="FloatingWindow\IconBar.cs" />
     <Compile Include="FloatingWindow\WindowIcon.cs" />
-    <Compile Include="Helpers\BitmapHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>

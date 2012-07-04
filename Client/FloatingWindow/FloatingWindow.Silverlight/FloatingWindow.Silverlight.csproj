@@ -83,6 +83,12 @@
     <Compile Include="..\Source\Enums\ResizeAnchor.cs">
       <Link>Enums\ResizeAnchor.cs</Link>
     </Compile>
+    <Compile Include="..\Source\Enums\WindowAction.cs">
+      <Link>Enums\WindowAction.cs</Link>
+    </Compile>
+    <Compile Include="..\Source\Extensions\ControlExtensions.cs">
+      <Link>Extensions\ControlExtensions.cs</Link>
+    </Compile>
     <Compile Include="..\Source\Extensions\GeometryExtensions.cs">
       <Link>Extensions\GeometryExtensions.cs</Link>
     </Compile>
@@ -110,6 +116,9 @@
     <Compile Include="..\Source\Geometry\Vector2.cs">
       <Link>Geometry\Vector2.cs</Link>
     </Compile>
+    <Compile Include="..\Source\Helpers\BitmapHelper.cs">
+      <Link>Helpers\BitmapHelper.cs</Link>
+    </Compile>
     <Compile Include="..\Source\Helpers\IBitmapHelper.cs">
       <Link>Helpers\IBitmapHelper.cs</Link>
     </Compile>
@@ -120,17 +129,19 @@
       <Link>Helpers\LocalStorage.cs</Link>
     </Compile>
     <Compile Include="Extensions\AnimationExtensions.cs" />
-    <Compile Include="Extensions\ControlExtensions.cs" />
     <Compile Include="FloatingWindow\FloatingWindow.cs" />
-    <Compile Include="Enums\WindowAction.cs" />
-    <Compile Include="Helpers\BitmapHelper.cs" />
     <Compile Include="Helpers\IVisualHelper.cs" />
     <Compile Include="Helpers\VisualHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="FloatingWindow\IconBar.cs" />
     <Compile Include="FloatingWindow\WindowIcon.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\..\WPF_Compatibility\WPF_Compatibility.Silverlight\WPF_Compatibility.Silverlight.csproj">
+      <Project>{7DC832CC-2D97-4DBC-B963-3F77C1F20730}</Project>
+      <Name>WPF_Compatibility.Silverlight</Name>
+    </ProjectReference>
+  </ItemGroup>
   <ItemGroup>
     <Page Include="Themes\generic.xaml">
       <Generator>MSBuild:Compile</Generator>
