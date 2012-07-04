@@ -52,7 +52,6 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="ClientBin\FloatingWindowControl.xap" />
     <Content Include="ClientBin\FloatingWindowZUI.xap" />
     <Content Include="FloatingWindow.Silverlight.Demo.SimpleTestPage.aspx" />
     <Content Include="FloatingWindow.Silverlight.Demo.SimpleTestPage.html" />
