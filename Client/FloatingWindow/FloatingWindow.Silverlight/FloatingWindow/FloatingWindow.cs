@@ -1,4 +1,4 @@
-﻿//Version: 20120630
+﻿//Version: 20120704
 
 using System;
 using System.Collections.ObjectModel;
@@ -522,8 +522,8 @@ namespace SilverFlow.Controls
             new PropertyMetadata(FlowDirection.LeftToRight, null));
 
         #endregion
- */
- 
+*/
+
         #region public Style TitleStyle
 
         /// <summary>
@@ -1982,6 +1982,8 @@ namespace SilverFlow.Controls
         {
             base.OnMouseLeftButtonDown(e);
 
+            windowAction = WindowAction.None;
+
             if (windowState == WindowState.Normal)
             {
                 // Stop inertial motion before the mouse is captured
@@ -2031,6 +2033,7 @@ namespace SilverFlow.Controls
 
                 if (motion != null)
                 {
+                    windowAction = WindowAction.InertialMotion;
                     contentRoot.AnimateTranslateTransform(inertialMotionStoryboard, motion.EndPosition, motion.Seconds, motion.EasingFunction);
                 }
             }
@@ -2041,7 +2044,8 @@ namespace SilverFlow.Controls
                 isMouseCaptured = false;
             }
 
-            windowAction = WindowAction.None;
+            if (windowAction != WindowAction.InertialMotion)
+                windowAction = WindowAction.None;
         }
 
         /// <summary>
@@ -2053,6 +2057,7 @@ namespace SilverFlow.Controls
         {
             // Save current window position reading it from the TranslateTransform object
             Position = GetCurrentWindowPosition();
+            windowAction = WindowAction.None;
         }
 
         /// <summary>

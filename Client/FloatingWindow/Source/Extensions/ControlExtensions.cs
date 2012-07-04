@@ -1,13 +1,20 @@
-﻿using System;
+﻿//Version: 20120704
+
+using System;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 
+#if SILVERLIGHT
+using Decorator = System.Windows.Controls.Border;
+#endif
+
 namespace SilverFlow.Controls.Extensions
 {
+
     /// <summary>
-    /// Useful Silverlight controls extensions
+    /// Useful WPF/Silverlight controls extensions
     /// </summary>
     public static class ControlExtensions
     {
@@ -158,52 +165,52 @@ namespace SilverFlow.Controls.Extensions
         }
 
         /// <summary>
-        /// Moves the element to the new container. The container can be a Panel or a Border derived class.
+        /// Moves the element to the new container. The container can be a Panel or a Decorator (Border in Silverlight) derived class.
         /// </summary>
         /// <param name="element">The element.</param>
         /// <param name="newContainer">The new container of the element.</param>
         /// <exception cref="ArgumentNullException">New Container is null.</exception>
         public static void MoveToContainer(this FrameworkElement element, FrameworkElement newContainer)
         {
-            if (element == null)
-                throw new ArgumentNullException("element");
+          if (element == null)
+            throw new ArgumentNullException("element");
 
-            if (newContainer == null)
-                throw new ArgumentNullException("newContainer");
+          if (newContainer == null)
+            throw new ArgumentNullException("newContainer");
 
-            // Remove the element from the old container
-            element.RemoveFromContainer();
+          // Remove the element from the old container
+          element.RemoveFromContainer();
 
-            if (newContainer is Panel)
-            {
-                var container = newContainer as Panel;
-                if (!container.Children.Contains(element))
-                    container.Children.Add(element);
-            }
-            else if (newContainer is Border)
-            {
-                (newContainer as Border).Child = element;
-            }
+          if (newContainer is Panel)
+          {
+            var container = newContainer as Panel;
+            if (!container.Children.Contains(element))
+              container.Children.Add(element);
+          }
+          else if (newContainer is Decorator)
+          {
+            (newContainer as Decorator).Child = element;
+          }
         }
 
         /// <summary>
-        /// Removes the element from its container. The container can be a Panel or a Border derived class.
+        /// Removes the element from its container. The container can be a Panel or a Decorator (Border in Silverlight) derived class.
         /// </summary>
         /// <param name="element">The element.</param>
         public static void RemoveFromContainer(this FrameworkElement element)
         {
-            if (element != null && element.Parent != null)
+          if (element != null && element.Parent != null)
+          {
+            // Remove the element from the old container
+            if (element.Parent is Panel)
             {
-                // Remove the element from the old container
-                if (element.Parent is Panel)
-                {
-                    (element.Parent as Panel).Children.Remove(element);
-                }
-                else if (element.Parent is Border)
-                {
-                    (element.Parent as Border).Child = null;
-                }
+              (element.Parent as Panel).Children.Remove(element);
             }
+            else if (element.Parent is Decorator)
+            {
+              (element.Parent as Decorator).Child = null;
+            }
+          }
         }
 
         /// <summary>

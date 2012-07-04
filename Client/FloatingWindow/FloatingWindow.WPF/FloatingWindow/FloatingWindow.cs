@@ -1,4 +1,6 @@
-﻿using System;
+﻿//Version: 20120704
+
+using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
@@ -493,7 +495,7 @@ namespace SilverFlow.Controls
 
         #endregion
 
-/*        
+/*
       #region public FlowDirection FlowDirection
 
         /// <summary>
@@ -893,6 +895,15 @@ namespace SilverFlow.Controls
         public WindowState WindowState
         {
             get { return windowState; }
+            set
+            {
+                switch (value)
+                {
+                    case WindowState.Normal: RestoreWindow(); break;
+                    case WindowState.Maximized: MaximizeWindow(); break;
+                    case WindowState.Minimized: MinimizeWindow(); break;
+                }
+            }
         }
 
         /// <summary>
@@ -1591,6 +1602,8 @@ namespace SilverFlow.Controls
         private void FloatingWindow_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             SetTopmost();
+
+            // Stop any inertial motion
             StopInertialMotion();
         }
 
