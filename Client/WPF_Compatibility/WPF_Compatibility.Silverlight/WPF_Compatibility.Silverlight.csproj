@@ -66,6 +66,9 @@
     <Compile Include="..\Source\Visual.cs">
       <Link>Visual.cs</Link>
     </Compile>
+    <Compile Include="..\Source\WPF_Decorator.cs">
+      <Link>WPF_Decorator.cs</Link>
+    </Compile>
     <Compile Include="..\Source\WPF_DependencyObject.cs">
       <Link>WPF_DependencyObject.cs</Link>
     </Compile>
