@@ -27,7 +27,7 @@
 
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="controls:FloatingWindowHost">
+                <ControlTemplate TargetType="zui:FloatingWindowHostZUI">
                     <Grid x:Name="PART_Root" Background="{TemplateBinding Background}" 
                           Width="{TemplateBinding Width}" Height="{TemplateBinding Height}">
                         <VisualStateManager.VisualStateGroups>
@@ -69,14 +69,12 @@
                                 <RowDefinition Height="Auto" />
                             </Grid.RowDefinitions>
 
-                            <ScrollViewer VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Visible" >
+                            <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" >
                                 <!-- HorizontalAlignment="Stretch" VerticalAlignment="Stretch" -->
 
-                                <zoom:ZoomAndPanControl Width="1000" Height="1000" Name="PART_ZUIHost" ContentScale="2">
+                                <zoom:ZoomAndPanControl Name="PART_ZoomHost" ContentScale="{TemplateBinding ContentScale}" MinContentScale="{TemplateBinding MinContentScale}" MaxContentScale="{TemplateBinding MaxContentScale}">
                                     <!-- HorizontalAlignment="Stretch" VerticalAlignment="Stretch" -->
-                                    <Grid>
-                                    <Canvas x:Name="PART_HostCanvas" />
-                                       </Grid>
+                                    <Canvas Width="5000" Height="5000" x:Name="PART_HostCanvas" />
                                 </zoom:ZoomAndPanControl>
                             </ScrollViewer>
 

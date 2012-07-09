@@ -77,5 +77,12 @@ namespace FloatingWindowZUI.Demo
         {
             host.CloseAllWindows();
         }
+
+        private void sldZoom_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+          if(host!=null) 
+            //host.ContentScale = ((Slider)sender).Value; //why is sldZoom null here???
+            host.ZoomHost.ContentScale = ((Slider)sender).Value; //why is sldZoom null here???
+        }
     }
 }
