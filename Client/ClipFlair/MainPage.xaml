@@ -3,13 +3,13 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d" 
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008" d:DesignHeight="300" d:DesignWidth="400" 
-    xmlns:zui="clr-namespace:ZoomAndPan;assembly=ZoomAndPan"
     xmlns:float="clr-namespace:SilverFlow.Controls;assembly=SilverFlow.Controls"
+    xmlns:zui="clr-namespace:FloatingWindowZUI;assembly=FloatingWindowZUI"
     xmlns:clipflair="clr-namespace:ClipFlair"
     Name="Page">
 
+  <!--  
     <UserControl.Resources>
-        <!--
         <ResourceDictionary>
  
             <ResourceDictionary.MergedDictionaries>
@@ -17,40 +17,46 @@
             </ResourceDictionary.MergedDictionaries>
             
         </ResourceDictionary>
- -->
     </UserControl.Resources>
+  -->
 
-    <ScrollViewer HorizontalAlignment="Stretch" VerticalAlignment="Stretch" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+  <ScrollViewer HorizontalAlignment="Stretch" VerticalAlignment="Stretch" VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Visible">
 
-        <zui:ZoomAndPanControl Name="zuiHost" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" ContentScale="1"> 
+      <Grid>
+        <Grid.RowDefinitions>
+          <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+          <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
 
-            <float:FloatingWindowHost Name="floatHost" MinWidth="1000" MinHeight="750" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" SnapinEnabled="True" ShowMinimizedOnlyInIconbar="False">
+        <zui:FloatingWindowHostZUI Name="floatHost" Grid.Row="0" Grid.Column="0" SnapinEnabled="True" ShowMinimizedOnlyInIconbar="False">
 
                 <!--
-                    <float:FloatingWindowHost.Bar>
+                    <zui:FloatingWindowHostZUI.Bar>
                         <TextBlock Text="Windows" VerticalAlignment="Center" />
-                    </float:FloatingWindowHost.Bar>
+                    </zui:FloatingWindowHostZUI.Bar>
                  -->
                 <!--                
-                    <float:FloatingWindowHost.Background>
+                    <zui:FloatingWindowHostZUI.Background>
                         <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                             <GradientStop Color="#FF00AEEF" Offset="0" />
                             <GradientStop Color="#FF89E0FF" Offset="1" />
                         </LinearGradientBrush>
-                    </float:FloatingWindowHost.Background>
+                    </zui:FloatingWindowHostZUI.Background>
                 -->
 
-                <!--<float:FloatingWindowHost.Windows>-->
+                <!--<zui:FloatingWindowHostZUI.Windows>-->
                 <!--<float:FloatingWindowCollection>-->
                 <clipflair:TextEditorWindow Width="Auto" Height="Auto" MinWidth="100" MinHeight="100" Title="Text Editor" IconText="Text Editor" Tag="TextEditor" />
                 <clipflair:MediaPlayerWindow Width="800" Height="550" MinWidth="100" MinHeight="100" Title="Media Player" IconText="Media Player" Tag="MediaPlayer" />
                 <!--</float:FloatingWindowCollection>-->
-                <!--</float:FloatingWindowHost.Windows>-->
+                <!--</zui:FloatingWindowHostZUI.Windows>-->
 
-            </float:FloatingWindowHost>
+            </zui:FloatingWindowHostZUI>
 
-        </zui:ZoomAndPanControl>
+      </Grid>
 
     </ScrollViewer>
-
+   
 </UserControl>
