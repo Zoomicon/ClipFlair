@@ -13,7 +13,7 @@
     <RootNamespace>FloatingWindowZUI.Demo.Simple.Web</RootNamespace>
     <AssemblyName>FloatingWindowZUI.Demo.Simple.Web</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
-    <SilverlightApplicationList>{E0C38766-30EE-4ED8-82B8-CBDD2185FE39}|..\FloatingWindow.Silverlight.Demo.Simple\FloatingWindow.Silverlight.Demo.Simple.csproj|ClientBin|False</SilverlightApplicationList>
+    <SilverlightApplicationList>{E0C38766-30EE-4ED8-82B8-CBDD2185FE39}|..\FloatingWindowZUI.Silverlight.Demo.Simple\FloatingWindowZUI.Silverlight.Demo.Simple.csproj|ClientBin|False</SilverlightApplicationList>
     <UseIISExpress>false</UseIISExpress>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -53,10 +53,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="ClientBin\FloatingWindowZUI.xap" />
-    <Content Include="FloatingWindow.Silverlight.Demo.SimpleTestPage.aspx" />
-    <Content Include="FloatingWindow.Silverlight.Demo.SimpleTestPage.html" />
-    <Content Include="FloatingWindowDemo.aspx" />
-    <Content Include="FloatingWindowDemo.html" />
+    <Content Include="FloatingWindowZUI.Silverlight.Demo.SimpleTestPage.aspx" />
+    <Content Include="FloatingWindowZUI.Silverlight.Demo.SimpleTestPage.html" />
     <Content Include="Silverlight.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
