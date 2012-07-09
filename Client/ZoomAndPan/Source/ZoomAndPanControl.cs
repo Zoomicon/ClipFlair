@@ -673,7 +673,7 @@ namespace ZoomAndPan
         /// <summary>
         /// Event raised when the 'ContentScale' property has changed value.
         /// </summary>
-        private static void ContentScale_PropertyChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
+        public static void ContentScale_PropertyChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
             ZoomAndPanControl c = (ZoomAndPanControl)o;
 
@@ -734,7 +734,7 @@ namespace ZoomAndPan
         /// <summary>
         /// Method called to clamp the 'ContentScale' value to its valid range.
         /// </summary>
-        private static object ContentScale_Coerce(DependencyObject d, object baseValue)
+        public static object ContentScale_Coerce(DependencyObject d, object baseValue)
         {
             ZoomAndPanControl c = (ZoomAndPanControl)d;
             double value = (double)baseValue;
@@ -745,7 +745,7 @@ namespace ZoomAndPan
         /// <summary>
         /// Event raised 'MinContentScale' or 'MaxContentScale' has changed.
         /// </summary>
-        private static void MinOrMaxContentScale_PropertyChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
+        public static void MinOrMaxContentScale_PropertyChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
             ZoomAndPanControl c = (ZoomAndPanControl)o;
             c.ContentScale = Math.Min(Math.Max(c.ContentScale, c.MinContentScale), c.MaxContentScale);
@@ -928,7 +928,7 @@ namespace ZoomAndPan
             if (this.contentOffsetTransform != null)
             {
                 double scaledContentWidth = this.unScaledExtent.Width * this.ContentScale;
-                if (scaledContentWidth < this.ViewportWidth)
+                if (scaledContentWidth < this.ViewportWidth && !double.IsPositiveInfinity(this.ContentViewportWidth)) //!!! checking for infinity
                 {
                     //
                     // When the content can fit entirely within the viewport, center it.
@@ -950,7 +950,7 @@ namespace ZoomAndPan
             if (this.contentOffsetTransform != null)
             {
                 double scaledContentHeight = this.unScaledExtent.Height * this.ContentScale;
-                if (scaledContentHeight < this.ViewportHeight)
+                if (scaledContentHeight < this.ViewportHeight && !double.IsPositiveInfinity(this.ContentViewportHeight)) //!!! checking for infinity
                 {
 
                     //
