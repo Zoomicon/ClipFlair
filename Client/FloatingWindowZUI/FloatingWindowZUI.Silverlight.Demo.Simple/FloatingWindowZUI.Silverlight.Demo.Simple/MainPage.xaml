@@ -126,7 +126,10 @@
 	                               SnapinDistance="{Binding ElementName=txtSnapinDistance, Path=Text}"
 	                               SnapinMargin="{Binding ElementName=txtSnapinMargin, Path=Text}"
 	                               ShowMinimizedOnlyInIconbar="{Binding ElementName=cbxShowMinimized, Path=IsChecked}"
-                                 ContentScale="{Binding ElementName=sldScale, Path=Value}">
+                                 ContentScale="{Binding ElementName=sldScale, Path=Value}"
+                                 MinContentScale="{Binding ElementName=sldScale, Path=Minimum}"
+                                 MaxContentScale="{Binding ElementName=sldScale, Path=Maximum}"                                 
+                                 >
         <zui:FloatingWindowHostZUI.Bar>
           <TextBlock Text="This Bar is acting as a container for any controls" VerticalAlignment="Center" />
         </zui:FloatingWindowHostZUI.Bar>

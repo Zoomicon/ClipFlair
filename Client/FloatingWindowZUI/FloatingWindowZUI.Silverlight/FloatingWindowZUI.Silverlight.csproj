@@ -77,6 +77,8 @@
     <Compile Include="..\Source\FloatingWindowHostZUI.cs">
       <Link>FloatingWindowHostZUI.cs</Link>
     </Compile>
+    <Compile Include="IconBarZUI.cs" />
+    <Compile Include="MouseHandlingMode.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
