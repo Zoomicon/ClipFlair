@@ -461,7 +461,7 @@ namespace SilverFlow.Controls
 
             if (window != null)
             {
-                if (window.FloatingWindowHost.IsLayoutUpdated)
+                if (window.FloatingWindowHost!=null && window.FloatingWindowHost.IsLayoutUpdated)
                     window.MoveWindow((Point)e.NewValue);
             }
         }
