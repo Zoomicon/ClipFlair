@@ -8,6 +8,7 @@
             <!---->
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="/SilverFlow.Controls;component/Themes/generic.xaml"/>
+                <ResourceDictionary Source="/ClipFlair;component/Themes/Default.xaml" />
             </ResourceDictionary.MergedDictionaries>
             <!---->
         </ResourceDictionary>

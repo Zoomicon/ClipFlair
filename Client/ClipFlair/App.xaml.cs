@@ -1,4 +1,6 @@
-﻿using System;
+﻿//Version: 20120711
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -24,15 +26,46 @@ namespace ClipFlair
       InitializeComponent();
     }
 
+    #region Lifetime
+
     private void Application_Startup(object sender, StartupEventArgs e)
     {
       this.RootVisual = new MainPage();
+      Update();
     }
 
     private void Application_Exit(object sender, EventArgs e)
     {
 
     }
+
+    #endregion
+
+    #region Update
+
+    private void Update()
+    {
+      CheckAndDownloadUpdateCompleted += new CheckAndDownloadUpdateCompletedEventHandler(OnCheckAndDownloadUpdateCompleted); //attach event handler
+      CheckAndDownloadUpdateAsync();
+    }
+
+    private void OnCheckAndDownloadUpdateCompleted(object sender, CheckAndDownloadUpdateCompletedEventArgs e)
+    {
+      CheckAndDownloadUpdateCompleted -= new CheckAndDownloadUpdateCompletedEventHandler(OnCheckAndDownloadUpdateCompleted); //detach event handler
+
+      if (e.UpdateAvailable)
+      {
+        MessageBox.Show("Update has been downloaded, will be used at next application launch");
+      }
+      else
+      {
+        MessageBox.Show("Couldn't download application update: " + e.Error.Message);
+      }
+    }
+
+    #endregion
+
+    #region Errors
 
     private void Application_UnhandledException(object sender, ApplicationUnhandledExceptionEventArgs e)
     {
@@ -64,5 +97,8 @@ namespace ClipFlair
       {
       }
     }
+
+    #endregion
+
   }
 }
