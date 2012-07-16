@@ -61,7 +61,7 @@ namespace TestZoom.Controls
         private static int INTERVAL = 200;
 
         /// <summary>
-        /// Aminate conent image while zooming.
+        /// Aminate content image while zooming.
         /// </summary>
         private Storyboard sb;
         #endregion
@@ -238,18 +238,21 @@ namespace TestZoom.Controls
             MyPOP.VerticalOffset = (this.Height - 230);
             ExpandContent();
         }
+
         private void btnFill_Click(object sender, RoutedEventArgs e)
         {
             SavePrevZoomRect();
 
             zoomAndPanControl.AnimatedScaleToFit();
         }
+
         private void btn100_Click(object sender, RoutedEventArgs e)
         {
             SavePrevZoomRect();
 
             zoomAndPanControl.AnimatedZoomTo(1.0);
         }
+
         private void btnZoomOut_Click(object sender, RoutedEventArgs e)
         {
             if (zoomAndPanControl.ContentScale <= (MaxPercentage / 100))
@@ -273,6 +276,7 @@ namespace TestZoom.Controls
                 //zoomAndPanControl.ContentScale = zoomAndPanControl.ContentScale + 0.2;
             }
         }
+
         private void btnZoomIn_Click(object sender, RoutedEventArgs e)
         {
             if (zoomAndPanControl.ContentScale >= (MinPercentage / 100))
@@ -296,6 +300,7 @@ namespace TestZoom.Controls
                 //zoomAndPanControl.ContentScale = zoomAndPanControl.ContentScale - 0.2;
             }
         }
+
         void sb_Completed(object sender, EventArgs e)
         {
             sb.Stop();
@@ -331,28 +336,6 @@ namespace TestZoom.Controls
                 Point curContentMousePoint = e.GetPosition(content);
                 ZoomOut(curContentMousePoint);
             }
-        }
-        private void overviewZoomRectThumb_DragDelta(object sender, System.Windows.Controls.Primitives.DragDeltaEventArgs e)
-        {
-            double newContentOffsetX = Math.Min(Math.Max(0.0, Canvas.GetLeft(overviewZoomRectThumb) + e.HorizontalChange), DataModel.Instance.ContentWidth - DataModel.Instance.ContentViewportWidth);
-            Canvas.SetLeft(overviewZoomRectThumb, newContentOffsetX);
-
-            double newContentOffsetY = Math.Min(Math.Max(0.0, Canvas.GetTop(overviewZoomRectThumb) + e.VerticalChange), DataModel.Instance.ContentHeight - DataModel.Instance.ContentViewportHeight);
-            Canvas.SetTop(overviewZoomRectThumb, newContentOffsetY);
-        }
-        private void overview_SizeChanged(object sender, SizeChangedEventArgs e)
-        {
-            overview.ScaleToFit();
-        }
-        private void MyPOP_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
-
-            Point clickedPoint = e.GetPosition(content);
-            double newX = clickedPoint.X - (overviewZoomRectThumb.Width / 2);
-            double newY = clickedPoint.Y - (overviewZoomRectThumb.Height / 2);
-            Canvas.SetLeft(overviewZoomRectThumb, newX);
-            Canvas.SetTop(overviewZoomRectThumb, newY);
-
         }
 
         /// <summary>
@@ -421,6 +404,30 @@ namespace TestZoom.Controls
                 mouseHandlingMode = MouseHandlingMode.None;
                 e.Handled = true;
             }
+        }
+
+        private void overviewZoomRectThumb_DragDelta(object sender, System.Windows.Controls.Primitives.DragDeltaEventArgs e)
+        {
+          double newContentOffsetX = Math.Min(Math.Max(0.0, Canvas.GetLeft(overviewZoomRectThumb) + e.HorizontalChange), DataModel.Instance.ContentWidth - DataModel.Instance.ContentViewportWidth);
+          Canvas.SetLeft(overviewZoomRectThumb, newContentOffsetX);
+
+          double newContentOffsetY = Math.Min(Math.Max(0.0, Canvas.GetTop(overviewZoomRectThumb) + e.VerticalChange), DataModel.Instance.ContentHeight - DataModel.Instance.ContentViewportHeight);
+          Canvas.SetTop(overviewZoomRectThumb, newContentOffsetY);
+        }
+
+        private void overview_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+          overview.ScaleToFit();
+        }
+
+        private void MyPOP_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+
+          Point clickedPoint = e.GetPosition(content);
+          double newX = clickedPoint.X - (overviewZoomRectThumb.Width / 2);
+          double newY = clickedPoint.Y - (overviewZoomRectThumb.Height / 2);
+          Canvas.SetLeft(overviewZoomRectThumb, newX);
+          Canvas.SetTop(overviewZoomRectThumb, newY);
         }
 
         #endregion

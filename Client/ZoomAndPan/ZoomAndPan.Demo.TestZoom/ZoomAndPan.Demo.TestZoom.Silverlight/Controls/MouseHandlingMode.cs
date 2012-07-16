@@ -1,13 +1,4 @@
-﻿using System;
-using System.Net;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Documents;
-using System.Windows.Ink;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Animation;
-using System.Windows.Shapes;
+﻿//Version: 20120710
 
 namespace TestZoom.Controls
 {
@@ -18,10 +9,29 @@ namespace TestZoom.Controls
     public enum MouseHandlingMode
     {
 
+        /// <summary>
+        /// Not in any special mode.
+        /// </summary>
         None,
+
+        /// <summary>
+        /// The user is left-dragging rectangles with the mouse.
+        /// </summary>
         DraggingRectangles,
+
+        /// <summary>
+        /// The user is left-mouse-button-dragging to pan the viewport.
+        /// </summary>
         Panning,
+
+        /// <summary>
+        /// The user is holding down shift and left-clicking or right-clicking to zoom in or out.
+        /// </summary>
         Zooming,
+
+        /// <summary>
+        /// The user is holding down shift and left-mouse-button-dragging to select a region to zoom to.
+        /// </summary>
         DragZooming,
     }
 }
