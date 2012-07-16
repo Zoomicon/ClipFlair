@@ -1,0 +1,44 @@
+﻿<!-- 
+Version: 20120714 
+-->
+
+<ResourceDictionary
+ xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+ xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+ xmlns:input="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Input.Toolkit"
+ >
+
+  <DataTemplate x:Key="StartTimeCellTemplate">
+    <TextBlock Margin="4" Text="{Binding Begin}" />
+  </DataTemplate>
+
+  <DataTemplate x:Key="StartTimeCellEditTemplate">
+    <!-- <TextBox Margin="4" Text="{Binding Begin, Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=true}" /> -->
+    <input:TimeUpDown Format="hh:mm:ss" Value="{Binding Begin, Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=true}" />
+  </DataTemplate>
+
+  <DataTemplate x:Key="EndTimeCellTemplate">
+    <TextBlock Margin="4" Text="{Binding End}" />
+  </DataTemplate>
+
+  <DataTemplate x:Key="EndTimeCellEditTemplate">
+    <input:TimeUpDown Format="hh:mm:ss" Minimum="{Binding Begin}"  Value="{Binding End, Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=true}" />
+  </DataTemplate>
+
+  <DataTemplate x:Key="DurationCellTemplate">
+    <TextBlock Margin="4" Text="{Binding Duration}" />
+  </DataTemplate>
+
+  <DataTemplate x:Key="DurationCellEditTemplate">
+    <input:TimeUpDown Format="hh:mm:ss" Value="{Binding Duration, Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=true}" />
+  </DataTemplate>
+
+  <DataTemplate x:Key="ContentCellTemplate">
+    <TextBlock Margin="4" Text="{Binding Content}" />
+  </DataTemplate>
+
+  <DataTemplate x:Key="ContentCellEditTemplate">
+    <TextBox Margin="4" Text="{Binding Content, Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=true}" />
+  </DataTemplate>
+
+</ResourceDictionary>
