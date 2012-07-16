@@ -1,4 +1,6 @@
-﻿using System.Diagnostics;
+﻿//Version: 20120710
+
+using System.Diagnostics;
 using System.Windows;
 using System.Windows.Controls;
 using SilverFlow.Controls;
@@ -20,7 +22,8 @@ namespace FloatingWindowZUI.Demo
             window.Title = "Centered Window";
             window.IconText = "Centered Window";
             host.Add(window);
-            window.Show();
+            window.Show(startPoint); //since we use a large zoomable canvas area, show near the start instead of centered
+            startPoint = startPoint.Add(20, 20);
         }
 
         private void ShowNewWindow_Click(object sender, RoutedEventArgs e)
@@ -60,7 +63,8 @@ namespace FloatingWindowZUI.Demo
                 Debug.WriteLine("Deactivated: {0}", window.IconText);
             };
 
-            window.Show(200, 100);
+            window.Show(startPoint);
+            startPoint = startPoint.Add(20, 20);
         }
 
         private void ShowIconbar_Click(object sender, RoutedEventArgs e)
