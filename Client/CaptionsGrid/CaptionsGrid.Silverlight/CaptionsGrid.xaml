@@ -1,0 +1,45 @@
+﻿<UserControl x:Class="CaptionsGrid.CaptionsGrid"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008" d:DesignHeight="542" d:DesignWidth="1608"
+    xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk"
+    xmlns:smf_captions="http://schemas.microsoft.com/smf/2010/xaml/captions" 
+    xmlns:smf_media="http://schemas.microsoft.com/smf/2010/xaml/media"
+    >
+  <UserControl.Resources>
+
+    <ResourceDictionary>
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="/CaptionsGrid;component/Themes/Generic.xaml" />
+      </ResourceDictionary.MergedDictionaries>
+
+      <!-- TEST -->
+
+      <smf_media:MarkerResource Source="ExampleCaptions.xml" x:Key="Markers"/>
+
+      <smf_captions:CaptionRegion x:Key="Captions">
+        <smf_captions:CaptionRegion.Children>
+          <smf_captions:CaptionElement Begin="0:0:5" Content="SMF is Super Awesome1" End="0:0:10"/>
+          <smf_captions:CaptionElement Begin="0:0:5" Content="SMF is Super Awesome2" End="0:0:10"/>
+          <smf_captions:CaptionElement Begin="0:0:5" Content="SMF is Super Awesome3" End="0:0:10"/>
+          <smf_captions:CaptionElement Begin="0:0:5" Content="SMF is Super Awesome4" End="0:0:10"/>
+        </smf_captions:CaptionRegion.Children>
+      </smf_captions:CaptionRegion>
+    
+    </ResourceDictionary>
+
+  </UserControl.Resources>
+
+  <Grid x:Name="LayoutRoot" Background="White">
+    <sdk:DataGrid Name="gridCaptions" AutoGenerateColumns="False" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" ItemsSource="{Binding Source={StaticResource Captions}, Path=Children}">
+      <sdk:DataGrid.Columns>
+        <sdk:DataGridTemplateColumn Header="Start" CellTemplate="{StaticResource StartTimeCellTemplate}" CellEditingTemplate="{StaticResource StartTimeCellEditTemplate}" />
+        <sdk:DataGridTemplateColumn Header="End" CellTemplate="{StaticResource EndTimeCellTemplate}" CellEditingTemplate="{StaticResource EndTimeCellEditTemplate}" />
+        <sdk:DataGridTemplateColumn Header="Duration" CellTemplate="{StaticResource DurationCellTemplate}" CellEditingTemplate="{StaticResource DurationCellEditTemplate}" />
+        <sdk:DataGridTemplateColumn Header="Content" CellTemplate="{StaticResource ContentCellTemplate}" CellEditingTemplate="{StaticResource ContentCellEditTemplate}" />
+      </sdk:DataGrid.Columns>
+    </sdk:DataGrid>
+  </Grid>
+  
+</UserControl>
