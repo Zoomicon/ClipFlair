@@ -5,18 +5,39 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d"
     xmlns:flip="clr-namespace:FlipPanel;assembly=FlipPanel"
     xmlns:float="clr-namespace:SilverFlow.Controls;assembly=SilverFlow.Controls"                      
+    xmlns:clipflair="clr-namespace:ClipFlair;assembly=ClipFlair"                          
     >
 
-    <Grid x:Name="LayoutRoot" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>
+  <float:FloatingWindow.Resources>
+    <ResourceDictionary>
+      <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="/FlipPanel;component/Themes/DropDownTheme.xaml" />
+      </ResourceDictionary.MergedDictionaries>
+    </ResourceDictionary>
+  </float:FloatingWindow.Resources>
 
-        <flip:FlipPanel Grid.Row="0" Grid.Column="0" Name="FlipPanel" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
-        
-    </Grid>
+  <Grid x:Name="LayoutRoot" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+    <Grid.RowDefinitions>
+      <RowDefinition Height="*"/>
+    </Grid.RowDefinitions>
+    <Grid.ColumnDefinitions>
+      <ColumnDefinition Width="*"/>
+    </Grid.ColumnDefinitions>
+
+    <flip:FlipPanel Grid.Row="0" Grid.Column="0" Name="FlipPanel" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Style="{StaticResource FlipPanel_DropDownStyle}">
     
+      <flip:FlipPanel.BackContent>
+        <ScrollViewer HorizontalAlignment="Stretch" VerticalAlignment="Stretch" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
+          <StackPanel Name="PropertiesPanel" Orientation="Vertical" Margin="10,0,10,10">
+            <StackPanel.Resources>
+              <Style TargetType="StackPanel" BasedOn="{StaticResource PropertyStackPanelStyle}" />
+            </StackPanel.Resources>
+          </StackPanel>
+        </ScrollViewer>
+      </flip:FlipPanel.BackContent>
+
+    </flip:FlipPanel>
+
+  </Grid>
+
 </float:FloatingWindow>

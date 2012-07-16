@@ -1,9 +1,9 @@
-﻿//Version: 20120702
+﻿//Version: 20120712
 
 using Microsoft.SilverlightMediaFramework;
 using Microsoft.SilverlightMediaFramework.Core.Media;
 
-using ClipFlair.Extensions;
+using Extensions;
 
 namespace ClipFlair
 {

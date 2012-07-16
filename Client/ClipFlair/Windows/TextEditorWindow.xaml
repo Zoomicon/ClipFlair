@@ -3,17 +3,23 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008" d:DesignWidth="907" d:DesignHeight="587"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d"
+    xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk"  
     xmlns:clipflair="clr-namespace:ClipFlair;assembly=ClipFlair"    
     xmlns:float="clr-namespace:SilverFlow.Controls;assembly=SilverFlow.Controls"
     xmlns:text="clr-namespace:SilverTextEditor;assembly=SilverTextEditor"
     >
 
-    <!--<clipflair:FlipWindow.FrontContent>-->
-        <text:SilverTextEditor />
-    <!--</clipflair:FlipWindow.FrontContent>-->
+  <!--<clipflair:FlipWindow.FrontContent>-->
+  <text:SilverTextEditor HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
+  <!--</clipflair:FlipWindow.FrontContent>-->
 
-    <clipflair:FlipWindow.BackContent>
-        <Button Content="Test" />
-    </clipflair:FlipWindow.BackContent>
+  <clipflair:FlipWindow.PropertyItems>
+
+    <StackPanel Orientation="Vertical">
+      <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Text URL" Target="{Binding ElementName=edTextURL}"/>
+      <TextBox Name="edTextURL" Text="" HorizontalAlignment="Stretch" />
+    </StackPanel>
+
+  </clipflair:FlipWindow.PropertyItems>
 
 </clipflair:FlipWindow>
