@@ -1,4 +1,6 @@
-﻿using System.Diagnostics;
+﻿//Version: 20120710
+
+using System.Diagnostics;
 using System.Windows;
 using System.Windows.Controls;
 using SilverFlow.Controls;
@@ -59,7 +61,8 @@ namespace FloatingWindowControl
                 Debug.WriteLine("Deactivated: {0}", window.IconText);
             };
 
-            window.Show(200, 100);
+            window.Show(startPoint);
+            startPoint = startPoint.Add(20, 20);
         }
 
         private void ShowIconbar_Click(object sender, RoutedEventArgs e)

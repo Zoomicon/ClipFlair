@@ -80,9 +80,7 @@
 	                    		<HyperlinkButton Content="Show IconBar" Click="ShowIconbar_Click" Style="{StaticResource LinkStyle}" />
 	                    		<HyperlinkButton Content="Hide IconBar" Click="HideIconbar_Click" Style="{StaticResource LinkStyle}" />
 	                    		<HyperlinkButton Content="Close all windows" Click="CloseWindows_Click" Style="{StaticResource LinkStyle}" />
-	                    		<HyperlinkButton Content="Download source code" Foreground="#FFFFD0D0" Margin="0,10,0,0" IsTabStop="False" FontStyle="Italic" 
-	                                     NavigateUri="http://jevgenijpankov.heliocode.com/downloads/FloatingWindowControl.zip" />
-							</StackPanel>
+              </StackPanel>
 						</Border>
 	                    <TextBlock Text="Settings" Foreground="White" Margin="0,20,0,0" FontWeight="Bold" />
 	                    <CheckBox Content="Show minimized only" Name="cbxShowMinimized" Margin="0,5,0,2" IsChecked="False" HorizontalAlignment="Left" Foreground="#FFD0D0D0" />
@@ -102,13 +100,7 @@
 	                        <TextBox Name="txtSnapinMargin" Grid.Row="1" Grid.Column="1" Width="25" MaxLength="2" Text="0" Background="WhiteSmoke" Margin="1" Height="22" />
 	                    </Grid>
 	                </StackPanel>
-	                <HyperlinkButton VerticalAlignment="Bottom" Grid.Row="1" Content="Jevgenij Pankov" Foreground="#FFFFD0D0" Margin="0,0,0,10" IsTabStop="False" FontStyle="Italic" 
-	                                 NavigateUri="http://jevgenijpankov.heliocode.com/" TargetName="_blank">
-	                    <HyperlinkButton.Effect>
-	                        <DropShadowEffect Opacity="0.4" ShadowDepth="3" BlurRadius="4"/>
-	                    </HyperlinkButton.Effect>
-	                </HyperlinkButton>
-	            </Grid>
+        </Grid>
 	        </Border>
             
 	        <my:FloatingWindowHost x:Name="host" Grid.Column="2" MinWidth="100"
