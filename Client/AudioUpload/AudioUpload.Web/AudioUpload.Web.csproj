@@ -13,7 +13,7 @@
     <RootNamespace>slAudioUpload.Web</RootNamespace>
     <AssemblyName>slAudioUpload.Web</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
-    <SilverlightApplicationList>{423F48BD-AE2E-4F1F-A5F1-EA685E6EF6C0}|..\slAudioUpload\slAudioUpload.csproj|ClientBin|False</SilverlightApplicationList>
+    <SilverlightApplicationList>{423F48BD-AE2E-4F1F-A5F1-EA685E6EF6C0}|..\AudioUpload\AudioUpload.csproj|ClientBin|False</SilverlightApplicationList>
     <UseIISExpress>false</UseIISExpress>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -52,10 +52,10 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="ClientBin\slAudioUpload.xap" />
+    <Content Include="AudioUploadTestPage.aspx" />
+    <Content Include="AudioUploadTestPage.html" />
+    <Content Include="ClientBin\AudioUpload.xap" />
     <Content Include="Silverlight.js" />
-    <Content Include="slAudioUploadTestPage.aspx" />
-    <Content Include="slAudioUploadTestPage.html" />
     <Content Include="ACCESS_RIGHTS.txt" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">

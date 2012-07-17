@@ -1,12 +1,18 @@
-﻿<UserControl x:Class="surveyApp.MainPage"
+﻿<UserControl x:Class="AudioUpload.MainPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-     mc:Ignorable="d" Background="#5a4939" d:DesignHeight="443" d:DesignWidth="748" Loaded="UserControl_Loaded">
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d" 
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008" d:DesignHeight="443" d:DesignWidth="748" 
+    Loaded="UserControl_Loaded">
 
-  <Border BorderBrush="DarkGoldenrod" BorderThickness="0,0,0,2">
-
+  <Grid Name="LayoutRoot" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+    <Grid.Background>
+      <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+        <GradientStop Color="#FF65A1CB" Offset="1" />
+        <GradientStop Color="#FF4F5579" Offset="0.687" />
+        <GradientStop Color="#FF009DFF" Offset="0.317" />
+      </LinearGradientBrush>
+    </Grid.Background>
     <StackPanel Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center">
 
       <StackPanel Margin="0,4,0,0" Orientation="Horizontal" HorizontalAlignment="Center">
@@ -14,13 +20,13 @@
 
         <Button Content="Record" Margin="0,0,10,0" Height="48" Name="btnStart" Width="48" Click="btnStart_Click">
           <Button.Background>
-            <ImageBrush ImageSource="/slAudioUpload;component/Image/rb.png" Stretch="Fill" Opacity="1" />
+            <ImageBrush ImageSource="AudioUpload;component/Image/rb.png" Stretch="Fill" Opacity="1" />
           </Button.Background>
         </Button>
 
         <Button Content="Stop" IsEnabled="False" Height="48" Name="btnStop" Width="48" Click="btnStop_Click">
           <Button.Background>
-            <ImageBrush ImageSource="/slAudioUpload;component/Image/stop.png" Stretch="Uniform" />
+            <ImageBrush ImageSource="/AudioUpload;component/Image/stop.png" Stretch="Uniform" />
           </Button.Background>
         </Button>
 
@@ -35,6 +41,6 @@
 
     </StackPanel>
 
-  </Border>
-
+  </Grid>
+  
 </UserControl>
