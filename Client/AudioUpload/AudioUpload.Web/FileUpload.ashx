@@ -1,6 +1,6 @@
 ﻿<%@ WebHandler Language="C#" Class="FileUploader" %>
 
-//Version: 20120713
+//Version: 20120718
 
 //TODO: calculate file size of folder (does .NET give this or do we need to sum file sizes of all files in folder?) and don't allow above a limit, maybe autodelete folder contents when limit reached (also maybe not allow too big files)
 
@@ -17,9 +17,6 @@ public class FileUploader : IHttpHandler
 
   const string preSaveExt = "tmp";
   const string uploadFolder = "Uploads";
-
-  StreamWriter _debugFileStreamWriter;
-  TextWriterTraceListener _debugListener;
 
   public void ProcessRequest(HttpContext context)
   {

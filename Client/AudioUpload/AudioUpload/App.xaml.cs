@@ -10,7 +10,7 @@ using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 
-namespace slAudioUpload
+namespace AudioUpload
 {
     public partial class App : Application
     {
@@ -26,7 +26,7 @@ namespace slAudioUpload
 
         private void Application_Startup(object sender, StartupEventArgs e)
         {
-            this.RootVisual = new navigation();
+            this.RootVisual = new MainPage();
         }
 
         private void Application_Exit(object sender, EventArgs e)
