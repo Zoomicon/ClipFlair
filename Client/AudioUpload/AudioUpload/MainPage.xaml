@@ -15,7 +15,12 @@
     </Grid.Background>
     <StackPanel Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center">
 
-      <StackPanel Margin="0,4,0,0" Orientation="Horizontal" HorizontalAlignment="Center">
+      <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+        <StackPanel.Resources>
+          <Style TargetType="Button">
+            <Setter Property="Margin" Value="10,10,10,10" />
+          </Style>
+        </StackPanel.Resources>
         <CheckBox Content="Playback" Height="16" Name="cbPlayback" Width="211" IsChecked="True" />
 
         <Button Content="Record" Margin="0,0,10,0" Height="48" Name="btnStart" Width="48" Click="btnStart_Click">
@@ -29,6 +34,8 @@
             <ImageBrush ImageSource="/AudioUpload;component/Image/stop.png" Stretch="Uniform" />
           </Button.Background>
         </Button>
+
+        <Button Content="Save" IsEnabled="False" Height="48" Name="btnSave" Width="48" Click="btnSave_Click"/>
 
       </StackPanel>
 
