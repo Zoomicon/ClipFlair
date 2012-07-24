@@ -39,15 +39,15 @@
 
       </StackPanel>
 
-      <MediaElement Height="15" Name="player" /> <!-- also serves as a separator, don't hide it -->
-
-      <TextBlock />
-      <HyperlinkButton Name="linkStatus" Content=" " TargetName="_blank" Foreground="Green" />
-      <TextBlock />
-      <HyperlinkButton Name="linkAllAudio" Content="See all recorded audio" TargetName="_blank" />      
-
+      <MediaElement Visibility="Collapsed" Height="15" Name="player" />
+      <TextBlock Text=" "/>
+      <HyperlinkButton Name="linkStatus" Content=" " TargetName="_blank" Foreground="Goldenrod" />
+      <TextBlock Text=" "/>
+      <HyperlinkButton Name="linkAllAudio" Content="See all recorded audio" TargetName="_blank" />
+      <TextBlock Text=" "/>
+      <TextBox Name="output" Height="100" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" />
     </StackPanel>
-
+    
   </Grid>
   
 </UserControl>

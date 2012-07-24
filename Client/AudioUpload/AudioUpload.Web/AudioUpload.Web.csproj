@@ -10,8 +10,8 @@
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>slAudioUpload.Web</RootNamespace>
-    <AssemblyName>slAudioUpload.Web</AssemblyName>
+    <RootNamespace>AudioUpload.Web</RootNamespace>
+    <AssemblyName>AudioUpload.Web</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <SilverlightApplicationList>{423F48BD-AE2E-4F1F-A5F1-EA685E6EF6C0}|..\AudioUpload\AudioUpload.csproj|ClientBin|False</SilverlightApplicationList>
     <UseIISExpress>false</UseIISExpress>
@@ -34,7 +34,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="HSS.Interlink.Web, Version=3.0.0.0, Culture=neutral, PublicKeyToken=028e4f788ffa67a1, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -55,6 +57,7 @@
     <Content Include="AudioUploadTestPage.aspx" />
     <Content Include="AudioUploadTestPage.html" />
     <Content Include="ClientBin\AudioUpload.xap" />
+    <Content Include="Global.asax" />
     <Content Include="Silverlight.js" />
     <Content Include="ACCESS_RIGHTS.txt" />
     <Content Include="Web.config" />
@@ -66,10 +69,14 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UploadHandler.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="FileUpload.ashx" />
+    <Content Include="Upload.ashx" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Uploads\" />

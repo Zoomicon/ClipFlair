@@ -1,4 +1,4 @@
-﻿//Version: 20120718
+﻿//Version: 20120724
 
 using System;
 using System.Collections.Generic;
@@ -12,8 +12,9 @@ using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 using System.IO;
+
 using WaveMSS;
-using System.Windows.Threading;
+using HSS.Interlink;
 
 namespace AudioUpload
 {
@@ -21,14 +22,17 @@ namespace AudioUpload
   public partial class MainPage : UserControl
   {
 
+    public const string FILE_UPLOADER_STORAGE_URL = "http://MYSERVER/Alpha/AudioUpload/Uploads/"; //trailing "/" is optional //TODO: move to web.config
+
     #region Fields
 
+    private MemoryStream theMemStream; //must be a class field for async operations to work correctly with it
     private MemoryAudioSink storage;
     private CaptureSource grabber;
-    private MemoryStream theMemStream;
     private WaveMediaStreamSource wavMss;
     private SaveFileDialog saveFileDialog = new SaveFileDialog() { Filter = "Audio files (*.wav)|*.wav" };
-    private FileUpload uploader;
+    //private Upload uploader1;
+    /**/private UploadClient uploader2 = new UploadClient();
 
     #endregion
 
@@ -45,10 +49,11 @@ namespace AudioUpload
     public MainPage()
     {
       InitializeComponent();
-      uploader = new FileUpload(linkStatus, this.Dispatcher);
+
+      linkAllAudio.NavigateUri = new Uri(FILE_UPLOADER_STORAGE_URL);
+      
       btnStart.IsEnabled = false;
       btnStop.IsEnabled = false;
-      linkAllAudio.NavigateUri = new Uri(FileUpload.FILE_UPLOADER_STORAGE_URL);
     }
 
     private void UserControl_Loaded(object sender, RoutedEventArgs e)
@@ -92,21 +97,38 @@ namespace AudioUpload
       {
         theMemStream = new MemoryStream();
         WavManager.SavePcmToWav(storage.BackingStream, theMemStream, storage.CurrentFormat);
+/*
+        uploader1 = new Upload(linkStatus, this.Dispatcher, FILE_UPLOADER_STORAGE_URL); //!!! need to re-instantiate at each upload
+        uploader1.StartUpload(theMemStream); //start uploading asynchronously
 
-        uploader = new FileUpload(linkStatus, this.Dispatcher); //!!! temp to fix 2nd file not uploading        
-        uploader.StartUpload(theMemStream); //start uploading asynchronously
-
+*/
+        //--- uploader2 ----------------------//
+        StatusText = "Uploading...";
+        string filename = Guid.NewGuid().ToString()+".wav";
+        theMemStream.Position = 0; //must point to start of stream
+        uploader2.Initialize("http://MYSERVER/Alpha/AudioUpload/FileUpload.ashx", "UploadHandler", true);
+        uploader2.UploadStreamAsync(theMemStream, filename); //, null, false); //if we set to true the player won't be able to play
+        uploader2.UploadCompleted += (sender, e) =>
+        {
+          string remoteFile = FILE_UPLOADER_STORAGE_URL + (FILE_UPLOADER_STORAGE_URL .EndsWith("/") ? "" : "/") + filename;
+          StatusText = remoteFile;
+          linkStatus.NavigateUri = new Uri(remoteFile);
+        };
+/**/
+        
         if (playback) //TODO: should have option to playback from web here
         {
           wavMss = new WaveMediaStreamSource(theMemStream);
           player.SetSource(wavMss);
+          player.Position = new TimeSpan(0);
           player.Play();
         }
 
       }
-      catch (Exception ex) //TODO: show errors
+      catch (Exception ex)
       {
-
+        StatusText = ex.Message;
+        output.Text += "\n\n" + ex.StackTrace;
       }
     }
 
@@ -130,16 +152,6 @@ namespace AudioUpload
 
     protected void Record()
     {
-      try
-      {
-        theMemStream.Close();
-        theMemStream.Dispose();
-      }
-      catch (Exception ex) //TODO: show errors
-      {
-
-      }
-
       if (!EnsureAudioAccess()) return;
 
       if (grabber.State != CaptureState.Stopped) grabber.Stop();
