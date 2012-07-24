@@ -1,4 +1,4 @@
-﻿//Version: 20120718
+﻿//Version: 20120724
 
 using System;
 using System.Net;
@@ -9,12 +9,12 @@ using System.Windows.Threading;
 namespace AudioUpload
 {
 
-  public class FileUpload
+  public class Upload
   {
 
-    public string FILE_UPLOADER_URL = "http://clipflairsrv.cti.gr/Alpha/AudioUpload/FileUpload.ashx";  //TODO: move to web.config
-    public const string FILE_UPLOADER_STORAGE_URL = "http://clipflairsrv.cti.gr/Alpha/AudioUpload/Uploads/"; //trailing "/" is optional //TODO: move to web.config
-
+    public string FILE_UPLOADER_URL = "http://clipflairsrv.cti.gr/Alpha/AudioUpload/Upload.ashx";  //TODO: move to web.config
+    
+    string storageUrl;
     string fileName;
     Stream fileStream;
     Dispatcher UIDispatcher;
@@ -23,10 +23,11 @@ namespace AudioUpload
     long _dataSent = 0;
     HyperlinkButton linkStatus;
 
-    public FileUpload(HyperlinkButton h, Dispatcher d)
+    public Upload(HyperlinkButton h, Dispatcher d, string storageUrl)
     {
       linkStatus = h;
       UIDispatcher = d;
+      this.storageUrl = storageUrl;
     }
 
     public void StartUpload(Stream voiceStream)
@@ -117,9 +118,24 @@ namespace AudioUpload
       {
         UIDispatcher.BeginInvoke(delegate()
         {
+        
+/*        if(disposeStream)
+          try
+          {
+            if (fileStream != null)
+            {
+              fileStream.Close();
+              fileStream.Dispose();
+              fileStream = null;
+            }
+          }
+          catch (Exception ex)
+          {
+          }
+ */        
           if (_dataLength != 0)
           {
-            string remoteFile = FILE_UPLOADER_STORAGE_URL + (FILE_UPLOADER_STORAGE_URL.EndsWith("/") ? "" : "/") + fileName + ".wav";
+            string remoteFile = storageUrl + (storageUrl.EndsWith("/") ? "" : "/") + fileName + ".wav";
             linkStatus.Content = remoteFile;
             linkStatus.NavigateUri = new Uri(remoteFile);
           }
