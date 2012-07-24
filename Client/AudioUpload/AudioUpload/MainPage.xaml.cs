@@ -22,7 +22,7 @@ namespace AudioUpload
   public partial class MainPage : UserControl
   {
 
-    public const string FILE_UPLOADER_STORAGE_URL = "http://MYSERVER/Alpha/AudioUpload/Uploads/"; //trailing "/" is optional //TODO: move to web.config
+    public const string FILE_UPLOADER_STORAGE_URL = "http://MYSERVER/AudioUpload/Uploads/"; //trailing "/" is optional //TODO: move to web.config
 
     #region Fields
 
@@ -106,13 +106,21 @@ namespace AudioUpload
         StatusText = "Uploading...";
         string filename = Guid.NewGuid().ToString()+".wav";
         theMemStream.Position = 0; //must point to start of stream
-        uploader2.Initialize("http://MYSERVER/Alpha/AudioUpload/FileUpload.ashx", "UploadHandler", true);
+        uploader2.Initialize("FileUpload.ashx", "UploadHandler", true);
         uploader2.UploadStreamAsync(theMemStream, filename); //, null, false); //if we set to true the player won't be able to play
         uploader2.UploadCompleted += (sender, e) =>
         {
-          string remoteFile = FILE_UPLOADER_STORAGE_URL + (FILE_UPLOADER_STORAGE_URL .EndsWith("/") ? "" : "/") + filename;
-          StatusText = remoteFile;
-          linkStatus.NavigateUri = new Uri(remoteFile);
+          if (e.Error != null)
+          {
+            StatusText = e.Error.Message;
+            linkStatus.NavigateUri = null;
+          }
+          else
+          {
+            string remoteFile = FILE_UPLOADER_STORAGE_URL + (FILE_UPLOADER_STORAGE_URL.EndsWith("/") ? "" : "/") + filename;
+            StatusText = remoteFile;
+            linkStatus.NavigateUri = new Uri(remoteFile);
+          }
         };
 /**/
         
