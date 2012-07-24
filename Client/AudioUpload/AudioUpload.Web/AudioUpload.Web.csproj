@@ -76,9 +76,7 @@
     <Compile Include="UploadHandler.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Upload.ashx" />
-  </ItemGroup>
-  <ItemGroup>
+    <Folder Include="temp\Uploads\" />
     <Folder Include="Uploads\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
