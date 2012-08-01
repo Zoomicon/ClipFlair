@@ -1,6 +1,8 @@
-﻿using System.Collections.Generic;
+﻿//Version: 20120730
 
-namespace ClipFlair.International
+using System.Collections.Generic;
+
+namespace ClipFlair.Models.International
 {
     public interface ILocalizableString : IDictionary<string,string>
     {

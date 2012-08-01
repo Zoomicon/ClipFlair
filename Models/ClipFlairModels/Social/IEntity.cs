@@ -1,9 +1,9 @@
-﻿//Version: 20120520
+﻿//Version: 20120730
 
 using System;
-using ClipFlair.Social.Relations;
+using ClipFlair.Models.Social.Relations;
 
-namespace ClipFlair.Social
+namespace ClipFlair.Models.Social
 {
 
     public interface IEntity

@@ -55,6 +55,9 @@
     <Reference Include="System.Windows.Browser" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Views\IView.cs" />
+    <Compile Include="Views\ICaptionsGrid.cs" />
+    <Compile Include="Views\IMediaPlayer.cs" />
     <Compile Include="Fields\IHasDescription.cs" />
     <Compile Include="International\ILocalizableString.cs" />
     <Compile Include="Repository\IPhotoAsset.cs" />
@@ -72,7 +75,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Repository\Repository.cd" />
-    <None Include="Social\Social.cd" />
+    <None Include="Social\Social.cd">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Silverlight\$(SilverlightVersion)\Microsoft.Silverlight.CSharp.targets" />
   <ProjectExtensions>

@@ -1,8 +1,8 @@
-﻿//Version: 20120520
+﻿//Version: 20120730
 
 using System.Collections.Generic;
 
-namespace ClipFlair.Social.Persons
+namespace ClipFlair.Models.Social.Persons
 {
     public interface IPersonCollection : ICollection<IPerson>
     {
