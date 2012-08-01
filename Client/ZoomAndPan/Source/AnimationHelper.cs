@@ -1,7 +1,7 @@
-﻿using System;
-//using System.Collections.Generic;
-//using System.Linq;
-//using System.Text;
+﻿//AnimationHelper.cs
+//Version: 20120728
+
+using System;
 using System.Net;
 using System.Windows;
 using System.Windows.Controls;
@@ -35,6 +35,7 @@ namespace ZoomAndPan
         /// </summary>
         public static void StartAnimation(UIElement animatableElement, DependencyProperty dependencyProperty, double toValue, double animationDurationSeconds, EventHandler completedEvent)
         {
+#if !SILVERLIGHT
             double fromValue = (double)animatableElement.GetValue(dependencyProperty);
 
             DoubleAnimation animation = new DoubleAnimation();
@@ -57,9 +58,12 @@ namespace ZoomAndPan
                 }
             };
 
-            //TODO// animation.Freeze();
+            animation.Freeze();
 
-            //TODO// animatableElement.BeginAnimation(dependencyProperty, animation);
+            animatableElement.BeginAnimation(dependencyProperty, animation);
+#else
+            animatableElement.SetValue(dependencyProperty, toValue);            
+#endif
         }
      
         /// <summary>
@@ -67,7 +71,9 @@ namespace ZoomAndPan
         /// </summary>
         public static void CancelAnimation(UIElement animatableElement, DependencyProperty dependencyProperty)
         {
-            //TODO// animatableElement.BeginAnimation(dependencyProperty, null);
+#if !SILVERLIGHT
+          animatableElement.BeginAnimation(dependencyProperty, null);
+#endif
         }
     }
 }

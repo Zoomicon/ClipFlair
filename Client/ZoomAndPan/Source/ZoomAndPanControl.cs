@@ -1,5 +1,5 @@
-﻿//Filename: ZoomAndPan
-//Version: 20120630
+﻿//Filename: ZoomAndPanControl.cs
+//Version: 20120728
 //Editor: George Birbilis <birbilis@kagi.com>
 
 //Based on:
@@ -25,6 +25,8 @@ namespace ZoomAndPan
     /// A class that wraps up zooming and panning of it's content.
     /// </summary>
   [TemplatePart(Name = "PART_Content", Type = typeof(FrameworkElement))] //Silverlight needs this, WPF controls can also use, but sometimes just detect PART_ prefix in Generic.xaml
+  [TemplatePart(Name = "PART_DragZoomCanvas", Type = typeof(Canvas))]
+  [TemplatePart(Name = "PART_DragZoomBorder", Type = typeof(Border))]
   public partial class ZoomAndPanControl : ContentControl, IScrollInfo
     {
 
@@ -593,6 +595,9 @@ namespace ZoomAndPan
             base.OnApplyTemplate();
             //WPF// content = this.Template.FindName("PART_Content", this) as FrameworkElement;
             this.content = this.GetTemplateChild("PART_Content") as FrameworkElement;
+            this.dragZoomCanvas = this.GetTemplateChild("PART_DragZoomCanvas") as Canvas;
+            this.dragZoomBorder = this.GetTemplateChild("PART_DragZoomBorder") as Border;
+
             if (content != null)
             {
                 //
@@ -1061,5 +1066,6 @@ namespace ZoomAndPan
         }
 
         #endregion Internal Methods
+
     }
 }

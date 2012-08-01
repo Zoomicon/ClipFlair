@@ -1,4 +1,5 @@
-﻿//Version: 20120701
+﻿//Filename: FloatingWindowHost.cs
+//Version: 20120728
 
 using System;
 using System.Collections.Generic;
@@ -551,7 +552,12 @@ namespace SilverFlow.Controls
         public FloatingWindowHost()
         {
             Windows = new FloatingWindowCollection(); //must set this here and not in the DependencyProperty definition's default value (that would be a singleton collection!)
-            DefaultStyleKey = typeof(FloatingWindowHost);
+            ApplyStyle();
+        }
+
+        public virtual void ApplyStyle()
+        {
+          DefaultStyleKey = typeof(FloatingWindowHost);
         }
 
         /// <summary>
@@ -614,8 +620,8 @@ namespace SilverFlow.Controls
         /// <exception cref="ArgumentNullException">Floating window is null.</exception>
         public FloatingWindow Add(FloatingWindow window)
         {
-            Windows.Add(window);
-            return window;
+           Windows.Add(window);
+           return window;
         }
 
         private void _Add(FloatingWindow window)
@@ -625,7 +631,7 @@ namespace SilverFlow.Controls
 
             // Guarantee that the visual tree of the control is complete (NOT GUARANTEED IF ADD IS CALLED FROM XAML LOADING, ADDING ITEMS TO CANVAS LATER AT APPLYTEMPLATE FOR THAT CASE)
             if (!templateIsApplied)
-                templateIsApplied = ApplyTemplate();
+              ApplyTemplate(); //don't use "templateIsApplied =" here, since ApplyTemplate returns false if the visual tree didn't change. Our OnApplyTemplate will set the templateIsApplied to true if called
 
             if (hostCanvas != null && !hostCanvas.Children.Contains(window))
             {
