@@ -150,9 +150,6 @@
     <Resource Include="Images\Paste_big.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\datagrid.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Images\Hyperlink_big.png" />
   </ItemGroup>
   <ItemGroup>
@@ -165,9 +162,6 @@
   <ItemGroup>
     <Resource Include="Images\edit.png" />
     <Resource Include="Images\view.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\edit_16.png" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Resources\Strings.el.resx">
@@ -186,16 +180,10 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\logo.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Images\calendar.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\Annotation_New.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\Desert.jpg" />
   </ItemGroup>
   <ItemGroup>
     <Page Include="Themes\Generic.xaml">

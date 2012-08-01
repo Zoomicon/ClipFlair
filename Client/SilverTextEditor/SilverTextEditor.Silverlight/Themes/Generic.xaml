@@ -1,5 +1,6 @@
-﻿<!-- 
-Version: 20120611 
+﻿<!--
+Filename: Generic.xaml
+Version: 20120801 
 -->
 
 <ResourceDictionary
@@ -538,9 +539,8 @@ Version: 20120611
     <Style x:Key="MenuLabel" TargetType="TextBlock">
         <Setter Property="FontSize" Value="18" />
         <Setter Property="Foreground" Value="#FF1D50A3" />
-        <Setter Property="HorizontalAlignment" Value="Center" />
-        <Setter Property="VerticalAlignment" Value="Bottom" />
-        <Setter Property="Margin" Value="0,0,0,1" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="Margin" Value="5,0,2,0" />
         <!-- could use a Setter for Text Property here, combined with a MultiBinding Converter to lookup the Text in the localized resources, see http://drwpf.com/blog/category/value-converters/ -->
     </Style>
 
