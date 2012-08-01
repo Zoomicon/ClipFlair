@@ -1,11 +1,11 @@
-﻿//Version: 20120711
+﻿//Version: 20120730
 
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Markup;
 using SilverFlow.Controls;
                                         
-namespace ClipFlair
+namespace ClipFlair.Components
 {
     [ContentProperty("FrontContent")]
     public partial class FlipWindow : FloatingWindow

@@ -1,10 +1,10 @@
-﻿<clipflair:FlipWindow x:Class="ClipFlair.MediaPlayerWindow"
+﻿<clipflair:FlipWindow x:Class="ClipFlair.Components.MediaPlayerWindow"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008" d:DesignHeight="196" d:DesignWidth="535"
     xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk"  
-    xmlns:clipflair="clr-namespace:ClipFlair;assembly=ClipFlair"    
+    xmlns:clipflair="clr-namespace:ClipFlair.Components;assembly=ClipFlair"    
     xmlns:conv="clr-namespace:Converters;assembly=Converters"
     xmlns:float="clr-namespace:SilverFlow.Controls;assembly=SilverFlow.Controls"
     xmlns:smf="http://schemas.microsoft.com/smf/2010/xaml/player" 
@@ -22,7 +22,10 @@
   -->
 
   <!--<clipflair:FlipWindow.FrontContent>-->
-  <smf:SMFPlayer Name="player" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+  <smf:SMFPlayer Name="player" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+                 VolumeLevel="{Binding Volume, Mode=TwoWay}"
+                 IsControlStripVisible="{Binding ControllerVisible, Mode=TwoWay}"
+                 >    <!-- CaptionsVisibility="{Binding CaptionsVisible, Mode=TwoWay, Converter=}" -->
     <!-- Margin="0" d:LayoutOverrides="Width, Height" -->
     <smf:SMFPlayer.Playlist>
       <smf_media:PlaylistItem DeliveryMethod="AdaptiveStreaming" MediaSource="http://video3.smoothhd.com.edgesuite.net/ondemand/Big%20Buck%20Bunny%20Adaptive.ism/Manifest">
@@ -55,8 +58,13 @@
     </StackPanel>
 
     <StackPanel Orientation="Horizontal">
-      <CheckBox Name="cbControlStripVisible" IsChecked="{Binding ElementName=player, Path=IsControlStripVisible, Mode=TwoWay}" />
-      <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Control strip visible" Target="{Binding ElementName=cbControlStripVisible}"/>
+      <CheckBox Name="cbControlStripVisible" IsChecked="{Binding ControllerVisible, Mode=TwoWay}" />
+      <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Controller visible" Target="{Binding ElementName=cbControlStripVisible}"/>
+    </StackPanel>
+
+    <StackPanel Orientation="Horizontal">
+      <CheckBox Name="cbCaptionsVisible" IsChecked="{Binding CaptionsVisible, Mode=TwoWay}" />
+      <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Captions visible" Target="{Binding ElementName=cbControlStripVisible}"/>
     </StackPanel>
 
   </clipflair:FlipWindow.PropertyItems>

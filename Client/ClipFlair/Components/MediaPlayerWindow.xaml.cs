@@ -1,17 +1,20 @@
-﻿//Version: 20120712
+﻿//Version: 20120730
+
+using ClipFlair.Views;
 
 using Microsoft.SilverlightMediaFramework;
 using Microsoft.SilverlightMediaFramework.Core.Media;
 
 using Extensions;
 
-namespace ClipFlair
+namespace ClipFlair.Components
 {
     public partial class MediaPlayerWindow : FlipWindow
     {
         public MediaPlayerWindow()
         {
             InitializeComponent();
+            DataContext = new MediaPlayerView();
         }
 
         private void edMediaURL_LostFocus(object sender, System.Windows.RoutedEventArgs e)
@@ -22,5 +25,5 @@ namespace ClipFlair
             //...
         }
 
-    }
+   }
 }

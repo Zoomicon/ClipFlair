@@ -108,19 +108,22 @@
       <DependentUpon>MainPage.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Windows\CaptionsGridWindow.xaml.cs">
+    <Compile Include="Components\CaptionsGridWindow.xaml.cs">
       <DependentUpon>CaptionsGridWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Windows\FlipWindow.xaml.cs">
+    <Compile Include="Components\FlipWindow.xaml.cs">
       <DependentUpon>FlipWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Windows\MediaPlayerWindow.xaml.cs">
+    <Compile Include="Components\MediaPlayerWindow.xaml.cs">
       <DependentUpon>MediaPlayerWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Windows\TextEditorWindow.xaml.cs">
+    <Compile Include="Components\TextEditorWindow.xaml.cs">
       <DependentUpon>TextEditorWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Views\CaptionsGridView.cs" />
+    <Compile Include="Views\BaseView.cs" />
+    <Compile Include="Views\MediaPlayerView.cs" />
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
@@ -131,19 +134,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Windows\CaptionsGridWindow.xaml">
+    <Page Include="Components\CaptionsGridWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Windows\FlipWindow.xaml">
+    <Page Include="Components\FlipWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Windows\MediaPlayerWindow.xaml">
+    <Page Include="Components\MediaPlayerWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Windows\TextEditorWindow.xaml">
+    <Page Include="Components\TextEditorWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -152,6 +155,10 @@
     <None Include="Properties\AppManifest.xml" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Models\ClipFlairModels\ClipFlairModels.csproj">
+      <Project>{5BCE670D-C942-4C1E-A369-E8FC1AD3D34F}</Project>
+      <Name>ClipFlairModels</Name>
+    </ProjectReference>
     <ProjectReference Include="..\CaptionsGrid\CaptionsGrid.Silverlight\CaptionsGrid.Silverlight.csproj">
       <Project>{D2C64A3F-BD21-427C-A68A-69223088967C}</Project>
       <Name>CaptionsGrid.Silverlight</Name>
@@ -221,6 +228,7 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Silverlight\$(SilverlightVersion)\Microsoft.Silverlight.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
