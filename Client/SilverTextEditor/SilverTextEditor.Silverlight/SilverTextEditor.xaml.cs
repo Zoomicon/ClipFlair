@@ -1,4 +1,5 @@
-﻿//Version: 20120630
+﻿//Filename: SilverTextEditor.xaml.cs
+//Version: 20120630
 //Editor: George Birbilis <birbilis@kagi.com>
 
 //Note: localization could use "PublicResxFileCodeGeneratorEx" custom build tool for the "Strings.resx" file
@@ -126,16 +127,18 @@ namespace SilverTextEditor
 
         #region Insert UIElements
 
-        //Insert an image into the RichTextBox
+ /*
+        //Insert an image into the RichTextBox //COMMENTED OUT SINCE IT CAN'T STORE INLINE UI ELEMENTS (RICHBOX'S XAML PROPERTY DOESN'T INCLUDE THEM)
         private void btnImage_Click(object sender, RoutedEventArgs e)
         {
             InlineUIContainer container = new InlineUIContainer();
 
-            container.Child = SilverTextEditor.createImageFromUri(new Uri("/SilverTextEditor;component/Images/Desert.jpg", UriKind.RelativeOrAbsolute), 200, 150);
+            container.Child = SilverTextEditor.createImageFromUri(new Uri("/SilverTextEditor;component/Images/Desert.jpg", UriKind.RelativeOrAbsolute), 200, 150); //should show filedialog to select image here
 
             rtb.Selection.Insert(container);
             ReturnFocus();
         }
+  */
 
         private static Image createImageFromUri(Uri URI, double width, double height)
         {
@@ -267,6 +270,7 @@ namespace SilverTextEditor
 
         #region XAML Markup
         
+/*
         //Set the xamlTb TextBox with the current XAML of the RichTextBox and make it visible. Any changes to the XAML made 
         //in xamlTb is also reflected back on the RichTextBox. Note that the Xaml string returned by RichTextBox.Xaml will 
         //not include any UIElement contained in the current RichTextBox. Hence the UIElements will be lost when we 
@@ -287,6 +291,7 @@ namespace SilverTextEditor
             }
 
         }
+*/
 
         #endregion 
 
