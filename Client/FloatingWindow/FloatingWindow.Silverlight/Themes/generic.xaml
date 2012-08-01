@@ -69,7 +69,7 @@
                             </Border.Background>
                             <Canvas Width="8" Height="8">
                                 <Path x:Name="ButtonPath" Data="M0,0 L0.9371469,0 L4,3.0628543 L7.0628557,0 L8,0 L8,1.073151 L5.0731506,4 L8,6.9268494 L8,8 L6.9278555,8 L4,5.0721459 L1.0721471,8 L0,8 L0,7.0948515 L3.0948515,4 L0,0.90514863 z" 
-									          Fill="{TemplateBinding Foreground}" Stretch="None" StrokeThickness="0.5" Stroke="{TemplateBinding Foreground}"
+                            Fill="{TemplateBinding Foreground}" Stretch="None" StrokeThickness="0.5" Stroke="{TemplateBinding Foreground}"
                                               UseLayoutRounding="True" Width="8" Height="8" VerticalAlignment="Center" HorizontalAlignment="Center" />
                             </Canvas>
                         </Border>
@@ -420,7 +420,7 @@
                             </VisualStateGroup>
                         </VisualStateManager.VisualStateGroups>
                         <Grid x:Name="ContentRoot" HorizontalAlignment="{TemplateBinding HorizontalAlignment}" VerticalAlignment="{TemplateBinding VerticalAlignment}" 
-							  RenderTransformOrigin="0,0" Height="{TemplateBinding Height}" Width="{TemplateBinding Width}">
+                RenderTransformOrigin="0,0" Height="{TemplateBinding Height}" Width="{TemplateBinding Width}">
                             <Grid.Effect>
                                 <DropShadowEffect ShadowDepth="0.5" Opacity="0.35" BlurRadius="12" />
                             </Grid.Effect>
@@ -434,7 +434,7 @@
                             </Grid.RenderTransform>
 
                             <Border x:Name="ContentBorder" Background="{TemplateBinding Background}" BorderThickness="{TemplateBinding BorderThickness}" 
-								BorderBrush="{TemplateBinding BorderBrush}" CornerRadius="3">
+                BorderBrush="{TemplateBinding BorderBrush}" CornerRadius="3">
                                 <Grid>
                                     <Grid.RowDefinitions>
                                         <RowDefinition Height="Auto"/>
@@ -478,9 +478,9 @@
                                     </Border>
                                     <Border Grid.Row="1">
                                         <ContentPresenter x:Name="ContentPresenter" Content="{TemplateBinding Content}"
-												ContentTemplate="{TemplateBinding ContentTemplate}"
-												HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-												VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                        ContentTemplate="{TemplateBinding ContentTemplate}"
+                        HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                        VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
                                     </Border>
                                 </Grid>
                             </Border>
@@ -568,8 +568,8 @@
                             </Ellipse.Fill>
                         </Ellipse>
                         <Path x:Name="PART_Arrow" Data="M27.671843,6 L31.333334,2 L35.02343,6 z" 
-                			HorizontalAlignment="Center" Width="8" Height="4" Stretch="Fill" UseLayoutRounding="False" 
-                			VerticalAlignment="Center" Fill="#FF686D76" RenderTransformOrigin="0.5,0.5">
+                      HorizontalAlignment="Center" Width="8" Height="4" Stretch="Fill" UseLayoutRounding="False" 
+                      VerticalAlignment="Center" Fill="#FF686D76" RenderTransformOrigin="0.5,0.5">
                             <Path.RenderTransform>
                                 <CompositeTransform TranslateY="-1"/>
                             </Path.RenderTransform>
@@ -650,7 +650,7 @@
                                     </Grid.ColumnDefinitions>
 
                                     <controls:BootstrapButton x:Name="PART_BootstrapButton" Style="{StaticResource BootstrapButtonStyle}"
-										Margin="10,-4,10,0" IsOpen="{Binding IsOpen, ElementName=PART_IconBar}" />
+                    Margin="10,-4,10,0" IsOpen="{Binding IsOpen, ElementName=PART_IconBar}" />
 
                                     <Border Grid.Column="1">
                                         <ContentControl x:Name="PART_BarContent" Content="{TemplateBinding Bar}" 

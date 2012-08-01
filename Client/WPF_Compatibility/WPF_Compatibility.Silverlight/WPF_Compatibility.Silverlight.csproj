@@ -81,6 +81,9 @@
     <Compile Include="..\Source\IsolatedStorageSettings.cs">
       <Link>IsolatedStorageSettings.cs</Link>
     </Compile>
+    <Compile Include="..\Source\MouseButton.cs">
+      <Link>MouseButton.cs</Link>
+    </Compile>
     <Compile Include="..\Source\ValueConversionAttribute.cs">
       <Link>ValueConversionAttribute.cs</Link>
     </Compile>

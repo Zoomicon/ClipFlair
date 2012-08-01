@@ -69,6 +69,9 @@
     <Compile Include="..\Source\AnimationHelper.cs">
       <Link>AnimationHelper.cs</Link>
     </Compile>
+    <Compile Include="..\Source\MouseHandlingMode.cs">
+      <Link>MouseHandlingMode.cs</Link>
+    </Compile>
     <Compile Include="..\Source\ZoomAndPanControl.cs">
       <Link>ZoomAndPanControl.cs</Link>
     </Compile>
@@ -77,6 +80,9 @@
     </Compile>
     <Compile Include="..\Source\ZoomAndPanControl_IScrollInfo_Silverlight.cs">
       <Link>ZoomAndPanControl_IScrollInfo_Silverlight.cs</Link>
+    </Compile>
+    <Compile Include="..\Source\ZoomAndPanControl_Mouse.cs">
+      <Link>ZoomAndPanControl_Mouse.cs</Link>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -103,6 +109,9 @@
       <Project>{7DC832CC-2D97-4DBC-B963-3F77C1F20730}</Project>
       <Name>WPF_Compatibility.Silverlight</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Silverlight\$(SilverlightVersion)\Microsoft.Silverlight.CSharp.targets" />
   <ProjectExtensions>

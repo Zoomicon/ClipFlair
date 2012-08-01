@@ -1,5 +1,5 @@
-﻿//Filename: ApplicationException
-//Version: 20120606
+﻿//Filename: ApplicationException.cs
+//Version: 20120728
 //Author: George Birbilis <birbilis@kagi.com>
 
 #if SILVERLIGHT

@@ -15,22 +15,10 @@ using System.Windows.Threading;
 namespace FloatingWindowZUI
 {
 
-  [TemplatePart(Name = PART_Root, Type = typeof(Grid))]
-  [TemplatePart(Name = PART_ContentRoot, Type = typeof(FrameworkElement))]
-  [TemplatePart(Name = PART_HostCanvas, Type = typeof(Canvas))]
-  [TemplatePart(Name = PART_ModalCanvas, Type = typeof(Canvas))]
-  [TemplatePart(Name = PART_IconBarContainer, Type = typeof(FrameworkElement))]
-  [TemplatePart(Name = PART_Overlay, Type = typeof(Grid))]
-  [TemplatePart(Name = PART_IconBar, Type = typeof(IconBar))]
-  [TemplatePart(Name = PART_BottomBar, Type = typeof(FrameworkElement))]
-  [TemplatePart(Name = PART_BootstrapButton, Type = typeof(BootstrapButton))]
-  [TemplatePart(Name = PART_BarContent, Type = typeof(ContentControl))]
-  [TemplateVisualState(Name = VSMSTATE_VisibleOverlay, GroupName = VSMGROUP_Overlay)]
-  [TemplateVisualState(Name = VSMSTATE_HiddenOverlay, GroupName = VSMGROUP_Overlay)]
-  [StyleTypedProperty(Property = PROPERTY_BottomBarStyle, StyleTargetType = typeof(Border))]
-  [StyleTypedProperty(Property = PROPERTY_BootstrapButtonStyle, StyleTargetType = typeof(BootstrapButton))]
-  [StyleTypedProperty(Property = PROPERTY_WindowIconStyle, StyleTargetType = typeof(WindowIcon))]
-  [ContentProperty("Windows")]
+  /// <summary>
+  /// A zoom & pan content control containing floating windows.
+  /// </summary>
+  [TemplatePart(Name = PART_ZoomHost, Type = typeof(ZoomAndPanControl))]
   public class FloatingWindowHostZUI : FloatingWindowHost
   {
 
@@ -40,28 +28,24 @@ namespace FloatingWindowZUI
 
     public FloatingWindowHostZUI()
     {
+      ApplyStyle();
+    }
+
+    public override void ApplyStyle()
+    {
+      //don't call base.ApplyStyle() here
       DefaultStyleKey = typeof(FloatingWindowHostZUI);
     }
 
     public override void OnApplyTemplate()
     {
-      base.OnApplyTemplate();
+      base.OnApplyTemplate(); //must call this
+
       ZoomHost = base.GetTemplateChild(PART_ZoomHost) as ZoomAndPanControl;
-      ZoomHost.ContentScale = ContentScale; //?
+      ZoomHost.ContentScale = ContentScale; //TODO: also need event handler for the property to apply content scale to zoomHost
 
-      _timer = new DispatcherTimer();
-      _timer.Interval = new TimeSpan(0, 0, 0, 0, INTERVAL);
-      _timer.Tick += new EventHandler(_timer_Tick);
-
-      ZoomHost.MouseMove += new MouseEventHandler(zoomAndPanControl_MouseMove);
-      ZoomHost.MouseWheel += new MouseWheelEventHandler(zoomAndPanControl_MouseWheel);
-      
-      ZoomHost.MouseLeftButtonDown += new MouseButtonEventHandler(zoomAndPanControl_MouseLeftButtonDown);
-      ZoomHost.MouseLeftButtonUp += new MouseButtonEventHandler(zoomAndPanControl_MouseLeftButtonUp);
-      //ZoomHost.AddHandler(UIElement.MouseLeftButtonDownEvent, new MouseButtonEventHandler(zoomAndPanControl_MouseLeftButtonDown), true);
-      //ZoomHost.AddHandler(UIElement.MouseLeftButtonUpEvent, new MouseButtonEventHandler(zoomAndPanControl_MouseLeftButtonUp), true);
-
-      ZoomHost.IsMouseWheelScrollingEnabled = true; //??? if this worked we could pan with mouse wheel when not over a control
+      ZoomHost.IsDefaultMouseHandling = true;      
+      //ZoomHost.IsMouseWheelScrollingEnabled = false; //?
     }
 
     //---------------------------------------------------------------------//
@@ -82,7 +66,6 @@ namespace FloatingWindowZUI
       ZoomHost.ZoomAboutPoint(ZoomHost.ContentScale + 0.2, contentZoomCenter);
     }
    
-
     #region ZoomAndPan properties
 
     /// <summary>
@@ -321,146 +304,6 @@ namespace FloatingWindowZUI
     public static void MinOrMaxContentScale_PropertyChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
     {
       ZoomAndPanControl.MinOrMaxContentScale_PropertyChanged(((FloatingWindowHostZUI)o).ZoomHost, e);
-    }
-
-    #endregion
-
-    #region ZoomAndPan events related variables
-
-    /// <summary>
-    /// Specifies the current state of the mouse handling logic.
-    /// </summary>
-    private MouseHandlingMode mouseHandlingMode = MouseHandlingMode.None;
-
-    /// <summary>
-    /// The point that was clicked relative to the ZoomAndPanControl.
-    /// </summary>
-    private Point origZoomAndPanControlMouseDownPoint;
-
-    /// <summary>
-    /// The point that was clicked relative to the content that is contained within the ZoomAndPanControl.
-    /// </summary>
-    private Point origContentMouseDownPoint;
-
-    /// <summary>
-    /// To Detect Double Click
-    /// </summary>
-    DispatcherTimer _timer;
-
-    /// <summary>
-    /// Double Click Detect Interval
-    /// </summary>
-    private static int INTERVAL = 200;
-    
-    /// <summary>
-    /// Aminate content image while zooming.
-    /// </summary>
-    private Storyboard sb;
-    #endregion
-
-
-    #region ZoomAndPan events
-
-    /// <summary>
-    /// Event raised on mouse move in the ZoomAndPanControl.
-    /// </summary>
-    private void zoomAndPanControl_MouseMove(object sender, MouseEventArgs e)
-    {
-      if (mouseHandlingMode == MouseHandlingMode.Panning)
-      {
-        Point curContentMousePoint = e.GetPosition(HostPanel);
-        ZoomHost.ContentOffsetX -= curContentMousePoint.X - origContentMouseDownPoint.X;
-        ZoomHost.ContentOffsetY -= curContentMousePoint.Y - origContentMouseDownPoint.Y;
-      }
-    }
-    
-    /// <summary>
-    /// Event raised by rotating the mouse wheel
-    /// </summary>
-    private void zoomAndPanControl_MouseWheel(object sender, MouseWheelEventArgs e)
-    {
-      e.Handled = true;
-
-      if (e.Delta > 0)
-      {
-        Point curContentMousePoint = e.GetPosition(HostPanel);
-        ZoomIn(curContentMousePoint);
-      }
-      else if (e.Delta < 0)
-      {
-        Point curContentMousePoint = e.GetPosition(HostPanel);
-        ZoomOut(curContentMousePoint);
-      }
-    }
-
-    void sb_Completed(object sender, EventArgs e)
-    {
-      sb.Stop();
-    }
-
-    void _timer_Tick(object sender, EventArgs e)
-    {
-      _timer.Stop();
-    }
-
-    /// <summary>
-    /// Event raised on mouse down in the ZoomAndPanControl.
-    /// </summary>
-    private void zoomAndPanControl_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-    {
-      if (_timer.IsEnabled)
-      {
-        if (ZoomHost.ContentScale <= ZoomHost.MaxContentScale)
-        {
-          _timer.Stop();
-          sb = new Storyboard();
-          DoubleAnimation db = new DoubleAnimation();
-          sb.Children.Add(db);
-          sb.Completed += new EventHandler(sb_Completed);
-          db.To = ZoomHost.ContentScale + 0.2;
-          db.Duration = new Duration(TimeSpan.FromSeconds(0.3));
-          Storyboard.SetTarget(db, ZoomHost);
-          Storyboard.SetTargetProperty(db, new PropertyPath("ContentScale"));
-          sb.Begin();
-
-          /*Point curContentMousePoint = e.GetPosition(content);
-          //ZoomHost.ContentOffsetX = curContentMousePoint.X ; //dragOffset.X;
-          //ZoomHost.ContentOffsetY = curContentMousePoint.Y ; //dragOffset.Y;               
-          ZoomHost.ZoomAboutPoint(ZoomHost.ContentScale + 0.2, curContentMousePoint);*/
-        }
-
-      }
-      else
-      {
-        _timer.Start();
-        if (ZoomHost.ContentScale >= MinContentScale)
-        {
-
-          origZoomAndPanControlMouseDownPoint = e.GetPosition(ZoomHost);
-          origContentMouseDownPoint = e.GetPosition(HostPanel);
-          mouseHandlingMode = MouseHandlingMode.Panning;
-          if (mouseHandlingMode != MouseHandlingMode.None)
-          {
-            ZoomHost.CaptureMouse();
-            e.Handled = true;
-          }
-        }
-
-      }
-
-    }
-
-    /// <summary>
-    /// Event raised on mouse up in the ZoomAndPanControl.
-    /// </summary>
-    private void zoomAndPanControl_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
-    {
-      if (ZoomHost.ContentScale >= MinContentScale)
-      {
-        ZoomHost.ReleaseMouseCapture();
-        mouseHandlingMode = MouseHandlingMode.None;
-        e.Handled = true;
-      }
     }
 
     #endregion
