@@ -1,8 +1,8 @@
-﻿//Version: 20120520
+﻿//Version: 20120730
 
 using System.Collections.Generic;
 
-namespace ClipFlair.Social
+namespace ClipFlair.Models.Social
 {
 
     public interface IEntityCollection :

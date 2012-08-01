@@ -1,8 +1,8 @@
-﻿//Version: 20120520
+﻿//Version: 20120730
 
-using ClipFlair.International;
+using ClipFlair.Models.International;
 
-namespace ClipFlair.Fields
+namespace ClipFlair.Models.Fields
 {
   
   public interface IHasDescription

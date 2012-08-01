@@ -1,8 +1,8 @@
-﻿//Version: 20120520
+﻿//Version: 20120730
 
-using ClipFlair.Social;
+using ClipFlair.Models.Social;
 
-namespace ClipFlair.Social.Persons
+namespace ClipFlair.Models.Social.Persons
 {
     public interface IPerson : IEntity
     {

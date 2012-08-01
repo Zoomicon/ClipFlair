@@ -1,10 +1,10 @@
-﻿//Version: 20120520
+﻿//Version: 20120730
 
-using ClipFlair.Fields;
-using ClipFlair.Social;
-using ClipFlair.Social.Persons;
+using ClipFlair.Models.Fields;
+using ClipFlair.Models.Social;
+using ClipFlair.Models.Social.Persons;
 
-namespace ClipFlair.Repository
+namespace ClipFlair.Models.Repository
 {
     public interface IAsset :
         IEntity,

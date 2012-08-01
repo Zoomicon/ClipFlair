@@ -1,6 +1,6 @@
-﻿//Version: 20120520
+﻿//Version: 20120730
 
-namespace ClipFlair.Repository
+namespace ClipFlair.Models.Repository
 {
     public interface IVideoAsset : IAsset
     {

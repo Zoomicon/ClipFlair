@@ -1,8 +1,8 @@
-﻿//Version: 20120520
+﻿//Version: 20120730
 
 using System.Collections.Generic;
 
-namespace ClipFlair.Social.Relations
+namespace ClipFlair.Models.Social.Relations
 {
   
     public interface IRelationCollection : ICollection<IRelation>

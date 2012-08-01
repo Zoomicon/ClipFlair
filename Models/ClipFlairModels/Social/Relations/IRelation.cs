@@ -1,6 +1,6 @@
-﻿//Version: 20120520
+﻿//Version: 20120730
 
-namespace ClipFlair.Social.Relations
+namespace ClipFlair.Models.Social.Relations
 {
  
     public interface IRelation

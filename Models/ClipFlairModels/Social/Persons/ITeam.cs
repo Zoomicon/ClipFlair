@@ -1,8 +1,8 @@
-﻿//Version: 20120520
+﻿//Version: 20120730
 
-using ClipFlair.Fields;
+using ClipFlair.Models.Fields;
 
-namespace ClipFlair.Social.Persons
+namespace ClipFlair.Models.Social.Persons
 {
   
   public interface ITeam : 
