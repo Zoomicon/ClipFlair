@@ -80,8 +80,10 @@ namespace ZoomAndPan
       protected 
 #if !SILVERLIGHT
         override
+#else 
+        virtual
 #endif
-        virtual void OnMouseDoubleClick(MouseButtonEventArgs e)
+        void OnMouseDoubleClick(MouseButtonEventArgs e)
       {
 #if !SILVERLIGHT
         base.OnMouseDoubleClick(e);

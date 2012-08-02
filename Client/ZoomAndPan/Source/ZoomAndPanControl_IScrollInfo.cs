@@ -1,9 +1,13 @@
 ﻿//Filename: ZoomAndPanControl_IScrollInfo.cs
-//Version: 20120728
+//Version: 20120802
 
 using System.Windows;
 using System.Windows.Controls;
 using WPFCompatibility;
+
+#if !SILVERLIGHT
+using System.Windows.Media; //for Visual type
+#endif
 
 namespace ZoomAndPan
 {
