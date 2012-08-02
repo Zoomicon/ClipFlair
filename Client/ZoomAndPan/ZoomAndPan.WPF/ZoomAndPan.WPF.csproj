@@ -69,11 +69,17 @@
     <Compile Include="..\Source\AnimationHelper.cs">
       <Link>AnimationHelper.cs</Link>
     </Compile>
+    <Compile Include="..\Source\MouseHandlingMode.cs">
+      <Link>MouseHandlingMode.cs</Link>
+    </Compile>
     <Compile Include="..\Source\ZoomAndPanControl.cs">
       <Link>ZoomAndPanControl.cs</Link>
     </Compile>
     <Compile Include="..\Source\ZoomAndPanControl_IScrollInfo.cs">
       <Link>ZoomAndPanControl_IScrollInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\Source\ZoomAndPanControl_Mouse.cs">
+      <Link>ZoomAndPanControl_Mouse.cs</Link>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
