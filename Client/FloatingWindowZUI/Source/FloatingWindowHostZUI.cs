@@ -44,8 +44,7 @@ namespace FloatingWindowZUI
       ZoomHost = base.GetTemplateChild(PART_ZoomHost) as ZoomAndPanControl;
       ZoomHost.ContentScale = ContentScale; //TODO: also need event handler for the property to apply content scale to zoomHost
 
-      ZoomHost.IsDefaultMouseHandling = true;      
-      //ZoomHost.IsMouseWheelScrollingEnabled = false; //?
+      ZoomHost.IsDefaultMouseHandling = true; //use default mouse handling
     }
 
     //---------------------------------------------------------------------//

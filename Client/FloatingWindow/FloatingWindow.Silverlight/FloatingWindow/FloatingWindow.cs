@@ -1,4 +1,4 @@
-﻿//Version: 20120704
+﻿//Version: 20120802
 
 using System;
 using System.Collections.ObjectModel;
@@ -1981,6 +1981,8 @@ namespace SilverFlow.Controls
         protected override void OnMouseLeftButtonDown(MouseButtonEventArgs e)
         {
             base.OnMouseLeftButtonDown(e);
+            
+            e.Handled = true; //!!! always handle events so that container doesn't get confused
 
             windowAction = WindowAction.None;
 
@@ -2025,6 +2027,8 @@ namespace SilverFlow.Controls
         protected override void OnMouseLeftButtonUp(MouseButtonEventArgs e)
         {
             base.OnMouseLeftButtonUp(e);
+
+            e.Handled = true; //!!! always handle events so that container doesn't get confused
 
             if (windowAction == WindowAction.Move)
             {
