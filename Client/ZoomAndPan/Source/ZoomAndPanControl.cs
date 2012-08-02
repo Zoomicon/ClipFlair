@@ -1,5 +1,5 @@
 ﻿//Filename: ZoomAndPanControl.cs
-//Version: 20120728
+//Version: 20120802
 //Editor: George Birbilis <birbilis@kagi.com>
 
 //Based on:
@@ -414,11 +414,15 @@ namespace ZoomAndPan
         /// </summary>
         public void AnimatedZoomTo(Rect contentRect)
         {
+#if !SILVERLIGHT
             double scaleX = this.ContentViewportWidth / contentRect.Width;
             double scaleY = this.ContentViewportHeight / contentRect.Height;
             double newScale = this.ContentScale * Math.Min(scaleX, scaleY);
 
             AnimatedZoomPointToViewportCenter(newScale, new Point(contentRect.X + (contentRect.Width / 2), contentRect.Y + (contentRect.Height / 2)), null);
+#else
+            ZoomTo(contentRect);
+#endif
         }
 
         /// <summary>

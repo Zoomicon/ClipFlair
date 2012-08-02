@@ -1,5 +1,5 @@
 ﻿//Filename: ZoomAndPanControl_Mouse.cs
-//Version: 20120728
+//Version: 20120802
 
 using System;
 using System.Windows;
@@ -65,142 +65,55 @@ namespace ZoomAndPan
 
       #region Mouse-related Properties
 
-      public bool IsDefaultMouseHandling
-      {
-        get {
-          return isDefaultMouseHandling;
+      public bool IsDefaultMouseHandling {
+        get { return isDefaultMouseHandling; }
+        set { 
+          isDefaultMouseHandling = value; 
+          IsMouseWheelScrollingEnabled = value; //mousewheel scrolls up/down (with SHIFT we also force scroll left/right, with CTRL zoom in/out)
         }
-
-        set {
-          if (isDefaultMouseHandling == value) return; //!!! C# compiler bug? lets you use = instead of == here
-          isDefaultMouseHandling = value;
-/*
-          if (value)
-          {
-#if SILVERLIGHT
-            AddHandler(MouseLeftButtonDownEvent, new MouseButtonEventHandler(zoomAndPanControl_MouseDown), false); //this handles the double-click to
-            MouseRightButtonDown += new MouseButtonEventHandler(zoomAndPanControl_MouseDown);
-            MouseLeftButtonUp += new MouseButtonEventHandler(zoomAndPanControl_MouseUp);
-            MouseRightButtonUp += new MouseButtonEventHandler(zoomAndPanControl_MouseUp);
-#else
-            MouseDoubleClick += new MouseButtonEventHandler(zoomAndPanControl_MouseDoubleClick);
-            MouseDown += new MouseButtonEventHandler(zoomAndPanControl_MouseDown);
-            MouseUp += new MouseButtonEventHandler(zoomAndPanControl_MouseUp);
-#endif
-            MouseMove += new MouseEventHandler(zoomAndPanControl_MouseMove);
-            MouseWheel += new MouseWheelEventHandler(zoomAndPanControl_MouseWheel);
-          } 
-          else
-          {
-#if SILVERLIGHT
-            MouseLeftButtonDown -= new MouseButtonEventHandler(zoomAndPanControl_MouseDown);
-            MouseRightButtonDown -= new MouseButtonEventHandler(zoomAndPanControl_MouseDown);
-            MouseLeftButtonUp -= new MouseButtonEventHandler(zoomAndPanControl_MouseUp);
-            MouseRightButtonUp -= new MouseButtonEventHandler(zoomAndPanControl_MouseUp);
-#else
-            MouseDown -= new MouseButtonEventHandler(zoomAndPanControl_MouseDown);
-            MouseUp -= new MouseButtonEventHandler(zoomAndPanControl_MouseUp);
-#endif
-            MouseMove -= new MouseEventHandler(zoomAndPanControl_MouseMove);
-            MouseWheel -= new MouseWheelEventHandler(zoomAndPanControl_MouseWheel);  
-          }
- */
-        }
-
       }
 
-      #endregion
-
-      #region Mouse-related Event Handlers
-/*
-      /// <summary>
-      /// Event raised when the user has double clicked in the zoom and pan control. (WPF only)
-      /// </summary>
-      private void zoomAndPanControl_MouseDoubleClick(object sender, MouseButtonEventArgs e)
-      {
-        OnMouseDoubleClick(e);
-      }
-
-      /// <summary>
-      /// Event raised on mouse down in the ZoomAndPanControl.
-      /// </summary>
-      private void zoomAndPanControl_MouseDown(object sender, MouseButtonEventArgs e)
-      {
-        OnMouseDown(e, false);
-      }
-
-      /// <summary>
-      /// Event raised on mouse up in the ZoomAndPanControl.
-      /// </summary>
-      private void zoomAndPanControl_MouseUp(object sender, MouseButtonEventArgs e)
-      {
-#if SILVERLIGHT
-        if (e.ClickCount == 2) { OnMouseDoubleClick(e); return; }
-#endif
-        OnMouseUp(e, false);
-      }
-
-      /// <summary>
-      /// Event raised on mouse move in the ZoomAndPanControl.
-      /// </summary>
-      private void zoomAndPanControl_MouseMove(object sender, MouseEventArgs e)
-      {
-        OnMouseMove(e);
-      }
-
-      private void zoomAndPanControl_MouseDownRight(object sender, MouseButtonEventArgs e)
-      {
-#if SILVERLIGHT
-        if (e.ClickCount == 2) { OnMouseDoubleClick(e); return; }
-#endif
-        OnMouseDown(e, true);
-      }
-
-      /// <summary>
-      /// Event raised by rotating the mouse wheel
-      /// </summary>
-      private void zoomAndPanControl_MouseWheel(object sender, MouseWheelEventArgs e)
-      {
-        OnMouseWheel(e);
-      }
-*/
       #endregion
 
       #region Mouse-related Methods
 
       protected 
-#if SILVERLIGHT
-        virtual
-#else 
+#if !SILVERLIGHT
         override
 #endif
-      void OnMouseDoubleClick(MouseButtonEventArgs e)
+        virtual void OnMouseDoubleClick(MouseButtonEventArgs e)
       {
 #if !SILVERLIGHT
         base.OnMouseDoubleClick(e);
 #endif
+        if (!isDefaultMouseHandling) return;
         if (e.Handled) return;
 
-        if ((Keyboard.Modifiers & ModifierKeys.Shift) == 0)
+        if ((Keyboard.Modifiers & ModifierKeys.Control) == 0)
         {
           Point doubleClickPoint = e.GetPosition(content);
           AnimatedSnapTo(doubleClickPoint);
+          e.Handled = true;
         }
-        e.Handled = true;
+
       }
       
       protected override void OnMouseLeftButtonDown(MouseButtonEventArgs e)
       {
         base.OnMouseLeftButtonDown(e);
-        if(!e.Handled) OnMouseDown(e, MouseButton.Left);
-        e.Handled = true;
+        if (!isDefaultMouseHandling) return;
+        if (e.Handled) return;
+        
+        OnMouseDown(e, MouseButton.Left);
       }
 
       protected override void OnMouseRightButtonDown(MouseButtonEventArgs e)
       {
-        base.OnMouseRightButtonDown(e);
-        if (!e.Handled) OnMouseDown(e, MouseButton.Right);
-        e.Handled = true;
+        //base.OnMouseRightButtonDown(e);
+        if (!isDefaultMouseHandling) return;
+        //if (!e.Handled) return; //don't do this, else will show Silverlight popup
+        
+        OnMouseDown(e, MouseButton.Right);
       }
       
       protected virtual void OnMouseDown(MouseButtonEventArgs e, MouseButton changedButton)
@@ -215,12 +128,12 @@ namespace ZoomAndPan
         origZoomAndPanControlMouseDownPoint = e.GetPosition(this);
         origContentMouseDownPoint = e.GetPosition(content);
 
-        if ((Keyboard.Modifiers & ModifierKeys.Shift) != 0 
+        if ((Keyboard.Modifiers & ModifierKeys.Control) != 0 
             &&
             (mouseButtonDown == MouseButton.Left ||
              mouseButtonDown == MouseButton.Right))
         {
-          // Shift + left- or right-down initiates zooming mode.
+          // Control + left- or right-down initiates zooming mode.
           mouseHandlingMode = MouseHandlingMode.Zooming;
         }
         else if (mouseButtonDown == MouseButton.Left)
@@ -229,140 +142,163 @@ namespace ZoomAndPan
           mouseHandlingMode = MouseHandlingMode.Panning;
         }
 
-        if (mouseHandlingMode != MouseHandlingMode.None)
+        if (mouseHandlingMode != MouseHandlingMode.None) //if we will be doing something with the mouse
         {
-          // Capture the mouse so that we eventually receive the mouse up event.
-          this.CaptureMouse();
-          //e.Handled = true; //always handling the events at the caller anyway
+          //this.CaptureMouse(); // Capture the mouse so that we keep receiving the mouse up event
+          e.Handled = true;
         }
       }
 
       protected override void OnMouseLeftButtonUp(MouseButtonEventArgs e)
       {
         base.OnMouseLeftButtonUp(e);
+        if (!isDefaultMouseHandling) return;
         if (e.Handled) return;
 
 #if SILVERLIGHT
         if (e.ClickCount == 2) { OnMouseDoubleClick(e); return; }
 #endif
         OnMouseUp(e, MouseButton.Left);
-        e.Handled = true;
       }
 
       protected override void OnMouseRightButtonUp(MouseButtonEventArgs e)
       {
-        base.OnMouseRightButtonUp(e);
-        if (e.Handled) return;
+        //base.OnMouseRightButtonUp(e);
+        if (!isDefaultMouseHandling) return;
+        //if (e.Handled) return; //don't do this, else will show Silverlight popup
 
-#if SILVERLIGHT
-        if (e.ClickCount == 2) { OnMouseDoubleClick(e); return; } //this will also do "e.Handled=true"
-#endif
         OnMouseUp(e, MouseButton.Right);
-        e.Handled = true;
       }
 
       protected virtual void OnMouseUp(MouseButtonEventArgs e, MouseButton changedButton)
       {
+        if (mouseHandlingMode == MouseHandlingMode.None) return;
 
-        if (mouseHandlingMode != MouseHandlingMode.None)
+        //ReleaseMouseCapture();
+
+        switch (mouseHandlingMode)
         {
-          if (mouseHandlingMode == MouseHandlingMode.Zooming)
-          {
+
+          case MouseHandlingMode.Zooming:
             if (mouseButtonDown == MouseButton.Left && changedButton == MouseButton.Left) //at WPF one could also use "e.ChangedButton"
             {
-              // Shift + left-click zooms in on the content.
-              ZoomIn(origContentMouseDownPoint);
+              ZoomIn(origContentMouseDownPoint); // Control + left-click zooms in on the content
             }
             else if (mouseButtonDown == MouseButton.Right && changedButton == MouseButton.Right) //at WPF one could also use "e.ChangedButton"
             {
-              // Shift + left-click zooms out from the content.
-              ZoomOut(origContentMouseDownPoint);
+              ZoomOut(origContentMouseDownPoint); // Control + left-click zooms out from the content
             }
-          }
-          else if (mouseHandlingMode == MouseHandlingMode.DragZooming)
-          {
-            // When drag-zooming has finished we zoom in on the rectangle that was highlighted by the user.
-            ApplyDragZoomRect();
-          }
+            e.Handled = true;
+            break;
 
-          ReleaseMouseCapture();
-          mouseHandlingMode = MouseHandlingMode.None;
-          //e.Handled = true; //always handling the events at the caller anyway
+          case MouseHandlingMode.DragZooming: //drag-zooming has finished 
+            ApplyDragZoomRect(); //zoom in on the rectangle that was highlighted by the user.
+            e.Handled = true;
+            break;
         }
+
+        mouseHandlingMode = MouseHandlingMode.None;
       }
 
       protected override void OnMouseMove(MouseEventArgs e)
       {
         base.OnMouseMove(e);
+        if (!isDefaultMouseHandling) return;
+#if !SILVERLIGHT
+        if (e.Handled) return;
+#endif
+        
+        if (mouseHandlingMode == MouseHandlingMode.None) return;
 
-        if (mouseHandlingMode == MouseHandlingMode.Panning)
+        Point curContentMousePoint = e.GetPosition(content);
+
+        switch (mouseHandlingMode)
         {
-          //
-          // The user is left-dragging the mouse.
-          // Pan the viewport by the appropriate amount.
-          //
-          Point curContentMousePoint = e.GetPosition(content);
-          //Vector dragOffset = curContentMousePoint - origContentMouseDownPoint; //TODO: add Mono's System.Windows.Vector to WPF compatibility and add WPF_Point class with extension method for add and subtract to return Vector (get implementation from Mono)
+          case MouseHandlingMode.Panning: // The user is left-dragging the mouse. Pan the viewport by the appropriate amount.
 
-          ContentOffsetX -= curContentMousePoint.X - origContentMouseDownPoint.X; //dragOffset.X
-          ContentOffsetY -= curContentMousePoint.Y - origContentMouseDownPoint.Y; //dragOffset.Y
+            //Vector dragOffset = curContentMousePoint - origContentMouseDownPoint; //TODO: add Mono's System.Windows.Vector to WPF compatibility and add WPF_Point class with extension method for add and subtract to return Vector (get implementation from Mono)
+            ContentOffsetX -= curContentMousePoint.X - origContentMouseDownPoint.X; //dragOffset.X
+            ContentOffsetY -= curContentMousePoint.Y - origContentMouseDownPoint.Y; //dragOffset.Y
 
-          #if !SILVERLIGHT
+#if !SILVERLIGHT
           e.Handled = true;
-          #endif
-        }
-        else if (mouseHandlingMode == MouseHandlingMode.Zooming)
-        {
-          Point curZoomAndPanControlMousePoint = e.GetPosition(this);
-          //Vector dragOffset = curZoomAndPanControlMousePoint - origZoomAndPanControlMouseDownPoint;
-          double dragThreshold = 10;
-          if (mouseButtonDown == MouseButton.Left &&
-              (Math.Abs(curZoomAndPanControlMousePoint.X - origZoomAndPanControlMouseDownPoint.X /*dragOffset.X*/) > dragThreshold ||
-               Math.Abs(curZoomAndPanControlMousePoint.Y - origZoomAndPanControlMouseDownPoint.Y /*dragOffset.Y*/) > dragThreshold))
-          {
-            //
-            // When Shift + left-down zooming mode and the user drags beyond the drag threshold,
-            // initiate drag zooming mode where the user can drag out a rectangle to select the area
-            // to zoom in on.
-            //
-            mouseHandlingMode = MouseHandlingMode.DragZooming;
-            Point curContentMousePoint = e.GetPosition(content);
-            InitDragZoomRect(origContentMouseDownPoint, curContentMousePoint);
-          }
+#endif
+            break;
 
-          #if !SILVERLIGHT
-          e.Handled = true;
-          #endif
-        }
-        else if (mouseHandlingMode == MouseHandlingMode.DragZooming)
-        {
-          //
-          // When in drag zooming mode continously update the position of the rectangle
-          // that the user is dragging out.
-          //
-          Point curContentMousePoint = e.GetPosition(content);
-          SetDragZoomRect(origContentMouseDownPoint, curContentMousePoint);
+          case MouseHandlingMode.Zooming:
 
-          #if !SILVERLIGHT
+            Point curZoomAndPanControlMousePoint = e.GetPosition(this);
+            //Vector dragOffset = curZoomAndPanControlMousePoint - origZoomAndPanControlMouseDownPoint;
+            double dragThreshold = 10;
+
+#if !DRAGZOOMRECT
+            if (mouseButtonDown == MouseButton.Left)
+            {
+              if ((curZoomAndPanControlMousePoint.Y - origZoomAndPanControlMouseDownPoint.Y /*dragOffset.X*/) < -dragThreshold) ZoomAboutPoint(ContentScale + 0.02, origContentMouseDownPoint); //CTRL + drag up to zoom in 
+              else if ((curZoomAndPanControlMousePoint.Y - origZoomAndPanControlMouseDownPoint.Y /*dragOffset.Y*/) > dragThreshold) ZoomAboutPoint(ContentScale - 0.02, origContentMouseDownPoint); //CTRL + drag down to zoom out
+            }
+#else
+            if (mouseButtonDown == MouseButton.Left &&
+                (Math.Abs(curZoomAndPanControlMousePoint.X - origZoomAndPanControlMouseDownPoint.X /*dragOffset.X*/) > dragThreshold ||
+                 Math.Abs(curZoomAndPanControlMousePoint.Y - origZoomAndPanControlMouseDownPoint.Y /*dragOffset.Y*/) > dragThreshold))
+            {
+              //
+              // When Control + left-down zooming mode and the user drags beyond the drag threshold,
+              // initiate drag zooming mode where the user can drag out a rectangle to select the area
+              // to zoom in on.
+              //
+              mouseHandlingMode = MouseHandlingMode.DragZooming;
+              InitDragZoomRect(origContentMouseDownPoint, curContentMousePoint);
+            }
+
+#if !SILVERLIGHT
           e.Handled = true;
-          #endif
+#endif
+            break;
+
+          case MouseHandlingMode.DragZooming: // When in drag zooming mode continously update the position of the rectangle that the user is dragging out
+            SetDragZoomRect(origContentMouseDownPoint, curContentMousePoint);
+
+#if !SILVERLIGHT
+          e.Handled = true;
+#endif
+
+#endif
+            break;
+
         }
       }
 
       protected override void OnMouseWheel(MouseWheelEventArgs e)
       {
         base.OnMouseWheel(e);
+        if (!isDefaultMouseHandling) return;
         if (e.Handled) return;
         
-        if (e.Delta > 0)
+        if ((Keyboard.Modifiers & ModifierKeys.Control) != 0) 
         {
-          Point curContentMousePoint = e.GetPosition(content);
-          ZoomIn(curContentMousePoint);
+          if (e.Delta > 0)
+          {
+            Point curContentMousePoint = e.GetPosition(content);
+            ZoomIn(curContentMousePoint);
+          }
+          else if (e.Delta < 0)
+          {
+            Point curContentMousePoint = e.GetPosition(content);
+            ZoomOut(curContentMousePoint);
+          }
+
+        } 
+
+        else if ((Keyboard.Modifiers & ModifierKeys.Shift) != 0) {
+          if (e.Delta > 0) MouseWheelLeft();
+          else if (e.Delta < 0) MouseWheelRight();
         }
-        else if (e.Delta < 0)
+
+        else
         {
-          Point curContentMousePoint = e.GetPosition(content);
-          ZoomOut(curContentMousePoint);
+          if (e.Delta > 0) MouseWheelUp();
+          else if (e.Delta < 0) MouseWheelDown();
         }
 
         e.Handled = true;
@@ -459,8 +395,8 @@ namespace ZoomAndPan
         double contentY = Canvas.GetTop(dragZoomBorder);
         double contentWidth = dragZoomBorder.Width;
         double contentHeight = dragZoomBorder.Height;
+        
         AnimatedZoomTo(new Rect(contentX, contentY, contentWidth, contentHeight));
-
         FadeOutDragZoomRect();
       }
 
@@ -469,11 +405,15 @@ namespace ZoomAndPan
       //
       private void FadeOutDragZoomRect()
       {
+#if !SILVERLIGHT
         AnimationHelper.StartAnimation(dragZoomBorder, Border.OpacityProperty, 0.0, 0.1,
             delegate(object sender, EventArgs e)
             {
               dragZoomCanvas.Visibility = Visibility.Collapsed;
             });
+#else
+        dragZoomCanvas.Visibility = Visibility.Collapsed;
+#endif
       }
 
       //

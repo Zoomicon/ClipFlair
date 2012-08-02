@@ -1,4 +1,9 @@
-﻿<ResourceDictionary 
+﻿<!--
+  Filename: Generic.xaml
+  Version: 20120802
+-->
+  
+  <ResourceDictionary 
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:zoom="clr-namespace:ZoomAndPan;assembly=ZoomAndPan">
@@ -18,12 +23,13 @@
                 <ControlTemplate TargetType="{x:Type zoom:ZoomAndPanControl}">
                 -->
         <ControlTemplate TargetType="zoom:ZoomAndPanControl">
-
-          <Border Background="{TemplateBinding Background}"
+          <!-- must set a background brush, even a Transaparent one in order to receive mouse events at the top-level container -->
+          <Border Background="Transparent" 
                             BorderBrush="{TemplateBinding BorderBrush}"
                             BorderThickness="{TemplateBinding BorderThickness}">
 
-            <Grid>
+            <!-- setting any background defined for the ZoomAndPanControl to the Grid that is inside the toplevel Border -->
+            <Grid Background="{TemplateBinding Background}">
               <!-- 
                         The ContentPresenter is used to scale and offset the content of ZoomAndPanControl.
                     
