@@ -13,6 +13,7 @@ namespace ClipFlair.Components
         public FlipWindow()
         {
             InitializeComponent();
+            ShowMaximizeButton = false; //!!! (till we fix it to resize to current visible view area and to allow moving the window in that case only [when it's not same size as parent])
         }
 
         public object FrontContent
