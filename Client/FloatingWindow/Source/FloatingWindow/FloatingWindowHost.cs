@@ -1,5 +1,5 @@
 ﻿//Filename: FloatingWindowHost.cs
-//Version: 20120728
+//Version: 20120806
 
 using System;
 using System.Collections.Generic;
@@ -94,6 +94,14 @@ namespace SilverFlow.Controls
         private bool templateIsApplied;
 
         #endregion Member Fields
+
+        public virtual Rect MaximizedWindowBounds
+        {
+          get
+          {
+            return new Rect(0, 0, HostPanel.ActualWidth, HostPanel.ActualHeight);
+          }
+        }
 
         #region public Style BottomBarStyle
 
