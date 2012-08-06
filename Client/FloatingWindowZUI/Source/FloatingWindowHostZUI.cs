@@ -1,4 +1,5 @@
-﻿//Version: 20120712
+﻿//Filename: FloatingWindowHostZUI.cs
+//Version: 20120806
 
 using System;
 using System.Windows;
@@ -48,6 +49,20 @@ namespace FloatingWindowZUI
     }
 
     //---------------------------------------------------------------------//
+
+    public override Rect MaximizedWindowBounds
+    {
+      get
+      {
+        ScrollViewer scroller = (ZoomHost != null) ? (ZoomHost.Parent as ScrollViewer) : null; //will return null if parent is not a ScrollViewer            
+        if (scroller != null) //if the parent is a ScrollViewer maximize to fit the current viewport (needed in ZUI interfaces where the FloatingWindowHost size may be very big)
+        {
+          double scale = ZoomHost.ContentScale;
+          return new Rect(scroller.HorizontalOffset / scale, scroller.VerticalOffset / scale, scroller.ViewportWidth / scale, scroller.ViewportHeight / scale); //TODO: see why this doesn't work correctly (try at different scrollbar offsets and zoom levels)
+        }
+        else return base.MaximizedWindowBounds;
+      }
+    }
 
     /// <summary>
     /// The 'ZoomOut' command (bound to the minus key) was executed.

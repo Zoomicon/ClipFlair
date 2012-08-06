@@ -1,4 +1,5 @@
-﻿//Version: 20120802
+﻿//Filename: FloatingWindow.cs
+//Version: 20120806
 
 using System;
 using System.Collections.ObjectModel;
@@ -1873,8 +1874,7 @@ namespace SilverFlow.Controls
         {
             SaveActualSize();
 
-            this.MoveAndResize(new Point(0, 0), HostPanel.ActualWidth, HostPanel.ActualHeight,
-                MaximizingDurationInMilliseconds, Maximizing_Completed);
+            this.MoveAndResize(FloatingWindowHost.MaximizedWindowBounds, MaximizingDurationInMilliseconds, Maximizing_Completed);
         }
 
         /// <summary>

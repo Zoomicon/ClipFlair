@@ -1,4 +1,7 @@
-﻿using System;
+﻿//Filename: AnimationExtensions.cs
+//Version: 20120806
+
+using System;
 using System.Windows;
 using System.Windows.Media.Animation;
 
@@ -69,6 +72,22 @@ namespace SilverFlow.Controls.Extensions
         public static Storyboard FadeOut(this DependencyObject target, double milliseconds, EventHandler completed = null)
         {
             return AnimateDoubleProperty(target, "Opacity", 1, 0, milliseconds, null, completed);
+        }
+
+        /// <summary>
+        /// Moves and resizes the object.
+        /// </summary>
+        /// <param name="target">The target object.</param>
+        /// <param name="position">Ending position.</param>
+        /// <param name="width">New width.</param>
+        /// <param name="height">New height.</param>
+        /// <param name="milliseconds">Duration of the animation in milliseconds.</param>
+        /// <param name="completed">Event handler called when animation completed.</param>
+        public static void MoveAndResize(this DependencyObject target, Rect bounds,
+            double milliseconds, EventHandler completed = null)
+        {
+          //target.MoveAndResize(bounds.Position, bounds.Width, bounds.Height, milliseconds, completed); //!!! seems we cannot assume an extension method is defined and use it if it's in the same class
+          MoveAndResize(target, bounds.Position(), bounds.Width, bounds.Height, milliseconds, completed); //!!! strangely we can't use "bounds.Position", compiler says "Can't convert from method group to Point"
         }
 
         /// <summary>
