@@ -1,5 +1,5 @@
 ﻿//Filename: FloatingWindow.cs
-//Version: 20120806
+//Version: 20120809
 
 using System;
 using System.Collections.ObjectModel;
@@ -15,6 +15,8 @@ using SilverFlow.Controls.Controllers;
 using SilverFlow.Controls.Enums;
 using SilverFlow.Controls.Extensions;
 using SilverFlow.Controls.Helpers;
+
+using WPFCompatibility;
 
 namespace SilverFlow.Controls
 {
@@ -469,6 +471,45 @@ namespace SilverFlow.Controls
 
         #endregion
 
+        #region public double Scale
+  
+        /// <summary>
+        /// Gets or sets current window scale.
+        /// </summary>
+        /// <value>Current scale.</value>
+        public double Scale
+        {
+          get { return (double)GetValue(ScaleProperty); }
+          set { SetValue(ScaleProperty, value); }
+        }         
+
+        /// <summary>
+        /// Identifies the <see cref="FloatingWindow.Scale" /> dependency property.
+        /// </summary>
+        /// <value>
+        /// The identifier for the <see cref="FloatingWindow.Scale" /> dependency property.
+        /// </value>
+        public static readonly DependencyProperty ScaleProperty =
+            DependencyProperty.Register(
+            "Scale",
+            typeof(double),
+            typeof(FloatingWindow),
+            new PropertyMetadata(0d, OnScalePropertyChanged)); //Must use 0d here, not 0 (else will get XAMLParseException at runtime)
+
+        /// <summary>
+        /// ScaleProperty PropertyChangedCallback call back static function.
+        /// </summary>
+        /// <param name="d">FloatingWindow object whose Scale property is changed.</param>
+        /// <param name="e">DependencyPropertyChangedEventArgs which contains the old and new values.</param>
+        private static void OnScalePropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+          FloatingWindow window = (FloatingWindow)d;
+          if (window != null)
+            window.RenderTransform = new ScaleTransform().SetScale((double)e.NewValue);
+        }
+
+        #endregion
+
         #region public bool ShowInIconbar
 
         /// <summary>
@@ -495,10 +536,9 @@ namespace SilverFlow.Controls
             new PropertyMetadata(true, null));
 
         #endregion
-
+   
+        #region public FlowDirection FlowDirection (COMMENTED OUT)
 /*
-      #region public FlowDirection FlowDirection
-
         /// <summary>
         /// Gets or sets the direction that title text flows within window's icon.
         /// </summary>
@@ -521,9 +561,8 @@ namespace SilverFlow.Controls
             typeof(FlowDirection),
             typeof(FloatingWindow),
             new PropertyMetadata(FlowDirection.LeftToRight, null));
-
-        #endregion
 */
+        #endregion
 
         #region public Style TitleStyle
 
@@ -791,6 +830,9 @@ namespace SilverFlow.Controls
 
         #endregion Member Fields
 
+
+        #region Constructor
+
         /// <summary>
         /// Initializes a new instance of the <see cref="FloatingWindow" /> class.
         /// </summary>
@@ -807,6 +849,8 @@ namespace SilverFlow.Controls
 
             this.SetVisible(false);
         }
+
+        #endregion
 
         #region Events
 

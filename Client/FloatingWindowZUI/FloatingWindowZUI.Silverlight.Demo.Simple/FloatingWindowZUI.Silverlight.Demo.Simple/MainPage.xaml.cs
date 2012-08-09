@@ -1,4 +1,5 @@
-﻿//Version: 20120710
+﻿//Filename MainPage.xaml.cs
+//Version: 20120809
 
 using System.Diagnostics;
 using System.Windows;
@@ -29,7 +30,9 @@ namespace FloatingWindowZUI.Demo
         private void ShowNewWindow_Click(object sender, RoutedEventArgs e)
         {
             FloatingWindow window = new FloatingWindow();
+            window.Scale = 1d/host.ZoomHost.ContentScale; //TODO: !!! don't use host.ContentScale, has bug and is always 1
             host.Add(window);
+
             string title = "Window " + nWindows++;
             window.Title = title;
             window.IconText = title;
@@ -51,6 +54,7 @@ namespace FloatingWindowZUI.Demo
         private void ShowWindowWithIcon_Click(object sender, RoutedEventArgs e)
         {
             WindowWithIcon window = new WindowWithIcon();
+            window.Scale = 1d / host.ZoomHost.ContentScale; //TODO: !!! don't use host.ContentScale, has bug and is always 1
             host.Add(window);
 
             window.Activated += (s, a) =>
