@@ -137,13 +137,17 @@
     <Compile Include="..\Source\Helpers\ILocalStorage.cs">
       <Link>Helpers\ILocalStorage.cs</Link>
     </Compile>
+    <Compile Include="..\Source\Helpers\IVisualHelper.cs">
+      <Link>Helpers\IVisualHelper.cs</Link>
+    </Compile>
     <Compile Include="..\Source\Helpers\LocalStorage.cs">
       <Link>Helpers\LocalStorage.cs</Link>
     </Compile>
+    <Compile Include="..\Source\Helpers\VisualHelper.cs">
+      <Link>Helpers\VisualHelper.cs</Link>
+    </Compile>
     <Compile Include="Extensions\AnimationExtensions.cs" />
     <Compile Include="FloatingWindow\FloatingWindow.cs" />
-    <Compile Include="Helpers\IVisualHelper.cs" />
-    <Compile Include="Helpers\VisualHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="FloatingWindow\IconBar.cs" />
     <Compile Include="FloatingWindow\WindowIcon.cs" />
