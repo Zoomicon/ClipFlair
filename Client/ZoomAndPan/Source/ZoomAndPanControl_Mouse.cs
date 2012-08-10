@@ -1,5 +1,5 @@
 ﻿//Filename: ZoomAndPanControl_Mouse.cs
-//Version: 20120802
+//Version: 20120810
 
 using System;
 using System.Windows;
@@ -276,20 +276,14 @@ namespace ZoomAndPan
         base.OnMouseWheel(e);
         if (!isDefaultMouseHandling) return;
         if (e.Handled) return;
-        
+
         if ((Keyboard.Modifiers & ModifierKeys.Control) != 0) 
         {
+          Point mousePosition = e.GetPosition(content); //delta should be either >0 or <0
           if (e.Delta > 0)
-          {
-            Point curContentMousePoint = e.GetPosition(content);
-            ZoomIn(curContentMousePoint);
-          }
+             ZoomIn(mousePosition);
           else if (e.Delta < 0)
-          {
-            Point curContentMousePoint = e.GetPosition(content);
-            ZoomOut(curContentMousePoint);
-          }
-
+             ZoomOut(mousePosition);
         } 
 
         else if ((Keyboard.Modifiers & ModifierKeys.Shift) != 0) {

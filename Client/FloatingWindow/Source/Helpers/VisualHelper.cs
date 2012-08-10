@@ -1,6 +1,11 @@
-﻿using System.Collections.Generic;
+﻿//Filename: VisualHelper.cs
+//Version: 20120810
+
+using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Media;
+
+using SilverFlow.Controls.Extensions;
 
 namespace SilverFlow.Controls.Helpers
 {
@@ -18,7 +23,8 @@ namespace SilverFlow.Controls.Helpers
         /// </returns>
         public IEnumerable<UIElement> FindElementsInCoordinates(Point intersectingPoint, UIElement subtree)
         {
-            return VisualTreeHelper.FindElementsInHostCoordinates(intersectingPoint, subtree);
+            return subtree.FindElementsInCoordinates(intersectingPoint);
         }
+
     }
 }

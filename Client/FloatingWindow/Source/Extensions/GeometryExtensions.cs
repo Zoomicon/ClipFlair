@@ -1,4 +1,7 @@
-﻿using System;
+﻿//Filename: GeometryExtensions.cs
+//Version: 20120810
+
+using System;
 using System.Windows;
 using SilverFlow.Geometry;
 
@@ -31,6 +34,16 @@ namespace SilverFlow.Controls.Extensions
                 X = (point.X < 0) ? 0 : point.X,
                 Y = (point.Y < 0) ? 0 : point.Y
             };
+        }
+
+        /// <summary>
+        /// Gets center of the specified rectangle.
+        /// </summary>
+        /// <param name="rect">Rectangle.</param>
+        /// <returns>Center of the rectangle.</returns>
+        public static Point Center(this Rect rect)
+        {
+          return new Point(rect.X + rect.Width/2, rect.Y + rect.Height/2);
         }
 
         /// <summary>
