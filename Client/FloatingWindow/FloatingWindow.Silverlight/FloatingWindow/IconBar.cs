@@ -1,4 +1,5 @@
-﻿//Version: 20120710
+﻿//Filename: IconBar.cs
+//Version: 20120810
 
 using System;
 using System.Collections.ObjectModel;
@@ -115,7 +116,6 @@ namespace SilverFlow.Controls
         private Storyboard openingStoryboard;
         private bool isOpen;
         private double slidingBarPosition;
-        private IVisualHelper visualHelper;
 
         /// <summary>
         /// Gets or sets a value indicating whether the IconBar is open.
@@ -146,7 +146,6 @@ namespace SilverFlow.Controls
         public IconBar()
         {
             DefaultStyleKey = typeof(IconBar);
-            visualHelper = new VisualHelper();
         }
 
         /// <summary>
@@ -479,7 +478,7 @@ namespace SilverFlow.Controls
         private void SlidingBarStoryboardCompleted(Point mousePosition)
         {
             // Find selected icon
-            var selectedIcon = (from item in visualHelper.FindElementsInCoordinates(mousePosition, carousel).OfType<WindowIcon>()
+          var selectedIcon = (from item in carousel.FindElementsInCoordinates(mousePosition).OfType<WindowIcon>()
                                 select item).FirstOrDefault();
 
             // Select an icon in mouse position

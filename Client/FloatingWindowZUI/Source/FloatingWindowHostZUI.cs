@@ -1,17 +1,16 @@
 ﻿//Filename: FloatingWindowHostZUI.cs
-//Version: 20120806
+//Version: 20120810
 
-using System;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Markup;
 using System.Windows.Input;
+
+using System.Collections.Specialized;
+
 using SilverFlow.Controls;
+using SilverFlow.Controls.Extensions;
 using ZoomAndPan;
 using WPFCompatibility;
-
-using System.Windows.Media.Animation;
-using System.Windows.Threading;
 
 namespace FloatingWindowZUI
 {
@@ -46,6 +45,44 @@ namespace FloatingWindowZUI
       ZoomHost.ContentScale = ContentScale; //TODO: also need event handler for the property to apply content scale to zoomHost
 
       ZoomHost.IsDefaultMouseHandling = true; //use default mouse handling
+
+      SubscribeToMouseWheelEvents();
+    }
+
+    private void SubscribeToMouseWheelEvents()
+    {
+      foreach (FloatingWindow w in Windows)
+        w.MouseWheel += new MouseWheelEventHandler(FloatingWindow_MouseWheel); //TODO: see documentation on why a -1 is needed here and write blog article on it
+
+      Windows.CollectionChanged += (s, e) =>
+      {
+        switch (e.Action)
+        {
+          case NotifyCollectionChangedAction.Add:
+            foreach (FloatingWindow w in e.NewItems)
+              w.MouseWheel += new MouseWheelEventHandler(FloatingWindow_MouseWheel);
+            break;
+          case NotifyCollectionChangedAction.Remove:
+            foreach (FloatingWindow w in e.OldItems)
+              w.MouseWheel -= new MouseWheelEventHandler(FloatingWindow_MouseWheel);
+            break;
+        }
+      };
+    }
+
+    private void FloatingWindow_MouseWheel(object sender, MouseWheelEventArgs e)
+    {
+      if ((Keyboard.Modifiers & ModifierKeys.Control) != 0)
+      {
+        FloatingWindow window = (FloatingWindow)sender; //delta should be either >0 or <0
+        //Point mousePosition = args.GetPosition(HostPanel); //could use mousePosition here to center the window to the mouse point or something, but better have the logic at FloatingWindow.Scale itself, to recenter arround its previous center point after scaling
+        if (e.Delta > 0)
+          window.Scale += 0.2; //zoom in
+        else if (e.Delta < 0)
+          window.Scale -= 0.2; //zoom out
+
+        e.Handled = true;
+      }
     }
 
     //---------------------------------------------------------------------//
@@ -79,7 +116,7 @@ namespace FloatingWindowZUI
     {
       ZoomHost.ZoomAboutPoint(ZoomHost.ContentScale + 0.2, contentZoomCenter);
     }
-   
+
     #region ZoomAndPan properties
 
     /// <summary>

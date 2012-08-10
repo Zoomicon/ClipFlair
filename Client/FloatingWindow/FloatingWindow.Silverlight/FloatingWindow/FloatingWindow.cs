@@ -1,5 +1,5 @@
 ﻿//Filename: FloatingWindow.cs
-//Version: 20120809
+//Version: 20120810
 
 using System;
 using System.Collections.ObjectModel;
@@ -505,7 +505,10 @@ namespace SilverFlow.Controls
         {
           FloatingWindow window = (FloatingWindow)d;
           if (window != null)
+          {
+            window.RenderTransformOrigin = new Point(0.5, 0.5); //scale arround the window center
             window.RenderTransform = new ScaleTransform().SetScale((double)e.NewValue);
+          }
         }
 
         #endregion
