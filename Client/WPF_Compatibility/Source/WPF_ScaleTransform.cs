@@ -1,5 +1,5 @@
 ﻿//Filename: WPF_ScaleTransform.cs
-//Version: 20120809
+//Version: 20120811
 //Author: George Birbilis <birbilis@kagi.com>
 
 using System.Windows.Media;
@@ -10,11 +10,15 @@ namespace WPFCompatibility
   public static class WPF_ScaleTransform
   {
 
-    public static ScaleTransform new_ScaleTransform(double scaleX, double scaleY) //unfortunately there are is no extension method mechanism for contructors in C# yet (and the ScaleTransform class is sealed so we can't extend it)
+    public static ScaleTransform new_ScaleTransform(double scaleX, double scaleY) //unfortunately there are is no extension method mechanism for contructors in C# yet (and the ScaleTransform class is sealed so we can't create descendent class)
     {
+#if SILVERLIGHT
       ScaleTransform result = new ScaleTransform();
       result.ScaleX = scaleX;
       result.ScaleY = scaleY;
+#else
+      ScaleTransform result = new ScaleTransform(scaleX, scaleY);
+#endif
       return result;
     }
 
