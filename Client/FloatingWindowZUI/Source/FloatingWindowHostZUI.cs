@@ -1,5 +1,5 @@
 ﻿//Filename: FloatingWindowHostZUI.cs
-//Version: 20120810
+//Version: 20120812
 
 using System.Windows;
 using System.Windows.Controls;
@@ -46,28 +46,75 @@ namespace FloatingWindowZUI
 
       ZoomHost.IsDefaultMouseHandling = true; //use default mouse handling
 
-      SubscribeToMouseWheelEvents();
+      SubscribeToFloatingWindowEvents();
     }
 
-    private void SubscribeToMouseWheelEvents()
-    {
-      foreach (FloatingWindow w in Windows)
-        w.MouseWheel += new MouseWheelEventHandler(FloatingWindow_MouseWheel); //TODO: see documentation on why a -1 is needed here and write blog article on it
+    #region FloatingWindowEvents
 
+    private void SubscribeToFloatingWindowEvents()
+    {
+      //subscribing to current windows
+      foreach (FloatingWindow w in Windows)
+        SubscribeToFloatingWindowEvents(w);
+
+      //subscribing to added windows and unsubscribing from removed windows
       Windows.CollectionChanged += (s, e) =>
       {
         switch (e.Action)
         {
           case NotifyCollectionChangedAction.Add:
             foreach (FloatingWindow w in e.NewItems)
-              w.MouseWheel += new MouseWheelEventHandler(FloatingWindow_MouseWheel);
+              SubscribeToFloatingWindowEvents(w);
             break;
           case NotifyCollectionChangedAction.Remove:
             foreach (FloatingWindow w in e.OldItems)
-              w.MouseWheel -= new MouseWheelEventHandler(FloatingWindow_MouseWheel);
+              UnsubscribeFromFloatingWidnowEvents(w);
             break;
         }
       };
+    }
+
+    private void SubscribeToFloatingWindowEvents(FloatingWindow w)
+    {
+      //w.AddHandler(MouseLeftButtonDownEvent, new MouseButtonEventHandler(FloatingWindow_MouseLeftButtonDown), true); //passing true to get handled events too
+      //w.AddHandler(MouseRightButtonDownEvent, new MouseButtonEventHandler(FloatingWindow_MouseRightButtonDown), true);
+      w.AddHandler(MouseLeftButtonUpEvent, new MouseButtonEventHandler(FloatingWindow_MouseLeftButtonUp), true);
+      w.AddHandler(MouseRightButtonUpEvent, new MouseButtonEventHandler(FloatingWindow_MouseRightButtonUp), true);
+      //w.MouseMove += new MouseEventHandler(FloatingWindow_MouseMove);
+      w.MouseWheel += new MouseWheelEventHandler(FloatingWindow_MouseWheel);
+    }
+
+    private void UnsubscribeFromFloatingWidnowEvents(FloatingWindow w)
+    {
+      //w.RemoveHandler(MouseLeftButtonDownEvent, new MouseButtonEventHandler(FloatingWindow_MouseLeftButtonDown));
+      //w.RemoveHandler(MouseRightButtonDownEvent, new MouseButtonEventHandler(FloatingWindow_MouseRightButtonDown));
+      w.RemoveHandler(MouseLeftButtonUpEvent, new MouseButtonEventHandler(FloatingWindow_MouseLeftButtonUp));
+      w.RemoveHandler(MouseRightButtonUpEvent, new MouseButtonEventHandler(FloatingWindow_MouseRightButtonUp));
+      //w.MouseMove -= new MouseEventHandler(FloatingWindow_MouseMove);
+      w.MouseWheel -= new MouseWheelEventHandler(FloatingWindow_MouseWheel);
+    }
+
+    private void FloatingWindow_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+    {
+      FloatingWindow_MouseUp(sender, e, MouseButton.Left);
+    }
+
+    private void FloatingWindow_MouseRightButtonUp(object sender, MouseButtonEventArgs e)
+    {
+      FloatingWindow_MouseUp(sender, e, MouseButton.Right);
+    }
+
+    private void FloatingWindow_MouseUp(object sender, MouseButtonEventArgs e, MouseButton changedButton)
+    {
+      if ((Keyboard.Modifiers & ModifierKeys.Control) != 0)
+      {
+        if (changedButton == MouseButton.Left)
+          ((FloatingWindow)sender).Scale += 0.2; //zoom in
+        else if (changedButton == MouseButton.Right)
+          ((FloatingWindow)sender).Scale -= 0.2; //zoom out
+
+        e.Handled = true;
+      }
     }
 
     private void FloatingWindow_MouseWheel(object sender, MouseWheelEventArgs e)
@@ -84,6 +131,8 @@ namespace FloatingWindowZUI
         e.Handled = true;
       }
     }
+
+    #endregion
 
     //---------------------------------------------------------------------//
 
