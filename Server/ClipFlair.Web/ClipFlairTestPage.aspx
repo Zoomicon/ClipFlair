@@ -53,15 +53,21 @@
             }
 
             throw new Error(errMsg);
-        }
+          }
+
+          function onSilverlightLoad(sender, args) {
+            var control = document.getElementById("silverlightControl");
+            control.focus();
+          }
     </script>
 </head>
 <body>
     <form id="form1" runat="server" style="height:100%">
     <div id="silverlightControlHost">
-        <object data="data:application/x-silverlight-2," type="application/x-silverlight-2" width="100%" height="100%">
+        <object id="silverlightControl" data="data:application/x-silverlight-2," type="application/x-silverlight-2" width="100%" height="100%">
 		  <param name="source" value="ClientBin/ClipFlair.xap"/>
 		  <param name="onError" value="onSilverlightError" />
+      <param name="onLoad" value="onSilverlightLoad" />
 		  <param name="background" value="white" />
 		  <param name="minRuntimeVersion" value="5.0.61118.0" />
 		  <param name="autoUpgrade" value="true" />
