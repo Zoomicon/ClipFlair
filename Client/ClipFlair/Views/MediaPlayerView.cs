@@ -1,5 +1,5 @@
 ﻿//Filename: MediaPlayerView.cs
-//Version: 20120730
+//Version: 20120814
 
 using ClipFlair.Models.Views;
 
@@ -11,6 +11,7 @@ namespace ClipFlair.Views
   {
     public MediaPlayerView()
     {
+      Source = IMediaPlayerDefaults.DefaultSource;
       Time = IMediaPlayerDefaults.DefaultTime;
       Speed = IMediaPlayerDefaults.DefaultSpeed;
       Volume = IMediaPlayerDefaults.DefaultVolume;
@@ -20,11 +21,25 @@ namespace ClipFlair.Views
         
     #region IMediaPlayer
 
+    private Uri source;
     private TimeSpan time;
     private double speed;
     private double volume;
     private bool controllerVisible;
     private bool captionsVisible;
+
+    public Uri Source
+    {
+      get { return source; }
+      set
+      {
+        if (value != source)
+        {
+          source = value;
+          RaisePropertyChanged(IMediaPlayerProperties.PropertySource);
+        }
+      }
+    }
 
     public TimeSpan Time
     {

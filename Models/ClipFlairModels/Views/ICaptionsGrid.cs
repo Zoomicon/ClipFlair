@@ -1,4 +1,5 @@
-﻿//Version: 20120730
+﻿//Filename: ICaptionsGrid.cs
+//Version: 20120814
 
 using System;
 
@@ -7,6 +8,7 @@ namespace ClipFlair.Models.Views
 
   public static class ICaptionsGridProperties
   {
+    public const string PropertySource = "Source";
     public const string PropertyTime = "Time";
     public const string PropertyStartTimeVisible = "StartTimeVisible";
     public const string PropertyEndTimeVisible = "EndTimeVisible";
@@ -16,6 +18,7 @@ namespace ClipFlair.Models.Views
 
   public static class ICaptionsGridDefaults
   {
+    public static Uri DefaultSource = null;
     public static TimeSpan DefaultTime = TimeSpan.Zero;
     public const bool DefaultStartTimeVisible = true;
     public const bool DefaultEndTimeVisible = true;
@@ -26,7 +29,7 @@ namespace ClipFlair.Models.Views
   
   public interface ICaptionsGrid: IView
   {
-
+    Uri Source { get; set; }
     TimeSpan Time { get; set; }
     bool StartTimeVisible { get; set; }
     bool EndTimeVisible { get; set; }

@@ -1,0 +1,23 @@
+﻿<clipflair:FlipWindow x:Class="ClipFlair.Components.ImageWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008" d:DesignWidth="907" d:DesignHeight="587"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d"
+    xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk"  
+    xmlns:clipflair="clr-namespace:ClipFlair.Components;assembly=ClipFlair"    
+    >
+
+  <!--<clipflair:FlipWindow.FrontContent>-->
+  <Image Name="imgContent" Source="{Binding Path=Source}" HorizontalAlignment="Stretch" />
+  <!--</clipflair:FlipWindow.FrontContent>-->
+
+  <clipflair:FlipWindow.PropertyItems>
+
+    <StackPanel Orientation="Vertical">
+      <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Image URL" Target="{Binding ElementName=edImageURL}"/>
+      <TextBox Name="edImageURL" Text="{Binding Path=Source, Mode=TwoWay}" HorizontalAlignment="Stretch" />
+    </StackPanel>
+
+  </clipflair:FlipWindow.PropertyItems>
+
+</clipflair:FlipWindow>
