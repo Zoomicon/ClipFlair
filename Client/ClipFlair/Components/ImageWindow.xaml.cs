@@ -1,26 +1,27 @@
-﻿//Filename: TextEditorWindow.xaml.cs
+﻿//Filename: ImageWindow.xaml.cs
 //Version: 20120814
 
 using ClipFlair.Views;
 
 using System;
 using System.Windows;
+using System.Windows.Media.Imaging;
 
 namespace ClipFlair.Components
 {
-    public partial class TextEditorWindow : FlipWindow
+  public partial class ImageWindow : FlipWindow
     {
-        public TextEditorWindow()
+        public ImageWindow()
         {
-          View = new TextEditorView(); //must set the view first
+          View = new ImageView(); //must set the view first
           InitializeComponent();
         }
 
         #region View
 
-        public TextEditorView View
+        public ImageView View
         {
-          get { return (TextEditorView)DataContext; }
+          get { return (ImageView)DataContext; }
           set { DataContext = value; }
         }
 
@@ -32,7 +33,7 @@ namespace ClipFlair.Components
         /// Source Dependency Property
         /// </summary>
         public static readonly DependencyProperty SourceProperty =
-            DependencyProperty.Register("Source", typeof(Uri), typeof(TextEditorWindow),
+            DependencyProperty.Register("Source", typeof(Uri), typeof(ImageWindow),
                 new FrameworkPropertyMetadata((Uri)null, new PropertyChangedCallback(OnSourceChanged)));
 
         /// <summary>
@@ -49,7 +50,7 @@ namespace ClipFlair.Components
         /// </summary>
         private static void OnSourceChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-          TextEditorWindow target = (TextEditorWindow)d;
+          ImageWindow target = (ImageWindow)d;
           target.OnSourceChanged((Uri)e.OldValue, target.Source);
         }
 
@@ -62,6 +63,6 @@ namespace ClipFlair.Components
         }
 
         #endregion
-
+      
     }
 }

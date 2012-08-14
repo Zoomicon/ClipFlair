@@ -1,4 +1,5 @@
-﻿//Version: 20120730
+﻿//Filename: IMediaPlayer.cs
+//Version: 20120814
 
 using System;
 
@@ -7,6 +8,7 @@ namespace ClipFlair.Models.Views
 
   public static class IMediaPlayerProperties
   {
+    public const string PropertySource = "Source";
     public const string PropertyTime = "Time";
     public const string PropertySpeed = "Speed";
     public const string PropertyVolume = "Volume";
@@ -16,6 +18,7 @@ namespace ClipFlair.Models.Views
 
   public static class IMediaPlayerDefaults
   {
+    public static Uri DefaultSource = null;
     public static TimeSpan DefaultTime = TimeSpan.Zero;
     public const double DefaultSpeed = 1.0;
     public const double DefaultVolume = 1.0;
@@ -25,7 +28,7 @@ namespace ClipFlair.Models.Views
   
   public interface IMediaPlayer: IView
   {
-
+    Uri Source { get; set; }
     TimeSpan Time { get; set; }
     double Speed { get; set; }
     double Volume { get; set; }

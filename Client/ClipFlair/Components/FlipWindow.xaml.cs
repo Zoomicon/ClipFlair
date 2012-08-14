@@ -1,4 +1,5 @@
-﻿//Version: 20120730
+﻿//Filename: FlipWindow.xaml.cs
+//Version: 20120814
 
 using System.Windows;
 using System.Windows.Controls;
