@@ -1,5 +1,5 @@
 ﻿//Filename: MediaPlayerWindow.xaml.cs
-//Version: 20120814
+//Version: 20120816
 
 using ClipFlair.Views;
 
@@ -10,6 +10,9 @@ using Extensions;
 
 using System;
 using System.Windows;
+using System.Collections.ObjectModel;
+using System.Collections.Generic;
+using System.ComponentModel;
 
 namespace ClipFlair.Components
 {
@@ -21,22 +24,30 @@ namespace ClipFlair.Components
           InitializeComponent();
         }
 
-        private void edMediaURL_LostFocus(object sender, System.Windows.RoutedEventArgs e)
-        {
-            PlaylistItem[] p= new PlaylistItem[player.Playlist.Count];
-            player.Playlist.CopyTo(p, 0);
-            p[0].MediaSource = edMediaURL.Text.ToUri();
-            //...
-        }
-
         #region View
 
         public MediaPlayerView View
         {
           get { return (MediaPlayerView)DataContext; }
-          set { DataContext = value; }
+          set {
+            //remove property changed handler from old view
+            if (DataContext!=null)
+              ((MediaPlayerView)DataContext).PropertyChanged -= new PropertyChangedEventHandler(View_PropertyChanged);
+            //add property changed handler to new view
+            value.PropertyChanged += new PropertyChangedEventHandler(View_PropertyChanged);
+            //set the new view
+            DataContext = value;
+          }
         }
 
+        protected void View_PropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+          if (e.PropertyName.Equals("Source"))
+          {
+            Source = View.Source;
+            UpdatePlaylist();
+          }
+        }
         #endregion
 
         #region Source
@@ -76,5 +87,27 @@ namespace ClipFlair.Components
 
         #endregion
 
-   }
+      #region Playlist
+
+      public void UpdatePlaylist()
+      {
+        PlaylistItem playlistItem = new PlaylistItem();
+        
+        playlistItem.MediaSource = View.Source;
+        playlistItem.DeliveryMethod = Microsoft.SilverlightMediaFramework.Plugins.Primitives.DeliveryMethods.AdaptiveStreaming; //TODO: need to set that: could decide based on the URL format (e.g. if ends at .ism/Manifest is adaptive streaming)
+        
+        List<MarkerResource> markerResources = new List<MarkerResource>();
+        MarkerResource markerResource = new MarkerResource();
+        markerResource.Source = new Uri("ExampleCaptions.xml", UriKind.Relative); //TODO: change
+        markerResources.Add(markerResource);
+        playlistItem.MarkerResources = markerResources;
+
+        //player.Playlist.Clear(); //skip this to allow going back to previous items from playlist
+        player.Playlist.Add(playlistItem);
+        player.GoToPlaylistItem(player.Playlist.Count-1);
+      }
+      
+      #endregion
+
+    }
 }
