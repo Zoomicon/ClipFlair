@@ -9,33 +9,23 @@
     xmlns:float="clr-namespace:SilverFlow.Controls;assembly=SilverFlow.Controls"
     xmlns:smf="http://schemas.microsoft.com/smf/2010/xaml/player" 
     xmlns:smf_media="http://schemas.microsoft.com/smf/2010/xaml/media"
-    xmlns:smf_captions="http://schemas.microsoft.com/smf/2010/xaml/captions" 
+    xmlns:smf_captions="http://schemas.microsoft.com/smf/2010/xaml/captions"
     >
-
-  <clipflair:FlipWindow.Resources>
-    <conv:StringToUriConverter x:Key="StringToUriConverter"/>
-  </clipflair:FlipWindow.Resources>
-  <!--
-    <clipflair:FlipWindow.Icon>
-        <Image Source="/ClipFlair;component/Images/Filmroll.png" Width="48" Height="48"></Image>
-    </clipflair:FlipWindow.Icon>
-  -->
 
   <!--<clipflair:FlipWindow.FrontContent>-->
   <smf:SMFPlayer Name="player" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
                  VolumeLevel="{Binding Volume, Mode=TwoWay}"
                  IsControlStripVisible="{Binding ControllerVisible, Mode=TwoWay}"
-                 >    <!-- CaptionsVisibility="{Binding CaptionsVisible, Mode=TwoWay, Converter=}" -->
+                >    <!-- CaptionsVisibility="{Binding CaptionsVisible, Mode=TwoWay, Converter=}" -->
     <!-- Margin="0" d:LayoutOverrides="Width, Height" -->
-    <smf:SMFPlayer.Playlist>
+ <!--
+    <smf:SMFPlayer.Playlist >
       <smf_media:PlaylistItem DeliveryMethod="AdaptiveStreaming" MediaSource="http://video3.smoothhd.com.edgesuite.net/ondemand/Big%20Buck%20Bunny%20Adaptive.ism/Manifest">
-        <!-- can't use MediaSource="{Binding ElementName=edMediaURL, Path=Text, Converter={StaticResource StringToUriConverter}, Mode=TwoWay}", it's not a DependencyProperty -->
 
         <smf_media:PlaylistItem.MarkerResources>
           <smf_media:MarkerResource Source="ExampleCaptions.xml"/>
         </smf_media:PlaylistItem.MarkerResources>
-
-        <!--    
+ 
         <smf_media:PlaylistItem.Captions>
           <smf_captions:CaptionRegion>
             <smf_captions:CaptionRegion.Children>
@@ -43,10 +33,10 @@
             </smf_captions:CaptionRegion.Children>
           </smf_captions:CaptionRegion>
         </smf_media:PlaylistItem.Captions>
-        -->
-
+ 
       </smf_media:PlaylistItem>
     </smf:SMFPlayer.Playlist>
+ -->
   </smf:SMFPlayer>
   <!--</clipflair:FlipWindow.FrontContent>-->
 
@@ -54,7 +44,7 @@
 
     <StackPanel Orientation="Vertical">
       <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Media URL:" Target="{Binding ElementName=edMediaURL}" />
-      <TextBox Name="edMediaURL" Text="http://video3.smoothhd.com.edgesuite.net/ondemand/Big%20Buck%20Bunny%20Adaptive.ism/Manifest" LostFocus="edMediaURL_LostFocus" />
+      <TextBox Name="edMediaURL" Text="{Binding Path=Source, Mode=TwoWay}" />
     </StackPanel>
 
     <StackPanel Orientation="Horizontal">

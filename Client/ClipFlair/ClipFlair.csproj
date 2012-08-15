@@ -104,38 +104,38 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Components\ImageWindow.xaml.cs">
+    <Compile Include="Views\ImageWindow.xaml.cs">
       <DependentUpon>ImageWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Components\CaptionsGridWindow.xaml.cs">
+    <Compile Include="Views\CaptionsGridWindow.xaml.cs">
       <DependentUpon>CaptionsGridWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Components\FlipWindow.xaml.cs">
+    <Compile Include="Views\FlipWindow.xaml.cs">
       <DependentUpon>FlipWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Components\MediaPlayerWindow.xaml.cs">
+    <Compile Include="Views\MediaPlayerWindow.xaml.cs">
       <DependentUpon>MediaPlayerWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Components\TextEditorWindow.xaml.cs">
+    <Compile Include="Views\TextEditorWindow.xaml.cs">
       <DependentUpon>TextEditorWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Views\CaptionsGridView.cs" />
-    <Compile Include="Views\BaseView.cs" />
-    <Compile Include="Views\TextEditorView.cs" />
-    <Compile Include="Views\ImageView.cs" />
-    <Compile Include="Views\MediaPlayerView.cs" />
+    <Compile Include="ViewModels\CaptionsGridView.cs" />
+    <Compile Include="ViewModels\BaseView.cs" />
+    <Compile Include="ViewModels\TextEditorView.cs" />
+    <Compile Include="ViewModels\ImageView.cs" />
+    <Compile Include="ViewModels\MediaPlayerView.cs" />
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </ApplicationDefinition>
-    <Page Include="Components\ImageWindow.xaml">
+    <Page Include="Views\ImageWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -143,19 +143,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Components\CaptionsGridWindow.xaml">
+    <Page Include="Views\CaptionsGridWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Components\FlipWindow.xaml">
+    <Page Include="Views\FlipWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Components\MediaPlayerWindow.xaml">
+    <Page Include="Views\MediaPlayerWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Components\TextEditorWindow.xaml">
+    <Page Include="Views\TextEditorWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
