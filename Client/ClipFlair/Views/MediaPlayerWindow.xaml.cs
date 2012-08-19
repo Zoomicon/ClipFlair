@@ -1,5 +1,5 @@
 ﻿//Filename: MediaPlayerWindow.xaml.cs
-//Version: 20120816
+//Version: 20120819
 
 using ClipFlair.Views;
 
@@ -32,7 +32,7 @@ namespace ClipFlair.Components
           set {
             //remove property changed handler from old view
             if (DataContext!=null)
-              ((MediaPlayerView)DataContext).PropertyChanged -= new PropertyChangedEventHandler(View_PropertyChanged);
+              ((INotifyPropertyChanged)DataContext).PropertyChanged -= new PropertyChangedEventHandler(View_PropertyChanged);
             //add property changed handler to new view
             value.PropertyChanged += new PropertyChangedEventHandler(View_PropertyChanged);
             //set the new view
@@ -48,6 +48,7 @@ namespace ClipFlair.Components
             UpdatePlaylist();
           }
         }
+
         #endregion
 
         #region Source
