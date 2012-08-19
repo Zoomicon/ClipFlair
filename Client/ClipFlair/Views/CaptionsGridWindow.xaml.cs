@@ -1,9 +1,10 @@
 ﻿//Filename: CaptionsGridWindow.xaml.cs
-//Version: 20120814
+//Version: 20120819
 
 using ClipFlair.Views;
 
 using System;
+using System.ComponentModel;
 using System.Windows;
 
 namespace ClipFlair.Components
@@ -22,7 +23,24 @@ namespace ClipFlair.Components
     public CaptionsGridView View
     {
       get { return (CaptionsGridView)DataContext; }
-      set { DataContext = value; }
+      set
+      {
+        //remove property changed handler from old view
+        if (DataContext != null)
+          ((INotifyPropertyChanged)DataContext).PropertyChanged -= new PropertyChangedEventHandler(View_PropertyChanged);
+        //add property changed handler to new view
+        value.PropertyChanged += new PropertyChangedEventHandler(View_PropertyChanged);
+        //set the new view
+        DataContext = value;
+      }
+    }
+
+    protected void View_PropertyChanged(object sender, PropertyChangedEventArgs e)
+    {
+      if (e.PropertyName.Equals("Source"))
+      {
+        Source = View.Source;
+      }
     }
 
     #endregion
