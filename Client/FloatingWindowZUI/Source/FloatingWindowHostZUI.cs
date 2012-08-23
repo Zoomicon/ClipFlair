@@ -1,5 +1,5 @@
 ﻿//Filename: FloatingWindowHostZUI.cs
-//Version: 20120812
+//Version: 20120823
 
 using System.Windows;
 using System.Windows.Controls;
@@ -28,11 +28,7 @@ namespace FloatingWindowZUI
 
     #endregion
 
-    #region Fields
-
-    protected ZoomAndPanControl zoomHost;
-
-    #endregion
+    public ZoomAndPanControl ZoomHost { get; private set; }
 
     public FloatingWindowHostZUI()
     {
@@ -49,10 +45,10 @@ namespace FloatingWindowZUI
     {
       base.OnApplyTemplate(); //must call this
 
-      zoomHost = base.GetTemplateChild(PART_ZoomHost) as ZoomAndPanControl;
-      zoomHost.ContentScale = ContentScale; //TODO: also need event handler for the property to apply content scale to zoomHost
+      ZoomHost = base.GetTemplateChild(PART_ZoomHost) as ZoomAndPanControl;
+      ZoomHost.ContentScale = ContentScale; //TODO: also need event handler for the property to apply content scale to ZoomHost
 
-      zoomHost.IsDefaultMouseHandling = true; //use default mouse handling
+      ZoomHost.IsDefaultMouseHandling = true; //use default mouse handling
 
       SubscribeToFloatingWindowEvents();
     }
@@ -148,10 +144,10 @@ namespace FloatingWindowZUI
     {
       get
       {
-        ScrollViewer scroller = (zoomHost != null) ? (zoomHost.Parent as ScrollViewer) : null; //will return null if parent is not a ScrollViewer            
+        ScrollViewer scroller = (ZoomHost != null) ? (ZoomHost.Parent as ScrollViewer) : null; //will return null if parent is not a ScrollViewer            
         if (scroller != null) //if the parent is a ScrollViewer maximize to fit the current viewport (needed in ZUI interfaces where the FloatingWindowHost size may be very big)
         {
-          double scale = zoomHost.ContentScale;
+          double scale = ZoomHost.ContentScale;
           return new Rect(scroller.HorizontalOffset / scale, scroller.VerticalOffset / scale, scroller.ViewportWidth / scale, scroller.ViewportHeight / scale); //TODO: see why this doesn't work correctly (try at different scrollbar offsets and zoom levels)
         }
         else return base.MaximizedWindowBounds;
@@ -163,7 +159,7 @@ namespace FloatingWindowZUI
     /// </summary>
     private void ZoomOut(Point contentZoomCenter)
     {
-      zoomHost.ZoomAboutPoint(zoomHost.ContentScale - 0.2, contentZoomCenter);
+      ZoomHost.ZoomAboutPoint(ZoomHost.ContentScale - 0.2, contentZoomCenter);
     }
 
     /// <summary>
@@ -171,7 +167,7 @@ namespace FloatingWindowZUI
     /// </summary>
     private void ZoomIn(Point contentZoomCenter)
     {
-      zoomHost.ZoomAboutPoint(zoomHost.ContentScale + 0.2, contentZoomCenter);
+      ZoomHost.ZoomAboutPoint(ZoomHost.ContentScale + 0.2, contentZoomCenter);
     }
 
     #region ZoomAndPan properties
@@ -183,11 +179,11 @@ namespace FloatingWindowZUI
     {
       get
       {
-        return (double)zoomHost.GetValue(ZoomAndPanControl.ContentOffsetXProperty);
+        return (double)ZoomHost.GetValue(ZoomAndPanControl.ContentOffsetXProperty);
       }
       set
       {
-        zoomHost.SetValue(ZoomAndPanControl.ContentOffsetXProperty, value);
+        ZoomHost.SetValue(ZoomAndPanControl.ContentOffsetXProperty, value);
       }
     }
 
@@ -198,11 +194,11 @@ namespace FloatingWindowZUI
     {
       get
       {
-        return (double)zoomHost.GetValue(ZoomAndPanControl.ContentOffsetYProperty);
+        return (double)ZoomHost.GetValue(ZoomAndPanControl.ContentOffsetYProperty);
       }
       set
       {
-        zoomHost.SetValue(ZoomAndPanControl.ContentOffsetYProperty, value);
+        ZoomHost.SetValue(ZoomAndPanControl.ContentOffsetYProperty, value);
       }
     }
 
@@ -259,11 +255,11 @@ namespace FloatingWindowZUI
     {
       get
       {
-        return (double)zoomHost.GetValue(ZoomAndPanControl.ContentZoomFocusXProperty);
+        return (double)ZoomHost.GetValue(ZoomAndPanControl.ContentZoomFocusXProperty);
       }
       set
       {
-        zoomHost.SetValue(ZoomAndPanControl.ContentZoomFocusXProperty, value);
+        ZoomHost.SetValue(ZoomAndPanControl.ContentZoomFocusXProperty, value);
       }
     }
 
@@ -274,11 +270,11 @@ namespace FloatingWindowZUI
     {
       get
       {
-        return (double)zoomHost.GetValue(ZoomAndPanControl.ContentZoomFocusYProperty);
+        return (double)ZoomHost.GetValue(ZoomAndPanControl.ContentZoomFocusYProperty);
       }
       set
       {
-        zoomHost.SetValue(ZoomAndPanControl.ContentZoomFocusYProperty, value);
+        ZoomHost.SetValue(ZoomAndPanControl.ContentZoomFocusYProperty, value);
       }
     }
 
@@ -290,11 +286,11 @@ namespace FloatingWindowZUI
     {
       get
       {
-        return (double)zoomHost.GetValue(ZoomAndPanControl.ViewportZoomFocusXProperty);
+        return (double)ZoomHost.GetValue(ZoomAndPanControl.ViewportZoomFocusXProperty);
       }
       set
       {
-        zoomHost.SetValue(ZoomAndPanControl.ViewportZoomFocusXProperty, value);
+        ZoomHost.SetValue(ZoomAndPanControl.ViewportZoomFocusXProperty, value);
       }
     }
 
@@ -306,11 +302,11 @@ namespace FloatingWindowZUI
     {
       get
       {
-        return (double)zoomHost.GetValue(ZoomAndPanControl.ViewportZoomFocusYProperty);
+        return (double)ZoomHost.GetValue(ZoomAndPanControl.ViewportZoomFocusYProperty);
       }
       set
       {
-        zoomHost.SetValue(ZoomAndPanControl.ViewportZoomFocusYProperty, value);
+        ZoomHost.SetValue(ZoomAndPanControl.ViewportZoomFocusYProperty, value);
       }
     }
 
@@ -321,11 +317,11 @@ namespace FloatingWindowZUI
     {
       get
       {
-        return (double)zoomHost.GetValue(ZoomAndPanControl.AnimationDurationProperty);
+        return (double)ZoomHost.GetValue(ZoomAndPanControl.AnimationDurationProperty);
       }
       set
       {
-        zoomHost.SetValue(ZoomAndPanControl.AnimationDurationProperty, value);
+        ZoomHost.SetValue(ZoomAndPanControl.AnimationDurationProperty, value);
       }
     }
 
@@ -336,11 +332,11 @@ namespace FloatingWindowZUI
     {
       get
       {
-        return (double)zoomHost.GetValue(ZoomAndPanControl.ContentViewportWidthProperty);
+        return (double)ZoomHost.GetValue(ZoomAndPanControl.ContentViewportWidthProperty);
       }
       set
       {
-        zoomHost.SetValue(ZoomAndPanControl.ContentViewportWidthProperty, value);
+        ZoomHost.SetValue(ZoomAndPanControl.ContentViewportWidthProperty, value);
       }
     }
 
@@ -351,11 +347,11 @@ namespace FloatingWindowZUI
     {
       get
       {
-        return (double)zoomHost.GetValue(ZoomAndPanControl.ContentViewportHeightProperty);
+        return (double)ZoomHost.GetValue(ZoomAndPanControl.ContentViewportHeightProperty);
       }
       set
       {
-        zoomHost.SetValue(ZoomAndPanControl.ContentViewportHeightProperty, value);
+        ZoomHost.SetValue(ZoomAndPanControl.ContentViewportHeightProperty, value);
       }
     }
 
@@ -367,11 +363,11 @@ namespace FloatingWindowZUI
     {
       get
       {
-        return (bool)zoomHost.GetValue(ZoomAndPanControl.IsMouseWheelScrollingEnabledProperty);
+        return (bool)ZoomHost.GetValue(ZoomAndPanControl.IsMouseWheelScrollingEnabledProperty);
       }
       set
       {
-        zoomHost.SetValue(ZoomAndPanControl.IsMouseWheelScrollingEnabledProperty, value);
+        ZoomHost.SetValue(ZoomAndPanControl.IsMouseWheelScrollingEnabledProperty, value);
       }
     }
     */
@@ -395,7 +391,7 @@ namespace FloatingWindowZUI
     /// </summary>
     public static void ContentScale_PropertyChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
     {
-      ZoomAndPanControl.ContentScale_PropertyChanged(((FloatingWindowHostZUI)o).zoomHost, e);
+      ZoomAndPanControl.ContentScale_PropertyChanged(((FloatingWindowHostZUI)o).ZoomHost, e);
     }
 
     /// <summary>
@@ -403,7 +399,7 @@ namespace FloatingWindowZUI
     /// </summary>
     private static object ContentScale_Coerce(DependencyObject d, object baseValue)
     {
-      return ZoomAndPanControl.ContentScale_Coerce(((FloatingWindowHostZUI)d).zoomHost, baseValue);
+      return ZoomAndPanControl.ContentScale_Coerce(((FloatingWindowHostZUI)d).ZoomHost, baseValue);
     }
 
     /// <summary>
@@ -411,7 +407,7 @@ namespace FloatingWindowZUI
     /// </summary>
     public static void MinOrMaxContentScale_PropertyChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
     {
-      ZoomAndPanControl.MinOrMaxContentScale_PropertyChanged(((FloatingWindowHostZUI)o).zoomHost, e);
+      ZoomAndPanControl.MinOrMaxContentScale_PropertyChanged(((FloatingWindowHostZUI)o).ZoomHost, e);
     }
 
     #endregion
