@@ -1,10 +1,12 @@
 ﻿//Filename: SilverTextEditor.xaml.cs
-//Version: 20120630
+//Version: 20120823
 //Editor: George Birbilis <birbilis@kagi.com>
 
 //Note: localization could use "PublicResxFileCodeGeneratorEx" custom build tool for the "Strings.resx" file
 //      from http://resxfilecodegenex.codeplex.com/ if that is fixed to generate public constuctor instead of protected (see issue tracker there)
 //      (Currently one needs to open Resources\Strings.Designer.cs and change internal constructor to public)
+
+using WPFCompatibility;
 
 using System;
 using System.Collections.Generic;
@@ -14,7 +16,6 @@ using System.Resources;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Controls.Primitives;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
@@ -40,6 +41,43 @@ namespace SilverTextEditor
         {
            rtb.Xaml = XElement.Load("/SilverTextEditor;component/sample.sav").ToString();
         }
+
+        #region ToolbarVisible
+
+        /// <summary>
+        /// ToolbarVisible Dependency Property
+        /// </summary>
+        public static readonly DependencyProperty ToolbarVisibleProperty =
+            DependencyProperty.Register("Source", typeof(bool), typeof(SilverTextEditor),
+                new FrameworkPropertyMetadata((bool)true, new PropertyChangedCallback(OnToolbarVisibleChanged)));
+
+        /// <summary>
+        /// Gets or sets the ToolbarVisible property.
+        /// </summary>
+        public bool ToolbarVisible
+        {
+          get { return (bool)GetValue(ToolbarVisibleProperty); }
+          set { SetValue(ToolbarVisibleProperty, value); }
+        }
+
+        /// <summary>
+        /// Handles changes to the ToolbarVisible property.
+        /// </summary>
+        private static void OnToolbarVisibleChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+          SilverTextEditor target = (SilverTextEditor)d;
+          target.OnToolbarVisibleChanged((bool)e.OldValue, target.ToolbarVisible);
+        }
+
+        /// <summary>
+        /// Provides derived classes an opportunity to handle changes to the IsAvailable property.
+        /// </summary>
+        protected virtual void OnToolbarVisibleChanged(bool oldToolbarVisible, bool newToolbarVisible)
+        {
+          Toolbar.Visibility = (newToolbarVisible)? Visibility.Visible : Visibility.Collapsed;
+        }
+
+        #endregion
 
         #region Bold, Italics & Underline
 

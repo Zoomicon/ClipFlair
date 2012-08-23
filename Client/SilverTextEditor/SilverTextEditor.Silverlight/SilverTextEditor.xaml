@@ -54,7 +54,7 @@ Version: 20120801
         <Rectangle Height="94" Grid.RowSpan="2" VerticalAlignment="Top" Stroke="#FF8B9097" Fill="#FFDDEFFA"/>
 
         <!-- Toolbar -->
-        <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" VerticalAlignment="Top">
+        <StackPanel x:Name="Toolbar" Orientation="Horizontal" HorizontalAlignment="Stretch" VerticalAlignment="Top">
 
           <!--Clipboard Toolbar -->
           <StackPanel Orientation="Horizontal">
