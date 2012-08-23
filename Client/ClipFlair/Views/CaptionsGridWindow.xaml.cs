@@ -1,7 +1,8 @@
 ﻿//Filename: CaptionsGridWindow.xaml.cs
-//Version: 20120819
+//Version: 20120823
 
 using ClipFlair.Views;
+using ClipFlair.Models.Views;
 
 using System;
 using System.ComponentModel;
@@ -37,7 +38,7 @@ namespace ClipFlair.Components
 
     protected void View_PropertyChanged(object sender, PropertyChangedEventArgs e)
     {
-      if (e.PropertyName.Equals("Source"))
+      if (e.PropertyName.Equals(ICaptionsGridProperties.PropertySource))
       {
         Source = View.Source;
       }
@@ -51,8 +52,8 @@ namespace ClipFlair.Components
     /// Source Dependency Property
     /// </summary>
     public static readonly DependencyProperty SourceProperty =
-        DependencyProperty.Register("Source", typeof(Uri), typeof(CaptionsGridWindow),
-            new FrameworkPropertyMetadata((Uri)null, new PropertyChangedCallback(OnSourceChanged)));
+        DependencyProperty.Register(ICaptionsGridProperties.PropertySource, typeof(Uri), typeof(CaptionsGridWindow),
+            new FrameworkPropertyMetadata((Uri)ICaptionsGridDefaults.DefaultSource, new PropertyChangedCallback(OnSourceChanged)));
 
     /// <summary>
     /// Gets or sets the Source property.

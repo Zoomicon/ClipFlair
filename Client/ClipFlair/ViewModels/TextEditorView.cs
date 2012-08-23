@@ -1,5 +1,5 @@
 ﻿//Filename: TextEditorView.cs
-//Version: 20120814
+//Version: 20120823
 
 using ClipFlair.Models.Views;
 
@@ -17,6 +17,7 @@ namespace ClipFlair.Views
     #region ITextEditor
 
     private Uri source;
+    private bool toolbarVisible;
 
     public Uri Source
     {
@@ -27,6 +28,19 @@ namespace ClipFlair.Views
         {
           source = value;
           RaisePropertyChanged(ITextEditorProperties.PropertySource);
+        }
+      }
+    }
+
+    public bool ToolbarVisible
+    {
+      get { return toolbarVisible; }
+      set
+      {
+        if (value != toolbarVisible)
+        {
+          toolbarVisible = value;
+          RaisePropertyChanged(ITextEditorProperties.PropertyToolbarVisible);
         }
       }
     }
