@@ -1,5 +1,5 @@
 ﻿//Filename: FloatingWindow.cs
-//Version: 20120810
+//Version: 20120823
 
 using System;
 using System.Collections.ObjectModel;
@@ -508,6 +508,18 @@ namespace SilverFlow.Controls
           {
             window.RenderTransformOrigin = new Point(0.5, 0.5); //scale arround the window center
             window.RenderTransform = new ScaleTransform().SetScale((double)e.NewValue);
+
+            //this will work if GPU acceleration has been turned on (at HTML/ASPX page or at OOB settings for OOB apps)
+            if (window.CacheMode != null)
+            {
+              BitmapCache bitmapCache = window.CacheMode as BitmapCache; //will return null if other type
+              if (bitmapCache != null)
+              {
+                bitmapCache.RenderAtScale = window.Scale;
+                window.CacheMode = bitmapCache;
+              }
+            }
+
           }
         }
 

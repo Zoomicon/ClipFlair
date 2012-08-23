@@ -28,7 +28,19 @@ namespace FloatingWindowZUI
 
     #endregion
 
-    public ZoomAndPanControl ZoomHost { get; private set; }
+    protected ZoomAndPanControl _zoomHost;
+
+    public ZoomAndPanControl ZoomHost {
+      get
+      {
+        if (_zoomHost == null) ApplyTemplate();
+        return _zoomHost;
+      }
+      private set
+      {
+        _zoomHost = value;
+      }
+    }
 
     public FloatingWindowHostZUI()
     {
@@ -113,9 +125,9 @@ namespace FloatingWindowZUI
       if ((Keyboard.Modifiers & ModifierKeys.Control) != 0)
       {
         if (changedButton == MouseButton.Left)
-          ((FloatingWindow)sender).Scale += 0.2; //zoom in
+          ((FloatingWindow)sender).Scale += 0.05; //zoom in
         else if (changedButton == MouseButton.Right)
-          ((FloatingWindow)sender).Scale -= 0.2; //zoom out
+          ((FloatingWindow)sender).Scale -= 0.05; //zoom out
 
         e.Handled = true;
       }
@@ -128,9 +140,9 @@ namespace FloatingWindowZUI
         FloatingWindow window = (FloatingWindow)sender; //delta should be either >0 or <0
         //Point mousePosition = args.GetPosition(HostPanel); //could use mousePosition here to center the window to the mouse point or something, but better have the logic at FloatingWindow.Scale itself, to recenter arround its previous center point after scaling
         if (e.Delta > 0)
-          window.Scale += 0.2; //zoom in
+          window.Scale += 0.05; //zoom in
         else if (e.Delta < 0)
-          window.Scale -= 0.2; //zoom out
+          window.Scale -= 0.05; //zoom out
 
         e.Handled = true;
       }
