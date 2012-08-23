@@ -1,4 +1,4 @@
-<OutOfBrowserSettings ShortName="ClipFlair" EnableGPUAcceleration="False" ShowInstallMenuItem="True">
+<OutOfBrowserSettings ShortName="ClipFlair" EnableGPUAcceleration="True" ShowInstallMenuItem="True">
   <OutOfBrowserSettings.Blurb>ClipFlair - Foreign Language Learning through Interactive Captioning and Revoicing of Clips</OutOfBrowserSettings.Blurb>
   <OutOfBrowserSettings.WindowSettings>
     <WindowSettings Title="ClipFlair Application" />
