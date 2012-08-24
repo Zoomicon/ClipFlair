@@ -1,5 +1,5 @@
-﻿//Filename: FloatingWindow.cs
-//Version: 20120823
+//Filename: FloatingWindow.cs
+//Version: 20120824
 
 using System;
 using System.Collections.ObjectModel;
@@ -494,7 +494,7 @@ namespace SilverFlow.Controls
             "Scale",
             typeof(double),
             typeof(FloatingWindow),
-            new PropertyMetadata(0d, OnScalePropertyChanged)); //Must use 0d here, not 0 (else will get XAMLParseException at runtime)
+            new PropertyMetadata(1d, OnScalePropertyChanged)); //Must use 1d here, not 1 (else will get XAMLParseException at runtime)
 
         /// <summary>
         /// ScaleProperty PropertyChangedCallback call back static function.
