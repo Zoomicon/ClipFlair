@@ -1,14 +1,13 @@
 ﻿//Filename: TextEditorWindow.xaml.cs
-//Version: 20120823
+//Version: 20120824
 
-using ClipFlair.Views;
 using ClipFlair.Models.Views;
 
 using System;
 using System.Windows;
 using System.ComponentModel;
 
-namespace ClipFlair.Components
+namespace ClipFlair.Views
 {
     public partial class TextEditorWindow : FlipWindow
     {
@@ -36,9 +35,19 @@ namespace ClipFlair.Components
 
         protected void View_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
-          if (e.PropertyName.Equals(ITextEditorProperties.PropertySource))
+          if (e.PropertyName == null)
           {
             Source = View.Source;
+            ToolbarVisible = View.ToolbarVisible;
+            //...
+          }
+          else if (e.PropertyName.Equals(ITextEditorProperties.PropertySource))
+          {
+            Source = View.Source;
+          }
+          else if (e.PropertyName.Equals(ITextEditorProperties.PropertyToolbarVisible))
+          {
+            ToolbarVisible = View.ToolbarVisible;
           }
         }
 

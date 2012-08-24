@@ -5,7 +5,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008" d:DesignHeight="471" d:DesignWidth="776" 
     xmlns:float="clr-namespace:SilverFlow.Controls;assembly=SilverFlow.Controls"
     xmlns:zui="clr-namespace:FloatingWindowZUI;assembly=FloatingWindowZUI"
-    xmlns:clipflair="clr-namespace:ClipFlair.Components"
+    xmlns:clipflair="clr-namespace:ClipFlair.Views"
     Name="Page">
 
   <!--  

@@ -1,5 +1,5 @@
 ﻿//Filename: FlipWindow.xaml.cs
-//Version: 20120823
+//Version: 20120824
 
 using SilverFlow.Controls;
 
@@ -8,7 +8,7 @@ using System.Windows.Controls;
 using System.Windows.Markup;
 using System.Windows.Media;
 
-namespace ClipFlair.Components
+namespace ClipFlair.Views
 {
   [ContentProperty("FrontContent")]
   public partial class FlipWindow : FloatingWindow

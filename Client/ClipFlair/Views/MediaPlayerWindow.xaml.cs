@@ -1,7 +1,6 @@
 ﻿//Filename: MediaPlayerWindow.xaml.cs
-//Version: 20120823
+//Version: 20120824
 
-using ClipFlair.Views;
 using ClipFlair.Models.Views;
 
 using Microsoft.SilverlightMediaFramework;
@@ -15,7 +14,7 @@ using System.Collections.ObjectModel;
 using System.Collections.Generic;
 using System.ComponentModel;
 
-namespace ClipFlair.Components
+namespace ClipFlair.Views
 {
   public partial class MediaPlayerWindow : FlipWindow
   {
@@ -44,10 +43,14 @@ namespace ClipFlair.Components
 
     protected void View_PropertyChanged(object sender, PropertyChangedEventArgs e)
     {
-      if (e.PropertyName.Equals(IMediaPlayerProperties.PropertySource))
+      if (e.PropertyName == null)
       {
         Source = View.Source;
-        UpdatePlaylist();
+         //...
+      }
+      else if (e.PropertyName.Equals(IMediaPlayerProperties.PropertySource))
+      {
+        Source = View.Source;
       }
     }
 
@@ -86,6 +89,7 @@ namespace ClipFlair.Components
     protected virtual void OnSourceChanged(Uri oldSource, Uri newSource)
     {
       View.Source = newSource;
+      UpdatePlaylist();
     }
 
     #endregion

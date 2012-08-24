@@ -1,14 +1,13 @@
 ﻿//Filename: CaptionsGridWindow.xaml.cs
-//Version: 20120823
+//Version: 20120824
 
-using ClipFlair.Views;
 using ClipFlair.Models.Views;
 
 using System;
 using System.ComponentModel;
 using System.Windows;
 
-namespace ClipFlair.Components
+namespace ClipFlair.Views
 {
   public partial class CaptionsGridWindow : FlipWindow
   {
@@ -38,7 +37,12 @@ namespace ClipFlair.Components
 
     protected void View_PropertyChanged(object sender, PropertyChangedEventArgs e)
     {
-      if (e.PropertyName.Equals(ICaptionsGridProperties.PropertySource))
+      if (e.PropertyName == null)
+      {
+        Source = View.Source;
+        //...
+      }
+      else if (e.PropertyName.Equals(ICaptionsGridProperties.PropertySource))
       {
         Source = View.Source;
       }
@@ -79,6 +83,7 @@ namespace ClipFlair.Components
     protected virtual void OnSourceChanged(Uri oldSource, Uri newSource)
     {
       View.Source = newSource;
+      //TODO: load captions
     }
 
     #endregion

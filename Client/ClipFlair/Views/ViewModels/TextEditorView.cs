@@ -1,5 +1,5 @@
 ﻿//Filename: TextEditorView.cs
-//Version: 20120823
+//Version: 20120824
 
 using ClipFlair.Models.Views;
 
@@ -11,7 +11,9 @@ namespace ClipFlair.Views
   {
     public TextEditorView()
     {
-      Source = ITextEditorDefaults.DefaultSource;
+      //can set fields directly here since we don't yet have any PropertyChanged listeners
+      source = ITextEditorDefaults.DefaultSource;
+      toolbarVisible = ITextEditorDefaults.DefaultToolbarVisible;
     }
         
     #region ITextEditor
