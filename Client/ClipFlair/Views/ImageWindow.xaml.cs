@@ -1,7 +1,6 @@
 ﻿//Filename: ImageWindow.xaml.cs
-//Version: 20120823
+//Version: 20120824
 
-using ClipFlair.Views;
 using ClipFlair.Models.Views;
 
 using System;
@@ -9,7 +8,7 @@ using System.ComponentModel;
 using System.Windows;
 using System.Windows.Media.Imaging;
 
-namespace ClipFlair.Components
+namespace ClipFlair.Views
 {
   public partial class ImageWindow : FlipWindow
     {
@@ -37,7 +36,12 @@ namespace ClipFlair.Components
 
         protected void View_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
-          if (e.PropertyName.Equals(IImageViewerProperties.PropertySource))
+          if (e.PropertyName == null)
+          {
+            Source = View.Source;
+            //...
+          }
+          else if (e.PropertyName.Equals(IImageViewerProperties.PropertySource))
           {
             Source = View.Source;
           }

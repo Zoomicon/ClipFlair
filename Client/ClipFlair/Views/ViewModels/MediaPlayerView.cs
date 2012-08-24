@@ -1,5 +1,5 @@
 ﻿//Filename: MediaPlayerView.cs
-//Version: 20120814
+//Version: 20120824
 
 using ClipFlair.Models.Views;
 
@@ -11,22 +11,29 @@ namespace ClipFlair.Views
   {
     public MediaPlayerView()
     {
-      Source = IMediaPlayerDefaults.DefaultSource;
-      Time = IMediaPlayerDefaults.DefaultTime;
-      Speed = IMediaPlayerDefaults.DefaultSpeed;
-      Volume = IMediaPlayerDefaults.DefaultVolume;
-      ControllerVisible = IMediaPlayerDefaults.DefaultControllerVisible;
-      CaptionsVisible = IMediaPlayerDefaults.DefaultCaptionsVisible;
+      //can set fields directly here since we don't yet have any PropertyChanged listeners
+      source = IMediaPlayerDefaults.DefaultSource;
+      time = IMediaPlayerDefaults.DefaultTime;
+      speed = IMediaPlayerDefaults.DefaultSpeed;
+      volume = IMediaPlayerDefaults.DefaultVolume;
+      controllerVisible = IMediaPlayerDefaults.DefaultControllerVisible;
+      captionsVisible = IMediaPlayerDefaults.DefaultCaptionsVisible;
     }
         
     #region IMediaPlayer
 
+    #region Fields
+ 
     private Uri source;
     private TimeSpan time;
     private double speed;
     private double volume;
     private bool controllerVisible;
     private bool captionsVisible;
+
+    #endregion
+
+    #region Properties
 
     public Uri Source
     {
@@ -106,6 +113,10 @@ namespace ClipFlair.Views
       }
     }
 
+    #endregion
+
+    #region Methods
+ 
     public void Play()
     {
       throw new NotImplementedException();
@@ -121,6 +132,8 @@ namespace ClipFlair.Views
       Pause();
       Time = TimeSpan.Zero;
     }
+
+    #endregion
 
     #endregion
   }
