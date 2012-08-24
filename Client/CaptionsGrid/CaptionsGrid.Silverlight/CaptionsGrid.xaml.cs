@@ -1,9 +1,7 @@
-﻿//Version: 20120712
+﻿//Version: 20120724
 
 using System.Windows;
 using System.Windows.Controls;
-
-using WPFCompatibility;
 
 namespace CaptionsGrid
 {
@@ -18,16 +16,9 @@ namespace CaptionsGrid
 
     #endregion
 
-    #region Fields
-
-    private static BooleanToVisibilityConverter converter;
-
-    #endregion
-
     public CaptionsGrid()
     {
       InitializeComponent();
-      if (converter == null) converter = new BooleanToVisibilityConverter();
     }
 
     #region IsCaptionStartTimeVisible
@@ -62,7 +53,7 @@ namespace CaptionsGrid
     /// </summary>
     protected virtual void OnIsCaptionStartTimeVisibleChanged(bool oldValue, bool newValue)
     {
-      gridCaptions.Columns[ColIndexStartTime].Visibility = (Visibility)converter.Convert(newValue, typeof(Visibility), null, null);
+      gridCaptions.Columns[ColIndexStartTime].Visibility = (newValue)? Visibility.Visible : Visibility.Collapsed;
     }
 
     #endregion
@@ -99,7 +90,7 @@ namespace CaptionsGrid
     /// </summary>
     protected virtual void OnIsCaptionEndTimeVisibleChanged(bool oldValue, bool newValue)
     {
-      gridCaptions.Columns[ColIndexEndTime].Visibility = (Visibility)converter.Convert(newValue, typeof(Visibility), null, null);
+      gridCaptions.Columns[ColIndexEndTime].Visibility = (newValue)? Visibility.Visible : Visibility.Collapsed;
     }
 
     #endregion
@@ -136,7 +127,7 @@ namespace CaptionsGrid
     /// </summary>
     protected virtual void OnIsCaptionDurationVisibleChanged(bool oldValue, bool newValue)
     {
-      gridCaptions.Columns[ColIndexDuration].Visibility = (Visibility)converter.Convert(newValue, typeof(Visibility), null, null);
+      gridCaptions.Columns[ColIndexDuration].Visibility = (newValue)? Visibility.Visible : Visibility.Collapsed;
     }
 
     #endregion
@@ -173,7 +164,7 @@ namespace CaptionsGrid
     /// </summary>
     protected virtual void OnIsCaptionContentVisibleChanged(bool oldValue, bool newValue)
     {
-      gridCaptions.Columns[ColIndexContent].Visibility = (Visibility)converter.Convert(newValue, typeof(Visibility), null, null);
+      gridCaptions.Columns[ColIndexContent].Visibility = (newValue)? Visibility.Visible : Visibility.Collapsed;
     }
 
     #endregion  
