@@ -1,4 +1,7 @@
-﻿using System;
+﻿//Filename: ActivityContainer.xaml.cs
+//Version: 20120827
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -12,11 +15,11 @@ using System.Windows.Shapes;
 using System.Windows.Markup;
 using SilverFlow.Controls;
 
-namespace ClipFlair
+namespace ClipFlair.Views
 {
-  public partial class MainPage : UserControl
+  public partial class ActivityContainer : UserControl
   {
-    public MainPage()
+    public ActivityContainer()
     {
       InitializeComponent();
 
