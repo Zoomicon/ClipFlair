@@ -1,4 +1,7 @@
-﻿//Version: 20120711
+﻿//Filename: App.xaml.cs
+//Version: 20120827
+
+using ClipFlair.Views;
 
 using System;
 using System.Collections.Generic;
@@ -30,7 +33,7 @@ namespace ClipFlair
 
     private void Application_Startup(object sender, StartupEventArgs e)
     {
-      this.RootVisual = new MainPage();
+      this.RootVisual = new ActivityContainer();
       Update();
     }
 

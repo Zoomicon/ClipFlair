@@ -11,7 +11,7 @@
 
   <!--<clipflair:FlipWindow.FrontContent>-->
   <text:SilverTextEditor HorizontalAlignment="Stretch" VerticalAlignment="Stretch" 
-                         ToolbarVisible="{Binding ToolbarVisible}" />
+                         ToolbarVisible="{Binding ToolbarVisible, Mode=TwoWay}" />
   <!--</clipflair:FlipWindow.FrontContent>-->
 
   <clipflair:FlipWindow.PropertyItems>
@@ -23,7 +23,7 @@
 
     <StackPanel Orientation="Vertical">
       <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Toolbar Visible" Target="{Binding ElementName=edTextURL}"/>
-      <CheckBox Name="edToolbarVisible" IsChecked="{Binding ToolbarVisible}" HorizontalAlignment="Stretch" />
+      <CheckBox Name="edToolbarVisible" IsChecked="{Binding ToolbarVisible, Mode=TwoWay}" HorizontalAlignment="Stretch" />
     </StackPanel>
   
   </clipflair:FlipWindow.PropertyItems>
