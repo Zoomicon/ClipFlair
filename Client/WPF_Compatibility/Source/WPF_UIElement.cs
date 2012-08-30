@@ -1,7 +1,8 @@
 ﻿//Filename: WPF_UIElement
-//Version: 20120606
+//Version: 20120830
 //Author: George Birbilis <birbilis@kagi.com>
 
+using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Media;
 
@@ -40,6 +41,21 @@ namespace WPFCompatibility
 
             return false;
         }
+
+    /// Retrieves a set of objects that are located within a specified point of an object's coordinate space.
+    /// </summary>
+    /// <param name="subtree">The object to search within.</param>
+    /// <param name="intersectingPoint">The point to use as the determination point.</param>
+    /// <returns>
+    /// An enumerable set of System.Windows.UIElement objects that are determined
+    /// to be located in the visual tree composition at the specified point and within
+    /// the specified subtee.
+    /// </returns>
+    public static IEnumerable<UIElement> FindElementsInCoordinates(this UIElement subtree, Point intersectingPoint) //copied from SilverFlow (FloatingWindow) "ControlExtensions.cs" file
+    {
+      return VisualTreeHelper.FindElementsInHostCoordinates(intersectingPoint, subtree);
+    }
+
 
 #endif
 
