@@ -1,5 +1,5 @@
 ﻿//Filename: ControlExtensions.cs
-//Version: 20120810
+//Version: 20120830
 
 using System;
 using System.Linq;
@@ -237,6 +237,8 @@ namespace SilverFlow.Controls.Extensions
       return new PropertyPath(path);
     }
 
+#if SILVERLIGHT
+
     /// <summary>
     /// Retrieves a set of objects that are located within a specified point of an object's coordinate space.
     /// </summary>
@@ -251,6 +253,8 @@ namespace SilverFlow.Controls.Extensions
     {
       return VisualTreeHelper.FindElementsInHostCoordinates(intersectingPoint, subtree);
     }
+
+#endif
 
   }
 }

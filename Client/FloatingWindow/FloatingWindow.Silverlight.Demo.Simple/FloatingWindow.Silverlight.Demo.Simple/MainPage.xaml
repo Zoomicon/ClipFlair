@@ -33,7 +33,7 @@
 					<GradientStop Color="#FFC1C9CD" Offset="0.979"/>
 				</LinearGradientBrush>
 			</Border.Background>
-			<TextBlock Margin="12,0,0,0" Text="FloatingWindow v2.0.1" FontSize="12" 
+			<TextBlock Margin="12,0,0,0" Text="FloatingWindow v2.0.1 (ClipFlair version by George Birbilis)" FontSize="12" 
 				VerticalAlignment="Center" HorizontalAlignment="Left" FontWeight="Bold">
 				<TextBlock.Effect>
 					<DropShadowEffect Color="White" BlurRadius="1" ShadowDepth="1"/>
