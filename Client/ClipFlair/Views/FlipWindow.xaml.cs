@@ -1,5 +1,5 @@
 ﻿//Filename: FlipWindow.xaml.cs
-//Version: 20120824
+//Version: 20120830
 
 using SilverFlow.Controls;
 
@@ -21,6 +21,15 @@ namespace ClipFlair.Views
       ShowMaximizeButton = false; //!!! (till we fix it to resize to current visible view area and to allow moving the window in that case only [when it's not same size as parent])
 
       InitializeComponent(); //this can override the "ShowMaximize" button, or set the "Scale" property, so must do last
+
+      HelpRequested += (s,e) => {
+        MessageBox.Show("Help not available yet - see http://ClipFlair.net for contact info");
+      };
+
+      OptionsRequested += (s, e) =>
+      {
+        FlipPanel.IsFlipped = !FlipPanel.IsFlipped;
+      };
     }
 
     public object FrontContent
