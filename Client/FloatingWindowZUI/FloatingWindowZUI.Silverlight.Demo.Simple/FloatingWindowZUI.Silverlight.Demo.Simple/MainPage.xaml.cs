@@ -48,6 +48,18 @@ namespace FloatingWindowZUI.Demo
         Debug.WriteLine("Deactivated: {0}", window.IconText);
       };
 
+      window.HelpRequested += (s, a) =>
+      {
+        Debug.WriteLine("Help button pressed");
+        MessageBox.Show("Help...");
+      };
+
+      window.OptionsRequested += (s, a) =>
+      {
+        Debug.WriteLine("Options button pressed");
+        MessageBox.Show("Options...");
+      };
+
       window.Show(startPoint);
       startPoint = startPoint.Add(20, 20);
     }

@@ -1,5 +1,5 @@
 //Filename: FloatingWindow.cs
-//Version: 20120824
+//Version: 20120830
 
 using System;
 using System.Collections.ObjectModel;
@@ -26,6 +26,8 @@ namespace SilverFlow.Controls
     /// </summary>
     [TemplatePart(Name = PART_Chrome, Type = typeof(FrameworkElement))]
     [TemplatePart(Name = PART_TitleContent, Type = typeof(ContentControl))]
+    [TemplatePart(Name = PART_HelpButton, Type = typeof(ButtonBase))]
+    [TemplatePart(Name = PART_OptionsButton, Type = typeof(ButtonBase))]
     [TemplatePart(Name = PART_CloseButton, Type = typeof(ButtonBase))]
     [TemplatePart(Name = PART_ContentPresenter, Type = typeof(FrameworkElement))]
     [TemplatePart(Name = PART_ContentRoot, Type = typeof(FrameworkElement))]
@@ -37,6 +39,8 @@ namespace SilverFlow.Controls
     [TemplateVisualState(Name = VSMSTATE_StateRestored, GroupName = VSMGROUP_Window)]
     [TemplateVisualState(Name = VSMSTATE_StateNormal, GroupName = VSMGROUP_Button)]
     [StyleTypedProperty(Property = PROPERTY_TitleStyle, StyleTargetType = typeof(ContentControl))]
+    [StyleTypedProperty(Property = PROPERTY_HelpButtonStyle, StyleTargetType = typeof(Button))]
+    [StyleTypedProperty(Property = PROPERTY_OptionsButtonStyle, StyleTargetType = typeof(Button))]
     [StyleTypedProperty(Property = PROPERTY_CloseButtonStyle, StyleTargetType = typeof(Button))]
     [StyleTypedProperty(Property = PROPERTY_MinimizeButtonStyle, StyleTargetType = typeof(Button))]
     [StyleTypedProperty(Property = PROPERTY_MaximizeButtonStyle, StyleTargetType = typeof(Button))]
@@ -48,6 +52,8 @@ namespace SilverFlow.Controls
         // Template parts
         private const string PART_Chrome = "Chrome";
         private const string PART_TitleContent = "TitleContent";
+        private const string PART_HelpButton = "HelpButton";
+        private const string PART_OptionsButton = "OptionsButton";
         private const string PART_CloseButton = "CloseButton";
         private const string PART_MaximizeButton = "MaximizeButton";
         private const string PART_RestoreButton = "RestoreButton";
@@ -70,6 +76,8 @@ namespace SilverFlow.Controls
 
         // Style typed properties
         private const string PROPERTY_TitleStyle = "TitleStyle";
+        private const string PROPERTY_HelpButtonStyle = "HelpButtonStyle";
+        private const string PROPERTY_OptionsButtonStyle = "OptionsButtonStyle";
         private const string PROPERTY_CloseButtonStyle = "CloseButtonStyle";
         private const string PROPERTY_MinimizeButtonStyle = "MinimizeButtonStyle";
         private const string PROPERTY_MaximizeButtonStyle = "MaximizeButtonStyle";
@@ -82,6 +90,86 @@ namespace SilverFlow.Controls
         private const double MaximizingDurationInMilliseconds = 20;
         private const double MinimizingDurationInMilliseconds = 200;
         private const double RestoringDurationInMilliseconds = 20;
+
+        #endregion
+
+        #region public bool ShowHelpButton
+
+        /// <summary>
+        /// Gets or sets a value indicating whether to show Help button.
+        /// </summary>
+        /// <value><c>true</c> if to show Help button; otherwise, <c>false</c>.</value>
+        public bool ShowHelpButton
+        {
+          get { return (bool)GetValue(ShowHelpButtonProperty); }
+          set { SetValue(ShowHelpButtonProperty, value); }
+        }
+
+        /// <summary>
+        /// Identifies the <see cref="FloatingWindow.ShowHelpButton" /> dependency property.
+        /// </summary>
+        /// <value>
+        /// The identifier for the <see cref="FloatingWindow.ShowHelpButton" /> dependency property.
+        /// </value>
+        public static readonly DependencyProperty ShowHelpButtonProperty =
+            DependencyProperty.Register(
+            "ShowHelpButton",
+            typeof(bool),
+            typeof(FloatingWindow),
+            new PropertyMetadata(true, OnShowHelpButtonPropertyChanged));
+
+        /// <summary>
+        /// ShowHelpButtonProperty PropertyChangedCallback call back static function.
+        /// </summary>
+        /// <param name="d">FloatingWindow object whose ShowHelpButton property is changed.</param>
+        /// <param name="e">DependencyPropertyChangedEventArgs which contains the old and new values.</param>
+        private static void OnShowHelpButtonPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+          FloatingWindow window = (FloatingWindow)d;
+
+          if (window.helpButton != null)
+            window.helpButton.SetVisible((bool)e.NewValue);
+        }
+
+        #endregion
+
+        #region public bool ShowOptionsButton
+
+        /// <summary>
+        /// Gets or sets a value indicating whether to show Options button.
+        /// </summary>
+        /// <value><c>true</c> if to show Options button; otherwise, <c>false</c>.</value>
+        public bool ShowOptionsButton
+        {
+          get { return (bool)GetValue(ShowOptionsButtonProperty); }
+          set { SetValue(ShowOptionsButtonProperty, value); }
+        }
+
+        /// <summary>
+        /// Identifies the <see cref="FloatingWindow.ShowOptionsButton" /> dependency property.
+        /// </summary>
+        /// <value>
+        /// The identifier for the <see cref="FloatingWindow.ShowOptionsButton" /> dependency property.
+        /// </value>
+        public static readonly DependencyProperty ShowOptionsButtonProperty =
+            DependencyProperty.Register(
+            "ShowOptionsButton",
+            typeof(bool),
+            typeof(FloatingWindow),
+            new PropertyMetadata(true, OnShowOptionsButtonPropertyChanged));
+
+        /// <summary>
+        /// ShowOptionsButtonProperty PropertyChangedCallback call back static function.
+        /// </summary>
+        /// <param name="d">FloatingWindow object whose ShowOptionsButton property is changed.</param>
+        /// <param name="e">DependencyPropertyChangedEventArgs which contains the old and new values.</param>
+        private static void OnShowOptionsButtonPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+          FloatingWindow window = (FloatingWindow)d;
+
+          if (window.optionsButton != null)
+            window.optionsButton.SetVisible((bool)e.NewValue);
+        }
 
         #endregion
 
@@ -617,6 +705,88 @@ namespace SilverFlow.Controls
 
         #endregion
 
+        #region public Style HelpButtonStyle
+
+        /// <summary>
+        /// Gets or sets the style of the Help button.
+        /// </summary>
+        public Style HelpButtonStyle
+        {
+          get { return GetValue(HelpButtonStyleProperty) as Style; }
+          set { SetValue(HelpButtonStyleProperty, value); }
+        }
+
+        /// <summary>
+        /// Identifies the <see cref="FloatingWindow.HelpButtonStyleProperty" /> dependency property.
+        /// </summary>
+        public static readonly DependencyProperty HelpButtonStyleProperty =
+            DependencyProperty.Register(
+                "HelpButtonStyle",
+                typeof(Style),
+                typeof(FloatingWindow),
+                new PropertyMetadata(OnHelpButtonStylePropertyChanged));
+
+        /// <summary>
+        /// HelpButtonStyle PropertyChangedCallback call back static function.
+        /// </summary>
+        /// <param name="d">FloatingWindow object whose HelpButtonStyle property is changed.</param>
+        /// <param name="e">The <see cref="System.Windows.DependencyPropertyChangedEventArgs"/> instance containing the event data.</param>
+        private static void OnHelpButtonStylePropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+          var window = (FloatingWindow)d;
+          if (window != null)
+          {
+            Style style = e.NewValue as Style;
+            window.HelpButtonStyle = style;
+
+            if (window.helpButton != null)
+              window.helpButton.Style = style;
+          }
+        }
+
+        #endregion
+
+        #region public Style OptionsButtonStyle
+
+        /// <summary>
+        /// Gets or sets the style of the Options button.
+        /// </summary>
+        public Style OptionsButtonStyle
+        {
+          get { return GetValue(OptionsButtonStyleProperty) as Style; }
+          set { SetValue(OptionsButtonStyleProperty, value); }
+        }
+
+        /// <summary>
+        /// Identifies the <see cref="FloatingWindow.OptionsButtonStyleProperty" /> dependency property.
+        /// </summary>
+        public static readonly DependencyProperty OptionsButtonStyleProperty =
+            DependencyProperty.Register(
+                "OptionsButtonStyle",
+                typeof(Style),
+                typeof(FloatingWindow),
+                new PropertyMetadata(OnOptionsButtonStylePropertyChanged));
+
+        /// <summary>
+        /// OptionsButtonStyle PropertyChangedCallback call back static function.
+        /// </summary>
+        /// <param name="d">FloatingWindow object whose OptionsButtonStyle property is changed.</param>
+        /// <param name="e">The <see cref="System.Windows.DependencyPropertyChangedEventArgs"/> instance containing the event data.</param>
+        private static void OnOptionsButtonStylePropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+          var window = (FloatingWindow)d;
+          if (window != null)
+          {
+            Style style = e.NewValue as Style;
+            window.OptionsButtonStyle = style;
+
+            if (window.optionsButton != null)
+              window.optionsButton.Style = style;
+          }
+        }
+
+        #endregion
+
         #region public Style CloseButtonStyle
 
         /// <summary>
@@ -680,7 +850,7 @@ namespace SilverFlow.Controls
                 new PropertyMetadata(OnMinimizeButtonStylePropertyChanged));
 
         /// <summary>
-        /// CloseButtonStyle PropertyChangedCallback call back static function.
+        /// MinimizeButtonStyle PropertyChangedCallback call back static function.
         /// </summary>
         /// <param name="d">FloatingWindow object whose MinimizeButtonStyle property is changed.</param>
         /// <param name="e">The <see cref="System.Windows.DependencyPropertyChangedEventArgs"/> instance containing the event data.</param>
@@ -690,7 +860,7 @@ namespace SilverFlow.Controls
             if (window != null)
             {
                 Style style = e.NewValue as Style;
-                window.CloseButtonStyle = style;
+                window.MinimizeButtonStyle = style;
 
                 if (window.minimizeButton != null)
                     window.minimizeButton.Style = style;
@@ -731,7 +901,7 @@ namespace SilverFlow.Controls
             if (window != null)
             {
                 Style style = e.NewValue as Style;
-                window.CloseButtonStyle = style;
+                window.MaximizeButtonStyle = style;
 
                 if (window.maximizeButton != null)
                     window.maximizeButton.Style = style;
@@ -772,7 +942,7 @@ namespace SilverFlow.Controls
             if (window != null)
             {
                 Style style = e.NewValue as Style;
-                window.CloseButtonStyle = style;
+                window.RestoreButtonStyle = style;
 
                 if (window.restoreButton != null)
                     window.restoreButton.Style = style;
@@ -820,6 +990,8 @@ namespace SilverFlow.Controls
         private ContentControl titleContent;
         private Border contentBorder;
 
+        private ButtonBase helpButton;
+        private ButtonBase optionsButton;
         private ButtonBase closeButton;
         private ButtonBase maximizeButton;
         private ButtonBase restoreButton;
@@ -879,6 +1051,16 @@ namespace SilverFlow.Controls
         /// Occurs when the <see cref="FloatingWindow" /> is deactivated.
         /// </summary>
         public event EventHandler Deactivated;
+
+        /// <summary>
+        /// Occurs when help is requested.
+        /// </summary>
+        public event EventHandler HelpRequested;
+
+        /// <summary>
+        /// Occurs when options are requested.
+        /// </summary>
+        public event EventHandler OptionsRequested;
 
         /// <summary>
         /// Occurs when the <see cref="FloatingWindow" /> is closed.
@@ -1323,6 +1505,42 @@ namespace SilverFlow.Controls
         }
 
         /// <summary>
+        /// Performs Help action.
+        /// </summary>
+        public virtual void Help()
+        {
+          OnHelp(EventArgs.Empty);
+        }
+
+        /// <summary>
+        /// Performs Options action.
+        /// </summary>
+        public virtual void Options()
+        {
+          OnOptions(EventArgs.Empty);
+        }
+
+        /// <summary>
+        /// Executed when the Help button is clicked.
+        /// </summary>
+        /// <param name="sender">Sender object.</param>
+        /// <param name="e">Routed event args.</param>
+        private void HelpButton_Click(object sender, RoutedEventArgs e)
+        {
+            Help();
+        }
+
+        /// <summary>
+        /// Executed when the Options button is clicked.
+        /// </summary>
+        /// <param name="sender">Sender object.</param>
+        /// <param name="e">Routed event args.</param>
+        private void OptionsButton_Click(object sender, RoutedEventArgs e)
+        {
+            Options();
+        }
+
+        /// <summary>
         /// Executed when the Close button is clicked.
         /// </summary>
         /// <param name="sender">Sender object.</param>
@@ -1363,6 +1581,8 @@ namespace SilverFlow.Controls
             chrome = GetTemplateChild(PART_Chrome) as FrameworkElement;
             titleContent = GetTemplateChild(PART_TitleContent) as ContentControl;
             contentPresenter = GetTemplateChild(PART_ContentPresenter) as FrameworkElement;
+            helpButton = GetTemplateChild(PART_HelpButton) as ButtonBase;
+            optionsButton = GetTemplateChild(PART_OptionsButton) as ButtonBase;
             closeButton = GetTemplateChild(PART_CloseButton) as ButtonBase;
             maximizeButton = GetTemplateChild(PART_MaximizeButton) as ButtonBase;
             minimizeButton = GetTemplateChild(PART_MinimizeButton) as ButtonBase;
@@ -1381,6 +1601,12 @@ namespace SilverFlow.Controls
             GetStoryboards();
             SetInitialRootPosition();
             InitializeContentRootTransformGroup();
+
+            if (helpButton != null)
+              helpButton.SetVisible(ShowHelpButton);
+
+            if (optionsButton != null)
+              optionsButton.SetVisible(ShowOptionsButton);
 
             if (closeButton != null)
                 closeButton.SetVisible(ShowCloseButton);
@@ -1414,6 +1640,12 @@ namespace SilverFlow.Controls
 
             if (closeButton != null && this.CloseButtonStyle != null)
                 closeButton.Style = this.CloseButtonStyle;
+
+            if (optionsButton != null && this.OptionsButtonStyle != null)
+              optionsButton.Style = this.OptionsButtonStyle;
+
+            if (helpButton != null && this.HelpButtonStyle != null)
+              helpButton.Style = this.HelpButtonStyle;
         }
 
         /// <summary>
@@ -1528,6 +1760,32 @@ namespace SilverFlow.Controls
         }
 
         /// <summary>
+        /// Raises the <see cref="FloatingWindow.HelpRequested" /> event.
+        /// </summary>
+        /// <param name="e">The event data.</param>
+        protected virtual void OnHelp(EventArgs e)
+        {
+          EventHandler handler = HelpRequested;
+          if (handler != null)
+          {
+            handler(this, e);
+          }
+        }
+
+        /// <summary>
+        /// Raises the <see cref="FloatingWindow.OptionsRequested" /> event.
+        /// </summary>
+        /// <param name="e">The event data.</param>
+        protected virtual void OnOptions(EventArgs e)
+        {
+          EventHandler handler = OptionsRequested;
+          if (handler != null)
+          {
+            handler(this, e);
+          }
+        }
+
+        /// <summary>
         /// Raises the <see cref="FloatingWindow.Closed" /> event.
         /// </summary>
         /// <param name="e">The event data.</param>
@@ -1545,7 +1803,7 @@ namespace SilverFlow.Controls
 
             Dispose();
         }
-
+      
         /// <summary>
         /// Raises the <see cref="FloatingWindow.Closing" /> event.
         /// </summary>
@@ -1753,6 +2011,12 @@ namespace SilverFlow.Controls
         /// </summary>
         private void SubscribeToTemplatePartEvents()
         {
+            if (helpButton != null)
+                helpButton.Click += new RoutedEventHandler(HelpButton_Click);
+
+            if (optionsButton != null)
+                optionsButton.Click += new RoutedEventHandler(OptionsButton_Click);
+        
             if (closeButton != null)
                 closeButton.Click += new RoutedEventHandler(CloseButton_Click);
 
@@ -1771,6 +2035,12 @@ namespace SilverFlow.Controls
         /// </summary>
         private void UnsubscribeFromTemplatePartEvents()
         {
+            if (helpButton != null)
+                helpButton.Click -= new RoutedEventHandler(HelpButton_Click);
+
+            if (optionsButton != null)
+                optionsButton.Click -= new RoutedEventHandler(OptionsButton_Click);
+ 
             if (closeButton != null)
                 closeButton.Click -= new RoutedEventHandler(CloseButton_Click);
 
@@ -2214,7 +2484,9 @@ namespace SilverFlow.Controls
             return (minimizeButton.IsVisible() && minimizeButton.ContainsPoint(position, origin)) ||
                    (maximizeButton.IsVisible() && maximizeButton.ContainsPoint(position, origin)) ||
                    (restoreButton.IsVisible() && restoreButton.ContainsPoint(position, origin)) ||
-                   (closeButton.IsVisible() && closeButton.ContainsPoint(position, origin));
+                   (closeButton.IsVisible() && closeButton.ContainsPoint(position, origin)) ||
+                   (optionsButton.IsVisible() && optionsButton.ContainsPoint(position, origin)) ||
+                   (helpButton.IsVisible() && helpButton.ContainsPoint(position, origin));
         }
 
         /// <summary>
