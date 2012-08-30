@@ -1,5 +1,5 @@
 ﻿<!-- 
-Filename: DropDownTheme.xaml
+Filename: DropDownWithButtonTheme.xaml
 Version: 20120830
 -->
   
@@ -8,7 +8,7 @@ Version: 20120830
  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
  xmlns:local="clr-namespace:FlipPanel;assembly=FlipPanel">
 
-  <ControlTemplate x:Key="FlipPanel_DropDownTemplate" TargetType="local:FlipPanel">
+  <ControlTemplate x:Key="FlipPanel_DropDownWithButtonTemplate" TargetType="local:FlipPanel">
     <Grid>
       <VisualStateManager.VisualStateGroups>
         <VisualStateGroup x:Name="ViewStates">
@@ -43,9 +43,10 @@ Version: 20120830
 
       <Grid.RowDefinitions>
         <RowDefinition Height="Auto" />
+        <RowDefinition Height="Auto" />
       </Grid.RowDefinitions>
 
-      <!-- This is the front content. -->
+      <!-- Front content -->
       <Border BorderBrush="{TemplateBinding BorderBrush}"
                BorderThickness="{TemplateBinding BorderThickness}"
                CornerRadius="{TemplateBinding CornerRadius}"
@@ -57,8 +58,23 @@ Version: 20120830
         <Border.Effect>
           <BlurEffect x:Name="FrontContentEffect" Radius="0"></BlurEffect>
         </Border.Effect>
+
+        <Grid>
+          <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition Height="Auto" />
+          </Grid.RowDefinitions>
           
-        <ContentPresenter Content="{TemplateBinding FrontContent}" />
+          <ContentPresenter
+                     Content="{TemplateBinding FrontContent}">
+          </ContentPresenter>
+
+          <Rectangle Grid.Row="1" Stretch="Fill" Fill="LightSteelBlue"></Rectangle>
+          
+          <ToggleButton Grid.Row="1" x:Name="FlipButton" Margin="5" Padding="15,0" 
+                        Content="˄" FontWeight="Bold" FontSize="12" HorizontalAlignment="Right"> <!-- Flip button (front) -->
+          </ToggleButton>
+        </Grid>
 
       </Border>
 
@@ -73,8 +89,22 @@ Version: 20120830
         <Border.Effect>
           <BlurEffect x:Name="BackContentEffect" Radius="0"></BlurEffect>
         </Border.Effect>
+        
+        <Grid>
+          <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition></RowDefinition>
+          </Grid.RowDefinitions>
 
-        <ContentPresenter Content="{TemplateBinding BackContent}" />
+          <!-- Flip button (back) -->
+          <Rectangle Stretch="Fill" Fill="LightSteelBlue"></Rectangle>
+          <ToggleButton x:Name="FlipButtonAlternate" Margin="5" Padding="15,0" 
+                             Content="˅" FontWeight="Bold" FontSize="12" HorizontalAlignment="Right">
+          </ToggleButton>
+
+          <ContentPresenter Grid.Row="1" Content="{TemplateBinding BackContent}" />
+
+        </Grid>
 
       </Border>
 
@@ -82,8 +112,8 @@ Version: 20120830
 
   </ControlTemplate>
 
-  <Style x:Key="FlipPanel_DropDownStyle" TargetType="local:FlipPanel">
-    <Setter Property="Template" Value="{StaticResource FlipPanel_DropDownTemplate}"/>
+  <Style x:Key="FlipPanel_DropDownWithButtonStyle" TargetType="local:FlipPanel">
+    <Setter Property="Template" Value="{StaticResource FlipPanel_DropDownWithButtonTemplate}"/>
   </Style>
 
 </ResourceDictionary>

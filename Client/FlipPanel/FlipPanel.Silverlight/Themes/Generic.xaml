@@ -1,5 +1,6 @@
 ﻿<!-- 
-Version: 20120611 
+Filename: Generic.xaml
+Version: 20120830 
 -->
 
 <ResourceDictionary
@@ -8,11 +9,11 @@ Version: 20120611
  xmlns:local="clr-namespace:FlipPanel;assembly=FlipPanel">
 
   <ResourceDictionary.MergedDictionaries>
-    <ResourceDictionary Source="/FlipPanel;component/Themes/RotateHorizontalTheme.xaml" />
+    <ResourceDictionary Source="/FlipPanel;component/Themes/DropDownTheme.xaml" />
   </ResourceDictionary.MergedDictionaries>
 
   <Style TargetType="local:FlipPanel">
-    <Setter Property="Template" Value="{StaticResource FlipPanel_RotateHorizontalTemplate}"/>
+    <Setter Property="Template" Value="{StaticResource FlipPanel_DropDownTemplate}"/>
   </Style>
 
 </ResourceDictionary>

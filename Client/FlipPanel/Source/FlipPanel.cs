@@ -1,4 +1,5 @@
-﻿//Version: 20120628
+﻿//Filename: FlipPanel.cs
+//Version: 20120830
 
 using System;
 using System.Net;
@@ -30,28 +31,25 @@ namespace FlipPanel
         public object FrontContent
         {
             get { return GetValue(FrontContentProperty); }
-
             set { SetValue(FrontContentProperty, value); }
         }
 
         public object BackContent
         {
             get { return GetValue(BackContentProperty); }
-
             set { SetValue(BackContentProperty, value); }
         }
 
         public CornerRadius CornerRadius
         {
             get { return (CornerRadius)GetValue(CornerRadiusProperty); }
-
             set { SetValue(CornerRadiusProperty, value); }
         }
 
         public bool IsFlipped
         {
             get { return (bool)GetValue(IsFlippedProperty); }
-            
+
             set
             {
                 SetValue(IsFlippedProperty, value);
