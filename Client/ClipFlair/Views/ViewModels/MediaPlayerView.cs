@@ -1,5 +1,5 @@
 ﻿//Filename: MediaPlayerView.cs
-//Version: 20120824
+//Version: 20120831
 
 using ClipFlair.Models.Views;
 
@@ -11,25 +11,20 @@ namespace ClipFlair.Views
   {
     public MediaPlayerView()
     {
-      //can set fields directly here since we don't yet have any PropertyChanged listeners
-      source = IMediaPlayerDefaults.DefaultSource;
-      time = IMediaPlayerDefaults.DefaultTime;
-      speed = IMediaPlayerDefaults.DefaultSpeed;
-      volume = IMediaPlayerDefaults.DefaultVolume;
-      controllerVisible = IMediaPlayerDefaults.DefaultControllerVisible;
-      captionsVisible = IMediaPlayerDefaults.DefaultCaptionsVisible;
     }
         
     #region IMediaPlayer
 
     #region Fields
- 
-    private Uri source;
-    private TimeSpan time;
-    private double speed;
-    private double volume;
-    private bool controllerVisible;
-    private bool captionsVisible;
+
+    //can set fields directly here or at constructor
+    private Uri source = IMediaPlayerDefaults.DefaultSource;
+    private TimeSpan time = IMediaPlayerDefaults.DefaultTime;
+    private double speed = IMediaPlayerDefaults.DefaultSpeed;
+    private double volume = IMediaPlayerDefaults.DefaultVolume;
+    private bool looping = IMediaPlayerDefaults.DefaultLooping;
+    private bool controllerVisible = IMediaPlayerDefaults.DefaultControllerVisible;
+    private bool captionsVisible = IMediaPlayerDefaults.DefaultCaptionsVisible;
 
     #endregion
 
@@ -83,6 +78,19 @@ namespace ClipFlair.Views
         {
           volume = value;
           RaisePropertyChanged(IMediaPlayerProperties.PropertyVolume);
+        }
+      }
+    }
+
+    public bool Looping
+    {
+      get { return looping; }
+      set
+      {
+        if (value != looping)
+        {
+          looping = value;
+          RaisePropertyChanged(IMediaPlayerProperties.PropertyLooping);
         }
       }
     }

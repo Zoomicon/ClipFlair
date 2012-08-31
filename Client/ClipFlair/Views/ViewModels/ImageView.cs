@@ -1,5 +1,5 @@
 ﻿//Filename: ImageView.cs
-//Version: 20120824
+//Version: 20120831
 
 using ClipFlair.Models.Views;
 
@@ -11,13 +11,12 @@ namespace ClipFlair.Views
   {
     public ImageView()
     {
-      //can set fields directly here since we don't yet have any PropertyChanged listeners
-      source = IImageViewerDefaults.DefaultSource;
     }
         
     #region IImageViewer
 
-    private Uri source;
+    //can set fields directly here or at the constructor
+    private Uri source = IImageViewerDefaults.DefaultSource;
 
     public Uri Source
     {

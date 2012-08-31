@@ -1,17 +1,12 @@
 ﻿//Filename: MediaPlayerWindow.xaml.cs
-//Version: 20120824
+//Version: 20120831
 
 using ClipFlair.Models.Views;
-
-using Microsoft.SilverlightMediaFramework;
-using Microsoft.SilverlightMediaFramework.Core.Media;
 
 using Extensions;
 
 using System;
 using System.Windows;
-using System.Collections.ObjectModel;
-using System.Collections.Generic;
 using System.ComponentModel;
 
 namespace ClipFlair.Views
@@ -89,32 +84,11 @@ namespace ClipFlair.Views
     protected virtual void OnSourceChanged(Uri oldSource, Uri newSource)
     {
       View.Source = newSource;
-      UpdatePlaylist();
-    }
-
-    #endregion
-
-    #region Playlist
-
-    public void UpdatePlaylist()
-    {
-      PlaylistItem playlistItem = new PlaylistItem();
-
-      playlistItem.MediaSource = View.Source;
-      playlistItem.DeliveryMethod = Microsoft.SilverlightMediaFramework.Plugins.Primitives.DeliveryMethods.AdaptiveStreaming; //TODO: need to set that: could decide based on the URL format (e.g. if ends at .ism/Manifest is adaptive streaming)
-
-      List<MarkerResource> markerResources = new List<MarkerResource>();
-      MarkerResource markerResource = new MarkerResource();
-      markerResource.Source = new Uri("ExampleCaptions.xml", UriKind.Relative); //TODO: change
-      markerResources.Add(markerResource);
-      playlistItem.MarkerResources = markerResources;
-
-      //player.Playlist.Clear(); //skip this to allow going back to previous items from playlist
-      player.Playlist.Add(playlistItem);
-      player.GoToPlaylistItem(player.Playlist.Count - 1);
+      player.Source = newSource;
     }
 
     #endregion
 
   }
+
 }

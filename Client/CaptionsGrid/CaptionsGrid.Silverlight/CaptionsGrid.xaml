@@ -1,4 +1,9 @@
-﻿<UserControl x:Class="CaptionsGrid.CaptionsGrid"
+﻿<!--
+Filename: CaptionsGrid.xaml
+Version: 20120831
+-->
+  
+  <UserControl x:Class="Zoomicon.CaptionsGrid.CaptionsGrid"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d"

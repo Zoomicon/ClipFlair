@@ -9,6 +9,7 @@ namespace ClipFlair.Views
 {
   public class BaseView: IView
   {
+
     #region INotifyPropertyChanged
 
     public event PropertyChangedEventHandler PropertyChanged;
