@@ -1,9 +1,9 @@
-﻿//Version: 20120724
+﻿//Version: 20120831
 
 using System.Windows;
 using System.Windows.Controls;
 
-namespace CaptionsGrid
+namespace Zoomicon.CaptionsGrid
 {
   public partial class CaptionsGrid : UserControl
   {

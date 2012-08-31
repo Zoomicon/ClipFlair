@@ -188,6 +188,10 @@
       <Project>{3F3D3C8C-9724-4531-A04D-B92049F64686}</Project>
       <Name>FloatingWindow.Silverlight</Name>
     </ProjectReference>
+    <ProjectReference Include="..\MediaPlayer\MediaPlayer.Silverlight\MediaPlayer.Silverlight.csproj">
+      <Project>{DD195CFE-B418-4C76-8F51-EEE8E28FAA41}</Project>
+      <Name>MediaPlayer.Silverlight</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SilverTextEditor\SilverTextEditor.Silverlight\SilverTextEditor.Silverlight.csproj">
       <Project>{52F76969-E7CD-414F-8E98-4FF90EE48B05}</Project>
       <Name>SilverTextEditor.Silverlight</Name>

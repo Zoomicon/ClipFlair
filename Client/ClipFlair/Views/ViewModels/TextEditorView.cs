@@ -1,5 +1,5 @@
 ﻿//Filename: TextEditorView.cs
-//Version: 20120824
+//Version: 20120831
 
 using ClipFlair.Models.Views;
 
@@ -7,19 +7,23 @@ using System;
 
 namespace ClipFlair.Views
 {
-  public class TextEditorView: BaseView, ITextEditor
+  public class TextEditorView : BaseView, ITextEditor
   {
     public TextEditorView()
     {
-      //can set fields directly here since we don't yet have any PropertyChanged listeners
-      source = ITextEditorDefaults.DefaultSource;
-      toolbarVisible = ITextEditorDefaults.DefaultToolbarVisible;
     }
-        
+
     #region ITextEditor
 
-    private Uri source;
-    private bool toolbarVisible;
+    #region Fields
+
+    //can set fields directly here or at the constructor
+    private Uri source = ITextEditorDefaults.DefaultSource;
+    private bool toolbarVisible = ITextEditorDefaults.DefaultToolbarVisible;
+
+    #endregion
+
+    #region Properties
 
     public Uri Source
     {
@@ -46,6 +50,8 @@ namespace ClipFlair.Views
         }
       }
     }
+
+    #endregion
 
     #endregion
   }

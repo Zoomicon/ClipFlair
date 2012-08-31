@@ -1,5 +1,5 @@
 ﻿//Filename: CaptionsGridView.cs
-//Version: 20120824
+//Version: 20120831
 
 using ClipFlair.Models.Views;
 
@@ -11,25 +11,19 @@ namespace ClipFlair.Views
   {
     public CaptionsGridView()
     {
-      //can set fields directly here since we don't yet have any PropertyChanged listeners
-      source = ICaptionsGridDefaults.DefaultSource;
-      time = ICaptionsGridDefaults.DefaultTime;
-      startTimeVisible = ICaptionsGridDefaults.DefaultStartTimeVisible;
-      endTimeVisible = ICaptionsGridDefaults.DefaultEndTimeVisible;
-      durationVisible = ICaptionsGridDefaults.DefaultDurationVisible;
-      captionVisible = ICaptionsGridDefaults.DefaultCaptionVisible;
     }
 
     #region ICaptionsGrid
 
     #region Fields
 
-    private Uri source;
-    private TimeSpan time;
-    private bool startTimeVisible;
-    private bool endTimeVisible;
-    private bool durationVisible;
-    private bool captionVisible;
+    //can set fields directly here or at the construcor
+    private Uri source = ICaptionsGridDefaults.DefaultSource;
+    private TimeSpan time = ICaptionsGridDefaults.DefaultTime;
+    private bool startTimeVisible = ICaptionsGridDefaults.DefaultStartTimeVisible;
+    private bool endTimeVisible = ICaptionsGridDefaults.DefaultEndTimeVisible;
+    private bool durationVisible = ICaptionsGridDefaults.DefaultDurationVisible;
+    private bool captionVisible = ICaptionsGridDefaults.DefaultCaptionVisible;
 
     #endregion
 
