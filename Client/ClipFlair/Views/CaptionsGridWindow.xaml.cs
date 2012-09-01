@@ -1,5 +1,5 @@
 ﻿//Filename: CaptionsGridWindow.xaml.cs
-//Version: 20120824
+//Version: 20120902
 
 using ClipFlair.Models.Views;
 
@@ -29,8 +29,9 @@ namespace ClipFlair.Views
         if (DataContext != null)
           ((INotifyPropertyChanged)DataContext).PropertyChanged -= new PropertyChangedEventHandler(View_PropertyChanged);
         //add property changed handler to new view
-        value.PropertyChanged += new PropertyChangedEventHandler(View_PropertyChanged);
-        //set the new view
+        if (value != null)
+          value.PropertyChanged += new PropertyChangedEventHandler(View_PropertyChanged);
+        //set the new view (must do last)
         DataContext = value;
       }
     }
@@ -42,10 +43,13 @@ namespace ClipFlair.Views
         Source = View.Source;
         //...
       }
-      else if (e.PropertyName.Equals(ICaptionsGridProperties.PropertySource))
-      {
-        Source = View.Source;
-      }
+      else switch (e.PropertyName) //string equality check in .NET uses ordinal (binary) comparison semantics by default
+        {
+          case ICaptionsGridProperties.PropertySource:
+            Source = View.Source;
+            break;
+          //...
+        }
     }
 
     #endregion
