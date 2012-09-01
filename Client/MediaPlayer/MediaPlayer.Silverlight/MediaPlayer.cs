@@ -1,9 +1,10 @@
 ﻿//Filename: MediaPlayer.cs
-//Version: 20120831
+//Version: 20120902
 
 using System;
-using System.Windows;
 using System.Collections.Generic;
+using System.Windows;
+using System.Windows.Media;
 
 using Microsoft.SilverlightMediaFramework;
 using Microsoft.SilverlightMediaFramework.Core;
@@ -23,6 +24,8 @@ namespace Zoomicon.MediaPlayer
     public override void OnApplyTemplate()
     {
       base.OnApplyTemplate();
+
+      //TODO (need to set that when new captions are set) //Captions.GetEnumerator().Current.Style.BackgroundColor = Colors.Transparent; //change black caption region background
 
       //apply any settings from XAML
       OnSourceChanged(null, Source);
