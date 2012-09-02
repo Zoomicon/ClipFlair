@@ -1,7 +1,13 @@
-﻿//Version: 20120831
+﻿//Filename: CaptionsGrid.xaml.cs
+//Version: 20120902
+
+using Zoomicon.MediaPlayer;
 
 using System.Windows;
 using System.Windows.Controls;
+
+using Microsoft.SilverlightMediaFramework.Core.Media;
+using Microsoft.SilverlightMediaFramework.Core.Accessibility.Captions;
 
 namespace Zoomicon.CaptionsGrid
 {
@@ -168,6 +174,54 @@ namespace Zoomicon.CaptionsGrid
     }
 
     #endregion  
+
+    #region Markers
+
+    /// <summary>
+    /// Markers Dependency Property
+    /// </summary>
+    public static readonly DependencyProperty MarkersProperty =
+        DependencyProperty.Register("Markers", typeof(MediaMarkerCollection<TimedTextElement>), typeof(CaptionsGrid),
+            new FrameworkPropertyMetadata(null,
+                FrameworkPropertyMetadataOptions.None,
+                new PropertyChangedCallback(OnMarkersChanged)));
+
+    /// <summary>
+    /// Gets or sets the Markers property.
+    /// </summary>
+    public MediaMarkerCollection<TimedTextElement> Markers
+    {
+      get { return (MediaMarkerCollection<TimedTextElement>)GetValue(MarkersProperty); }
+      set { SetValue(MarkersProperty, value); }
+    }
+
+    /// <summary>
+    /// Handles changes to the Markers property.
+    /// </summary>
+    private static void OnMarkersChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    {
+      CaptionsGrid target = (CaptionsGrid)d;
+      MediaMarkerCollection<TimedTextElement> oldMarkers = (MediaMarkerCollection<TimedTextElement>)e.OldValue;
+      MediaMarkerCollection<TimedTextElement> newMarkers = target.Markers;
+      target.OnMarkersChanged(oldMarkers, newMarkers);
+    }
+
+    /// <summary>
+    /// Provides derived classes an opportunity to handle changes to the Markers property.
+    /// </summary>
+    protected virtual void OnMarkersChanged(MediaMarkerCollection<TimedTextElement> oldMarkers, MediaMarkerCollection<TimedTextElement> newMarkers)
+    {
+      DataContext = new MediaMarkerCollectionWrapper<TimedTextElement>(newMarkers);
+    }
+
+    #endregion
+
+    
+
+    private void UserControl_Loaded(object sender, RoutedEventArgs e)
+    {
+
+    }
   }
 
 }
