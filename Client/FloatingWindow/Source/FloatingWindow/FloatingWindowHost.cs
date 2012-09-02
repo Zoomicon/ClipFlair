@@ -1,5 +1,5 @@
 ﻿//Filename: FloatingWindowHost.cs
-//Version: 20120806
+//Version: 20120902
 
 using System;
 using System.Collections.Generic;
@@ -498,42 +498,46 @@ namespace SilverFlow.Controls
             FloatingWindowHost host = d as FloatingWindowHost;
             if (host != null)
             {
-                FloatingWindowCollection oldItems = (FloatingWindowCollection)e.OldValue;
-                FloatingWindowCollection newItems = (FloatingWindowCollection)e.NewValue;
+                FloatingWindowCollection oldCollection = (FloatingWindowCollection)e.OldValue;
+                FloatingWindowCollection newCollection = (FloatingWindowCollection)e.NewValue;
 
-                if (oldItems != null)
+                if (oldCollection != null)
                 {
-                    //remove all items existing in oldItems but not in newItems
-                    foreach (FloatingWindow v in oldItems) { if (newItems == null || !newItems.Contains(v)) { host._Remove(v); } }  //must call _Remove, not Remove
-
-                    //oldItems.CollectionChanged -= WindowsCollectionChanged;
+                  //stop listening for changes to old collection before removing windows (although _Remove shouldn't trigger any event)
+                  oldCollection.CollectionChanged -= new NotifyCollectionChangedEventHandler(host.Windows_CollectionChanged); // collection changed event handler first, since we remove old windows using _Remove
+                  
+                  //remove all items existing in oldItems but not in newItems
+                  foreach (FloatingWindow v in oldCollection) 
+                    if (newCollection == null || !newCollection.Contains(v)) { host._Remove(v); }   //must call _Remove, not Remove
                 }
 
-                if (newItems != null)
+                if (newCollection != null)
                 {
-                    //newItems.CollectionChanged += WindowsCollectionChanged;
-
-                    newItems.CollectionChanged += (sender, args) =>
-                    {
-                        if (args.Action == NotifyCollectionChangedAction.Add)
-                            foreach (object item in args.NewItems)
-                            {
-                                host._Add((FloatingWindow)item);
-                            }
-                        if (args.Action == NotifyCollectionChangedAction.Remove)
-                            foreach (object item in args.OldItems)
-                            {
-                                host._Remove((FloatingWindow)item);
-                            }
-
-                    };
-
-                    //add all items existing in newItems but not in oldItems
-                    foreach (FloatingWindow v in newItems) { if (oldItems == null || !oldItems.Contains(v)) { host._Add(v); } } //must call _Add, not Add
+                  //add all items existing in newItems but not in oldItems
+                  foreach (FloatingWindow v in newCollection) 
+                    if (oldCollection == null || !oldCollection.Contains(v)) { host._Add(v); } //must call _Add, not Add
+  
+                  //listen for changes to new collection after adding windows (although _Add shouldn't trigger any event)
+                  newCollection.CollectionChanged += new NotifyCollectionChangedEventHandler(host.Windows_CollectionChanged);
                 }
-
-            }
+            } //TODO: blog about "host=d; ...(host.Window_CollectionChanged)" trick (used from static handler for dependency property change)
         } //TODO: THE IMPLEMENTATION ABOVE WILL CHANGE ORDER OF CONTROLS, SEE IF THIS PLAYS ROLE IN Z-ORDERING, IF NOT KEEP AS IS, ELSE DO REMOVE/ADD ALL WITHOUT THE EXTRA OPTIMIZATION CHECKS
+
+        private void Windows_CollectionChanged(object sender, NotifyCollectionChangedEventArgs args)
+        {
+          switch (args.Action)
+          {
+            case NotifyCollectionChangedAction.Add:
+              foreach (object item in args.NewItems)
+                _Add((FloatingWindow)item);
+              break;
+
+            case NotifyCollectionChangedAction.Remove:
+              foreach (object item in args.OldItems)
+                _Remove((FloatingWindow)item);
+              break;
+          }
+        }
 
         #endregion
 
