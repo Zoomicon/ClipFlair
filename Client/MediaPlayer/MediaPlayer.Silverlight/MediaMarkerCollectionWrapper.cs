@@ -4,6 +4,7 @@
 using System;
 using System.Windows;
 using System.ComponentModel;
+using System.Collections.Specialized;
 
 using Microsoft.SilverlightMediaFramework.Core.Media;
 using Microsoft.SilverlightMediaFramework.Plugins.Primitives;
@@ -23,22 +24,67 @@ namespace Zoomicon.MediaPlayer
 
     #region --- Properties ---
 
+    #region Markers
+
     public MediaMarkerCollection<T> Markers
     {
       get { return null; }
       set
-      { //TODO: listen for collection changed events (see ObservableCollection doc) on the wrapped list and on our list and sync them (using MediaMarkerWrapper objects for each item)
-        //remove property changed handler from old media marker
+      {
+        //remove all media marker wrappers from this collection
+        Clear();
+
+        //remove collection changed handler from old media markers collection
         if (markers != null)
-          ;// ((INotifyPropertyChanged)markers).PropertyChanged -= new PropertyChangedEventHandler(Markers_PropertyChanged);
-        //set the new media marker
+          markers.CollectionChanged -= new NotifyCollectionChangedEventHandler(Markers_CollectionChanged);
+
+        //set the new markers
         markers = value;
-        //add property changed handler to new media marker
+       
+        //add collection changed handler to new media markers collection
         if (markers != null)
-          ;// ((INotifyPropertyChanged)markers).PropertyChanged += new PropertyChangedEventHandler(Markers_PropertyChanged);
+          markers.CollectionChanged += new NotifyCollectionChangedEventHandler(Markers_CollectionChanged);
+
+        //create and add media marker wrappers to this collection
+        foreach (T marker in value)
+          Add(new MediaMarkerWrapper<T>(marker));
       }
     }
-  
+
+    #endregion
+
+    #endregion
+
+    #region --- Methods
+
+    public MediaMarkerCollectionWrapper(MediaMarkerCollection<T> theMarkers)
+    {
+      Markers = theMarkers; //must set the property, not the field in order to generate wrappers and add listeners etc.
+      //TODO: we could also listen for the wrapper collection changes (or override the ancestor's protected methbods) and sync them with the markers collection (but make sure to not do spurious loop)
+    }
+
+    #endregion
+
+    #region --- Events ---
+
+    private void Markers_CollectionChanged(object sender, NotifyCollectionChangedEventArgs args)
+    {
+      switch (args.Action)
+      {
+        case NotifyCollectionChangedAction.Add:
+          foreach (T item in args.NewItems)
+            Add(new MediaMarkerWrapper<T>(item)); //TODO shouldn't we Insert at the correct position? (see args.NewStartingIndex)
+          break;
+
+        case NotifyCollectionChangedAction.Remove:
+          foreach (T item in args.OldItems)
+            foreach (MediaMarkerWrapper<T> wrapper in Items) //TODO: since the wrapper and the wrapped collections have a 1-1 relationship, could use args.OldStartingIndex instead and args.OldItems.Count to remove needed elements
+              if (wrapper.Marker == item)
+                Remove(wrapper);
+          break;
+      }
+    }
+
     #endregion
 
   }
