@@ -21,6 +21,8 @@ namespace Zoomicon.MediaPlayer
 
     #region --- Properties ---
 
+    #region Marker
+
     public T Marker
     {
       get { return marker; }
@@ -29,14 +31,18 @@ namespace Zoomicon.MediaPlayer
         //remove property changed handler from old media marker
         if (marker != null)
           ((INotifyPropertyChanged)marker).PropertyChanged -= new PropertyChangedEventHandler(Marker_PropertyChanged);
+  
         //set the new media marker
         marker = value;
+      
         //add property changed handler to new media marker
         if (marker != null)
           ((INotifyPropertyChanged)marker).PropertyChanged += new PropertyChangedEventHandler(Marker_PropertyChanged);
       }
     }
 
+    #endregion
+    
     #region Begin
 
     /// <summary>
@@ -209,6 +215,10 @@ namespace Zoomicon.MediaPlayer
     {
       Marker = theMediaMarker; //set the property here (not the field) so that it attaches property change event handler
     }
+
+    #endregion
+
+    #region --- Events ---
 
     protected void Marker_PropertyChanged(object sender, PropertyChangedEventArgs e)
     {
