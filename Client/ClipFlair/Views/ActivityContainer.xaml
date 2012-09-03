@@ -1,4 +1,9 @@
-﻿<UserControl x:Class="ClipFlair.Views.ActivityContainer" 
+﻿<!--
+Filename: ActivityContainer.xaml
+Version: 20120902
+-->
+  
+<UserControl x:Class="ClipFlair.Views.ActivityContainer" 
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d" 
@@ -6,20 +11,27 @@
     xmlns:float="clr-namespace:SilverFlow.Controls;assembly=SilverFlow.Controls"
     xmlns:zui="clr-namespace:FloatingWindowZUI;assembly=FloatingWindowZUI"
     xmlns:clipflair="clr-namespace:ClipFlair.Views"
+    xmlns:smf_captions="http://schemas.microsoft.com/smf/2010/xaml/captions" 
+    xmlns:smf_media="http://schemas.microsoft.com/smf/2010/xaml/media"             
     Name="Page">
 
-  <!--  
-    <UserControl.Resources>
-        <ResourceDictionary>
+      <UserControl.Resources>
  
-            <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="/SilverFlow.Controls;component/Themes/generic.xaml"/>
-            </ResourceDictionary.MergedDictionaries>
-            
-        </ResourceDictionary>
-    </UserControl.Resources>
-  -->
+        <!-- TEST -->
 
+        <smf_media:MarkerResource Source="ExampleCaptions.xml" x:Key="Markers"/>
+
+        <smf_captions:CaptionRegion x:Key="Captions">
+          <smf_captions:CaptionRegion.Children>
+            <smf_captions:CaptionElement Begin="0:0:0" Content="SMF is Super Awesome1" End="0:0:7"/>
+            <smf_captions:CaptionElement Begin="0:0:5" Content="SMF is Super Awesome2" End="0:0:10"/>
+            <smf_captions:CaptionElement Begin="0:0:15" Content="SMF is Super Awesome3" End="0:0:20"/>
+            <smf_captions:CaptionElement Begin="0:0:25" Content="SMF is Super Awesome4" End="0:0:30"/>
+          </smf_captions:CaptionRegion.Children>
+        </smf_captions:CaptionRegion>
+
+    </UserControl.Resources>
+  
   <Grid>
     <Grid.RowDefinitions>
       <RowDefinition Height="*"/>
@@ -30,31 +42,30 @@
 
     <zui:FloatingWindowHostZUI Name="floatHost" Grid.Row="0" Grid.Column="0" SnapinEnabled="True" ShowMinimizedOnlyInIconbar="False">
 
-      <!--
         <zui:FloatingWindowHostZUI.Bar>
             <TextBlock Text="Windows" VerticalAlignment="Center" />
         </zui:FloatingWindowHostZUI.Bar>
-      -->
-      <!--                
+
         <zui:FloatingWindowHostZUI.Background>
             <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                 <GradientStop Color="#FF00AEEF" Offset="0" />
                 <GradientStop Color="#FF89E0FF" Offset="1" />
             </LinearGradientBrush>
         </zui:FloatingWindowHostZUI.Background>
-      -->
 
       <!--<zui:FloatingWindowHostZUI.Windows>-->
       <!--<float:FloatingWindowCollection>-->
 
       <clipflair:MediaPlayerWindow 
-        Source="http://video3.smoothhd.com.edgesuite.net/ondemand/Big%20Buck%20Bunny%20Adaptive.ism/Manifest" 
+        Source="http://video3.smoothhd.com.edgesuite.net/ondemand/Big%20Buck%20Bunny%20Adaptive.ism/Manifest"
+        Markers="{Binding Source={StaticResource Captions}, Path=Children, Mode=TwoWay}"
         Position="0,0" 
         Width="600" Height="400" 
         MinWidth="100" MinHeight="100" 
         Title="Media Player" IconText="Media Player" Tag="MediaPlayer" />
    
       <clipflair:CaptionsGridWindow 
+        Markers="{Binding Source={StaticResource Captions}, Path=Children, Mode=TwoWay}"
         Position="0,450" 
         Width="600" Height="300" 
         MinWidth="100" MinHeight="100" 

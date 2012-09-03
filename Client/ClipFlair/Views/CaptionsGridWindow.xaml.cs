@@ -7,6 +7,9 @@ using System;
 using System.ComponentModel;
 using System.Windows;
 
+using Microsoft.SilverlightMediaFramework.Core.Media;
+using Microsoft.SilverlightMediaFramework.Core.Accessibility.Captions;
+
 namespace ClipFlair.Views
 {
   public partial class CaptionsGridWindow : FlipWindow
@@ -88,6 +91,47 @@ namespace ClipFlair.Views
     {
       View.Source = newSource;
       //TODO: load captions
+    }
+
+    #endregion
+
+    #region Markers
+
+    /// <summary>
+    /// Markers Dependency Property
+    /// </summary>
+    public static readonly DependencyProperty MarkersProperty =
+        DependencyProperty.Register("Markers", typeof(MediaMarkerCollection<TimedTextElement>), typeof(CaptionsGridWindow),
+            new FrameworkPropertyMetadata(null,
+                FrameworkPropertyMetadataOptions.None,
+                new PropertyChangedCallback(OnMarkersChanged)));
+
+    /// <summary>
+    /// Gets or sets the Markers property.
+    /// </summary>
+    public MediaMarkerCollection<TimedTextElement> Markers
+    {
+      get { return (MediaMarkerCollection<TimedTextElement>)GetValue(MarkersProperty); }
+      set { SetValue(MarkersProperty, value); }
+    }
+
+    /// <summary>
+    /// Handles changes to the Markers property.
+    /// </summary>
+    private static void OnMarkersChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    {
+      CaptionsGridWindow target = (CaptionsGridWindow)d;
+      MediaMarkerCollection<TimedTextElement> oldMarkers = (MediaMarkerCollection<TimedTextElement>)e.OldValue;
+      MediaMarkerCollection<TimedTextElement> newMarkers = target.Markers;
+      target.OnMarkersChanged(oldMarkers, newMarkers);
+    }
+
+    /// <summary>
+    /// Provides derived classes an opportunity to handle changes to the Markers property.
+    /// </summary>
+    protected virtual void OnMarkersChanged(MediaMarkerCollection<TimedTextElement> oldMarkers, MediaMarkerCollection<TimedTextElement> newMarkers)
+    {
+      gridCaptions.Markers = newMarkers;
     }
 
     #endregion
