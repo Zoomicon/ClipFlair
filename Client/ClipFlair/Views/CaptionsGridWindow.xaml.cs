@@ -1,5 +1,5 @@
 ﻿//Filename: CaptionsGridWindow.xaml.cs
-//Version: 20120902
+//Version: 20120903
 
 using ClipFlair.Models.Views;
 
@@ -41,15 +41,19 @@ namespace ClipFlair.Views
 
     protected void View_PropertyChanged(object sender, PropertyChangedEventArgs e)
     {
-      if (e.PropertyName == null)
+      if (e.PropertyName == null) //multiple (not specified) properties have changed, consider all as changed
       {
         Source = View.Source;
+        Time = View.Time;
         //...
       }
       else switch (e.PropertyName) //string equality check in .NET uses ordinal (binary) comparison semantics by default
         {
           case ICaptionsGridProperties.PropertySource:
             Source = View.Source;
+            break;
+          case ICaptionsGridProperties.PropertyTime:
+            Time = View.Time;
             break;
           //...
         }
@@ -91,6 +95,48 @@ namespace ClipFlair.Views
     {
       View.Source = newSource;
       //TODO: load captions
+    }
+
+    #endregion
+
+    #region Time
+
+    /// <summary>
+    /// Time Dependency Property
+    /// </summary>
+    public static readonly DependencyProperty TimeProperty =
+        DependencyProperty.Register("Time", typeof(TimeSpan), typeof(CaptionsGridWindow),
+            new FrameworkPropertyMetadata(TimeSpan.Zero,
+                FrameworkPropertyMetadataOptions.None,
+                new PropertyChangedCallback(OnTimeChanged)));
+
+    /// <summary>
+    /// Gets or sets the Time property.
+    /// </summary>
+    public TimeSpan Time
+    {
+      get { return (TimeSpan)GetValue(TimeProperty); }
+      set { SetValue(TimeProperty, value); }
+    }
+
+    /// <summary>
+    /// Handles changes to the Time property.
+    /// </summary>
+    private static void OnTimeChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    {
+      CaptionsGridWindow target = (CaptionsGridWindow)d;
+      TimeSpan oldTime = (TimeSpan)e.OldValue;
+      TimeSpan newTime = target.Time;
+      target.OnTimeChanged(oldTime, newTime);
+    }
+
+    /// <summary>
+    /// Provides derived classes an opportunity to handle changes to the Time property.
+    /// </summary>
+    protected virtual void OnTimeChanged(TimeSpan oldTime, TimeSpan newTime)
+    {
+      View.Time = newTime;
+      gridCaptions.Time = newTime;
     }
 
     #endregion

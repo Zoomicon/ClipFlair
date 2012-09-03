@@ -57,7 +57,9 @@ Version: 20120902
       <!--<float:FloatingWindowCollection>-->
 
       <clipflair:MediaPlayerWindow 
+        x:Name="Player1"
         Source="http://video3.smoothhd.com.edgesuite.net/ondemand/Big%20Buck%20Bunny%20Adaptive.ism/Manifest"
+        Time="{Binding ElementName=Captions1, Path=Time, Mode=TwoWay}"
         Markers="{Binding Source={StaticResource Captions}, Path=Children, Mode=TwoWay}"
         Position="0,0" 
         Width="600" Height="400" 
@@ -65,7 +67,9 @@ Version: 20120902
         Title="Media Player" IconText="Media Player" Tag="MediaPlayer" />
    
       <clipflair:CaptionsGridWindow 
+        x:Name="Captions1"
         Markers="{Binding Source={StaticResource Captions}, Path=Children, Mode=TwoWay}"
+        Time="{Binding ElementName=Player1, Path=Time, Mode=TwoWay}"
         Position="0,450" 
         Width="600" Height="300" 
         MinWidth="100" MinHeight="100" 
