@@ -1,6 +1,6 @@
 ﻿<!--
 Filename: CaptionsGridWindow.xaml
-Version: 20120902
+Version: 20120903
 -->
   
 <clipflair:FlipWindow x:Class="ClipFlair.Views.CaptionsGridWindow"
@@ -25,9 +25,14 @@ Version: 20120902
 
   <clipflair:FlipWindow.PropertyItems>
     
-    <StackPanel Orientation="Vertical">
+ <!--   <StackPanel Orientation="Vertical">
       <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Captions URL" Target="{Binding ElementName=edCaptionsURL}"/>
-      <TextBox Name="edCaptionsURL" Text="" HorizontalAlignment="Stretch" /> <!-- Target="{Binding CaptionsURL" -->
+      <TextBox Name="edCaptionsURL" Text="" HorizontalAlignment="Stretch" />
+    </StackPanel> -->  <!-- Target="{Binding CaptionsURL" -->
+
+    <StackPanel Orientation="Vertical">
+    <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Time:" Target="{Binding ElementName=edTime}" />
+    <TextBox Name="edTime" Text="{Binding Path=Time, Mode=TwoWay}" />
     </StackPanel>
 
     <StackPanel Orientation="Horizontal">

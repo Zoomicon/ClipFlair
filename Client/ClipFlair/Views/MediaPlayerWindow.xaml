@@ -1,6 +1,6 @@
 ﻿<!--
 Filename: MediaPlayerWindow.xaml
-Version: 20120831
+Version: 20120903
 -->
   
 <clipflair:FlipWindow x:Class="ClipFlair.Views.MediaPlayerWindow"
@@ -19,7 +19,9 @@ Version: 20120831
     >
 
   <!--<clipflair:FlipWindow.FrontContent>-->
-  <media:MediaPlayer Name="player" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+  <media:MediaPlayer Name="player" 
+                 HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+                 Time="{Binding Time, Mode=TwoWay}"
                  VolumeLevel="{Binding Volume, Mode=TwoWay}"                                          
                  ContinuousPlay="{Binding Looping, Mode=TwoWay}"
                  IsControlStripVisible="{Binding ControllerVisible, Mode=TwoWay}"
@@ -57,7 +59,12 @@ Version: 20120831
       <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Media URL:" Target="{Binding ElementName=edMediaURL}" />
       <TextBox Name="edMediaURL" Text="{Binding Path=Source, Mode=TwoWay}" />
     </StackPanel>
-
+    
+    <StackPanel Orientation="Vertical">
+      <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Time:" Target="{Binding ElementName=edTime}" />
+      <TextBox Name="edTime" Text="{Binding Path=Time, Mode=TwoWay}" />
+    </StackPanel>
+    
     <StackPanel Orientation="Horizontal">
       <CheckBox Name="cbLooping" IsChecked="{Binding Looping, Mode=TwoWay}" />
       <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Looping" Target="{Binding ElementName=cbLooping}"/>

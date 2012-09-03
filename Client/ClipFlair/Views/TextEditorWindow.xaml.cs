@@ -37,7 +37,7 @@ namespace ClipFlair.Views
 
     protected void View_PropertyChanged(object sender, PropertyChangedEventArgs e)
     {
-      if (e.PropertyName == null)
+      if (e.PropertyName == null) //multiple (not specified) properties have changed, consider all as changed
       {
         Source = View.Source;
         ToolbarVisible = View.ToolbarVisible;
