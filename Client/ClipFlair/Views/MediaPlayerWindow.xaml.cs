@@ -139,7 +139,8 @@ namespace ClipFlair.Views
     protected virtual void OnTimeChanged(TimeSpan oldTime, TimeSpan newTime)
     {
       View.Time = newTime;
-      player.Time = newTime;
+      if (player.Time != newTime) //check this for speedup and to avoid loops
+        player.Time = newTime;
     }
 
     #endregion

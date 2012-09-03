@@ -136,7 +136,8 @@ namespace ClipFlair.Views
     protected virtual void OnTimeChanged(TimeSpan oldTime, TimeSpan newTime)
     {
       View.Time = newTime;
-      gridCaptions.Time = newTime;
+      if (gridCaptions.Time != newTime) //check this for speedup and to avoid loops
+        gridCaptions.Time = newTime;
     }
 
     #endregion

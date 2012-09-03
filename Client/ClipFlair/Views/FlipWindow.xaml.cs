@@ -28,6 +28,7 @@ namespace ClipFlair.Views
 
       OptionsRequested += (s, e) =>
       {
+        ((Control)FrontContent).Focus(); //try to set focus to front content (assuming it's a Control)
         FlipPanel.IsFlipped = !FlipPanel.IsFlipped;
       };
     }
