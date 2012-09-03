@@ -1,8 +1,9 @@
 ﻿//Filename: CaptionsGrid.xaml.cs
-//Version: 20120902
+//Version: 20120903
 
-using Zoomicon.MediaPlayer;
+using Zoomicon.CaptionsGrid;
 
+using System;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -177,6 +178,47 @@ namespace Zoomicon.CaptionsGrid
 
     #endregion
 
+    #region Time
+
+    /// <summary>
+    /// Time Dependency Property
+    /// </summary>
+    public static readonly DependencyProperty TimeProperty =
+        DependencyProperty.Register("Time", typeof(TimeSpan), typeof(CaptionsGrid),
+            new FrameworkPropertyMetadata(TimeSpan.Zero,
+                FrameworkPropertyMetadataOptions.None,
+                new PropertyChangedCallback(OnTimeChanged)));
+
+    /// <summary>
+    /// Gets or sets the Time property.
+    /// </summary>
+    public TimeSpan Time
+    {
+      get { return (TimeSpan)GetValue(TimeProperty); }
+      set { SetValue(TimeProperty, value); }
+    }
+
+    /// <summary>
+    /// Handles changes to the Time property.
+    /// </summary>
+    private static void OnTimeChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    {
+      CaptionsGrid target = (CaptionsGrid)d;
+      TimeSpan oldTime = (TimeSpan)e.OldValue;
+      TimeSpan newTime = target.Time;
+      target.OnTimeChanged(oldTime, newTime);
+    }
+
+    /// <summary>
+    /// Provides derived classes an opportunity to handle changes to the Time property.
+    /// </summary>
+    protected virtual void OnTimeChanged(TimeSpan oldTime, TimeSpan newTime)
+    {
+      SeekToPosition(newTime);
+    }
+
+    #endregion
+
     #region Markers
 
     /// <summary>
@@ -217,6 +259,15 @@ namespace Zoomicon.CaptionsGrid
     }
 
     #endregion
+
+    #endregion
+
+    #region --- Methods ---
+
+    public void SeekToPosition(TimeSpan newTime)
+    {
+      //TODO: select 1st row from top where newTime is between Begin and End (Markers collection has respective utility methods). After we find the marker could get its index and select respective row or use some predicate to search for the row that binds to that marker
+    }
 
     #endregion
 
