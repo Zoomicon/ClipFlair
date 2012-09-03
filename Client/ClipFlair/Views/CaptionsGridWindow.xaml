@@ -31,8 +31,8 @@ Version: 20120903
     </StackPanel> -->  <!-- Target="{Binding CaptionsURL" -->
 
     <StackPanel Orientation="Vertical">
-    <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Time:" Target="{Binding ElementName=edTime}" />
-    <TextBox Name="edTime" Text="{Binding Path=Time, Mode=TwoWay}" />
+      <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Time:" Target="{Binding ElementName=edTime}" />
+      <TextBox Name="edTime" Text="{Binding Path=Time, Mode=TwoWay}" /> 
     </StackPanel>
 
     <StackPanel Orientation="Horizontal">
