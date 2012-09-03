@@ -46,11 +46,29 @@ namespace Zoomicon.MediaPlayer
 
     protected virtual void AddEventHandlers()
     {
+      //listen for changed to PlaybackPosition and sync with Time
+      PlaybackPositionChanged += new EventHandler<CustomEventArgs<TimeSpan>>(Player_PlaybackPositionChanged);
+ 
       //listen for changes to CaptionsVisibility and sync with IsCaptionsVisible
-      CaptionsVisibilityChanged += (s, e) =>
-      {
-        IsCaptionsVisible = (CaptionsVisibility == FeatureVisibility.Visible) ? true : false;
-      };
+       CaptionsVisibilityChanged += new EventHandler(Player_CaptionsVisibilityChanged);
+    }
+
+    protected virtual void RemoveEventHandlers()
+    {
+      PlaybackPositionChanged -= new EventHandler<CustomEventArgs<TimeSpan>>(Player_PlaybackPositionChanged);
+      CaptionsVisibilityChanged -= new EventHandler(Player_CaptionsVisibilityChanged);
+    }
+
+    protected void Player_PlaybackPositionChanged(object sender, CustomEventArgs<TimeSpan> args)
+    {
+      TimeSpan newTime = (TimeSpan)args.Value;
+      if (Time != newTime) //check this for speedup and to avoid loops
+        Time = newTime;
+    }
+
+    protected void Player_CaptionsVisibilityChanged(object sender, EventArgs args) //EventArgs.Empty is passed here by SMF (could have been passing the new value of the CaptionsVisibility)
+    {
+      IsCaptionsVisible = (CaptionsVisibility == FeatureVisibility.Visible) ? true : false;
     }
 
     #region --- Properties ---
@@ -147,8 +165,9 @@ namespace Zoomicon.MediaPlayer
     /// </summary>
     protected virtual void OnTimeChanged(TimeSpan oldTime, TimeSpan newTime)
     {
-      SeekToPosition(newTime);
-    }
+      if (newTime != null && base.PlaybackPosition != newTime) //check against PlayBackPosition, not oldTime to avoid loops
+        this.SeekToPosition(newTime);    
+    } 
 
     #endregion
 
