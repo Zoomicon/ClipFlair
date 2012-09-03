@@ -27,6 +27,8 @@ namespace Zoomicon.CaptionsGrid
       InitializeComponent();
     }
 
+    #region --- Properties ---
+
     #region IsCaptionStartTimeVisible
 
     /// <summary>
@@ -59,7 +61,7 @@ namespace Zoomicon.CaptionsGrid
     /// </summary>
     protected virtual void OnIsCaptionStartTimeVisibleChanged(bool oldValue, bool newValue)
     {
-      gridCaptions.Columns[ColIndexStartTime].Visibility = (newValue)? Visibility.Visible : Visibility.Collapsed;
+      gridCaptions.Columns[ColIndexStartTime].Visibility = (newValue) ? Visibility.Visible : Visibility.Collapsed;
     }
 
     #endregion
@@ -96,7 +98,7 @@ namespace Zoomicon.CaptionsGrid
     /// </summary>
     protected virtual void OnIsCaptionEndTimeVisibleChanged(bool oldValue, bool newValue)
     {
-      gridCaptions.Columns[ColIndexEndTime].Visibility = (newValue)? Visibility.Visible : Visibility.Collapsed;
+      gridCaptions.Columns[ColIndexEndTime].Visibility = (newValue) ? Visibility.Visible : Visibility.Collapsed;
     }
 
     #endregion
@@ -133,7 +135,7 @@ namespace Zoomicon.CaptionsGrid
     /// </summary>
     protected virtual void OnIsCaptionDurationVisibleChanged(bool oldValue, bool newValue)
     {
-      gridCaptions.Columns[ColIndexDuration].Visibility = (newValue)? Visibility.Visible : Visibility.Collapsed;
+      gridCaptions.Columns[ColIndexDuration].Visibility = (newValue) ? Visibility.Visible : Visibility.Collapsed;
     }
 
     #endregion
@@ -170,10 +172,10 @@ namespace Zoomicon.CaptionsGrid
     /// </summary>
     protected virtual void OnIsCaptionContentVisibleChanged(bool oldValue, bool newValue)
     {
-      gridCaptions.Columns[ColIndexContent].Visibility = (newValue)? Visibility.Visible : Visibility.Collapsed;
+      gridCaptions.Columns[ColIndexContent].Visibility = (newValue) ? Visibility.Visible : Visibility.Collapsed;
     }
 
-    #endregion  
+    #endregion
 
     #region Markers
 
@@ -211,17 +213,13 @@ namespace Zoomicon.CaptionsGrid
     /// </summary>
     protected virtual void OnMarkersChanged(MediaMarkerCollection<TimedTextElement> oldMarkers, MediaMarkerCollection<TimedTextElement> newMarkers)
     {
-      DataContext = new MediaMarkerCollectionWrapper<TimedTextElement>(newMarkers);
+      DataContext = /*new MediaMarkerCollectionWrapper<TimedTextElement>*/(newMarkers);
     }
 
     #endregion
 
-    
+    #endregion
 
-    private void UserControl_Loaded(object sender, RoutedEventArgs e)
-    {
-
-    }
   }
 
 }

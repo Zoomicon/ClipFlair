@@ -1,5 +1,5 @@
 ﻿<!-- 
-Version: 20120714 
+Version: 20120902
 -->
 
 <ResourceDictionary
@@ -13,7 +13,8 @@ Version: 20120714
   </DataTemplate>
 
   <DataTemplate x:Key="StartTimeCellEditTemplate">
-    <input:TimeUpDown Format="hh:mm:ss" Value="{Binding Begin, Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=true}" />
+    <TextBox Margin="4" Text="{Binding Begin, Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=true}" />
+    <!--<input:TimeUpDown Format="hh:mm:ss" Value="{Binding Begin, Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=true}" />-->
   </DataTemplate>
 
   <DataTemplate x:Key="EndTimeCellTemplate">
@@ -21,7 +22,8 @@ Version: 20120714
   </DataTemplate>
 
   <DataTemplate x:Key="EndTimeCellEditTemplate">
-    <input:TimeUpDown Format="hh:mm:ss" Minimum="{Binding Begin}"  Value="{Binding End, Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=true}" />
+    <TextBox Margin="4" Text="{Binding End, Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=true}" />
+    <!--<input:TimeUpDown Format="hh:mm:ss" Minimum="{Binding Begin}"  Value="{Binding End, Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=true}" />-->
   </DataTemplate>
 
   <DataTemplate x:Key="DurationCellTemplate">
@@ -29,7 +31,8 @@ Version: 20120714
   </DataTemplate>
 
   <DataTemplate x:Key="DurationCellEditTemplate">
-    <input:TimeUpDown Format="hh:mm:ss" Value="{Binding Duration, Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=true}" />
+    <TextBox Margin="4" Text="{Binding Duration, Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=true}" />
+    <!--<input:TimeUpDown Format="hh:mm:ss" Value="{Binding Duration, Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=true}" />-->
   </DataTemplate>
 
   <DataTemplate x:Key="ContentCellTemplate">
