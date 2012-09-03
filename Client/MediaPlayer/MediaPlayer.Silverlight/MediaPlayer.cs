@@ -1,14 +1,17 @@
 ﻿//Filename: MediaPlayer.cs
-//Version: 20120902
+//Version: 20120903
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows;
 using System.Windows.Media;
 
 using Microsoft.SilverlightMediaFramework;
 using Microsoft.SilverlightMediaFramework.Core;
 using Microsoft.SilverlightMediaFramework.Core.Media;
+using Microsoft.SilverlightMediaFramework.Core.Accessibility.Captions;
+using Microsoft.SilverlightMediaFramework.Plugins.Primitives;
 
 namespace Zoomicon.MediaPlayer
 {
@@ -35,6 +38,12 @@ namespace Zoomicon.MediaPlayer
       OnIsReplayButtonVisibleChanged(!IsReplayButtonVisible, IsReplayButtonVisible);
     }
 
+    protected override void OnMediaOpened()
+    {
+      base.OnMediaOpened();
+      UpdateMarkers(Markers);
+    }
+
     protected virtual void AddEventHandlers()
     {
       //listen for changes to CaptionsVisibility and sync with IsCaptionsVisible
@@ -43,6 +52,8 @@ namespace Zoomicon.MediaPlayer
         IsCaptionsVisible = (CaptionsVisibility == FeatureVisibility.Visible) ? true : false;
       };
     }
+
+    #region --- Properties ---
 
     #region Source
 
@@ -85,11 +96,13 @@ namespace Zoomicon.MediaPlayer
       playlistItem.MediaSource = newSource;
       playlistItem.DeliveryMethod = Microsoft.SilverlightMediaFramework.Plugins.Primitives.DeliveryMethods.AdaptiveStreaming; //TODO: need to set that: could decide based on the URL format (e.g. if ends at .ism/Manifest is adaptive streaming)
 
+ /*
       List<MarkerResource> markerResources = new List<MarkerResource>();
       MarkerResource markerResource = new MarkerResource();
       markerResource.Source = new Uri("ExampleCaptions.xml", UriKind.Relative); //TODO: change
       markerResources.Add(markerResource);
       playlistItem.MarkerResources = markerResources;
+*/
 
       //player.Playlist.Clear(); //skip this to allow going back to previous items from playlist
       Playlist.Add(playlistItem);
@@ -265,6 +278,79 @@ namespace Zoomicon.MediaPlayer
 
     #endregion
 
-  }
+    #region Markers
 
+    /// <summary>
+    /// Markers Dependency Property
+    /// </summary>
+    public static readonly DependencyProperty MarkersProperty =
+        DependencyProperty.Register("Markers", typeof(MediaMarkerCollection<TimedTextElement>), typeof(MediaPlayer),
+            new FrameworkPropertyMetadata(null,
+                FrameworkPropertyMetadataOptions.None,
+                new PropertyChangedCallback(OnMarkersChanged)));
+
+    /// <summary>
+    /// Gets or sets the Markers property.
+    /// </summary>
+    public MediaMarkerCollection<TimedTextElement> Markers
+    {
+      get { return (MediaMarkerCollection<TimedTextElement>)GetValue(MarkersProperty); }
+      set { SetValue(MarkersProperty, value); }
+    }
+
+    /// <summary>
+    /// Handles changes to the Markers property.
+    /// </summary>
+    private static void OnMarkersChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    {
+      MediaPlayer target = (MediaPlayer)d;
+      MediaMarkerCollection<TimedTextElement> oldMarkers = (MediaMarkerCollection<TimedTextElement>)e.OldValue;
+      MediaMarkerCollection<TimedTextElement> newMarkers = target.Markers;
+      target.OnMarkersChanged(oldMarkers, newMarkers);
+    }
+
+    /// <summary>
+    /// Provides derived classes an opportunity to handle changes to the Markers property.
+    /// </summary>
+    protected virtual void OnMarkersChanged(MediaMarkerCollection<TimedTextElement> oldMarkers, MediaMarkerCollection<TimedTextElement> newMarkers)
+    {
+      //NOP (setting up the markers at Media_Opened
+    }
+
+    #endregion
+    
+    #endregion
+
+    #region --- Methods ---
+
+    public void UpdateMarkers(MediaMarkerCollection<TimedTextElement> newMarkers)
+    {
+      if (newMarkers == null) return;
+
+      CaptionRegion  region = new CaptionRegion();
+      region.Style.ShowBackground = ShowBackground.WhenActive; //doesn't seem to work if other than transparent color is used
+      region.Style.BackgroundColor = Colors.Transparent;
+   
+      foreach (CaptionElement marker in newMarkers)
+      {
+        region.Children.Add(marker);
+        marker.CaptionElementType = TimedTextElementType.Text;
+        marker.Style.ShowBackground = ShowBackground.WhenActive;
+        marker.Style.BackgroundColor = Color.FromArgb(100, 0, 0, 0); //use a semi-transparent background
+        marker.Style.Color = Colors.White;
+        //marker.Style.TextAlign = TextAlignment.Center;
+        Length length = new Length
+        {
+          Unit = LengthUnit.Pixel, //must use this, since the default LengthUnit.Cell used at TimedTextStyle constructor is not supported
+          Value = 20
+        };
+        marker.Style.FontSize = length;
+      }
+
+      Captions.Add(region);
+   }
+
+    #endregion
+  }
+  
 }
