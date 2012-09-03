@@ -222,7 +222,7 @@ namespace Zoomicon.MediaPlayer
 
     protected void Marker_PropertyChanged(object sender, PropertyChangedEventArgs e)
     {
-      if (e.PropertyName == null)
+      if (e.PropertyName == null) //multiple (not specified) properties have changed, consider all as changed
       {
         Begin = marker.Begin;
         End = marker.End;

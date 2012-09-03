@@ -111,6 +111,47 @@ namespace Zoomicon.MediaPlayer
 
     #endregion
 
+    #region Time
+
+    /// <summary>
+    /// Time Dependency Property
+    /// </summary>
+    public static readonly DependencyProperty TimeProperty =
+        DependencyProperty.Register("Time", typeof(TimeSpan), typeof(MediaPlayer),
+            new FrameworkPropertyMetadata(TimeSpan.Zero,
+                FrameworkPropertyMetadataOptions.None,
+                new PropertyChangedCallback(OnTimeChanged)));
+
+    /// <summary>
+    /// Gets or sets the Time property.
+    /// </summary>
+    public TimeSpan Time
+    {
+      get { return (TimeSpan)GetValue(TimeProperty); }
+      set { SetValue(TimeProperty, value); }
+    }
+
+    /// <summary>
+    /// Handles changes to the Time property.
+    /// </summary>
+    private static void OnTimeChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    {
+      MediaPlayer target = (MediaPlayer)d;
+      TimeSpan oldTime = (TimeSpan)e.OldValue;
+      TimeSpan newTime = target.Time;
+      target.OnTimeChanged(oldTime, newTime);
+    }
+
+    /// <summary>
+    /// Provides derived classes an opportunity to handle changes to the Time property.
+    /// </summary>
+    protected virtual void OnTimeChanged(TimeSpan oldTime, TimeSpan newTime)
+    {
+      SeekToPosition(newTime);
+    }
+
+    #endregion
+
     #region IsCaptionsVisible
 
     /// <summary>
