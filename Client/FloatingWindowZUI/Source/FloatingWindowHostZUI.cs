@@ -1,16 +1,17 @@
 ﻿//Filename: FloatingWindowHostZUI.cs
-//Version: 20120823
+//Version: 20120904
+
+using SilverFlow.Controls;
+using SilverFlow.Controls.Extensions;
+using ZoomAndPan;
+using WPFCompatibility;
 
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 
 using System.Collections.Specialized;
-
-using SilverFlow.Controls;
-using SilverFlow.Controls.Extensions;
-using ZoomAndPan;
-using WPFCompatibility;
+using System.Windows.Markup;
 
 namespace FloatingWindowZUI
 {
@@ -18,7 +19,23 @@ namespace FloatingWindowZUI
   /// <summary>
   /// A zoom & pan content control containing floating windows.
   /// </summary>
-  [TemplatePart(Name = PART_ZoomHost, Type = typeof(ZoomAndPanControl))]
+  [TemplatePart(Name = PART_ZoomHost, Type = typeof(ZoomAndPanControl))] //the ZoomAndPan control
+  [TemplatePart(Name = PART_Root, Type = typeof(Grid))]
+  [TemplatePart(Name = PART_ContentRoot, Type = typeof(FrameworkElement))]
+  [TemplatePart(Name = PART_HostCanvas, Type = typeof(Canvas))]
+  [TemplatePart(Name = PART_ModalCanvas, Type = typeof(Canvas))]
+  [TemplatePart(Name = PART_IconBarContainer, Type = typeof(FrameworkElement))]
+  [TemplatePart(Name = PART_Overlay, Type = typeof(Grid))]
+  [TemplatePart(Name = PART_IconBar, Type = typeof(IconBar))]
+  [TemplatePart(Name = PART_BottomBar, Type = typeof(FrameworkElement))]
+  [TemplatePart(Name = PART_BootstrapButton, Type = typeof(BootstrapButton))]
+  [TemplatePart(Name = PART_BarContent, Type = typeof(ContentControl))]
+  [TemplateVisualState(Name = VSMSTATE_VisibleOverlay, GroupName = VSMGROUP_Overlay)]
+  [TemplateVisualState(Name = VSMSTATE_HiddenOverlay, GroupName = VSMGROUP_Overlay)]
+  [StyleTypedProperty(Property = PROPERTY_BottomBarStyle, StyleTargetType = typeof(Border))]
+  [StyleTypedProperty(Property = PROPERTY_BootstrapButtonStyle, StyleTargetType = typeof(BootstrapButton))]
+  [StyleTypedProperty(Property = PROPERTY_WindowIconStyle, StyleTargetType = typeof(WindowIcon))]
+  [ContentProperty("Windows")]
   public class FloatingWindowHostZUI : FloatingWindowHost
   {
 
