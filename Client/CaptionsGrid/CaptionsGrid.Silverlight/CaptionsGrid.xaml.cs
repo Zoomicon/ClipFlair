@@ -16,16 +16,21 @@ namespace Zoomicon.CaptionsGrid
   {
     #region Constants
 
-    public const int ColIndexStartTime = 0;
-    public const int ColIndexEndTime = 1;
-    public const int ColIndexDuration = 2;
-    public const int ColIndexContent = 3;
+    //not using column indices as constants, using column references instead to allow for column reordering
+    public DataGridColumn ColumnStartTime { get; private set; }
+    public DataGridColumn ColumnEndTime { get; private set; }
+    public DataGridColumn ColumnDuration { get; private set; }
+    public DataGridColumn ColumnContent { get; private set; }
 
     #endregion
 
     public CaptionsGrid()
     {
       InitializeComponent();
+      ColumnStartTime = gridCaptions.Columns[0];
+      ColumnEndTime = gridCaptions.Columns[1];
+      ColumnDuration = gridCaptions.Columns[2];
+      ColumnContent = gridCaptions.Columns[3];
     }
 
     #region --- Properties ---
@@ -62,7 +67,7 @@ namespace Zoomicon.CaptionsGrid
     /// </summary>
     protected virtual void OnIsCaptionStartTimeVisibleChanged(bool oldValue, bool newValue)
     {
-      gridCaptions.Columns[ColIndexStartTime].Visibility = (newValue) ? Visibility.Visible : Visibility.Collapsed;
+      ColumnStartTime.Visibility = (newValue) ? Visibility.Visible : Visibility.Collapsed;
     }
 
     #endregion
@@ -99,7 +104,7 @@ namespace Zoomicon.CaptionsGrid
     /// </summary>
     protected virtual void OnIsCaptionEndTimeVisibleChanged(bool oldValue, bool newValue)
     {
-      gridCaptions.Columns[ColIndexEndTime].Visibility = (newValue) ? Visibility.Visible : Visibility.Collapsed;
+      ColumnEndTime.Visibility = (newValue) ? Visibility.Visible : Visibility.Collapsed;
     }
 
     #endregion
@@ -136,7 +141,7 @@ namespace Zoomicon.CaptionsGrid
     /// </summary>
     protected virtual void OnIsCaptionDurationVisibleChanged(bool oldValue, bool newValue)
     {
-      gridCaptions.Columns[ColIndexDuration].Visibility = (newValue) ? Visibility.Visible : Visibility.Collapsed;
+      ColumnDuration.Visibility = (newValue) ? Visibility.Visible : Visibility.Collapsed;
     }
 
     #endregion
@@ -173,7 +178,7 @@ namespace Zoomicon.CaptionsGrid
     /// </summary>
     protected virtual void OnIsCaptionContentVisibleChanged(bool oldValue, bool newValue)
     {
-      gridCaptions.Columns[ColIndexContent].Visibility = (newValue) ? Visibility.Visible : Visibility.Collapsed;
+      ColumnContent.Visibility = (newValue) ? Visibility.Visible : Visibility.Collapsed;
     }
 
     #endregion
@@ -255,7 +260,7 @@ namespace Zoomicon.CaptionsGrid
     /// </summary>
     protected virtual void OnMarkersChanged(MediaMarkerCollection<TimedTextElement> oldMarkers, MediaMarkerCollection<TimedTextElement> newMarkers)
     {
-      DataContext = /*new MediaMarkerCollectionWrapper<TimedTextElement>*/(newMarkers);
+      gridCaptions.DataContext = /*new MediaMarkerCollectionWrapper<TimedTextElement>*/(newMarkers); //don't changed the UserControl's DataContext, else data binding won't work in the parent
     }
 
     #endregion
