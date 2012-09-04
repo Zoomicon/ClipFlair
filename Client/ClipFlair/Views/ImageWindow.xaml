@@ -13,11 +13,11 @@ Version: 20120904
     >
 
   <!--<clipflair:FlipWindow.FrontContent>-->
-  <Image Name="imgContent" 
-         Source="{Binding Source, Mode=TwoWay}" 
+  <Image Name="imgContent"
          Stretch="Uniform"
-         HorizontalAlignment="Center"
-         VerticalAlignment="Center" />
+         HorizontalAlignment="Stretch"
+         VerticalAlignment="Stretch" />
+  <!-- Source="{Binding Source, Mode=TwoWay}" -->
   <!--</clipflair:FlipWindow.FrontContent>-->
 
   <clipflair:FlipWindow.PropertyItems>

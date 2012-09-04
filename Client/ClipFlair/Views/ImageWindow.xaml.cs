@@ -1,5 +1,5 @@
 ﻿//Filename: ImageWindow.xaml.cs
-//Version: 20120902
+//Version: 20120904
 
 using ClipFlair.Models.Views;
 
@@ -86,6 +86,7 @@ namespace ClipFlair.Views
         protected virtual void OnSourceChanged(Uri oldSource, Uri newSource)
         {
           View.Source = newSource;
+          imgContent.Source = new BitmapImage(Source); //TODO: this shouldn't be needed if binding works OK
         }
 
         #endregion

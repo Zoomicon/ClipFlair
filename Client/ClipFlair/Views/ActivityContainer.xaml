@@ -76,7 +76,7 @@ Version: 20120903
       <clipflair:ImageWindow 
         Source="http://clipflair.net/wp-content/themes/clipflair-theme/images/clipflair-logo.jpg" 
         Position="620,0" 
-        Width="Auto" Height="Auto" 
+        Width="200" Height="100" 
         MinWidth="100" MinHeight="100" 
         Title="Image" IconText="Image" Tag="Image"
         />
