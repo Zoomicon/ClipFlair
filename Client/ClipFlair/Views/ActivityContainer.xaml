@@ -40,7 +40,7 @@ Version: 20120903
       <ColumnDefinition Width="*"/>
     </Grid.ColumnDefinitions>
 
-    <zui:FloatingWindowHostZUI Name="floatHost" Grid.Row="0" Grid.Column="0" SnapinEnabled="True" ShowMinimizedOnlyInIconbar="False">
+    <zui:FloatingWindowHostZUI Name="zuiContainer" Grid.Row="0" Grid.Column="0" SnapinEnabled="True" ShowMinimizedOnlyInIconbar="False">
 
         <zui:FloatingWindowHostZUI.Bar>
             <TextBlock Text="Windows" VerticalAlignment="Center" />
@@ -56,10 +56,8 @@ Version: 20120903
       <!--<zui:FloatingWindowHostZUI.Windows>-->
       <!--<float:FloatingWindowCollection>-->
 
-      <clipflair:MediaPlayerWindow 
-        x:Name="Player1"
+      <clipflair:MediaPlayerWindow
         Source="http://video3.smoothhd.com.edgesuite.net/ondemand/Big%20Buck%20Bunny%20Adaptive.ism/Manifest"
-        Time="{Binding Time, Mode=TwoWay}"
         Markers="{Binding Source={StaticResource Captions}, Path=Children, Mode=TwoWay}"
         Position="0,0" 
         Width="600" Height="400" 
@@ -68,8 +66,6 @@ Version: 20120903
         />
 
       <clipflair:CaptionsGridWindow 
-        x:Name="Captions1"
-        Time="{Binding Time, Mode=TwoWay}"
         Markers="{Binding Source={StaticResource Captions}, Path=Children, Mode=TwoWay}"
         Position="0,450" 
         Width="600" Height="300" 

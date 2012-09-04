@@ -1,5 +1,5 @@
 ﻿//Filename: IMediaPlayer.cs
-//Version: 20120831
+//Version: 20120904
 
 using System;
 
@@ -41,7 +41,6 @@ namespace ClipFlair.Models.Views
     void Play();
     void Pause();
     void Stop(); //also resets time to 0
-    //...
   }
 
 }

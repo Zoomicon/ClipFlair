@@ -8,14 +8,14 @@
     >
 
   <!--<clipflair:FlipWindow.FrontContent>-->
-  <Image Name="imgContent" Source="{Binding Path=Source}" HorizontalAlignment="Stretch" />
+  <Image Name="imgContent" Source="{Binding Source, Mode=TwoWay}" HorizontalAlignment="Stretch" />
   <!--</clipflair:FlipWindow.FrontContent>-->
 
   <clipflair:FlipWindow.PropertyItems>
 
     <StackPanel Orientation="Vertical">
       <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Image URL" Target="{Binding ElementName=edImageURL}"/>
-      <TextBox Name="edImageURL" Text="{Binding Path=Source, Mode=TwoWay}" HorizontalAlignment="Stretch" />
+      <TextBox Name="edImageURL" Text="{Binding Source, Mode=TwoWay}" HorizontalAlignment="Stretch" />
     </StackPanel>
 
   </clipflair:FlipWindow.PropertyItems>
