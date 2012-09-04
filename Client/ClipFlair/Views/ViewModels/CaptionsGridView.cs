@@ -1,5 +1,5 @@
 ﻿//Filename: CaptionsGridView.cs
-//Version: 20120831
+//Version: 20120904
 
 using ClipFlair.Models.Views;
 
@@ -41,6 +41,7 @@ namespace ClipFlair.Views
         }
       }
     }
+
     public TimeSpan Time
     {
       get { return time; }

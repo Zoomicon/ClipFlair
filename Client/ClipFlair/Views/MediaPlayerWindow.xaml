@@ -1,6 +1,6 @@
 ﻿<!--
 Filename: MediaPlayerWindow.xaml
-Version: 20120903
+Version: 20120904
 -->
   
 <clipflair:FlipWindow x:Class="ClipFlair.Views.MediaPlayerWindow"
@@ -31,25 +31,6 @@ Version: 20120903
                  IsFullScreenButtonVisible="False" AllowDoubleClickToggle="False"
                 >
                 <!-- Margin="0" d:LayoutOverrides="Width, Height" -->
- <!--
-    <smf:SMFPlayer.Playlist >
-      <smf_media:PlaylistItem DeliveryMethod="AdaptiveStreaming" MediaSource="http://video3.smoothhd.com.edgesuite.net/ondemand/Big%20Buck%20Bunny%20Adaptive.ism/Manifest">
-
-        <smf_media:PlaylistItem.MarkerResources>
-          <smf_media:MarkerResource Source="ExampleCaptions.xml"/>
-        </smf_media:PlaylistItem.MarkerResources>
- 
-        <smf_media:PlaylistItem.Captions>
-          <smf_captions:CaptionRegion>
-            <smf_captions:CaptionRegion.Children>
-              <smf_captions:CaptionElement Begin="0:0:5" Content="SMF is Super Awesome" End="0:0:10"/>
-            </smf_captions:CaptionRegion.Children>
-          </smf_captions:CaptionRegion>
-        </smf_media:PlaylistItem.Captions>
- 
-      </smf_media:PlaylistItem>
-    </smf:SMFPlayer.Playlist>
- -->
   </media:MediaPlayer>
   <!--</clipflair:FlipWindow.FrontContent>-->
 
@@ -57,12 +38,12 @@ Version: 20120903
 
     <StackPanel Orientation="Vertical">
       <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Media URL:" Target="{Binding ElementName=edMediaURL}" />
-      <TextBox Name="edMediaURL" Text="{Binding Path=Source, Mode=TwoWay}" />
+      <TextBox Name="edMediaURL" Text="{Binding Source, Mode=TwoWay}" />
     </StackPanel>
     
     <StackPanel Orientation="Vertical">
       <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Time:" Target="{Binding ElementName=edTime}" />
-      <TextBox Name="edTime" Text="{Binding Path=Time, Mode=TwoWay}" />
+      <TextBox Name="edTime" Text="{Binding Time, Mode=TwoWay}" />
     </StackPanel>
     
     <StackPanel Orientation="Horizontal">

@@ -1,9 +1,7 @@
 ﻿//Filename: MediaPlayerWindow.xaml.cs
-//Version: 20120903
+//Version: 20120904
 
 using ClipFlair.Models.Views;
-
-using Extensions;
 
 using System;
 using System.Windows;

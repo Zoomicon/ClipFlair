@@ -1,5 +1,5 @@
 ﻿//Filename: CaptionsGridWindow.xaml.cs
-//Version: 20120903
+//Version: 20120904
 
 using ClipFlair.Models.Views;
 
@@ -20,6 +20,8 @@ namespace ClipFlair.Views
       View = new CaptionsGridView(); //must set the view first
       InitializeComponent();
     }
+
+    #region --- Properties ---
 
     #region View
 
@@ -180,6 +182,8 @@ namespace ClipFlair.Views
     {
       gridCaptions.Markers = newMarkers;
     }
+
+    #endregion
 
     #endregion
 
