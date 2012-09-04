@@ -1,5 +1,5 @@
 ﻿//Filename: FlipWindow.xaml.cs
-//Version: 20120830
+//Version: 20120904
 
 using SilverFlow.Controls;
 
@@ -28,7 +28,9 @@ namespace ClipFlair.Views
 
       OptionsRequested += (s, e) =>
       {
-        ((Control)FrontContent).Focus(); //try to set focus to front content (assuming it's a Control)
+        Control frontContent = FrontContent as Control; //will return null if not a Control
+        if (frontContent != null) //only Control and its descendents have "Focus()" method
+          frontContent.Focus(); //try to set focus to front content
         FlipPanel.IsFlipped = !FlipPanel.IsFlipped;
       };
     }

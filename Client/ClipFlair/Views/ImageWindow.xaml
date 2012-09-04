@@ -1,4 +1,9 @@
-﻿<clipflair:FlipWindow x:Class="ClipFlair.Views.ImageWindow"
+﻿<!--
+Filename: ImageWindow.xaml
+Version: 20120904
+-->
+
+<clipflair:FlipWindow x:Class="ClipFlair.Views.ImageWindow"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008" d:DesignWidth="907" d:DesignHeight="587"
@@ -8,7 +13,11 @@
     >
 
   <!--<clipflair:FlipWindow.FrontContent>-->
-  <Image Name="imgContent" Source="{Binding Source, Mode=TwoWay}" HorizontalAlignment="Stretch" />
+  <Image Name="imgContent" 
+         Source="{Binding Source, Mode=TwoWay}" 
+         Stretch="Uniform"
+         HorizontalAlignment="Center"
+         VerticalAlignment="Center" />
   <!--</clipflair:FlipWindow.FrontContent>-->
 
   <clipflair:FlipWindow.PropertyItems>
