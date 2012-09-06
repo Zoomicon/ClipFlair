@@ -394,22 +394,27 @@ namespace Zoomicon.MediaPlayer
       foreach (CaptionElement marker in newMarkers)
       {
         region.Children.Add(marker);
-        marker.CaptionElementType = TimedTextElementType.Text;
-        marker.Style.ShowBackground = ShowBackground.WhenActive;
-        marker.Style.BackgroundColor = Color.FromArgb(100, 0, 0, 0); //use a semi-transparent background
-        marker.Style.Color = Colors.White;
-        //marker.Style.TextAlign = TextAlignment.Center;
-        Length length = new Length
-        {
-          Unit = LengthUnit.Pixel, //must use this, since the default LengthUnit.Cell used at TimedTextStyle constructor is not supported
-          Value = 20
-        };
-        marker.Style.FontSize = length;
+        StyleMarker(marker);
       }
 
       Captions.Add(region);
-   }
+    }
 
+    public static void StyleMarker(TimedTextElement marker)
+    {
+      marker.CaptionElementType = TimedTextElementType.Text;
+      marker.Style.ShowBackground = ShowBackground.WhenActive;
+      marker.Style.BackgroundColor = Color.FromArgb(100, 0, 0, 0); //use a semi-transparent background
+      marker.Style.Color = Colors.White;
+      //marker.Style.TextAlign = TextAlignment.Center;
+      Length length = new Length
+      {
+        Unit = LengthUnit.Pixel, //must use this, since the default LengthUnit.Cell used at TimedTextStyle constructor is not supported
+        Value = 20
+      };
+      marker.Style.FontSize = length;
+    }
+  
     #endregion
   }
   
