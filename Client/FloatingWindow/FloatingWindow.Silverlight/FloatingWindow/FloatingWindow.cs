@@ -1,5 +1,5 @@
 //Filename: FloatingWindow.cs
-//Version: 20120830
+//Version: 20120906
 
 using System;
 using System.Collections.ObjectModel;
@@ -1405,7 +1405,7 @@ namespace SilverFlow.Controls
         /// </summary>
         public void Activate()
         {
-            SetTopmost();
+            SetTopmost(); //TODO: why does the comment say it tries to set focus to it? maybe Focus() needs to be called here? (see WPF implementation too)
         }
 
         /// <summary>
@@ -1914,7 +1914,7 @@ namespace SilverFlow.Controls
             Control elementWithFocus = FocusManager.GetFocusedElement() as Control;
 
             // Brings current window to the front
-            SetTopmost();
+            SetTopmost(); //TODO: add property AutoBringToFront (default true) to select whether we want it to be brought to front automatically
 
             if (elementWithFocus != null)
             {
@@ -2311,7 +2311,7 @@ namespace SilverFlow.Controls
         {
             base.OnMouseLeftButtonDown(e);
             
-            e.Handled = true; //!!! always handle events so that container doesn't get confused
+            e.Handled = true; //!!! always handle events so that container doesn't get confused //TODO: check this again if correct
 
             windowAction = WindowAction.None;
 
@@ -2357,7 +2357,7 @@ namespace SilverFlow.Controls
         {
             base.OnMouseLeftButtonUp(e);
 
-            e.Handled = true; //!!! always handle events so that container doesn't get confused
+            e.Handled = true; //!!! always handle events so that container doesn't get confused //TODO: check this again if correct
 
             if (windowAction == WindowAction.Move)
             {

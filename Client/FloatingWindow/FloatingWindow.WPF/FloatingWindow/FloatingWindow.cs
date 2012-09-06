@@ -1601,8 +1601,8 @@ namespace SilverFlow.Controls
         /// <param name="e">The <see cref="System.Windows.Input.MouseButtonEventArgs"/> instance containing the event data.</param>
         private void FloatingWindow_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            SetTopmost();
-
+            SetTopmost(); //TODO: add property AutoBringToFront (default true) to select whether we want it to be brought to front automatically
+ 
             // Stop any inertial motion
             StopInertialMotion();
         }
