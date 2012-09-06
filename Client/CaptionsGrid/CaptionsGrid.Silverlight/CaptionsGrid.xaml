@@ -1,6 +1,6 @@
 ﻿<!--
 Filename: CaptionsGrid.xaml
-Version: 20120902
+Version: 20120906
 -->
   
   <UserControl x:Class="Zoomicon.CaptionsGrid.CaptionsGrid"
@@ -25,7 +25,18 @@ Version: 20120902
       <RowDefinition Height="*" />
     </Grid.RowDefinitions>
     
-    <TextBlock Grid.Row="0">[+][-]</TextBlock> <!-- TODO: Add DataGrid toolbar here -->
+    <StackPanel Grid.Row="0"
+                Orientation="Horizontal">
+      <StackPanel.Resources>
+        <Style TargetType="Button">
+          <Setter Property="Margin" Value="5,1,5,1" />
+        </Style>
+      </StackPanel.Resources>
+      <Button Name="btnAdd" Content=" + " Click="btnAdd_Click" FontWeight="ExtraBold" />
+      <Button Name="btnRemove" Content=" - " Click="btnRemove_Click" FontWeight="ExtraBold" />
+<!--      <Button Name="btnLoad" Content="Load" Click="btnLoad_Click" />
+      <Button Name="btnSave" Content="Save" Click="btnSave_Click" /> -->
+    </StackPanel>
     
     <sdk:DataGrid Name="gridCaptions"
                   Grid.Row="1" 
