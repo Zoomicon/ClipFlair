@@ -1,5 +1,5 @@
 ﻿//Filename: CaptionsGrid.xaml.cs
-//Version: 20120903
+//Version: 20120906
 
 using Zoomicon.CaptionsGrid;
 
@@ -16,6 +16,8 @@ namespace Zoomicon.CaptionsGrid
   {
     #region Constants
 
+    private TimeSpan SmallestTimeStep = new TimeSpan(0,0,0,1);
+
     //not using column indices as constants, using column references instead to allow for column reordering
     public DataGridColumn ColumnStartTime { get; private set; }
     public DataGridColumn ColumnEndTime { get; private set; }
@@ -27,13 +29,119 @@ namespace Zoomicon.CaptionsGrid
     public CaptionsGrid()
     {
       InitializeComponent();
+      InitializeDataGrid();      
+    }
+
+    protected void InitializeDataGrid()
+    {
       ColumnStartTime = gridCaptions.Columns[0];
       ColumnEndTime = gridCaptions.Columns[1];
       ColumnDuration = gridCaptions.Columns[2];
       ColumnContent = gridCaptions.Columns[3];
+
+      gridCaptions.SelectionMode = DataGridSelectionMode.Single;
+      gridCaptions.SelectionChanged += new SelectionChangedEventHandler(DataGrid_SelectionChanged);
+    }
+
+    protected void DataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+    {
+      CaptionElement selectedMarker = ((CaptionElement)gridCaptions.SelectedItem);
+      if (selectedMarker != null)
+        Time = selectedMarker.Begin;
     }
 
     #region --- Properties ---
+
+    #region Time
+
+    /// <summary>
+    /// Time Dependency Property
+    /// </summary>
+    public static readonly DependencyProperty TimeProperty =
+        DependencyProperty.Register("Time", typeof(TimeSpan), typeof(CaptionsGrid),
+            new FrameworkPropertyMetadata(TimeSpan.Zero,
+                FrameworkPropertyMetadataOptions.None,
+                new PropertyChangedCallback(OnTimeChanged)));
+
+    /// <summary>
+    /// Gets or sets the Time property.
+    /// </summary>
+    public TimeSpan Time
+    {
+      get { return (TimeSpan)GetValue(TimeProperty); }
+      set { SetValue(TimeProperty, value); }
+    }
+
+    /// <summary>
+    /// Handles changes to the Time property.
+    /// </summary>
+    private static void OnTimeChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    {
+      CaptionsGrid target = (CaptionsGrid)d;
+      TimeSpan oldTime = (TimeSpan)e.OldValue;
+      TimeSpan newTime = target.Time;
+      target.OnTimeChanged(oldTime, newTime);
+    }
+
+    /// <summary>
+    /// Provides derived classes an opportunity to handle changes to the Time property.
+    /// </summary>
+    protected virtual void OnTimeChanged(TimeSpan oldTime, TimeSpan newTime)
+    {
+      foreach (CaptionElement activeCaption in Markers.WhereActiveAtPosition(newTime, newTime-SmallestTimeStep)) //if multiple captions cover this position, select the one latest activated
+      {
+        gridCaptions.SelectedItem = activeCaption;
+        return; //select the 1st caption found (and exit method)
+      }
+ 
+      CaptionElement selectedCaption = (CaptionElement)gridCaptions.SelectedItem;
+      if (selectedCaption != null)
+        if (!selectedCaption.IsActiveAtPosition(newTime)) //if currently selected caption (from older selection) is not active at the given position, clear selection
+          gridCaptions.SelectedItem = null;
+    }
+
+    #endregion
+
+    #region Markers
+
+    /// <summary>
+    /// Markers Dependency Property
+    /// </summary>
+    public static readonly DependencyProperty MarkersProperty =
+        DependencyProperty.Register("Markers", typeof(MediaMarkerCollection<TimedTextElement>), typeof(CaptionsGrid),
+            new FrameworkPropertyMetadata(null,
+                FrameworkPropertyMetadataOptions.None,
+                new PropertyChangedCallback(OnMarkersChanged)));
+
+    /// <summary>
+    /// Gets or sets the Markers property.
+    /// </summary>
+    public MediaMarkerCollection<TimedTextElement> Markers
+    {
+      get { return (MediaMarkerCollection<TimedTextElement>)GetValue(MarkersProperty); }
+      set { SetValue(MarkersProperty, value); }
+    }
+
+    /// <summary>
+    /// Handles changes to the Markers property.
+    /// </summary>
+    private static void OnMarkersChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    {
+      CaptionsGrid target = (CaptionsGrid)d;
+      MediaMarkerCollection<TimedTextElement> oldMarkers = (MediaMarkerCollection<TimedTextElement>)e.OldValue;
+      MediaMarkerCollection<TimedTextElement> newMarkers = target.Markers;
+      target.OnMarkersChanged(oldMarkers, newMarkers);
+    }
+
+    /// <summary>
+    /// Provides derived classes an opportunity to handle changes to the Markers property.
+    /// </summary>
+    protected virtual void OnMarkersChanged(MediaMarkerCollection<TimedTextElement> oldMarkers, MediaMarkerCollection<TimedTextElement> newMarkers)
+    {
+      gridCaptions.DataContext = /*new MediaMarkerCollectionWrapper<TimedTextElement>*/(newMarkers); //don't changed the UserControl's DataContext, else data binding won't work in the parent
+    }
+
+    #endregion
 
     #region IsCaptionStartTimeVisible
 
@@ -182,97 +290,6 @@ namespace Zoomicon.CaptionsGrid
     }
 
     #endregion
-
-    #region Time
-
-    /// <summary>
-    /// Time Dependency Property
-    /// </summary>
-    public static readonly DependencyProperty TimeProperty =
-        DependencyProperty.Register("Time", typeof(TimeSpan), typeof(CaptionsGrid),
-            new FrameworkPropertyMetadata(TimeSpan.Zero,
-                FrameworkPropertyMetadataOptions.None,
-                new PropertyChangedCallback(OnTimeChanged)));
-
-    /// <summary>
-    /// Gets or sets the Time property.
-    /// </summary>
-    public TimeSpan Time
-    {
-      get { return (TimeSpan)GetValue(TimeProperty); }
-      set { SetValue(TimeProperty, value); }
-    }
-
-    /// <summary>
-    /// Handles changes to the Time property.
-    /// </summary>
-    private static void OnTimeChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
-    {
-      CaptionsGrid target = (CaptionsGrid)d;
-      TimeSpan oldTime = (TimeSpan)e.OldValue;
-      TimeSpan newTime = target.Time;
-      target.OnTimeChanged(oldTime, newTime);
-    }
-
-    /// <summary>
-    /// Provides derived classes an opportunity to handle changes to the Time property.
-    /// </summary>
-    protected virtual void OnTimeChanged(TimeSpan oldTime, TimeSpan newTime)
-    {
-      SeekToPosition(newTime);
-    }
-
-    #endregion
-
-    #region Markers
-
-    /// <summary>
-    /// Markers Dependency Property
-    /// </summary>
-    public static readonly DependencyProperty MarkersProperty =
-        DependencyProperty.Register("Markers", typeof(MediaMarkerCollection<TimedTextElement>), typeof(CaptionsGrid),
-            new FrameworkPropertyMetadata(null,
-                FrameworkPropertyMetadataOptions.None,
-                new PropertyChangedCallback(OnMarkersChanged)));
-
-    /// <summary>
-    /// Gets or sets the Markers property.
-    /// </summary>
-    public MediaMarkerCollection<TimedTextElement> Markers
-    {
-      get { return (MediaMarkerCollection<TimedTextElement>)GetValue(MarkersProperty); }
-      set { SetValue(MarkersProperty, value); }
-    }
-
-    /// <summary>
-    /// Handles changes to the Markers property.
-    /// </summary>
-    private static void OnMarkersChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
-    {
-      CaptionsGrid target = (CaptionsGrid)d;
-      MediaMarkerCollection<TimedTextElement> oldMarkers = (MediaMarkerCollection<TimedTextElement>)e.OldValue;
-      MediaMarkerCollection<TimedTextElement> newMarkers = target.Markers;
-      target.OnMarkersChanged(oldMarkers, newMarkers);
-    }
-
-    /// <summary>
-    /// Provides derived classes an opportunity to handle changes to the Markers property.
-    /// </summary>
-    protected virtual void OnMarkersChanged(MediaMarkerCollection<TimedTextElement> oldMarkers, MediaMarkerCollection<TimedTextElement> newMarkers)
-    {
-      gridCaptions.DataContext = /*new MediaMarkerCollectionWrapper<TimedTextElement>*/(newMarkers); //don't changed the UserControl's DataContext, else data binding won't work in the parent
-    }
-
-    #endregion
-
-    #endregion
-
-    #region --- Methods ---
-
-    public void SeekToPosition(TimeSpan newTime)
-    {
-      //TODO: select 1st row from top where newTime is between Begin and End (Markers collection has respective utility methods). After we find the marker could get its index and select respective row or use some predicate to search for the row that binds to that marker
-    }
 
     #endregion
 
