@@ -6,6 +6,7 @@ using Zoomicon.CaptionsGrid;
 using System;
 using System.Windows;
 using System.Windows.Controls;
+using System.Collections;
 
 using Microsoft.SilverlightMediaFramework.Core.Media;
 using Microsoft.SilverlightMediaFramework.Core.Accessibility.Captions;
@@ -16,6 +17,7 @@ namespace Zoomicon.CaptionsGrid
   {
     #region Constants
 
+    private TimeSpan CaptionDefaultDuration = new TimeSpan(0, 0, 2); //TODO: see LVS for the best value there
     private TimeSpan SmallestTimeStep = new TimeSpan(0,0,0,1);
 
     //not using column indices as constants, using column references instead to allow for column reordering
@@ -290,6 +292,40 @@ namespace Zoomicon.CaptionsGrid
     }
 
     #endregion
+
+    #endregion
+
+    #region --- Events ---
+
+    private void btnAdd_Click(object sender, RoutedEventArgs e)
+    {
+      CaptionElement newCaption = new CaptionElement()
+      {
+        Begin = Time,
+        End = Time + CaptionDefaultDuration
+      }; //TODO: edit blog about Scale transform to also suggest new ScaleTransform() { ScaleX=..., ScaleY=... }; after checking that is works in recent C#
+      
+      Zoomicon.MediaPlayer.MediaPlayer.StyleMarker(newCaption); //This is needed else the new caption text won't show up in the MediaPlayer
+
+      Markers.Add(newCaption); //this adds the marker to the correct place in the list based on its Begin time (logic is implemented by SMF in MediaMarkerCollection class) //TODO: blog about this, Insert isn't implemented, Add does its job too (see http://smf.codeplex.com/workitem/23308)
+    }
+
+    private void btnRemove_Click(object sender, RoutedEventArgs e)
+    {
+      CaptionElement selectedMarker = ((CaptionElement)gridCaptions.SelectedItem);
+      if (selectedMarker != null)
+        Markers.Remove(selectedMarker);
+    }
+
+    private void btnLoad_Click(object sender, RoutedEventArgs e)
+    {
+
+    }
+
+    private void btnSave_Click(object sender, RoutedEventArgs e)
+    {
+
+    }
 
     #endregion
 
