@@ -1,6 +1,6 @@
 ﻿<!--
 Filename: ActivityContainer.xaml
-Version: 20120903
+Version: 20120906
 -->
   
 <UserControl x:Class="ClipFlair.Views.ActivityContainer" 
