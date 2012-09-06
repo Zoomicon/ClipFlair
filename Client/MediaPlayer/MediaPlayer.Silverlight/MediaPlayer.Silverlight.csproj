@@ -72,8 +72,6 @@
     <Reference Include="System.Net" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="MediaMarkerCollectionWrapper.cs" />
-    <Compile Include="MediaMarkerWrapper.cs" />
     <Compile Include="MediaPlayer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
