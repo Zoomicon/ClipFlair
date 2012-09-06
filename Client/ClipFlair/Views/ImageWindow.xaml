@@ -1,6 +1,6 @@
 ﻿<!--
 Filename: ImageWindow.xaml
-Version: 20120904
+Version: 20120906
 -->
 
 <clipflair:FlipWindow x:Class="ClipFlair.Views.ImageWindow"
@@ -14,10 +14,10 @@ Version: 20120904
 
   <!--<clipflair:FlipWindow.FrontContent>-->
   <Image Name="imgContent"
+         Source="{Binding Source, Mode=OneWay}"
          Stretch="Uniform"
          HorizontalAlignment="Stretch"
-         VerticalAlignment="Stretch" />
-  <!-- Source="{Binding Source, Mode=TwoWay}" -->
+         VerticalAlignment="Stretch" /> <!-- Must not use "TwoWay" binding here, since "Source" is in fact of type "ImageSource", not "Uri" -->
   <!--</clipflair:FlipWindow.FrontContent>-->
 
   <clipflair:FlipWindow.PropertyItems>

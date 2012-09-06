@@ -1,5 +1,5 @@
 ﻿//Filename: CaptionsGridWindow.xaml.cs
-//Version: 20120904
+//Version: 20120906
 
 using ClipFlair.Models.Views;
 
@@ -138,8 +138,6 @@ namespace ClipFlair.Views
     protected virtual void OnTimeChanged(TimeSpan oldTime, TimeSpan newTime)
     {
       View.Time = newTime;
-      if (gridCaptions.Time != newTime) //check this for speedup and to avoid loops
-        gridCaptions.Time = newTime;
     }
 
     #endregion

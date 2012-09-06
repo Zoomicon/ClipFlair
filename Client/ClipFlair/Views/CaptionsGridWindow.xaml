@@ -1,6 +1,6 @@
 ﻿<!--
 Filename: CaptionsGridWindow.xaml
-Version: 20120904
+Version: 20120906
 -->
   
 <clipflair:FlipWindow x:Class="ClipFlair.Views.CaptionsGridWindow"
@@ -16,6 +16,7 @@ Version: 20120904
 
   <!--<clipflair:FlipWindow.FrontContent>-->
   <captions:CaptionsGrid Name="gridCaptions" Width="600"
+                         Time="{Binding Time, Mode=TwoWay}"
                          IsCaptionStartTimeVisible="{Binding StartTimeVisible, Mode=TwoWay}"
                          IsCaptionEndTimeVisible="{Binding EndTimeVisible, Mode=TwoWay}"
                          IsCaptionDurationVisible="{Binding DurationVisible, Mode=TwoWay}"
