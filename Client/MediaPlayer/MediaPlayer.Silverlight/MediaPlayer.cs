@@ -1,5 +1,5 @@
 ﻿//Filename: MediaPlayer.cs
-//Version: 20120903
+//Version: 20120910
 
 using System;
 using System.Collections.Generic;
@@ -32,10 +32,10 @@ namespace Zoomicon.MediaPlayer
 
       //apply any settings from XAML
       OnSourceChanged(null, Source);
-      OnIsCaptionsVisibleChanged(!IsCaptionsVisible, IsCaptionsVisible);
-      OnIsFullScreenButtonVisibleChanged(!IsFullScreenButtonVisible, IsFullScreenButtonVisible);
-      OnIsSlowMotionButtonVisibleChanged(!IsSlowMotionButtonVisible, IsSlowMotionButtonVisible);
-      OnIsReplayButtonVisibleChanged(!IsReplayButtonVisible, IsReplayButtonVisible);
+      OnCaptionsVisibleChanged(!CaptionsVisible, CaptionsVisible);
+      OnFullScreenButtonVisibleChanged(!FullScreenButtonVisible, FullScreenButtonVisible);
+      OnSlowMotionButtonVisibleChanged(!SlowMotionButtonVisible, SlowMotionButtonVisible);
+      OnReplayButtonVisibleChanged(!ReplayButtonVisible, ReplayButtonVisible);
     }
 
     protected override void OnMediaOpened()
@@ -49,7 +49,7 @@ namespace Zoomicon.MediaPlayer
       //listen for changed to PlaybackPosition and sync with Time
       PlaybackPositionChanged += new EventHandler<CustomEventArgs<TimeSpan>>(Player_PlaybackPositionChanged);
  
-      //listen for changes to CaptionsVisibility and sync with IsCaptionsVisible
+      //listen for changes to CaptionsVisibility and sync with CaptionsVisible
        CaptionsVisibilityChanged += new EventHandler(Player_CaptionsVisibilityChanged);
     }
 
@@ -68,7 +68,7 @@ namespace Zoomicon.MediaPlayer
 
     protected void Player_CaptionsVisibilityChanged(object sender, EventArgs args) //EventArgs.Empty is passed here by SMF (could have been passing the new value of the CaptionsVisibility)
     {
-      IsCaptionsVisible = (CaptionsVisibility == FeatureVisibility.Visible) ? true : false;
+      CaptionsVisible = (CaptionsVisibility == FeatureVisibility.Visible) ? true : false;
     }
 
     #region --- Properties ---
@@ -171,169 +171,169 @@ namespace Zoomicon.MediaPlayer
 
     #endregion
 
-    #region IsCaptionsVisible
+    #region CaptionsVisible
 
     /// <summary>
-    /// IsCaptionsVisible Dependency Property
+    /// CaptionsVisible Dependency Property
     /// </summary>
-    public static readonly DependencyProperty IsCaptionsVisibleProperty =
-        DependencyProperty.Register("IsCaptionsVisible", typeof(bool), typeof(MediaPlayer),
+    public static readonly DependencyProperty CaptionsVisibleProperty =
+        DependencyProperty.Register("CaptionsVisible", typeof(bool), typeof(MediaPlayer),
             new FrameworkPropertyMetadata((bool)false,
                 FrameworkPropertyMetadataOptions.None,
-                new PropertyChangedCallback(OnIsCaptionsVisibleChanged)));
+                new PropertyChangedCallback(OnCaptionsVisibleChanged)));
 
     /// <summary>
-    /// Gets or sets the IsCaptionsVisible property.
+    /// Gets or sets the CaptionsVisible property.
     /// </summary>
-    public bool IsCaptionsVisible
+    public bool CaptionsVisible
     {
-      get { return (bool)GetValue(IsCaptionsVisibleProperty); }
-      set { SetValue(IsCaptionsVisibleProperty, value); }
+      get { return (bool)GetValue(CaptionsVisibleProperty); }
+      set { SetValue(CaptionsVisibleProperty, value); }
     }
 
     /// <summary>
-    /// Handles changes to the IsCaptionsVisible property.
+    /// Handles changes to the CaptionsVisible property.
     /// </summary>
-    private static void OnIsCaptionsVisibleChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    private static void OnCaptionsVisibleChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
       MediaPlayer target = (MediaPlayer)d;
-      bool oldIsCaptionsVisible = (bool)e.OldValue;
-      bool newIsCaptionsVisible = target.IsCaptionsVisible;
-      target.OnIsCaptionsVisibleChanged(oldIsCaptionsVisible, newIsCaptionsVisible);
+      bool oldCaptionsVisible = (bool)e.OldValue;
+      bool newCaptionsVisible = target.CaptionsVisible;
+      target.OnCaptionsVisibleChanged(oldCaptionsVisible, newCaptionsVisible);
     }
 
     /// <summary>
-    /// Provides derived classes an opportunity to handle changes to the IsCaptionsVisible property.
+    /// Provides derived classes an opportunity to handle changes to the CaptionsVisible property.
     /// </summary>
-    protected virtual void OnIsCaptionsVisibleChanged(bool oldIsCaptionsVisible, bool newIsCaptionsVisible)
+    protected virtual void OnCaptionsVisibleChanged(bool oldCaptionsVisible, bool newCaptionsVisible)
     {
-      CaptionsVisibility = (newIsCaptionsVisible) ? FeatureVisibility.Visible : FeatureVisibility.Hidden;
+      CaptionsVisibility = (newCaptionsVisible) ? FeatureVisibility.Visible : FeatureVisibility.Hidden;
     }
 
     #endregion
 
-    #region IsFullScreenButtonVisible
+    #region FullScreenButtonVisible
 
     /// <summary>
-    /// IsFullScreenButtonVisible Dependency Property
+    /// FullScreenButtonVisible Dependency Property
     /// </summary>
-    public static readonly DependencyProperty IsFullScreenButtonVisibleProperty =
-        DependencyProperty.Register("IsFullScreenButtonVisible", typeof(bool), typeof(MediaPlayer),
+    public static readonly DependencyProperty FullScreenButtonVisibleProperty =
+        DependencyProperty.Register("FullScreenButtonVisible", typeof(bool), typeof(MediaPlayer),
             new FrameworkPropertyMetadata((bool)true,
                 FrameworkPropertyMetadataOptions.None,
-                new PropertyChangedCallback(OnIsFullScreenButtonVisibleChanged)));
+                new PropertyChangedCallback(OnFullScreenButtonVisibleChanged)));
 
     /// <summary>
-    /// Gets or sets the IsFullScreenButtonVisible property.
+    /// Gets or sets the FullScreenButtonVisible property.
     /// </summary>
-    public bool IsFullScreenButtonVisible
+    public bool FullScreenButtonVisible
     {
-      get { return (bool)GetValue(IsFullScreenButtonVisibleProperty); }
-      set { SetValue(IsFullScreenButtonVisibleProperty, value); }
+      get { return (bool)GetValue(FullScreenButtonVisibleProperty); }
+      set { SetValue(FullScreenButtonVisibleProperty, value); }
     }
 
     /// <summary>
-    /// Handles changes to the IsFullScreenButtonVisible property.
+    /// Handles changes to the FullScreenButtonVisible property.
     /// </summary>
-    private static void OnIsFullScreenButtonVisibleChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    private static void OnFullScreenButtonVisibleChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
       MediaPlayer target = (MediaPlayer)d;
-      bool oldIsFullScreenButtonVisible = (bool)e.OldValue;
-      bool newIsFullScreenButtonVisible = target.IsFullScreenButtonVisible;
-      target.OnIsFullScreenButtonVisibleChanged(oldIsFullScreenButtonVisible, newIsFullScreenButtonVisible);
+      bool oldFullScreenButtonVisible = (bool)e.OldValue;
+      bool newFullScreenButtonVisible = target.FullScreenButtonVisible;
+      target.OnFullScreenButtonVisibleChanged(oldFullScreenButtonVisible, newFullScreenButtonVisible);
     }
 
     /// <summary>
-    /// Provides derived classes an opportunity to handle changes to the IsFullScreenButtonVisible property.
+    /// Provides derived classes an opportunity to handle changes to the FullScreenButtonVisible property.
     /// </summary>
-    protected virtual void OnIsFullScreenButtonVisibleChanged(bool oldIsFullScreenButtonVisible, bool newIsFullScreenButtonVisible)
+    protected virtual void OnFullScreenButtonVisibleChanged(bool oldFullScreenButtonVisible, bool newFullScreenButtonVisible)
     {
       if (FullScreenToggleElement != null)
-        FullScreenToggleElement.Visibility = (newIsFullScreenButtonVisible) ? Visibility.Visible : Visibility.Collapsed;
+        FullScreenToggleElement.Visibility = (newFullScreenButtonVisible) ? Visibility.Visible : Visibility.Collapsed;
     }
 
     #endregion
 
-    #region IsSlowMotionButtonVisible
+    #region SlowMotionButtonVisible
 
     /// <summary>
-    /// IsSlowMotionButtonVisible Dependency Property
+    /// SlowMotionButtonVisible Dependency Property
     /// </summary>
-    public static readonly DependencyProperty IsSlowMotionButtonVisibleProperty =
-        DependencyProperty.Register("IsSlowMotionButtonVisible", typeof(bool), typeof(MediaPlayer),
+    public static readonly DependencyProperty SlowMotionButtonVisibleProperty =
+        DependencyProperty.Register("SlowMotionButtonVisible", typeof(bool), typeof(MediaPlayer),
             new FrameworkPropertyMetadata((bool)true,
                 FrameworkPropertyMetadataOptions.None,
-                new PropertyChangedCallback(OnIsSlowMotionButtonVisibleChanged)));
+                new PropertyChangedCallback(OnSlowMotionButtonVisibleChanged)));
 
     /// <summary>
-    /// Gets or sets the IsSlowMotionButtonVisible property.
+    /// Gets or sets the SlowMotionButtonVisible property.
     /// </summary>
-    public bool IsSlowMotionButtonVisible
+    public bool SlowMotionButtonVisible
     {
-      get { return (bool)GetValue(IsSlowMotionButtonVisibleProperty); }
-      set { SetValue(IsSlowMotionButtonVisibleProperty, value); }
+      get { return (bool)GetValue(SlowMotionButtonVisibleProperty); }
+      set { SetValue(SlowMotionButtonVisibleProperty, value); }
     }
 
     /// <summary>
-    /// Handles changes to the IsSlowMotionButtonVisible property.
+    /// Handles changes to the SlowMotionButtonVisible property.
     /// </summary>
-    private static void OnIsSlowMotionButtonVisibleChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    private static void OnSlowMotionButtonVisibleChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
       MediaPlayer target = (MediaPlayer)d;
-      bool oldIsSlowMotionButtonVisible = (bool)e.OldValue;
-      bool newIsSlowMotionButtonVisible = target.IsSlowMotionButtonVisible;
-      target.OnIsSlowMotionButtonVisibleChanged(oldIsSlowMotionButtonVisible, newIsSlowMotionButtonVisible);
+      bool oldSlowMotionButtonVisible = (bool)e.OldValue;
+      bool newSlowMotionButtonVisible = target.SlowMotionButtonVisible;
+      target.OnSlowMotionButtonVisibleChanged(oldSlowMotionButtonVisible, newSlowMotionButtonVisible);
     }
 
     /// <summary>
-    /// Provides derived classes an opportunity to handle changes to the IsSlowMotionButtonVisible property.
+    /// Provides derived classes an opportunity to handle changes to the SlowMotionButtonVisible property.
     /// </summary>
-    protected virtual void OnIsSlowMotionButtonVisibleChanged(bool oldIsSlowMotionButtonVisible, bool newIsSlowMotionButtonVisible)
+    protected virtual void OnSlowMotionButtonVisibleChanged(bool oldSlowMotionButtonVisible, bool newSlowMotionButtonVisible)
     {
       if (SlowMotionElement != null) 
-        SlowMotionElement.Visibility = (newIsSlowMotionButtonVisible) ? Visibility.Visible : Visibility.Collapsed;
+        SlowMotionElement.Visibility = (newSlowMotionButtonVisible) ? Visibility.Visible : Visibility.Collapsed;
     }
 
     #endregion
 
-    #region IsReplayButtonVisible
+    #region ReplayButtonVisible
 
     /// <summary>
-    /// IsReplayButtonVisible Dependency Property
+    /// ReplayButtonVisible Dependency Property
     /// </summary>
-    public static readonly DependencyProperty IsReplayButtonVisibleProperty =
-        DependencyProperty.Register("IsReplayButtonVisible", typeof(bool), typeof(MediaPlayer),
+    public static readonly DependencyProperty ReplayButtonVisibleProperty =
+        DependencyProperty.Register("ReplayButtonVisible", typeof(bool), typeof(MediaPlayer),
             new FrameworkPropertyMetadata((bool)true,
                 FrameworkPropertyMetadataOptions.None,
-                new PropertyChangedCallback(OnIsReplayButtonVisibleChanged)));
+                new PropertyChangedCallback(OnReplayButtonVisibleChanged)));
 
     /// <summary>
-    /// Gets or sets the IsReplayButtonVisible property.
+    /// Gets or sets the ReplayButtonVisible property.
     /// </summary>
-    public bool IsReplayButtonVisible
+    public bool ReplayButtonVisible
     {
-      get { return (bool)GetValue(IsReplayButtonVisibleProperty); }
-      set { SetValue(IsReplayButtonVisibleProperty, value); }
+      get { return (bool)GetValue(ReplayButtonVisibleProperty); }
+      set { SetValue(ReplayButtonVisibleProperty, value); }
     }
 
     /// <summary>
-    /// Handles changes to the IsReplayButtonVisible property.
+    /// Handles changes to the ReplayButtonVisible property.
     /// </summary>
-    private static void OnIsReplayButtonVisibleChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    private static void OnReplayButtonVisibleChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
       MediaPlayer target = (MediaPlayer)d;
-      bool oldIsReplayButtonVisible = (bool)e.OldValue;
-      bool newIsReplayButtonVisible = target.IsReplayButtonVisible;
-      target.OnIsReplayButtonVisibleChanged(oldIsReplayButtonVisible, newIsReplayButtonVisible);
+      bool oldReplayButtonVisible = (bool)e.OldValue;
+      bool newReplayButtonVisible = target.ReplayButtonVisible;
+      target.OnReplayButtonVisibleChanged(oldReplayButtonVisible, newReplayButtonVisible);
     }
 
     /// <summary>
-    /// Provides derived classes an opportunity to handle changes to the IsReplayButtonVisible property.
+    /// Provides derived classes an opportunity to handle changes to the ReplayButtonVisible property.
     /// </summary>
-    protected virtual void OnIsReplayButtonVisibleChanged(bool oldIsReplayButtonVisible, bool newIsReplayButtonVisible)
+    protected virtual void OnReplayButtonVisibleChanged(bool oldReplayButtonVisible, bool newReplayButtonVisible)
     {
       if (ReplayElement != null) 
-        ReplayElement.Visibility = (newIsReplayButtonVisible) ? Visibility.Visible : Visibility.Collapsed;
+        ReplayElement.Visibility = (newReplayButtonVisible) ? Visibility.Visible : Visibility.Collapsed;
     }
 
     #endregion
