@@ -1,5 +1,5 @@
 ﻿//Filename: MediaPlayerWindow.xaml.cs
-//Version: 20120904
+//Version: 20120910
 
 using ClipFlair.Models.Views;
 
@@ -46,6 +46,7 @@ namespace ClipFlair.Views
       {
         Source = View.Source;
         Time = View.Time;
+        CaptionsVisible = View.CaptionsVisible;
         //...
       }
       else switch (e.PropertyName) //string equality check in .NET uses ordinal (binary) comparison semantics by default
@@ -55,6 +56,9 @@ namespace ClipFlair.Views
             break;
           case IMediaPlayerProperties.PropertyTime:
             Time = View.Time;
+            break;
+          case IMediaPlayerProperties.PropertyCaptionsVisible:
+            CaptionsVisible = View.CaptionsVisible;
             break;
           //...
         }
@@ -180,6 +184,49 @@ namespace ClipFlair.Views
     protected virtual void OnMarkersChanged(MediaMarkerCollection<TimedTextElement> oldMarkers, MediaMarkerCollection<TimedTextElement> newMarkers)
     {
       player.Markers = newMarkers;
+    }
+
+    #endregion
+
+    #region CaptionsVisible
+
+    /// <summary>
+    /// CaptionsVisible Dependency Property
+    /// </summary>
+    public static readonly DependencyProperty CaptionsVisibleProperty =
+        DependencyProperty.Register("CaptionsVisible", typeof(bool), typeof(MediaPlayerWindow),
+            new FrameworkPropertyMetadata((bool)false,
+                FrameworkPropertyMetadataOptions.None,
+                new PropertyChangedCallback(OnCaptionsVisibleChanged)));
+
+    /// <summary>
+    /// Gets or sets the CaptionsVisible property. This dependency property 
+    /// indicates ....
+    /// </summary>
+    public bool CaptionsVisible
+    {
+      get { return (bool)GetValue(CaptionsVisibleProperty); }
+      set { SetValue(CaptionsVisibleProperty, value); }
+    }
+
+    /// <summary>
+    /// Handles changes to the CaptionsVisible property.
+    /// </summary>
+    private static void OnCaptionsVisibleChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    {
+      MediaPlayerWindow target = (MediaPlayerWindow)d;
+      bool oldCaptionsVisible = (bool)e.OldValue;
+      bool newCaptionsVisible = target.CaptionsVisible;
+      target.OnCaptionsVisibleChanged(oldCaptionsVisible, newCaptionsVisible);
+    }
+
+    /// <summary>
+    /// Provides derived classes an opportunity to handle changes to the CaptionsVisible property.
+    /// </summary>
+    protected virtual void OnCaptionsVisibleChanged(bool oldCaptionsVisible, bool newCaptionsVisible)
+    {
+      View.CaptionsVisible = newCaptionsVisible;
+      player.CaptionsVisible = newCaptionsVisible;
     }
 
     #endregion

@@ -1,6 +1,6 @@
 ﻿<!--
 Filename: MediaPlayerWindow.xaml
-Version: 20120904
+Version: 20120910
 -->
   
 <clipflair:FlipWindow x:Class="ClipFlair.Views.MediaPlayerWindow"
@@ -25,10 +25,10 @@ Version: 20120904
                  VolumeLevel="{Binding Volume, Mode=TwoWay}"                                          
                  ContinuousPlay="{Binding Looping, Mode=TwoWay}"
                  IsControlStripVisible="{Binding ControllerVisible, Mode=TwoWay}"
-                 IsCaptionsVisible="{Binding CaptionsVisible, Mode=TwoWay}"
-                 IsSlowMotionButtonVisible="False"
-                 IsReplayButtonVisible="False"
-                 IsFullScreenButtonVisible="False" AllowDoubleClickToggle="False"
+                 CaptionsVisible="{Binding CaptionsVisible, Mode=TwoWay}"
+                 SlowMotionButtonVisible="False"
+                 ReplayButtonVisible="False"
+                 FullScreenButtonVisible="False" AllowDoubleClickToggle="False"
                 >
                 <!-- Margin="0" d:LayoutOverrides="Width, Height" -->
   </media:MediaPlayer>
