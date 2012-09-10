@@ -1,5 +1,5 @@
 ﻿//Filename: CaptionsGrid.xaml.cs
-//Version: 20120906
+//Version: 20120910
 
 using Zoomicon.CaptionsGrid;
 
@@ -18,7 +18,6 @@ namespace Zoomicon.CaptionsGrid
     #region Constants
 
     private TimeSpan CaptionDefaultDuration = new TimeSpan(0, 0, 2); //TODO: see LVS for the best value there
-    private TimeSpan SmallestTimeStep = new TimeSpan(0,0,0,1);
 
     //not using column indices as constants, using column references instead to allow for column reordering
     public DataGridColumn ColumnStartTime { get; private set; }
@@ -90,11 +89,8 @@ namespace Zoomicon.CaptionsGrid
     /// </summary>
     protected virtual void OnTimeChanged(TimeSpan oldTime, TimeSpan newTime)
     {
-      foreach (CaptionElement activeCaption in Markers.WhereActiveAtPosition(newTime, newTime-SmallestTimeStep)) //if multiple captions cover this position, select the one latest activated
-      {
-        gridCaptions.SelectedItem = activeCaption;
-        return; //select the 1st caption found (and exit method)
-      }
+      foreach (CaptionElement activeCaption in Markers.WhereActiveAtPosition(newTime))
+        gridCaptions.SelectedItem = activeCaption; //if multiple captions cover this position, select the last one
  
       CaptionElement selectedCaption = (CaptionElement)gridCaptions.SelectedItem;
       if (selectedCaption != null)
@@ -319,12 +315,12 @@ namespace Zoomicon.CaptionsGrid
 
     private void btnLoad_Click(object sender, RoutedEventArgs e)
     {
-
+      //TODO: use LeViS code?
     }
 
     private void btnSave_Click(object sender, RoutedEventArgs e)
     {
-
+      //TODO: use LeViS code?
     }
 
     #endregion
