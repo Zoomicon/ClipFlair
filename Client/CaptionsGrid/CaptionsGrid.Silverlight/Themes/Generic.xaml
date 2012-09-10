@@ -1,5 +1,5 @@
 ﻿<!-- 
-Version: 20120902
+Version: 20120910
 -->
 
 <ResourceDictionary
@@ -40,7 +40,7 @@ Version: 20120902
   </DataTemplate>
 
   <DataTemplate x:Key="ContentCellEditTemplate">
-    <TextBox Margin="4" Text="{Binding Content, Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=true}" />
+    <TextBox Margin="4" AcceptsReturn="True" Text="{Binding Content, Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=true}" />
   </DataTemplate>
 
 </ResourceDictionary>
