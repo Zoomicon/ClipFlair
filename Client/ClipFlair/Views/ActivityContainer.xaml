@@ -1,6 +1,6 @@
 ﻿<!--
 Filename: ActivityContainer.xaml
-Version: 20120909
+Version: 20120910
 -->
 
 <UserControl x:Class="ClipFlair.Views.ActivityContainer" 
@@ -67,6 +67,7 @@ Version: 20120909
       <clipflair:MediaPlayerWindow
         Source="http://video3.smoothhd.com.edgesuite.net/ondemand/Big%20Buck%20Bunny%20Adaptive.ism/Manifest"
         Markers="{Binding Source={StaticResource Captions}, Path=Children, Mode=TwoWay}"
+        CaptionsVisible = "True"
         Position="0,0" 
         Width="600" Height="400" 
         MinWidth="100" MinHeight="100" 
@@ -75,15 +76,15 @@ Version: 20120909
 
       <clipflair:CaptionsGridWindow 
         Markers="{Binding Source={StaticResource Captions}, Path=Children, Mode=TwoWay}"
-        Position="0,450" 
-        Width="600" Height="300" 
+        Position="620,0"
+        Width="600" Height="400" 
         MinWidth="100" MinHeight="100" 
         Title="Captions" IconText="Captions" Tag="Captions"
         />
 
       <clipflair:ImageWindow 
         Source="http://clipflair.net/wp-content/themes/clipflair-theme/images/clipflair-logo.jpg" 
-        Position="620,0" 
+        Position="0,450"  
         Width="200" Height="100" 
         MinWidth="100" MinHeight="100" 
         Title="Image" IconText="Image" Tag="Image"
