@@ -1,8 +1,8 @@
 ﻿<!--
 Filename: ActivityContainer.xaml
-Version: 20120906
+Version: 20120909
 -->
-  
+
 <UserControl x:Class="ClipFlair.Views.ActivityContainer" 
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
@@ -15,23 +15,31 @@ Version: 20120906
     xmlns:smf_media="http://schemas.microsoft.com/smf/2010/xaml/media"             
     Name="Page">
 
-      <UserControl.Resources>
- 
-        <!-- TEST -->
+  <UserControl.Resources>
 
-        <smf_media:MarkerResource Source="ExampleCaptions.xml" x:Key="Markers"/>
+    <!-- TEST -->
 
-        <smf_captions:CaptionRegion x:Key="Captions">
-          <smf_captions:CaptionRegion.Children>
-            <smf_captions:CaptionElement Begin="0:0:0" Content="SMF is Super Awesome1" End="0:0:7"/>
-            <smf_captions:CaptionElement Begin="0:0:5" Content="SMF is Super Awesome2" End="0:0:10"/>
-            <smf_captions:CaptionElement Begin="0:0:15" Content="SMF is Super Awesome3" End="0:0:20"/>
-            <smf_captions:CaptionElement Begin="0:0:25" Content="SMF is Super Awesome4" End="0:0:30"/>
-          </smf_captions:CaptionRegion.Children>
-        </smf_captions:CaptionRegion>
+    <smf_media:MarkerResource Source="ExampleCaptions.xml" x:Key="Markers"/>
 
-    </UserControl.Resources>
-  
+    <smf_captions:CaptionRegion x:Key="Captions">
+      <smf_captions:CaptionRegion.Children>
+        <smf_captions:CaptionElement Begin="00:00:03" End="0:0:05" Content="Once upon a time there was a forest..." />
+        <smf_captions:CaptionElement Begin="00:0:06" End="0:0:08" Content="which looked just like every other forest." />
+        <smf_captions:CaptionElement Begin="0:0:12" End="0:0:14" Content="But it was not." />
+        <smf_captions:CaptionElement Begin="0:0:16" End="0:0:19" Content="It was inhabited by a very dangerous species." />
+        <smf_captions:CaptionElement />
+        <smf_captions:CaptionElement />
+        <smf_captions:CaptionElement />
+        <smf_captions:CaptionElement />
+        <smf_captions:CaptionElement />
+        <smf_captions:CaptionElement />
+        <smf_captions:CaptionElement />
+        <smf_captions:CaptionElement />
+      </smf_captions:CaptionRegion.Children>
+    </smf_captions:CaptionRegion>
+
+  </UserControl.Resources>
+
   <Grid>
     <Grid.RowDefinitions>
       <RowDefinition Height="*"/>
@@ -42,16 +50,16 @@ Version: 20120906
 
     <zui:FloatingWindowHostZUI Name="zuiContainer" Grid.Row="0" Grid.Column="0" SnapinEnabled="True" ShowMinimizedOnlyInIconbar="False">
 
-        <zui:FloatingWindowHostZUI.Bar>
-            <TextBlock Text="Windows" VerticalAlignment="Center" />
-        </zui:FloatingWindowHostZUI.Bar>
+      <zui:FloatingWindowHostZUI.Bar>
+        <TextBlock Text="Windows" VerticalAlignment="Center" />
+      </zui:FloatingWindowHostZUI.Bar>
 
-        <zui:FloatingWindowHostZUI.Background>
-            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                <GradientStop Color="#FF00AEEF" Offset="0" />
-                <GradientStop Color="#FF89E0FF" Offset="1" />
-            </LinearGradientBrush>
-        </zui:FloatingWindowHostZUI.Background>
+      <zui:FloatingWindowHostZUI.Background>
+        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+          <GradientStop Color="#FF00AEEF" Offset="0" />
+          <GradientStop Color="#FF89E0FF" Offset="1" />
+        </LinearGradientBrush>
+      </zui:FloatingWindowHostZUI.Background>
 
       <!--<zui:FloatingWindowHostZUI.Windows>-->
       <!--<float:FloatingWindowCollection>-->
@@ -72,7 +80,7 @@ Version: 20120906
         MinWidth="100" MinHeight="100" 
         Title="Captions" IconText="Captions" Tag="Captions"
         />
-      
+
       <clipflair:ImageWindow 
         Source="http://clipflair.net/wp-content/themes/clipflair-theme/images/clipflair-logo.jpg" 
         Position="620,0" 

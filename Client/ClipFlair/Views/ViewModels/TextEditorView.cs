@@ -1,12 +1,15 @@
 ﻿//Filename: TextEditorView.cs
-//Version: 20120831
+//Version: 20120910
 
 using ClipFlair.Models.Views;
 
 using System;
+using System.Runtime.Serialization;
 
 namespace ClipFlair.Views
 {
+
+  [DataContract(Namespace = "http://clipflair.net/Contracts/Views")]
   public class TextEditorView : BaseView, ITextEditor
   {
     public TextEditorView()
@@ -25,6 +28,7 @@ namespace ClipFlair.Views
 
     #region Properties
 
+    [DataMember]
     public Uri Source
     {
       get { return source; }
@@ -38,6 +42,7 @@ namespace ClipFlair.Views
       }
     }
 
+    [DataMember]
     public bool ToolbarVisible
     {
       get { return toolbarVisible; }
