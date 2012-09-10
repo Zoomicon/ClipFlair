@@ -1,12 +1,15 @@
 ﻿//Filename: CaptionsGridView.cs
-//Version: 20120904
+//Version: 20120910
 
 using ClipFlair.Models.Views;
 
 using System;
+using System.Runtime.Serialization;
 
 namespace ClipFlair.Views
 {
+
+  [DataContract(Namespace="http://clipflair.net/Contracts/Views")]
   public class CaptionsGridView: BaseView, ICaptionsGrid
   {
     public CaptionsGridView()
@@ -29,6 +32,7 @@ namespace ClipFlair.Views
 
     #region Properties
 
+    [DataMember]
     public Uri Source
     {
       get { return source; }
@@ -42,6 +46,7 @@ namespace ClipFlair.Views
       }
     }
 
+    [DataMember]
     public TimeSpan Time
     {
       get { return time; }
@@ -55,6 +60,7 @@ namespace ClipFlair.Views
       }
     }
 
+    [DataMember]
     public bool StartTimeVisible
     {
       get { return startTimeVisible; }
@@ -68,6 +74,7 @@ namespace ClipFlair.Views
       }
     }
 
+    [DataMember]
     public bool EndTimeVisible
     {
       get { return endTimeVisible; }
@@ -80,6 +87,7 @@ namespace ClipFlair.Views
       }
     }
 
+    [DataMember]
     public bool DurationVisible
     {
       get { return durationVisible; }
@@ -90,6 +98,7 @@ namespace ClipFlair.Views
       }
     }
 
+    [DataMember]
     public bool CaptionVisible
     {
       get { return captionVisible; }

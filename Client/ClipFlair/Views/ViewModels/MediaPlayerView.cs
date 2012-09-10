@@ -1,12 +1,15 @@
 ﻿//Filename: MediaPlayerView.cs
-//Version: 20120831
+//Version: 20120910
 
 using ClipFlair.Models.Views;
 
 using System;
+using System.Runtime.Serialization;
 
 namespace ClipFlair.Views
 {
+
+  [DataContract(Namespace = "http://clipflair.net/Contracts/Views")]
   public class MediaPlayerView: BaseView, IMediaPlayer
   {
     public MediaPlayerView()
@@ -29,7 +32,8 @@ namespace ClipFlair.Views
     #endregion
 
     #region Properties
-
+    
+    [DataMember]
     public Uri Source
     {
       get { return source; }
@@ -43,6 +47,7 @@ namespace ClipFlair.Views
       }
     }
 
+    [DataMember]
     public TimeSpan Time
     {
       get { return time; }
@@ -56,6 +61,7 @@ namespace ClipFlair.Views
       }
     }
 
+    [DataMember]
     public double Speed
     {
       get { return speed; }
@@ -69,6 +75,7 @@ namespace ClipFlair.Views
       }
     }
 
+    [DataMember]
     public double Volume
     {
       get { return volume; }
@@ -82,6 +89,7 @@ namespace ClipFlair.Views
       }
     }
 
+    [DataMember]
     public bool Looping
     {
       get { return looping; }
@@ -95,6 +103,7 @@ namespace ClipFlair.Views
       }
     }
 
+    [DataMember]
     public bool ControllerVisible
     {
       get { return controllerVisible; }
@@ -108,6 +117,7 @@ namespace ClipFlair.Views
       }
     }
 
+    [DataMember]
     public bool CaptionsVisible
     {
       get { return captionsVisible; }

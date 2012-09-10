@@ -1,5 +1,5 @@
 ﻿//Filename: SilverTextEditor.xaml.cs
-//Version: 20120823
+//Version: 20120909
 //Editor: George Birbilis <birbilis@kagi.com>
 
 //Note: localization could use "PublicResxFileCodeGeneratorEx" custom build tool for the "Strings.resx" file
@@ -39,7 +39,7 @@ namespace SilverTextEditor
         //Initialize the RichTextBox. The intial text is saved as XAML in the sample.sav file.
         void SilverTextEditor_Loaded(object sender, RoutedEventArgs e)
         {
-           rtb.Xaml = XElement.Load("/SilverTextEditor;component/sample.sav").ToString();
+           rtb.Xaml = XElement.Load("/SilverTextEditor;component/ActivityDescription.sav").ToString(); //sample.sav
         }
 
         #region ToolbarVisible
