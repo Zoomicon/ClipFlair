@@ -1,0 +1,176 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{F6D74407-4308-4C9C-8278-16134EE47616}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>cspeex</RootNamespace>
+    <AssemblyName>cspeex</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <UpgradeBackupLocation />
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="javax\sound\sampled\AudioFileFormat.cs" />
+    <Compile Include="javax\sound\sampled\AudioFormat.cs" />
+    <Compile Include="javax\sound\sampled\AudioInputStream.cs" />
+    <Compile Include="javax\sound\sampled\AudioSystem.cs" />
+    <Compile Include="javax\sound\sampled\Control.cs" />
+    <Compile Include="javax\sound\sampled\DataLine.cs" />
+    <Compile Include="javax\sound\sampled\Line.cs" />
+    <Compile Include="javax\sound\sampled\LineEvent.cs" />
+    <Compile Include="javax\sound\sampled\LineListener.cs" />
+    <Compile Include="javax\sound\sampled\spi\AudioFileReader.cs" />
+    <Compile Include="javax\sound\sampled\spi\AudioFileWriter.cs" />
+    <Compile Include="javax\sound\sampled\spi\FormatConversionProvider.cs" />
+    <Compile Include="javax\sound\sampled\TargetDataLine.cs" />
+    <Compile Include="javax\sound\sampled\UnsupportedAudioFileException.cs" />
+    <Compile Include="java\io\ByteArrayInputStream.cs" />
+    <Compile Include="java\io\ByteArrayOutputStream.cs" />
+    <Compile Include="java\io\Closeable.cs" />
+    <Compile Include="java\io\RandomInputStream.cs" />
+    <Compile Include="java\io\FileInputStream.cs" />
+    <Compile Include="java\io\EOFException.cs" />
+    <Compile Include="java\io\DataInput.cs" />
+    <Compile Include="java\io\DataInputStream.cs" />
+    <Compile Include="java\io\DataOutput.cs" />
+    <Compile Include="java\io\File.cs" />
+    <Compile Include="java\io\FileOutputStream.cs" />
+    <Compile Include="java\io\FilterInputStream.cs" />
+    <Compile Include="java\io\Flushable.cs" />
+    <Compile Include="java\io\InputStream.cs" />
+    <Compile Include="java\io\ObjectStreamException.cs" />
+    <Compile Include="java\io\OutputStream.cs" />
+    <Compile Include="java\io\PushbackInputStream.cs" />
+    <Compile Include="java\io\RandomOutputStream.cs" />
+    <Compile Include="java\io\SequenceInputStream.cs" />
+    <Compile Include="java\io\StreamCorruptedException.cs" />
+    <Compile Include="java\io\UTFDataFormatException.cs" />
+    <Compile Include="java\net\URL.cs" />
+    <Compile Include="java\util\EventObject.cs" />
+    <Compile Include="java\util\Random.cs" />
+    <Compile Include="JSpeexDec.cs" />
+    <Compile Include="JSpeexEnc.cs" />
+    <Compile Include="org\xiph\speex\AudioFileWriter.cs" />
+    <Compile Include="org\xiph\speex\Bits.cs" />
+    <Compile Include="org\xiph\speex\CbSearch.cs" />
+    <Compile Include="org\xiph\speex\Codebook.cs" />
+    <Compile Include="org\xiph\speex\Decoder.cs" />
+    <Compile Include="org\xiph\speex\Encoder.cs" />
+    <Compile Include="org\xiph\speex\Filters.cs" />
+    <Compile Include="org\xiph\speex\HighLspQuant.cs" />
+    <Compile Include="org\xiph\speex\Inband.cs" />
+    <Compile Include="org\xiph\speex\LbrLspQuant.cs" />
+    <Compile Include="org\xiph\speex\Lpc.cs" />
+    <Compile Include="org\xiph\speex\Lsp.cs" />
+    <Compile Include="org\xiph\speex\LspQuant.cs" />
+    <Compile Include="org\xiph\speex\Ltp.cs" />
+    <Compile Include="org\xiph\speex\Ltp3Tap.cs" />
+    <Compile Include="org\xiph\speex\LtpForcedPitch.cs" />
+    <Compile Include="org\xiph\speex\Misc.cs" />
+    <Compile Include="org\xiph\speex\NbCodec.cs" />
+    <Compile Include="org\xiph\speex\NbDecoder.cs" />
+    <Compile Include="org\xiph\speex\NbEncoder.cs" />
+    <Compile Include="org\xiph\speex\NbLspQuant.cs" />
+    <Compile Include="org\xiph\speex\NoiseSearch.cs" />
+    <Compile Include="org\xiph\speex\OggCrc.cs" />
+    <Compile Include="org\xiph\speex\OggSpeexWriter.cs" />
+    <Compile Include="org\xiph\speex\PcmWaveWriter.cs" />
+    <Compile Include="org\xiph\speex\RawWriter.cs" />
+    <Compile Include="org\xiph\speex\SbCodec.cs" />
+    <Compile Include="org\xiph\speex\SbDecoder.cs" />
+    <Compile Include="org\xiph\speex\SbEncoder.cs" />
+    <Compile Include="org\xiph\speex\SpeexDecoder.cs" />
+    <Compile Include="org\xiph\speex\SpeexEncoder.cs" />
+    <Compile Include="org\xiph\speex\spi\FilteredAudioInputStream.cs" />
+    <Compile Include="org\xiph\speex\spi\Pcm2SpeexAudioInputStream.cs" />
+    <Compile Include="org\xiph\speex\spi\Speex2PcmAudioInputStream.cs" />
+    <Compile Include="org\xiph\speex\spi\SpeexAudioFileReader.cs" />
+    <Compile Include="org\xiph\speex\spi\SpeexAudioFileWriter.cs" />
+    <Compile Include="org\xiph\speex\spi\SpeexEncoding.cs" />
+    <Compile Include="org\xiph\speex\spi\SpeexFileFormatType.cs" />
+    <Compile Include="org\xiph\speex\spi\SpeexFormatConvertionProvider.cs" />
+    <Compile Include="org\xiph\speex\SplitShapeSearch.cs" />
+    <Compile Include="org\xiph\speex\Stereo.cs" />
+    <Compile Include="org\xiph\speex\SubMode.cs" />
+    <Compile Include="org\xiph\speex\Vbr.cs" />
+    <Compile Include="org\xiph\speex\VQ.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="StringUtil.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.VisualBasic.PowerPacks.10.0">
+      <Visible>False</Visible>
+      <ProductName>Microsoft Visual Basic PowerPacks 10.0</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
