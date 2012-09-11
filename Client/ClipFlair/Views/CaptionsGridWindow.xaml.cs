@@ -1,5 +1,5 @@
 ﻿//Filename: CaptionsGridWindow.xaml.cs
-//Version: 20120906
+//Version: 20120911
 
 using ClipFlair.Models.Views;
 
@@ -47,6 +47,8 @@ namespace ClipFlair.Views
       {
         Source = View.Source;
         Time = View.Time;
+        CaptionVisible = View.CaptionVisible;
+        CaptionAudioVisible = View.CaptionAudioVisible;
         //...
       }
       else switch (e.PropertyName) //string equality check in .NET uses ordinal (binary) comparison semantics by default
@@ -56,6 +58,12 @@ namespace ClipFlair.Views
             break;
           case ICaptionsGridProperties.PropertyTime:
             Time = View.Time;
+            break;
+          case ICaptionsGridProperties.PropertyCaptionVisible:
+            CaptionVisible = View.CaptionVisible;
+            break;
+          case ICaptionsGridProperties.PropertyCaptionAudioVisible:
+            CaptionAudioVisible = View.CaptionAudioVisible;
             break;
           //...
         }
@@ -107,8 +115,8 @@ namespace ClipFlair.Views
     /// Time Dependency Property
     /// </summary>
     public static readonly DependencyProperty TimeProperty =
-        DependencyProperty.Register("Time", typeof(TimeSpan), typeof(CaptionsGridWindow),
-            new FrameworkPropertyMetadata(TimeSpan.Zero,
+        DependencyProperty.Register(ICaptionsGridProperties.PropertyTime, typeof(TimeSpan), typeof(CaptionsGridWindow),
+            new FrameworkPropertyMetadata(ICaptionsGridDefaults.DefaultTime,
                 FrameworkPropertyMetadataOptions.None,
                 new PropertyChangedCallback(OnTimeChanged)));
 
@@ -179,6 +187,88 @@ namespace ClipFlair.Views
     protected virtual void OnMarkersChanged(MediaMarkerCollection<TimedTextElement> oldMarkers, MediaMarkerCollection<TimedTextElement> newMarkers)
     {
       gridCaptions.Markers = newMarkers;
+    }
+
+    #endregion
+
+    #region CaptionVisible
+
+    /// <summary>
+    /// CaptionVisible Dependency Property
+    /// </summary>
+    public static readonly DependencyProperty CaptionVisibleProperty =
+        DependencyProperty.Register(ICaptionsGridProperties.PropertyCaptionVisible, typeof(bool), typeof(CaptionsGridWindow),
+            new FrameworkPropertyMetadata(ICaptionsGridDefaults.DefaultCaptionVisible,
+                FrameworkPropertyMetadataOptions.None,
+                new PropertyChangedCallback(OnCaptionVisibleChanged)));
+
+    /// <summary>
+    /// Gets or sets the CaptionVisible property.
+    /// </summary>
+    public bool CaptionVisible
+    {
+      get { return (bool)GetValue(CaptionVisibleProperty); }
+      set { SetValue(CaptionVisibleProperty, value); }
+    }
+
+    /// <summary>
+    /// Handles changes to the CaptionVisible property.
+    /// </summary>
+    private static void OnCaptionVisibleChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    {
+      CaptionsGridWindow target = (CaptionsGridWindow)d;
+      bool oldCaptionVisible = (bool)e.OldValue;
+      bool newCaptionVisible = target.CaptionVisible;
+      target.OnCaptionVisibleChanged(oldCaptionVisible, newCaptionVisible);
+    }
+
+    /// <summary>
+    /// Provides derived classes an opportunity to handle changes to the CaptionVisible property.
+    /// </summary>
+    protected virtual void OnCaptionVisibleChanged(bool oldCaptionVisible, bool newCaptionVisible)
+    {
+      View.CaptionVisible = newCaptionVisible;
+    }
+
+    #endregion
+
+    #region CaptionAudioVisible
+
+    /// <summary>
+    /// CaptionAudioVisible Dependency Property
+    /// </summary>
+    public static readonly DependencyProperty CaptionAudioVisibleProperty =
+        DependencyProperty.Register(ICaptionsGridProperties.PropertyCaptionAudioVisible, typeof(bool), typeof(CaptionsGridWindow),
+            new FrameworkPropertyMetadata(ICaptionsGridDefaults.DefaultCaptionAudioVisible,
+                FrameworkPropertyMetadataOptions.None,
+                new PropertyChangedCallback(OnCaptionAudioVisibleChanged)));
+
+    /// <summary>
+    /// Gets or sets the CaptionAudioVisible property.
+    /// </summary>
+    public bool CaptionAudioVisible
+    {
+      get { return (bool)GetValue(CaptionAudioVisibleProperty); }
+      set { SetValue(CaptionAudioVisibleProperty, value); }
+    }
+
+    /// <summary>
+    /// Handles changes to the CaptionAudioVisible property.
+    /// </summary>
+    private static void OnCaptionAudioVisibleChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    {
+      CaptionsGridWindow target = (CaptionsGridWindow)d;
+      bool oldCaptionAudioVisible = (bool)e.OldValue;
+      bool newCaptionAudioVisible = target.CaptionAudioVisible;
+      target.OnCaptionAudioVisibleChanged(oldCaptionAudioVisible, newCaptionAudioVisible);
+    }
+
+    /// <summary>
+    /// Provides derived classes an opportunity to handle changes to the CaptionAudioVisible property.
+    /// </summary>
+    protected virtual void OnCaptionAudioVisibleChanged(bool oldCaptionAudioVisible, bool newCaptionAudioVisible)
+    {
+      View.CaptionAudioVisible = newCaptionAudioVisible;
     }
 
     #endregion

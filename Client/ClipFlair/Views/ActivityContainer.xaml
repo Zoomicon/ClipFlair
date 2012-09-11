@@ -1,6 +1,6 @@
 ﻿<!--
 Filename: ActivityContainer.xaml
-Version: 20120910
+Version: 20120911
 -->
 
 <UserControl x:Class="ClipFlair.Views.ActivityContainer" 
@@ -19,7 +19,7 @@ Version: 20120910
 
     <!-- TEST -->
 
-    <smf_media:MarkerResource Source="ExampleCaptions.xml" x:Key="Markers"/>
+    <!-- <smf_media:MarkerResource Source="ExampleCaptions.xml" x:Key="Markers"/> -->
 
     <smf_captions:CaptionRegion x:Key="Captions">
       <smf_captions:CaptionRegion.Children>
@@ -70,31 +70,27 @@ Version: 20120910
         CaptionsVisible = "True"
         Position="0,0" 
         Width="600" Height="400" 
-        MinWidth="100" MinHeight="100" 
         Title="Media Player" IconText="Media Player" Tag="MediaPlayer"
-        />
+        /> <!-- removed MinWidth,MinHeight, seems to disable resizing [maybe only if given after width,height, try it and also see if gets fixed when giving MaxWidth,MaxHeight] -->
 
       <clipflair:CaptionsGridWindow 
         Markers="{Binding Source={StaticResource Captions}, Path=Children, Mode=TwoWay}"
-        Position="620,0"
-        Width="600" Height="400" 
-        MinWidth="100" MinHeight="100" 
+        Position="0,420"  
+        Width="600" Height="420" 
         Title="Captions" IconText="Captions" Tag="Captions"
+        />
+
+      <clipflair:TextEditorWindow 
+        Position="620,0"
+        Width="650" Height="630" 
+        Title="Text Editor" IconText="Text Editor" Tag="TextEditor"
         />
 
       <clipflair:ImageWindow 
         Source="http://clipflair.net/wp-content/themes/clipflair-theme/images/clipflair-logo.jpg" 
-        Position="0,450"  
+        Position="820,740" 
         Width="200" Height="100" 
-        MinWidth="100" MinHeight="100" 
         Title="Image" IconText="Image" Tag="Image"
-        />
-
-      <clipflair:TextEditorWindow 
-        Position="620,450" 
-        Width="500" Height="400" 
-        MinWidth="100" MinHeight="100" 
-        Title="Text Editor" IconText="Text Editor" Tag="TextEditor"
         />
 
       <!--</float:FloatingWindowCollection>-->

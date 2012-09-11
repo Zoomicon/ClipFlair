@@ -168,7 +168,11 @@
       <Project>{5BCE670D-C942-4C1E-A369-E8FC1AD3D34F}</Project>
       <Name>ClipFlairModels</Name>
     </ProjectReference>
-    <ProjectReference Include="..\CaptionsGrid\CaptionsGrid.Silverlight\CaptionsGrid.Silverlight.csproj">
+    <ProjectReference Include="..\Audio\AudioRecorderControl\AudioRecorderControl.Silverlight\AudioRecorderControl.Silverlight.csproj">
+      <Project>{BF52BDBA-830F-4CD4-AA9C-F653B6448184}</Project>
+      <Name>AudioRecorderControl.Silverlight</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Captions\CaptionsGrid\CaptionsGrid.Silverlight\CaptionsGrid.Silverlight.csproj">
       <Project>{D2C64A3F-BD21-427C-A68A-69223088967C}</Project>
       <Name>CaptionsGrid.Silverlight</Name>
     </ProjectReference>
