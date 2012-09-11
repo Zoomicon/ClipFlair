@@ -1,5 +1,5 @@
 ﻿//Filename: CaptionsGridView.cs
-//Version: 20120910
+//Version: 20120911
 
 using ClipFlair.Models.Views;
 
@@ -27,6 +27,7 @@ namespace ClipFlair.Views
     private bool endTimeVisible = ICaptionsGridDefaults.DefaultEndTimeVisible;
     private bool durationVisible = ICaptionsGridDefaults.DefaultDurationVisible;
     private bool captionVisible = ICaptionsGridDefaults.DefaultCaptionVisible;
+    private bool captionAudioVisible = ICaptionsGridDefaults.DefaultCaptionAudioVisible;
 
     #endregion
 
@@ -106,6 +107,17 @@ namespace ClipFlair.Views
       {
         captionVisible = value;
         RaisePropertyChanged(ICaptionsGridProperties.PropertyCaptionVisible);
+      }
+    }
+
+    [DataMember]
+    public bool CaptionAudioVisible
+    {
+      get { return captionAudioVisible; }
+      set
+      {
+        captionAudioVisible = value;
+        RaisePropertyChanged(ICaptionsGridProperties.PropertyCaptionAudioVisible);
       }
     }
 

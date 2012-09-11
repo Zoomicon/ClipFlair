@@ -1,6 +1,6 @@
 ﻿<!--
 Filename: CaptionsGridWindow.xaml
-Version: 20120906
+Version: 20120911
 -->
   
 <clipflair:FlipWindow x:Class="ClipFlair.Views.CaptionsGridWindow"
@@ -17,10 +17,11 @@ Version: 20120906
   <!--<clipflair:FlipWindow.FrontContent>-->
   <captions:CaptionsGrid Name="gridCaptions" Width="600"
                          Time="{Binding Time, Mode=TwoWay}"
-                         IsCaptionStartTimeVisible="{Binding StartTimeVisible, Mode=TwoWay}"
-                         IsCaptionEndTimeVisible="{Binding EndTimeVisible, Mode=TwoWay}"
-                         IsCaptionDurationVisible="{Binding DurationVisible, Mode=TwoWay}"
-                         IsCaptionContentVisible="{Binding CaptionVisible, Mode=TwoWay}"
+                         CaptionStartTimeVisible="{Binding StartTimeVisible, Mode=TwoWay}"
+                         CaptionEndTimeVisible="{Binding EndTimeVisible, Mode=TwoWay}"
+                         CaptionDurationVisible="{Binding DurationVisible, Mode=TwoWay}"
+                         CaptionContentVisible="{Binding CaptionVisible, Mode=TwoWay}"
+                         CaptionAudioVisible="{Binding CaptionAudioVisible, Mode=TwoWay}"
   />
   <!--</clipflair:FlipWindow.FrontContent>-->
 
@@ -56,6 +57,11 @@ Version: 20120906
     <StackPanel Orientation="Horizontal">
       <CheckBox Name="cbCaptionContentVisible" IsChecked="{Binding CaptionVisible, Mode=TwoWay}" />
       <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Content visible" Target="{Binding ElementName=cbCaptionContentVisible}"/>
+    </StackPanel>
+
+    <StackPanel Orientation="Horizontal">
+      <CheckBox Name="cbCaptionAudioVisible" IsChecked="{Binding CaptionAudioVisible, Mode=TwoWay}" />
+      <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Audio visible" Target="{Binding ElementName=cbCaptionAudioVisible}"/>
     </StackPanel>
 
   </clipflair:FlipWindow.PropertyItems>

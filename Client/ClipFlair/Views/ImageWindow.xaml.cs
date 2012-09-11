@@ -1,5 +1,5 @@
 ﻿//Filename: ImageWindow.xaml.cs
-//Version: 20120906
+//Version: 20120911
 
 using ClipFlair.Models.Views;
 
@@ -60,7 +60,7 @@ namespace ClipFlair.Views
         /// </summary>
         public static readonly DependencyProperty SourceProperty =
             DependencyProperty.Register(IImageViewerProperties.PropertySource, typeof(Uri), typeof(ImageWindow),
-                new FrameworkPropertyMetadata((Uri)IImageViewerDefaults.DefaultSource, new PropertyChangedCallback(OnSourceChanged)));
+                new FrameworkPropertyMetadata(IImageViewerDefaults.DefaultSource, new PropertyChangedCallback(OnSourceChanged)));
 
         /// <summary>
         /// Gets or sets the Source property.

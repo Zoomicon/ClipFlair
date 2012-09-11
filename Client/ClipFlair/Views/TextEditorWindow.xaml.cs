@@ -1,5 +1,5 @@
 ﻿//Filename: TextEditorWindow.xaml.cs
-//Version: 20120902
+//Version: 20120911
 
 using ClipFlair.Models.Views;
 
@@ -64,7 +64,7 @@ namespace ClipFlair.Views
     /// </summary>
     public static readonly DependencyProperty SourceProperty =
         DependencyProperty.Register(ITextEditorProperties.PropertySource, typeof(Uri), typeof(TextEditorWindow),
-            new FrameworkPropertyMetadata((Uri)ITextEditorDefaults.DefaultSource, new PropertyChangedCallback(OnSourceChanged)));
+            new FrameworkPropertyMetadata(ITextEditorDefaults.DefaultSource, new PropertyChangedCallback(OnSourceChanged)));
 
     /// <summary>
     /// Gets or sets the Source property.
@@ -101,7 +101,7 @@ namespace ClipFlair.Views
     /// </summary>
     public static readonly DependencyProperty ToolbarVisibleProperty =
         DependencyProperty.Register(ITextEditorProperties.PropertyToolbarVisible, typeof(bool), typeof(TextEditorWindow),
-            new FrameworkPropertyMetadata((bool)ITextEditorDefaults.DefaultToolbarVisible, new PropertyChangedCallback(OnToolbarVisibleChanged)));
+            new FrameworkPropertyMetadata(ITextEditorDefaults.DefaultToolbarVisible, new PropertyChangedCallback(OnToolbarVisibleChanged)));
 
     /// <summary>
     /// Gets or sets the ToolbarVisible property.

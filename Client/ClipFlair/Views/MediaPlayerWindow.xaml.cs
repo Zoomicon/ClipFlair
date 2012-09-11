@@ -1,5 +1,5 @@
 ﻿//Filename: MediaPlayerWindow.xaml.cs
-//Version: 20120910
+//Version: 20120911
 
 using ClipFlair.Models.Views;
 
@@ -46,6 +46,7 @@ namespace ClipFlair.Views
       {
         Source = View.Source;
         Time = View.Time;
+        ControllerVisible = View.ControllerVisible;
         CaptionsVisible = View.CaptionsVisible;
         //...
       }
@@ -56,6 +57,9 @@ namespace ClipFlair.Views
             break;
           case IMediaPlayerProperties.PropertyTime:
             Time = View.Time;
+            break;
+          case IMediaPlayerProperties.PropertyControllerVisible:
+            ControllerVisible = View.ControllerVisible;
             break;
           case IMediaPlayerProperties.PropertyCaptionsVisible:
             CaptionsVisible = View.CaptionsVisible;
@@ -110,8 +114,8 @@ namespace ClipFlair.Views
     /// Time Dependency Property
     /// </summary>
     public static readonly DependencyProperty TimeProperty =
-        DependencyProperty.Register("Time", typeof(TimeSpan), typeof(MediaPlayerWindow),
-            new FrameworkPropertyMetadata(TimeSpan.Zero,
+        DependencyProperty.Register(IMediaPlayerProperties.PropertyTime, typeof(TimeSpan), typeof(MediaPlayerWindow),
+            new FrameworkPropertyMetadata(IMediaPlayerDefaults.DefaultTime,
                 FrameworkPropertyMetadataOptions.None,
                 new PropertyChangedCallback(OnTimeChanged)));
 
@@ -188,14 +192,57 @@ namespace ClipFlair.Views
 
     #endregion
 
+    #region ControllerVisible
+
+    /// <summary>
+    /// ControllerVisible Dependency Property
+    /// </summary>
+    public static readonly DependencyProperty ControllerVisibleProperty =
+        DependencyProperty.Register(IMediaPlayerProperties.PropertyControllerVisible, typeof(bool), typeof(MediaPlayerWindow),
+            new FrameworkPropertyMetadata(IMediaPlayerDefaults.DefaultControllerVisible,
+                FrameworkPropertyMetadataOptions.None,
+                new PropertyChangedCallback(OnControllerVisibleChanged)));
+
+    /// <summary>
+    /// Gets or sets the ControllerVisible property. This dependency property 
+    /// indicates ....
+    /// </summary>
+    public bool ControllerVisible
+    {
+      get { return (bool)GetValue(ControllerVisibleProperty); }
+      set { SetValue(ControllerVisibleProperty, value); }
+    }
+
+    /// <summary>
+    /// Handles changes to the ControllerVisible property.
+    /// </summary>
+    private static void OnControllerVisibleChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    {
+      MediaPlayerWindow target = (MediaPlayerWindow)d;
+      bool oldControllerVisible = (bool)e.OldValue;
+      bool newControllerVisible = target.ControllerVisible;
+      target.OnControllerVisibleChanged(oldControllerVisible, newControllerVisible);
+    }
+
+    /// <summary>
+    /// Provides derived classes an opportunity to handle changes to the ControllerVisible property.
+    /// </summary>
+    protected virtual void OnControllerVisibleChanged(bool oldControllerVisible, bool newControllerVisible)
+    {
+      View.ControllerVisible = newControllerVisible;
+      player.IsControlStripVisible = newControllerVisible;
+    }
+
+    #endregion
+
     #region CaptionsVisible
 
     /// <summary>
     /// CaptionsVisible Dependency Property
     /// </summary>
     public static readonly DependencyProperty CaptionsVisibleProperty =
-        DependencyProperty.Register("CaptionsVisible", typeof(bool), typeof(MediaPlayerWindow),
-            new FrameworkPropertyMetadata((bool)false,
+        DependencyProperty.Register(IMediaPlayerProperties.PropertyCaptionsVisible, typeof(bool), typeof(MediaPlayerWindow),
+            new FrameworkPropertyMetadata(IMediaPlayerDefaults.DefaultCaptionsVisible,
                 FrameworkPropertyMetadataOptions.None,
                 new PropertyChangedCallback(OnCaptionsVisibleChanged)));
 
