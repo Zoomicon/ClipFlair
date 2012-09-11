@@ -1,5 +1,5 @@
 ﻿//Filename: ICaptionsGrid.cs
-//Version: 20120904
+//Version: 20120911
 
 using System;
 
@@ -14,6 +14,7 @@ namespace ClipFlair.Models.Views
     public const string PropertyEndTimeVisible = "EndTimeVisible";
     public const string PropertyDurationVisible = "DurationVisible";
     public const string PropertyCaptionVisible = "CaptionVisible";
+    public const string PropertyCaptionAudioVisible = "CaptionAudioVisible";
   }
 
   public static class ICaptionsGridDefaults
@@ -24,6 +25,7 @@ namespace ClipFlair.Models.Views
     public const bool DefaultEndTimeVisible = true;
     public const bool DefaultDurationVisible = false;
     public const bool DefaultCaptionVisible = true;
+    public const bool DefaultCaptionAudioVisible = false;
   }
   
   public interface ICaptionsGrid: IView
@@ -34,6 +36,7 @@ namespace ClipFlair.Models.Views
     bool EndTimeVisible { get; set; }
     bool DurationVisible { get; set; }
     bool CaptionVisible { get; set; }
+    bool CaptionAudioVisible { get; set; }
   }
 
 }
