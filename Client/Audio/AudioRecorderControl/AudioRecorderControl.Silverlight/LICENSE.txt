@@ -1,0 +1,2 @@
+﻿based on sample from:
+http://blog.ondrejsv.com/post/Audio-recorder-Silverlight-4-sample.aspx

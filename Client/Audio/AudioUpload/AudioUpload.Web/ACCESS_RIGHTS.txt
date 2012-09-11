@@ -1,0 +1,3 @@
+﻿Need to give "IIS APPPOOL\DefaultAppPool" user (or whatever AppPool you're running the Web Application under at IIS) to Uploads and to temp\Uploads folders
+
+If you can't find AppPool related users in your system using the pattern "IIS APPPOOL\<AppPoolName>", see http://serverfault.com/questions/81165/how-to-assign-permissions-to-applicationpoolidentity-account for more info
