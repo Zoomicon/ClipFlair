@@ -1,7 +1,8 @@
 ﻿//Filename: CaptionsGrid.xaml.cs
-//Version: 20120911
+//Version: 20120912
 
 using Zoomicon.CaptionsGrid;
+using Zoomicon.AudioRecorder;
 
 using System;
 using System.Windows;
@@ -43,7 +44,10 @@ namespace Zoomicon.CaptionsGrid
     {
       CaptionElement selectedMarker = ((CaptionElement)gridCaptions.SelectedItem);
       if (selectedMarker != null)
+      {
         Time = selectedMarker.Begin;
+        ((AudioRecorderControl)ColumnAudio.GetCellContent(selectedMarker)).Play();
+      }
     }
 
     #region --- Properties ---
