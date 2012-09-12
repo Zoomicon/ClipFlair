@@ -1,10 +1,10 @@
 ﻿//Filename: SimpleCommand.cs
-//Version: 20120911
+//Version: 20120912
 
 using System;
 using System.Windows.Input;
 
-namespace AudioRecorder
+namespace Zoomicon.AudioRecorder
 {
 
   public class SimpleCommand : ICommand
@@ -12,6 +12,7 @@ namespace AudioRecorder
     public Action ExecuteAction { get; set; }
 
     private bool _canExecute;
+
     public bool MayBeExecuted
     {
       get { return _canExecute; }
@@ -35,7 +36,7 @@ namespace AudioRecorder
 
     public event EventHandler CanExecuteChanged;
 
-    public void Execute(object parameter)
+    public virtual void Execute(object parameter)
     {
       if (ExecuteAction != null)
         ExecuteAction();

@@ -1,5 +1,5 @@
 ﻿//Filename: WaveMediaStreamSource.cs
-//Version: 20120911
+//Version: 20120912
 
 //-----------------------------------------------------------------------
 // <copyright file="WaveMediaStreamSource.cs" company="Gilles Khouzam">
@@ -14,7 +14,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Windows.Media;
 
-namespace AudioLib
+namespace Zoomicon.AudioLib
 {
 
     /// <summary>

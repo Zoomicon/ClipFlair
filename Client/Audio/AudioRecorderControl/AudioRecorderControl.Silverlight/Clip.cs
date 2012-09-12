@@ -6,7 +6,7 @@
 using System.Windows;
 using System.Windows.Media;
 
-namespace AudioRecorder
+namespace Zoomicon.AudioRecorder
 {
 
     public class Clip

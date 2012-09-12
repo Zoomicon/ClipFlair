@@ -1,11 +1,11 @@
 ﻿//Filename: AudioRecorderControl.xaml.cs
-//Version: 20120911
+//Version: 20120912
 
 using System;
 using System.Windows.Controls;
 using System.Windows.Input;
 
-namespace AudioRecorder
+namespace Zoomicon.AudioRecorder
 {
     public partial class AudioRecorderControl : UserControl
     {
@@ -15,17 +15,25 @@ namespace AudioRecorder
         {
             InitializeComponent();
 
-            ViewModel = new AudioRecorderViewModel();
+            ViewModel = new AudioRecorderViewModel(btnRecord);
 
-            ViewModel.PlayPauseCommand.CanExecuteChanged += new EventHandler(PlayPauseCommand_CanExecuteChanged);
+            //ViewModel.StopCommand.CanExecuteChanged += new EventHandler(StopCommand_CanExecuteChanged);
 
             DataContext = ViewModel;
         }
 
-        void PlayPauseCommand_CanExecuteChanged(object sender, EventArgs e)
+      /*
+        void StopCommand_CanExecuteChanged(object sender, EventArgs e)
         {
             //tapeMeter.MeterMode = ((ICommand)sender).CanExecute(null) ? Codeplex.Dashboarding.Odometer.Mode.AutoIncrement : Codeplex.Dashboarding.Odometer.Mode.Static;
         }
+       */
 
+    public void Play()
+    {
+      ViewModel.Play();
     }
+
+  }
+
 }
