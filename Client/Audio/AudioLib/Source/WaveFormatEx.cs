@@ -1,5 +1,5 @@
 ﻿//Filename: WaveFormatEx.cs
-//Version: 20120911
+//Version: 20120912
 
 //-----------------------------------------------------------------------
 // <copyright file="WaveFormatEx.cs" company="Gilles Khouzam">
@@ -12,7 +12,7 @@
 
 using System;
 
-namespace AudioLib
+namespace Zoomicon.AudioLib
 {
 
     /// <summary>

@@ -1,11 +1,11 @@
 ﻿//Filename: MemoryAudioSink.cs
-//Version: 20120911
+//Version: 20120912
 
 using System;
 using System.Windows.Media;
 using System.IO;
 
-namespace AudioLib
+namespace Zoomicon.AudioLib
 {
 
   public class MemoryAudioSink : AudioSink

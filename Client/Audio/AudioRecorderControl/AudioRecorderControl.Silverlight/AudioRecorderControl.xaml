@@ -1,6 +1,6 @@
 ﻿<!--
 Filename: AudioRecorderControl.xaml
-Version: 20120911  
+Version: 20120912
 -->
   
 <UserControl
@@ -8,8 +8,8 @@ Version: 20120911
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d" d:DesignHeight="29" d:DesignWidth="73"  
-    x:Class="AudioRecorder.AudioRecorderControl"  
+    mc:Ignorable="d" d:DesignHeight="29" d:DesignWidth="99"  
+    x:Class="Zoomicon.AudioRecorder.AudioRecorderControl"  
     >
     
   <UserControl.Resources>
@@ -25,10 +25,10 @@ Version: 20120911
       <ToolTip Content="{Binding StatusText}" />
     </ToolTipService.ToolTip>
 
-    <Button x:Name="btnRecord" Content="Record" Command="{Binding RecordCommand}" Template="{StaticResource RecordCommandStyle}" Width="20" Height="20" Margin="3,0,0,0"/>
-    <Button x:Name="btnStop" Content="Stop" Command="{Binding PlayPauseCommand}" Template="{StaticResource StopCommandStyle}" Width="20" Height="20" Margin="3,0,3,0"/>
-    <Button x:Name="btnSave" Command="{Binding SaveCommand}" Template="{StaticResource SaveCommandStyle}" Width="20" Height="20" Margin="0,0,3,0"/>
-    <MediaElement Name="player" Visibility="Collapsed" />
+    <ToggleButton x:Name="btnRecord" Content="Record" Command="{Binding RecordCommand}" Template="{StaticResource RecordCommandStyle}" Width="20" Height="20" Margin="3,0,0,0" />
+    <Button x:Name="btnPlay" Content="Play" Command="{Binding PlayCommand}" Template="{StaticResource PlayCommandStyle}" Width="20" Height="20" Margin="3,0,3,0" />
+    <Button x:Name="btnLoad" Visibility="Collapsed" Command="{Binding LoadCommand}" Template="{StaticResource LoadCommandStyle}" Width="20" Height="20" Margin="0,0,3,0" />
+    <Button x:Name="btnSave" Command="{Binding SaveCommand}" Template="{StaticResource SaveCommandStyle}" Width="20" Height="20" Margin="0,0,3,0" />
   </StackPanel>
 
 </UserControl>

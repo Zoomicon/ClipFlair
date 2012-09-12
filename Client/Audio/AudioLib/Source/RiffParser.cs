@@ -1,5 +1,5 @@
 ﻿//Filename: RiffParser.cs
-//Version: 20120911
+//Version: 20120912
 
 //-----------------------------------------------------------------------
 // <copyright file="RiffParser.cs" company="Gilles Khouzam">
@@ -13,7 +13,7 @@ using System;
 using System.Diagnostics;
 using System.IO;
 
-namespace AudioLib
+namespace Zoomicon.AudioLib
 {
 
     /// <summary>

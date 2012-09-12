@@ -1,5 +1,5 @@
 ﻿//Filename: WavParser.cs
-//Version: 20120911
+//Version: 20120912
 
 //-----------------------------------------------------------------------
 // <copyright file="WavParser.cs" company="Gilles Khouzam">
@@ -13,7 +13,7 @@ using System;
 using System.Diagnostics;
 using System.IO;
 
-namespace AudioLib
+namespace Zoomicon.AudioLib
 {
     
     /// <summary>
