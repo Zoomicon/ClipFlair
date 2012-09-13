@@ -1,5 +1,5 @@
 ﻿//Filename: MainPage.xaml.cs
-//Version: 20120911
+//Version: 20120912
 
 using System;
 using System.Collections.Generic;
@@ -14,7 +14,7 @@ using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 using System.IO;
 
-using AudioLib;
+using Zoomicon.AudioLib;
 using HSS.Interlink;
 
 namespace AudioUpload
@@ -123,7 +123,7 @@ namespace AudioUpload
         {
           wavMss = new WaveMediaStreamSource(theMemStream);
           player.SetSource(wavMss);
-          player.Position = new TimeSpan(0);
+          player.Position = TimeSpan.Zero;
           player.Play();
         }
 

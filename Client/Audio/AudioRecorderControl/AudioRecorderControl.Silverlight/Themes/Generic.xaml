@@ -6,8 +6,8 @@ Version: 20120912
 <ResourceDictionary
   xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-  xmlns:util="clr-namespace:AudioRecorder"
   >
+  <!--   xmlns:util="clr-namespace:Zoomicon.AudioRecorder" -->
 
   <ControlTemplate x:Key="RecordCommandStyle" TargetType="ToggleButton">
     <Ellipse x:Name="shapeRecord" 
@@ -19,14 +19,7 @@ Version: 20120912
         <VisualStateGroup x:Name="CommonStates">
 
           <VisualState x:Name="Normal"/>
-
-          <VisualState x:Name="Checked">
-            <Storyboard>
-              <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Shape.Fill).(SolidColorBrush.Color)" Storyboard.TargetName="shapeRecord">
-                <EasingColorKeyFrame KeyTime="0" Value="#FFFF5454"/>
-              </ColorAnimationUsingKeyFrames>
-            </Storyboard>
-          </VisualState>
+          <VisualState x:Name="Pressed"/>
 
           <VisualState x:Name="Disabled">
             <Storyboard>
@@ -44,17 +37,27 @@ Version: 20120912
             </Storyboard>
           </VisualState>
 
+          <VisualState x:Name="Checked">
+            <Storyboard>
+              <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Shape.Fill).(SolidColorBrush.Color)" Storyboard.TargetName="shapeRecord">
+                <EasingColorKeyFrame KeyTime="0" Value="#FFFF5454"/>
+              </ColorAnimationUsingKeyFrames>
+            </Storyboard>
+          </VisualState>          
+          
         </VisualStateGroup>
       </VisualStateManager.VisualStateGroups>
     </Ellipse>
   </ControlTemplate>
 
-  <ControlTemplate x:Key="PlayCommandStyle" TargetType="Button">
+  <ControlTemplate x:Key="PlayCommandStyle" TargetType="ToggleButton">
     <Grid>
       <VisualStateManager.VisualStateGroups>
         <VisualStateGroup x:Name="CommonStates">
+          
           <VisualState x:Name="Normal"/>
           <VisualState x:Name="Pressed"/>
+          
           <VisualState x:Name="Disabled">
             <Storyboard>
               <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Shape.Fill).(SolidColorBrush.Color)" Storyboard.TargetName="shapePlay">
@@ -62,13 +65,23 @@ Version: 20120912
               </ColorAnimationUsingKeyFrames>
             </Storyboard>
           </VisualState>
+          
           <VisualState x:Name="MouseOver">
             <Storyboard>
               <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Shape.Fill).(SolidColorBrush.Color)" Storyboard.TargetName="shapePlay">
-                <EasingColorKeyFrame KeyTime="0" Value="#FF471FF7"/>
+                <EasingColorKeyFrame KeyTime="0" Value="#FF54FC54"/>
               </ColorAnimationUsingKeyFrames>
             </Storyboard>
           </VisualState>
+
+          <VisualState x:Name="Checked">
+            <Storyboard>
+              <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Shape.Fill).(SolidColorBrush.Color)" Storyboard.TargetName="shapePlay">
+                <EasingColorKeyFrame KeyTime="0" Value="#FF54FF54"/>
+              </ColorAnimationUsingKeyFrames>
+            </Storyboard>
+          </VisualState>
+
         </VisualStateGroup>
       </VisualStateManager.VisualStateGroups>
       <!--
@@ -94,7 +107,13 @@ Version: 20120912
                    />
         </Grid>
       </Grid>-->
-      <Path x:Name="shapePlay" Margin="3,0,0,0" Fill="#C0FFC0" Stroke="#396C15" Data="M 0,0 l 14,10 l -14,10 Z "  StrokeLineJoin="Round"  />
+      <Path x:Name="shapePlay" 
+            Width="{TemplateBinding Width}" Height="{TemplateBinding Height}"
+            Margin="3,0,0,0" 
+            Fill="#C0FFC0" 
+            Stroke="#396C15" 
+            Data="M 0,0 l 14,10 l -14,10 Z" 
+            StrokeLineJoin="Round" />
     </Grid>
   </ControlTemplate>
 
@@ -110,8 +129,10 @@ Version: 20120912
       </Image.RenderTransform>
       <VisualStateManager.VisualStateGroups>
         <VisualStateGroup x:Name="CommonStates">
+          
           <VisualState x:Name="Normal"/>
           <VisualState x:Name="Pressed"/>
+          
           <VisualState x:Name="Disabled">
             <Storyboard>
               <ObjectAnimationUsingKeyFrames
@@ -122,6 +143,7 @@ Version: 20120912
               </ObjectAnimationUsingKeyFrames>
             </Storyboard>
           </VisualState>
+          
           <VisualState x:Name="MouseOver">
             <Storyboard>
               <ObjectAnimationUsingKeyFrames
@@ -132,13 +154,17 @@ Version: 20120912
               </ObjectAnimationUsingKeyFrames>
             </Storyboard>
           </VisualState>
+          
         </VisualStateGroup>
       </VisualStateManager.VisualStateGroups>
     </Image>
   </ControlTemplate>
 
   <ControlTemplate x:Key="SaveCommandStyle" TargetType="Button">
-    <Image Source="/AudioRecorder;component/Images/save.png" Name="BaseImage" >
+    <Image 
+      Width="{TemplateBinding Width}" Height="{TemplateBinding Height}"
+      Source="/AudioRecorder;component/Images/save.png" 
+      Name="BaseImage" >
       <Image.RenderTransform>
         <TransformGroup>
           <ScaleTransform/>
@@ -149,8 +175,10 @@ Version: 20120912
       </Image.RenderTransform>
       <VisualStateManager.VisualStateGroups>
         <VisualStateGroup x:Name="CommonStates">
+          
           <VisualState x:Name="Normal"/>
           <VisualState x:Name="Pressed"/>
+          
           <VisualState x:Name="Disabled">
             <Storyboard>
               <ObjectAnimationUsingKeyFrames
@@ -161,6 +189,7 @@ Version: 20120912
               </ObjectAnimationUsingKeyFrames>
             </Storyboard>
           </VisualState>
+          
           <VisualState x:Name="MouseOver">
             <Storyboard>
               <ObjectAnimationUsingKeyFrames
@@ -171,6 +200,7 @@ Version: 20120912
               </ObjectAnimationUsingKeyFrames>
             </Storyboard>
           </VisualState>
+          
         </VisualStateGroup>
       </VisualStateManager.VisualStateGroups>
     </Image>

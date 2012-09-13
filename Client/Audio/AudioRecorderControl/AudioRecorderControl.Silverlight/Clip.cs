@@ -3,6 +3,8 @@
 
 //Source: http://www.scottlogic.co.uk/blog/colin/2009/05/silverlight-cliptobounds-can-i-clip-it-yes-you-can/
 
+/* //Was used in Generic.xaml for Pause icon (not used for now)
+ 
 using System.Windows;
 using System.Windows.Media;
 
@@ -76,3 +78,5 @@ namespace Zoomicon.AudioRecorder
     }
 
 }
+
+*/

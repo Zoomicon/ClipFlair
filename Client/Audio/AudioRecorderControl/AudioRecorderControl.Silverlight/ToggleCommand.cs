@@ -12,7 +12,13 @@ namespace Zoomicon.AudioRecorder
   {
     public Action ExecuteUncheckAction { get; set; }
 
-    public ToggleButton Button { get; private set; }
+    protected ToggleButton toggleButton;
+
+    public bool IsChecked
+    {
+      get { return (toggleButton.IsChecked == true); }
+      set { toggleButton.IsChecked = value; }
+    }
 
     private ToggleCommand()
     {
@@ -21,18 +27,18 @@ namespace Zoomicon.AudioRecorder
 
     public ToggleCommand(ToggleButton theToggleButton)
     {
-      this.Button = theToggleButton;
+      this.toggleButton = theToggleButton;
     }
     
     public override void Execute(object parameter)
     {
       if (ExecuteAction != null)
-        if (Button.IsChecked == true)
+        if (toggleButton.IsChecked == true)
           ExecuteAction();
         else
           ExecuteUncheckAction();
     }
-
+    
   }
 
 }
