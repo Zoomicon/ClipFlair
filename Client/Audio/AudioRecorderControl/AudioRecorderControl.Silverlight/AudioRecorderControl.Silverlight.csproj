@@ -104,6 +104,9 @@
     <Resource Include="Images\save_hover.png" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Images\load.png" />
+    <Resource Include="Images\load_disabled.png" />
+    <Resource Include="Images\load_hover.png" />
     <Content Include="LICENSE.txt" />
   </ItemGroup>
   <ItemGroup>

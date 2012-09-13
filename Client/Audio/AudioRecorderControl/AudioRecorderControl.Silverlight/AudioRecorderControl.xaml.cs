@@ -15,23 +15,26 @@ namespace Zoomicon.AudioRecorder
         {
             InitializeComponent();
 
-            ViewModel = new AudioRecorderViewModel(btnRecord);
-
-            //ViewModel.StopCommand.CanExecuteChanged += new EventHandler(StopCommand_CanExecuteChanged);
+            ViewModel = new AudioRecorderViewModel(btnRecord, btnPlay);
 
             DataContext = ViewModel;
         }
 
-      /*
-        void StopCommand_CanExecuteChanged(object sender, EventArgs e)
-        {
-            //tapeMeter.MeterMode = ((ICommand)sender).CanExecute(null) ? Codeplex.Dashboarding.Odometer.Mode.AutoIncrement : Codeplex.Dashboarding.Odometer.Mode.Static;
-        }
-       */
-
     public void Play()
     {
-      ViewModel.Play();
+      StopPlayback(); //stop any current playback
+      btnPlay.IsChecked = true; //play
+    }
+
+    public void StopPlayback()
+    {
+      btnPlay.IsChecked = false;
+    }
+
+    public double Volume
+    {
+      get { return ViewModel.Volume; }
+      set { ViewModel.Volume = value;  }
     }
 
   }

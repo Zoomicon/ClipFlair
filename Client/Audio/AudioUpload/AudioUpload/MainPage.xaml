@@ -44,7 +44,7 @@ Version: 20120911
 
       </StackPanel>
 
-      <MediaElement Visibility="Collapsed" Height="15" Name="player" />
+      <MediaElement Visibility="Collapsed" Height="15" Name="player" Volume="1.0" /> <!-- set to highest volume (1.0), since default is 0.5 -->
       <TextBlock Text=" "/>
       <HyperlinkButton Name="linkStatus" Content=" " TargetName="_blank" Foreground="Goldenrod" />
       <TextBlock Text=" "/>

@@ -26,8 +26,8 @@ Version: 20120912
     </ToolTipService.ToolTip>
 
     <ToggleButton x:Name="btnRecord" Content="Record" Command="{Binding RecordCommand}" Template="{StaticResource RecordCommandStyle}" Width="20" Height="20" Margin="3,0,0,0" />
-    <Button x:Name="btnPlay" Content="Play" Command="{Binding PlayCommand}" Template="{StaticResource PlayCommandStyle}" Width="20" Height="20" Margin="3,0,3,0" />
-    <Button x:Name="btnLoad" Visibility="Collapsed" Command="{Binding LoadCommand}" Template="{StaticResource LoadCommandStyle}" Width="20" Height="20" Margin="0,0,3,0" />
+    <ToggleButton x:Name="btnPlay" Content="Play" Command="{Binding PlayCommand}" Template="{StaticResource PlayCommandStyle}" Width="20" Height="20" Margin="3,0,3,0" />
+    <Button x:Name="btnLoad" Command="{Binding LoadCommand}" Template="{StaticResource LoadCommandStyle}" Width="20" Height="20" Margin="0,0,3,0" />
     <Button x:Name="btnSave" Command="{Binding SaveCommand}" Template="{StaticResource SaveCommandStyle}" Width="20" Height="20" Margin="0,0,3,0" />
   </StackPanel>
 
