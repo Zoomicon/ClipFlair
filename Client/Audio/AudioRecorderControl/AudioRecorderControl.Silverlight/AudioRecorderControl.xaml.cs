@@ -23,12 +23,12 @@ namespace Zoomicon.AudioRecorder
     public void Play()
     {
       StopPlayback(); //stop any current playback
-      btnPlay.IsChecked = true; //play
+      ViewModel.PlayCommand.IsChecked = true; //don't talk to ToggleButton directly
     }
 
     public void StopPlayback()
     {
-      btnPlay.IsChecked = false;
+      ViewModel.PlayCommand.IsChecked = false; //don't talk to ToggleButton directly
     }
 
     public double Volume

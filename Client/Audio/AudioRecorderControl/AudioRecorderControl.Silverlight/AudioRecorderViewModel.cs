@@ -88,12 +88,6 @@ namespace Zoomicon.AudioRecorder
 
     public AudioRecorderViewModel(ToggleButton btnRecord, ToggleButton btnPlay)
     {
-      Volume = 1.0; //set to highest volume (1.0), since MediaElement's default is 0.5
-      player.MediaEnded += (s, e) =>
-      {
-        btnPlay.IsChecked = false; //when playback ends depress play button
-      };
-
       RecordCommand = new ToggleCommand(btnRecord)
       {
         MayBeExecuted = true,
@@ -123,6 +117,12 @@ namespace Zoomicon.AudioRecorder
       AudioCaptureDevice audioDevice = CaptureDeviceConfiguration.GetDefaultAudioCaptureDevice();
       _captureSource = new CaptureSource() { AudioCaptureDevice = audioDevice };
 
+      Volume = 1.0; //set to highest volume (1.0), since MediaElement's default is 0.5
+      player.MediaEnded += (s, e) =>
+      {
+        PlayCommand.IsChecked = false; //when playback ends depress play button //don't talk to ToggleButton directly
+      };
+
       Reset();
     }
 
@@ -145,19 +145,17 @@ namespace Zoomicon.AudioRecorder
     {
       if (!EnsureAudioAccess())
       {
-        RecordCommand.IsChecked = false; //stop recording
+        RecordCommand.IsChecked = false; //depress recording toggle button //don't talk to ToggleButton directly
         Reset();
         StatusText = MSG_NO_AUDIO;
+        return;
       }
       
-      if (_captureSource.State != CaptureState.Stopped)
-        return;
-
       try
       {
         _sink = new MemoryAudioSink();
         _sink.CaptureSource = _captureSource;
-        _captureSource.Start();
+        _captureSource.Start(); //assuming captureSource is stopped
 
         StatusText = MSG_RECORDING; //keep recording message since we can't depress the button (TODO: may add Uncheck method to ToggleCommand)
 
@@ -168,7 +166,7 @@ namespace Zoomicon.AudioRecorder
       }
       catch (Exception e)
       {
-        RecordCommand.IsChecked = false; //depress recording toggle button
+        RecordCommand.IsChecked = false; //depress recording toggle button //don't talk to ToggleButton directly
         Reset();
         StatusText = MSG_RECORD_FAILED + e.Message;
       }
@@ -205,7 +203,12 @@ namespace Zoomicon.AudioRecorder
     
     protected void Play()
     {
-      if (theMemStream == null) return;
+      if (theMemStream == null)
+      {
+        PlayCommand.IsChecked = false; //depress playback toggle button //don't talk to ToggleButton directly
+        StatusText = MSG_RECORD_OR_LOAD; //prompt user to record audio or load a WAV file
+        return;
+      }
 
       try
       {
@@ -216,14 +219,21 @@ namespace Zoomicon.AudioRecorder
       }
       catch (Exception e)
       {
-        PlayCommand.IsChecked = false; //depress playback toggle button
+        PlayCommand.IsChecked = false; //depress playback toggle button //don't talk to ToggleButton directly
         StatusText = MSG_PLAY_FAILED + e.Message;
       }
     }
 
     protected void StopPlayback()
     {
-      player.Stop(); //stops any playback and moves playback position to start (time 0)
+      try
+      {
+        player.Stop(); //stops any playback and moves playback position to start (time 0)
+      }
+      catch (Exception e)
+      {
+        //NOP
+      }
     }
 
     protected void LoadFile()
