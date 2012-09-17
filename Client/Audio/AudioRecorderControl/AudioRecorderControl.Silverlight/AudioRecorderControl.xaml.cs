@@ -22,7 +22,7 @@ namespace Zoomicon.AudioRecorder
 
     public void Play()
     {
-      StopPlayback(); //stop any current playback
+      //StopPlayback(); //stop any current playback //don't call this, since when clicking on Play button at other grid row we have the button checked then unchecked by this
       ViewModel.PlayCommand.IsChecked = true; //don't talk to ToggleButton directly
     }
 

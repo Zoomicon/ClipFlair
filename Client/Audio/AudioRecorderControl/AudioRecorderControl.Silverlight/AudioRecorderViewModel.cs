@@ -118,12 +118,14 @@ namespace Zoomicon.AudioRecorder
       _captureSource = new CaptureSource() { AudioCaptureDevice = audioDevice };
 
       Volume = 1.0; //set to highest volume (1.0), since MediaElement's default is 0.5
-      player.MediaEnded += (s, e) =>
-      {
-        PlayCommand.IsChecked = false; //when playback ends depress play button //don't talk to ToggleButton directly
-      };
+      player.MediaEnded += new RoutedEventHandler(MediaElement_MediaEnded); 
 
       Reset();
+    }
+
+    protected void MediaElement_MediaEnded( object sender , RoutedEventArgs e )
+    {
+      PlayCommand.IsChecked = false; //when playback ends depress play button //don't talk to ToggleButton directly
     }
 
     private bool EnsureAudioAccess()
