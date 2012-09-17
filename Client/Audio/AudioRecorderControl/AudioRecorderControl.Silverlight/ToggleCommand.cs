@@ -17,9 +17,12 @@ namespace Zoomicon.AudioRecorder
     public bool IsChecked
     {
       get { return (toggleButton.IsChecked == true); }
-      set { 
+      set {
         if (MayBeExecuted)
+        {
           toggleButton.IsChecked = value;
+          Execute(null);
+        }
       }
     }
 
