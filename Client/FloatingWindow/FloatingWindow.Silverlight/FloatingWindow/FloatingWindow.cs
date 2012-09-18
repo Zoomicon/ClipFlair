@@ -1,5 +1,5 @@
 //Filename: FloatingWindow.cs
-//Version: 20120906
+//Version: 20120918
 
 using System;
 using System.Collections.ObjectModel;
@@ -2310,8 +2310,8 @@ namespace SilverFlow.Controls
         protected override void OnMouseLeftButtonDown(MouseButtonEventArgs e)
         {
             base.OnMouseLeftButtonDown(e);
-            
-            e.Handled = true; //!!! always handle events so that container doesn't get confused //TODO: check this again if correct
+
+            e.Handled = true; //always handle events so that container doesn't get confused (e.g. when dragging the window title bar we don't want container to pan)
 
             windowAction = WindowAction.None;
 
@@ -2357,7 +2357,7 @@ namespace SilverFlow.Controls
         {
             base.OnMouseLeftButtonUp(e);
 
-            e.Handled = true; //!!! always handle events so that container doesn't get confused //TODO: check this again if correct
+            e.Handled = true; //always handle events so that container doesn't get confused (e.g. when dragging the window title bar we don't want container to pan)
 
             if (windowAction == WindowAction.Move)
             {
