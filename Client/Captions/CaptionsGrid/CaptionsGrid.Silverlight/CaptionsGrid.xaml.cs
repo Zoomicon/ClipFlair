@@ -1,5 +1,5 @@
 ﻿//Filename: CaptionsGrid.xaml.cs
-//Version: 20120912
+//Version: 20120918
 
 using Zoomicon.CaptionsGrid;
 using Zoomicon.AudioRecorder;
@@ -99,13 +99,10 @@ namespace Zoomicon.CaptionsGrid
     /// </summary>
     protected virtual void OnTimeChanged(TimeSpan oldTime, TimeSpan newTime)
     {
-      foreach (CaptionElement activeCaption in Markers.WhereActiveAtPosition(newTime))
-        gridCaptions.SelectedItem = activeCaption; //if multiple captions cover this position, select the last one
- 
-      CaptionElement selectedCaption = (CaptionElement)gridCaptions.SelectedItem;
-      if (selectedCaption != null)
-        if (!selectedCaption.IsActiveAtPosition(newTime)) //if currently selected caption (from older selection) is not active at the given position, clear selection
-          gridCaptions.SelectedItem = null;
+      CaptionElement activeCaption = null;
+      foreach (CaptionElement c in Markers.WhereActiveAtPosition(newTime))
+        activeCaption = c; //if multiple captions cover this position, select the last one
+      gridCaptions.SelectedItem = activeCaption; //this will deselect if no active caption at that time position
     }
 
     #endregion
