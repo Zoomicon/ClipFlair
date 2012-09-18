@@ -1,6 +1,6 @@
 ﻿<!-- 
 Filename: Generic.xaml
-Version: 20120911
+Version: 20120918
 -->
 
 <ResourceDictionary
@@ -11,30 +11,25 @@ Version: 20120911
  >
 
   <DataTemplate x:Key="StartTimeCellTemplate">
-    <TextBlock Margin="4" Text="{Binding Begin}" />
+    <TextBlock Margin="4" Text="{Binding Begin, StringFormat='hh\\:mm\\:ss\\.FFF'}" /> <!-- can use .fff to always show all digits, don't use .fFF has bug at parsing new values -->
   </DataTemplate>
 
   <DataTemplate x:Key="StartTimeCellEditTemplate">
-    <TextBox Margin="4" Text="{Binding Begin, Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=true}" />
+    <TextBox Margin="4" Text="{Binding Begin, StringFormat='hh\\:mm\\:ss\\.FFF', Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=true}" />
     <!--<input:TimeUpDown Format="hh:mm:ss" Value="{Binding Begin, Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=true}" />-->
   </DataTemplate>
 
   <DataTemplate x:Key="EndTimeCellTemplate">
-    <TextBlock Margin="4" Text="{Binding End}" />
+    <TextBlock Margin="4" Text="{Binding End, StringFormat='hh\\:mm\\:ss\\.FFF'}" />
   </DataTemplate>
 
   <DataTemplate x:Key="EndTimeCellEditTemplate">
-    <TextBox Margin="4" Text="{Binding End, Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=true}" />
+    <TextBox Margin="4" Text="{Binding End, StringFormat='hh\\:mm\\:ss\\.FFF', Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=true}" />
     <!--<input:TimeUpDown Format="hh:mm:ss" Minimum="{Binding Begin}"  Value="{Binding End, Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=true}" />-->
   </DataTemplate>
 
   <DataTemplate x:Key="DurationCellTemplate">
-    <TextBlock Margin="4" Text="{Binding Duration}" />
-  </DataTemplate>
-
-  <DataTemplate x:Key="DurationCellEditTemplate">
-    <TextBox Margin="4" Text="{Binding Duration, Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=true}" />
-    <!--<input:TimeUpDown Format="hh:mm:ss" Value="{Binding Duration, Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=true}" />-->
+    <TextBlock Margin="4" Text="{Binding Duration, StringFormat='hh\\:mm\\:ss\\.FFF'}" />
   </DataTemplate>
 
   <DataTemplate x:Key="ContentCellTemplate">
