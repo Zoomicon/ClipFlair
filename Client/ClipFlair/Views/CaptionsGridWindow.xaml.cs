@@ -1,5 +1,5 @@
 ﻿//Filename: CaptionsGridWindow.xaml.cs
-//Version: 20120911
+//Version: 20120920
 
 using ClipFlair.Models.Views;
 
@@ -150,43 +150,44 @@ namespace ClipFlair.Views
 
     #endregion
 
-    #region Markers
+    #region Captions
 
     /// <summary>
-    /// Markers Dependency Property
+    /// Captions Dependency Property
     /// </summary>
-    public static readonly DependencyProperty MarkersProperty =
-        DependencyProperty.Register("Markers", typeof(MediaMarkerCollection<TimedTextElement>), typeof(CaptionsGridWindow),
+    public static readonly DependencyProperty CaptionsProperty =
+        DependencyProperty.Register("Captions", typeof(CaptionRegion), typeof(CaptionsGridWindow),
             new FrameworkPropertyMetadata(null,
                 FrameworkPropertyMetadataOptions.None,
-                new PropertyChangedCallback(OnMarkersChanged)));
+                new PropertyChangedCallback(OnCaptionsChanged)));
 
     /// <summary>
-    /// Gets or sets the Markers property.
+    /// Gets or sets the Captions property.
     /// </summary>
-    public MediaMarkerCollection<TimedTextElement> Markers
+    public CaptionRegion Captions
     {
-      get { return (MediaMarkerCollection<TimedTextElement>)GetValue(MarkersProperty); }
-      set { SetValue(MarkersProperty, value); }
+      get { return (CaptionRegion)GetValue(CaptionsProperty); }
+      set { SetValue(CaptionsProperty, value); }
     }
 
     /// <summary>
-    /// Handles changes to the Markers property.
+    /// Handles changes to the Captions property.
     /// </summary>
-    private static void OnMarkersChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    private static void OnCaptionsChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
       CaptionsGridWindow target = (CaptionsGridWindow)d;
-      MediaMarkerCollection<TimedTextElement> oldMarkers = (MediaMarkerCollection<TimedTextElement>)e.OldValue;
-      MediaMarkerCollection<TimedTextElement> newMarkers = target.Markers;
-      target.OnMarkersChanged(oldMarkers, newMarkers);
+      CaptionRegion oldCaptions = (CaptionRegion)e.OldValue;
+      CaptionRegion newCaptions = target.Captions;
+      target.OnCaptionsChanged(oldCaptions, newCaptions);
     }
 
     /// <summary>
-    /// Provides derived classes an opportunity to handle changes to the Markers property.
+    /// Provides derived classes an opportunity to handle changes to the Captions property.
     /// </summary>
-    protected virtual void OnMarkersChanged(MediaMarkerCollection<TimedTextElement> oldMarkers, MediaMarkerCollection<TimedTextElement> newMarkers)
+    protected virtual void OnCaptionsChanged(CaptionRegion oldCaptions, CaptionRegion newCaptions)
     {
-      gridCaptions.Markers = newMarkers;
+      //NOP (using two-way data binding)
+      //gridCaptions.Captions = newCaptions;
     }
 
     #endregion

@@ -1,6 +1,6 @@
 ﻿<!--
 Filename: CaptionsGrid.xaml
-Version: 20120918
+Version: 20120920
 -->
   
   <UserControl x:Class="Zoomicon.CaptionsGrid.CaptionsGrid"
@@ -9,6 +9,7 @@ Version: 20120918
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008" d:DesignHeight="406" d:DesignWidth="906"
     xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk"
+    xmlns:captions="clr-namespace:Zoomicon.CaptionsGrid"
    >
     
   <UserControl.Resources>
@@ -19,13 +20,15 @@ Version: 20120918
     </ResourceDictionary>
   </UserControl.Resources>
 
-    <Grid x:Name="LayoutRoot" Background="White">
+  <Grid x:Name="LayoutRoot" 
+        Background="White">
     <Grid.RowDefinitions>
       <RowDefinition Height="20"/>
       <RowDefinition Height="*" />
     </Grid.RowDefinitions>
     
-    <StackPanel Grid.Row="0"
+    <StackPanel Name="Toolbar"
+                Grid.Row="0"
                 Orientation="Horizontal">
       <StackPanel.Resources>
         <Style TargetType="Button">
@@ -34,7 +37,7 @@ Version: 20120918
       </StackPanel.Resources>
       <Button Name="btnAdd" Content=" + " Click="btnAdd_Click" FontWeight="ExtraBold" />
       <Button Name="btnRemove" Content=" - " Click="btnRemove_Click" FontWeight="ExtraBold" />
-<!--      <Button Name="btnLoad" Content="Load" Click="btnLoad_Click" />
+<!--  <Button Name="btnLoad" Content="Load" Click="btnLoad_Click" />
       <Button Name="btnSave" Content="Save" Click="btnSave_Click" /> -->
     </StackPanel>
     
@@ -42,7 +45,8 @@ Version: 20120918
                   Grid.Row="1" 
                   HorizontalAlignment="Stretch" VerticalAlignment="Stretch" 
                   AutoGenerateColumns="False" 
-                  ItemsSource="{Binding}">
+                  ItemsSource="{Binding Path=Captions.Children, RelativeSource={RelativeSource AncestorType=captions:CaptionsGrid}, Mode=TwoWay}"
+                  >
       <sdk:DataGrid.Columns>
         <sdk:DataGridTemplateColumn Header="Start" CellTemplate="{StaticResource StartTimeCellTemplate}" CellEditingTemplate="{StaticResource StartTimeCellEditTemplate}"/>
         <sdk:DataGridTemplateColumn Header="End" CellTemplate="{StaticResource EndTimeCellTemplate}" CellEditingTemplate="{StaticResource EndTimeCellEditTemplate}" />

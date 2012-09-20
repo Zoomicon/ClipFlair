@@ -1,6 +1,6 @@
 ﻿<!--
 Filename: MediaPlayerWindow.xaml
-Version: 20120910
+Version: 20120920
 -->
   
 <clipflair:FlipWindow x:Class="ClipFlair.Views.MediaPlayerWindow"
@@ -13,9 +13,6 @@ Version: 20120910
     xmlns:media="clr-namespace:Zoomicon.MediaPlayer;assembly=MediaPlayer"
     xmlns:conv="clr-namespace:Converters;assembly=Converters"
     xmlns:float="clr-namespace:SilverFlow.Controls;assembly=SilverFlow.Controls"
-    xmlns:smf="http://schemas.microsoft.com/smf/2010/xaml/player" 
-    xmlns:smf_media="http://schemas.microsoft.com/smf/2010/xaml/media"
-    xmlns:smf_captions="http://schemas.microsoft.com/smf/2010/xaml/captions"
     >
 
   <!--<clipflair:FlipWindow.FrontContent>-->
@@ -29,6 +26,7 @@ Version: 20120910
                  SlowMotionButtonVisible="False"
                  ReplayButtonVisible="False"
                  FullScreenButtonVisible="False" AllowDoubleClickToggle="False"
+                 Captions1="{Binding Path=Captions, RelativeSource={RelativeSource AncestorType=clipflair:MediaPlayerWindow}, Mode=TwoWay}"
                 >
                 <!-- Margin="0" d:LayoutOverrides="Width, Height" -->
   </media:MediaPlayer>
