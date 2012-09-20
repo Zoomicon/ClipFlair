@@ -11,7 +11,7 @@ Version: 20120918
  >
 
   <DataTemplate x:Key="StartTimeCellTemplate">
-    <TextBlock Margin="4" Text="{Binding Begin, StringFormat='hh\\:mm\\:ss\\.FFF'}" /> <!-- can use .fff to always show all digits, don't use .fFF has bug at parsing new values -->
+    <TextBlock Margin="4" Text="{Binding Begin, StringFormat='hh\\:mm\\:ss\\.FFF', Mode=TwoWay}" /> <!-- can use .fff to always show all digits, don't use .fFF has bug at parsing new values -->
   </DataTemplate>
 
   <DataTemplate x:Key="StartTimeCellEditTemplate">

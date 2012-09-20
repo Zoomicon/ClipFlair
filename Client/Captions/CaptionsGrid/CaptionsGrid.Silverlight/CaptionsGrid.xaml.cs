@@ -1,5 +1,5 @@
 ﻿//Filename: CaptionsGrid.xaml.cs
-//Version: 20120918
+//Version: 20120920
 
 using Zoomicon.CaptionsGrid;
 using Zoomicon.AudioRecorder;
@@ -42,11 +42,11 @@ namespace Zoomicon.CaptionsGrid
 
     protected void DataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
-      CaptionElement selectedMarker = ((CaptionElement)gridCaptions.SelectedItem);
-      if (selectedMarker != null)
+      CaptionElement selectedCaption = ((CaptionElement)gridCaptions.SelectedItem);
+      if (selectedCaption != null)
       {
-        Time = selectedMarker.Begin;
-        ((AudioRecorderControl)ColumnAudio.GetCellContent(selectedMarker)).Play();
+        Time = selectedCaption.Begin;
+        ((AudioRecorderControl)ColumnAudio.GetCellContent(selectedCaption)).Play();
       }
     }
 
@@ -100,50 +100,51 @@ namespace Zoomicon.CaptionsGrid
     protected virtual void OnTimeChanged(TimeSpan oldTime, TimeSpan newTime)
     {
       CaptionElement activeCaption = null;
-      foreach (CaptionElement c in Markers.WhereActiveAtPosition(newTime))
+      foreach (CaptionElement c in Captions.Children.WhereActiveAtPosition(newTime))
         activeCaption = c; //if multiple captions cover this position, select the last one
       gridCaptions.SelectedItem = activeCaption; //this will deselect if no active caption at that time position
     }
 
     #endregion
 
-    #region Markers
+    #region Captions
 
     /// <summary>
-    /// Markers Dependency Property
+    /// Captions Dependency Property
     /// </summary>
-    public static readonly DependencyProperty MarkersProperty =
-        DependencyProperty.Register("Markers", typeof(MediaMarkerCollection<TimedTextElement>), typeof(CaptionsGrid),
+    public static readonly DependencyProperty CaptionsProperty =
+        DependencyProperty.Register("Captions", typeof(CaptionRegion), typeof(CaptionsGrid),
             new FrameworkPropertyMetadata(null,
                 FrameworkPropertyMetadataOptions.None,
-                new PropertyChangedCallback(OnMarkersChanged)));
+                new PropertyChangedCallback(OnCaptionsChanged)));
 
     /// <summary>
-    /// Gets or sets the Markers property.
+    /// Gets or sets the Captions property.
     /// </summary>
-    public MediaMarkerCollection<TimedTextElement> Markers
+    public CaptionRegion Captions
     {
-      get { return (MediaMarkerCollection<TimedTextElement>)GetValue(MarkersProperty); }
-      set { SetValue(MarkersProperty, value); }
+      get { return (CaptionRegion)GetValue(CaptionsProperty); }
+      set { SetValue(CaptionsProperty, value); }
     }
 
     /// <summary>
-    /// Handles changes to the Markers property.
+    /// Handles changes to the Captions property.
     /// </summary>
-    private static void OnMarkersChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    private static void OnCaptionsChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
       CaptionsGrid target = (CaptionsGrid)d;
-      MediaMarkerCollection<TimedTextElement> oldMarkers = (MediaMarkerCollection<TimedTextElement>)e.OldValue;
-      MediaMarkerCollection<TimedTextElement> newMarkers = target.Markers;
-      target.OnMarkersChanged(oldMarkers, newMarkers);
+      CaptionRegion oldCaptions = (CaptionRegion)e.OldValue;
+      CaptionRegion newCaptions = target.Captions;
+      target.OnCaptionsChanged(oldCaptions, newCaptions);
     }
 
     /// <summary>
-    /// Provides derived classes an opportunity to handle changes to the Markers property.
+    /// Provides derived classes an opportunity to handle changes to the Captions property.
     /// </summary>
-    protected virtual void OnMarkersChanged(MediaMarkerCollection<TimedTextElement> oldMarkers, MediaMarkerCollection<TimedTextElement> newMarkers)
+    protected virtual void OnCaptionsChanged(CaptionRegion oldCaptions, CaptionRegion newCaptions)
     {
-      gridCaptions.DataContext = /*new MediaMarkerCollectionWrapper<TimedTextElement>*/(newMarkers); //don't changed the UserControl's DataContext, else data binding won't work in the parent
+      //NOP (using data binding)
+      //gridCaptions.DataContext = newCaptions.Children; //don't change the UserControl's DataContext (just the DataGrid's), else data binding won't work in the parent (this would need ItemsSource="{Binding}" in the XAML)
     }
 
     #endregion
@@ -345,16 +346,16 @@ namespace Zoomicon.CaptionsGrid
         End = Time + CaptionDefaultDuration
       }; //TODO: edit blog about Scale transform to also suggest new ScaleTransform() { ScaleX=..., ScaleY=... }; after checking that is works in recent C#
       
-      Zoomicon.MediaPlayer.MediaPlayer.StyleMarker(newCaption); //This is needed else the new caption text won't show up in the MediaPlayer
+      Zoomicon.MediaPlayer.MediaPlayer.StyleCaption(newCaption); //This is needed else the new caption text won't show up in the MediaPlayer
 
-      Markers.Add(newCaption); //this adds the marker to the correct place in the list based on its Begin time (logic is implemented by SMF in MediaMarkerCollection class) //TODO: blog about this, Insert isn't implemented, Add does its job too (see http://smf.codeplex.com/workitem/23308)
+      Captions.Children.Add(newCaption); //this adds the caption to the correct place in the list based on its Begin time (logic is implemented by SMF in MediaMarkerCollection class) //TODO: blog about this, Insert isn't implemented, Add does its job too (see http://smf.codeplex.com/workitem/23308)
     }
 
     private void btnRemove_Click(object sender, RoutedEventArgs e)
     {
-      CaptionElement selectedMarker = ((CaptionElement)gridCaptions.SelectedItem);
-      if (selectedMarker != null)
-        Markers.Remove(selectedMarker);
+      CaptionElement selectedCaption = ((CaptionElement)gridCaptions.SelectedItem);
+      if (selectedCaption != null)
+        Captions.Children.Remove(selectedCaption);
     }
 
     private void btnLoad_Click(object sender, RoutedEventArgs e)

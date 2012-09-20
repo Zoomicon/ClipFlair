@@ -1,5 +1,5 @@
 ﻿//Filename: MediaPlayer.cs
-//Version: 20120910
+//Version: 20120920
 
 using System;
 using System.Collections.Generic;
@@ -28,8 +28,6 @@ namespace Zoomicon.MediaPlayer
     {
       base.OnApplyTemplate();
 
-      //TODO (need to set that when new captions are set) //Captions.GetEnumerator().Current.Style.BackgroundColor = Colors.Transparent; //change black caption region background
-
       //apply any settings from XAML
       OnSourceChanged(null, Source);
       OnCaptionsVisibleChanged(!CaptionsVisible, CaptionsVisible);
@@ -41,7 +39,7 @@ namespace Zoomicon.MediaPlayer
     protected override void OnMediaOpened()
     {
       base.OnMediaOpened();
-      UpdateMarkers(Markers);
+      UpdateCaptions1(Captions1);
     }
 
     protected virtual void AddEventHandlers()
@@ -338,43 +336,44 @@ namespace Zoomicon.MediaPlayer
 
     #endregion
 
-    #region Markers
+    #region Captions1
 
     /// <summary>
-    /// Markers Dependency Property
+    /// Captions1 Dependency Property
     /// </summary>
-    public static readonly DependencyProperty MarkersProperty =
-        DependencyProperty.Register("Markers", typeof(MediaMarkerCollection<TimedTextElement>), typeof(MediaPlayer),
+    public static readonly DependencyProperty Captions1Property =
+        DependencyProperty.Register("Captions1", typeof(CaptionRegion), typeof(MediaPlayer),
             new FrameworkPropertyMetadata(null,
                 FrameworkPropertyMetadataOptions.None,
-                new PropertyChangedCallback(OnMarkersChanged)));
+                new PropertyChangedCallback(OnCaptions1Changed)));
 
     /// <summary>
-    /// Gets or sets the Markers property.
+    /// Gets or sets the Captions1 property.
     /// </summary>
-    public MediaMarkerCollection<TimedTextElement> Markers
+    public CaptionRegion Captions1
     {
-      get { return (MediaMarkerCollection<TimedTextElement>)GetValue(MarkersProperty); }
-      set { SetValue(MarkersProperty, value); }
+      get { return (CaptionRegion)GetValue(Captions1Property); }
+      set { SetValue(Captions1Property, value); }
     }
 
     /// <summary>
-    /// Handles changes to the Markers property.
+    /// Handles changes to the Captions1 property.
     /// </summary>
-    private static void OnMarkersChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    private static void OnCaptions1Changed(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
       MediaPlayer target = (MediaPlayer)d;
-      MediaMarkerCollection<TimedTextElement> oldMarkers = (MediaMarkerCollection<TimedTextElement>)e.OldValue;
-      MediaMarkerCollection<TimedTextElement> newMarkers = target.Markers;
-      target.OnMarkersChanged(oldMarkers, newMarkers);
+      CaptionRegion oldCaptions1 = (CaptionRegion)e.OldValue;
+      CaptionRegion newCaptions1 = target.Captions1;
+      target.OnCaptions1Changed(oldCaptions1, newCaptions1);
     }
 
     /// <summary>
-    /// Provides derived classes an opportunity to handle changes to the Markers property.
+    /// Provides derived classes an opportunity to handle changes to the Captions1 property.
     /// </summary>
-    protected virtual void OnMarkersChanged(MediaMarkerCollection<TimedTextElement> oldMarkers, MediaMarkerCollection<TimedTextElement> newMarkers)
+    protected virtual void OnCaptions1Changed(CaptionRegion oldCaptions1, CaptionRegion newCaptions1)
     {
-      //NOP (setting up the markers at Media_Opened
+      StyleCaptions(newCaptions1);
+      UpdateCaptions1(newCaptions1); //if media is already loaded try to set the captions for region 1, else they'll be set at OnMediaOpened
     }
 
     #endregion
@@ -383,36 +382,42 @@ namespace Zoomicon.MediaPlayer
 
     #region --- Methods ---
 
-    public void UpdateMarkers(MediaMarkerCollection<TimedTextElement> newMarkers)
+    public void UpdateCaptions1(CaptionRegion newCaptions1)
     {
-      if (newMarkers == null) return;
+      Captions.Clear(); //TODO: if we have multiple regions in the future, replace region 1 instead in this collection
 
-      CaptionRegion  region = new CaptionRegion();
-      region.Style.ShowBackground = ShowBackground.WhenActive; //doesn't seem to work if other than transparent color is used
-      region.Style.BackgroundColor = Colors.Transparent;
-   
-      foreach (CaptionElement marker in newMarkers)
-      {
-        region.Children.Add(marker);
-        StyleMarker(marker);
-      }
-
-      Captions.Add(region);
+      if (newCaptions1!=null)
+        Captions.Add(newCaptions1);
     }
 
-    public static void StyleMarker(TimedTextElement marker)
+    public static void StyleCaptions(CaptionRegion theCaptions)
     {
-      marker.CaptionElementType = TimedTextElementType.Text;
-      marker.Style.ShowBackground = ShowBackground.WhenActive;
-      marker.Style.BackgroundColor = Color.FromArgb(100, 0, 0, 0); //use a semi-transparent background
-      marker.Style.Color = Colors.White;
-      //marker.Style.TextAlign = TextAlignment.Center;
-      Length length = new Length
+      if (theCaptions != null)
       {
-        Unit = LengthUnit.Pixel, //must use this, since the default LengthUnit.Cell used at TimedTextStyle constructor is not supported
-        Value = 20
-      };
-      marker.Style.FontSize = length;
+        theCaptions.Style.ShowBackground = ShowBackground.WhenActive; //doesn't seem to work if other than transparent color is used
+        theCaptions.Style.BackgroundColor = Colors.Transparent;
+
+        foreach (CaptionElement caption in theCaptions.Children)
+          StyleCaption(caption);
+      }
+    }
+
+    public static void StyleCaption(TimedTextElement theCaption)
+    {
+      if (theCaption != null)
+      {
+        theCaption.CaptionElementType = TimedTextElementType.Text;
+        theCaption.Style.ShowBackground = ShowBackground.WhenActive;
+        theCaption.Style.BackgroundColor = Color.FromArgb(100, 0, 0, 0); //use a semi-transparent background
+        theCaption.Style.Color = Colors.White;
+        //theCaption.Style.TextAlign = TextAlignment.Center;
+        Length length = new Length
+        {
+          Unit = LengthUnit.Pixel, //must use this, since the default LengthUnit.Cell used at TimedTextStyle constructor is not supported
+          Value = 20
+        };
+        theCaption.Style.FontSize = length;
+      }
     }
   
     #endregion
