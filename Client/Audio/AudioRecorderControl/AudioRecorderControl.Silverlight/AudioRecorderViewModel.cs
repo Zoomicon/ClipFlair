@@ -232,7 +232,7 @@ namespace Zoomicon.AudioRecorder
       {
         player.Stop(); //stops any playback and moves playback position to start (time 0)
       }
-      catch (Exception e)
+      catch (Exception)
       {
         //NOP
       }
