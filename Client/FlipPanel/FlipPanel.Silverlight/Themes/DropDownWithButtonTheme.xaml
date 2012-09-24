@@ -1,6 +1,6 @@
 ﻿<!-- 
 Filename: DropDownWithButtonTheme.xaml
-Version: 20120830
+Version: 20120924
 -->
   
 <ResourceDictionary
@@ -9,7 +9,10 @@ Version: 20120830
  xmlns:local="clr-namespace:FlipPanel;assembly=FlipPanel">
 
   <ControlTemplate x:Key="FlipPanel_DropDownWithButtonTemplate" TargetType="local:FlipPanel">
-    <Grid>
+    <Grid
+      HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
+      VerticalAlignment="{TemplateBinding VerticalAlignment}"      
+      >
       <VisualStateManager.VisualStateGroups>
         <VisualStateGroup x:Name="ViewStates">
           <VisualStateGroup.Transitions>
@@ -42,14 +45,15 @@ Version: 20120830
       </VisualStateManager.VisualStateGroups>
 
       <Grid.RowDefinitions>
-        <RowDefinition Height="Auto" />
+        <RowDefinition Height="*" />
         <RowDefinition Height="Auto" />
       </Grid.RowDefinitions>
 
       <!-- Front content -->
-      <Border BorderBrush="{TemplateBinding BorderBrush}"
-               BorderThickness="{TemplateBinding BorderThickness}"
-               CornerRadius="{TemplateBinding CornerRadius}"
+      <Border Grid.Row="0"
+              BorderBrush="{TemplateBinding BorderBrush}"
+              BorderThickness="{TemplateBinding BorderThickness}"
+              CornerRadius="{TemplateBinding CornerRadius}"
                             Background="{TemplateBinding Background}" 
                >
         <Border.RenderTransform>
@@ -61,28 +65,31 @@ Version: 20120830
 
         <Grid>
           <Grid.RowDefinitions>
-            <RowDefinition />
+            <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
           </Grid.RowDefinitions>
           
-          <ContentPresenter
-                     Content="{TemplateBinding FrontContent}">
-          </ContentPresenter>
+          <ContentPresenter Grid.Row="0" 
+                            Content="{TemplateBinding FrontContent}" 
+                            HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                            VerticalAlignment="{TemplateBinding VerticalContentAlignment}"            
+            />
 
+          <!-- Flip button (front) -->
           <Rectangle Grid.Row="1" Stretch="Fill" Fill="LightSteelBlue"></Rectangle>
-          
           <ToggleButton Grid.Row="1" x:Name="FlipButton" Margin="5" Padding="15,0" 
-                        Content="˄" FontWeight="Bold" FontSize="12" HorizontalAlignment="Right"> <!-- Flip button (front) -->
-          </ToggleButton>
+                        Content="˄" FontWeight="Bold" FontSize="12" HorizontalAlignment="Right"/>
+          
         </Grid>
 
       </Border>
 
       <!-- Back content -->
-      <Border BorderBrush="{TemplateBinding BorderBrush}"
-           BorderThickness="{TemplateBinding BorderThickness}"
-           CornerRadius="{TemplateBinding CornerRadius}"
-           Background="{TemplateBinding Background}" RenderTransformOrigin="0,1">
+      <Border Grid.Row="0"
+              BorderBrush="{TemplateBinding BorderBrush}"
+              BorderThickness="{TemplateBinding BorderThickness}"
+              CornerRadius="{TemplateBinding CornerRadius}"
+              Background="{TemplateBinding Background}" RenderTransformOrigin="0,1">
         <Border.RenderTransform>
           <ScaleTransform x:Name="BackContentTransform"></ScaleTransform>
         </Border.RenderTransform>
@@ -93,16 +100,23 @@ Version: 20120830
         <Grid>
           <Grid.RowDefinitions>
             <RowDefinition Height="Auto"></RowDefinition>
-            <RowDefinition></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
           </Grid.RowDefinitions>
 
           <!-- Flip button (back) -->
-          <Rectangle Stretch="Fill" Fill="LightSteelBlue"></Rectangle>
-          <ToggleButton x:Name="FlipButtonAlternate" Margin="5" Padding="15,0" 
-                             Content="˅" FontWeight="Bold" FontSize="12" HorizontalAlignment="Right">
-          </ToggleButton>
+          <Rectangle Grid.Row="0" Stretch="Fill" Fill="LightSteelBlue"></Rectangle>
+          <ToggleButton x:Name="FlipButtonAlternate" 
+                        Grid.Row="0" 
+                        Margin="5" Padding="15,0" 
+                        Content="˅" 
+                        FontWeight="Bold" FontSize="12" 
+                        HorizontalAlignment="Right" />
 
-          <ContentPresenter Grid.Row="1" Content="{TemplateBinding BackContent}" />
+          <ContentPresenter Grid.Row="1" 
+                            Content="{TemplateBinding BackContent}" 
+                            HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                            VerticalAlignment="{TemplateBinding VerticalContentAlignment}"            
+                            />
 
         </Grid>
 
