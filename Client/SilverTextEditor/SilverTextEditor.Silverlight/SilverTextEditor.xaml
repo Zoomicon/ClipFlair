@@ -7,7 +7,7 @@ Version: 20120801
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d"
-    xmlns:d="http://schemas.microsoft.com/expression/blend/2008" d:DesignHeight="130" d:DesignWidth="544" 
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008" d:DesignHeight="240" d:DesignWidth="593" 
     xmlns:controls="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls"
     xmlns:System_Windows_Controls_Primitives="clr-namespace:System.Windows.Controls.Primitives;assembly=System.Windows.Controls"
     xmlns:local="clr-namespace:SilverTextEditor;assembly=SilverTextEditor"
@@ -291,7 +291,33 @@ Version: 20120801
                        TextWrapping="Wrap" 
                        Style="{StaticResource RichTextBoxStyle1}" 
                        VerticalScrollBarVisibility="Auto" 
-                       FontSize="20" /> <!-- Margin="8,10,8,10" -->
+                       FontSize="20" > <!-- Margin="8,10,8,10" -->
+
+            <!-- ****************** --> <!-- TODO: following block is designer data only (can comment out) - SilverTextEditor_Loaded method that handles Loaded event loads in ActivityDescription.sav XAML file -->           
+              <Paragraph FontSize="20" FontFamily="Portable User Interface" Foreground="#FF000000" FontWeight="Normal" FontStyle="Normal" FontStretch="Normal" TextAlignment="Left">
+                <Run FontSize="24" FontFamily="Portable User Interface" Foreground="#FF008000" FontWeight="Bold" FontStyle="Italic" FontStretch="Normal" Text="Lorem ipsum" />
+                <Run FontSize="20" FontFamily="Portable User Interface" Foreground="#FF000000" FontWeight="Normal" FontStyle="Normal" FontStretch="Normal" Text=" dolor sit amet, consectetur adipiscing elit. Integer mattis ligula in neque semper bibendum. " />
+                <Run FontSize="20" FontFamily="Portable User Interface" Foreground="#FF000000" FontWeight="Bold" FontStyle="Normal" FontStretch="Normal" Text="Morbi imperdiet" />
+                <Run FontSize="20" FontFamily="Portable User Interface" Foreground="#FF000000" FontWeight="Normal" FontStyle="Normal" FontStretch="Normal" Text=", neque et consectetur sollicitudin, sem arcu egestas diam, sit amet consequat odio velit id tortor. " />
+                <Run FontSize="20" FontFamily="Portable User Interface" Foreground="#FF000000" FontWeight="Bold" FontStyle="Normal" FontStretch="Normal" Text="Quisque congue nisl sed nunc sagittis dictum. Vivamus condimentum urna lacus." />
+                <Run FontSize="20" FontFamily="Portable User Interface" Foreground="#FF000000" FontWeight="Normal" FontStyle="Normal" FontStretch="Normal" Text=" " />
+                <Run FontSize="20" FontFamily="Portable User Interface" Foreground="#FF0000FF" FontWeight="Normal" FontStyle="Normal" FontStretch="Normal" Text="Suspendisse" />
+                <Run FontSize="20" FontFamily="Portable User Interface" Foreground="#FF000000" FontWeight="Normal" FontStyle="Normal" FontStretch="Normal" Text=" porttitor pretium quam ut accumsan. Curabitur vulputate, felis non fringilla vehicula, turpis neque vulputate lectus, " />
+                <Run FontSize="22" FontFamily="Portable User Interface" Foreground="#FF000000" FontWeight="Normal" FontStyle="Italic" FontStretch="Normal" Text="id faucibus turpis ante quis urna. Quisque sem tellus, sodales a interdum in, lacinia ut quam." />
+              </Paragraph>
+              <Paragraph FontSize="20" FontFamily="Portable User Interface" Foreground="#FF000000" FontWeight="Normal" FontStyle="Normal" FontStretch="Normal" TextAlignment="Left" />
+              <Paragraph FontSize="20" FontFamily="Portable User Interface" Foreground="#FF000000" FontWeight="Normal" FontStyle="Normal" FontStretch="Normal" TextAlignment="Left" >
+                <Run FontSize="26" FontFamily="Georgia" Foreground="#FF0000FF" FontWeight="Normal" FontStyle="Normal" FontStretch="Normal" Text="Praesent sit amet odio ipsum," />
+                <Run FontSize="20" FontFamily="Portable User Interface" Foreground="#FF000000" FontWeight="Normal" FontStyle="Normal" FontStretch="Normal" Text=" non fermentum nunc. Aliquam erat volutpat. Morbi sit amet enim risus. Maecenas eget odio ut massa adipiscing feugiat quis eget enim. " />
+                <Run FontSize="18" FontFamily="Portable User Interface" Foreground="#FFFF0000" FontWeight="Normal" FontStyle="Normal" FontStretch="Normal" Text="Nulla facilisi." />
+                <Run FontSize="20" FontFamily="Portable User Interface" Foreground="#FF000000" FontWeight="Normal" FontStyle="Normal" FontStretch="Normal" Text=" Phasellus condimentum, metus vel congue molestie, mi felis tempus tortor, id aliquam turpis elit vitae lorem. " />
+                <Run FontSize="20" FontFamily="Portable User Interface" Foreground="#FF000000" FontWeight="Normal" FontStyle="Normal" FontStretch="Normal" Text="Morbi ut eros" />
+                <Run FontSize="20" FontFamily="Portable User Interface" Foreground="#FF000000" FontWeight="Normal" FontStyle="Normal" FontStretch="Normal" Text=" in lectus vehicula euismod." />
+              </Paragraph>
+            <!-- ****************** -->
+
+          </RichTextBox>
+          
           <Canvas x:Name="highlightCanvas" IsHitTestVisible="False" /> <!-- Margin="8,10,8,10" -->
           <TextBox x:Name="xamlTb" 
                    IsTabStop="False" 

@@ -141,9 +141,6 @@
   <ItemGroup>
     <Resource Include="ActivityDescription.sav" />
     <None Include="Properties\AppManifest.xml" />
-    <Resource Include="sample.sav">
-      <SubType>Designer</SubType>
-    </Resource>
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\Bold.png" />
