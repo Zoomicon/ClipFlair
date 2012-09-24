@@ -1,6 +1,6 @@
 ﻿<!--
   Filename: generic.xaml 
-  Version: 20120830
+  Version: 20120924
 -->
   
   <ResourceDictionary
@@ -605,12 +605,14 @@
                                           
                                         </Grid>
                                     </Border>
+                                  
                                     <Border Grid.Row="1">
                                         <ContentPresenter x:Name="ContentPresenter" Content="{TemplateBinding Content}"
                         ContentTemplate="{TemplateBinding ContentTemplate}"
                         HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                         VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
                                     </Border>
+                                  
                                 </Grid>
                             </Border>
                         </Grid>

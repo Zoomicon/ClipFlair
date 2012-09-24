@@ -1,6 +1,6 @@
 ﻿<!--
 Filename: ActivityContainer.xaml
-Version: 20120920
+Version: 20120923
 -->
 
 <UserControl x:Class="ClipFlair.Views.ActivityContainer" 
@@ -65,6 +65,7 @@ Version: 20120920
 
       <clipflair:MediaPlayerWindow
         Source="http://video3.smoothhd.com.edgesuite.net/ondemand/Big%20Buck%20Bunny%20Adaptive.ism/Manifest"
+        Time="{Binding Time, Mode=TwoWay}"
         Captions="{Binding Source={StaticResource Captions}}"
         CaptionsVisible = "True"
         Position="0,0" 
@@ -74,6 +75,7 @@ Version: 20120920
 
       <clipflair:CaptionsGridWindow 
         Captions="{Binding Source={StaticResource Captions}}"
+        Time="{Binding Time, Mode=TwoWay}"
         Position="0,420"  
         Width="600" Height="420" 
         Title="Captions" IconText="Captions" Tag="Captions"
