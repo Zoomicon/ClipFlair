@@ -1,6 +1,6 @@
 ﻿<!-- 
 Filename: RotateHorizontalWithButtonTheme.xaml
-Version: 20120830
+Version: 20120924
 -->
   
 <ResourceDictionary
@@ -9,7 +9,11 @@ Version: 20120830
  xmlns:local="clr-namespace:FlipPanel;assembly=FlipPanel">
 
   <ControlTemplate x:Key="FlipPanel_RotateHorizontalWithButtonTemplate" TargetType="local:FlipPanel">
-    <Grid>
+    <Grid
+      HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
+      VerticalAlignment="{TemplateBinding VerticalAlignment}"
+      >
+      
       <VisualStateManager.VisualStateGroups>
         <VisualStateGroup x:Name="ViewStates">
           <VisualStateGroup.Transitions>
@@ -51,18 +55,22 @@ Version: 20120830
       </VisualStateManager.VisualStateGroups>
 
       <Grid.RowDefinitions>
-        <RowDefinition Height="Auto" />
+        <RowDefinition Height="*" />
         <RowDefinition Height="Auto" />
       </Grid.RowDefinitions>
 
       <!--Front content -->
 
-      <Border BorderBrush="{TemplateBinding BorderBrush}"
-               BorderThickness="{TemplateBinding BorderThickness}"
-               CornerRadius="{TemplateBinding CornerRadius}"
-               Background="{TemplateBinding Background}">
+      <Border Grid.Row="0"
+              BorderBrush="{TemplateBinding BorderBrush}"
+              BorderThickness="{TemplateBinding BorderThickness}"
+              CornerRadius="{TemplateBinding CornerRadius}"
+              Background="{TemplateBinding Background}">
 
-        <ContentPresenter Content="{TemplateBinding FrontContent}" />
+        <ContentPresenter Content="{TemplateBinding FrontContent}"            
+                          HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                          VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                          />
 
         <Border.Projection>
           <PlaneProjection x:Name="FrontContentProjection"></PlaneProjection>
@@ -71,12 +79,17 @@ Version: 20120830
 
       <!-- Back content -->
 
-      <Border BorderBrush="{TemplateBinding BorderBrush}"
-           BorderThickness="{TemplateBinding BorderThickness}"
-           CornerRadius="{TemplateBinding CornerRadius}"
-           Background="{TemplateBinding Background}">
+      <Border 
+        Grid.Row="0"
+        BorderBrush="{TemplateBinding BorderBrush}"
+        BorderThickness="{TemplateBinding BorderThickness}"
+        CornerRadius="{TemplateBinding CornerRadius}"
+        Background="{TemplateBinding Background}">
 
-        <ContentPresenter Content="{TemplateBinding BackContent}" />
+        <ContentPresenter Content="{TemplateBinding BackContent}"
+                          HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                          VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                          />
 
         <Border.Projection>
           <PlaneProjection x:Name="BackContentProjection"></PlaneProjection>
