@@ -55,6 +55,7 @@
     <Reference Include="System.Windows.Browser" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Views\IActivity.cs" />
     <Compile Include="Views\ITextEditor.cs" />
     <Compile Include="Views\IImageViewer.cs" />
     <Compile Include="Views\IView.cs" />

@@ -103,7 +103,7 @@ namespace ClipFlair.Views
     protected virtual void OnSourceChanged(Uri oldSource, Uri newSource)
     {
       View.Source = newSource;
-      player.Source = newSource;
+      //player.Source = newSource; //not used, using data binding instead in the XAML
     }
 
     #endregion

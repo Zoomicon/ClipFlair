@@ -1,15 +1,19 @@
 ﻿<!--
 Filename: FlipWindow.xaml
-Version: 20120830
+Version: 20120924
 -->
-  
+
 <float:FloatingWindow x:Class="ClipFlair.Views.FlipWindow"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:d="http://schemas.microsoft.com/expression/blend/2008" d:DesignHeight="196" d:DesignWidth="535"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008" d:DesignHeight="151" d:DesignWidth="337"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d"
     xmlns:flip="clr-namespace:FlipPanel;assembly=FlipPanel"
     xmlns:float="clr-namespace:SilverFlow.Controls;assembly=SilverFlow.Controls"                      
+    HorizontalAlignment="Stretch"
+    VerticalAlignment="Stretch"
+    HorizontalContentAlignment="Stretch"
+    VerticalContentAlignment="Stretch"
     >
 
   <float:FloatingWindow.Resources>
@@ -20,28 +24,25 @@ Version: 20120830
     </ResourceDictionary>
   </float:FloatingWindow.Resources>
 
-  <Grid x:Name="LayoutRoot" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-    <Grid.RowDefinitions>
-      <RowDefinition Height="*"/>
-    </Grid.RowDefinitions>
-    <Grid.ColumnDefinitions>
-      <ColumnDefinition Width="*"/>
-    </Grid.ColumnDefinitions>
+  <flip:FlipPanel Name="FlipPanel" 
+                  HorizontalAlignment="Stretch" 
+                  VerticalAlignment="Stretch" 
+                  HorizontalContentAlignment="Stretch"
+                  VerticalContentAlignment="Stretch"
+                  Style="{StaticResource FlipPanel_DropDownStyle}">
 
-    <flip:FlipPanel Grid.Row="0" Grid.Column="0" Name="FlipPanel" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Style="{StaticResource FlipPanel_DropDownStyle}">
+    <!-- descendents should define children of FlipWindow.FrontContent (implied content property for FlipWindow) in the XAML -->
     
-      <flip:FlipPanel.BackContent>
-        <ScrollViewer HorizontalAlignment="Stretch" VerticalAlignment="Stretch" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
-          <StackPanel Name="PropertiesPanel" Orientation="Vertical" Margin="10,0,10,10">
-            <StackPanel.Resources>
-              <Style TargetType="StackPanel" BasedOn="{StaticResource PropertyStackPanelStyle}" />
-            </StackPanel.Resources>
-          </StackPanel>
-        </ScrollViewer>
-      </flip:FlipPanel.BackContent>
+    <flip:FlipPanel.BackContent> <!-- descendents should define children of FlipWindow.PropertyItems in the XAML -->
+      <ScrollViewer HorizontalAlignment="Stretch" VerticalAlignment="Stretch" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
+        <StackPanel Name="PropertiesPanel" Orientation="Vertical" Margin="10,0,10,10">
+          <StackPanel.Resources>
+            <Style TargetType="StackPanel" BasedOn="{StaticResource PropertyStackPanelStyle}" />
+          </StackPanel.Resources>
+        </StackPanel>
+      </ScrollViewer>
+    </flip:FlipPanel.BackContent>
 
-    </flip:FlipPanel>
-
-  </Grid>
+  </flip:FlipPanel>
 
 </float:FloatingWindow>
