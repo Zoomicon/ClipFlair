@@ -1,5 +1,5 @@
 ﻿//Filename: TextEditorWindow.xaml.cs
-//Version: 20120911
+//Version: 20120927
 
 using ClipFlair.Models.Views;
 
@@ -9,7 +9,7 @@ using System.ComponentModel;
 
 namespace ClipFlair.Views
 {
-  public partial class TextEditorWindow : FlipWindow
+  public partial class TextEditorWindow : BaseWindow
   {
     public TextEditorWindow()
     {
@@ -19,24 +19,16 @@ namespace ClipFlair.Views
 
     #region View
 
-    public TextEditorView View
+    public new ITextEditor View //hiding parent property
     {
-      get { return (TextEditorView)DataContext; }
-      set
-      {
-        //remove property changed handler from old view
-        if (DataContext != null)
-          ((INotifyPropertyChanged)DataContext).PropertyChanged -= new PropertyChangedEventHandler(View_PropertyChanged);
-        //add property changed handler to new view
-        if (value != null)
-          value.PropertyChanged += new PropertyChangedEventHandler(View_PropertyChanged);
-        //set the new view (must do last)
-        DataContext = value;
-      }
+      get { return (ITextEditor)base.View; } //delegating to parent property
+      set { base.View = value; }
     }
 
-    protected void View_PropertyChanged(object sender, PropertyChangedEventArgs e)
+    protected override void View_PropertyChanged(object sender, PropertyChangedEventArgs e)
     {
+      base.View_PropertyChanged(sender, e);
+
       if (e.PropertyName == null) //multiple (not specified) properties have changed, consider all as changed
       {
         Source = View.Source;

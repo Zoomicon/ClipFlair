@@ -1,5 +1,5 @@
 ﻿//Filename: ActivityContainer.xaml.cs
-//Version: 20120923
+//Version: 20120927
 
 using ClipFlair.Models.Views;
 
@@ -35,9 +35,9 @@ namespace ClipFlair.Views
       BindingOperations.SetBinding(FindWindow("Captions"), CaptionsGridWindow.TimeProperty, timeBinding);
     }
 
-    public FlipWindow FindWindow(string tag) //need this since floating windows are not added in the XAML visual tree by the FloatingWindowHostZUI.Windows property (maybe should have FloatingWindowHostZUI inherit 
+    public BaseWindow FindWindow(string tag) //need this since floating windows are not added in the XAML visual tree by the FloatingWindowHostZUI.Windows property (maybe should have FloatingWindowHostZUI inherit 
     {
-      foreach (FlipWindow w in zuiContainer.Windows)
+      foreach (BaseWindow w in zuiContainer.Windows)
         if (tag == (string)w.Tag) return w; //must cast to string to compare (else we compare object references, since Tag property is of type object, not string)
       return null;
     }

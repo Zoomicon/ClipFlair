@@ -1,0 +1,116 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="NameAndType">
+  <Class Name="ClipFlair.Models.Views.IActivityProperties">
+    <Position X="0.5" Y="5.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQBA=</HashCode>
+      <FileName>Views\IActivity.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ClipFlair.Models.Views.IActivityDefaults">
+    <Position X="0.5" Y="7.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAACAAAAAAAAA=</HashCode>
+      <FileName>Views\IActivity.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ClipFlair.Models.Views.ICaptionsGridProperties">
+    <Position X="5.25" Y="5.75" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAIAAAAAAiAAAAAAAAAAAAAAAAAgAAAAAAAAAQFA=</HashCode>
+      <FileName>Views\ICaptionsGrid.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ClipFlair.Models.Views.ICaptionsGridDefaults">
+    <Position X="5.25" Y="8" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>ABAAAAAAAIIEAAABAAAAAAAAAAEAAAAAACAAAAAAAAA=</HashCode>
+      <FileName>Views\ICaptionsGrid.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ClipFlair.Models.Views.IImageViewerProperties">
+    <Position X="10.5" Y="5.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABA=</HashCode>
+      <FileName>Views\IImageViewer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ClipFlair.Models.Views.IImageViewerDefaults">
+    <Position X="10.5" Y="7" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Views\IImageViewer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ClipFlair.Models.Views.IMediaPlayerProperties">
+    <Position X="2.75" Y="5.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AEAAAAAAAAAAAAAAAACgICAAAAAAAAAAAAAAAAAAQBA=</HashCode>
+      <FileName>Views\IMediaPlayer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ClipFlair.Models.Views.IMediaPlayerDefaults">
+    <Position X="2.75" Y="8" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAQAAAAAAAEAACAIASAAAAAAEAA=</HashCode>
+      <FileName>Views\IMediaPlayer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ClipFlair.Models.Views.ITextEditorProperties">
+    <Position X="8" Y="5.75" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAABA=</HashCode>
+      <FileName>Views\ITextEditor.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ClipFlair.Models.Views.ITextEditorDefaults">
+    <Position X="8" Y="7.25" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAACAAAAAAEAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Views\ITextEditor.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="ClipFlair.Models.Views.IActivity">
+    <Position X="0.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQA=</HashCode>
+      <FileName>Views\IActivity.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="ClipFlair.Models.Views.ICaptionsGrid">
+    <Position X="5.25" Y="2.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAgAAAAAAAAAAAEAAAAAAAQgAQAQAAAAAAQA=</HashCode>
+      <FileName>Views\ICaptionsGrid.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="ClipFlair.Models.Views.IImageViewer">
+    <Position X="10.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Views\IImageViewer.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="ClipFlair.Models.Views.IMediaPlayer">
+    <Position X="2.75" Y="2.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAgAAAAAgAAAAAAgAAAABABAAAAAAAAoAIAAAAACQA=</HashCode>
+      <FileName>Views\IMediaPlayer.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="ClipFlair.Models.Views.ITextEditor">
+    <Position X="8" Y="2.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAA=</HashCode>
+      <FileName>Views\ITextEditor.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="ClipFlair.Models.Views.IView">
+    <Position X="5.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAABAAAAAAgAAAAAEAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Views\IView.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Tahoma" Size="8.25" />
+</ClassDiagram>

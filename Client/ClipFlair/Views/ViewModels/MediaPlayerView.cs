@@ -1,5 +1,5 @@
 ﻿//Filename: MediaPlayerView.cs
-//Version: 20120910
+//Version: 20120927
 
 using ClipFlair.Models.Views;
 
@@ -137,12 +137,12 @@ namespace ClipFlair.Views
  
     public void Play()
     {
-      throw new NotImplementedException();
+      Speed = 1.0; //TODO: should maybe set to rate that was before pause?
     }
 
     public void Pause()
     {
-      throw new NotImplementedException();
+      Speed = 0; //should maybe rename to rate
     }
 
     public void Stop()

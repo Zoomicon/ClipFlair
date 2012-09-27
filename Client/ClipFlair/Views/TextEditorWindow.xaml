@@ -1,9 +1,9 @@
 ﻿<!-- 
 Filename: TextEditorWindow.xaml.cs
-Version: 20120923
+Version: 20120927
 -->
   
-<clipflair:FlipWindow x:Class="ClipFlair.Views.TextEditorWindow"
+<clipflair:BaseWindow x:Class="ClipFlair.Views.TextEditorWindow"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008" d:DesignWidth="729" d:DesignHeight="332"
@@ -14,12 +14,16 @@ Version: 20120923
     xmlns:text="clr-namespace:SilverTextEditor;assembly=SilverTextEditor"
     >
 
-  <!--<clipflair:FlipWindow.FrontContent>-->
-  <text:SilverTextEditor HorizontalAlignment="Stretch" VerticalAlignment="Stretch" 
-                         ToolbarVisible="{Binding ToolbarVisible, Mode=TwoWay}" />
-  <!--</clipflair:FlipWindow.FrontContent>-->
+  <!--<clipflair:BaseWindow.FrontContent>-->
+  
+  <text:SilverTextEditor Name="editor"
+                         HorizontalAlignment="Stretch" VerticalAlignment="Stretch" 
+                         ToolbarVisible="{Binding ToolbarVisible, Mode=TwoWay}"
+                         />
+  
+  <!--</clipflair:BaseWindow.FrontContent>-->
 
-  <clipflair:FlipWindow.PropertyItems>
+  <clipflair:BaseWindow.PropertyItems>
 
 <!-- <StackPanel Orientation="Vertical">
       <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Text URL" Target="{Binding ElementName=edTextURL}"/>
@@ -31,6 +35,6 @@ Version: 20120923
       <CheckBox Name="edToolbarVisible" IsChecked="{Binding ToolbarVisible, Mode=TwoWay}" HorizontalAlignment="Stretch" />
     </StackPanel>
   
-  </clipflair:FlipWindow.PropertyItems>
+  </clipflair:BaseWindow.PropertyItems>
 
-</clipflair:FlipWindow>
+</clipflair:BaseWindow>
