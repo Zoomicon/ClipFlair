@@ -1,9 +1,9 @@
 ﻿<!--
 Filename: CaptionsGridWindow.xaml
-Version: 20120920
+Version: 20120927
 -->
   
-<clipflair:FlipWindow x:Class="ClipFlair.Views.CaptionsGridWindow"
+<clipflair:BaseWindow x:Class="ClipFlair.Views.CaptionsGridWindow"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008" d:DesignWidth="907" d:DesignHeight="587"
@@ -14,8 +14,10 @@ Version: 20120920
     xmlns:captions="clr-namespace:Zoomicon.CaptionsGrid;assembly=CaptionsGrid"
    >
 
-  <!--<clipflair:FlipWindow.FrontContent>-->
-  <captions:CaptionsGrid Name="gridCaptions" Width="600"
+  <!--<clipflair:BaseWindow.FrontContent>-->
+
+  <captions:CaptionsGrid Name="gridCaptions"
+                         HorizontalAlignment="Stretch" VerticalAlignment="Stretch"                         
                          Time="{Binding Time, Mode=TwoWay}"
                          CaptionStartTimeVisible="{Binding StartTimeVisible, Mode=TwoWay}"
                          CaptionEndTimeVisible="{Binding EndTimeVisible, Mode=TwoWay}"
@@ -24,9 +26,10 @@ Version: 20120920
                          CaptionAudioVisible="{Binding CaptionAudioVisible, Mode=TwoWay}"
                          Captions="{Binding Path=Captions, RelativeSource={RelativeSource AncestorType=clipflair:CaptionsGridWindow}, Mode=TwoWay}"
   />
-  <!--</clipflair:FlipWindow.FrontContent>-->
 
-  <clipflair:FlipWindow.PropertyItems>
+  <!--</clipflair:BaseWindow.FrontContent>-->
+
+  <clipflair:BaseWindow.PropertyItems>
     
  <!--
     <StackPanel Orientation="Vertical">
@@ -65,6 +68,6 @@ Version: 20120920
       <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Audio visible" Target="{Binding ElementName=cbCaptionAudioVisible}"/>
     </StackPanel>
 
-  </clipflair:FlipWindow.PropertyItems>
+  </clipflair:BaseWindow.PropertyItems>
 
-</clipflair:FlipWindow>
+</clipflair:BaseWindow>

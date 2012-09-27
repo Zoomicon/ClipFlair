@@ -77,6 +77,7 @@
     <Compile Include="Social\Persons\IPerson.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Views.cd" />
     <None Include="Repository\Repository.cd" />
     <None Include="Social\Social.cd">
       <SubType>Designer</SubType>

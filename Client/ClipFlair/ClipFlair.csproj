@@ -114,8 +114,8 @@
     <Compile Include="Views\CaptionsGridWindow.xaml.cs">
       <DependentUpon>CaptionsGridWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\FlipWindow.xaml.cs">
-      <DependentUpon>FlipWindow.xaml</DependentUpon>
+    <Compile Include="Views\BaseWindow.xaml.cs">
+      <DependentUpon>BaseWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\MediaPlayerWindow.xaml.cs">
       <DependentUpon>MediaPlayerWindow.xaml</DependentUpon>
@@ -148,7 +148,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\FlipWindow.xaml">
+    <Page Include="Views\BaseWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
