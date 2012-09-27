@@ -7,7 +7,7 @@ Version: 20120920
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d"
-    xmlns:d="http://schemas.microsoft.com/expression/blend/2008" d:DesignHeight="406" d:DesignWidth="906"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008" d:DesignHeight="167" d:DesignWidth="856"
     xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk"
     xmlns:captions="clr-namespace:Zoomicon.CaptionsGrid"
    >
@@ -51,8 +51,8 @@ Version: 20120920
         <sdk:DataGridTemplateColumn Header="Start" CellTemplate="{StaticResource StartTimeCellTemplate}" CellEditingTemplate="{StaticResource StartTimeCellEditTemplate}"/>
         <sdk:DataGridTemplateColumn Header="End" CellTemplate="{StaticResource EndTimeCellTemplate}" CellEditingTemplate="{StaticResource EndTimeCellEditTemplate}" />
         <sdk:DataGridTemplateColumn Header="Duration" CellTemplate="{StaticResource DurationCellTemplate}" />
-        <sdk:DataGridTemplateColumn Header="Content" CellTemplate="{StaticResource ContentCellTemplate}" CellEditingTemplate="{StaticResource ContentCellEditTemplate}" />
-        <sdk:DataGridTemplateColumn Header="Audio" CellTemplate="{StaticResource AudioCellTemplate}" />
+        <sdk:DataGridTemplateColumn Header="Content" Width="*" CellTemplate="{StaticResource ContentCellTemplate}" CellEditingTemplate="{StaticResource ContentCellEditTemplate}" />
+        <sdk:DataGridTemplateColumn Header="Audio" Width="100" CellTemplate="{StaticResource AudioCellTemplate}" />
       </sdk:DataGrid.Columns>
     </sdk:DataGrid>
   </Grid>
