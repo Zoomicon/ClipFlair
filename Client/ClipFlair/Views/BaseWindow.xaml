@@ -1,6 +1,7 @@
 ﻿<!--
+Project: ClipFlair (http://ClipFlair.codeplex.com)
 Filename: BaseWindow.xaml
-Version: 20120927
+Version: 20121003
 -->
 
 <float:FloatingWindow x:Class="ClipFlair.Views.BaseWindow"
@@ -8,6 +9,7 @@ Version: 20120927
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008" d:DesignHeight="151" d:DesignWidth="337"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d"
+    xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk"
     xmlns:flip="clr-namespace:FlipPanel;assembly=FlipPanel"
     xmlns:float="clr-namespace:SilverFlow.Controls;assembly=SilverFlow.Controls"                      
     HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
@@ -37,6 +39,12 @@ Version: 20120927
           <StackPanel.Resources>
             <Style TargetType="StackPanel" BasedOn="{StaticResource PropertyStackPanelStyle}" />
           </StackPanel.Resources>
+
+          <StackPanel Orientation="Vertical">
+            <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Title:" Target="{Binding ElementName=edTitle}" />
+            <TextBox Name="edTitle" Text="{Binding Title, Mode=TwoWay}" />
+          </StackPanel>
+
         </StackPanel>
       </ScrollViewer>
     </flip:FlipPanel.BackContent>

@@ -1,5 +1,6 @@
-﻿//Filename: IMediaPlayer.cs
-//Version: 20120904
+﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
+//Filename: IMediaPlayer.cs
+//Version: 20121003
 
 using System;
 
@@ -13,6 +14,7 @@ namespace ClipFlair.Models.Views
     public const string PropertySpeed = "Speed";
     public const string PropertyVolume = "Volume";
     public const string PropertyLooping = "Looping";
+    public const string PropertyVideoVisible = "VideoVisible";   
     public const string PropertyControllerVisible = "ControllerVisible";
     public const string PropertyCaptionsVisible = "CaptionsVisible";
   }
@@ -24,6 +26,7 @@ namespace ClipFlair.Models.Views
     public const double DefaultSpeed = 1.0;
     public const double DefaultVolume = 1.0;
     public const bool DefaultLooping = false;
+    public const bool DefaultVideoVisible = true;
     public const bool DefaultControllerVisible = true;
     public const bool DefaultCaptionsVisible = false;
   }
@@ -35,6 +38,7 @@ namespace ClipFlair.Models.Views
     double Speed { get; set; }
     double Volume { get; set; }
     bool Looping { get; set; }
+    bool VideoVisible { get; set; }
     bool ControllerVisible { get; set; }
     bool CaptionsVisible { get; set; }
 

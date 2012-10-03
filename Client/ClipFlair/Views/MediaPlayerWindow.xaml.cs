@@ -1,5 +1,6 @@
-﻿//Filename: MediaPlayerWindow.xaml.cs
-//Version: 20120927
+﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
+//Filename: MediaPlayerWindow.xaml.cs
+//Version: 20121003
 
 using ClipFlair.Models.Views;
 
@@ -271,7 +272,22 @@ namespace ClipFlair.Views
 
     #endregion
 
+    private void btnSaveOffline_TextInput(object sender, System.Windows.Input.TextCompositionEventArgs e)
+    {
+
+    }
+
     #endregion
+
+    private void btnSaveOffline_Click(object sender, RoutedEventArgs e) //TODO: doesn't seem to work, maybe needs offline cache plugin or respective SMF assemblies
+    {
+      player.StorePlaylistContentOffline("ClipFlairPlaylist"); //TODO: allow to define offline filename and maybe allow to delete old ones? (or show offline size and allow clear)
+    }
+
+    private void btnLoadOffline_Click(object sender, RoutedEventArgs e) //TODO: doesn't seem to work, maybe needs offline cache plugin or respective SMF assemblies
+    {
+      player.OpenOfflinePlaylist("ClipFlairPlaylist"); //TODO: allow to define offline filename and maybe allow to delete old ones? (or show offline size and allow clear)
+    }
 
   }
 

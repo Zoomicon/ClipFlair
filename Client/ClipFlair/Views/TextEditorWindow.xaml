@@ -1,6 +1,7 @@
 ﻿<!-- 
+Project: ClipFlair (http://ClipFlair.codeplex.com)
 Filename: TextEditorWindow.xaml.cs
-Version: 20120927
+Version: 20121003
 -->
   
 <clipflair:BaseWindow x:Class="ClipFlair.Views.TextEditorWindow"
@@ -10,7 +11,6 @@ Version: 20120927
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d"
     xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk"  
     xmlns:clipflair="clr-namespace:ClipFlair.Views;assembly=ClipFlair"    
-    xmlns:float="clr-namespace:SilverFlow.Controls;assembly=SilverFlow.Controls"
     xmlns:text="clr-namespace:SilverTextEditor;assembly=SilverTextEditor"
     >
 
