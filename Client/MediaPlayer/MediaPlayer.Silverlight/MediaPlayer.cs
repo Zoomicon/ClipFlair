@@ -1,5 +1,6 @@
-﻿//Filename: MediaPlayer.cs
-//Version: 20120920
+﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
+//Filename: MediaPlayer.cs
+//Version: 20121003
 
 using System;
 using System.Collections.Generic;
@@ -28,12 +29,19 @@ namespace Zoomicon.MediaPlayer
     {
       base.OnApplyTemplate();
 
-      //apply any settings from XAML
-      OnSourceChanged(null, Source);
-      OnCaptionsVisibleChanged(!CaptionsVisible, CaptionsVisible);
+      ShowPlaylistElement.Content = "..."; //don't show "Playlist" text but show "..." instead to avoid localizing it and because it can distract viewers from the captions' text
+
+      //apply UI template overrides
       OnFullScreenButtonVisibleChanged(!FullScreenButtonVisible, FullScreenButtonVisible);
       OnSlowMotionButtonVisibleChanged(!SlowMotionButtonVisible, SlowMotionButtonVisible);
       OnReplayButtonVisibleChanged(!ReplayButtonVisible, ReplayButtonVisible);
+      OnPlaylistButtonVisibleChanged(!PlaylistButtonVisible, PlaylistButtonVisible);
+
+      //the following don't seem to do something:
+      /* 
+      if (GraphToggleElement!=null) GraphToggleElement.Visibility = Visibility.Collapsed;
+      if (ControlStripToggleElement != null) ControlStripToggleElement.Visibility = Visibility.Visible;
+      */
     }
 
     protected override void OnMediaOpened()
@@ -46,9 +54,9 @@ namespace Zoomicon.MediaPlayer
     {
       //listen for changed to PlaybackPosition and sync with Time
       PlaybackPositionChanged += new EventHandler<CustomEventArgs<TimeSpan>>(Player_PlaybackPositionChanged);
- 
+
       //listen for changes to CaptionsVisibility and sync with CaptionsVisible
-       CaptionsVisibilityChanged += new EventHandler(Player_CaptionsVisibilityChanged);
+      CaptionsVisibilityChanged += new EventHandler(Player_CaptionsVisibilityChanged);
     }
 
     protected virtual void RemoveEventHandlers()
@@ -107,18 +115,41 @@ namespace Zoomicon.MediaPlayer
     /// </summary>
     protected virtual void OnSourceChanged(Uri oldSource, Uri newSource)
     {
+      if (newSource == null || newSource.AbsoluteUri == "") return;
+
       PlaylistItem playlistItem = new PlaylistItem();
 
-      playlistItem.MediaSource = newSource;
-      playlistItem.DeliveryMethod = Microsoft.SilverlightMediaFramework.Plugins.Primitives.DeliveryMethods.AdaptiveStreaming; //TODO: need to set that: could decide based on the URL format (e.g. if ends at .ism/Manifest is adaptive streaming)
+      //playlistItem.StartPosition = ... //TODO: see newSource.Fragment and accept Media URIs here to jump directly to time position? (Stop action should maybe also then go there, plus ignore Time value at state load)
 
- /*
-      List<MarkerResource> markerResources = new List<MarkerResource>();
-      MarkerResource markerResource = new MarkerResource();
-      markerResource.Source = new Uri("ExampleCaptions.xml", UriKind.Relative); //TODO: change
-      markerResources.Add(markerResource);
-      playlistItem.MarkerResources = markerResources;
-*/
+      string newSourceStr = newSource.AbsoluteUri;
+
+      if (newSourceStr.EndsWith(".ism", StringComparison.OrdinalIgnoreCase))
+        newSourceStr = newSourceStr + "/manifest"; //append "/manifest" to URIs ending in ".ism" (Smooth Streaming)
+
+      playlistItem.MediaSource = new Uri(newSourceStr);
+
+      string s;
+      if (newSourceStr.EndsWith(".ism/manifest", StringComparison.OrdinalIgnoreCase))
+      {
+        playlistItem.DeliveryMethod = DeliveryMethods.AdaptiveStreaming;
+        s = newSourceStr.Substring(0, newSourceStr.Length - 13); //".ism/manifest" suffix is 13 chars long (not using Replace method since it doesn't take StringComparison parameter)
+      }
+      else
+      {
+        playlistItem.DeliveryMethod = DeliveryMethods.ProgressiveDownload; //TODO: maybe this should be "Streaming"?
+        string ss = newSourceStr.Split('.').Last();
+        s = newSourceStr.Substring(0, newSourceStr.Length - ss.Length - 1); //-1 to remove the dot too
+      }
+      playlistItem.Title = new Uri(s).GetComponents(UriComponents.Path, UriFormat.Unescaped).Split('/').Last();
+      playlistItem.ThumbSource = new Uri(s + "_Thumb.jpg");
+      
+      /*
+            List<MarkerResource> markerResources = new List<MarkerResource>();
+            MarkerResource markerResource = new MarkerResource();
+            markerResource.Source = new Uri("ExampleCaptions.xml", UriKind.Relative); //TODO: change
+            markerResources.Add(markerResource);
+            playlistItem.MarkerResources = markerResources;
+      */
 
       //player.Playlist.Clear(); //skip this to allow going back to previous items from playlist
       Playlist.Add(playlistItem);
@@ -164,8 +195,8 @@ namespace Zoomicon.MediaPlayer
     protected virtual void OnTimeChanged(TimeSpan oldTime, TimeSpan newTime)
     {
       if (newTime != null && base.PlaybackPosition != newTime) //check against PlayBackPosition, not oldTime to avoid loops
-        this.SeekToPosition(newTime);    
-    } 
+        this.SeekToPosition(newTime);
+    }
 
     #endregion
 
@@ -176,7 +207,7 @@ namespace Zoomicon.MediaPlayer
     /// </summary>
     public static readonly DependencyProperty CaptionsVisibleProperty =
         DependencyProperty.Register("CaptionsVisible", typeof(bool), typeof(MediaPlayer),
-            new FrameworkPropertyMetadata((bool)false,
+            new FrameworkPropertyMetadata(false,
                 FrameworkPropertyMetadataOptions.None,
                 new PropertyChangedCallback(OnCaptionsVisibleChanged)));
 
@@ -210,6 +241,48 @@ namespace Zoomicon.MediaPlayer
 
     #endregion
 
+    #region VideoVisible
+
+    /// <summary>
+    /// VideoVisible Dependency Property
+    /// </summary>
+    public static readonly DependencyProperty VideoVisibleProperty =
+        DependencyProperty.Register("VideoVisible", typeof(bool), typeof(MediaPlayer),
+            new FrameworkPropertyMetadata(true,
+                FrameworkPropertyMetadataOptions.None,
+                new PropertyChangedCallback(OnVideoVisibleChanged)));
+
+    /// <summary>
+    /// Gets or sets the VideoVisible property.
+    /// </summary>
+    public bool VideoVisible
+    {
+      get { return (bool)GetValue(VideoVisibleProperty); }
+      set { SetValue(VideoVisibleProperty, value); }
+    }
+
+    /// <summary>
+    /// Handles changes to the VideoVisible property.
+    /// </summary>
+    private static void OnVideoVisibleChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    {
+      MediaPlayer target = (MediaPlayer)d;
+      bool oldVideoVisible = (bool)e.OldValue;
+      bool newVideoVisible = target.VideoVisible;
+      target.OnVideoVisibleChanged(oldVideoVisible, newVideoVisible);
+    }
+
+    /// <summary>
+    /// Provides derived classes an opportunity to handle changes to the VideoVisible property.
+    /// </summary>
+    protected virtual void OnVideoVisibleChanged(bool oldVideoVisible, bool newVideoVisible)
+    {
+      MediaPresenterElement.MaxWidth = (newVideoVisible)? double.PositiveInfinity : 0;
+      MediaPresenterElement.MaxHeight = (newVideoVisible) ? double.PositiveInfinity : 0;
+    }
+
+    #endregion
+
     #region FullScreenButtonVisible
 
     /// <summary>
@@ -217,7 +290,7 @@ namespace Zoomicon.MediaPlayer
     /// </summary>
     public static readonly DependencyProperty FullScreenButtonVisibleProperty =
         DependencyProperty.Register("FullScreenButtonVisible", typeof(bool), typeof(MediaPlayer),
-            new FrameworkPropertyMetadata((bool)true,
+            new FrameworkPropertyMetadata(true,
                 FrameworkPropertyMetadataOptions.None,
                 new PropertyChangedCallback(OnFullScreenButtonVisibleChanged)));
 
@@ -259,7 +332,7 @@ namespace Zoomicon.MediaPlayer
     /// </summary>
     public static readonly DependencyProperty SlowMotionButtonVisibleProperty =
         DependencyProperty.Register("SlowMotionButtonVisible", typeof(bool), typeof(MediaPlayer),
-            new FrameworkPropertyMetadata((bool)true,
+            new FrameworkPropertyMetadata(true,
                 FrameworkPropertyMetadataOptions.None,
                 new PropertyChangedCallback(OnSlowMotionButtonVisibleChanged)));
 
@@ -288,7 +361,7 @@ namespace Zoomicon.MediaPlayer
     /// </summary>
     protected virtual void OnSlowMotionButtonVisibleChanged(bool oldSlowMotionButtonVisible, bool newSlowMotionButtonVisible)
     {
-      if (SlowMotionElement != null) 
+      if (SlowMotionElement != null)
         SlowMotionElement.Visibility = (newSlowMotionButtonVisible) ? Visibility.Visible : Visibility.Collapsed;
     }
 
@@ -301,7 +374,7 @@ namespace Zoomicon.MediaPlayer
     /// </summary>
     public static readonly DependencyProperty ReplayButtonVisibleProperty =
         DependencyProperty.Register("ReplayButtonVisible", typeof(bool), typeof(MediaPlayer),
-            new FrameworkPropertyMetadata((bool)true,
+            new FrameworkPropertyMetadata(true,
                 FrameworkPropertyMetadataOptions.None,
                 new PropertyChangedCallback(OnReplayButtonVisibleChanged)));
 
@@ -330,8 +403,50 @@ namespace Zoomicon.MediaPlayer
     /// </summary>
     protected virtual void OnReplayButtonVisibleChanged(bool oldReplayButtonVisible, bool newReplayButtonVisible)
     {
-      if (ReplayElement != null) 
+      if (ReplayElement != null)
         ReplayElement.Visibility = (newReplayButtonVisible) ? Visibility.Visible : Visibility.Collapsed;
+    }
+
+    #endregion
+
+    #region PlaylistButtonVisible
+
+    /// <summary>
+    /// PlaylistButtonVisible Dependency Property
+    /// </summary>
+    public static readonly DependencyProperty PlaylistButtonVisibleProperty =
+        DependencyProperty.Register("PlaylistButtonVisible", typeof(bool), typeof(MediaPlayer),
+            new FrameworkPropertyMetadata(true,
+                FrameworkPropertyMetadataOptions.None,
+                new PropertyChangedCallback(OnPlaylistButtonVisibleChanged)));
+
+    /// <summary>
+    /// Gets or sets the PlaylistButtonVisible property.
+    /// </summary>
+    public bool PlaylistButtonVisible
+    {
+      get { return (bool)GetValue(PlaylistButtonVisibleProperty); }
+      set { SetValue(PlaylistButtonVisibleProperty, value); }
+    }
+
+    /// <summary>
+    /// Handles changes to the PlaylistButtonVisible property.
+    /// </summary>
+    private static void OnPlaylistButtonVisibleChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    {
+      MediaPlayer target = (MediaPlayer)d;
+      bool oldPlaylistButtonVisible = (bool)e.OldValue;
+      bool newPlaylistButtonVisible = target.PlaylistButtonVisible;
+      target.OnPlaylistButtonVisibleChanged(oldPlaylistButtonVisible, newPlaylistButtonVisible);
+    }
+
+    /// <summary>
+    /// Provides derived classes an opportunity to handle changes to the PlaylistButtonVisible property.
+    /// </summary>
+    protected virtual void OnPlaylistButtonVisibleChanged(bool oldPlaylistButtonVisible, bool newPlaylistButtonVisible)
+    {
+      if (ShowPlaylistElement != null)
+        ShowPlaylistElement.Visibility = (newPlaylistButtonVisible) ? Visibility.Visible : Visibility.Collapsed;
     }
 
     #endregion
@@ -377,7 +492,7 @@ namespace Zoomicon.MediaPlayer
     }
 
     #endregion
-    
+
     #endregion
 
     #region --- Methods ---
@@ -386,7 +501,7 @@ namespace Zoomicon.MediaPlayer
     {
       Captions.Clear(); //TODO: if we have multiple regions in the future, replace region 1 instead in this collection
 
-      if (newCaptions1!=null)
+      if (newCaptions1 != null)
         Captions.Add(newCaptions1);
     }
 
@@ -419,8 +534,8 @@ namespace Zoomicon.MediaPlayer
         theCaption.Style.FontSize = length;
       }
     }
-  
+
     #endregion
   }
-  
+
 }
