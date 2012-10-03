@@ -1,5 +1,6 @@
-﻿//Filename: MediaPlayerView.cs
-//Version: 20120927
+﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
+//Filename: MediaPlayerView.cs
+//Version: 20121003
 
 using ClipFlair.Models.Views;
 
@@ -26,6 +27,7 @@ namespace ClipFlair.Views
     private double speed = IMediaPlayerDefaults.DefaultSpeed;
     private double volume = IMediaPlayerDefaults.DefaultVolume;
     private bool looping = IMediaPlayerDefaults.DefaultLooping;
+    private bool videoVisible = IMediaPlayerDefaults.DefaultVideoVisible;
     private bool controllerVisible = IMediaPlayerDefaults.DefaultControllerVisible;
     private bool captionsVisible = IMediaPlayerDefaults.DefaultCaptionsVisible;
 
@@ -99,6 +101,20 @@ namespace ClipFlair.Views
         {
           looping = value;
           RaisePropertyChanged(IMediaPlayerProperties.PropertyLooping);
+        }
+      }
+    }
+
+    [DataMember]
+    public bool VideoVisible
+    {
+      get { return videoVisible; }
+      set
+      {
+        if (value != videoVisible)
+        {
+          videoVisible = value;
+          RaisePropertyChanged(IMediaPlayerProperties.PropertyVideoVisible);
         }
       }
     }

@@ -1,5 +1,6 @@
-﻿//Filename: BaseWindow.xaml.cs
-//Version: 20120927
+﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
+//Filename: BaseWindow.xaml.cs
+//Version: 20121004
 
 using ClipFlair.Models.Views;
 
@@ -40,6 +41,7 @@ namespace ClipFlair.Views
         FlipPanel.IsFlipped = !FlipPanel.IsFlipped;
       };
 
+      RegisterForNotification("Title", this, (d, e) => { if (View != null) { View.Title = (string)e.NewValue; } });
       RegisterForNotification("Position", this, (d, e) => { if (View != null) { View.Position = (Point)e.NewValue; } });
       RegisterForNotification("Width", this, (d, e) => { if (View != null) { View.Width = (double)e.NewValue; } });
       RegisterForNotification("Height", this, (d, e) => { if (View != null) { View.Height = (double)e.NewValue; } });
@@ -93,7 +95,7 @@ namespace ClipFlair.Views
       get { return PropertiesPanel.Children; }
       set
       {
-        PropertiesPanel.Children.Clear();
+        //PropertiesPanel.Children.Clear(); //don't remove any children the ancestor had added
         foreach (UIElement item in value) { PropertiesPanel.Children.Add(item); }
       }
     }
@@ -106,6 +108,8 @@ namespace ClipFlair.Views
     {
       if (e.PropertyName == null) //multiple (not specified) properties have changed, consider all as changed
       {
+        Title = View.Title;
+        IconText = View.Title; //IconText should match the Title
         Position = View.Position;
         Width = View.Width;
         Height = View.Height;
@@ -113,6 +117,10 @@ namespace ClipFlair.Views
       }
       else switch (e.PropertyName)
         {
+          case IViewProperties.PropertyTitle:
+            Title = View.Title;
+            IconText = View.Title; //IconText should match the Title
+            break;
           case IViewProperties.PropertyPosition:
             Position = View.Position;
             break;

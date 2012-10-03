@@ -1,5 +1,6 @@
-﻿//Filename: BaseView.cs
-//Version: 20120730
+﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
+//Filename: BaseView.cs
+//Version: 20121004
 
 using ClipFlair.Models.Views;
 
@@ -28,6 +29,7 @@ namespace ClipFlair.Views
 
     #region Fields
 
+    private string title = IViewDefaults.DefaultTitle;
     private Point position = IViewDefaults.DefaultPosition;
     private double width = IViewDefaults.DefaultWidth;
     private double height = IViewDefaults.DefaultHeight;
@@ -35,7 +37,21 @@ namespace ClipFlair.Views
     #endregion
 
     #region Properties
-    
+
+    [DataMember]
+    public string Title
+    {
+      get { return title; }
+      set
+      {
+        if (value != title)
+        {
+          title = value;
+          RaisePropertyChanged(IViewProperties.PropertyTitle);
+        }
+      }
+    }    
+
     [DataMember]
     public Point Position
     {
@@ -49,7 +65,6 @@ namespace ClipFlair.Views
         }
       }
     }
-
 
     [DataMember]
     public double Width

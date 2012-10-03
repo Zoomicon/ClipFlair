@@ -1,6 +1,7 @@
 ﻿<!--
+Project: ClipFlair (http://ClipFlair.codeplex.com)
 Filename: MediaPlayerWindow.xaml
-Version: 20120927
+Version: 20121003
 -->
   
 <clipflair:BaseWindow x:Class="ClipFlair.Views.MediaPlayerWindow"
@@ -11,28 +12,32 @@ Version: 20120927
     xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk"  
     xmlns:clipflair="clr-namespace:ClipFlair.Views;assembly=ClipFlair"    
     xmlns:media="clr-namespace:Zoomicon.MediaPlayer;assembly=MediaPlayer"
-    xmlns:conv="clr-namespace:Converters;assembly=Converters"
-    xmlns:float="clr-namespace:SilverFlow.Controls;assembly=SilverFlow.Controls"
     >
 
   <!--<clipflair:BaseWindow.FrontContent>-->
-  
+
   <media:MediaPlayer Name="player" 
                  HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+                 
                  Source="{Binding Source, Mode=TwoWay}"
                  Time="{Binding Time, Mode=TwoWay}"
                  VolumeLevel="{Binding Volume, Mode=TwoWay}"                                          
                  ContinuousPlay="{Binding Looping, Mode=TwoWay}"
+                     
+                 VideoVisible="{Binding VideoVisible, Mode=TwoWay}"
                  IsControlStripVisible="{Binding ControllerVisible, Mode=TwoWay}"
                  CaptionsVisible="{Binding CaptionsVisible, Mode=TwoWay}"
+                     
+                 PlaylistButtonVisible="True"
                  SlowMotionButtonVisible="False"
                  ReplayButtonVisible="False"
                  FullScreenButtonVisible="False" AllowDoubleClickToggle="False"
+                     
                  Captions1="{Binding Path=Captions, RelativeSource={RelativeSource AncestorType=clipflair:MediaPlayerWindow}, Mode=TwoWay}"
                 >
                 <!-- Margin="0" d:LayoutOverrides="Width, Height" -->
   </media:MediaPlayer>
-  
+
   <!--</clipflair:BaseWindow.FrontContent>-->
 
   <clipflair:BaseWindow.PropertyItems>
@@ -40,6 +45,12 @@ Version: 20120927
     <StackPanel Orientation="Vertical">
       <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Media URL:" Target="{Binding ElementName=edMediaURL}" />
       <TextBox Name="edMediaURL" Text="{Binding Source, Mode=TwoWay}" />
+      <!--
+      <StackPanel Orientation="Horizontal">
+        <Button Name="btnSaveOffline" Content="Save content offline" Click="btnSaveOffline_Click" Margin="0,0,5,0" />
+        <Button Name="btnLoadOffline" Content="Load content previously saved offline" Click="btnLoadOffline_Click" />
+      </StackPanel>
+      -->      
     </StackPanel>
     
     <StackPanel Orientation="Vertical">
@@ -53,6 +64,11 @@ Version: 20120927
     </StackPanel>
 
     <StackPanel Orientation="Horizontal">
+      <CheckBox Name="cbVideoVisible" IsChecked="{Binding VideoVisible, Mode=TwoWay}" />
+      <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Video visible" Target="{Binding ElementName=cbVideoVisible}"/>
+    </StackPanel>
+
+    <StackPanel Orientation="Horizontal">
       <CheckBox Name="cbControlStripVisible" IsChecked="{Binding ControllerVisible, Mode=TwoWay}" />
       <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Controller visible" Target="{Binding ElementName=cbControlStripVisible}"/>
     </StackPanel>
@@ -61,7 +77,7 @@ Version: 20120927
       <CheckBox Name="cbCaptionsVisible" IsChecked="{Binding CaptionsVisible, Mode=TwoWay}" />
       <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Captions visible" Target="{Binding ElementName=cbCaptionsVisible}"/>
     </StackPanel>
-
+    
   </clipflair:BaseWindow.PropertyItems>
 
 </clipflair:BaseWindow>
