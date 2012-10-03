@@ -1,6 +1,8 @@
-﻿//Filename: SilverTextEditor.xaml.cs
-//Version: 20120909
-//Editor: George Birbilis <birbilis@kagi.com>
+﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
+//Filename: SilverTextEditor.xaml.cs
+//Version: 20121003
+
+//Originated from Microsoft sample
 
 //Note: localization could use "PublicResxFileCodeGeneratorEx" custom build tool for the "Strings.resx" file
 //      from http://resxfilecodegenex.codeplex.com/ if that is fixed to generate public constuctor instead of protected (see issue tracker there)
@@ -49,7 +51,7 @@ namespace SilverTextEditor
         /// </summary>
         public static readonly DependencyProperty ToolbarVisibleProperty =
             DependencyProperty.Register("Source", typeof(bool), typeof(SilverTextEditor),
-                new FrameworkPropertyMetadata((bool)true, new PropertyChangedCallback(OnToolbarVisibleChanged)));
+                new FrameworkPropertyMetadata(true, new PropertyChangedCallback(OnToolbarVisibleChanged)));
 
         /// <summary>
         /// Gets or sets the ToolbarVisible property.
