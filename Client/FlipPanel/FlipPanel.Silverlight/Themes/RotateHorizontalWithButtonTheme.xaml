@@ -1,6 +1,6 @@
 ﻿<!-- 
 Filename: RotateHorizontalWithButtonTheme.xaml
-Version: 20120924
+Version: 20121004
 -->
   
 <ResourceDictionary
@@ -17,6 +17,7 @@ Version: 20120924
       <VisualStateManager.VisualStateGroups>
         <VisualStateGroup x:Name="ViewStates">
           <VisualStateGroup.Transitions>
+
             <VisualTransition To="Normal" From="Flipped" GeneratedDuration="0:0:0.7">
               <Storyboard>
                 <DoubleAnimation Storyboard.TargetName="BackContentProjection"
@@ -25,6 +26,7 @@ Version: 20120924
                          Storyboard.TargetProperty="RotationY" To="0" Duration="0:0:0.5"></DoubleAnimation>
               </Storyboard>
             </VisualTransition>
+
             <VisualTransition To="Flipped" From="Normal" GeneratedDuration="0:0:0.7">
               <Storyboard>
                 <DoubleAnimation Storyboard.TargetName="FrontContentProjection"
@@ -33,6 +35,7 @@ Version: 20120924
                          Storyboard.TargetProperty="RotationY" To="0" Duration="0:0:0.5"></DoubleAnimation>
               </Storyboard>
             </VisualTransition>
+
           </VisualStateGroup.Transitions>
 
           <VisualState x:Name="Normal">
@@ -67,14 +70,15 @@ Version: 20120924
               CornerRadius="{TemplateBinding CornerRadius}"
               Background="{TemplateBinding Background}">
 
+        <Border.Projection>
+          <PlaneProjection x:Name="FrontContentProjection"></PlaneProjection>
+        </Border.Projection>
+
         <ContentPresenter Content="{TemplateBinding FrontContent}"            
                           HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                           VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
                           />
 
-        <Border.Projection>
-          <PlaneProjection x:Name="FrontContentProjection"></PlaneProjection>
-        </Border.Projection>
       </Border>
 
       <!-- Back content -->
@@ -86,14 +90,15 @@ Version: 20120924
         CornerRadius="{TemplateBinding CornerRadius}"
         Background="{TemplateBinding Background}">
 
+        <Border.Projection>
+          <PlaneProjection x:Name="BackContentProjection"></PlaneProjection>
+        </Border.Projection>
+
         <ContentPresenter Content="{TemplateBinding BackContent}"
                           HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                           VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
                           />
 
-        <Border.Projection>
-          <PlaneProjection x:Name="BackContentProjection"></PlaneProjection>
-        </Border.Projection>
       </Border>
 
       <!-- Flip button -->
