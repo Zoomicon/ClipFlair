@@ -8,7 +8,7 @@ using System.ComponentModel;
 using System.Runtime.Serialization;
 using System.Windows;
 
-namespace ClipFlair.Views
+namespace ClipFlair.Windows.Views
 {
 
   [DataContract(Namespace = "http://clipflair.net/Contracts/Views")]

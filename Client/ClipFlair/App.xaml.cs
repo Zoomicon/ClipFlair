@@ -1,7 +1,8 @@
-﻿//Filename: App.xaml.cs
-//Version: 20120827
+﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
+//Filename: App.xaml.cs
+//Version: 20121004
 
-using ClipFlair.Views;
+using ClipFlair.Windows;
 
 using System;
 using System.Collections.Generic;
@@ -33,7 +34,7 @@ namespace ClipFlair
 
     private void Application_Startup(object sender, StartupEventArgs e)
     {
-      this.RootVisual = new ActivityContainer();
+      this.RootVisual = new ActivityContainer(); //TODO: show splash screen
       Update();
     }
 

@@ -1,17 +1,17 @@
 ﻿<!--
 Project: ClipFlair (http://ClipFlair.codeplex.com)
 Filename: ActivityContainer.xaml
-Version: 20121003
+Version: 20121004
 -->
 
-<UserControl x:Class="ClipFlair.Views.ActivityContainer" 
+<UserControl x:Class="ClipFlair.Windows.ActivityContainer" 
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d" 
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008" d:DesignHeight="471" d:DesignWidth="776" 
     xmlns:float="clr-namespace:SilverFlow.Controls;assembly=SilverFlow.Controls"
     xmlns:zui="clr-namespace:FloatingWindowZUI;assembly=FloatingWindowZUI"
-    xmlns:clipflair="clr-namespace:ClipFlair.Views"
+    xmlns:clipflair="clr-namespace:ClipFlair.Windows"
     xmlns:smf_captions="http://schemas.microsoft.com/smf/2010/xaml/captions" 
     Name="Page">  <!-- xmlns:smf_media="http://schemas.microsoft.com/smf/2010/xaml/media" -->
 
@@ -103,6 +103,13 @@ Version: 20121003
         Width="200" Height="100" 
         Title="Image" IconText="Image" Tag="Image"
         />
+
+      <!-- Test windows -->
+<!--
+      <clipflair:TestWindow1 Position="0,0" />
+      <clipflair:TestWindow2 Position="150,0" />
+      <clipflair:TestWindow3 Position="300,0" />
+-->      
 
       <!--</float:FloatingWindowCollection>-->
       <!--</zui:FloatingWindowHostZUI.Windows>-->

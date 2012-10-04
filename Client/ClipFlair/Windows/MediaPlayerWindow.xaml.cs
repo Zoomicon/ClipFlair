@@ -1,8 +1,9 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: MediaPlayerWindow.xaml.cs
-//Version: 20121003
+//Version: 20121004
 
 using ClipFlair.Models.Views;
+using ClipFlair.Windows.Views;
 
 using System;
 using System.ComponentModel;
@@ -11,7 +12,7 @@ using System.Windows;
 using Microsoft.SilverlightMediaFramework.Core.Media;
 using Microsoft.SilverlightMediaFramework.Core.Accessibility.Captions;
 
-namespace ClipFlair.Views
+namespace ClipFlair.Windows
 {
   public partial class MediaPlayerWindow : BaseWindow
   {

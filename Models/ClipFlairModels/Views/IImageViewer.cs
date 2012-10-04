@@ -1,5 +1,6 @@
-﻿//Filename: IImageViewer.cs
-//Version: 20120814
+﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
+//Filename: IImageViewer.cs
+//Version: 20121004
 
 using System;
 

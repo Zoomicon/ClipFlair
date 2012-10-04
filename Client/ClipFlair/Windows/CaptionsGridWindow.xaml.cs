@@ -1,7 +1,9 @@
-﻿//Filename: CaptionsGridWindow.xaml.cs
-//Version: 20120927
+﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
+//Filename: CaptionsGridWindow.xaml.cs
+//Version: 20121004
 
 using ClipFlair.Models.Views;
+using ClipFlair.Windows.Views;
 
 using System;
 using System.ComponentModel;
@@ -10,7 +12,7 @@ using System.Windows;
 using Microsoft.SilverlightMediaFramework.Core.Media;
 using Microsoft.SilverlightMediaFramework.Core.Accessibility.Captions;
 
-namespace ClipFlair.Views
+namespace ClipFlair.Windows
 {
   public partial class CaptionsGridWindow : BaseWindow
   {

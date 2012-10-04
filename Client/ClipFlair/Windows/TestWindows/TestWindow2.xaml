@@ -1,0 +1,16 @@
+﻿<!-- 
+Filename: TestWindow2.xaml
+Version: 20121004
+-->
+
+<float:FloatingWindow x:Class="ClipFlair.Windows.TestWindow2"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:float="clr-namespace:SilverFlow.Controls;assembly=SilverFlow.Controls"
+    IconText="TestWindow2" Title="TestWindow2"
+    Width="250" Height="200">
+
+    <Button Name="btnTest" Width="200" Height="40" Content="Test" Click="btnTest_Click" />
+  
+</float:FloatingWindow>

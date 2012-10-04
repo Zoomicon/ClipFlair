@@ -1,14 +1,16 @@
-﻿//Filename: ImageWindow.xaml.cs
-//Version: 20120927
+﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
+//Filename: ImageWindow.xaml.cs
+//Version: 20121004
 
 using ClipFlair.Models.Views;
+using ClipFlair.Windows.Views;
 
 using System;
 using System.ComponentModel;
 using System.Windows;
 using System.Windows.Media.Imaging;
 
-namespace ClipFlair.Views
+namespace ClipFlair.Windows
 {
   public partial class ImageWindow : BaseWindow
     {
