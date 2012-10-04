@@ -1,5 +1,5 @@
 ﻿//Filename MainPage.xaml.cs
-//Version: 20120823
+//Version: 20121004
 
 using System.Diagnostics;
 using System.Windows;
@@ -20,7 +20,7 @@ namespace FloatingWindowZUI.Demo
     public MainPage()
     {
       InitializeComponent();
-      ShowNewWindow(false);
+      ShowNewWindow(false); //you can also instantiate FloatingWindows in XAML (see MainPage.xaml)
     }
 
     private void ShowNewWindow(bool withIcon)

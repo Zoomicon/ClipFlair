@@ -8,5 +8,6 @@ namespace FloatingWindowControl
         {
             InitializeComponent();
         }
+
     }
 }
