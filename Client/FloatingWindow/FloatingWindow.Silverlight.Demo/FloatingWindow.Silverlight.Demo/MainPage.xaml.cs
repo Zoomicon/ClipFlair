@@ -1,4 +1,4 @@
-﻿//Version: 20120710
+﻿//Version: 20121004
 
 using System.Diagnostics;
 using System.Windows;
@@ -19,7 +19,7 @@ namespace FloatingWindowControl
         {
             InitializeComponent();
 
-            FloatingWindow window = new FloatingWindow();
+            FloatingWindow window = new FloatingWindow(); //can also create floating windows directly in the XAML (see MainPage.xaml)
             window.Title = "Centered Window";
             window.IconText = "Centered Window";
             host.Add(window);
