@@ -1,12 +1,13 @@
-﻿//Filename: CaptionsGridView.cs
-//Version: 20120911
+﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
+//Filename: CaptionsGridView.cs
+//Version: 20121004
 
 using ClipFlair.Models.Views;
 
 using System;
 using System.Runtime.Serialization;
 
-namespace ClipFlair.Views
+namespace ClipFlair.Windows.Views
 {
 
   [DataContract(Namespace="http://clipflair.net/Contracts/Views")]

@@ -1,12 +1,13 @@
-﻿//Filename: ActivityView.cs
-//Version: 20120923
+﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
+//Filename: ActivityView.cs
+//Version: 20121004
 
 using ClipFlair.Models.Views;
 
 using System;
 using System.Runtime.Serialization;
 
-namespace ClipFlair.Views
+namespace ClipFlair.Windows.Views
 {
 
   [DataContract(Namespace = "http://clipflair.net/Contracts/Views")]

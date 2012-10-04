@@ -1,5 +1,6 @@
-﻿//Filename: IActivity.cs
-//Version: 20120923
+﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
+//Filename: IActivity.cs
+//Version: 20121004
 
 using System;
 

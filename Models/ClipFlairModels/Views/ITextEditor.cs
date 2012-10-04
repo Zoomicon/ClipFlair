@@ -1,5 +1,6 @@
-﻿//Filename: ITextEditor.cs
-//Version: 20120823
+﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
+//Filename: ITextEditor.cs
+//Version: 20121004
 
 using System;
 

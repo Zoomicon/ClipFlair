@@ -13,7 +13,7 @@ using System.Windows.Data;
 using System.Windows.Markup;
 using System.Windows.Media;
 
-namespace ClipFlair.Views
+namespace ClipFlair.Windows
 {
   
   [ContentProperty("FrontContent")]
@@ -35,9 +35,15 @@ namespace ClipFlair.Views
 
       OptionsRequested += (s, e) =>
       {
-        Control frontContent = FrontContent as Control; //will return null if not a Control
-        if (frontContent != null) //only Control and its descendents have "Focus()" method
-          frontContent.Focus(); //try to set focus to front content
+        //try to set focus to front content so that changes to property editboxes at the back content are applied
+        if (!Focus())
+        {
+          // If the Focus() fails it means there is no focusable element in the front content. In this case we set IsTabStop to true to enable keyboard functionality for the container.
+          IsTabStop = true;
+          Focus();
+          //keeping tab stop functionality for future back to front flips
+        }
+
         FlipPanel.IsFlipped = !FlipPanel.IsFlipped;
       };
 
@@ -77,7 +83,7 @@ namespace ClipFlair.Views
         DataContext = value;
       }
     }
-   
+
     public object FrontContent
     {
       get { return FlipPanel.FrontContent; }

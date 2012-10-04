@@ -1,13 +1,13 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: MediaPlayerView.cs
-//Version: 20121003
+//Version: 20121004
 
 using ClipFlair.Models.Views;
 
 using System;
 using System.Runtime.Serialization;
 
-namespace ClipFlair.Views
+namespace ClipFlair.Windows.Views
 {
 
   [DataContract(Namespace = "http://clipflair.net/Contracts/Views")]

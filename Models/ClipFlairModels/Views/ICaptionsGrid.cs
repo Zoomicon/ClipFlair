@@ -1,5 +1,6 @@
-﻿//Filename: ICaptionsGrid.cs
-//Version: 20120912
+﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
+//Filename: ICaptionsGrid.cs
+//Version: 20121004
 
 using System;
 

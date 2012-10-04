@@ -1,7 +1,9 @@
-﻿//Filename: ActivityContainer.xaml.cs
-//Version: 20120927
+﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
+//Filename: ActivityContainer.xaml.cs
+//Version: 20121004
 
 using ClipFlair.Models.Views;
+using ClipFlair.Windows.Views;
 
 using System;
 using System.Windows;
@@ -9,7 +11,7 @@ using System.ComponentModel;
 using System.Windows.Controls;
 using System.Windows.Data;
 
-namespace ClipFlair.Views
+namespace ClipFlair.Windows
 {
   public partial class ActivityContainer : UserControl
   {

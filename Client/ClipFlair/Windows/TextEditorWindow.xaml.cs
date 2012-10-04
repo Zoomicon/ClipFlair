@@ -1,13 +1,15 @@
-﻿//Filename: TextEditorWindow.xaml.cs
-//Version: 20120927
+﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
+//Filename: TextEditorWindow.xaml.cs
+//Version: 20121004
 
 using ClipFlair.Models.Views;
+using ClipFlair.Windows.Views;
 
 using System;
 using System.Windows;
 using System.ComponentModel;
 
-namespace ClipFlair.Views
+namespace ClipFlair.Windows
 {
   public partial class TextEditorWindow : BaseWindow
   {

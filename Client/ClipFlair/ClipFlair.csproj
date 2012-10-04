@@ -104,59 +104,80 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\ImageWindow.xaml.cs">
+    <Compile Include="Windows\TestWindows\TestWindow3.xaml.cs">
+      <DependentUpon>TestWindow3.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\TestWindows\TestWindow2.xaml.cs">
+      <DependentUpon>TestWindow2.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\TestWindows\TestWindow1.xaml.cs">
+      <DependentUpon>TestWindow1.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\ImageWindow.xaml.cs">
       <DependentUpon>ImageWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\ActivityContainer.xaml.cs">
+    <Compile Include="Windows\ActivityContainer.xaml.cs">
       <DependentUpon>ActivityContainer.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Views\CaptionsGridWindow.xaml.cs">
+    <Compile Include="Windows\CaptionsGridWindow.xaml.cs">
       <DependentUpon>CaptionsGridWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\BaseWindow.xaml.cs">
+    <Compile Include="Windows\BaseWindow.xaml.cs">
       <DependentUpon>BaseWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\MediaPlayerWindow.xaml.cs">
+    <Compile Include="Windows\MediaPlayerWindow.xaml.cs">
       <DependentUpon>MediaPlayerWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\TextEditorWindow.xaml.cs">
+    <Compile Include="Windows\TextEditorWindow.xaml.cs">
       <DependentUpon>TextEditorWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Views\ViewModels\CaptionsGridView.cs" />
-    <Compile Include="Views\ViewModels\BaseView.cs" />
-    <Compile Include="Views\ViewModels\ActivityView.cs" />
-    <Compile Include="Views\ViewModels\TextEditorView.cs" />
-    <Compile Include="Views\ViewModels\ImageView.cs" />
-    <Compile Include="Views\ViewModels\MediaPlayerView.cs" />
+    <Compile Include="Windows\ViewModels\CaptionsGridView.cs" />
+    <Compile Include="Windows\ViewModels\BaseView.cs" />
+    <Compile Include="Windows\ViewModels\ActivityView.cs" />
+    <Compile Include="Windows\ViewModels\TextEditorView.cs" />
+    <Compile Include="Windows\ViewModels\ImageView.cs" />
+    <Compile Include="Windows\ViewModels\MediaPlayerView.cs" />
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </ApplicationDefinition>
-    <Page Include="Views\ImageWindow.xaml">
+    <Page Include="Windows\TestWindows\TestWindow3.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\ActivityContainer.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\CaptionsGridWindow.xaml">
+    <Page Include="Windows\TestWindows\TestWindow2.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\BaseWindow.xaml">
+    <Page Include="Windows\TestWindows\TestWindow1.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\MediaPlayerWindow.xaml">
+    <Page Include="Windows\ImageWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\TextEditorWindow.xaml">
+    <Page Include="Windows\ActivityContainer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\CaptionsGridWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Windows\BaseWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Windows\MediaPlayerWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Windows\TextEditorWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -246,9 +267,7 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Controls\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Silverlight\$(SilverlightVersion)\Microsoft.Silverlight.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

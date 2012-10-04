@@ -8,7 +8,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="ClipFlair.Models.Views.IActivityDefaults">
-    <Position X="0.5" Y="7.25" Width="1.5" />
+    <Position X="0.5" Y="7.25" Width="1.75" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAACAAAAAAAAA=</HashCode>
       <FileName>Views\IActivity.cs</FileName>
@@ -43,16 +43,16 @@
     </TypeIdentifier>
   </Class>
   <Class Name="ClipFlair.Models.Views.IMediaPlayerProperties">
-    <Position X="2.75" Y="5.75" Width="2" />
+    <Position X="2.75" Y="5.75" Width="2.25" />
     <TypeIdentifier>
-      <HashCode>AEAAAAAAAAAAAAAAAACgICAAAAAAAAAAAAAAAAAAQBA=</HashCode>
+      <HashCode>AEAAAAAAAAAAAAAAAACgICAAAAAAAAAAAAAAAACAQBA=</HashCode>
       <FileName>Views\IMediaPlayer.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="ClipFlair.Models.Views.IMediaPlayerDefaults">
-    <Position X="2.75" Y="8" Width="2" />
+    <Position X="2.75" Y="8" Width="2.25" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAQAAAAAAAEAACAIASAAAAAAEAA=</HashCode>
+      <HashCode>AAgAAAAAAAAAAAAAAAQAAAAAAAEAACAIASAAAAAAEAA=</HashCode>
       <FileName>Views\IMediaPlayer.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -94,7 +94,7 @@
   <Interface Name="ClipFlair.Models.Views.IMediaPlayer">
     <Position X="2.75" Y="2.5" Width="1.75" />
     <TypeIdentifier>
-      <HashCode>AAAgAAAAAgAAAAAAgAAAABABAAAAAAAAoAIAAAAACQA=</HashCode>
+      <HashCode>AAAgAAAAAgAAAAAAgAAAABABAAAAAgAAoAIAAAAACQA=</HashCode>
       <FileName>Views\IMediaPlayer.cs</FileName>
     </TypeIdentifier>
   </Interface>
@@ -108,7 +108,7 @@
   <Interface Name="ClipFlair.Models.Views.IView">
     <Position X="5.5" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAABAAAAAAgAAAAAEAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAABAAAAEAgAAAAAEAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Views\IView.cs</FileName>
     </TypeIdentifier>
   </Interface>
