@@ -1,6 +1,6 @@
 ﻿<!-- 
 Filename: DropDownWithButtonTheme.xaml
-Version: 20120924
+Version: 20121004
 -->
   
 <ResourceDictionary
@@ -56,9 +56,11 @@ Version: 20120924
               CornerRadius="{TemplateBinding CornerRadius}"
                             Background="{TemplateBinding Background}" 
                >
+
         <Border.RenderTransform>
           <ScaleTransform x:Name="FrontContentTransform"></ScaleTransform>
         </Border.RenderTransform>
+
         <Border.Effect>
           <BlurEffect x:Name="FrontContentEffect" Radius="0"></BlurEffect>
         </Border.Effect>
@@ -90,9 +92,11 @@ Version: 20120924
               BorderThickness="{TemplateBinding BorderThickness}"
               CornerRadius="{TemplateBinding CornerRadius}"
               Background="{TemplateBinding Background}" RenderTransformOrigin="0,1">
+
         <Border.RenderTransform>
           <ScaleTransform x:Name="BackContentTransform"></ScaleTransform>
         </Border.RenderTransform>
+
         <Border.Effect>
           <BlurEffect x:Name="BackContentEffect" Radius="0"></BlurEffect>
         </Border.Effect>
