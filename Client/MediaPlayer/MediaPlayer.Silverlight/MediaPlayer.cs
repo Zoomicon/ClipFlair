@@ -115,7 +115,11 @@ namespace Zoomicon.MediaPlayer
     /// </summary>
     protected virtual void OnSourceChanged(Uri oldSource, Uri newSource)
     {
-      if (newSource == null || newSource.AbsoluteUri == "") return;
+      if (newSource == null || newSource.AbsoluteUri == "")
+      {
+        Playlist.Clear(); //giving an empty source clears the current playlist (this will also stop any current playback)
+        return;
+      }
 
       PlaylistItem playlistItem = new PlaylistItem();
 
@@ -151,7 +155,7 @@ namespace Zoomicon.MediaPlayer
             playlistItem.MarkerResources = markerResources;
       */
 
-      //player.Playlist.Clear(); //skip this to allow going back to previous items from playlist
+      //Playlist.Clear(); //skip this to allow going back to previous items from playlist
       Playlist.Add(playlistItem);
       GoToPlaylistItem(Playlist.Count - 1);
     }
