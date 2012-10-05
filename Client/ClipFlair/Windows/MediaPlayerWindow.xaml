@@ -45,12 +45,12 @@ Version: 20121005
     <StackPanel Orientation="Vertical">
       <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Media URL:" Target="{Binding ElementName=edMediaURL}" />
       <TextBox Name="edMediaURL" Text="{Binding Source, Mode=TwoWay}" />
-      <!--
+      <!-- -->
       <StackPanel Orientation="Horizontal">
-        <Button Name="btnSaveOffline" Content="Save content offline" Click="btnSaveOffline_Click" Margin="0,0,5,0" />
-        <Button Name="btnLoadOffline" Content="Load content previously saved offline" Click="btnLoadOffline_Click" />
+        <Button Name="btnSaveOffline" Content="Store playlist offline" Click="btnSaveOffline_Click" Margin="0,0,5,0" />
+        <Button Name="btnLoadOffline" Content="Load playlist previously stored offline" Click="btnLoadOffline_Click" />
       </StackPanel>
-      -->      
+      <!-- -->      
     </StackPanel>
     
     <StackPanel Orientation="Vertical">

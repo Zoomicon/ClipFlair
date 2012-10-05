@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: MediaPlayerWindow.xaml.cs
-//Version: 20121004
+//Version: 20121005
 
 using ClipFlair.Models.Views;
 using ClipFlair.Windows.Views;
@@ -280,6 +280,9 @@ namespace ClipFlair.Windows
 
     #endregion
 
+    #region Offline 
+    //TODO: need Smooth Streaming ISO Cache plugin for SMF from Media Experiences project at codeplex since this now works only for ProgressiveDownload media
+
     private void btnSaveOffline_Click(object sender, RoutedEventArgs e) //TODO: doesn't seem to work, maybe needs offline cache plugin or respective SMF assemblies
     {
       player.StorePlaylistContentOffline("ClipFlairPlaylist"); //TODO: allow to define offline filename and maybe allow to delete old ones? (or show offline size and allow clear)
@@ -289,6 +292,8 @@ namespace ClipFlair.Windows
     {
       player.OpenOfflinePlaylist("ClipFlairPlaylist"); //TODO: allow to define offline filename and maybe allow to delete old ones? (or show offline size and allow clear)
     }
+
+    #endregion
 
   }
 
