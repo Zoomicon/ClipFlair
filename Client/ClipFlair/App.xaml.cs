@@ -34,7 +34,10 @@ namespace ClipFlair
 
     private void Application_Startup(object sender, StartupEventArgs e)
     {
-      this.RootVisual = new ActivityContainer(); //TODO: show splash screen
+      //this.RootVisual = new SplashScreen(); //TODO: find some way to show SplashScreen (in case instantiating/initializing ActivityContainer takes some time)
+      //Update();
+      //System.Threading.Thread.Sleep(3000); //3 sec delay (for testing only)
+      this.RootVisual = new ActivityContainer();
       Update();
     }
 
