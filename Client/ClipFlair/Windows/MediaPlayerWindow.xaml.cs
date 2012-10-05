@@ -285,12 +285,30 @@ namespace ClipFlair.Windows
 
     private void btnSaveOffline_Click(object sender, RoutedEventArgs e) //TODO: doesn't seem to work, maybe needs offline cache plugin or respective SMF assemblies
     {
-      player.StorePlaylistContentOffline("ClipFlairPlaylist"); //TODO: allow to define offline filename and maybe allow to delete old ones? (or show offline size and allow clear)
+      try
+      {
+        player.StorePlaylistContentOffline("ClipFlairPlaylist"); //TODO: allow to define offline filename and maybe allow to delete old ones? (or show offline size and allow clear)
+        MessageBox.Show("Playlist stored offline");
+      }
+      catch (Exception ex)
+      {
+        MessageBox.Show("Error: " + ex.Message); //(only Progressive Download media is supported currently, can give empty source to clear playlist, then load some non smooth streaming remote URL)
+      }
     }
 
     private void btnLoadOffline_Click(object sender, RoutedEventArgs e) //TODO: doesn't seem to work, maybe needs offline cache plugin or respective SMF assemblies
     {
-      player.OpenOfflinePlaylist("ClipFlairPlaylist"); //TODO: allow to define offline filename and maybe allow to delete old ones? (or show offline size and allow clear)
+      player.Playlist.Clear();
+      try
+      {
+        foreach (PlaylistItem p in player.OpenOfflinePlaylist("ClipFlairPlaylist")) //TODO: allow to define offline filename and maybe allow to delete old ones? (or show offline size and allow clear)
+          player.Playlist.Add(p);
+        MessageBox.Show("Offline playlist restored");
+      }
+      catch (Exception ex)
+      {
+        MessageBox.Show("Error: " + ex.Message);
+      }
     }
 
     #endregion
