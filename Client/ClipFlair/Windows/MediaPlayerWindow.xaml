@@ -1,7 +1,7 @@
 ﻿<!--
 Project: ClipFlair (http://ClipFlair.codeplex.com)
 Filename: MediaPlayerWindow.xaml
-Version: 20121004
+Version: 20121005
 -->
   
 <clipflair:BaseWindow x:Class="ClipFlair.Windows.MediaPlayerWindow"
@@ -77,7 +77,12 @@ Version: 20121004
       <CheckBox Name="cbCaptionsVisible" IsChecked="{Binding CaptionsVisible, Mode=TwoWay}" />
       <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Captions visible" Target="{Binding ElementName=cbCaptionsVisible}"/>
     </StackPanel>
-    
+
+    <StackPanel Orientation="Horizontal">
+      <CheckBox Name="cbConsoleVisible" IsChecked="{Binding Path=ConsoleVisible, ElementName=player, Mode=TwoWay}" />
+      <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Console visible" Target="{Binding ElementName=cbConsoleVisible}"/>
+    </StackPanel>
+
   </clipflair:BaseWindow.PropertyItems>
 
 </clipflair:BaseWindow>
