@@ -78,10 +78,22 @@ Version: 20121005
       <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Captions visible" Target="{Binding ElementName=cbCaptionsVisible}"/>
     </StackPanel>
 
-    <StackPanel Orientation="Horizontal">
-      <CheckBox Name="cbConsoleVisible" IsChecked="{Binding Path=ConsoleVisible, ElementName=player, Mode=TwoWay}" />
-      <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Console visible" Target="{Binding ElementName=cbConsoleVisible}"/>
-    </StackPanel>
+
+    <StackPanel>
+      <TextBlock TextDecorations="Underline">Troubleshooting</TextBlock>
+      <TextBlock/>
+
+      <StackPanel Orientation="Horizontal">
+        <CheckBox Name="cbConsoleVisible" IsChecked="{Binding Path=ConsoleVisible, ElementName=player, Mode=TwoWay}" />
+        <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Console visible" Target="{Binding ElementName=cbConsoleVisible}"/>
+      </StackPanel>
+
+      <StackPanel Orientation="Horizontal">
+        <CheckBox Name="cbGraphVisible" IsChecked="{Binding Path=GraphVisible, ElementName=player, Mode=TwoWay}" />
+        <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Graph visible" Target="{Binding ElementName=cbGraphVisible}"/>
+      </StackPanel>
+      
+    </StackPanel>      
 
   </clipflair:BaseWindow.PropertyItems>
 
