@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: MediaPlayer.cs
-//Version: 20121003
+//Version: 20121005
 
 using System;
 using System.Collections.Generic;
@@ -30,6 +30,8 @@ namespace Zoomicon.MediaPlayer
       base.OnApplyTemplate();
 
       ShowPlaylistElement.Content = "..."; //don't show "Playlist" text but show "..." instead to avoid localizing it and because it can distract viewers from the captions' text
+
+      ConsoleVisible = false;
 
       //apply UI template overrides
       OnFullScreenButtonVisibleChanged(!FullScreenButtonVisible, FullScreenButtonVisible);
@@ -279,6 +281,56 @@ namespace Zoomicon.MediaPlayer
     {
       MediaPresenterElement.MaxWidth = (newVideoVisible)? double.PositiveInfinity : 0;
       MediaPresenterElement.MaxHeight = (newVideoVisible) ? double.PositiveInfinity : 0;
+    }
+
+    #endregion
+
+    #region ConsoleVisible
+
+    /// <summary>
+    /// ConsoleVisible Dependency Property
+    /// </summary>
+    public static readonly DependencyProperty ConsoleVisibleProperty =
+        DependencyProperty.Register("ConsoleVisible", typeof(bool), typeof(MediaPlayer),
+            new FrameworkPropertyMetadata(false,
+                FrameworkPropertyMetadataOptions.None,
+                new PropertyChangedCallback(OnConsoleVisibleChanged)));
+
+    /// <summary>
+    /// Gets or sets the ConsoleVisible property.
+    /// </summary>
+    public bool ConsoleVisible
+    {
+      get { return (bool)GetValue(ConsoleVisibleProperty); }
+      set { SetValue(ConsoleVisibleProperty, value); }
+    }
+
+    /// <summary>
+    /// Handles changes to the ConsoleVisible property.
+    /// </summary>
+    private static void OnConsoleVisibleChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    {
+      MediaPlayer target = (MediaPlayer)d;
+      bool oldConsoleVisible = (bool)e.OldValue;
+      bool newConsoleVisible = target.ConsoleVisible;
+      target.OnConsoleVisibleChanged(oldConsoleVisible, newConsoleVisible);
+    }
+
+    /// <summary>
+    /// Provides derived classes an opportunity to handle changes to the ConsoleVisible property.
+    /// </summary>
+    protected virtual void OnConsoleVisibleChanged(bool oldConsoleVisible, bool newConsoleVisible)
+    {
+      if (newConsoleVisible)
+      {
+        LogLevel = LogLevel.All;
+        LoggingConsoleVisibility = FeatureVisibility.Visible;
+      }
+      else
+      {
+        LogLevel = LogLevel.None;
+        LoggingConsoleVisibility = FeatureVisibility.Disabled;
+      }
     }
 
     #endregion
