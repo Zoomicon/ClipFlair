@@ -304,6 +304,7 @@ namespace ClipFlair.Windows
         foreach (PlaylistItem p in player.OpenOfflinePlaylist("ClipFlairPlaylist")) //TODO: allow to define offline filename and maybe allow to delete old ones? (or show offline size and allow clear)
           player.Playlist.Add(p);
         MessageBox.Show("Offline playlist restored");
+        player.GoToPlaylistItem(0); //after playlist is restored go to the 1st playlist item
       }
       catch (Exception ex)
       {
