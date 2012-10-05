@@ -31,8 +31,6 @@ namespace Zoomicon.MediaPlayer
 
       ShowPlaylistElement.Content = "..."; //don't show "Playlist" text but show "..." instead to avoid localizing it and because it can distract viewers from the captions' text
 
-      ConsoleVisible = false;
-
       //apply UI template overrides
       OnFullScreenButtonVisibleChanged(!FullScreenButtonVisible, FullScreenButtonVisible);
       OnSlowMotionButtonVisibleChanged(!SlowMotionButtonVisible, SlowMotionButtonVisible);
@@ -331,6 +329,47 @@ namespace Zoomicon.MediaPlayer
         LogLevel = LogLevel.None;
         LoggingConsoleVisibility = FeatureVisibility.Disabled;
       }
+    }
+
+    #endregion
+
+    #region GraphVisible
+
+    /// <summary>
+    /// GraphVisible Dependency Property
+    /// </summary>
+    public static readonly DependencyProperty GraphVisibleProperty =
+        DependencyProperty.Register("GraphVisible", typeof(bool), typeof(MediaPlayer),
+            new FrameworkPropertyMetadata(false,
+                FrameworkPropertyMetadataOptions.None,
+                new PropertyChangedCallback(OnGraphVisibleChanged)));
+
+    /// <summary>
+    /// Gets or sets the GraphVisible property
+    /// </summary>
+    public bool GraphVisible
+    {
+      get { return (bool)GetValue(GraphVisibleProperty); }
+      set { SetValue(GraphVisibleProperty, value); }
+    }
+
+    /// <summary>
+    /// Handles changes to the GraphVisible property.
+    /// </summary>
+    private static void OnGraphVisibleChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    {
+      MediaPlayer target = (MediaPlayer)d;
+      bool oldGraphVisible = (bool)e.OldValue;
+      bool newGraphVisible = target.GraphVisible;
+      target.OnGraphVisibleChanged(oldGraphVisible, newGraphVisible);
+    }
+
+    /// <summary>
+    /// Provides derived classes an opportunity to handle changes to the GraphVisible property.
+    /// </summary>
+    protected virtual void OnGraphVisibleChanged(bool oldGraphVisible, bool newGraphVisible)
+    {
+      PlayerGraphVisibility = (newGraphVisible) ? FeatureVisibility.Visible : FeatureVisibility.Disabled;
     }
 
     #endregion
