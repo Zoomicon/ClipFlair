@@ -1,14 +1,14 @@
 ﻿'Filename: TTSReader.vb
 'Version: 20121015
 
-Imports CaptionsLib
-Imports CaptionsLib.Models
-Imports CaptionsLib.TTS.TTSUtils
+Imports ClipFlair.CaptionsLib
+Imports ClipFlair.CaptionsLib.Models
+Imports ClipFlair.CaptionsLib.TTS.TTSUtils
 
 Imports System.IO
 Imports System.Text
 
-Namespace CaptionsLib.TTS
+Namespace ClipFlair.CaptionsLib.TTS
 
   Public Class TTSReader
     Inherits BaseCaptionReader

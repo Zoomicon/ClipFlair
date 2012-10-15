@@ -7,7 +7,7 @@ Version: 20120918
  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
  xmlns:input="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Input.Toolkit"
- xmlns:audio="clr-namespace:Zoomicon.AudioRecorder;assembly=AudioRecorder" 
+ xmlns:audio="clr-namespace:ClipFlair.AudioRecorder;assembly=AudioRecorder" 
  >
 
   <DataTemplate x:Key="StartTimeCellTemplate">

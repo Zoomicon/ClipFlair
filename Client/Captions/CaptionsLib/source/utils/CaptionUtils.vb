@@ -1,16 +1,16 @@
 ﻿'Filename: CaptionUtils.vb
 'Version: 20121015
 
-Imports CaptionsLib.Models
-Imports CaptionsLib.TTS
-Imports CaptionsLib.SRT
-Imports CaptionsLib.FAB
-Imports CaptionsLib.Encore
-Imports CaptionsLib.Utils.FileUtils
+Imports ClipFlair.CaptionsLib.Models
+Imports ClipFlair.CaptionsLib.TTS
+Imports ClipFlair.CaptionsLib.SRT
+Imports ClipFlair.CaptionsLib.FAB
+Imports ClipFlair.CaptionsLib.Encore
+Imports ClipFlair.CaptionsLib.Utils.FileUtils
 
 Imports System.Text
 
-Namespace CaptionsLib.Utils
+Namespace ClipFlair.CaptionsLib.Utils
 
   Public NotInheritable Class CaptionUtils
 

@@ -14,7 +14,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Windows.Media;
 
-namespace Zoomicon.AudioLib
+namespace ClipFlair.AudioLib
 {
 
     /// <summary>

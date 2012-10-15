@@ -1,15 +1,15 @@
 ﻿<!--
 Filename: CaptionsGrid.xaml
-Version: 20120920
+Version: 20121015
 -->
   
-  <UserControl x:Class="Zoomicon.CaptionsGrid.CaptionsGrid"
+  <UserControl x:Class="ClipFlair.CaptionsGrid.CaptionsGrid"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008" d:DesignHeight="167" d:DesignWidth="856"
     xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk"
-    xmlns:captions="clr-namespace:Zoomicon.CaptionsGrid"
+    xmlns:captions="clr-namespace:ClipFlair.CaptionsGrid"
    >
     
   <UserControl.Resources>
@@ -21,24 +21,27 @@ Version: 20120920
   </UserControl.Resources>
 
   <Grid x:Name="LayoutRoot" 
-        Background="White">
+        Background="White"
+        >
     <Grid.RowDefinitions>
-      <RowDefinition Height="20"/>
+      <RowDefinition Height="29" />
       <RowDefinition Height="*" />
     </Grid.RowDefinitions>
     
     <StackPanel Name="Toolbar"
                 Grid.Row="0"
-                Orientation="Horizontal">
+                Orientation="Horizontal"
+                 >
       <StackPanel.Resources>
         <Style TargetType="Button">
-          <Setter Property="Margin" Value="5,1,5,1" />
+          <Setter Property="Margin" Value="3,4,3,4" />
         </Style>
       </StackPanel.Resources>
       <Button Name="btnAdd" Content=" + " Click="btnAdd_Click" FontWeight="ExtraBold" />
       <Button Name="btnRemove" Content=" - " Click="btnRemove_Click" FontWeight="ExtraBold" />
-<!--  <Button Name="btnLoad" Content="Load" Click="btnLoad_Click" />
-      <Button Name="btnSave" Content="Save" Click="btnSave_Click" /> -->
+      <TextBlock Text="|" VerticalAlignment="Center" Foreground="DarkGray" />
+      <Button Name="btnImport" Content="Import" Click="btnImport_Click" />
+      <Button Name="btnExport" Content="Export" Click="btnExport_Click" />
     </StackPanel>
     
     <sdk:DataGrid Name="gridCaptions"

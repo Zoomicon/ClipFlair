@@ -5,7 +5,7 @@ using System;
 using System.Windows.Controls;
 using System.Windows.Input;
 
-namespace Zoomicon.AudioRecorder
+namespace ClipFlair.AudioRecorder
 {
     public partial class AudioRecorderControl : UserControl
     {

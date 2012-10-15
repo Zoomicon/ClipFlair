@@ -1,12 +1,12 @@
 ﻿'Filename: SRTWriter.vb
 'Version: 20121015
 
-Imports CaptionsLib.Models
-Imports CaptionsLib.SRT.SRTUtils
+Imports ClipFlair.CaptionsLib.Models
+Imports ClipFlair.CaptionsLib.SRT.SRTUtils
 
 Imports System.IO
 
-Namespace CaptionsLib.SRT
+Namespace ClipFlair.CaptionsLib.SRT
 
   Public Class SRTWriter
     Inherits BaseCaptionWriter

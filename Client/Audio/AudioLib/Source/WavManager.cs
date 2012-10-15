@@ -5,7 +5,7 @@ using System;
 using System.Windows.Media;
 using System.IO;
 
-namespace Zoomicon.AudioLib
+namespace ClipFlair.AudioLib
 {
 
     public class WavManager

@@ -11,7 +11,7 @@ Version: 20121005
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008" d:DesignHeight="196" d:DesignWidth="535"
     xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk"  
     xmlns:clipflair="clr-namespace:ClipFlair.Windows;assembly=ClipFlair"    
-    xmlns:media="clr-namespace:Zoomicon.MediaPlayer;assembly=MediaPlayer"
+    xmlns:media="clr-namespace:ClipFlair.MediaPlayer;assembly=MediaPlayer"
     >
 
   <!--<clipflair:BaseWindow.FrontContent>-->

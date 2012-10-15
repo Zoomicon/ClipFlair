@@ -1,7 +1,7 @@
 'Filename: ICaption.vb
 'Version: 20121015
 
-Namespace CaptionsLib.Models
+Namespace ClipFlair.CaptionsLib.Models
 
   Public Interface ICaption
 

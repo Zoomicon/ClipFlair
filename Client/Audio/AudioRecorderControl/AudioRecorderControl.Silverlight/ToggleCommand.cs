@@ -5,7 +5,7 @@ using System;
 using System.Windows.Controls.Primitives;
 using System.Windows.Input;
 
-namespace Zoomicon.AudioRecorder
+namespace ClipFlair.AudioRecorder
 {
 
   public class ToggleCommand : SimpleCommand

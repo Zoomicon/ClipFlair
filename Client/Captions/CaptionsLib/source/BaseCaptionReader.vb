@@ -1,12 +1,12 @@
 ﻿'Filename: BaseCaptionReader.vb
 'Version: 20121015
 
-Imports CaptionsLib.models
+Imports ClipFlair.CaptionsLib.models
 
 Imports System.IO
 Imports System.Text
 
-Namespace CaptionsLib
+Namespace ClipFlair.CaptionsLib
 
   Public MustInherit Class BaseCaptionReader
     Implements ICaptionsReader

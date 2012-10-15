@@ -1,7 +1,7 @@
 ﻿'Filename: DateTimeUtils.vb
 'Version: 20121015
 
-Namespace CaptionsLib.Utils
+Namespace ClipFlair.CaptionsLib.Utils
 
   Public NotInheritable Class DateTimeUtils
 

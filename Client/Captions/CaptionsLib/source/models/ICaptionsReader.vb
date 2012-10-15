@@ -4,7 +4,7 @@
 Imports System.IO
 Imports System.Text
 
-Namespace CaptionsLib.Models
+Namespace ClipFlair.CaptionsLib.Models
 
   Public Interface ICaptionsReader
 

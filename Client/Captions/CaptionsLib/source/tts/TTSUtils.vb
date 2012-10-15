@@ -1,10 +1,10 @@
 ﻿'Filename: TTSUtils.vb
 'Version: 20121015
 
-Imports CaptionsLib.Models
-Imports CaptionsLib.Utils.DateTimeUtils
+Imports ClipFlair.CaptionsLib.Models
+Imports ClipFlair.CaptionsLib.Utils.DateTimeUtils
 
-Namespace CaptionsLib.TTS
+Namespace ClipFlair.CaptionsLib.TTS
 
   Public NotInheritable Class TTSUtils
 

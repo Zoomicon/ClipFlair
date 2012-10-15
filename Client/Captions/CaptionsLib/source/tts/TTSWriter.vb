@@ -1,12 +1,12 @@
 ﻿'Filename: TTSWriter.vb
 'Version: 20121015
 
-Imports CaptionsLib.Models
-Imports CaptionsLib.TTS.TTSUtils
+Imports ClipFlair.CaptionsLib.Models
+Imports ClipFlair.CaptionsLib.TTS.TTSUtils
 
 Imports System.IO
 
-Namespace CaptionsLib.TTS
+Namespace ClipFlair.CaptionsLib.TTS
 
   Public Class TTSWriter
     Inherits BaseCaptionWriter
