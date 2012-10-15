@@ -1,7 +1,7 @@
 'Filename: ICaptions.vb
 'Version: 20121015
 
-Namespace CaptionsLib.Models
+Namespace ClipFlair.CaptionsLib.Models
 
   Public Interface ICaptions
     Inherits IList(Of ICaption)

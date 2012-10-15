@@ -2,11 +2,11 @@
 'Version: 20121015
 
 Imports System.IO
-Imports CaptionsLib
-Imports CaptionsLib.Models
-Imports CaptionsLib.FAB.FABUtils
+Imports ClipFlair.CaptionsLib
+Imports ClipFlair.CaptionsLib.Models
+Imports ClipFlair.CaptionsLib.FAB.FABUtils
 
-Namespace CaptionsLib.FAB
+Namespace ClipFlair.CaptionsLib.FAB
 
   Public Class FABWriter
     Inherits BaseCaptionWriter

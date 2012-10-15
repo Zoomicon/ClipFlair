@@ -1,9 +1,9 @@
 ﻿'Filename: EncoreUtils.vb
 'Version: 20121015
 
-Imports CaptionsLib.utils.DateTimeUtils
+Imports ClipFlair.CaptionsLib.utils.DateTimeUtils
 
-Namespace CaptionsLib.Encore
+Namespace ClipFlair.CaptionsLib.Encore
 
   Public NotInheritable Class EncoreUtils
     'for Adobe Encore

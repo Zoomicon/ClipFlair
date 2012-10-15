@@ -1,7 +1,7 @@
 ﻿//Filename: AudioRecorderViewModel.cs
 //Version: 20120912
 
-using Zoomicon.AudioLib;
+using ClipFlair.AudioLib;
 
 using System;
 using System.Windows;
@@ -11,7 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.IO;
 
-namespace Zoomicon.AudioRecorder
+namespace ClipFlair.AudioRecorder
 {
 
   public class AudioRecorderViewModel : DependencyObject

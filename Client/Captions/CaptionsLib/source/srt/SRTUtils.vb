@@ -1,15 +1,15 @@
 ﻿'Filenam: SRTUtils.vb
 'Version: 20121015
 
-Imports CaptionsLib.Models
-Imports CaptionsLib.Utils.DateTimeUtils
+Imports ClipFlair.CaptionsLib.Models
+Imports ClipFlair.CaptionsLib.Utils.DateTimeUtils
 
-Namespace CaptionsLib.SRT
+Namespace ClipFlair.CaptionsLib.SRT
 
   Public NotInheritable Class SRTUtils
 
     Public Const SRTtimeFormat As String = "HH:mm:ss,fff"
-    Public Const SignificantDigits As Integer = 2 'Must use 2 instead of 3 as done at all the CaptionsLib controls
+    Public Const SignificantDigits As Integer = 2 'Must use 2 instead of 3 as done at all the ClipFlair.CaptionsLib controls
     Public Const SRT_TIME_SEPARATOR As String = " --> "
 
     Public Shared BaseTime As DateTime = DATETIMEZERO
@@ -35,7 +35,7 @@ Namespace CaptionsLib.SRT
             For i As Integer = 3 To TimesAndCaptions.Length
               .Caption += vbCrLf + TimesAndCaptions(i)
             Next
-         End With
+          End With
         End If
       Catch
         Throw New Exception("Invalid SRT") 'TODO: localize

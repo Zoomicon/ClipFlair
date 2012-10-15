@@ -1,9 +1,9 @@
 ﻿'Filename: FABUtils.vb
 'Version: 20121015
 
-Imports CaptionsLib.utils.DateTimeUtils
+Imports ClipFlair.CaptionsLib.utils.DateTimeUtils
 
-Namespace CaptionsLib.FAB
+Namespace ClipFlair.CaptionsLib.FAB
 
   Public NotInheritable Class FABUtils
 

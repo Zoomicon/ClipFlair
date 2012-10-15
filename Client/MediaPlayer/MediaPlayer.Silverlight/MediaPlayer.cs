@@ -14,7 +14,7 @@ using Microsoft.SilverlightMediaFramework.Core.Media;
 using Microsoft.SilverlightMediaFramework.Core.Accessibility.Captions;
 using Microsoft.SilverlightMediaFramework.Plugins.Primitives;
 
-namespace Zoomicon.MediaPlayer
+namespace ClipFlair.MediaPlayer
 {
 
   public class MediaPlayer : SMFPlayer

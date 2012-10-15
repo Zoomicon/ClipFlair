@@ -11,7 +11,7 @@ Version: 20121004
     xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk"  
     xmlns:clipflair="clr-namespace:ClipFlair.Windows;assembly=ClipFlair"    
     xmlns:float="clr-namespace:SilverFlow.Controls;assembly=SilverFlow.Controls"
-    xmlns:captions="clr-namespace:Zoomicon.CaptionsGrid;assembly=CaptionsGrid"
+    xmlns:captions="clr-namespace:ClipFlair.CaptionsGrid;assembly=CaptionsGrid"
    >
 
   <!--<clipflair:BaseWindow.FrontContent>-->

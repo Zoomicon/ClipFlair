@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: MediaPlayerWindow.xaml.cs
-//Version: 20121005
+//Version: 20121015
 
 using ClipFlair.Models.Views;
 using ClipFlair.Windows.Views;
@@ -288,11 +288,12 @@ namespace ClipFlair.Windows
       try
       {
         player.StorePlaylistContentOffline("ClipFlairPlaylist"); //TODO: allow to define offline filename and maybe allow to delete old ones? (or show offline size and allow clear)
-        MessageBox.Show("Playlist stored offline");
+        MessageBox.Show("Playlist stored offline"); //TODO: find parent window and pass here
       }
       catch (Exception ex)
       {
         MessageBox.Show("Error: " + ex.Message); //(only Progressive Download media is supported currently, can give empty source to clear playlist, then load some non smooth streaming remote URL)
+        //TODO: find parent window and pass here
       }
     }
 
@@ -303,12 +304,12 @@ namespace ClipFlair.Windows
       {
         foreach (PlaylistItem p in player.OpenOfflinePlaylist("ClipFlairPlaylist")) //TODO: allow to define offline filename and maybe allow to delete old ones? (or show offline size and allow clear)
           player.Playlist.Add(p);
-        MessageBox.Show("Offline playlist restored");
+        MessageBox.Show("Offline playlist restored"); //TODO: find parent window and pass here
         player.GoToPlaylistItem(0); //after playlist is restored go to the 1st playlist item
       }
       catch (Exception ex)
       {
-        MessageBox.Show("Error: " + ex.Message);
+        MessageBox.Show("Error: " + ex.Message); //TODO: find parent window and pass here
       }
     }
 

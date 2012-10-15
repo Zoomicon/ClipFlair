@@ -1,13 +1,13 @@
 ﻿'Description: SRTReader class
 'Version: 20121015
 
-Imports CaptionsLib.Models
-Imports CaptionsLib.SRT.SRTUtils
+Imports ClipFlair.CaptionsLib.Models
+Imports ClipFlair.CaptionsLib.SRT.SRTUtils
 
 Imports System.IO
 Imports System.Text
 
-Namespace CaptionsLib.SRT
+Namespace ClipFlair.CaptionsLib.SRT
 
   Public Class SRTReader
     Inherits BaseCaptionReader

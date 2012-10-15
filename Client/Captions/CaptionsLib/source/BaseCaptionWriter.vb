@@ -1,12 +1,12 @@
 ﻿'Filename: BaseCaptionWriter.vb
 'Version: 20121015
 
-Imports CaptionsLib.Models
+Imports ClipFlair.CaptionsLib.Models
 
 Imports System.IO
 Imports System.Text
 
-Namespace CaptionsLib
+Namespace ClipFlair.CaptionsLib
 
   Public MustInherit Class BaseCaptionWriter
     Implements ICaptionsWriter

@@ -4,7 +4,7 @@
 using System;
 using System.Windows.Input;
 
-namespace Zoomicon.AudioRecorder
+namespace ClipFlair.AudioRecorder
 {
 
   public class SimpleCommand : ICommand

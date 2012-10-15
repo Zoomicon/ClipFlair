@@ -12,7 +12,7 @@
 
 using System;
 
-namespace Zoomicon.AudioLib
+namespace ClipFlair.AudioLib
 {
 
     /// <summary>

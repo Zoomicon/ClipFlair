@@ -1,13 +1,13 @@
 ﻿'Filename: EncoreWriter.vb
 'Version: 20121015
 
-Imports CaptionsLib
-Imports CaptionsLib.Models
-Imports CaptionsLib.Encore.EncoreUtils
+Imports ClipFlair.CaptionsLib
+Imports ClipFlair.CaptionsLib.Models
+Imports ClipFlair.CaptionsLib.Encore.EncoreUtils
 
 Imports System.IO
 
-Namespace CaptionsLib.Encore
+Namespace ClipFlair.CaptionsLib.Encore
 
   Public Class EncoreWriter
     Inherits BaseCaptionWriter

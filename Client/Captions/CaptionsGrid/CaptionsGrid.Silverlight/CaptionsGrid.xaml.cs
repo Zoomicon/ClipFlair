@@ -1,10 +1,12 @@
 ﻿//Filename: CaptionsGrid.xaml.cs
-//Version: 20120920
+//Version: 20121015
 
-using Zoomicon.CaptionsGrid;
-using Zoomicon.AudioRecorder;
+using ClipFlair.AudioRecorder;
+using ClipFlair.CaptionsLib.Utils;
+using ClipFlair.CaptionsLib.Models;
 
 using System;
+using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Collections;
@@ -12,7 +14,7 @@ using System.Collections;
 using Microsoft.SilverlightMediaFramework.Core.Media;
 using Microsoft.SilverlightMediaFramework.Core.Accessibility.Captions;
 
-namespace Zoomicon.CaptionsGrid
+namespace ClipFlair.CaptionsGrid
 {
   public partial class CaptionsGrid : UserControl
   {
@@ -346,7 +348,7 @@ namespace Zoomicon.CaptionsGrid
         End = Time + CaptionDefaultDuration
       }; //TODO: edit blog about Scale transform to also suggest new ScaleTransform() { ScaleX=..., ScaleY=... }; after checking that is works in recent C#
       
-      Zoomicon.MediaPlayer.MediaPlayer.StyleCaption(newCaption); //This is needed else the new caption text won't show up in the MediaPlayer
+      ClipFlair.MediaPlayer.MediaPlayer.StyleCaption(newCaption); //This is needed else the new caption text won't show up in the MediaPlayer
 
       Captions.Children.Add(newCaption); //this adds the caption to the correct place in the list based on its Begin time (logic is implemented by SMF in MediaMarkerCollection class) //TODO: blog about this, Insert isn't implemented, Add does its job too (see http://smf.codeplex.com/workitem/23308)
     }
@@ -358,14 +360,35 @@ namespace Zoomicon.CaptionsGrid
         Captions.Children.Remove(selectedCaption);
     }
 
-    private void btnLoad_Click(object sender, RoutedEventArgs e)
+    private void btnImport_Click(object sender, RoutedEventArgs e)
     {
-      //TODO: use LeViS code?
+      OpenFileDialog dlg = new OpenFileDialog();
+      dlg.Filter = "Subtitle files (TTS, SRT)|*.tts;*.srt|TTS files|*.tts|SRT files|*.srt";
+      dlg.FilterIndex = 1; //note: this index is 1-based, not 0-based
+      if (dlg.ShowDialog() == true) //TODO: find the parent window
+      {
+        ICaptionsReader reader = CaptionUtils.GetCaptionsReader(dlg.File.Name); //TODO: this may not work for in-browser (in that case maybe detect from content?)
+        ICaptions captions = null; //TODO: give an object that supports that inteface or use SMF's datatypes instead
+        MessageBox.Show(dlg.File.Name);
+        //reader.ReadCaptions(captions, dlg.File.OpenRead(), Encoding.UTF8);
+      }
+        //TODO: use LeViS code?
     }
-
-    private void btnSave_Click(object sender, RoutedEventArgs e)
+    //TODO: blog about 1-based index gotcha and the DefaultFileName issue, also make sure one doesn't use OpenFile (says its MethodGroup type) instead of OpenFile() and that SafeFileName, DefaultFileName etc. have N caps in filename and that DefaultExt (point to doc too) isn't used if a filter is supplied
+    private void btnExport_Click(object sender, RoutedEventArgs e)
     {
-      //TODO: use LeViS code?
+      SaveFileDialog dlg = new SaveFileDialog();
+      dlg.Filter= "Subtitle files (TTS, SRT, FAB, ENC)|*.tts;*.srt;*.fab;*.enc|TTS files|*.tts|SRT files|*.srt|FAB files|*.fab|Adobe Encore files|*.enc";
+      dlg.FilterIndex = 1; //note: this index is 1-based, not 0-based
+      dlg.DefaultFileName = "Subtitles"; //Silverlight will 1st prompt the user "Do you want to save X", where X is the DefaultFileName value
+      //dlg.DefaultExt = "TTS"; //this doesn't seem to be used if you've supplied a filter
+      if (dlg.ShowDialog() == true) //TODO: find the parent window
+      {
+        ICaptionsWriter writer = CaptionUtils.GetCaptionsWriter(dlg.SafeFileName);
+        MessageBox.Show(dlg.SafeFileName);
+        ICaptions captions = null;
+        //writer.WriteCaptions(captions, dlg.OpenFile(), Encoding.UTF8);
+      }
     }
 
     #endregion
