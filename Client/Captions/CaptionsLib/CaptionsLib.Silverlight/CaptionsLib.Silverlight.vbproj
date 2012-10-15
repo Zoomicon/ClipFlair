@@ -104,14 +104,11 @@
     <Import Include="System.Windows.Shapes" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\source\BaseCaptionReader.vb">
+      <Link>BaseCaptionReader.vb</Link>
+    </Compile>
     <Compile Include="..\source\BaseCaptionWriter.vb">
       <Link>BaseCaptionWriter.vb</Link>
-    </Compile>
-    <Compile Include="..\source\CaptionUtils.vb">
-      <Link>CaptionUtils.vb</Link>
-    </Compile>
-    <Compile Include="..\source\DateTimeUtils.vb">
-      <Link>DateTimeUtils.vb</Link>
     </Compile>
     <Compile Include="..\source\encore\EncoreUtils.vb">
       <Link>encore\EncoreUtils.vb</Link>
@@ -124,9 +121,6 @@
     </Compile>
     <Compile Include="..\source\fab\FABWriter.vb">
       <Link>fab\FABWriter.vb</Link>
-    </Compile>
-    <Compile Include="..\source\FileUtils.vb">
-      <Link>FileUtils.vb</Link>
     </Compile>
     <Compile Include="..\source\models\ICaption.vb">
       <Link>models\ICaption.vb</Link>
@@ -157,6 +151,15 @@
     </Compile>
     <Compile Include="..\source\tts\TTSWriter.vb">
       <Link>tts\TTSWriter.vb</Link>
+    </Compile>
+    <Compile Include="..\source\utils\CaptionUtils.vb">
+      <Link>utils\CaptionUtils.vb</Link>
+    </Compile>
+    <Compile Include="..\source\utils\DateTimeUtils.vb">
+      <Link>utils\DateTimeUtils.vb</Link>
+    </Compile>
+    <Compile Include="..\source\utils\FileUtils.vb">
+      <Link>utils\FileUtils.vb</Link>
     </Compile>
     <Compile Include="My Project\AssemblyInfo.vb" />
   </ItemGroup>

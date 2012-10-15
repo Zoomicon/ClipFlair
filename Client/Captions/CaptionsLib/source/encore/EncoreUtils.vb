@@ -1,12 +1,12 @@
-﻿'Description: EncoreUtils class (for Adobe Encore)
-'Authors: George Birbilis (birbilis@kagi.com)
-'Version: 20090310
+﻿'Filename: EncoreUtils.vb
+'Version: 20121015
 
-Imports LvS.utilities.DateTimeUtils
+Imports CaptionsLib.utils.DateTimeUtils
 
-Namespace LvS.utilities.Captions.encore
+Namespace CaptionsLib.Encore
 
   Public NotInheritable Class EncoreUtils
+    'for Adobe Encore
 
     Public Const EncoreTimeFormat As String = "HH:mm:ss:ff"
     Public Const SignificantDigits As Integer = 2

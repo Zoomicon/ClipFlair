@@ -1,8 +1,7 @@
-﻿'Description: FileUtils class (cut-down version from http://LvS.codeplex.com)
-'Authors: George Birbilis (birbilis@kagi.com)
-'Version: 20121013
+﻿'Filename: FileUtils.vb
+'Version: 20121015
 
-Namespace LvS.utilities
+Namespace CaptionsLib.Utils
 
   Public NotInheritable Class FileUtils
 
