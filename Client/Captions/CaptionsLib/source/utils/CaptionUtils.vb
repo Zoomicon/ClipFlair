@@ -1,17 +1,16 @@
-﻿'Description: CaptionUtils class
-'Authors: George Birbilis (birbilis@kagi.com)
-'Version: 20090310
+﻿'Filename: CaptionUtils.vb
+'Version: 20121015
+
+Imports CaptionsLib.Models
+Imports CaptionsLib.TTS
+Imports CaptionsLib.SRT
+Imports CaptionsLib.FAB
+Imports CaptionsLib.Encore
+Imports CaptionsLib.Utils.FileUtils
 
 Imports System.Text
-Imports LvS.models.Captions
-Imports LvS.utilities.FileUtils
 
-Imports LvS.utilities.Captions.tts
-Imports LvS.utilities.Captions.srt
-Imports LvS.utilities.Captions.fab
-Imports LvS.utilities.Captions.encore
-
-Namespace LvS.utilities.Captions
+Namespace CaptionsLib.Utils
 
   Public NotInheritable Class CaptionUtils
 
@@ -36,7 +35,7 @@ Namespace LvS.utilities.Captions
 
     Public Shared Function GetCaptionsWriter(ByVal path As String) As ICaptionsWriter
       If CheckExtension(path, EXTENSIONS_TTS) IsNot Nothing Then
-        Return New TTSUnicodeWriter
+        Return New TTSWriter
       ElseIf CheckExtension(path, EXTENSIONS_SRT) IsNot Nothing Then
         Return New SRTWriter
       ElseIf CheckExtension(path, EXTENSIONS_FAB) IsNot Nothing Then
@@ -47,14 +46,14 @@ Namespace LvS.utilities.Captions
       Return Nothing
     End Function
 
-    Public Shared Sub ReadCaptions(ByVal Captions As ICaptions, ByVal path As String, ByVal theEncoding As Encoding)
+    Public Shared Sub ReadCaptions(ByVal captions As Icaptions, ByVal path As String, ByVal theEncoding As Encoding)
       Dim reader As ICaptionsReader = GetCaptionsReader(path)
-      If reader IsNot Nothing Then reader.ReadCaptions(Captions, path, theEncoding)
+      If reader IsNot Nothing Then reader.ReadCaptions(captions, path, theEncoding)
     End Sub
 
-    Public Shared Sub WriteCaptions(ByVal Captions As ICaptions, ByVal path As String, ByVal theEncoding As Encoding)
+    Public Shared Sub WriteCaptions(ByVal captions As Icaptions, ByVal path As String, ByVal theEncoding As Encoding)
       Dim writer As ICaptionsWriter = GetCaptionsWriter(path)
-      If writer IsNot Nothing Then writer.WriteCaptions(Captions, path, theEncoding)
+      If writer IsNot Nothing Then writer.WriteCaptions(captions, path, theEncoding)
     End Sub
 
   End Class

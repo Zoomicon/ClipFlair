@@ -1,8 +1,7 @@
-﻿'Description: DateTimeUtils class
-'Authors: George Birbilis (birbilis@kagi.com)
-'Version: 20090310
+﻿'Filename: DateTimeUtils.vb
+'Version: 20121015
 
-Namespace LvS.utilities
+Namespace CaptionsLib.Utils
 
   Public NotInheritable Class DateTimeUtils
 

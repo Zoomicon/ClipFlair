@@ -1,23 +1,22 @@
-﻿'Description: FABWriter class
-'Authors: George Birbilis (birbilis@kagi.com)
-'Version: 20090309
+﻿'Filename: FABWriter.vb
+'Version: 20121015
 
 Imports System.IO
-Imports LvS.models.Captions
-Imports LvS.utilities.Captions.fab.FABUtils
+Imports CaptionsLib
+Imports CaptionsLib.Models
+Imports CaptionsLib.FAB.FABUtils
 
-Namespace LvS.utilities.Captions.fab
+Namespace CaptionsLib.FAB
 
   Public Class FABWriter
     Inherits BaseCaptionWriter
 
 #Region "Methods"
 
-    Protected Overrides Sub WriteCaption(ByVal Caption As models.Captions.ICaption, ByVal writer As System.IO.TextWriter)
+    Public Overrides Sub WriteCaption(ByVal Caption As ICaption, ByVal writer As System.IO.TextWriter)
       With Caption
         writer.WriteLine(SecondsToFABtime(.StartTime) + "  " + SecondsToFABtime(.EndTime))  'separator is double space
-        writer.WriteLine(.Caption1)
-        If (.Caption2 <> "") Then writer.WriteLine(.Caption2) 'write 2nd Caption line only if non-empty
+        writer.WriteLine(.Caption) 'TODO: assuming Caption alredy contains CRLF between rows (not at ending row) - may should first convert LFs to CRLFs, then also trip CRLF's at end
         writer.WriteLine()  'FAB format has an empty line AFTER each Caption, resuling to the file ending up at two empty lines (maybe done so that more Captions can be easily appended later on to the file)
       End With
     End Sub

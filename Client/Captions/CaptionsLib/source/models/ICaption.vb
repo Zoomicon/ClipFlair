@@ -1,8 +1,7 @@
-'Description: ICaption interface
-'Authors: George Birbilis (birbilis@kagi.com)
-'Version: 20080422
+'Filename: ICaption.vb
+'Version: 20121015
 
-Namespace LvS.models.Captions
+Namespace CaptionsLib.Models
 
   Public Interface ICaption
 
@@ -11,13 +10,7 @@ Namespace LvS.models.Captions
     Property StartTime() As Double  'see SetTimes method
     Property EndTime() As Double  'see SetTimes method
     Property Duration() As Double
-    Property Caption1() As String
-    Property Caption2() As String
-
-    Property TeacherCommentIcon() As Integer
-    Property TeacherComment() As String
-    Property StudentCommentIcon() As Integer
-    Property StudentComment() As String
+    Property Caption() As String
 
 #End Region
 

@@ -1,12 +1,12 @@
-﻿'Description: SRTWriter class
-'Authors: George Birbilis (birbilis@kagi.com)
-'Version: 20090309
+﻿'Filename: SRTWriter.vb
+'Version: 20121015
+
+Imports CaptionsLib.Models
+Imports CaptionsLib.SRT.SRTUtils
 
 Imports System.IO
-Imports LvS.models.Captions
-Imports LvS.utilities.Captions.srt.SRTUtils
 
-Namespace LvS.utilities.Captions.srt
+Namespace CaptionsLib.SRT
 
   Public Class SRTWriter
     Inherits BaseCaptionWriter
@@ -29,17 +29,16 @@ Namespace LvS.utilities.Captions.srt
 
 #Region "Methods"
 
-    Protected Overrides Sub WriteHeader()
-      fLineNumber = 0
+    Public Overrides Sub WriteHeader(ByVal writer As TextWriter)
+      fLineNumber = 0 'assuming we're writing a new "file", so resetting counter
     End Sub
 
-    Protected Overrides Sub WriteCaption(ByVal Caption As models.Captions.ICaption, ByVal writer As System.IO.TextWriter)
+    Public Overrides Sub WriteCaption(ByVal Caption As ICaption, ByVal writer As TextWriter)
       fLineNumber += 1
       writer.WriteLine(LineNumber)
       With Caption
         writer.WriteLine(SecondsToSRTtime(.StartTime) + SRT_TIME_SEPARATOR + SecondsToSRTtime(.EndTime))
-        If (.Caption1 <> "") Then writer.WriteLine(.Caption1) 'if 1st line is missing, 2nd will become 1st (SRT doesn't support otherwise)
-        If (.Caption2 <> "") Then writer.WriteLine(.Caption2) 'write 2nd Caption line only if non-empty
+        writer.WriteLine(.Caption) 'TODO: should take care of empty lines, possibly convert them to a space char
         writer.WriteLine()  'SRT format has an empty line AFTER each Caption, resuling to the file ending up at two empty lines (maybe done so that more Captions can be easily appended later on to the file)
       End With
     End Sub

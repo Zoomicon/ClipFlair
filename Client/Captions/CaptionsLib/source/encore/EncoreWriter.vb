@@ -1,22 +1,22 @@
-﻿'Description: EncoreWriter class
-'Authors: George Birbilis (birbilis@kagi.com)
-'Version: 20090309
+﻿'Filename: EncoreWriter.vb
+'Version: 20121015
+
+Imports CaptionsLib
+Imports CaptionsLib.Models
+Imports CaptionsLib.Encore.EncoreUtils
 
 Imports System.IO
-Imports LvS.models.Captions
-Imports LvS.utilities.Captions.encore.EncoreUtils
 
-Namespace LvS.utilities.Captions.encore
+Namespace CaptionsLib.Encore
 
   Public Class EncoreWriter
     Inherits BaseCaptionWriter
 
 #Region "Methods"
 
-    Protected Overrides Sub WriteCaption(ByVal Caption As models.Captions.ICaption, ByVal writer As System.IO.TextWriter)
+    Public Overrides Sub WriteCaption(ByVal Caption As ICaption, ByVal writer As System.IO.TextWriter)
       With Caption
-        writer.WriteLine(SecondsToEncoreTime(.StartTime) + " " + SecondsToEncoreTime(.EndTime) + " " + .Caption1)
-        If (.Caption2 <> "") Then writer.WriteLine(.Caption2) 'write 2nd Caption line only if non-empty
+        writer.WriteLine(SecondsToEncoreTime(.StartTime) + " " + SecondsToEncoreTime(.EndTime) + " " + .Caption) 'TODO: assuming Caption alredy contains CRLF between rows (not at ending row) - may should first convert LFs to CRLFs, then also trip CRLF's at end
       End With
     End Sub
 

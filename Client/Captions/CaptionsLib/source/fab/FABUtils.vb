@@ -1,10 +1,9 @@
-﻿'Description: FABUtils class
-'Authors: George Birbilis (birbilis@kagi.com)
-'Version: 20090310
+﻿'Filename: FABUtils.vb
+'Version: 20121015
 
-Imports LvS.utilities.DateTimeUtils
+Imports CaptionsLib.utils.DateTimeUtils
 
-Namespace LvS.utilities.Captions.fab
+Namespace CaptionsLib.FAB
 
   Public NotInheritable Class FABUtils
 

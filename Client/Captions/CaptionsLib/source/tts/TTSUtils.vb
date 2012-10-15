@@ -1,11 +1,10 @@
-﻿'Description: TTSUtils class
-'Authors: George Birbilis (birbilis@kagi.com), Kostas Mitropoulos (kosmitr@eap.gr)
-'Version: 20090310
+﻿'Filename: TTSUtils.vb
+'Version: 20121015
 
-Imports LvS.models.Captions
-Imports LvS.utilities.DateTimeUtils
+Imports CaptionsLib.Models
+Imports CaptionsLib.Utils.DateTimeUtils
 
-Namespace LvS.utilities.Captions.tts
+Namespace CaptionsLib.TTS
 
   Public NotInheritable Class TTSUtils
 
@@ -25,9 +24,7 @@ Namespace LvS.utilities.Captions.tts
 
     Public Shared Function CaptionToTTSString(ByVal Caption As ICaption) As String
       With Caption
-        Dim result As String = SecondsToTTStime(.StartTime) + "," + SecondsToTTStime(.EndTime) + TTS_TIME_END + .Caption1
-        If (.Caption2 <> "") Then result += "|" + .Caption2 'write 2nd Caption line only if non-empty
-        Return result
+        Return SecondsToTTStime(.StartTime) + "," + SecondsToTTStime(.EndTime) + TTS_TIME_END + .Caption.Replace(vbCrLf, "|")
       End With
     End Function
 
@@ -35,11 +32,11 @@ Namespace LvS.utilities.Captions.tts
       Try
         With Caption
           Dim TimesAndCaptions() As String = Split(ttsString, TTS_TIME_END)
+
           Dim TimesOnly() As String = Split(TimesAndCaptions(0), ",")
           .SetTimes(TTStimeToSeconds(TimesOnly(0)), TTStimeToSeconds(TimesOnly(1)))
-          Dim CaptionsOnly() As String = Split(TimesAndCaptions(1), "|")
-          .Caption1 = CaptionsOnly(0)
-          If CaptionsOnly.Length > 1 Then .Caption2 = CaptionsOnly(1) Else .Caption2 = "" 'if more than 2 lines per Caption, ignore the rest
+
+          .Caption = TimesAndCaptions(1).Replace("|", vbCrLf)
         End With
       Catch
         Throw New Exception("Invalid TTS") 'TODO: localize

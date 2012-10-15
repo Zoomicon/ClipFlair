@@ -1,19 +1,19 @@
-﻿'Description: TTSWriter class
-'Authors: George Birbilis (birbilis@kagi.com)
-'Version: 20090309
+﻿'Filename: TTSWriter.vb
+'Version: 20121015
+
+Imports CaptionsLib.Models
+Imports CaptionsLib.TTS.TTSUtils
 
 Imports System.IO
-Imports LvS.models.Captions
-Imports LvS.utilities.Captions.tts.TTSUtils
 
-Namespace LvS.utilities.Captions.tts
+Namespace CaptionsLib.TTS
 
-  Public Class TTSUnicodeWriter
+  Public Class TTSWriter
     Inherits BaseCaptionWriter
 
 #Region "Methods"
 
-    Protected Overrides Sub WriteCaption(ByVal Caption As ICaption, ByVal writer As TextWriter)
+    Public Overrides Sub WriteCaption(ByVal Caption As ICaption, ByVal writer As TextWriter)
       writer.WriteLine(CaptionToTTSString(Caption))
     End Sub
 
