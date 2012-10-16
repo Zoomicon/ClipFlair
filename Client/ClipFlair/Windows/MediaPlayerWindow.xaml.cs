@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: MediaPlayerWindow.xaml.cs
-//Version: 20121015
+//Version: 20121016
 
 using ClipFlair.Models.Views;
 using ClipFlair.Windows.Views;
@@ -272,12 +272,7 @@ namespace ClipFlair.Windows
     }
 
     #endregion
-
-    private void btnSaveOffline_TextInput(object sender, System.Windows.Input.TextCompositionEventArgs e)
-    {
-
-    }
-
+     
     #endregion
 
     #region Offline 
@@ -299,7 +294,7 @@ namespace ClipFlair.Windows
 
     private void btnLoadOffline_Click(object sender, RoutedEventArgs e) //TODO: doesn't seem to work, maybe needs offline cache plugin or respective SMF assemblies
     {
-      player.Playlist.Clear();
+      player.Source = new Uri(""); //this will also do Playlist.Clear()
       try
       {
         foreach (PlaylistItem p in player.OpenOfflinePlaylist("ClipFlairPlaylist")) //TODO: allow to define offline filename and maybe allow to delete old ones? (or show offline size and allow clear)
