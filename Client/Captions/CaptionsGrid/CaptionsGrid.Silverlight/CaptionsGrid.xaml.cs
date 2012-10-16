@@ -1,5 +1,5 @@
 ﻿//Filename: CaptionsGrid.xaml.cs
-//Version: 20121015
+//Version: 20121016
 
 using ClipFlair.AudioRecorder;
 using ClipFlair.CaptionsLib.Utils;
@@ -27,7 +27,7 @@ namespace ClipFlair.CaptionsGrid
     public CaptionsGrid()
     {
       InitializeComponent();
-      InitializeDataGrid();      
+      InitializeDataGrid();
     }
 
     protected void InitializeDataGrid()
@@ -347,7 +347,7 @@ namespace ClipFlair.CaptionsGrid
         Begin = Time,
         End = Time + CaptionDefaultDuration
       }; //TODO: edit blog about Scale transform to also suggest new ScaleTransform() { ScaleX=..., ScaleY=... }; after checking that is works in recent C#
-      
+
       ClipFlair.MediaPlayer.MediaPlayer.StyleCaption(newCaption); //This is needed else the new caption text won't show up in the MediaPlayer
 
       Captions.Children.Add(newCaption); //this adds the caption to the correct place in the list based on its Begin time (logic is implemented by SMF in MediaMarkerCollection class) //TODO: blog about this, Insert isn't implemented, Add does its job too (see http://smf.codeplex.com/workitem/23308)
@@ -362,32 +362,45 @@ namespace ClipFlair.CaptionsGrid
 
     private void btnImport_Click(object sender, RoutedEventArgs e)
     {
-      OpenFileDialog dlg = new OpenFileDialog();
-      dlg.Filter = "Subtitle files (TTS, SRT)|*.tts;*.srt|TTS files|*.tts|SRT files|*.srt";
-      dlg.FilterIndex = 1; //note: this index is 1-based, not 0-based
-      if (dlg.ShowDialog() == true) //TODO: find the parent window
+      try
       {
-        ICaptionsReader reader = CaptionUtils.GetCaptionsReader(dlg.File.Name); //TODO: this may not work for in-browser (in that case maybe detect from content?)
-        ICaptions captions = null; //TODO: give an object that supports that inteface or use SMF's datatypes instead
-        MessageBox.Show(dlg.File.Name);
-        //reader.ReadCaptions(captions, dlg.File.OpenRead(), Encoding.UTF8);
+        OpenFileDialog dlg = new OpenFileDialog();
+        dlg.Filter = "Subtitle files (SRT, TTS)|*.srt;*.tts|SRT files|*.srt|TTS files|*.tts";
+        dlg.FilterIndex = 1; //note: this index is 1-based, not 0-based
+        if (dlg.ShowDialog() == true) //TODO: find the parent window
+        {
+          ICaptionsReader reader = CaptionUtils.GetCaptionsReader(dlg.File.Name); //TODO: this may not work for in-browser (in that case maybe detect from content?)
+          CaptionRegion newCaptions = new CaptionRegion();
+          reader.ReadCaptions(newCaptions, dlg.File.OpenRead(), Encoding.UTF8);
+          Captions = newCaptions;
+        }
       }
-        //TODO: use LeViS code?
+      catch (Exception ex)
+      {
+        MessageBox.Show("Captions import failed: " + ex.Message); //TODO: find the parent window
+      }
     }
-    //TODO: blog about 1-based index gotcha and the DefaultFileName issue, also make sure one doesn't use OpenFile (says its MethodGroup type) instead of OpenFile() and that SafeFileName, DefaultFileName etc. have N caps in filename and that DefaultExt (point to doc too) isn't used if a filter is supplied
+
+    //TODO: blog about 1-based index gotcha and the DefaultFileName issue, also make sure one doesn't use OpenFile (says its MethodGroup type) instead of OpenFile() and that SafeFileName, DefaultFileName etc. have N caps in filename and that DefaultExt (point to doc too) isn't used if a filter is supplied. Show how to have a filter with multiple extensions and multiple filters, note that 1st extension of filterindx is used as default
+
     private void btnExport_Click(object sender, RoutedEventArgs e)
     {
-      SaveFileDialog dlg = new SaveFileDialog();
-      dlg.Filter= "Subtitle files (TTS, SRT, FAB, ENC)|*.tts;*.srt;*.fab;*.enc|TTS files|*.tts|SRT files|*.srt|FAB files|*.fab|Adobe Encore files|*.enc";
-      dlg.FilterIndex = 1; //note: this index is 1-based, not 0-based
-      dlg.DefaultFileName = "Subtitles"; //Silverlight will 1st prompt the user "Do you want to save X", where X is the DefaultFileName value
-      //dlg.DefaultExt = "TTS"; //this doesn't seem to be used if you've supplied a filter
-      if (dlg.ShowDialog() == true) //TODO: find the parent window
+      try
       {
-        ICaptionsWriter writer = CaptionUtils.GetCaptionsWriter(dlg.SafeFileName);
-        MessageBox.Show(dlg.SafeFileName);
-        ICaptions captions = null;
-        //writer.WriteCaptions(captions, dlg.OpenFile(), Encoding.UTF8);
+        SaveFileDialog dlg = new SaveFileDialog();
+        dlg.Filter = "Subtitle files (SRT, TTS, FAB, ENC)|*.srt;*.tts;*.fab;*.enc|SRT files|*.srt|FAB files|*.fab|Adobe Encore files|*.enc|TTS files|*.tts";
+        dlg.FilterIndex = 1; //note: this index is 1-based, not 0-based
+        dlg.DefaultFileName = "Subtitles"; //Silverlight will 1st prompt the user "Do you want to save X", where X is the DefaultFileName value
+        //dlg.DefaultExt = "TTS"; //this doesn't seem to be used if you've supplied a filter
+        if (dlg.ShowDialog() == true) //TODO: find the parent window
+        {
+          ICaptionsWriter writer = CaptionUtils.GetCaptionsWriter(dlg.SafeFileName);
+          writer.WriteCaptions(Captions, dlg.OpenFile(), Encoding.UTF8);
+        }
+      }
+      catch (Exception ex)
+      {
+        MessageBox.Show("Captions export failed: " + ex.Message); //TODO: find the parent window
       }
     }
 
