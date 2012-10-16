@@ -1,6 +1,6 @@
 ﻿<!--
 Filename: SilverTextEditor.xaml
-Version: 20120801 
+Version: 20121016
 -->
 
 <UserControl
@@ -294,7 +294,7 @@ Version: 20120801
                        FontSize="20" > <!-- Margin="8,10,8,10" -->
 
             <!-- ****************** --> <!-- TODO: following block is designer data only (can comment out) - SilverTextEditor_Loaded method that handles Loaded event loads in ActivityDescription.sav XAML file -->           
-              <Paragraph FontSize="20" FontFamily="Portable User Interface" Foreground="#FF000000" FontWeight="Normal" FontStyle="Normal" FontStretch="Normal" TextAlignment="Left">
+<!--          <Paragraph FontSize="20" FontFamily="Portable User Interface" Foreground="#FF000000" FontWeight="Normal" FontStyle="Normal" FontStretch="Normal" TextAlignment="Left">
                 <Run FontSize="24" FontFamily="Portable User Interface" Foreground="#FF008000" FontWeight="Bold" FontStyle="Italic" FontStretch="Normal" Text="Lorem ipsum" />
                 <Run FontSize="20" FontFamily="Portable User Interface" Foreground="#FF000000" FontWeight="Normal" FontStyle="Normal" FontStretch="Normal" Text=" dolor sit amet, consectetur adipiscing elit. Integer mattis ligula in neque semper bibendum. " />
                 <Run FontSize="20" FontFamily="Portable User Interface" Foreground="#FF000000" FontWeight="Bold" FontStyle="Normal" FontStretch="Normal" Text="Morbi imperdiet" />
@@ -313,7 +313,7 @@ Version: 20120801
                 <Run FontSize="20" FontFamily="Portable User Interface" Foreground="#FF000000" FontWeight="Normal" FontStyle="Normal" FontStretch="Normal" Text=" Phasellus condimentum, metus vel congue molestie, mi felis tempus tortor, id aliquam turpis elit vitae lorem. " />
                 <Run FontSize="20" FontFamily="Portable User Interface" Foreground="#FF000000" FontWeight="Normal" FontStyle="Normal" FontStretch="Normal" Text="Morbi ut eros" />
                 <Run FontSize="20" FontFamily="Portable User Interface" Foreground="#FF000000" FontWeight="Normal" FontStyle="Normal" FontStretch="Normal" Text=" in lectus vehicula euismod." />
-              </Paragraph>
+              </Paragraph> -->
             <!-- ****************** -->
 
           </RichTextBox>
