@@ -1,8 +1,9 @@
 ﻿'Filenam: SRTUtils.vb
-'Version: 20121015
+'Version: 20121016
 
-Imports ClipFlair.CaptionsLib.Models
 Imports ClipFlair.CaptionsLib.Utils.DateTimeUtils
+
+Imports Microsoft.SilverlightMediaFramework.Core.Accessibility.Captions
 
 Namespace ClipFlair.CaptionsLib.SRT
 
@@ -22,18 +23,20 @@ Namespace ClipFlair.CaptionsLib.SRT
       Return TimeStrToSeconds(srtTime, BaseTime, SRTtimeFormat, SignificantDigits)
     End Function
 
-    Public Shared Sub SRTStringToCaption(ByVal srtString As String, ByVal Caption As ICaption)
+    Public Shared Sub SRTStringToCaption(ByVal srtString As String, ByVal Caption As CaptionElement)
       Try
         If srtString IsNot Nothing Then
           With Caption
             Dim TimesAndCaptions() As String = Split(srtString, vbCrLf)
 
             Dim TimesOnly() As String = Split(TimesAndCaptions(1), SRT_TIME_SEPARATOR)
-            .SetTimes(SRTtimeToSeconds(TimesOnly(0)), SRTtimeToSeconds(TimesOnly(1)))
+            .Begin = TimeSpan.FromSeconds(SRTtimeToSeconds(TimesOnly(0)))
+            .End = TimeSpan.FromSeconds(SRTtimeToSeconds(TimesOnly(1)))
 
-            .Caption = TimesAndCaptions(2)
-            For i As Integer = 3 To TimesAndCaptions.Length
-              .Caption += vbCrLf + TimesAndCaptions(i)
+            .Content = ""
+            For i As Integer = 2 To TimesAndCaptions.Length - 1
+              If (.Content <> "") Then .Content += vbCrLf
+              .Content += TimesAndCaptions(i)
             Next
           End With
         End If

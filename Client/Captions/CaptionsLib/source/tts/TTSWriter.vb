@@ -1,10 +1,10 @@
 ﻿'Filename: TTSWriter.vb
-'Version: 20121015
+'Version: 20121016
 
-Imports ClipFlair.CaptionsLib.Models
 Imports ClipFlair.CaptionsLib.TTS.TTSUtils
 
 Imports System.IO
+Imports Microsoft.SilverlightMediaFramework.Core.Accessibility.Captions
 
 Namespace ClipFlair.CaptionsLib.TTS
 
@@ -13,8 +13,8 @@ Namespace ClipFlair.CaptionsLib.TTS
 
 #Region "Methods"
 
-    Public Overrides Sub WriteCaption(ByVal Caption As ICaption, ByVal writer As TextWriter)
-      writer.WriteLine(CaptionToTTSString(Caption))
+    Public Overrides Sub WriteCaption(ByVal caption As CaptionElement, ByVal writer As TextWriter)
+      writer.WriteLine(CaptionToTTSString(caption))
     End Sub
 
 #End Region

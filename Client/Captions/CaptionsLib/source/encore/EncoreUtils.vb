@@ -1,5 +1,5 @@
 ﻿'Filename: EncoreUtils.vb
-'Version: 20121015
+'Version: 20121016
 
 Imports ClipFlair.CaptionsLib.utils.DateTimeUtils
 

@@ -1,29 +1,26 @@
 ﻿'Description: SRTReader class
-'Version: 20121015
+'Version: 20121016
 
-Imports ClipFlair.CaptionsLib.Models
 Imports ClipFlair.CaptionsLib.SRT.SRTUtils
 
 Imports System.IO
 Imports System.Text
+Imports Microsoft.SilverlightMediaFramework.Core.Accessibility.Captions
 
 Namespace ClipFlair.CaptionsLib.SRT
 
   Public Class SRTReader
     Inherits BaseCaptionReader
 
-    Public Overrides Sub ReadCaption(ByVal Caption As ICaption, ByVal reader As TextReader)
-      Dim subline As String = ""
+    Public Overrides Sub ReadCaption(ByVal Caption As CaptionElement, ByVal reader As TextReader)
       Dim line As String = reader.ReadLine()
-      While (line IsNot Nothing)
-        If line <> "" Then
-          subline = subline & vbCrLf & line
-        Else
-          SRTStringToCaption(subline, Caption)
-          Exit While
-        End If
+      Dim c As String = ""
+      While (line IsNot Nothing) AndAlso (line <> "")
+        If (c <> "") Then c += vbCrLf
+        c += line
         line = reader.ReadLine()
       End While
+      If (c <> "") Then SRTStringToCaption(c, Caption)
     End Sub
 
   End Class
