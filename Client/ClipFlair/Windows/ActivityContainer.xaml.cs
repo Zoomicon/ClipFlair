@@ -31,10 +31,17 @@ namespace ClipFlair.Windows
 
     private void BindWindows()
     {
+      //Two-Way bind MediaPlayerWindow and CaptionsGridWindow over Time property
       Binding timeBinding = new Binding("Time");
       timeBinding.Source = FindWindow("MediaPlayer");
       timeBinding.Mode = BindingMode.TwoWay;
       BindingOperations.SetBinding(FindWindow("Captions"), CaptionsGridWindow.TimeProperty, timeBinding);
+
+      //Two-Way bind MediaPlayerWindow and CaptionsGridWindow over Captions property      
+      Binding captionsBinding = new Binding("Captions"); //"Captions" is the name of the property here
+      captionsBinding.Source = FindWindow("MediaPlayer");
+      captionsBinding.Mode = BindingMode.TwoWay;
+      BindingOperations.SetBinding(FindWindow("Captions"), CaptionsGridWindow.CaptionsProperty, captionsBinding); //"Captions" is the tag of the window here
     }
 
     public BaseWindow FindWindow(string tag) //need this since floating windows are not added in the XAML visual tree by the FloatingWindowHostZUI.Windows property (maybe should have FloatingWindowHostZUI inherit 
