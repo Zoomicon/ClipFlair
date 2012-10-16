@@ -1,10 +1,10 @@
 ﻿'Filename: SRTWriter.vb
-'Version: 20121015
+'Version: 20121016
 
-Imports ClipFlair.CaptionsLib.Models
 Imports ClipFlair.CaptionsLib.SRT.SRTUtils
 
 Imports System.IO
+Imports Microsoft.SilverlightMediaFramework.Core.Accessibility.Captions
 
 Namespace ClipFlair.CaptionsLib.SRT
 
@@ -33,12 +33,12 @@ Namespace ClipFlair.CaptionsLib.SRT
       fLineNumber = 0 'assuming we're writing a new "file", so resetting counter
     End Sub
 
-    Public Overrides Sub WriteCaption(ByVal Caption As ICaption, ByVal writer As TextWriter)
+    Public Overrides Sub WriteCaption(ByVal Caption As CaptionElement, ByVal writer As TextWriter)
       fLineNumber += 1
       writer.WriteLine(LineNumber)
       With Caption
-        writer.WriteLine(SecondsToSRTtime(.StartTime) + SRT_TIME_SEPARATOR + SecondsToSRTtime(.EndTime))
-        writer.WriteLine(.Caption) 'TODO: should take care of empty lines, possibly convert them to a space char
+        writer.WriteLine(SecondsToSRTtime(.Begin.TotalSeconds) + SRT_TIME_SEPARATOR + SecondsToSRTtime(.End.TotalSeconds))
+        If (.Content <> "") Then writer.WriteLine(.Content)
         writer.WriteLine()  'SRT format has an empty line AFTER each Caption, resuling to the file ending up at two empty lines (maybe done so that more Captions can be easily appended later on to the file)
       End With
     End Sub

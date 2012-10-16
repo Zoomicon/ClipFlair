@@ -1,5 +1,5 @@
 ﻿'Filename: FileUtils.vb
-'Version: 20121015
+'Version: 20121016
 
 Namespace ClipFlair.CaptionsLib.Utils
 

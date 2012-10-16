@@ -79,6 +79,9 @@
     <OptionInfer>On</OptionInfer>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.SilverlightMediaFramework.Core, Version=2.2012.605.0, Culture=neutral, PublicKeyToken=6687ff884a90c6a6, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.SilverlightMediaFramework.Plugins, Version=2.2012.605.0, Culture=neutral, PublicKeyToken=3dd5df9571bfd1e7" />
+    <Reference Include="Microsoft.SilverlightMediaFramework.Utilities, Version=2.2012.605.0, Culture=neutral, PublicKeyToken=2018901a52f7a62c" />
     <Reference Include="mscorlib" />
     <Reference Include="System.Windows" />
     <Reference Include="system" />
@@ -121,12 +124,6 @@
     </Compile>
     <Compile Include="..\source\fab\FABWriter.vb">
       <Link>fab\FABWriter.vb</Link>
-    </Compile>
-    <Compile Include="..\source\models\ICaption.vb">
-      <Link>models\ICaption.vb</Link>
-    </Compile>
-    <Compile Include="..\source\models\ICaptions.vb">
-      <Link>models\ICaptions.vb</Link>
     </Compile>
     <Compile Include="..\source\models\ICaptionsReader.vb">
       <Link>models\ICaptionsReader.vb</Link>

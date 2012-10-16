@@ -1,5 +1,5 @@
 ﻿'Filename: DateTimeUtils.vb
-'Version: 20121015
+'Version: 20121016
 
 Namespace ClipFlair.CaptionsLib.Utils
 
@@ -51,10 +51,6 @@ Namespace ClipFlair.CaptionsLib.Utils
 
     Public Shared Function SecondsToDateTimeStr(ByVal seconds As Double, ByVal baseDateTime As DateTime, ByVal datetimeFormat As String, ByVal digits As Integer) As String
       Return SecondsToDateTime(seconds, baseDateTime, digits).ToString(datetimeFormat)
-    End Function
-
-    Public Shared Function TimeSpanToSeconds(ByVal firstDateTime As DateTime, ByVal secondDateTime As DateTime) As Double
-      Return (secondDateTime - firstDateTime).TotalSeconds
     End Function
 
 #End Region
