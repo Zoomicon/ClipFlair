@@ -1,0 +1,1 @@
+Select case when EXISTS (select name from sysobjects where xtype='u' and name = N'{0}')  then Cast('True' as Bit) else Cast('False' as Bit) end

@@ -1,0 +1,8 @@
+﻿div.RadWindow td.rwCorner,
+div.RadWindow td.rwTitlebar,
+div.RadWindow td.rwFooterCenter
+{
+ filter: alpha(opacity=100); /* Internet Explorer */
+ opacity: 1; /* Gecko, WebKit, Safari */
+ -moz-opacity: 1; /* 2x Gecko versions */
+}

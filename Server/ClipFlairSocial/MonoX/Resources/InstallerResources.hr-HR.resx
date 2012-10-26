@@ -1,0 +1,492 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="DatabaseInfo_btnCreateNew" xml:space="preserve">
+    <value>Postavi novu bazu podataka</value>
+  </data>
+  <data name="DatabaseInfo_btnExisting" xml:space="preserve">
+    <value>Koristite postojeću, prethodno instaliranu bazu podataka</value>
+  </data>
+  <data name="DatabaseInfo_btnMultiApp" xml:space="preserve">
+    <value>NAPREDNO: Postavljanje novog MonoX-a u postojeću bazu podataka</value>
+  </data>
+  <data name="DatabaseInfo_labNote1" xml:space="preserve">
+    <value>Napomena: Ova opcija će stvoriti sve SQL tablice koje MonoX zahtijeva, na praznoj bazi podataka. Svi instalacijski preduvijeti moraju biti zadovoljeni (stvorite bazu podataka i konfigurirajte odgovarajuće sigurnosne postavke), kao što je opisano u odjeljku instalacijske dokumentacije.</value>
+  </data>
+  <data name="DatabaseInfo_labNote2" xml:space="preserve">
+    <value>Napomena: Ova opcija će preskočiti sve korake instalacije vezane za bazu podataka. Ova opcije može biti korisna u slučajevima gdje je postoječa MonoX baza podataka preseljena na drugo računalo.</value>
+  </data>
+  <data name="DatabaseInfo_labNote3" xml:space="preserve">
+    <value>Ova opcija bi trebala biti korištena za multi portal instalacijske svrhe. Molimo provijerite dokumentaciju za više informacija.</value>
+  </data>
+  <data name="DatabaseInfo_labSubTitle" xml:space="preserve">
+    <value>Odaberite bazu podataka u kojoj želite instalirati MonoX.</value>
+  </data>
+  <data name="DatabaseInfo_NextText" xml:space="preserve">
+    <value>Završi &gt;</value>
+  </data>
+  <data name="DatabaseInfo_PageTitle" xml:space="preserve">
+    <value>Čarobnjak baze podataka</value>
+  </data>
+  <data name="DatabaseInfo_Title" xml:space="preserve">
+    <value>Odaberite bazu podataka</value>
+  </data>
+  <data name="Default_labIIS" xml:space="preserve">
+    <value>Internet Information Server</value>
+  </data>
+  <data name="Default_labIISInfo" xml:space="preserve">
+    <value>IIS ili kompatabilni web server mora biti instaliran.</value>
+  </data>
+  <data name="Default_labMSNet" xml:space="preserve">
+    <value>Microsoft .NET Framework</value>
+  </data>
+  <data name="Default_labMSNetInfo" xml:space="preserve">
+    <value>Verzija 3.5 ili viša .NET framework-a mora biti instalirana.</value>
+  </data>
+  <data name="Default_labRequirements" xml:space="preserve">
+    <value>Zahtjevi:</value>
+  </data>
+  <data name="Default_labSQL" xml:space="preserve">
+    <value>Microsoft SQL Server</value>
+  </data>
+  <data name="Default_linkIIS" xml:space="preserve">
+    <value>Pomoć pri instaliranju IIS</value>
+  </data>
+  <data name="Default_linkMSNet3" xml:space="preserve">
+    <value>Pomoć pri instaliranju .NET framework (3.0)</value>
+  </data>
+  <data name="Default_PageTitle" xml:space="preserve">
+    <value>Dobrodošli</value>
+  </data>
+  <data name="Default_Title" xml:space="preserve">
+    <value>Dobro došli u MonoX instalacijski čarobnjak.</value>
+  </data>
+  <data name="InstallComplete_ApplicationCreated" xml:space="preserve">
+    <value>Aplikacija kreirana.</value>
+  </data>
+  <data name="InstallComplete_CreatingApplication" xml:space="preserve">
+    <value>Kreiranje aplikacije ...</value>
+  </data>
+  <data name="InstallComplete_CreatingDatabase" xml:space="preserve">
+    <value>Kreiranje baze podataka ...</value>
+  </data>
+  <data name="InstallComplete_CustomButtonText" xml:space="preserve">
+    <value>Ponovi</value>
+  </data>
+  <data name="InstallComplete_DatabaseCreated" xml:space="preserve">
+    <value>Baza podataka kreirana.</value>
+  </data>
+  <data name="InstallComplete_FolderPermissionsSet" xml:space="preserve">
+    <value>Postavljen pristup direktoriju  "{0}".</value>
+  </data>
+  <data name="InstallComplete_ImportedAspnet_Applications" xml:space="preserve">
+    <value>Uvezeno "aspnet_Applications".</value>
+  </data>
+  <data name="InstallComplete_ImportedAspnet_Membership" xml:space="preserve">
+    <value>Uvezeno "aspnet_Membership".</value>
+  </data>
+  <data name="InstallComplete_ImportedAspnet_Roles" xml:space="preserve">
+    <value>Uvezeno "aspnet_Roles".</value>
+  </data>
+  <data name="InstallComplete_ImportedAspnet_SchemaVersions" xml:space="preserve">
+    <value>Uvezeno "aspnet_SchemaVersions".</value>
+  </data>
+  <data name="InstallComplete_ImportedAspnet_Users" xml:space="preserve">
+    <value>Uvezeno "aspnet_Users".</value>
+  </data>
+  <data name="InstallComplete_ImportedAspnet_UsersInRoles" xml:space="preserve">
+    <value>Uvezeno "aspnet_UsersInRoles".</value>
+  </data>
+  <data name="InstallComplete_ImportedBlogData" xml:space="preserve">
+    <value>Uvezeno "Blog podaci" ...</value>
+  </data>
+  <data name="InstallComplete_ImportedDocument" xml:space="preserve">
+    <value>Uvezeno "Document".</value>
+  </data>
+  <data name="InstallComplete_ImportedLanguage" xml:space="preserve">
+    <value>Uvezeno "Language".</value>
+  </data>
+  <data name="InstallComplete_ImportedLocalizationBinary" xml:space="preserve">
+    <value>Uvezeno "LocalizationBinary".</value>
+  </data>
+  <data name="InstallComplete_ImportedLocalizationSource" xml:space="preserve">
+    <value>Uvezeno "LocalizationSource".</value>
+  </data>
+  <data name="InstallComplete_ImportedLocalizationString" xml:space="preserve">
+    <value>Uvezeno "LocalizationString".</value>
+  </data>
+  <data name="InstallComplete_ImportedNavigation" xml:space="preserve">
+    <value>Uvezeno "Navigation".</value>
+  </data>
+  <data name="InstallComplete_ImportedNavigationLocalization" xml:space="preserve">
+    <value>Uvezeno "NavigationLocalization".</value>
+  </data>
+  <data name="InstallComplete_ImportedPage" xml:space="preserve">
+    <value>Uvezeno "Page".</value>
+  </data>
+  <data name="InstallComplete_ImportedPageLocalization" xml:space="preserve">
+    <value>Uvezeno "PageLocalization".</value>
+  </data>
+  <data name="InstallComplete_ImportedPageRole" xml:space="preserve">
+    <value>Uvezeno "PageRole".</value>
+  </data>
+  <data name="InstallComplete_ImportedSNData" xml:space="preserve">
+    <value>Uvezeni podaci za social networking.</value>
+  </data>
+  <data name="InstallComplete_ImportedTitle" xml:space="preserve">
+    <value>uvezeno.</value>
+  </data>
+  <data name="InstallComplete_ImportingAspnet_Applications" xml:space="preserve">
+    <value>Uvoz "aspnet_Applications" ...</value>
+  </data>
+  <data name="InstallComplete_ImportingAspnet_Membership" xml:space="preserve">
+    <value>Uvoz "aspnet_Membership" ...</value>
+  </data>
+  <data name="InstallComplete_ImportingAspnet_Roles" xml:space="preserve">
+    <value>Uvoz "aspnet_Roles" ...</value>
+  </data>
+  <data name="InstallComplete_ImportingAspnet_SchemaVersions" xml:space="preserve">
+    <value>Uvoz "aspnet_SchemaVersions" ...</value>
+  </data>
+  <data name="InstallComplete_ImportingAspnet_Users" xml:space="preserve">
+    <value>Uvoz "aspnet_Users" ...</value>
+  </data>
+  <data name="InstallComplete_ImportingAspnet_UsersInRoles" xml:space="preserve">
+    <value>Uvoz "aspnet_UsersInRoles" ...</value>
+  </data>
+  <data name="InstallComplete_ImportingBlogData" xml:space="preserve">
+    <value>Uvoz "Blog podataka" ...</value>
+  </data>
+  <data name="InstallComplete_ImportingDocument" xml:space="preserve">
+    <value>Uvoz "Document" ...</value>
+  </data>
+  <data name="InstallComplete_ImportingExistingData" xml:space="preserve">
+    <value>Uvoz podataka ...</value>
+  </data>
+  <data name="InstallComplete_ImportingLanguage" xml:space="preserve">
+    <value>Uvoz "Language" ...</value>
+  </data>
+  <data name="InstallComplete_ImportingLocalizationBinary" xml:space="preserve">
+    <value>Uvoz "LocalizationBinary" ...</value>
+  </data>
+  <data name="InstallComplete_ImportingLocalizationSource" xml:space="preserve">
+    <value>Uvoz "LocalizationSource" ...</value>
+  </data>
+  <data name="InstallComplete_ImportingLocalizationString" xml:space="preserve">
+    <value>Uvoz "LocalizationString" ...</value>
+  </data>
+  <data name="InstallComplete_ImportingNavigation" xml:space="preserve">
+    <value>Uvoz "Navigation" ...</value>
+  </data>
+  <data name="InstallComplete_ImportingNavigationLocalization" xml:space="preserve">
+    <value>Uvoz "NavigationLocalization" ...</value>
+  </data>
+  <data name="InstallComplete_ImportingPage" xml:space="preserve">
+    <value>Uvoz "Page" ...</value>
+  </data>
+  <data name="InstallComplete_ImportingPageLocalization" xml:space="preserve">
+    <value>Uvoz "PageLocalization" ...</value>
+  </data>
+  <data name="InstallComplete_ImportingPageRole" xml:space="preserve">
+    <value>Uvoz "PageRole" ...</value>
+  </data>
+  <data name="InstallComplete_ImportingSNData" xml:space="preserve">
+    <value>Uvoz demo podataka za social networking...</value>
+  </data>
+  <data name="InstallComplete_ImportingTitle" xml:space="preserve">
+    <value>Uvoz </value>
+  </data>
+  <data name="InstallComplete_InfoStep_Complete" xml:space="preserve">
+    <value>Instalacija završena!</value>
+  </data>
+  <data name="InstallComplete_InfoStep_Start" xml:space="preserve">
+    <value>Instalacija započinje ...</value>
+  </data>
+  <data name="InstallComplete_InProgress" xml:space="preserve">
+    <value>Instalacija u tijeku ...</value>
+  </data>
+  <data name="InstallComplete_labSubTitle" xml:space="preserve">
+    <value>Molimo sačekati dok čarobnjak izvrši instalacijske operacije ...</value>
+  </data>
+  <data name="InstallComplete_lnkHere" xml:space="preserve">
+    <value>ovdje</value>
+  </data>
+  <data name="InstallComplete_NextText" xml:space="preserve">
+    <value>Web stranica &gt;</value>
+  </data>
+  <data name="InstallComplete_Note" xml:space="preserve">
+    <value>Napomena: 'Worker' proces Korisnički račun: {0}) mora imati privilegije pisanja u web.config da bi snimio sve postavke i izvršio instalaciju.</value>
+  </data>
+  <data name="InstallComplete_Note2" xml:space="preserve">
+    <value>Kada ste završili kliknite  </value>
+  </data>
+  <data name="InstallComplete_Note3" xml:space="preserve">
+    <value>za navigaciju na svoju novu web stranicu.</value>
+  </data>
+  <data name="InstallComplete_PageTitle" xml:space="preserve">
+    <value>Završeno</value>
+  </data>
+  <data name="InstallComplete_SettingFolderPermissions" xml:space="preserve">
+    <value>Postavljanje pristupa dirketoriju za  "{0}" ...</value>
+  </data>
+  <data name="InstallComplete_Title" xml:space="preserve">
+    <value>Završeno.</value>
+  </data>
+  <data name="Master_btnCancel" xml:space="preserve">
+    <value>Odustani</value>
+  </data>
+  <data name="Master_btnCustom" xml:space="preserve">
+    <value>Prilagođeno</value>
+  </data>
+  <data name="Master_btnNext" xml:space="preserve">
+    <value>Slijedeća &gt;</value>
+  </data>
+  <data name="Master_btnPrevious" xml:space="preserve">
+    <value>&lt; Prethodna</value>
+  </data>
+  <data name="Master_EmptyHeaderTitle" xml:space="preserve">
+    <value>Prazno zaglavlje</value>
+  </data>
+  <data name="License_AgreeRequired" xml:space="preserve">
+    <value>Molimo potvrdite da se slažete sa licencnim ugovorom.</value>
+  </data>
+  <data name="License_btnPrintable" xml:space="preserve">
+    <value>Verzija za ispis</value>
+  </data>
+  <data name="License_chkAgree" xml:space="preserve">
+    <value>Slažem se</value>
+  </data>
+  <data name="License_PageTitle" xml:space="preserve">
+    <value>Ugovor o licenci</value>
+  </data>
+  <data name="License_Title" xml:space="preserve">
+    <value>MonoX licenca</value>
+  </data>
+  <data name="NewApplication_chkExistingMembershipProvider" xml:space="preserve">
+    <value>Koristi postojeći Membership provider?</value>
+  </data>
+  <data name="NewApplication_labCloneAppName" xml:space="preserve">
+    <value>Kloniraj aplikaciju:</value>
+  </data>
+  <data name="NewApplication_labNewAppName" xml:space="preserve">
+    <value>Naziv nove aplikacije:</value>
+  </data>
+  <data name="NewApplication_labSubTitle" xml:space="preserve">
+    <value>Više-aplikacijsko sučelje</value>
+  </data>
+  <data name="NewApplication_NextText" xml:space="preserve">
+    <value>Završi &gt;</value>
+  </data>
+  <data name="NewApplication_PageTitle" xml:space="preserve">
+    <value>Instalacija nove aplikacije</value>
+  </data>
+  <data name="NewApplication_Title" xml:space="preserve">
+    <value>Instalacija nove aplikacije</value>
+  </data>
+  <data name="SQLInfo_chkImpersonationEnabled" xml:space="preserve">
+    <value>"ASP.NET Impersionation" omogućen (Napomena: promjena vrijednosti ovog polja će ponovo pokrenuti čarobnjak)</value>
+  </data>
+  <data name="SQLInfo_labNote" xml:space="preserve">
+    <value>Napominjemo da ako koristite &lt;b&gt; provjeru autentičnosti sustava Windows &lt;/ b&gt; morati ćete omogućiti "ASP.NET Impersonation" u web.config da bi se mogli spojiti za SQL Server, ili ćete morati postaviti odgovarajuće dozvole za prijavu za "{0}" korisnika u SQL Server Management Studio.</value>
+  </data>
+  <data name="SQLInfo_labPassword" xml:space="preserve">
+    <value>Lozinka:</value>
+  </data>
+  <data name="SQLInfo_labSQLServerName" xml:space="preserve">
+    <value>IP adresa ili naziv poslužitelja:</value>
+  </data>
+  <data name="SQLInfo_labSubTitle" xml:space="preserve">
+    <value>Odaberite prijavu koju će MonoX koristiti za spajanje na bazu podataka.</value>
+  </data>
+  <data name="SQLInfo_labUsername" xml:space="preserve">
+    <value>Korisničko ime:</value>
+  </data>
+  <data name="SQLInfo_PageTitle" xml:space="preserve">
+    <value>Database Server Informacije</value>
+  </data>
+  <data name="SQLInfo_ServerNoFound" xml:space="preserve">
+    <value>SQL Server instanca nije pronađena.</value>
+  </data>
+  <data name="SQLInfo_sqlAuthTitle" xml:space="preserve">
+    <value>SQL Server provjera valjanosti</value>
+  </data>
+  <data name="SQLInfo_Title" xml:space="preserve">
+    <value>Prijava na MonoX bazu podataka</value>
+  </data>
+  <data name="SQLInfo_winAuthTitle" xml:space="preserve">
+    <value>Windows provjera valjanosti</value>
+  </data>
+  <data name="Title" xml:space="preserve">
+    <value>MonoX instalacija</value>
+  </data>
+  <data name="InstallComplete_ImportedOther" xml:space="preserve">
+    <value>Uvezeno "MonoX podaci".</value>
+  </data>
+  <data name="InstallComplete_ImportingOther" xml:space="preserve">
+    <value>Uvoz "MonoX podataka" ...</value>
+  </data>
+  <data name="DatabaseInfo_AdvancedSettings" xml:space="preserve">
+    <value>Napredne MonoX Postavke</value>
+  </data>
+  <data name="AdvancedSettings_Title" xml:space="preserve">
+    <value>Napredne Postavke</value>
+  </data>
+  <data name="AdvancedSettings_NextText" xml:space="preserve">
+    <value>Završi &gt;</value>
+  </data>
+  <data name="Default_linkMSNet31" xml:space="preserve">
+    <value>Pomoć pri instaliranju .NET framework (3.0 SP1)</value>
+  </data>
+  <data name="Default_linkMSNet35" xml:space="preserve">
+    <value>Pomoć pri instaliranju .NET framework (3.5)</value>
+  </data>
+  <data name="InstallComplete_FolderPermissionsNotSet" xml:space="preserve">
+    <value>Upozorenje: Privilegija pisanja nije postavljena na direktorij "{0}". Molimo manualno postavite privilegiju pisanja za navedeni korisnički račun: "{1}".</value>
+  </data>
+  <data name="PermissionCheckBox_Ok" xml:space="preserve">
+    <value>Korisnički račun '{0}' ima postavljene privilegije  '{1}' na  '{2}' direktorij.</value>
+  </data>
+  <data name="PermissionCheckBox_Skip" xml:space="preserve">
+    <value>Preskoči</value>
+  </data>
+  <data name="PermissionCheckBox_TestAgain" xml:space="preserve">
+    <value>Testiraj privilegije ponovno</value>
+  </data>
+  <data name="PermissionCheckBox_Warning" xml:space="preserve">
+    <value>Korisnički račun '{0}' nema privilegije '{1}' na direktoriju '{2}'. Iako ovo nije greška, preporučamo da postavite navedene privilegije na direktorij.</value>
+  </data>
+  <data name="InstallComplete_ImportedNewsData" xml:space="preserve">
+    <value>Uvezeni podaci za vijesti ...</value>
+  </data>
+  <data name="InstallComplete_ImportingNewsData" xml:space="preserve">
+    <value>Uvoz demo podataka za vijesti ...</value>
+  </data>
+  <data name="MonoXVersion" xml:space="preserve">
+    <value>MonoX za ASP.NET {0}. Druge verzije MonoX CMS-a su dostupne &lt;a href="{1}" title="MonoX"&gt;ovdje&lt;/a&gt;.</value>
+  </data>
+  <data name="DatabaseInfo_UnableToFindExistingMonoXDatabase" xml:space="preserve">
+    <value>Postojeća MonoX baza podataka ne postoji.</value>
+  </data>
+  <data name="SQLInfo_EnterDatabaseName" xml:space="preserve">
+    <value>Unesite naziv baza podataka</value>
+  </data>
+  <data name="SQLInfo_EnterDatabaseServerName" xml:space="preserve">
+    <value>Unesite naziv database servera ili njegovu IP adresu</value>
+  </data>
+</root>

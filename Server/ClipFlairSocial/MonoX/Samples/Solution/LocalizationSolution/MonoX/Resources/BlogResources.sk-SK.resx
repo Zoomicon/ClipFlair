@@ -1,0 +1,330 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AddNewPost" xml:space="preserve">
+    <value>Pridať nový blog</value>
+  </data>
+  <data name="AllBlogPosts" xml:space="preserve">
+    <value>Všetky blogy</value>
+  </data>
+  <data name="AllCategories" xml:space="preserve">
+    <value>Všetky</value>
+  </data>
+  <data name="Author" xml:space="preserve">
+    <value>Autor</value>
+  </data>
+  <data name="BlogCategories_NoData" xml:space="preserve">
+    <value>Neexistujú publikované kategórie pre tento blog </value>
+  </data>
+  <data name="BlogEditors" xml:space="preserve">
+    <value>Editori blogov</value>
+  </data>
+  <data name="BlogManageCategories_AddNew" xml:space="preserve">
+    <value>Pridať kategóriu</value>
+  </data>
+  <data name="BlogManageCategories_Categories" xml:space="preserve">
+    <value>Kategórie blogov</value>
+  </data>
+  <data name="BlogManageCategories_Update" xml:space="preserve">
+    <value>Aktualizácia</value>
+  </data>
+  <data name="BlogSettings" xml:space="preserve">
+    <value>Nastavenia blogu</value>
+  </data>
+  <data name="BlogSettings_Description" xml:space="preserve">
+    <value>Popis:</value>
+  </data>
+  <data name="Categories" xml:space="preserve">
+    <value>Kategórie</value>
+  </data>
+  <data name="Comments" xml:space="preserve">
+    <value>Komentáre</value>
+  </data>
+  <data name="Comments_ApprovalAlert" xml:space="preserve">
+    <value>Váš komentár vyžaduje schválenie administrátora pred zverejnením</value>
+  </data>
+  <data name="Comments_Approve" xml:space="preserve">
+    <value>Schváliť</value>
+  </data>
+  <data name="Comments_Comment" xml:space="preserve">
+    <value>Komentovať</value>
+  </data>
+  <data name="Comments_Comments" xml:space="preserve">
+    <value>Komentáre</value>
+  </data>
+  <data name="Comments_ConfirmDelete" xml:space="preserve">
+    <value>Tento komentár k blogu bude vymazaný. Ste si istý?</value>
+  </data>
+  <data name="Comments_Email" xml:space="preserve">
+    <value>E-mail:*</value>
+  </data>
+  <data name="Comments_ErrorMessage_Comments" xml:space="preserve">
+    <value>Prosím, vložte platný komentár</value>
+  </data>
+  <data name="Comments_ErrorMessage_EmailFormat" xml:space="preserve">
+    <value>Prosím, vložte správnu e-mailovú adresu</value>
+  </data>
+  <data name="Comments_ErrorMessage_EmailRequired" xml:space="preserve">
+    <value>Prosím, vložte Vašu e-mailovú adresu. Táto sa verejne nezobrazí.</value>
+  </data>
+  <data name="Comments_ErrorMessage_Name" xml:space="preserve">
+    <value>Prosím, vložte Vaše meno.</value>
+  </data>
+  <data name="Comments_MailSubject" xml:space="preserve">
+    <value>Komentár blogu na {1} ({0})</value>
+  </data>
+  <data name="Comments_Name" xml:space="preserve">
+    <value>Meno: *</value>
+  </data>
+  <data name="Comments_Notify" xml:space="preserve">
+    <value>Upozorniť ma, keď pribudnú nové komentáre k tomuto príspevku</value>
+  </data>
+  <data name="Comments_ReportHam" xml:space="preserve">
+    <value>Nahlásiť ako ham</value>
+  </data>
+  <data name="Comments_ReportSpam" xml:space="preserve">
+    <value>Nahlásiť ako spam</value>
+  </data>
+  <data name="Comments_Save" xml:space="preserve">
+    <value>Uložiť komentár</value>
+  </data>
+  <data name="Comments_Url" xml:space="preserve">
+    <value>Web stránka:</value>
+  </data>
+  <data name="Comments_ValidationSummary" xml:space="preserve">
+    <value>Nasledujúce položky musia byť vyplnené predtým, než možete pokračovať:</value>
+  </data>
+  <data name="CommentsAdmin" xml:space="preserve">
+    <value>Komentáre</value>
+  </data>
+  <data name="ConfirmDelete" xml:space="preserve">
+    <value>Tento blog bude vymazaný. Ste si istý?</value>
+  </data>
+  <data name="ConfirmDeleteSpam" xml:space="preserve">
+    <value>Všetky komentáre označené ako spam budú vymazané. Ste si istý?</value>
+  </data>
+  <data name="ConfirmDeleteUnapproved" xml:space="preserve">
+    <value>Všetky neschválené komentáre budú vymazané. Ste si istý?</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Vymazať</value>
+  </data>
+  <data name="DeleteSpam" xml:space="preserve">
+    <value>Vymazať spam</value>
+  </data>
+  <data name="DeleteUnapproved" xml:space="preserve">
+    <value>Vymazať neschválené</value>
+  </data>
+  <data name="Edit" xml:space="preserve">
+    <value>Upraviť</value>
+  </data>
+  <data name="Edit_Application" xml:space="preserve">
+    <value>Prihlášky:</value>
+  </data>
+  <data name="Edit_Attachments" xml:space="preserve">
+    <value>Prílohy:</value>
+  </data>
+  <data name="Edit_Cancel" xml:space="preserve">
+    <value>Zrušiť</value>
+  </data>
+  <data name="Edit_Cancel_AccessKey" xml:space="preserve">
+    <value>Z</value>
+  </data>
+  <data name="Edit_Categories" xml:space="preserve">
+    <value>Kategórie:</value>
+  </data>
+  <data name="Edit_Content" xml:space="preserve">
+    <value>Obsah blogu:</value>
+  </data>
+  <data name="Edit_Description" xml:space="preserve">
+    <value>Stručný obsah:</value>
+  </data>
+  <data name="Edit_EditCategories" xml:space="preserve">
+    <value>Upraviť kategórie blogu</value>
+  </data>
+  <data name="Edit_ErrorMessage_TitleRequired" xml:space="preserve">
+    <value>Prosim, vyplňte pole s názvom!</value>
+  </data>
+  <data name="Edit_IsCommentingAllowed" xml:space="preserve">
+    <value>Povoliť komentáre?</value>
+  </data>
+  <data name="Edit_IsPublished" xml:space="preserve">
+    <value>Zverejniť okamžite?</value>
+  </data>
+  <data name="Edit_PublishDate" xml:space="preserve">
+    <value>Zverejniť na:</value>
+  </data>
+  <data name="Edit_Roles" xml:space="preserve">
+    <value>Pozície:</value>
+  </data>
+  <data name="Edit_Save" xml:space="preserve">
+    <value>Zverejniť</value>
+  </data>
+  <data name="Edit_Save_AccessKey" xml:space="preserve">
+    <value>Z</value>
+  </data>
+  <data name="Edit_Tags" xml:space="preserve">
+    <value>Záložky:</value>
+  </data>
+  <data name="Edit_TagTheNet" xml:space="preserve">
+    <value>TagThe.Net</value>
+  </data>
+  <data name="Edit_Title" xml:space="preserve">
+    <value>Názov blogu:</value>
+  </data>
+  <data name="Edit_ValidationSummary" xml:space="preserve">
+    <value>Nasledujúce položky musia byť vyplnené predtým, než možete pokračovať:</value>
+  </data>
+  <data name="Edit_Yahoo" xml:space="preserve">
+    <value>Yahoo Term Extraction</value>
+  </data>
+  <data name="Email" xml:space="preserve">
+    <value>E-mail:</value>
+  </data>
+  <data name="Home" xml:space="preserve">
+    <value>Blog </value>
+  </data>
+  <data name="InvitationText" xml:space="preserve">
+    <value>Nasledujúci blog by Vás mohol zaujímať</value>
+  </data>
+  <data name="NoBlogPostsWarning" xml:space="preserve">
+    <value>&lt;br /&gt;Žiadne blogy podľa zadaných kritérií neboli nájdené&lt;br /&gt;</value>
+  </data>
+  <data name="NoRatingText" xml:space="preserve">
+    <value>Tento príspevok zatiaľ nebol ohodnotený</value>
+  </data>
+  <data name="Publish" xml:space="preserve">
+    <value>Zverejniť</value>
+  </data>
+  <data name="RatingText" xml:space="preserve">
+    <value>Aktuálne ohodnotené {0:f2}  {1} návštevníkmi</value>
+  </data>
+  <data name="Settings_EditorsTooltip" xml:space="preserve">
+    <value>Tip: Vložte zoznam užívateľov, ktorí budú editormi Vášho blogu. Mená oddeľte čiarkou</value>
+  </data>
+  <data name="Tags" xml:space="preserve">
+    <value>Záložky</value>
+  </data>
+  <data name="Unpublish" xml:space="preserve">
+    <value>Nezverejniť</value>
+  </data>
+  <data name="Edit_BlogTitle" xml:space="preserve">
+    <value>Titul blogu</value>
+  </data>
+</root>

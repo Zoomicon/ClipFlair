@@ -1,0 +1,315 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Confirmation_Title" xml:space="preserve">
+    <value>Confirmación</value>
+  </data>
+  <data name="Dashboard_Title" xml:space="preserve">
+    <value>Red Social</value>
+  </data>
+  <data name="Discussion_Title" xml:space="preserve">
+    <value>Discusión</value>
+  </data>
+  <data name="FileView_Title" xml:space="preserve">
+    <value>File view</value>
+  </data>
+  <data name="Groups_GroupContainer" xml:space="preserve">
+    <value>Comunidades</value>
+  </data>
+  <data name="Groups_GroupInfo" xml:space="preserve">
+    <value>Información Comunidad</value>
+  </data>
+  <data name="Groups_GroupMembers" xml:space="preserve">
+    <value>Miebros de Comunidades</value>
+  </data>
+  <data name="Groups_SearchGroups" xml:space="preserve">
+    <value>Buscar Comunidades</value>
+  </data>
+  <data name="Groups_SearchGroups_DefaultSearchText" xml:space="preserve">
+    <value>Ingrese las palabras clave de búsqueda de la comunidad</value>
+  </data>
+  <data name="Groups_Title" xml:space="preserve">
+    <value>Usuario de la Comunidad</value>
+  </data>
+  <data name="Label_Blogs" xml:space="preserve">
+    <value>Blogs</value>
+  </data>
+  <data name="Label_BlogSearch" xml:space="preserve">
+    <value>Ingrese los términos de búsqueda de blogs</value>
+  </data>
+  <data name="Label_Groups" xml:space="preserve">
+    <value>Comunidades</value>
+  </data>
+  <data name="Label_GroupSearch" xml:space="preserve">
+    <value>Enter group search terms</value>
+  </data>
+  <data name="Label_People" xml:space="preserve">
+    <value>Users</value>
+  </data>
+  <data name="Label_PeopleSearch" xml:space="preserve">
+    <value>Ingrese los términos de búsqueda de personas</value>
+  </data>
+  <data name="Login_RpxWarning" xml:space="preserve">
+    <value>NOTA: El módulo de inicio de sesión RPX está aquí para los fines de demostración. NO FUNCIONARÁ en su dominio hasta que configurado correctamente las aplicaciones de destino en otras redes sociales.</value>
+  </data>
+  <data name="Messages_Title" xml:space="preserve">
+    <value>Mensajes</value>
+  </data>
+  <data name="Module_Activities" xml:space="preserve">
+    <value>Actividades</value>
+  </data>
+  <data name="Module_Friends" xml:space="preserve">
+    <value>Mis Amigos</value>
+  </data>
+  <data name="Module_Messages" xml:space="preserve">
+    <value>Mis Mensajes</value>
+  </data>
+  <data name="Module_PeopleSearch" xml:space="preserve">
+    <value>Buscar Personas</value>
+  </data>
+  <data name="Module_PhotoGallery" xml:space="preserve">
+    <value>Galeria de Fotos</value>
+  </data>
+  <data name="Module_UserProfileFriends" xml:space="preserve">
+    <value>{0}'s Amigos</value>
+  </data>
+  <data name="Module_WallNotes" xml:space="preserve">
+    <value>Muro de notas</value>
+  </data>
+  <data name="PageFooter_About" xml:space="preserve">
+    <value>Sobre</value>
+  </data>
+  <data name="PageFooter_AdditionalResources" xml:space="preserve">
+    <value>Recursos adicionales</value>
+  </data>
+  <data name="PageFooter_Copyright" xml:space="preserve">
+    <value>Copyright</value>
+  </data>
+  <data name="PageFooter_GeneralInfo" xml:space="preserve">
+    <value>Información General</value>
+  </data>
+  <data name="PageFooter_Home" xml:space="preserve">
+    <value>Inicio</value>
+  </data>
+  <data name="PageFooter_Licensing" xml:space="preserve">
+    <value>Licenciamiento</value>
+  </data>
+  <data name="PageFooter_PrivacyPolicy" xml:space="preserve">
+    <value>Política de privacidad</value>
+  </data>
+  <data name="PageFooter_SiteMembership" xml:space="preserve">
+    <value>Miembros del Sitio</value>
+  </data>
+  <data name="PageFooter_SocialNetworking" xml:space="preserve">
+    <value>Mi Red Social</value>
+  </data>
+  <data name="PageFooter_SocialNetworkingBlog" xml:space="preserve">
+    <value>Blog</value>
+  </data>
+  <data name="PageFooter_SocialNetworkingGroups" xml:space="preserve">
+    <value>Comunidades</value>
+  </data>
+  <data name="PageFooter_SocialNetworkingHome" xml:space="preserve">
+    <value>Inicio</value>
+  </data>
+  <data name="PageFooter_SocialNetworkingPhotos" xml:space="preserve">
+    <value>Fotos</value>
+  </data>
+  <data name="PageFooter_TermsOfUse" xml:space="preserve">
+    <value>Terminos de uso</value>
+  </data>
+  <data name="PhotoGallery_Title" xml:space="preserve">
+    <value>Galeria de Fotos</value>
+  </data>
+  <data name="Title_AdditionalResources" xml:space="preserve">
+    <value>Recursos Adicionales</value>
+  </data>
+  <data name="Title_DescriptionOfFeatures" xml:space="preserve">
+    <value>Descripción de características Tecnicas</value>
+  </data>
+  <data name="Title_FeaturedProjects" xml:space="preserve">
+    <value>Proyectos destacados</value>
+  </data>
+  <data name="Title_LeftSection" xml:space="preserve">
+    <value>Sección de la izquierda</value>
+  </data>
+  <data name="Title_Resources" xml:space="preserve">
+    <value>Recursos</value>
+  </data>
+  <data name="Title_RightSection" xml:space="preserve">
+    <value>Sección de la derecha</value>
+  </data>
+  <data name="Title_ScreenGallery" xml:space="preserve">
+    <value>Galeria de Pantalla</value>
+  </data>
+  <data name="Title_SearchResults" xml:space="preserve">
+    <value>Resultado de la Búsqueda</value>
+  </data>
+  <data name="UserProfile_NoSuchUser" xml:space="preserve">
+    <value>Usuario desconocido - el perfil no se puede mostrar.</value>
+  </data>
+  <data name="UserProfile_PeopleSearch_InfoText" xml:space="preserve">
+    <value>Añadir este usuario a tu lista de amigos.</value>
+  </data>
+  <data name="UserProfile_PeopleSearch_Title" xml:space="preserve">
+    <value>Invite {0}</value>
+  </data>
+  <data name="UserProfile_Title" xml:space="preserve">
+    <value>Perfil de usuario de {0}</value>
+  </data>
+  <data name="UserProfile_UserProfile_Title" xml:space="preserve">
+    <value>Perfil de Usuario</value>
+  </data>
+  <data name="Wall_Title" xml:space="preserve">
+    <value>Muro del Sitio</value>
+  </data>
+  <data name="Wall_WallNotes_Title" xml:space="preserve">
+    <value>Muro de notas para {0}</value>
+  </data>
+  <data name="Zone_ContentZone" xml:space="preserve">
+    <value>Contenido de la zona</value>
+  </data>
+  <data name="Zone_FeaturedProjectsZone" xml:space="preserve">
+    <value>Featured projects zone</value>
+  </data>
+  <data name="Zone_LeftPartZone" xml:space="preserve">
+    <value>Zona de la parte izquierda</value>
+  </data>
+  <data name="Zone_RightPartZone" xml:space="preserve">
+    <value>Zona de la parte derecha</value>
+  </data>
+  <data name="Zone_SocialZone" xml:space="preserve">
+    <value>Zona Social</value>
+  </data>
+  <data name="UserProfile_DiscussionMessages_Title" xml:space="preserve">
+    <value>Entrada de Forum</value>
+  </data>
+  <data name="Module_InvitationsReceived" xml:space="preserve">
+    <value>Mis invitaciones recibidas</value>
+  </data>
+  <data name="Module_InvitationsSent" xml:space="preserve">
+    <value>Mis invitaciones enviadas</value>
+  </data>
+  <data name="Groups_InvitationsSent" xml:space="preserve">
+    <value>Enviar Invitación</value>
+  </data>
+  <data name="Groups_InvitationsReceived" xml:space="preserve">
+    <value>Solicitud recibida</value>
+  </data>
+</root>
