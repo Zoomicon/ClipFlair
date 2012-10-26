@@ -1,0 +1,36 @@
+﻿<div class="board <# PinItemBackgroundClass #>">
+    <div class="pin-image"></div>
+    <table cellpadding="0" cellspacing="0" width="100%" class="jq_snNote">
+        <tr>
+            <td rowspan="2" class="board-content">
+                <h3 class="title"><# Name #></h3>
+                <div class="description"><# Description #></div>            
+                #if( $LastTopicAuthorVisible )
+                <div class="last-topic-name-author">
+                    <a class="last-topic" href="<# LastTopicUrl #>" title="<# LastTopicToolTip #>"><span><# LastTopicText #></span>&nbsp;<# LastTopicName #></a>&nbsp;
+                    <a href="<# LastTopicAuthorUrl #>" title="<# LastTopicAuthorToolTip #>"><span><# LastTopicAuthorText #></span>&nbsp;<# LastTopicAuthorName #>&nbsp;<# LastTopicDate #></a>
+                </div>
+                #end
+                #if( $LastPostVisible )
+                <div class="last-topic-name-author">
+                    <a class="last-topic" href="<# LastPostUrl #>" title="<# LastPostToolTip #>"><span><# LastPostText #></span>&nbsp;<# LastPostName #></a>&nbsp;
+                    <a href="<# LastPostAuthorUrl #>" title="<# LastPostAuthorToolTip #>"><span><# LastPostAuthorText #></span>&nbsp;<# LastPostAuthorName #>&nbsp;<# LastPostDate #></a>
+                </div>
+                #end
+            </td>        
+            <td rowspan="2" class="date-author">
+                <span class="edit-icon"><# Edit #></span>
+                <span class="delete-icon"><# Delete #></span>
+                #if( $PinItemVisible ) <span class="pin-icon"><# TogglePinItem #></span> #end
+                <div class="date"><# Date #></div>
+                <div class="author"><a href="<# AuthorUrl #>" title="<# AuthorToolTip #>"><# AuthorText #></a></div>
+            </td>
+            <td class="topics"><a href="<# TopicUrl #>" title="<# TopicToolTip #>"><# TopicCount #><span><# TopicText #></span></a></td>
+        </tr>
+        <tr>
+            <td class="posts">        
+                <a href="<# ReplyUrl #>" title="<# ReplyToolTip #>"><# ReplyCount #><span><# ReplyText #></span></a>
+            </td>
+        </tr>
+    </table>
+</div>

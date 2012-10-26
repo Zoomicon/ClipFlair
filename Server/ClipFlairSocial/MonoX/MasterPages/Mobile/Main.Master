@@ -1,0 +1,19 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Main.master.cs" Inherits="MonoSoftware.MonoX.MasterPages.Mobile.Main" %>
+
+<%@ Register Assembly="MonoX" Namespace="MonoSoftware.MonoX" TagPrefix="portal" %>
+<!DOCTYPE html>
+<html>
+<head runat="server">
+    <meta name="viewport" content="width=device-width"> 
+    <title></title>
+</head>
+<body>
+    <form id="Form1" runat="server" data-ajax="false">
+        <portal:PortalWebPartManager ID="wpm" runat="server" CommittingChanges="False" HasUnapprovedChanges="False">
+            <Personalization InitialScope="Shared" />
+        </portal:PortalWebPartManager>
+        <asp:ScriptManager ID="AjaxScriptManager" runat="server"></asp:ScriptManager>
+        <asp:ContentPlaceHolder ID="cp" runat="server"></asp:ContentPlaceHolder>
+    </form>
+</body>
+</html>       

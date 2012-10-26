@@ -1,0 +1,27 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" Inherits="MonoSoftware.MonoX.MasterPages.Mobile.Default" EnableTheming="true" Codebehind="Default.master.cs" MasterPageFile="~/MonoX/MasterPages/Mobile/Main.Master" %>
+<%@ Register Assembly="MonoX" Namespace="MonoSoftware.MonoX" TagPrefix="portal" %>
+<%@ Register TagPrefix="MonoX" TagName="Footer" Src="~/MonoX/MasterPages/Mobile/PageFooter.ascx" %>
+<%@ Import Namespace="MonoSoftware.MonoX.Resources"  %>
+
+<asp:Content ContentPlaceHolderID="cp" runat="server">
+        <div data-role="page" id="home" data-theme="b">
+             <div data-role="header">
+                  <a href="~/MonoX/Mobile/Default.aspx" runat="server" data-icon="home" data-iconpos="left"><%= MobileResources.Home %></a> 
+                  <h1><%= MobileResources.Title_Main %></h1>
+                  <a href="~/" runat="server" data-icon="grid" data-iconpos="left"><%= MobileResources.Desktop %></a> 
+                  <asp:PlaceHolder runat="server" ID="PlaceHolder1">
+                    <div data-role="navbar">
+                    <ul>
+                        <li><asp:HyperLink runat="server" ID="lnkBlog" NavigateUrl="~/MonoX/Mobile/blog/posts/MonoX/"><%= MobileResources.Blog %></asp:HyperLink></li>
+                        <li><asp:HyperLink runat="server" ID="lnkFriends" NavigateUrl="~/MonoX/Mobile/Friends.aspx"><%= MobileResources.Friends %></asp:HyperLink></li>
+                        <li><asp:HyperLink runat="server" ID="lnkWall" NavigateUrl="~/MonoX/Mobile/Wall.aspx"><%= MobileResources.Wall %></asp:HyperLink></li>
+                    </ul>
+                    </div>
+                  </asp:PlaceHolder>
+             </div>
+             <div data-role="content">   
+                <asp:ContentPlaceHolder ID="cp" runat="server"></asp:ContentPlaceHolder>
+             </div>
+             <MonoX:Footer ID="ctlFooter" runat="server"></MonoX:Footer>
+        </div>
+</asp:Content>

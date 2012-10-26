@@ -1,0 +1,9 @@
+<%@ Master Language="C#" AutoEventWireup="true" Inherits="MonoSoftware.MonoX.MasterPages.Empty" MasterPageFile="~/MonoX/MasterPages/Main.master"  Codebehind="Empty.master.cs" %>
+<%@ MasterType VirtualPath="~/MonoX/MasterPages/Main.master" %>
+
+<asp:Content ID="Content1" ContentPlaceHolderID="cp" runat="server">
+<div style="padding:20px;">
+    <asp:ContentPlaceHolder ID="cp" runat="server">
+    </asp:ContentPlaceHolder>
+</div>    
+</asp:Content>

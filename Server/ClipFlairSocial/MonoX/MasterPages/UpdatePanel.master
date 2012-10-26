@@ -1,0 +1,25 @@
+<%@ Master 
+    Language="C#" 
+    AutoEventWireup="true" 
+    Inherits="MonoSoftware.MonoX.MasterPages.UpdatePanel" 
+    EnableTheming="true" 
+    MasterPageFile="~/MonoX/MasterPages/Main.master"     
+    Codebehind="UpdatePanel.master.cs" %>
+<%@ MasterType VirtualPath="~/MonoX/MasterPages/Main.master" %>    
+
+<asp:Content ID="contentUP" ContentPlaceHolderID="cp" runat="server">
+<div>
+    <asp:UpdatePanel ID="ajaxPanelMain" runat="server" UpdateMode="Always" >
+        <ContentTemplate>
+            <asp:ContentPlaceHolder ID="cp" runat="server">
+            </asp:ContentPlaceHolder>
+        </ContentTemplate>
+    </asp:UpdatePanel>
+    <asp:UpdateProgress AssociatedUpdatePanelID="ajaxPanelMain" ID="updateProgressMain" DisplayAfter="0" runat="server">
+        <ProgressTemplate>
+            <div class="ajaxOverlay"></div>
+            <div class="ajaxLoader"><asp:Literal ID="ltlLoading" runat="server"></asp:Literal><br /><br /><img id="Img1" alt="Loading" runat="server" src="<%$ Code: MonoSoftware.MonoX.Paths.App_Themes.All.Common.img.ajaxLoader_gif %>" /></div>
+        </ProgressTemplate>
+    </asp:UpdateProgress>
+</div>
+</asp:Content>

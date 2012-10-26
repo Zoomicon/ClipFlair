@@ -1,0 +1,88 @@
+<root>
+  <tools name="MainToolbar" isribbon = "false">
+    <tool name="Copy" shortcut="CTRL+C"/>
+    <tool name="Paste" shortcut="CTRL+V"/>
+    <tool name="PasteFromWord" />
+    <tool name="PasteFromWordNoFontsNoSizes" />
+    <tool name="PastePlainText" />
+    <tool name="PasteAsHtml"  />
+    <tool separator="true"/>
+    <tool name="Undo" shortcut="CTRL+Z"/>
+    <tool name="Redo" shortcut="CTRL+Y"/>
+  </tools>
+  <tools name="InsertToolbar" isribbon = "false">
+    <tool name="ImageManager" shortcut="CTRL+G"/>
+    <tool name="LinkManager" shortcut="CTRL+K"/>
+    <tool name="Unlink" shortcut="CTRL+SHIFT+K"/>
+  </tools>
+  <tools name="AA" isribbon = "false">
+    <tool name="Bold" shortcut="CTRL+B"/>
+    <tool name="Italic" shortcut="CTRL+I"/>
+    <tool name="Underline" shortcut="CTRL+U"/>
+    <tool name="StrikeThrough" />
+    <tool separator="true"/>
+    <tool name="JustifyLeft" />
+    <tool name="JustifyCenter" />
+    <tool name="JustifyRight" />
+    <tool name="JustifyFull" />
+    <tool name="JustifyNone" />
+    <tool separator="true"/>
+    <tool name="Indent" />
+    <tool name="Outdent" />
+    <tool name="InsertOrderedList" />
+    <tool name="InsertUnorderedList" />
+  </tools>
+  <tools isribbon = "false">
+    <tool name="ConvertToLower" />
+    <tool name="ConvertToUpper" />
+    <tool separator="true"/>
+    <tool name="InsertTable" />
+    <tool name="InsertSnippet" />
+    <tool name="InsertFormElement" />
+    <tool name="InsertSymbol" />
+  </tools>
+  <tools name="DropdownToolbar" isribbon = "false">
+    <tool name="FormatBlock"/>
+    <tool name="FontName"/>
+    <tool name="FontSize"/>
+    <tool separator="true"/>
+    <tool name="FormatStripper"/>
+    <tool name="InsertCustomLink"/>
+    <tool name="ForeColor"/>
+    <tool name="BackColor"/>
+  </tools>
+  <tools name="DialogToolbar" dockingZone="Top" enabled="true" isribbon = "false">
+    <tool name="IncreaseSize" shortcut="F10"/>
+    <tool name="DecreaseSize" shortcut="F9"/>
+    <tool name="Print" shortcut="CTRL+P"/>
+    <tool name="Superscript" />
+    <tool name="Subscript" />
+    <tool name="InsertParagraph" />
+    <tool name="InsertHorizontalRule" />
+    <tool name="InsertDate" />
+    <tool name="InsertTime" />
+    <tool separator="true"/>
+    <tool name="ImageMapDialog"/>
+    <tool name="AbsolutePosition" />
+    <tool separator="true"/>
+    <tool name="Help" shortcut="F1"/>
+  </tools>
+  <tools name="EnhancedEditToolbar" dockingZone="Bottom" dockable="true">
+    <tool name="ToggleScreenMode" shortcut="F11"/>
+    <tool name="ToggleTableBorder" />
+    <tool name="Zoom" />
+  </tools>
+  <links>
+  </links>
+  <snippets>
+  </snippets>
+  <symbols></symbols>
+  <fontNames>	</fontNames>
+  <fontSizes></fontSizes>
+  <colors></colors>
+  <paragraphs></paragraphs>
+  <classes></classes>
+  <dialogParameters></dialogParameters>
+  <languages></languages>
+  <contextMenus></contextMenus>
+</root>
