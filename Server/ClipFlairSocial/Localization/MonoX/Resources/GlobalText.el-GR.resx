@@ -1,0 +1,306 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="CacheTime" xml:space="preserve">
+    <value>Προσωρινά αποθηκευμένο για {0} δευτερόλεπτα.</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Ακύρωση</value>
+  </data>
+  <data name="Close" xml:space="preserve">
+    <value>Κλείσιμο</value>
+  </data>
+  <data name="Copy" xml:space="preserve">
+    <value>Αντιγραφή</value>
+  </data>
+  <data name="Cut" xml:space="preserve">
+    <value>Αποκοπή</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Διαγραφή</value>
+  </data>
+  <data name="Edit" xml:space="preserve">
+    <value>Επεξεργασία</value>
+  </data>
+  <data name="Error" xml:space="preserve">
+    <value>Σφάλμα</value>
+  </data>
+  <data name="From" xml:space="preserve">
+    <value>Από</value>
+  </data>
+  <data name="Insert" xml:space="preserve">
+    <value>Εισαγωγή</value>
+  </data>
+  <data name="MailSendSuccess" xml:space="preserve">
+    <value>Επιτυχία</value>
+  </data>
+  <data name="MoveDown" xml:space="preserve">
+    <value>Μετακίνηση κάτω</value>
+  </data>
+  <data name="MoveUp" xml:space="preserve">
+    <value>Μετακίνηση πάνω</value>
+  </data>
+  <data name="New" xml:space="preserve">
+    <value>Νέο</value>
+  </data>
+  <data name="NewFolder" xml:space="preserve">
+    <value>Νέος φάκελος</value>
+  </data>
+  <data name="NewPage" xml:space="preserve">
+    <value>Νέα σελίδα</value>
+  </data>
+  <data name="Next" xml:space="preserve">
+    <value>Επόμενο</value>
+  </data>
+  <data name="NoPreference" xml:space="preserve">
+    <value>Καμία προτίμηση</value>
+  </data>
+  <data name="Of" xml:space="preserve">
+    <value>Από</value>
+  </data>
+  <data name="OK" xml:space="preserve">
+    <value>Εντάξει</value>
+  </data>
+  <data name="Open" xml:space="preserve">
+    <value>Άνοιγμα</value>
+  </data>
+  <data name="Page" xml:space="preserve">
+    <value>Σελίδα</value>
+  </data>
+  <data name="PageProperties" xml:space="preserve">
+    <value>Ιδιότητες σελίδας</value>
+  </data>
+  <data name="Paste" xml:space="preserve">
+    <value>Επικόλληση</value>
+  </data>
+  <data name="PasteAfter" xml:space="preserve">
+    <value>Επικόλληση μετά</value>
+  </data>
+  <data name="PasteBefore" xml:space="preserve">
+    <value>Επικόλληση πριν</value>
+  </data>
+  <data name="Previous" xml:space="preserve">
+    <value>Προηγούμενο</value>
+  </data>
+  <data name="Properties" xml:space="preserve">
+    <value>Ιδιότητες</value>
+  </data>
+  <data name="Rename" xml:space="preserve">
+    <value>Μετονομασία</value>
+  </data>
+  <data name="Roles" xml:space="preserve">
+    <value>Ρόλοι</value>
+  </data>
+  <data name="test" xml:space="preserve">
+    <value>δοκιμή</value>
+  </data>
+  <data name="Update" xml:space="preserve">
+    <value>Ενημέρωση</value>
+  </data>
+  <data name="Upload" xml:space="preserve">
+    <value>Ανέβασμα</value>
+  </data>
+  <data name="MessagingGroup" xml:space="preserve">
+    <value>ομάδα επικοινωνίας</value>
+  </data>
+  <data name="MessagingList" xml:space="preserve">
+    <value>λίστα επικοινωνίας</value>
+  </data>
+  <data name="PoweredByMonoX" xml:space="preserve">
+    <value>Χρησιμοποιεί το MonoX CMS για ASP.NET της Mono Software.</value>
+  </data>
+  <data name="DeleteConfirmation" xml:space="preserve">
+    <value>Το αντικείμενο αυτό θα διαγραφεί. Είστε σίγουροι;</value>
+  </data>
+  <data name="Confirmation_FriendshipRelationshipExists" xml:space="preserve">
+    <value>Η αίτηση αυτή είχε ήδη γίνει αποδεκτή στις {DateTime}.</value>
+  </data>
+  <data name="Confirmation_FriendshipRequestSuccess" xml:space="preserve">
+    <value>Η αίτηση έγινε αποδεκτή!</value>
+  </data>
+  <data name="Confirmation_FriendshipRequestSuccessDescription" xml:space="preserve">
+    <value>{FriendName} προστέθηκε επιτυχώς στη λίστα φίλων σας. </value>
+  </data>
+  <data name="Confirmation_GeneralErrorMessage" xml:space="preserve">
+    <value>Αυτή δεν είναι μια έγκυρη αίτηση. Παρακαλώ σιγουρευτείτε πως εισαγάγατε μια σωστή διεύθυνση και δοκιμάστε ξανά.</value>
+  </data>
+  <data name="Confirmation_RequestErrorText" xml:space="preserve">
+    <value>Η αίτηση σας δεν επεξεργάστηκε επιτυχώς. Παρακαλώ επικοινωνήστε με την υπηρεσία υποστήριξης για περισσότερες πληροφορίες.</value>
+  </data>
+  <data name="Confirmation_RequestErrorTitle" xml:space="preserve">
+    <value>Συνέβει ένα σφάλμα!</value>
+  </data>
+  <data name="Confirmation_GroupAlreadyMember" xml:space="preserve">
+    <value>Η αίτηση αυτή έχει ήδη γίνει αποδεκτή στις {DateTime}.</value>
+  </data>
+  <data name="Confirmation_GroupRequestSuccess" xml:space="preserve">
+    <value>Η αίτηση έγινε αποδεκτή!</value>
+  </data>
+  <data name="Confirmation_GroupRequestSuccessDescription" xml:space="preserve">
+    <value>Προστεθήκατε επιτυχώς στην ομάδα {GroupName}. </value>
+  </data>
+  <data name="MailSendError" xml:space="preserve">
+    <value>Το μήνυμα σας δε στάλθηκε.</value>
+  </data>
+  <data name="No" xml:space="preserve">
+    <value>Όχι</value>
+  </data>
+  <data name="Yes" xml:space="preserve">
+    <value>Ναί</value>
+  </data>
+  <data name="EmailNoReply" xml:space="preserve">
+    <value>Παρακαλώ, μην απαντήσετε σε αυτό το e-mail.</value>
+  </data>
+  <data name="By" xml:space="preserve">
+    <value>από</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>Περιγραφή</value>
+  </data>
+  <data name="First" xml:space="preserve">
+    <value>Πρώτο</value>
+  </data>
+  <data name="Last" xml:space="preserve">
+    <value>Τελευταίο</value>
+  </data>
+  <data name="NextGroup" xml:space="preserve">
+    <value>Επόμενη ομάδα</value>
+  </data>
+  <data name="PreviousGroup" xml:space="preserve">
+    <value>Προηγούμενη ομάδα</value>
+  </data>
+  <data name="ReOpen" xml:space="preserve">
+    <value>Άνοιγμα ξανά</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>Όνομα</value>
+  </data>
+  <data name="Title" xml:space="preserve">
+    <value>Τίτλος</value>
+  </data>
+  <data name="View" xml:space="preserve">
+    <value>Προβολή</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>Αποθήκευση</value>
+  </data>
+  <data name="NoActionPermissions" xml:space="preserve">
+    <value>Δεν έχετε δικαιώματα γι'αυτή την ενέργεια.</value>
+  </data>
+</root>
