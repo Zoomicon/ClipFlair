@@ -1,0 +1,201 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Authorization_Description" xml:space="preserve">
+    <value>Vaš korisnički račun nije autoriziran za pristup ovoj stranici.</value>
+  </data>
+  <data name="Authorization_Login" xml:space="preserve">
+    <value>Vaš korisnički račun nije autoriziran za pristup ovoj stranici. Molimo logirajte se sa odgovarajućim korisničkim računom.</value>
+  </data>
+  <data name="Authorization_Title" xml:space="preserve">
+    <value>Pristup nije dozvoljen</value>
+  </data>
+  <data name="CannotFindLicenseFile" xml:space="preserve">
+    <value>Nije moguće pronaći lincencnu datoteku. Molimo ponovite postupak registracije.</value>
+  </data>
+  <data name="DomainNotLicensed" xml:space="preserve">
+    <value>Domena {0} nije registrirana. Molimo registrirajte navedenu domenu.</value>
+  </data>
+  <data name="EmailSendingFailed" xml:space="preserve">
+    <value>Došlo je do pogreške prilikom slanja e-maila. Pokušajte ponovo, ukoliko se problem ponovi, molimo kontaktirajte nas.</value>
+  </data>
+  <data name="EntityIdRequired" xml:space="preserve">
+    <value>ID entiteta nije dostupan!</value>
+  </data>
+  <data name="ImageTypeRequired" xml:space="preserve">
+    <value>Tip slike je obavezan!</value>
+  </data>
+  <data name="LicenseExpired" xml:space="preserve">
+    <value>Licence je istekla. Molimo pribavite odgovarajuću licencu i ponovite postupak registracije.</value>
+  </data>
+  <data name="Membership_Create_UnknownError" xml:space="preserve">
+    <value>Došlo je do neočekivane pogreške, vaš korisnički račun nije mogao biti kreiran. Pokušajte ponovo, ako se problem ponovi, molimo kontaktirajte nas.</value>
+  </data>
+  <data name="Membership_DuplicateEmail" xml:space="preserve">
+    <value>Navedena e-mail adresa je već u uporabi.</value>
+  </data>
+  <data name="Membership_DuplicateUserName" xml:space="preserve">
+    <value>Navedeno korisničko ime je već u uporabi.</value>
+  </data>
+  <data name="Membership_InvalidPassword" xml:space="preserve">
+    <value>Neispravna zaporka, mora sadržavati bar {0} znakova{1}.</value>
+  </data>
+  <data name="Membership_InvalidPassword_Suffix" xml:space="preserve">
+    <value> i bar {0} posebnih znakova (simbola, poput #,$@, itd.).</value>
+  </data>
+  <data name="Membership_Update_UnknownError" xml:space="preserve">
+    <value>Došlo je do neočekivane pogreške, promjene vašeg korisničkog računa su nisu mogle spremiti. Pokušajte ponovo, ako se problem ponovi, molimo kontaktirajte nas.</value>
+  </data>
+  <data name="NumberOfUsersExceeded" xml:space="preserve">
+    <value>Dosegnut je limit broja korisnika za besplatnu licencu MonoX sustava. Preporučamo kupovinu komercijalne verzije za uklanjanje navedenog ograničenja.</value>
+  </data>
+  <data name="PageNotFound" xml:space="preserve">
+    <value>Stranica nije pronađena.</value>
+  </data>
+  <data name="PageNotFoundDescription" xml:space="preserve">
+    <value>Zatražena stranica nije pronađena.</value>
+  </data>
+  <data name="SessionExpired_Description" xml:space="preserve">
+    <value>Prošlo je određeno vrijeme od vaše zadnje akcije u internet pregledniku. Privremeni podaci potrebni za rad ove stranice imaju ograničeno trajanje, te su istekli. Zbog toga nije moguć daljnji nastavak rada. Potrebno je iznova otvoriti stranicu, odnosno ponoviti slijed akcija u internet pregledniku koje su prethodile vašoj zadnjoj akciji.</value>
+  </data>
+  <data name="SessionExpired_Title" xml:space="preserve">
+    <value>Privremeni podaci nisu više validni</value>
+  </data>
+  <data name="SignatureNotValid" xml:space="preserve">
+    <value>Potpis u licencnoj datoteci nije ispravan. Molimo ponoviti postupak registracije!</value>
+  </data>
+  <data name="ToContinueWorkingWithApplication" xml:space="preserve">
+    <value>Da bi nastavili raditi na aplikaciji molimo kliknite</value>
+  </data>
+  <data name="ToContinueWorkingWithApplicationClickHere" xml:space="preserve">
+    <value>ovdje</value>
+  </data>
+  <data name="Unexpected_Title" xml:space="preserve">
+    <value>Neočekivana pogreška</value>
+  </data>
+  <data name="UnhandledError" xml:space="preserve">
+    <value>Greška pri izvršavanju aplikacije!</value>
+  </data>
+  <data name="UnhandledErrorLongMessage" xml:space="preserve">
+    <value>Došlo je do nepredviđene greške o kojoj je obavješten tim za podršku.</value>
+  </data>
+  <data name="VersionError" xml:space="preserve">
+    <value>Licencna datoteka mora biti nadograđena na verziju {0}.</value>
+  </data>
+</root>

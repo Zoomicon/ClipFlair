@@ -1,0 +1,1218 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Discussion_Add_New_Board" xml:space="preserve">
+    <value>Otvori novu raspravu</value>
+  </data>
+  <data name="Discussion_Board_Description" xml:space="preserve">
+    <value>Opis rasprave</value>
+  </data>
+  <data name="Discussion_Board_Name" xml:space="preserve">
+    <value>Naslov rasprave</value>
+  </data>
+  <data name="Discussion_Button_Post" xml:space="preserve">
+    <value>Objavi</value>
+  </data>
+  <data name="Comments_AuthenticationAlert" xml:space="preserve">
+    <value>Morate se prijavite da biste mogli slati komentare na ovom portalu.</value>
+  </data>
+  <data name="Comments_Button_Save" xml:space="preserve">
+    <value>Snimi</value>
+  </data>
+  <data name="Comments_ConfirmDelete" xml:space="preserve">
+    <value>Ovaj komentar će biti uklonjen. Nastavak?</value>
+  </data>
+  <data name="Comments_Delete" xml:space="preserve">
+    <value>Briši</value>
+  </data>
+  <data name="Comments_WatermarkText" xml:space="preserve">
+    <value>Unesite komentar</value>
+  </data>
+  <data name="Events_BecameFriends" xml:space="preserve">
+    <value>&lt;a href="{ProfileUrl}"&gt;{UserName}&lt;/a&gt; i &lt;a href="{FriendProfileUrl}"&gt;{FriendUserName}&lt;/a&gt; su sada prijatelji.</value>
+  </data>
+  <data name="Events_BlogPostPublished" xml:space="preserve">
+    <value>&lt;a href="{ProfileUrl}"&gt;{UserName}&lt;/a&gt; je objavio/la novi članak na blogu: &lt;a href="{BlogPostUrl}"&gt;{BlogPostTitle}&lt;/a&gt;</value>
+  </data>
+  <data name="FileGallery_ConfirmDelete" xml:space="preserve">
+    <value>Ova će datoteka biti obrisana. Nastavak?</value>
+  </data>
+  <data name="FileView_Button_Comment" xml:space="preserve">
+    <value>Komentar</value>
+  </data>
+  <data name="FileView_Button_Delete" xml:space="preserve">
+    <value>Obriši</value>
+  </data>
+  <data name="FileView_ConfirmDelete" xml:space="preserve">
+    <value>Ova će datoteka biti obrisana. Nastavak?</value>
+  </data>
+  <data name="FileView_CreatedOn" xml:space="preserve">
+    <value>Kreirano {0}</value>
+  </data>
+  <data name="Friends_ConfirmDelete" xml:space="preserve">
+    <value>Ova će osoba biti uklonjena iz vaše liste prijatelja. Nastavak?</value>
+  </data>
+  <data name="Friends_DeleteFriend" xml:space="preserve">
+    <value>Ukloni {0} iz liste prijatelja</value>
+  </data>
+  <data name="Friends_ViewProfile" xml:space="preserve">
+    <value>Pregledaj profil za {0}</value>
+  </data>
+  <data name="Global_ViewProfile" xml:space="preserve">
+    <value>Pogledaj profil za korisnika {0}</value>
+  </data>
+  <data name="Groups_ConfirmDelete" xml:space="preserve">
+    <value>Grupa i sve pripadajuće informacije će biti obrisana. Jeste li sigurni?</value>
+  </data>
+  <data name="Groups_ConfirmJoinPrivate" xml:space="preserve">
+    <value>Šaljete zahtjev za članstvo u privatnoj grupi. Administrator mora odobriti Vaš zahtjev prije nego vam bude omogućen pristup. Nastavak?</value>
+  </data>
+  <data name="Groups_ConfirmJoinPublic" xml:space="preserve">
+    <value>Šaljete zahtjev za članstvo u javnoj grupi. Svi će vam resursi biti odmah dostupni. Nastavak?</value>
+  </data>
+  <data name="Groups_ConfirmLeave" xml:space="preserve">
+    <value>Napuštate članstvo grupe. Nastavak?</value>
+  </data>
+  <data name="Groups_Delete" xml:space="preserve">
+    <value>Brisanje grupe</value>
+  </data>
+  <data name="Groups_Description" xml:space="preserve">
+    <value>Description:</value>
+  </data>
+  <data name="Groups_Edit" xml:space="preserve">
+    <value>Edit</value>
+  </data>
+  <data name="Groups_GroupEdit_Categories" xml:space="preserve">
+    <value>Kategorije:</value>
+  </data>
+  <data name="Groups_GroupEdit_Description" xml:space="preserve">
+    <value>Opis:</value>
+  </data>
+  <data name="Groups_GroupEdit_ErrorSave" xml:space="preserve">
+    <value>Greška pri snimanju informacija o grupi!</value>
+  </data>
+  <data name="Groups_GroupEdit_Name" xml:space="preserve">
+    <value>Naziv grupe:</value>
+  </data>
+  <data name="Groups_GroupEdit_NameRequired" xml:space="preserve">
+    <value>Naziv grupe se mora unijeti.</value>
+  </data>
+  <data name="Groups_GroupEdit_Picture" xml:space="preserve">
+    <value>Slika:</value>
+  </data>
+  <data name="Groups_GroupEdit_Privacy" xml:space="preserve">
+    <value>Otvorena grupa?</value>
+  </data>
+  <data name="Groups_GroupEdit_PrivacyLegend" xml:space="preserve">
+    <value>Svi korisnici se mogu priključiti&lt;i&gt;otvorenim grupama&lt;/i&gt; i pozvati ostale korisnike. Sve informacije unutar otvorenih grupa su javne.&lt;br /&gt;
+Adminisatratori &lt;i&gt;zatvorenih grupa&lt;/i&gt; moraju odobriti zahtjev za pridruživanjem. Svi mogu vidjeti opise grupa, ali samo članovi mogu vidjeti njihov sadržaj.</value>
+  </data>
+  <data name="Groups_GroupList_AddNew" xml:space="preserve">
+    <value>Dodaj novu grupu</value>
+  </data>
+  <data name="Groups_GroupList_MemberCount" xml:space="preserve">
+    <value>Članovi:</value>
+  </data>
+  <data name="Groups_Join" xml:space="preserve">
+    <value>Pristupi ovoj grupi</value>
+  </data>
+  <data name="Groups_Leave" xml:space="preserve">
+    <value>Napusti ovo grupu</value>
+  </data>
+  <data name="Groups_Name" xml:space="preserve">
+    <value>Name:</value>
+  </data>
+  <data name="InvitationList_ApproveInvitation" xml:space="preserve">
+    <value>Odobrite poziv korisnika {0}</value>
+  </data>
+  <data name="InvitationList_ConfirmDelete" xml:space="preserve">
+    <value>Ova će pozivnica biti uklonjena s vaše liste. Nećete moći dodati korisnika na listu prijatelja dok ponovo ne pošalje poziv. Nastavak?</value>
+  </data>
+  <data name="InvitationList_DeleteInvitation" xml:space="preserve">
+    <value>Uklonite korisnika {0} sa liste poziva</value>
+  </data>
+  <data name="Messaging_Cancel" xml:space="preserve">
+    <value>Nazad</value>
+  </data>
+  <data name="Messaging_CreateMessage_ErrorCannotSave" xml:space="preserve">
+    <value>Poruka trenutno ne može biti spremljena!</value>
+  </data>
+  <data name="Messaging_CreateMessage_ErrorSendGroup" xml:space="preserve">
+    <value>&lt;br /&gt;Greška kod slanja poruke za grupu: {0}.</value>
+  </data>
+  <data name="Messaging_CreateMessage_ErrorSendMessageList" xml:space="preserve">
+    <value>&lt;br /&gt;Greška kod slanja poruka na listu: {0}.</value>
+  </data>
+  <data name="Messaging_CreateMessage_ErrorSendRecipient" xml:space="preserve">
+    <value>&lt;br /&gt;Greška pri slanju poruke za primatelja: {0}.</value>
+  </data>
+  <data name="Messaging_CreateMessage_Message" xml:space="preserve">
+    <value>Poruka:</value>
+  </data>
+  <data name="Messaging_CreateMessage_MessagingGroup" xml:space="preserve">
+    <value> grupa</value>
+  </data>
+  <data name="Messaging_CreateMessage_MessagingList" xml:space="preserve">
+    <value> lista</value>
+  </data>
+  <data name="Messaging_CreateMessage_NoRecipients" xml:space="preserve">
+    <value>Lista primatelja poruke je prazna!</value>
+  </data>
+  <data name="Messaging_CreateMessage_Recipeints" xml:space="preserve">
+    <value>Za:</value>
+  </data>
+  <data name="Messaging_CreateMessage_Send" xml:space="preserve">
+    <value>Pošalji</value>
+  </data>
+  <data name="Messaging_CreateMessage_SendMailCopy" xml:space="preserve">
+    <value>Pošalji kopiju poruke na primateljevu adresu.</value>
+  </data>
+  <data name="Messaging_CreateMessage_Subject" xml:space="preserve">
+    <value>Predmet:</value>
+  </data>
+  <data name="Messaging_CreateMessage_SubjectRequired" xml:space="preserve">
+    <value>Predmet poruke mora biti unesen!</value>
+  </data>
+  <data name="Messaging_CreateMessage_Upload" xml:space="preserve">
+    <value>Privitak:</value>
+  </data>
+  <data name="Messaging_ListAdmin_AddList" xml:space="preserve">
+    <value>+ Dodaj novu listu</value>
+  </data>
+  <data name="Messaging_ListAdmin_AddNew" xml:space="preserve">
+    <value>Dodaj novu</value>
+  </data>
+  <data name="Messaging_ListAdmin_DeleteConfirmation" xml:space="preserve">
+    <value>Ova će lista biti obrisana. Jeste li sigurni?</value>
+  </data>
+  <data name="Messaging_ListAdmin_HeaderText" xml:space="preserve">
+    <value>Upravljanje mailing listama</value>
+  </data>
+  <data name="Messaging_ListAdmin_ListMembers" xml:space="preserve">
+    <value>Članovi liste:</value>
+  </data>
+  <data name="Messaging_ListAdmin_Name" xml:space="preserve">
+    <value>Naziv:</value>
+  </data>
+  <data name="Messaging_ListAdmin_PageTitle" xml:space="preserve">
+    <value>Upravljanje listama </value>
+  </data>
+  <data name="Messaging_ListAdmin_Save" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="Messaging_ListAdmin_SubHeaderText" xml:space="preserve">
+    <value>Ovaj ekran služi za administriranje podataka o listama. Liste služe za jednostavno istovremeno slanje poruka na više adresa.</value>
+  </data>
+  <data name="Messaging_MessageDetails" xml:space="preserve">
+    <value>Detalji poruke</value>
+  </data>
+  <data name="Messaging_MessageDetails_ErrorCannotSave" xml:space="preserve">
+    <value>Poruka ne može biti spremljena!</value>
+  </data>
+  <data name="Messaging_MessageDetails_ErrorSendReply" xml:space="preserve">
+    <value>&lt;br /&gt;Greška kod slanja odgovora.</value>
+  </data>
+  <data name="Messaging_MessageDetails_Reply" xml:space="preserve">
+    <value>Odgovor:</value>
+  </data>
+  <data name="Messaging_MessageDetails_Send" xml:space="preserve">
+    <value>Pošalji</value>
+  </data>
+  <data name="Messaging_MessageDetails_SendMailCopy" xml:space="preserve">
+    <value>Pošalji kopiju poruke na primateljevu privatnu e-mail adresu.</value>
+  </data>
+  <data name="Messaging_MessageDetails_Upload" xml:space="preserve">
+    <value>Privitak:</value>
+  </data>
+  <data name="Messaging_MessageList_Collapse_ToolTip" xml:space="preserve">
+    <value>Skupi</value>
+  </data>
+  <data name="Messaging_MessageList_ColumnDate" xml:space="preserve">
+    <value>Datum</value>
+  </data>
+  <data name="Messaging_MessageList_ColumnFrom" xml:space="preserve">
+    <value>Od</value>
+  </data>
+  <data name="Messaging_MessageList_ColumnSubject" xml:space="preserve">
+    <value>Predmet</value>
+  </data>
+  <data name="Messaging_MessageList_ColumnTo" xml:space="preserve">
+    <value>Za</value>
+  </data>
+  <data name="Messaging_MessageList_DragToGroupOrReorder" xml:space="preserve">
+    <value>Povuci za grupiranje</value>
+  </data>
+  <data name="Messaging_MessageList_DragToResize" xml:space="preserve">
+    <value>Povuci za promjenu veličine</value>
+  </data>
+  <data name="Messaging_MessageList_DropHereToReorder" xml:space="preserve">
+    <value>Spusti ovdje za promjenu poretka</value>
+  </data>
+  <data name="Messaging_MessageList_Expand_Tooltip" xml:space="preserve">
+    <value>Raširi</value>
+  </data>
+  <data name="Messaging_MessageList_Filter" xml:space="preserve">
+    <value>Traži:</value>
+  </data>
+  <data name="Messaging_MessageList_GroupContinuedFormatString" xml:space="preserve">
+    <value>Ova se grupa nastavlja sa prethodne stranice.</value>
+  </data>
+  <data name="Messaging_MessageList_GroupContinuesFormatString" xml:space="preserve">
+    <value>Ova se grupa nastavlja na idućoj stranici.</value>
+  </data>
+  <data name="Messaging_MessageList_GroupPanelText" xml:space="preserve">
+    <value>Dovucite kolonu ovdje za grupiranje.</value>
+  </data>
+  <data name="Messaging_MessageList_Loading" xml:space="preserve">
+    <value>Učitavanje</value>
+  </data>
+  <data name="Messaging_MessageList_NextPage" xml:space="preserve">
+    <value>Slijedeća</value>
+  </data>
+  <data name="Messaging_MessageList_NextPages" xml:space="preserve">
+    <value>Slijedeće</value>
+  </data>
+  <data name="Messaging_MessageList_NoRecords" xml:space="preserve">
+    <value>Nema poruka za Vas.</value>
+  </data>
+  <data name="Messaging_MessageList_OnSuffix" xml:space="preserve">
+    <value> na:</value>
+  </data>
+  <data name="Messaging_MessageList_PagerTextFormat" xml:space="preserve">
+    <value>Idi na stranicu: {4} Prikazana stranica  {0} od {1}, poruke {2} do {3} od {5}</value>
+  </data>
+  <data name="Messaging_MessageList_PagerTooltip" xml:space="preserve">
+    <value>Stranica {0} od {1}</value>
+  </data>
+  <data name="Messaging_MessageList_PrevPage" xml:space="preserve">
+    <value>Prethodna</value>
+  </data>
+  <data name="Messaging_MessageList_PrevPages" xml:space="preserve">
+    <value>Prethodne</value>
+  </data>
+  <data name="Messaging_MessageList_Ready" xml:space="preserve">
+    <value>Spremno</value>
+  </data>
+  <data name="Messaging_MessageList_Received" xml:space="preserve">
+    <value>Primljeno</value>
+  </data>
+  <data name="Messaging_MessageList_Search_ToolTip" xml:space="preserve">
+    <value>Traži poruke</value>
+  </data>
+  <data name="Messaging_MessageList_Sent" xml:space="preserve">
+    <value>Poslano</value>
+  </data>
+  <data name="Messaging_MessageList_ShowAll_ToolTip" xml:space="preserve">
+    <value>Pokaži sve</value>
+  </data>
+  <data name="Messaging_MessageList_Sort" xml:space="preserve">
+    <value>Sortiranje</value>
+  </data>
+  <data name="Messaging_MessageList_SortedAsc" xml:space="preserve">
+    <value>Sortirano uzlaznim redoslijedom</value>
+  </data>
+  <data name="Messaging_MessageList_SortedDesc" xml:space="preserve">
+    <value>Sortirano silaznim redoslijedom</value>
+  </data>
+  <data name="Messaging_MessageList_View" xml:space="preserve">
+    <value>Pregled</value>
+  </data>
+  <data name="Messaging_MessageSent" xml:space="preserve">
+    <value>Poruka je uspješno poslana!</value>
+  </data>
+  <data name="Messaging_NewMessage" xml:space="preserve">
+    <value>+ Nova poruka</value>
+  </data>
+  <data name="Messaging_Received" xml:space="preserve">
+    <value>Primljeno</value>
+  </data>
+  <data name="Messaging_Sent" xml:space="preserve">
+    <value>Poslano</value>
+  </data>
+  <data name="PeopleSearch_AddProblem" xml:space="preserve">
+    <value>Ne možete dodati korisnika {0} u listu prijatelja. Molimo provjerite da li je korisnik već dodan.</value>
+  </data>
+  <data name="PeopleSearch_AddSuccess" xml:space="preserve">
+    <value>Korisnik {0} je uspješno dodan(a) na vašu listu prijatelja. </value>
+  </data>
+  <data name="PeopleSearch_AlreadyConnected" xml:space="preserve">
+    <value>{0} je već dodan(a) na vašu listu.</value>
+  </data>
+  <data name="PeopleSearch_Button_Add" xml:space="preserve">
+    <value>Dodaj prijatelja</value>
+  </data>
+  <data name="PeopleSearch_Button_Send" xml:space="preserve">
+    <value>Pošalji</value>
+  </data>
+  <data name="PeopleSearch_Button_ViewProfile" xml:space="preserve">
+    <value>Pogledaj profil</value>
+  </data>
+  <data name="PeopleSearch_ConfirmationMailContent" xml:space="preserve">
+    <value>Pozdrav {FriendName},
+&lt;br /&gt;&lt;br /&gt;
+{UserName} vas je dodao/la kao prijatelja/prijateljicu na našem portalu. Morate potvrditi poznanstvo sa korisnikom {UserName} kako bi mogli postati prijatelji.&lt;br /&gt;
+{PersonalMessage}
+&lt;br /&gt;&lt;br /&gt;
+Ukoliko želite potvrditi ovaj zahtjev, molimo da kliknete na link ispod:&lt;br /&gt;
+{ConfirmationUrl}
+&lt;br /&gt;&lt;br /&gt;
+Srdačno,
+&lt;br /&gt;&lt;br /&gt;
+MonoX Team
+</value>
+  </data>
+  <data name="PeopleSearch_ConfirmationMailSubject" xml:space="preserve">
+    <value>Pozivnica prijatelja {UserName}</value>
+  </data>
+  <data name="PeopleSearch_InvitationsReceived" xml:space="preserve">
+    <value>Primljene pozivnice:</value>
+  </data>
+  <data name="PeopleSearch_InvitationsSent" xml:space="preserve">
+    <value>Poslane pozivnice:</value>
+  </data>
+  <data name="PeopleSearch_MemberSince" xml:space="preserve">
+    <value>Član od:</value>
+  </data>
+  <data name="PeopleSearch_NoUsers" xml:space="preserve">
+    <value>Morate odabrati korisnika iz liste korisnika.</value>
+  </data>
+  <data name="PeopleSearch_PersonalMessage" xml:space="preserve">
+    <value>Osoba koju ste odabrali mora potvrditi vaš zahtjev. Možete dodati privatnu poruku:</value>
+  </data>
+  <data name="PeopleSearch_TipText" xml:space="preserve">
+    <value>Napomena: ovaj modul omogućava pretraživanje po korisničkim imenima, te pravim imenima i prezimenima korisnika.</value>
+  </data>
+  <data name="PhotoGallery_AlbumEditView_CreateAlbum" xml:space="preserve">
+    <value>Kreiraj Foto album</value>
+  </data>
+  <data name="PhotoGallery_AlbumEditView_Description" xml:space="preserve">
+    <value>Opis</value>
+  </data>
+  <data name="PhotoGallery_AlbumEditView_Name" xml:space="preserve">
+    <value>Naziv albuma</value>
+  </data>
+  <data name="PhotoGallery_AlbumEditView_Privacy" xml:space="preserve">
+    <value>Privatnost</value>
+  </data>
+  <data name="PhotoGallery_AlbumList_Delete" xml:space="preserve">
+    <value>Obriši Album</value>
+  </data>
+  <data name="PhotoGallery_AlbumList_DeleteConfirmation" xml:space="preserve">
+    <value>Želite li obrisati foto album ?</value>
+  </data>
+  <data name="PhotoGallery_AlbumList_Edit" xml:space="preserve">
+    <value>Izmijeni Album</value>
+  </data>
+  <data name="PhotoGallery_AlbumList_PhotoCount" xml:space="preserve">
+    <value>fotografija</value>
+  </data>
+  <data name="PhotoGallery_AlbumList_View" xml:space="preserve">
+    <value>Pregledaj Album</value>
+  </data>
+  <data name="PhotoGallery_AlbumView_CreateAlbum" xml:space="preserve">
+    <value>Kreiraj Foto Album</value>
+  </data>
+  <data name="PhotoGallery_BackToAlbumList" xml:space="preserve">
+    <value>Povratak na foto albume</value>
+  </data>
+  <data name="PhotoGallery_BackToPhotoList" xml:space="preserve">
+    <value>Povratak na fotografije</value>
+  </data>
+  <data name="PhotoGallery_PhotoEditView_AlbumCover" xml:space="preserve">
+    <value>Postavi fotografiju kao naslovnicu albuma</value>
+  </data>
+  <data name="PhotoGallery_PhotoEditView_Description" xml:space="preserve">
+    <value>Opis</value>
+  </data>
+  <data name="PhotoGallery_PhotoEditView_EditPhoto" xml:space="preserve">
+    <value>Izmjeni Fotografiju</value>
+  </data>
+  <data name="PhotoGallery_PhotoEditView_Name" xml:space="preserve">
+    <value>Naslov fotografije</value>
+  </data>
+  <data name="PhotoGallery_PhotoEditView_Privacy" xml:space="preserve">
+    <value>Privatnost</value>
+  </data>
+  <data name="PhotoGallery_PhotoListView_AddMore" xml:space="preserve">
+    <value>Dodaj još Fotografija</value>
+  </data>
+  <data name="PhotoGallery_PhotoListView_Delete" xml:space="preserve">
+    <value>Obriši Fotografiju</value>
+  </data>
+  <data name="PhotoGallery_PhotoListView_DeleteConfirmation" xml:space="preserve">
+    <value>Želite li obrisati fotografiju ?</value>
+  </data>
+  <data name="PhotoGallery_PhotoListView_Edit" xml:space="preserve">
+    <value>Izmjeni Fotografiju</value>
+  </data>
+  <data name="PhotoGallery_PhotoListView_Organize" xml:space="preserve">
+    <value>Organiziraj fotografije</value>
+  </data>
+  <data name="PhotoGallery_PhotoListView_View" xml:space="preserve">
+    <value>Pogledaj Fotografiju</value>
+  </data>
+  <data name="WallNotes_Button_Comment" xml:space="preserve">
+    <value>Komentar</value>
+  </data>
+  <data name="WallNotes_Button_Delete" xml:space="preserve">
+    <value>Obriši</value>
+  </data>
+  <data name="WallNotes_Button_Save" xml:space="preserve">
+    <value>Objavi</value>
+  </data>
+  <data name="WallNotes_Button_Upload" xml:space="preserve">
+    <value>Upload</value>
+  </data>
+  <data name="WallNotes_ConfirmDelete" xml:space="preserve">
+    <value>Ova će poruka biti obrisana. Nastavak?</value>
+  </data>
+  <data name="WallNotes_NoData" xml:space="preserve">
+    <value>Nema poruka na Vašem korisničkom računu.</value>
+  </data>
+  <data name="WallNotes_WatermarkText" xml:space="preserve">
+    <value>Što vam je na umu?</value>
+  </data>
+  <data name="Discussion_Topic_Add_New" xml:space="preserve">
+    <value>Otvori novu temu</value>
+  </data>
+  <data name="Discussion_Topic_Title" xml:space="preserve">
+    <value>Naslov</value>
+  </data>
+  <data name="Discussion_Delete_Message" xml:space="preserve">
+    <value>Jeste li sigurni da želite obisati poruku?</value>
+  </data>
+  <data name="Groups_PeopleSearch_AlreadyMember" xml:space="preserve">
+    <value>Korisnik/ca {0} je već pridodana u ovu grupu.</value>
+  </data>
+  <data name="Groups_Category" xml:space="preserve">
+    <value>Kategorija</value>
+  </data>
+  <data name="Groups_PeopleSearch_AddProblem" xml:space="preserve">
+    <value>Greška kod dodavanja korisnika {0} u grupu.</value>
+  </data>
+  <data name="Groups_PeopleSearch_AddSuccess" xml:space="preserve">
+    <value>Korisnik/ca {0} je uspješno dodan u grupu.</value>
+  </data>
+  <data name="Discussion_Back_To_Board" xml:space="preserve">
+    <value>Vrati se nazad na sve rasprave</value>
+  </data>
+  <data name="Discussion_Back_To_Topics" xml:space="preserve">
+    <value>Vrati se nazad na sve teme</value>
+  </data>
+  <data name="Discussion_Delete_Board" xml:space="preserve">
+    <value>Jeste li sigurni da želite obisati raspravu?</value>
+  </data>
+  <data name="Discussion_Delete_Topic" xml:space="preserve">
+    <value>Jeste li sigurni da želite obisati temu?</value>
+  </data>
+  <data name="InvitationList_AddingUser" xml:space="preserve">
+    <value>Odabrani korisnik/ca će biti dodan u vašu listu prijatelja.</value>
+  </data>
+  <data name="InvitationList_AddingFollower" xml:space="preserve">
+    <value>Odabrani korisnik/ca će postati Vaš sljedbenik.</value>
+  </data>
+  <data name="Groups_PeopleSearch_Button_Add" xml:space="preserve">
+    <value>Dodaj u grupu</value>
+  </data>
+  <data name="Groups_PeopleSearch_Button_Send" xml:space="preserve">
+    <value>Pošalji</value>
+  </data>
+  <data name="Groups_PeopleSearch_Button_ViewProfile" xml:space="preserve">
+    <value>Pogledaj profil</value>
+  </data>
+  <data name="Groups_PeopleSearch_ConfirmationMailContent" xml:space="preserve">
+    <value>Pozdrav {FriendName},
+&lt;br /&gt;&lt;br /&gt;
+{UserName} vas poziva da se pridružite grupi {GroupName}. Morate potvrditi da se doista želite učlaniti prije.&lt;br /&gt;
+{PersonalMessage}
+&lt;br /&gt;&lt;br /&gt;
+Ukoliko želite potvrditi ovaj zahtjev, molimo da kliknete na link ispod:&lt;br /&gt;
+{ConfirmationUrl}
+&lt;br /&gt;&lt;br /&gt;
+Srdačno,
+&lt;br /&gt;&lt;br /&gt;
+MonoX Team
+
+</value>
+  </data>
+  <data name="Groups_PeopleSearch_ConfirmationMailSubject" xml:space="preserve">
+    <value>{UserName} Vas poziva da se pridružite grupi {GroupName}</value>
+  </data>
+  <data name="Groups_PeopleSearch_PersonalMessage" xml:space="preserve">
+    <value>Osoba koju ste odabrali mora potvrditi da želi pristupiti grupi. Možete dodati privatnu poruku:</value>
+  </data>
+  <data name="Groups_PeopleSearch_TipText" xml:space="preserve">
+    <value>Napomena: ovaj modul omogućava pretraživanje po korisničkim imenima, te pravim imenima i prezimenima korisnika.</value>
+  </data>
+  <data name="Friends_FriendListEmpty" xml:space="preserve">
+    <value>Vaša lista prijatelja je trenutno prazna.</value>
+  </data>
+  <data name="Groups_InvitationList_AddingUser" xml:space="preserve">
+    <value>Odabrani korisnik/ca će biti dodan u ovu grupu.</value>
+  </data>
+  <data name="Groups_InvitationList_ApproveInvitation" xml:space="preserve">
+    <value>Odobrite članstvo u grupi za korisnika {0}</value>
+  </data>
+  <data name="Groups_InvitationList_ConfirmDelete" xml:space="preserve">
+    <value>Ovaj zahtjev za članstvo će biti uklonjen sa liste. Želite li nastaviti?</value>
+  </data>
+  <data name="Groups_InvitationList_DeleteInvitation" xml:space="preserve">
+    <value>Uklonite zahtjev za članstvo za kornsika {0} s ove liste</value>
+  </data>
+  <data name="Groups_MemberListEmpty" xml:space="preserve">
+    <value>Ova grupa trenutno nema niti jednog člana.</value>
+  </data>
+  <data name="Groups_AllGroupsTitleFormatString" xml:space="preserve">
+    <value>Sve grupe</value>
+  </data>
+  <data name="Groups_GroupInfo_Category" xml:space="preserve">
+    <value>Kategorija:</value>
+  </data>
+  <data name="Groups_GroupInfo_Description" xml:space="preserve">
+    <value>Opis:</value>
+  </data>
+  <data name="Groups_GroupInfo_Name" xml:space="preserve">
+    <value>Naziv:</value>
+  </data>
+  <data name="Groups_GroupInfo_OpenGroup" xml:space="preserve">
+    <value>Otvorena grupa</value>
+  </data>
+  <data name="Groups_GroupInfo_PrivacyLevel" xml:space="preserve">
+    <value>Privatnost:</value>
+  </data>
+  <data name="Groups_GroupInfo_PrivateGroup" xml:space="preserve">
+    <value>Privatna grupa</value>
+  </data>
+  <data name="Groups_MyGroupsTitleFormatString" xml:space="preserve">
+    <value>Moje grupe</value>
+  </data>
+  <data name="Groups_Search" xml:space="preserve">
+    <value>Traži grupe</value>
+  </data>
+  <data name="Groups_SearchGroupsTitleFormatString" xml:space="preserve">
+    <value>Rezultati pretraživanja za '{0}'</value>
+  </data>
+  <data name="Groups_GroupView_LabelPhotos" xml:space="preserve">
+    <value>Fotografije</value>
+  </data>
+  <data name="Groups_GroupView_LabelWall" xml:space="preserve">
+    <value>Zid</value>
+  </data>
+  <data name="Groups_CannotPostNotes" xml:space="preserve">
+    <value>Samo članovi ove grupe mogu slati poruke i koristiti ostale grupne resurse. Prijavite se za članstvo sada kako bise i vi mogli sudjelovati u radu grupe!</value>
+  </data>
+  <data name="Groups_CannotSeePrivateResources" xml:space="preserve">
+    <value>Ovo je privatna grupa i ne možete koristiti grupne resurse jer niste član. Prijavite se za članstvo sada kako bise i vi mogli sudjelovati u radu grupe!</value>
+  </data>
+  <data name="Groups_GroupEdit_Admins" xml:space="preserve">
+    <value>Administratori grupe</value>
+  </data>
+  <data name="WallNotes_UploadButtonText" xml:space="preserve">
+    <value>Postavi dokumente</value>
+  </data>
+  <data name="Groups_View" xml:space="preserve">
+    <value>Posjeti grupu {0}</value>
+  </data>
+  <data name="Groups_GroupView_LabelDiscussion" xml:space="preserve">
+    <value>Rasprave</value>
+  </data>
+  <data name="Events_JoinedGroup" xml:space="preserve">
+    <value>&lt;a href="{ProfileUrl}"&gt;{UserName}&lt;/a&gt; se pridružio/la grupi &lt;a href="{GroupUrl}"&gt;{GroupName}&lt;/a&gt;</value>
+  </data>
+  <data name="Discussion_Message_PostCaption" xml:space="preserve">
+    <value>Unesite vašu poruku</value>
+  </data>
+  <data name="Discussion_Message_ReplyCaption" xml:space="preserve">
+    <value>Odgovor</value>
+  </data>
+  <data name="Events_UploadedFile" xml:space="preserve">
+    <value>&lt;a href="{ProfileUrl}"&gt;{UserName}&lt;/a&gt; je dodao datoteku &lt;a href="{FileUrl}"&gt;{FileName}&lt;/a&gt;</value>
+  </data>
+  <data name="Events_SignedUp" xml:space="preserve">
+    <value>&lt;a href="{ProfileUrl}"&gt;{UserName}&lt;/a&gt; se upravo prijavio/la na site.</value>
+  </data>
+  <data name="Events_CreatedPhotoAlbum" xml:space="preserve">
+    <value>&lt;a href="{ProfileUrl}"&gt;{UserName}&lt;/a&gt; je kreirao galeriju slika &lt;a href="{AlbumUrl}"&gt;{AlbumName}&lt;/a&gt;</value>
+  </data>
+  <data name="Events_AddedPhoto" xml:space="preserve">
+    <value>&lt;a href="{ProfileUrl}"&gt;{UserName}&lt;/a&gt; je dodao sliku(e) u album &lt;a href="{AlbumUrl}"&gt;{AlbumName}&lt;/a&gt;</value>
+  </data>
+  <data name="Events_AddedDiscussionBoard" xml:space="preserve">
+    <value>&lt;a href="{ProfileUrl}"&gt;{UserName}&lt;/a&gt; je dodao novu raspravu  &lt;a href="{BoardUrl}"&gt;{BoardName}&lt;/a&gt;</value>
+  </data>
+  <data name="Events_AddedDiscussionTopic" xml:space="preserve">
+    <value>&lt;a href="{ProfileUrl}"&gt;{UserName}&lt;/a&gt; je dodao novu temu u raspravu  &lt;a href="{TopicUrl}"&gt;{TopicName}&lt;/a&gt;</value>
+  </data>
+  <data name="Events_CreatedGroup" xml:space="preserve">
+    <value>&lt;a href="{ProfileUrl}"&gt;{UserName}&lt;/a&gt; je kreirao/la grupu &lt;a href="{GroupUrl}"&gt;{GroupName}&lt;/a&gt;</value>
+  </data>
+  <data name="Events_UpdatedProfile" xml:space="preserve">
+    <value>&lt;a href="{ProfileUrl}"&gt;{UserName}&lt;/a&gt; je obnovio/la svoj profil.</value>
+  </data>
+  <data name="Comments_NotificationSubjectAlbum" xml:space="preserve">
+    <value>{0} je poslao/la komentar na sliku u Vašem albumu</value>
+  </data>
+  <data name="Comments_NotificationSubjectFile" xml:space="preserve">
+    <value>{0} je poslao/la komentar na datoteku iz Vaše kolekcije</value>
+  </data>
+  <data name="Comments_NotificationSubjectNote" xml:space="preserve">
+    <value>{0} je poslao/la komentar na članak na Vašem zidu</value>
+  </data>
+  <data name="FileView_DescriptionDefaultText" xml:space="preserve">
+    <value>Unesite opis datoteke</value>
+  </data>
+  <data name="PeopleSearch_AlreadySentInvitation" xml:space="preserve">
+    <value>Ovaj korisnik je već pozvan(a) na vašu listu ili je već dodan(a) na nju.</value>
+  </data>
+  <data name="Groups_GroupEdit_UserAdmin_TipText" xml:space="preserve">
+    <value>Napomena: ovo polje omogućava pretraživanje po korisničkim imenima, te pravim imenima i prezimenima korisnika koje želite unijeti kao administratore grupe. Pretraživanje se odnosi samo na aktivne članove grupe.</value>
+  </data>
+  <data name="Events_UpdatedStatus" xml:space="preserve">
+    <value>&lt;a href="{ProfileUrl}"&gt;{UserName}&lt;/a&gt; je obnovio/lasvoj status. Novi status je '{MyStatus}'</value>
+  </data>
+  <data name="Groups_GroupList_Category" xml:space="preserve">
+    <value>Kategorija:</value>
+  </data>
+  <data name="Groups_LoginToJoin" xml:space="preserve">
+    <value>Prijavite se kako biste se mogli pridržiti grupi</value>
+  </data>
+  <data name="Groups_Search_Tip" xml:space="preserve">
+    <value>(Savjet: Da bi prikazali sve grupe samo kliknite na dugme "Traži grupe")</value>
+  </data>
+  <data name="Groups_NoDataWarning" xml:space="preserve">
+    <value>&lt;br /&gt;Ne postoje grupe koje zadovoljavaju kriterije pretrage.&lt;br /&gt;</value>
+  </data>
+  <data name="Discussion_BoardModerators" xml:space="preserve">
+    <value>Moderatori</value>
+  </data>
+  <data name="Discussion_ModeratorsTooltip" xml:space="preserve">
+    <value>Lista moderatora rasprave</value>
+  </data>
+  <data name="Discussion_BoardAuthor" xml:space="preserve">
+    <value>kreirao(la) {0}.</value>
+  </data>
+  <data name="Discussion_BoardCreatedDate" xml:space="preserve">
+    <value>Kreiran</value>
+  </data>
+  <data name="Discussion_BoardLastTopic" xml:space="preserve">
+    <value>Zadnja tema</value>
+  </data>
+  <data name="Discussion_BoardLastTopicAuthor" xml:space="preserve">
+    <value>Kreirao(la)</value>
+  </data>
+  <data name="Discussion_MessageCreatedDate" xml:space="preserve">
+    <value>Kreiran</value>
+  </data>
+  <data name="Discussion_RepliesCount" xml:space="preserve">
+    <value>odgovor(a)</value>
+  </data>
+  <data name="Discussion_TopicCount" xml:space="preserve">
+    <value>teme(a)</value>
+  </data>
+  <data name="Discussion_TopicCreatedDate" xml:space="preserve">
+    <value>Kreirana</value>
+  </data>
+  <data name="Discussion_TopicLastPost" xml:space="preserve">
+    <value>Zadnji odgovor</value>
+  </data>
+  <data name="Discussion_TopicLastPostAuthor" xml:space="preserve">
+    <value>Odgovorio(la)</value>
+  </data>
+  <data name="Discussion_TopicPost_ApprovalAlert" xml:space="preserve">
+    <value>Vaša tema možda zahtijeva administrativno odobrenje prije objave. </value>
+  </data>
+  <data name="Discussion_ViewsCount" xml:space="preserve">
+    <value>put(a) pogledano</value>
+  </data>
+  <data name="Discussion_ViewsCountToolTip" xml:space="preserve">
+    <value>Tema pogledana {0} put(a)</value>
+  </data>
+  <data name="Discussion_ReportPost" xml:space="preserve">
+    <value>Prijavi objavu</value>
+  </data>
+  <data name="Discussion_ReportPostToolTip" xml:space="preserve">
+    <value>Prijavi objavu administratoru (npr. Uvredljiv sadržaj, SPAM)</value>
+  </data>
+  <data name="Discussion_UserTotalPosts" xml:space="preserve">
+    <value>Ukupno objava</value>
+  </data>
+  <data name="Discussion_ApproveReportedPost" xml:space="preserve">
+    <value>Odobri prijavljenu objavu</value>
+  </data>
+  <data name="Discussion_ApproveReportedPostToolTip" xml:space="preserve">
+    <value>Odobri prijavljenu objavu i smatraj ju kao poruku koja nije uvredljivog sadržaja</value>
+  </data>
+  <data name="Discussion_Delete_DeleteSpam" xml:space="preserve">
+    <value>Jeste li sigurni da želite obrisati sve spam poruke ?</value>
+  </data>
+  <data name="Discussion_Delete_DeleteUnApproved" xml:space="preserve">
+    <value>Jeste li sigurni da želite obrisati sve neodobrene poruke ?</value>
+  </data>
+  <data name="Discussion_Messages_DeleteSpam" xml:space="preserve">
+    <value>Obriši spam ({0})</value>
+  </data>
+  <data name="Discussion_Messages_DeleteUnApproved" xml:space="preserve">
+    <value>Obriši neodobrene ({0})</value>
+  </data>
+  <data name="Discussion_Message_Approve" xml:space="preserve">
+    <value>Odobri</value>
+  </data>
+  <data name="Discussion_Message_Views" xml:space="preserve">
+    <value>{0} put(a) pogledan</value>
+  </data>
+  <data name="Discussion_MarkAsAnswer" xml:space="preserve">
+    <value>Označi kao rješenje</value>
+  </data>
+  <data name="Discussion_TopicAnswer" xml:space="preserve">
+    <value>Rješenje</value>
+  </data>
+  <data name="Discussion_TopicAnswerDescription" xml:space="preserve">
+    <value>Poruka je označena kao odgovor na ovu temu.</value>
+  </data>
+  <data name="Discussion_Topic_TopicAnswer" xml:space="preserve">
+    <value>Riješena</value>
+  </data>
+  <data name="Discussion_Topic_TopicAnswerDescription" xml:space="preserve">
+    <value>Tema je riješena</value>
+  </data>
+  <data name="Discussion_TopicRating" xml:space="preserve">
+    <value>Glasova</value>
+  </data>
+  <data name="Discussion_TopicRatingToolTip" xml:space="preserve">
+    <value>Sadržaj je ocjenjen sa {0:f2} od ukupno {1} glasova.</value>
+  </data>
+  <data name="Discussion_LastActiveTopics" xml:space="preserve">
+    <value>Zadnje teme</value>
+  </data>
+  <data name="Discussion_LastActiveTopicsToolTip" xml:space="preserve">
+    <value>Prikaži samo zadnje teme</value>
+  </data>
+  <data name="Discussion_MyTopics" xml:space="preserve">
+    <value>Teme u kojima sudjeluješ</value>
+  </data>
+  <data name="Discussion_MyTopicsToolTip" xml:space="preserve">
+    <value>Prikaži samo teme u kojima sudjeluješ</value>
+  </data>
+  <data name="Discussion_TopicNoRating" xml:space="preserve">
+    <value>Bez ocjene</value>
+  </data>
+  <data name="Discussion_TopicNoRatingToolTip" xml:space="preserve">
+    <value>Ova tema trenutno nema ocjena</value>
+  </data>
+  <data name="Discussion_BoardSubscribe" xml:space="preserve">
+    <value>Pretplati se</value>
+  </data>
+  <data name="Discussion_BoardSubscribeToolTip" xml:space="preserve">
+    <value>Pretplati se na raspravu</value>
+  </data>
+  <data name="Discussion_BoardUnSubscribe" xml:space="preserve">
+    <value>Otkaži pretplatu</value>
+  </data>
+  <data name="Discussion_BoardUnSubscribeToolTip" xml:space="preserve">
+    <value>Otkaži pretplatu sa rasprave</value>
+  </data>
+  <data name="Discussion_NewTopicAdded" xml:space="preserve">
+    <value>Nova tema je dodana u raspravu na koju ste pretplaćeni.</value>
+  </data>
+  <data name="Discussion_NewTopicClickToReply" xml:space="preserve">
+    <value>Klikni na naslov teme za dodavanje nove poruke ili za odjavu pretplate s rasprave.</value>
+  </data>
+  <data name="Discussion_NewTopicNoReply" xml:space="preserve">
+    <value>Molimo, ne odgovarajte na ovaj e-mail.</value>
+  </data>
+  <data name="Discussion_NewMessageAdded" xml:space="preserve">
+    <value>Nova poruka je dodana u temu na koju ste pretplaćeni.</value>
+  </data>
+  <data name="Discussion_NewMessageClickToReply" xml:space="preserve">
+    <value>Klikni ovdje za dodavanje nove poruke ili za odjavu pretplate s teme.</value>
+  </data>
+  <data name="Discussion_NewMessageCreated" xml:space="preserve">
+    <value>Novi odgovor na temu  - </value>
+  </data>
+  <data name="Discussion_NewMessageNoReply" xml:space="preserve">
+    <value>Molimo, ne odgovarajte na ovaj e-mail.</value>
+  </data>
+  <data name="Discussion_NewTopicCreated" xml:space="preserve">
+    <value>Kreirana je nova tema - </value>
+  </data>
+  <data name="Discussion_TopicSubscribe" xml:space="preserve">
+    <value>Pretplati se</value>
+  </data>
+  <data name="Discussion_TopicSubscribeToolTip" xml:space="preserve">
+    <value>Pretplati se na temu</value>
+  </data>
+  <data name="Discussion_TopicUnSubscribe" xml:space="preserve">
+    <value>Otkaži pretplatu</value>
+  </data>
+  <data name="Discussion_TopicUnSubscribeToolTip" xml:space="preserve">
+    <value>Otkaži pretplatu sa teme</value>
+  </data>
+  <data name="Discussion_Board_AutoSubscribeModerators" xml:space="preserve">
+    <value>Automatski pretplati moderatore na ovu raspravu</value>
+  </data>
+  <data name="Discussion_Board_AutoSubscribeModeratorsToolTip" xml:space="preserve">
+    <value>Svi moderatori će biti pretplaćeni na ovu raspravu (Napomena: Ukoliko isključite automatsku pretplatu svi moderatori će biti odjavljeni s ove rasprave).</value>
+  </data>
+  <data name="Discussion_Message_AutoSubscribe" xml:space="preserve">
+    <value>Automatski me pretplati na ovu temu</value>
+  </data>
+  <data name="Discussion_Message_AutoSubscribeToolTip" xml:space="preserve">
+    <value>Biti će te pretplaćeni na ovu temu (Napomena: Ukoliko isključite automatsku pretplatu nećete primati poruke ostalih korisnika).</value>
+  </data>
+  <data name="Discussion_DailyReport_Title" xml:space="preserve">
+    <value>{0} dnevni izvještaj sa foruma  [{1}]</value>
+  </data>
+  <data name="Discussion_Board_Roles" xml:space="preserve">
+    <value>Role rasprave</value>
+  </data>
+  <data name="Discussion_Board_RolesToolTip" xml:space="preserve">
+    <value>Dopusti navedenim rolama pristup raspravi</value>
+  </data>
+  <data name="Discussion_BoardMembership_AccessNotAllowed" xml:space="preserve">
+    <value>Pristup nije dozvoljen ovom resursu.</value>
+  </data>
+  <data name="Discussion_Topic_ApprovalAlert" xml:space="preserve">
+    <value>Sve teme podliježu odobrenju administratora prije nego što budu javno objavljene.</value>
+  </data>
+  <data name="Discussion_Post_ApprovalAlert" xml:space="preserve">
+    <value>Svi odgovori podliježu odobrenju administratora prije nego što budu javno objavljeni.</value>
+  </data>
+  <data name="Discussion_DailyReport_ApproveTitle" xml:space="preserve">
+    <value>Neodobrene stavke</value>
+  </data>
+  <data name="Discussion_DailyReport_TopicCaption" xml:space="preserve">
+    <value>Tema</value>
+  </data>
+  <data name="Discussion_DailyReport_ApproveToolTip" xml:space="preserve">
+    <value>Klikni ovdje za odobrenje stavke.</value>
+  </data>
+  <data name="Discussion_DailyReport_AttentionTitle" xml:space="preserve">
+    <value>Stavke koje zahtijevaju pozornost administratora</value>
+  </data>
+  <data name="Discussion_DailyReport_BoardToolTip" xml:space="preserve">
+    <value>Klikni ovdje za pregled rasprave.</value>
+  </data>
+  <data name="Discussion_DailyReport_DeleteToolTip" xml:space="preserve">
+    <value>Klikni ovdje za brisanje stavke.</value>
+  </data>
+  <data name="Discussion_DailyReport_FooterNotification" xml:space="preserve">
+    <value>Ova poruka je poslana kao obavijest da gore navedne stavke zahtijevaju posebnu pozornost {0} tima.</value>
+  </data>
+  <data name="Discussion_DailyReport_NoApproveItems" xml:space="preserve">
+    <value>Nema neodobrenih stavki</value>
+  </data>
+  <data name="Discussion_DailyReport_NoAttentionItems" xml:space="preserve">
+    <value>Nema stavki koje zahtijevaju pozornost administratora</value>
+  </data>
+  <data name="Discussion_DailyReport_NoSpamItems" xml:space="preserve">
+    <value>Nema SPAM stavki</value>
+  </data>
+  <data name="Discussion_DailyReport_SnMessage_CC" xml:space="preserve">
+    <value>Ovo je kopija dnevnog izvještaja.</value>
+  </data>
+  <data name="Discussion_DailyReport_SpamTitle" xml:space="preserve">
+    <value>Stavke označene kao SPAM</value>
+  </data>
+  <data name="Discussion_DailyReport_SpamToolTip" xml:space="preserve">
+    <value>Klikni ovdje za prijavu SPAM stavke.</value>
+  </data>
+  <data name="Discussion_DailyReport_TopicMessageToolTip" xml:space="preserve">
+    <value>Klikni ovdje za pregled ili dodavanje nove poruke.</value>
+  </data>
+  <data name="Discussion_Message_Approved" xml:space="preserve">
+    <value>Poruka je odobrena.</value>
+  </data>
+  <data name="Discussion_Message_Deleted" xml:space="preserve">
+    <value>Poruka je obrisana.</value>
+  </data>
+  <data name="Discussion_Message_ReportedSpam" xml:space="preserve">
+    <value>Poruka je prijavljena kao SPAM.</value>
+  </data>
+  <data name="Discussion_Topic_Approved" xml:space="preserve">
+    <value>Tema je odobrena.</value>
+  </data>
+  <data name="Discussion_Topic_Deleted" xml:space="preserve">
+    <value>Tema je obrisana.</value>
+  </data>
+  <data name="Discussion_Topic_ReportedSpam" xml:space="preserve">
+    <value>Tema je prijavljena kao SPAM.</value>
+  </data>
+  <data name="Discussion_ReportPostReason" xml:space="preserve">
+    <value>Molimo navedite razlog</value>
+  </data>
+  <data name="Discussion_Reason" xml:space="preserve">
+    <value>Razlog</value>
+  </data>
+  <data name="Discussion_Topic_RelatedContent" xml:space="preserve">
+    <value>Povezane teme</value>
+  </data>
+  <data name="FileView_RelatedContent" xml:space="preserve">
+    <value>Povezane datoteke</value>
+  </data>
+  <data name="PhotoGallery_AlbumView_MyAlbums" xml:space="preserve">
+    <value>Moji foto albumi</value>
+  </data>
+  <data name="PhotoGallery_AlbumView_NewAlbums" xml:space="preserve">
+    <value>Novi foto albumi</value>
+  </data>
+  <data name="PhotoGallery_AlbumView_Albums" xml:space="preserve">
+    <value>Foto albumi</value>
+  </data>
+  <data name="WallNotes_NewCommentAdded" xml:space="preserve">
+    <value>Novi komentar je dodan na poruku na koju ste pretplaćeni.</value>
+  </data>
+  <data name="WallNotes_NewCommentClickToReply" xml:space="preserve">
+    <value>Klikni ovdje za dodavanje nove poruke.</value>
+  </data>
+  <data name="PhotoGallery_FileDelete_Tooltip" xml:space="preserve">
+    <value>Ukloniti datoteku</value>
+  </data>
+  <data name="PhotoGallery_FilePreview_Tooltip" xml:space="preserve">
+    <value>Pogledaj detalje i komentare datoteke</value>
+  </data>
+  <data name="FileView_Tags" xml:space="preserve">
+    <value>Tagovi</value>
+  </data>
+  <data name="FileGallery_AttachedFiles" xml:space="preserve">
+    <value>Privici</value>
+  </data>
+  <data name="Discussion_CloseTopicToolTip" xml:space="preserve">
+    <value>Zatvori temu</value>
+  </data>
+  <data name="Discussion_ReOpenTopicToolTip" xml:space="preserve">
+    <value>Ponovno otvori temu</value>
+  </data>
+  <data name="Discussion_Closed" xml:space="preserve">
+    <value>Zatvorena</value>
+  </data>
+  <data name="Discussion_ClosedToolTip" xml:space="preserve">
+    <value>Ova tema je zatvorena</value>
+  </data>
+  <data name="Discussion_RequestDeleteText" xml:space="preserve">
+    <value>Korisnik je predao zahtijev za brisanje ove poruke (Molim obrišite ovu poruku ukoliko je ta akcija dozvoljena)</value>
+  </data>
+  <data name="Discussion_DisapproveReportedPost" xml:space="preserve">
+    <value>Nemoj odobriti prijavljenu objavu</value>
+  </data>
+  <data name="Discussion_DisapproveReportedPostToolTip" xml:space="preserve">
+    <value>Nemoj odobriti prijavljenu objavu i smatraj ju kao poruku koja je uvredljivog sadržaja</value>
+  </data>
+  <data name="Discussion_RequestDelete_InProcess" xml:space="preserve">
+    <value>Zahtijev za brisanje se obrađuje ...</value>
+  </data>
+  <data name="Discussion_RequestDelete_InProcessToolTip" xml:space="preserve">
+    <value>Moderator foruma mora odobriti zahtijev za brisanje.</value>
+  </data>
+  <data name="Discussion_RequestDelete_NotApproved" xml:space="preserve">
+    <value>Zahtijev za brisanje nije odobren.</value>
+  </data>
+  <data name="Discussion_RequestDelete_NotApprovedToolTip" xml:space="preserve">
+    <value>Moderator foruma nije odobrio zahtijev za brisanje.</value>
+  </data>
+  <data name="Discussion_DailyReport_DeleteRequestTitle" xml:space="preserve">
+    <value>Stavke sa zahtijevom za brisanje</value>
+  </data>
+  <data name="Discussion_DailyReport_NoDeleteRequestItems" xml:space="preserve">
+    <value>Nema stavki sa zahtijevom za brisanje</value>
+  </data>
+  <data name="Discussion_Disapprove_Delete" xml:space="preserve">
+    <value>Nemoj odobriti brisanje</value>
+  </data>
+  <data name="Discussion_Disapprove_Delete_ToolTip" xml:space="preserve">
+    <value>Nemoj odobriti zahtijev za brisanje poruke</value>
+  </data>
+  <data name="Discussion_RequestDelete_NotApproved_ReasonNA" xml:space="preserve">
+    <value>Stavaka sa zahtijevom za brisanje je odbijena bez navedenog razloga (npr. odbijena je putem e-mail poruke)</value>
+  </data>
+  <data name="Discussion_CloseBoardToolTip" xml:space="preserve">
+    <value>Zatvori raspravu</value>
+  </data>
+  <data name="Discussion_ReOpenBoardToolTip" xml:space="preserve">
+    <value>Ponovno otvori raspravu</value>
+  </data>
+  <data name="Discussion_BoardClosedToolTip" xml:space="preserve">
+    <value>Ova rasprava je zatvorena</value>
+  </data>
+  <data name="FileView_DownloadVideo" xml:space="preserve">
+    <value>Klikni ovdje za preuzimanje</value>
+  </data>
+  <data name="FileView_ChangeThumbnail" xml:space="preserve">
+    <value>Promijeni umanjenu ikonu</value>
+  </data>
+  <data name="FileView_ReplaceExistingFile" xml:space="preserve">
+    <value>Zamijeni postojeću datoteku</value>
+  </data>
+  <data name="PeopleSearch_AddFriendConfirmation" xml:space="preserve">
+    <value>Korisnik {0} je uspješno dodan na vašu listu.</value>
+  </data>
+  <data name="PeopleSearch_InviteFriendConfirmation" xml:space="preserve">
+    <value>Pozivnica za korisnika {0} je uspješno poslana.</value>
+  </data>
+  <data name="Groups_GroupInfo_RequestWaiting" xml:space="preserve">
+    <value>Vaš zahtjev za članstvo u grupi se trenutno obrađuje</value>
+  </data>
+  <data name="PhotoGallery_PhotoListView_Comments" xml:space="preserve">
+    <value>Ostavite komentar</value>
+  </data>
+  <data name="Groups_DeleteMember" xml:space="preserve">
+    <value>Ukloni {0} iz groupe</value>
+  </data>
+  <data name="Friends_RemoveFriend" xml:space="preserve">
+    <value>Ukloni</value>
+  </data>
+  <data name="InvitationList_Approve" xml:space="preserve">
+    <value>Odobri</value>
+  </data>
+  <data name="Groups_GroupEdit_CategoryNote" xml:space="preserve">
+    <value>Napomena: Ukoliko odaberete kategoriju vezanu za neki jezik, tada će grupa biti vidljiva samo za taj jezik</value>
+  </data>
+  <data name="Discussion_Topic_Options" xml:space="preserve">
+    <value>Opcije</value>
+  </data>
+  <data name="Discussion_Topic_Options_ToolTip" xml:space="preserve">
+    <value>Opcije liste tema</value>
+  </data>
+  <data name="Discussion_Topic_SortNewTopicsOnTop" xml:space="preserve">
+    <value>Poredak: Nove teme na vrh</value>
+  </data>
+  <data name="Discussion_Topic_SortTopicsAlphabetically" xml:space="preserve">
+    <value>Poredak: Teme abecedno</value>
+  </data>
+  <data name="Discussion_Topic_SortUpdatedTopicsOnTop" xml:space="preserve">
+    <value>Poredak: Izmijenjene teme na vrh</value>
+  </data>
+  <data name="Discussion_PinItem" xml:space="preserve">
+    <value>Zakači poruku</value>
+  </data>
+  <data name="Discussion_UnPinItem" xml:space="preserve">
+    <value>Odkači poruku</value>
+  </data>
+  <data name="Discussion_Topic_SortHotTopicsOnTop" xml:space="preserve">
+    <value>Poredak: Vruće teme na vrh</value>
+  </data>
+  <data name="Discussion_Board_Empty" xml:space="preserve">
+    <value>Ne postoji niti jedna rasprava</value>
+  </data>
+  <data name="Discussion_Posts_Empty" xml:space="preserve">
+    <value>Ne postoji niti jedna poruka u temi</value>
+  </data>
+  <data name="Discussion_Topic_Empty" xml:space="preserve">
+    <value>Ne postoji niti jedna tema u raspravi</value>
+  </data>
+</root>
