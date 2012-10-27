@@ -1,0 +1,73 @@
+﻿<!--
+Filename: CaptionsGridWindow.xaml
+Version: 20121004
+-->
+  
+<clipflair:BaseWindow x:Class="ClipFlair.Windows.CaptionsGridWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008" d:DesignWidth="907" d:DesignHeight="587"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d"
+    xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk"  
+    xmlns:clipflair="clr-namespace:ClipFlair.Windows;assembly=ClipFlair"    
+    xmlns:float="clr-namespace:SilverFlow.Controls;assembly=SilverFlow.Controls"
+    xmlns:captions="clr-namespace:ClipFlair.CaptionsGrid;assembly=CaptionsGrid"
+   >
+
+  <!--<clipflair:BaseWindow.FrontContent>-->
+
+  <captions:CaptionsGrid Name="gridCaptions"
+                         HorizontalAlignment="Stretch" VerticalAlignment="Stretch"                         
+                         Time="{Binding Time, Mode=TwoWay}"
+                         CaptionStartTimeVisible="{Binding StartTimeVisible, Mode=TwoWay}"
+                         CaptionEndTimeVisible="{Binding EndTimeVisible, Mode=TwoWay}"
+                         CaptionDurationVisible="{Binding DurationVisible, Mode=TwoWay}"
+                         CaptionContentVisible="{Binding CaptionVisible, Mode=TwoWay}"
+                         CaptionAudioVisible="{Binding CaptionAudioVisible, Mode=TwoWay}"
+                         Captions="{Binding Path=Captions, RelativeSource={RelativeSource AncestorType=clipflair:CaptionsGridWindow}, Mode=TwoWay}"
+  />
+
+  <!--</clipflair:BaseWindow.FrontContent>-->
+
+  <clipflair:BaseWindow.PropertyItems>
+    
+ <!--
+    <StackPanel Orientation="Vertical">
+      <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Captions URL" Target="{Binding ElementName=edCaptionsURL}"/>
+      <TextBox Name="edCaptionsURL" Text="{Binding Source, Mode=TwoWay}" HorizontalAlignment="Stretch" />
+    </StackPanel>
+ -->
+
+    <StackPanel Orientation="Vertical">
+      <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Time:" Target="{Binding ElementName=edTime}" />
+      <TextBox Name="edTime" Text="{Binding Time, Mode=TwoWay}" /> 
+    </StackPanel>
+
+    <StackPanel Orientation="Horizontal">
+      <CheckBox Name="cbCaptionStartTimeVisible" IsChecked="{Binding StartTimeVisible, Mode=TwoWay}" />
+      <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Start Time visible" Target="{Binding ElementName=cbCaptionStartTimeVisible}"/>
+    </StackPanel>
+
+    <StackPanel Orientation="Horizontal">
+      <CheckBox Name="cbCaptionEndTimeVisible" IsChecked="{Binding EndTimeVisible, Mode=TwoWay}" />
+      <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="End Time visible" Target="{Binding ElementName=cbCaptionEndTimeVisible}"/>
+    </StackPanel>
+
+    <StackPanel Orientation="Horizontal">
+      <CheckBox Name="cbCaptionDurationVisible" IsChecked="{Binding DurationVisible, Mode=TwoWay}" />
+      <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Duration visible" Target="{Binding ElementName=cbCaptionDurationVisible}"/>
+    </StackPanel>
+
+    <StackPanel Orientation="Horizontal">
+      <CheckBox Name="cbCaptionContentVisible" IsChecked="{Binding CaptionVisible, Mode=TwoWay}" />
+      <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Content visible" Target="{Binding ElementName=cbCaptionContentVisible}"/>
+    </StackPanel>
+
+    <StackPanel Orientation="Horizontal">
+      <CheckBox Name="cbCaptionAudioVisible" IsChecked="{Binding CaptionAudioVisible, Mode=TwoWay}" />
+      <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Audio visible" Target="{Binding ElementName=cbCaptionAudioVisible}"/>
+    </StackPanel>
+
+  </clipflair:BaseWindow.PropertyItems>
+
+</clipflair:BaseWindow>

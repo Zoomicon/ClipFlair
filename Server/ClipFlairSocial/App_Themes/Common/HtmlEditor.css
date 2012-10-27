@@ -1,0 +1,11 @@
+﻿body
+{	
+	background-color: #fff !important;
+	background: none !important;
+}
+UL
+{
+	padding: 0px 0px 0px 40px;
+	margin: 13px 0px;
+	list-style-type: circle;
+}

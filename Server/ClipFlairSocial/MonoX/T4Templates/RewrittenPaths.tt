@@ -1,0 +1,170 @@
+﻿<#
+/*
+AspPathGuru Version 1.0.00
+
+Written by David Ebbo
+david.ebbo@microsoft.com
+http://twitter.com/davidebbo
+http://blogs.msdn.com/davidebb
+
+Related blog posts:
+http://blogs.msdn.com/davidebb/archive/2009/07/12/asppathguru-a-little-t4-love-for-asp-net-webforms.aspx
+
+Feel free to use and modify to fit your needs.
+
+This T4 template for ASP.NET WebForms apps creates some strongly typed constants that help eliminate
+the use of literal strings to refer to pages and user controls
+
+To use it, simply copy it to the root of your application.
+
+You will then be able to replace:
+    Control uc = LoadControl("~/UserControls/MyUserControl.ascx");
+By:
+    Control uc = LoadControl(Paths.UserControls.MyUserControl_ascx);
+
+This will give you intellisense and compile time checking that you are pointing where you meant to.
+
+KNOWN ISSUES:
+- This template works in Web Application but not Web Sites, since Web Sites don't support T4 processing
+
+HISTORY:
+
+1.0.00 (07-11-2009): the original version
+*/
+#>
+<#@ template language="C#v3.5" debug="true" hostspecific="true" #>
+<#@ assembly name="System.Xml" #>
+<#@ import namespace="System.Xml.XPath" #>
+<#@ import namespace="System.IO" #>
+<#@ import namespace="System.Text.RegularExpressions" #>
+using System;
+using System.Xml.XPath;
+using System.Web;
+
+<#
+Render();
+#>
+}
+<#
+PopIndent();
+#>
+}
+<#+
+static string RootFolder;
+static string defaultNamespace = "MonoSoftware.MonoX";
+
+void Render() {
+    RootFolder = new FileInfo(Host.TemplateFile).Directory.Parent.Parent.FullName;
+#>
+namespace <#= defaultNamespace #>
+{
+<#+
+PushIndent("    ");
+#>
+/// <summary>
+/// Strongly typed rewriten paths.
+/// </summary>
+public static class RewrittenPaths 
+{
+	static readonly XPathNavigator navigator;
+
+	static RewrittenPaths()
+	{
+		string vRoot = String.Empty;
+		if (HttpContext.Current != null && HttpContext.Current.Request != null)
+			vRoot = HttpContext.Current.Request.MapPath("~");
+		else 
+			//design mode
+			vRoot = "Portal";
+
+		XPathDocument document = new XPathDocument(String.Format("{0}\\web.config", vRoot));
+		navigator = document.CreateNavigator();
+	}
+	
+	static RewrittenPath GetRewrittenPathValue(string name)
+	{
+		navigator.MoveToRoot();
+		string url = string.Empty;
+        string urlPattern = string.Empty;
+        string defaultPage = string.Empty;
+		XPathNodeIterator iterator = navigator.Select(String.Format("configuration/MonoSoftware.Web/UrlRewriter/rewrite[@name = \"{0}\"]", name));
+		if (iterator.MoveNext())
+		{
+			urlPattern = iterator.Current.GetAttribute("urlPattern", String.Empty);
+            url = iterator.Current.GetAttribute("url", String.Empty);
+            defaultPage = iterator.Current.GetAttribute("defaultPage", String.Empty);
+		}
+		if (String.IsNullOrEmpty(urlPattern))
+		{
+			iterator = navigator.Select(String.Format("configuration/MonoSoftware.Web/UrlRewriter/if/rewrite[@name = \"{0}\"]", name));
+			if (iterator.MoveNext())
+			{
+                urlPattern = iterator.Current.GetAttribute("urlPattern", String.Empty);
+                url = iterator.Current.GetAttribute("url", String.Empty);
+                defaultPage = iterator.Current.GetAttribute("defaultPage", String.Empty);
+			}
+		}
+		if (String.IsNullOrEmpty(urlPattern))
+		{
+			throw new ApplicationException(String.Format("Can't find rewritten path where the unique name is '{0}'", name));
+		}
+		return new RewrittenPath(url, urlPattern, defaultPage);
+	}
+
+<#+
+	PushIndent("    ");
+    
+	XPathDocument document = new XPathDocument(String.Format("{0}\\web.config", RootFolder));
+	XPathNavigator navigator = document.CreateNavigator();
+	navigator.MoveToRoot();
+	ProcessIterator(navigator.Select("configuration/MonoSoftware.Web/UrlRewriter/rewrite"));
+	ProcessIterator(navigator.Select("configuration/MonoSoftware.Web/UrlRewriter/if/rewrite"));
+    
+    PopIndent();
+}
+
+void ProcessIterator(XPathNodeIterator iterator)
+{
+	while (iterator.MoveNext())
+	{
+		string name = iterator.Current.GetAttribute("name", String.Empty);
+		string rewrittenUrl = iterator.Current.GetAttribute("urlPattern", String.Empty);
+		if (String.IsNullOrEmpty(rewrittenUrl))
+		{
+			rewrittenUrl = iterator.Current.GetAttribute("url", String.Empty).Replace("^(.*)/", "~/").Replace(@"(\?.+)?$", String.Empty).TrimEnd('$');
+		}
+		if (String.IsNullOrEmpty(name))
+		{
+			name = rewrittenUrl.Replace("~/", String.Empty).TrimEnd('/');
+			if (name.Contains("/"))
+			{
+				continue;
+			}
+			if (String.IsNullOrEmpty(name))
+			{
+				name = "DefaultPage";
+			}
+			string[] arr = name.Split('-');
+            for (int i = 0; i < arr.Length; i++) arr[i] = arr[i][0].ToString().ToUpper() + arr[i].Substring(1);
+            name = String.Join(String.Empty, arr);
+#>
+/// <summary>
+/// '<#= name #>' rewriten path '<#= rewrittenUrl #>'.
+/// </summary>
+public static string <#= name #> { get { return "<#= rewrittenUrl #>"; } }
+<#+
+		}
+		else
+		{
+#>
+/// <summary>
+/// '<#= name #>' rewriten path '<#= rewrittenUrl #>'.
+/// </summary>
+public static RewrittenPath <#= name #> { get { return GetRewrittenPathValue("<#= name #>"); } }
+<#+
+		}
+	}
+}
+
+
+#>

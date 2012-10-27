@@ -1,0 +1,124 @@
+﻿<!--
+Project: ClipFlair (http://ClipFlair.codeplex.com)
+Filename: ActivityContainer.xaml
+Version: 20121004
+-->
+
+<UserControl x:Class="ClipFlair.Windows.ActivityContainer" 
+  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d" 
+  xmlns:d="http://schemas.microsoft.com/expression/blend/2008" d:DesignHeight="471" d:DesignWidth="776" 
+  xmlns:float="clr-namespace:SilverFlow.Controls;assembly=SilverFlow.Controls"
+  xmlns:zui="clr-namespace:FloatingWindowZUI;assembly=FloatingWindowZUI"
+  xmlns:clipflair="clr-namespace:ClipFlair.Windows"
+  xmlns:smf_captions="http://schemas.microsoft.com/smf/2010/xaml/captions" 
+  >
+  <!-- xmlns:smf_media="http://schemas.microsoft.com/smf/2010/xaml/media" -->
+
+  <UserControl.Resources>
+
+    <!-- TEST -->
+
+    <!-- <smf_media:MarkerResource Source="ExampleCaptions.xml" x:Key="Markers"/> -->
+
+    <smf_captions:CaptionRegion x:Key="Captions">
+      <smf_captions:CaptionRegion.Children>
+        <smf_captions:CaptionElement Begin="00:00:03" End="0:0:05" Content="Once upon a time there was a forest..." />
+        <smf_captions:CaptionElement Begin="00:0:06" End="0:0:08" Content="which looked just like every other forest." />
+        <smf_captions:CaptionElement Begin="0:0:12" End="0:0:14" Content="But it was not." />
+        <smf_captions:CaptionElement Begin="0:0:16" End="0:0:19" Content="It was inhabited by a very dangerous species." />
+        <smf_captions:CaptionElement />
+        <smf_captions:CaptionElement />
+        <smf_captions:CaptionElement />
+        <smf_captions:CaptionElement />
+        <smf_captions:CaptionElement />
+        <smf_captions:CaptionElement />
+        <smf_captions:CaptionElement />
+        <smf_captions:CaptionElement />
+      </smf_captions:CaptionRegion.Children>
+    </smf_captions:CaptionRegion>
+
+  </UserControl.Resources>
+
+  <Grid>
+    <Grid.RowDefinitions>
+      <RowDefinition Height="*"/>
+    </Grid.RowDefinitions>
+    <Grid.ColumnDefinitions>
+      <ColumnDefinition Width="*"/>
+    </Grid.ColumnDefinitions>
+
+    <zui:FloatingWindowHostZUI Name="zuiContainer" 
+                               Grid.Row="0" Grid.Column="0" 
+                               SnapinEnabled="True" 
+                               ShowMinimizedOnlyInIconbar="False">
+      <!-- ContentScale="1.0"-->
+
+      <zui:FloatingWindowHostZUI.Bar>
+        <TextBlock Text="Windows" VerticalAlignment="Center" />
+      </zui:FloatingWindowHostZUI.Bar>
+
+      <zui:FloatingWindowHostZUI.Background>
+        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+          <GradientStop Color="#FF00AEEF" Offset="0" />
+          <GradientStop Color="#FF89E0FF" Offset="1" />
+        </LinearGradientBrush>
+      </zui:FloatingWindowHostZUI.Background>
+
+      <!--<zui:FloatingWindowHostZUI.Windows>-->
+      <!--<float:FloatingWindowCollection>-->
+
+      <clipflair:MediaPlayerWindow
+        Source="http://video3.smoothhd.com.edgesuite.net/ondemand/Big%20Buck%20Bunny%20Adaptive.ism/Manifest"
+        Time="{Binding Time, Mode=TwoWay}"
+        Captions="{Binding Source={StaticResource Captions}}"
+        CaptionsVisible = "True"
+        Position="0,0" 
+        Width="600" Height="400" 
+        Title="Media Player" IconText="Media Player" Tag="MediaPlayer"
+        >
+        <!-- removed MinWidth,MinHeight, seems to disable resizing [maybe only if given after width,height, try it and also see if gets fixed when giving MaxWidth,MaxHeight] -->
+
+        <!--    <clipflair:MediaPlayerWindow.View>
+          <clipflair:MediaPlayerView VideoVisible="False" />
+        </clipflair:MediaPlayerWindow.View> -->
+
+      </clipflair:MediaPlayerWindow>
+
+      <clipflair:CaptionsGridWindow 
+        Captions="{Binding Source={StaticResource Captions}}"
+        Time="{Binding Time, Mode=TwoWay}"
+        Position="0,420"  
+        Width="600" Height="420" 
+        Title="Captions" IconText="Captions" Tag="Captions"
+        />
+
+      <clipflair:TextEditorWindow 
+        Position="620,0"
+        Width="650" Height="630" 
+        Title="Text Editor" IconText="Text Editor" Tag="TextEditor"
+        />
+
+      <clipflair:ImageWindow 
+        Source="http://clipflair.net/wp-content/themes/clipflair-theme/images/clipflair-logo.jpg" 
+        Position="820,740" 
+        Width="200" Height="100" 
+        Title="Image" IconText="Image" Tag="Image"
+        />
+
+      <!-- Test windows -->
+      <!--
+      <clipflair:TestWindow1 Position="0,0" />
+      <clipflair:TestWindow2 Position="150,0" />
+      <clipflair:TestWindow3 Position="300,0" />
+-->
+
+      <!--</float:FloatingWindowCollection>-->
+      <!--</zui:FloatingWindowHostZUI.Windows>-->
+
+    </zui:FloatingWindowHostZUI>
+
+  </Grid>
+
+</UserControl>

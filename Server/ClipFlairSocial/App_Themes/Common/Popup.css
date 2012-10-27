@@ -1,0 +1,372 @@
+﻿/* Popup screen styling - used mainly with Rad Window controls*/
+*  {
+padding : 0;
+margin : 0;
+}
+
+html
+{
+	margin: 0px;
+	height: 100%;
+	max-height:100%;
+	overflow: auto;
+}
+
+body {
+	margin: 0px;
+	height: 100%;
+	max-height:100%;
+	font: 11px Verdana, MS Sans Serif, Arial;
+	background-color: #f1f5f8;
+}
+
+.popupBox
+{
+	width: 100%;	
+	height: 100%;
+	color: #666;
+}
+
+.popupBox .header
+{
+	width: 100%;
+	position: fixed;
+	top: 0px; 
+	left: 0px;
+	background-image: url(img/Popup_top_bg.jpg);
+	background-repeat: repeat-x;
+	background-position: center;
+	height: 100px;
+}
+
+.popupBox .header .headerContent
+{
+	width: 95%;
+	padding: 12px 12px 12px 12px;
+	height: 100%;
+}
+
+.popupBox .header h2
+{
+	background-repeat: no-repeat;
+	font-size: 18px;
+	font-weight: bold;
+	margin: 0px;	
+	padding: 2px 0px 2px 30px;
+	color: #007694;
+}
+
+.popupBox .content
+{
+	width: 95%;
+	position: absolute;
+	top: 100px;
+	bottom: 49px;	
+	overflow-y: auto;
+	overflow-x: hidden;
+	padding: 12px 20px 12px 12px;
+	float: left;
+}
+.popupBox .content .RadComboBox
+{
+	border: solid 1px #666 !important;
+}
+.popupBox .content .separator
+{	
+	border-bottom: solid 1px #c9c8c8;
+	padding-bottom: 12px;
+	margin-bottom: 12px;
+	clear: both;	
+}
+
+.popupBox .footer
+{
+	background-image: url(img/Popup_bottom_bg.jpg);
+	background-repeat: repeat-x;
+	height: 38px;
+	width: 100%;
+	padding: 12px 0px 0px 12px;
+	position: fixed;
+	bottom: 0px;
+	left: 0px;
+	text-align: left;
+}
+
+
+.popupBox .blue-button
+{
+	width: 85px;
+	height: 22px;
+	font: normal 11px Arial, Verdana, Sans-serif;
+	color: #52534b;	
+	background: transparent url(Img/buttonBg.gif) no-repeat;
+	margin:2px;
+	display: block;
+	text-decoration: none;
+	float: right;
+	text-align: center;
+	line-height: 22px;
+}
+.popupBox .blue-button:hover
+{	
+	background: transparent url(Img/buttonBg_hover.gif) no-repeat;
+	line-height: 22px;
+}
+
+/* Popup screen styling end */
+
+/* input forms */
+.CssForm
+{
+	border: none;
+}
+
+.CssForm p, .CssForm dl dd
+{
+	clear: left;
+	margin: 0;
+	padding: 0;
+	padding-top: 5px;
+}
+
+.CssForm p label, .leftLabel, .CssForm dl dd label
+{
+	float: left;
+	width: 30%;
+	font:11px Verdana, Arial, sans-serif;
+}
+
+.rightLabel
+{
+	font-family: Verdana, MS Sans Serif, Arial;
+	font-size:11px;
+	font-weight: bold;
+	color: #007694;
+	padding-top: 4px;	
+	padding-left: 3px;
+	cursor: default;
+	width:65%;
+}
+
+.CssForm p INPUT, .InputText, .InputBox, .CssForm dl dd INPUT {
+	border: 1px solid #666666;	
+	background-color: White;
+	vertical-align: middle;
+	font-family: Verdana, MS Sans Serif, Arial;
+	font-size:11px;
+	color: #000000;
+	padding-top: 4px;	
+	padding-left: 3px;
+	cursor: default;
+	width:65%;
+	color: black;
+}
+
+/* fix for IE 7 checkbox issues */
+.CssForm INPUT[type="checkbox"], .CssForm dl dd INPUT[type="checkbox"]
+{
+	border: none !important;
+	width: auto !important;
+	height: auto !important;
+}
+
+.CssForm .innerCheckboxContent label
+{
+	width:70%;
+	text-align:left;
+}
+
+
+.CssForm p SELECT, .InputSelect, .CssForm dl dd SELECT
+{
+	border: 1px solid #666666;	
+	background-color: white;
+	vertical-align: middle;
+	font-family: Verdana, MS Sans Serif, Arial;
+	font-size:11px;
+	color: #000000;
+	padding-top: 4px;	
+	padding-left: 3px;
+	/* if set listboxes are not behaving correctly in ie height: 100px; */
+	cursor: default;
+	width:65%;
+}
+
+.CssForm p TEXTAREA, .CssForm dl dd TEXTAREA {
+	border: 1px solid #666666;	
+	background-color: white;
+	vertical-align: middle;
+	font-family: Verdana, MS Sans Serif, Arial;
+	font-size:11px;
+	color: #000000;
+	padding-top: 4px;	
+	padding-left: 3px;
+	cursor: default;
+	width:65%;
+	height:100px;
+}
+
+
+.RightButton
+{
+	float: right;
+}
+
+.ErrorMessage
+{
+	font:12px Verdana, Arial, sans-serif;
+	color: Red;
+	font-weight: bold;
+	
+}
+/* end input forms */
+
+/* DataList adapter for admin screens */
+.dlItems .AspNet-DataList table
+{
+	width: 100%;
+}
+
+/* Firefox does not gray out the disabled anchors by default */
+a[disabled], a:hover[disabled], li a[disabled], li a:hover[disabled], span[disabled]
+{
+	color: Gray;
+}
+
+/* ADMIN GENERAL */
+
+.searchinput{
+font-size:11px;
+color:#444444;
+background-color:#F0F0F0;
+border:1px solid #83919D;
+}
+.searchbutton{
+font-size:11px;
+font-weight:bold;
+color:#CC3300;
+background-color:#FFFFFF;
+border:1px solid #83919D;
+cursor:pointer;
+}
+.searchselect{
+font-size:11px;
+color:#444444;
+background-color:#F0F0F0;
+border:1px solid #83919D;
+}
+
+.input{
+font-size:11px;
+color:#444444;
+background-color:#F0F0F0;
+border:1px solid #83919D;
+}
+
+.select
+{
+  font-family: Verdana; 
+  font-size:11px;
+}
+
+.button{
+font-size:10px;
+font-weight:bold;
+color:Black;
+background-color:#FFFFFF;
+border:1px solid #83919D;
+cursor:pointer;
+}
+
+.AdminButton
+{
+	width: 85px;
+	height: 22px;
+	font: normal 11px Arial, Verdana, Sans-serif;
+	color: #52534b;
+	border: 0px;
+	background: transparent url(Img/buttonBg.gif) no-repeat;
+	margin:2px;
+}
+
+.AdminButton:hover
+{
+	width: 85px;
+	height: 22px;
+	font: normal 11px Arial, Verdana, Sans-serif;
+	color: #52534b;
+	border: 0px;
+	background: transparent url(Img/buttonBg_hover.gif) no-repeat;
+	margin:2px;
+}
+
+.AdminMidButton
+{
+	width: 190px;
+	height: 22px;
+	font: normal 11px Arial, Verdana, Sans-serif;
+	color: #52534b;
+	border: 0px;
+	background: transparent url(Img/buttonBgMid.gif) no-repeat;
+	margin:2px;
+}
+
+.AdminMidButton:hover
+{
+	width: 190px;
+	height: 22px;
+	font: normal 11px Arial, Verdana, Sans-serif;
+	color: #52534b;
+	border: 0px;
+	background: transparent url(Img/buttonBgMid_hover.gif) no-repeat;
+	margin:2px;
+}
+
+.AdminLargeButton
+{
+	width: 190px;
+	height: 22px;
+	font: normal 11px Arial, Verdana, Sans-serif;
+	color: #52534b;
+	border: 0px;
+	background: transparent url(Img/LargebuttonBg.gif) no-repeat;
+	margin:2px;
+}
+
+.AdminLargeButton:hover
+{
+	width: 190px;
+	height: 22px;
+	font: normal 11px Arial, Verdana, Sans-serif;
+	color: #52534b;
+	border: 0px;
+	background: transparent url(Img/LargebuttonBg_hover.gif) no-repeat;
+	margin:2px;
+}
+/* Admin general end */
+
+/* Custom panel heights and icons for popup content area */
+
+.friendListAdminHeader
+{
+	background-image: url(img/Friend_icon.png);
+}
+
+.toolIcon
+{
+	background-image: url(img/tools.png);
+}
+
+/* End custom panel heights and icons */
+
+
+.admin-page UL
+{
+    margin: 0px !important;
+    padding: 0px 0px 0px 20px !important;    
+}
+.admin-page UL LI 
+{
+    padding: 5px 0px !important;
+    margin: 0px !important;
+}

@@ -1,0 +1,52 @@
+<div class="news">
+    <table cellpadding="0" cellspacing="0" width="100%">
+        <tr>
+            <td class="news-top">
+                <div class="news-top-content">
+                    <h2><a href='<# NewsReadMoreLink #>' title='<# NewsTitle #>'><# NewsTitle #></a></h2>
+                    <div class="news-info">
+                        #if( $UserNameVisible )
+                        <# NewsUsernameTitle #> <a href="<# ProfileUrl #>" title="<# NewsUsername #>"><# NewsUsername #></a>
+                        #end
+                        | <# NewsCategoryTitle #> <# NewsCategory #>
+                        <# Rating #>
+                    </div>
+                    <a href='<# NewsReadMoreLink #>' title='<# NewsReadMoreTitle #>' class="read-more">
+                        <font><# NewsReadMoreTitle #></font>
+                    </a>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td class="news-middle">
+                <div class="news-middle-content">
+                    <p>
+                        <# NewsContent #>
+                    </p>
+                    <div class="news-info" style="margin-bottom: 10px;">
+                        <div style="float: left;">
+                            <# NewsPublishStartDateTitle #>&nbsp;<span title="<# NewsPublishStartDateToolTip #>"><# NewsPublishStartDate #></span>
+                            <# NewsPublishEndDateTitle #>&nbsp;<span title="<# NewsPublishEndDateToolTip #>"><# NewsPublishEndDate #></span>
+                        </div>
+                        <div style="float: right;">
+                            <# TellAFriend #>&nbsp;<# NewsRevisionTitle #> <span><# NewsRevision #></span> |
+                            <font title="<# NewsViewCountToolTip #>"><# NewsViewCountTitle #></font> <span title="<# NewsViewCountToolTip #>"><# NewsViewCount #></span>
+                        </div>
+                    </div>
+                </div>
+            </td>
+        </tr>
+        #if ( $EditVisible )
+        <tr>
+            <td class="news-middle">
+                <div class="news-middle-content news-info">
+                    <a href="<# EditCategoriesUrl #>" title="<# EditCategoriesToolTip #>"><# EditCategoriesText #></a>&nbsp;<a href="<# EditNewsUrl #>" title="<# EditNewsToolTip #>"><# EditNewsText #></a>
+                </div>
+            </td>
+        </tr>
+        #end
+        <tr>
+            <td class="news-bottom"><div class="news-bottom-content"></div></td>
+        </tr>
+    </table>
+</div>

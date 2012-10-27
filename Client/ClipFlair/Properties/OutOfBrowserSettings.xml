@@ -1,0 +1,12 @@
+<OutOfBrowserSettings ShortName="ClipFlair" EnableGPUAcceleration="True" ShowInstallMenuItem="True">
+  <OutOfBrowserSettings.Blurb>ClipFlair - Foreign Language Learning through Interactive Captioning and Revoicing of Clips</OutOfBrowserSettings.Blurb>
+  <OutOfBrowserSettings.WindowSettings>
+    <WindowSettings Title="ClipFlair Application" />
+  </OutOfBrowserSettings.WindowSettings>
+  <OutOfBrowserSettings.Icons>
+    <Icon Size="16,16">Images/clipflair_logo03_16x16.png</Icon>
+    <Icon Size="32,32">Images/clipflair_logo03_32x32.png</Icon>
+    <Icon Size="48,48">Images/clipflair_logo03_48x48.png</Icon>
+    <Icon Size="128,128">Images/clipflair_logo03_128x128.png</Icon>
+  </OutOfBrowserSettings.Icons>
+</OutOfBrowserSettings>

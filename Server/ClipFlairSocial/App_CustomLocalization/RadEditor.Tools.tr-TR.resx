@@ -1,0 +1,456 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="ReservedResource" xml:space="preserve">
+    <value>Lütfen bu diziyi silmeyiniz.RadEditor, App_GlobalResources içerisinde dış (external ) bir resource dosyası olup olmadığını bilmelidir.</value>
+  </data>
+  <data name="AboutDialog" xml:space="preserve">
+    <value> RadEditor Hakkında</value>
+  </data>
+  <data name="AbsolutePosition" xml:space="preserve">
+    <value>Kalıcı KOnumu Belirle</value>
+  </data>
+  <data name="AjaxSpellCheck" xml:space="preserve">
+    <value>AJAX Spellchecker</value>
+  </data>
+  <data name="ApplyClass" xml:space="preserve">
+    <value>CSS Class'ı Uygula</value>
+  </data>
+  <data name="BackColor" xml:space="preserve">
+    <value>Arkaplan (Background) Rengi</value>
+  </data>
+  <data name="Bold" xml:space="preserve">
+    <value>Kalın</value>
+  </data>
+  <data name="ConvertToLower" xml:space="preserve">
+    <value>Küçük harfe çevir</value>
+  </data>
+  <data name="ConvertToUpper" xml:space="preserve">
+    <value>Büyük harfe çevir</value>
+  </data>
+  <data name="Copy" xml:space="preserve">
+    <value>Kopyala</value>
+  </data>
+  <data name="Cut" xml:space="preserve">
+    <value>Kes</value>
+  </data>
+  <data name="DecreaseSize" xml:space="preserve">
+    <value>Boyutu küçült</value>
+  </data>
+  <data name="DeleteCell" xml:space="preserve">
+    <value>Hücreyi Sil</value>
+  </data>
+  <data name="DeleteColumn" xml:space="preserve">
+    <value>Kolonu Sil</value>
+  </data>
+  <data name="DeleteRow" xml:space="preserve">
+    <value>Satırı Sil</value>
+  </data>
+  <data name="DeleteTable" xml:space="preserve">
+    <value>Tabloyu Sil</value>
+  </data>
+  <data name="DocumentManager" xml:space="preserve">
+    <value>Doküman Yöneticisi</value>
+  </data>
+  <data name="FindAndReplace" xml:space="preserve">
+    <value>Bul ve Değiştir</value>
+  </data>
+  <data name="FlashManager" xml:space="preserve">
+    <value>Flash Yöneticisi</value>
+  </data>
+  <data name="FontName" xml:space="preserve">
+    <value>Font Adı</value>
+  </data>
+  <data name="FontSize" xml:space="preserve">
+    <value>Boyut</value>
+  </data>
+  <data name="ForeColor" xml:space="preserve">
+    <value>Önplan (Foreground) Rengi</value>
+  </data>
+  <data name="FormatBlock" xml:space="preserve">
+    <value>Paragraf Stili</value>
+  </data>
+  <data name="FormatCodeBlock" xml:space="preserve">
+    <value>Kod Bloğunu Formatla</value>
+  </data>
+  <data name="FormatStripper" xml:space="preserve">
+    <value>Format Ayracı  (Stripper)</value>
+  </data>
+  <data name="Help" xml:space="preserve">
+    <value>Yardım</value>
+  </data>
+  <data name="ImageManager" xml:space="preserve">
+    <value>İmge Yöneticisi</value>
+  </data>
+  <data name="ImageMapDialog" xml:space="preserve">
+    <value>İmge Map Editörü</value>
+  </data>
+  <data name="IncreaseSize" xml:space="preserve">
+    <value>Boyutu Büyüt</value>
+  </data>
+  <data name="Indent" xml:space="preserve">
+    <value>İç Boşluk (Indent)</value>
+  </data>
+  <data name="InsertAnchor" xml:space="preserve">
+    <value>Çapa (Anchor) Yerleştir </value>
+  </data>
+  <data name="InsertColumnLeft" xml:space="preserve">
+    <value>Sola Kolon Ekle</value>
+  </data>
+  <data name="InsertColumnRight" xml:space="preserve">
+    <value>Sağa Kolon Ekle</value>
+  </data>
+  <data name="InsertCustomLink" xml:space="preserve">
+    <value>Özelleştirilmiş Linkler</value>
+  </data>
+  <data name="InsertDate" xml:space="preserve">
+    <value>Tarih Ekle</value>
+  </data>
+  <data name="InsertEmailLink" xml:space="preserve">
+    <value>E-posta Linki Ekle</value>
+  </data>
+  <data name="InsertFormButton" xml:space="preserve">
+    <value>Buton Ekle</value>
+  </data>
+  <data name="InsertFormCheckbox" xml:space="preserve">
+    <value>Onay Kutusu Ekle</value>
+  </data>
+  <data name="InsertFormElement" xml:space="preserve">
+    <value>Form Bileşeni Ekle</value>
+  </data>
+  <data name="InsertFormForm" xml:space="preserve">
+    <value>Form Ekle</value>
+  </data>
+  <data name="InsertFormHidden" xml:space="preserve">
+    <value>Gizli Bileşen Ekle</value>
+  </data>
+  <data name="InsertFormPassword" xml:space="preserve">
+    <value>Şifre Ekle</value>
+  </data>
+  <data name="InsertFormRadio" xml:space="preserve">
+    <value>Radyo Butonu Ekle</value>
+  </data>
+  <data name="InsertFormReset" xml:space="preserve">
+    <value>Reset Ekle</value>
+  </data>
+  <data name="InsertFormSelect" xml:space="preserve">
+    <value>Seç Ekle</value>
+  </data>
+  <data name="InsertFormSubmit" xml:space="preserve">
+    <value>Gönder (Submit) Ekle</value>
+  </data>
+  <data name="InsertFormText" xml:space="preserve">
+    <value>Text Kutusu Ekle</value>
+  </data>
+  <data name="InsertFormTextarea" xml:space="preserve">
+    <value>Text Alanı Ekle</value>
+  </data>
+  <data name="InsertGroupbox" xml:space="preserve">
+    <value>Grup Kutusu Ekle</value>
+  </data>
+  <data name="InsertHorizontalRule" xml:space="preserve">
+    <value>Yatay Cetvel</value>
+  </data>
+  <data name="InsertOrderedList" xml:space="preserve">
+    <value>Numaralandırılmış Liste</value>
+  </data>
+  <data name="InsertParagraph" xml:space="preserve">
+    <value>Yeni Paragraf</value>
+  </data>
+  <data name="InsertRowAbove" xml:space="preserve">
+    <value>Üste Satır Ekle</value>
+  </data>
+  <data name="InsertRowBelow" xml:space="preserve">
+    <value>Alta Satır Ekle</value>
+  </data>
+  <data name="InsertSnippet" xml:space="preserve">
+    <value>Kod Parçası Ekle</value>
+  </data>
+  <data name="InsertSymbol" xml:space="preserve">
+    <value>Sembol Ekle</value>
+  </data>
+  <data name="InsertTable" xml:space="preserve">
+    <value>Tablo Ekle</value>
+  </data>
+  <data name="InsertTime" xml:space="preserve">
+    <value>Zaman Ekle</value>
+  </data>
+  <data name="InsertUnorderedList" xml:space="preserve">
+    <value>Noktalı (Bullet) Liste</value>
+  </data>
+  <data name="Italic" xml:space="preserve">
+    <value>İtalik</value>
+  </data>
+  <data name="JustifyCenter" xml:space="preserve">
+    <value>Merkeze Yerleştir</value>
+  </data>
+  <data name="JustifyFull" xml:space="preserve">
+    <value>Hizala</value>
+  </data>
+  <data name="JustifyLeft" xml:space="preserve">
+    <value>Sola Daya</value>
+  </data>
+  <data name="JustifyNone" xml:space="preserve">
+    <value>Yerlrştirmeyi Kaldır</value>
+  </data>
+  <data name="JustifyRight" xml:space="preserve">
+    <value>Sağa Daya</value>
+  </data>
+  <data name="LinkManager" xml:space="preserve">
+    <value>Hiperlink Yöneticisi</value>
+  </data>
+  <data name="MediaManager" xml:space="preserve">
+    <value>Medya Yöneticisi</value>
+  </data>
+  <data name="MergeColumns" xml:space="preserve">
+    <value>Yatay Olarak Hcreleri Birleştir</value>
+  </data>
+  <data name="MergeRows" xml:space="preserve">
+    <value>Dikey Olarak Hcreleri Birleştir</value>
+  </data>
+  <data name="ModuleManager" xml:space="preserve">
+    <value>Modül Yöneticisi</value>
+  </data>
+  <data name="Outdent" xml:space="preserve">
+    <value>Outdent</value>
+  </data>
+  <data name="PageProperties" xml:space="preserve">
+    <value>Sayfa Özellikleri</value>
+  </data>
+  <data name="Paste" xml:space="preserve">
+    <value>Yapıştır</value>
+  </data>
+  <data name="PasteAsHtml" xml:space="preserve">
+    <value>Html Olarak Yapıştır</value>
+  </data>
+  <data name="PasteFromWord" xml:space="preserve">
+    <value>Wordden Yapıştır</value>
+  </data>
+  <data name="PasteFromWordNoFontsNoSizes" xml:space="preserve">
+    <value>Wordden Yapıştır, font özelliklerini hariç tut</value>
+  </data>
+  <data name="PastePlainText" xml:space="preserve">
+    <value>Düz Textten Kopyala</value>
+  </data>
+  <data name="PasteStrip" xml:space="preserve">
+    <value>Yapıştırma Seçenekleri</value>
+  </data>
+  <data name="Print" xml:space="preserve">
+    <value>Yazdır</value>
+  </data>
+  <data name="RealFontSize" xml:space="preserve">
+    <value>Gerçek font büyüklüğü</value>
+  </data>
+  <data name="Redo" xml:space="preserve">
+    <value>Redo</value>
+  </data>
+  <data name="RepeatLastCommand" xml:space="preserve">
+    <value>Son Komutu Tekrarla</value>
+  </data>
+  <data name="SelectAll" xml:space="preserve">
+    <value>Tümünü Seç</value>
+  </data>
+  <data name="SetCellProperties" xml:space="preserve">
+    <value>Hücre Özellikleri</value>
+  </data>
+  <data name="SetImageProperties" xml:space="preserve">
+    <value>Özellikler...</value>
+  </data>
+  <data name="SetLinkProperties" xml:space="preserve">
+    <value>Özellikler...</value>
+  </data>
+  <data name="SetTableProperties" xml:space="preserve">
+    <value>Tablo Özellikleri</value>
+  </data>
+  <data name="SpellCheck" xml:space="preserve">
+    <value>Spellchecker</value>
+  </data>
+  <data name="SplitCell" xml:space="preserve">
+    <value>Hücreleri Ayır</value>
+  </data>
+  <data name="StrikeThrough" xml:space="preserve">
+    <value>Strikethrough</value>
+  </data>
+  <data name="StripAll" xml:space="preserve">
+    <value>Tüm Formatlamaları İptal Et</value>
+  </data>
+  <data name="StripCss" xml:space="preserve">
+    <value>Css Formatlamalarını  İptal Et</value>
+  </data>
+  <data name="StripFont" xml:space="preserve">
+    <value>Font Formatlamalarını  İptal Et</value>
+  </data>
+  <data name="StripSpan" xml:space="preserve">
+    <value>Span Formatlamalarını  İptal Et</value>
+  </data>
+  <data name="StripWord" xml:space="preserve">
+    <value>Word Formatlamalarını  İptal Et</value>
+  </data>
+  <data name="StyleBuilder" xml:space="preserve">
+    <value>Stil (Style) Builder</value>
+  </data>
+  <data name="Subscript" xml:space="preserve">
+    <value>Subscript</value>
+  </data>
+  <data name="Superscript" xml:space="preserve">
+    <value>SuperScript</value>
+  </data>
+  <data name="TableWizard" xml:space="preserve">
+    <value>Tablo Sihirbazı</value>
+  </data>
+  <data name="TemplateManager" xml:space="preserve">
+    <value>Şablon Yöneticisi</value>
+  </data>
+  <data name="ToggleDocking" xml:space="preserve">
+    <value>Tüm Araççubuklarını/Modülleri Gizle (Dock)</value>
+  </data>
+  <data name="ToggleScreenMode" xml:space="preserve">
+    <value>Tam Ekran Moduna Geç</value>
+  </data>
+  <data name="ToggleTableBorder" xml:space="preserve">
+    <value>Sınır Göster/Gizle</value>
+  </data>
+  <data name="Underline" xml:space="preserve">
+    <value>Altçizgi</value>
+  </data>
+  <data name="Undo" xml:space="preserve">
+    <value>Undo</value>
+  </data>
+  <data name="Unlink" xml:space="preserve">
+    <value>Link Kaldır</value>
+  </data>
+  <data name="Zoom" xml:space="preserve">
+    <value>Yaklaştır (Zoom)</value>
+  </data>
+  <data name="ImageEditor" xml:space="preserve">
+    <value>İmge Edidötü</value>
+  </data>
+  <data name="SilverlightManager" xml:space="preserve">
+    <value>Silverlight Yöneticisi</value>
+  </data>
+  <data name="TrackChangesDialog" xml:space="preserve">
+    <value>Değişiklikleri İzle</value>
+  </data>
+  <data name="XhtmlValidator" xml:space="preserve">
+    <value>XHTML  Geçerleyici(Validator)</value>
+  </data>
+  <data name="SplitCellHorizontal" xml:space="preserve">
+    <value>Hücreleri Yatay Olarak Ayır</value>
+  </data>
+</root>

@@ -1,0 +1,47 @@
+﻿<!-- 
+Filename: Generic.xaml
+Version: 20120918
+-->
+
+<ResourceDictionary
+ xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+ xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+ xmlns:input="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Input.Toolkit"
+ xmlns:audio="clr-namespace:ClipFlair.AudioRecorder;assembly=AudioRecorder" 
+ >
+
+  <DataTemplate x:Key="StartTimeCellTemplate">
+    <TextBlock Margin="4" Text="{Binding Begin, StringFormat='hh\\:mm\\:ss\\.FFF', Mode=TwoWay}" /> <!-- can use .fff to always show all digits, don't use .fFF has bug at parsing new values -->
+  </DataTemplate>
+
+  <DataTemplate x:Key="StartTimeCellEditTemplate">
+    <TextBox Margin="4" Text="{Binding Begin, StringFormat='hh\\:mm\\:ss\\.FFF', Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=true}" />
+    <!--<input:TimeUpDown Format="hh:mm:ss" Value="{Binding Begin, Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=true}" />-->
+  </DataTemplate>
+
+  <DataTemplate x:Key="EndTimeCellTemplate">
+    <TextBlock Margin="4" Text="{Binding End, StringFormat='hh\\:mm\\:ss\\.FFF'}" />
+  </DataTemplate>
+
+  <DataTemplate x:Key="EndTimeCellEditTemplate">
+    <TextBox Margin="4" Text="{Binding End, StringFormat='hh\\:mm\\:ss\\.FFF', Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=true}" />
+    <!--<input:TimeUpDown Format="hh:mm:ss" Minimum="{Binding Begin}"  Value="{Binding End, Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=true}" />-->
+  </DataTemplate>
+
+  <DataTemplate x:Key="DurationCellTemplate">
+    <TextBlock Margin="4" Text="{Binding Duration, StringFormat='hh\\:mm\\:ss\\.FFF'}" />
+  </DataTemplate>
+
+  <DataTemplate x:Key="ContentCellTemplate">
+    <TextBlock Margin="4" Text="{Binding Content}" />
+  </DataTemplate>
+
+  <DataTemplate x:Key="ContentCellEditTemplate">
+    <TextBox Margin="4" AcceptsReturn="True" Text="{Binding Content, Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=true}" />
+  </DataTemplate>
+
+  <DataTemplate x:Key="AudioCellTemplate">
+    <audio:AudioRecorderControl />
+  </DataTemplate>
+
+</ResourceDictionary>

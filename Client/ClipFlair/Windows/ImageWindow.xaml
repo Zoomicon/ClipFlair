@@ -1,0 +1,34 @@
+﻿<!--
+Filename: ImageWindow.xaml
+Version: 20121004
+-->
+
+<clipflair:BaseWindow x:Class="ClipFlair.Windows.ImageWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008" d:DesignWidth="907" d:DesignHeight="587"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d"
+    xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk"  
+    xmlns:clipflair="clr-namespace:ClipFlair.Windows;assembly=ClipFlair"    
+    >
+
+  <!--<clipflair:BaseWindow.FrontContent>-->
+  
+  <Image Name="imgContent"
+         HorizontalAlignment="Stretch" VerticalAlignment="Stretch" 
+         Source="{Binding Source, Mode=OneWay}"
+         Stretch="Uniform"
+         /> <!-- Must not use "TwoWay" binding at Source property, since "Source" is in fact of type "ImageSource", not "Uri" -->
+  
+  <!--</clipflair:BaseWindow.FrontContent>-->
+
+  <clipflair:BaseWindow.PropertyItems>
+
+    <StackPanel Orientation="Vertical">
+      <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Image URL" Target="{Binding ElementName=edImageURL}"/>
+      <TextBox Name="edImageURL" Text="{Binding Source, Mode=TwoWay}" HorizontalAlignment="Stretch" />
+    </StackPanel>
+
+  </clipflair:BaseWindow.PropertyItems>
+
+</clipflair:BaseWindow>
