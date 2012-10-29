@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: MediaPlayer.cs
-//Version: 20121005
+//Version: 20121029
 
 using System;
 using System.Collections.Generic;
@@ -87,8 +87,7 @@ namespace ClipFlair.MediaPlayer
     public static readonly DependencyProperty SourceProperty =
         DependencyProperty.Register("Source", typeof(Uri), typeof(MediaPlayer),
             new FrameworkPropertyMetadata((Uri)null,
-                FrameworkPropertyMetadataOptions.None,
-                new PropertyChangedCallback(OnSourceChanged)));
+            new PropertyChangedCallback(OnSourceChanged)));
 
     /// <summary>
     /// Gets or sets the Source property.
@@ -170,8 +169,7 @@ namespace ClipFlair.MediaPlayer
     public static readonly DependencyProperty TimeProperty =
         DependencyProperty.Register("Time", typeof(TimeSpan), typeof(MediaPlayer),
             new FrameworkPropertyMetadata(TimeSpan.Zero,
-                FrameworkPropertyMetadataOptions.None,
-                new PropertyChangedCallback(OnTimeChanged)));
+            new PropertyChangedCallback(OnTimeChanged)));
 
     /// <summary>
     /// Gets or sets the Time property.
@@ -212,8 +210,7 @@ namespace ClipFlair.MediaPlayer
     public static readonly DependencyProperty CaptionsVisibleProperty =
         DependencyProperty.Register("CaptionsVisible", typeof(bool), typeof(MediaPlayer),
             new FrameworkPropertyMetadata(false,
-                FrameworkPropertyMetadataOptions.None,
-                new PropertyChangedCallback(OnCaptionsVisibleChanged)));
+            new PropertyChangedCallback(OnCaptionsVisibleChanged)));
 
     /// <summary>
     /// Gets or sets the CaptionsVisible property.
@@ -253,8 +250,7 @@ namespace ClipFlair.MediaPlayer
     public static readonly DependencyProperty VideoVisibleProperty =
         DependencyProperty.Register("VideoVisible", typeof(bool), typeof(MediaPlayer),
             new FrameworkPropertyMetadata(true,
-                FrameworkPropertyMetadataOptions.None,
-                new PropertyChangedCallback(OnVideoVisibleChanged)));
+            new PropertyChangedCallback(OnVideoVisibleChanged)));
 
     /// <summary>
     /// Gets or sets the VideoVisible property.
@@ -295,8 +291,7 @@ namespace ClipFlair.MediaPlayer
     public static readonly DependencyProperty ConsoleVisibleProperty =
         DependencyProperty.Register("ConsoleVisible", typeof(bool), typeof(MediaPlayer),
             new FrameworkPropertyMetadata(false,
-                FrameworkPropertyMetadataOptions.None,
-                new PropertyChangedCallback(OnConsoleVisibleChanged)));
+            new PropertyChangedCallback(OnConsoleVisibleChanged)));
 
     /// <summary>
     /// Gets or sets the ConsoleVisible property.
@@ -345,8 +340,7 @@ namespace ClipFlair.MediaPlayer
     public static readonly DependencyProperty GraphVisibleProperty =
         DependencyProperty.Register("GraphVisible", typeof(bool), typeof(MediaPlayer),
             new FrameworkPropertyMetadata(false,
-                FrameworkPropertyMetadataOptions.None,
-                new PropertyChangedCallback(OnGraphVisibleChanged)));
+            new PropertyChangedCallback(OnGraphVisibleChanged)));
 
     /// <summary>
     /// Gets or sets the GraphVisible property
@@ -386,8 +380,7 @@ namespace ClipFlair.MediaPlayer
     public static readonly DependencyProperty FullScreenButtonVisibleProperty =
         DependencyProperty.Register("FullScreenButtonVisible", typeof(bool), typeof(MediaPlayer),
             new FrameworkPropertyMetadata(true,
-                FrameworkPropertyMetadataOptions.None,
-                new PropertyChangedCallback(OnFullScreenButtonVisibleChanged)));
+            new PropertyChangedCallback(OnFullScreenButtonVisibleChanged)));
 
     /// <summary>
     /// Gets or sets the FullScreenButtonVisible property.
@@ -428,8 +421,7 @@ namespace ClipFlair.MediaPlayer
     public static readonly DependencyProperty SlowMotionButtonVisibleProperty =
         DependencyProperty.Register("SlowMotionButtonVisible", typeof(bool), typeof(MediaPlayer),
             new FrameworkPropertyMetadata(true,
-                FrameworkPropertyMetadataOptions.None,
-                new PropertyChangedCallback(OnSlowMotionButtonVisibleChanged)));
+            new PropertyChangedCallback(OnSlowMotionButtonVisibleChanged)));
 
     /// <summary>
     /// Gets or sets the SlowMotionButtonVisible property.
@@ -470,8 +462,7 @@ namespace ClipFlair.MediaPlayer
     public static readonly DependencyProperty ReplayButtonVisibleProperty =
         DependencyProperty.Register("ReplayButtonVisible", typeof(bool), typeof(MediaPlayer),
             new FrameworkPropertyMetadata(true,
-                FrameworkPropertyMetadataOptions.None,
-                new PropertyChangedCallback(OnReplayButtonVisibleChanged)));
+            new PropertyChangedCallback(OnReplayButtonVisibleChanged)));
 
     /// <summary>
     /// Gets or sets the ReplayButtonVisible property.
@@ -512,8 +503,7 @@ namespace ClipFlair.MediaPlayer
     public static readonly DependencyProperty PlaylistButtonVisibleProperty =
         DependencyProperty.Register("PlaylistButtonVisible", typeof(bool), typeof(MediaPlayer),
             new FrameworkPropertyMetadata(true,
-                FrameworkPropertyMetadataOptions.None,
-                new PropertyChangedCallback(OnPlaylistButtonVisibleChanged)));
+            new PropertyChangedCallback(OnPlaylistButtonVisibleChanged)));
 
     /// <summary>
     /// Gets or sets the PlaylistButtonVisible property.
@@ -554,8 +544,7 @@ namespace ClipFlair.MediaPlayer
     public static readonly DependencyProperty Captions1Property =
         DependencyProperty.Register("Captions1", typeof(CaptionRegion), typeof(MediaPlayer),
             new FrameworkPropertyMetadata(null,
-                FrameworkPropertyMetadataOptions.None,
-                new PropertyChangedCallback(OnCaptions1Changed)));
+            new PropertyChangedCallback(OnCaptions1Changed)));
 
     /// <summary>
     /// Gets or sets the Captions1 property.
