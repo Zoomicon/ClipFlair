@@ -1,7 +1,7 @@
 ﻿<!-- 
 Project: ClipFlair (http://ClipFlair.codeplex.com)
 Filename: TextEditorWindow.xaml.cs
-Version: 20121004
+Version: 20121029
 -->
   
 <clipflair:BaseWindow x:Class="ClipFlair.Windows.TextEditorWindow"
@@ -12,6 +12,7 @@ Version: 20121004
     xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk"  
     xmlns:clipflair="clr-namespace:ClipFlair.Windows;assembly=ClipFlair"    
     xmlns:text="clr-namespace:SilverTextEditor;assembly=SilverTextEditor"
+    Width="650" Height="630"                      
     >
 
   <!--<clipflair:BaseWindow.FrontContent>-->
