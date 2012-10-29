@@ -25,7 +25,7 @@
                             <asp:LinkButton ID="btnNewEvent" runat="server" CssClass="add-new-event"></asp:LinkButton>
                         </asp:PlaceHolder>
                         <div style="clear:both">
-                            <telerik:RadCalendar ID="calEvent" runat="server" Skin="WebBlue">
+                            <telerik:RadCalendar ID="calEvent" runat="server" Skin="Default">
                             </telerik:RadCalendar>
                         </div>
                     </td>
@@ -33,7 +33,7 @@
                         <div>
                             <telerik:RadScheduler ID="schEvent" runat="server" Height="100%"
                             DataKeyField="Id" DataStartField="StartTime" DataEndField="EndTime" DataSubjectField="Title" DataDescriptionField="Description"
-                            Skin="Vista" CssClass="event-scheduler" SelectedView="WeekView">
+                            Skin="Default" CssClass="event-scheduler" SelectedView="WeekView">
                             </telerik:RadScheduler>
                         </div>
                     </td>

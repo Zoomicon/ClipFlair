@@ -3,7 +3,7 @@
 <%@ Import Namespace="MonoSoftware.MonoX.Resources" %>
 
 <telerik:RadGrid ID="radMail" ValidationSettings-ValidationGroup="MessageGrid" runat="server" Width="99%" PageSize="10" 
-    AllowSorting="True" Skin="WebBlue" AllowMultiRowSelection="False" AllowPaging="True" AllowCustomPaging="True" 
+    AllowSorting="True" Skin="Default" AllowMultiRowSelection="False" AllowPaging="True" AllowCustomPaging="True" 
     ShowGroupPanel="false" GridLines="None" AutoGenerateColumns="False" OnItemDataBound="radMail_ItemDataBound"    
     >
     <PagerStyle Mode="NextPrevAndNumeric" EnableSEOPaging="False" PageButtonCount="5">
