@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: MediaPlayerWindow.xaml.cs
-//Version: 20121016
+//Version: 20121029
 
 using ClipFlair.Models.Views;
 using ClipFlair.Windows.Views;
@@ -71,7 +71,7 @@ namespace ClipFlair.Windows
     /// </summary>
     public static readonly DependencyProperty SourceProperty =
         DependencyProperty.Register(IMediaPlayerProperties.PropertySource, typeof(Uri), typeof(MediaPlayerWindow),
-            new FrameworkPropertyMetadata((Uri)IMediaPlayerDefaults.DefaultSource, new PropertyChangedCallback(OnSourceChanged)));
+            new FrameworkPropertyMetadata(IMediaPlayerDefaults.DefaultSource, new PropertyChangedCallback(OnSourceChanged)));
 
     /// <summary>
     /// Gets or sets the Source property.
