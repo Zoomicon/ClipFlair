@@ -1,5 +1,5 @@
 ﻿//Filename: CaptionsGrid.xaml.cs
-//Version: 20121016
+//Version: 20121029
 
 using ClipFlair.AudioRecorder;
 using ClipFlair.CaptionsLib.Utils;
@@ -13,6 +13,8 @@ using System.Collections;
 
 using Microsoft.SilverlightMediaFramework.Core.Media;
 using Microsoft.SilverlightMediaFramework.Core.Accessibility.Captions;
+
+//TODO: upon end of content cell edit, need to jump to some other previous time (for 0 jump to next time, say 0.02) to update player view, or throw some event that captions changed?
 
 namespace ClipFlair.CaptionsGrid
 {
@@ -73,7 +75,6 @@ namespace ClipFlair.CaptionsGrid
     public static readonly DependencyProperty TimeProperty =
         DependencyProperty.Register("Time", typeof(TimeSpan), typeof(CaptionsGrid),
             new FrameworkPropertyMetadata(TimeSpan.Zero,
-                FrameworkPropertyMetadataOptions.None,
                 new PropertyChangedCallback(OnTimeChanged)));
 
     /// <summary>
@@ -116,8 +117,7 @@ namespace ClipFlair.CaptionsGrid
     /// </summary>
     public static readonly DependencyProperty CaptionsProperty =
         DependencyProperty.Register("Captions", typeof(CaptionRegion), typeof(CaptionsGrid),
-            new FrameworkPropertyMetadata(null,
-                FrameworkPropertyMetadataOptions.None,
+            new FrameworkPropertyMetadata(new CaptionRegion(),
                 new PropertyChangedCallback(OnCaptionsChanged)));
 
     /// <summary>
@@ -342,6 +342,8 @@ namespace ClipFlair.CaptionsGrid
 
     private void btnAdd_Click(object sender, RoutedEventArgs e)
     {
+      if (Captions == null) return;
+
       CaptionElement newCaption = new CaptionElement()
       {
         Begin = Time,
@@ -355,6 +357,8 @@ namespace ClipFlair.CaptionsGrid
 
     private void btnRemove_Click(object sender, RoutedEventArgs e)
     {
+      if (Captions == null) return;
+
       CaptionElement selectedCaption = ((CaptionElement)gridCaptions.SelectedItem);
       if (selectedCaption != null)
         Captions.Children.Remove(selectedCaption);
@@ -385,6 +389,8 @@ namespace ClipFlair.CaptionsGrid
 
     private void btnExport_Click(object sender, RoutedEventArgs e)
     {
+      if (Captions == null) return;
+
       try
       {
         SaveFileDialog dlg = new SaveFileDialog();
