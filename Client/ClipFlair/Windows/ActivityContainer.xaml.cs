@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: ActivityContainer.xaml.cs
-//Version: 20121004
+//Version: 20121029
 
 using ClipFlair.Models.Views;
 using ClipFlair.Windows.Views;
@@ -137,7 +137,6 @@ namespace ClipFlair.Windows
     public static readonly DependencyProperty TimeProperty =
         DependencyProperty.Register(IActivityProperties.PropertyTime, typeof(TimeSpan), typeof(ActivityContainer),
             new FrameworkPropertyMetadata(IActivityDefaults.DefaultTime,
-                FrameworkPropertyMetadataOptions.None,
                 new PropertyChangedCallback(OnTimeChanged)));
 
     /// <summary>
@@ -167,6 +166,35 @@ namespace ClipFlair.Windows
     {
       View.Time = newTime;
       //...
+    }
+
+    #endregion
+
+    #region Add Windows
+
+    private void btnAddMediaPlayer_Click(object sender, RoutedEventArgs e)
+    {
+      zuiContainer.Add(new MediaPlayerWindow()).Show();
+    }
+
+    private void btnAddCaptionsGrid_Click(object sender, RoutedEventArgs e)
+    {
+      zuiContainer.Add(new CaptionsGridWindow()).Show();
+    }
+
+    private void btnAddTextEditor_Click(object sender, RoutedEventArgs e)
+    {
+      zuiContainer.Add(new TextEditorWindow()).Show();
+    }
+
+    private void btnAddImage_Click(object sender, RoutedEventArgs e)
+    {
+      zuiContainer.Add(new ImageWindow()).Show();
+    }
+
+    private void btnAddActivityContainer_Click(object sender, RoutedEventArgs e)
+    {
+      zuiContainer.Add(new ActivityContainerWindow()).Show();
     }
 
     #endregion
