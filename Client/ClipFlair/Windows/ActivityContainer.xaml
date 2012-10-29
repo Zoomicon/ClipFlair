@@ -13,7 +13,6 @@ Version: 20121029
   xmlns:zui="clr-namespace:FloatingWindowZUI;assembly=FloatingWindowZUI"
   xmlns:clipflair="clr-namespace:ClipFlair.Windows"
   xmlns:smf_captions="http://schemas.microsoft.com/smf/2010/xaml/captions" 
-  Width="800" Height="600"
   >
   <!-- xmlns:smf_media="http://schemas.microsoft.com/smf/2010/xaml/media" -->
 
