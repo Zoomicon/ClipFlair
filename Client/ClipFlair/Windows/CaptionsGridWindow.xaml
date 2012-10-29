@@ -1,6 +1,6 @@
 ﻿<!--
 Filename: CaptionsGridWindow.xaml
-Version: 20121004
+Version: 20121029
 -->
   
 <clipflair:BaseWindow x:Class="ClipFlair.Windows.CaptionsGridWindow"
@@ -12,6 +12,7 @@ Version: 20121004
     xmlns:clipflair="clr-namespace:ClipFlair.Windows;assembly=ClipFlair"    
     xmlns:float="clr-namespace:SilverFlow.Controls;assembly=SilverFlow.Controls"
     xmlns:captions="clr-namespace:ClipFlair.CaptionsGrid;assembly=CaptionsGrid"
+    Width="600" Height="420"                       
    >
 
   <!--<clipflair:BaseWindow.FrontContent>-->
