@@ -11,7 +11,7 @@
     <tr>
         <td colspan="2">
             <div style="position: relative;">
-                <!--<div ID="panInfo"  runat="server" class="contact-info">
+                <div ID="panInfo"  runat="server" class="contact-info">
                     <h2><%# DefaultResources.ContactForm_ContactInfoTitle %></h2>                    
                     <ul class="ul-contact-info">
                         <li><asp:PlaceHolder ID="panWebSiteName" runat="server"><strong>&nbsp;</strong><strong><%# A_WebSiteName%></strong></asp:PlaceHolder></li>
@@ -21,7 +21,7 @@
                         <li><asp:PlaceHolder ID="panZipCode" runat="server"><strong>&nbsp;</strong><span><%# A_ZipCode%>&nbsp;<%# A_City%></span></asp:PlaceHolder></li>
                         <li><asp:PlaceHolder ID="panCountry" runat="server"><strong>&nbsp;</strong><span><%# A_Country%></span></asp:PlaceHolder></li>
                     </ul>
-                </div>-->
+                </div>
                 
                 <div class="my-contact-form">
                     <h2><asp:Literal ID="lblTitle" runat="server"></asp:Literal></h2>
@@ -71,7 +71,7 @@
     </tr>
 </table>
  <div class="dummy-padding"></div>
- <div class="button-holder">
+ <div class="button-holder float-right">
     <asp:LinkButton ID="btnSend" runat="server" CausesValidation="true" OnClick="btnSend_Click" CssClass="send-now-button" /> 
  </div>
 

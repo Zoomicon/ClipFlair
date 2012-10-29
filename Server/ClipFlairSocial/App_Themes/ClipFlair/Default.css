@@ -1380,7 +1380,8 @@ margin-top: 55px;
 	display: inline; /*For ignore double margin in IE6*/
 	margin: 0 4px 0 0;
     padding:0;
-    padding-right:30px;
+    padding-right:12px;
+    /*padding-right:30px;*/
 }
 .navigation ul li a
 {
@@ -4722,7 +4723,7 @@ text-decoration:none;
 {
 	width: 220px;
 	height: 34px;
-	background: url(img/orange-button.png) no-repeat;
+	background: url(img/gradient-button.png) no-repeat;
 	font-size: 14px;
 	color: #fff;
 	text-align: center;
@@ -4972,8 +4973,8 @@ text-decoration:none;
 .message-center
 {
 	font-family: Verdana, Arial, Helvetica, sans-serif;
-	font-size: 13px;
-	color: #666;
+	font-size: 12px;
+	color: #210E07;
 	line-height: 20px;
 }
 .message-center A:link,
@@ -4993,7 +4994,7 @@ text-decoration:none;
 }
 .message-center .message-details IMG
 {
-	border: solid 1px #9AA9C8 !important;
+	border: solid 1px #c4c4c4 !important;
 	padding: 2px !important;
 	background: #fff !important;
 	margin: 0px 10px;
@@ -5005,7 +5006,7 @@ text-decoration:none;
 }
 .message-center .new-message
 {	
-	border: solid 1px #D5DCE1;
+	border: solid 1px #dcdcdc;
 	position: relative;
 	margin-top: -2px;
 	z-index: 1;
@@ -5027,8 +5028,8 @@ text-decoration:none;
 .message-center .file-gallery
 {
 	font-family: Verdana, Arial, Helvetica, sans-serif;
-	font-size: 13px;
-	color: #666;
+	font-size: 12px;
+	color: #210E07;
 	line-height: 20px;
 	overflow: hidden;
 }
@@ -5046,7 +5047,7 @@ text-decoration:none;
 .message-center .file-gallery H3
 {
 	background: url(img/paper-clip-icon.png) left 5px no-repeat;
-	color: #666;
+	color: #210E07;
 	margin: 0px 0px 5px 5px;
 	padding: 5px 0px 0px 17px;
 	font-size: 11px;
@@ -7853,6 +7854,8 @@ width: 100%;
  display:block;
  padding-top:14px;
  padding-bottom:14px;
+ float: right;
+width: 60%;
 }
 
 .padding1-after{
@@ -7929,4 +7932,8 @@ width:100%;
 }
 
 
+.float-right{
+float:right;
+margin-right:45%;
 
+}
