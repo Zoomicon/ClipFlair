@@ -1,5 +1,5 @@
 ﻿//Filename: IconBar.cs
-//Version: 20120810
+//Version: 20121029
 
 using System;
 using System.Collections.ObjectModel;
@@ -12,6 +12,8 @@ using System.Windows.Input;
 using System.Windows.Media.Animation;
 using SilverFlow.Controls.Extensions;
 using SilverFlow.Controls.Helpers;
+
+//TODO: Would like to be able to click on bar's content and toggle the bar (for content that doesn't handle the mouse down event)
 
 namespace SilverFlow.Controls
 {
@@ -289,10 +291,10 @@ namespace SilverFlow.Controls
                 openingStoryboard.Completed += new EventHandler(Opening_Completed);
 
             if (fixedBar != null)
-                fixedBar.MouseMove += new MouseEventHandler(Bar_MouseMove);
-
-            if (fixedBar != null)
-                fixedBar.SizeChanged += new SizeChangedEventHandler(FixedBar_SizeChanged);
+            {
+              fixedBar.MouseMove += new MouseEventHandler(Bar_MouseMove);
+              fixedBar.SizeChanged += new SizeChangedEventHandler(FixedBar_SizeChanged);
+            }
         }
 
         /// <summary>
@@ -307,10 +309,10 @@ namespace SilverFlow.Controls
                 openingStoryboard.Completed -= new EventHandler(Opening_Completed);
 
             if (fixedBar != null)
-                fixedBar.MouseMove += new MouseEventHandler(Bar_MouseMove);
-
-            if (fixedBar != null)
-                fixedBar.SizeChanged -= new SizeChangedEventHandler(FixedBar_SizeChanged);
+            {
+              fixedBar.MouseMove += new MouseEventHandler(Bar_MouseMove);
+              fixedBar.SizeChanged -= new SizeChangedEventHandler(FixedBar_SizeChanged);
+            }
         }
 
         /// <summary>
