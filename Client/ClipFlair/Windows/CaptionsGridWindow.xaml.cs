@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: CaptionsGridWindow.xaml.cs
-//Version: 20121004
+//Version: 20121029
 
 using ClipFlair.Models.Views;
 using ClipFlair.Windows.Views;
@@ -110,9 +110,7 @@ namespace ClipFlair.Windows
     /// </summary>
     public static readonly DependencyProperty TimeProperty =
         DependencyProperty.Register(ICaptionsGridProperties.PropertyTime, typeof(TimeSpan), typeof(CaptionsGridWindow),
-            new FrameworkPropertyMetadata(ICaptionsGridDefaults.DefaultTime,
-                FrameworkPropertyMetadataOptions.None,
-                new PropertyChangedCallback(OnTimeChanged)));
+            new FrameworkPropertyMetadata(ICaptionsGridDefaults.DefaultTime, new PropertyChangedCallback(OnTimeChanged)));
 
     /// <summary>
     /// Gets or sets the Time property.
@@ -151,9 +149,7 @@ namespace ClipFlair.Windows
     /// </summary>
     public static readonly DependencyProperty CaptionsProperty =
         DependencyProperty.Register("Captions", typeof(CaptionRegion), typeof(CaptionsGridWindow),
-            new FrameworkPropertyMetadata(null,
-                FrameworkPropertyMetadataOptions.None,
-                new PropertyChangedCallback(OnCaptionsChanged)));
+            new FrameworkPropertyMetadata(new CaptionRegion(), new PropertyChangedCallback(OnCaptionsChanged)));
 
     /// <summary>
     /// Gets or sets the Captions property.
@@ -193,9 +189,7 @@ namespace ClipFlair.Windows
     /// </summary>
     public static readonly DependencyProperty CaptionVisibleProperty =
         DependencyProperty.Register(ICaptionsGridProperties.PropertyCaptionVisible, typeof(bool), typeof(CaptionsGridWindow),
-            new FrameworkPropertyMetadata(ICaptionsGridDefaults.DefaultCaptionVisible,
-                FrameworkPropertyMetadataOptions.None,
-                new PropertyChangedCallback(OnCaptionVisibleChanged)));
+            new FrameworkPropertyMetadata(ICaptionsGridDefaults.DefaultCaptionVisible, new PropertyChangedCallback(OnCaptionVisibleChanged)));
 
     /// <summary>
     /// Gets or sets the CaptionVisible property.
@@ -234,9 +228,7 @@ namespace ClipFlair.Windows
     /// </summary>
     public static readonly DependencyProperty CaptionAudioVisibleProperty =
         DependencyProperty.Register(ICaptionsGridProperties.PropertyCaptionAudioVisible, typeof(bool), typeof(CaptionsGridWindow),
-            new FrameworkPropertyMetadata(ICaptionsGridDefaults.DefaultCaptionAudioVisible,
-                FrameworkPropertyMetadataOptions.None,
-                new PropertyChangedCallback(OnCaptionAudioVisibleChanged)));
+            new FrameworkPropertyMetadata(ICaptionsGridDefaults.DefaultCaptionAudioVisible, new PropertyChangedCallback(OnCaptionAudioVisibleChanged)));
 
     /// <summary>
     /// Gets or sets the CaptionAudioVisible property.

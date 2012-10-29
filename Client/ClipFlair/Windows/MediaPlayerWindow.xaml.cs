@@ -109,9 +109,7 @@ namespace ClipFlair.Windows
     /// </summary>
     public static readonly DependencyProperty TimeProperty =
         DependencyProperty.Register(IMediaPlayerProperties.PropertyTime, typeof(TimeSpan), typeof(MediaPlayerWindow),
-            new FrameworkPropertyMetadata(IMediaPlayerDefaults.DefaultTime,
-                FrameworkPropertyMetadataOptions.None,
-                new PropertyChangedCallback(OnTimeChanged)));
+            new FrameworkPropertyMetadata(IMediaPlayerDefaults.DefaultTime, new PropertyChangedCallback(OnTimeChanged)));
 
     /// <summary>
     /// Gets or sets the Time property.
@@ -152,9 +150,7 @@ namespace ClipFlair.Windows
     /// </summary>
     public static readonly DependencyProperty CaptionsProperty =
         DependencyProperty.Register("Captions", typeof(CaptionRegion), typeof(MediaPlayerWindow),
-            new FrameworkPropertyMetadata(null,
-                FrameworkPropertyMetadataOptions.None,
-                new PropertyChangedCallback(OnCaptionsChanged)));
+            new FrameworkPropertyMetadata(null, new PropertyChangedCallback(OnCaptionsChanged)));
 
     /// <summary>
     /// Gets or sets the Captions property.
@@ -194,9 +190,7 @@ namespace ClipFlair.Windows
     /// </summary>
     public static readonly DependencyProperty ControllerVisibleProperty =
         DependencyProperty.Register(IMediaPlayerProperties.PropertyControllerVisible, typeof(bool), typeof(MediaPlayerWindow),
-            new FrameworkPropertyMetadata(IMediaPlayerDefaults.DefaultControllerVisible,
-                FrameworkPropertyMetadataOptions.None,
-                new PropertyChangedCallback(OnControllerVisibleChanged)));
+            new FrameworkPropertyMetadata(IMediaPlayerDefaults.DefaultControllerVisible, new PropertyChangedCallback(OnControllerVisibleChanged)));
 
     /// <summary>
     /// Gets or sets the ControllerVisible property. This dependency property 
@@ -237,9 +231,7 @@ namespace ClipFlair.Windows
     /// </summary>
     public static readonly DependencyProperty CaptionsVisibleProperty =
         DependencyProperty.Register(IMediaPlayerProperties.PropertyCaptionsVisible, typeof(bool), typeof(MediaPlayerWindow),
-            new FrameworkPropertyMetadata(IMediaPlayerDefaults.DefaultCaptionsVisible,
-                FrameworkPropertyMetadataOptions.None,
-                new PropertyChangedCallback(OnCaptionsVisibleChanged)));
+            new FrameworkPropertyMetadata(IMediaPlayerDefaults.DefaultCaptionsVisible, new PropertyChangedCallback(OnCaptionsVisibleChanged)));
 
     /// <summary>
     /// Gets or sets the CaptionsVisible property. This dependency property 

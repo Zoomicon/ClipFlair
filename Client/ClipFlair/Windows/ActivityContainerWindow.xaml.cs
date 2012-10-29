@@ -98,9 +98,7 @@ namespace ClipFlair.Windows
     /// </summary>
     public static readonly DependencyProperty TimeProperty =
         DependencyProperty.Register(IActivityProperties.PropertyTime, typeof(TimeSpan), typeof(MediaPlayerWindow),
-            new FrameworkPropertyMetadata(IActivityDefaults.DefaultTime,
-                FrameworkPropertyMetadataOptions.None,
-                new PropertyChangedCallback(OnTimeChanged)));
+            new FrameworkPropertyMetadata(IActivityDefaults.DefaultTime, new PropertyChangedCallback(OnTimeChanged)));
 
     /// <summary>
     /// Gets or sets the Time property.

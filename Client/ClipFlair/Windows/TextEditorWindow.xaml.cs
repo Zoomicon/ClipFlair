@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: TextEditorWindow.xaml.cs
-//Version: 20121004
+//Version: 20121029
 
 using ClipFlair.Models.Views;
 using ClipFlair.Windows.Views;
