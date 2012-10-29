@@ -58,7 +58,8 @@
         </td>
     </tr>
     <tr>
-        <td colspan="2">
+	    <td></td>
+        <td>
             <div class="my-contact-form">
                 <monox:CaptchaModule ID="captchaModule" runat="server" CssClass="padding1-captcha" />
             </div>
