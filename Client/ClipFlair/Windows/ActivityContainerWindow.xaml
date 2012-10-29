@@ -1,0 +1,42 @@
+﻿<!--
+Project: ClipFlair (http://ClipFlair.codeplex.com)
+Filename: ActivityContainerWindow.xaml
+Version: 20121029
+-->
+  
+<clipflair:BaseWindow x:Class="ClipFlair.Windows.ActivityContainerWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008" d:DesignHeight="472" d:DesignWidth="766"
+    xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk"  
+    xmlns:clipflair="clr-namespace:ClipFlair.Windows;assembly=ClipFlair"    
+    >
+
+  <!--<clipflair:BaseWindow.FrontContent>-->
+
+  <clipflair:ActivityContainer x:Name="activity" 
+                 HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+                 
+                 Source="{Binding Source, Mode=TwoWay}"
+                 Time="{Binding Time, Mode=TwoWay}"
+                >
+  </clipflair:ActivityContainer>
+
+  <!--</clipflair:BaseWindow.FrontContent>-->
+
+  <clipflair:BaseWindow.PropertyItems>
+
+    <StackPanel Orientation="Vertical">
+      <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Activity URL:" Target="{Binding ElementName=edActivityURL}" />
+      <TextBox Name="edActivityURL" Text="{Binding Source, Mode=TwoWay}" />
+    </StackPanel>
+    
+    <StackPanel Orientation="Vertical">
+      <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Time:" Target="{Binding ElementName=edTime}" />
+      <TextBox Name="edTime" Text="{Binding Time, Mode=TwoWay}" />
+    </StackPanel>
+    
+  </clipflair:BaseWindow.PropertyItems>
+
+</clipflair:BaseWindow>
