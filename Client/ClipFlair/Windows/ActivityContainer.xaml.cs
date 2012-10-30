@@ -1,15 +1,18 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: ActivityContainer.xaml.cs
-//Version: 20121029
+//Version: 20121030
 
 using ClipFlair.Models.Views;
 using ClipFlair.Windows.Views;
+
+using ZoomAndPan;
 
 using System;
 using System.Windows;
 using System.ComponentModel;
 using System.Windows.Controls;
 using System.Windows.Data;
+using System.Windows.Media;
 
 namespace ClipFlair.Windows
 {
@@ -173,27 +176,35 @@ namespace ClipFlair.Windows
 
     private void btnAddMediaPlayer_Click(object sender, RoutedEventArgs e)
     {
-      zuiContainer.Add(new MediaPlayerWindow()).Show();
+      AddWindow(new MediaPlayerWindow());
     }
 
     private void btnAddCaptionsGrid_Click(object sender, RoutedEventArgs e)
     {
-      zuiContainer.Add(new CaptionsGridWindow()).Show();
+      AddWindow(new CaptionsGridWindow());
     }
 
     private void btnAddTextEditor_Click(object sender, RoutedEventArgs e)
     {
-      zuiContainer.Add(new TextEditorWindow()).Show();
+      AddWindow(new TextEditorWindow());
     }
 
     private void btnAddImage_Click(object sender, RoutedEventArgs e)
     {
-      zuiContainer.Add(new ImageWindow()).Show();
+      AddWindow(new ImageWindow());
     }
 
     private void btnAddActivityContainer_Click(object sender, RoutedEventArgs e)
     {
-      zuiContainer.Add(new ActivityContainerWindow()).Show();
+      AddWindow(new ActivityContainerWindow());
+    }
+
+    private void AddWindow(BaseWindow window)
+    {
+      window.Scale = 1d / zuiContainer.ZoomHost.ContentScale; //TODO: !!! don't use host.ContentScale, has bug and is always 1
+      ZoomAndPanControl host = zuiContainer.ZoomHost;
+      Point startPoint = new Point((host.ContentOffsetX + host.ViewportWidth / 2) * host.ContentScale, (zuiContainer.ContentOffsetY + host.ViewportHeight / 2) * zuiContainer.ContentScale); //Center at current view
+      zuiContainer.Add(window).Show(startPoint);
     }
 
     #endregion
