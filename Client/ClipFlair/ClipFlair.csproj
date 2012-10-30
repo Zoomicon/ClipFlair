@@ -213,9 +213,9 @@
       <Project>{D2C64A3F-BD21-427C-A68A-69223088967C}</Project>
       <Name>CaptionsGrid.Silverlight</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Converters\Converters.Silverlight.csproj">
+    <ProjectReference Include="..\Converters\Utils.Silverlight.csproj">
       <Project>{E784B6A1-A300-4571-A881-B15240EEE377}</Project>
-      <Name>Converters.Silverlight</Name>
+      <Name>Utils.Silverlight</Name>
     </ProjectReference>
     <ProjectReference Include="..\FlipPanel\FlipPanel.Silverlight\FlipPanel.Silverlight.csproj">
       <Project>{245ABF59-8751-46FB-A37E-E5EE253342AD}</Project>

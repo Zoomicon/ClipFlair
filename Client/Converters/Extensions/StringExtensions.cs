@@ -1,8 +1,11 @@
-﻿//Version: 20120712
+﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
+//Filename: StringExtensions.cs
+//Version: 20121030
+
 
 using System;
 
-namespace Extensions
+namespace ClipFlair.Utils.Extensions
 {
     public static class StringExtensions
     {

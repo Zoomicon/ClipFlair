@@ -4,6 +4,7 @@
 
 using ClipFlair.Models.Views;
 using ClipFlair.Windows.Views;
+using ClipFlair.Utils.Bindings;
 
 using ZoomAndPan;
 
@@ -23,7 +24,7 @@ namespace ClipFlair.Windows
       View = new ActivityView(); //must set the view first
       InitializeComponent();
 
-      //(assuming Using SilverFlow.Controls)
+      //(assuming: using SilverFlow.Controls)
       //zuiContainer.Add((FloatingWindow)XamlReader.Load("<clipflair:MediaPlayerWindow Width=\"Auto\" Height=\"Auto\" MinWidth=\"100\" MinHeight=\"100\" Title=\"4 Media Player\" IconText=\"1Media Player\" Tag=\"1MediaPlayer\" xmlns:clipflair=\"clr-namespace:ClipFlair;assembly=ClipFlair\"/>"));
       //zuiContainer.Add(new MediaPlayerWindow()).Show();
       //zuiContainer.FloatingWindows.First<FloatingWindow>().Show();
@@ -34,13 +35,15 @@ namespace ClipFlair.Windows
 
     private void BindWindows()
     {
-      //Two-Way bind MediaPlayerWindow and CaptionsGridWindow over Time property
-      Binding timeBinding = new Binding("Time");
-      timeBinding.Source = FindWindow("MediaPlayer");
-      timeBinding.Mode = BindingMode.TwoWay;
-      BindingOperations.SetBinding(FindWindow("Captions"), CaptionsGridWindow.TimeProperty, timeBinding);
+      //Two-way bind MediaPlayerWindow.Time to  CaptionsGridWindow.Time
+      //BindProperties(FindWindow("MediaPlayer"), "Time", FindWindow("Captions"), CaptionsGridWindow.TimeProperty, BindingMode.TwoWay); //not using, binding to container's Time instead for now
 
-      //Two-Way bind MediaPlayerWindow and CaptionsGridWindow over Captions property      
+      //Two-way bind MediaPlayerWindow.Time to ActivityContainer.Time
+      BindingUtils.BindProperties(this, "Time", FindWindow("MediaPlayer"), MediaPlayerWindow.TimeProperty, BindingMode.TwoWay);
+      //Two-way bind CaptionsGridWindow.Time to ActivityContainer.Time
+      BindingUtils.BindProperties(this, "Time", FindWindow("Captions"), CaptionsGridWindow.TimeProperty, BindingMode.TwoWay);
+
+      //Two-Way bind MediaPlayerWindow.Captions and CaptionsGridWindow.Captions
       Binding captionsBinding = new Binding("Captions"); //"Captions" is the name of the property here
       captionsBinding.Source = FindWindow("MediaPlayer");
       captionsBinding.Mode = BindingMode.TwoWay;
@@ -78,6 +81,8 @@ namespace ClipFlair.Windows
       {
         Source = View.Source;
         Time = View.Time;
+        Offset = View.Offset;
+        Scale = View.Scale;
         //...
       }
       else switch (e.PropertyName) //string equality check in .NET uses ordinal (binary) comparison semantics by default
@@ -87,6 +92,12 @@ namespace ClipFlair.Windows
             break;
           case IActivityProperties.PropertyTime:
             Time = View.Time;
+            break;
+          case IActivityProperties.PropertyOffset:
+            Offset = View.Offset;
+            break;
+          case IActivityProperties.PropertyScale:
+            Scale = View.Scale;
             break;
           //...
         }
@@ -172,16 +183,101 @@ namespace ClipFlair.Windows
 
     #endregion
 
+    #region Offset
+
+    /// <summary>
+    /// Offset Dependency Property
+    /// </summary>
+    public static readonly DependencyProperty OffsetProperty =
+        DependencyProperty.Register("Offset", typeof(Point), typeof(ActivityContainer),
+            new FrameworkPropertyMetadata(IActivityDefaults.DefaultOffset, new PropertyChangedCallback(OnOffsetChanged)));
+
+    /// <summary>
+    /// Gets or sets the Offset property.
+    /// </summary>
+    public Point Offset
+    {
+      get { return (Point)GetValue(OffsetProperty); }
+      set { SetValue(OffsetProperty, value); }
+    }
+
+    /// <summary>
+    /// Handles changes to the Offset property.
+    /// </summary>
+    private static void OnOffsetChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    {
+      ActivityContainer target = (ActivityContainer)d;
+      Point oldOffset = (Point)e.OldValue;
+      Point newOffset = target.Offset;
+      target.OnOffsetChanged(oldOffset, newOffset);
+    }
+
+    /// <summary>
+    /// Provides derived classes an opportunity to handle changes to the Offset property.
+    /// </summary>
+    protected virtual void OnOffsetChanged(Point oldOffset, Point newOffset)
+    {
+      View.Offset = newOffset;
+      //TODO: fix properties of zuiContainer so that we don't need to use .zoomHost. syntax
+      zuiContainer.ZoomHost.ContentOffsetX = newOffset.X;
+      zuiContainer.ZoomHost.ContentOffsetY = newOffset.Y;
+    }
+
+    #endregion
+
+    #region Scale
+
+    /// <summary>
+    /// Scale Dependency Property
+    /// </summary>
+    public static readonly DependencyProperty ScaleProperty =
+        DependencyProperty.Register("Scale", typeof(double), typeof(ActivityContainer),
+            new FrameworkPropertyMetadata(IActivityDefaults.DefaultScale,
+                new PropertyChangedCallback(OnScaleChanged)));
+
+    /// <summary>
+    /// Gets or sets the Scale property.
+    /// </summary>
+    public double Scale
+    {
+      get { return (double)GetValue(ScaleProperty); }
+      set { SetValue(ScaleProperty, value); }
+    }
+
+    /// <summary>
+    /// Handles changes to the Scale property.
+    /// </summary>
+    private static void OnScaleChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    {
+      ActivityContainer target = (ActivityContainer)d;
+      double oldScale = (double)e.OldValue;
+      double newScale = target.Scale;
+      target.OnScaleChanged(oldScale, newScale);
+    }
+
+    /// <summary>
+    /// Provides derived classes an opportunity to handle changes to the Scale property.
+    /// </summary>
+    protected virtual void OnScaleChanged(double oldScale, double newScale)
+    {
+      View.Scale = newScale;
+      zuiContainer.ZoomHost.ContentScale = newScale; //TODO: fix properties of zuiContainer so that we don't need to use .zoomHost. syntax
+    }
+
+    #endregion
+
     #region Add Windows
 
     private void btnAddMediaPlayer_Click(object sender, RoutedEventArgs e)
     {
-      AddWindow(new MediaPlayerWindow());
+      //Two-way bind MediaPlayerWindow.Time to ActivityContainer.Time
+      BindingUtils.BindProperties(this, "Time", AddWindow(new MediaPlayerWindow()), MediaPlayerWindow.TimeProperty, BindingMode.TwoWay);
     }
 
     private void btnAddCaptionsGrid_Click(object sender, RoutedEventArgs e)
     {
-      AddWindow(new CaptionsGridWindow());
+      //Two-way bind CaptionsGridWindow.Time to ActivityContainer.Time
+      BindingUtils.BindProperties(this, "Time", AddWindow(new CaptionsGridWindow()), CaptionsGridWindow.TimeProperty, BindingMode.TwoWay);
     }
 
     private void btnAddTextEditor_Click(object sender, RoutedEventArgs e)
@@ -196,19 +292,21 @@ namespace ClipFlair.Windows
 
     private void btnAddActivityContainer_Click(object sender, RoutedEventArgs e)
     {
-      AddWindow(new ActivityContainerWindow());
+      //Two-way bind ActivityContainerWindow.Time to ActivityContainer.Time
+      BindingUtils.BindProperties(this, "Time", AddWindow(new ActivityContainerWindow()), ActivityContainerWindow.TimeProperty, BindingMode.TwoWay);
     }
 
-    private void AddWindow(BaseWindow window)
+    private BaseWindow AddWindow(BaseWindow window)
     {
-      window.Scale = 1d / zuiContainer.ZoomHost.ContentScale; //TODO: !!! don't use host.ContentScale, has bug and is always 1
+      window.Scale = 1.0d / zuiContainer.ZoomHost.ContentScale; //TODO: !!! don't use host.ContentScale, has bug and is always 1
       ZoomAndPanControl host = zuiContainer.ZoomHost;
       Point startPoint = new Point((host.ContentOffsetX + host.ViewportWidth / 2) * host.ContentScale, (zuiContainer.ContentOffsetY + host.ViewportHeight / 2) * zuiContainer.ContentScale); //Center at current view
       zuiContainer.Add(window).Show(startPoint);
+      return window;
     }
 
     #endregion
 
   }
-  
+
 }

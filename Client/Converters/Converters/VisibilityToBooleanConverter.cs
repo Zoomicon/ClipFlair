@@ -1,11 +1,14 @@
-﻿//Version: 201207122
+﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
+//Filename: VisibilityToBooleanConverter.cs
+//Version: 20121030
+
 #if SILVERLIGHT
 
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 
-namespace Converters
+namespace ClipFlair.Utils.Converters
 {
 
   [ValueConversion(typeof(Visibility), typeof(bool))]

@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: BaseView.cs
-//Version: 20121004
+//Version: 20121030
 
 using ClipFlair.Models.Views;
 
@@ -31,6 +31,7 @@ namespace ClipFlair.Windows.Views
 
     private string title = IViewDefaults.DefaultTitle;
     private Point position = IViewDefaults.DefaultPosition;
+    private double scale = IViewDefaults.DefaultScale;
     private double width = IViewDefaults.DefaultWidth;
     private double height = IViewDefaults.DefaultHeight;
 
@@ -62,6 +63,20 @@ namespace ClipFlair.Windows.Views
         {
           position = value;
           RaisePropertyChanged(IViewProperties.PropertyPosition);
+        }
+      }
+    }
+
+    [DataMember]
+    public double Scale
+    {
+      get { return scale; }
+      set
+      {
+        if (value != scale)
+        {
+          scale = value;
+          RaisePropertyChanged(IViewProperties.PropertyScale);
         }
       }
     }

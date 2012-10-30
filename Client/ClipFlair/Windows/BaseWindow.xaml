@@ -45,6 +45,11 @@ Version: 20121004
             <TextBox Name="edTitle" Text="{Binding Title, Mode=TwoWay}" />
           </StackPanel>
 
+          <StackPanel Orientation="Vertical">
+            <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Scale:" Target="{Binding ElementName=edScale}" />
+            <TextBox Name="edScale" Text="{Binding Scale, Mode=TwoWay}" />
+          </StackPanel>
+
         </StackPanel>
       </ScrollViewer>
     </flip:FlipPanel.BackContent>
