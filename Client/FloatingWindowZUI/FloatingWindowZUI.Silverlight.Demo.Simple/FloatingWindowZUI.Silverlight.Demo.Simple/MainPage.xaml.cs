@@ -1,5 +1,5 @@
 ﻿//Filename MainPage.xaml.cs
-//Version: 20121004
+//Version: 20121030
 
 using System.Diagnostics;
 using System.Windows;
@@ -15,7 +15,6 @@ namespace FloatingWindowZUI.Demo
   {
 
     private int nWindows = 1;
-    private Point startPoint = new Point(50, 50);
 
     public MainPage()
     {
@@ -60,8 +59,8 @@ namespace FloatingWindowZUI.Demo
         MessageBox.Show("Options...");
       };
 
+      Point startPoint = new Point((host.ZoomHost.ContentOffsetX + host.ZoomHost.ViewportWidth / 2) * host.ZoomHost.ContentScale, (host.ContentOffsetY + host.ZoomHost.ViewportHeight / 2) * host.ZoomHost.ContentScale); //Center at current view
       window.Show(startPoint);
-      startPoint = startPoint.Add(20, 20);
     }
 
     private void ShowNewWindow_Click(object sender, RoutedEventArgs e)
