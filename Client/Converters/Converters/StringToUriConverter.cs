@@ -1,11 +1,13 @@
-﻿//Version: 20120712
+﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
+//Filename: StringToUriConverter.cs
+//Version: 20121030
 
 using System;
 using System.Windows.Data;
 
-using Extensions;
+using ClipFlair.Utils.Extensions;
 
-namespace Converters
+namespace ClipFlair.Utils.Converters
 {
 
     [ValueConversion(typeof(string), typeof(Uri))]
