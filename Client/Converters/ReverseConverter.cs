@@ -1,7 +1,4 @@
-﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
-//Filename: ReverseConverter.cs
-//Version: 20121030
-
+﻿//Version: 20120712
 
 #if SILVERLIGHT
 
@@ -10,7 +7,7 @@ using System.Windows;
 using System.Windows.Data;
 using System.Globalization;
 
-namespace ClipFlair.Utils.Converters
+namespace Converters
 {
 
   public class ReverseConverter : IValueConverter

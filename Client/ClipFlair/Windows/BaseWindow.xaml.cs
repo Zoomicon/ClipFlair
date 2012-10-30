@@ -1,15 +1,15 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: BaseWindow.xaml.cs
-//Version: 20121030
+//Version: 20121004
 
 using ClipFlair.Models.Views;
-using ClipFlair.Utils.Bindings;
 
 using SilverFlow.Controls;
 
 using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Data;
 using System.Windows.Markup;
 using System.Windows.Media;
 
@@ -47,12 +47,23 @@ namespace ClipFlair.Windows
         FlipPanel.IsFlipped = !FlipPanel.IsFlipped;
       };
 
-      //Bind to ancestor properties
-      BindingUtils.RegisterForNotification("Title", this, (d, e) => { if (View != null) { View.Title = (string)e.NewValue; } });
-      BindingUtils.RegisterForNotification("Position", this, (d, e) => { if (View != null) { View.Position = (Point)e.NewValue; } });
-      BindingUtils.RegisterForNotification("Scale", this, (d, e) => { if (View != null) { View.Scale = (double)e.NewValue; } });
-      BindingUtils.RegisterForNotification("Width", this, (d, e) => { if (View != null) { View.Width = (double)e.NewValue; } });
-      BindingUtils.RegisterForNotification("Height", this, (d, e) => { if (View != null) { View.Height = (double)e.NewValue; } });
+      RegisterForNotification("Title", this, (d, e) => { if (View != null) { View.Title = (string)e.NewValue; } });
+      RegisterForNotification("Position", this, (d, e) => { if (View != null) { View.Position = (Point)e.NewValue; } });
+      RegisterForNotification("Width", this, (d, e) => { if (View != null) { View.Width = (double)e.NewValue; } });
+      RegisterForNotification("Height", this, (d, e) => { if (View != null) { View.Height = (double)e.NewValue; } });
+    }
+
+    /// Listen for change of the dependency property (Source: http://www.amazedsaint.com/2009/12/silverlight-listening-to-dependency.html)
+    public static void RegisterForNotification(string propertyName, FrameworkElement element, PropertyChangedCallback callback)
+    {
+      //Bind to a depedency property
+      Binding b = new Binding(propertyName) { Source = element };
+      DependencyProperty prop = System.Windows.DependencyProperty.RegisterAttached(
+          "ListenAttached" + propertyName,
+          typeof(object),
+          typeof(UserControl),
+          new System.Windows.PropertyMetadata(callback));
+      element.SetBinding(prop, b);
     }
 
     #region Properties
@@ -106,7 +117,6 @@ namespace ClipFlair.Windows
         Title = View.Title;
         IconText = View.Title; //IconText should match the Title
         Position = View.Position;
-        Scale = View.Scale;
         Width = View.Width;
         Height = View.Height;
         //...
@@ -119,9 +129,6 @@ namespace ClipFlair.Windows
             break;
           case IViewProperties.PropertyPosition:
             Position = View.Position;
-            break;
-        case IViewProperties.PropertyScale:
-            Scale = View.Scale;
             break;
           case IViewProperties.PropertyWidth:
             Width = View.Width;
