@@ -1,6 +1,6 @@
 ﻿<!--
 Filename: CaptionsGrid.xaml
-Version: 20121015
+Version: 20121103
 -->
   
   <UserControl x:Class="ClipFlair.CaptionsGrid.CaptionsGrid"
@@ -37,11 +37,35 @@ Version: 20121015
           <Setter Property="Margin" Value="3,4,3,4" />
         </Style>
       </StackPanel.Resources>
-      <Button Name="btnAdd" Content=" + " Click="btnAdd_Click" FontWeight="ExtraBold" />
-      <Button Name="btnRemove" Content=" - " Click="btnRemove_Click" FontWeight="ExtraBold" />
+      
+      <Button Name="btnAdd"  Click="btnAdd_Click">
+        <ToolTipService.ToolTip>
+          <ToolTip FontSize="16" Content="{Binding tooltip_caption_add, Source={StaticResource localizedStrings}}"/>
+        </ToolTipService.ToolTip>
+        <Image Source="Images/caption_add.png"/>
+      </Button>
+      
+      <Button Name="btnRemove" Click="btnRemove_Click">
+        <ToolTipService.ToolTip>
+          <ToolTip FontSize="16" Content="{Binding tooltip_caption_remove, Source={StaticResource localizedStrings}}"/>
+        </ToolTipService.ToolTip>
+        <Image Source="Images/caption_remove.png"/>
+      </Button>
+
       <TextBlock Text="|" VerticalAlignment="Center" Foreground="DarkGray" />
-      <Button Name="btnImport" Content="Import" Click="btnImport_Click" />
-      <Button Name="btnExport" Content="Export" Click="btnExport_Click" />
+      
+      <Button Name="btnImport" Content="Import" Click="btnImport_Click">
+        <ToolTipService.ToolTip>
+          <ToolTip FontSize="16" Content="{Binding tooltip_captions_import, Source={StaticResource localizedStrings}}"/>
+        </ToolTipService.ToolTip>
+      </Button>
+      
+      <Button Name="btnExport" Content="Export" Click="btnExport_Click">
+        <ToolTipService.ToolTip>
+          <ToolTip FontSize="16" Content="{Binding tooltip_captions_export, Source={StaticResource localizedStrings}}"/>
+        </ToolTipService.ToolTip>
+      </Button>
+        
     </StackPanel>
     
     <sdk:DataGrid Name="gridCaptions"

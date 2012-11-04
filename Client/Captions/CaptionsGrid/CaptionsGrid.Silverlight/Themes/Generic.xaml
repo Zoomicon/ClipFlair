@@ -1,14 +1,17 @@
 ﻿<!-- 
 Filename: Generic.xaml
-Version: 20120918
+Version: 20121103
 -->
-
+  
 <ResourceDictionary
  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
  xmlns:input="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Input.Toolkit"
  xmlns:audio="clr-namespace:ClipFlair.AudioRecorder;assembly=AudioRecorder" 
+ xmlns:res="clr-namespace:ClipFlair.CaptionsGrid.Resources"
  >
+
+  <res:Strings x:Key="localizedStrings"/>
 
   <DataTemplate x:Key="StartTimeCellTemplate">
     <TextBlock Margin="4" Text="{Binding Begin, StringFormat='hh\\:mm\\:ss\\.FFF', Mode=TwoWay}" /> <!-- can use .fff to always show all digits, don't use .fFF has bug at parsing new values -->

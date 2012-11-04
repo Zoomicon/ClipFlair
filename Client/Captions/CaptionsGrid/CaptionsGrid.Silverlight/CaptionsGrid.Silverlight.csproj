@@ -80,6 +80,11 @@
     <Compile Include="CaptionsGrid.xaml.cs">
       <DependentUpon>CaptionsGrid.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Resources\Strings.Designer.cs">
+      <DependentUpon>Strings.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Page Include="CaptionsGrid.xaml">
@@ -120,6 +125,17 @@
       <Project>{782E0F64-CDCE-41AA-9B7E-80714B1EE663}</Project>
       <Name>CaptionsLib.Silverlight</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\caption_add.png" />
+    <Resource Include="Images\caption_remove.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Strings.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Strings.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Silverlight\$(SilverlightVersion)\Microsoft.Silverlight.CSharp.targets" />
   <ProjectExtensions>
