@@ -1,5 +1,5 @@
 //Filename: FloatingWindow.cs
-//Version: 20120918
+//Version: 20121103
 
 using System;
 using System.Collections.ObjectModel;
@@ -603,13 +603,40 @@ namespace SilverFlow.Controls
               BitmapCache bitmapCache = window.CacheMode as BitmapCache; //will return null if other type
               if (bitmapCache != null)
               {
-                bitmapCache.RenderAtScale = window.Scale;
+                bitmapCache.RenderAtScale = 1; //window.Scale; //TODO: should change this to take in mind the container's scale (need to add ContentScale property to FloatingWindowHost and override at FloatingWindowHostZUI to set ContentScale of nested ZoomHost)
                 window.CacheMode = bitmapCache;
               }
             }
 
           }
         }
+
+        #endregion
+
+        #region public bool Scalable
+
+        /// <summary>
+        /// Gets or sets a value indicating whether to allow the user to scale the window.
+        /// </summary>
+        /// <value><c>true</c> to allow the user to scale the window; otherwise, <c>false</c>.</value>
+        public bool Scalable
+        {
+          get { return (bool)GetValue(ScalableProperty); }
+          set { SetValue(ScalableProperty, value); }
+        }
+
+        /// <summary>
+        /// Identifies the <see cref="FloatingWindow.Scalable" /> dependency property.
+        /// </summary>
+        /// <value>
+        /// The identifier for the <see cref="FloatingWindow.Scalable" /> dependency property.
+        /// </value>
+        public static readonly DependencyProperty ScalableProperty =
+            DependencyProperty.Register(
+            "Scalable",
+            typeof(bool),
+            typeof(FloatingWindow),
+            new PropertyMetadata(true));
 
         #endregion
 
