@@ -1,5 +1,5 @@
 ﻿//Filename: FloatingWindowHostZUI.cs
-//Version: 20120904
+//Version: 20121103
 
 using SilverFlow.Controls;
 using SilverFlow.Controls.Extensions;
@@ -139,15 +139,18 @@ namespace FloatingWindowZUI
 
     private void FloatingWindow_MouseUp(object sender, MouseButtonEventArgs e, MouseButton changedButton)
     {
-      if ((Keyboard.Modifiers & ModifierKeys.Control) != 0)
+      FloatingWindow window = (FloatingWindow)sender;
+      if (window.Scalable && (Keyboard.Modifiers & ModifierKeys.Control) != 0)
       {
         if (changedButton == MouseButton.Left)
-          ((FloatingWindow)sender).Scale += 0.05; //zoom in
+          window.Scale += 0.05; //zoom in
         else if (changedButton == MouseButton.Right)
-          ((FloatingWindow)sender).Scale -= 0.05; //zoom out
+          window.Scale -= 0.05; //zoom out
 
         e.Handled = true;
       }
+      else
+        e.Handled = false;
     }
 
     private void FloatingWindow_MouseWheel(object sender, MouseWheelEventArgs e)
@@ -163,6 +166,8 @@ namespace FloatingWindowZUI
 
         e.Handled = true;
       }
+      else
+        e.Handled = false;
     }
 
     #endregion
