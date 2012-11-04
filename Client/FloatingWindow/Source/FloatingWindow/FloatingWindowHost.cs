@@ -1,5 +1,5 @@
 ﻿//Filename: FloatingWindowHost.cs
-//Version: 20120902
+//Version: 20121103
 
 using System;
 using System.Collections.Generic;
@@ -173,6 +173,45 @@ namespace SilverFlow.Controls
             {
                 host.bootstrapButton.Style = e.NewValue as Style;
             }
+        }
+
+        #endregion
+
+        #region public bool WindowsConfigurable
+
+        /// <summary>
+        /// Gets or sets a value indicating whether window bars show configuration button.
+        /// </summary>
+        /// <value><c>true</c> if snap in is enabled; otherwise, <c>false</c>.</value>
+        public bool WindowsConfigurable
+        {
+          get { return (bool)GetValue(WindowsConfigurableProperty); }
+          set { SetValue(WindowsConfigurableProperty, value); }
+        }
+
+        /// <summary>
+        /// Identifies the <see cref="FloatingWindowHost.WindowsConfigurable" /> dependency property.
+        /// </summary>
+        /// <value>
+        /// The identifier for the <see cref="FloatingWindowHost.WindowsConfigurable" /> dependency property.
+        /// </value>
+        public static readonly DependencyProperty WindowsConfigurableProperty =
+            DependencyProperty.Register(
+            "WindowsConfigurable",
+            typeof(bool),
+            typeof(FloatingWindowHost),
+            new PropertyMetadata(true, WindowsConfigurablePropertyChanged));
+
+        /// <summary>
+        /// WindowsConfigurable PropertyChangedCallback call back static function.
+        /// </summary>
+        /// <param name="d">FloatingWindowHost object whose WindowsConfigurable property is changed.</param>
+        /// <param name="e">The <see cref="System.Windows.DependencyPropertyChangedEventArgs"/> instance containing the event data.</param>
+        private static void WindowsConfigurablePropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+          FloatingWindowHost host = (FloatingWindowHost)d;
+          if (host != null && host.Windows != null && e.NewValue != null)
+            host.Windows.ShowOptionsButton = (bool)e.NewValue;
         }
 
         #endregion
@@ -920,7 +959,7 @@ namespace SilverFlow.Controls
         /// </summary>
         private void SubscribeToEvents()
         {
-            this.MouseLeftButtonDown += new MouseButtonEventHandler(FloatingWindowHost_MouseLeftButtonDown);
+            this.AddHandler(MouseLeftButtonDownEvent, new MouseButtonEventHandler(FloatingWindowHost_MouseLeftButtonDown), true); //also grab handle events (to hide the window bar)
             this.LayoutUpdated += new EventHandler(FloatingWindowHost_LayoutUpdated);
         }
 
@@ -929,7 +968,7 @@ namespace SilverFlow.Controls
         /// </summary>
         private void UnsubscribeFromEvents()
         {
-            this.MouseLeftButtonDown -= new MouseButtonEventHandler(FloatingWindowHost_MouseLeftButtonDown);
+            this.RemoveHandler(MouseLeftButtonDownEvent, new MouseButtonEventHandler(FloatingWindowHost_MouseLeftButtonDown));
             this.LayoutUpdated -= new EventHandler(FloatingWindowHost_LayoutUpdated);
         }
 
