@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: BaseWindow.xaml.cs
-//Version: 20121103
+//Version: 20121104
 
 using ClipFlair.Utils.Bindings;
 using ClipFlair.Windows.Views;
@@ -53,6 +53,8 @@ namespace ClipFlair.Windows
       BindingUtils.RegisterForNotification("Width", this, (d, e) => { if (View != null) { View.Width = (double)e.NewValue; } });
       BindingUtils.RegisterForNotification("Height", this, (d, e) => { if (View != null) { View.Height = (double)e.NewValue; } });
       BindingUtils.RegisterForNotification("Scale", this, (d, e) => { if (View != null) { View.Zoom = (double)e.NewValue; } });
+      BindingUtils.RegisterForNotification("MoveEnabled", this, (d, e) => { if (View != null) { View.Moveable = (bool)e.NewValue; } });
+      BindingUtils.RegisterForNotification("ResizeEnabled", this, (d, e) => { if (View != null) { View.Resizable = (bool)e.NewValue; } });
       BindingUtils.RegisterForNotification("Scalable", this, (d, e) => { if (View != null) { View.Zoomable = (bool)e.NewValue; } });
     }
 
@@ -110,6 +112,8 @@ namespace ClipFlair.Windows
         Width = View.Width;
         Height = View.Height;
         Scale = View.Zoom;
+        MoveEnabled = View.Moveable;
+        ResizeEnabled = View.Resizable;
         Scalable = View.Zoomable;
         //...
       }
@@ -130,6 +134,12 @@ namespace ClipFlair.Windows
             break;
           case IViewProperties.PropertyZoom:
             Scale = View.Zoom;
+            break;
+          case IViewProperties.PropertyMoveable:
+            MoveEnabled = View.Moveable;
+            break;
+          case IViewProperties.PropertyResizable:
+            ResizeEnabled = View.Resizable;
             break;
           case IViewProperties.PropertyZoomable:
             Scalable = View.Zoomable;
