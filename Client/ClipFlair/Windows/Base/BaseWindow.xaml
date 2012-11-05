@@ -46,8 +46,13 @@ Version: 20121004
           </StackPanel>
 
           <StackPanel Orientation="Vertical">
-            <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Scale:" Target="{Binding ElementName=edScale}" />
-            <TextBox Name="edScale" Text="{Binding Scale, Mode=TwoWay}" />
+            <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Zoom:" Target="{Binding ElementName=edZoom}" />
+            <TextBox Name="edZoom" Text="{Binding Zoom, Mode=TwoWay}" />
+          </StackPanel>
+
+          <StackPanel Orientation="Horizontal">
+            <CheckBox Name="cbZoomable" IsChecked="{Binding Zoomable, Mode=TwoWay}" />
+            <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Zoomable" Target="{Binding ElementName=cbZoomable}"/>
           </StackPanel>
 
         </StackPanel>

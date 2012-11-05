@@ -1,7 +1,7 @@
 ﻿<!-- 
 Project: ClipFlair (http://ClipFlair.codeplex.com)
 Filename: TextEditorWindow.xaml.cs
-Version: 20121029
+Version: 20121103
 -->
   
 <clipflair:BaseWindow x:Class="ClipFlair.Windows.TextEditorWindow"
@@ -20,6 +20,8 @@ Version: 20121029
   <text:SilverTextEditor Name="editor"
                          HorizontalAlignment="Stretch" VerticalAlignment="Stretch" 
                          ToolbarVisible="{Binding ToolbarVisible, Mode=TwoWay}"
+                         Editable="{Binding Editable, Mode=TwoWay}"
+                         RTL="{Binding RTL, Mode=TwoWay}"
                          />
   
   <!--</clipflair:BaseWindow.FrontContent>-->
@@ -31,11 +33,21 @@ Version: 20121029
       <TextBox Name="edTextURL" Text="" HorizontalAlignment="Stretch" />
     </StackPanel> -->
 
-    <StackPanel Orientation="Vertical">
-      <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Toolbar Visible" Target="{Binding ElementName=edTextURL}"/>
+    <StackPanel Orientation="Horizontal">
+      <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Toolbar Visible" Target="{Binding ElementName=edToolbarVisible}"/>
       <CheckBox Name="edToolbarVisible" IsChecked="{Binding ToolbarVisible, Mode=TwoWay}" HorizontalAlignment="Stretch" />
     </StackPanel>
-  
+
+    <StackPanel Orientation="Horizontal">
+      <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Editable" Target="{Binding ElementName=edEditable}"/>
+      <CheckBox Name="edEditable" IsChecked="{Binding Editable, Mode=TwoWay}" HorizontalAlignment="Stretch" />
+    </StackPanel>
+
+    <StackPanel Orientation="Horizontal">
+      <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Right to Left (RTL) Text Direction" Target="{Binding ElementName=edRTL}"/>
+      <CheckBox Name="edRTL" IsChecked="{Binding RTL, Mode=TwoWay}" HorizontalAlignment="Stretch" />
+    </StackPanel>    
+    
   </clipflair:BaseWindow.PropertyItems>
 
 </clipflair:BaseWindow>

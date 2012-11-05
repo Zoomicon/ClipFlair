@@ -1,8 +1,8 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: BaseView.cs
-//Version: 20121030
+//Version: 20121102
 
-using ClipFlair.Models.Views;
+using ClipFlair.Windows.Views;
 
 using System.ComponentModel;
 using System.Runtime.Serialization;
@@ -31,9 +31,12 @@ namespace ClipFlair.Windows.Views
 
     private string title = IViewDefaults.DefaultTitle;
     private Point position = IViewDefaults.DefaultPosition;
-    private double scale = IViewDefaults.DefaultScale;
     private double width = IViewDefaults.DefaultWidth;
     private double height = IViewDefaults.DefaultHeight;
+    private double zoom = IViewDefaults.DefaultZoom;
+    private bool moveable = IViewDefaults.DefaultMoveable;
+    private bool resizable = IViewDefaults.DefaultResizable;
+    private bool zoomable = IViewDefaults.DefaultZoomable;
 
     #endregion
 
@@ -68,20 +71,6 @@ namespace ClipFlair.Windows.Views
     }
 
     [DataMember]
-    public double Scale
-    {
-      get { return scale; }
-      set
-      {
-        if (value != scale)
-        {
-          scale = value;
-          RaisePropertyChanged(IViewProperties.PropertyScale);
-        }
-      }
-    }
-
-    [DataMember]
     public double Width
     {
       get { return width; }
@@ -109,6 +98,62 @@ namespace ClipFlair.Windows.Views
       }
     }
 
+    [DataMember]
+    public double Zoom
+    {
+      get { return zoom; }
+      set
+      {
+        if (value != zoom)
+        {
+          zoom = value;
+          RaisePropertyChanged(IViewProperties.PropertyZoom);
+        }
+      }
+    }
+
+    [DataMember]
+    public bool Moveable
+    {
+      get { return moveable; }
+      set
+      {
+        if (value != moveable)
+        {
+          moveable = value;
+          RaisePropertyChanged(IViewProperties.PropertyMoveable);
+        }
+      }
+    }
+    
+    [DataMember]
+    public bool Resizable
+    {
+      get { return resizable; }
+      set
+      {
+        if (value != resizable)
+        {
+          resizable = value;
+          RaisePropertyChanged(IViewProperties.PropertyResizable);
+        }
+      }
+    }
+
+    [DataMember]
+    public bool Zoomable
+    {
+      get { return zoomable; }
+      set
+      {
+        if (value != zoomable)
+        {
+          zoomable = value;
+          RaisePropertyChanged(IViewProperties.PropertyZoomable);
+        }
+      }
+    }   
+    
     #endregion
 
   }

@@ -13,7 +13,7 @@ Version: 20121004
 
   <StackPanel>
     <Button Name="btnA" Width="100" Height="20" Content="no Test" Click="btnA_Click" />
-    <Button Name="btnTest" Width="100" Height="20" Content="Test" Click="btnTest_Click" />
+    <Button Name="btnB" Width="100" Height="20" Content="Test" Click="btnB_Click" />
   </StackPanel>
   
 </clipflair:TestWindow2>

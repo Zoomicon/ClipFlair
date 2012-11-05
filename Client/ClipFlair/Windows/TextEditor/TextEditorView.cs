@@ -1,8 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: TextEditorView.cs
-//Version: 20121004
-
-using ClipFlair.Models.Views;
+//Version: 20121103
 
 using System;
 using System.Runtime.Serialization;
@@ -17,13 +15,13 @@ namespace ClipFlair.Windows.Views
     {
     }
 
-    #region ITextEditor
-
     #region Fields
 
     //can set fields directly here or at the constructor
     private Uri source = ITextEditorDefaults.DefaultSource;
     private bool toolbarVisible = ITextEditorDefaults.DefaultToolbarVisible;
+    private bool editable = ITextEditorDefaults.DefaultEditable;
+    private bool rtl = ITextEditorDefaults.DefaultRTL;
 
     #endregion
 
@@ -57,9 +55,36 @@ namespace ClipFlair.Windows.Views
       }
     }
 
-    #endregion
+    [DataMember]
+    public bool Editable
+    {
+      get { return editable; }
+      set
+      {
+        if (value != editable)
+        {
+          editable = value;
+          RaisePropertyChanged(ITextEditorProperties.PropertyEditable);
+        }
+      }
+    }
+
+    [DataMember]
+    public bool RTL
+    {
+      get { return rtl; }
+      set
+      {
+        if (value != rtl)
+        {
+          rtl = value;
+          RaisePropertyChanged(ITextEditorProperties.PropertyRTL);
+        }
+      }
+    }
 
     #endregion
+
   }
 
 }

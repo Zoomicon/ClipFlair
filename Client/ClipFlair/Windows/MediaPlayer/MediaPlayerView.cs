@@ -1,8 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: MediaPlayerView.cs
-//Version: 20121004
-
-using ClipFlair.Models.Views;
+//Version: 20121103
 
 using System;
 using System.Runtime.Serialization;
@@ -17,8 +15,6 @@ namespace ClipFlair.Windows.Views
     {
     }
         
-    #region IMediaPlayer
-
     #region Fields
 
     //can set fields directly here or at constructor
@@ -169,7 +165,6 @@ namespace ClipFlair.Windows.Views
 
     #endregion
 
-    #endregion
   }
 
 }

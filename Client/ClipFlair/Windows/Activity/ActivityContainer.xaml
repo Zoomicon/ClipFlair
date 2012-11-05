@@ -62,7 +62,7 @@ Version: 20121029
           <Button Content="+ Captions Grid" VerticalAlignment="Center" Margin="0,0,5,0" Click="btnAddCaptionsGrid_Click" />
           <Button Content="+ Text Editor" VerticalAlignment="Center" Margin="0,0,5,0" Click="btnAddTextEditor_Click" />
           <Button Content="+ Image" VerticalAlignment="Center" Margin="0,0,5,0" Click="btnAddImage_Click" />
-          <Button Content="+ Activity Container" VerticalAlignment="Center" Margin="0,0,5,0" Click="btnAddActivityContainer_Click" />
+          <Button Visibility="Collapsed" Content="+ Activity Container" VerticalAlignment="Center" Margin="0,0,5,0" Click="btnAddActivityContainer_Click" />
         </StackPanel>
       </zui:FloatingWindowHostZUI.Bar>
 
@@ -77,13 +77,11 @@ Version: 20121029
       <!--<float:FloatingWindowCollection>-->
 
       <clipflair:MediaPlayerWindow
-        Source="http://video3.smoothhd.com.edgesuite.net/ondemand/Big%20Buck%20Bunny%20Adaptive.ism/Manifest"
-        Time="{Binding Time, Mode=TwoWay}"
-        Captions="{Binding Source={StaticResource Captions}}"
-        CaptionsVisible = "True"
         Position="0,0" 
         Width="600" Height="400" 
         Title="Media Player" IconText="Media Player" Tag="MediaPlayer"
+        Source="http://video3.smoothhd.com.edgesuite.net/ondemand/Big%20Buck%20Bunny%20Adaptive.ism/Manifest"
+        CaptionsVisible = "True"
         >
         <!-- removed MinWidth,MinHeight, seems to disable resizing [maybe only if given after width,height, try it and also see if gets fixed when giving MaxWidth,MaxHeight] -->
 
@@ -96,11 +94,10 @@ Version: 20121029
       </clipflair:MediaPlayerWindow>
 
       <clipflair:CaptionsGridWindow 
-        Captions="{Binding Source={StaticResource Captions}}"
-        Time="{Binding Time, Mode=TwoWay}"
         Position="0,420"  
         Width="600" Height="420" 
         Title="Captions" IconText="Captions" Tag="Captions"
+        Captions="{Binding Source={StaticResource Captions}}"
         />
 
       <clipflair:TextEditorWindow 
@@ -110,10 +107,10 @@ Version: 20121029
         />
 
       <clipflair:ImageWindow 
-        Source="http://clipflair.net/wp-content/themes/clipflair-theme/images/clipflair-logo.jpg" 
         Position="820,740" 
         Width="200" Height="100" 
         Title="Image" IconText="Image" Tag="Image"
+        Source="http://clipflair.net/wp-content/themes/clipflair-theme/images/clipflair-logo.jpg" 
         />
 
       <!-- Test windows -->

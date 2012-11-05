@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: App.xaml.cs
-//Version: 20121004
+//Version: 20121104
 
 using ClipFlair.Windows;
 
@@ -39,6 +39,7 @@ namespace ClipFlair
       //System.Threading.Thread.Sleep(3000); //3 sec delay (for testing only)
       this.RootVisual = new ActivityContainer();
       Update();
+      //MessageBox.Show("ClipFlair loaded"); //uncomment this to try splash screen
     }
 
     private void Application_Exit(object sender, EventArgs e)
@@ -52,8 +53,17 @@ namespace ClipFlair
 
     private void Update()
     {
+      if (!IsRunningOutOfBrowser) return;
+
       CheckAndDownloadUpdateCompleted += new CheckAndDownloadUpdateCompletedEventHandler(OnCheckAndDownloadUpdateCompleted); //attach event handler
-      CheckAndDownloadUpdateAsync();
+      try
+      {
+        CheckAndDownloadUpdateAsync();
+      }
+      catch
+      {
+        //Ignore any exceptions (e.g. when offline)
+      }
     }
 
     private void OnCheckAndDownloadUpdateCompleted(object sender, CheckAndDownloadUpdateCompletedEventArgs e)
