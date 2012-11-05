@@ -62,7 +62,7 @@
                 <label style="width: auto !important; font-size:11px; " for="<%= chkRememberMe.ClientID %>"><%= DefaultResources.MembershipEditor_RememberMe %></label>
         </asp:PlaceHolder>
         
-        <asp:Label ID="labInfo" runat="server"></asp:Label>
+        <asp:Label ID="labInfo" runat="server" CssClass="registration-notice"></asp:Label>
         
         <div class="button-holder" style="float: right;">
             <MonoX:StyledButton ID="btnCreateAccount" runat="server" CssClass="CssFormButton"></MonoX:StyledButton>

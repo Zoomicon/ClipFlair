@@ -217,6 +217,7 @@
 {
 	position: relative;
 	min-height: 65px;
+    margin-bottom:10px;
 }
 .web-part-container .web-part-menu-button
 {
