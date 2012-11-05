@@ -11,8 +11,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClipFlair", "Client\ClipFla
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClipFlair.Web", "Server\ClipFlair.Web\ClipFlair.Web.csproj", "{17ADC51A-2B00-4BE5-B5AB-7C6F0CE88B43}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClipFlairModels", "Models\ClipFlairModels\ClipFlairModels.csproj", "{5BCE670D-C942-4C1E-A369-E8FC1AD3D34F}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FlipPanel.Silverlight", "Client\FlipPanel\FlipPanel.Silverlight\FlipPanel.Silverlight.csproj", "{245ABF59-8751-46FB-A37E-E5EE253342AD}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPF_Compatibility.Silverlight", "Client\WPF_Compatibility\WPF_Compatibility.Silverlight\WPF_Compatibility.Silverlight.csproj", "{7DC832CC-2D97-4DBC-B963-3F77C1F20730}"
@@ -27,9 +25,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FloatingWindowZUI.Silverlig
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Utils.Silverlight", "Client\Converters\Utils.Silverlight.csproj", "{E784B6A1-A300-4571-A881-B15240EEE377}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Client", "Client", "{9226D211-9A9D-4F42-A166-8495F0C188A4}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Models", "Models", "{662FC167-7277-4007-AD9F-3FFDCE8BD089}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Libraries", "Libraries", "{9226D211-9A9D-4F42-A166-8495F0C188A4}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MediaPlayer.Silverlight", "Client\MediaPlayer\MediaPlayer.Silverlight\MediaPlayer.Silverlight.csproj", "{DD195CFE-B418-4C76-8F51-EEE8E28FAA41}"
 EndProject
@@ -69,10 +65,6 @@ Global
 		{17ADC51A-2B00-4BE5-B5AB-7C6F0CE88B43}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{17ADC51A-2B00-4BE5-B5AB-7C6F0CE88B43}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{17ADC51A-2B00-4BE5-B5AB-7C6F0CE88B43}.Release|Any CPU.Build.0 = Release|Any CPU
-		{5BCE670D-C942-4C1E-A369-E8FC1AD3D34F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5BCE670D-C942-4C1E-A369-E8FC1AD3D34F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5BCE670D-C942-4C1E-A369-E8FC1AD3D34F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5BCE670D-C942-4C1E-A369-E8FC1AD3D34F}.Release|Any CPU.Build.0 = Release|Any CPU
 		{245ABF59-8751-46FB-A37E-E5EE253342AD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{245ABF59-8751-46FB-A37E-E5EE253342AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{245ABF59-8751-46FB-A37E-E5EE253342AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -126,8 +118,6 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{5BCE670D-C942-4C1E-A369-E8FC1AD3D34F} = {662FC167-7277-4007-AD9F-3FFDCE8BD089}
-		{5DA25550-CBA7-4005-ACB8-1E4CF70B6E9B} = {662FC167-7277-4007-AD9F-3FFDCE8BD089}
 		{CB37E211-5126-4625-9817-AD0946C5F23F} = {9226D211-9A9D-4F42-A166-8495F0C188A4}
 		{FBDD15EE-2A2C-4180-9286-123757F78949} = {9226D211-9A9D-4F42-A166-8495F0C188A4}
 		{AB8CB11F-F724-4E42-BEED-74A778A61FC9} = {9226D211-9A9D-4F42-A166-8495F0C188A4}
