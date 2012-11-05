@@ -1,5 +1,5 @@
 ﻿//Filename: ZoomAndPanControl.cs
-//Version: 20120802
+//Version: 20121103
 //Editor: George Birbilis <birbilis@kagi.com>
 
 //Based on:
@@ -131,6 +131,9 @@ namespace ZoomAndPan
         public static readonly DependencyProperty ContentScaleProperty =
                 WPF_DependencyProperty.Register("ContentScale", typeof(double), typeof(ZoomAndPanControl), new FrameworkPropertyMetadata(1.0, ContentScale_PropertyChanged, ContentScale_Coerce));
 
+        public static readonly DependencyProperty ContentScalableProperty =
+               WPF_DependencyProperty.Register("ContentScalable", typeof(bool), typeof(ZoomAndPanControl), new FrameworkPropertyMetadata(true));
+
         public static readonly DependencyProperty MinContentScaleProperty =
                 WPF_DependencyProperty.Register("MinContentScale", typeof(double), typeof(ZoomAndPanControl), new FrameworkPropertyMetadata(0.01, MinOrMaxContentScale_PropertyChanged));
 
@@ -195,14 +198,8 @@ namespace ZoomAndPan
         /// </summary>
         public double ContentOffsetX
         {
-            get
-            {
-                return (double)GetValue(ContentOffsetXProperty);
-            }
-            set
-            {
-                SetValue(ContentOffsetXProperty, value);
-            }
+            get { return (double)GetValue(ContentOffsetXProperty); }
+            set { SetValue(ContentOffsetXProperty, value); }
         }
 
         /// <summary>
@@ -210,14 +207,8 @@ namespace ZoomAndPan
         /// </summary>
         public double ContentOffsetY
         {
-            get
-            {
-                return (double)GetValue(ContentOffsetYProperty);
-            }
-            set
-            {
-                SetValue(ContentOffsetYProperty, value);
-            }
+            get { return (double)GetValue(ContentOffsetYProperty); }
+            set { SetValue(ContentOffsetYProperty, value); }
         }
 
         /// <summary>
@@ -225,14 +216,17 @@ namespace ZoomAndPan
         /// </summary>
         public double ContentScale
         {
-            get
-            {
-                return (double)GetValue(ContentScaleProperty);
-            }
-            set
-            {
-                SetValue(ContentScaleProperty, value);
-            }
+            get { return (double)GetValue(ContentScaleProperty); }
+            set { SetValue(ContentScaleProperty, value); }
+        }
+
+        /// <summary>
+        /// Get/set whethe content is scalable via user interaction.
+        /// </summary>
+        public bool ContentScalable
+        {
+          get { return (bool)GetValue(ContentScalableProperty); }
+          set { SetValue(ContentScalableProperty, value); }
         }
 
         /// <summary>
@@ -240,14 +234,8 @@ namespace ZoomAndPan
         /// </summary>
         public double MinContentScale
         {
-            get
-            {
-                return (double)GetValue(MinContentScaleProperty);
-            }
-            set
-            {
-                SetValue(MinContentScaleProperty, value);
-            }
+            get { return (double)GetValue(MinContentScaleProperty); }
+            set { SetValue(MinContentScaleProperty, value); }
         }
 
         /// <summary>
@@ -255,14 +243,8 @@ namespace ZoomAndPan
         /// </summary>
         public double MaxContentScale
         {
-            get
-            {
-                return (double)GetValue(MaxContentScaleProperty);
-            }
-            set
-            {
-                SetValue(MaxContentScaleProperty, value);
-            }
+            get { return (double)GetValue(MaxContentScaleProperty); }
+            set { SetValue(MaxContentScaleProperty, value); }
         }
 
         /// <summary>
@@ -270,14 +252,8 @@ namespace ZoomAndPan
         /// </summary>
         public double ContentZoomFocusX
         {
-            get
-            {
-                return (double)GetValue(ContentZoomFocusXProperty);
-            }
-            set
-            {
-                SetValue(ContentZoomFocusXProperty, value);
-            }
+            get { return (double)GetValue(ContentZoomFocusXProperty); }
+            set { SetValue(ContentZoomFocusXProperty, value); }
         }
 
         /// <summary>
@@ -285,14 +261,8 @@ namespace ZoomAndPan
         /// </summary>
         public double ContentZoomFocusY
         {
-            get
-            {
-                return (double)GetValue(ContentZoomFocusYProperty);
-            }
-            set
-            {
-                SetValue(ContentZoomFocusYProperty, value);
-            }
+            get { return (double)GetValue(ContentZoomFocusYProperty); }
+            set { SetValue(ContentZoomFocusYProperty, value); }
         }
 
         /// <summary>
@@ -301,14 +271,8 @@ namespace ZoomAndPan
         /// </summary>
         public double ViewportZoomFocusX
         {
-            get
-            {
-                return (double)GetValue(ViewportZoomFocusXProperty);
-            }
-            set
-            {
-                SetValue(ViewportZoomFocusXProperty, value);
-            }
+            get { return (double)GetValue(ViewportZoomFocusXProperty); }
+            set { SetValue(ViewportZoomFocusXProperty, value); }
         }
 
         /// <summary>
@@ -317,14 +281,8 @@ namespace ZoomAndPan
         /// </summary>
         public double ViewportZoomFocusY
         {
-            get
-            {
-                return (double)GetValue(ViewportZoomFocusYProperty);
-            }
-            set
-            {
-                SetValue(ViewportZoomFocusYProperty, value);
-            }
+            get { return (double)GetValue(ViewportZoomFocusYProperty); }
+            set { SetValue(ViewportZoomFocusYProperty, value); }
         }
 
         /// <summary>
@@ -332,14 +290,8 @@ namespace ZoomAndPan
         /// </summary>
         public double AnimationDuration
         {
-            get
-            {
-                return (double)GetValue(AnimationDurationProperty);
-            }
-            set
-            {
-                SetValue(AnimationDurationProperty, value);
-            }
+            get { return (double)GetValue(AnimationDurationProperty); }
+            set { SetValue(AnimationDurationProperty, value); }
         }
 
         /// <summary>
@@ -347,14 +299,8 @@ namespace ZoomAndPan
         /// </summary>
         public double ContentViewportWidth
         {
-            get
-            {
-                return (double)GetValue(ContentViewportWidthProperty);
-            }
-            set
-            {
-                SetValue(ContentViewportWidthProperty, value);
-            }
+            get { return (double)GetValue(ContentViewportWidthProperty); }
+            set { SetValue(ContentViewportWidthProperty, value); }
         }
 
         /// <summary>
@@ -362,14 +308,8 @@ namespace ZoomAndPan
         /// </summary>
         public double ContentViewportHeight
         {
-            get
-            {
-                return (double)GetValue(ContentViewportHeightProperty);
-            }
-            set
-            {
-                SetValue(ContentViewportHeightProperty, value);
-            }
+            get { return (double)GetValue(ContentViewportHeightProperty); }
+            set { SetValue(ContentViewportHeightProperty, value); }
         }
 
         /// <summary>
@@ -378,15 +318,10 @@ namespace ZoomAndPan
         /// </summary>
         public bool IsMouseWheelScrollingEnabled
         {
-            get
-            {
-                return (bool)GetValue(IsMouseWheelScrollingEnabledProperty);
-            }
-            set
-            {
-                SetValue(IsMouseWheelScrollingEnabledProperty, value);
-            }
+            get { return (bool)GetValue(IsMouseWheelScrollingEnabledProperty); }
+            set { SetValue(IsMouseWheelScrollingEnabledProperty, value); }
         }
+
         #endregion Properties
 
         #region Methods
