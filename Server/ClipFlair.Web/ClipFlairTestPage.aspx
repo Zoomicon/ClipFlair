@@ -3,6 +3,9 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" >
 <head runat="server">
+
+    <script type="text/javascript" src="SplashScreen.js"></script>
+    
     <title>ClipFlair</title>
     <style type="text/css">
     html, body {
@@ -65,10 +68,12 @@
     <form id="form1" runat="server" style="height:100%">
     <div id="silverlightControlHost">
         <object id="silverlightControl" data="data:application/x-silverlight-2," type="application/x-silverlight-2" width="100%" height="100%">
-		  <param name="source" value="ClientBin/ClipFlair.xap"/>
+		  <param name="source" value="ClientBin/ClipFlair.xap" />
+      <param name="splashScreenSource" value="SplashScreen.xaml" />
+      <param name="onSourceDownloadProgressChanged" value="onSourceDownloadProgressChanged" />
 		  <param name="onError" value="onSilverlightError" />
       <param name="onLoad" value="onSilverlightLoad" />
-		  <param name="enableGPUAcceleration" value="true"/>
+		  <param name="enableGPUAcceleration" value="true" />
 		  <param name="background" value="white" />
       <param name="minRuntimeVersion" value="5.0.61118.0" />
 		  <param name="autoUpgrade" value="true" />
