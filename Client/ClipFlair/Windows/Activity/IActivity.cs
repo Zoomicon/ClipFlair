@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: IActivity.cs
-//Version: 20121103
+//Version: 20121104
 
 using System;
 using System.Windows;
@@ -15,8 +15,8 @@ namespace ClipFlair.Windows.Views
     public const string PropertyViewPosition = "ViewPosition";
     public const string PropertyViewWidth = "ViewWidth";
     public const string PropertyViewHeight = "ViewHeight";
-    public const string PropertyContentZoom = "ViewContentZoom";
-    public const string PropertyContentZoomable = "ViewContentZoomable";
+    public const string PropertyContentZoom = "ContentZoom";
+    public const string PropertyContentZoomable = "ContentZoomable";
     public const string PropertyContentPartsConfigurable = "ContentPartsConfigurable";
 
     //TODO: maybe also add WindowsMoveable/WindowsResizable/WindowZoomable to override child settings
