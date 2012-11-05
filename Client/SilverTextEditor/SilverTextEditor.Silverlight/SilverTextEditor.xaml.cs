@@ -1,12 +1,14 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: SilverTextEditor.xaml.cs
-//Version: 20121003
+//Version: 20121103
 
 //Originated from Microsoft sample
 
 //Note: localization could use "PublicResxFileCodeGeneratorEx" custom build tool for the "Strings.resx" file
 //      from http://resxfilecodegenex.codeplex.com/ if that is fixed to generate public constuctor instead of protected (see issue tracker there)
 //      (Currently one needs to open Resources\Strings.Designer.cs and change internal constructor to public)
+
+//TODO: allow to add checkbox controls and remember their state (checked/unchecked) in the text
 
 using WPFCompatibility;
 
@@ -50,7 +52,7 @@ namespace SilverTextEditor
         /// ToolbarVisible Dependency Property
         /// </summary>
         public static readonly DependencyProperty ToolbarVisibleProperty =
-            DependencyProperty.Register("Source", typeof(bool), typeof(SilverTextEditor),
+            DependencyProperty.Register("ToolbarVisible", typeof(bool), typeof(SilverTextEditor),
                 new FrameworkPropertyMetadata(true, new PropertyChangedCallback(OnToolbarVisibleChanged)));
 
         /// <summary>
@@ -77,6 +79,80 @@ namespace SilverTextEditor
         protected virtual void OnToolbarVisibleChanged(bool oldToolbarVisible, bool newToolbarVisible)
         {
           Toolbar.Visibility = (newToolbarVisible)? Visibility.Visible : Visibility.Collapsed;
+        }
+
+        #endregion
+
+        #region Editable
+
+        /// <summary>
+        /// Editable Dependency Property
+        /// </summary>
+        public static readonly DependencyProperty EditableProperty =
+            DependencyProperty.Register("Editable", typeof(bool), typeof(SilverTextEditor),
+                new FrameworkPropertyMetadata(true, new PropertyChangedCallback(OnEditableChanged)));
+
+        /// <summary>
+        /// Gets or sets the Editable property.
+        /// </summary>
+        public bool Editable
+        {
+          get { return (bool)GetValue(EditableProperty); }
+          set { SetValue(EditableProperty, value); }
+        }
+
+        /// <summary>
+        /// Handles changes to the Editable property.
+        /// </summary>
+        private static void OnEditableChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+          SilverTextEditor target = (SilverTextEditor)d;
+          target.OnEditableChanged((bool)e.OldValue, target.Editable);
+        }
+
+        /// <summary>
+        /// Provides derived classes an opportunity to handle changes to the IsAvailable property.
+        /// </summary>
+        protected virtual void OnEditableChanged(bool oldEditable, bool newEditable)
+        {
+          btnRO.IsChecked = !newEditable;
+        }
+
+        #endregion
+
+        #region RTL
+
+        /// <summary>
+        /// RTL Dependency Property
+        /// </summary>
+        public static readonly DependencyProperty RTLProperty =
+            DependencyProperty.Register("RTL", typeof(bool), typeof(SilverTextEditor),
+                new FrameworkPropertyMetadata(false, new PropertyChangedCallback(OnRTLChanged)));
+
+        /// <summary>
+        /// Gets or sets the RTL property.
+        /// </summary>
+        public bool RTL
+        {
+          get { return (bool)GetValue(RTLProperty); }
+          set { SetValue(RTLProperty, value); }
+        }
+
+        /// <summary>
+        /// Handles changes to the RTL property.
+        /// </summary>
+        private static void OnRTLChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+          SilverTextEditor target = (SilverTextEditor)d;
+          target.OnRTLChanged((bool)e.OldValue, target.RTL);
+        }
+
+        /// <summary>
+        /// Provides derived classes an opportunity to handle changes to the IsAvailable property.
+        /// </summary>
+        protected virtual void OnRTLChanged(bool oldRTL, bool newRTL)
+        {
+          btnRTL.IsChecked = newRTL;
         }
 
         #endregion
@@ -296,16 +372,16 @@ namespace SilverTextEditor
         //Set the flow direction
         public void btnRTL_Checked(object sender, RoutedEventArgs e)
         {
-            //Set the button image based on the state of the toggle button. 
-            if(btnRTL.IsChecked.Value)
-                btnRTL.Content = SilverTextEditor.createImageFromUri(new Uri("/SilverTextEditor;component/Images/rtl.png", UriKind.RelativeOrAbsolute), 30, 32);
-            else
-                btnRTL.Content = SilverTextEditor.createImageFromUri(new Uri("/SilverTextEditor;component/Images/ltr.png", UriKind.RelativeOrAbsolute), 30, 32);
+          bool rtl = btnRTL.IsChecked.Value;
+          RTBGrid.FlowDirection = (rtl) ? System.Windows.FlowDirection.RightToLeft : System.Windows.FlowDirection.LeftToRight; //not using ApplicationBorder anymore, don't want to flip the toolbar direction too
+          if (RTL != rtl) RTL = rtl;
 
-            ApplicationBorder.FlowDirection = (ApplicationBorder.FlowDirection == System.Windows.FlowDirection.LeftToRight) ? System.Windows.FlowDirection.RightToLeft : System.Windows.FlowDirection.LeftToRight;
-            ReturnFocus();
-            
+          //Set the button image based on the state of the toggle button. 
+          btnRTL.Content = SilverTextEditor.createImageFromUri(new Uri(rtl? "/SilverTextEditor;component/Images/rtl.png" : "/SilverTextEditor;component/Images/ltr.png", UriKind.RelativeOrAbsolute), 30, 32);
+
+          ReturnFocus();
         }
+
         #endregion 
 
         #region XAML Markup
@@ -340,14 +416,14 @@ namespace SilverTextEditor
         //Make the RichTextBox read-only
         public void btnRO_Checked(object sender, RoutedEventArgs e)
         {
-            rtb.IsReadOnly = !rtb.IsReadOnly;
+          bool ro = btnRO.IsChecked.Value;
+          rtb.IsReadOnly = ro;
+          if (Editable == ro) Editable = !ro; //using negated logic here
 
-            //Set the button image based on the state of the toggle button.
-            if (rtb.IsReadOnly)
-                btnRO.Content = SilverTextEditor.createImageFromUri(new Uri("/SilverTextEditor;component/Images/view.png", UriKind.RelativeOrAbsolute), 29, 32);
-            else
-                btnRO.Content = SilverTextEditor.createImageFromUri(new Uri("/SilverTextEditor;component/Images/edit.png", UriKind.RelativeOrAbsolute), 29, 32);
-            ReturnFocus();
+          //Set the button image based on the state of the toggle button.
+          btnRO.Content = SilverTextEditor.createImageFromUri(new Uri(ro? "/SilverTextEditor;component/Images/view.png" : "/SilverTextEditor;component/Images/edit.png", UriKind.RelativeOrAbsolute), 29, 32);
+
+          ReturnFocus();
         }
 
         #endregion 
@@ -359,15 +435,18 @@ namespace SilverTextEditor
         //button up event is raised. 
         private void rtb_MouseRightButtonDown(object sender, MouseButtonEventArgs e)
         {
+          if (Keyboard.Modifiers == ModifierKeys.None) //ignore right click if modifier keys like CTRL are pressed to not interfere with other actions like zooming
             e.Handled = true;
         }
 
         private void rtb_MouseRightButtonUp(object sender, MouseButtonEventArgs e)
         {
-            //Construct and display the context menu
-
+          //Construct and display the context menu
+          if (!e.Handled && (Keyboard.Modifiers == ModifierKeys.None)) //ignore right click if modifier keys like CTRL are pressed to not interfere with other actions like zooming
+          {
             RTBContextMenu menu = new RTBContextMenu(rtb);
-            menu.Show(e.GetPosition(LayoutRoot));
+            menu.Show(e.GetPosition(null)); //TODO: report bug at original code here, was passing LayoutRoot which won't work correctly if the text editor is inside some parent container
+          }
         }
         #endregion 
 

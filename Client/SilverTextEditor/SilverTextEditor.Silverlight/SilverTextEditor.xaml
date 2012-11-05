@@ -246,7 +246,7 @@ Version: 20121016
               <Image Source="Images/ltr.png" Width="30"/>
             </ToggleButton>
 
-            <ToggleButton x:Name="btnRO" Checked="btnRO_Checked" Unchecked="btnRO_Checked">
+            <ToggleButton x:Name="btnRO" Checked="btnRO_Checked" Unchecked="btnRO_Checked" IsChecked="{Binding IsReadOnly}">
               <ToolTipService.ToolTip>
                 <ToolTip FontSize="16" Content="Edit / View Mode"/>
               </ToolTipService.ToolTip>
