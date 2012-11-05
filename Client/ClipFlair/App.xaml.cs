@@ -4,6 +4,8 @@
 
 using ClipFlair.Windows;
 
+using SilverFlow.Controls;
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,7 +16,6 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
-using System.Windows.Shapes;
 
 namespace ClipFlair
 {
@@ -37,7 +38,14 @@ namespace ClipFlair
       //this.RootVisual = new SplashScreen(); //TODO: find some way to show SplashScreen (in case instantiating/initializing ActivityContainer takes some time)
       //Update();
       //System.Threading.Thread.Sleep(3000); //3 sec delay (for testing only)
-      this.RootVisual = new ActivityContainer();
+      FrameworkElement c=new ActivityContainer(); //ActivityContainerWindow
+      FloatingWindow w = (c as FloatingWindow);
+      if (w != null)
+      {
+        w.ResizeEnabled = false;
+        w.Visibility = Visibility.Visible;
+      }
+      this.RootVisual = c;
       Update();
       //MessageBox.Show("ClipFlair loaded"); //uncomment this to try splash screen
     }

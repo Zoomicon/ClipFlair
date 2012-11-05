@@ -1,7 +1,7 @@
 ﻿<!--
 Project: ClipFlair (http://ClipFlair.codeplex.com)
 Filename: BaseWindow.xaml
-Version: 20121004
+Version: 20121104
 -->
 
 <float:FloatingWindow x:Class="ClipFlair.Windows.BaseWindow"
@@ -48,6 +48,16 @@ Version: 20121004
           <StackPanel Orientation="Vertical">
             <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Zoom:" Target="{Binding ElementName=edZoom}" />
             <TextBox Name="edZoom" Text="{Binding Zoom, Mode=TwoWay}" />
+          </StackPanel>
+
+          <StackPanel Orientation="Horizontal">
+            <CheckBox Name="cbMoveable" IsChecked="{Binding Moveable, Mode=TwoWay}" />
+            <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Moveable" Target="{Binding ElementName=cbMoveable}"/>
+          </StackPanel>
+
+          <StackPanel Orientation="Horizontal">
+            <CheckBox Name="cbResizable" IsChecked="{Binding Resizable, Mode=TwoWay}" />
+            <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Resizable" Target="{Binding ElementName=cbResizable}"/>
           </StackPanel>
 
           <StackPanel Orientation="Horizontal">
