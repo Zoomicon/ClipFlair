@@ -1,4 +1,7 @@
-﻿using System;
+﻿//Filename: ResizeController.cs
+//Version: 20121104
+
+using System;
 using System.Windows;
 using System.Windows.Input;
 using SilverFlow.Controls.Enums;
@@ -277,12 +280,12 @@ namespace SilverFlow.Controls.Controllers
             double minWidth = (element.MinWidth != 0) ? element.MinWidth : MinResizedWidth;
             double minHeight = element.MinHeight;
 
-            double maxWidth = Host.ActualWidth - initialPosition.X;
+            double maxWidth = (Host!=null)? Host.ActualWidth - initialPosition.X : minWidth;
 
             if (!element.MaxWidth.IsNotSet() && element.MaxWidth > 0)
                 maxWidth = Math.Min(maxWidth, element.MaxWidth);
 
-            double maxHeight = Host.ActualHeight - initialPosition.Y;
+            double maxHeight = (Host!=null)? Host.ActualHeight - initialPosition.Y : minHeight;
             if (!element.MaxHeight.IsNotSet() && element.MaxHeight > 0)
                 maxHeight = Math.Min(maxHeight, element.MaxHeight);
 
@@ -332,7 +335,7 @@ namespace SilverFlow.Controls.Controllers
             if (!element.MaxWidth.IsNotSet() && element.MaxWidth > 0)
                 maxWidth = Math.Min(maxWidth, element.MaxWidth);
 
-            double maxHeight = Host.ActualHeight - initialPosition.Y;
+            double maxHeight = (Host!=null)? Host.ActualHeight - initialPosition.Y : minHeight;
             if (!element.MaxHeight.IsNotSet() && element.MaxHeight > 0)
                 maxHeight = Math.Min(maxHeight, element.MaxHeight);
 
@@ -352,7 +355,7 @@ namespace SilverFlow.Controls.Controllers
             double minHeight = element.MinHeight;
 
             Point point = initialPosition.Add(0, initialSize.Height);
-            double maxWidth = Host.ActualWidth - initialPosition.X;
+            double maxWidth = (Host!=null)? Host.ActualWidth - initialPosition.X : minWidth;
 
             if (!element.MaxWidth.IsNotSet() && element.MaxWidth > 0)
                 maxWidth = Math.Min(maxWidth, element.MaxWidth);
