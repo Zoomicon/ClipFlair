@@ -18,6 +18,7 @@
 
 <asp:Content ContentPlaceHolderID="cp" runat="server">
 <asp:ScriptManagerProxy ID="scriptManagerProxy" runat="server"></asp:ScriptManagerProxy>
+  <div class="beta-icon"></div>
   <div class="wrapper">
 	<div class="header-wrapper">
    	    <div class="header">

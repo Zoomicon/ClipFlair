@@ -5490,6 +5490,7 @@ font-style:italic;
 	font-size: 11px;
 	color: #210e07;
 	line-height: 20px;
+    margin-bottom: 25px;
 }
 .html-editor A:link,
 .html-editor A:active,
@@ -7219,6 +7220,9 @@ box-shadow: inset 1px 1px 2px #a1a1a1;
 	padding: 0px;
 	overflow: hidden;
 	vertical-align: top;
+    
+    font-size:11px;
+    line-height:16px;
 }
 .input-form .img
 {
@@ -7936,4 +7940,36 @@ width:100%;
 float:right;
 margin-right:45%;
 
+}
+
+
+img.rounded{
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    border-radius: 8px;
+}
+
+
+.beta-icon{
+position:absolute;
+z-index:1000;
+top:0;
+left:0;
+width:73px;
+height:72px;
+background-image:url(img/beta-icon.png);
+background-repeat:no-repeat;
+background-position:left top;
+display:block;
+}
+
+.registration-notice{
+overflow: hidden;
+position: absolute;
+top: 0;
+right: 0;
+background-color: white;
+-moz-box-shadow: 0px 1px 2px #90936d;
+-webkit-box-shadow: 0px 1px 2px #90936D;
+box-shadow: 0px 1px 2px #90936D;
 }

@@ -20,6 +20,7 @@
                 <asp:Label ID="labInfo" runat="server"></asp:Label>
             </dd>
         </dl>
+        <br/>
         <div class="input-form">
             <div class="button-holder">
                 <MonoX:StyledButton ID="btnSend" runat="server" CssClass="CssFormButton"></MonoX:StyledButton>
