@@ -1,5 +1,5 @@
 ﻿//Filename: ZoomAndPanControl_Mouse.cs
-//Version: 20120810
+//Version: 20121103
 
 using System;
 using System.Windows;
@@ -111,9 +111,9 @@ namespace ZoomAndPan
 
       protected override void OnMouseRightButtonDown(MouseButtonEventArgs e)
       {
-        //base.OnMouseRightButtonDown(e);
+        base.OnMouseRightButtonDown(e);
         if (!isDefaultMouseHandling) return;
-        //if (!e.Handled) return; //don't do this, else will show Silverlight popup
+        if (e.Handled) return;
         
         OnMouseDown(e, MouseButton.Right);
       }
@@ -130,7 +130,7 @@ namespace ZoomAndPan
         origZoomAndPanControlMouseDownPoint = e.GetPosition(this);
         origContentMouseDownPoint = e.GetPosition(content);
 
-        if ((Keyboard.Modifiers & ModifierKeys.Control) != 0 
+        if (ContentScalable && ((Keyboard.Modifiers & ModifierKeys.Control) != 0) 
             &&
             (mouseButtonDown == MouseButton.Left ||
              mouseButtonDown == MouseButton.Right))
@@ -149,6 +149,8 @@ namespace ZoomAndPan
           //this.CaptureMouse(); // Capture the mouse so that we keep receiving the mouse up event
           e.Handled = true;
         }
+        else
+          e.Handled = false;
       }
 
       protected override void OnMouseLeftButtonUp(MouseButtonEventArgs e)
@@ -182,20 +184,24 @@ namespace ZoomAndPan
         {
 
           case MouseHandlingMode.Zooming:
-            if (mouseButtonDown == MouseButton.Left && changedButton == MouseButton.Left) //at WPF one could also use "e.ChangedButton"
+            if (ContentScalable && (mouseButtonDown == MouseButton.Left) && (changedButton == MouseButton.Left)) //at WPF one could also use "e.ChangedButton"
             {
               ZoomIn(origContentMouseDownPoint); // Control + left-click zooms in on the content
             }
-            else if (mouseButtonDown == MouseButton.Right && changedButton == MouseButton.Right) //at WPF one could also use "e.ChangedButton"
+            else if (ContentScalable && (mouseButtonDown == MouseButton.Right) && (changedButton == MouseButton.Right)) //at WPF one could also use "e.ChangedButton"
             {
               ZoomOut(origContentMouseDownPoint); // Control + left-click zooms out from the content
             }
-            e.Handled = true;
+            e.Handled = ContentScalable;
             break;
 
           case MouseHandlingMode.DragZooming: //drag-zooming has finished 
             ApplyDragZoomRect(); //zoom in on the rectangle that was highlighted by the user.
             e.Handled = true;
+            break;
+
+          default:
+            e.Handled = false;
             break;
         }
 
@@ -234,13 +240,13 @@ namespace ZoomAndPan
             double dragThreshold = 10;
 
 #if !DRAGZOOMRECT
-            if (mouseButtonDown == MouseButton.Left)
+            if (ContentScalable && (mouseButtonDown == MouseButton.Left))
             {
               if ((curZoomAndPanControlMousePoint.Y - origZoomAndPanControlMouseDownPoint.Y /*dragOffset.X*/) < -dragThreshold) ZoomAboutPoint(ContentScale + 0.02, origContentMouseDownPoint); //CTRL + drag up to zoom in 
               else if ((curZoomAndPanControlMousePoint.Y - origZoomAndPanControlMouseDownPoint.Y /*dragOffset.Y*/) > dragThreshold) ZoomAboutPoint(ContentScale - 0.02, origContentMouseDownPoint); //CTRL + drag down to zoom out
             }
-#else
-            if (mouseButtonDown == MouseButton.Left &&
+#else //DRAGZOOMRECT
+            if (ContentScalable && mouseButtonDown == MouseButton.Left &&
                 (Math.Abs(curZoomAndPanControlMousePoint.X - origZoomAndPanControlMouseDownPoint.X /*dragOffset.X*/) > dragThreshold ||
                  Math.Abs(curZoomAndPanControlMousePoint.Y - origZoomAndPanControlMouseDownPoint.Y /*dragOffset.Y*/) > dragThreshold))
             {
@@ -254,7 +260,7 @@ namespace ZoomAndPan
             }
 
 #if !SILVERLIGHT
-          e.Handled = true;
+          e.Handled = ContentScalable;
 #endif
             break;
 
@@ -262,12 +268,18 @@ namespace ZoomAndPan
             SetDragZoomRect(origContentMouseDownPoint, curContentMousePoint);
 
 #if !SILVERLIGHT
-          e.Handled = true;
+          e.Handled = ContentScalable;
 #endif
 
-#endif
+#endif //DRAGZOOMRECT
+
             break;
 
+#if !SILVERLIGHT
+          default:
+            e.Handled = false;
+            break;
+#endif
         }
       }
 
@@ -277,7 +289,7 @@ namespace ZoomAndPan
         if (!isDefaultMouseHandling) return;
         if (e.Handled) return;
 
-        if ((Keyboard.Modifiers & ModifierKeys.Control) != 0) 
+        if (ContentScalable && ((Keyboard.Modifiers & ModifierKeys.Control) != 0)) 
         {
           Point mousePosition = e.GetPosition(content); //delta should be either >0 or <0
           if (e.Delta > 0)
