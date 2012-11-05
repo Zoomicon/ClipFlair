@@ -1,7 +1,7 @@
 ﻿<!--
 Project: ClipFlair (http://ClipFlair.codeplex.com)
 Filename: ActivityContainerWindow.xaml
-Version: 20121029
+Version: 20121104
 -->
   
 <clipflair:BaseWindow x:Class="ClipFlair.Windows.ActivityContainerWindow"
@@ -46,7 +46,37 @@ Version: 20121029
       <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Time:" Target="{Binding ElementName=edTime}" />
       <TextBox Name="edTime" Text="{Binding Time, Mode=TwoWay}" />
     </StackPanel>
-    
+
+    <StackPanel Orientation="Vertical">
+      <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="View Position:" Target="{Binding ElementName=edViewPosition}" />
+      <TextBox Name="edViewPosition" Text="{Binding ViewPosition, Mode=TwoWay}" />
+    </StackPanel>
+
+    <StackPanel Orientation="Vertical">
+      <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="View Width:" Target="{Binding ElementName=edViewWidth}" />
+      <TextBox Name="edViewWidth" Text="{Binding ViewWidth, Mode=TwoWay}" />
+    </StackPanel>
+
+    <StackPanel Orientation="Vertical">
+      <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="View Height:" Target="{Binding ElementName=edViewHeight}" />
+      <TextBox Name="edViewHeight" Text="{Binding ViewHeight, Mode=TwoWay}" />
+    </StackPanel>
+
+    <StackPanel Orientation="Vertical">
+      <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Content Zoom:" Target="{Binding ElementName=edContentZoom}" />
+      <TextBox Name="edContentZoom" Text="{Binding ContentZoom, Mode=TwoWay}" />
+    </StackPanel>
+
+    <StackPanel Orientation="Horizontal">
+      <CheckBox Name="cbContentZoomable" IsChecked="{Binding ContentZoomable, Mode=TwoWay}" />
+      <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Content Zoomable" Target="{Binding ElementName=cbContentZoomable}"/>
+    </StackPanel>
+
+    <StackPanel Orientation="Horizontal">
+      <CheckBox Name="cbContentPartsConfigurable" IsChecked="{Binding ContentPartsConfigurable, Mode=TwoWay}" />
+      <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Options Button Visible" Target="{Binding ElementName=cbContentPartsConfigurable}"/>
+    </StackPanel>
+
   </clipflair:BaseWindow.PropertyItems>
 
 </clipflair:BaseWindow>
