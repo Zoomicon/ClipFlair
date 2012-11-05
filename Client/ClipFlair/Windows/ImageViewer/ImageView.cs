@@ -1,8 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: ImageView.cs
-//Version: 20121004
-
-using ClipFlair.Models.Views;
+//Version: 20121103
 
 using System;
 using System.Runtime.Serialization;

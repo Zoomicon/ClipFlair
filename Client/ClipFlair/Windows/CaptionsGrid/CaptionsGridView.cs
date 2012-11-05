@@ -1,8 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: CaptionsGridView.cs
-//Version: 20121004
-
-using ClipFlair.Models.Views;
+//Version: 20121103
 
 using System;
 using System.Runtime.Serialization;
@@ -16,8 +14,6 @@ namespace ClipFlair.Windows.Views
     public CaptionsGridView()
     {
     }
-
-    #region ICaptionsGrid
 
     #region Fields
 
@@ -124,7 +120,6 @@ namespace ClipFlair.Windows.Views
 
     #endregion
 
-    #endregion
   }
 
 }

@@ -1,8 +1,7 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: ActivityContainer.xaml.cs
-//Version: 20121030
+//Version: 20121104
 
-using ClipFlair.Models.Views;
 using ClipFlair.Windows.Views;
 using ClipFlair.Utils.Bindings;
 
@@ -35,7 +34,7 @@ namespace ClipFlair.Windows
 
     private void BindWindows()
     {
-      //Two-way bind MediaPlayerWindow.Time to  CaptionsGridWindow.Time
+      //Two-way bind MediaPlayerWindow.Time to CaptionsGridWindow.Time
       //BindProperties(FindWindow("MediaPlayer"), "Time", FindWindow("Captions"), CaptionsGridWindow.TimeProperty, BindingMode.TwoWay); //not using, binding to container's Time instead for now
 
       //Two-way bind MediaPlayerWindow.Time to ActivityContainer.Time
@@ -43,11 +42,8 @@ namespace ClipFlair.Windows
       //Two-way bind CaptionsGridWindow.Time to ActivityContainer.Time
       BindingUtils.BindProperties(this, "Time", FindWindow("Captions"), CaptionsGridWindow.TimeProperty, BindingMode.TwoWay);
 
-      //Two-Way bind MediaPlayerWindow.Captions and CaptionsGridWindow.Captions
-      Binding captionsBinding = new Binding("Captions"); //"Captions" is the name of the property here
-      captionsBinding.Source = FindWindow("MediaPlayer");
-      captionsBinding.Mode = BindingMode.TwoWay;
-      BindingOperations.SetBinding(FindWindow("Captions"), CaptionsGridWindow.CaptionsProperty, captionsBinding); //"Captions" is the tag of the window here
+      //Two-Way bind MediaPlayerWindow.Captions to CaptionsGridWindow.Captions
+      BindingUtils.BindProperties(FindWindow("Captions"), "Captions", FindWindow("MediaPlayer"), MediaPlayerWindow.CaptionsProperty, BindingMode.TwoWay);
     }
 
     public BaseWindow FindWindow(string tag) //need this since floating windows are not added in the XAML visual tree by the FloatingWindowHostZUI.Windows property (maybe should have FloatingWindowHostZUI inherit 
@@ -81,8 +77,12 @@ namespace ClipFlair.Windows
       {
         Source = View.Source;
         Time = View.Time;
-        Offset = View.Offset;
-        Scale = View.Scale;
+        ViewPosition = View.ViewPosition;
+        ViewHeight = View.ViewHeight;
+        ViewHeight = View.ViewHeight;
+        zuiContainer.ZoomHost.ContentScale = View.ContentZoom;
+        zuiContainer.ZoomHost.ContentScalable = View.ContentZoomable;
+        zuiContainer.WindowsConfigurable = View.ContentPartsConfigurable;
         //...
       }
       else switch (e.PropertyName) //string equality check in .NET uses ordinal (binary) comparison semantics by default
@@ -93,13 +93,25 @@ namespace ClipFlair.Windows
           case IActivityProperties.PropertyTime:
             Time = View.Time;
             break;
-          case IActivityProperties.PropertyOffset:
-            Offset = View.Offset;
+          case IActivityProperties.PropertyViewPosition:
+            ViewPosition = View.ViewPosition;
             break;
-          case IActivityProperties.PropertyScale:
-            Scale = View.Scale;
+          case IActivityProperties.PropertyViewWidth:
+            ViewHeight = View.ViewWidth;
             break;
-          //...
+          case IActivityProperties.PropertyViewHeight:
+            ViewHeight = View.ViewHeight;
+            break;
+          case IActivityProperties.PropertyContentZoom:
+            zuiContainer.ZoomHost.ContentScale = View.ContentZoom;
+            break;
+          case IActivityProperties.PropertyContentZoomable:
+            zuiContainer.ZoomHost.ContentScalable = View.ContentZoomable;
+            break;
+          case IActivityProperties.PropertyContentPartsConfigurable:
+            zuiContainer.WindowsConfigurable = View.ContentPartsConfigurable;
+            break;
+            //...
         }
     }
 
@@ -183,85 +195,164 @@ namespace ClipFlair.Windows
 
     #endregion
 
-    #region Offset
+    #region ViewPosition
 
     /// <summary>
-    /// Offset Dependency Property
+    /// ViewPosition Dependency Property
     /// </summary>
-    public static readonly DependencyProperty OffsetProperty =
-        DependencyProperty.Register("Offset", typeof(Point), typeof(ActivityContainer),
-            new FrameworkPropertyMetadata(IActivityDefaults.DefaultOffset, new PropertyChangedCallback(OnOffsetChanged)));
+    public static readonly DependencyProperty ViewPositionProperty =
+        DependencyProperty.Register(IActivityProperties.PropertyViewPosition, typeof(Point), typeof(ActivityContainer),
+            new FrameworkPropertyMetadata(IActivityDefaults.DefaultViewPosition, new PropertyChangedCallback(OnViewPositionChanged)));
 
     /// <summary>
-    /// Gets or sets the Offset property.
+    /// Gets or sets the ViewPosition property.
     /// </summary>
-    public Point Offset
+    public Point ViewPosition
     {
-      get { return (Point)GetValue(OffsetProperty); }
-      set { SetValue(OffsetProperty, value); }
+      get { return (Point)GetValue(ViewPositionProperty); }
+      set { SetValue(ViewPositionProperty, value); }
     }
 
     /// <summary>
-    /// Handles changes to the Offset property.
+    /// Handles changes to the ViewPosition property.
     /// </summary>
-    private static void OnOffsetChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    private static void OnViewPositionChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
       ActivityContainer target = (ActivityContainer)d;
-      Point oldOffset = (Point)e.OldValue;
-      Point newOffset = target.Offset;
-      target.OnOffsetChanged(oldOffset, newOffset);
+      Point oldViewPosition = (Point)e.OldValue;
+      Point newViewPosition = target.ViewPosition;
+      target.OnViewPositionChanged(oldViewPosition, newViewPosition);
     }
 
     /// <summary>
-    /// Provides derived classes an opportunity to handle changes to the Offset property.
+    /// Provides derived classes an opportunity to handle changes to the ViewPosition property.
     /// </summary>
-    protected virtual void OnOffsetChanged(Point oldOffset, Point newOffset)
+    protected virtual void OnViewPositionChanged(Point oldViewPosition, Point newViewPosition)
     {
-      View.Offset = newOffset;
+      View.ViewPosition = newViewPosition;
       //TODO: fix properties of zuiContainer so that we don't need to use .zoomHost. syntax
-      zuiContainer.ZoomHost.ContentOffsetX = newOffset.X;
-      zuiContainer.ZoomHost.ContentOffsetY = newOffset.Y;
+      zuiContainer.ZoomHost.ContentOffsetX = newViewPosition.X;
+      zuiContainer.ZoomHost.ContentOffsetY = newViewPosition.Y;
     }
 
     #endregion
 
-    #region Scale
+    #region ViewWidth
 
     /// <summary>
-    /// Scale Dependency Property
+    /// ViewWidth Dependency Property
     /// </summary>
-    public static readonly DependencyProperty ScaleProperty =
-        DependencyProperty.Register("Scale", typeof(double), typeof(ActivityContainer),
-            new FrameworkPropertyMetadata(IActivityDefaults.DefaultScale,
-                new PropertyChangedCallback(OnScaleChanged)));
+    public static readonly DependencyProperty ViewWidthProperty =
+        DependencyProperty.Register(IActivityProperties.PropertyViewWidth, typeof(double), typeof(ActivityContainer),
+            new FrameworkPropertyMetadata(IActivityDefaults.DefaultViewWidth, new PropertyChangedCallback(OnViewWidthChanged)));
 
     /// <summary>
-    /// Gets or sets the Scale property.
+    /// Gets or sets the ViewWidth property.
     /// </summary>
-    public double Scale
+    public double ViewWidth
     {
-      get { return (double)GetValue(ScaleProperty); }
-      set { SetValue(ScaleProperty, value); }
+      get { return (double)GetValue(ViewWidthProperty); }
+      set { SetValue(ViewWidthProperty, value); }
     }
 
     /// <summary>
-    /// Handles changes to the Scale property.
+    /// Handles changes to the ViewWidth property.
     /// </summary>
-    private static void OnScaleChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    private static void OnViewWidthChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
       ActivityContainer target = (ActivityContainer)d;
-      double oldScale = (double)e.OldValue;
-      double newScale = target.Scale;
-      target.OnScaleChanged(oldScale, newScale);
+      double oldViewWidth = (double)e.OldValue;
+      double newViewWidth = target.ViewWidth;
+      target.OnViewWidthChanged(oldViewWidth, newViewWidth);
     }
 
     /// <summary>
-    /// Provides derived classes an opportunity to handle changes to the Scale property.
+    /// Provides derived classes an opportunity to handle changes to the ViewWidth property.
     /// </summary>
-    protected virtual void OnScaleChanged(double oldScale, double newScale)
+    protected virtual void OnViewWidthChanged(double oldViewWidth, double newViewWidth)
     {
-      View.Scale = newScale;
-      zuiContainer.ZoomHost.ContentScale = newScale; //TODO: fix properties of zuiContainer so that we don't need to use .zoomHost. syntax
+      View.ViewWidth = newViewWidth;
+      zuiContainer.ZoomHost.ContentViewportWidth = newViewWidth; //TODO: fix properties of zuiContainer so that we don't need to use .zoomHost. syntax
+    }
+
+    #endregion
+
+    #region ViewHeight
+
+    /// <summary>
+    /// ViewHeight Dependency Property
+    /// </summary>
+    public static readonly DependencyProperty ViewHeightProperty =
+        DependencyProperty.Register(IActivityProperties.PropertyViewHeight, typeof(double), typeof(ActivityContainer),
+            new FrameworkPropertyMetadata(IActivityDefaults.DefaultViewHeight, new PropertyChangedCallback(OnViewHeightChanged)));
+
+    /// <summary>
+    /// Gets or sets the ViewHeight property.
+    /// </summary>
+    public double ViewHeight
+    {
+      get { return (double)GetValue(ViewHeightProperty); }
+      set { SetValue(ViewHeightProperty, value); }
+    }
+
+    /// <summary>
+    /// Handles changes to the ViewHeight property.
+    /// </summary>
+    private static void OnViewHeightChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    {
+      ActivityContainer target = (ActivityContainer)d;
+      double oldViewHeight = (double)e.OldValue;
+      double newViewHeight = target.ViewHeight;
+      target.OnViewHeightChanged(oldViewHeight, newViewHeight);
+    }
+
+    /// <summary>
+    /// Provides derived classes an opportunity to handle changes to the ViewHeight property.
+    /// </summary>
+    protected virtual void OnViewHeightChanged(double oldViewHeight, double newViewHeight)
+    {
+      View.ViewHeight = newViewHeight;
+      zuiContainer.ZoomHost.ContentViewportHeight = newViewHeight; //TODO: fix properties of zuiContainer so that we don't need to use .zoomHost. syntax
+    }
+
+    #endregion
+
+    #region ContentZoom
+
+    /// <summary>
+    /// ContentZoom Dependency Property
+    /// </summary>
+    public static readonly DependencyProperty ContentZoomProperty =
+        DependencyProperty.Register(IActivityProperties.PropertyContentZoom, typeof(double), typeof(ActivityContainer),
+            new FrameworkPropertyMetadata(IActivityDefaults.DefaultContentZoom, new PropertyChangedCallback(OnContentZoomChanged)));
+
+    /// <summary>
+    /// Gets or sets the ContentZoom property.
+    /// </summary>
+    public double ContentZoom
+    {
+      get { return (double)GetValue(ContentZoomProperty); }
+      set { SetValue(ContentZoomProperty, value); }
+    }
+
+    /// <summary>
+    /// Handles changes to the ContentZoom property.
+    /// </summary>
+    private static void OnContentZoomChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    {
+      ActivityContainer target = (ActivityContainer)d;
+      double oldContentZoom = (double)e.OldValue;
+      double newContentZoom = target.ContentZoom;
+      target.OnContentZoomChanged(oldContentZoom, newContentZoom);
+    }
+
+    /// <summary>
+    /// Provides derived classes an opportunity to handle changes to the ContentZoom property.
+    /// </summary>
+    protected virtual void OnContentZoomChanged(double oldContentZoom, double newContentZoom)
+    {
+      View.ContentZoom = newContentZoom;
+      zuiContainer.ZoomHost.ContentScale = newContentZoom; //TODO: fix properties of zuiContainer so that we don't need to use .zoomHost. syntax
     }
 
     #endregion
@@ -298,7 +389,7 @@ namespace ClipFlair.Windows
 
     private BaseWindow AddWindow(BaseWindow window)
     {
-      window.Scale = 1.0d / zuiContainer.ZoomHost.ContentScale; //TODO: !!! don't use host.ContentScale, has bug and is always 1
+      window.Scale = 1.0d / zuiContainer.ZoomHost.ContentScale; //TODO: !!! don't use host.Scale, has bug and is always 1
       ZoomAndPanControl host = zuiContainer.ZoomHost;
       Point startPoint = new Point((host.ContentOffsetX + host.ViewportWidth / 2) * host.ContentScale, (zuiContainer.ContentOffsetY + host.ViewportHeight / 2) * zuiContainer.ContentScale); //Center at current view
       zuiContainer.Add(window).Show(startPoint);

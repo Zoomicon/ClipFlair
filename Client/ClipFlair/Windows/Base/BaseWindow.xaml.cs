@@ -1,9 +1,9 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: BaseWindow.xaml.cs
-//Version: 20121030
+//Version: 20121103
 
-using ClipFlair.Models.Views;
 using ClipFlair.Utils.Bindings;
+using ClipFlair.Windows.Views;
 
 using SilverFlow.Controls;
 
@@ -50,9 +50,10 @@ namespace ClipFlair.Windows
       //Bind to ancestor properties
       BindingUtils.RegisterForNotification("Title", this, (d, e) => { if (View != null) { View.Title = (string)e.NewValue; } });
       BindingUtils.RegisterForNotification("Position", this, (d, e) => { if (View != null) { View.Position = (Point)e.NewValue; } });
-      BindingUtils.RegisterForNotification("Scale", this, (d, e) => { if (View != null) { View.Scale = (double)e.NewValue; } });
       BindingUtils.RegisterForNotification("Width", this, (d, e) => { if (View != null) { View.Width = (double)e.NewValue; } });
       BindingUtils.RegisterForNotification("Height", this, (d, e) => { if (View != null) { View.Height = (double)e.NewValue; } });
+      BindingUtils.RegisterForNotification("Scale", this, (d, e) => { if (View != null) { View.Zoom = (double)e.NewValue; } });
+      BindingUtils.RegisterForNotification("Scalable", this, (d, e) => { if (View != null) { View.Zoomable = (bool)e.NewValue; } });
     }
 
     #region Properties
@@ -106,9 +107,10 @@ namespace ClipFlair.Windows
         Title = View.Title;
         IconText = View.Title; //IconText should match the Title
         Position = View.Position;
-        Scale = View.Scale;
         Width = View.Width;
         Height = View.Height;
+        Scale = View.Zoom;
+        Scalable = View.Zoomable;
         //...
       }
       else switch (e.PropertyName)
@@ -120,16 +122,19 @@ namespace ClipFlair.Windows
           case IViewProperties.PropertyPosition:
             Position = View.Position;
             break;
-        case IViewProperties.PropertyScale:
-            Scale = View.Scale;
-            break;
           case IViewProperties.PropertyWidth:
             Width = View.Width;
             break;
           case IViewProperties.PropertyHeight:
             Height = View.Height;
             break;
-        //...
+          case IViewProperties.PropertyZoom:
+            Scale = View.Zoom;
+            break;
+          case IViewProperties.PropertyZoomable:
+            Scalable = View.Zoomable;
+            break;
+          //...
         }
     }
 
