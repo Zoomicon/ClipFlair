@@ -1,5 +1,5 @@
 //Filename: FloatingWindow.cs
-//Version: 20121103
+//Version: 20121104
 
 using System;
 using System.Collections.ObjectModel;
@@ -447,7 +447,34 @@ namespace SilverFlow.Controls
             "TitleBackground",
             typeof(Brush),
             typeof(FloatingWindow),
-            new PropertyMetadata(new SolidColorBrush(Colors.Transparent), null));
+            new PropertyMetadata(new SolidColorBrush(Colors.Transparent)));
+
+        #endregion
+
+        #region public bool MoveEnabled
+
+        /// <summary>
+        /// Gets or sets a value indicating whether moving is enabled.
+        /// </summary>
+        /// <value><c>true</c> if moving is enabled; otherwise, <c>false</c>.</value>
+        public bool MoveEnabled
+        {
+          get { return (bool)GetValue(MoveEnabledProperty); }
+          set { SetValue(MoveEnabledProperty, value); }
+        }
+
+        /// <summary>
+        /// Identifies the <see cref="FloatingWindow.MoveEnabled" /> dependency property.
+        /// </summary>
+        /// <value>
+        /// The identifier for the <see cref="FloatingWindow.MoveEnabled" /> dependency property.
+        /// </value>
+        public static readonly DependencyProperty MoveEnabledProperty =
+            DependencyProperty.Register(
+            "MoveEnabled",
+            typeof(bool),
+            typeof(FloatingWindow),
+            new PropertyMetadata(true));
 
         #endregion
 
@@ -474,7 +501,7 @@ namespace SilverFlow.Controls
             "ResizeEnabled",
             typeof(bool),
             typeof(FloatingWindow),
-            new PropertyMetadata(true, null));
+            new PropertyMetadata(true));
 
         #endregion
 
@@ -663,7 +690,7 @@ namespace SilverFlow.Controls
             "ShowInIconbar",
             typeof(bool),
             typeof(FloatingWindow),
-            new PropertyMetadata(true, null));
+            new PropertyMetadata(true));
 
         #endregion
    
@@ -690,7 +717,7 @@ namespace SilverFlow.Controls
             "FlowDirection",
             typeof(FlowDirection),
             typeof(FloatingWindow),
-            new PropertyMetadata(FlowDirection.LeftToRight, null));
+            new PropertyMetadata(FlowDirection.LeftToRight);
 */
         #endregion
 
@@ -2365,7 +2392,7 @@ namespace SilverFlow.Controls
                     // If the mouse was clicked on the chrome - start dragging the window
                     Point point = e.GetPosition(chrome);
 
-                    if (chrome.ContainsPoint(point))
+                    if (MoveEnabled && chrome.ContainsPoint(point))
                     {
                         snapinController.SnapinBounds = this.FloatingWindowHost.GetSnapinBounds(this);
                         CaptureMouseCursor();
