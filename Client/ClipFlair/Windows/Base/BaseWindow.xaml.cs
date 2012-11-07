@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: BaseWindow.xaml.cs
-//Version: 20121106
+//Version: 20121107
 
 using ClipFlair.Utils.Bindings;
 using ClipFlair.Windows.Views;
@@ -100,6 +100,22 @@ namespace ClipFlair.Windows
       {
         //PropertiesPanel.Children.Clear(); //don't remove any children the ancestor had added
         foreach (UIElement item in value) { PropertiesPanel.Children.Add(item); }
+      }
+    }
+
+    public bool IsTopLevel
+    {
+      get { return IsTopLevel; }
+      set
+      {
+        Visibility visibility = value ? Visibility.Collapsed : Visibility.Visible; //hide backpanel properties not relevant when not being a child window
+        propPosition.Visibility = visibility;
+        propWidth.Visibility = visibility;
+        propHeight.Visibility = visibility;
+        propZoom.Visibility = visibility;
+        propMoveable.Visibility = visibility;
+        propResizable.Visibility = visibility;
+        propZoomable.Visibility = visibility;
       }
     }
 

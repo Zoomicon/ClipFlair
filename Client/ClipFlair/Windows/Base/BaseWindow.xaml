@@ -1,7 +1,7 @@
 ﻿<!--
 Project: ClipFlair (http://ClipFlair.codeplex.com)
 Filename: BaseWindow.xaml
-Version: 20121104
+Version: 20121107
 -->
 
 <float:FloatingWindow x:Class="ClipFlair.Windows.BaseWindow"
@@ -36,31 +36,47 @@ Version: 20121104
     <flip:FlipPanel.BackContent> <!-- descendents should define children of BaseWindow.PropertyItems in the XAML -->
       <ScrollViewer HorizontalAlignment="Stretch" VerticalAlignment="Stretch" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
         <StackPanel Name="PropertiesPanel" Orientation="Vertical" Margin="10,0,10,10">
+        
           <StackPanel.Resources>
             <Style TargetType="StackPanel" BasedOn="{StaticResource PropertyStackPanelStyle}" />
           </StackPanel.Resources>
 
-          <StackPanel Orientation="Vertical">
+          <StackPanel Orientation="Vertical" Name="propTitle">
             <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Title:" Target="{Binding ElementName=edTitle}" />
             <TextBox Name="edTitle" Text="{Binding Title, Mode=TwoWay}" />
           </StackPanel>
 
-          <StackPanel Orientation="Vertical">
+          <StackPanel Orientation="Vertical" Name="propPosition">
+            <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Position:" Target="{Binding ElementName=edPosition}" />
+            <TextBox Name="edPosition" Text="{Binding Position, Mode=TwoWay}" />
+          </StackPanel>
+
+          <StackPanel Orientation="Vertical" Name="propWidth">
+            <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Width:" Target="{Binding ElementName=edWidth}" />
+            <TextBox Name="edWidth" Text="{Binding Width, Mode=TwoWay}" />
+          </StackPanel>
+          
+          <StackPanel Orientation="Vertical" Name="propHeight">
+            <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Height:" Target="{Binding ElementName=edHeight}" />
+            <TextBox Name="edHeight" Text="{Binding Height, Mode=TwoWay}" />
+          </StackPanel>
+          
+          <StackPanel Orientation="Vertical" Name="propZoom">
             <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Zoom:" Target="{Binding ElementName=edZoom}" />
             <TextBox Name="edZoom" Text="{Binding Zoom, Mode=TwoWay}" />
           </StackPanel>
 
-          <StackPanel Orientation="Horizontal">
+          <StackPanel Orientation="Horizontal" Name="propMoveable">
             <CheckBox Name="cbMoveable" IsChecked="{Binding Moveable, Mode=TwoWay}" />
             <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Moveable" Target="{Binding ElementName=cbMoveable}"/>
           </StackPanel>
 
-          <StackPanel Orientation="Horizontal">
+          <StackPanel Orientation="Horizontal" Name="propResizable">
             <CheckBox Name="cbResizable" IsChecked="{Binding Resizable, Mode=TwoWay}" />
             <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Resizable" Target="{Binding ElementName=cbResizable}"/>
           </StackPanel>
 
-          <StackPanel Orientation="Horizontal">
+          <StackPanel Orientation="Horizontal" Name="propZoomable">
             <CheckBox Name="cbZoomable" IsChecked="{Binding Zoomable, Mode=TwoWay}" />
             <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Zoomable" Target="{Binding ElementName=cbZoomable}"/>
           </StackPanel>
