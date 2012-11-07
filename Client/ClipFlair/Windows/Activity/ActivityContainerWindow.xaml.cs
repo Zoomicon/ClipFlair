@@ -14,8 +14,23 @@ namespace ClipFlair.Windows
   {
     public ActivityContainerWindow()
     {
-      View = new ActivityView(); //must set the view first
       InitializeComponent();
+
+      //TODO: see why this breaks time-sync
+      //View = activity.View; //must initialize the component first
+      //Title = View.Title;
+      //IconText = View.Title; //IconText should match the Title
+      
+      //Position = View.Position;
+      //Width = View.Width;
+      //Height = View.Height;
+      //Scale = View.Zoom;
+      //MoveEnabled = View.Moveable;
+      //ResizeEnabled = View.Resizable;
+      //Scalable = View.Zoomable;
+
+      //Source = View.Source;
+      //Time = View.Time;
     }
 
     #region --- Properties ---

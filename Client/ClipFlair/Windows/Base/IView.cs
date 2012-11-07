@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: IView.cs
-//Version: 20121102
+//Version: 20121106
 
 using System.ComponentModel;
 using System.Windows;
@@ -18,18 +18,6 @@ namespace ClipFlair.Windows.Views
     public const string PropertyMoveable = "Moveable";
     public const string PropertyResizable = "Resizable";
     public const string PropertyZoomable = "Zoomable";
-  }
-
-  public static class IViewDefaults
-  {
-    public static string DefaultTitle = "";
-    public static Point DefaultPosition = new Point(0, 0);
-    public static double DefaultWidth = 0;
-    public static double DefaultHeight = 0;
-    public static double DefaultZoom = 1.0;
-    public static bool DefaultMoveable = true;
-    public static bool DefaultResizable = true;
-    public static bool DefaultZoomable = true;
   }
 
   public interface IView: INotifyPropertyChanged

@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: BaseWindow.xaml.cs
-//Version: 20121104
+//Version: 20121106
 
 using ClipFlair.Utils.Bindings;
 using ClipFlair.Windows.Views;
@@ -57,7 +57,12 @@ namespace ClipFlair.Windows
       BindingUtils.RegisterForNotification("ResizeEnabled", this, (d, e) => { if (View != null) { View.Resizable = (bool)e.NewValue; } });
       BindingUtils.RegisterForNotification("Scalable", this, (d, e) => { if (View != null) { View.Zoomable = (bool)e.NewValue; } });
     }
-
+ 
+    ~BaseWindow()
+    {
+      View = null; //unregister PropertyChangedEventHandler
+    }
+    
     #region Properties
 
     public IView View

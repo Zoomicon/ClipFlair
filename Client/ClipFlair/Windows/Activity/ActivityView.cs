@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: ActivityView.cs
-//Version: 20121102
+//Version: 20121106
 
 using System;
 using System.Runtime.Serialization;
@@ -14,6 +14,8 @@ namespace ClipFlair.Windows.Views
   {
     public ActivityView()
     {
+      //BaseView defaults - overrides
+      Title = IActivityDefaults.DefaultTitle;
     }
         
     #region Fields

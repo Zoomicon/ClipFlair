@@ -108,6 +108,12 @@
     <Compile Include="Windows\Activity\ActivityContainerWindow.xaml.cs">
       <DependentUpon>ActivityContainerWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Windows\Activity\IActivityDefaults.cs" />
+    <Compile Include="Windows\Base\IViewDefaults.cs" />
+    <Compile Include="Windows\CaptionsGrid\ICaptionsGridDefaults.cs" />
+    <Compile Include="Windows\ImageViewer\IImageViewerDefaults.cs" />
+    <Compile Include="Windows\MediaPlayer\IMediaPlayerDefaults.cs" />
+    <Compile Include="Windows\TextEditor\ITextEditorDefaults.cs" />
     <Compile Include="Windows\_TestWindows\TestWindow3.xaml.cs">
       <DependentUpon>TestWindow3.xaml</DependentUpon>
     </Compile>
