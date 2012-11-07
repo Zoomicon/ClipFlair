@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: App.xaml.cs
-//Version: 20121106
+//Version: 20121107
 
 using ClipFlair.Windows;
 
@@ -31,6 +31,7 @@ namespace ClipFlair
       FloatingWindowHost host = new FloatingWindowHost(); //don't use FloatingWindowHostZUI here
       
       ActivityContainerWindow activityWindow=new ActivityContainerWindow();
+      activityWindow.IsTopLevel = true; //hide backpanel properties not relevant when not being a child window
       host.Add(activityWindow);
 
       activityWindow.Position = new Point(0, 0);

@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: ActivityContainer.xaml.cs
-//Version: 20121106
+//Version: 20121107
 
 //TODO: move zoom slider UI to FloatingWindowHostZUI's XAML template
 
@@ -14,7 +14,6 @@ using System.Windows;
 using System.ComponentModel;
 using System.Windows.Controls;
 using System.Windows.Data;
-using System.Windows.Media;
 
 namespace ClipFlair.Windows
 {
