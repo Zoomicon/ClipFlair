@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: ITextEditor.cs
-//Version: 20121103
+//Version: 20121106
 
 using System;
 
@@ -15,14 +15,6 @@ namespace ClipFlair.Windows.Views
     public const string PropertyRTL = "RTL";
   }
 
-  public static class ITextEditorDefaults
-  {
-    public static Uri DefaultSource = null;
-    public static bool DefaultToolbarVisible = true;
-    public static bool DefaultEditable = true;
-    public static bool DefaultRTL = false;
-  }
-  
   public interface ITextEditor : IView
   {
     Uri Source { get; set; }

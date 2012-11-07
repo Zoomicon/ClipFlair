@@ -1,21 +1,14 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: App.xaml.cs
-//Version: 20121104
+//Version: 20121106
 
 using ClipFlair.Windows;
 
 using SilverFlow.Controls;
+using FloatingWindowZUI;
 
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Animation;
 
 namespace ClipFlair
 {
@@ -35,31 +28,40 @@ namespace ClipFlair
 
     private void Application_Startup(object sender, StartupEventArgs e)
     {
-      //this.RootVisual = new SplashScreen(); //TODO: find some way to show SplashScreen (in case instantiating/initializing ActivityContainer takes some time)
-      //Update();
-      //System.Threading.Thread.Sleep(3000); //3 sec delay (for testing only)
-      FrameworkElement c=new ActivityContainer(); //ActivityContainerWindow
-      FloatingWindow w = (c as FloatingWindow);
-      if (w != null)
-      {
-        w.ResizeEnabled = false;
-        w.Visibility = Visibility.Visible;
-      }
-      this.RootVisual = c;
-      Update();
-      //MessageBox.Show("ClipFlair loaded"); //uncomment this to try splash screen
+      FloatingWindowHost host = new FloatingWindowHost(); //don't use FloatingWindowHostZUI here
+      
+      ActivityContainerWindow activityWindow=new ActivityContainerWindow();
+      host.Add(activityWindow);
+
+      activityWindow.Position = new Point(0, 0);
+      activityWindow.MaximizeWindow(); //TODO: seems MaximizeAction is broken, need to check original FloatingWindow control (Silverlight version)
+      activityWindow.ShowMaximizeButton = false;
+      activityWindow.ShowMinimizeButton = false;
+      activityWindow.ShowCloseButton = false;
+      activityWindow.ResizeEnabled = false;
+      
+      this.RootVisual = host; //new ActivityContainer();
+      host.Rendered += (s, ev) => {
+        host.IsBottomBarVisible = false;
+        activityWindow.Width = host.ActualWidth;
+        activityWindow.Height = host.ActualHeight;
+      };
+ 
+      UpdateOOB(); //TODO: run this from background thread, seems to take some time
+
+      //MessageBox.Show("ClipFlair loaded"); //uncomment this to test the loading indicator
     }
 
     private void Application_Exit(object sender, EventArgs e)
     {
-
+      //TODO: maybe should store current state at isolated storage and offer to restore next time (unless an activity file/url is given as param to load)
     }
 
     #endregion
 
     #region Update
 
-    private void Update()
+    private void UpdateOOB()
     {
       if (!IsRunningOutOfBrowser) return;
 
@@ -80,7 +82,7 @@ namespace ClipFlair
 
       if (e.UpdateAvailable)
       {
-        MessageBox.Show("Update has been downloaded, will be used at next application launch");
+        MessageBox.Show("Update has been downloaded, will be used at next application launch"); //TODO: should try to show this on UI thread?
       }
       else
       {

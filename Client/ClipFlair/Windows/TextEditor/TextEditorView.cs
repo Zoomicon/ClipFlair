@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: TextEditorView.cs
-//Version: 20121103
+//Version: 20121106
 
 using System;
 using System.Runtime.Serialization;
@@ -13,6 +13,8 @@ namespace ClipFlair.Windows.Views
   {
     public TextEditorView()
     {
+      //BaseView defaults - overrides
+      Title = ITextEditorDefaults.DefaultTitle;
     }
 
     #region Fields
