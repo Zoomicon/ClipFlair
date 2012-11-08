@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: ActivityContainerWindow.xaml.cs
-//Version: 20121102
+//Version: 20121108
 
 using ClipFlair.Windows.Views;
 
@@ -12,25 +12,11 @@ namespace ClipFlair.Windows
 {
   public partial class ActivityContainerWindow : BaseWindow
   {
+   
     public ActivityContainerWindow()
     {
       InitializeComponent();
-
-      //TODO: see why this breaks time-sync
-      //View = activity.View; //must initialize the component first
-      //Title = View.Title;
-      //IconText = View.Title; //IconText should match the Title
-      
-      //Position = View.Position;
-      //Width = View.Width;
-      //Height = View.Height;
-      //Scale = View.Zoom;
-      //MoveEnabled = View.Moveable;
-      //ResizeEnabled = View.Resizable;
-      //Scalable = View.Zoomable;
-
-      //Source = View.Source;
-      //Time = View.Time;
+      View = activity.View;
     }
 
     #region --- Properties ---
@@ -39,7 +25,7 @@ namespace ClipFlair.Windows
 
     public new IActivity View //hiding parent property
     {
-      get {return (IActivity)base.View; } //delegating to parent property
+      get { return (IActivity)base.View; } //delegating to parent property
       set { base.View = value; }
     }
 
@@ -49,58 +35,16 @@ namespace ClipFlair.Windows
 
       if (e.PropertyName == null) //multiple (not specified) properties have changed, consider all as changed
       {
-        Source = View.Source;
-        Time = View.Time;
+        //Time = View.Time; //
         //...
       }
       else switch (e.PropertyName) //string equality check in .NET uses ordinal (binary) comparison semantics by default
         {
-          case IActivityProperties.PropertySource:
-            Source = View.Source;
-            break;
           case IActivityProperties.PropertyTime:
-            Time = View.Time;
+            //Time = View.Time;
             break;
           //...
         }
-    }
-
-    #endregion
-
-    #region Source
-
-    /// <summary>
-    /// Source Dependency Property
-    /// </summary>
-    public static readonly DependencyProperty SourceProperty =
-        DependencyProperty.Register(IActivityProperties.PropertySource, typeof(Uri), typeof(MediaPlayerWindow),
-            new FrameworkPropertyMetadata(IActivityDefaults.DefaultSource, new PropertyChangedCallback(OnSourceChanged)));
-
-    /// <summary>
-    /// Gets or sets the Source property.
-    /// </summary>
-    public Uri Source
-    {
-      get { return (Uri)GetValue(SourceProperty); }
-      set { SetValue(SourceProperty, value); }
-    }
-
-    /// <summary>
-    /// Handles changes to the Source property.
-    /// </summary>
-    private static void OnSourceChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
-    {
-      ActivityContainerWindow target = (ActivityContainerWindow)d;
-      target.OnSourceChanged((Uri)e.OldValue, target.Source);
-    }
-
-    /// <summary>
-    /// Provides derived classes an opportunity to handle changes to the IsAvailable property.
-    /// </summary>
-    protected virtual void OnSourceChanged(Uri oldSource, Uri newSource)
-    {
-      View.Source = newSource;
-      //player.Source = newSource; //not used, using data binding instead in the XAML
     }
 
     #endregion
@@ -140,8 +84,6 @@ namespace ClipFlair.Windows
     protected virtual void OnTimeChanged(TimeSpan oldTime, TimeSpan newTime)
     {
       View.Time = newTime;
-      if (activity.Time != newTime) //check this for speedup and to avoid loops
-        activity.Time = newTime;
     }
 
     #endregion

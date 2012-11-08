@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: ActivityContainer.xaml.cs
-//Version: 20121107
+//Version: 20121108
 
 //TODO: move zoom slider UI to FloatingWindowHostZUI's XAML template
 
@@ -46,10 +46,10 @@ namespace ClipFlair.Windows
       //Two-way bind MediaPlayerWindow.Time to CaptionsGridWindow.Time
       //BindProperties(FindWindow("MediaPlayer"), "Time", FindWindow("Captions"), CaptionsGridWindow.TimeProperty, BindingMode.TwoWay); //not using, binding to container's Time instead for now
 
-      //Two-way bind MediaPlayerWindow.Time to ActivityContainer.Time
-      BindingUtils.BindProperties(this, "Time", FindWindow("MediaPlayer"), MediaPlayerWindow.TimeProperty, BindingMode.TwoWay);
-      //Two-way bind CaptionsGridWindow.Time to ActivityContainer.Time
-      BindingUtils.BindProperties(this, "Time", FindWindow("Captions"), CaptionsGridWindow.TimeProperty, BindingMode.TwoWay);
+      //Two-way bind MediaPlayerWindow.Time to ActivityContainer.View.Time via inherited DataContext
+      BindingUtils.BindProperties(View, "Time", FindWindow("MediaPlayer"), MediaPlayerWindow.TimeProperty, BindingMode.TwoWay);
+      //Two-way bind CaptionsGridWindow.Time to ActivityContainer.View.Time via inherited DataContext
+      BindingUtils.BindProperties(View, "Time", FindWindow("Captions"), CaptionsGridWindow.TimeProperty, BindingMode.TwoWay);
 
       //Two-Way bind MediaPlayerWindow.Captions to CaptionsGridWindow.Captions
       BindingUtils.BindProperties(FindWindow("Captions"), "Captions", FindWindow("MediaPlayer"), MediaPlayerWindow.CaptionsProperty, BindingMode.TwoWay);
@@ -201,7 +201,6 @@ namespace ClipFlair.Windows
     protected virtual void OnTimeChanged(TimeSpan oldTime, TimeSpan newTime)
     {
       View.Time = newTime;
-      //...
     }
 
     #endregion
@@ -210,14 +209,17 @@ namespace ClipFlair.Windows
 
     private void btnAddMediaPlayer_Click(object sender, RoutedEventArgs e)
     {
+      MediaPlayerWindow w = new MediaPlayerWindow();
+      AddWindow(w);
       //Two-way bind MediaPlayerWindow.Time to ActivityContainer.Time
-      BindingUtils.BindProperties(this, "Time", AddWindow(new MediaPlayerWindow()), MediaPlayerWindow.TimeProperty, BindingMode.TwoWay);
-    }
+      BindingUtils.BindProperties(View, "Time", w, MediaPlayerWindow.TimeProperty, BindingMode.TwoWay);
+      //BindingUtils.BindProperties(w.View, "Time", this, ActivityContainer.TimeProperty, BindingMode.TwoWay);
+    } //TODO: check why it won't sync smoothly
 
     private void btnAddCaptionsGrid_Click(object sender, RoutedEventArgs e)
     {
       //Two-way bind CaptionsGridWindow.Time to ActivityContainer.Time
-      BindingUtils.BindProperties(this, "Time", AddWindow(new CaptionsGridWindow()), CaptionsGridWindow.TimeProperty, BindingMode.TwoWay);
+      BindingUtils.BindProperties(View, "Time", AddWindow(new CaptionsGridWindow()), CaptionsGridWindow.TimeProperty, BindingMode.TwoWay);
     }
 
     private void btnAddTextEditor_Click(object sender, RoutedEventArgs e)
@@ -232,8 +234,11 @@ namespace ClipFlair.Windows
 
     private void btnAddActivityContainer_Click(object sender, RoutedEventArgs e)
     {
+      ActivityContainerWindow w = new ActivityContainerWindow(); //TODO: check why this won't work
+      AddWindow(w);
       //Two-way bind ActivityContainerWindow.Time to ActivityContainer.Time
-      BindingUtils.BindProperties(this, "Time", AddWindow(new ActivityContainerWindow()), ActivityContainerWindow.TimeProperty, BindingMode.TwoWay);
+      //BindingUtils.BindProperties(this, "Time", AddWindow(new ActivityContainerWindow()), ActivityContainerWindow.TimeProperty, BindingMode.TwoWay);
+      BindingUtils.BindProperties(w.View, "Time", this, ActivityContainer.TimeProperty, BindingMode.TwoWay);
     }
 
     private BaseWindow AddWindow(BaseWindow window)

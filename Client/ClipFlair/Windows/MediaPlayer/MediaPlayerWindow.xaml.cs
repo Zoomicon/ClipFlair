@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: MediaPlayerWindow.xaml.cs
-//Version: 20121102
+//Version: 20121108
 
 using ClipFlair.Windows.Views;
 
@@ -136,8 +136,6 @@ namespace ClipFlair.Windows
     protected virtual void OnTimeChanged(TimeSpan oldTime, TimeSpan newTime)
     {
       View.Time = newTime;
-      if (player.Time != newTime) //check this for speedup and to avoid loops
-        player.Time = newTime;
     }
 
     #endregion

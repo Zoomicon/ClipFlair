@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: BaseWindow.xaml.cs
-//Version: 20121107
+//Version: 20121108
 
 using ClipFlair.Utils.Bindings;
 using ClipFlair.Windows.Views;
@@ -32,8 +32,11 @@ namespace ClipFlair.Windows
       HelpRequested += (s,e) => {
         MessageBox.Show("Help not available yet - see http://ClipFlair.net for contact info");
       };
+            
+      //Closing += (s,e) => { e.Cancel = (MessageBox.Show("Are you sure you want to close the window?", "Confirmation", MessageBoxButton.OKCancel) != MessageBoxResult.OK); };
+      //TODO: add separate event for closing by end-user, we don't want to get such events if app is closing down (or detect the app is closing down and ignore event or remove event handler early) 
 
-      OptionsRequested += (s, e) =>
+      OptionsRequested += (s,e) =>
       {
         //try to set focus to front content so that changes to property editboxes at the back content are applied
         if (!Focus())
@@ -73,11 +76,14 @@ namespace ClipFlair.Windows
         //remove property changed handler from old view
         if (DataContext != null)
           ((IView)DataContext).PropertyChanged -= new PropertyChangedEventHandler(View_PropertyChanged); //IView inherits from INotifyPropertyChanged
+        
         //add property changed handler to new view
         if (value != null)
           value.PropertyChanged += new PropertyChangedEventHandler(View_PropertyChanged);
-        //set the new view (must do last)
+
+        //set the new view (must do after setting property change event handler)
         DataContext = value;
+        UpdatePropertiesFromView();
       }
     }
 
@@ -116,12 +122,21 @@ namespace ClipFlair.Windows
         propMoveable.Visibility = visibility;
         propResizable.Visibility = visibility;
         propZoomable.Visibility = visibility;
+
+        if (value) MoveEnabled = false; else MoveEnabled = IViewDefaults.DefaultMoveable;
+        if (value) ResizeEnabled = false; else ResizeEnabled = IViewDefaults.DefaultResizable;
+        if (value) Scalable = false; else Scalable = IViewDefaults.DefaultZoomable;      
       }
     }
 
     #endregion
 
     #region Events
+
+    protected void UpdatePropertiesFromView()
+    {
+      View_PropertyChanged(null, new PropertyChangedEventArgs(null));
+    }
 
     protected virtual void View_PropertyChanged(object sender, PropertyChangedEventArgs e)
     {
