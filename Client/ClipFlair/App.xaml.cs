@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: App.xaml.cs
-//Version: 20121107
+//Version: 20121108
 
 using ClipFlair.Windows;
 
@@ -36,10 +36,10 @@ namespace ClipFlair
 
       activityWindow.Position = new Point(0, 0);
       activityWindow.MaximizeWindow(); //TODO: seems MaximizeAction is broken, need to check original FloatingWindow control (Silverlight version)
+      
       activityWindow.ShowMaximizeButton = false;
       activityWindow.ShowMinimizeButton = false;
       activityWindow.ShowCloseButton = false;
-      activityWindow.ResizeEnabled = false;
       
       this.RootVisual = host; //new ActivityContainer();
       host.Rendered += (s, ev) => {

@@ -1,7 +1,7 @@
 ﻿<!--
 Project: ClipFlair (http://ClipFlair.codeplex.com)
 Filename: ActivityContainerWindow.xaml
-Version: 20121104
+Version: 20121108
 -->
   
 <clipflair:BaseWindow x:Class="ClipFlair.Windows.ActivityContainerWindow"
@@ -23,15 +23,11 @@ Version: 20121104
       <ColumnDefinition Width="*"/>
     </Grid.ColumnDefinitions>  
     
-  <clipflair:ActivityContainer x:Name="activity" 
-                 Grid.Row="0" Grid.Column="0"
-                 
-                 Source="{Binding Source, Mode=TwoWay}"
-                 Time="{Binding Time, Mode=TwoWay}"
-                >
-  </clipflair:ActivityContainer>
-
-</Grid>    
+    <clipflair:ActivityContainer x:Name="activity" 
+      Grid.Row="0" Grid.Column="0"
+      /> <!-- don't bind Time here to DataContext's Time, since ActivityContainerWindow reuses the view of ActivityContainer -->
+  
+  </Grid>    
     
   <!--</clipflair:BaseWindow.FrontContent>-->
 

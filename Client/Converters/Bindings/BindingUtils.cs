@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: BindingUtils.cs
-//Version: 20121030
+//Version: 20121108
 
 using System.Windows;
 using System.Windows.Controls;
@@ -27,17 +27,17 @@ namespace ClipFlair.Utils.Bindings
       /// <summary>
       /// Bind two components together over given properties
       /// </summary>
-      /// <param name="sourceComponent"></param>
+      /// <param name="source">source object</param>
       /// <param name="sourcePropertyPath">source property path</param>
-      /// <param name="targetComponent"></param>
+      /// <param name="target">target DependencyObject</param>
       /// <param name="targetProperty">target DependencyProperty</param>
       /// <param name="bindmode">e.g. BindingMode.TwoWay</param>
-      public static void BindProperties(FrameworkElement sourceComponent, string sourcePropertyPath, FrameworkElement targetComponent, DependencyProperty targetProperty, BindingMode bindmode)
+      public static void BindProperties(object source, string sourcePropertyPath, DependencyObject target, DependencyProperty targetProperty, BindingMode bindmode)
       {
         Binding theBinding = new Binding(sourcePropertyPath);
-        theBinding.Source = sourceComponent;
+        theBinding.Source = source;
         theBinding.Mode = bindmode;
-        BindingOperations.SetBinding(targetComponent, targetProperty, theBinding);
+        BindingOperations.SetBinding(target, targetProperty, theBinding);
       }
 
     }
