@@ -1,6 +1,6 @@
 ﻿<!--
 Filename: CaptionsGrid.xaml
-Version: 20121103
+Version: 20121109
 -->
   
   <UserControl x:Class="ClipFlair.CaptionsGrid.CaptionsGrid"
@@ -38,7 +38,7 @@ Version: 20121103
         </Style>
       </StackPanel.Resources>
       
-      <Button Name="btnAdd"  Click="btnAdd_Click">
+      <Button Name="btnAdd" Click="btnAdd_Click">
         <ToolTipService.ToolTip>
           <ToolTip FontSize="16" Content="{Binding tooltip_caption_add, Source={StaticResource localizedStrings}}"/>
         </ToolTipService.ToolTip>
@@ -53,7 +53,23 @@ Version: 20121103
       </Button>
 
       <TextBlock Text="|" VerticalAlignment="Center" Foreground="DarkGray" />
-      
+
+      <Button Name="btnStart" Click="btnStart_Click">
+        <ToolTipService.ToolTip>
+          <ToolTip FontSize="16" Content="{Binding tooltip_caption_start, Source={StaticResource localizedStrings}}"/>
+        </ToolTipService.ToolTip>
+        <Image Source="Images/caption_start.png"/>
+      </Button>
+
+      <Button Name="btnEnd" Click="btnEnd_Click">
+        <ToolTipService.ToolTip>
+          <ToolTip FontSize="16" Content="{Binding tooltip_caption_end, Source={StaticResource localizedStrings}}"/>
+        </ToolTipService.ToolTip>
+        <Image Source="Images/caption_end.png"/>
+      </Button>
+
+      <TextBlock Text="|" VerticalAlignment="Center" Foreground="DarkGray" />
+
       <Button Name="btnImport" Content="Import" Click="btnImport_Click">
         <ToolTipService.ToolTip>
           <ToolTip FontSize="16" Content="{Binding tooltip_captions_import, Source={StaticResource localizedStrings}}"/>
