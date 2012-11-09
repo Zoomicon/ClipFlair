@@ -11,8 +11,10 @@
     <tr>
         <td id="rowGravatar" runat="server">
             <div class="profile-gravatar">
-                <MonoX:Gravatar ID="gravatar" runat="server" />
-                <MonoX:StyledButton ID="btnBrowse" runat="server" />
+			   <asp:HyperLink runat="server" NavigateUrl="http://www.gravatar.com" Target="_blank">
+                  <MonoX:Gravatar ID="gravatar" runat="server" />
+                  <!-- <MonoX:StyledButton ID="btnBrowse" runat="server" /> -->
+               </asp:HyperLink>			  
             </div>
         </td>
     </tr>
