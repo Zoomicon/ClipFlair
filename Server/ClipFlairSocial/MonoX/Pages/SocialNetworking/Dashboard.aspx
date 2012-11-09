@@ -77,7 +77,7 @@
                 </MonoX:Search>
             </div>
             <div class="people">
-                <MonoX:NewUsers runat="server" ID="ctlNewUsers" CacheDuration="600" IsPagerVisible="false" ShowValidAvatarsOnly="true" SortBy="SortRandomly" PageSize="20" PagingEnabled="false" ></MonoX:NewUsers>
+                <MonoX:NewUsers runat="server" ID="ctlNewUsers" CacheDuration="600" IsPagerVisible="false" ShowValidAvatarsOnly="false" SortBy="SortRandomly" PageSize="20" PagingEnabled="false" ></MonoX:NewUsers>
             </div>
 
         </td>
