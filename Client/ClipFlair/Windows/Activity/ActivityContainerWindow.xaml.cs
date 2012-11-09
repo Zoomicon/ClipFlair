@@ -1,8 +1,10 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: ActivityContainerWindow.xaml.cs
-//Version: 20121108
+//Version: 20121109
 
 using ClipFlair.Windows.Views;
+
+using Ionic.Zip;
 
 using System;
 using System.ComponentModel;
@@ -88,6 +90,22 @@ namespace ClipFlair.Windows
 
     #endregion
           
+    #endregion
+
+    #region Load / Save Options
+
+    public override void LoadOptions(ZipFile zip, string zipFolder = "")
+    {
+      base.LoadOptions(zip, zipFolder);
+      //TODO: load child windows
+    }
+
+    public override void SaveOptions(ZipFile zip, string zipFolder = "")
+    {
+      base.SaveOptions(zip, zipFolder);
+      //TODO: save child windows
+    }
+
     #endregion
         
   }

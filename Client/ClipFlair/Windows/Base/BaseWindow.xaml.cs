@@ -1,13 +1,18 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: BaseWindow.xaml.cs
-//Version: 20121108
+//Version: 20121109
 
 using ClipFlair.Utils.Bindings;
 using ClipFlair.Windows.Views;
 
 using SilverFlow.Controls;
+using Ionic.Zip;
 
+using System;
 using System.ComponentModel;
+using System.IO;
+using System.Runtime.Serialization;
+using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Markup;
@@ -47,7 +52,7 @@ namespace ClipFlair.Windows
           //keeping tab stop functionality for future back to front flips
         }
 
-        FlipPanel.IsFlipped = !FlipPanel.IsFlipped;
+        FlipPanel.IsFlipped = !FlipPanel.IsFlipped; //turn window arround to show/hide its options
       };
 
       //Bind to ancestor properties
@@ -59,6 +64,10 @@ namespace ClipFlair.Windows
       BindingUtils.RegisterForNotification("MoveEnabled", this, (d, e) => { if (View != null) { View.Moveable = (bool)e.NewValue; } });
       BindingUtils.RegisterForNotification("ResizeEnabled", this, (d, e) => { if (View != null) { View.Resizable = (bool)e.NewValue; } });
       BindingUtils.RegisterForNotification("Scalable", this, (d, e) => { if (View != null) { View.Zoomable = (bool)e.NewValue; } });
+
+      //Load-Save (TODO: check: can't set them in the XAML for some reason)
+      btnLoad.Click += new RoutedEventHandler(btnLoad_Click);
+      btnSave.Click += new RoutedEventHandler(btnSave_Click);
     }
  
     ~BaseWindow()
@@ -184,6 +193,72 @@ namespace ClipFlair.Windows
         }
     }
 
+    private void btnLoad_Click(object sender, RoutedEventArgs e)
+    {
+      try
+      {
+        OpenFileDialog dlg = new OpenFileDialog();
+        dlg.Filter = "ClipFlair options archive|*.clipflair.zip";
+        dlg.FilterIndex = 1; //note: this index is 1-based, not 0-based
+    
+        if (dlg.ShowDialog() == true) //TODO: find the parent window
+          using (Stream stream = dlg.File.OpenRead())
+            using (ZipFile zip = ZipFile.Read(stream))
+               LoadOptions(zip); //reading from root folder
+
+      }
+      catch (Exception ex) //!!! replace with Exception
+      {
+        MessageBox.Show("ClipFlair options load failed: " + ex.Message); //TODO: find the parent window
+      }
+    }
+  
+    private void btnSave_Click(object sender, RoutedEventArgs e)
+    {
+      if (View == null) return;
+
+      try
+      {
+        SaveFileDialog dlg = new SaveFileDialog();
+        dlg.Filter = "ClipFlair options archive|*.clipflair.zip";
+        dlg.FilterIndex = 1; //note: this index is 1-based, not 0-based
+        dlg.DefaultFileName = View.Title + ".clipflair.zip"; //Silverlight will 1st prompt the user "Do you want to save X", where X is the DefaultFileName value //TODO: should define this via property to override at descendents
+        //dlg.DefaultExt = "clipflair.zip"; //this doesn't seem to be used if you've supplied a filter
+
+        if (dlg.ShowDialog() == true) //TODO: find the parent window
+          using (ZipFile zip = new ZipFile(Encoding.UTF8))
+          {
+            zip.Comment = "ClipFlair Options Archive";
+             SaveOptions(zip); //saving to root folder
+            zip.Save(dlg.OpenFile());
+          }
+
+      }
+      catch (Exception ex) //!!! replace with Exception
+      {
+        MessageBox.Show("CliFlair options save failed: " + ex.Message); //TODO: find the parent window
+      }
+    }
+
+    #endregion
+
+    #region Load / Save Options
+
+    public virtual void LoadOptions(ZipFile zip, string zipFolder = "")
+    {
+      DataContractSerializer serializer = new DataContractSerializer(View.GetType()); //assuming current View isn't null and has been set by descendent class with wanted BaseView descendent //TODO: maybe use some property to return appropriate View type
+      View = (ActivityView)serializer.ReadObject(zip[zipFolder + "/options.xml"].OpenReader());
+    }
+
+    public virtual void SaveOptions(ZipFile zip, string zipFolder = "")
+    {
+      MemoryStream stream = new MemoryStream(); //don't close this (e.g. don't write "using" here), DotNetZip should close that stream and has been set by descendent class with wanted BaseView descendent //TODO: maybe use some property to return appropriate View type
+      DataContractSerializer serializer = new DataContractSerializer(View.GetType()); //assuming current View isn't null
+      serializer.WriteObject(stream, View);
+      stream.Position = 0;
+      ZipEntry optionsXML = zip.AddEntry(zipFolder + "/options.xml", stream);
+    }
+ 
     #endregion
 
   }

@@ -1,11 +1,14 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: CaptionsGridWindow.xaml.cs
-//Version: 20121102
+//Version: 20121109
 
 using ClipFlair.Windows.Views;
 
+using Ionic.Zip;
+
 using System;
 using System.ComponentModel;
+using System.IO;
 using System.Windows;
 
 using Microsoft.SilverlightMediaFramework.Core.Media;
@@ -258,6 +261,27 @@ namespace ClipFlair.Windows
     }
 
     #endregion
+
+    #endregion
+
+    #region Load / Save Options
+
+    public override void LoadOptions(ZipFile zip, string zipFolder = "")
+    {
+      base.LoadOptions(zip, zipFolder);
+ 
+      gridCaptions.ReadCaptions("captions.srt", zip[zipFolder + "/captions.srt"].OpenReader());
+    }
+
+    public override void SaveOptions(ZipFile zip, string zipFolder = "")
+    {
+      base.SaveOptions(zip, zipFolder);
+
+      MemoryStream stream = new MemoryStream();
+      gridCaptions.WriteCaptions("captions.srt", stream);
+      stream.Position = 0;
+      zip.AddEntry(zipFolder + "/captions.srt", stream);
+    }
 
     #endregion
 

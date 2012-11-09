@@ -75,6 +75,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Ionic.Zip">
+      <HintPath>Lib\Ionic.Zip.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.SilverlightMediaFramework.Core, Version=2.2012.605.0, Culture=neutral, PublicKeyToken=6687ff884a90c6a6, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.SilverlightMediaFramework.Logging, Version=2.2012.605.0, Culture=neutral, PublicKeyToken=47c1bfd3f360fec7, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.SilverlightMediaFramework.Plugins, Version=2.2012.605.0, Culture=neutral, PublicKeyToken=3dd5df9571bfd1e7, processorArchitecture=MSIL" />
@@ -270,6 +273,8 @@
     <Content Include="Images\clipflair_logo03_48x48.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Resource Include="Images\load.png" />
+    <Resource Include="Images\save.png" />
     <Page Include="Themes\Default.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
