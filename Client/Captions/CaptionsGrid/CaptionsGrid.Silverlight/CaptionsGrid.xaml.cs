@@ -106,7 +106,11 @@ namespace ClipFlair.CaptionsGrid
       CaptionElement activeCaption = null;
       foreach (CaptionElement c in Captions.Children.WhereActiveAtPosition(newTime))
         activeCaption = c; //if multiple captions cover this position, select the last one
+      
       gridCaptions.SelectedItem = activeCaption; //this will deselect if no active caption at that time position
+   
+      if (activeCaption!=null)
+        gridCaptions.ScrollIntoView(activeCaption, gridCaptions.Columns[0]); //scroll vertically to show active caption's row (and horizontally if needed to show 1st row)
     }
 
     #endregion
@@ -357,7 +361,7 @@ namespace ClipFlair.CaptionsGrid
       
       gridCaptions.SelectedItem = newCaption; //select the caption after adding it //TODO: check if it causes hickup and if so tell selection to not jump to selected caption start time
  
-      gridCaptions.ScrollIntoView(newCaption, null); //scroll to show new caption's row (passing null for column)
+      gridCaptions.ScrollIntoView(newCaption, gridCaptions.Columns[0]); //scroll vertically to show new caption's row (and horizontally if needed to show 1st row)
       
       return newCaption;
     }
