@@ -1,11 +1,12 @@
 ﻿//Filename: CaptionsGrid.xaml.cs
-//Version: 20121029
+//Version: 20121109
 
 using ClipFlair.AudioRecorder;
 using ClipFlair.CaptionsLib.Utils;
 using ClipFlair.CaptionsLib.Models;
 
 using System;
+using System.IO;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -46,7 +47,7 @@ namespace ClipFlair.CaptionsGrid
 
     protected void DataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
-      CaptionElement selectedCaption = ((CaptionElement)gridCaptions.SelectedItem);
+      CaptionElement selectedCaption = (CaptionElement)gridCaptions.SelectedItem;
       if (selectedCaption != null)
       {
         Time = selectedCaption.Begin;
@@ -340,9 +341,9 @@ namespace ClipFlair.CaptionsGrid
 
     #region --- Events ---
 
-    private void btnAdd_Click(object sender, RoutedEventArgs e)
+    private CaptionElement AddCaption()
     {
-      if (Captions == null) return;
+      if (Captions == null) return null;
 
       CaptionElement newCaption = new CaptionElement()
       {
@@ -353,15 +354,48 @@ namespace ClipFlair.CaptionsGrid
       ClipFlair.MediaPlayer.MediaPlayer.StyleCaption(newCaption); //This is needed else the new caption text won't show up in the MediaPlayer
 
       Captions.Children.Add(newCaption); //this adds the caption to the correct place in the list based on its Begin time (logic is implemented by SMF in MediaMarkerCollection class) //TODO: blog about this, Insert isn't implemented, Add does its job too (see http://smf.codeplex.com/workitem/23308)
+      
+      gridCaptions.SelectedItem = newCaption; //select the caption after adding it //TODO: check if it causes hickup and if so tell selection to not jump to selected caption start time
+ 
+      gridCaptions.ScrollIntoView(newCaption, null); //scroll to show new caption's row (passing null for column)
+      
+      return newCaption;
+    }
+
+    private void btnAdd_Click(object sender, RoutedEventArgs e)
+    {
+      AddCaption();
     }
 
     private void btnRemove_Click(object sender, RoutedEventArgs e)
     {
       if (Captions == null) return;
 
-      CaptionElement selectedCaption = ((CaptionElement)gridCaptions.SelectedItem);
+      CaptionElement selectedCaption = (CaptionElement)gridCaptions.SelectedItem;
       if (selectedCaption != null)
         Captions.Children.Remove(selectedCaption);
+    }
+
+    private void btnStart_Click(object sender, RoutedEventArgs e)
+    {
+      if (Captions == null) return;
+
+      CaptionElement selectedCaption = (CaptionElement)gridCaptions.SelectedItem;
+      if (selectedCaption != null)
+        selectedCaption.Begin = Time;
+      else
+        AddCaption(); //also sets the begin time, no need to do AddCaption().Begin = Time;
+    }
+    
+    private void btnEnd_Click(object sender, RoutedEventArgs e)
+    {
+      if (Captions == null) return;
+
+      CaptionElement selectedCaption = (CaptionElement)gridCaptions.SelectedItem;
+      if (selectedCaption != null)
+        selectedCaption.End = Time;
+      else
+        AddCaption().End = Time;
     }
 
     private void btnImport_Click(object sender, RoutedEventArgs e)
@@ -373,7 +407,7 @@ namespace ClipFlair.CaptionsGrid
         dlg.FilterIndex = 1; //note: this index is 1-based, not 0-based
         if (dlg.ShowDialog() == true) //TODO: find the parent window
         {
-          ICaptionsReader reader = CaptionUtils.GetCaptionsReader(dlg.File.Name); //TODO: this may not work for in-browser (in that case maybe detect from content?)
+          ICaptionsReader reader = CaptionUtils.GetCaptionsReader(dlg.File.Name);
           CaptionRegion newCaptions = new CaptionRegion();
           reader.ReadCaptions(newCaptions, dlg.File.OpenRead(), Encoding.UTF8);
           Captions = newCaptions;
@@ -408,6 +442,21 @@ namespace ClipFlair.CaptionsGrid
       {
         MessageBox.Show("Captions export failed: " + ex.Message); //TODO: find the parent window
       }
+    }
+
+    public void ReadCaptions(string filename, Stream stream)
+    {
+      ICaptionsReader reader = CaptionUtils.GetCaptionsReader(filename);
+      CaptionRegion newCaptions = new CaptionRegion();
+      reader.ReadCaptions(newCaptions, stream, Encoding.UTF8);
+      Captions = newCaptions;
+    }
+
+    public void WriteCaptions(string filename, Stream stream)
+    {
+      if (Captions == null) return;
+      ICaptionsWriter writer = CaptionUtils.GetCaptionsWriter(filename);
+      writer.WriteCaptions(Captions, stream, Encoding.UTF8);
     }
 
     #endregion
