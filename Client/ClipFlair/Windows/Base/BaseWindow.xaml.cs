@@ -247,7 +247,7 @@ namespace ClipFlair.Windows
     public virtual void LoadOptions(ZipFile zip, string zipFolder = "")
     {
       DataContractSerializer serializer = new DataContractSerializer(View.GetType()); //assuming current View isn't null and has been set by descendent class with wanted BaseView descendent //TODO: maybe use some property to return appropriate View type
-      View = (ActivityView)serializer.ReadObject(zip[zipFolder + "/options.xml"].OpenReader());
+      View = (IView)serializer.ReadObject(zip[zipFolder + "/options.xml"].OpenReader());
     }
 
     public virtual void SaveOptions(ZipFile zip, string zipFolder = "")
