@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: MediaPlayerWindow.xaml.cs
-//Version: 20121108
+//Version: 20121111
 
 using ClipFlair.Windows.Views;
 
@@ -19,6 +19,7 @@ namespace ClipFlair.Windows
     {
       View = new MediaPlayerView(); //must set the view first
       InitializeComponent();
+      InitializeView();
     }
 
     #region --- Properties ---

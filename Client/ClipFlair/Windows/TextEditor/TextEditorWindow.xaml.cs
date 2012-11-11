@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: TextEditorWindow.xaml.cs
-//Version: 20121103
+//Version: 20121111
 
 using ClipFlair.Windows.Views;
 
@@ -16,6 +16,7 @@ namespace ClipFlair.Windows
     {
       View = new TextEditorView(); //must set the view first
       InitializeComponent();
+      InitializeView();
     }
 
     #region View

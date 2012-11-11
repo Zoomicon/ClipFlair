@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: ActivityView.cs
-//Version: 20121106
+//Version: 20121111
 
 using System;
 using System.Runtime.Serialization;
@@ -9,7 +9,7 @@ using System.Windows;
 namespace ClipFlair.Windows.Views
 {
 
-  [DataContract(Namespace = "http://clipflair.net/Contracts/Views")]
+  [DataContract(Namespace = "http://clipflair.net/Contracts/View")]
   public class ActivityView: BaseView, IActivity
   {
     public ActivityView()
