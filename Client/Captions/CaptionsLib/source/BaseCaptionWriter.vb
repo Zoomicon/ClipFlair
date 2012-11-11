@@ -1,5 +1,5 @@
 ﻿'Filename: BaseCaptionWriter.vb
-'Version: 20121016
+'Version: 20121111
 
 Imports ClipFlair.CaptionsLib.Models
 
@@ -15,27 +15,23 @@ Namespace ClipFlair.CaptionsLib
 #Region "Methods"
 
     Public Overloads Sub WriteCaptions(ByVal captions As CaptionRegion, ByVal path As String, ByVal theEncoding As Encoding) Implements ICaptionsWriter.WriteCaptions
-      Using writer As New StreamWriter(path, False, theEncoding)
+      Using writer As New StreamWriter(path, False, theEncoding) 'the Using statement will close the file created when finished
         WriteCaptions(captions, writer)
       End Using
     End Sub
 
     Public Overloads Sub WriteCaptions(ByVal captions As CaptionRegion, ByVal stream As Stream, ByVal theEncoding As Encoding) Implements ICaptionsWriter.WriteCaptions
-      Using writer As New StreamWriter(stream, theEncoding)
-        WriteCaptions(captions, writer)
-      End Using
+      Dim writer As New StreamWriter(stream, theEncoding) 'not Using statement, do not close the stream when finished
+      WriteCaptions(captions, writer)
     End Sub
 
     Public Overloads Sub WriteCaptions(ByVal captions As CaptionRegion, ByVal writer As TextWriter) Implements ICaptionsWriter.WriteCaptions
-      Try
-        WriteHeader(writer)
-        For Each s As CaptionElement In captions.Children
-          WriteCaption(s, writer)
-        Next
-        WriteFooter(writer)
-      Finally
-        writer.Close()
-      End Try
+      WriteHeader(writer)
+      For Each s As CaptionElement In captions.Children
+        WriteCaption(s, writer)
+      Next
+      WriteFooter(writer)
+      writer.Flush() 'write out any buffered data
     End Sub
 
     Public Overridable Sub WriteHeader(ByVal writer As TextWriter) Implements ICaptionsWriter.WriteHeader

@@ -1,5 +1,5 @@
 ﻿'Filename: BaseCaptionReader.vb
-'Version: 20121016
+'Version: 20121111
 
 Imports ClipFlair.CaptionsLib.models
 
@@ -16,20 +16,18 @@ Namespace ClipFlair.CaptionsLib
 
     Public Overloads Sub ReadCaptions(ByVal captions As CaptionRegion, ByVal path As String, ByVal theEncoding As Encoding) Implements ICaptionsReader.ReadCaptions
       'not clearing any existing captions, just appending to the end (the CaptionRegion object can choose whether it will sort the Captions by start time or not after the appending)
-      Using reader As New StreamReader(path, theEncoding, True) '"Using" makes sure the resource is immediately deallocated at "End Using"
+      Using reader As New StreamReader(path, theEncoding, True) 'the Using statement will close the file created when finished
         ReadCaptions(captions, reader)
       End Using
     End Sub
 
     Public Overloads Sub ReadCaptions(ByVal captions As CaptionRegion, ByVal stream As Stream, ByVal theEncoding As Encoding) Implements ICaptionsReader.ReadCaptions
       'not clearing any existing captions, just appending to the end (the CaptionRegion object can choose whether it will sort the Captions by start time or not after the appending)
-      Using reader As New StreamReader(stream, theEncoding, True) '"Using" makes sure the resource is immediately deallocated at "End Using"
-        ReadCaptions(captions, reader)
-      End Using
+      Dim reader As New StreamReader(stream, theEncoding, True)  'no Using statement, do not close the stream when finished
+      ReadCaptions(captions, reader)
     End Sub
 
     Public Overloads Sub ReadCaptions(ByVal captions As CaptionRegion, ByVal reader As TextReader) Implements ICaptionsReader.ReadCaptions
-      Try
         ReadHeader(reader)
         While reader.Peek <> -1
           Dim caption As New CaptionElement()
@@ -37,9 +35,6 @@ Namespace ClipFlair.CaptionsLib
           captions.Children.Add(caption)
         End While
         ReadFooter(reader)
-      Finally
-        reader.Close()
-      End Try
     End Sub
 
     Public Overridable Sub ReadHeader(ByVal reader As TextReader) Implements ICaptionsReader.ReadHeader
