@@ -23,15 +23,9 @@ namespace ClipFlair.Windows
     public ActivityContainer()
     {
       View = new ActivityView(); //must set the view first
+
       InitializeComponent();
-
-      //(assuming: using SilverFlow.Controls)
-      //zuiContainer.Add((FloatingWindow)XamlReader.Load("<clipflair:MediaPlayerWindow Width=\"Auto\" Height=\"Auto\" MinWidth=\"100\" MinHeight=\"100\" Title=\"4 Media Player\" IconText=\"1Media Player\" Tag=\"1MediaPlayer\" xmlns:clipflair=\"clr-namespace:ClipFlair;assembly=ClipFlair\"/>"));
-      //zuiContainer.Add(new MediaPlayerWindow()).Show();
-      //zuiContainer.FloatingWindows.First<FloatingWindow>().Show();
-
-      BindWindows(); //Bind MediaPlayerWindows's Time to CaptionGridWindows's Time programmatically (since using x:Name on the controls doesn't seem to work [components are resolved to null when searched by name - must have to do with the implementation of the Windows property of ZUI container])
-      //above command could be avoided if binding to activity view's Time property worked
+      InitializeView();
 
       BindingUtils.RegisterForNotification("ContentOffsetX", zuiContainer.ZoomHost, (d, e) => { if (View != null) { View.ViewPosition = new Point(zuiContainer.ZoomHost.ContentOffsetX, zuiContainer.ZoomHost.ContentOffsetY); } });
       BindingUtils.RegisterForNotification("ContentOffsetX", zuiContainer.ZoomHost, (d, e) => { if (View != null) { View.ViewPosition = new Point(zuiContainer.ZoomHost.ContentOffsetX, zuiContainer.ZoomHost.ContentOffsetY); } });
@@ -40,6 +34,14 @@ namespace ClipFlair.Windows
       BindingUtils.RegisterForNotification("ContentScale", zuiContainer.ZoomHost, (d, e) => { if (View != null) { View.ContentZoom = (double)e.NewValue; } });
       BindingUtils.RegisterForNotification("ContentScalable", zuiContainer.ZoomHost, (d, e) => { if (View != null) { View.ContentZoomable = (bool)e.NewValue; } });
       BindingUtils.RegisterForNotification("WindowsConfigurable", zuiContainer, (d, e) => { if (View != null) { View.ContentPartsConfigurable = (bool)e.NewValue; } });
+
+      //(assuming: using SilverFlow.Controls)
+      //zuiContainer.Add((FloatingWindow)XamlReader.Load("<clipflair:MediaPlayerWindow Width=\"Auto\" Height=\"Auto\" MinWidth=\"100\" MinHeight=\"100\" Title=\"4 Media Player\" IconText=\"1Media Player\" Tag=\"1MediaPlayer\" xmlns:clipflair=\"clr-namespace:ClipFlair;assembly=ClipFlair\"/>"));
+      //zuiContainer.Add(new MediaPlayerWindow()).Show();
+      //zuiContainer.FloatingWindows.First<FloatingWindow>().Show();
+
+      BindWindows(); //Bind MediaPlayerWindows's Time to CaptionGridWindows's Time programmatically (since using x:Name on the controls doesn't seem to work [components are resolved to null when searched by name - must have to do with the implementation of the Windows property of ZUI container])
+      //above command could be avoided if binding to activity view's Time property worked
     }
 
     private void BindWindows()
@@ -69,6 +71,17 @@ namespace ClipFlair.Windows
     }
 
     #region View
+
+    protected virtual void InitializeView()
+    {
+      View.ViewPosition = new Point(zuiContainer.ZoomHost.ContentOffsetX, zuiContainer.ZoomHost.ContentOffsetY);
+      View.ViewPosition = new Point(zuiContainer.ZoomHost.ContentOffsetX, zuiContainer.ZoomHost.ContentOffsetY);
+      View.ViewWidth = zuiContainer.ZoomHost.ContentViewportWidth;
+      View.ViewHeight = zuiContainer.ZoomHost.ContentViewportHeight;
+      View.ContentZoom = zuiContainer.ZoomHost.ContentScale;
+      View.ContentZoomable = zuiContainer.ZoomHost.ContentScalable;
+      View.ContentPartsConfigurable = zuiContainer.WindowsConfigurable;
+    }
 
     public ActivityView View
     {

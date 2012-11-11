@@ -21,6 +21,7 @@ namespace ClipFlair.Windows
     {
       InitializeComponent();
       View = activity.View;
+      InitializeView();
     }
 
     #region --- Properties ---

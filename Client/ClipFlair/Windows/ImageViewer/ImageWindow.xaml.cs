@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: ImageWindow.xaml.cs
-//Version: 20121102
+//Version: 20121111
 
 using ClipFlair.Windows.Views;
 
@@ -17,6 +17,7 @@ namespace ClipFlair.Windows
         {
           View = new ImageView(); //must set the view first
           InitializeComponent();
+          InitializeView();
         }
 
         #region View

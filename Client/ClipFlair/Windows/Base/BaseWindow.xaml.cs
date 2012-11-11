@@ -28,20 +28,31 @@ namespace ClipFlair.Windows
     public BaseWindow()
     {
       if (Application.Current.Host.Settings.EnableGPUAcceleration) //GPU acceleration can been turned on at HTML/ASPX page or at OOB settings for OOB apps
-        CacheMode = new BitmapCache(); //must do this before setting the "Scale" property, since it will set "RenderAtScale" property of the BitmapCache
+        CacheMode = new BitmapCache(); //must do this before setting the "Scale" property, since that will set "RenderAtScale" property of the BitmapCache
 
       ShowMaximizeButton = false; //!!! (till we fix it to resize to current visible view area and to allow moving the window in that case only [when it's not same size as parent])
 
-      InitializeComponent(); //this can override the "ShowMaximize" button, or set the "Scale" property, so must do last
+      InitializeComponent(); //can change the "ShowMaximize" button, or set the "Scale" and other properties from XAML, so must do after the commands above
 
-      HelpRequested += (s,e) => {
+      //Bind to ancestor properties
+      BindingUtils.RegisterForNotification("Title", this, (d, e) => { if (View != null) { View.Title = (string)e.NewValue; } });
+      BindingUtils.RegisterForNotification("Position", this, (d, e) => { if (View != null) { View.Position = (Point)e.NewValue; } });
+      BindingUtils.RegisterForNotification("Width", this, (d, e) => { if (View != null) { View.Width = (double)e.NewValue; } });
+      BindingUtils.RegisterForNotification("Height", this, (d, e) => { if (View != null) { View.Height = (double)e.NewValue; } });
+      BindingUtils.RegisterForNotification("Scale", this, (d, e) => { if (View != null) { View.Zoom = (double)e.NewValue; } });
+      BindingUtils.RegisterForNotification("MoveEnabled", this, (d, e) => { if (View != null) { View.Moveable = (bool)e.NewValue; } });
+      BindingUtils.RegisterForNotification("ResizeEnabled", this, (d, e) => { if (View != null) { View.Resizable = (bool)e.NewValue; } });
+      BindingUtils.RegisterForNotification("Scalable", this, (d, e) => { if (View != null) { View.Zoomable = (bool)e.NewValue; } });
+
+      HelpRequested += (s, e) =>
+      {
         MessageBox.Show("Help not available yet - see http://ClipFlair.net for contact info");
       };
-            
+
       //Closing += (s,e) => { e.Cancel = (MessageBox.Show("Are you sure you want to close the window?", "Confirmation", MessageBoxButton.OKCancel) != MessageBoxResult.OK); };
       //TODO: add separate event for closing by end-user, we don't want to get such events if app is closing down (or detect the app is closing down and ignore event or remove event handler early) 
 
-      OptionsRequested += (s,e) =>
+      OptionsRequested += (s, e) =>
       {
         //try to set focus to front content so that changes to property editboxes at the back content are applied
         if (!Focus())
@@ -55,17 +66,7 @@ namespace ClipFlair.Windows
         FlipPanel.IsFlipped = !FlipPanel.IsFlipped; //turn window arround to show/hide its options
       };
 
-      //Bind to ancestor properties
-      BindingUtils.RegisterForNotification("Title", this, (d, e) => { if (View != null) { View.Title = (string)e.NewValue; } });
-      BindingUtils.RegisterForNotification("Position", this, (d, e) => { if (View != null) { View.Position = (Point)e.NewValue; } });
-      BindingUtils.RegisterForNotification("Width", this, (d, e) => { if (View != null) { View.Width = (double)e.NewValue; } });
-      BindingUtils.RegisterForNotification("Height", this, (d, e) => { if (View != null) { View.Height = (double)e.NewValue; } });
-      BindingUtils.RegisterForNotification("Scale", this, (d, e) => { if (View != null) { View.Zoom = (double)e.NewValue; } });
-      BindingUtils.RegisterForNotification("MoveEnabled", this, (d, e) => { if (View != null) { View.Moveable = (bool)e.NewValue; } });
-      BindingUtils.RegisterForNotification("ResizeEnabled", this, (d, e) => { if (View != null) { View.Resizable = (bool)e.NewValue; } });
-      BindingUtils.RegisterForNotification("Scalable", this, (d, e) => { if (View != null) { View.Zoomable = (bool)e.NewValue; } });
-
-      //Load-Save (TODO: check: can't set them in the XAML for some reason)
+      //Load-Save (TODO: check: can't set them in the XAML for some reason) //must do after InitializeComponent
       btnLoad.Click += new RoutedEventHandler(btnLoad_Click);
       btnSave.Click += new RoutedEventHandler(btnSave_Click);
     }
@@ -76,6 +77,18 @@ namespace ClipFlair.Windows
     }
     
     #region Properties
+
+    protected virtual void InitializeView() //must call from ancestor after setting the View and calling InitializeComponent
+    {
+      View.Title = (string)Title;
+      View.Position = Position;
+      View.Width = Width;
+      View.Height = Height;
+      View.Zoom = Scale;
+      View.Moveable = MoveEnabled;
+      View.Resizable = ResizeEnabled;
+      View.Zoomable = ScaleEnabled;
+    }
 
     public IView View
     {
@@ -134,7 +147,7 @@ namespace ClipFlair.Windows
 
         if (value) MoveEnabled = false; else MoveEnabled = IViewDefaults.DefaultMoveable;
         if (value) ResizeEnabled = false; else ResizeEnabled = IViewDefaults.DefaultResizable;
-        if (value) Scalable = false; else Scalable = IViewDefaults.DefaultZoomable;      
+        if (value) ScaleEnabled = false; else ScaleEnabled = IViewDefaults.DefaultZoomable;      
       }
     }
 
@@ -159,7 +172,7 @@ namespace ClipFlair.Windows
         Scale = View.Zoom;
         MoveEnabled = View.Moveable;
         ResizeEnabled = View.Resizable;
-        Scalable = View.Zoomable;
+        ScaleEnabled = View.Zoomable;
         //...
       }
       else switch (e.PropertyName)
@@ -187,7 +200,7 @@ namespace ClipFlair.Windows
             ResizeEnabled = View.Resizable;
             break;
           case IViewProperties.PropertyZoomable:
-            Scalable = View.Zoomable;
+            ScaleEnabled = View.Zoomable;
             break;
           //...
         }

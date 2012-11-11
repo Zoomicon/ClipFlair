@@ -23,6 +23,7 @@ namespace ClipFlair.Windows
     {
       View = new CaptionsGridView(); //must set the view first
       InitializeComponent();
+      InitializeView();
     }
 
     #region --- Properties ---

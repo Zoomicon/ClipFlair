@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: BaseView.cs
-//Version: 20121102
+//Version: 20121111
 
 using ClipFlair.Windows.Views;
 
@@ -11,7 +11,7 @@ using System.Windows;
 namespace ClipFlair.Windows.Views
 {
 
-  [DataContract(Namespace = "http://clipflair.net/Contracts/Views")]
+  [DataContract(Namespace = "http://clipflair.net/Contracts/View")]
   public class BaseView: IView
   {
 

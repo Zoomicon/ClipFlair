@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: ImageView.cs
-//Version: 20121103
+//Version: 20121111
 
 using System;
 using System.Runtime.Serialization;
@@ -8,7 +8,7 @@ using System.Runtime.Serialization;
 namespace ClipFlair.Windows.Views
 {
 
-  [DataContract(Namespace = "http://clipflair.net/Contracts/Views")]
+  [DataContract(Namespace = "http://clipflair.net/Contracts/View")]
   public class ImageView: BaseView, IImageViewer
   {
     public ImageView()
