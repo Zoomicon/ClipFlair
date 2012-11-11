@@ -1,13 +1,15 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: ActivityContainerWindow.xaml.cs
-//Version: 20121109
+//Version: 20121111
 
 using ClipFlair.Windows.Views;
 
 using Ionic.Zip;
+using SilverFlow.Controls;
 
 using System;
 using System.ComponentModel;
+using System.IO;
 using System.Windows;
 
 namespace ClipFlair.Windows
@@ -103,7 +105,13 @@ namespace ClipFlair.Windows
     public override void SaveOptions(ZipFile zip, string zipFolder = "")
     {
       base.SaveOptions(zip, zipFolder);
-      //TODO: save child windows
+      foreach (BaseWindow window in activity.Windows)
+      {
+        MemoryStream stream = new MemoryStream(); //TODO: not optimal implementation, should try to pipe streams without first saving into memory
+        window.SaveOptions(stream); //save ZIP file for child window
+        stream.Position = 0;
+        zip.AddEntry(zipFolder + "/" + window.Title + ".clipflair.zip", stream);
+      }
     }
 
     #endregion

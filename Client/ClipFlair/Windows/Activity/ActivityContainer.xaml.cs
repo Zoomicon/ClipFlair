@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: ActivityContainer.xaml.cs
-//Version: 20121108
+//Version: 20121111
 
 //TODO: move zoom slider UI to FloatingWindowHostZUI's XAML template
 
@@ -8,6 +8,7 @@ using ClipFlair.Windows.Views;
 using ClipFlair.Utils.Bindings;
 
 using ZoomAndPan;
+using SilverFlow.Controls;
 
 using System;
 using System.Windows;
@@ -60,6 +61,11 @@ namespace ClipFlair.Windows
       foreach (BaseWindow w in zuiContainer.Windows)
         if (tag == (string)w.Tag) return w; //must cast to string to compare (else we compare object references, since Tag property is of type object, not string)
       return null;
+    }
+
+    public FloatingWindowCollection Windows
+    {
+      get { return zuiContainer.Windows; }
     }
 
     #region View
