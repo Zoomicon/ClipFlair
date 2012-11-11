@@ -1,5 +1,5 @@
 //Filename: FloatingWindow.cs
-//Version: 20121104
+//Version: 20121111
 
 using System;
 using System.Collections.ObjectModel;
@@ -640,27 +640,27 @@ namespace SilverFlow.Controls
 
         #endregion
 
-        #region public bool Scalable
+        #region public bool ScaleEnabled
 
         /// <summary>
         /// Gets or sets a value indicating whether to allow the user to scale the window.
         /// </summary>
         /// <value><c>true</c> to allow the user to scale the window; otherwise, <c>false</c>.</value>
-        public bool Scalable
+        public bool ScaleEnabled
         {
-          get { return (bool)GetValue(ScalableProperty); }
-          set { SetValue(ScalableProperty, value); }
+          get { return (bool)GetValue(ScaleEnabledProperty); }
+          set { SetValue(ScaleEnabledProperty, value); }
         }
 
         /// <summary>
-        /// Identifies the <see cref="FloatingWindow.Scalable" /> dependency property.
+        /// Identifies the <see cref="FloatingWindow.ScaleEnabled" /> dependency property.
         /// </summary>
         /// <value>
-        /// The identifier for the <see cref="FloatingWindow.Scalable" /> dependency property.
+        /// The identifier for the <see cref="FloatingWindow.ScaleEnabled" /> dependency property.
         /// </value>
-        public static readonly DependencyProperty ScalableProperty =
+        public static readonly DependencyProperty ScaleEnabledProperty =
             DependencyProperty.Register(
-            "Scalable",
+            "ScaleEnabled",
             typeof(bool),
             typeof(FloatingWindow),
             new PropertyMetadata(true));

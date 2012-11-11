@@ -1,5 +1,5 @@
 ﻿//Filename: FloatingWindowHostZUI.cs
-//Version: 20121103
+//Version: 20121111
 
 using SilverFlow.Controls;
 using SilverFlow.Controls.Extensions;
@@ -140,7 +140,7 @@ namespace FloatingWindowZUI
     private void FloatingWindow_MouseUp(object sender, MouseButtonEventArgs e, MouseButton changedButton)
     {
       FloatingWindow window = (FloatingWindow)sender;
-      if (window.Scalable && (Keyboard.Modifiers & ModifierKeys.Control) != 0)
+      if (window.ScaleEnabled && (Keyboard.Modifiers & ModifierKeys.Control) != 0)
       {
         if (changedButton == MouseButton.Left)
           window.Scale += 0.05; //zoom in
