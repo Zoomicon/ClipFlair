@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: CaptionsGridWindow.xaml.cs
-//Version: 20121109
+//Version: 20121111
 
 using ClipFlair.Windows.Views;
 
@@ -269,16 +269,15 @@ namespace ClipFlair.Windows
     public override void LoadOptions(ZipFile zip, string zipFolder = "")
     {
       base.LoadOptions(zip, zipFolder);
- 
-      gridCaptions.ReadCaptions("captions.srt", zip[zipFolder + "/captions.srt"].OpenReader());
+      gridCaptions.ReadCaptions(zip[zipFolder + "/captions.srt"].OpenReader(), "captions.srt");
     }
 
     public override void SaveOptions(ZipFile zip, string zipFolder = "")
     {
       base.SaveOptions(zip, zipFolder);
 
-      MemoryStream stream = new MemoryStream();
-      gridCaptions.WriteCaptions("captions.srt", stream);
+      MemoryStream stream = new MemoryStream(); //TODO: not optimal implementation, should try to pipe streams without first saving into memory
+      gridCaptions.WriteCaptions(stream, "captions.srt");
       stream.Position = 0;
       zip.AddEntry(zipFolder + "/captions.srt", stream);
     }

@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: BaseWindow.xaml.cs
-//Version: 20121109
+//Version: 20121111
 
 using ClipFlair.Utils.Bindings;
 using ClipFlair.Windows.Views;
@@ -202,12 +202,10 @@ namespace ClipFlair.Windows
         dlg.FilterIndex = 1; //note: this index is 1-based, not 0-based
     
         if (dlg.ShowDialog() == true) //TODO: find the parent window
-          using (Stream stream = dlg.File.OpenRead())
-            using (ZipFile zip = ZipFile.Read(stream))
-               LoadOptions(zip); //reading from root folder
-
+          using (Stream stream = dlg.File.OpenRead()) //will close the stream when done
+            LoadOptions(stream);
       }
-      catch (Exception ex) //!!! replace with Exception
+      catch (Exception ex)
       {
         MessageBox.Show("ClipFlair options load failed: " + ex.Message); //TODO: find the parent window
       }
@@ -226,15 +224,10 @@ namespace ClipFlair.Windows
         //dlg.DefaultExt = "clipflair.zip"; //this doesn't seem to be used if you've supplied a filter
 
         if (dlg.ShowDialog() == true) //TODO: find the parent window
-          using (ZipFile zip = new ZipFile(Encoding.UTF8))
-          {
-            zip.Comment = "ClipFlair Options Archive";
-             SaveOptions(zip); //saving to root folder
-            zip.Save(dlg.OpenFile());
-          }
-
+          using (Stream stream = dlg.OpenFile()) //will close the stream when done
+            SaveOptions(stream);
       }
-      catch (Exception ex) //!!! replace with Exception
+      catch (Exception ex)
       {
         MessageBox.Show("CliFlair options save failed: " + ex.Message); //TODO: find the parent window
       }
@@ -244,14 +237,31 @@ namespace ClipFlair.Windows
 
     #region Load / Save Options
 
+    public void LoadOptions(Stream stream) //doesn't close stream
+    {
+      using (ZipFile zip = ZipFile.Read(stream))
+        LoadOptions(zip); //reading from root folder
+    }
+
     public virtual void LoadOptions(ZipFile zip, string zipFolder = "")
     {
       DataContractSerializer serializer = new DataContractSerializer(View.GetType()); //assuming current View isn't null and has been set by descendent class with wanted BaseView descendent //TODO: maybe use some property to return appropriate View type
       View = (IView)serializer.ReadObject(zip[zipFolder + "/options.xml"].OpenReader());
     }
 
-    public virtual void SaveOptions(ZipFile zip, string zipFolder = "")
+    public void SaveOptions(Stream stream) //doesn't close stream
     {
+      using (ZipFile zip = new ZipFile(Encoding.UTF8))
+      {
+        zip.Comment = "ClipFlair Options Archive";
+        SaveOptions(zip); //saving to root folder
+        zip.Save(stream);
+        stream.Flush(); //flush all buffers
+      }
+    }
+
+    public virtual void SaveOptions(ZipFile zip, string zipFolder = "")
+    { //TODO: not optimal implementation, should try to pipe streams without first saving into memory
       MemoryStream stream = new MemoryStream(); //don't close this (e.g. don't write "using" here), DotNetZip should close that stream and has been set by descendent class with wanted BaseView descendent //TODO: maybe use some property to return appropriate View type
       DataContractSerializer serializer = new DataContractSerializer(View.GetType()); //assuming current View isn't null
       serializer.WriteObject(stream, View);
