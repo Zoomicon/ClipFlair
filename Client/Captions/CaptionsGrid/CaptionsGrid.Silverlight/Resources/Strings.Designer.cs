@@ -70,11 +70,29 @@ namespace ClipFlair.CaptionsGrid.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Set selected caption&apos;s end time.
+        /// </summary>
+        public static string tooltip_caption_end {
+            get {
+                return ResourceManager.GetString("tooltip_caption_end", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Remove selected caption.
         /// </summary>
         public static string tooltip_caption_remove {
             get {
                 return ResourceManager.GetString("tooltip_caption_remove", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Set selected caption&apos;s start time.
+        /// </summary>
+        public static string tooltip_caption_start {
+            get {
+                return ResourceManager.GetString("tooltip_caption_start", resourceCulture);
             }
         }
         

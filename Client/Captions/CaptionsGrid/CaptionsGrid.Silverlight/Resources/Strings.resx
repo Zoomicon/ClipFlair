@@ -129,4 +129,10 @@
   <data name="tooltip_captions_export" xml:space="preserve">
     <value>Export captions to TTS, SRT and other file formats</value>
   </data>
+  <data name="tooltip_caption_end" xml:space="preserve">
+    <value>Set selected caption's end time</value>
+  </data>
+  <data name="tooltip_caption_start" xml:space="preserve">
+    <value>Set selected caption's start time</value>
+  </data>
 </root>

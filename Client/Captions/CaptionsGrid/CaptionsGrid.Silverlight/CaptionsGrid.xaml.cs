@@ -1,5 +1,5 @@
 ﻿//Filename: CaptionsGrid.xaml.cs
-//Version: 20121109
+//Version: 20121111
 
 using ClipFlair.AudioRecorder;
 using ClipFlair.CaptionsLib.Utils;
@@ -377,7 +377,10 @@ namespace ClipFlair.CaptionsGrid
 
       CaptionElement selectedCaption = (CaptionElement)gridCaptions.SelectedItem;
       if (selectedCaption != null)
+      {
+        gridCaptions.SelectedItem = null; //clear current selection before removing the caption, so that selection doesn't move to the next row and make current time change
         Captions.Children.Remove(selectedCaption);
+      }
     }
 
     private void btnStart_Click(object sender, RoutedEventArgs e)
@@ -409,13 +412,10 @@ namespace ClipFlair.CaptionsGrid
         OpenFileDialog dlg = new OpenFileDialog();
         dlg.Filter = "Subtitle files (SRT, TTS)|*.srt;*.tts|SRT files|*.srt|TTS files|*.tts";
         dlg.FilterIndex = 1; //note: this index is 1-based, not 0-based
+        
         if (dlg.ShowDialog() == true) //TODO: find the parent window
-        {
-          ICaptionsReader reader = CaptionUtils.GetCaptionsReader(dlg.File.Name);
-          CaptionRegion newCaptions = new CaptionRegion();
-          reader.ReadCaptions(newCaptions, dlg.File.OpenRead(), Encoding.UTF8);
-          Captions = newCaptions;
-        }
+         using (Stream stream = dlg.File.OpenRead()) //closes stream when finished
+            ReadCaptions(stream, dlg.File.Name);
       }
       catch (Exception ex)
       {
@@ -436,11 +436,10 @@ namespace ClipFlair.CaptionsGrid
         dlg.FilterIndex = 1; //note: this index is 1-based, not 0-based
         dlg.DefaultFileName = "Subtitles"; //Silverlight will 1st prompt the user "Do you want to save X", where X is the DefaultFileName value
         //dlg.DefaultExt = "TTS"; //this doesn't seem to be used if you've supplied a filter
+
         if (dlg.ShowDialog() == true) //TODO: find the parent window
-        {
-          ICaptionsWriter writer = CaptionUtils.GetCaptionsWriter(dlg.SafeFileName);
-          writer.WriteCaptions(Captions, dlg.OpenFile(), Encoding.UTF8);
-        }
+          using (Stream stream = dlg.OpenFile()) //closes stream when finished
+            WriteCaptions(stream, dlg.SafeFileName);
       }
       catch (Exception ex)
       {
@@ -448,7 +447,11 @@ namespace ClipFlair.CaptionsGrid
       }
     }
 
-    public void ReadCaptions(string filename, Stream stream)
+    #endregion
+
+    #region Read/Write captions
+
+    public void ReadCaptions(Stream stream, string filename) //doesn't close stream
     {
       ICaptionsReader reader = CaptionUtils.GetCaptionsReader(filename);
       CaptionRegion newCaptions = new CaptionRegion();
@@ -456,13 +459,13 @@ namespace ClipFlair.CaptionsGrid
       Captions = newCaptions;
     }
 
-    public void WriteCaptions(string filename, Stream stream)
+    public void WriteCaptions(Stream stream, string filename) //doesn't close stream
     {
       if (Captions == null) return;
       ICaptionsWriter writer = CaptionUtils.GetCaptionsWriter(filename);
       writer.WriteCaptions(Captions, stream, Encoding.UTF8);
     }
-
+    
     #endregion
 
   }
