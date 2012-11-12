@@ -236,9 +236,9 @@ namespace ClipFlair.Windows
       {
         SaveFileDialog dlg = new SaveFileDialog();
         dlg.Filter = "ClipFlair options archive|*.clipflair.zip";
-        dlg.FilterIndex = 1; //note: this index is 1-based, not 0-based
-        dlg.DefaultFileName = View.Title + ".clipflair.zip"; //Silverlight will 1st prompt the user "Do you want to save X", where X is the DefaultFileName value //TODO: should define this via property to override at descendents
-        //dlg.DefaultExt = "clipflair.zip"; //this doesn't seem to be used if you've supplied a filter
+        //dlg.FilterIndex = 1; //note: this index is 1-based, not 0-based //do not set if DefaultExt is supplied
+        //dlg.DefaultFileName = View.Title + ".clipflair.zip"; //Silverlight will prompt "Do you want to save X?" (where X is the DefaultFileName value). If we set this, but the prompt can go under the main window, so avoid it
+        dlg.DefaultExt = ".clipflair.zip"; //this doesn't seem to be used if FilterIndex is set
 
         if (dlg.ShowDialog() == true) //TODO: find the parent window
           using (Stream stream = dlg.OpenFile()) //will close the stream when done
