@@ -102,12 +102,14 @@ namespace ClipFlair
       // icon in the status bar and Firefox will display a script error.
       if (!System.Diagnostics.Debugger.IsAttached)
       {
+        MessageBox.Show("Fatal error: " + e.ExceptionObject.Message); //TODO: find parent window?
 
         // NOTE: This will allow the application to continue running after an exception has been thrown
         // but not handled. 
         // For production applications this error handling should be replaced with something that will 
         // report the error to the website and stop the application.
-        e.Handled = true;
+        
+        //e.Handled = true;
         Deployment.Current.Dispatcher.BeginInvoke(delegate { ReportErrorToDOM(e); });
       }
     }

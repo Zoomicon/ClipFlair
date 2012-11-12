@@ -131,12 +131,17 @@ namespace ClipFlair.Windows
     {
       base.SaveOptions(zip, zipFolder);
       foreach (BaseWindow window in activity.Windows)
-      {
-        MemoryStream stream = new MemoryStream(); //TODO: not optimal implementation, should try to pipe streams without first saving into memory
-        window.SaveOptions(stream); //save ZIP file for child window
-        stream.Position = 0;
-        zip.AddEntry(zipFolder + "/" + window.Title + ".clipflair.zip", stream); //TODO: if multiple windows have same title append 1,2,3,...
-      }
+        SaveWindow(zip, zipFolder, window);
+    }
+
+    private static void SaveWindow(ZipFile zip, string zipFolder, BaseWindow window)
+    {
+      MemoryStream stream = new MemoryStream(); //TODO: not optimal implementation, should try to pipe streams without first saving into memory
+      window.SaveOptions(stream); //save ZIP file for child window
+      stream.Position = 0;
+      string title = ((string)window.Title).TrimStart();
+      if (title == "") title = window.GetType().Name;
+      zip.AddEntry(zipFolder + "/" + title + " - " + Guid.NewGuid() + ".clipflair.zip", stream); //using TrimStart() to not have filenames start with space chars in case it's an issue with ZIP spec
     }
 
     #endregion

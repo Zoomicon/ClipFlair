@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: CaptionsGridView.cs
-//Version: 20121111
+//Version: 20121112
 
 using System;
 using System.Runtime.Serialization;
@@ -13,6 +13,10 @@ namespace ClipFlair.Windows.Views
   {
     public CaptionsGridView()
     {
+      {
+        //BaseView defaults - overrides
+        Title = ICaptionsGridDefaults.DefaultTitle;
+      }
     }
 
     #region Fields
