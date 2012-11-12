@@ -78,7 +78,7 @@ Version: 20121108
       <clipflair:MediaPlayerWindow
         Position="0,0" 
         Width="600" Height="400" 
-        Title="Media Player" IconText="Media Player" Tag="MediaPlayer"
+        Tag="MediaPlayer"
         Source="http://video3.smoothhd.com.edgesuite.net/ondemand/Big%20Buck%20Bunny%20Adaptive.ism/Manifest"
         CaptionsVisible = "True"
         >
@@ -95,20 +95,20 @@ Version: 20121108
       <clipflair:CaptionsGridWindow 
         Position="0,420"  
         Width="600" Height="340" 
-        Title="Captions" IconText="Captions" Tag="Captions"
+        Tag="Captions"
         Captions="{Binding Source={StaticResource Captions}}"
         />
 
       <clipflair:TextEditorWindow 
         Position="620,0"
         Width="650" Height="630" 
-        Title="Text Editor" IconText="Text Editor" Tag="TextEditor"
+        Tag="TextEditor"
         />
 
       <clipflair:ImageWindow 
         Position="820,660" 
         Width="200" Height="100" 
-        Title="Image" IconText="Image" Tag="Image"
+        Tag="Image"
         Source="http://clipflair.net/wp-content/themes/clipflair-theme/images/clipflair-logo.jpg" 
         />
 
