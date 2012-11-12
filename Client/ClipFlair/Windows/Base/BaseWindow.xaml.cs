@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: BaseWindow.xaml.cs
-//Version: 20121111
+//Version: 20121112
 
 using ClipFlair.Utils.Bindings;
 using ClipFlair.Windows.Views;
@@ -20,11 +20,13 @@ using System.Windows.Media;
 
 namespace ClipFlair.Windows
 {
-  
+
   [ContentProperty("FrontContent")]
   public partial class BaseWindow : FloatingWindow
   {
 
+    private bool isTopLevel;
+  
     public BaseWindow()
     {
       if (Application.Current.Host.Settings.EnableGPUAcceleration) //GPU acceleration can been turned on at HTML/ASPX page or at OOB settings for OOB apps
@@ -133,9 +135,11 @@ namespace ClipFlair.Windows
 
     public bool IsTopLevel
     {
-      get { return IsTopLevel; }
+      get { return isTopLevel; }
       set
       {
+        isTopLevel = value;
+
         Visibility visibility = value ? Visibility.Collapsed : Visibility.Visible; //hide backpanel properties not relevant when not being a child window
         propPosition.Visibility = visibility;
         propWidth.Visibility = visibility;
@@ -250,24 +254,67 @@ namespace ClipFlair.Windows
 
     #region Load / Save Options
 
-    public void LoadOptions(Stream stream) //doesn't close stream
+    public void LoadOptions(Stream stream, string zipFolder = "") //doesn't close stream
     {
       using (ZipFile zip = ZipFile.Read(stream))
-        LoadOptions(zip); //reading from root folder
+        LoadOptions(zip, zipFolder); //reading from root folder
     }
 
     public virtual void LoadOptions(ZipFile zip, string zipFolder = "")
     {
       DataContractSerializer serializer = new DataContractSerializer(View.GetType()); //assuming current View isn't null and has been set by descendent class with wanted BaseView descendent //TODO: maybe use some property to return appropriate View type
-      View = (IView)serializer.ReadObject(zip[zipFolder + "/options.xml"].OpenReader());
+      using (Stream stream = zip[zipFolder + "/" + View.GetType().FullName + ".options.xml"].OpenReader())
+        View = (IView)serializer.ReadObject(stream);
     }
 
-    public void SaveOptions(Stream stream) //doesn't close stream
+    public static BaseWindow LoadWindow(Stream stream, string zipFolder = "") //doesn't close stream
+    {
+      using (ZipFile zip = ZipFile.Read(stream))
+        return LoadWindow(zip, zipFolder); //reading from root folder
+    }
+
+    public static BaseWindow LoadWindow(ZipFile zip, string zipFolder = "") //doesn't close stream
+    {
+      foreach (ZipEntry options in zip.SelectEntries("*.options.xml", zipFolder))
+      {
+        int offset = zipFolder.Length;
+        if (offset != 0) offset += 1; //add +1 for the "/" path separator, only if a folder path has been given
+        string typeName = options.FileName.Substring(offset, options.FileName.Length - offset - ".options.xml".Length);
+
+        switch (typeName)
+        {
+          case "ClipFlair.Windows.Views.ActivityView":
+            typeName = "ClipFlair.Windows.ActivityContainerWindow";
+            break;
+          case "ClipFlair.Windows.Views.MediaPlayerView":
+            typeName = "ClipFlair.Windows.MediaPlayerWindow";
+            break;
+          case "ClipFlair.Windows.Views.CaptionsGridView":
+            typeName = "ClipFlair.Windows.CaptionsGridWindow";
+            break;
+          case "ClipFlair.Windows.Views.TextEditorView":
+            typeName = "ClipFlair.Windows.TextEditorWindow";
+            break;
+          case "ClipFlair.Windows.Views.ImageView":
+            typeName = "ClipFlair.Windows.ImageWindow";
+            break;
+          default:
+            throw new Exception("Unknown view type");
+        }
+
+        BaseWindow window = (BaseWindow)Activator.CreateInstance(Type.GetType(typeName));
+        window.LoadOptions(zip, zipFolder);
+        return window;
+      }
+      return null;
+    }
+
+    public void SaveOptions(Stream stream, string zipFolder = "") //doesn't close stream
     {
       using (ZipFile zip = new ZipFile(Encoding.UTF8))
       {
         zip.Comment = "ClipFlair Options Archive";
-        SaveOptions(zip); //saving to root folder
+        SaveOptions(zip, zipFolder);
         zip.Save(stream);
         stream.Flush(); //flush all buffers
       }
@@ -279,7 +326,7 @@ namespace ClipFlair.Windows
       DataContractSerializer serializer = new DataContractSerializer(View.GetType()); //assuming current View isn't null
       serializer.WriteObject(stream, View);
       stream.Position = 0;
-      ZipEntry optionsXML = zip.AddEntry(zipFolder + "/options.xml", stream);
+      ZipEntry optionsXML = zip.AddEntry(zipFolder + "/" + View.GetType().FullName + ".options.xml", stream);
     }
  
     #endregion

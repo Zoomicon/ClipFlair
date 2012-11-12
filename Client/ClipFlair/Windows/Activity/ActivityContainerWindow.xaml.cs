@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: ActivityContainerWindow.xaml.cs
-//Version: 20121111
+//Version: 20121112
 
 using ClipFlair.Windows.Views;
 
@@ -11,6 +11,7 @@ using System;
 using System.ComponentModel;
 using System.IO;
 using System.Windows;
+using System.Windows.Media;
 
 namespace ClipFlair.Windows
 {
@@ -40,7 +41,7 @@ namespace ClipFlair.Windows
 
       if (e.PropertyName == null) //multiple (not specified) properties have changed, consider all as changed
       {
-        //Time = View.Time; //
+        //Time = View.Time;
         //...
       }
       else switch (e.PropertyName) //string equality check in .NET uses ordinal (binary) comparison semantics by default
@@ -100,7 +101,30 @@ namespace ClipFlair.Windows
     public override void LoadOptions(ZipFile zip, string zipFolder = "")
     {
       base.LoadOptions(zip, zipFolder);
-      //TODO: load child windows
+
+      activity.Windows.RemoveAll(); //TODO: do not use "Clear", doesn't work
+      foreach (ZipEntry childZip in zip.SelectEntries("*.clipflair.zip", zipFolder))
+        using (Stream stream = childZip.OpenReader())
+          using (MemoryStream memStream = new MemoryStream()) //can't use activity.Windows.Add(LoadWindow(stream), seems DotNetZip fails to open a .zip from a stream inside another .zip
+          {
+            stream.CopyTo(memStream);
+            stream.Flush();
+            memStream.Position = 0;
+            BaseWindow w = LoadWindow(memStream);
+            activity.Windows.Add(w);
+            w.Show();
+          }
+
+      if (IsTopLevel)
+      {
+        MoveEnabled = false;
+        ResizeEnabled = false;
+        ScaleEnabled = false;
+
+        FrameworkElement host = (FrameworkElement)VisualTreeHelper.GetRoot(this);
+        Width = host.ActualWidth;
+        Height = host.ActualHeight;
+      } //TODO: most probably needed cause Width/Height View settings of ActivityContainer when top window aren't set correctly (App.xaml has event that resizes window to get container size, but may occur without view finding out?)
     }
 
     public override void SaveOptions(ZipFile zip, string zipFolder = "")
@@ -111,7 +135,7 @@ namespace ClipFlair.Windows
         MemoryStream stream = new MemoryStream(); //TODO: not optimal implementation, should try to pipe streams without first saving into memory
         window.SaveOptions(stream); //save ZIP file for child window
         stream.Position = 0;
-        zip.AddEntry(zipFolder + "/" + window.Title + ".clipflair.zip", stream);
+        zip.AddEntry(zipFolder + "/" + window.Title + ".clipflair.zip", stream); //TODO: if multiple windows have same title append 1,2,3,...
       }
     }
 
