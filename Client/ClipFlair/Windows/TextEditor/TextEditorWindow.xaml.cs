@@ -1,12 +1,15 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: TextEditorWindow.xaml.cs
-//Version: 20121111
+//Version: 20121112
 
 using ClipFlair.Windows.Views;
 
+using Ionic.Zip;
+
 using System;
-using System.Windows;
 using System.ComponentModel;
+using System.IO;
+using System.Windows;
 
 namespace ClipFlair.Windows
 {
@@ -121,6 +124,26 @@ namespace ClipFlair.Windows
     protected virtual void OnToolbarVisibleChanged(bool oldToolbarVisible, bool newToolbarVisible)
     {
       View.ToolbarVisible = newToolbarVisible;
+    }
+
+    #endregion
+
+    #region Load / Save Options
+
+    public override void LoadOptions(ZipFile zip, string zipFolder = "")
+    {
+      base.LoadOptions(zip, zipFolder);
+      editor.Load(zip[zipFolder + "/document.text"].OpenReader());
+    }
+
+    public override void SaveOptions(ZipFile zip, string zipFolder = "")
+    {
+      base.SaveOptions(zip, zipFolder);
+
+      MemoryStream stream = new MemoryStream(); //TODO: not optimal implementation, should try to pipe streams without first saving into memory
+      editor.Save(stream);
+      stream.Position = 0;
+      zip.AddEntry(zipFolder + "/document.text", stream);
     }
 
     #endregion
