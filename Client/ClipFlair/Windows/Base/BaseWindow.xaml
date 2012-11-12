@@ -1,7 +1,7 @@
 ﻿<!--
 Project: ClipFlair (http://ClipFlair.codeplex.com)
 Filename: BaseWindow.xaml
-Version: 20121109
+Version: 20121112
 -->
 
 <float:FloatingWindow x:Class="ClipFlair.Windows.BaseWindow"
@@ -15,7 +15,7 @@ Version: 20121109
     xmlns:float="clr-namespace:SilverFlow.Controls;assembly=SilverFlow.Controls"                      
     HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
     HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch"
-    >
+   >
 
   <float:FloatingWindow.Resources>
     <ResourceDictionary>
@@ -46,18 +46,18 @@ Version: 20121109
             
           <StackPanel Grid.Row="0" Orientation="Horizontal">
           
-            <Button Name="btnLoad" Content="Load Options" Margin="3,3,3,3">
+            <Button Name="btnLoad" Margin="3,3,3,3">
               <ToolTipService.ToolTip>
                 <ToolTip FontSize="16" Content="Load options" />
               </ToolTipService.ToolTip>
-              <!-- <Image Source="Images/load.png" /> -->
+              <Image Source="/ClipFlair;component/Images/load.png" /> 
             </Button>
 
-            <Button Name="btnSave" Content="Save Options" Margin="3,3,3,3">
+            <Button Name="btnSave" Margin="3,3,3,3">
               <ToolTipService.ToolTip>
                 <ToolTip FontSize="16" Content="Save options" />
               </ToolTipService.ToolTip>
-              <!-- <Image Source="Images/save.png" /> -->
+              <Image Source="/ClipFlair;component/Images/save.png" />
             </Button>
        
           </StackPanel>
