@@ -433,9 +433,9 @@ namespace ClipFlair.CaptionsGrid
       {
         SaveFileDialog dlg = new SaveFileDialog();
         dlg.Filter = "Subtitle files (SRT, TTS, FAB, ENC)|*.srt;*.tts;*.fab;*.enc|SRT files|*.srt|FAB files|*.fab|Adobe Encore files|*.enc|TTS files|*.tts";
-        dlg.FilterIndex = 1; //note: this index is 1-based, not 0-based
-        dlg.DefaultFileName = "Subtitles"; //Silverlight will 1st prompt the user "Do you want to save X", where X is the DefaultFileName value
-        //dlg.DefaultExt = "TTS"; //this doesn't seem to be used if you've supplied a filter
+        //dlg.FilterIndex = 1; //note: this index is 1-based, not 0-based //not needed if we set DefaultExt
+        //dlg.DefaultFileName = "Captions"; //Silverlight will prompt "Do you want to save Captions?" if we set this, but the prompt can go under the main window, so avoid it
+        dlg.DefaultExt = ".srt"; //this doesn't seem to be used if you set FilterIndex
 
         if (dlg.ShowDialog() == true) //TODO: find the parent window
           using (Stream stream = dlg.OpenFile()) //closes stream when finished
