@@ -689,10 +689,70 @@ namespace SilverTextEditor
     #endregion
 
     #region FileOperations
+
     //Clears the contents of the existing file.
     private void btnNew_Click(object sender, RoutedEventArgs e)
     {
       rtb.Blocks.Clear();
+    }
+
+    //Opens an existing file
+    private void btnOpen_Click(object sender, RoutedEventArgs e)
+    {
+      try
+      {
+        OpenFileDialog ofd = new OpenFileDialog();
+        ofd.Multiselect = false;
+        ofd.Filter = "Saved Text Files|*.text|All Files|*.*";
+
+        if (ofd.ShowDialog().Value)
+          using (Stream stream = ofd.File.OpenRead())
+            Load(stream);
+      }
+      catch (Exception ex)
+      {
+        MessageBox.Show("Text load failed: " + ex.Message); //TODO: should find parent window
+      }
+    }
+
+    //Saves the existing file
+    private void btnSave_Click(object sender, RoutedEventArgs e)
+    {
+      try
+      {
+        SaveFileDialog sfd = new SaveFileDialog();
+        sfd.Filter = "Saved Text Files|*.text|All Files|*.*";
+        sfd.FilterIndex = 1; //1-based index, not 0-based //do not set this if DefaultExt is used
+        //sfd.DefaultFileName = "Text"; //Silverlight will prompt "Do you want to save Text?" if we set this, but the prompt can go under the main window, so avoid it
+        sfd.DefaultExt = ".text"; //don't set FilterIndex if this is set
+
+        if (sfd.ShowDialog().Value)
+          using (Stream stream = sfd.OpenFile())
+            Save(stream);
+      }
+      catch (Exception ex)
+      {
+        MessageBox.Show("Text save failed: " + ex.Message); //TODO: should find parent window
+      }
+    }
+
+    #endregion
+
+    #region Load-Save
+
+    public void Load(Stream stream) //doesn't close stream
+    {
+      rtb.Xaml = new StreamReader(stream).ReadToEnd();
+    }
+
+    public void Save(Stream stream) //doesn't close stream
+    {
+      if (!IsStorable) //If the file contains any UIElements, it will not be saved
+        throw new Exception("Saving documents with UIElements is not supported");
+
+      TextWriter writer = new StreamWriter(stream, Encoding.UTF8);
+      writer.Write(rtb.Xaml);
+      writer.Flush();
     }
 
     private bool IsStorable
@@ -709,44 +769,6 @@ namespace SilverTextEditor
       }
     }
 
-    //Saves the existing file
-    private void btnSave_Click(object sender, RoutedEventArgs e)
-    {
-      if (!IsStorable) //If the file contains any UIElements, it will not be saved
-      {
-        MessageBox.Show("Saving documents with UIElements is not supported");
-        return;
-      }
-
-      SaveFileDialog sfd = new SaveFileDialog();
-      sfd.Filter = "Saved Files|*.sav|All Files|*.*";
-      sfd.FilterIndex = 1; //1-based index, not 0-based //do not set this if DefaultExt is used
-      //sfd.DefaultFileName = "Text"; //Silverlight will prompt "Do you want to save Text?" if we set this, but the prompt can go under the main window, so avoid it
-      sfd.DefaultExt = ".sav"; //don't set FilterIndex if this is set
-
-      if (sfd.ShowDialog().Value)
-        using (FileStream fs = (FileStream)sfd.OpenFile())
-        {
-          TextWriter writer = new StreamWriter(fs, Encoding.UTF8);
-          writer.Write(rtb.Xaml);
-          writer.Flush();
-        }
-    }
-
-    //Opens an existing file
-    private void btnOpen_Click(object sender, RoutedEventArgs e)
-    {
-      OpenFileDialog ofd = new OpenFileDialog();
-      ofd.Multiselect = false;
-      ofd.Filter = "Saved Files|*.sav|All Files|*.*";
-
-      if (ofd.ShowDialog().Value)
-      {
-        StreamReader r = ofd.File.OpenText();
-        rtb.Xaml = r.ReadToEnd();
-        r.Close();
-      }
-    }
     #endregion
 
     #region helper functions
