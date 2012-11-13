@@ -1,7 +1,7 @@
 ﻿<!--
 Project: ClipFlair (http://ClipFlair.codeplex.com)
 Filename: BaseWindow.xaml
-Version: 20121112
+Version: 20121113
 -->
 
 <float:FloatingWindow x:Class="ClipFlair.Windows.BaseWindow"
@@ -15,6 +15,17 @@ Version: 20121112
     xmlns:float="clr-namespace:SilverFlow.Controls;assembly=SilverFlow.Controls"                      
     HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
     HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch"
+   
+    Title="{Binding Title, Mode=TwoWay}"
+    IconText="{Binding Title, Mode=TwoWay}"
+    Position="{Binding Position, Mode=TwoWay}"
+    Width="{Binding Width, Mode=TwoWay}"
+    Height="{Binding Height, Mode=TwoWay}"
+    Scale="{Binding Zoom, Mode=TwoWay}"
+    Opacity="{Binding Opacity, Mode=TwoWay}"
+    MoveEnabled="{Binding Moveable, Mode=TwoWay}"
+    ResizeEnabled="{Binding Resizable, Mode=TwoWay}"        
+    ScaleEnabled="{Binding Zoomable, Mode=TwoWay}"
    >
 
   <float:FloatingWindow.Resources>
@@ -96,6 +107,11 @@ Version: 20121112
                   <StackPanel Orientation="Vertical" Name="propZoom">
                     <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Zoom:" Target="{Binding ElementName=edZoom}" />
                     <TextBox Name="edZoom" Text="{Binding Zoom, Mode=TwoWay}" />
+                  </StackPanel>
+
+                  <StackPanel Orientation="Vertical" Name="propOpacity">
+                    <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Opacity:" Target="{Binding ElementName=edOpacity}" />
+                    <TextBox Name="edOpacity" Text="{Binding Opacity, Mode=TwoWay}" />
                   </StackPanel>
 
                   <StackPanel Orientation="Horizontal" Name="propMoveable">

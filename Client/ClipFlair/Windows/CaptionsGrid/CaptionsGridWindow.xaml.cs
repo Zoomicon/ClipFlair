@@ -1,6 +1,8 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: CaptionsGridWindow.xaml.cs
-//Version: 20121111
+//Version: 20121113
+
+//TODO: add Source property to CaptionsGrid control and use data-binding to bind it to CaptionsGridView's Source property
 
 using ClipFlair.Windows.Views;
 
@@ -42,25 +44,13 @@ namespace ClipFlair.Windows
 
       if (e.PropertyName == null) //multiple (not specified) properties have changed, consider all as changed
       {
-        Source = View.Source;
         Time = View.Time;
-        CaptionVisible = View.CaptionVisible;
-        CaptionAudioVisible = View.CaptionAudioVisible;
         //...
       }
       else switch (e.PropertyName) //string equality check in .NET uses ordinal (binary) comparison semantics by default
         {
-          case ICaptionsGridProperties.PropertySource:
-            Source = View.Source;
-            break;
           case ICaptionsGridProperties.PropertyTime:
             Time = View.Time;
-            break;
-          case ICaptionsGridProperties.PropertyCaptionVisible:
-            CaptionVisible = View.CaptionVisible;
-            break;
-          case ICaptionsGridProperties.PropertyCaptionAudioVisible:
-            CaptionAudioVisible = View.CaptionAudioVisible;
             break;
           //...
         }
@@ -68,44 +58,6 @@ namespace ClipFlair.Windows
 
     #endregion
     
-    #region Source
-
-    /// <summary>
-    /// Source Dependency Property
-    /// </summary>
-    public static readonly DependencyProperty SourceProperty =
-        DependencyProperty.Register(ICaptionsGridProperties.PropertySource, typeof(Uri), typeof(CaptionsGridWindow),
-            new FrameworkPropertyMetadata((Uri)ICaptionsGridDefaults.DefaultSource, new PropertyChangedCallback(OnSourceChanged)));
-
-    /// <summary>
-    /// Gets or sets the Source property.
-    /// </summary>
-    public Uri Source
-    {
-      get { return (Uri)GetValue(SourceProperty); }
-      set { SetValue(SourceProperty, value); }
-    }
-
-    /// <summary>
-    /// Handles changes to the Source property.
-    /// </summary>
-    private static void OnSourceChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
-    {
-      CaptionsGridWindow target = (CaptionsGridWindow)d;
-      target.OnSourceChanged((Uri)e.OldValue, target.Source);
-    }
-
-    /// <summary>
-    /// Provides derived classes an opportunity to handle changes to the IsAvailable property.
-    /// </summary>
-    protected virtual void OnSourceChanged(Uri oldSource, Uri newSource)
-    {
-      View.Source = newSource;
-      //TODO: load captions
-    }
-
-    #endregion
-
     #region Time
 
     /// <summary>
@@ -181,84 +133,6 @@ namespace ClipFlair.Windows
     {
       //NOP (using two-way data binding)
       //gridCaptions.Captions = newCaptions;
-    }
-
-    #endregion
-
-    #region CaptionVisible
-
-    /// <summary>
-    /// CaptionVisible Dependency Property
-    /// </summary>
-    public static readonly DependencyProperty CaptionVisibleProperty =
-        DependencyProperty.Register(ICaptionsGridProperties.PropertyCaptionVisible, typeof(bool), typeof(CaptionsGridWindow),
-            new FrameworkPropertyMetadata(ICaptionsGridDefaults.DefaultCaptionVisible, new PropertyChangedCallback(OnCaptionVisibleChanged)));
-
-    /// <summary>
-    /// Gets or sets the CaptionVisible property.
-    /// </summary>
-    public bool CaptionVisible
-    {
-      get { return (bool)GetValue(CaptionVisibleProperty); }
-      set { SetValue(CaptionVisibleProperty, value); }
-    }
-
-    /// <summary>
-    /// Handles changes to the CaptionVisible property.
-    /// </summary>
-    private static void OnCaptionVisibleChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
-    {
-      CaptionsGridWindow target = (CaptionsGridWindow)d;
-      bool oldCaptionVisible = (bool)e.OldValue;
-      bool newCaptionVisible = target.CaptionVisible;
-      target.OnCaptionVisibleChanged(oldCaptionVisible, newCaptionVisible);
-    }
-
-    /// <summary>
-    /// Provides derived classes an opportunity to handle changes to the CaptionVisible property.
-    /// </summary>
-    protected virtual void OnCaptionVisibleChanged(bool oldCaptionVisible, bool newCaptionVisible)
-    {
-      View.CaptionVisible = newCaptionVisible;
-    }
-
-    #endregion
-
-    #region CaptionAudioVisible
-
-    /// <summary>
-    /// CaptionAudioVisible Dependency Property
-    /// </summary>
-    public static readonly DependencyProperty CaptionAudioVisibleProperty =
-        DependencyProperty.Register(ICaptionsGridProperties.PropertyCaptionAudioVisible, typeof(bool), typeof(CaptionsGridWindow),
-            new FrameworkPropertyMetadata(ICaptionsGridDefaults.DefaultCaptionAudioVisible, new PropertyChangedCallback(OnCaptionAudioVisibleChanged)));
-
-    /// <summary>
-    /// Gets or sets the CaptionAudioVisible property.
-    /// </summary>
-    public bool CaptionAudioVisible
-    {
-      get { return (bool)GetValue(CaptionAudioVisibleProperty); }
-      set { SetValue(CaptionAudioVisibleProperty, value); }
-    }
-
-    /// <summary>
-    /// Handles changes to the CaptionAudioVisible property.
-    /// </summary>
-    private static void OnCaptionAudioVisibleChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
-    {
-      CaptionsGridWindow target = (CaptionsGridWindow)d;
-      bool oldCaptionAudioVisible = (bool)e.OldValue;
-      bool newCaptionAudioVisible = target.CaptionAudioVisible;
-      target.OnCaptionAudioVisibleChanged(oldCaptionAudioVisible, newCaptionAudioVisible);
-    }
-
-    /// <summary>
-    /// Provides derived classes an opportunity to handle changes to the CaptionAudioVisible property.
-    /// </summary>
-    protected virtual void OnCaptionAudioVisibleChanged(bool oldCaptionAudioVisible, bool newCaptionAudioVisible)
-    {
-      View.CaptionAudioVisible = newCaptionAudioVisible;
     }
 
     #endregion

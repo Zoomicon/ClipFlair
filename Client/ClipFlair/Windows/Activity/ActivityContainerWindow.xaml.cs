@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: ActivityContainerWindow.xaml.cs
-//Version: 20121112
+//Version: 20121113
 
 using ClipFlair.Windows.Views;
 
@@ -21,7 +21,7 @@ namespace ClipFlair.Windows
     public ActivityContainerWindow()
     {
       InitializeComponent();
-      View = activity.View;
+      View = activity.View; //set window's View to be the same as the nested activity's View
       InitializeView();
     }
 
@@ -35,63 +35,6 @@ namespace ClipFlair.Windows
       set { base.View = value; }
     }
 
-    protected override void View_PropertyChanged(object sender, PropertyChangedEventArgs e)
-    {
-      base.View_PropertyChanged(sender, e);
-
-      if (e.PropertyName == null) //multiple (not specified) properties have changed, consider all as changed
-      {
-        //Time = View.Time;
-        //...
-      }
-      else switch (e.PropertyName) //string equality check in .NET uses ordinal (binary) comparison semantics by default
-        {
-          case IActivityProperties.PropertyTime:
-            //Time = View.Time;
-            break;
-          //...
-        }
-    }
-
-    #endregion
-
-    #region Time
-
-    /// <summary>
-    /// Time Dependency Property
-    /// </summary>
-    public static readonly DependencyProperty TimeProperty =
-        DependencyProperty.Register(IActivityProperties.PropertyTime, typeof(TimeSpan), typeof(MediaPlayerWindow),
-            new FrameworkPropertyMetadata(IActivityDefaults.DefaultTime, new PropertyChangedCallback(OnTimeChanged)));
-
-    /// <summary>
-    /// Gets or sets the Time property.
-    /// </summary>
-    public TimeSpan Time
-    {
-      get { return (TimeSpan)GetValue(TimeProperty); }
-      set { SetValue(TimeProperty, value); }
-    }
-
-    /// <summary>
-    /// Handles changes to the Time property.
-    /// </summary>
-    private static void OnTimeChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
-    {
-      ActivityContainerWindow target = (ActivityContainerWindow)d;
-      TimeSpan oldTime = (TimeSpan)e.OldValue;
-      TimeSpan newTime = target.Time;
-      target.OnTimeChanged(oldTime, newTime);
-    }
-
-    /// <summary>
-    /// Provides derived classes an opportunity to handle changes to the Time property.
-    /// </summary>
-    protected virtual void OnTimeChanged(TimeSpan oldTime, TimeSpan newTime)
-    {
-      View.Time = newTime;
-    }
-
     #endregion
           
     #endregion
@@ -101,6 +44,7 @@ namespace ClipFlair.Windows
     public override void LoadOptions(ZipFile zip, string zipFolder = "")
     {
       base.LoadOptions(zip, zipFolder);
+      View = activity.View; //set window's View to be the same as the nested activity's View
 
       activity.Windows.RemoveAll(); //TODO: do not use "Clear", doesn't work
       foreach (ZipEntry childZip in zip.SelectEntries("*.clipflair.zip", zipFolder))
@@ -113,7 +57,16 @@ namespace ClipFlair.Windows
             BaseWindow w = LoadWindow(memStream);
             activity.Windows.Add(w);
             w.Show();
+
+            //TODO: temp, should load/save Tags (maybe at view), not use hardcoded ones
+            if (w is ActivityContainerWindow) w.Tag = "Activity";
+            else if (w is MediaPlayerWindow) w.Tag = "Media";
+            else if (w is CaptionsGridWindow) w.Tag = "Captions";
+            else if (w is TextEditorWindow) w.Tag = "Text";
+            else if (w is ImageWindow) w.Tag = "Image";
           }
+
+      activity.BindWindows(); //TODO: temp, should load/save bindings, not use hardcoded ones
 
       if (IsTopLevel)
       {

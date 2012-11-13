@@ -1,7 +1,7 @@
 ﻿<!--
 Project: ClipFlair (http://ClipFlair.codeplex.com)
 Filename: ActivityContainer.xaml
-Version: 20121108
+Version: 20121113
 -->
 
 <UserControl x:Class="ClipFlair.Windows.ActivityContainer" 
@@ -13,6 +13,7 @@ Version: 20121108
   xmlns:zui="clr-namespace:FloatingWindowZUI;assembly=FloatingWindowZUI"
   xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk"               
   xmlns:clipflair="clr-namespace:ClipFlair.Windows"
+  xmlns:clipflairview="clr-namespace:ClipFlair.Windows.Views"
   xmlns:smf_captions="http://schemas.microsoft.com/smf/2010/xaml/captions" 
   >
   <!-- xmlns:smf_media="http://schemas.microsoft.com/smf/2010/xaml/media" -->
@@ -42,11 +43,14 @@ Version: 20121108
       <ColumnDefinition Width="*"/>
     </Grid.ColumnDefinitions>
 
-    <zui:FloatingWindowHostZUI Name="zuiContainer" 
-                               Grid.Row="0" Grid.Column="0" 
-                               SnapinEnabled="True" 
-                               ShowMinimizedOnlyInIconbar="False">
-      <!-- ContentScale="1.0"-->
+    <zui:FloatingWindowHostZUI 
+      Name="zuiContainer" 
+      Grid.Row="0" Grid.Column="0" 
+      SnapinEnabled="True" 
+      ShowMinimizedOnlyInIconbar="False"
+      WindowsConfigurable="{Binding ContentPartsConfigurable, Mode=TwoWay}"
+      >
+      <!-- ContentZoom="{Binding ContentScale, Mode=TwoWay}" --> <!-- doesn't work yet, need to use inner child ZoomHost of it -->
 
       <zui:FloatingWindowHostZUI.Bar>
         <StackPanel Orientation="Horizontal">
@@ -56,12 +60,12 @@ Version: 20121108
           <Button Visibility="Collapsed" Content="+ Text Editor" VerticalAlignment="Center" Margin="0,0,5,0" Click="btnAddTextEditor_Click" />
           <Button Visibility="Collapsed" Content="+ Image" VerticalAlignment="Center" Margin="0,0,5,0" Click="btnAddImage_Click" />
           <Button Visibility="Collapsed" Content="+ Activity Container" VerticalAlignment="Center" Margin="0,0,5,0" Click="btnAddActivityContainer_Click" />
-          
+
           <StackPanel Orientation="Horizontal" Visibility="{Binding ContentZoomable, Converter={StaticResource BooleanToVisibilityConverter}}">
             <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Zoom:" Target="{Binding ElementName=sldZoom}" />
             <Slider Name="sldZoom" Minimum="0.1" Maximum="3" SmallChange="0.1" LargeChange="0.5" Value="{Binding ContentZoom, Mode=TwoWay}" Width="150" />
           </StackPanel>
-          
+
         </StackPanel>
       </zui:FloatingWindowHostZUI.Bar>
 
@@ -75,49 +79,56 @@ Version: 20121108
       <!--<zui:FloatingWindowHostZUI.Windows>-->
       <!--<float:FloatingWindowCollection>-->
 
-      <clipflair:MediaPlayerWindow
-        Position="0,0" 
-        Width="600" Height="400" 
-        Tag="MediaPlayer"
-        Source="http://video3.smoothhd.com.edgesuite.net/ondemand/Big%20Buck%20Bunny%20Adaptive.ism/Manifest"
-        CaptionsVisible = "True"
-        >
+      <clipflair:MediaPlayerWindow Tag="Media">
         <!-- removed MinWidth,MinHeight, seems to disable resizing [maybe only if given after width,height, try it and also see if gets fixed when giving MaxWidth,MaxHeight] -->
-
-        <!--
         <clipflair:MediaPlayerWindow.View>
-          <clipflair:MediaPlayerView VideoVisible="False" />
+          <clipflairview:MediaPlayerView
+            Position="0,0"
+            Width="600" Height="400" 
+            Source="http://video3.smoothhd.com.edgesuite.net/ondemand/Big%20Buck%20Bunny%20Adaptive.ism/Manifest"
+            CaptionsVisible = "True"
+            />
         </clipflair:MediaPlayerWindow.View>
-        -->
 
       </clipflair:MediaPlayerWindow>
 
-      <clipflair:CaptionsGridWindow 
-        Position="0,420"  
-        Width="600" Height="340" 
-        Tag="Captions"
-        Captions="{Binding Source={StaticResource Captions}}"
-        />
+      <clipflair:CaptionsGridWindow Tag="Captions"
+        Captions="{Binding Source={StaticResource Captions}}"                                    
+        > <!-- temp: must set this, not the MediaPlayerWindow Captions since we're binding from MediaPlayer's Captions to here in the code -->
+        <!-- TODO: move Captions to view properties (also do so at MediaPlayer and change bindings proc -->
+        <clipflair:CaptionsGridWindow.View>
+          <clipflairview:CaptionsGridView
+            Position="0,420"  
+            Width="600" Height="340" 
+            />
+        </clipflair:CaptionsGridWindow.View>
+      </clipflair:CaptionsGridWindow>
 
-      <clipflair:TextEditorWindow 
-        Position="620,0"
-        Width="650" Height="630" 
-        Tag="TextEditor"
-        />
+      <clipflair:TextEditorWindow Tag="Text">
+        <clipflair:TextEditorWindow.View>
+          <clipflairview:TextEditorView
+            Position="620,0"
+            Width="650" Height="630" 
+            />
+        </clipflair:TextEditorWindow.View>
+      </clipflair:TextEditorWindow>
 
-      <clipflair:ImageWindow 
-        Position="820,660" 
-        Width="200" Height="100" 
-        Tag="Image"
-        Source="http://clipflair.net/wp-content/themes/clipflair-theme/images/clipflair-logo.jpg" 
-        />
+      <clipflair:ImageWindow Tag="Image">
+        <clipflair:ImageWindow.View>
+          <clipflairview:ImageView
+            Position="820,660" 
+            Width="200" Height="100" 
+            Source="http://clipflair.net/wp-content/themes/clipflair-theme/images/clipflair-logo.jpg" 
+          />
+        </clipflair:ImageWindow.View>
+      </clipflair:ImageWindow>
 
       <!-- Test windows -->
       <!--
       <clipflair:TestWindow1 Position="0,0" />
       <clipflair:TestWindow2 Position="150,0" />
       <clipflair:TestWindow3 Position="300,0" />
--->
+       -->
 
       <!--</float:FloatingWindowCollection>-->
       <!--</zui:FloatingWindowHostZUI.Windows>-->

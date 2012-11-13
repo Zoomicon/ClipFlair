@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: ActivityContainer.xaml.cs
-//Version: 20121111
+//Version: 20121113
 
 //TODO: move zoom slider UI to FloatingWindowHostZUI's XAML template
 
@@ -28,12 +28,11 @@ namespace ClipFlair.Windows
       InitializeView();
 
       BindingUtils.RegisterForNotification("ContentOffsetX", zuiContainer.ZoomHost, (d, e) => { if (View != null) { View.ViewPosition = new Point(zuiContainer.ZoomHost.ContentOffsetX, zuiContainer.ZoomHost.ContentOffsetY); } });
-      BindingUtils.RegisterForNotification("ContentOffsetX", zuiContainer.ZoomHost, (d, e) => { if (View != null) { View.ViewPosition = new Point(zuiContainer.ZoomHost.ContentOffsetX, zuiContainer.ZoomHost.ContentOffsetY); } });
+      BindingUtils.RegisterForNotification("ContentOffsetY", zuiContainer.ZoomHost, (d, e) => { if (View != null) { View.ViewPosition = new Point(zuiContainer.ZoomHost.ContentOffsetX, zuiContainer.ZoomHost.ContentOffsetY); } });
       BindingUtils.RegisterForNotification("ContentViewportWidth", zuiContainer.ZoomHost, (d, e) => { if (View != null) { View.ViewWidth = (double)e.NewValue; } });
       BindingUtils.RegisterForNotification("ContentViewportHeight", zuiContainer.ZoomHost, (d, e) => { if (View != null) { View.ViewHeight = (double)e.NewValue; } });
       BindingUtils.RegisterForNotification("ContentScale", zuiContainer.ZoomHost, (d, e) => { if (View != null) { View.ContentZoom = (double)e.NewValue; } });
       BindingUtils.RegisterForNotification("ContentScalable", zuiContainer.ZoomHost, (d, e) => { if (View != null) { View.ContentZoomable = (bool)e.NewValue; } });
-      BindingUtils.RegisterForNotification("WindowsConfigurable", zuiContainer, (d, e) => { if (View != null) { View.ContentPartsConfigurable = (bool)e.NewValue; } });
 
       //(assuming: using SilverFlow.Controls)
       //zuiContainer.Add((FloatingWindow)XamlReader.Load("<clipflair:MediaPlayerWindow Width=\"Auto\" Height=\"Auto\" MinWidth=\"100\" MinHeight=\"100\" Title=\"4 Media Player\" IconText=\"1Media Player\" Tag=\"1MediaPlayer\" xmlns:clipflair=\"clr-namespace:ClipFlair;assembly=ClipFlair\"/>"));
@@ -44,18 +43,25 @@ namespace ClipFlair.Windows
       //above command could be avoided if binding to activity view's Time property worked
     }
 
-    private void BindWindows()
+  /*  public static DependencyProperty GetDependencyProperty(Type type, string name) //TODO: USE THIS INSTEAD OF USING TO PROPERTY TYPES BELOW FOR BINDING SO THAT WE CAN LATER SAVE/RELOAD BINDINGS
+    {
+      FieldInfo fieldInfo = type.GetField(name, BindingFlags.Public | BindingFlags.Static);
+      return (fieldInfo != null) ? (DependencyProperty)fieldInfo.GetValue(null) : null;
+    } */
+    
+    public void BindWindows() //TODO: remove hardcoded bindings in the future
     {
       //Two-way bind MediaPlayerWindow.Time to CaptionsGridWindow.Time
       //BindProperties(FindWindow("MediaPlayer"), "Time", FindWindow("Captions"), CaptionsGridWindow.TimeProperty, BindingMode.TwoWay); //not using, binding to container's Time instead for now
 
-      //Two-way bind MediaPlayerWindow.Time to ActivityContainer.View.Time via inherited DataContext
-      BindingUtils.BindProperties(View, "Time", FindWindow("MediaPlayer"), MediaPlayerWindow.TimeProperty, BindingMode.TwoWay);
+      //TODO: move to BaseWindow
+      //Two-way bind MediaPlayerWindow.Time to ActivityContainer.View.Time via inherited DataContext (make sure we don't bind to those windows' view since it changes after load)
+      BindingUtils.BindProperties(View, "Time", FindWindow("Media"), MediaPlayerWindow.TimeProperty, BindingMode.TwoWay);
       //Two-way bind CaptionsGridWindow.Time to ActivityContainer.View.Time via inherited DataContext
       BindingUtils.BindProperties(View, "Time", FindWindow("Captions"), CaptionsGridWindow.TimeProperty, BindingMode.TwoWay);
 
-      //Two-Way bind MediaPlayerWindow.Captions to CaptionsGridWindow.Captions
-      BindingUtils.BindProperties(FindWindow("Captions"), "Captions", FindWindow("MediaPlayer"), MediaPlayerWindow.CaptionsProperty, BindingMode.TwoWay);
+      //Two-Way bind MediaPlayerWindow.Captions to CaptionsGridWindow.Captions (!!!TEMP: not the other way arround for bindings to work after reload from stored activity options archive) 
+      BindingUtils.BindProperties(FindWindow("Captions"), "Captions", FindWindow("Media"), MediaPlayerWindow.CaptionsProperty, BindingMode.TwoWay); //don't reverse this (loading Captions demo resource to CaptionsGrid in the XAML and also at load process loading saved SRT to CaptionsGrid)
     }
 
     public BaseWindow FindWindow(string tag) //need this since floating windows are not added in the XAML visual tree by the FloatingWindowHostZUI.Windows property (maybe should have FloatingWindowHostZUI inherit 
@@ -74,7 +80,6 @@ namespace ClipFlair.Windows
 
     protected virtual void InitializeView()
     {
-      View.ViewPosition = new Point(zuiContainer.ZoomHost.ContentOffsetX, zuiContainer.ZoomHost.ContentOffsetY);
       View.ViewPosition = new Point(zuiContainer.ZoomHost.ContentOffsetX, zuiContainer.ZoomHost.ContentOffsetY);
       View.ViewWidth = zuiContainer.ZoomHost.ContentViewportWidth;
       View.ViewHeight = zuiContainer.ZoomHost.ContentViewportHeight;
@@ -99,11 +104,10 @@ namespace ClipFlair.Windows
       }
     }
 
-    protected void View_PropertyChanged(object sender, PropertyChangedEventArgs e)
+    protected void View_PropertyChanged(object sender, PropertyChangedEventArgs e) //note: for View.ContentPartsConfigurable using data binding in XAML (binds to zuiContainer.WindowsConfigurable)
     {
       if (e.PropertyName == null) //multiple (not specified) properties have changed, consider all as changed
       {
-        Source = View.Source;
         Time = View.Time;
         zuiContainer.ZoomHost.ContentOffsetX = View.ViewPosition.X;
         zuiContainer.ZoomHost.ContentOffsetY = View.ViewPosition.Y;
@@ -111,14 +115,10 @@ namespace ClipFlair.Windows
         zuiContainer.ZoomHost.ContentViewportHeight = View.ViewHeight;
         zuiContainer.ZoomHost.ContentScale = View.ContentZoom;
         zuiContainer.ZoomHost.ContentScalable = View.ContentZoomable;
-        zuiContainer.WindowsConfigurable = View.ContentPartsConfigurable;
         //...
       }
       else switch (e.PropertyName) //string equality check in .NET uses ordinal (binary) comparison semantics by default
         {
-          case IActivityProperties.PropertySource:
-            Source = View.Source;
-            break;
           case IActivityProperties.PropertyTime:
             Time = View.Time;
             break;
@@ -138,49 +138,8 @@ namespace ClipFlair.Windows
           case IActivityProperties.PropertyContentZoomable:
             zuiContainer.ZoomHost.ContentScalable = View.ContentZoomable;
             break;
-          case IActivityProperties.PropertyContentPartsConfigurable:
-            zuiContainer.WindowsConfigurable = View.ContentPartsConfigurable;
-            break;
             //...
         }
-    }
-
-    #endregion
-
-    #region Source
-
-    /// <summary>
-    /// Source Dependency Property
-    /// </summary>
-    public static readonly DependencyProperty SourceProperty =
-        DependencyProperty.Register(IActivityProperties.PropertySource, typeof(Uri), typeof(ActivityContainer),
-            new FrameworkPropertyMetadata(IActivityDefaults.DefaultSource, new PropertyChangedCallback(OnSourceChanged)));
-
-    /// <summary>
-    /// Gets or sets the Source property.
-    /// </summary>
-    public Uri Source
-    {
-      get { return (Uri)GetValue(SourceProperty); }
-      set { SetValue(SourceProperty, value); }
-    }
-
-    /// <summary>
-    /// Handles changes to the Source property.
-    /// </summary>
-    private static void OnSourceChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
-    {
-      ActivityContainer target = (ActivityContainer)d;
-      target.OnSourceChanged((Uri)e.OldValue, target.Source);
-    }
-
-    /// <summary>
-    /// Provides derived classes an opportunity to handle changes to the Source property.
-    /// </summary>
-    protected virtual void OnSourceChanged(Uri oldSource, Uri newSource)
-    {
-      View.Source = newSource;
-      //...
     }
 
     #endregion

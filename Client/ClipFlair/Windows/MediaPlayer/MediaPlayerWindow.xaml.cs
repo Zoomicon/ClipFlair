@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: MediaPlayerWindow.xaml.cs
-//Version: 20121111
+//Version: 20121113
 
 using ClipFlair.Windows.Views;
 
@@ -38,25 +38,13 @@ namespace ClipFlair.Windows
 
       if (e.PropertyName == null) //multiple (not specified) properties have changed, consider all as changed
       {
-        Source = View.Source;
         Time = View.Time;
-        ControllerVisible = View.ControllerVisible;
-        CaptionsVisible = View.CaptionsVisible;
         //...
       }
       else switch (e.PropertyName) //string equality check in .NET uses ordinal (binary) comparison semantics by default
         {
-          case IMediaPlayerProperties.PropertySource:
-            Source = View.Source;
-            break;
           case IMediaPlayerProperties.PropertyTime:
             Time = View.Time;
-            break;
-          case IMediaPlayerProperties.PropertyControllerVisible:
-            ControllerVisible = View.ControllerVisible;
-            break;
-          case IMediaPlayerProperties.PropertyCaptionsVisible:
-            CaptionsVisible = View.CaptionsVisible;
             break;
           //...
         }
@@ -180,89 +168,7 @@ namespace ClipFlair.Windows
     }
 
     #endregion
-
-    #region ControllerVisible
-
-    /// <summary>
-    /// ControllerVisible Dependency Property
-    /// </summary>
-    public static readonly DependencyProperty ControllerVisibleProperty =
-        DependencyProperty.Register(IMediaPlayerProperties.PropertyControllerVisible, typeof(bool), typeof(MediaPlayerWindow),
-            new FrameworkPropertyMetadata(IMediaPlayerDefaults.DefaultControllerVisible, new PropertyChangedCallback(OnControllerVisibleChanged)));
-
-    /// <summary>
-    /// Gets or sets the ControllerVisible property. This dependency property 
-    /// indicates ....
-    /// </summary>
-    public bool ControllerVisible
-    {
-      get { return (bool)GetValue(ControllerVisibleProperty); }
-      set { SetValue(ControllerVisibleProperty, value); }
-    }
-
-    /// <summary>
-    /// Handles changes to the ControllerVisible property.
-    /// </summary>
-    private static void OnControllerVisibleChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
-    {
-      MediaPlayerWindow target = (MediaPlayerWindow)d;
-      bool oldControllerVisible = (bool)e.OldValue;
-      bool newControllerVisible = target.ControllerVisible;
-      target.OnControllerVisibleChanged(oldControllerVisible, newControllerVisible);
-    }
-
-    /// <summary>
-    /// Provides derived classes an opportunity to handle changes to the ControllerVisible property.
-    /// </summary>
-    protected virtual void OnControllerVisibleChanged(bool oldControllerVisible, bool newControllerVisible)
-    {
-      View.ControllerVisible = newControllerVisible;
-      player.IsControlStripVisible = newControllerVisible;
-    }
-
-    #endregion
-
-    #region CaptionsVisible
-
-    /// <summary>
-    /// CaptionsVisible Dependency Property
-    /// </summary>
-    public static readonly DependencyProperty CaptionsVisibleProperty =
-        DependencyProperty.Register(IMediaPlayerProperties.PropertyCaptionsVisible, typeof(bool), typeof(MediaPlayerWindow),
-            new FrameworkPropertyMetadata(IMediaPlayerDefaults.DefaultCaptionsVisible, new PropertyChangedCallback(OnCaptionsVisibleChanged)));
-
-    /// <summary>
-    /// Gets or sets the CaptionsVisible property. This dependency property 
-    /// indicates ....
-    /// </summary>
-    public bool CaptionsVisible
-    {
-      get { return (bool)GetValue(CaptionsVisibleProperty); }
-      set { SetValue(CaptionsVisibleProperty, value); }
-    }
-
-    /// <summary>
-    /// Handles changes to the CaptionsVisible property.
-    /// </summary>
-    private static void OnCaptionsVisibleChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
-    {
-      MediaPlayerWindow target = (MediaPlayerWindow)d;
-      bool oldCaptionsVisible = (bool)e.OldValue;
-      bool newCaptionsVisible = target.CaptionsVisible;
-      target.OnCaptionsVisibleChanged(oldCaptionsVisible, newCaptionsVisible);
-    }
-
-    /// <summary>
-    /// Provides derived classes an opportunity to handle changes to the CaptionsVisible property.
-    /// </summary>
-    protected virtual void OnCaptionsVisibleChanged(bool oldCaptionsVisible, bool newCaptionsVisible)
-    {
-      View.CaptionsVisible = newCaptionsVisible;
-      player.CaptionsVisible = newCaptionsVisible;
-    }
-
-    #endregion
-     
+    
     #endregion
 
     #region Offline 
