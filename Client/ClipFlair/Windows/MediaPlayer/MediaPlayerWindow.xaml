@@ -1,7 +1,7 @@
 ﻿<!--
 Project: ClipFlair (http://ClipFlair.codeplex.com)
 Filename: MediaPlayerWindow.xaml
-Version: 20121029
+Version: 20121113
 -->
   
 <clipflair:BaseWindow x:Class="ClipFlair.Windows.MediaPlayerWindow"
@@ -13,6 +13,7 @@ Version: 20121029
     xmlns:clipflair="clr-namespace:ClipFlair.Windows;assembly=ClipFlair"    
     xmlns:media="clr-namespace:ClipFlair.MediaPlayer;assembly=MediaPlayer"
     Width="600" Height="400"
+    Tag="Media"
     >
 
   <!--<clipflair:BaseWindow.FrontContent>-->

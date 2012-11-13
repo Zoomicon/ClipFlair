@@ -1,6 +1,10 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: BaseWindow.xaml.cs
-//Version: 20121112
+//Version: 20121113
+
+//TODO: do not allow to set too low opacity values that could make windows disappear
+
+#define PROPERTY_CHANGE_SUPPORT
 
 using ClipFlair.Utils.Bindings;
 using ClipFlair.Windows.Views;
@@ -36,15 +40,7 @@ namespace ClipFlair.Windows
 
       InitializeComponent(); //can change the "ShowMaximize" button, or set the "Scale" and other properties from XAML, so must do after the commands above
 
-      //Bind to ancestor properties
-      BindingUtils.RegisterForNotification("Title", this, (d, e) => { if (View != null) { View.Title = (string)e.NewValue; } });
-      BindingUtils.RegisterForNotification("Position", this, (d, e) => { if (View != null) { View.Position = (Point)e.NewValue; } });
-      BindingUtils.RegisterForNotification("Width", this, (d, e) => { if (View != null) { View.Width = (double)e.NewValue; } });
-      BindingUtils.RegisterForNotification("Height", this, (d, e) => { if (View != null) { View.Height = (double)e.NewValue; } });
-      BindingUtils.RegisterForNotification("Scale", this, (d, e) => { if (View != null) { View.Zoom = (double)e.NewValue; } });
-      BindingUtils.RegisterForNotification("MoveEnabled", this, (d, e) => { if (View != null) { View.Moveable = (bool)e.NewValue; } });
-      BindingUtils.RegisterForNotification("ResizeEnabled", this, (d, e) => { if (View != null) { View.Resizable = (bool)e.NewValue; } });
-      BindingUtils.RegisterForNotification("Scalable", this, (d, e) => { if (View != null) { View.Zoomable = (bool)e.NewValue; } });
+      //BindingUtils.RegisterForNotification("Title", this, (d, e) => { if (View != null) { View.Title = (bool)e.NewValue; } }); //not used, using data binding in XAML instead
 
       HelpRequested += (s, e) =>
       {
@@ -97,6 +93,7 @@ namespace ClipFlair.Windows
       get { return (IView)DataContext; }
       set
       {
+        #if PROPERTY_CHANGE_SUPPORT
         //remove property changed handler from old view
         if (DataContext != null)
           ((IView)DataContext).PropertyChanged -= new PropertyChangedEventHandler(View_PropertyChanged); //IView inherits from INotifyPropertyChanged
@@ -104,10 +101,14 @@ namespace ClipFlair.Windows
         //add property changed handler to new view
         if (value != null)
           value.PropertyChanged += new PropertyChangedEventHandler(View_PropertyChanged);
+        #endif
 
         //set the new view (must do after setting property change event handler)
         DataContext = value;
-        UpdatePropertiesFromView();
+
+        #if PROPERTY_CHANGE_SUPPORT
+        View_PropertyChanged(null, new PropertyChangedEventArgs(null)); //notify property change listeners that all properties of the view changed
+        #endif
       }
     }
 
@@ -159,56 +160,30 @@ namespace ClipFlair.Windows
 
     #region Events
 
-    protected void UpdatePropertiesFromView()
-    {
-      View_PropertyChanged(null, new PropertyChangedEventArgs(null));
-    }
 
+    #if PROPERTY_CHANGE_SUPPORT
     protected virtual void View_PropertyChanged(object sender, PropertyChangedEventArgs e)
     {
       if (e.PropertyName == null) //multiple (not specified) properties have changed, consider all as changed
       {
-        Title = View.Title;
-        IconText = View.Title; //IconText should match the Title
-        Position = View.Position;
-        Width = View.Width;
-        Height = View.Height;
-        Scale = View.Zoom;
-        MoveEnabled = View.Moveable;
-        ResizeEnabled = View.Resizable;
-        ScaleEnabled = View.Zoomable;
+        //Title = View.Title; //not used, using data binding in XAML instead
         //...
       }
       else switch (e.PropertyName)
         {
+          /* //not used, using data binding in XAML instead
           case IViewProperties.PropertyTitle:
             Title = View.Title;
             IconText = View.Title; //IconText should match the Title
-            break;
-          case IViewProperties.PropertyPosition:
-            Position = View.Position;
-            break;
-          case IViewProperties.PropertyWidth:
-            Width = View.Width;
-            break;
-          case IViewProperties.PropertyHeight:
-            Height = View.Height;
-            break;
-          case IViewProperties.PropertyZoom:
-            Scale = View.Zoom;
-            break;
-          case IViewProperties.PropertyMoveable:
-            MoveEnabled = View.Moveable;
-            break;
-          case IViewProperties.PropertyResizable:
-            ResizeEnabled = View.Resizable;
-            break;
-          case IViewProperties.PropertyZoomable:
-            ScaleEnabled = View.Zoomable;
+            break; 
+          */
+          default:
+            //NOP
             break;
           //...
         }
     }
+    #endif
 
     private void btnLoad_Click(object sender, RoutedEventArgs e)
     {
@@ -217,6 +192,7 @@ namespace ClipFlair.Windows
         OpenFileDialog dlg = new OpenFileDialog();
         dlg.Filter = "ClipFlair options archive|*.clipflair.zip";
         dlg.FilterIndex = 1; //note: this index is 1-based, not 0-based
+        //dlg.DefaultExt = ".clipflair.zip"; //OpenFileDialog doesn't seem to have a DefaultExt like SaveFileDialog
     
         if (dlg.ShowDialog() == true) //TODO: find the parent window
           using (Stream stream = dlg.File.OpenRead()) //will close the stream when done

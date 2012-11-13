@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: IView.cs
-//Version: 20121106
+//Version: 20121113
 
 using System.ComponentModel;
 using System.Windows;
@@ -15,6 +15,7 @@ namespace ClipFlair.Windows.Views
     public const string PropertyWidth = "Width";
     public const string PropertyHeight = "Height";
     public const string PropertyZoom = "Zoom";
+    public const string PropertyOpacity = "Opacity";
     public const string PropertyMoveable = "Moveable";
     public const string PropertyResizable = "Resizable";
     public const string PropertyZoomable = "Zoomable";
@@ -27,6 +28,7 @@ namespace ClipFlair.Windows.Views
     double Width { get; set; }
     double Height { get; set; }
     double Zoom { get; set; }
+    double Opacity { get; set; }
     bool Moveable { get; set; }
     bool Resizable { get; set; }
     bool Zoomable { get; set; }

@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: App.xaml.cs
-//Version: 20121112
+//Version: 20121113
 
 using ClipFlair.Windows;
 
@@ -81,14 +81,10 @@ namespace ClipFlair
     {
       CheckAndDownloadUpdateCompleted -= new CheckAndDownloadUpdateCompletedEventHandler(OnCheckAndDownloadUpdateCompleted); //detach event handler
 
-      if (e.UpdateAvailable)
-      {
+      if (e.UpdateAvailable) //update was found and downloaded
         MessageBox.Show("Update has been downloaded, will be used at next application launch"); //TODO: should try to show this on UI thread?
-      }
-      else
-      {
+      else if (e.Error!=null) //error during update process
         MessageBox.Show("Couldn't download application update: " + e.Error.Message);
-      }
     }
 
     #endregion

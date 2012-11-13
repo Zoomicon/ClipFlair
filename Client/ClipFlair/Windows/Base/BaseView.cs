@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: BaseView.cs
-//Version: 20121111
+//Version: 20121113
 
 using ClipFlair.Windows.Views;
 
@@ -34,6 +34,7 @@ namespace ClipFlair.Windows.Views
     private double width = IViewDefaults.DefaultWidth;
     private double height = IViewDefaults.DefaultHeight;
     private double zoom = IViewDefaults.DefaultZoom;
+    private double opacity = IViewDefaults.DefaultOpacity;
     private bool moveable = IViewDefaults.DefaultMoveable;
     private bool resizable = IViewDefaults.DefaultResizable;
     private bool zoomable = IViewDefaults.DefaultZoomable;
@@ -108,6 +109,20 @@ namespace ClipFlair.Windows.Views
         {
           zoom = value;
           RaisePropertyChanged(IViewProperties.PropertyZoom);
+        }
+      }
+    }
+
+    [DataMember]
+    public double Opacity
+    {
+      get { return opacity; }
+      set
+      {
+        if (value != opacity)
+        {
+          opacity = value;
+          RaisePropertyChanged(IViewProperties.PropertyOpacity);
         }
       }
     }
