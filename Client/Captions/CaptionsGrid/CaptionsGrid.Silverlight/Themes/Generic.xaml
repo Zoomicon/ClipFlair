@@ -1,6 +1,6 @@
 ﻿<!-- 
 Filename: Generic.xaml
-Version: 20121103
+Version: 20121113
 -->
   
 <ResourceDictionary
@@ -12,8 +12,15 @@ Version: 20121103
  >
 
   <res:Strings x:Key="localizedStrings"/>
-
+  
+  <!-- StartTime -->
+  
   <DataTemplate x:Key="StartTimeCellTemplate">
+    <TextBlock Margin="4" Text="{Binding Begin, StringFormat='hh\\:mm\\:ss', Mode=TwoWay}" />
+    <!-- can use .fff to always show all digits, don't use .fFF has bug at parsing new values -->
+  </DataTemplate>
+
+  <DataTemplate x:Key="StartTimeCellTemplate_msec">
     <TextBlock Margin="4" Text="{Binding Begin, StringFormat='hh\\:mm\\:ss\\.FFF', Mode=TwoWay}" /> <!-- can use .fff to always show all digits, don't use .fFF has bug at parsing new values -->
   </DataTemplate>
 
@@ -22,7 +29,13 @@ Version: 20121103
     <!--<input:TimeUpDown Format="hh:mm:ss" Value="{Binding Begin, Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=true}" />-->
   </DataTemplate>
 
+  <!-- EndTime -->
+
   <DataTemplate x:Key="EndTimeCellTemplate">
+    <TextBlock Margin="4" Text="{Binding End, StringFormat='hh\\:mm\\:ss'}" />
+  </DataTemplate>
+
+  <DataTemplate x:Key="EndTimeCellTemplate_msec">
     <TextBlock Margin="4" Text="{Binding End, StringFormat='hh\\:mm\\:ss\\.FFF'}" />
   </DataTemplate>
 
@@ -31,10 +44,18 @@ Version: 20121103
     <!--<input:TimeUpDown Format="hh:mm:ss" Minimum="{Binding Begin}"  Value="{Binding End, Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=true}" />-->
   </DataTemplate>
 
+  <!-- Duration -->
+
   <DataTemplate x:Key="DurationCellTemplate">
+    <TextBlock Margin="4" Text="{Binding Duration, StringFormat='hh\\:mm\\:ss'}" />
+  </DataTemplate>
+
+  <DataTemplate x:Key="DurationCellTemplate_msec">
     <TextBlock Margin="4" Text="{Binding Duration, StringFormat='hh\\:mm\\:ss\\.FFF'}" />
   </DataTemplate>
 
+  <!-- Content -->
+  
   <DataTemplate x:Key="ContentCellTemplate">
     <TextBlock Margin="4" Text="{Binding Content}" />
   </DataTemplate>
@@ -42,7 +63,9 @@ Version: 20121103
   <DataTemplate x:Key="ContentCellEditTemplate">
     <TextBox Margin="4" AcceptsReturn="True" Text="{Binding Content, Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=true}" />
   </DataTemplate>
-
+ 
+  <!-- Audio -->
+  
   <DataTemplate x:Key="AudioCellTemplate">
     <audio:AudioRecorderControl />
   </DataTemplate>
