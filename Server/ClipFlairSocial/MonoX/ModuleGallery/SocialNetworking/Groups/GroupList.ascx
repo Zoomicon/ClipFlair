@@ -4,8 +4,8 @@
 <asp:Panel ID="pnlContainer" runat="server">
 <h2><asp:Literal ID="ltlTitle" runat="server"></asp:Literal></h2>
 <div class="option-menu">
-    <asp:HyperLink runat="server" NavigateUrl="~/MonoX/Pages/SocialNetworking/Groups/GroupSearch/" Text="All Groups" /> <!-- TODO: need to localize this -->
-	<asp:HyperLink runat="server" ID="lnkAddNew"></asp:HyperLink>
+    <asp:HyperLink runat="server" NavigateUrl="~/MonoX/Pages/SocialNetworking/Groups/GroupSearch/" Text="All Groups" /><!-- TODO: need to localize this -->
+    <asp:HyperLink runat="server" ID="lnkAddNew"></asp:HyperLink>
 </div>
 <div style="clear: both;">
     <asp:ListView ID="lvItems" runat="server">
