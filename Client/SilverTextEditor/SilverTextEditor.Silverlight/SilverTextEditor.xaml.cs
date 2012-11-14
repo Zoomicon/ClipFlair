@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: SilverTextEditor.xaml.cs
-//Version: 20121112
+//Version: 20121114
 
 //Originated from Microsoft sample
 
@@ -377,7 +377,7 @@ namespace SilverTextEditor
       if (RTL != rtl) RTL = rtl;
 
       //Set the button image based on the state of the toggle button. 
-      btnRTL.Content = SilverTextEditor.createImageFromUri(new Uri(rtl ? "/SilverTextEditor;component/Images/rtl.png" : "/SilverTextEditor;component/Images/ltr.png", UriKind.RelativeOrAbsolute), 30, 32);
+      btnRTL.Content = SilverTextEditor.createImageFromUri(new Uri(rtl ? "/SilverTextEditor;component/Images/RTL.png" : "/SilverTextEditor;component/Images/LTR.png", UriKind.RelativeOrAbsolute), 30, 32);
 
       ReturnFocus();
     }

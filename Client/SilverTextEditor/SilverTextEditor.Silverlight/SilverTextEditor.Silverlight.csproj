@@ -159,21 +159,12 @@
     <Resource Include="Images\Underline.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\Paste_big.png" />
+    <Resource Include="Images\LTR.png" />
+    <Resource Include="Images\RTL.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\Hyperlink_big.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\Print_big.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\ltr.png" />
-    <Resource Include="Images\rtl.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\edit.png" />
-    <Resource Include="Images\view.png" />
+    <Resource Include="Images\Edit.png" />
+    <Resource Include="Images\View.png" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Resources\Strings.el.resx">
@@ -192,7 +183,7 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\calendar.png" />
+    <Resource Include="Images\Calendar.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\Annotation_New.png" />
