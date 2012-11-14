@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: App.xaml.cs
-//Version: 20121113
+//Version: 20121114
 
 using ClipFlair.Windows;
 
@@ -28,6 +28,8 @@ namespace ClipFlair
 
     private void Application_Startup(object sender, StartupEventArgs e)
     {
+      UpdateOOB(); //TODO: run this from background thread, seems to take some time //CALLING THIS FIRST, SINCE THE REST OF THE CODE COULD THROW AN EXCEPTION WHICH WOULD BLOCK UPDATES (AND ALSO TO MAKE USE OF THE TIME TO SET UP THE APP, SINCE UPDATING OCCURS IN THE BACKGROUND)
+      
       FloatingWindowHost host = new FloatingWindowHost(); //don't use FloatingWindowHostZUI here
       
       ActivityContainerWindow activityWindow=new ActivityContainerWindow();
@@ -47,9 +49,7 @@ namespace ClipFlair
         activityWindow.Width = host.ActualWidth;
         activityWindow.Height = host.ActualHeight;
       };
- 
-      UpdateOOB(); //TODO: run this from background thread, seems to take some time
-
+  
       //MessageBox.Show("ClipFlair loaded"); //uncomment this to test the loading indicator
     }
 
