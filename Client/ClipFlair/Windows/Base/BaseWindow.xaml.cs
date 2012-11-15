@@ -193,10 +193,14 @@ namespace ClipFlair.Windows
         dlg.Filter = "ClipFlair options archive|*.clipflair.zip";
         dlg.FilterIndex = 1; //note: this index is 1-based, not 0-based
         //dlg.DefaultExt = ".clipflair.zip"; //OpenFileDialog doesn't seem to have a DefaultExt like SaveFileDialog
-    
+
         if (dlg.ShowDialog() == true) //TODO: find the parent window
           using (Stream stream = dlg.File.OpenRead()) //will close the stream when done
             LoadOptions(stream);
+      }
+      catch (NullReferenceException)
+      {
+        MessageBox.Show("ClipFlair options load failed - These saved options may be for other window"); //TODO: find the parent window
       }
       catch (Exception ex)
       {
