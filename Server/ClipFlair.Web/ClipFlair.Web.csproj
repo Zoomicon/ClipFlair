@@ -91,7 +91,7 @@
         <WebProjectProperties>
           <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>2043</DevelopmentServerPort>
+          <DevelopmentServerPort>1694</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>http://localhost/ClipFlair.Web</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
