@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: CaptionsGridWindow.xaml.cs
-//Version: 20121113
+//Version: 20121115
 
 //TODO: add Source property to CaptionsGrid control and use data-binding to bind it to CaptionsGridView's Source property
 
@@ -145,6 +145,7 @@ namespace ClipFlair.Windows
     {
       base.LoadOptions(zip, zipFolder);
       gridCaptions.ReadCaptions(zip[zipFolder + "/captions.srt"].OpenReader(), "captions.srt");
+      Captions = gridCaptions.Captions; //TODO: this is temprorary till it is found out why the binding in the XAML between grid and the window doesn't work (may be cause of the findancestor in the binding - probably need to set the binding in code)
     }
 
     public override void SaveOptions(ZipFile zip, string zipFolder = "")

@@ -1,7 +1,7 @@
 ﻿<!--
 Project: ClipFlair (http://ClipFlair.codeplex.com)
 Filename: ActivityContainer.xaml
-Version: 20121113
+Version: 20121115
 -->
 
 <UserControl x:Class="ClipFlair.Windows.ActivityContainer" 
@@ -56,9 +56,9 @@ Version: 20121113
         <StackPanel Orientation="Horizontal">
           <TextBlock Text="Windows" VerticalAlignment="Center" Margin="0,0,5,0" />
           <Button Visibility="Collapsed" Content="+ Media Player" VerticalAlignment="Center" Margin="0,0,5,0" Click="btnAddMediaPlayer_Click" />
-          <Button Visibility="Collapsed" Content="+ Captions Grid" VerticalAlignment="Center" Margin="0,0,5,0" Click="btnAddCaptionsGrid_Click" />
-          <Button Visibility="Collapsed" Content="+ Text Editor" VerticalAlignment="Center" Margin="0,0,5,0" Click="btnAddTextEditor_Click" />
-          <Button Visibility="Collapsed" Content="+ Image" VerticalAlignment="Center" Margin="0,0,5,0" Click="btnAddImage_Click" />
+          <Button Content="+ Captions Grid" VerticalAlignment="Center" Margin="0,0,5,0" Click="btnAddCaptionsGrid_Click" />
+          <Button Content="+ Text Editor" VerticalAlignment="Center" Margin="0,0,5,0" Click="btnAddTextEditor_Click" />
+          <Button Content="+ Image" VerticalAlignment="Center" Margin="0,0,5,0" Click="btnAddImage_Click" />
           <Button Visibility="Collapsed" Content="+ Activity Container" VerticalAlignment="Center" Margin="0,0,5,0" Click="btnAddActivityContainer_Click" />
 
           <StackPanel Orientation="Horizontal" Visibility="{Binding ContentZoomable, Converter={StaticResource BooleanToVisibilityConverter}}">
