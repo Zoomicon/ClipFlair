@@ -1,8 +1,8 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: SilverTextEditor.xaml.cs
-//Version: 20121114
+//Version: 20121115
 
-//Originated from Microsoft sample
+//Originated from Microsoft sample (MSPL license)
 
 //Note: localization could use "PublicResxFileCodeGeneratorEx" custom build tool for the "Strings.resx" file
 //      from http://resxfilecodegenex.codeplex.com/ if that is fixed to generate public constuctor instead of protected (see issue tracker there)
@@ -37,13 +37,9 @@ namespace SilverTextEditor
     {
       InitializeComponent();
       //DefaultStyleKey = typeof(SilverTextEditor); //if we convert this to Control, need to do this
-      Loaded += new RoutedEventHandler(SilverTextEditor_Loaded);
-    }
 
-    //Initialize the RichTextBox. The intial text is stored as XAML at a .sav file.
-    void SilverTextEditor_Loaded(object sender, RoutedEventArgs e)
-    {
-      rtb.Xaml = XElement.Load("/SilverTextEditor;component/ActivityDescription.sav").ToString();
+      //Note: Do not use "Loaded" event handler to load any default text, it gets called after some caller has instantiated the component and overrides any text that may have been set to it already by the caller      
+      rtb.Xaml = XElement.Load("/SilverTextEditor;component/ActivityDescription.sav").ToString(); //Initialize the RichTextBox. The intial text is stored as XAML at a .sav file.
     }
 
     #region ToolbarVisible
