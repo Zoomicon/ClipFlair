@@ -121,15 +121,6 @@
     <Compile Include="Windows\ImageViewer\IImageViewerDefaults.cs" />
     <Compile Include="Windows\MediaPlayer\IMediaPlayerDefaults.cs" />
     <Compile Include="Windows\TextEditor\ITextEditorDefaults.cs" />
-    <Compile Include="Windows\_TestWindows\TestWindow3.xaml.cs">
-      <DependentUpon>TestWindow3.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Windows\_TestWindows\TestWindow2.xaml.cs">
-      <DependentUpon>TestWindow2.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Windows\_TestWindows\TestWindow1.xaml.cs">
-      <DependentUpon>TestWindow1.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Windows\ImageViewer\ImageWindow.xaml.cs">
       <DependentUpon>ImageWindow.xaml</DependentUpon>
     </Compile>
@@ -169,18 +160,6 @@
       <Generator>MSBuild:Compile</Generator>
     </ApplicationDefinition>
     <Page Include="Windows\Activity\ActivityContainerWindow.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Windows\_TestWindows\TestWindow3.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Windows\_TestWindows\TestWindow2.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Windows\_TestWindows\TestWindow1.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

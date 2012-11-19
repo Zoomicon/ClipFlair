@@ -1,7 +1,7 @@
 ﻿<!--
 Project: ClipFlair (http://ClipFlair.codeplex.com)
 Filename: ActivityContainer.xaml
-Version: 20121115
+Version: 20121116
 -->
 
 <UserControl x:Class="ClipFlair.Windows.ActivityContainer" 
@@ -14,28 +14,9 @@ Version: 20121115
   xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk"               
   xmlns:clipflair="clr-namespace:ClipFlair.Windows"
   xmlns:clipflairview="clr-namespace:ClipFlair.Windows.Views"
-  xmlns:smf_captions="http://schemas.microsoft.com/smf/2010/xaml/captions" 
   >
-  <!-- xmlns:smf_media="http://schemas.microsoft.com/smf/2010/xaml/media" -->
 
-  <UserControl.Resources>
-
-    <!-- TEST -->
-
-    <!-- <smf_media:MarkerResource Source="ExampleCaptions.xml" x:Key="Markers"/> -->
-
-    <smf_captions:CaptionRegion x:Key="Captions">
-      <smf_captions:CaptionRegion.Children>
-        <smf_captions:CaptionElement Begin="00:00:03" End="0:0:05" Content="Once upon a time there was a forest..." />
-        <smf_captions:CaptionElement Begin="00:0:06" End="0:0:08" Content="which looked just like every other forest." />
-        <smf_captions:CaptionElement Begin="0:0:12" End="0:0:14" Content="But it was not." />
-        <smf_captions:CaptionElement Begin="0:0:16" End="0:0:19" Content="It was inhabited by a very dangerous species." />
-      </smf_captions:CaptionRegion.Children>
-    </smf_captions:CaptionRegion>
-
-  </UserControl.Resources>
-
-  <Grid>
+ <Grid>
     <Grid.RowDefinitions>
       <RowDefinition Height="*"/>
     </Grid.RowDefinitions>
@@ -92,10 +73,8 @@ Version: 20121115
 
       </clipflair:MediaPlayerWindow>
 
-      <clipflair:CaptionsGridWindow Tag="Captions"
-        Captions="{Binding Source={StaticResource Captions}}"                                    
-        > <!-- temp: must set this, not the MediaPlayerWindow Captions since we're binding from MediaPlayer's Captions to here in the code -->
-        <!-- TODO: move Captions to view properties (also do so at MediaPlayer and change bindings proc -->
+      <clipflair:CaptionsGridWindow Tag="Captions">
+        <!-- TODO: move Captions (not have as window property) to view properties (also do so at MediaPlayer and change bindings proc -->
         <clipflair:CaptionsGridWindow.View>
           <clipflairview:CaptionsGridView
             Position="0,420"  
@@ -122,13 +101,6 @@ Version: 20121115
           />
         </clipflair:ImageWindow.View>
       </clipflair:ImageWindow>
-
-      <!-- Test windows -->
-      <!--
-      <clipflair:TestWindow1 Position="0,0" />
-      <clipflair:TestWindow2 Position="150,0" />
-      <clipflair:TestWindow3 Position="300,0" />
-       -->
 
       <!--</float:FloatingWindowCollection>-->
       <!--</zui:FloatingWindowHostZUI.Windows>-->
