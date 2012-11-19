@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: SilverTextEditor.xaml.cs
-//Version: 20121115
+//Version: 20121116
 
 //Originated from Microsoft sample (MSPL license)
 
@@ -10,13 +10,10 @@
 
 //TODO: allow to add checkbox controls and remember their state (checked/unchecked) in the text
 
-using WPFCompatibility;
-
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Resources;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -38,8 +35,9 @@ namespace SilverTextEditor
       InitializeComponent();
       //DefaultStyleKey = typeof(SilverTextEditor); //if we convert this to Control, need to do this
 
-      //Note: Do not use "Loaded" event handler to load any default text, it gets called after some caller has instantiated the component and overrides any text that may have been set to it already by the caller      
-      rtb.Xaml = XElement.Load("/SilverTextEditor;component/ActivityDescription.sav").ToString(); //Initialize the RichTextBox. The intial text is stored as XAML at a .sav file.
+      //Note: Do not use "Loaded" event handler to load any default text file, it gets called after some caller has instantiated the component and overrides any text that may have been set to it already by the caller
+      //Instead can load a previously saved file from a resource at this point, like below:
+      //LoadResource("/SilverTextEditor;component/ActivityDescription.text"); //Initialize the RichTextBox. The intial text is stored as XAML at a .text file.
     }
 
     #region ToolbarVisible
@@ -736,9 +734,20 @@ namespace SilverTextEditor
 
     #region Load-Save
 
+    public string Xaml
+    {
+      get { return rtb.Xaml; }
+      set { rtb.Xaml = value; }
+    }
+
+    public void LoadResource(string resourcePath) //doesn't close stream
+    {
+      Load(Application.GetResourceStream(new Uri(resourcePath, UriKind.Relative)).Stream);
+    }
+
     public void Load(Stream stream) //doesn't close stream
     {
-      rtb.Xaml = new StreamReader(stream).ReadToEnd();
+      Xaml = new StreamReader(stream).ReadToEnd();
     }
 
     public void Save(Stream stream) //doesn't close stream

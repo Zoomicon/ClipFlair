@@ -139,9 +139,6 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="ActivityDescription.sav">
-      <SubType>Designer</SubType>
-    </Resource>
     <None Include="Properties\AppManifest.xml" />
   </ItemGroup>
   <ItemGroup>
