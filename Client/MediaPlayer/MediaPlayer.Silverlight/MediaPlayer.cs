@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: MediaPlayer.cs
-//Version: 20121029
+//Version: 20121119
 
 using System;
 using System.Collections.Generic;
@@ -145,7 +145,7 @@ namespace ClipFlair.MediaPlayer
       }
       playlistItem.Title = new Uri(s).GetComponents(UriComponents.Path, UriFormat.Unescaped).Split('/').Last();
       playlistItem.ThumbSource = new Uri(s + "_Thumb.jpg");
-      
+
       /*
             List<MarkerResource> markerResources = new List<MarkerResource>();
             MarkerResource markerResource = new MarkerResource();
@@ -277,7 +277,7 @@ namespace ClipFlair.MediaPlayer
     /// </summary>
     protected virtual void OnVideoVisibleChanged(bool oldVideoVisible, bool newVideoVisible)
     {
-      MediaPresenterElement.MaxWidth = (newVideoVisible)? double.PositiveInfinity : 0;
+      MediaPresenterElement.MaxWidth = (newVideoVisible) ? double.PositiveInfinity : 0;
       MediaPresenterElement.MaxHeight = (newVideoVisible) ? double.PositiveInfinity : 0;
     }
 
@@ -589,34 +589,51 @@ namespace ClipFlair.MediaPlayer
         Captions.Add(newCaptions1);
     }
 
+    private const double CAPTION_REGION_LEFT = 0; //0.05;
+    private const double CAPTION_REGION_TOP = 0.05;
+    private const double CAPTION_REGION_WIDTH = 1; //0.9; //SMF 2.7 has a bug here, it wraps caption text at the video boundary instead of at the caption region max boundary (as defined by Origin and Extend)
+    private const double CAPTION_REGION_HEIGHT = 0.9;
+
     public static void StyleCaptions(CaptionRegion theCaptions)
     {
-      if (theCaptions != null)
-      {
+      if (theCaptions == null) return;
+
         theCaptions.Style.ShowBackground = ShowBackground.WhenActive; //doesn't seem to work if other than transparent color is used
         theCaptions.Style.BackgroundColor = Colors.Transparent;
 
+        //set caption region (max) bounds
+        theCaptions.Style.Origin = new Origin() { Left = new Length() { Unit = LengthUnit.Percent, Value = CAPTION_REGION_LEFT }, Top = new Length() { Unit = LengthUnit.Percent, Value = CAPTION_REGION_TOP} };
+        theCaptions.Style.Extent = new Extent() { Width = new Length() { Unit = LengthUnit.Percent, Value = CAPTION_REGION_WIDTH }, Height = new Length() { Unit = LengthUnit.Percent, Value = CAPTION_REGION_HEIGHT } };
+
+        //theCaptions.Style.Padding = new Padding() { Left = new Length() { Unit = LengthUnit.Percent, Value = CAPTION_REGION_LEFT }, Right = { Unit = LengthUnit.Percent, Value = 1-CAPTION_REGION_LEFT-CAPTION_REGION_HEIGHT }, Bottom = { Unit = LengthUnit.Percent, Value = CAPTION_REGION_TOP }, Top = { Unit = LengthUnit.Percent, Value = 1-CAPTION_REGION_TOP-CAPTION_REGION_HEIGHT } }; //this crashes Silverlight
+
+        //theCaptions.Style.Direction = Direction.LeftToRight;
+      
+        theCaptions.Style.DisplayAlign = DisplayAlign.After; //align multirow catpions to bottom of region
+        theCaptions.Style.TextAlign = TextAlignment.Justify; //horizontally center captions
+
+        theCaptions.Style.WrapOption = TextWrapping.Wrap; //wrap too long captions to next row
+        theCaptions.Style.Overflow = Overflow.Dynamic; //extends the area for the captions as needed, up to the given Extent
+
         foreach (CaptionElement caption in theCaptions.Children)
           StyleCaption(caption);
-      }
-    }
+    } //TODO: should keep styling settings as properties of CaptionGrid
 
     public static void StyleCaption(TimedTextElement theCaption)
     {
-      if (theCaption != null)
-      {
-        theCaption.CaptionElementType = TimedTextElementType.Text;
-        theCaption.Style.ShowBackground = ShowBackground.WhenActive;
-        theCaption.Style.BackgroundColor = Color.FromArgb(100, 0, 0, 0); //use a semi-transparent background
-        theCaption.Style.Color = Colors.White;
-        //theCaption.Style.TextAlign = TextAlignment.Center;
-        Length length = new Length
-        {
-          Unit = LengthUnit.Pixel, //must use this, since the default LengthUnit.Cell used at TimedTextStyle constructor is not supported
-          Value = 20
-        };
-        theCaption.Style.FontSize = length;
-      }
+      if (theCaption == null) return;
+
+      theCaption.CaptionElementType = TimedTextElementType.Text;
+      theCaption.Style.ShowBackground = ShowBackground.WhenActive;
+      theCaption.Style.BackgroundColor = Color.FromArgb(100, 0, 0, 0); //use a semi-transparent background
+      theCaption.Style.Color = Colors.White;
+
+      Length length = new Length
+     {
+       Unit = LengthUnit.Pixel, //must use this, since the default LengthUnit.Cell used at TimedTextStyle constructor is not supported
+       Value = 20
+     };
+      theCaption.Style.FontSize = length;
     }
 
     #endregion
