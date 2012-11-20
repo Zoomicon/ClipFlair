@@ -1,6 +1,6 @@
 ﻿<!--
 Filename: CaptionsGrid.xaml
-Version: 20121116
+Version: 20121120
 -->
   
   <UserControl x:Class="ClipFlair.CaptionsGrid.CaptionsGrid"
@@ -87,7 +87,9 @@ Version: 20121116
     <sdk:DataGrid Name="gridCaptions"
                   Grid.Row="1" 
                   HorizontalAlignment="Stretch" VerticalAlignment="Stretch" 
-                  AutoGenerateColumns="False" 
+                  AutoGenerateColumns="False"
+                  RowBackground="White"
+                  AlternatingRowBackground="Beige"
                   ItemsSource="{Binding Path=Captions.Children, RelativeSource={RelativeSource AncestorType=captions:CaptionsGrid}, Mode=TwoWay}"
                   >
       <sdk:DataGrid.Columns>
