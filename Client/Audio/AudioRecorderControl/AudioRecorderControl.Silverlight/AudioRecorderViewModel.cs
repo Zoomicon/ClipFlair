@@ -1,5 +1,5 @@
 ﻿//Filename: AudioRecorderViewModel.cs
-//Version: 20120912
+//Version: 20121122
 
 using ClipFlair.AudioLib;
 
@@ -150,6 +150,7 @@ namespace ClipFlair.AudioRecorder
         RecordCommand.IsChecked = false; //depress recording toggle button //don't talk to ToggleButton directly
         Reset();
         StatusText = MSG_NO_AUDIO;
+        MessageBox.Show(StatusText); //TODO: find parent window
         return;
       }
       
@@ -171,7 +172,8 @@ namespace ClipFlair.AudioRecorder
         RecordCommand.IsChecked = false; //depress recording toggle button //don't talk to ToggleButton directly
         Reset();
         StatusText = MSG_RECORD_FAILED + e.Message;
-      }
+        MessageBox.Show(StatusText); //TODO: find parent window
+       }
 
     }
 
@@ -198,6 +200,7 @@ namespace ClipFlair.AudioRecorder
           theMemStream = null;
           Reset();
           StatusText = MSG_RECORD_FAILED + e.Message;
+          MessageBox.Show(StatusText); //TODO: find parent window
         }
 
       }
@@ -272,6 +275,7 @@ namespace ClipFlair.AudioRecorder
   
         Reset();
         StatusText = MSG_LOAD_FAILED + e.Message;
+        MessageBox.Show(StatusText); //TODO: find parent window
       }
     }
 
@@ -303,6 +307,7 @@ namespace ClipFlair.AudioRecorder
       catch (Exception e)
       {
         StatusText = MSG_SAVE_FAILED + e.Message;
+        MessageBox.Show(StatusText); //TODO: find parent window
       }
     }
 
