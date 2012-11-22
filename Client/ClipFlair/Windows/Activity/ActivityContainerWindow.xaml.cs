@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: ActivityContainerWindow.xaml.cs
-//Version: 20121113
+//Version: 20121122
 
 using ClipFlair.Windows.Views;
 
@@ -49,7 +49,7 @@ namespace ClipFlair.Windows
       activity.Windows.RemoveAll(); //TODO: do not use "Clear", doesn't work
       foreach (ZipEntry childZip in zip.SelectEntries("*.clipflair.zip", zipFolder))
         using (Stream stream = childZip.OpenReader())
-          using (MemoryStream memStream = new MemoryStream()) //can't use activity.Windows.Add(LoadWindow(stream), seems DotNetZip fails to open a .zip from a stream inside another .zip
+          using (MemoryStream memStream = new MemoryStream()) //TODO: research this - can't use activity.Windows.Add(LoadWindow(stream), seems DotNetZip fails to open a .zip from a stream inside another .zip
           {
             stream.CopyTo(memStream);
             stream.Flush();
@@ -89,12 +89,11 @@ namespace ClipFlair.Windows
 
     private static void SaveWindow(ZipFile zip, string zipFolder, BaseWindow window)
     {
-      MemoryStream stream = new MemoryStream(); //TODO: not optimal implementation, should try to pipe streams without first saving into memory
-      window.SaveOptions(stream); //save ZIP file for child window
-      stream.Position = 0;
-      string title = ((string)window.Title).TrimStart();
+      string title = ((string)window.Title).TrimStart(); //using TrimStart() to not have filenames start with space chars in case it's an issue with ZIP spec
       if (title == "") title = window.GetType().Name;
-      zip.AddEntry(zipFolder + "/" + title + " - " + Guid.NewGuid() + ".clipflair.zip", stream); //using TrimStart() to not have filenames start with space chars in case it's an issue with ZIP spec
+      zip.AddEntry(
+        zipFolder + "/" + title + " - " + Guid.NewGuid() + ".clipflair.zip",
+        new WriteDelegate((entryName, stream) => { window.SaveOptions(stream); }) ); //save ZIP file for child window 
     }
 
     #endregion
