@@ -1403,29 +1403,31 @@ margin-top: 55px;
 	float:left;
 }
 
+.navigation ul li.selected {
+ 
+}
 
 .navigation ul li.selected a
 {
 	background: url(img/menu-arrow.gif) no-repeat bottom center;
 	height: 35px;
     color: #fff;
-    font-weight: 600;
+ 
 }
 
 .navigation ul li a:hover
 {
-	background: url(img/menu-arrow.gif) no-repeat bottom center;
+	background: none !important;
 	height: 35px;
     color: #fff;
-    font-weight:400;
+   
 }
 
 .navigation ul li.selected a:hover
 {
-	background: url(img/menu-arrow.gif) no-repeat bottom center;
+	/*background: url(img/menu-arrow.gif) no-repeat bottom center;*/
 	height: 35px;
     color: #fff;
-    font-weight:600;
 }
 .navigation ul li.selected a span,
 .navigation ul li a:hover span
@@ -1436,9 +1438,11 @@ margin-top: 55px;
 {
 	position: absolute;
 	z-index: 5000;		
-	top: 32px;
+	top: 190px;
 	float: left;
 	clear: both;
+    
+
 }
 .navigation ul ul ul
 {	
@@ -1454,12 +1458,14 @@ margin-top: 55px;
 	margin: 0px;
 	padding: 0px;
 	float: left;
+    
+
 }
 .navigation .level0 li
 {
 	display: block;	
 	float: left;
-	clear: both;
+	clear:both;
 	margin: 0px 0px 0px -10px !important;	
 	overflow: hidden;
 	border-right: solid 1px Transparent;
@@ -1467,42 +1473,42 @@ margin-top: 55px;
 }
 .navigation .level0 li a
 {		
-	background: url(img/nav-sub-level-hover.png) no-repeat top left !important;
+	background: #27140e !important;
 	text-decoration:none;
 	color: #fff;
 	display:block;	
 	padding: 0px !important;
-	margin: 0px 10px 0px 0px !important;
+	margin: 0px 6px 0px 0px !important;
 	text-align: left;
 	font-family: Verdana, Arial, Helvetica, sans-serif;
-	font-size: 12px;
+	font-size: 11px;
 	height: auto !important;
 }
 .navigation .level0 li a.selected,
 .navigation .level0 li a:hover
 {		
-	background: url(img/nav-sub-level.png) no-repeat top left !important;
+	background: #b0b535 !important;
 	padding: 0px !important;
-	margin: 0px 10px 0px 0px !important;
+	margin: 0px 6px 0px 0px !important;
 }
 
 .navigation .level0 li a span
 {	
-	background: url(img/nav-sub-level-hover.png) no-repeat top right !important;
+	background: #27140e no-repeat top right !important;
 	margin: 0 -10px 0 10px !important;
 	padding: 4px 0px 0px 0px !important;
-	height: 22px !important;	
-	width:180px;
+	height: 18px !important;	
+	width:140px;
 	color: #fff;
 }
 .navigation .level0 li a.selected span,
 .navigation .level0 li a:hover span
 {		
-	background: url(img/nav-sub-level.png) no-repeat top right !important;
+	background: #b0b535 no-repeat top right !important;
 	margin: 0 -10px 0 10px !important;
 	padding: 4px 0px 0px 0px !important;
-	height: 22px !important;	
-	width:180px;
+	height: 18px !important;	
+	width:140px;
 }
 .navigation .level0 li a
 {
