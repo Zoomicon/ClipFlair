@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: SilverTextEditor.xaml.cs
-//Version: 20121116
+//Version: 20121122
 
 //Originated from Microsoft sample (MSPL license)
 
@@ -697,7 +697,7 @@ namespace SilverTextEditor
       {
         OpenFileDialog ofd = new OpenFileDialog();
         ofd.Multiselect = false;
-        ofd.Filter = "Saved Text Files|*.text|All Files|*.*";
+        ofd.Filter = "ClipFlair Saved Text Files|*.text|All Files|*.*";
 
         if (ofd.ShowDialog().Value)
           using (Stream stream = ofd.File.OpenRead())
@@ -715,7 +715,7 @@ namespace SilverTextEditor
       try
       {
         SaveFileDialog sfd = new SaveFileDialog();
-        sfd.Filter = "Saved Text Files|*.text|All Files|*.*";
+        sfd.Filter = "ClipFlair Saved Text Files|*.text|All Files|*.*";
         sfd.FilterIndex = 1; //1-based index, not 0-based //do not set this if DefaultExt is used
         //sfd.DefaultFileName = "Text"; //Silverlight will prompt "Do you want to save Text?" if we set this, but the prompt can go under the main window, so avoid it
         sfd.DefaultExt = ".text"; //don't set FilterIndex if this is set
@@ -737,7 +737,7 @@ namespace SilverTextEditor
     public string Xaml
     {
       get { return rtb.Xaml; }
-      set { rtb.Xaml = value; }
+      set { if (value != null && value.Trim() != "") rtb.Xaml = value; else rtb.Blocks.Clear();  } //allows to set null or blank value to clear the RichTextBox
     }
 
     public void LoadResource(string resourcePath) //doesn't close stream
