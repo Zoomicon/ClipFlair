@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: CaptionsGridWindow.xaml.cs
-//Version: 20121115
+//Version: 20121122
 
 //TODO: add Source property to CaptionsGrid control and use data-binding to bind it to CaptionsGridView's Source property
 
@@ -151,11 +151,12 @@ namespace ClipFlair.Windows
     public override void SaveOptions(ZipFile zip, string zipFolder = "")
     {
       base.SaveOptions(zip, zipFolder);
+      zip.AddEntry(zipFolder + "/captions.srt", SaveCaptions);
+    }
 
-      MemoryStream stream = new MemoryStream(); //TODO: not optimal implementation, should try to pipe streams without first saving into memory
-      gridCaptions.WriteCaptions(stream, "captions.srt");
-      stream.Position = 0;
-      zip.AddEntry(zipFolder + "/captions.srt", stream);
+    public void SaveCaptions(string entryName, Stream stream)
+    {
+      gridCaptions.WriteCaptions(stream, entryName);
     }
 
     #endregion
