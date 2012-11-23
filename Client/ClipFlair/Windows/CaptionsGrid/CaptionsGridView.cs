@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: CaptionsGridView.cs
-//Version: 20121112
+//Version: 20121123
 
 using System;
 using System.Runtime.Serialization;
@@ -24,6 +24,7 @@ namespace ClipFlair.Windows.Views
     //can set fields directly here or at the construcor
     private Uri source = ICaptionsGridDefaults.DefaultSource;
     private TimeSpan time = ICaptionsGridDefaults.DefaultTime;
+    private bool actorVisible = ICaptionsGridDefaults.DefaultActorVisible;
     private bool startTimeVisible = ICaptionsGridDefaults.DefaultStartTimeVisible;
     private bool endTimeVisible = ICaptionsGridDefaults.DefaultEndTimeVisible;
     private bool durationVisible = ICaptionsGridDefaults.DefaultDurationVisible;
@@ -58,6 +59,20 @@ namespace ClipFlair.Windows.Views
         {
           time = value;
           RaisePropertyChanged(ICaptionsGridProperties.PropertyTime);
+        }
+      }
+    }
+
+    [DataMember]
+    public bool ActorVisible
+    {
+      get { return actorVisible; }
+      set
+      {
+        if (value != actorVisible)
+        {
+          actorVisible = value;
+          RaisePropertyChanged(ICaptionsGridProperties.PropertyActorVisible);
         }
       }
     }

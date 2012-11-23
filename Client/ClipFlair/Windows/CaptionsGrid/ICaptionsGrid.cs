@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: ICaptionsGrid.cs
-//Version: 20121106
+//Version: 20121123
 
 using System;
 
@@ -11,6 +11,7 @@ namespace ClipFlair.Windows.Views
   {
     public const string PropertySource = "Source";
     public const string PropertyTime = "Time";
+    public const string PropertyActorVisible = "ActorVisible";
     public const string PropertyStartTimeVisible = "StartTimeVisible";
     public const string PropertyEndTimeVisible = "EndTimeVisible";
     public const string PropertyDurationVisible = "DurationVisible";
@@ -22,6 +23,7 @@ namespace ClipFlair.Windows.Views
   {
     Uri Source { get; set; }
     TimeSpan Time { get; set; }
+    bool ActorVisible { get; set; }
     bool StartTimeVisible { get; set; }
     bool EndTimeVisible { get; set; }
     bool DurationVisible { get; set; }
