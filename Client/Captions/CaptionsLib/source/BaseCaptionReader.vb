@@ -1,5 +1,6 @@
-﻿'Filename: BaseCaptionReader.vb
-'Version: 20121111
+﻿'Project: ClipFlair (http://ClipFlair.codeplex.com)
+'Filename: BaseCaptionReader.vb
+'Version: 20121123
 
 Imports ClipFlair.CaptionsLib.models
 
@@ -14,27 +15,27 @@ Namespace ClipFlair.CaptionsLib
 
 #Region "Methods"
 
-    Public Overloads Sub ReadCaptions(ByVal captions As CaptionRegion, ByVal path As String, ByVal theEncoding As Encoding) Implements ICaptionsReader.ReadCaptions
+    Public Overloads Sub ReadCaptions(Of T As {CaptionElement, New})(ByVal captions As CaptionRegion, ByVal path As String, ByVal theEncoding As Encoding) Implements ICaptionsReader.ReadCaptions
       'not clearing any existing captions, just appending to the end (the CaptionRegion object can choose whether it will sort the Captions by start time or not after the appending)
       Using reader As New StreamReader(path, theEncoding, True) 'the Using statement will close the file created when finished
-        ReadCaptions(captions, reader)
+        ReadCaptions(Of T)(captions, reader)
       End Using
     End Sub
 
-    Public Overloads Sub ReadCaptions(ByVal captions As CaptionRegion, ByVal stream As Stream, ByVal theEncoding As Encoding) Implements ICaptionsReader.ReadCaptions
+    Public Overloads Sub ReadCaptions(Of T As {CaptionElement, New})(ByVal captions As CaptionRegion, ByVal stream As Stream, ByVal theEncoding As Encoding) Implements ICaptionsReader.ReadCaptions
       'not clearing any existing captions, just appending to the end (the CaptionRegion object can choose whether it will sort the Captions by start time or not after the appending)
       Dim reader As New StreamReader(stream, theEncoding, True)  'no Using statement, do not close the stream when finished
-      ReadCaptions(captions, reader)
+      ReadCaptions(Of T)(captions, reader)
     End Sub
 
-    Public Overloads Sub ReadCaptions(ByVal captions As CaptionRegion, ByVal reader As TextReader) Implements ICaptionsReader.ReadCaptions
-        ReadHeader(reader)
-        While reader.Peek <> -1
-          Dim caption As New CaptionElement()
-          ReadCaption(caption, reader)
-          captions.Children.Add(caption)
-        End While
-        ReadFooter(reader)
+    Public Overloads Sub ReadCaptions(Of T As {CaptionElement, New})(ByVal captions As CaptionRegion, ByVal reader As TextReader) Implements ICaptionsReader.ReadCaptions
+      ReadHeader(reader)
+      While reader.Peek <> -1
+        Dim caption As New T()
+        ReadCaption(caption, reader)
+        captions.Children.Add(caption)
+      End While
+      ReadFooter(reader)
     End Sub
 
     Public Overridable Sub ReadHeader(ByVal reader As TextReader) Implements ICaptionsReader.ReadHeader

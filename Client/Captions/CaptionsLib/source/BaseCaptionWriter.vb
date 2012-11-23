@@ -1,4 +1,5 @@
-﻿'Filename: BaseCaptionWriter.vb
+﻿'Project: ClipFlair (http://ClipFlair.codeplex.com)
+'Filename: BaseCaptionWriter.vb
 'Version: 20121111
 
 Imports ClipFlair.CaptionsLib.Models
