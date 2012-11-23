@@ -1,15 +1,14 @@
 ﻿//Filename: AudioRecorderViewModel.cs
-//Version: 20121122
+//Version: 20121123
 
 using ClipFlair.AudioLib;
 
 using System;
+using System.IO;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
-using System.Windows.Input;
 using System.Windows.Media;
-using System.IO;
 
 namespace ClipFlair.AudioRecorder
 {
@@ -241,6 +240,8 @@ namespace ClipFlair.AudioRecorder
       }
     }
 
+    #region Load-Save
+
     protected void LoadFile()
     {
       if (openFileDialog.ShowDialog() == false) return;
@@ -249,18 +250,8 @@ namespace ClipFlair.AudioRecorder
       {
         StatusText = MSG_LOADING;
 
-        Stream stream = openFileDialog.File.OpenRead();
-        theMemStream = new MemoryStream();
-
-        // Append all data from rawData stream into output stream.
-        byte[] buffer = new byte[4096];
-        int read;       // number of bytes read in one iteration
-        while ((read = stream.Read(buffer, 0, 4096)) > 0)
-        {
-          theMemStream.Write(buffer, 0, read);
-        }
-
-        stream.Close();
+        using (Stream stream = openFileDialog.File.OpenRead())
+          LoadAudio(stream);
 
         StatusText = MSG_LOADED;
 
@@ -287,21 +278,9 @@ namespace ClipFlair.AudioRecorder
       {
         StatusText = MSG_SAVING;
 
-        Stream stream = saveFileDialog.OpenFile();
+        using (Stream stream = saveFileDialog.OpenFile())
+          SaveAudio(stream);
  
-        // Reset position in memStream and keep its position to restore at the end
-        long originalPosition = theMemStream.Position;
-        theMemStream.Seek(0, SeekOrigin.Begin);
-
-        // Append all data from rawData stream into output stream.
-        byte[] buffer = new byte[4096];
-        int read;       // number of bytes read in one iteration
-        while ((read = theMemStream.Read(buffer, 0, 4096)) > 0)
-          stream.Write(buffer, 0, read);
-
-        theMemStream.Seek(originalPosition, SeekOrigin.Begin); //restore memStream position
- 
-        stream.Close();
         StatusText = MSG_SAVED;
       }
       catch (Exception e)
@@ -310,6 +289,36 @@ namespace ClipFlair.AudioRecorder
         MessageBox.Show(StatusText); //TODO: find parent window
       }
     }
+
+    public void LoadAudio(Stream stream) //does not close the stream
+    {
+      theMemStream = new MemoryStream();
+
+      // Append all data from rawData stream into output stream.
+      byte[] buffer = new byte[4096];
+      int read;       // number of bytes read in one iteration
+      while ((read = stream.Read(buffer, 0, 4096)) > 0)
+      {
+        theMemStream.Write(buffer, 0, read);
+      }
+    }
+
+    public void SaveAudio(Stream stream)
+    {
+      // Reset position in memStream and keep its position to restore at the end
+      long originalPosition = theMemStream.Position;
+      theMemStream.Seek(0, SeekOrigin.Begin);
+
+      // Append all data from rawData stream into output stream.
+      byte[] buffer = new byte[4096];
+      int read;       // number of bytes read in one iteration
+      while ((read = theMemStream.Read(buffer, 0, 4096)) > 0)
+        stream.Write(buffer, 0, read);
+
+      theMemStream.Seek(originalPosition, SeekOrigin.Begin); //restore memStream position
+    }
+
+    #endregion
 
   }
 }

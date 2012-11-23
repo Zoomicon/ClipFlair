@@ -1,24 +1,24 @@
 ﻿//Filename: AudioRecorderControl.xaml.cs
-//Version: 20120912
+//Version: 20121123
 
 using System;
+using System.IO;
 using System.Windows.Controls;
-using System.Windows.Input;
 
 namespace ClipFlair.AudioRecorder
 {
-    public partial class AudioRecorderControl : UserControl
+  public partial class AudioRecorderControl : UserControl
+  {
+    AudioRecorderViewModel ViewModel;
+
+    public AudioRecorderControl()
     {
-        AudioRecorderViewModel ViewModel;
+      InitializeComponent();
 
-        public AudioRecorderControl()
-        {
-            InitializeComponent();
+      ViewModel = new AudioRecorderViewModel(btnRecord, btnPlay);
 
-            ViewModel = new AudioRecorderViewModel(btnRecord, btnPlay);
-
-            DataContext = ViewModel;
-        }
+      DataContext = ViewModel;
+    }
 
     public void Play()
     {
@@ -34,8 +34,22 @@ namespace ClipFlair.AudioRecorder
     public double Volume
     {
       get { return ViewModel.Volume; }
-      set { ViewModel.Volume = value;  }
+      set { ViewModel.Volume = value; }
     }
+
+    #region Load-Save
+
+    public void LoadAudio(Stream stream) //does not close the stream
+    {
+      ViewModel.LoadAudio(stream);
+    }
+
+    public void SaveAudio(Stream stream) //does not close the stream
+    {
+      ViewModel.SaveAudio(stream);
+    }
+
+    #endregion
 
   }
 
