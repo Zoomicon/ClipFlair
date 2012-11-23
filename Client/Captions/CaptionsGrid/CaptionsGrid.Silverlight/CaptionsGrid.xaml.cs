@@ -1,5 +1,6 @@
-﻿//Filename: CaptionsGrid.xaml.cs
-//Version: 20121111
+﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
+//Filename: CaptionsGrid.xaml.cs
+//Version: 20121123
 
 using ClipFlair.AudioRecorder;
 using ClipFlair.CaptionsLib.Utils;
@@ -35,12 +36,14 @@ namespace ClipFlair.CaptionsGrid
 
     protected void InitializeDataGrid()
     {
-      ColumnStartTime = gridCaptions.Columns[0];
-      ColumnEndTime = gridCaptions.Columns[1];
-      ColumnDuration = gridCaptions.Columns[2];
-      ColumnContent = gridCaptions.Columns[3];
-      ColumnAudio = gridCaptions.Columns[4];
+      ColumnActor = gridCaptions.Columns[0];
+      ColumnStartTime = gridCaptions.Columns[1];
+      ColumnEndTime = gridCaptions.Columns[2];
+      ColumnDuration = gridCaptions.Columns[3];
+      ColumnContent = gridCaptions.Columns[4];
+      ColumnAudio = gridCaptions.Columns[5];
 
+      gridCaptions.ClipboardCopyMode = DataGridClipboardCopyMode.IncludeHeader;
       gridCaptions.SelectionMode = DataGridSelectionMode.Single;
       gridCaptions.SelectionChanged += new SelectionChangedEventHandler(DataGrid_SelectionChanged);
     }
@@ -50,8 +53,11 @@ namespace ClipFlair.CaptionsGrid
       CaptionElement selectedCaption = (CaptionElement)gridCaptions.SelectedItem;
       if (selectedCaption != null)
       {
+        gridCaptions.ScrollIntoView(selectedCaption, gridCaptions.Columns[0]); //scroll vertically to show selected caption's row (and horizontally if needed to show 1st row)
+        //cells that are scrolled out of view aren't created yet and won't give us their content //TODO: blog this workarround (needed if the row is out of view or not rendered yet)
+          
         Time = selectedCaption.Begin;
-        ((AudioRecorderControl)ColumnAudio.GetCellContent(selectedCaption)).Play();
+        ((AudioRecorderControl)ColumnAudio.GetCellContent(selectedCaption)).Play(); //assuming the audio column is inside the current view
       }
     }
 
@@ -60,6 +66,7 @@ namespace ClipFlair.CaptionsGrid
     #region Columns
 
     //not using column indices as constants, using column references instead to allow for column reordering
+    public DataGridColumn ColumnActor { get; private set; }
     public DataGridColumn ColumnStartTime { get; private set; }
     public DataGridColumn ColumnEndTime { get; private set; }
     public DataGridColumn ColumnDuration { get; private set; }
@@ -108,9 +115,6 @@ namespace ClipFlair.CaptionsGrid
         activeCaption = c; //if multiple captions cover this position, select the last one
       
       gridCaptions.SelectedItem = activeCaption; //this will deselect if no active caption at that time position
-   
-      if (activeCaption!=null)
-        gridCaptions.ScrollIntoView(activeCaption, gridCaptions.Columns[0]); //scroll vertically to show active caption's row (and horizontally if needed to show 1st row)
     }
 
     #endregion
@@ -152,6 +156,43 @@ namespace ClipFlair.CaptionsGrid
     {
       //NOP (using data binding)
       //gridCaptions.DataContext = newCaptions.Children; //don't change the UserControl's DataContext (just the DataGrid's), else data binding won't work in the parent (this would need ItemsSource="{Binding}" in the XAML)
+    }
+
+    #endregion
+
+    #region CaptionActorVisible
+
+    /// <summary>
+    /// CaptionActorVisible Dependency Property
+    /// </summary>
+    public static readonly DependencyProperty CaptionActorVisibleProperty =
+        DependencyProperty.Register("CaptionActorVisible", typeof(bool), typeof(CaptionsGrid),
+            new FrameworkPropertyMetadata(true, new PropertyChangedCallback(OnCaptionActorVisibleChanged)));
+
+    /// <summary>
+    /// Gets or sets the CaptionActorVisible property. 
+    /// </summary>
+    public bool CaptionActorVisible
+    {
+      get { return (bool)GetValue(CaptionActorVisibleProperty); }
+      set { SetValue(CaptionActorVisibleProperty, value); }
+    }
+
+    /// <summary>
+    /// Handles changes to the CaptionActorVisible property.
+    /// </summary>
+    private static void OnCaptionActorVisibleChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    {
+      CaptionsGrid target = (CaptionsGrid)d;
+      target.OnCaptionActorVisibleChanged((bool)e.OldValue, target.CaptionActorVisible);
+    }
+
+    /// <summary>
+    /// Provides derived classes an opportunity to handle changes to the CaptionActorVisible property.
+    /// </summary>
+    protected virtual void OnCaptionActorVisibleChanged(bool oldValue, bool newValue)
+    {
+      ColumnActor.Visibility = (newValue) ? Visibility.Visible : Visibility.Collapsed;
     }
 
     #endregion
@@ -343,13 +384,11 @@ namespace ClipFlair.CaptionsGrid
 
     #endregion
 
-    #region --- Events ---
-
     private CaptionElement AddCaption()
     {
       if (Captions == null) return null;
 
-      CaptionElement newCaption = new CaptionElement()
+      CaptionElement newCaption = new CaptionElementExt()
       {
         Begin = Time,
         End = Time + CaptionDefaultDuration
@@ -360,11 +399,11 @@ namespace ClipFlair.CaptionsGrid
       Captions.Children.Add(newCaption); //this adds the caption to the correct place in the list based on its Begin time (logic is implemented by SMF in MediaMarkerCollection class) //TODO: blog about this, Insert isn't implemented, Add does its job too (see http://smf.codeplex.com/workitem/23308)
       
       gridCaptions.SelectedItem = newCaption; //select the caption after adding it //TODO: check if it causes hickup and if so tell selection to not jump to selected caption start time
- 
-      gridCaptions.ScrollIntoView(newCaption, gridCaptions.Columns[0]); //scroll vertically to show new caption's row (and horizontally if needed to show 1st row)
       
       return newCaption;
     }
+
+    #region --- Events ---
 
     private void btnAdd_Click(object sender, RoutedEventArgs e)
     {
@@ -405,6 +444,10 @@ namespace ClipFlair.CaptionsGrid
         AddCaption().End = Time;
     }
 
+    #endregion
+
+    #region Load-Save
+
     private void btnImport_Click(object sender, RoutedEventArgs e)
     {
       try
@@ -415,7 +458,7 @@ namespace ClipFlair.CaptionsGrid
         
         if (dlg.ShowDialog() == true) //TODO: find the parent window
          using (Stream stream = dlg.File.OpenRead()) //closes stream when finished
-            ReadCaptions(stream, dlg.File.Name);
+            LoadCaptions(stream, dlg.File.Name);
       }
       catch (Exception ex)
       {
@@ -439,7 +482,7 @@ namespace ClipFlair.CaptionsGrid
 
         if (dlg.ShowDialog() == true) //TODO: find the parent window
           using (Stream stream = dlg.OpenFile()) //closes stream when finished
-            WriteCaptions(stream, dlg.SafeFileName);
+            SaveCaptions(stream, dlg.SafeFileName);
       }
       catch (Exception ex)
       {
@@ -447,25 +490,39 @@ namespace ClipFlair.CaptionsGrid
       }
     }
 
-    #endregion
-
-    #region Read/Write captions
-
-    public void ReadCaptions(Stream stream, string filename) //doesn't close stream
+    public void LoadCaptions(Stream stream, string filename) //doesn't close stream
     {
       ICaptionsReader reader = CaptionUtils.GetCaptionsReader(filename);
       CaptionRegion newCaptions = new CaptionRegion();
-      reader.ReadCaptions(newCaptions, stream, Encoding.UTF8);
+      reader.ReadCaptions<CaptionElementExt>(newCaptions, stream, Encoding.UTF8);
       Captions = newCaptions;
     }
 
-    public void WriteCaptions(Stream stream, string filename) //doesn't close stream
+    public void SaveCaptions(Stream stream, string filename) //doesn't close stream
     {
       if (Captions == null) return;
       ICaptionsWriter writer = CaptionUtils.GetCaptionsWriter(filename);
       writer.WriteCaptions(Captions, stream, Encoding.UTF8);
     }
-    
+
+    public static void LoadAudio(CaptionElement caption, Stream stream)
+    {
+      CaptionElementExt captionExt = caption as CaptionElementExt;
+      if (captionExt == null) return;
+
+      MemoryStream buffer = new MemoryStream();
+      AudioRecorderView.LoadAudio(stream, buffer);
+      captionExt.Audio = buffer;
+    }
+
+    public static void SaveAudio(CaptionElement caption, Stream stream)
+    {
+      CaptionElementExt captionExt = caption as CaptionElementExt;
+      if (captionExt == null) return;
+
+      AudioRecorderView.SaveAudio(stream, captionExt.Audio);
+    }
+
     #endregion
 
   }
