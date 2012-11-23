@@ -38,17 +38,25 @@ namespace ClipFlair.Windows
     public override void LoadOptions(ZipFile zip, string zipFolder = "")
     {
       base.LoadOptions(zip, zipFolder);
-      editor.Load(zip[zipFolder + "/document.text"].OpenReader());
+      
+      //load text
+      ZipEntry entry = zip[zipFolder + "/document.text"];
+      //if (entry == null) entry = zip[zipFolder + "/document.txt"];
+      //if (entry == null) entry = zip[zipFolder + "/document.docx"]; //TODO: check if it's possible to also support RTF there
+      if (entry != null)
+        editor.Load(entry.OpenReader()); //TODO: should accept entry.FileName to check for .text (XAML Snippet), .txt, .docx and load it accordingly (similarly change its open file dialog to accept multiple formats)
     }
 
     public override void SaveOptions(ZipFile zip, string zipFolder = "")
     {
       base.SaveOptions(zip, zipFolder);
 
-      MemoryStream stream = new MemoryStream(); //TODO: not optimal implementation, should try to pipe streams without first saving into memory
+      zip.AddEntry(zipFolder + "/document.text", SaveText); //TODO: maybe not save when no text is available
+    }
+
+    public void SaveText(string entryName, Stream stream)
+    {
       editor.Save(stream);
-      stream.Position = 0;
-      zip.AddEntry(zipFolder + "/document.text", stream);
     }
 
     #endregion
