@@ -1,4 +1,5 @@
-﻿//Filename: AudioRecorderViewModel.cs
+﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
+//Filename: AudioRecorderView.cs
 //Version: 20121123
 
 using ClipFlair.AudioLib;
@@ -13,7 +14,7 @@ using System.Windows.Media;
 namespace ClipFlair.AudioRecorder
 {
 
-  public class AudioRecorderViewModel : DependencyObject
+  public class AudioRecorderView : DependencyObject
   {
 
     #region Constants
@@ -42,7 +43,6 @@ namespace ClipFlair.AudioRecorder
 
     #region Fields
 
-    private MemoryStream theMemStream; //must be a class field for async operations to work correctly with it
     private WaveMediaStreamSource wavMss;
 
     private MediaElement player = new MediaElement();
@@ -63,19 +63,39 @@ namespace ClipFlair.AudioRecorder
 
     #endregion
 
-    #region StatusText
+    #region Status
 
-    public static readonly DependencyProperty StatusTextProperty = DependencyProperty.Register("StatusText", typeof(string), typeof(AudioRecorderViewModel), null);
+    public static readonly DependencyProperty StatusProperty = DependencyProperty.Register("Status", typeof(string), typeof(AudioRecorderView), null);
 
-    public string StatusText
+    public string Status
     {
-      get { return (string)GetValue(StatusTextProperty); }
-      set { SetValue(StatusTextProperty, value); }
+      get { return (string)GetValue(StatusProperty); }
+      set { SetValue(StatusProperty, value); }
     }
 
     #endregion
 
-    #region Volume
+    #region Audio
+
+    public static readonly DependencyProperty AudioProperty = DependencyProperty.Register("Audio", typeof(Stream), typeof(AudioRecorderView), new FrameworkPropertyMetadata(null, AudioChanged));
+
+    public Stream Audio
+    {
+      get { return (Stream)GetValue(AudioProperty); }
+      set { SetValue(AudioProperty, value); }
+    }
+ 
+    private static void AudioChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    {
+      AudioRecorderView view = (AudioRecorderView)d;
+      bool flag = (view.Audio != null); //is there any recorded audio?
+      view.RecordCommand.MayBeExecuted = flag;
+      view.LoadCommand.MayBeExecuted = true; //set again since it is turned off during recording
+      view.PlayCommand.MayBeExecuted = flag;
+      view.SaveCommand.MayBeExecuted = flag;
+    }
+
+    #endregion
 
     public double Volume
     {
@@ -83,9 +103,12 @@ namespace ClipFlair.AudioRecorder
       set { player.Volume = value; }
     }
 
-    #endregion
+    public bool HasAudio 
+    {
+      get { return (Audio != null); }
+    }
 
-    public AudioRecorderViewModel(ToggleButton btnRecord, ToggleButton btnPlay)
+    public void SetToggleButtons(ToggleButton btnRecord, ToggleButton btnPlay)
     {
       RecordCommand = new ToggleCommand(btnRecord)
       {
@@ -100,6 +123,10 @@ namespace ClipFlair.AudioRecorder
         ExecuteAction = () => Play(),
         ExecuteUncheckAction = () => StopPlayback()
       };
+    }
+
+    public AudioRecorderView()
+    {
 
       LoadCommand = new SimpleCommand()
       {
@@ -117,12 +144,12 @@ namespace ClipFlair.AudioRecorder
       _captureSource = new CaptureSource() { AudioCaptureDevice = audioDevice };
 
       Volume = 1.0; //set to highest volume (1.0), since MediaElement's default is 0.5
-      player.MediaEnded += new RoutedEventHandler(MediaElement_MediaEnded); 
+      player.MediaEnded += new RoutedEventHandler(MediaElement_MediaEnded);
 
-      Reset();
+      Status = MSG_RECORD_OR_LOAD;
     }
 
-    protected void MediaElement_MediaEnded( object sender , RoutedEventArgs e )
+    protected void MediaElement_MediaEnded( object sender , RoutedEventArgs e ) //TODO: doesn't seem to get always called
     {
       PlayCommand.IsChecked = false; //when playback ends depress play button //don't talk to ToggleButton directly
     }
@@ -134,12 +161,12 @@ namespace ClipFlair.AudioRecorder
 
     protected void Reset()
     {
-      RecordCommand.MayBeExecuted = true;
+      if (RecordCommand != null) RecordCommand.MayBeExecuted = true;
+      if (PlayCommand != null) PlayCommand.MayBeExecuted = false;
       LoadCommand.MayBeExecuted = true;
-      PlayCommand.MayBeExecuted = false;
       SaveCommand.MayBeExecuted = false;
 
-      StatusText = MSG_RECORD_OR_LOAD;
+      Status = MSG_RECORD_OR_LOAD;
     }
 
     protected void Record()
@@ -148,8 +175,8 @@ namespace ClipFlair.AudioRecorder
       {
         RecordCommand.IsChecked = false; //depress recording toggle button //don't talk to ToggleButton directly
         Reset();
-        StatusText = MSG_NO_AUDIO;
-        MessageBox.Show(StatusText); //TODO: find parent window
+        Status = MSG_NO_AUDIO;
+        MessageBox.Show(Status); //TODO: find parent window
         return;
       }
       
@@ -159,7 +186,7 @@ namespace ClipFlair.AudioRecorder
         _sink.CaptureSource = _captureSource;
         _captureSource.Start(); //assuming captureSource is stopped
 
-        StatusText = MSG_RECORDING; //keep recording message since we can't depress the button (TODO: may add Uncheck method to ToggleCommand)
+        Status = MSG_RECORDING; //keep recording message since we can't depress the button (TODO: may add Uncheck method to ToggleCommand)
 
         RecordCommand.MayBeExecuted = true; //need this enabled since it's a ToggleCommand
         LoadCommand.MayBeExecuted = false;
@@ -170,8 +197,8 @@ namespace ClipFlair.AudioRecorder
       {
         RecordCommand.IsChecked = false; //depress recording toggle button //don't talk to ToggleButton directly
         Reset();
-        StatusText = MSG_RECORD_FAILED + e.Message;
-        MessageBox.Show(StatusText); //TODO: find parent window
+        Status = MSG_RECORD_FAILED + e.Message;
+        MessageBox.Show(Status); //TODO: find parent window
        }
 
     }
@@ -184,10 +211,10 @@ namespace ClipFlair.AudioRecorder
 
         try
         {
-          theMemStream = new MemoryStream();
-          WavManager.SavePcmToWav(_sink.BackingStream, theMemStream, _sink.CurrentFormat);
+          Audio = new MemoryStream();
+          WavManager.SavePcmToWav(_sink.BackingStream, Audio, _sink.CurrentFormat);
  
-          StatusText = MSG_RECORDED;
+          Status = MSG_RECORDED;
 
           RecordCommand.MayBeExecuted = true;
           LoadCommand.MayBeExecuted = true;
@@ -196,10 +223,10 @@ namespace ClipFlair.AudioRecorder
         }
         catch (Exception e)
         {
-          theMemStream = null;
+          Audio = null;
           Reset();
-          StatusText = MSG_RECORD_FAILED + e.Message;
-          MessageBox.Show(StatusText); //TODO: find parent window
+          Status = MSG_RECORD_FAILED + e.Message;
+          MessageBox.Show(Status); //TODO: find parent window
         }
 
       }
@@ -207,16 +234,16 @@ namespace ClipFlair.AudioRecorder
     
     protected void Play()
     {
-      if (theMemStream == null)
+      if (Audio == null)
       {
         PlayCommand.IsChecked = false; //depress playback toggle button //don't talk to ToggleButton directly
-        StatusText = MSG_RECORD_OR_LOAD; //prompt user to record audio or load a WAV file
+        Status = MSG_RECORD_OR_LOAD; //prompt user to record audio or load a WAV file
         return;
       }
 
       try
       {
-        wavMss = new WaveMediaStreamSource(theMemStream);
+        wavMss = new WaveMediaStreamSource(Audio);
         player.SetSource(wavMss);
         player.Position = TimeSpan.Zero;
         player.Play();
@@ -224,7 +251,7 @@ namespace ClipFlair.AudioRecorder
       catch (Exception e)
       {
         PlayCommand.IsChecked = false; //depress playback toggle button //don't talk to ToggleButton directly
-        StatusText = MSG_PLAY_FAILED + e.Message;
+        Status = MSG_PLAY_FAILED + e.Message;
       }
     }
 
@@ -248,77 +275,89 @@ namespace ClipFlair.AudioRecorder
 
       try
       {
-        StatusText = MSG_LOADING;
+        Status = MSG_LOADING;
 
         using (Stream stream = openFileDialog.File.OpenRead())
-          LoadAudio(stream);
+        {
+          MemoryStream m = new MemoryStream();
+          LoadAudio(stream, m);
+          Audio = m;
+        }
 
-        StatusText = MSG_LOADED;
-
-        RecordCommand.MayBeExecuted = true;
-        LoadCommand.MayBeExecuted = true;
-        PlayCommand.MayBeExecuted = true;
-        SaveCommand.MayBeExecuted = true;
+        Status = MSG_LOADED;
       }
       catch (Exception e)
       {
-        theMemStream = null;
+        Audio = null;
   
         Reset();
-        StatusText = MSG_LOAD_FAILED + e.Message;
-        MessageBox.Show(StatusText); //TODO: find parent window
+        Status = MSG_LOAD_FAILED + e.Message;
+        MessageBox.Show(Status); //TODO: find parent window
       }
     }
 
     protected void SaveFile()
     {
+      if (!HasAudio)
+      {
+        MessageBox.Show("No audio available to save");
+        return;
+      }
+
       if (saveFileDialog.ShowDialog() == false) return;
 
       try
       {
-        StatusText = MSG_SAVING;
-
+        Status = MSG_SAVING;
+        
         using (Stream stream = saveFileDialog.OpenFile())
-          SaveAudio(stream);
- 
-        StatusText = MSG_SAVED;
+          SaveAudio(stream, Audio);
+
+        Status = MSG_SAVED;
       }
       catch (Exception e)
       {
-        StatusText = MSG_SAVE_FAILED + e.Message;
-        MessageBox.Show(StatusText); //TODO: find parent window
+        Status = MSG_SAVE_FAILED + e.Message;
+        MessageBox.Show(Status); //TODO: find parent window
       }
-    }
-
-    public void LoadAudio(Stream stream) //does not close the stream
-    {
-      theMemStream = new MemoryStream();
-
-      // Append all data from rawData stream into output stream.
-      byte[] buffer = new byte[4096];
-      int read;       // number of bytes read in one iteration
-      while ((read = stream.Read(buffer, 0, 4096)) > 0)
-      {
-        theMemStream.Write(buffer, 0, read);
-      }
-    }
-
-    public void SaveAudio(Stream stream)
-    {
-      // Reset position in memStream and keep its position to restore at the end
-      long originalPosition = theMemStream.Position;
-      theMemStream.Seek(0, SeekOrigin.Begin);
-
-      // Append all data from rawData stream into output stream.
-      byte[] buffer = new byte[4096];
-      int read;       // number of bytes read in one iteration
-      while ((read = theMemStream.Read(buffer, 0, 4096)) > 0)
-        stream.Write(buffer, 0, read);
-
-      theMemStream.Seek(originalPosition, SeekOrigin.Begin); //restore memStream position
     }
 
     #endregion
 
+    #region Static helper methods 
+    //TODO: see if those are needed at all, since they seem to be just copying a stream using a buffer (.NET should have easier method to do that)
+
+    public static void LoadAudio(Stream stream, Stream target) //does not close the stream
+    {
+      target = new MemoryStream();
+      CopyStream(stream, target, 4096);
+    }
+
+    private static void CopyStream(Stream source, Stream target, int bufferSize)
+    {
+      /*
+      // Append all data from rawData stream into output stream.
+      byte[] buffer = new byte[bufferSize];
+      int read; // number of bytes read in one iteration
+      while ((read = source.Read(buffer, 0, bufferSize)) > 0)
+        target.Write(buffer, 0, read);
+      */
+      source.CopyTo(target, bufferSize);
+    }
+
+    public static void SaveAudio(Stream stream, Stream source) //does not close the stream
+    {
+      if (source == null) return; //when no source is available, not writing anything to the stream
+
+      // Reset position in memStream and keep its position to restore at the end
+      long originalPosition = source.Position;
+      source.Seek(0, SeekOrigin.Begin);
+
+      CopyStream(source, stream, 4096);
+  
+      source.Seek(originalPosition, SeekOrigin.Begin); //restore memStream position
+    }
+
+#endregion
   }
 }
