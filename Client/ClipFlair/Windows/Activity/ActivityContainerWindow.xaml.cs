@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: ActivityContainerWindow.xaml.cs
-//Version: 20121122
+//Version: 20121123
 
 using ClipFlair.Windows.Views;
 
@@ -48,27 +48,11 @@ namespace ClipFlair.Windows
 
       activity.Windows.RemoveAll(); //TODO: do not use "Clear", doesn't work
       foreach (ZipEntry childZip in zip.SelectEntries("*.clipflair.zip", zipFolder))
-        using (Stream stream = childZip.OpenReader())
-          using (MemoryStream memStream = new MemoryStream()) //TODO: research this - can't use activity.Windows.Add(LoadWindow(stream), seems DotNetZip fails to open a .zip from a stream inside another .zip
-          {
-            stream.CopyTo(memStream);
-            stream.Flush();
-            memStream.Position = 0;
-            BaseWindow w = LoadWindow(memStream);
-            activity.Windows.Add(w);
-            w.Show();
-
-            //TODO: temp, should load/save Tags (maybe at view), not use hardcoded ones
-            if (w is ActivityContainerWindow) w.Tag = "Activity";
-            else if (w is MediaPlayerWindow) w.Tag = "Media";
-            else if (w is CaptionsGridWindow) w.Tag = "Captions";
-            else if (w is TextEditorWindow) w.Tag = "Text";
-            else if (w is ImageWindow) w.Tag = "Image";
-          }
+        LoadWindow(childZip);
 
       activity.BindWindows(); //TODO: temp, should load/save bindings, not use hardcoded ones
 
-      if (IsTopLevel)
+      if (IsTopLevel) //if this activity window is the outer container
       {
         MoveEnabled = false;
         ResizeEnabled = false;
@@ -80,14 +64,35 @@ namespace ClipFlair.Windows
       } //TODO: most probably needed cause Width/Height View settings of ActivityContainer when top window aren't set correctly (App.xaml has event that resizes window to get container size, but may occur without view finding out?)
     }
 
+    public void LoadWindow(ZipEntry childZip)
+    {
+      using (Stream stream = childZip.OpenReader())
+      using (MemoryStream memStream = new MemoryStream()) //TODO: research this - can't use activity.Windows.Add(LoadWindow(stream), seems DotNetZip fails to open a .zip from a stream inside another .zip
+      {
+        stream.CopyTo(memStream);
+        stream.Flush();
+        memStream.Position = 0;
+        BaseWindow w = LoadWindow(memStream);
+        activity.Windows.Add(w);
+        w.Show();
+
+        //TODO: temp, should load/save Tags (maybe at view), not use hardcoded ones
+        if (w is ActivityContainerWindow) w.Tag = "Activity";
+        else if (w is MediaPlayerWindow) w.Tag = "Media";
+        else if (w is CaptionsGridWindow) w.Tag = "Captions";
+        else if (w is TextEditorWindow) w.Tag = "Text";
+        else if (w is ImageWindow) w.Tag = "Image";
+      }
+    }
+
     public override void SaveOptions(ZipFile zip, string zipFolder = "")
     {
       base.SaveOptions(zip, zipFolder);
       foreach (BaseWindow window in activity.Windows)
-        SaveWindow(zip, zipFolder, window);
+        SaveWindow(window, zip, zipFolder);
     }
 
-    private static void SaveWindow(ZipFile zip, string zipFolder, BaseWindow window)
+    private static void SaveWindow(BaseWindow window, ZipFile zip, string zipFolder = "")
     {
       string title = ((string)window.Title).TrimStart(); //using TrimStart() to not have filenames start with space chars in case it's an issue with ZIP spec
       if (title == "") title = window.GetType().Name;
