@@ -1,3 +1,4 @@
+'Project: ClipFlair (http://ClipFlair.codeplex.com)
 'Filename: ICaptionsWriter.vb
 'Version: 20121016
 

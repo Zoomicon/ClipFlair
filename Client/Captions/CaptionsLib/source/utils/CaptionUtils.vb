@@ -1,5 +1,6 @@
-﻿'Filename: CaptionUtils.vb
-'Version: 20121016
+﻿'Project: ClipFlair (http://ClipFlair.codeplex.com)
+'Filename: CaptionUtils.vb
+'Version: 20121123
 
 Imports ClipFlair.CaptionsLib.Models
 Imports ClipFlair.CaptionsLib.TTS
@@ -47,9 +48,9 @@ Namespace ClipFlair.CaptionsLib.Utils
       Return Nothing
     End Function
 
-    Public Shared Sub ReadCaptions(ByVal captions As CaptionRegion, ByVal path As String, ByVal theEncoding As Encoding)
+    Public Shared Sub ReadCaptions(Of T As {CaptionElement, New})(ByVal captions As CaptionRegion, ByVal path As String, ByVal theEncoding As Encoding)
       Dim reader As ICaptionsReader = GetCaptionsReader(path)
-      If reader IsNot Nothing Then reader.ReadCaptions(captions, path, theEncoding)
+      If reader IsNot Nothing Then reader.ReadCaptions(Of T)(captions, path, theEncoding)
     End Sub
 
     Public Shared Sub WriteCaptions(ByVal captions As CaptionRegion, ByVal path As String, ByVal theEncoding As Encoding)
