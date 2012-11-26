@@ -1,6 +1,6 @@
 ﻿<!--
 Filename: AudioRecorderControl.xaml
-Version: 20121122
+Version: 20121125
 -->
   
 <UserControl
@@ -22,25 +22,39 @@ Version: 20121122
   
   <StackPanel x:Name="LayoutRoot" Orientation="Horizontal">
 
-    <ToggleButton x:Name="btnRecord" Content="Record" Command="{Binding RecordCommand}" Template="{StaticResource RecordCommandStyle}" Width="20" Height="20" Margin="3,0,0,0">
+    <ToggleButton x:Name="btnRecord" Content="Record" 
+                  IsEnabled="{Binding Path=RecordCommand.IsEnabled, Mode=TwoWay}"
+                  IsChecked="{Binding Path=RecordCommand.IsChecked, Mode=TwoWay}"
+                  Template="{StaticResource RecordCommandStyle}"
+                  Width="20" Height="20" Margin="3,0,0,0">
       <ToolTipService.ToolTip>
         <ToolTip Content="Record audio" />
       </ToolTipService.ToolTip>
     </ToggleButton>
 
-    <ToggleButton x:Name="btnPlay" Content="Play" Command="{Binding PlayCommand}" Template="{StaticResource PlayCommandStyle}" Width="20" Height="20" Margin="3,0,3,0">
+    <ToggleButton x:Name="btnPlay" Content="Play"
+                  IsEnabled="{Binding Path=PlayCommand.IsEnabled, Mode=TwoWay}"
+                  IsChecked="{Binding Path=PlayCommand.IsChecked, Mode=TwoWay}"
+                  Template="{StaticResource PlayCommandStyle}"
+                  Width="20" Height="20" Margin="3,0,3,0">
       <ToolTipService.ToolTip>
         <ToolTip Content="Play audio" />
       </ToolTipService.ToolTip>
     </ToggleButton>
 
-    <Button x:Name="btnLoad" Command="{Binding LoadCommand}" Template="{StaticResource LoadCommandStyle}" Width="20" Height="20" Margin="0,0,3,0">
+    <Button x:Name="btnLoad"
+            Command="{Binding LoadCommand}"
+            Template="{StaticResource LoadCommandStyle}"
+            Width="20" Height="20" Margin="0,0,3,0">
       <ToolTipService.ToolTip>
         <ToolTip Content="Load audio from .WAV file" />
       </ToolTipService.ToolTip>
     </Button>
 
-    <Button x:Name="btnSave" Command="{Binding SaveCommand}" Template="{StaticResource SaveCommandStyle}" Width="20" Height="20" Margin="0,0,3,0">
+    <Button x:Name="btnSave"
+            Command="{Binding SaveCommand}"
+            Template="{StaticResource SaveCommandStyle}"
+            Width="20" Height="20" Margin="0,0,3,0">
       <ToolTipService.ToolTip>
         <ToolTip Content="Save audio to .WAV file" />
       </ToolTipService.ToolTip>

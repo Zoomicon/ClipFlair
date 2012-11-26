@@ -1,48 +1,62 @@
-﻿//Filename: ToggleCommand.cs
-//Version: 20120912
+﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
+//Filename: ToggleCommand.cs
+//Version: 20121125
 
 using System;
-using System.Windows.Controls.Primitives;
-using System.Windows.Input;
+using System.Windows;
 
 namespace ClipFlair.AudioRecorder
 {
 
-  public class ToggleCommand : SimpleCommand
+  public class ToggleCommand : Command
   {
     public Action ExecuteUncheckAction { get; set; }
 
-    protected ToggleButton toggleButton;
+    #region IsChecked
 
+    /// <summary>
+    /// IsChecked Dependency Property
+    /// </summary>
+    public static readonly DependencyProperty IsCheckedProperty =
+        DependencyProperty.Register("IsChecked", typeof(bool), typeof(ToggleCommand),
+            new FrameworkPropertyMetadata(false,
+                new PropertyChangedCallback(OnIsCheckedChanged)));
+
+    /// <summary>
+    /// Gets or sets the IsChecked property.
+    /// </summary>
     public bool IsChecked
     {
-      get { return (toggleButton.IsChecked == true); }
-      set {
-        if (MayBeExecuted)
-        {
-          toggleButton.IsChecked = value;
-          Execute(null);
-        }
-      }
+      get { return (bool)GetValue(IsCheckedProperty); }
+      set { SetValue(IsCheckedProperty, value); }
     }
 
-    private ToggleCommand()
+    /// <summary>
+    /// Handles changes to the IsChecked property.
+    /// </summary>
+    private static void OnIsCheckedChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
-      throw new NotImplementedException();
+      ToggleCommand target = (ToggleCommand)d;
+      bool oldIsChecked = (bool)e.OldValue;
+      bool newIsChecked = target.IsChecked;
+      target.OnIsCheckedChanged(oldIsChecked, newIsChecked);
     }
 
-    public ToggleCommand(ToggleButton theToggleButton)
+    /// <summary>
+    /// Provides derived classes an opportunity to handle changes to the IsChecked property.
+    /// </summary>
+    protected virtual void OnIsCheckedChanged(bool oldIsChecked, bool newIsChecked)
     {
-      this.toggleButton = theToggleButton;
+      if (newIsChecked != oldIsChecked) 
+        Execute(null);
     }
-    
+
+    #endregion
+
     public override void Execute(object parameter)
     {
-      if (ExecuteAction != null)
-        if (toggleButton.IsChecked == true)
-          ExecuteAction();
-        else
-          ExecuteUncheckAction();
+        if (IsChecked) { if (ExecuteAction != null) ExecuteAction(); }
+        else { if (ExecuteUncheckAction != null) ExecuteUncheckAction(); }
     }
     
   }
