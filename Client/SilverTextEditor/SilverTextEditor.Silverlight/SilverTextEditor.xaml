@@ -73,28 +73,28 @@ Version: 20121114
 
               <Button x:Name="btnNew" Click="btnNew_Click" >
                 <ToolTipService.ToolTip>
-                  <ToolTip FontSize="16" Content="{Binding tooltip_New, Source={StaticResource localizedStrings}}"/>
+                  <ToolTip Content="{Binding tooltip_New, Source={StaticResource localizedStrings}}"/>
                 </ToolTipService.ToolTip>
                 <Image Source="Images/New.png"/>
               </Button>
 
               <Button  x:Name="btnOpen" Click="btnOpen_Click" >
                 <ToolTipService.ToolTip>
-                  <ToolTip FontSize="16" Content="{Binding tooltip_Open, Source={StaticResource localizedStrings}}"/>
+                  <ToolTip Content="{Binding tooltip_Open, Source={StaticResource localizedStrings}}"/>
                 </ToolTipService.ToolTip>
                 <Image Source="Images/Open.png"/>
               </Button>
 
               <Button x:Name="btnSave" Click="btnSave_Click" >
                 <ToolTipService.ToolTip>
-                  <ToolTip FontSize="16" Content="{Binding tooltip_Save, Source={StaticResource localizedStrings}}"/>
+                  <ToolTip Content="{Binding tooltip_Save, Source={StaticResource localizedStrings}}"/>
                 </ToolTipService.ToolTip>
                 <Image Source="Images/Save.png"/>
               </Button>
 
               <Button x:Name="btnPrint" Click="btnPrint_Click">
                 <ToolTipService.ToolTip>
-                  <ToolTip FontSize="16" Content="{Binding tooltip_Print, Source={StaticResource localizedStrings}}"/>
+                  <ToolTip Content="{Binding tooltip_Print, Source={StaticResource localizedStrings}}"/>
                 </ToolTipService.ToolTip>
                 <Image Source="Images/Print.png" />
               </Button>
@@ -107,20 +107,20 @@ Version: 20121114
 
             <Button x:Name="btnPaste" Click="btnPaste_Click">
               <ToolTipService.ToolTip>
-                <ToolTip FontSize="16" Content="Paste"/>
+                <ToolTip Content="Paste"/>
               </ToolTipService.ToolTip>
               <Image Source="Images/Paste.png" />
             </Button>
 
             <Button x:Name="btnCut" Click="btnCut_Click" >
               <ToolTipService.ToolTip>
-                <ToolTip FontSize="16" Content="Cut"/>
+                <ToolTip Content="Cut"/>
               </ToolTipService.ToolTip>
               <Image Source="Images/Cut.png" d:IsLocked="True"/>
             </Button>
             <Button x:Name="btnCopy" Click="btnCopy_Click" >
               <ToolTipService.ToolTip>
-                <ToolTip FontSize="16" Content="Copy"/>
+                <ToolTip Content="Copy"/>
               </ToolTipService.ToolTip>
               <Image Source="Images/Copy.png" d:IsLocked="True"/>
             </Button>
@@ -188,21 +188,21 @@ Version: 20121114
 
             <Button x:Name="btnBold" Click="btnBold_Click" >
               <ToolTipService.ToolTip>
-                <ToolTip FontSize="16" Content="{Binding tooltip_Bold, Source={StaticResource localizedStrings}}"/>
+                <ToolTip Content="{Binding tooltip_Bold, Source={StaticResource localizedStrings}}"/>
               </ToolTipService.ToolTip>
               <Image Source="Images/Bold.png" d:IsLocked="True"/>
             </Button>
 
             <Button x:Name="btnItalic" Click="btnItalic_Click" >
               <ToolTipService.ToolTip>
-                <ToolTip FontSize="16" Content="{Binding tooltip_Italic, Source={StaticResource localizedStrings}}"/>
+                <ToolTip Content="{Binding tooltip_Italic, Source={StaticResource localizedStrings}}"/>
               </ToolTipService.ToolTip>
               <Image Source="Images/Italic.png"/>
             </Button>
 
             <Button x:Name="btnUnderline" Click="btnUnderline_Click" >
               <ToolTipService.ToolTip>
-                <ToolTip FontSize="16" Content="Underline"/>
+                <ToolTip Content="Underline"/>
               </ToolTipService.ToolTip>
               <Image Source="Images/Underline.png"/>
             </Button>
@@ -218,7 +218,7 @@ Version: 20121114
             <!--
             <Button x:Name="btnImage" Click="btnImage_Click">
               <ToolTipService.ToolTip>
-                <ToolTip FontSize="16" Content="{Binding tooltip_Image, Source={StaticResource localizedStrings}}"/>
+                <ToolTip Content="{Binding tooltip_Image, Source={StaticResource localizedStrings}}"/>
               </ToolTipService.ToolTip>
               <Image Source="Images/Image.png" />
             </Button>
@@ -226,14 +226,14 @@ Version: 20121114
 
             <Button x:Name="btnHyperlink" Click="btnHyperlink_Click" Height="22">
               <ToolTipService.ToolTip>
-                <ToolTip FontSize="16" Content="{Binding tooltip_Hyperlink, Source={StaticResource localizedStrings}}"/>
+                <ToolTip Content="{Binding tooltip_Hyperlink, Source={StaticResource localizedStrings}}"/>
               </ToolTipService.ToolTip>
               <Image Source="Images/Hyperlink.png" />
             </Button>
 
             <Button x:Name="btnTimestamp" Click="btnTimestamp_Click" Height="22">
               <ToolTipService.ToolTip>
-                <ToolTip FontSize="16" Content="{Binding tooltip_Timestamp, Source={StaticResource localizedStrings}}"/>
+                <ToolTip Content="{Binding tooltip_Timestamp, Source={StaticResource localizedStrings}}"/>
               </ToolTipService.ToolTip>
               <Image Source="Images/Calendar.png" />
             </Button>
@@ -249,21 +249,21 @@ Version: 20121114
 
             <ToggleButton x:Name="btnRTL" Checked="btnRTL_Checked" Unchecked="btnRTL_Checked" Height="22">
               <ToolTipService.ToolTip>
-                <ToolTip FontSize="16" Content="Text Direction"/>
+                <ToolTip Content="Text Direction"/>
               </ToolTipService.ToolTip>
               <Image Source="Images/LTR.png" />
             </ToggleButton>
 
             <ToggleButton x:Name="btnRO" Checked="btnRO_Checked" Unchecked="btnRO_Checked" IsChecked="{Binding IsReadOnly}" Height="22">
               <ToolTipService.ToolTip>
-                <ToolTip FontSize="16" Content="Edit / View Mode"/>
+                <ToolTip Content="Edit / View Mode"/>
               </ToolTipService.ToolTip>
               <Image Source="Images/Edit.png" />
             </ToggleButton>
 
             <ToggleButton x:Name="btnHighlight" Checked="btnHighlight_Checked" Height="22">
               <ToolTipService.ToolTip>
-                <ToolTip FontSize="16" Content="{Binding txt_Highlight, Source={StaticResource localizedStrings}}"/>
+                <ToolTip Content="{Binding txt_Highlight, Source={StaticResource localizedStrings}}"/>
               </ToolTipService.ToolTip>
               <Image Source="Images/Annotation_New.png" />
             </ToggleButton>
@@ -273,7 +273,7 @@ Version: 20121114
           
           <ToggleButton x:Name="btnMarkUp" Checked="btnMarkUp_Checked" Unchecked="btnMarkUp_Checked">
             <ToolTipService.ToolTip>
-              <ToolTip FontSize="16" Content="{Binding txt_XAML, Source={StaticResource localizedStrings}}"/>
+              <ToolTip Content="{Binding txt_XAML, Source={StaticResource localizedStrings}}"/>
             </ToolTipService.ToolTip>
             <TextBlock FontSize="25" Text="&lt;&lt;>>"/>
           </ToggleButton>
