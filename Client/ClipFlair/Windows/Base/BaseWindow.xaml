@@ -59,14 +59,14 @@ Version: 20121113
           
             <Button Name="btnLoad" Margin="3,3,3,3">
               <ToolTipService.ToolTip>
-                <ToolTip FontSize="16" Content="Load options" />
+                <ToolTip Content="Load options" />
               </ToolTipService.ToolTip>
               <Image Source="/ClipFlair;component/Images/load.png" /> 
             </Button>
 
             <Button Name="btnSave" Margin="3,3,3,3">
               <ToolTipService.ToolTip>
-                <ToolTip FontSize="16" Content="Save options" />
+                <ToolTip Content="Save options" />
               </ToolTipService.ToolTip>
               <Image Source="/ClipFlair;component/Images/save.png" />
             </Button>

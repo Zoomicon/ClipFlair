@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: CaptionsGridWindow.xaml.cs
-//Version: 20121123
+//Version: 20121124
 
 //TODO: add Source property to CaptionsGrid control and use data-binding to bind it to CaptionsGridView's Source property
 
@@ -163,7 +163,7 @@ namespace ClipFlair.Windows
 
     public void LoadAudio(CaptionElement caption, ZipFile zip, string zipFolder = "")
     {
-      ZipEntry entry = zip[zipFolder + CaptionAudioFilename(caption)];
+      ZipEntry entry = zip[zipFolder + AudioFilename(caption)];
       if (entry != null)
         CaptionsGrid.CaptionsGrid.LoadAudio(caption, entry.OpenReader());
     }
@@ -187,11 +187,11 @@ namespace ClipFlair.Windows
     {
       if (CaptionElementExt.HasAudio(caption))
         zip.AddEntry(
-          zipFolder + CaptionAudioFilename(caption),
+          zipFolder + AudioFilename(caption),
           new WriteDelegate((entryName, stream) => { CaptionsGrid.CaptionsGrid.SaveAudio(caption, stream); }) );
     }
 
-    private string CaptionAudioFilename(CaptionElement caption)
+    private string AudioFilename(CaptionElement caption)
     {
       string startTime = caption.BeginText ?? "00:00:00"; //if null using "00:00:00"
       string endTime = caption.EndText ?? "00:00:00"; //if null using "00:00:00"

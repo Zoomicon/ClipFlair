@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: ICaptionsGridDefaults.cs
-//Version: 20121123
+//Version: 20121124
 
 using System;
 using System.Windows;
@@ -24,7 +24,8 @@ namespace ClipFlair.Windows.Views
     public const bool DefaultEndTimeVisible = true;
     public const bool DefaultDurationVisible = false;
     public const bool DefaultCaptionVisible = true;
-    public const bool DefaultCaptionAudioVisible = true;
+    public const bool DefaultAudioVisible = true;
+    public const bool DefaultCommentsVisible = false;
   }
 
 }

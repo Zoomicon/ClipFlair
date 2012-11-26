@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: ICaptionsGrid.cs
-//Version: 20121123
+//Version: 20121124
 
 using System;
 
@@ -16,7 +16,8 @@ namespace ClipFlair.Windows.Views
     public const string PropertyEndTimeVisible = "EndTimeVisible";
     public const string PropertyDurationVisible = "DurationVisible";
     public const string PropertyCaptionVisible = "CaptionVisible";
-    public const string PropertyCaptionAudioVisible = "CaptionAudioVisible";
+    public const string PropertyAudioVisible = "AudioVisible";
+    public const string PropertyCommentsVisible = "CommentsVisible";
   }
 
   public interface ICaptionsGrid: IView
@@ -28,7 +29,8 @@ namespace ClipFlair.Windows.Views
     bool EndTimeVisible { get; set; }
     bool DurationVisible { get; set; }
     bool CaptionVisible { get; set; }
-    bool CaptionAudioVisible { get; set; }
+    bool AudioVisible { get; set; }
+    bool CommentsVisible { get; set; }
   }
 
 }
