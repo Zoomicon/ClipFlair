@@ -1,7 +1,7 @@
 ﻿<!-- 
 Project: ClipFlair (http://ClipFlair.codeplex.com)
 Filename: Generic.xaml
-Version: 20121123
+Version: 20121126
 -->
   
 <ResourceDictionary
@@ -14,7 +14,7 @@ Version: 20121123
 
   <res:Strings x:Key="localizedStrings"/>
 
-  <!-- Content -->
+  <!-- Actor -->
 
   <DataTemplate x:Key="ActorCellTemplate">
     <TextBlock Margin="4" Text="{Binding Actor}" />
@@ -65,24 +65,30 @@ Version: 20121123
     <TextBlock Margin="4" Text="{Binding Duration, StringFormat='hh\\:mm\\:ss\\.FFF'}" />
   </DataTemplate>
 
-  <!-- Content -->
+  <!-- Caption -->
   
-  <DataTemplate x:Key="ContentCellTemplate">
+  <DataTemplate x:Key="CaptionCellTemplate">
     <TextBlock Margin="4" Text="{Binding Content}" />
   </DataTemplate>
 
-  <DataTemplate x:Key="ContentCellEditTemplate">
+  <DataTemplate x:Key="CaptionCellEditTemplate">
     <TextBox Margin="4" AcceptsReturn="True" Text="{Binding Content, Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=true}" />
   </DataTemplate>
  
   <!-- Audio -->
   
   <DataTemplate x:Key="AudioCellTemplate">
-    <audio:AudioRecorderControl>
-      <audio:AudioRecorderControl.View>
-         <audio:AudioRecorderView Audio="{Binding Audio, Mode=TwoWay}" />
-      </audio:AudioRecorderControl.View>
-    </audio:AudioRecorderControl>
+    <audio:AudioRecorderControl Audio="{Binding RelativeSource={RelativeSource AncestorType=FrameworkElement}, Path=DataContext.Audio, Mode=TwoWay}" /> <!-- AudioRecorderControl sets its DataContext to its ViewModel, so it doesn't inherit its parent's DataContext -->
+  </DataTemplate>
+
+  <!-- Comments -->
+
+  <DataTemplate x:Key="CommentsCellTemplate">
+    <TextBlock Margin="4" Text="{Binding Comments}" />
+  </DataTemplate>
+
+  <DataTemplate x:Key="CommentsCellEditTemplate">
+    <TextBox Margin="4" AcceptsReturn="True" Text="{Binding Comments, Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=true}" />
   </DataTemplate>
 
 </ResourceDictionary>

@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: CaptionsGrid.xaml.cs
-//Version: 20121123
+//Version: 20121124
 
 using ClipFlair.AudioRecorder;
 using ClipFlair.CaptionsLib.Utils;
@@ -42,6 +42,7 @@ namespace ClipFlair.CaptionsGrid
       ColumnDuration = gridCaptions.Columns[3];
       ColumnContent = gridCaptions.Columns[4];
       ColumnAudio = gridCaptions.Columns[5];
+      ColumnComments = gridCaptions.Columns[6];
 
       gridCaptions.ClipboardCopyMode = DataGridClipboardCopyMode.IncludeHeader;
       gridCaptions.SelectionMode = DataGridSelectionMode.Single;
@@ -72,6 +73,7 @@ namespace ClipFlair.CaptionsGrid
     public DataGridColumn ColumnDuration { get; private set; }
     public DataGridColumn ColumnContent { get; private set; }
     public DataGridColumn ColumnAudio { get; private set; }
+    public DataGridColumn ColumnComments { get; private set; }
 
     #endregion
 
@@ -160,224 +162,261 @@ namespace ClipFlair.CaptionsGrid
 
     #endregion
 
-    #region CaptionActorVisible
+    #region ActorVisible
 
     /// <summary>
-    /// CaptionActorVisible Dependency Property
+    /// ActorVisible Dependency Property
     /// </summary>
-    public static readonly DependencyProperty CaptionActorVisibleProperty =
-        DependencyProperty.Register("CaptionActorVisible", typeof(bool), typeof(CaptionsGrid),
-            new FrameworkPropertyMetadata(true, new PropertyChangedCallback(OnCaptionActorVisibleChanged)));
+    public static readonly DependencyProperty ActorVisibleProperty =
+        DependencyProperty.Register("ActorVisible", typeof(bool), typeof(CaptionsGrid),
+            new FrameworkPropertyMetadata(true, new PropertyChangedCallback(OnActorVisibleChanged)));
 
     /// <summary>
-    /// Gets or sets the CaptionActorVisible property. 
+    /// Gets or sets the ActorVisible property. 
     /// </summary>
-    public bool CaptionActorVisible
+    public bool ActorVisible
     {
-      get { return (bool)GetValue(CaptionActorVisibleProperty); }
-      set { SetValue(CaptionActorVisibleProperty, value); }
+      get { return (bool)GetValue(ActorVisibleProperty); }
+      set { SetValue(ActorVisibleProperty, value); }
     }
 
     /// <summary>
-    /// Handles changes to the CaptionActorVisible property.
+    /// Handles changes to the ActorVisible property.
     /// </summary>
-    private static void OnCaptionActorVisibleChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    private static void OnActorVisibleChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
       CaptionsGrid target = (CaptionsGrid)d;
-      target.OnCaptionActorVisibleChanged((bool)e.OldValue, target.CaptionActorVisible);
+      target.OnActorVisibleChanged((bool)e.OldValue, target.ActorVisible);
     }
 
     /// <summary>
-    /// Provides derived classes an opportunity to handle changes to the CaptionActorVisible property.
+    /// Provides derived classes an opportunity to handle changes to the ActorVisible property.
     /// </summary>
-    protected virtual void OnCaptionActorVisibleChanged(bool oldValue, bool newValue)
+    protected virtual void OnActorVisibleChanged(bool oldValue, bool newValue)
     {
       ColumnActor.Visibility = (newValue) ? Visibility.Visible : Visibility.Collapsed;
     }
 
     #endregion
 
-    #region CaptionStartTimeVisible
+    #region StartTimeVisible
 
     /// <summary>
-    /// CaptionStartTimeVisible Dependency Property
+    /// StartTimeVisible Dependency Property
     /// </summary>
-    public static readonly DependencyProperty CaptionStartTimeVisibleProperty =
-        DependencyProperty.Register("CaptionStartTimeVisible", typeof(bool), typeof(CaptionsGrid),
-            new FrameworkPropertyMetadata(true, new PropertyChangedCallback(OnCaptionStartTimeVisibleChanged)));
+    public static readonly DependencyProperty StartTimeVisibleProperty =
+        DependencyProperty.Register("StartTimeVisible", typeof(bool), typeof(CaptionsGrid),
+            new FrameworkPropertyMetadata(true, new PropertyChangedCallback(OnStartTimeVisibleChanged)));
 
     /// <summary>
-    /// Gets or sets the CaptionStartTimeVisible property. 
+    /// Gets or sets the StartTimeVisible property. 
     /// </summary>
-    public bool CaptionStartTimeVisible
+    public bool StartTimeVisible
     {
-      get { return (bool)GetValue(CaptionStartTimeVisibleProperty); }
-      set { SetValue(CaptionStartTimeVisibleProperty, value); }
+      get { return (bool)GetValue(StartTimeVisibleProperty); }
+      set { SetValue(StartTimeVisibleProperty, value); }
     }
 
     /// <summary>
-    /// Handles changes to the CaptionStartTimeVisible property.
+    /// Handles changes to the StartTimeVisible property.
     /// </summary>
-    private static void OnCaptionStartTimeVisibleChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    private static void OnStartTimeVisibleChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
       CaptionsGrid target = (CaptionsGrid)d;
-      target.OnCaptionStartTimeVisibleChanged((bool)e.OldValue, target.CaptionStartTimeVisible);
+      target.OnStartTimeVisibleChanged((bool)e.OldValue, target.StartTimeVisible);
     }
 
     /// <summary>
-    /// Provides derived classes an opportunity to handle changes to the CaptionStartTimeVisible property.
+    /// Provides derived classes an opportunity to handle changes to the StartTimeVisible property.
     /// </summary>
-    protected virtual void OnCaptionStartTimeVisibleChanged(bool oldValue, bool newValue)
+    protected virtual void OnStartTimeVisibleChanged(bool oldValue, bool newValue)
     {
       ColumnStartTime.Visibility = (newValue) ? Visibility.Visible : Visibility.Collapsed;
     }
 
     #endregion
 
-    #region CaptionEndTimeVisible
+    #region EndTimeVisible
 
     /// <summary>
-    /// CaptionEndTimeVisible Dependency Property
+    /// EndTimeVisible Dependency Property
     /// </summary>
-    public static readonly DependencyProperty CaptionEndTimeVisibleProperty =
-        DependencyProperty.Register("CaptionEndTimeVisible", typeof(bool), typeof(CaptionsGrid),
-            new FrameworkPropertyMetadata(true, new PropertyChangedCallback(OnCaptionEndTimeVisibleChanged)));
+    public static readonly DependencyProperty EndTimeVisibleProperty =
+        DependencyProperty.Register("EndTimeVisible", typeof(bool), typeof(CaptionsGrid),
+            new FrameworkPropertyMetadata(true, new PropertyChangedCallback(OnEndTimeVisibleChanged)));
 
     /// <summary>
-    /// Gets or sets the CaptionEndTimeVisible property. 
+    /// Gets or sets the EndTimeVisible property. 
     /// </summary>
-    public bool CaptionEndTimeVisible
+    public bool EndTimeVisible
     {
-      get { return (bool)GetValue(CaptionEndTimeVisibleProperty); }
-      set { SetValue(CaptionEndTimeVisibleProperty, value); }
+      get { return (bool)GetValue(EndTimeVisibleProperty); }
+      set { SetValue(EndTimeVisibleProperty, value); }
     }
 
     /// <summary>
-    /// Handles changes to the CaptionEndTimeVisible property.
+    /// Handles changes to the EndTimeVisible property.
     /// </summary>
-    private static void OnCaptionEndTimeVisibleChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    private static void OnEndTimeVisibleChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
       CaptionsGrid target = (CaptionsGrid)d;
-      target.OnCaptionEndTimeVisibleChanged((bool)e.OldValue, target.CaptionEndTimeVisible);
+      target.OnEndTimeVisibleChanged((bool)e.OldValue, target.EndTimeVisible);
     }
 
     /// <summary>
-    /// Provides derived classes an opportunity to handle changes to the CaptionEndTimeVisible property.
+    /// Provides derived classes an opportunity to handle changes to the EndTimeVisible property.
     /// </summary>
-    protected virtual void OnCaptionEndTimeVisibleChanged(bool oldValue, bool newValue)
+    protected virtual void OnEndTimeVisibleChanged(bool oldValue, bool newValue)
     {
       ColumnEndTime.Visibility = (newValue) ? Visibility.Visible : Visibility.Collapsed;
     }
 
     #endregion
 
-    #region CaptionDurationVisible
+    #region DurationVisible
 
     /// <summary>
-    /// CaptionDurationVisible Dependency Property
+    /// DurationVisible Dependency Property
     /// </summary>
-    public static readonly DependencyProperty CaptionDurationVisibleProperty =
-        DependencyProperty.Register("CaptionDurationVisible", typeof(bool), typeof(CaptionsGrid),
-            new FrameworkPropertyMetadata(true, new PropertyChangedCallback(OnCaptionDurationVisibleChanged)));
+    public static readonly DependencyProperty DurationVisibleProperty =
+        DependencyProperty.Register("DurationVisible", typeof(bool), typeof(CaptionsGrid),
+            new FrameworkPropertyMetadata(true, new PropertyChangedCallback(OnDurationVisibleChanged)));
 
     /// <summary>
-    /// Gets or sets the CaptionDurationVisible property. 
+    /// Gets or sets the DurationVisible property. 
     /// </summary>
-    public bool CaptionDurationVisible
+    public bool DurationVisible
     {
-      get { return (bool)GetValue(CaptionDurationVisibleProperty); }
-      set { SetValue(CaptionDurationVisibleProperty, value); }
+      get { return (bool)GetValue(DurationVisibleProperty); }
+      set { SetValue(DurationVisibleProperty, value); }
     }
 
     /// <summary>
-    /// Handles changes to the CaptionDurationVisible property.
+    /// Handles changes to the DurationVisible property.
     /// </summary>
-    private static void OnCaptionDurationVisibleChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    private static void OnDurationVisibleChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
       CaptionsGrid target = (CaptionsGrid)d;
-      target.OnCaptionDurationVisibleChanged((bool)e.OldValue, target.CaptionDurationVisible);
+      target.OnDurationVisibleChanged((bool)e.OldValue, target.DurationVisible);
     }
 
     /// <summary>
-    /// Provides derived classes an opportunity to handle changes to the CaptionDurationVisible property.
+    /// Provides derived classes an opportunity to handle changes to the DurationVisible property.
     /// </summary>
-    protected virtual void OnCaptionDurationVisibleChanged(bool oldValue, bool newValue)
+    protected virtual void OnDurationVisibleChanged(bool oldValue, bool newValue)
     {
       ColumnDuration.Visibility = (newValue) ? Visibility.Visible : Visibility.Collapsed;
     }
 
     #endregion
 
-    #region CaptionContentVisible
+    #region CaptionVisible
 
     /// <summary>
-    /// CaptionContentVisible Dependency Property
+    /// CaptionVisible Dependency Property
     /// </summary>
-    public static readonly DependencyProperty CaptionContentVisibleProperty =
-        DependencyProperty.Register("CaptionContentVisible", typeof(bool), typeof(CaptionsGrid),
-            new FrameworkPropertyMetadata(true, new PropertyChangedCallback(OnCaptionContentVisibleChanged)));
+    public static readonly DependencyProperty CaptionVisibleProperty =
+        DependencyProperty.Register("CaptionVisible", typeof(bool), typeof(CaptionsGrid),
+            new FrameworkPropertyMetadata(true, new PropertyChangedCallback(OnCaptionVisibleChanged)));
 
     /// <summary>
-    /// Gets or sets the CaptionContentVisible property. 
+    /// Gets or sets the CaptionVisible property. 
     /// </summary>
-    public bool CaptionContentVisible
+    public bool CaptionVisible
     {
-      get { return (bool)GetValue(CaptionContentVisibleProperty); }
-      set { SetValue(CaptionContentVisibleProperty, value); }
+      get { return (bool)GetValue(CaptionVisibleProperty); }
+      set { SetValue(CaptionVisibleProperty, value); }
     }
 
     /// <summary>
-    /// Handles changes to the CaptionContentVisible property.
+    /// Handles changes to the CaptionVisible property.
     /// </summary>
-    private static void OnCaptionContentVisibleChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    private static void OnCaptionVisibleChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
       CaptionsGrid target = (CaptionsGrid)d;
-      target.OnCaptionContentVisibleChanged((bool)e.OldValue, target.CaptionContentVisible);
+      target.OnCaptionVisibleChanged((bool)e.OldValue, target.CaptionVisible);
     }
 
     /// <summary>
-    /// Provides derived classes an opportunity to handle changes to the CaptionContentVisible property.
+    /// Provides derived classes an opportunity to handle changes to the CaptionVisible property.
     /// </summary>
-    protected virtual void OnCaptionContentVisibleChanged(bool oldValue, bool newValue)
+    protected virtual void OnCaptionVisibleChanged(bool oldValue, bool newValue)
     {
       ColumnContent.Visibility = (newValue) ? Visibility.Visible : Visibility.Collapsed;
     }
 
     #endregion
 
-    #region CaptionAudioVisible
+    #region AudioVisible
 
     /// <summary>
-    /// CaptionAudioVisible Dependency Property
+    /// AudioVisible Dependency Property
     /// </summary>
-    public static readonly DependencyProperty CaptionAudioVisibleProperty =
-        DependencyProperty.Register("CaptionAudioVisible", typeof(bool), typeof(CaptionsGrid),
-            new FrameworkPropertyMetadata(true, new PropertyChangedCallback(OnCaptionAudioVisibleChanged)));
+    public static readonly DependencyProperty AudioVisibleProperty =
+        DependencyProperty.Register("AudioVisible", typeof(bool), typeof(CaptionsGrid),
+            new FrameworkPropertyMetadata(true, new PropertyChangedCallback(OnAudioVisibleChanged)));
 
     /// <summary>
-    /// Gets or sets the CaptionAudioVisible property. 
+    /// Gets or sets the AudioVisible property. 
     /// </summary>
-    public bool CaptionAudioVisible
+    public bool AudioVisible
     {
-      get { return (bool)GetValue(CaptionAudioVisibleProperty); }
-      set { SetValue(CaptionAudioVisibleProperty, value); }
+      get { return (bool)GetValue(AudioVisibleProperty); }
+      set { SetValue(AudioVisibleProperty, value); }
     }
 
     /// <summary>
-    /// Handles changes to the CaptionAudioVisible property.
+    /// Handles changes to the AudioVisible property.
     /// </summary>
-    private static void OnCaptionAudioVisibleChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    private static void OnAudioVisibleChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
       CaptionsGrid target = (CaptionsGrid)d;
-      target.OnCaptionAudioVisibleChanged((bool)e.OldValue, target.CaptionAudioVisible);
+      target.OnAudioVisibleChanged((bool)e.OldValue, target.AudioVisible);
     }
 
     /// <summary>
-    /// Provides derived classes an opportunity to handle changes to the CaptionAudioVisible property.
+    /// Provides derived classes an opportunity to handle changes to the AudioVisible property.
     /// </summary>
-    protected virtual void OnCaptionAudioVisibleChanged(bool oldValue, bool newValue)
+    protected virtual void OnAudioVisibleChanged(bool oldValue, bool newValue)
     {
       ColumnAudio.Visibility = (newValue) ? Visibility.Visible : Visibility.Collapsed;
+    }
+
+    #endregion
+
+    #region CommentsVisible
+
+    /// <summary>
+    /// CommentsVisible Dependency Property
+    /// </summary>
+    public static readonly DependencyProperty CommentsVisibleProperty =
+        DependencyProperty.Register("CommentsVisible", typeof(bool), typeof(CaptionsGrid),
+            new FrameworkPropertyMetadata(true, new PropertyChangedCallback(OnCommentsVisibleChanged)));
+
+    /// <summary>
+    /// Gets or sets the CommentsVisible property. 
+    /// </summary>
+    public bool CommentsVisible
+    {
+      get { return (bool)GetValue(CommentsVisibleProperty); }
+      set { SetValue(CommentsVisibleProperty, value); }
+    }
+
+    /// <summary>
+    /// Handles changes to the CommentsVisible property.
+    /// </summary>
+    private static void OnCommentsVisibleChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    {
+      CaptionsGrid target = (CaptionsGrid)d;
+      target.OnCommentsVisibleChanged((bool)e.OldValue, target.CommentsVisible);
+    }
+
+    /// <summary>
+    /// Provides derived classes an opportunity to handle changes to the CommentsVisible property.
+    /// </summary>
+    protected virtual void OnCommentsVisibleChanged(bool oldValue, bool newValue)
+    {
+      ColumnComments.Visibility = (newValue) ? Visibility.Visible : Visibility.Collapsed;
     }
 
     #endregion
@@ -511,7 +550,7 @@ namespace ClipFlair.CaptionsGrid
       if (captionExt == null) return;
 
       MemoryStream buffer = new MemoryStream();
-      AudioRecorderView.LoadAudio(stream, buffer);
+      AudioRecorderView.LoadAudio(stream, buffer); //keep load logic encapsulated so that we can add decoding/decompression there
       captionExt.Audio = buffer;
     }
 
@@ -520,7 +559,7 @@ namespace ClipFlair.CaptionsGrid
       CaptionElementExt captionExt = caption as CaptionElementExt;
       if (captionExt == null) return;
 
-      AudioRecorderView.SaveAudio(stream, captionExt.Audio);
+      AudioRecorderView.SaveAudio(stream, captionExt.Audio); //keep save logic encapsulated so that we can add encoding/compression there
     }
 
     #endregion

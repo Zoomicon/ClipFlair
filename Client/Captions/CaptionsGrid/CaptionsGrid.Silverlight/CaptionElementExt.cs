@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: CaptionElementExt.cs
-//Version: 20121123
+//Version: 20121124
 
 using Microsoft.SilverlightMediaFramework.Core.Accessibility.Captions;
 
@@ -18,9 +18,11 @@ namespace ClipFlair.CaptionsGrid
 
     const string PROPERTY_ACTOR = "Actor";
     const string PROPERTY_AUDIO = "Audio";
+    const string PROPERTY_COMMENTS = "Comments";
 
     private string _actor;
     private Stream _audio;
+    private string _comments;
 
     /// <summary>
     /// Gets or sets the actor for this marker item.
@@ -47,6 +49,20 @@ namespace ClipFlair.CaptionsGrid
       {
         _audio = value;
         NotifyPropertyChanged(PROPERTY_AUDIO);
+      }
+    }
+
+    /// <summary>
+    /// Gets or sets the comments for this marker item.
+    /// </summary>
+    [ScriptableMember]
+    public string Comments
+    {
+      get { return _comments; }
+      set
+      {
+        _comments = value;
+        NotifyPropertyChanged(PROPERTY_COMMENTS);
       }
     }
 
