@@ -1,7 +1,8 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: BaseWindow.xaml.cs
-//Version: 20121113
+//Version: 20121125
 
+//TODO: unbind control's Time property from parent at close
 //TODO: do not allow to set too low opacity values that could make windows disappear
 
 #define PROPERTY_CHANGE_SUPPORT
@@ -96,7 +97,7 @@ namespace ClipFlair.Windows
         #if PROPERTY_CHANGE_SUPPORT
         //remove property changed handler from old view
         if (DataContext != null)
-          ((IView)DataContext).PropertyChanged -= new PropertyChangedEventHandler(View_PropertyChanged); //IView inherits from INotifyPropertyChanged
+          View.PropertyChanged -= new PropertyChangedEventHandler(View_PropertyChanged); //IView inherits from INotifyPropertyChanged
         
         //add property changed handler to new view
         if (value != null)

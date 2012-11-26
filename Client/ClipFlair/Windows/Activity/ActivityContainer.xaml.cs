@@ -1,8 +1,10 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: ActivityContainer.xaml.cs
-//Version: 20121116
+//Version: 20121125
 
+//TODO: add ContentPartsZoomable property
 //TODO: move zoom slider UI to FloatingWindowHostZUI's XAML template
+//TODO: must clear bindings when child window closes (now seem to stay as zombies hearing revoicing entries play at given time)
 
 using ClipFlair.Windows.Views;
 using ClipFlair.Utils.Bindings;
@@ -43,25 +45,27 @@ namespace ClipFlair.Windows
       //above command could be avoided if binding to activity view's Time property worked
     }
 
-  /*  public static DependencyProperty GetDependencyProperty(Type type, string name) //TODO: USE THIS INSTEAD OF USING TO PROPERTY TYPES BELOW FOR BINDING SO THAT WE CAN LATER SAVE/RELOAD BINDINGS
+    ~ActivityContainer()
     {
-      FieldInfo fieldInfo = type.GetField(name, BindingFlags.Public | BindingFlags.Static);
-      return (fieldInfo != null) ? (DependencyProperty)fieldInfo.GetValue(null) : null;
-    } */
-    
+      View = null; //unregister PropertyChangedEventHandler
+    }
+
     public void BindWindows() //TODO: remove hardcoded bindings in the future
     {
       //Two-way bind MediaPlayerWindow.Time to CaptionsGridWindow.Time
       //BindProperties(FindWindow("MediaPlayer"), "Time", FindWindow("Captions"), CaptionsGridWindow.TimeProperty, BindingMode.TwoWay); //not using, binding to container's Time instead for now
 
       //TODO: move to BaseWindow
-      //Two-way bind MediaPlayerWindow.Time to ActivityContainer.View.Time via inherited DataContext (make sure we don't bind to those windows' view since it changes after load)
-      BindingUtils.BindProperties(View, "Time", FindWindow("Media"), MediaPlayerWindow.TimeProperty, BindingMode.TwoWay);
-      //Two-way bind CaptionsGridWindow.Time to ActivityContainer.View.Time via inherited DataContext
-      BindingUtils.BindProperties(View, "Time", FindWindow("Captions"), CaptionsGridWindow.TimeProperty, BindingMode.TwoWay);
 
+      //Two-way bind MediaPlayerWindow.Time to ActivityContainer.View.Time via inherited DataContext (make sure we don't bind to those windows' view since it changes after load)
+      FloatingWindow w1 = FindWindow("Media");
+      BindingUtils.BindProperties(View, "Time", w1, BindingUtils.GetDependencyProperty(w1, "Time" + "Property"), BindingMode.TwoWay);
       //Two-Way bind MediaPlayerWindow.Captions to CaptionsGridWindow.Captions (!!!TEMP: not the other way arround for bindings to work after reload from stored activity options archive) 
-      BindingUtils.BindProperties(FindWindow("Captions"), "Captions", FindWindow("Media"), MediaPlayerWindow.CaptionsProperty, BindingMode.TwoWay); //don't reverse this (loading Captions demo resource to CaptionsGrid in the XAML and also at load process loading saved SRT to CaptionsGrid)
+      BindingUtils.BindProperties(FindWindow("Captions"), "Captions", w1, BindingUtils.GetDependencyProperty(w1, "Captions" + "Property"), BindingMode.TwoWay); //don't reverse this (loading Captions demo resource to CaptionsGrid in the XAML and also at load process loading saved SRT to CaptionsGrid)
+      
+      //Two-way bind CaptionsGridWindow.Time to ActivityContainer.View.Time via inherited DataContext
+      FloatingWindow w2 = FindWindow("Captions");
+      BindingUtils.BindProperties(View, "Time", w2, BindingUtils.GetDependencyProperty(w2, "Time" + "Property"), BindingMode.TwoWay);
     }
 
     public BaseWindow FindWindow(string tag) //need this since floating windows are not added in the XAML visual tree by the FloatingWindowHostZUI.Windows property (maybe should have FloatingWindowHostZUI inherit 
@@ -95,7 +99,7 @@ namespace ClipFlair.Windows
       {
         //remove property changed handler from old view
         if (DataContext != null)
-          ((INotifyPropertyChanged)DataContext).PropertyChanged -= new PropertyChangedEventHandler(View_PropertyChanged);
+          View.PropertyChanged -= new PropertyChangedEventHandler(View_PropertyChanged);
         //add property changed handler to new view
         if (value != null)
           value.PropertyChanged += new PropertyChangedEventHandler(View_PropertyChanged);

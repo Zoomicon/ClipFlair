@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: CaptionsGridView.cs
-//Version: 20121123
+//Version: 20121124
 
 using System;
 using System.Runtime.Serialization;
@@ -29,7 +29,8 @@ namespace ClipFlair.Windows.Views
     private bool endTimeVisible = ICaptionsGridDefaults.DefaultEndTimeVisible;
     private bool durationVisible = ICaptionsGridDefaults.DefaultDurationVisible;
     private bool captionVisible = ICaptionsGridDefaults.DefaultCaptionVisible;
-    private bool captionAudioVisible = ICaptionsGridDefaults.DefaultCaptionAudioVisible;
+    private bool audioVisible = ICaptionsGridDefaults.DefaultAudioVisible;
+    private bool commentsVisible = ICaptionsGridDefaults.DefaultCommentsVisible;
 
     #endregion
 
@@ -127,16 +128,27 @@ namespace ClipFlair.Windows.Views
     }
 
     [DataMember]
-    public bool CaptionAudioVisible
+    public bool AudioVisible
     {
-      get { return captionAudioVisible; }
+      get { return audioVisible; }
       set
       {
-        captionAudioVisible = value;
-        RaisePropertyChanged(ICaptionsGridProperties.PropertyCaptionAudioVisible);
+        audioVisible = value;
+        RaisePropertyChanged(ICaptionsGridProperties.PropertyAudioVisible);
       }
     }
 
+    [DataMember]
+    public bool CommentsVisible
+    {
+      get { return commentsVisible; }
+      set
+      {
+        commentsVisible = value;
+        RaisePropertyChanged(ICaptionsGridProperties.PropertyCommentsVisible);
+      }
+    }
+    
     #endregion
 
   }
