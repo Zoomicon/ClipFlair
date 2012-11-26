@@ -68,7 +68,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ToggleCommand.cs" />
-    <Compile Include="SimpleCommand.cs" />
+    <Compile Include="Command.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="AudioRecorderControl.xaml.cs">
       <DependentUpon>AudioRecorderControl.xaml</DependentUpon>
