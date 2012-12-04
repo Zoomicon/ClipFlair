@@ -54,7 +54,10 @@ namespace ClipFlair.Windows
     public new IActivity View //hiding parent property
     {
       get { return (IActivity)base.View; } //delegating to parent property
-      set { base.View = value; }
+      set { 
+        base.View = value; 
+        activity.View = value; //set the view of the activity control too
+      }
     }
 
     #endregion
@@ -65,8 +68,7 @@ namespace ClipFlair.Windows
 
     public override void LoadOptions(ZipFile zip, string zipFolder = "")
     {
-      base.LoadOptions(zip, zipFolder);
-      View = activity.View; //set window's View to be the same as the nested activity's View
+      base.LoadOptions(zip, zipFolder); //this will set the View of the ActivityWindow, which will set the view of the ActivityContainer control too
 
       activity.RemoveWindows(); //don't call Windows.Clear(), won't work //TODO (remove this note when fixed): don't call Windows.RemoveAll(), won't do bindings currently
       foreach (ZipEntry childZip in zip.SelectEntries("*.clipflair.zip", zipFolder))
@@ -81,6 +83,15 @@ namespace ClipFlair.Windows
         FrameworkElement host = (FrameworkElement)VisualTreeHelper.GetRoot(this);
         Width = host.ActualWidth;
         Height = host.ActualHeight;
+
+        /*
+        Position = new Point(0, 0);
+        Scale = 1.0;
+        Opacity = 1.0;
+        View.ViewPosition = new Point(0, 0);
+        View.ViewWidth = Width;
+        View.ViewHeight = Height;
+        */
       } //TODO: most probably needed cause Width/Height View settings of ActivityContainer when top window aren't set correctly (App.xaml has event that resizes window to get container size, but may occur without view finding out?)
     }
 

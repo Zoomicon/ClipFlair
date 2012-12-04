@@ -252,12 +252,12 @@ namespace ClipFlair.Windows
     [Import("ClipFlair.Windows.Views.MapView", typeof(IWindowFactory), RequiredCreationPolicy = CreationPolicy.Shared)]
     public IWindowFactory MapWindowFactory { get; set; }
 
-    public BaseWindow AddWindow(IWindowFactory windowFactory)
+    public BaseWindow AddWindow(IWindowFactory windowFactory, bool centered=false)
     {
       try
       {
         BaseWindow w = windowFactory.CreateWindow();
-        AddWindow(w);
+        if (centered) AddWindowInViewCenter(w); else AddWindow(w);
         return w;
       }
       catch (Exception e)
@@ -267,17 +267,25 @@ namespace ClipFlair.Windows
       }
     }
 
-    public BaseWindow AddWindow(BaseWindow window)
+    private void BindWindow(BaseWindow window)
+    {
+      //TODO: remove this when no hard-coded bindings are needed any more
+      //if (window is MediaPlayerWindow) BindMediaPlayerWindow((MediaPlayerWindow)window);
+      //else if (window is CaptionsGridWindow) BindCaptionsGridWindow((CaptionsGridWindow)window);
+    }
+
+    public BaseWindow AddWindowInViewCenter(BaseWindow window)
     {
       window.Scale = 1.0d / zuiContainer.ZoomHost.ContentScale; //TODO: !!! don't use host.Scale, has bug and is always 1
       ZoomAndPanControl host = zuiContainer.ZoomHost;
       Point startPoint = new Point((host.ContentOffsetX + host.ViewportWidth / 2) * host.ContentScale, (zuiContainer.ContentOffsetY + host.ViewportHeight / 2) * zuiContainer.ContentScale); //Center at current view
       zuiContainer.Add(window).Show(startPoint);
+      return window;
+    }
 
-      //TODO: remove this when no hard-coded bindings are needed any more
-      //if (window is MediaPlayerWindow) BindMediaPlayerWindow((MediaPlayerWindow)window);
-      //else if (window is CaptionsGridWindow) BindCaptionsGridWindow((CaptionsGridWindow)window);
-
+    public BaseWindow AddWindow(BaseWindow window)
+    {
+      zuiContainer.Add(window).Show();
       return window;
     }
 
@@ -315,7 +323,7 @@ namespace ClipFlair.Windows
 
     private void btnAddNestedActivity_Click(object sender, RoutedEventArgs e)
     {
-      AddWindow(ActivityWindowFactory.CreateWindow());
+      AddWindow(ActivityWindowFactory.CreateWindow(), true);
     }
 
     #endif
@@ -324,16 +332,16 @@ namespace ClipFlair.Windows
 
     private void btnAddMedia_Click(object sender, RoutedEventArgs e)
     {
-      AddWindow(MediaPlayerWindowFactory);
+      AddWindow(MediaPlayerWindowFactory, true);
     }
 
-    #endif
+#endif
 
-    #if PART_CAPTIONS
+#if PART_CAPTIONS
 
     private void btnAddCaptions_Click(object sender, RoutedEventArgs e)
     {
-      AddWindow(CaptionsGridWindowFactory);
+      AddWindow(CaptionsGridWindowFactory, true);
     }
 
     #endif
@@ -342,7 +350,7 @@ namespace ClipFlair.Windows
 
     private void btnAddText_Click(object sender, RoutedEventArgs e)
     {
-      AddWindow(TextEditorWindowFactory);
+      AddWindow(TextEditorWindowFactory, true);
     }
 
     #endif
@@ -351,7 +359,7 @@ namespace ClipFlair.Windows
 
     private void btnAddImage_Click(object sender, RoutedEventArgs e)
     {
-      AddWindow(ImageWindowFactory);
+      AddWindow(ImageWindowFactory, true);
     }
 
     #endif
@@ -360,7 +368,7 @@ namespace ClipFlair.Windows
 
     private void btnAddMap_Click(object sender, RoutedEventArgs e)
     {
-      AddWindow(MapWindowFactory);
+      AddWindow(MapWindowFactory, true);
     }
 
     #endif
