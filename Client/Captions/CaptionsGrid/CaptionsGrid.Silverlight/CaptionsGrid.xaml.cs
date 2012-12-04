@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: CaptionsGrid.xaml.cs
-//Version: 20121124
+//Version: 20121202
 
 using ClipFlair.AudioRecorder;
 using ClipFlair.CaptionsLib.Utils;
@@ -36,11 +36,11 @@ namespace ClipFlair.CaptionsGrid
 
     protected void InitializeDataGrid()
     {
-      ColumnActor = gridCaptions.Columns[0];
-      ColumnStartTime = gridCaptions.Columns[1];
-      ColumnEndTime = gridCaptions.Columns[2];
-      ColumnDuration = gridCaptions.Columns[3];
-      ColumnContent = gridCaptions.Columns[4];
+      ColumnStartTime = gridCaptions.Columns[0];
+      ColumnEndTime = gridCaptions.Columns[1];
+      ColumnDuration = gridCaptions.Columns[2];
+      ColumnRole = gridCaptions.Columns[3];
+      ColumnCaption = gridCaptions.Columns[4];
       ColumnAudio = gridCaptions.Columns[5];
       ColumnComments = gridCaptions.Columns[6];
 
@@ -67,11 +67,11 @@ namespace ClipFlair.CaptionsGrid
     #region Columns
 
     //not using column indices as constants, using column references instead to allow for column reordering
-    public DataGridColumn ColumnActor { get; private set; }
+    public DataGridColumn ColumnRole { get; private set; }
     public DataGridColumn ColumnStartTime { get; private set; }
     public DataGridColumn ColumnEndTime { get; private set; }
     public DataGridColumn ColumnDuration { get; private set; }
-    public DataGridColumn ColumnContent { get; private set; }
+    public DataGridColumn ColumnCaption { get; private set; }
     public DataGridColumn ColumnAudio { get; private set; }
     public DataGridColumn ColumnComments { get; private set; }
 
@@ -162,39 +162,39 @@ namespace ClipFlair.CaptionsGrid
 
     #endregion
 
-    #region ActorVisible
+    #region RoleVisible
 
     /// <summary>
-    /// ActorVisible Dependency Property
+    /// RoleVisible Dependency Property
     /// </summary>
-    public static readonly DependencyProperty ActorVisibleProperty =
-        DependencyProperty.Register("ActorVisible", typeof(bool), typeof(CaptionsGrid),
-            new FrameworkPropertyMetadata(true, new PropertyChangedCallback(OnActorVisibleChanged)));
+    public static readonly DependencyProperty RoleVisibleProperty =
+        DependencyProperty.Register("RoleVisible", typeof(bool), typeof(CaptionsGrid),
+            new FrameworkPropertyMetadata(true, new PropertyChangedCallback(OnRoleVisibleChanged)));
 
     /// <summary>
-    /// Gets or sets the ActorVisible property. 
+    /// Gets or sets the RoleVisible property. 
     /// </summary>
-    public bool ActorVisible
+    public bool RoleVisible
     {
-      get { return (bool)GetValue(ActorVisibleProperty); }
-      set { SetValue(ActorVisibleProperty, value); }
+      get { return (bool)GetValue(RoleVisibleProperty); }
+      set { SetValue(RoleVisibleProperty, value); }
     }
 
     /// <summary>
-    /// Handles changes to the ActorVisible property.
+    /// Handles changes to the RoleVisible property.
     /// </summary>
-    private static void OnActorVisibleChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    private static void OnRoleVisibleChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
       CaptionsGrid target = (CaptionsGrid)d;
-      target.OnActorVisibleChanged((bool)e.OldValue, target.ActorVisible);
+      target.OnRoleVisibleChanged((bool)e.OldValue, target.RoleVisible);
     }
 
     /// <summary>
-    /// Provides derived classes an opportunity to handle changes to the ActorVisible property.
+    /// Provides derived classes an opportunity to handle changes to the RoleVisible property.
     /// </summary>
-    protected virtual void OnActorVisibleChanged(bool oldValue, bool newValue)
+    protected virtual void OnRoleVisibleChanged(bool oldValue, bool newValue)
     {
-      ColumnActor.Visibility = (newValue) ? Visibility.Visible : Visibility.Collapsed;
+      ColumnRole.Visibility = (newValue) ? Visibility.Visible : Visibility.Collapsed;
     }
 
     #endregion
@@ -342,7 +342,7 @@ namespace ClipFlair.CaptionsGrid
     /// </summary>
     protected virtual void OnCaptionVisibleChanged(bool oldValue, bool newValue)
     {
-      ColumnContent.Visibility = (newValue) ? Visibility.Visible : Visibility.Collapsed;
+      ColumnCaption.Visibility = (newValue) ? Visibility.Visible : Visibility.Collapsed;
     }
 
     #endregion

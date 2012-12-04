@@ -14,14 +14,14 @@ Version: 20121126
 
   <res:Strings x:Key="localizedStrings"/>
 
-  <!-- Actor -->
+  <!-- Role -->
 
-  <DataTemplate x:Key="ActorCellTemplate">
-    <TextBlock Margin="4" Text="{Binding Actor}" />
+  <DataTemplate x:Key="RoleCellTemplate">
+    <TextBlock Margin="4" Text="{Binding Role}" />
   </DataTemplate>
 
-  <DataTemplate x:Key="ActorCellEditTemplate">
-    <TextBox Margin="4" Text="{Binding Actor, Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=true}" />
+  <DataTemplate x:Key="RoleCellEditTemplate">
+    <TextBox Margin="4" Text="{Binding Role, Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=true}" />
   </DataTemplate>
 
   <!-- StartTime -->

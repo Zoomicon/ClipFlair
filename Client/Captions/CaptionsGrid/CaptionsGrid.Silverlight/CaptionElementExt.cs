@@ -16,24 +16,24 @@ namespace ClipFlair.CaptionsGrid
   public class CaptionElementExt : CaptionElement
   {
 
-    const string PROPERTY_ACTOR = "Actor";
+    const string PROPERTY_ACTOR = "Role";
     const string PROPERTY_AUDIO = "Audio";
     const string PROPERTY_COMMENTS = "Comments";
 
-    private string _actor;
+    private string _role;
     private Stream _audio;
     private string _comments;
 
     /// <summary>
-    /// Gets or sets the actor for this marker item.
+    /// Gets or sets the role for this marker item.
     /// </summary>
     [ScriptableMember]
-    public string Actor
+    public string Role
     {
-      get { return _actor; }
+      get { return _role; }
       set
       {
-        _actor = value;
+        _role = value;
         NotifyPropertyChanged(PROPERTY_ACTOR);
       }
     }
