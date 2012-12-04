@@ -1,7 +1,7 @@
 ﻿<!--
 Project: ClipFlair (http://ClipFlair.codeplex.com)
 Filename: CaptionsGrid.xaml
-Version: 20121125
+Version: 20121202
 -->
   
   <UserControl x:Class="ClipFlair.CaptionsGrid.CaptionsGrid"
@@ -10,6 +10,7 @@ Version: 20121125
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008" d:DesignHeight="167" d:DesignWidth="856"
     xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk"
+    xmlns:toolkit="http://schemas.microsoft.com/winfx/2006/xaml/presentation/toolkit" 
     xmlns:captions="clr-namespace:ClipFlair.CaptionsGrid"
    >
     
@@ -29,15 +30,15 @@ Version: 20121125
       <RowDefinition Height="*" />
     </Grid.RowDefinitions>
     
-    <StackPanel Name="Toolbar"
+    <toolkit:WrapPanel Name="Toolbar"
                 Grid.Row="0"
                 Orientation="Horizontal"
                 >
-      <StackPanel.Resources>
+      <toolkit:WrapPanel.Resources>
         <Style TargetType="Button">
           <Setter Property="Margin" Value="3,4,3,4" />
         </Style>
-      </StackPanel.Resources>
+      </toolkit:WrapPanel.Resources>
       
       <Button Name="btnAdd" Click="btnAdd_Click">
         <ToolTipService.ToolTip>
@@ -83,7 +84,7 @@ Version: 20121125
         </ToolTipService.ToolTip>
       </Button>
         
-    </StackPanel>
+    </toolkit:WrapPanel>
     
     <sdk:DataGrid Name="gridCaptions"
                   Grid.Row="1" 
@@ -93,10 +94,10 @@ Version: 20121125
                   AlternatingRowBackground="Beige"
                   ItemsSource="{Binding Path=Captions.Children, RelativeSource={RelativeSource AncestorType=captions:CaptionsGrid}, Mode=TwoWay}">
       <sdk:DataGrid.Columns>
-        <sdk:DataGridTemplateColumn Header="Actor" CellTemplate="{StaticResource ActorCellTemplate}" CellEditingTemplate="{StaticResource ActorCellEditTemplate}" />
         <sdk:DataGridTemplateColumn Header="Start" CellTemplate="{StaticResource StartTimeCellTemplate}" CellEditingTemplate="{StaticResource StartTimeCellEditTemplate}" />
         <sdk:DataGridTemplateColumn Header="End" CellTemplate="{StaticResource EndTimeCellTemplate}" CellEditingTemplate="{StaticResource EndTimeCellEditTemplate}" />
         <sdk:DataGridTemplateColumn Header="Duration" CellTemplate="{StaticResource DurationCellTemplate}" />
+        <sdk:DataGridTemplateColumn Header="Role" CellTemplate="{StaticResource RoleCellTemplate}" CellEditingTemplate="{StaticResource RoleCellEditTemplate}" />
         <sdk:DataGridTemplateColumn Header="Caption" Width="*" CellTemplate="{StaticResource CaptionCellTemplate}" CellEditingTemplate="{StaticResource CaptionCellEditTemplate}" />
         <sdk:DataGridTemplateColumn Header="Audio" Width="100" CellTemplate="{StaticResource AudioCellTemplate}" />
         <sdk:DataGridTemplateColumn Header="Comments" Width="100" CellTemplate="{StaticResource CommentsCellTemplate}" CellEditingTemplate="{StaticResource CommentsCellEditTemplate}" />
