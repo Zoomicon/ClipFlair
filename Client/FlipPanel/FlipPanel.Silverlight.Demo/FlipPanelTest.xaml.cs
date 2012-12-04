@@ -1,5 +1,5 @@
 ﻿//Filename: FlipPanelText.xaml.cs
-//Version: 20120924
+//Version: 20121204
 
 using System;
 using System.Collections.Generic;
@@ -27,6 +27,11 @@ namespace FlipPanelTest
       panel0.IsFlipped = !panel0.IsFlipped;
     }
 
+    private void cmdFlipVertical_Click(object sender, RoutedEventArgs e)
+    {
+      panelVertical.IsFlipped = !panelVertical.IsFlipped;
+    }
+
     private void cmdFlip1_Click(object sender, RoutedEventArgs e)
     {
       panel1.IsFlipped = !panel1.IsFlipped;
@@ -40,6 +45,11 @@ namespace FlipPanelTest
     private void cmdFlip3_Click(object sender, RoutedEventArgs e)
     {
       panel3.IsFlipped = !panel3.IsFlipped;
+    }
+
+    private void cmdFlip4_Click(object sender, RoutedEventArgs e)
+    {
+      panel4.IsFlipped = !panel4.IsFlipped;
     }
 
   }
