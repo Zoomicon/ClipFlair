@@ -122,7 +122,7 @@
                   <GradientStop Offset="1"/>
                 </LinearGradientBrush>
               </Border.Background>
-              <Image Source="/SilverFlow.Controls;component/Images/Options.png" x:Name="BaseImage" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Stretch="Uniform" />
+              <Image Source="/SilverFlow.Controls;component/Images/Options.png" x:Name="BaseImage" Margin="1,1,1,1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Stretch="Uniform" />
             </Border>
           </Grid>
         </ControlTemplate>
