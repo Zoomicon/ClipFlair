@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: BindingUtils.cs
-//Version: 20121125
+//Version: 20121129
 
 using System;
 using System.Reflection;
@@ -55,6 +55,28 @@ namespace ClipFlair.Utils.Bindings
       if (obj == null) return null;
       
       return GetDependencyProperty(obj.GetType(), name);
+    }
+
+    public static bool IsAssignableTo(this object obj, Type type)
+    {
+      return type.IsAssignableFrom(obj.GetType());
+    }
+
+    public static bool IsAssignableTo(this object obj, string typeName)
+    {
+      return obj.IsAssignableTo(Type.GetType(typeName));
+    }
+
+    public static bool SafeIsAssignableTo(this object obj, string typeName)
+    {
+      try
+      {
+        return IsAssignableTo(obj, typeName);
+      }
+      catch
+      {
+        return false;
+      }
     }
 
   }
