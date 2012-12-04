@@ -1,4 +1,8 @@
-﻿<UserControl x:Class="FlipPanelTest.FlipPanelTest"
+﻿<!--
+Version: 20121204
+-->
+
+<UserControl x:Class="FlipPanelTest.FlipPanelTest"
   xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
   xmlns:flip="clr-namespace:FlipPanel;assembly=FlipPanel" 
@@ -11,128 +15,183 @@
       <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="/FlipPanel;component/Themes/DropDownTheme.xaml" />
         <ResourceDictionary Source="/FlipPanel;component/Themes/DropDownWithButtonTheme.xaml" />
-        <ResourceDictionary Source="/FlipPanel;component/Themes/RotateHorizontalTheme.xaml" />        
+        <ResourceDictionary Source="/FlipPanel;component/Themes/RotateHorizontalTheme.xaml" />
         <ResourceDictionary Source="/FlipPanel;component/Themes/RotateHorizontalWithButtonTheme.xaml" />
+        <ResourceDictionary Source="/FlipPanel;component/Themes/RotateVerticalTheme.xaml" />
+        <ResourceDictionary Source="/FlipPanel;component/Themes/RotateVerticalWithButtonTheme.xaml" />
       </ResourceDictionary.MergedDictionaries>
     </ResourceDictionary>
   </UserControl.Resources>
 
-  <Grid x:Name="LayoutRoot" Background="White" Width="400">
+  <ScrollViewer>
 
-    <Grid.RowDefinitions>
-      <RowDefinition Height="Auto"></RowDefinition>
-      <RowDefinition Height="Auto"></RowDefinition>
-      <RowDefinition Height="Auto"></RowDefinition>
-      <RowDefinition Height="Auto"></RowDefinition>
-    </Grid.RowDefinitions>
+    <StackPanel Orientation="Vertical">
 
-    <!-- ********************* -->
+      <!-- ********************* -->
 
-    <flip:FlipPanel x:Name="panel0" Grid.Row="0" BorderBrush="DarkOrange" BorderThickness="3"
+      <flip:FlipPanel x:Name="panel0" Width="400" BorderBrush="DarkOrange" BorderThickness="3"
          CornerRadius="4" Margin="10" Background="White" Template="{StaticResource FlipPanel_RotateHorizontalWithButtonTemplate}" >
-      <!-- Style="{StaticResource FlipPanel_RotateHorizontalWithButtonStyle} -->
-      <flip:FlipPanel.FrontContent>
-        <StackPanel Margin="6">
-          <TextBlock TextWrapping="Wrap" Margin="3" FontSize="16" Foreground="DarkOrange">This is the front side of the FlipPanel.</TextBlock>
-          <Button Margin="3" Padding="3" Content="Button One"></Button>
-          <Button Margin="3" Padding="3" Content="Button Two"></Button>
-          <Button Margin="3" Padding="3" Content="Button Three"></Button>
-          <Button Margin="3" Padding="3" Content="Button Four"></Button>
-        </StackPanel>
-      </flip:FlipPanel.FrontContent>
-      <flip:FlipPanel.BackContent>
-        <Grid Margin="6">
-          <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"></RowDefinition>
-            <RowDefinition></RowDefinition>
-          </Grid.RowDefinitions>
-          <TextBlock TextWrapping="Wrap" Margin="3" FontSize="16" Foreground="DarkMagenta">This is the back side of the FlipPanel.</TextBlock>
-          <Button x:Name="cmdFlip0" Grid.Row="2" Margin="3" Padding="10" Content="Flip Back to Front" HorizontalAlignment="Center" VerticalAlignment="Center" Click="cmdFlip0_Click"></Button>
-        </Grid>
-      </flip:FlipPanel.BackContent>
-    </flip:FlipPanel>
-    
-    <!-- ********************* -->
+        <!-- Style="{StaticResource FlipPanel_RotateHorizontalWithButtonStyle} -->
+        <flip:FlipPanel.FrontContent>
+          <StackPanel Margin="6">
+            <TextBlock TextWrapping="Wrap" Margin="3" FontSize="16" Foreground="DarkOrange">This is the front side of the FlipPanel.</TextBlock>
+            <Button Margin="3" Padding="3" Content="Button One"></Button>
+            <Button Margin="3" Padding="3" Content="Button Two"></Button>
+            <Button Margin="3" Padding="3" Content="Button Three"></Button>
+            <Button Margin="3" Padding="3" Content="Button Four"></Button>
+          </StackPanel>
+        </flip:FlipPanel.FrontContent>
+        <flip:FlipPanel.BackContent>
+          <Grid Margin="6">
+            <Grid.RowDefinitions>
+              <RowDefinition Height="Auto"></RowDefinition>
+              <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+            <TextBlock TextWrapping="Wrap" Margin="3" FontSize="16" Foreground="DarkMagenta">This is the back side of the FlipPanel.</TextBlock>
+            <Button x:Name="cmdFlip0" Grid.Row="2" Margin="3" Padding="10" Content="Flip Back to Front" HorizontalAlignment="Center" VerticalAlignment="Center" Click="cmdFlip0_Click"></Button>
+          </Grid>
+        </flip:FlipPanel.BackContent>
+      </flip:FlipPanel>
 
-    <flip:FlipPanel x:Name="panel1" Grid.Row="1" BorderBrush="DarkOrange" BorderThickness="3"
+      <!-- ********************* -->
+
+      <flip:FlipPanel x:Name="panelVertical" Width="400" BorderBrush="DarkOrange" BorderThickness="3"
+         CornerRadius="4" Margin="10" Background="White" Template="{StaticResource FlipPanel_RotateVerticalWithButtonTemplate}" >
+        <!-- Style="{StaticResource FlipPanel_RotateVerticalWithButtonStyle} -->
+        <flip:FlipPanel.FrontContent>
+          <StackPanel Margin="6">
+            <TextBlock TextWrapping="Wrap" Margin="3" FontSize="16" Foreground="DarkOrange">This is the front side of the FlipPanel.</TextBlock>
+            <Button Margin="3" Padding="3" Content="Button One"></Button>
+            <Button Margin="3" Padding="3" Content="Button Two"></Button>
+            <Button Margin="3" Padding="3" Content="Button Three"></Button>
+            <Button Margin="3" Padding="3" Content="Button Four"></Button>
+          </StackPanel>
+        </flip:FlipPanel.FrontContent>
+        <flip:FlipPanel.BackContent>
+          <Grid Margin="6">
+            <Grid.RowDefinitions>
+              <RowDefinition Height="Auto"></RowDefinition>
+              <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+            <TextBlock TextWrapping="Wrap" Margin="3" FontSize="16" Foreground="DarkMagenta">This is the back side of the FlipPanel.</TextBlock>
+            <Button x:Name="cmdFlipVertical" Grid.Row="2" Margin="3" Padding="10" Content="Flip Back to Front" HorizontalAlignment="Center" VerticalAlignment="Center" Click="cmdFlipVertical_Click"></Button>
+          </Grid>
+        </flip:FlipPanel.BackContent>
+      </flip:FlipPanel>
+
+      <!-- ********************* -->      
+      
+      <flip:FlipPanel x:Name="panel1" Width="400" BorderBrush="DarkOrange" BorderThickness="3"
          CornerRadius="4" Margin="10" Background="White" Template="{StaticResource FlipPanel_DropDownWithButtonTemplate}" >
-      <!-- Style="{StaticResource FlipPanel_DropDownWithButtonStyle} -->
-      <flip:FlipPanel.FrontContent>
-        <StackPanel Margin="6">
-          <TextBlock TextWrapping="Wrap" Margin="3" FontSize="16" Foreground="DarkOrange">This is the front side of the FlipPanel.</TextBlock>
-          <Button Margin="3" Padding="3" Content="Button One"></Button>
-          <Button Margin="3" Padding="3" Content="Button Two"></Button>
-          <Button Margin="3" Padding="3" Content="Button Three"></Button>
-          <Button Margin="3" Padding="3" Content="Button Four"></Button>
-        </StackPanel>
-      </flip:FlipPanel.FrontContent>
-      <flip:FlipPanel.BackContent>
-        <Grid Margin="6">
-          <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"></RowDefinition>
-            <RowDefinition></RowDefinition>
-          </Grid.RowDefinitions>
-          <TextBlock TextWrapping="Wrap" Margin="3" FontSize="16" Foreground="DarkMagenta">This is the back side of the FlipPanel.</TextBlock>
-          <Button x:Name="cmdFlip1" Grid.Row="2" Margin="3" Padding="10" Content="Flip Back to Front" HorizontalAlignment="Center" VerticalAlignment="Center" Click="cmdFlip1_Click"></Button>
-        </Grid>
-      </flip:FlipPanel.BackContent>
-    </flip:FlipPanel>
+        <!-- Style="{StaticResource FlipPanel_DropDownWithButtonStyle} -->
+        <flip:FlipPanel.FrontContent>
+          <StackPanel Margin="6">
+            <TextBlock TextWrapping="Wrap" Margin="3" FontSize="16" Foreground="DarkOrange">This is the front side of the FlipPanel.</TextBlock>
+            <Button Margin="3" Padding="3" Content="Button One"></Button>
+            <Button Margin="3" Padding="3" Content="Button Two"></Button>
+            <Button Margin="3" Padding="3" Content="Button Three"></Button>
+            <Button Margin="3" Padding="3" Content="Button Four"></Button>
+          </StackPanel>
+        </flip:FlipPanel.FrontContent>
+        <flip:FlipPanel.BackContent>
+          <Grid Margin="6">
+            <Grid.RowDefinitions>
+              <RowDefinition Height="Auto"></RowDefinition>
+              <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+            <TextBlock TextWrapping="Wrap" Margin="3" FontSize="16" Foreground="DarkMagenta">This is the back side of the FlipPanel.</TextBlock>
+            <Button x:Name="cmdFlip1" Grid.Row="2" Margin="3" Padding="10" Content="Flip Back to Front" HorizontalAlignment="Center" VerticalAlignment="Center" Click="cmdFlip1_Click"></Button>
+          </Grid>
+        </flip:FlipPanel.BackContent>
+      </flip:FlipPanel>
 
-    <!-- ********************* -->
+      <!-- ********************* -->
 
-    <flip:FlipPanel x:Name="panel2" Grid.Row="2" BorderBrush="DarkOrange" BorderThickness="3"
+      <flip:FlipPanel x:Name="panel2" Width="400" BorderBrush="DarkOrange" BorderThickness="3"
          CornerRadius="4" Margin="10" Background="White" >
-      <!-- Template="{StaticResource FlipPanel_DropDownTemplate}"
+        <!-- Template="{StaticResource FlipPanel_DropDownTemplate}"
        [or] Style="{StaticResource FlipPanel_DropDownStyle} -->
-      <!-- implying use of default style/template here -->
-      <flip:FlipPanel.FrontContent>
-        <Grid Margin="6">
-          <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"></RowDefinition>
-            <RowDefinition></RowDefinition>
-          </Grid.RowDefinitions>
-          <TextBlock TextWrapping="Wrap" Margin="3" FontSize="16" Foreground="DarkMagenta">This is the front side of the FlipPanel.</TextBlock>
-          <Button x:Name="cmdFlip2a" Grid.Row="2" Margin="3" Padding="10" Content="Flip to Back" HorizontalAlignment="Center" VerticalAlignment="Center" Click="cmdFlip2_Click"></Button>
-        </Grid>
-      </flip:FlipPanel.FrontContent>
-      <flip:FlipPanel.BackContent>
-        <Grid Margin="6">
-          <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"></RowDefinition>
-            <RowDefinition></RowDefinition>
-          </Grid.RowDefinitions>
-          <TextBlock TextWrapping="Wrap" Margin="3" FontSize="16" Foreground="DarkMagenta">This is the back side of the FlipPanel.</TextBlock>
-          <Button x:Name="cmdFlip2b" Grid.Row="2" Margin="3" Padding="10" Content="Flip to Front" HorizontalAlignment="Center" VerticalAlignment="Center" Click="cmdFlip2_Click"></Button>
-        </Grid>
-      </flip:FlipPanel.BackContent>
-    </flip:FlipPanel>
+        <!-- implying use of default style/template here -->
+        <flip:FlipPanel.FrontContent>
+          <Grid Margin="6">
+            <Grid.RowDefinitions>
+              <RowDefinition Height="Auto"></RowDefinition>
+              <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+            <TextBlock TextWrapping="Wrap" Margin="3" FontSize="16" Foreground="DarkMagenta">This is the front side of the FlipPanel.</TextBlock>
+            <Button x:Name="cmdFlip2a" Grid.Row="2" Margin="3" Padding="10" Content="Flip to Back" HorizontalAlignment="Center" VerticalAlignment="Center" Click="cmdFlip2_Click"></Button>
+          </Grid>
+        </flip:FlipPanel.FrontContent>
+        <flip:FlipPanel.BackContent>
+          <Grid Margin="6">
+            <Grid.RowDefinitions>
+              <RowDefinition Height="Auto"></RowDefinition>
+              <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+            <TextBlock TextWrapping="Wrap" Margin="3" FontSize="16" Foreground="DarkMagenta">This is the back side of the FlipPanel.</TextBlock>
+            <Button x:Name="cmdFlip2b" Grid.Row="2" Margin="3" Padding="10" Content="Flip to Front" HorizontalAlignment="Center" VerticalAlignment="Center" Click="cmdFlip2_Click"></Button>
+          </Grid>
+        </flip:FlipPanel.BackContent>
+      </flip:FlipPanel>
 
-    <!-- ********************* -->
+      <!-- ********************* -->
 
-    <flip:FlipPanel x:Name="panel3" Grid.Row="3" BorderBrush="DarkOrange" BorderThickness="3"
+      <flip:FlipPanel x:Name="panel3" Width="400" BorderBrush="DarkOrange" BorderThickness="3"
          CornerRadius="4" Margin="10" Background="White" Template="{StaticResource FlipPanel_RotateHorizontalTemplate}" >
-      <!-- Style="{StaticResource FlipPanel_RotateHorizontalStyle} -->      
-      <flip:FlipPanel.FrontContent>
-        <Grid Margin="6">
-          <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"></RowDefinition>
-            <RowDefinition></RowDefinition>
-          </Grid.RowDefinitions>
-          <TextBlock TextWrapping="Wrap" Margin="3" FontSize="16" Foreground="DarkMagenta">This is the front side of the FlipPanel.</TextBlock>
-          <Button x:Name="cmdFlip3a" Grid.Row="2" Margin="3" Padding="10" Content="Flip to Back" HorizontalAlignment="Center" VerticalAlignment="Center" Click="cmdFlip3_Click"></Button>
-        </Grid>
-      </flip:FlipPanel.FrontContent>
-      <flip:FlipPanel.BackContent>
-        <Grid Margin="6">
-          <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"></RowDefinition>
-            <RowDefinition></RowDefinition>
-          </Grid.RowDefinitions>
-          <TextBlock TextWrapping="Wrap" Margin="3" FontSize="16" Foreground="DarkMagenta">This is the back side of the FlipPanel.</TextBlock>
-          <Button x:Name="cmdFlip3b" Grid.Row="2" Margin="3" Padding="10" Content="Flip to Front" HorizontalAlignment="Center" VerticalAlignment="Center" Click="cmdFlip3_Click"></Button>
-        </Grid>
-      </flip:FlipPanel.BackContent>
-    </flip:FlipPanel>
+        <!-- Style="{StaticResource FlipPanel_RotateHorizontalStyle} -->
+        <flip:FlipPanel.FrontContent>
+          <Grid Margin="6">
+            <Grid.RowDefinitions>
+              <RowDefinition Height="Auto"></RowDefinition>
+              <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+            <TextBlock TextWrapping="Wrap" Margin="3" FontSize="16" Foreground="DarkMagenta">This is the front side of the FlipPanel.</TextBlock>
+            <Button x:Name="cmdFlip3a" Grid.Row="2" Margin="3" Padding="10" Content="Flip to Back" HorizontalAlignment="Center" VerticalAlignment="Center" Click="cmdFlip3_Click"></Button>
+          </Grid>
+        </flip:FlipPanel.FrontContent>
+        <flip:FlipPanel.BackContent>
+          <Grid Margin="6">
+            <Grid.RowDefinitions>
+              <RowDefinition Height="Auto"></RowDefinition>
+              <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+            <TextBlock TextWrapping="Wrap" Margin="3" FontSize="16" Foreground="DarkMagenta">This is the back side of the FlipPanel.</TextBlock>
+            <Button x:Name="cmdFlip3b" Grid.Row="2" Margin="3" Padding="10" Content="Flip to Front" HorizontalAlignment="Center" VerticalAlignment="Center" Click="cmdFlip3_Click"></Button>
+          </Grid>
+        </flip:FlipPanel.BackContent>
+      </flip:FlipPanel>
 
-  </Grid>
+      <!-- ********************* -->
+
+      <flip:FlipPanel x:Name="panel4" Width="400" BorderBrush="DarkOrange" BorderThickness="3"
+         CornerRadius="4" Margin="10" Background="White" Template="{StaticResource FlipPanel_RotateVerticalTemplate}" >
+        <!-- Style="{StaticResource FlipPanel_RotateHorizontalStyle} -->
+        <flip:FlipPanel.FrontContent>
+          <Grid Margin="6">
+            <Grid.RowDefinitions>
+              <RowDefinition Height="Auto"></RowDefinition>
+              <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+            <TextBlock TextWrapping="Wrap" Margin="3" FontSize="16" Foreground="DarkMagenta">This is the front side of the FlipPanel.</TextBlock>
+            <Button x:Name="cmdFlip4a" Grid.Row="2" Margin="3" Padding="10" Content="Flip to Back" HorizontalAlignment="Center" VerticalAlignment="Center" Click="cmdFlip4_Click"></Button>
+          </Grid>
+        </flip:FlipPanel.FrontContent>
+        <flip:FlipPanel.BackContent>
+          <Grid Margin="6">
+            <Grid.RowDefinitions>
+              <RowDefinition Height="Auto"></RowDefinition>
+              <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+            <TextBlock TextWrapping="Wrap" Margin="3" FontSize="16" Foreground="DarkMagenta">This is the back side of the FlipPanel.</TextBlock>
+            <Button x:Name="cmdFlip4b" Grid.Row="2" Margin="3" Padding="10" Content="Flip to Front" HorizontalAlignment="Center" VerticalAlignment="Center" Click="cmdFlip4_Click"></Button>
+          </Grid>
+        </flip:FlipPanel.BackContent>
+      </flip:FlipPanel>
+
+      <!-- ********************* -->      
+      
+    </StackPanel>
+
+  </ScrollViewer>
+
 </UserControl>
