@@ -75,118 +75,32 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Ionic.Zip">
-      <HintPath>Lib\Ionic.Zip.dll</HintPath>
+    <Reference Include="Microsoft.Maps.MapControl">
+      <HintPath>..\..\..\..\..\Program Files (x86)\Bing Maps Silverlight Control\V1\Libraries\Microsoft.Maps.MapControl.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.SilverlightMediaFramework.Core, Version=2.2012.605.0, Culture=neutral, PublicKeyToken=6687ff884a90c6a6, processorArchitecture=MSIL" />
-    <Reference Include="Microsoft.SilverlightMediaFramework.Logging, Version=2.2012.605.0, Culture=neutral, PublicKeyToken=47c1bfd3f360fec7, processorArchitecture=MSIL" />
-    <Reference Include="Microsoft.SilverlightMediaFramework.Plugins, Version=2.2012.605.0, Culture=neutral, PublicKeyToken=3dd5df9571bfd1e7, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.Maps.MapControl.Common">
+      <HintPath>..\..\..\..\..\Program Files (x86)\Bing Maps Silverlight Control\V1\Libraries\Microsoft.Maps.MapControl.Common.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.SilverlightMediaFramework.Plugins.Progressive, Version=2.2012.605.0, Culture=neutral, PublicKeyToken=f5b35820df7ecf58, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.SilverlightMediaFramework.Plugins.SmoothStreaming, Version=2.2012.605.0, Culture=neutral, PublicKeyToken=17913f4360e6936c, processorArchitecture=MSIL" />
-    <Reference Include="Microsoft.SilverlightMediaFramework.Plugins.TimedText, Version=2.2012.605.0, Culture=neutral, PublicKeyToken=5f67d0f7027ac716, processorArchitecture=MSIL" />
-    <Reference Include="Microsoft.SilverlightMediaFramework.Utilities, Version=2.2012.605.0, Culture=neutral, PublicKeyToken=2018901a52f7a62c, processorArchitecture=MSIL" />
-    <Reference Include="Microsoft.Web.Media.SmoothStreaming, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="mscorlib" />
-    <Reference Include="System.ComponentModel.Composition, Version=5.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" />
-    <Reference Include="System.ComponentModel.DataAnnotations, Version=5.0.5.0, Culture=neutral, PublicKeyToken=ddd0da4d3e678217, processorArchitecture=MSIL" />
-    <Reference Include="System.Runtime.Serialization" />
-    <Reference Include="System.ServiceModel" />
-    <Reference Include="System.ServiceModel.DomainServices.Client, Version=2.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
-    <Reference Include="System.ServiceModel.DomainServices.Client.Web, Version=2.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
-    <Reference Include="System.ServiceModel.Web.Extensions, Version=5.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Windows" />
     <Reference Include="system" />
     <Reference Include="System.Core" />
     <Reference Include="System.Net" />
-    <Reference Include="System.Windows.Controls, Version=5.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" />
-    <Reference Include="System.Windows.Controls.Data.Input, Version=5.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" />
-    <Reference Include="System.Windows.Controls.Input.Toolkit, Version=5.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Windows.Controls.Layout.Toolkit, Version=5.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
-    <Reference Include="System.Windows.Controls.Navigation, Version=5.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
-    <Reference Include="System.Windows.Controls.Toolkit, Version=5.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" />
-    <Reference Include="System.Windows.Controls.Toolkit.Internals, Version=4.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" />
-    <Reference Include="System.Xml" />
-    <Reference Include="System.Windows.Browser" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Windows\Activity\ActivityContainerWindow.xaml.cs">
-      <DependentUpon>ActivityContainerWindow.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Windows\Activity\IActivityDefaults.cs" />
-    <Compile Include="Windows\Base\IViewDefaults.cs" />
-    <Compile Include="Windows\CaptionsGrid\ICaptionsGridDefaults.cs" />
-    <Compile Include="Windows\ImageViewer\IImageViewerDefaults.cs" />
-    <Compile Include="Windows\MediaPlayer\IMediaPlayerDefaults.cs" />
-    <Compile Include="Windows\TextEditor\ITextEditorDefaults.cs" />
-    <Compile Include="Windows\ImageViewer\ImageWindow.xaml.cs">
-      <DependentUpon>ImageWindow.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Windows\Activity\ActivityContainer.xaml.cs">
-      <DependentUpon>ActivityContainer.xaml</DependentUpon>
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Windows\CaptionsGrid\CaptionsGridWindow.xaml.cs">
-      <DependentUpon>CaptionsGridWindow.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Windows\Base\BaseWindow.xaml.cs">
-      <DependentUpon>BaseWindow.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Windows\MediaPlayer\MediaPlayerWindow.xaml.cs">
-      <DependentUpon>MediaPlayerWindow.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Windows\TextEditor\TextEditorWindow.xaml.cs">
-      <DependentUpon>TextEditorWindow.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Windows\CaptionsGrid\CaptionsGridView.cs" />
-    <Compile Include="Windows\Base\BaseView.cs" />
-    <Compile Include="Windows\Activity\ActivityView.cs" />
-    <Compile Include="Windows\Activity\IActivity.cs" />
-    <Compile Include="Windows\CaptionsGrid\ICaptionsGrid.cs" />
-    <Compile Include="Windows\ImageViewer\IImageViewer.cs" />
-    <Compile Include="Windows\MediaPlayer\IMediaPlayer.cs" />
-    <Compile Include="Windows\TextEditor\ITextEditor.cs" />
-    <Compile Include="Windows\Base\IView.cs" />
-    <Compile Include="Windows\TextEditor\TextEditorView.cs" />
-    <Compile Include="Windows\ImageViewer\ImageView.cs" />
-    <Compile Include="Windows\MediaPlayer\MediaPlayerView.cs" />
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </ApplicationDefinition>
-    <Page Include="Windows\Activity\ActivityContainerWindow.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Windows\ImageViewer\ImageWindow.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Windows\Activity\ActivityContainer.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Windows\CaptionsGrid\CaptionsGridWindow.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Windows\Base\BaseWindow.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Windows\MediaPlayer\MediaPlayerWindow.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Windows\TextEditor\TextEditorWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
   </ItemGroup>
   <ItemGroup>
     <None Include="Diagrams\Windows.cd" />
@@ -195,45 +109,17 @@
     <None Include="Diagrams\Windows.Views.Interfaces.cd" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Audio\AudioRecorderControl\AudioRecorderControl.Silverlight\AudioRecorderControl.Silverlight.csproj">
-      <Project>{BF52BDBA-830F-4CD4-AA9C-F653B6448184}</Project>
-      <Name>AudioRecorderControl.Silverlight</Name>
+    <ProjectReference Include="..\ClipFlair.Windows\ClipFlair.Windows.Activity\ClipFlair.Windows.Activity.csproj">
+      <Project>{5C611A60-153B-4781-801D-6F9C1653AE32}</Project>
+      <Name>ClipFlair.Windows.Activity</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Captions\CaptionsGrid\CaptionsGrid.Silverlight\CaptionsGrid.Silverlight.csproj">
-      <Project>{D2C64A3F-BD21-427C-A68A-69223088967C}</Project>
-      <Name>CaptionsGrid.Silverlight</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Converters\Utils.Silverlight.csproj">
-      <Project>{E784B6A1-A300-4571-A881-B15240EEE377}</Project>
-      <Name>Utils.Silverlight</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\FlipPanel\FlipPanel.Silverlight\FlipPanel.Silverlight.csproj">
-      <Project>{245ABF59-8751-46FB-A37E-E5EE253342AD}</Project>
-      <Name>FlipPanel.Silverlight</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\FloatingWindowZUI\FloatingWindowZUI.Silverlight\FloatingWindowZUI.Silverlight.csproj">
-      <Project>{D7D67F52-7B9B-4DE5-9B72-534664F296B7}</Project>
-      <Name>FloatingWindowZUI.Silverlight</Name>
+    <ProjectReference Include="..\ClipFlair.Windows\ClipFlair.Windows.Base\ClipFlair.Windows.Base.csproj">
+      <Project>{4CE71FC4-B8D9-4305-AE15-2F0501CA58B3}</Project>
+      <Name>ClipFlair.Windows.Base</Name>
     </ProjectReference>
     <ProjectReference Include="..\FloatingWindow\FloatingWindow.Silverlight\FloatingWindow.Silverlight.csproj">
       <Project>{3F3D3C8C-9724-4531-A04D-B92049F64686}</Project>
       <Name>FloatingWindow.Silverlight</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\MediaPlayer\MediaPlayer.Silverlight\MediaPlayer.Silverlight.csproj">
-      <Project>{DD195CFE-B418-4C76-8F51-EEE8E28FAA41}</Project>
-      <Name>MediaPlayer.Silverlight</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\SilverTextEditor\SilverTextEditor.Silverlight\SilverTextEditor.Silverlight.csproj">
-      <Project>{52F76969-E7CD-414F-8E98-4FF90EE48B05}</Project>
-      <Name>SilverTextEditor.Silverlight</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\WPF_Compatibility\WPF_Compatibility.Silverlight\WPF_Compatibility.Silverlight.csproj">
-      <Project>{7DC832CC-2D97-4DBC-B963-3F77C1F20730}</Project>
-      <Name>WPF_Compatibility.Silverlight</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\ZoomAndPan\ZoomAndPan.Silverlight\ZoomAndPan.Silverlight.csproj">
-      <Project>{8E75887A-A164-41B8-86D5-8DC37768B5A3}</Project>
-      <Name>ZoomAndPan.Silverlight</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
@@ -252,12 +138,6 @@
     <Content Include="Images\clipflair_logo03_48x48.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Resource Include="Images\load.png" />
-    <Resource Include="Images\save.png" />
-    <Page Include="Themes\Default.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">

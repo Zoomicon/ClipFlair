@@ -1,17 +1,16 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: App.xaml.cs
-//Version: 20121114
+//Version: 20121129
 
 using ClipFlair.Windows;
-
 using SilverFlow.Controls;
-using FloatingWindowZUI;
 
 using System;
 using System.Windows;
 
 namespace ClipFlair
 {
+
   public partial class App : Application
   {
 
@@ -32,7 +31,7 @@ namespace ClipFlair
       
       FloatingWindowHost host = new FloatingWindowHost(); //don't use FloatingWindowHostZUI here
       
-      ActivityContainerWindow activityWindow=new ActivityContainerWindow();
+      ActivityWindow activityWindow = new ActivityWindow();
       activityWindow.IsTopLevel = true; //hide backpanel properties not relevant when not being a child window
       host.Add(activityWindow);
 
@@ -110,6 +109,7 @@ namespace ClipFlair
       }
     }
 
+ /*
     private void ReportErrorToDOM(ApplicationUnhandledExceptionEventArgs e)
     {
       try
@@ -123,7 +123,7 @@ namespace ClipFlair
       {
       }
     }
-
+*/
     #endregion
 
   }
