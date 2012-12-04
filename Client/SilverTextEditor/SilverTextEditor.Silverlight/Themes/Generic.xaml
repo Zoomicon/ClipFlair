@@ -1,6 +1,6 @@
 ﻿<!--
 Filename: Generic.xaml
-Version: 20120801 
+Version: 20121204
 -->
 
 <ResourceDictionary
@@ -9,7 +9,6 @@ Version: 20120801
  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d"
  xmlns:System="clr-namespace:System;assembly=mscorlib"
- xmlns:local="clr-namespace:SilverTextEditor;assembly=SilverTextEditor"
  xmlns:res="clr-namespace:SilverTextEditor.Resources;assembly=SilverTextEditor"
 >
 
