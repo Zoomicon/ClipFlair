@@ -1,5 +1,5 @@
 //Filename: FloatingWindow.cs
-//Version: 20121111
+//Version: 20121130
 
 using System;
 using System.Collections.ObjectModel;
@@ -1459,7 +1459,7 @@ namespace SilverFlow.Controls
         /// </summary>
         public void Activate()
         {
-            SetTopmost(); //TODO: why does the comment say it tries to set focus to it? maybe Focus() needs to be called here? (see WPF implementation too)
+            SetTopmost();
         }
 
         /// <summary>
