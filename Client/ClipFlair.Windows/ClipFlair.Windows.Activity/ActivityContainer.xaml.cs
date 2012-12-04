@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: ActivityContainer.xaml.cs
-//Version: 20121203
+//Version: 20121204
 
 //TODO: add ContentPartsZoomable property
 //TODO: move zoom slider UI to FloatingWindowHostZUI's XAML template
@@ -126,7 +126,7 @@ namespace ClipFlair.Windows
       View.ContentPartsConfigurable = zuiContainer.WindowsConfigurable;
     }
 
-    public ActivityView View
+    public IActivity View
     {
       get { return (ActivityView)DataContext; }
       set
