@@ -1,6 +1,6 @@
 ﻿<!--
   Filename: generic.xaml 
-  Version: 20120924
+  Version: 20121204
 -->
   
   <ResourceDictionary
@@ -98,14 +98,12 @@
                 <VisualState x:Name="Normal" />
                 <VisualState x:Name="MouseOver">
                   <Storyboard>
-                    <ColorAnimation Duration="0" To="{StaticResource WindowButtonOverColor}" Storyboard.TargetProperty="(TextBlock.Foreground).(SolidColorBrush.Color)" Storyboard.TargetName="ButtonText" />
                     <ColorAnimation Duration="0" To="#FFf9aff9" Storyboard.TargetProperty="(Border.Background).(GradientBrush.GradientStops)[0].(GradientStop.Color)" Storyboard.TargetName="ButtonBorder" />
                     <ColorAnimation Duration="0" To="#FFf64cf6" Storyboard.TargetProperty="(Border.Background).(GradientBrush.GradientStops)[1].(GradientStop.Color)" Storyboard.TargetName="ButtonBorder" />
                   </Storyboard>
                 </VisualState>
                 <VisualState x:Name="Pressed">
                   <Storyboard>
-                    <ColorAnimation Duration="0" To="{StaticResource WindowButtonPressedColor}" Storyboard.TargetProperty="(TextBlock.Foreground).(SolidColorBrush.Color)" Storyboard.TargetName="ButtonText" />
                     <ColorAnimation Duration="0" To="#FFfa80fa" Storyboard.TargetProperty="(Border.Background).(GradientBrush.GradientStops)[0].(GradientStop.Color)" Storyboard.TargetName="ButtonBorder" />
                     <ColorAnimation Duration="0" To="#FF9a009a" Storyboard.TargetProperty="(Border.Background).(GradientBrush.GradientStops)[1].(GradientStop.Color)" Storyboard.TargetName="ButtonBorder" />
                   </Storyboard>
@@ -124,9 +122,7 @@
                   <GradientStop Offset="1"/>
                 </LinearGradientBrush>
               </Border.Background>
-              <Canvas Width="8" Height="8">
-                <TextBlock x:Name="ButtonText" FontWeight="ExtraBold" FontSize="18" Foreground="{TemplateBinding Foreground}" UseLayoutRounding="True" Width="8" Height="8" Margin="-3,-6,0,0" VerticalAlignment="Center" HorizontalAlignment="Center" >*</TextBlock>
-              </Canvas>
+              <Image Source="/SilverFlow.Controls;component/Images/Options.png" x:Name="BaseImage" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Stretch="Uniform" />
             </Border>
           </Grid>
         </ControlTemplate>
