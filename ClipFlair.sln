@@ -25,7 +25,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FloatingWindowZUI.Silverlig
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Utils.Silverlight", "Client\Converters\Utils.Silverlight.csproj", "{E784B6A1-A300-4571-A881-B15240EEE377}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Libraries", "Libraries", "{9226D211-9A9D-4F42-A166-8495F0C188A4}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ClipFlair.Libraries", "ClipFlair.Libraries", "{9226D211-9A9D-4F42-A166-8495F0C188A4}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MediaPlayer.Silverlight", "Client\MediaPlayer\MediaPlayer.Silverlight\MediaPlayer.Silverlight.csproj", "{DD195CFE-B418-4C76-8F51-EEE8E28FAA41}"
 EndProject
@@ -46,6 +46,22 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Captions", "Captions", "{B7B8DC32-93ED-44CC-A0F5-8A3D99A4EA08}"
 EndProject
 Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "CaptionsLib.Silverlight", "Client\Captions\CaptionsLib\CaptionsLib.Silverlight\CaptionsLib.Silverlight.vbproj", "{782E0F64-CDCE-41AA-9B7E-80714B1EE663}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ClipFlair.Windows", "ClipFlair.Windows", "{159C8690-CD53-49FE-9B9E-67960BA0DA67}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClipFlair.Windows.Activity", "Client\ClipFlair.Windows\ClipFlair.Windows.Activity\ClipFlair.Windows.Activity.csproj", "{5C611A60-153B-4781-801D-6F9C1653AE32}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClipFlair.Windows.Base", "Client\ClipFlair.Windows\ClipFlair.Windows.Base\ClipFlair.Windows.Base.csproj", "{4CE71FC4-B8D9-4305-AE15-2F0501CA58B3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClipFlair.Windows.Media", "Client\ClipFlair.Windows\ClipFlair.Windows.Media\ClipFlair.Windows.Media.csproj", "{A14AC96C-D998-4C35-B1C0-415535D1378B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClipFlair.Windows.Captions", "Client\ClipFlair.Windows\ClipFlair.Windows.Captions\ClipFlair.Windows.Captions.csproj", "{38818955-5894-441C-9B80-69C38BEC9A76}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClipFlair.Windows.Text", "Client\ClipFlair.Windows\ClipFlair.Windows.Text\ClipFlair.Windows.Text.csproj", "{396DD176-BC1D-45CF-900E-4FC85B7398FC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClipFlair.Windows.Image", "Client\ClipFlair.Windows\ClipFlair.Windows.Image\ClipFlair.Windows.Image.csproj", "{AA7B9EC6-8A08-4300-827B-65A66818BAF7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClipFlair.Windows.Map", "Client\ClipFlair.Windows\ClipFlair.Windows.Map\ClipFlair.Windows.Map.csproj", "{40580DAE-80A5-49E4-BDD8-DAFDB9D4E088}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -113,6 +129,34 @@ Global
 		{782E0F64-CDCE-41AA-9B7E-80714B1EE663}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{782E0F64-CDCE-41AA-9B7E-80714B1EE663}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{782E0F64-CDCE-41AA-9B7E-80714B1EE663}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5C611A60-153B-4781-801D-6F9C1653AE32}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5C611A60-153B-4781-801D-6F9C1653AE32}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5C611A60-153B-4781-801D-6F9C1653AE32}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5C611A60-153B-4781-801D-6F9C1653AE32}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4CE71FC4-B8D9-4305-AE15-2F0501CA58B3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4CE71FC4-B8D9-4305-AE15-2F0501CA58B3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4CE71FC4-B8D9-4305-AE15-2F0501CA58B3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4CE71FC4-B8D9-4305-AE15-2F0501CA58B3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A14AC96C-D998-4C35-B1C0-415535D1378B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A14AC96C-D998-4C35-B1C0-415535D1378B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A14AC96C-D998-4C35-B1C0-415535D1378B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A14AC96C-D998-4C35-B1C0-415535D1378B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{38818955-5894-441C-9B80-69C38BEC9A76}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{38818955-5894-441C-9B80-69C38BEC9A76}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{38818955-5894-441C-9B80-69C38BEC9A76}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{38818955-5894-441C-9B80-69C38BEC9A76}.Release|Any CPU.Build.0 = Release|Any CPU
+		{396DD176-BC1D-45CF-900E-4FC85B7398FC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{396DD176-BC1D-45CF-900E-4FC85B7398FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{396DD176-BC1D-45CF-900E-4FC85B7398FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{396DD176-BC1D-45CF-900E-4FC85B7398FC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AA7B9EC6-8A08-4300-827B-65A66818BAF7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AA7B9EC6-8A08-4300-827B-65A66818BAF7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AA7B9EC6-8A08-4300-827B-65A66818BAF7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AA7B9EC6-8A08-4300-827B-65A66818BAF7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{40580DAE-80A5-49E4-BDD8-DAFDB9D4E088}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{40580DAE-80A5-49E4-BDD8-DAFDB9D4E088}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{40580DAE-80A5-49E4-BDD8-DAFDB9D4E088}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{40580DAE-80A5-49E4-BDD8-DAFDB9D4E088}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -135,5 +179,12 @@ Global
 		{782E0F64-CDCE-41AA-9B7E-80714B1EE663} = {B7B8DC32-93ED-44CC-A0F5-8A3D99A4EA08}
 		{A5E8BFFB-DA12-4EE4-9CA4-667412D98614} = {310ED3A7-F494-4132-AEEA-3BE12CF889CB}
 		{BF52BDBA-830F-4CD4-AA9C-F653B6448184} = {310ED3A7-F494-4132-AEEA-3BE12CF889CB}
+		{5C611A60-153B-4781-801D-6F9C1653AE32} = {159C8690-CD53-49FE-9B9E-67960BA0DA67}
+		{4CE71FC4-B8D9-4305-AE15-2F0501CA58B3} = {159C8690-CD53-49FE-9B9E-67960BA0DA67}
+		{A14AC96C-D998-4C35-B1C0-415535D1378B} = {159C8690-CD53-49FE-9B9E-67960BA0DA67}
+		{38818955-5894-441C-9B80-69C38BEC9A76} = {159C8690-CD53-49FE-9B9E-67960BA0DA67}
+		{396DD176-BC1D-45CF-900E-4FC85B7398FC} = {159C8690-CD53-49FE-9B9E-67960BA0DA67}
+		{AA7B9EC6-8A08-4300-827B-65A66818BAF7} = {159C8690-CD53-49FE-9B9E-67960BA0DA67}
+		{40580DAE-80A5-49E4-BDD8-DAFDB9D4E088} = {159C8690-CD53-49FE-9B9E-67960BA0DA67}
 	EndGlobalSection
 EndGlobal
