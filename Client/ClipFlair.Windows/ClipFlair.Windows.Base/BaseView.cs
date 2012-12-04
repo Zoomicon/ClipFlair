@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: BaseView.cs
-//Version: 20121203
+//Version: 20121204
 
 using ClipFlair.Windows.Views;
 
@@ -222,7 +222,7 @@ namespace ClipFlair.Windows.Views
     [OnDeserializing()] //this is called before deserialization occurs to set defaults for any properties that may be missing at the serialized data (e.g. from older serialized state)
     public void OnDeserializing(StreamingContext context) //Note that this cannot be a virtual method
     {
-      //SetDefaults();
+      SetDefaults();
     }
 
     #endregion
