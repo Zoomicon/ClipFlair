@@ -1,10 +1,11 @@
 ﻿//Filename: ControlExtensions.cs
-//Version: 20120830
+//Version: 20121130
 
 using System;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 using System.Windows.Media;
 
 using System.Collections.Generic;
@@ -255,6 +256,23 @@ namespace SilverFlow.Controls.Extensions
     }
 
 #endif
+
+    public static bool IsVisualDescendentOf(this DependencyObject element, DependencyObject ancestor)
+    {
+      if (element == null) return false;
+      DependencyObject parent = VisualTreeHelper.GetParent(element);
+      return (parent == ancestor) || IsVisualDescendentOf(parent, ancestor);
+    }
+
+    public static bool IsVisualAncestorOf(this DependencyObject element, DependencyObject descendent)
+    {
+      return (descendent != null) && descendent.IsVisualDescendentOf(element);
+    }
+
+    public static bool IsFocused(this DependencyObject control)
+    {
+      return FocusManager.GetFocusedElement() == control;
+    }
 
   }
 }

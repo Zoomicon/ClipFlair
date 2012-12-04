@@ -1,5 +1,5 @@
 ﻿//Filename: FloatingWindowHost.cs
-//Version: 20121106
+//Version: 20121130
 
 using System;
 using System.Collections.Generic;
@@ -1134,12 +1134,12 @@ namespace SilverFlow.Controls
         /// <param name="window">The window.</param>
         private void SetFocusToActiveWindow(FloatingWindow window)
         {
-            if (window != null && !window.TopMost)
+          if (window != null && !window.TopMost && !window.IsVisualAncestorOf((DependencyObject)FocusManager.GetFocusedElement())) //checking if child control has the focus and not steal it from it
                 window.Focus();
         }
 
         /// <summary>
-        /// Handles the MouseLeftButtonDown event of the FloatingWindowHost control. 
+        /// Handles the MouseLeftButtonDown event of the FloatingWindowHost control.
         /// Closes the IconBar on mouse left click.
         /// </summary>
         /// <param name="sender">The source of the event.</param>
