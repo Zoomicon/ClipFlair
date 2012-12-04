@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: MediaPlayer.cs
-//Version: 20121119
+//Version: 20121129
 
 using System;
 using System.Collections.Generic;
