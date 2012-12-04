@@ -1,0 +1,42 @@
+﻿<!--
+Filename: MapWindow.xaml
+Version: 20121203
+-->
+
+<clipflair:BaseWindow x:Class="ClipFlair.Windows.MapWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008" d:DesignWidth="907" d:DesignHeight="587"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d"
+    xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk"  
+    xmlns:clipflair="clr-namespace:ClipFlair.Windows;assembly=ClipFlair.Windows.Base" 
+    xmlns:map="clr-namespace:Microsoft.Maps.MapControl;assembly=Microsoft.Maps.MapControl"
+    Width="400" Height="400"
+    Tag="Map"
+    >
+
+  <clipflair:BaseWindow.Resources>
+    <ResourceDictionary>
+      <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="/ClipFlair.Windows.Base;component/Themes/Default.xaml" />
+      </ResourceDictionary.MergedDictionaries>
+    </ResourceDictionary>
+  </clipflair:BaseWindow.Resources>
+
+  <!--<clipflair:BaseWindow.FrontContent>-->
+
+  <map:Map CredentialsProvider="AteCcwxu4odM95hYVKZTcvJzDyp4KlfsGKrPRa8QFn0VjwJjlQdSmMOSfoicgi9X"
+           /> <!-- Mode="{Binding Mode, Mode=TwoWay}" -->
+  
+  <!--</clipflair:BaseWindow.FrontContent>-->
+
+  <clipflair:BaseWindow.PropertyItems>
+
+    <StackPanel Orientation="Vertical">
+      <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Mode" Target="{Binding ElementName=edMode}"/>
+      <TextBox Name="edMode" Text="{Binding Mode, Mode=TwoWay}" HorizontalAlignment="Stretch" />
+    </StackPanel>
+
+  </clipflair:BaseWindow.PropertyItems>
+
+</clipflair:BaseWindow>
