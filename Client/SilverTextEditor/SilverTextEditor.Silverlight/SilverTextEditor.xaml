@@ -1,6 +1,6 @@
 ﻿<!--
 Filename: SilverTextEditor.xaml
-Version: 20121204
+Version: 20121206
 -->
 
 <!-- TODO: resize images that have hardcoded width/height -->  
@@ -244,14 +244,14 @@ Version: 20121204
 
             <TextBlock Visibility="Collapsed" Style="{StaticResource MenuLabel}" Text="{Binding txt_Display, Source={StaticResource localizedStrings}}" />
 
-            <ToggleButton x:Name="btnRTL" Checked="btnRTL_Checked" Unchecked="btnRTL_Checked">
+            <ToggleButton x:Name="btnRTL" IsChecked="{Binding RTL, Mode=TwoWay}">
               <ToolTipService.ToolTip>
                 <ToolTip Content="Text Direction"/>
               </ToolTipService.ToolTip>
               <Image Source="Images/LTR.png" />
             </ToggleButton>
 
-            <ToggleButton x:Name="btnRO" Checked="btnRO_Checked" Unchecked="btnRO_Checked" IsChecked="{Binding IsReadOnly}">
+            <ToggleButton x:Name="btnEditable" IsChecked="{Binding Editable, Mode=TwoWay}">
               <ToolTipService.ToolTip>
                 <ToolTip Content="Edit / View Mode"/>
               </ToolTipService.ToolTip>
