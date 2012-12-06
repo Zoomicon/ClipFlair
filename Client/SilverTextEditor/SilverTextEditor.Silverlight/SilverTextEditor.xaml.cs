@@ -109,7 +109,12 @@ namespace SilverTextEditor
     /// </summary>
     protected virtual void OnEditableChanged(bool oldEditable, bool newEditable)
     {
-      btnRO.IsChecked = !newEditable;
+      rtb.IsReadOnly = !newEditable;
+      
+      //Set the button image based on the state of the toggle button.
+      btnEditable.Content = SilverTextEditor.createImageFromUri(new Uri(newEditable ? "/SilverTextEditor;component/Images/Edit.png" : "/SilverTextEditor;component/Images/View.png", UriKind.RelativeOrAbsolute));
+
+      ReturnFocus();
     }
 
     #endregion
@@ -146,7 +151,12 @@ namespace SilverTextEditor
     /// </summary>
     protected virtual void OnRTLChanged(bool oldRTL, bool newRTL)
     {
-      btnRTL.IsChecked = newRTL;
+      RTBGrid.FlowDirection = (newRTL) ? System.Windows.FlowDirection.RightToLeft : System.Windows.FlowDirection.LeftToRight; //not using ApplicationBorder anymore, don't want to flip the toolbar direction too
+
+      //Set the button image based on the state of the toggle button. 
+      btnRTL.Content = SilverTextEditor.createImageFromUri(new Uri(newRTL ? "/SilverTextEditor;component/Images/RTL.png" : "/SilverTextEditor;component/Images/LTR.png", UriKind.RelativeOrAbsolute));
+
+      ReturnFocus();
     }
 
     #endregion
@@ -243,19 +253,19 @@ namespace SilverTextEditor
         {
             InlineUIContainer container = new InlineUIContainer();
 
-            container.Child = SilverTextEditor.createImageFromUri(new Uri("/SilverTextEditor;component/Images/Desert.jpg", UriKind.RelativeOrAbsolute), 200, 150); //should show filedialog to select image here
+            container.Child = SilverTextEditor.createImageFromUri(new Uri("/SilverTextEditor;component/Images/Desert.jpg", UriKind.RelativeOrAbsolute)); //should show filedialog to select image here
 
             rtb.Selection.Insert(container);
             ReturnFocus();
         }
   */
 
-    private static Image createImageFromUri(Uri URI, double width, double height)
+    private static Image createImageFromUri(Uri URI, double? width = null, double? height = null)
     {
       Image img = new Image();
       img.Stretch = Stretch.Uniform;
-      img.Width = width;
-      img.Height = height;
+      if (width!=null) img.Width = (double)width;
+      if (height!=null) img.Height = (double)height;
       BitmapImage bi = new BitmapImage(URI);
       img.Source = bi;
       img.Tag = bi.UriSource.ToString();
@@ -361,23 +371,6 @@ namespace SilverTextEditor
 
     #endregion
 
-    #region LeftToRight FlowDirection
-
-    //Set the flow direction
-    public void btnRTL_Checked(object sender, RoutedEventArgs e)
-    {
-      bool rtl = btnRTL.IsChecked.Value;
-      RTBGrid.FlowDirection = (rtl) ? System.Windows.FlowDirection.RightToLeft : System.Windows.FlowDirection.LeftToRight; //not using ApplicationBorder anymore, don't want to flip the toolbar direction too
-      if (RTL != rtl) RTL = rtl;
-
-      //Set the button image based on the state of the toggle button. 
-      btnRTL.Content = SilverTextEditor.createImageFromUri(new Uri(rtl ? "/SilverTextEditor;component/Images/RTL.png" : "/SilverTextEditor;component/Images/LTR.png", UriKind.RelativeOrAbsolute), 30, 32);
-
-      ReturnFocus();
-    }
-
-    #endregion
-
     #region XAML Markup
 
     /*
@@ -402,23 +395,6 @@ namespace SilverTextEditor
 
         }
 */
-
-    #endregion
-
-    #region Read only RichTextBox
-
-    //Make the RichTextBox read-only
-    public void btnRO_Checked(object sender, RoutedEventArgs e)
-    {
-      bool ro = btnRO.IsChecked.Value;
-      rtb.IsReadOnly = ro;
-      if (Editable == ro) Editable = !ro; //using negated logic here
-
-      //Set the button image based on the state of the toggle button.
-      btnRO.Content = SilverTextEditor.createImageFromUri(new Uri(ro ? "/SilverTextEditor;component/Images/view.png" : "/SilverTextEditor;component/Images/edit.png", UriKind.RelativeOrAbsolute), 29, 32);
-
-      ReturnFocus();
-    }
 
     #endregion
 
