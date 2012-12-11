@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: CaptionsGridView.cs
-//Version: 20121203
+//Version: 20121206
 
 using Microsoft.SilverlightMediaFramework.Core.Accessibility.Captions;
 
@@ -52,7 +52,7 @@ namespace ClipFlair.Windows.Views
     }
 
     [DataMember]
-    //[DefaultValue(ICaptionsGridDefaults.DefaultTime)]
+    //[DefaultValue(ICaptionsGridDefaults.DefaultTime)] //can't use static fields here (we're forced to use static instead of const since we set a non-null default value)
     public TimeSpan Time
     {
       get { return time; }
@@ -75,7 +75,7 @@ namespace ClipFlair.Windows.Views
       {
         if (value != captions)
         {
-          captions = value;
+          captions = value ?? new CaptionRegion(); //if null create a new CaptionRegion
           RaisePropertyChanged(ICaptionsGridProperties.PropertyCaptions);
         }
       }
@@ -178,23 +178,24 @@ namespace ClipFlair.Windows.Views
 
     #region Methods
 
-    public override void SetDefaults() //do not all at constructor, BaseView does it already
-    {
+    public override void SetDefaults() //do not call at constructor, BaseView does it already
+    { //Must set property values, not fields
+
       //BaseView defaults and overrides
       base.SetDefaults();
       Title = ICaptionsGridDefaults.DefaultTitle;
 
       //CaptionsGridView defaults
-      source = ICaptionsGridDefaults.DefaultSource;
-      time = ICaptionsGridDefaults.DefaultTime;
-      captions = ICaptionsGridDefaults.DefaultCaptions;
-      roleVisible = ICaptionsGridDefaults.DefaultRoleVisible;
-      startTimeVisible = ICaptionsGridDefaults.DefaultStartTimeVisible;
-      endTimeVisible = ICaptionsGridDefaults.DefaultEndTimeVisible;
-      durationVisible = ICaptionsGridDefaults.DefaultDurationVisible;
-      captionVisible = ICaptionsGridDefaults.DefaultCaptionVisible;
-      audioVisible = ICaptionsGridDefaults.DefaultAudioVisible;
-      commentsVisible = ICaptionsGridDefaults.DefaultCommentsVisible;
+      Source = ICaptionsGridDefaults.DefaultSource;
+      Time = ICaptionsGridDefaults.DefaultTime;
+      Captions = ICaptionsGridDefaults.DefaultCaptions;
+      RoleVisible = ICaptionsGridDefaults.DefaultRoleVisible;
+      StartTimeVisible = ICaptionsGridDefaults.DefaultStartTimeVisible;
+      EndTimeVisible = ICaptionsGridDefaults.DefaultEndTimeVisible;
+      DurationVisible = ICaptionsGridDefaults.DefaultDurationVisible;
+      CaptionVisible = ICaptionsGridDefaults.DefaultCaptionVisible;
+      AudioVisible = ICaptionsGridDefaults.DefaultAudioVisible;
+      CommentsVisible = ICaptionsGridDefaults.DefaultCommentsVisible;
     }
 
     #endregion

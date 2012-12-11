@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: ActivityView.cs
-//Version: 20121203
+//Version: 20121206
 
 using Microsoft.SilverlightMediaFramework.Core.Accessibility.Captions;
 
@@ -67,7 +67,7 @@ namespace ClipFlair.Windows.Views
     }
 
     //don't make this a DataMember (not storing in Activity)
-    [DefaultValue(ICaptionsGridDefaults.DefaultCaptions)]
+    [DefaultValue(IActivityDefaults.DefaultCaptions)]
     public CaptionRegion Captions
     {
       get { return captions; }
@@ -75,7 +75,7 @@ namespace ClipFlair.Windows.Views
       {
         if (value != captions)
         {
-          captions = value;
+          captions = value ?? new CaptionRegion(); //if null create a new CaptionRegion
           RaisePropertyChanged(ICaptionsGridProperties.PropertyCaptions);
         }
       }
@@ -175,22 +175,23 @@ namespace ClipFlair.Windows.Views
 
     #region Methods
 
-    public override void SetDefaults() //do not all at constructor, BaseView does it already
-    {
+    public override void SetDefaults() //do not call at constructor, BaseView does it already
+    { //Must set property values, not fields
+
       //BaseView defaults and overrides
       base.SetDefaults();
       Title = IActivityDefaults.DefaultTitle;
 
       //ActivityView defaults
-      source = IActivityDefaults.DefaultSource;
-      time = IActivityDefaults.DefaultTime;
-      captions = IActivityDefaults.DefaultCaptions;
-      viewPosition = IActivityDefaults.DefaultViewPosition;
-      viewWidth = IActivityDefaults.DefaultViewWidth;
-      viewHeight = IActivityDefaults.DefaultViewHeight;
-      contentZoom = IActivityDefaults.DefaultContentZoom;
-      contentZoomable = IActivityDefaults.DefaultContentZoomable;
-      contentPartsConfigurable = IActivityDefaults.DefaultContentPartsConfigurable;
+      Source = IActivityDefaults.DefaultSource;
+      Time = IActivityDefaults.DefaultTime;
+      Captions = IActivityDefaults.DefaultCaptions;
+      ViewPosition = IActivityDefaults.DefaultViewPosition;
+      ViewWidth = IActivityDefaults.DefaultViewWidth;
+      ViewHeight = IActivityDefaults.DefaultViewHeight;
+      ContentZoom = IActivityDefaults.DefaultContentZoom;
+      ContentZoomable = IActivityDefaults.DefaultContentZoomable;
+      ContentPartsConfigurable = IActivityDefaults.DefaultContentPartsConfigurable;
     }
 
     #endregion

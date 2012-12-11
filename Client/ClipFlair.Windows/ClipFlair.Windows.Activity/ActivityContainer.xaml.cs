@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: ActivityContainer.xaml.cs
-//Version: 20121204
+//Version: 20121209
 
 //TODO: add ContentPartsZoomable property
 //TODO: move zoom slider UI to FloatingWindowHostZUI's XAML template
@@ -8,7 +8,7 @@
 //TODO: must clear bindings when child window closes (now seem to stay as zombies hearing revoicing entries play at given time)
 
 //#define PART_NESTED_ACTIVITY
-//#define PART_MEDIA
+#define PART_MEDIA
 #define PART_CAPTIONS
 #define PART_TEXT
 #define PART_IMAGE
@@ -30,7 +30,6 @@ using System.ComponentModel.Composition;
 using System.ComponentModel.Composition.Hosting;
 using System.Reflection;
 using System.Windows.Controls;
-using System.Windows.Data;
 
 namespace ClipFlair.Windows
 {
@@ -146,7 +145,6 @@ namespace ClipFlair.Windows
     {
       if (e.PropertyName == null) //multiple (not specified) properties have changed, consider all as changed
       {
-        Time = View.Time;
         zuiContainer.ZoomHost.ContentOffsetX = View.ViewPosition.X;
         zuiContainer.ZoomHost.ContentOffsetY = View.ViewPosition.Y;
         zuiContainer.ZoomHost.ContentViewportWidth = View.ViewWidth;
@@ -157,9 +155,6 @@ namespace ClipFlair.Windows
       }
       else switch (e.PropertyName) //string equality check in .NET uses ordinal (binary) comparison semantics by default
         {
-          case IActivityProperties.PropertyTime:
-            Time = View.Time;
-            break;
           case IActivityProperties.PropertyViewPosition:
             zuiContainer.ZoomHost.ContentOffsetX = View.ViewPosition.X;
             zuiContainer.ZoomHost.ContentOffsetY = View.ViewPosition.Y;
@@ -178,45 +173,6 @@ namespace ClipFlair.Windows
             break;
             //...
         }
-    }
-
-    #endregion
-
-    #region Time
-
-    /// <summary>
-    /// Time Dependency Property
-    /// </summary>
-    public static readonly DependencyProperty TimeProperty =
-        DependencyProperty.Register(IActivityProperties.PropertyTime, typeof(TimeSpan), typeof(ActivityContainer),
-            new FrameworkPropertyMetadata(IActivityDefaults.DefaultTime, new PropertyChangedCallback(OnTimeChanged)));
-
-    /// <summary>
-    /// Gets or sets the Time property.
-    /// </summary>
-    public TimeSpan Time
-    {
-      get { return (TimeSpan)GetValue(TimeProperty); }
-      set { SetValue(TimeProperty, value); }
-    }
-
-    /// <summary>
-    /// Handles changes to the Time property.
-    /// </summary>
-    private static void OnTimeChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
-    {
-      ActivityContainer target = (ActivityContainer)d;
-      TimeSpan oldTime = (TimeSpan)e.OldValue;
-      TimeSpan newTime = target.Time;
-      target.OnTimeChanged(oldTime, newTime);
-    }
-
-    /// <summary>
-    /// Provides derived classes an opportunity to handle changes to the Time property.
-    /// </summary>
-    protected virtual void OnTimeChanged(TimeSpan oldTime, TimeSpan newTime)
-    {
-      View.Time = newTime;
     }
 
     #endregion
@@ -252,12 +208,31 @@ namespace ClipFlair.Windows
     [Import("ClipFlair.Windows.Views.MapView", typeof(IWindowFactory), RequiredCreationPolicy = CreationPolicy.Shared)]
     public IWindowFactory MapWindowFactory { get; set; }
 
-    public BaseWindow AddWindow(IWindowFactory windowFactory, bool centered=false)
+    public BaseWindow AddWindow(IWindowFactory windowFactory, bool newInstance=false)
     {
       try
       {
         BaseWindow w = windowFactory.CreateWindow();
-        if (centered) AddWindowInViewCenter(w); else AddWindow(w);
+
+        if (!newInstance)
+          AddWindow(w);
+        else
+        { //for new child window instances the user adds must reset their properties to match their containers so that they don't cause other components bound to the container to lose their Time/Captions when these get bound as sources to the container (which AddWindow does by calling BindWindow)
+          if (w is MediaPlayerWindow)
+          {
+            IMediaPlayer v = ((MediaPlayerWindow)w).View;
+            v.Time = View.Time;
+            v.Captions = View.Captions;
+          }
+          else if (w is CaptionsGridWindow)
+          {
+            ICaptionsGrid v = ((CaptionsGridWindow)w).View;
+            v.Time = View.Time;
+            v.Captions = View.Captions;
+          }
+          AddWindowInViewCenter(w);
+        };
+          
         return w;
       }
       catch (Exception e)
@@ -267,35 +242,41 @@ namespace ClipFlair.Windows
       }
     }
 
-    private void BindWindow(BaseWindow window)
-    {
-      //TODO: remove this when no hard-coded bindings are needed any more
-      //if (window is MediaPlayerWindow) BindMediaPlayerWindow((MediaPlayerWindow)window);
-      //else if (window is CaptionsGridWindow) BindCaptionsGridWindow((CaptionsGridWindow)window);
-    }
-
     public BaseWindow AddWindowInViewCenter(BaseWindow window)
     {
       window.Scale = 1.0d / zuiContainer.ZoomHost.ContentScale; //TODO: !!! don't use host.Scale, has bug and is always 1
       ZoomAndPanControl host = zuiContainer.ZoomHost;
       Point startPoint = new Point((host.ContentOffsetX + host.ViewportWidth / 2) * host.ContentScale, (zuiContainer.ContentOffsetY + host.ViewportHeight / 2) * zuiContainer.ContentScale); //Center at current view
       zuiContainer.Add(window).Show(startPoint);
+      BindWindow(window);
       return window;
     }
 
     public BaseWindow AddWindow(BaseWindow window)
     {
       zuiContainer.Add(window).Show();
+      BindWindow(window);
       return window;
     }
 
-    private void BindMediaPlayerWindow(MediaPlayerWindow w)
+    #region binding
+
+    private void BindWindow(BaseWindow window)
+    {
+      //TODO: remove this when no hard-coded bindings are needed any more
+      if (window is MediaPlayerWindow) BindMediaPlayerWindow((MediaPlayerWindow)window);
+      else if (window is CaptionsGridWindow) BindCaptionsGridWindow((CaptionsGridWindow)window);
+    }
+
+    private void BindMediaPlayerWindow(MediaPlayerWindow window)
     {
       try
       {
-        //Two-way bind MediaPlayerWindow.Time to ActivityContainer.View.Time via inherited DataContext (make sure we don't bind to window view since it changes after state reloading)
-        BindingUtils.BindProperties(View, "Time", w, BindingUtils.GetDependencyProperty(w, "Time" + "Property"), BindingMode.TwoWay);
-        BindingUtils.BindProperties(View, "Captions", w, BindingUtils.GetDependencyProperty(w, "Captions" + "Property"), BindingMode.TwoWay);
+        BindingUtils.BindProperties(window.View, IMediaPlayerProperties.PropertyTime, 
+                                    View, IActivityProperties.PropertyTime); //TODO: should rebind after changing view if the window is inside a BaseWindow (get its View and bind to it)
+        
+        BindingUtils.BindProperties(window.View, IMediaPlayerProperties.PropertyCaptions,
+                                    View, IActivityProperties.PropertyCaptions); //TODO: should rebind after changing view if the window is inside a BaseWindow (get its View and bind to it)
       }
       catch (Exception ex)
       {
@@ -303,21 +284,23 @@ namespace ClipFlair.Windows
       }
     } //TODO: check why it won't sync smoothly (see what was doing in LvS, maybe ignore time events that are very close to current time)
 
-    private void BindCaptionsGridWindow(CaptionsGridWindow w)
+    private void BindCaptionsGridWindow(CaptionsGridWindow window)
     {
-      //Two-way bind CaptionsGridWindow.Time to ActivityContainer.Time
       try
       {
-        //Two-way bind CaptionsGridWindow.Time to ActivityContainer.View.Time via inherited DataContext (make sure we don't bind to window view since it changes after state reloading)
-        BindingUtils.BindProperties(View, "Time", w, BindingUtils.GetDependencyProperty(w, "Time" + "Property"), BindingMode.TwoWay);
-        View.Captions = w.Captions; //must do this else CaptionGrid's loaded captions will be lost
-        BindingUtils.BindProperties(View, "Captions", w, BindingUtils.GetDependencyProperty(w, "Captions" + "Property"), BindingMode.TwoWay);
+        BindingUtils.BindProperties(window.View, ICaptionsGridProperties.PropertyTime,
+                                    View, IActivityProperties.PropertyTime); //TODO: should rebind after changing view if the window is inside a BaseWindow (get its View and bind to it)
+
+        BindingUtils.BindProperties(window.View, ICaptionsGridProperties.PropertyCaptions,
+                                    View, IActivityProperties.PropertyCaptions); //TODO: should rebind after changing view if the window is inside a BaseWindow (get its View and bind to it)
       }
       catch (Exception ex)
       {
         MessageBox.Show("Failed to bind component: " + ex.Message); //TODO: find parent window
       }
     }
+
+    #endregion
 
     #if PART_NESTED_ACTIVITY
 
@@ -335,9 +318,9 @@ namespace ClipFlair.Windows
       AddWindow(MediaPlayerWindowFactory, true);
     }
 
-#endif
+    #endif
 
-#if PART_CAPTIONS
+    #if PART_CAPTIONS
 
     private void btnAddCaptions_Click(object sender, RoutedEventArgs e)
     {

@@ -1,13 +1,12 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: BaseWindow.xaml.cs
-//Version: 20121203
+//Version: 20121209
 
 //TODO: unbind control at close
 //TODO: do not allow to set too low opacity values that could make windows disappear
 
 #define PROPERTY_CHANGE_SUPPORT
 
-using ClipFlair.Utils.Bindings;
 using ClipFlair.Windows.Views;
 
 using SilverFlow.Controls;
@@ -72,7 +71,7 @@ namespace ClipFlair.Windows
         FlipPanel.IsFlipped = !FlipPanel.IsFlipped; //turn window arround to show/hide its options
       };
 
-      //Load-Save (TODO: check: can't set them in the XAML for some reason) //must do after InitializeComponent
+      //Load-Save (TODO: check: can't set them in the XAML (probably some issue with UserControl inheritance), says "Failed to assign to property 'System.Windows.Controls.Primitives.ButtonBase.Click'") //must do after InitializeComponent
       btnLoad.Click += new RoutedEventHandler(btnLoad_Click);
       btnSave.Click += new RoutedEventHandler(btnSave_Click);
     }
@@ -83,18 +82,6 @@ namespace ClipFlair.Windows
     }
     
     #region Properties
-
-    protected virtual void InitializeView() //must call from ancestor after setting the View and calling InitializeComponent
-    {
-      View.Title = (string)Title;
-      View.Position = Position;
-      View.Width = Width;
-      View.Height = Height;
-      View.Zoom = Scale;
-      View.Moveable = MoveEnabled;
-      View.Resizable = ResizeEnabled;
-      View.Zoomable = ScaleEnabled;
-    }
 
     public IView View
     {

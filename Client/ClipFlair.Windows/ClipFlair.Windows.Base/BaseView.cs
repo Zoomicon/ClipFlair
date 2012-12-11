@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: BaseView.cs
-//Version: 20121204
+//Version: 20121206
 
 using ClipFlair.Windows.Views;
 
@@ -205,24 +205,25 @@ namespace ClipFlair.Windows.Views
     #region Methods
 
     public virtual void SetDefaults()
-    {
+    { //Must set property values, not fields
+
       //BaseView defaults
-      optionsSource = IViewDefaults.DefaultOptionsSource;
-      title = IViewDefaults.DefaultTitle;
-      position = IViewDefaults.DefaultPosition;
-      width = IViewDefaults.DefaultWidth;
-      height = IViewDefaults.DefaultHeight;
-      zoom = IViewDefaults.DefaultZoom;
-      opacity = IViewDefaults.DefaultOpacity;
-      moveable = IViewDefaults.DefaultMoveable;
-      resizable = IViewDefaults.DefaultResizable;
-      zoomable = IViewDefaults.DefaultZoomable;
+      OptionsSource = IViewDefaults.DefaultOptionsSource;
+      Title = IViewDefaults.DefaultTitle;
+      Position = IViewDefaults.DefaultPosition;
+      Width = IViewDefaults.DefaultWidth;
+      Height = IViewDefaults.DefaultHeight;
+      Zoom = IViewDefaults.DefaultZoom;
+      Opacity = IViewDefaults.DefaultOpacity;
+      Moveable = IViewDefaults.DefaultMoveable;
+      Resizable = IViewDefaults.DefaultResizable;
+      Zoomable = IViewDefaults.DefaultZoomable;
     }
 
     [OnDeserializing()] //this is called before deserialization occurs to set defaults for any properties that may be missing at the serialized data (e.g. from older serialized state)
     public void OnDeserializing(StreamingContext context) //Note that this cannot be a virtual method
     {
-      SetDefaults();
+      SetDefaults(); //this one is a virtual method overriden by descendents (they should call "base.SetDefaults()" first there, then override any BaseView default values and then set defaults for their own properties)
     }
 
     #endregion

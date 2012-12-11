@@ -1,16 +1,13 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: TextEditorWindow.xaml.cs
-//Version: 20121201
+//Version: 20121205
 
 using ClipFlair.Windows.Views;
 
 using Ionic.Zip;
 
-using System;
-using System.ComponentModel;
 using System.ComponentModel.Composition;
 using System.IO;
-using System.Windows;
 
 namespace ClipFlair.Windows
 {
@@ -31,7 +28,6 @@ namespace ClipFlair.Windows
     {
       View = new TextEditorView(); //must set the view first
       InitializeComponent();
-      InitializeView();
       //editor.LoadResource("/ClipFlair;component/ActivityDescription.text"); //The intial text is stored as XAML at a .text file.
      }
 
