@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: MediaPlayerView.cs
-//Version: 20121203
+//Version: 20121206
 
 using Microsoft.SilverlightMediaFramework.Core.Accessibility.Captions;
 
@@ -52,7 +52,7 @@ namespace ClipFlair.Windows.Views
     }
 
     [DataMember(Order=0)] //TODO: should make MediaPlayer try to play from current time value (only when another movie is loaded from the UI/playlist should reset time to 0)
-    //[DefaultValue(IMediaPlayerDefaults.DefaultTime)]
+    //[DefaultValue(IMediaPlayerDefaults.DefaultTime)] //can't use static fields here (and we're forced to use one for TimeSpan unfortunately, doesn't work with const)
     public TimeSpan Time
     {
       get { return time; }
@@ -75,7 +75,7 @@ namespace ClipFlair.Windows.Views
       {
         if (value != captions)
         {
-          captions = value;
+          captions = value ?? new CaptionRegion(); //if null create a new CaptionRegion
           RaisePropertyChanged(IMediaPlayerProperties.PropertyCaptions);
         }
       }
@@ -190,23 +190,24 @@ namespace ClipFlair.Windows.Views
 
     #region Methods
 
-    public override void SetDefaults() //do not all at constructor, BaseView does it already
-    {
+    public override void SetDefaults() //do not call at constructor, BaseView does it already
+    { //Must set property values, not fields
+
       //BaseView defaults and overrides
       base.SetDefaults();
       Title = IMediaPlayerDefaults.DefaultTitle;
 
       //MediaPlayerView defaults
-      source = IMediaPlayerDefaults.DefaultSource;
-      time = IMediaPlayerDefaults.DefaultTime;
-      captions = IMediaPlayerDefaults.DefaultCaptions;
-      speed = IMediaPlayerDefaults.DefaultSpeed;
-      volume = IMediaPlayerDefaults.DefaultVolume;
-      autoPlay = IMediaPlayerDefaults.DefaultAutoPlay;
-      looping = IMediaPlayerDefaults.DefaultLooping;
-      videoVisible = IMediaPlayerDefaults.DefaultVideoVisible;
-      controllerVisible = IMediaPlayerDefaults.DefaultControllerVisible;
-      captionsVisible = IMediaPlayerDefaults.DefaultCaptionsVisible;
+      Source = IMediaPlayerDefaults.DefaultSource;
+      Time = IMediaPlayerDefaults.DefaultTime;
+      Captions = IMediaPlayerDefaults.DefaultCaptions;
+      Speed = IMediaPlayerDefaults.DefaultSpeed;
+      Volume = IMediaPlayerDefaults.DefaultVolume;
+      AutoPlay = IMediaPlayerDefaults.DefaultAutoPlay;
+      Looping = IMediaPlayerDefaults.DefaultLooping;
+      VideoVisible = IMediaPlayerDefaults.DefaultVideoVisible;
+      ControllerVisible = IMediaPlayerDefaults.DefaultControllerVisible;
+      CaptionsVisible = IMediaPlayerDefaults.DefaultCaptionsVisible;
     }
  
     public void Play()

@@ -1,14 +1,10 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: MapWindow.xaml.cs
-//Version: 20121203
+//Version: 20121205
 
 using ClipFlair.Windows.Views;
 
-using System;
-using System.ComponentModel;
 using System.ComponentModel.Composition;
-using System.Windows;
-using System.Windows.Media.Imaging;
 
 namespace ClipFlair.Windows
 {
@@ -29,7 +25,6 @@ namespace ClipFlair.Windows
         {
           View = new MapView(); //must set the view first
           InitializeComponent();
-          InitializeView();
         }
 
         #region View

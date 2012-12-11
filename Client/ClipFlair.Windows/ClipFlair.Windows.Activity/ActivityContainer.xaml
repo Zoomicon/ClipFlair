@@ -1,7 +1,7 @@
 ﻿<!--
 Project: ClipFlair (http://ClipFlair.codeplex.com)
 Filename: ActivityContainer.xaml
-Version: 20121203
+Version: 20121205
 -->
 
 <UserControl x:Class="ClipFlair.Windows.ActivityContainer" 
@@ -15,6 +15,10 @@ Version: 20121203
   xmlns:clipflair="clr-namespace:ClipFlair.Windows"
   xmlns:utils="clr-namespace:System.Windows.Controls;assembly=WPF_Compatibility"
   >
+  <!-- //EXAMPLE//
+  xmlns:map="clr-namespace:ClipFlair.Windows;assembly=ClipFlair.Windows.Map"
+  xmlns:mapview="clr-namespace:ClipFlair.Windows.Views;assembly=ClipFlair.Windows.Map"
+  -->
   
   <UserControl.Resources>
     <ResourceDictionary>
@@ -73,7 +77,13 @@ Version: 20121203
       <!--<zui:FloatingWindowHostZUI.Windows>-->
       <!--<float:FloatingWindowCollection>-->
 
-      <!-- ... -->
+      <!-- //EXAMPLE// (some properties can be set on the FloatingWindow directly, but they're also exposed at the respective view object (it's preferred to set them there)
+      <map:MapWindow Title="test" Width="100" >
+        <map:MapWindow.View>
+          <mapview:MapView Mode="Aerial" Height="100" />
+        </map:MapWindow.View>
+      </map:MapWindow>
+      -->
 
       <!--</float:FloatingWindowCollection>-->
       <!--</zui:FloatingWindowHostZUI.Windows>-->

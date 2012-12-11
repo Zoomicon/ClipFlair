@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: App.xaml.cs
-//Version: 20121129
+//Version: 20121206
 
 using ClipFlair.Windows;
 using SilverFlow.Controls;
@@ -95,7 +95,7 @@ namespace ClipFlair
       // If the app is running outside of the debugger then report the exception using
       // the browser's exception mechanism. On IE this will display it a yellow alert 
       // icon in the status bar and Firefox will display a script error.
-      if (!System.Diagnostics.Debugger.IsAttached)
+      //if (!System.Diagnostics.Debugger.IsAttached) //THIS DOESN'T SEEM TO WORK, FREEZES
       {
         // NOTE: This will allow the application to continue running after an exception has been thrown
         // but not handled. 

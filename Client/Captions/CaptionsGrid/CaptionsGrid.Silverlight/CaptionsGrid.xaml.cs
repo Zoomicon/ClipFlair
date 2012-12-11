@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: CaptionsGrid.xaml.cs
-//Version: 20121202
+//Version: 20121206
 
 using ClipFlair.AudioRecorder;
 using ClipFlair.CaptionsLib.Utils;
@@ -156,8 +156,7 @@ namespace ClipFlair.CaptionsGrid
     /// </summary>
     protected virtual void OnCaptionsChanged(CaptionRegion oldCaptions, CaptionRegion newCaptions)
     {
-      //NOP (using data binding)
-      //gridCaptions.DataContext = newCaptions.Children; //don't change the UserControl's DataContext (just the DataGrid's), else data binding won't work in the parent (this would need ItemsSource="{Binding}" in the XAML)
+      if (newCaptions == null) Captions = new CaptionRegion(); //this assumes two-way data-binding that will propagate back to setter
     }
 
     #endregion

@@ -1,7 +1,7 @@
 ﻿<!--
 Project: ClipFlair (http://ClipFlair.codeplex.com)
 Filename: CaptionsGrid.xaml
-Version: 20121202
+Version: 20121205
 -->
   
   <UserControl x:Class="ClipFlair.CaptionsGrid.CaptionsGrid"
@@ -33,6 +33,7 @@ Version: 20121202
     <toolkit:WrapPanel Name="Toolbar"
                 Grid.Row="0"
                 Orientation="Horizontal"
+                HorizontalAlignment="Stretch"
                 >
       <toolkit:WrapPanel.Resources>
         <Style TargetType="Button">
@@ -92,7 +93,7 @@ Version: 20121202
                   AutoGenerateColumns="False"
                   RowBackground="White"
                   AlternatingRowBackground="Beige"
-                  ItemsSource="{Binding Path=Captions.Children, RelativeSource={RelativeSource AncestorType=captions:CaptionsGrid}, Mode=TwoWay}">
+                  ItemsSource="{Binding Path=Captions.Children, RelativeSource={RelativeSource AncestorType=captions:CaptionsGrid}}">
       <sdk:DataGrid.Columns>
         <sdk:DataGridTemplateColumn Header="Start" CellTemplate="{StaticResource StartTimeCellTemplate}" CellEditingTemplate="{StaticResource StartTimeCellEditTemplate}" />
         <sdk:DataGridTemplateColumn Header="End" CellTemplate="{StaticResource EndTimeCellTemplate}" CellEditingTemplate="{StaticResource EndTimeCellEditTemplate}" />

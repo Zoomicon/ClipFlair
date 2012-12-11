@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: TextEditorView.cs
-//Version: 20121203
+//Version: 20121206
 
 using System;
 using System.ComponentModel;
@@ -92,17 +92,18 @@ namespace ClipFlair.Windows.Views
 
     #region Methods
 
-    public override void SetDefaults() //do not all at constructor, BaseView does it already
-    {
+    public override void SetDefaults() //do not call at constructor, BaseView does it already
+    { //Must set property values, not fields
+
       //BaseView defaults and overrides
       base.SetDefaults();
       Title = ITextEditorDefaults.DefaultTitle;
 
       //TextEditorView defaults
-      source = ITextEditorDefaults.DefaultSource;
-      toolbarVisible = ITextEditorDefaults.DefaultToolbarVisible;
-      editable = ITextEditorDefaults.DefaultEditable;
-      rtl = ITextEditorDefaults.DefaultRTL;
+      Source = ITextEditorDefaults.DefaultSource;
+      ToolbarVisible = ITextEditorDefaults.DefaultToolbarVisible;
+      Editable = ITextEditorDefaults.DefaultEditable;
+      RTL = ITextEditorDefaults.DefaultRTL;
     }
 
     #endregion

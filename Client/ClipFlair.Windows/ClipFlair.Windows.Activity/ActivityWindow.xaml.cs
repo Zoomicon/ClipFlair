@@ -1,19 +1,16 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: ActivityWindow.xaml.cs
-//Version: 20121203
+//Version: 20121205
 
 using ClipFlair.Windows.Views;
 using ClipFlair.Utils.Bindings;
 
 using Ionic.Zip;
-using SilverFlow.Controls;
 
 using System;
-using System.ComponentModel;
 using System.ComponentModel.Composition;
 using System.IO;
 using System.Windows;
-using System.Windows.Data;
 using System.Windows.Media;
 
 namespace ClipFlair.Windows
@@ -36,7 +33,6 @@ namespace ClipFlair.Windows
     {
       InitializeComponent();
       View = activity.View; //set window's View to be the same as the nested activity's View
-      InitializeView();
 
       //copy Window Factory objects (initialized in activity using MEF) to static fields so that code in BaseWindow can use them
       ActivityWindowFactory = activity.ActivityWindowFactory;

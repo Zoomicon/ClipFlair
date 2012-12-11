@@ -1,14 +1,12 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: MediaPlayer.cs
-//Version: 20121129
+//Version: 20121205
 
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
 using System.Windows.Media;
 
-using Microsoft.SilverlightMediaFramework;
 using Microsoft.SilverlightMediaFramework.Core;
 using Microsoft.SilverlightMediaFramework.Core.Media;
 using Microsoft.SilverlightMediaFramework.Core.Accessibility.Captions;
@@ -583,6 +581,8 @@ namespace ClipFlair.MediaPlayer
 
     public void UpdateCaptions1(CaptionRegion newCaptions1)
     {
+      if (Captions == null) return; //must check this since media may not be ready yet (setting captions again [cached at the dependency property] at OnMediaOpened event handler
+
       Captions.Clear(); //TODO: if we have multiple regions in the future, replace region 1 instead in this collection
 
       if (newCaptions1 != null)
@@ -598,25 +598,25 @@ namespace ClipFlair.MediaPlayer
     {
       if (theCaptions == null) return;
 
-        theCaptions.Style.ShowBackground = ShowBackground.WhenActive; //doesn't seem to work if other than transparent color is used
-        theCaptions.Style.BackgroundColor = Colors.Transparent;
+      theCaptions.Style.ShowBackground = ShowBackground.WhenActive; //doesn't seem to work if other than transparent color is used
+      theCaptions.Style.BackgroundColor = Colors.Transparent;
 
-        //set caption region (max) bounds
-        theCaptions.Style.Origin = new Origin() { Left = new Length() { Unit = LengthUnit.Percent, Value = CAPTION_REGION_LEFT }, Top = new Length() { Unit = LengthUnit.Percent, Value = CAPTION_REGION_TOP} };
-        theCaptions.Style.Extent = new Extent() { Width = new Length() { Unit = LengthUnit.Percent, Value = CAPTION_REGION_WIDTH }, Height = new Length() { Unit = LengthUnit.Percent, Value = CAPTION_REGION_HEIGHT } };
+      //set caption region (max) bounds
+      theCaptions.Style.Origin = new Origin() { Left = new Length() { Unit = LengthUnit.Percent, Value = CAPTION_REGION_LEFT }, Top = new Length() { Unit = LengthUnit.Percent, Value = CAPTION_REGION_TOP } };
+      theCaptions.Style.Extent = new Extent() { Width = new Length() { Unit = LengthUnit.Percent, Value = CAPTION_REGION_WIDTH }, Height = new Length() { Unit = LengthUnit.Percent, Value = CAPTION_REGION_HEIGHT } };
 
-        //theCaptions.Style.Padding = new Padding() { Left = new Length() { Unit = LengthUnit.Percent, Value = CAPTION_REGION_LEFT }, Right = { Unit = LengthUnit.Percent, Value = 1-CAPTION_REGION_LEFT-CAPTION_REGION_HEIGHT }, Bottom = { Unit = LengthUnit.Percent, Value = CAPTION_REGION_TOP }, Top = { Unit = LengthUnit.Percent, Value = 1-CAPTION_REGION_TOP-CAPTION_REGION_HEIGHT } }; //this crashes Silverlight
+      //theCaptions.Style.Padding = new Padding() { Left = new Length() { Unit = LengthUnit.Percent, Value = CAPTION_REGION_LEFT }, Right = { Unit = LengthUnit.Percent, Value = 1-CAPTION_REGION_LEFT-CAPTION_REGION_HEIGHT }, Bottom = { Unit = LengthUnit.Percent, Value = CAPTION_REGION_TOP }, Top = { Unit = LengthUnit.Percent, Value = 1-CAPTION_REGION_TOP-CAPTION_REGION_HEIGHT } }; //this crashes Silverlight
 
-        //theCaptions.Style.Direction = Direction.LeftToRight;
-      
-        theCaptions.Style.DisplayAlign = DisplayAlign.After; //align multirow catpions to bottom of region
-        theCaptions.Style.TextAlign = TextAlignment.Justify; //horizontally center captions
+      //theCaptions.Style.Direction = Direction.LeftToRight;
 
-        theCaptions.Style.WrapOption = TextWrapping.Wrap; //wrap too long captions to next row
-        theCaptions.Style.Overflow = Overflow.Dynamic; //extends the area for the captions as needed, up to the given Extent
+      theCaptions.Style.DisplayAlign = DisplayAlign.After; //align multirow catpions to bottom of region
+      theCaptions.Style.TextAlign = TextAlignment.Justify; //horizontally center captions
 
-        foreach (CaptionElement caption in theCaptions.Children)
-          StyleCaption(caption);
+      theCaptions.Style.WrapOption = TextWrapping.Wrap; //wrap too long captions to next row
+      theCaptions.Style.Overflow = Overflow.Dynamic; //extends the area for the captions as needed, up to the given Extent
+
+      foreach (CaptionElement caption in theCaptions.Children)
+        StyleCaption(caption);
     } //TODO: should keep styling settings as properties of CaptionGrid
 
     public static void StyleCaption(TimedTextElement theCaption)

@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: MapView.cs
-//Version: 20121203
+//Version: 20121206
 
 using System;
 using System.ComponentModel;
@@ -44,14 +44,15 @@ namespace ClipFlair.Windows.Views
 
     #region Methods
 
-    public override void SetDefaults() //do not all at constructor, BaseView does it already
-    {
+    public override void SetDefaults() //do not call at constructor, BaseView does it already
+    { //Must set property values, not fields
+
       //BaseView defaults and overrides
       base.SetDefaults();
       Title = IMapViewerDefaults.DefaultTitle;
 
       //MapView defaults
-      mode = IMapViewerDefaults.DefaultMode;
+      Mode = IMapViewerDefaults.DefaultMode;
     }
 
    #endregion
