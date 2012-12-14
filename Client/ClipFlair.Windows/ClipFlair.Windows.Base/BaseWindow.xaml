@@ -1,7 +1,7 @@
 ﻿<!--
 Project: ClipFlair (http://ClipFlair.codeplex.com)
 Filename: BaseWindow.xaml
-Version: 20121209
+Version: 20121214
 -->
 
 <float:FloatingWindow x:Class="ClipFlair.Windows.BaseWindow"
@@ -58,7 +58,14 @@ Version: 20121209
           </Grid.RowDefinitions>
             
           <StackPanel Grid.Row="0" Orientation="Horizontal">
-          
+
+            <Button Name="btnLoadURL" Margin="3,3,3,3">
+              <ToolTipService.ToolTip>
+                <ToolTip Content="Load options from URL" />
+              </ToolTipService.ToolTip>
+              <Image Source="/ClipFlair.Windows.Base;component/Images/loadURL.png" />
+            </Button>
+
             <Button Name="btnLoad" Margin="3,3,3,3">
               <ToolTipService.ToolTip>
                 <ToolTip Content="Load options" />
