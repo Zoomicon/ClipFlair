@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: BaseWindow.xaml.cs
-//Version: 20121209
+//Version: 20121214
 
 //TODO: unbind control at close
 //TODO: do not allow to set too low opacity values that could make windows disappear
@@ -8,6 +8,7 @@
 #define PROPERTY_CHANGE_SUPPORT
 
 using ClipFlair.Windows.Views;
+using ClipFlair.Utils;
 
 using SilverFlow.Controls;
 using Ionic.Zip;
@@ -51,7 +52,17 @@ namespace ClipFlair.Windows
 
       HelpRequested += (s, e) =>
       {
-        MessageBox.Show("Help not available yet - see http://ClipFlair.net for contact info");
+        Dispatcher.BeginInvoke(delegate
+        {
+          try
+          {
+            ExecUtils.OpenHyperlink("http://clipflairsrv.cti.gr/Social/Pages/Tutorials.aspx"); //TODO: change to play.clipflair.net URL
+          }
+          catch
+          {
+            MessageBox.Show("For help see http://clipflairsrv.cti.gr/Social/Pages/Tutorials.aspx");  //TODO: change to play.clipflair.net URL //TODO: fix to show help in OOB using WebBrowser control (just make sure help pages are coming from same domain as the one that deploys the app)
+          }
+        });
       };
 
       //Closing += (s,e) => { e.Cancel = (MessageBox.Show("Are you sure you want to close the window?", "Confirmation", MessageBoxButton.OKCancel) != MessageBoxResult.OK); };
@@ -180,6 +191,14 @@ namespace ClipFlair.Windows
     }
     #endif
 
+    private void btnLoadURL_Click(object sender, RoutedEventArgs e)
+    {
+      //TODO
+      
+      //LoadOptions(stream);
+      FlipPanel.IsFlipped = !FlipPanel.IsFlipped; //turn window arround again after succesful options loading
+    }
+
     private void btnLoad_Click(object sender, RoutedEventArgs e)
     {
       try
@@ -191,9 +210,10 @@ namespace ClipFlair.Windows
 
         if (dlg.ShowDialog() == true) //TODO: find the parent window
           using (Stream stream = dlg.File.OpenRead()) //will close the stream when done
+          {
             LoadOptions(stream);
-
-        FlipPanel.IsFlipped = !FlipPanel.IsFlipped; //turn window arround again after succesful options loading
+            FlipPanel.IsFlipped = !FlipPanel.IsFlipped; //turn window arround again after succesful options loading
+          }
       }
       catch (NullReferenceException)
       {
