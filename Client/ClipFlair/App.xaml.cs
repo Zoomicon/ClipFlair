@@ -1,12 +1,13 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: App.xaml.cs
-//Version: 20121206
+//Version: 20121213
 
 using ClipFlair.Windows;
 using SilverFlow.Controls;
 
 using System;
 using System.Windows;
+using System.Windows.Threading;
 
 namespace ClipFlair
 {
@@ -95,18 +96,23 @@ namespace ClipFlair
       // If the app is running outside of the debugger then report the exception using
       // the browser's exception mechanism. On IE this will display it a yellow alert 
       // icon in the status bar and Firefox will display a script error.
-      //if (!System.Diagnostics.Debugger.IsAttached) //THIS DOESN'T SEEM TO WORK, FREEZES
-      {
+      //if (System.Diagnostics.Debugger.IsAttached) return; //THIS DOESN'T SEEM TO WORK, FREEZES
+      
         // NOTE: This will allow the application to continue running after an exception has been thrown
         // but not handled. 
         // For production applications this error handling should be replaced with something that will 
         // report the error to the website and stop the application.
 
-        MessageBox.Show("Unexpected error: " + e.ExceptionObject.Message + "\n" + e.ExceptionObject.StackTrace); //TODO: find parent window?
         e.Handled = true;
 
-        //Deployment.Current.Dispatcher.BeginInvoke(delegate { ReportErrorToDOM(e); }); //don't use this, non-useful browser message
-      }
+        //try to show message on UI thread
+        Dispatcher dispatcher = Deployment.Current.Dispatcher;
+        if (dispatcher != null) 
+          dispatcher.BeginInvoke(
+            () => 
+              MessageBox.Show("Unexpected error: " + e.ExceptionObject.Message + "\n" + e.ExceptionObject.StackTrace) //TODO: find parent window?
+              //ReportErrorToDOM(e) //don't use this, uses Browser's error facility (wouldn't work in OOB)
+          );
     }
 
  /*

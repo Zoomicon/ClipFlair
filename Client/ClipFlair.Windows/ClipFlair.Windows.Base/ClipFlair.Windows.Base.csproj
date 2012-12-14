@@ -129,6 +129,9 @@
   <ItemGroup>
     <Resource Include="Images\load.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\loadURL.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Silverlight\$(SilverlightVersion)\Microsoft.Silverlight.CSharp.targets" />
   <ProjectExtensions>
     <VisualStudio>
