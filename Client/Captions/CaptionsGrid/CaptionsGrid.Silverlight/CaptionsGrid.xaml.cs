@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: CaptionsGrid.xaml.cs
-//Version: 20121206
+//Version: 20121215
 
 using ClipFlair.AudioRecorder;
 using ClipFlair.CaptionsLib.Utils;
@@ -8,13 +8,14 @@ using ClipFlair.CaptionsLib.Models;
 
 using System;
 using System.IO;
+using System.Linq;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
-using System.Collections;
+using System.Collections.Generic;
 
-using Microsoft.SilverlightMediaFramework.Core.Media;
 using Microsoft.SilverlightMediaFramework.Core.Accessibility.Captions;
+
 
 //TODO: upon end of content cell edit, need to jump to some other previous time (for 0 jump to next time, say 0.02) to update player view, or throw some event that captions changed?
 
@@ -420,6 +421,15 @@ namespace ClipFlair.CaptionsGrid
 
     #endregion
 
+    public IEnumerable<string> Roles
+    {
+      get
+      {
+        if (Captions == null) return null;
+        return (from caption in Captions.Children select ((CaptionElementExt)caption).Role).Distinct().OrderBy(n => n);
+      }
+    }
+    
     #endregion
 
     private CaptionElement AddCaption()
