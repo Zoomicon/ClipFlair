@@ -885,7 +885,7 @@ h1, h2, h3{
 {
 	width: 960px;
 	margin: 0px auto;
-	padding: 20px 0px;
+	padding: 16px 0px;
 	overflow: hidden;
 	position: relative;
 	font-size: 11px;
@@ -1373,6 +1373,9 @@ margin-top: 55px;
 	margin: 0;
 	list-style: none;
 	float: left;	
+    
+    /* p */
+    position:relative;
 }
 .navigation ul li
 {
@@ -1437,13 +1440,15 @@ margin-top: 55px;
 .navigation ul ul
 {
 	position: absolute;
-	z-index: 5000;		
-	top: 150px;
-	float: left;
+	z-index: 5000;
+    float: left;
 	clear: both;
     
-
+    /* p     
+	top: 150px;*/
+    top:40px; 
 }
+
 .navigation ul ul ul
 {	
 	top: auto;
@@ -4182,7 +4187,7 @@ text-decoration:none;
 .discussion .topic .topics,
 .discussion .topic .posts
 {
-	background: #e2e9f1 url(img/Sn/Discussion/posts-views-bg.jpg) bottom repeat-x;
+	background: #f6f6f6 url(img/Sn/Discussion/posts-views-bg.jpg) bottom repeat-x;
 }
 .discussion .topic .topics A,
 .discussion .topic .posts A
@@ -4399,12 +4404,21 @@ text-decoration:none;
 .discussion .topic-pin-background
 {
     color: #959A11;
-	background: #ecf2f7 url(img/Sn/Discussion/pinned-bg.jpg) center bottom repeat-x !important;
+    background: #f6f6f6 url(img/Sn/Discussion/pinned-bg.jpg) center bottom repeat-x !important;
+     
 }
 .discussion .board-pin-background
 {
-	background: #ecf2f7 url(img/Sn/Discussion/pinned-bg.jpg) center bottom repeat-x;
-	border-top: solid 1px #bcc8d5;
+	
+   /* border: dotted 1px #B0B535;    
+    -moz-box-shadow: 0 0 22px #f0f0f0 inset;
+        -webkit-box-shadow: 0 0 22px #f0f0f0 inset;
+            box-shadow: 0 0 22px #f0f0f0 inset;
+                -ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=22, Direction=0, Color='#f0f0f0')";
+                    filter: progid:DXImageTransform.Microsoft.Shadow(Strength=22, Direction=0, Color='#f0f0f0');   */
+     
+    background: #f6f6f6 url(img/Sn/Discussion/pinned-bg.jpg) center bottom repeat-x;
+    border-top: solid 1px #BCC8D5;
 }
 .topic-answer-background .post-content
 {
@@ -8006,4 +8020,45 @@ box-shadow: 0px 1px 2px #90936D;
     font-size:11px !important;
     font-style:italic !important;
     clear:none !important;
+}
+
+
+.EU-logo {
+    float:left;
+    width:174px;
+    height:72px;
+    background-image:url(img/eu-logo.gif);
+    background-repeat:no-repeat;
+}
+
+.EU-notice{
+    float:left;
+    font-size:10px;
+    line-height:12px;
+    width:600px;
+    padding:10px 0 0 10px;
+    color:#4D4D4D;
+    font-style:italic;
+}
+
+.footer-wrapper .footer-logos
+{
+	width: 960px;
+	margin: 0px auto;
+	padding: 0;
+	overflow: hidden;
+	position: relative;
+	font-size: 11px;
+	color: #321f1a;
+    padding-bottom:10px;
+}
+
+.footer-logos .monox-logo{
+    float:right;
+    padding-top:10px;
+}
+
+
+.footer-logos .monox-logo img{
+    border:none;
 }
