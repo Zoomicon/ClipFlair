@@ -9,6 +9,8 @@
   <tools name="AA" isribbon = "false">
     <tool name="Bold" shortcut="CTRL+B"/>
     <tool name="Italic" shortcut="CTRL+I"/>
+    <tool name="Underline" shortcut="CTRL+U"/>   
+    <tool name="StrikeThrough"/>
 	<tool separator="true"/>
 	<tool name="JustifyLeft" />
     <tool name="JustifyCenter" />

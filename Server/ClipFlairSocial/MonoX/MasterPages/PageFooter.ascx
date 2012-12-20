@@ -25,12 +25,21 @@ Inherits="MonoSoftware.MonoX.MasterPages.PageFooter" %>
             
 
 		</ul>
-    	
+    </div>   
+    <div class="footer-logos">
+            
+                
+            
+                    <div class="EU-logo"></div>
+                    <div class="EU-notice">This project has been funded with support from the European Commission. <br/>This publication reflects the views only of the author, and the Commission<br/> cannot be held responsible for any use which may be made of the information<br/> contained therein.</div>
+                    <div class="monox-logo">
+                        <a id="A1" runat="server" href="http://monox.mono-software.com" class="logo"><img id="Img1" runat="server" src="<%$ Code: MonoSoftware.MonoX.Paths.App_Themes.img.powered_by_png %>" style="width: 90px;" alt="Powered by MonoX" /></a>
+                    </div>
+   	
 	<div>
 		    
 </div>
         
-        <!--<a id="A1" runat="server" href="http://monox.mono-software.com" class="logo"><img id="Img1" runat="server" src="<%$ Code: MonoSoftware.MonoX.Paths.App_Themes.img.powered_by_png %>" style="width: 90px;" alt="Powered by MonoX" /></a>-->
-
-     
+        
+    
 </div>
