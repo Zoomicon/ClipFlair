@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: ActivityContainer.xaml.cs
-//Version: 20121209
+//Version: 20121221
 
 //TODO: add ContentPartsZoomable property
 //TODO: move zoom slider UI to FloatingWindowHostZUI's XAML template
@@ -10,6 +10,7 @@
 //#define PART_NESTED_ACTIVITY
 #define PART_MEDIA
 #define PART_CAPTIONS
+#define PART_REVOICING
 #define PART_TEXT
 #define PART_IMAGE
 #define PART_MAP
@@ -66,44 +67,44 @@ namespace ClipFlair.Windows
       partsCatalog.Catalogs.Add(new AssemblyCatalog(typeof(ImageWindow).Assembly));
       partsCatalog.Catalogs.Add(new AssemblyCatalog(typeof(MapWindow).Assembly));
 
-#if PART_NESTED_ACTIVITY
+      #if PART_NESTED_ACTIVITY
       btnAddNestedActivity.Visibility = Visibility.Visible;
       btnAddNestedActivity.Click += new RoutedEventHandler(btnAddNestedActivity_Click);
-#endif
+      #endif
 
-#if PART_MEDIA      
+      #if PART_MEDIA
       btnAddMedia.Visibility = Visibility.Visible;
       btnAddMedia.Click += new RoutedEventHandler(btnAddMedia_Click);
-#endif
+      #endif
 
-#if PART_CAPTIONS
+      #if PART_CAPTIONS
       btnAddCaptions.Visibility = Visibility.Visible;
       btnAddCaptions.Click += new RoutedEventHandler(btnAddCaptions_Click);
-#endif
+      #endif
 
-#if PART_TEXT
+      #if PART_REVOICING
+      btnAddRevoicing.Visibility = Visibility.Visible;
+      btnAddRevoicing.Click += new RoutedEventHandler(btnAddRevoicing_Click);
+      #endif
+
+      #if PART_TEXT
       btnAddText.Visibility = Visibility.Visible;
       btnAddText.Click += new RoutedEventHandler(btnAddText_Click);
-#endif
+      #endif
 
-#if PART_IMAGE
+      #if PART_IMAGE
       btnAddImage.Visibility = Visibility.Visible;
       btnAddImage.Click += new RoutedEventHandler(btnAddImage_Click);
-#endif
+      #endif
 
-#if PART_MAP
+      #if PART_MAP
       btnAddMap.Visibility = Visibility.Visible;
       btnAddMap.Click += new RoutedEventHandler(btnAddMap_Click);
-#endif
+      #endif
 
       CompositionContainer container = new CompositionContainer(partsCatalog);
       container.SatisfyImportsOnce(this);
       //CompositionInitializer.SatisfyImports(this);
-    }
-
-    ~ActivityContainer()
-    {
-      View = null; //unregister PropertyChangedEventHandler
     }
 
     public BaseWindow FindWindow(string tag) //need this since floating windows are not added in the XAML visual tree by the FloatingWindowHostZUI.Windows property (maybe should have FloatingWindowHostZUI inherit 
@@ -171,7 +172,7 @@ namespace ClipFlair.Windows
           case IActivityProperties.PropertyContentZoomable:
             zuiContainer.ZoomHost.ContentScalable = View.ContentZoomable;
             break;
-            //...
+          //...
         }
     }
 
@@ -187,7 +188,14 @@ namespace ClipFlair.Windows
     public void RemoveWindows()
     {
       //TODO: should unbind windows here
-      Windows.RemoveAll(); //TODO: do not use "Clear", doesn't work
+      //Windows.RemoveAll(); //TODO: do not use "Clear", doesn't work
+      zuiContainer.CloseAllWindows(); //do not use remove, not sure if that closes the window or just removes it from the list (which might keep it alive)
+    }
+
+    public void DisableChildrenWarnOnClosing()
+    {
+      foreach (BaseWindow window in Windows)
+        window.View.WarnOnClosing = false;
     }
 
     [Import("ClipFlair.Windows.Views.ActivityView", typeof(IWindowFactory), RequiredCreationPolicy = CreationPolicy.Shared)]
@@ -208,7 +216,7 @@ namespace ClipFlair.Windows
     [Import("ClipFlair.Windows.Views.MapView", typeof(IWindowFactory), RequiredCreationPolicy = CreationPolicy.Shared)]
     public IWindowFactory MapWindowFactory { get; set; }
 
-    public BaseWindow AddWindow(IWindowFactory windowFactory, bool newInstance=false)
+    public BaseWindow AddWindow(IWindowFactory windowFactory, bool newInstance = false)
     {
       try
       {
@@ -232,7 +240,7 @@ namespace ClipFlair.Windows
           }
           AddWindowInViewCenter(w);
         };
-          
+
         return w;
       }
       catch (Exception e)
@@ -263,6 +271,7 @@ namespace ClipFlair.Windows
 
     private void BindWindow(BaseWindow window)
     {
+      window.ViewChanged += (d, e) => { BindWindow(window); }; //rebind the window if its view changes (e.g. after it loads new state)
       //TODO: remove this when no hard-coded bindings are needed any more
       if (window is MediaPlayerWindow) BindMediaPlayerWindow((MediaPlayerWindow)window);
       else if (window is CaptionsGridWindow) BindCaptionsGridWindow((CaptionsGridWindow)window);
@@ -270,34 +279,36 @@ namespace ClipFlair.Windows
 
     private void BindMediaPlayerWindow(MediaPlayerWindow window)
     {
-      try
-      {
-        BindingUtils.BindProperties(window.View, IMediaPlayerProperties.PropertyTime, 
-                                    View, IActivityProperties.PropertyTime); //TODO: should rebind after changing view if the window is inside a BaseWindow (get its View and bind to it)
-        
-        BindingUtils.BindProperties(window.View, IMediaPlayerProperties.PropertyCaptions,
-                                    View, IActivityProperties.PropertyCaptions); //TODO: should rebind after changing view if the window is inside a BaseWindow (get its View and bind to it)
-      }
-      catch (Exception ex)
-      {
-        MessageBox.Show("Failed to bind component: " + ex.Message); //TODO: find parent window
-      }
+      if (window.View != null && View != null)
+        try
+        {
+          BindingUtils.BindProperties(window.View, IMediaPlayerProperties.PropertyTime,
+                                      View, IActivityProperties.PropertyTime); //TODO: should rebind after changing view if the window is inside a BaseWindow (get its View and bind to it)
+
+          BindingUtils.BindProperties(window.View, IMediaPlayerProperties.PropertyCaptions,
+                                      View, IActivityProperties.PropertyCaptions); //TODO: should rebind after changing view if the window is inside a BaseWindow (get its View and bind to it)
+        }
+        catch (Exception ex)
+        {
+          MessageBox.Show("Failed to bind component: " + ex.Message); //TODO: find parent window
+        }
     } //TODO: check why it won't sync smoothly (see what was doing in LvS, maybe ignore time events that are very close to current time)
 
     private void BindCaptionsGridWindow(CaptionsGridWindow window)
     {
-      try
-      {
-        BindingUtils.BindProperties(window.View, ICaptionsGridProperties.PropertyTime,
-                                    View, IActivityProperties.PropertyTime); //TODO: should rebind after changing view if the window is inside a BaseWindow (get its View and bind to it)
+      if (window.View != null && View != null)
+        try
+        {
+          BindingUtils.BindProperties(window.View, ICaptionsGridProperties.PropertyTime,
+                                      View, IActivityProperties.PropertyTime); //TODO: should rebind after changing view if the window is inside a BaseWindow (get its View and bind to it)
 
-        BindingUtils.BindProperties(window.View, ICaptionsGridProperties.PropertyCaptions,
-                                    View, IActivityProperties.PropertyCaptions); //TODO: should rebind after changing view if the window is inside a BaseWindow (get its View and bind to it)
-      }
-      catch (Exception ex)
-      {
-        MessageBox.Show("Failed to bind component: " + ex.Message); //TODO: find parent window
-      }
+          BindingUtils.BindProperties(window.View, ICaptionsGridProperties.PropertyCaptions,
+                                      View, IActivityProperties.PropertyCaptions); //TODO: should rebind after changing view if the window is inside a BaseWindow (get its View and bind to it)
+        }
+        catch (Exception ex)
+        {
+          MessageBox.Show("Failed to bind component: " + ex.Message); //TODO: find parent window
+        }
     }
 
     #endregion
@@ -329,6 +340,18 @@ namespace ClipFlair.Windows
 
     #endif
 
+    #if PART_REVOICING
+
+    private void btnAddRevoicing_Click(object sender, RoutedEventArgs e)
+    {
+      CaptionsGridWindow w = (CaptionsGridWindow)AddWindow(CaptionsGridWindowFactory, true);
+      w.View.Title = "Revoicing";
+      w.View.CaptionVisible = false;
+      w.View.AudioVisible = true;
+    }
+
+    #endif
+
     #if PART_TEXT
 
     private void btnAddText_Click(object sender, RoutedEventArgs e)
@@ -355,6 +378,32 @@ namespace ClipFlair.Windows
     }
 
     #endif
+
+    #region Load-Save
+
+    public event RoutedEventHandler LoadURLClick;
+    public event RoutedEventHandler LoadClick;
+    public event RoutedEventHandler SaveClick;
+
+    private void OptionsLoadSaveControl_LoadURLClick(object sender, RoutedEventArgs e)
+    {
+      if (LoadURLClick != null)
+        LoadURLClick(this, e);
+    }
+
+    private void OptionsLoadSaveControl_LoadClick(object sender, RoutedEventArgs e)
+    {
+      if (LoadClick != null)
+        LoadClick(this, e);
+    }
+
+    private void OptionsLoadSaveControl_SaveClick(object sender, RoutedEventArgs e)
+    {
+      if (SaveClick != null)
+        SaveClick(this, e);
+    }
+
+    #endregion
 
     #endregion
 

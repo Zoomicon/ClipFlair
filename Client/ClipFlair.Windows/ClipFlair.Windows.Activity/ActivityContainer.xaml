@@ -1,7 +1,7 @@
 ﻿<!--
 Project: ClipFlair (http://ClipFlair.codeplex.com)
 Filename: ActivityContainer.xaml
-Version: 20121205
+Version: 20121220
 -->
 
 <UserControl x:Class="ClipFlair.Windows.ActivityContainer" 
@@ -13,6 +13,7 @@ Version: 20121205
   xmlns:zui="clr-namespace:FloatingWindowZUI;assembly=FloatingWindowZUI"
   xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk"               
   xmlns:clipflair="clr-namespace:ClipFlair.Windows"
+  xmlns:clipflairbase="clr-namespace:ClipFlair.Windows.Base;assembly=ClipFlair.Windows.Base"
   xmlns:utils="clr-namespace:System.Windows.Controls;assembly=WPF_Compatibility"
   >
   <!-- //EXAMPLE//
@@ -46,6 +47,7 @@ Version: 20121205
       SnapinEnabled="True" 
       ShowMinimizedOnlyInIconbar="False"
       WindowsConfigurable="{Binding ContentPartsConfigurable, Mode=TwoWay}"
+      IsBottomBarVisible ="{Binding ToolbarVisible, Mode=TwoWay}"
       >
       <!-- ContentZoom="{Binding ContentScale, Mode=TwoWay}" --> <!-- doesn't work yet, need to use inner child ZoomHost of it -->
 
@@ -53,12 +55,15 @@ Version: 20121205
         <StackPanel Orientation="Horizontal">
           <TextBlock Text="Windows" VerticalAlignment="Center" Margin="0,0,5,0" />
           <Button Name="btnAddNestedActivity" Visibility="Collapsed" Content="+ Nested Activity" VerticalAlignment="Center" Margin="0,0,5,0" />
-          <Button Name="btnAddMedia" Visibility="Collapsed" Content="+ Media Player" VerticalAlignment="Center" Margin="0,0,5,0" />
-          <Button Name="btnAddCaptions" Visibility="Collapsed" Content="+ Captions Grid" VerticalAlignment="Center" Margin="0,0,5,0" />
-          <Button Name="btnAddText" Visibility="Collapsed" Content="+ Text Editor" VerticalAlignment="Center" Margin="0,0,5,0" />
+          <Button Name="btnAddMedia" Visibility="Collapsed" Content="+ Media" VerticalAlignment="Center" Margin="0,0,5,0" />
+          <Button Name="btnAddCaptions" Visibility="Collapsed" Content="+ Captions" VerticalAlignment="Center" Margin="0,0,5,0" />
+          <Button Name="btnAddRevoicing" Visibility="Collapsed" Content="+ Revoicing" VerticalAlignment="Center" Margin="0,0,5,0" />
+          <Button Name="btnAddText" Visibility="Collapsed" Content="+ Text" VerticalAlignment="Center" Margin="0,0,5,0" />
           <Button Name="btnAddImage" Visibility="Collapsed" Content="+ Image" VerticalAlignment="Center" Margin="0,0,5,0" />
           <Button Name="btnAddMap" Visibility="Collapsed" Content="+ Map" VerticalAlignment="Center" Margin="0,0,5,0" />
 
+          <clipflairbase:OptionsLoadSaveControl LoadURLClick="OptionsLoadSaveControl_LoadURLClick" LoadClick="OptionsLoadSaveControl_LoadClick" SaveClick="OptionsLoadSaveControl_SaveClick" />
+          
           <StackPanel Orientation="Horizontal" Visibility="{Binding ContentZoomable, Converter={StaticResource BooleanToVisibilityConverter}}">
             <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Zoom:" Target="{Binding ElementName=sldZoom}" />
             <Slider Name="sldZoom" Minimum="0.1" Maximum="3" SmallChange="0.1" LargeChange="0.5" Value="{Binding ContentZoom, Mode=TwoWay}" Width="150" />

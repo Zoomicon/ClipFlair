@@ -1,7 +1,7 @@
 ﻿<!--
 Project: ClipFlair (http://ClipFlair.codeplex.com)
 Filename: BaseWindow.xaml
-Version: 20121214
+Version: 20121220
 -->
 
 <float:FloatingWindow x:Class="ClipFlair.Windows.BaseWindow"
@@ -13,9 +13,12 @@ Version: 20121214
     xmlns:toolkit="http://schemas.microsoft.com/winfx/2006/xaml/presentation/toolkit"
     xmlns:flip="clr-namespace:FlipPanel;assembly=FlipPanel"
     xmlns:float="clr-namespace:SilverFlow.Controls;assembly=SilverFlow.Controls"                      
+    xmlns:local="clr-namespace:ClipFlair.Windows.Base"
+                      
     HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
     HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch"
-   
+    
+    Tag="{Binding ID, Mode=TwoWay}"
     Title="{Binding Title, Mode=TwoWay}"
     IconText="{Binding Title, Mode=TwoWay}"
     Position="{Binding Position, Mode=TwoWay}"
@@ -43,7 +46,9 @@ Version: 20121214
                   VerticalAlignment="Stretch" 
                   HorizontalContentAlignment="Stretch"
                   VerticalContentAlignment="Stretch"
-                  Style="{StaticResource FlipPanel_RotateVerticalStyle}">
+                  Style="{StaticResource FlipPanel_RotateVerticalStyle}"
+                  Margin="1"
+                  > <!-- needs a margin on the right and bottom so that any scrollbar shown doesn't steal window resize drags - using a uniform margin for content centering -->
 
     <!-- descendents should define children of BaseWindow.FrontContent (implied content property for BaseWindow) in the XAML -->
 
@@ -56,29 +61,8 @@ Version: 20121214
             <RowDefinition Height="29" />
             <RowDefinition Height="*" />
           </Grid.RowDefinitions>
-            
-          <StackPanel Grid.Row="0" Orientation="Horizontal">
 
-            <Button Name="btnLoadURL" Margin="3,3,3,3">
-              <ToolTipService.ToolTip>
-                <ToolTip Content="Load options from URL" />
-              </ToolTipService.ToolTip>
-              <Image Source="/ClipFlair.Windows.Base;component/Images/loadURL.png" />
-            </Button>
-
-            <Button Name="btnLoad" Margin="3,3,3,3">
-              <ToolTipService.ToolTip>
-                <ToolTip Content="Load options" />
-              </ToolTipService.ToolTip>
-              <Image Source="/ClipFlair.Windows.Base;component/Images/load.png" /> 
-            </Button>
-
-            <Button Name="btnSave" Margin="3,3,3,3">
-              <ToolTipService.ToolTip>
-                <ToolTip Content="Save options" />
-              </ToolTipService.ToolTip>
-              <Image Source="/ClipFlair.Windows.Base;component/Images/save.png" />
-            </Button>
+          <local:OptionsLoadSaveControl x:Name="ctrlOptionsLoadSave" />
 
 <!--
             <StackPanel Orientation="Horizontal">
@@ -86,8 +70,6 @@ Version: 20121214
               <TextBox Name="edOptionsURL" Text="{Binding OptionsSource, Mode=TwoWay}" HorizontalAlignment="Stretch" />
             </StackPanel>
 -->
-
-            </StackPanel>
 
           <toolkit:Accordion Grid.Row="1" SelectionMode="ZeroOrMore" SelectionSequence="Simultaneous" ExpandDirection="Down">
 
@@ -100,6 +82,11 @@ Version: 20121214
                     <Style TargetType="StackPanel" BasedOn="{StaticResource PropertyStackPanelStyle}" />
                   </StackPanel.Resources>
 
+                  <StackPanel Orientation="Vertical" Name="propID">
+                    <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="ID:" Target="{Binding ElementName=edID}" />
+                    <TextBox Name="edID" Text="{Binding ID, Mode=TwoWay}" />
+                  </StackPanel>
+
                   <StackPanel Orientation="Vertical" Name="propTitle">
                     <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Title:" Target="{Binding ElementName=edTitle}" />
                     <TextBox Name="edTitle" Text="{Binding Title, Mode=TwoWay}" />
@@ -107,27 +94,29 @@ Version: 20121214
 
                   <StackPanel Orientation="Vertical" Name="propPosition">
                     <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Position:" Target="{Binding ElementName=edPosition}" />
-                    <TextBox Name="edPosition" Text="{Binding Position, Mode=TwoWay}" />
+                    <TextBox Name="edPosition" Text="{Binding Position, Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=true}" />
                   </StackPanel>
 
                   <StackPanel Orientation="Vertical" Name="propWidth">
                     <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Width:" Target="{Binding ElementName=edWidth}" />
-                    <TextBox Name="edWidth" Text="{Binding Width, Mode=TwoWay}" />
+                    <TextBox Name="edWidth" Text="{Binding Width, Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=true}" />
                   </StackPanel>
 
                   <StackPanel Orientation="Vertical" Name="propHeight">
                     <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Height:" Target="{Binding ElementName=edHeight}" />
-                    <TextBox Name="edHeight" Text="{Binding Height, Mode=TwoWay}" />
+                    <TextBox Name="edHeight" Text="{Binding Height, Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=true}" />
                   </StackPanel>
 
                   <StackPanel Orientation="Vertical" Name="propZoom">
                     <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Zoom:" Target="{Binding ElementName=edZoom}" />
-                    <TextBox Name="edZoom" Text="{Binding Zoom, Mode=TwoWay}" />
+                    <TextBox Name="edZoom" Text="{Binding Zoom, Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=true}" />
+                    <!-- can't use a slider here, since the grabbed slider thumb would move away from the mouse while zooming in/out -->
                   </StackPanel>
 
                   <StackPanel Orientation="Vertical" Name="propOpacity">
-                    <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Opacity:" Target="{Binding ElementName=edOpacity}" />
-                    <TextBox Name="edOpacity" Text="{Binding Opacity, Mode=TwoWay}" />
+                    <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Opacity:" Target="{Binding ElementName=sldOpacity}" />
+                    <!-- <TextBox Name="edOpacity" Text="{Binding Opacity, Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=true}" /> -->
+                    <Slider Name="sldOpacity" Value="{Binding Opacity, Mode=TwoWay}" Minimum="0.1" Maximum="1" SmallChange="0.05" LargeChange="0.1" Orientation="Horizontal" />
                   </StackPanel>
 
                   <StackPanel Orientation="Horizontal" Name="propMoveable">
@@ -143,6 +132,11 @@ Version: 20121214
                   <StackPanel Orientation="Horizontal" Name="propZoomable">
                     <CheckBox Name="cbZoomable" IsChecked="{Binding Zoomable, Mode=TwoWay}" />
                     <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Zoomable" Target="{Binding ElementName=cbZoomable}"/>
+                  </StackPanel>
+
+                  <StackPanel Orientation="Horizontal" Name="propWarnOnClosing">
+                    <CheckBox Name="cbWarnOnClosing" IsChecked="{Binding WarnOnClosing, Mode=TwoWay}" />
+                    <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Warn on closing" Target="{Binding ElementName=cbWarnOnClosing}"/>
                   </StackPanel>
 
                 </StackPanel>

@@ -1,7 +1,7 @@
 ﻿<!--
 Project: ClipFlair (http://ClipFlair.codeplex.com)
 Filename: ActivityWindow.xaml
-Version: 20121203
+Version: 20121221
 -->
 
 <clipflair:BaseWindow x:Class="ClipFlair.Windows.ActivityWindow"
@@ -11,8 +11,7 @@ Version: 20121203
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008" d:DesignHeight="700" d:DesignWidth="1000"
     xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk"
     xmlns:clipflair="clr-namespace:ClipFlair.Windows;assembly=ClipFlair.Windows.Base"
-    xmlns:clipflairwin="clr-namespace:ClipFlair.Windows"
-    Tag="Activity"
+    xmlns:local="clr-namespace:ClipFlair.Windows"
     >
 
   <clipflair:BaseWindow.Resources>
@@ -33,10 +32,13 @@ Version: 20121203
       <ColumnDefinition Width="*"/>
     </Grid.ColumnDefinitions>
 
-    <clipflairwin:ActivityContainer x:Name="activity"
+    <local:ActivityContainer x:Name="activity"
       Grid.Row="0" Grid.Column="0"
+      LoadURLClick="activity_LoadURLClick"
+      LoadClick="activity_LoadClick"
+      SaveClick="activity_SaveClick"
       />
-    <!-- don't bind Time here to DataContext's Time, since ActivityWindow reuses the view of ActivityContainer -->
+      <!-- don't bind any properties of ActivityContainer to our view, since ActivityWindow reuses the view of ActivityContainer -->
 
     <sdk:Label Name="lblBeta" 
                Grid.Row="0" Grid.Column="0" 
@@ -62,7 +64,7 @@ Version: 20121203
 
     <StackPanel Orientation="Vertical">
       <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Time:" Target="{Binding ElementName=edTime}" />
-      <TextBox Name="edTime" Text="{Binding Time, Mode=TwoWay}" />
+      <TextBox Name="edTime" Text="{Binding Time, Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=true}" />
     </StackPanel>
 <!--
     <StackPanel Orientation="Vertical">
@@ -82,7 +84,7 @@ Version: 20121203
 -->
     <StackPanel Orientation="Vertical">
       <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Content Zoom:" Target="{Binding ElementName=edContentZoom}" />
-      <TextBox Name="edContentZoom" Text="{Binding ContentZoom, Mode=TwoWay}" />
+      <TextBox Name="edContentZoom" Text="{Binding ContentZoom, Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=true}" />
     </StackPanel>
 
     <StackPanel Orientation="Horizontal">
@@ -93,6 +95,11 @@ Version: 20121203
     <StackPanel Orientation="Horizontal">
       <CheckBox Name="cbContentPartsConfigurable" IsChecked="{Binding ContentPartsConfigurable, Mode=TwoWay}" />
       <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Options Button Visible (at Components)" Target="{Binding ElementName=cbContentPartsConfigurable}"/>
+    </StackPanel>
+
+    <StackPanel Orientation="Horizontal">
+      <CheckBox Name="cbToolbarVisible" IsChecked="{Binding ToolbarVisible, Mode=TwoWay}" />
+      <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Toolbar Visible" Target="{Binding ElementName=cbToolbarVisible}"/>
     </StackPanel>
 
   </clipflair:BaseWindow.PropertyItems>

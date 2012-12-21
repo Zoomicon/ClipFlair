@@ -1,27 +1,16 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: MediaPlayerWindow.xaml.cs
-//Version: 20121205
+//Version: 20121221
 
 using ClipFlair.Windows.Views;
 
 using System;
-using System.ComponentModel.Composition;
 using System.Windows;
 
 using Microsoft.SilverlightMediaFramework.Core.Media;
 
 namespace ClipFlair.Windows
 {
-
-  [Export("ClipFlair.Windows.Views.MediaPlayerView", typeof(IWindowFactory))]
-  [PartCreationPolicy(CreationPolicy.Shared)]
-  public class MediaPlayerWindowFactory : IWindowFactory
-  {
-    public BaseWindow CreateWindow()
-    {
-      return new MediaPlayerWindow();
-    }
-  }
 
   public partial class MediaPlayerWindow : BaseWindow
   {

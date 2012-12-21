@@ -1,6 +1,6 @@
 ﻿<!--
 Filename: ImageWindow.xaml
-Version: 20121203
+Version: 20121220
 -->
 
 <clipflair:BaseWindow x:Class="ClipFlair.Windows.ImageWindow"
@@ -12,7 +12,6 @@ Version: 20121203
     xmlns:clipflair="clr-namespace:ClipFlair.Windows;assembly=ClipFlair.Windows.Base"    
     xmlns:clipflairview="clr-namespace:ClipFlair.Windows.Views"
     Width="400" Height="400"
-    Tag="Image"
     >
 
   <clipflair:BaseWindow.Resources>
@@ -39,11 +38,11 @@ Version: 20121203
          Source="{Binding Source, Mode=OneWay}"
          Stretch="{Binding Stretch, Mode=OneWay}"
          >
-<!-- 
+    <!--
     <Image.Source>
-      <BitmapImage UriSource="{Binding Path=Source, Mode=OneWay}" />
+      <BitmapImage UriSource="{Binding Source, Mode=OneWay}" />
     </Image.Source>
--->
+    -->
   </Image>
 
   <!--</clipflair:BaseWindow.FrontContent>-->

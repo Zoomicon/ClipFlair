@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: CaptionsGridWindow.xaml.cs
-//Version: 20121205
+//Version: 20121221
 
 //TODO: add Source property to CaptionsGrid control and use data-binding to bind it to CaptionsGridView's Source property
 
@@ -9,23 +9,12 @@ using ClipFlair.CaptionsGrid;
 
 using Ionic.Zip;
 
-using System.ComponentModel.Composition;
 using System.IO;
 
 using Microsoft.SilverlightMediaFramework.Core.Accessibility.Captions;
 
 namespace ClipFlair.Windows
 {
-
-  [Export("ClipFlair.Windows.Views.CaptionsGridView", typeof(IWindowFactory))]
-  [PartCreationPolicy(CreationPolicy.Shared)]
-  public class CaptionsGridWindowFactory : IWindowFactory
-  {
-    public BaseWindow CreateWindow()
-    {
-      return new CaptionsGridWindow();
-    }
-  }
 
   public partial class CaptionsGridWindow : BaseWindow
   {

@@ -1,23 +1,11 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: ImageWindow.xaml.cs
-//Version: 20121205
+//Version: 20121221
 
 using ClipFlair.Windows.Views;
 
-using System.ComponentModel.Composition;
-
 namespace ClipFlair.Windows
 {
-
-  [Export("ClipFlair.Windows.Views.ImageView", typeof(IWindowFactory))]
-  [PartCreationPolicy(CreationPolicy.Shared)]
-  public class ImageWindowFactory : IWindowFactory
-  {
-    public BaseWindow CreateWindow()
-    {
-      return new ImageWindow();
-    }
-  }
 
   public partial class ImageWindow : BaseWindow
     {

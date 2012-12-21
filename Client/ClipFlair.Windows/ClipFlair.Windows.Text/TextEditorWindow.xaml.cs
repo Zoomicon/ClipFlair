@@ -1,26 +1,15 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: TextEditorWindow.xaml.cs
-//Version: 20121205
+//Version: 20121221
 
 using ClipFlair.Windows.Views;
 
 using Ionic.Zip;
 
-using System.ComponentModel.Composition;
 using System.IO;
 
 namespace ClipFlair.Windows
 {
-
-  [Export("ClipFlair.Windows.Views.TextEditorView", typeof(IWindowFactory))]
-  [PartCreationPolicy(CreationPolicy.Shared)]
-  public class TextEditorWindowFactory : IWindowFactory
-  {
-    public BaseWindow CreateWindow()
-    {
-      return new TextEditorWindow();
-    }
-  }
 
   public partial class TextEditorWindow : BaseWindow
   {

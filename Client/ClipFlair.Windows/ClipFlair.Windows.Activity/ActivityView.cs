@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: ActivityView.cs
-//Version: 20121206
+//Version: 20121219
 
 using Microsoft.SilverlightMediaFramework.Core.Accessibility.Captions;
 
@@ -8,10 +8,12 @@ using System;
 using System.ComponentModel;
 using System.Runtime.Serialization;
 using System.Windows;
+using System.Windows.Browser;
 
 namespace ClipFlair.Windows.Views
 {
 
+  [ScriptableType]
   [DataContract(Namespace = "http://clipflair.net/Contracts/View")]
   public class ActivityView: BaseView, IActivity
   {
@@ -31,6 +33,7 @@ namespace ClipFlair.Windows.Views
     private double contentZoom;
     private bool contentZoomable;
     private bool contentPartsConfigurable;
+    private bool toolbarVisible;
 
     #endregion
 
@@ -73,9 +76,12 @@ namespace ClipFlair.Windows.Views
       get { return captions; }
       set
       {
+        if (value == null) 
+          value = new CaptionRegion(); //if null create a new CaptionRegion
+
         if (value != captions)
         {
-          captions = value ?? new CaptionRegion(); //if null create a new CaptionRegion
+          captions = value;
           RaisePropertyChanged(ICaptionsGridProperties.PropertyCaptions);
         }
       }
@@ -169,7 +175,22 @@ namespace ClipFlair.Windows.Views
           RaisePropertyChanged(IActivityProperties.PropertyContentPartsConfigurable);
         }
       }
-    } 
+    }
+
+    [DataMember]
+    [DefaultValue(ITextEditorDefaults.DefaultToolbarVisible)]
+    public bool ToolbarVisible
+    {
+      get { return toolbarVisible; }
+      set
+      {
+        if (value != toolbarVisible)
+        {
+          toolbarVisible = value;
+          RaisePropertyChanged(ITextEditorProperties.PropertyToolbarVisible);
+        }
+      }
+    }
 
     #endregion
 
@@ -192,6 +213,7 @@ namespace ClipFlair.Windows.Views
       ContentZoom = IActivityDefaults.DefaultContentZoom;
       ContentZoomable = IActivityDefaults.DefaultContentZoomable;
       ContentPartsConfigurable = IActivityDefaults.DefaultContentPartsConfigurable;
+      ToolbarVisible = IActivityDefaults.DefaultToolbarVisible;
     }
 
     #endregion

@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: IActivityDefaults.cs
-//Version: 20121206
+//Version: 20121219
 
 using Microsoft.SilverlightMediaFramework.Core.Accessibility.Captions;
 
@@ -28,6 +28,7 @@ namespace ClipFlair.Windows.Views
     public const double DefaultContentZoom = 1.0;
     public const bool DefaultContentZoomable = true;
     public const bool DefaultContentPartsConfigurable = true;
+    public const bool DefaultToolbarVisible = true;
   }
 
 }

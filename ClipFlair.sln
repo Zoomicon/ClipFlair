@@ -63,6 +63,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClipFlair.Windows.Image", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClipFlair.Windows.Map", "Client\ClipFlair.Windows\ClipFlair.Windows.Map\ClipFlair.Windows.Map.csproj", "{40580DAE-80A5-49E4-BDD8-DAFDB9D4E088}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClipFlair.Windows.Dialogs", "Client\ClipFlair.Windows\ClipFlair.Windows.Dialogs\ClipFlair.Windows.Dialogs.csproj", "{C6900312-0545-4E5E-9FE0-2AEF75674E29}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -157,6 +159,10 @@ Global
 		{40580DAE-80A5-49E4-BDD8-DAFDB9D4E088}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{40580DAE-80A5-49E4-BDD8-DAFDB9D4E088}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{40580DAE-80A5-49E4-BDD8-DAFDB9D4E088}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C6900312-0545-4E5E-9FE0-2AEF75674E29}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C6900312-0545-4E5E-9FE0-2AEF75674E29}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C6900312-0545-4E5E-9FE0-2AEF75674E29}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C6900312-0545-4E5E-9FE0-2AEF75674E29}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -186,5 +192,6 @@ Global
 		{396DD176-BC1D-45CF-900E-4FC85B7398FC} = {159C8690-CD53-49FE-9B9E-67960BA0DA67}
 		{AA7B9EC6-8A08-4300-827B-65A66818BAF7} = {159C8690-CD53-49FE-9B9E-67960BA0DA67}
 		{40580DAE-80A5-49E4-BDD8-DAFDB9D4E088} = {159C8690-CD53-49FE-9B9E-67960BA0DA67}
+		{C6900312-0545-4E5E-9FE0-2AEF75674E29} = {159C8690-CD53-49FE-9B9E-67960BA0DA67}
 	EndGlobalSection
 EndGlobal

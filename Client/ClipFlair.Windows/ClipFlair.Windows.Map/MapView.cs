@@ -1,14 +1,16 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: MapView.cs
-//Version: 20121206
+//Version: 20121218
 
 using System;
 using System.ComponentModel;
 using System.Runtime.Serialization;
+using System.Windows.Browser;
 
 namespace ClipFlair.Windows.Views
 {
 
+  [ScriptableType]
   [DataContract(Namespace = "http://clipflair.net/Contracts/View")]
   public class MapView: BaseView, IMapViewer
   {

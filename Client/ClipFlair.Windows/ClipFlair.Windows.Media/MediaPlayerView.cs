@@ -1,16 +1,18 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: MediaPlayerView.cs
-//Version: 20121206
+//Version: 20121219
 
 using Microsoft.SilverlightMediaFramework.Core.Accessibility.Captions;
 
 using System;
 using System.ComponentModel;
 using System.Runtime.Serialization;
+using System.Windows.Browser;
 
 namespace ClipFlair.Windows.Views
 {
 
+  [ScriptableType]
   [DataContract(Namespace = "http://clipflair.net/Contracts/View")]
   public class MediaPlayerView: BaseView, IMediaPlayer
   {
@@ -73,9 +75,12 @@ namespace ClipFlair.Windows.Views
       get { return captions; }
       set
       {
+        if (value == null)
+          value = new CaptionRegion(); //if null create a new CaptionRegion
+        
         if (value != captions)
         {
-          captions = value ?? new CaptionRegion(); //if null create a new CaptionRegion
+          captions = value;
           RaisePropertyChanged(IMediaPlayerProperties.PropertyCaptions);
         }
       }

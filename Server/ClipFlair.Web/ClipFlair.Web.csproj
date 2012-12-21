@@ -58,8 +58,7 @@
   <ItemGroup>
     <Content Include="ClientBin\ClipFlair.xap" />
     <Content Include="ClientBin\ExampleCaptions.xml" />
-    <Content Include="ClipFlairTestPage.aspx" />
-    <Content Include="ClipFlairTestPage.html" />
+    <Content Include="ClipFlairPlayground.aspx" />
     <None Include="Images\clipflair-logo02_314x314.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -91,7 +90,7 @@
         <WebProjectProperties>
           <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>6183</DevelopmentServerPort>
+          <DevelopmentServerPort>8233</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>http://localhost/ClipFlair.Web</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>

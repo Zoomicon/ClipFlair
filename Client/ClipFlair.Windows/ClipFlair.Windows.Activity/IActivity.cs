@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: IActivity.cs
-//Version: 20121203
+//Version: 20121219
 
 using Microsoft.SilverlightMediaFramework.Core.Accessibility.Captions;
 
@@ -21,6 +21,7 @@ namespace ClipFlair.Windows.Views
     public const string PropertyContentZoom = "ContentZoom";
     public const string PropertyContentZoomable = "ContentZoomable";
     public const string PropertyContentPartsConfigurable = "ContentPartsConfigurable";
+    public const string PropertyToolbarVisible = "ToolbarVisible";
 
     //TODO: maybe also add WindowsMoveable/WindowsResizable/WindowZoomable to override child settings
   }
@@ -36,6 +37,7 @@ namespace ClipFlair.Windows.Views
     double ContentZoom { get; set; }
     bool ContentZoomable { get; set; }
     bool ContentPartsConfigurable { get; set; }
+    bool ToolbarVisible { get; set; }
   }
 
 }

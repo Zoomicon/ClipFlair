@@ -1,6 +1,6 @@
 ﻿<!--
 Filename: MapWindow.xaml
-Version: 20121203
+Version: 20121220
 -->
 
 <clipflair:BaseWindow x:Class="ClipFlair.Windows.MapWindow"
@@ -12,7 +12,6 @@ Version: 20121203
     xmlns:clipflair="clr-namespace:ClipFlair.Windows;assembly=ClipFlair.Windows.Base" 
     xmlns:map="clr-namespace:Microsoft.Maps.MapControl;assembly=Microsoft.Maps.MapControl"
     Width="400" Height="400"
-    Tag="Map"
     >
 
   <clipflair:BaseWindow.Resources>

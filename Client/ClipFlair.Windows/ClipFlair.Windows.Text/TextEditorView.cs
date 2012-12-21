@@ -1,14 +1,16 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: TextEditorView.cs
-//Version: 20121206
+//Version: 20121218
 
 using System;
 using System.ComponentModel;
+using System.Windows.Browser;
 using System.Runtime.Serialization;
 
 namespace ClipFlair.Windows.Views
 {
 
+  [ScriptableType]
   [DataContract(Namespace = "http://clipflair.net/Contracts/Views")]
   public class TextEditorView : BaseView, ITextEditor
   {
