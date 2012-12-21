@@ -1,5 +1,5 @@
 ﻿//Filename: ZoomAndPanControl.cs
-//Version: 20121103
+//Version: 20121219
 //Editor: George Birbilis <birbilis@kagi.com>
 
 //Based on:
@@ -370,6 +370,14 @@ namespace ZoomAndPan
             double newScale = this.ContentScale * Math.Min(scaleX, scaleY);
 
             ZoomPointToViewportCenter(newScale, new Point(contentRect.X + (contentRect.Width / 2), contentRect.Y + (contentRect.Height / 2)));
+        }
+
+        public void ScrollToCenter(Rect contentRect)
+        {
+          double scaleX = this.ContentViewportWidth / contentRect.Width;
+          double scaleY = this.ContentViewportHeight / contentRect.Height;
+
+          ZoomPointToViewportCenter(ContentScale, new Point(contentRect.X + (contentRect.Width / 2), contentRect.Y + (contentRect.Height / 2)));
         }
 
         /// <summary>
