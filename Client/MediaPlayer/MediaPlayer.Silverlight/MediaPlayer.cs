@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: MediaPlayer.cs
-//Version: 20121205
+//Version: 20121219
 
 using System;
 using System.Linq;
@@ -27,12 +27,14 @@ namespace ClipFlair.MediaPlayer
     {
       base.OnApplyTemplate();
 
-      ShowPlaylistElement.Content = "..."; //don't show "Playlist" text but show "..." instead to avoid localizing it and because it can distract viewers from the captions' text
+      ShowPlaylistElement.Content = "..."; //don't show "Playlist" text but show "..." instead to avoid localizing it and because it can distract viewers from the captions' text //TODO: should maybe show an Image here or expose this as a property?
 
       //apply UI template overrides
       OnFullScreenButtonVisibleChanged(!FullScreenButtonVisible, FullScreenButtonVisible);
       OnSlowMotionButtonVisibleChanged(!SlowMotionButtonVisible, SlowMotionButtonVisible);
       OnReplayButtonVisibleChanged(!ReplayButtonVisible, ReplayButtonVisible);
+      OnRewindButtonVisibleChanged(!RewindButtonVisible, RewindButtonVisible);
+      OnFastForwardButtonVisibleChanged(!FastForwardButtonVisible, FastForwardButtonVisible);
       OnPlaylistButtonVisibleChanged(!PlaylistButtonVisible, PlaylistButtonVisible);
 
       //the following don't seem to do something:
@@ -489,6 +491,88 @@ namespace ClipFlair.MediaPlayer
     {
       if (ReplayElement != null)
         ReplayElement.Visibility = (newReplayButtonVisible) ? Visibility.Visible : Visibility.Collapsed;
+    }
+
+    #endregion
+
+    #region RewindButtonVisible
+
+    /// <summary>
+    /// RewindButtonVisible Dependency Property
+    /// </summary>
+    public static readonly DependencyProperty RewindButtonVisibleProperty =
+        DependencyProperty.Register("RewindButtonVisible", typeof(bool), typeof(MediaPlayer),
+            new FrameworkPropertyMetadata(true,
+            new PropertyChangedCallback(OnRewindButtonVisibleChanged)));
+
+    /// <summary>
+    /// Gets or sets the RewindButtonVisible property.
+    /// </summary>
+    public bool RewindButtonVisible
+    {
+      get { return (bool)GetValue(RewindButtonVisibleProperty); }
+      set { SetValue(RewindButtonVisibleProperty, value); }
+    }
+
+    /// <summary>
+    /// Handles changes to the RewindButtonVisible property.
+    /// </summary>
+    private static void OnRewindButtonVisibleChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    {
+      MediaPlayer target = (MediaPlayer)d;
+      bool oldRewindButtonVisible = (bool)e.OldValue;
+      bool newRewindButtonVisible = target.RewindButtonVisible;
+      target.OnRewindButtonVisibleChanged(oldRewindButtonVisible, newRewindButtonVisible);
+    }
+
+    /// <summary>
+    /// Provides derived classes an opportunity to handle changes to the RewindButtonVisible property.
+    /// </summary>
+    protected virtual void OnRewindButtonVisibleChanged(bool oldRewindButtonVisible, bool newRewindButtonVisible)
+    {
+      if (RewindElement != null)
+        RewindElement.Visibility = (newRewindButtonVisible) ? Visibility.Visible : Visibility.Collapsed;
+    }
+
+    #endregion
+
+    #region FastForwardButtonVisible
+
+    /// <summary>
+    /// FastForwardButtonVisible Dependency Property
+    /// </summary>
+    public static readonly DependencyProperty FastForwardButtonVisibleProperty =
+        DependencyProperty.Register("FastForwardButtonVisible", typeof(bool), typeof(MediaPlayer),
+            new FrameworkPropertyMetadata(true,
+            new PropertyChangedCallback(OnFastForwardButtonVisibleChanged)));
+
+    /// <summary>
+    /// Gets or sets the FastForwardButtonVisible property.
+    /// </summary>
+    public bool FastForwardButtonVisible
+    {
+      get { return (bool)GetValue(FastForwardButtonVisibleProperty); }
+      set { SetValue(FastForwardButtonVisibleProperty, value); }
+    }
+
+    /// <summary>
+    /// Handles changes to the FastForwardButtonVisible property.
+    /// </summary>
+    private static void OnFastForwardButtonVisibleChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    {
+      MediaPlayer target = (MediaPlayer)d;
+      bool oldFastForwardButtonVisible = (bool)e.OldValue;
+      bool newFastForwardButtonVisible = target.FastForwardButtonVisible;
+      target.OnFastForwardButtonVisibleChanged(oldFastForwardButtonVisible, newFastForwardButtonVisible);
+    }
+
+    /// <summary>
+    /// Provides derived classes an opportunity to handle changes to the FastForwardButtonVisible property.
+    /// </summary>
+    protected virtual void OnFastForwardButtonVisibleChanged(bool oldFastForwardButtonVisible, bool newFastForwardButtonVisible)
+    {
+      if (FastForwardElement != null)
+        FastForwardElement.Visibility = (newFastForwardButtonVisible) ? Visibility.Visible : Visibility.Collapsed;
     }
 
     #endregion
