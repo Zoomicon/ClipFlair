@@ -1,4 +1,6 @@
-﻿using System.Windows;
+﻿//Version: 20121219
+
+using System.Windows;
 using SilverFlow.Controls;
 using ZoomAndPan;
 
@@ -23,7 +25,7 @@ namespace FloatingWindowZUI
       ZoomAndPanControl zoomHost = host.Parent as ZoomAndPanControl;
       if (zoomHost == null) return;
 
-      zoomHost.ZoomTo(w.BoundingRectangle);
+      zoomHost.ScrollToCenter(w.BoundingRectangle); //zoomHost.ZoomTo(w.BoundingRectangle);
     }
 
   }
