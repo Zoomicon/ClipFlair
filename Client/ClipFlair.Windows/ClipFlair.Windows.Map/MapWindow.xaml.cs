@@ -1,23 +1,11 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: MapWindow.xaml.cs
-//Version: 20121205
+//Version: 20121221
 
 using ClipFlair.Windows.Views;
 
-using System.ComponentModel.Composition;
-
 namespace ClipFlair.Windows
 {
-
-  [Export("ClipFlair.Windows.Views.MapView", typeof(IWindowFactory))]
-  [PartCreationPolicy(CreationPolicy.Shared)]
-  public class MapWindowFactory: IWindowFactory
-  {
-    public BaseWindow CreateWindow()
-    {
-      return new MapWindow();
-    }
-  }
 
   public partial class MapWindow : BaseWindow
     {

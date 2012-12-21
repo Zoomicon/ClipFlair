@@ -1,7 +1,7 @@
 ﻿<!--
 Project: ClipFlair (http://ClipFlair.codeplex.com)
 Filename: MediaPlayerWindow.xaml
-Version: 20121203
+Version: 20121220
 -->
   
 <clipflair:BaseWindow x:Class="ClipFlair.Windows.MediaPlayerWindow"
@@ -13,7 +13,6 @@ Version: 20121203
     xmlns:clipflair="clr-namespace:ClipFlair.Windows;assembly=ClipFlair.Windows.Base"    
     xmlns:media="clr-namespace:ClipFlair.MediaPlayer;assembly=MediaPlayer"
     Width="600" Height="400"
-    Tag="Media"
     >
 
   <clipflair:BaseWindow.Resources>
@@ -45,6 +44,8 @@ Version: 20121203
                  PlaylistButtonVisible="True"
                  SlowMotionButtonVisible="False"
                  ReplayButtonVisible="False"
+                 RewindButtonVisible="True"
+                 FastForwardButtonVisible="True"
                  FullScreenButtonVisible="False" AllowDoubleClickToggle="False"
                  >
   </media:MediaPlayer>
@@ -66,7 +67,7 @@ Version: 20121203
     
     <StackPanel Orientation="Vertical">
       <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Time:" Target="{Binding ElementName=edTime}" />
-      <TextBox Name="edTime" Text="{Binding Time, Mode=TwoWay}" />
+      <TextBox Name="edTime" Text="{Binding Time, Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=true}" />
     </StackPanel>
 
     <StackPanel Orientation="Horizontal">

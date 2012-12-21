@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: IMediaPlayerDefaults.cs
-//Version: 20121203
+//Version: 20121219
 
 using Microsoft.SilverlightMediaFramework.Core.Accessibility.Captions;
 
@@ -27,7 +27,7 @@ namespace ClipFlair.Windows.Views
     public const bool DefaultLooping = false;
     public const bool DefaultVideoVisible = true;
     public const bool DefaultControllerVisible = true;
-    public const bool DefaultCaptionsVisible = false;
+    public const bool DefaultCaptionsVisible = true;
   }
 
 }

@@ -1,17 +1,18 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: BaseView.cs
-//Version: 20121206
+//Version: 20121219
 
-using ClipFlair.Windows.Views;
 
 using System.ComponentModel;
 using System;
 using System.Runtime.Serialization;
 using System.Windows;
+using System.Windows.Browser;
 
 namespace ClipFlair.Windows.Views
 {
 
+  [ScriptableType]
   [DataContract(Namespace = "http://clipflair.net/Contracts/View")]
   public class BaseView: IView
   {
@@ -36,6 +37,7 @@ namespace ClipFlair.Windows.Views
     #region Fields
 
     private Uri optionsSource;
+    private string id;
     private string title;
     private Point position;
     private double width;
@@ -45,6 +47,7 @@ namespace ClipFlair.Windows.Views
     private bool moveable;
     private bool resizable;
     private bool zoomable;
+    private bool warnOnClosing;
 
     #endregion
 
@@ -64,6 +67,20 @@ namespace ClipFlair.Windows.Views
         }
       }
     }
+
+    [DataMember]
+    public string ID
+    {
+      get { return id; }
+      set
+      {
+        if (value != id)
+        {
+          id = value;
+          RaisePropertyChanged(IViewProperties.PropertyID);
+        }
+      }
+    }    
 
     [DataMember]
     [DefaultValue(IViewDefaults.DefaultTitle)]
@@ -198,7 +215,22 @@ namespace ClipFlair.Windows.Views
           RaisePropertyChanged(IViewProperties.PropertyZoomable);
         }
       }
-    }   
+    }
+
+    [DataMember]
+    [DefaultValue(IViewDefaults.DefaultWarnOnClosing)]
+    public bool WarnOnClosing
+    {
+      get { return warnOnClosing; }
+      set
+      {
+        if (value != warnOnClosing)
+        {
+          warnOnClosing = value;
+          RaisePropertyChanged(IViewProperties.PropertyWarnOnClosing);
+        }
+      }
+    }
     
     #endregion
 
@@ -209,6 +241,7 @@ namespace ClipFlair.Windows.Views
 
       //BaseView defaults
       OptionsSource = IViewDefaults.DefaultOptionsSource;
+      ID = Guid.NewGuid().ToString(); //there is no default ID, resetting to a new unique id (using a GUID)
       Title = IViewDefaults.DefaultTitle;
       Position = IViewDefaults.DefaultPosition;
       Width = IViewDefaults.DefaultWidth;
@@ -218,6 +251,7 @@ namespace ClipFlair.Windows.Views
       Moveable = IViewDefaults.DefaultMoveable;
       Resizable = IViewDefaults.DefaultResizable;
       Zoomable = IViewDefaults.DefaultZoomable;
+      WarnOnClosing = IViewDefaults.DefaultWarnOnClosing;
     }
 
     [OnDeserializing()] //this is called before deserialization occurs to set defaults for any properties that may be missing at the serialized data (e.g. from older serialized state)

@@ -1,14 +1,15 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: BaseWindow.xaml.cs
-//Version: 20121214
+//Version: 20121221
 
 //TODO: unbind control at close
 //TODO: do not allow to set too low opacity values that could make windows disappear
 
 #define PROPERTY_CHANGE_SUPPORT
 
-using ClipFlair.Windows.Views;
 using ClipFlair.Utils;
+using ClipFlair.Windows.Dialogs;
+using ClipFlair.Windows.Views;
 
 using SilverFlow.Controls;
 using Ionic.Zip;
@@ -17,8 +18,10 @@ using System;
 using System.ComponentModel;
 using System.IO;
 using System.Runtime.Serialization;
+using System.Net;
 using System.Text;
 using System.Windows;
+using System.Windows.Browser;
 using System.Windows.Controls;
 using System.Windows.Markup;
 using System.Windows.Media;
@@ -26,6 +29,7 @@ using System.Windows.Media;
 namespace ClipFlair.Windows
 {
 
+  [ScriptableType]
   [ContentProperty("FrontContent")]
   public partial class BaseWindow : FloatingWindow
   {
@@ -65,9 +69,6 @@ namespace ClipFlair.Windows
         });
       };
 
-      //Closing += (s,e) => { e.Cancel = (MessageBox.Show("Are you sure you want to close the window?", "Confirmation", MessageBoxButton.OKCancel) != MessageBoxResult.OK); };
-      //TODO: add separate event for closing by end-user, we don't want to get such events if app is closing down (or detect the app is closing down and ignore event or remove event handler early) 
-
       OptionsRequested += (s, e) =>
       {
         //try to set focus to front content so that changes to property editboxes at the back content are applied
@@ -79,19 +80,15 @@ namespace ClipFlair.Windows
           //keeping tab stop functionality for future back to front flips
         }
 
-        FlipPanel.IsFlipped = !FlipPanel.IsFlipped; //turn window arround to show/hide its options
+        FlipPanel.IsFlipped = !FlipPanel.IsFlipped; //flip the view to show/hide window options
       };
 
       //Load-Save (TODO: check: can't set them in the XAML (probably some issue with UserControl inheritance), says "Failed to assign to property 'System.Windows.Controls.Primitives.ButtonBase.Click'") //must do after InitializeComponent
-      btnLoad.Click += new RoutedEventHandler(btnLoad_Click);
-      btnSave.Click += new RoutedEventHandler(btnSave_Click);
-    }
- 
-    ~BaseWindow()
-    {
-      View = null; //unregister PropertyChangedEventHandler
-    }
-    
+      ctrlOptionsLoadSave.LoadURLClick += new RoutedEventHandler(btnLoadURL_Click);
+      ctrlOptionsLoadSave.LoadClick += new RoutedEventHandler(btnLoad_Click);
+      ctrlOptionsLoadSave.SaveClick += new RoutedEventHandler(btnSave_Click);
+     }
+   
     #region Properties
 
     public IView View
@@ -115,6 +112,8 @@ namespace ClipFlair.Windows
         #if PROPERTY_CHANGE_SUPPORT
         if (value!=null) View_PropertyChanged(View, new PropertyChangedEventArgs(null)); //notify property change listeners that all properties of the view changed
         #endif
+
+        OnViewChanged(); //make sure ViewChangedEventHandler is fired
       }
     }
 
@@ -166,6 +165,31 @@ namespace ClipFlair.Windows
 
     #region Events
 
+    public delegate void ViewChangedEventHandler(object sender, IView newView);
+    public event ViewChangedEventHandler ViewChanged;
+
+    protected override void OnClosing(CancelEventArgs e)
+    {
+      if (!IsTopLevel //for top level window showing closing warning (with option to cancel closing) via webpage JavaScript event handler or via App class event handler at OOB mode
+          && View.WarnOnClosing) //Containers should set WarnOnClosing=false to each of their children if they warn user themselves and users select to proceed with closing
+        e.Cancel = (MessageBox.Show("Are you sure you want to close this window?", "Confirmation", MessageBoxButton.OKCancel) != MessageBoxResult.OK);
+
+      if (!e.Cancel)
+        base.OnClosing(e); //this will fire "Closing" event handler
+    }
+
+    protected override void OnClosed(EventArgs e)
+    {
+      base.OnClosed(e); //this will fire "Closed" event handler
+
+      View = null; //clearing the view to release property change event handler //must not do this at class destructor, else may get cross-thread-access exceptions
+    }
+
+    protected virtual void OnViewChanged()
+    {
+      if (ViewChanged != null)
+        ViewChanged(this, View); //fire ViewChanged event handler
+    }
 
     #if PROPERTY_CHANGE_SUPPORT
     protected virtual void View_PropertyChanged(object sender, PropertyChangedEventArgs e)
@@ -191,15 +215,18 @@ namespace ClipFlair.Windows
     }
     #endif
 
-    private void btnLoadURL_Click(object sender, RoutedEventArgs e)
+    protected string defaultLoadURL = "";
+
+    protected void btnLoadURL_Click(object sender, RoutedEventArgs e)
     {
-      //TODO
-      
-      //LoadOptions(stream);
-      FlipPanel.IsFlipped = !FlipPanel.IsFlipped; //turn window arround again after succesful options loading
+      InputDialog.Show("ClipFlair saved options URL:", defaultLoadURL, (s, ex) => {
+        string input = ((InputDialog)s).Input;
+        if (input != null && input.Trim() != "") //ignoring empty URLs
+          LoadOptions(new Uri(input, UriKind.Absolute)); //since that is an asynchronous operation we expect from it to flip the view back to front after succesful loading
+      });
     }
 
-    private void btnLoad_Click(object sender, RoutedEventArgs e)
+    protected void btnLoad_Click(object sender, RoutedEventArgs e)
     {
       try
       {
@@ -212,7 +239,7 @@ namespace ClipFlair.Windows
           using (Stream stream = dlg.File.OpenRead()) //will close the stream when done
           {
             LoadOptions(stream);
-            FlipPanel.IsFlipped = !FlipPanel.IsFlipped; //turn window arround again after succesful options loading
+            FlipPanel.IsFlipped = false; //flip the view back to front after succesful options loading
           }
       }
       catch (NullReferenceException)
@@ -225,7 +252,7 @@ namespace ClipFlair.Windows
       }
     }
   
-    private void btnSave_Click(object sender, RoutedEventArgs e)
+    protected void btnSave_Click(object sender, RoutedEventArgs e)
     {
       if (View == null) return;
 
@@ -250,6 +277,35 @@ namespace ClipFlair.Windows
     #endregion
 
     #region Load / Save Options
+
+    public void LoadOptions(Uri uri)
+    {
+      if (uri == null) return;
+
+      WebClient webClient = new WebClient();
+      webClient.OpenReadCompleted += (s, e) =>
+      {
+        try
+        {
+          using (e.Result)
+          {
+            MemoryStream memStream = new MemoryStream(); //TODO: see why this is (Ionic.Zip fails to load directly from the InternalMemoryStream because of some call to Flush which is not supported)
+            using (memStream)
+            {
+              e.Result.CopyTo(memStream);
+              memStream.Position = 0;
+              LoadOptions(memStream);
+            }
+            FlipPanel.IsFlipped = false; //flip the view back to front after succesful options loading //since this is an asynchronous operation we have to flip here
+          }
+        }
+        catch (Exception ex)
+        {
+          MessageBox.Show("ClipFlair options load from URL failed: " + ex.ToString()); //TODO: find the parent window
+        }
+      };
+      webClient.OpenReadAsync(uri);
+    }
 
     public void LoadOptions(Stream stream, string zipFolder = "") //doesn't close stream
     {

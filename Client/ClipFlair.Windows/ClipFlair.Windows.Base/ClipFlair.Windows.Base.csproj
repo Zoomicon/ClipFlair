@@ -69,6 +69,7 @@
     <Reference Include="System.Windows" />
     <Reference Include="system" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Windows.Browser" />
     <Reference Include="System.Windows.Controls, Version=5.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" />
     <Reference Include="System.Windows.Controls.Data.Input, Version=5.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Net" />
@@ -85,12 +86,19 @@
     <Compile Include="IWindowFactory.cs" />
     <Compile Include="IView.cs" />
     <Compile Include="IViewDefaults.cs" />
+    <Compile Include="OptionsLoadSaveControl.xaml.cs">
+      <DependentUpon>OptionsLoadSaveControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Page Include="BaseWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="OptionsLoadSaveControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Themes\Default.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -109,6 +117,10 @@
     <ProjectReference Include="..\..\FloatingWindow\FloatingWindow.Silverlight\FloatingWindow.Silverlight.csproj">
       <Project>{3F3D3C8C-9724-4531-A04D-B92049F64686}</Project>
       <Name>FloatingWindow.Silverlight</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ClipFlair.Windows.Dialogs\ClipFlair.Windows.Dialogs.csproj">
+      <Project>{C6900312-0545-4E5E-9FE0-2AEF75674E29}</Project>
+      <Name>ClipFlair.Windows.Dialogs</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

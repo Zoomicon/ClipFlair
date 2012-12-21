@@ -79,6 +79,7 @@
   <ItemGroup>
     <Compile Include="ITextEditor.cs" />
     <Compile Include="ITextEditorDefaults.cs" />
+    <Compile Include="TextWindowFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TextEditorView.cs" />
     <Compile Include="TextEditorWindow.xaml.cs">

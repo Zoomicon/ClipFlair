@@ -1,17 +1,19 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: ImageView.cs
-//Version: 20121206
+//Version: 20121218
 
 //TODO: maybe allow to load local image and store it in .clipflair.zip file (show image from memorystream)
 
 using System;
 using System.ComponentModel;
 using System.Runtime.Serialization;
+using System.Windows.Browser;
 using System.Windows.Media;
 
 namespace ClipFlair.Windows.Views
 {
 
+  [ScriptableType]
   [DataContract(Namespace = "http://clipflair.net/Contracts/View")]
   public class ImageView: BaseView, IImageViewer
   {
