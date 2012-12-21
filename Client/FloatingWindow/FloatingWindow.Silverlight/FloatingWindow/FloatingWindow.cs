@@ -1,5 +1,5 @@
 //Filename: FloatingWindow.cs
-//Version: 20121130
+//Version: 20121218
 
 using System;
 using System.Collections.ObjectModel;
@@ -1489,18 +1489,7 @@ namespace SilverFlow.Controls
         /// <param name="e">Event args.</param>
         private void Application_Exit(object sender, EventArgs e)
         {
-            if (IsOpen)
-            {
-                isAppExit = true;
-                try
-                {
-                    Close();
-                }
-                finally
-                {
-                    isAppExit = false;
-                }
-            }
+          isAppExit = true; //expecting FloatingWindowHost to close its hosted FloatingWindows, do not call Close here expliclity, since then Close handlers of FloatingWindows may get called at any order by the App which will cause problems if the FloatingWindowHost is also hosted in a FloatingWindow (nesting)
         }
 
         /// <summary>
