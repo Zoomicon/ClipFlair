@@ -1,4 +1,9 @@
-﻿<ResourceDictionary
+﻿<!-- 
+Filename: Generic.xaml
+Version: 20121218
+-->
+  
+<ResourceDictionary
   xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -66,7 +71,7 @@
                                                         ContentScale="{TemplateBinding ContentScale}" 
                                                         MinContentScale="{TemplateBinding MinContentScale}" 
                                                         MaxContentScale="{TemplateBinding MaxContentScale}" >
-            <Canvas Width="5000" Height="5000" x:Name="PART_HostCanvas" />
+            <Canvas Width="5000" Height="5000" x:Name="PART_HostCanvas" /> <!-- TODO: ViewMaxWidth and ViewMaxHeight should be configurable using a TemplateBinding and respective FloatingWindowHostZUI properties -->
           </zoom:ZoomAndPanControl>
         </ScrollViewer>
 
