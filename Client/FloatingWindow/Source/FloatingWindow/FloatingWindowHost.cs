@@ -1,5 +1,5 @@
 ﻿//Filename: FloatingWindowHost.cs
-//Version: 20121130
+//Version: 20121218
 
 using System;
 using System.Collections.Generic;
@@ -1027,6 +1027,9 @@ namespace SilverFlow.Controls
         /// </summary>
         private void SubscribeToEvents()
         {
+            if (Application.Current != null)
+              Application.Current.Exit += new EventHandler(Application_Exit);
+
             this.AddHandler(MouseLeftButtonDownEvent, new MouseButtonEventHandler(FloatingWindowHost_MouseLeftButtonDown), true); //also grab handled events (to hide the window bar)
             this.LayoutUpdated += new EventHandler(FloatingWindowHost_LayoutUpdated);
         }
@@ -1232,6 +1235,16 @@ namespace SilverFlow.Controls
             {
                 Rect = iconBarContainer.GetActualBoundingRectangle()
             };
+        }
+
+        /// <summary>
+        /// Executed when the application is exited.
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">Event args.</param>
+        private void Application_Exit(object sender, EventArgs e)
+        {
+          CloseAllWindows(); //FloatingWindows expect FloatingWindowHost to close them at App exit
         }
 
         /// <summary>
