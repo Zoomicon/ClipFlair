@@ -1,12 +1,13 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: App.xaml.cs
-//Version: 20121213
+//Version: 20121219
 
 using ClipFlair.Windows;
 using SilverFlow.Controls;
 
 using System;
 using System.Windows;
+using System.Windows.Browser;
 using System.Windows.Threading;
 
 namespace ClipFlair
@@ -17,9 +18,9 @@ namespace ClipFlair
 
     public App()
     {
-      this.Startup += this.Application_Startup;
-      this.Exit += this.Application_Exit;
-      this.UnhandledException += this.Application_UnhandledException;
+      Startup += Application_Startup;
+      Exit += Application_Exit;
+      UnhandledException += Application_UnhandledException;
 
       InitializeComponent();
     }
@@ -29,7 +30,7 @@ namespace ClipFlair
     private void Application_Startup(object sender, StartupEventArgs e)
     {
       UpdateOOB(); //TODO: run this from background thread, seems to take some time //CALLING THIS FIRST, SINCE THE REST OF THE CODE COULD THROW AN EXCEPTION WHICH WOULD BLOCK UPDATES (AND ALSO TO MAKE USE OF THE TIME TO SET UP THE APP, SINCE UPDATING OCCURS IN THE BACKGROUND)
-      
+    
       FloatingWindowHost host = new FloatingWindowHost(); //don't use FloatingWindowHostZUI here
       
       ActivityWindow activityWindow = new ActivityWindow();
@@ -42,14 +43,34 @@ namespace ClipFlair
       activityWindow.ShowMaximizeButton = false;
       activityWindow.ShowMinimizeButton = false;
       activityWindow.ShowCloseButton = false;
-      
-      this.RootVisual = host; //new ActivityContainer();
-      host.Rendered += (s, ev) => {
-        host.IsBottomBarVisible = false;
+
+      if (IsRunningOutOfBrowser) //Must not set this for in-browser apps, else warning that this will be ignored will be shown at runtime
+
+        App.Current.MainWindow.Closing += (s, ev) => //due to a bug in Silverlight, this has to be attached BEFORE setting the App's RootVisual
+        {
+          if (activityWindow.View.WarnOnClosing)
+            if (MessageBox.Show("Do you want to exit ClipFlair Playground?", "Confirmation", MessageBoxButton.OKCancel) != MessageBoxResult.OK)
+              ev.Cancel = true;
+            else //proceed with app closing
+              activityWindow.View.WarnOnClosing = false; //disable warning before proceeding with close (not really needed, since the ActivityWindow checks if it's TopLevel or not)
+        }; //TODO: add Closing (with cancel) event handler) in webpage script too for when running in-browser
+
+      else
+      {
+        HtmlPage.RegisterScriptableObject("activity", activityWindow);
+
+        //TODO: parse parameters like activity=url , media= , captions= (allow multiple and search for them in that order) etc.
+      }
+
+      host.Rendered += (s, ev) =>
+      {
+        host.IsBottomBarVisible = false; //hide outer container's bottom bar, only want to show the one of the ActivityContainer that the ActivityWindow hosts
         activityWindow.Width = host.ActualWidth;
         activityWindow.Height = host.ActualHeight;
       };
-  
+
+      RootVisual = host;
+
       //MessageBox.Show("ClipFlair loaded"); //uncomment this to test the loading indicator
     }
 
