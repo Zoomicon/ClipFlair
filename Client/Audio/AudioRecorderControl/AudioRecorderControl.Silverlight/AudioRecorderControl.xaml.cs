@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: AudioRecorderControl.xaml.cs
-//Version: 20121125
+//Version: 20121218
 
 using WPFCompatibility;
 
@@ -19,11 +19,8 @@ namespace ClipFlair.AudioRecorder
     {
       View = new AudioRecorderView(); //must do first
       InitializeComponent();
-    }
 
-    ~AudioRecorderControl()
-    {
-      View = null; //unregister PropertyChangedEventHandler
+      //Unloaded += (s, e) => View = null; //release property change event handlers
     }
 
     #region Properties
