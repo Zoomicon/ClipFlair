@@ -1,6 +1,6 @@
 ﻿<!-- 
 Filename: Generic.xaml
-Version: 20121218
+Version: 20121223
 -->
   
 <ResourceDictionary
@@ -88,7 +88,7 @@ Version: 20121218
               <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
 
-            <controls:BootstrapButton x:Name="PART_BootstrapButton" Style="{StaticResource BootstrapButtonStyle}"
+            <controls:BootstrapButton Visibility="Collapsed" x:Name="PART_BootstrapButton" Style="{StaticResource BootstrapButtonStyle}"
                     Margin="10,-4,10,0" IsOpen="{Binding IsOpen, ElementName=PART_IconBar}" />
 
             <Border Grid.Column="1">
