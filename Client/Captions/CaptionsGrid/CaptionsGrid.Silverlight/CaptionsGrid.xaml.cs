@@ -59,7 +59,7 @@ namespace ClipFlair.CaptionsGrid
         //cells that are scrolled out of view aren't created yet and won't give us their content //TODO: blog this workarround (needed if the row is out of view or not rendered yet)
           
         Time = selectedCaption.Begin;
-        ((AudioRecorderControl)ColumnAudio.GetCellContent(selectedCaption)).Play(); //assuming the audio column is inside the current view
+        ((AudioRecorderControl)ColumnAudio.GetCellContent(selectedCaption)).View.Play(); //assuming the audio column is inside the current view
       }
     }
 
