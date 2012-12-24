@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: AudioRecorderControl.xaml.cs
-//Version: 20121218
+//Version: 20121224
 
 using WPFCompatibility;
 
@@ -107,21 +107,6 @@ namespace ClipFlair.AudioRecorder
     }
 
     #endregion
-
-    #endregion
-
-    #region Methods
-
-    public void Play()
-    {
-      //StopPlayback(); //stop any current playback //don't call this, since when clicking on Play button at other grid row we have the button checked then unchecked by this
-      View.PlayCommand.IsChecked = true; //don't talk to ToggleButton directly
-    }
-
-    public void StopPlayback()
-    {
-      View.PlayCommand.IsChecked = false; //don't talk to ToggleButton directly
-    }
 
     #endregion
 

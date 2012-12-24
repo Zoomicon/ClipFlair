@@ -1,28 +1,32 @@
 ﻿<!--
 Filename: AudioRecorderControl.xaml
-Version: 20121125
+Version: 20121224
 -->
-  
+
 <UserControl
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:utils="clr-namespace:System.Windows.Controls;assembly=WPF_Compatibility"
     mc:Ignorable="d" d:DesignHeight="29" d:DesignWidth="99"  
     x:Class="ClipFlair.AudioRecorder.AudioRecorderControl" 
     >
-    
+
   <UserControl.Resources>
     <ResourceDictionary>
       <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="/AudioRecorder;component/Themes/Generic.xaml"/>
       </ResourceDictionary.MergedDictionaries>
+
+      <utils:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
     </ResourceDictionary>
   </UserControl.Resources>
-  
+
   <StackPanel x:Name="LayoutRoot" Orientation="Horizontal">
 
-    <ToggleButton x:Name="btnRecord" Content="Record" 
+    <ToggleButton x:Name="btnRecord" 
+                  Visibility="{Binding Path=RecordCommand.IsEnabled, Converter={StaticResource BooleanToVisibilityConverter}}"
                   IsEnabled="{Binding Path=RecordCommand.IsEnabled, Mode=TwoWay}"
                   IsChecked="{Binding Path=RecordCommand.IsChecked, Mode=TwoWay}"
                   Template="{StaticResource RecordCommandStyle}"
@@ -32,18 +36,19 @@ Version: 20121125
       </ToolTipService.ToolTip>
     </ToggleButton>
 
-    <ToggleButton x:Name="btnPlay" Content="Play"
-                  IsEnabled="{Binding Path=PlayCommand.IsEnabled, Mode=TwoWay}"
-                  IsChecked="{Binding Path=PlayCommand.IsChecked, Mode=TwoWay}"
+    <Button x:Name="btnPlay"
+                  Command="{Binding PlayCommand}"
+                  Visibility="{Binding Path=PlayCommand.IsEnabled, Converter={StaticResource BooleanToVisibilityConverter}}"
                   Template="{StaticResource PlayCommandStyle}"
                   Width="20" Height="20" Margin="3,0,3,0">
       <ToolTipService.ToolTip>
         <ToolTip Content="Play audio" />
       </ToolTipService.ToolTip>
-    </ToggleButton>
+    </Button>
 
     <Button x:Name="btnLoad"
             Command="{Binding LoadCommand}"
+            Visibility="{Binding Path=LoadCommand.IsEnabled, Converter={StaticResource BooleanToVisibilityConverter}}"
             Template="{StaticResource LoadCommandStyle}"
             Width="20" Height="20" Margin="0,0,3,0">
       <ToolTipService.ToolTip>
@@ -53,13 +58,14 @@ Version: 20121125
 
     <Button x:Name="btnSave"
             Command="{Binding SaveCommand}"
+            Visibility="{Binding Path=SaveCommand.IsEnabled, Converter={StaticResource BooleanToVisibilityConverter}}"
             Template="{StaticResource SaveCommandStyle}"
             Width="20" Height="20" Margin="0,0,3,0">
       <ToolTipService.ToolTip>
         <ToolTip Content="Save audio to .WAV file" />
       </ToolTipService.ToolTip>
     </Button>
-    
+
   </StackPanel>
 
 </UserControl>
