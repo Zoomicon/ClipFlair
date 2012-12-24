@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: ActivityWindow.xaml.cs
-//Version: 20121221
+//Version: 20121222
 
 using ClipFlair.Windows.Views;
 
@@ -20,6 +20,8 @@ namespace ClipFlair.Windows
   public partial class ActivityWindow : BaseWindow
   {
 
+    private const string DEFAULT_ACTIVITY = "http://gallery.clipflair.net/activity/Tutorial.clipflair.zip"; //TODO: change this with a list of entries loaded from the web (and have a cached one in app config for offline scenaria or fetched/cached during oob install) //MAYBE COULD HAVE A DEFAULT SMALL ONE IN THE XAP
+
     public ActivityWindow()
     {
       InitializeComponent();
@@ -33,7 +35,7 @@ namespace ClipFlair.Windows
       ImageWindowFactory = activity.ImageWindowFactory;
       MapWindowFactory = activity.MapWindowFactory;
 
-      defaultLoadURL = "http://gallery.clipflair.net/activity/BigBuckBunny_sample.clipflair.zip"; //TODO: change this with a list of entries loaded from the web (and have a cached one in app config for offline scenaria or fetched/cached during oob install)
+      defaultLoadURL = DEFAULT_ACTIVITY;
     }
 
     #region --- Properties ---
@@ -120,6 +122,15 @@ namespace ClipFlair.Windows
 
     #region Methods
 
+    public override void ShowLoadURLDialog(string loadItemTitle = "ClipFlair Activity")
+    {
+      base.ShowLoadURLDialog(loadItemTitle);
+    }
+
+    #endregion
+
+    #region Events
+
     protected override void OnClosing(CancelEventArgs e)
     {
       base.OnClosing(e);
@@ -133,10 +144,6 @@ namespace ClipFlair.Windows
 
       View = null; //clearing the view to release property change event handler //must not do this at class destructor, else may get cross-thread-access exceptions //this also clears the View for nested ActivityContainer
     }
-
-    #endregion
-
-    #region Events
 
     private void activity_LoadURLClick(object sender, RoutedEventArgs e)
     {

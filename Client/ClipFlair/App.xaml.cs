@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: App.xaml.cs
-//Version: 20121219
+//Version: 20121222
 
 using ClipFlair.Windows;
 using SilverFlow.Controls;
@@ -67,6 +67,7 @@ namespace ClipFlair
         host.IsBottomBarVisible = false; //hide outer container's bottom bar, only want to show the one of the ActivityContainer that the ActivityWindow hosts
         activityWindow.Width = host.ActualWidth;
         activityWindow.Height = host.ActualHeight;
+        activityWindow.ShowLoadURLDialog();
       };
 
       RootVisual = host;
@@ -131,7 +132,7 @@ namespace ClipFlair
         if (dispatcher != null) 
           dispatcher.BeginInvoke(
             () => 
-              MessageBox.Show("Unexpected error: " + e.ExceptionObject.Message + "\n" + e.ExceptionObject.StackTrace) //TODO: find parent window?
+                MessageBox.Show("Unexpected error: " + e.ExceptionObject.Message + "\n" + e.ExceptionObject.StackTrace) //TODO: find parent window?
               //ReportErrorToDOM(e) //don't use this, uses Browser's error facility (wouldn't work in OOB)
           );
     }
