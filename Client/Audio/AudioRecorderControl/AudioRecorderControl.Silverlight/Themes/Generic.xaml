@@ -1,6 +1,6 @@
 ﻿<!--
 Filename: Generic.xaml
-Version: 20120912
+Version: 20121224
 -->
 
 <ResourceDictionary
@@ -49,7 +49,7 @@ Version: 20120912
     </Grid>
   </ControlTemplate>
 
-  <ControlTemplate x:Key="PlayCommandStyle" TargetType="ToggleButton">
+  <ControlTemplate x:Key="PlayCommandStyle" TargetType="Button">
     <Grid>
       <VisualStateManager.VisualStateGroups>
         

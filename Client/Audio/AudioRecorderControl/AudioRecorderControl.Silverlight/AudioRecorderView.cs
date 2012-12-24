@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: AudioRecorderView.cs
-//Version: 20121125
+//Version: 20121223
 
 using ClipFlair.AudioLib;
 
@@ -56,7 +56,8 @@ namespace ClipFlair.AudioRecorder
 
     //using public Commands and protected handler methods to keep the buttons state consistent. Outsiders should talk to the commands, not the handlers
     public ToggleCommand RecordCommand { get; private set; }
-    public ToggleCommand PlayCommand { get; private set; }
+    //public ToggleCommand PlayCommand { get; private set; }
+    public Command PlayCommand { get; private set; }
     public Command LoadCommand { get; private set; }
     public Command SaveCommand { get; private set; }
 
@@ -127,12 +128,12 @@ namespace ClipFlair.AudioRecorder
         ExecuteUncheckAction = () => StopRecording()
       };
 
-      PlayCommand = new ToggleCommand()
+      PlayCommand = new Command()
       {
         IsEnabled = false,
-        IsChecked = false,
-        ExecuteAction = () => Play(),
-        ExecuteUncheckAction = () => StopPlayback()
+        //IsChecked = false,
+        ExecuteAction = () => Play()
+        //, ExecuteUncheckAction = () => StopPlayback()
       };
 
       LoadCommand = new Command()
@@ -160,7 +161,7 @@ namespace ClipFlair.AudioRecorder
 
     #region Methods
 
-    protected void Reset()
+    public void Reset()
     {
       RecordCommand.IsEnabled = true;
       PlayCommand.IsEnabled = false;
@@ -170,7 +171,7 @@ namespace ClipFlair.AudioRecorder
       Status = MSG_RECORD_OR_LOAD;
     }
 
-    protected void Record()
+    public void Record()
     {
       if (!CanRecord)
       {
@@ -204,7 +205,7 @@ namespace ClipFlair.AudioRecorder
 
     }
 
-    protected void StopRecording()
+    public void StopRecording()
     {
       if (_captureSource.State == CaptureState.Started)
       {
@@ -233,11 +234,11 @@ namespace ClipFlair.AudioRecorder
       }
     }
 
-    protected void Play()
+    public void Play()
     {
       if (!HasAudio)
       {
-        PlayCommand.IsChecked = false; //depress playback toggle button //don't talk to ToggleButton directly
+        //PlayCommand.IsChecked = false; //depress playback toggle button //don't talk to ToggleButton directly
         Status = MSG_RECORD_OR_LOAD; //prompt user to record audio or load a WAV file
         return;
       }
@@ -251,12 +252,12 @@ namespace ClipFlair.AudioRecorder
       }
       catch (Exception e)
       {
-        PlayCommand.IsChecked = false; //depress playback toggle button //don't talk to ToggleButton directly
+        //PlayCommand.IsChecked = false; //depress playback toggle button //don't talk to ToggleButton directly
         Status = MSG_PLAY_FAILED + e.Message;
       }
     }
 
-    protected void StopPlayback()
+    public void StopPlayback()
     {
       try
       {
@@ -270,7 +271,7 @@ namespace ClipFlair.AudioRecorder
 
     #region Load-Save
 
-    protected void LoadFile()
+    public void LoadFile() //this has to be called by user-initiated event handler
     {
       if (openFileDialog.ShowDialog() == false) return;
 
@@ -297,7 +298,7 @@ namespace ClipFlair.AudioRecorder
       }
     }
 
-    protected void SaveFile()
+    public void SaveFile() //this has to be called by user-initiated event handler
     {
       if (!HasAudio)
       {
@@ -349,7 +350,7 @@ namespace ClipFlair.AudioRecorder
 
     protected void MediaElement_MediaEnded(object sender, RoutedEventArgs e) //TODO: doesn't seem to get always called
     {
-      PlayCommand.IsChecked = false; //when playback ends depress play button //don't talk to ToggleButton directly
+      //PlayCommand.IsChecked = false; //when playback ends depress play button //don't talk to ToggleButton directly
     }
 
     #endregion
