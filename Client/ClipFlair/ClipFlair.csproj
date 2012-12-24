@@ -75,6 +75,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Ionic.Zip, Version=1.9.1.8, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>Lib\Ionic.Zip.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Maps.MapControl">
       <HintPath>..\..\..\..\..\Program Files (x86)\Bing Maps Silverlight Control\V1\Libraries\Microsoft.Maps.MapControl.dll</HintPath>
     </Reference>
@@ -118,6 +121,10 @@
     <ProjectReference Include="..\ClipFlair.Windows\ClipFlair.Windows.Base\ClipFlair.Windows.Base.csproj">
       <Project>{4CE71FC4-B8D9-4305-AE15-2F0501CA58B3}</Project>
       <Name>ClipFlair.Windows.Base</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ClipFlair.Windows\ClipFlair.Windows.Media\ClipFlair.Windows.Media.csproj">
+      <Project>{A14AC96C-D998-4C35-B1C0-415535D1378B}</Project>
+      <Name>ClipFlair.Windows.Media</Name>
     </ProjectReference>
     <ProjectReference Include="..\FloatingWindow\FloatingWindow.Silverlight\FloatingWindow.Silverlight.csproj">
       <Project>{3F3D3C8C-9724-4531-A04D-B92049F64686}</Project>
