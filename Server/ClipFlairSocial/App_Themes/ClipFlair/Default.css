@@ -7755,6 +7755,7 @@ font-size: 16px;
 color: #34201B;
 font-family: Verdana, Arial, Helvetica, sans-serif;
 text-align:right;
+visibility: hidden;
 }
 
 p.social-invitation2{
