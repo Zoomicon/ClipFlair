@@ -1,7 +1,7 @@
 ﻿<!--
 Project: ClipFlair (http://ClipFlair.codeplex.com)
 Filename: InputDialog.xaml
-Version: 20121221
+Version: 20121224
 -->
   
 <controls:ChildWindow 
@@ -27,8 +27,9 @@ Version: 20121221
     <TextBox x:Name="txtInput" Grid.Row="1" />
 
     <StackPanel Orientation="Horizontal" Grid.Row="3" HorizontalAlignment="Center">
-      <Button x:Name="OKButton" Content="OK" Click="OKButton_Click" Margin="3,0,3,0" Padding="10,5,10,5" />
-      <Button x:Name="CancelButton" Content="Cancel" Click="CancelButton_Click" Margin="3,0,3,0" Padding="10,5,10,5" />
+      <Button x:Name="btnOK" Content="OK" Margin="3,0,3,0" Padding="10,5,10,5" Click="btnOK_Click" />
+      <Button x:Name="btnHelp" Content="?" Visibility="Collapsed" Margin="3,0,3,0" Padding="10,5,10,5" Click="btnHelp_Click" />
+      <Button x:Name="btnCancel" Content="Cancel" Margin="3,0,3,0" Padding="10,5,10,5" Click="btnCancel_Click" />
     </StackPanel>
   </Grid>
 </controls:ChildWindow>

@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: InputDialog.xaml.cs
-//Version: 20121221
+//Version: 20121224
 
 using System;
 using System.Windows;
@@ -16,15 +16,23 @@ namespace ClipFlair.Windows.Dialogs
       InitializeComponent();
     }
 
-    private void OKButton_Click(object sender, RoutedEventArgs e)
+    private void btnOK_Click(object sender, RoutedEventArgs e)
     {
       this.DialogResult = true;
     }
 
-    private void CancelButton_Click(object sender, RoutedEventArgs e)
+    private void btnCancel_Click(object sender, RoutedEventArgs e)
     {
       this.DialogResult = false;
     }
+
+    private void btnHelp_Click(object sender, RoutedEventArgs e)
+    {
+      if (HelpRequested != null)
+        HelpRequested(this, e);
+    }
+
+    //we also inherit Title property from ancestor class
 
     public string Message
     {
@@ -38,15 +46,38 @@ namespace ClipFlair.Windows.Dialogs
       set { txtInput.Text = value;  }
     }
 
-    public static void Show(string Message, string DefaultInput, EventHandler<CancelEventArgs> ClosingHandler)
+    public bool HelpButtonVisible
+    {
+      get { return btnHelp.Visibility == Visibility.Visible; }
+      set { btnHelp.Visibility = value ? Visibility.Visible : Visibility.Collapsed;  }
+    }
+
+    public static void Show(string title, string message, string defaultInput, EventHandler<CancelEventArgs> closingHandler)
     {
       InputDialog prompt = new InputDialog();
-      prompt.Message = Message;
-      prompt.Input = DefaultInput;
-      prompt.Closing += ClosingHandler;
+      prompt.Title = title;
+      prompt.Message = message;
+      prompt.Input = defaultInput;
+      prompt.Closing += closingHandler;
       prompt.Show();
     }
 
+    public static void Show(string title, string message, string defaultInput, EventHandler<CancelEventArgs> closingHandler, EventHandler helpHandler)
+    {
+      InputDialog prompt = new InputDialog();
+      prompt.Title = title;
+      prompt.Message = message;
+      prompt.Input = defaultInput;
+      prompt.Closing += closingHandler;
+      if (helpHandler != null)
+      {
+        prompt.HelpRequested += helpHandler;
+        prompt.HelpButtonVisible = true;
+      }
+      prompt.Show();
+    }
+    
+    public event EventHandler HelpRequested;
+
   }
 }
-

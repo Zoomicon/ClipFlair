@@ -1,13 +1,13 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: BaseWindow.xaml.cs
-//Version: 20121221
+//Version: 20121224
 
 //TODO: unbind control at close
 //TODO: do not allow to set too low opacity values that could make windows disappear
 
 #define PROPERTY_CHANGE_SUPPORT
 
-using ClipFlair.Utils;
+using ClipFlair.Utils.Extensions;
 using ClipFlair.Windows.Dialogs;
 using ClipFlair.Windows.Views;
 
@@ -49,46 +49,21 @@ namespace ClipFlair.Windows
         CacheMode = new BitmapCache(); //must do this before setting the "Scale" property, since that will set "RenderAtScale" property of the BitmapCache
 
       ShowMaximizeButton = false; //!!! (till we fix it to resize to current visible view area and to allow moving the window in that case only [when it's not same size as parent])
+      ShowMinimizeButton = false; //!!! (till the sliding windows bar is fixed)
 
-      InitializeComponent(); //can change the "ShowMaximize" button, or set the "Scale" and other properties from XAML, so must do after the commands above
+      InitializeComponent(); //can change properties from XAML, so must do after the commands above
 
       //BindingUtils.RegisterForNotification("Title", this, (d, e) => { if (View != null) { View.Title = (bool)e.NewValue; } }); //not used, using data binding in XAML instead
 
-      HelpRequested += (s, e) =>
-      {
-        Dispatcher.BeginInvoke(delegate
-        {
-          try
-          {
-            ExecUtils.OpenHyperlink("http://clipflairsrv.cti.gr/Social/Pages/Tutorials.aspx"); //TODO: change to play.clipflair.net URL
-          }
-          catch
-          {
-            MessageBox.Show("For help see http://clipflairsrv.cti.gr/Social/Pages/Tutorials.aspx");  //TODO: change to play.clipflair.net URL //TODO: fix to show help in OOB using WebBrowser control (just make sure help pages are coming from same domain as the one that deploys the app)
-          }
-        });
-      };
-
-      OptionsRequested += (s, e) =>
-      {
-        //try to set focus to front content so that changes to property editboxes at the back content are applied
-        if (!Focus())
-        {
-          // If the Focus() fails it means there is no focusable element in the front content. In this case we set IsTabStop to true to enable keyboard functionality for the container.
-          IsTabStop = true;
-          Focus();
-          //keeping tab stop functionality for future back to front flips
-        }
-
-        FlipPanel.IsFlipped = !FlipPanel.IsFlipped; //flip the view to show/hide window options
-      };
+      HelpRequested += (s, e) => ShowHelp();
+      OptionsRequested += (s, e) => ShowOptions();
 
       //Load-Save (TODO: check: can't set them in the XAML (probably some issue with UserControl inheritance), says "Failed to assign to property 'System.Windows.Controls.Primitives.ButtonBase.Click'") //must do after InitializeComponent
       ctrlOptionsLoadSave.LoadURLClick += new RoutedEventHandler(btnLoadURL_Click);
       ctrlOptionsLoadSave.LoadClick += new RoutedEventHandler(btnLoad_Click);
       ctrlOptionsLoadSave.SaveClick += new RoutedEventHandler(btnSave_Click);
      }
-   
+
     #region Properties
 
     public IView View
@@ -163,118 +138,36 @@ namespace ClipFlair.Windows
 
     #endregion
 
-    #region Events
+    #region Methods
 
-    public delegate void ViewChangedEventHandler(object sender, IView newView);
-    public event ViewChangedEventHandler ViewChanged;
-
-    protected override void OnClosing(CancelEventArgs e)
+    public void ShowHelp()
     {
-      if (!IsTopLevel //for top level window showing closing warning (with option to cancel closing) via webpage JavaScript event handler or via App class event handler at OOB mode
-          && View.WarnOnClosing) //Containers should set WarnOnClosing=false to each of their children if they warn user themselves and users select to proceed with closing
-        e.Cancel = (MessageBox.Show("Are you sure you want to close this window?", "Confirmation", MessageBoxButton.OKCancel) != MessageBoxResult.OK);
-
-      if (!e.Cancel)
-        base.OnClosing(e); //this will fire "Closing" event handler
-    }
-
-    protected override void OnClosed(EventArgs e)
-    {
-      base.OnClosed(e); //this will fire "Closed" event handler
-
-      View = null; //clearing the view to release property change event handler //must not do this at class destructor, else may get cross-thread-access exceptions
-    }
-
-    protected virtual void OnViewChanged()
-    {
-      if (ViewChanged != null)
-        ViewChanged(this, View); //fire ViewChanged event handler
-    }
-
-    #if PROPERTY_CHANGE_SUPPORT
-    protected virtual void View_PropertyChanged(object sender, PropertyChangedEventArgs e)
-    {
-    /*
-      if (e.PropertyName == null) //multiple (not specified) properties have changed, consider all as changed
+      Dispatcher.BeginInvoke(delegate
       {
-        //Title = View.Title; //not used, using data binding in XAML instead
-        //...
-      }
-      else switch (e.PropertyName)
+        try
         {
-          //case IViewProperties.PropertyTitle: //not used, using data binding in XAML instead
-          //  Title = View.Title;
-          //  IconText = View.Title; //IconText should match the Title
-          //  break; 
-          default:
-            //NOP
-            break;
-          //...
+          new Uri("http://social.clipflair.net/Pages/Tutorials.aspx").NavigateTo();
         }
-    */
-    }
-    #endif
-
-    protected string defaultLoadURL = "";
-
-    protected void btnLoadURL_Click(object sender, RoutedEventArgs e)
-    {
-      InputDialog.Show("ClipFlair saved options URL:", defaultLoadURL, (s, ex) => {
-        string input = ((InputDialog)s).Input;
-        if (input != null && input.Trim() != "") //ignoring empty URLs
-          LoadOptions(new Uri(input, UriKind.Absolute)); //since that is an asynchronous operation we expect from it to flip the view back to front after succesful loading
+        catch
+        {
+          MessageBox.Show("For help see http://social.clipflair.net/Pages/Tutorials.aspx");
+        }
       });
     }
 
-    protected void btnLoad_Click(object sender, RoutedEventArgs e)
+    public void ShowOptions()
     {
-      try
+      //try to set focus to front content so that changes to property editboxes at the back content are applied
+      if (!Focus())
       {
-        OpenFileDialog dlg = new OpenFileDialog();
-        dlg.Filter = "ClipFlair options archive|*.clipflair.zip";
-        dlg.FilterIndex = 1; //note: this index is 1-based, not 0-based
-        //dlg.DefaultExt = ".clipflair.zip"; //OpenFileDialog doesn't seem to have a DefaultExt like SaveFileDialog
+        // If the Focus() fails it means there is no focusable element in the front content. In this case we set IsTabStop to true to enable keyboard functionality for the container.
+        IsTabStop = true;
+        Focus();
+        //keeping tab stop functionality for future back to front flips
+      }
 
-        if (dlg.ShowDialog() == true) //TODO: find the parent window
-          using (Stream stream = dlg.File.OpenRead()) //will close the stream when done
-          {
-            LoadOptions(stream);
-            FlipPanel.IsFlipped = false; //flip the view back to front after succesful options loading
-          }
-      }
-      catch (NullReferenceException)
-      {
-        MessageBox.Show("ClipFlair options load failed - These saved options may be for other window"); //TODO: find the parent window
-      }
-      catch (Exception ex)
-      {
-        MessageBox.Show("ClipFlair options load failed: " + ex.Message); //TODO: find the parent window
-      }
+      FlipPanel.IsFlipped = !FlipPanel.IsFlipped; //flip the view to show/hide window options
     }
-  
-    protected void btnSave_Click(object sender, RoutedEventArgs e)
-    {
-      if (View == null) return;
-
-      try
-      {
-        SaveFileDialog dlg = new SaveFileDialog();
-        dlg.Filter = "ClipFlair options archive|*.clipflair.zip";
-        //dlg.FilterIndex = 1; //note: this index is 1-based, not 0-based //do not set if DefaultExt is supplied
-        //dlg.DefaultFileName = View.Title + ".clipflair.zip"; //Silverlight will prompt "Do you want to save X?" (where X is the DefaultFileName value). If we set this, but the prompt can go under the main window, so avoid it
-        dlg.DefaultExt = ".clipflair.zip"; //this doesn't seem to be used if FilterIndex is set
-
-        if (dlg.ShowDialog() == true) //TODO: find the parent window
-          using (Stream stream = dlg.OpenFile()) //will close the stream when done
-            SaveOptions(stream);
-      }
-      catch (Exception ex)
-      {
-        MessageBox.Show("CliFlair options save failed: " + ex.Message); //TODO: find the parent window
-      }
-    }
-
-    #endregion
 
     #region Load / Save Options
 
@@ -385,7 +278,149 @@ namespace ClipFlair.Windows
       stream.Position = 0;
       ZipEntry optionsXML = zip.AddEntry(zipFolder + "/" + View.GetType().FullName + ".options.xml", stream);
     }
- 
+
+    #endregion
+
+    #endregion
+
+    #region Events
+
+    public delegate void ViewChangedEventHandler(object sender, IView newView);
+    public event ViewChangedEventHandler ViewChanged;
+
+    protected override void OnClosing(CancelEventArgs e)
+    {
+      if (!IsTopLevel //for top level window showing closing warning (with option to cancel closing) via webpage JavaScript event handler or via App class event handler at OOB mode
+          && View.WarnOnClosing) //Containers should set WarnOnClosing=false to each of their children if they warn user themselves and users select to proceed with closing
+        e.Cancel = (MessageBox.Show("Are you sure you want to close this window?", "Confirmation", MessageBoxButton.OKCancel) != MessageBoxResult.OK);
+
+      if (!e.Cancel)
+        base.OnClosing(e); //this will fire "Closing" event handler
+    }
+
+    protected override void OnClosed(EventArgs e)
+    {
+      base.OnClosed(e); //this will fire "Closed" event handler
+
+      View = null; //clearing the view to release property change event handler //must not do this at class destructor, else may get cross-thread-access exceptions
+    }
+
+    protected virtual void OnViewChanged()
+    {
+      if (ViewChanged != null)
+        ViewChanged(this, View); //fire ViewChanged event handler
+    }
+
+    #if PROPERTY_CHANGE_SUPPORT
+    protected virtual void View_PropertyChanged(object sender, PropertyChangedEventArgs e)
+    {
+    /*
+      if (e.PropertyName == null) //multiple (not specified) properties have changed, consider all as changed
+      {
+        //Title = View.Title; //not used, using data binding in XAML instead
+        //...
+      }
+      else switch (e.PropertyName)
+        {
+          //case IViewProperties.PropertyTitle: //not used, using data binding in XAML instead
+          //  Title = View.Title;
+          //  IconText = View.Title; //IconText should match the Title
+          //  break; 
+          default:
+            //NOP
+            break;
+          //...
+        }
+    */
+    }
+    #endif
+
+    protected string defaultLoadURL = "";
+
+    public virtual void ShowLoadURLDialog(string loadItemTitle="ClipFlair Component Template")
+    {
+      try
+      {
+        InputDialog.Show("Load " + loadItemTitle, "URL:", defaultLoadURL, (s, ex) =>
+        {
+          string input = ((InputDialog)s).Input;
+          if (input != null && input.Trim() != "") //ignoring empty URLs
+            LoadOptions(new Uri(input, UriKind.Absolute)); //since that is an asynchronous operation we expect from it to flip the view back to front after succesful loading
+        }, (s2,ex2) => ShowHelp());
+      }
+      catch (NullReferenceException)
+      {
+        MessageBox.Show("Loading from URL failed - These saved options may be for other window"); //TODO: find the parent window
+      }
+      catch (Exception ex)
+      {
+        MessageBox.Show("Loading from URL failed: " + ex.Message); //TODO: find the parent window
+      }
+    }
+
+    public void ShowLoadDialog() //this has to be called by user-initiated event handler
+    {
+      try
+      {
+        OpenFileDialog dlg = new OpenFileDialog();
+        dlg.Filter = "ClipFlair archive|*.clipflair.zip";
+        dlg.FilterIndex = 1; //note: this index is 1-based, not 0-based
+        //dlg.DefaultExt = ".clipflair.zip"; //OpenFileDialog doesn't seem to have a DefaultExt like SaveFileDialog
+
+        if (dlg.ShowDialog() == true) //TODO: find the parent window
+          using (Stream stream = dlg.File.OpenRead()) //will close the stream when done
+          {
+            LoadOptions(stream);
+            FlipPanel.IsFlipped = false; //flip the view back to front after succesful options loading
+          }
+      }
+      catch (NullReferenceException)
+      {
+        MessageBox.Show("Loading from file failed - These saved options may be for other window"); //TODO: find the parent window
+      }
+      catch (Exception ex)
+      {
+        MessageBox.Show("Loading from file failed: " + ex.Message); //TODO: find the parent window
+      }
+    }
+
+    public void ShowSaveDialog() //this has to be called by user-initiated event handler
+    {
+      if (View == null) return;
+
+      try
+      {
+        SaveFileDialog dlg = new SaveFileDialog();
+        dlg.Filter = "ClipFlair archive|*.clipflair.zip";
+        //dlg.FilterIndex = 1; //note: this index is 1-based, not 0-based //do not set if DefaultExt is supplied
+        //dlg.DefaultFileName = View.Title + ".clipflair.zip"; //Silverlight will prompt "Do you want to save X?" (where X is the DefaultFileName value). If we set this, but the prompt can go under the main window, so avoid it
+        dlg.DefaultExt = ".clipflair.zip"; //this doesn't seem to be used if FilterIndex is set
+
+        if (dlg.ShowDialog() == true) //TODO: find the parent window
+          using (Stream stream = dlg.OpenFile()) //will close the stream when done
+            SaveOptions(stream);
+      }
+      catch (Exception ex)
+      {
+        MessageBox.Show("Saving to file failed: " + ex.Message); //TODO: find the parent window
+      }
+    }
+
+    protected void btnLoadURL_Click(object sender, RoutedEventArgs e)
+    {
+      ShowLoadURLDialog();
+    }
+
+    protected void btnLoad_Click(object sender, RoutedEventArgs e)
+    {
+      ShowLoadDialog();
+    }
+  
+    protected void btnSave_Click(object sender, RoutedEventArgs e)
+    {
+      ShowSaveDialog();
+    }
+
     #endregion
 
   }

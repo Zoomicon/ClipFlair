@@ -5,14 +5,12 @@
 <!--
 Project: ClipFlair (http://ClipFlair.codeplex.com)
 Filename: ClipFlairPlayground.aspx
-Version: 20121219
+Version: 20121224
 -->
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 
 <head runat="server">
-
-  <!-- <script type="text/javascript" src="SplashScreen.js"></script> -->
 
   <title>ClipFlair Playground</title>
 
@@ -20,7 +18,7 @@ Version: 20121219
     html, body
     {
       height: 100%;
-      overflow: auto;
+      overflow: hidden;
     }
     body
     {
@@ -98,7 +96,7 @@ Version: 20121219
 
 <body onunload="onClosed()" onbeforeunload="onClosing()">
 
-  <form id="form1" runat="server" style="height: 100%">
+  <form id="form1" runat="server" style="width:100%; height:100%">
     <div id="silverlightControlHost">
       <object 
         id="silverlightControl"

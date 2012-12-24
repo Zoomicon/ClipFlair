@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: ConfirmDialog.xaml.cs
-//Version: 20121221
+//Version: 20121222
 
 using System;
 using System.Windows;
@@ -26,17 +26,20 @@ namespace ClipFlair.Windows.Dialogs
       this.DialogResult = false;
     }
 
+    //we also inherit Title property from ancestor class
+
     public string Message
     {
       get { return lblMessage.Text; }
       set { lblMessage.Text = value; }
     }
 
-    public static void Show(string Message, EventHandler<CancelEventArgs> ClosingHandler)
+    public static void Show(string title, string message, EventHandler<CancelEventArgs> closingHandler)
     {
       InputDialog prompt = new InputDialog();
-      prompt.Message = Message;
-      prompt.Closing += ClosingHandler;
+      prompt.Title = title;
+      prompt.Message = message;
+      prompt.Closing += closingHandler;
       prompt.Show();
     }
 
