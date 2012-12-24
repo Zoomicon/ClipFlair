@@ -1,5 +1,5 @@
 //Filename: FloatingWindow.cs
-//Version: 20121218
+//Version: 20121223
 
 using System;
 using System.Collections.ObjectModel;
@@ -694,8 +694,9 @@ namespace SilverFlow.Controls
 
         #endregion
    
-        #region public FlowDirection FlowDirection (COMMENTED OUT)
-/*
+/* //COMMENTED OUT (think new Silverlight versions have Flow property anyway)
+        #region public FlowDirection
+
         /// <summary>
         /// Gets or sets the direction that title text flows within window's icon.
         /// </summary>
@@ -717,9 +718,10 @@ namespace SilverFlow.Controls
             "FlowDirection",
             typeof(FlowDirection),
             typeof(FloatingWindow),
-            new PropertyMetadata(FlowDirection.LeftToRight);
-*/
+            new PropertyMetadata(FlowDirection.LeftToRight));
+
         #endregion
+*/
 
         #region public Style TitleStyle
 

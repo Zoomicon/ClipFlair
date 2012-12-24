@@ -1,5 +1,5 @@
 ﻿//Filename: IconBar.cs
-//Version: 20121106
+//Version: 20121223
 
 using System;
 using System.Collections.ObjectModel;
@@ -290,7 +290,7 @@ namespace SilverFlow.Controls
 
             if (fixedBar != null)
             {
-              fixedBar.MouseMove += new MouseEventHandler(Bar_MouseMove);
+              fixedBar.MouseMove += new MouseEventHandler(FixedBar_MouseMove);
               fixedBar.SizeChanged += new SizeChangedEventHandler(FixedBar_SizeChanged);
             }
         }
@@ -308,7 +308,7 @@ namespace SilverFlow.Controls
 
             if (fixedBar != null)
             {
-              fixedBar.MouseMove += new MouseEventHandler(Bar_MouseMove);
+              fixedBar.MouseMove += new MouseEventHandler(FixedBar_MouseMove);
               fixedBar.SizeChanged -= new SizeChangedEventHandler(FixedBar_SizeChanged);
             }
         }
@@ -425,11 +425,11 @@ namespace SilverFlow.Controls
         }
 
         /// <summary>
-        /// Handles the MouseMove event of the Bar control. It implements "Carousel" logic.
+        /// Handles the MouseMove event of the FixedBar control. It implements "Carousel" logic.
         /// </summary>
         /// <param name="sender">The source of the event.</param>
         /// <param name="e">The <see cref="System.Windows.Input.MouseEventArgs"/> instance containing the event data.</param>
-        private void Bar_MouseMove(object sender, MouseEventArgs e)
+        private void FixedBar_MouseMove(object sender, MouseEventArgs e)
         {
             // Get absolute mouse position
             Point mousePosition = e.GetPosition(null);
