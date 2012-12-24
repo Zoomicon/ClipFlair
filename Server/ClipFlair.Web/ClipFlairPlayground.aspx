@@ -94,7 +94,7 @@ Version: 20121224
 
 </head>
 
-<body onunload="onClosed()" onbeforeunload="onClosing()">
+<body onbeforeunload="onClosing()" onunload="onClosed()">
 
   <form id="form1" runat="server" style="width:100%; height:100%">
     <div id="silverlightControlHost">
@@ -105,10 +105,6 @@ Version: 20121224
         width="100%" height="100%"
         >
         <param name="source" value="ClientBin/ClipFlair.xap" />
-        <!--
-        <param name="splashScreenSource" value="SplashScreen.xaml" />
-        <param name="onSourceDownloadProgressChanged" value="onSourceDownloadProgressChanged" />
-        --> 
         <param name="onError" value="onSilverlightError" />
         <param name="onLoad" value="onSilverlightLoad" />
         <param name="enableGPUAcceleration" value="true" />

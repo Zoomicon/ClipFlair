@@ -1,11 +1,12 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: App.xaml.cs
-//Version: 20121222
+//Version: 20121224
 
 using ClipFlair.Windows;
 using SilverFlow.Controls;
 
 using System;
+using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Browser;
 using System.Windows.Threading;
@@ -15,6 +16,9 @@ namespace ClipFlair
 
   public partial class App : Application
   {
+
+    private const string PARAMETER_ACTIVITY = "activity";
+    private const string PARAMETER_MEDIA = "media";
 
     public App()
     {
@@ -56,18 +60,35 @@ namespace ClipFlair
         }; //TODO: add Closing (with cancel) event handler) in webpage script too for when running in-browser
 
       else
-      {
         HtmlPage.RegisterScriptableObject("activity", activityWindow);
-
-        //TODO: parse parameters like activity=url , media= , captions= (allow multiple and search for them in that order) etc.
-      }
 
       host.Rendered += (s, ev) =>
       {
         host.IsBottomBarVisible = false; //hide outer container's bottom bar, only want to show the one of the ActivityContainer that the ActivityWindow hosts
         activityWindow.Width = host.ActualWidth;
         activityWindow.Height = host.ActualHeight;
-        activityWindow.ShowLoadURLDialog();
+        if (IsRunningOutOfBrowser)
+          activityWindow.ShowLoadURLDialog();
+        else
+        {
+          IDictionary<string, string> queryString = HtmlPage.Document.QueryString;
+          bool foundParam = false;
+          if (queryString.ContainsKey(PARAMETER_ACTIVITY))
+          {
+            activityWindow.LoadOptions(new Uri(queryString[PARAMETER_ACTIVITY], UriKind.Absolute));
+            foundParam = true;
+          }
+          if (queryString.ContainsKey(PARAMETER_MEDIA)) //TODO: if an activity parameter is also given we should wait for it to load first (or fail to load)
+          {
+            MediaPlayerWindow w = new MediaPlayerWindow();
+            activityWindow.activityContainer.AddWindowInViewCenter(w);
+            w.View.Source = new Uri(queryString[PARAMETER_MEDIA], UriKind.Absolute);
+            foundParam = true;
+          }
+          //...PARAMETER_CAPTIONS, PARAMETER_COMPONENT etc.
+          if (!foundParam) 
+            activityWindow.ShowLoadURLDialog();
+        }
       };
 
       RootVisual = host;

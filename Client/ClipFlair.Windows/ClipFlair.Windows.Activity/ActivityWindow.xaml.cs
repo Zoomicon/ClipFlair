@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: ActivityWindow.xaml.cs
-//Version: 20121222
+//Version: 20121224
 
 using ClipFlair.Windows.Views;
 
@@ -50,6 +50,11 @@ namespace ClipFlair.Windows
         base.View = value;
         activity.View = value; //set the view of the activity control too
       }
+    }
+
+    public ActivityContainer activityContainer
+    {
+      get { return activity; }
     }
 
     #endregion
