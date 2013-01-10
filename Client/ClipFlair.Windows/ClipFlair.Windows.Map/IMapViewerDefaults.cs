@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: IMapViewerDefaults.cs
-//Version: 20121203
+//Version: 20130110
 
 using Microsoft.Maps.MapControl.Core;
 
@@ -19,6 +19,8 @@ namespace ClipFlair.Windows.Views
     #endregion
 
     public const string DefaultMode = "Aerial";
+    public const bool DefaultLabelsVisible = true;
+    public const bool DefaultLabelsFading = false;
   }
 
 }

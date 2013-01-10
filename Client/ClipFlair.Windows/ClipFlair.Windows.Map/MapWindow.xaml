@@ -1,6 +1,6 @@
 ﻿<!--
 Filename: MapWindow.xaml
-Version: 20121220
+Version: 20130110
 -->
 
 <clipflair:BaseWindow x:Class="ClipFlair.Windows.MapWindow"
@@ -24,8 +24,9 @@ Version: 20121220
 
   <!--<clipflair:BaseWindow.FrontContent>-->
 
-  <map:Map CredentialsProvider="AteCcwxu4odM95hYVKZTcvJzDyp4KlfsGKrPRa8QFn0VjwJjlQdSmMOSfoicgi9X"
-           /> <!-- Mode="{Binding Mode, Mode=TwoWay}" -->
+  <map:Map Name="map"
+           CredentialsProvider="AteCcwxu4odM95hYVKZTcvJzDyp4KlfsGKrPRa8QFn0VjwJjlQdSmMOSfoicgi9X" 
+           ModeChanged="map_ModeChanged" />
   
   <!--</clipflair:BaseWindow.FrontContent>-->
 
@@ -33,7 +34,21 @@ Version: 20121220
 
     <StackPanel Orientation="Vertical">
       <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Mode" Target="{Binding ElementName=edMode}"/>
-      <TextBox Name="edMode" Text="{Binding Mode, Mode=TwoWay}" HorizontalAlignment="Stretch" />
+      <!-- <TextBox Name="edMode" Text="{Binding Mode, Mode=TwoWay}" HorizontalAlignment="Stretch" /> -->
+      <ComboBox Name="comboMode" SelectedValue="{Binding Mode, Mode=TwoWay}" DisplayMemberPath="Content" SelectedValuePath="Tag" HorizontalAlignment="Stretch">
+        <ComboBoxItem Content="Road" Tag="Road" />
+        <ComboBoxItem Content="Aerial" Tag="Aerial" />
+      </ComboBox>
+    </StackPanel>
+
+    <StackPanel Orientation="Horizontal">
+      <CheckBox Name="cbLabelsVisible" IsChecked="{Binding LabelsVisible, Mode=TwoWay}" />
+      <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Labels visible" Target="{Binding ElementName=cbLabelsVisible}"/>
+    </StackPanel>
+
+    <StackPanel Orientation="Horizontal">
+      <CheckBox Name="cbLabelsFading" IsChecked="{Binding LabelsFading, Mode=TwoWay}" />
+      <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Labels fading" Target="{Binding ElementName=cbLabelsFading}"/>
     </StackPanel>
 
   </clipflair:BaseWindow.PropertyItems>
