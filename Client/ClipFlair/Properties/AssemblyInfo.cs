@@ -6,9 +6,9 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("ClipFlair")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("Foreign Language Learning through Interactive Revoicing and Captioning of Clips")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("http://ClipFlair.net")]
 [assembly: AssemblyProduct("ClipFlair")]
 [assembly: AssemblyCopyright("Copyright ©  2012")]
 [assembly: AssemblyTrademark("")]

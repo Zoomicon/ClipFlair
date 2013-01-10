@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: BaseWindow.xaml.cs
-//Version: 20121224
+//Version: 20130110
 
 //TODO: unbind control at close
 //TODO: do not allow to set too low opacity values that could make windows disappear
@@ -314,24 +314,24 @@ namespace ClipFlair.Windows
     #if PROPERTY_CHANGE_SUPPORT
     protected virtual void View_PropertyChanged(object sender, PropertyChangedEventArgs e)
     {
-    /*
-      if (e.PropertyName == null) //multiple (not specified) properties have changed, consider all as changed
-      {
-        //Title = View.Title; //not used, using data binding in XAML instead
-        //...
-      }
-      else switch (e.PropertyName)
+      /*
+        if (e.PropertyName == null) //multiple (not specified) properties have changed, consider all as changed
         {
-          //case IViewProperties.PropertyTitle: //not used, using data binding in XAML instead
-          //  Title = View.Title;
-          //  IconText = View.Title; //IconText should match the Title
-          //  break; 
-          default:
-            //NOP
-            break;
+          //Title = View.Title; //not used, using data binding in XAML instead
           //...
         }
-    */
+        else switch (e.PropertyName)
+          {
+            //case IViewProperties.PropertyTitle: //not used, using data binding in XAML instead
+            //  Title = View.Title;
+            //  IconText = View.Title; //IconText should match the Title
+            //  break; 
+            //...
+            default:
+              //NOP
+              break;
+          }
+      */
     }
     #endif
 
