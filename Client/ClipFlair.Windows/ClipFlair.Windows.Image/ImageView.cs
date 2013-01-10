@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: ImageView.cs
-//Version: 20121218
+//Version: 20130107
 
 //TODO: maybe allow to load local image and store it in .clipflair.zip file (show image from memorystream)
 
@@ -59,6 +59,12 @@ namespace ClipFlair.Windows.Views
           RaisePropertyChanged(IImageViewerProperties.PropertyStretch);
         }
       }
+    }
+
+    public string StretchText
+    {
+      get { return Stretch.ToString(); }
+      set { Stretch = (Stretch)Enum.Parse(typeof(Stretch), value, true); }
     }
 
     #endregion
