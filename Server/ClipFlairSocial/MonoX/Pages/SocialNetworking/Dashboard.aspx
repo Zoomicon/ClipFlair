@@ -27,7 +27,7 @@
                 <MonoX:Editor runat="server" ID="editor3" Title='<%$ Code: PageResources.Zone_SocialZone %>'>
                 <DefaultContent>
                     <h1>Harness the Power of Social Networking in ASP.NET</h1>
-                    <img class="lets-socialize-img" src="~/App_Themes/Default/img/social-networking-icon.png" alt="Social Networking" />
+                    <img class="lets-socialize-img" src="~/App_Themes/ClipFlair/img/social-networking-icon.png" alt="Social Networking" />
                     <p>Create vibrant online communities. Connect with your friends. Kick up your own groups and join people that share your interests. Post blog articles. Share photos and videos. Write wall notes and comment on other people's posts. Follow activity streams.</p>
                     <p>With a touch of your own creativity and innovative spirit, there are no limits to what you can do with MonoX. And best of all - you'll get it all for free.</p>
                 </DefaultContent>
