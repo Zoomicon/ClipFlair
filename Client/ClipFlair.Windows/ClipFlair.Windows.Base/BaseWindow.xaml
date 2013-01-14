@@ -1,13 +1,13 @@
 ﻿<!--
 Project: ClipFlair (http://ClipFlair.codeplex.com)
 Filename: BaseWindow.xaml
-Version: 20121220
+Version: 20130114
 -->
 
 <float:FloatingWindow x:Class="ClipFlair.Windows.BaseWindow"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:d="http://schemas.microsoft.com/expression/blend/2008" d:DesignHeight="151" d:DesignWidth="337"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008" d:DesignHeight="400" d:DesignWidth="400"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d"
     xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk"
     xmlns:toolkit="http://schemas.microsoft.com/winfx/2006/xaml/presentation/toolkit"

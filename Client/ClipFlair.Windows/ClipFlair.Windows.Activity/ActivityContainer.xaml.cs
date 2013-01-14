@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: ActivityContainer.xaml.cs
-//Version: 20121221
+//Version: 20130114
 
 //TODO: add ContentPartsZoomable property
 //TODO: move zoom slider UI to FloatingWindowHostZUI's XAML template
@@ -326,7 +326,8 @@ namespace ClipFlair.Windows
 
     private void btnAddMedia_Click(object sender, RoutedEventArgs e)
     {
-      AddWindow(MediaPlayerWindowFactory, true);
+      MediaPlayerWindow w = (MediaPlayerWindow)AddWindow(MediaPlayerWindowFactory, true);
+      w.View.Source = new Uri("http://video3.smoothhd.com.edgesuite.net/ondemand/Big%20Buck%20Bunny%20Adaptive.ism/Manifest", UriKind.Absolute);
     }
 
     #endif
@@ -348,6 +349,7 @@ namespace ClipFlair.Windows
       w.View.Title = "Revoicing";
       w.View.CaptionVisible = false;
       w.View.AudioVisible = true;
+      w.View.Width = ICaptionsGridDefaults.DefaultWidth_Revoicing;
     }
 
     #endif
@@ -365,7 +367,8 @@ namespace ClipFlair.Windows
 
     private void btnAddImage_Click(object sender, RoutedEventArgs e)
     {
-      AddWindow(ImageWindowFactory, true);
+      ImageWindow w = (ImageWindow)AddWindow(ImageWindowFactory, true);
+      w.View.Source = new Uri("http://clipflair.net/wp-content/themes/clipflair-theme/images/clipflair-logo.jpg", UriKind.Absolute);
     }
 
     #endif

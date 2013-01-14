@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: TextEditorView.cs
-//Version: 20121218
+//Version: 20130114
 
 using System;
 using System.ComponentModel;
@@ -100,6 +100,8 @@ namespace ClipFlair.Windows.Views
       //BaseView defaults and overrides
       base.SetDefaults();
       Title = ITextEditorDefaults.DefaultTitle;
+      Width = ITextEditorDefaults.DefaultWidth;
+      Height = ITextEditorDefaults.DefaultHeight;
 
       //TextEditorView defaults
       Source = ITextEditorDefaults.DefaultSource;

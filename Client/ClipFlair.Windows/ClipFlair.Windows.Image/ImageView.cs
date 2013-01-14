@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: ImageView.cs
-//Version: 20130107
+//Version: 20130114
 
 //TODO: maybe allow to load local image and store it in .clipflair.zip file (show image from memorystream)
 
@@ -77,6 +77,8 @@ namespace ClipFlair.Windows.Views
       //BaseView defaults and overrides
       base.SetDefaults();
       Title = IImageViewerDefaults.DefaultTitle;
+      Width = IImageViewerDefaults.DefaultWidth;
+      Height = IImageViewerDefaults.DefaultHeight;
 
       //ImageView defaults
       Source = IImageViewerDefaults.DefaultSource;
