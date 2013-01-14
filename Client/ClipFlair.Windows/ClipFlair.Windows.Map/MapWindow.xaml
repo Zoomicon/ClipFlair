@@ -20,17 +20,18 @@ Version: 20130114
       <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="/ClipFlair.Windows.Base;component/Themes/Default.xaml" />
       </ResourceDictionary.MergedDictionaries>
-    </ResourceDictionary>
 
-    <utils:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+      <utils:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+    </ResourceDictionary>
   </clipflair:BaseWindow.Resources>
 
   <!--<clipflair:BaseWindow.FrontContent>-->
 
   <map:Map Name="map"
            CredentialsProvider="AteCcwxu4odM95hYVKZTcvJzDyp4KlfsGKrPRa8QFn0VjwJjlQdSmMOSfoicgi9X" 
-           ModeChanged="map_ModeChanged"
+           Culture="{Binding Culture, Mode=TwoWay}"
            NavigationVisibility="{Binding NavigationVisible, Mode=TwoWay, Converter={StaticResource BooleanToVisibilityConverter}}"
+           ModeChanged="map_ModeChanged"
            />
   
   <!--</clipflair:BaseWindow.FrontContent>-->
@@ -43,9 +44,14 @@ Version: 20130114
     </StackPanel>
 
     <StackPanel Orientation="Vertical">
+      <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Language-Culture:" Target="{Binding ElementName=edCulture}" />
+      <TextBox Name="edCulture" Text="{Binding Culture, Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=true}" />
+    </StackPanel>
+
+    <StackPanel Orientation="Vertical">
       <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Mode" Target="{Binding ElementName=edMode}"/>
-      <!-- <TextBox Name="edMode" Text="{Binding Mode, Mode=TwoWay}" HorizontalAlignment="Stretch" /> -->
-      <ComboBox Name="comboMode" SelectedValue="{Binding Mode, Mode=TwoWay}" DisplayMemberPath="Content" SelectedValuePath="Tag" HorizontalAlignment="Stretch">
+      <!-- <TextBox Name="edMode" Text="{Binding Mode, Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=true}" /> -->
+      <ComboBox Name="comboMode" SelectedValue="{Binding Mode, Mode=TwoWay}" DisplayMemberPath="Content" SelectedValuePath="Tag">
         <ComboBoxItem Content="Road" Tag="Road" />
         <ComboBoxItem Content="Aerial" Tag="Aerial" />
       </ComboBox>
