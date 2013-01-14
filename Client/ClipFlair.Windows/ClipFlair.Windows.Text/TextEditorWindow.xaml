@@ -1,7 +1,7 @@
 ﻿<!-- 
 Project: ClipFlair (http://ClipFlair.codeplex.com)
 Filename: TextEditorWindow.xaml.cs
-Version: 20121220
+Version: 20130114
 -->
   
 <clipflair:BaseWindow x:Class="ClipFlair.Windows.TextEditorWindow"
@@ -38,22 +38,22 @@ Version: 20121220
 
 <!-- <StackPanel Orientation="Vertical">
       <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Text URL" Target="{Binding ElementName=edTextURL}"/>
-      <TextBox Name="edTextURL" Text="" HorizontalAlignment="Stretch" />
+      <TextBox Name="edTextURL" Text="" />
     </StackPanel> -->
 
     <StackPanel Orientation="Horizontal">
       <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Toolbar Visible" Target="{Binding ElementName=edToolbarVisible}"/>
-      <CheckBox Name="edToolbarVisible" IsChecked="{Binding ToolbarVisible, Mode=TwoWay}" HorizontalAlignment="Stretch" />
+      <CheckBox Name="edToolbarVisible" IsChecked="{Binding ToolbarVisible, Mode=TwoWay}" />
     </StackPanel>
 
     <StackPanel Orientation="Horizontal">
       <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Editable" Target="{Binding ElementName=edEditable}"/>
-      <CheckBox Name="edEditable" IsChecked="{Binding Editable, Mode=TwoWay}" HorizontalAlignment="Stretch" />
+      <CheckBox Name="edEditable" IsChecked="{Binding Editable, Mode=TwoWay}" />
     </StackPanel>
 
     <StackPanel Orientation="Horizontal">
       <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Right to Left (RTL) Text Direction" Target="{Binding ElementName=edRTL}"/>
-      <CheckBox Name="edRTL" IsChecked="{Binding RTL, Mode=TwoWay}" HorizontalAlignment="Stretch" />
+      <CheckBox Name="edRTL" IsChecked="{Binding RTL, Mode=TwoWay}" />
     </StackPanel>    
     
   </clipflair:BaseWindow.PropertyItems>

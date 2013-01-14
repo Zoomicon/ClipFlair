@@ -1,6 +1,6 @@
 ﻿<!--
 Filename: ImageWindow.xaml
-Version: 20130107
+Version: 20130114
 -->
 
 <clipflair:BaseWindow x:Class="ClipFlair.Windows.ImageWindow"
@@ -57,7 +57,7 @@ Version: 20130107
     <StackPanel Orientation="Vertical">
       <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Stretch" Target="{Binding ElementName=comboStretch}"/>
       <!-- <TextBox Name="edStretch" Text="{Binding Stretch, Mode=TwoWay}" HorizontalAlignment="Stretch" /> -->
-      <ComboBox Name="comboStretch" SelectedValue="{Binding StretchText, Mode=TwoWay}" DisplayMemberPath="Content" SelectedValuePath="Tag" HorizontalAlignment="Stretch">
+      <ComboBox Name="comboStretch" SelectedValue="{Binding StretchText, Mode=TwoWay}" DisplayMemberPath="Content" SelectedValuePath="Tag">
         <ComboBoxItem Content="None" Tag="None" />
         <ComboBoxItem Content="Fill" Tag="Fill" />
         <ComboBoxItem Content="Uniform" Tag="Uniform" />
