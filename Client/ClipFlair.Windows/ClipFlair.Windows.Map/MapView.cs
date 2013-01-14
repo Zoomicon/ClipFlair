@@ -24,15 +24,33 @@ namespace ClipFlair.Windows.Views
     #region Fields
 
     //fields are initialized at "SetDefaults" method
+    private bool inertia;
     private bool navigationVisible;
+    private bool scaleVisible;
     private string culture;
     private string mode;
     private bool labelsVisible;
     private bool labelsFading;
+    private double mapZoom;
 
     #endregion
 
     #region Properties
+
+    [DataMember]
+    [DefaultValue(IMapViewerDefaults.DefaultInertia)]
+    public bool Inertia
+    {
+      get { return inertia; }
+      set
+      {
+        if (value != inertia)
+        {
+          inertia = value;
+          RaisePropertyChanged(IMapViewerProperties.PropertyInertia);
+        }
+      }
+    }
 
     [DataMember]
     [DefaultValue(IMapViewerDefaults.DefaultNavigationVisible)]
@@ -45,6 +63,21 @@ namespace ClipFlair.Windows.Views
         {
           navigationVisible = value;
           RaisePropertyChanged(IMapViewerProperties.PropertyNavigationVisible);
+        }
+      }
+    }
+
+    [DataMember]
+    [DefaultValue(IMapViewerDefaults.DefaultScaleVisible)]
+    public bool ScaleVisible
+    {
+      get { return scaleVisible; }
+      set
+      {
+        if (value != scaleVisible)
+        {
+          scaleVisible = value;
+          RaisePropertyChanged(IMapViewerProperties.PropertyScaleVisible);
         }
       }
     }
@@ -140,6 +173,21 @@ namespace ClipFlair.Windows.Views
       }
     }
 
+    [DataMember]
+    [DefaultValue(IMapViewerDefaults.DefaultMapZoom)]
+    public double MapZoom
+    {
+      get { return mapZoom; }
+      set
+      {
+        if (value != mapZoom)
+        {
+          mapZoom = value;
+          RaisePropertyChanged(IMapViewerProperties.PropertyMapZoom);
+        }
+      }
+    }
+
     #endregion
 
     #region Methods
@@ -150,13 +198,18 @@ namespace ClipFlair.Windows.Views
       //BaseView defaults and overrides
       base.SetDefaults();
       Title = IMapViewerDefaults.DefaultTitle;
+      Width = IMapViewerDefaults.DefaultWidth;
+      Height = IMapViewerDefaults.DefaultHeight;
 
       //MapView defaults
+      Inertia = IMapViewerDefaults.DefaultInertia;
       NavigationVisible = IMapViewerDefaults.DefaultNavigationVisible;
+      ScaleVisible = IMapViewerDefaults.DefaultScaleVisible;
       Culture = IMapViewerDefaults.DefaultCulture;
       Mode = IMapViewerDefaults.DefaultMode;
       LabelsVisible = IMapViewerDefaults.DefaultLabelsVisible;
       LabelsFading = IMapViewerDefaults.DefaultLabelsFading;
+      MapZoom = IMapViewerDefaults.DefaultMapZoom;
     }
 
    #endregion
