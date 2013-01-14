@@ -1,7 +1,7 @@
 ﻿<!--
 Project: ClipFlair (http://ClipFlair.codeplex.com)
 Filename: CaptionsGridWindow.xaml
-Version: 20121220
+Version: 20130114
 -->
   
 <clipflair:BaseWindow x:Class="ClipFlair.Windows.CaptionsGridWindow"
@@ -46,7 +46,7 @@ Version: 20121220
  <!--
     <StackPanel Orientation="Vertical">
       <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Captions URL" Target="{Binding ElementName=edCaptionsURL}"/>
-      <TextBox Name="edCaptionsURL" Text="{Binding Path=Source, Mode=TwoWay}" HorizontalAlignment="Stretch" />
+      <TextBox Name="edCaptionsURL" Text="{Binding Path=Source, Mode=TwoWay}" />
     </StackPanel>
  -->
 

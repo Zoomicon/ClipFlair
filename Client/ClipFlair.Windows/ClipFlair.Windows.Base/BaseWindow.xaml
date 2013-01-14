@@ -71,12 +71,12 @@ Version: 20121220
             </StackPanel>
 -->
 
-          <toolkit:Accordion Grid.Row="1" SelectionMode="ZeroOrMore" SelectionSequence="Simultaneous" ExpandDirection="Down">
+          <toolkit:Accordion Grid.Row="1" SelectionMode="ZeroOrMore" SelectionSequence="Simultaneous" ExpandDirection="Down" HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch">
 
-            <toolkit:AccordionItem Header="View Options" IsSelected="False" Background="Transparent">
+            <toolkit:AccordionItem Header="View Options" IsSelected="False" Background="Transparent" HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch">
               <toolkit:AccordionItem.Content>
 
-                <StackPanel Name="PropertiesPanelBase" Orientation="Vertical" Margin="10,10,10,10">
+                <StackPanel Name="PropertiesPanelBase" Orientation="Vertical" Margin="10,10,10,10" HorizontalAlignment="Stretch">
 
                   <StackPanel.Resources>
                     <Style TargetType="StackPanel" BasedOn="{StaticResource PropertyStackPanelStyle}" />
@@ -89,7 +89,7 @@ Version: 20121220
 
                   <StackPanel Orientation="Vertical" Name="propTitle">
                     <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Title:" Target="{Binding ElementName=edTitle}" />
-                    <TextBox Name="edTitle" Text="{Binding Title, Mode=TwoWay}" />
+                    <TextBox Name="edTitle" Text="{Binding Title, Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=true}" />
                   </StackPanel>
 
                   <StackPanel Orientation="Vertical" Name="propPosition">
@@ -144,10 +144,10 @@ Version: 20121220
               </toolkit:AccordionItem.Content>
             </toolkit:AccordionItem>
 
-            <toolkit:AccordionItem Header="Content Options" IsSelected="True" Background="Transparent">
+            <toolkit:AccordionItem Header="Content Options" IsSelected="True" Background="Transparent" HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch">
               <toolkit:AccordionItem.Content>
 
-                <StackPanel Name="PropertiesPanel" Orientation="Vertical" Margin="10,10,10,10">
+                <StackPanel Name="PropertiesPanel" Orientation="Vertical" Margin="10,10,10,10" HorizontalAlignment="Stretch">
 
                   <StackPanel.Resources>
                     <Style TargetType="StackPanel" BasedOn="{StaticResource PropertyStackPanelStyle}" />

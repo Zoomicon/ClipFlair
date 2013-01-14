@@ -1,7 +1,7 @@
 ﻿<!--
 Project: ClipFlair (http://ClipFlair.codeplex.com)
 Filename: MediaPlayerWindow.xaml
-Version: 20121220
+Version: 20130114
 -->
   
 <clipflair:BaseWindow x:Class="ClipFlair.Windows.MediaPlayerWindow"
@@ -56,7 +56,7 @@ Version: 20121220
 
     <StackPanel Orientation="Vertical">
       <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Media Source (URL):" Target="{Binding ElementName=edMediaURL}" />
-      <TextBox Name="edMediaURL" Text="{Binding Source, Mode=TwoWay}" />
+      <TextBox Name="edMediaURL" Text="{Binding Source, Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=true}" />
       <!-- -->
       <StackPanel Orientation="Horizontal">
         <Button Name="btnSaveOffline" Content="Store playlist offline" Click="btnSaveOffline_Click" Margin="0,0,5,0" />
@@ -94,7 +94,6 @@ Version: 20121220
       <CheckBox Name="cbCaptionsVisible" IsChecked="{Binding CaptionsVisible, Mode=TwoWay}" />
       <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Captions visible" Target="{Binding ElementName=cbCaptionsVisible}"/>
     </StackPanel>
-
 
     <StackPanel>
       <TextBlock TextDecorations="Underline">Troubleshooting</TextBlock>
