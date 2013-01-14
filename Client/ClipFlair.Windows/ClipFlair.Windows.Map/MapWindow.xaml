@@ -4,17 +4,17 @@ Version: 20130114
 -->
 
 <clipflair:BaseWindow x:Class="ClipFlair.Windows.MapWindow"
-    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk"  
-    xmlns:utils="clr-namespace:System.Windows.Controls;assembly=WPF_Compatibility"
-    xmlns:clipflair="clr-namespace:ClipFlair.Windows;assembly=ClipFlair.Windows.Base" 
-    xmlns:map="clr-namespace:Microsoft.Maps.MapControl;assembly=Microsoft.Maps.MapControl"
-    mc:Ignorable="d"
-    d:DesignWidth="490" d:DesignHeight="375"
-    >
+  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+  xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk"  
+  xmlns:utils="clr-namespace:System.Windows.Controls;assembly=WPF_Compatibility"
+  xmlns:clipflair="clr-namespace:ClipFlair.Windows;assembly=ClipFlair.Windows.Base" 
+  xmlns:map="clr-namespace:Microsoft.Maps.MapControl;assembly=Microsoft.Maps.MapControl"
+  mc:Ignorable="d"
+  d:DesignWidth="490" d:DesignHeight="375"
+  >
 
   <clipflair:BaseWindow.Resources>
     <ResourceDictionary>

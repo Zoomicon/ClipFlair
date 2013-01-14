@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: MediaPlayerView.cs
-//Version: 20121219
+//Version: 20130114
 
 using Microsoft.SilverlightMediaFramework.Core.Accessibility.Captions;
 
@@ -201,6 +201,8 @@ namespace ClipFlair.Windows.Views
       //BaseView defaults and overrides
       base.SetDefaults();
       Title = IMediaPlayerDefaults.DefaultTitle;
+      Width = IMediaPlayerDefaults.DefaultWidth;
+      Height = IMediaPlayerDefaults.DefaultHeight;
 
       //MediaPlayerView defaults
       Source = IMediaPlayerDefaults.DefaultSource;

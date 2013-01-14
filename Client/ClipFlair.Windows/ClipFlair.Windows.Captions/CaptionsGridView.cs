@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: CaptionsGridView.cs
-//Version: 20121219
+//Version: 20130114
 
 using Microsoft.SilverlightMediaFramework.Core.Accessibility.Captions;
 
@@ -189,6 +189,8 @@ namespace ClipFlair.Windows.Views
       //BaseView defaults and overrides
       base.SetDefaults();
       Title = ICaptionsGridDefaults.DefaultTitle;
+      Width = ICaptionsGridDefaults.DefaultWidth;
+      Height = ICaptionsGridDefaults.DefaultHeight;
 
       //CaptionsGridView defaults
       Source = ICaptionsGridDefaults.DefaultSource;

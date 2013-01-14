@@ -1,6 +1,8 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: ActivityView.cs
-//Version: 20121219
+//Version: 20130114
+
+//TODO: add "Inertia" property
 
 using Microsoft.SilverlightMediaFramework.Core.Accessibility.Captions;
 
@@ -202,6 +204,8 @@ namespace ClipFlair.Windows.Views
       //BaseView defaults and overrides
       base.SetDefaults();
       Title = IActivityDefaults.DefaultTitle;
+      Width = IActivityDefaults.DefaultWidth;
+      Height = IActivityDefaults.DefaultHeight;
 
       //ActivityView defaults
       Source = IActivityDefaults.DefaultSource;

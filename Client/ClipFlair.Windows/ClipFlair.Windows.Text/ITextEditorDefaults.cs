@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: ITextEditorDefaults.cs
-//Version: 20121203
+//Version: 20130114
 
 using System;
 using System.Windows;
@@ -13,6 +13,8 @@ namespace ClipFlair.Windows.Views
     #region IView defaults - overrides
     
     public const string DefaultTitle = "Text";
+    public const double DefaultWidth = 650;
+    public const double DefaultHeight = 630;
     
     #endregion
 
