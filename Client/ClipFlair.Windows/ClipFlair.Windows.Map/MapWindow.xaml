@@ -1,6 +1,6 @@
 ﻿<!--
 Filename: MapWindow.xaml
-Version: 20130110
+Version: 20130114
 -->
 
 <clipflair:BaseWindow x:Class="ClipFlair.Windows.MapWindow"
@@ -9,6 +9,7 @@ Version: 20130110
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008" d:DesignWidth="907" d:DesignHeight="587"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d"
     xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk"  
+    xmlns:utils="clr-namespace:System.Windows.Controls;assembly=WPF_Compatibility"
     xmlns:clipflair="clr-namespace:ClipFlair.Windows;assembly=ClipFlair.Windows.Base" 
     xmlns:map="clr-namespace:Microsoft.Maps.MapControl;assembly=Microsoft.Maps.MapControl"
     Width="400" Height="400"
@@ -20,17 +21,26 @@ Version: 20130110
         <ResourceDictionary Source="/ClipFlair.Windows.Base;component/Themes/Default.xaml" />
       </ResourceDictionary.MergedDictionaries>
     </ResourceDictionary>
+
+    <utils:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
   </clipflair:BaseWindow.Resources>
 
   <!--<clipflair:BaseWindow.FrontContent>-->
 
   <map:Map Name="map"
            CredentialsProvider="AteCcwxu4odM95hYVKZTcvJzDyp4KlfsGKrPRa8QFn0VjwJjlQdSmMOSfoicgi9X" 
-           ModeChanged="map_ModeChanged" />
+           ModeChanged="map_ModeChanged"
+           NavigationVisibility="{Binding NavigationVisible, Mode=TwoWay, Converter={StaticResource BooleanToVisibilityConverter}}"
+           />
   
   <!--</clipflair:BaseWindow.FrontContent>-->
 
   <clipflair:BaseWindow.PropertyItems>
+
+    <StackPanel Orientation="Horizontal">
+      <CheckBox Name="cbNavigationVisible" IsChecked="{Binding NavigationVisible, Mode=TwoWay}" />
+      <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Navigation Visible" Target="{Binding ElementName=cbNavigationVisible}"/>
+    </StackPanel>
 
     <StackPanel Orientation="Vertical">
       <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Mode" Target="{Binding ElementName=edMode}"/>
@@ -40,15 +50,15 @@ Version: 20130110
         <ComboBoxItem Content="Aerial" Tag="Aerial" />
       </ComboBox>
     </StackPanel>
-
+   
     <StackPanel Orientation="Horizontal">
       <CheckBox Name="cbLabelsVisible" IsChecked="{Binding LabelsVisible, Mode=TwoWay}" />
-      <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Labels visible" Target="{Binding ElementName=cbLabelsVisible}"/>
+      <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Labels Visible" Target="{Binding ElementName=cbLabelsVisible}"/>
     </StackPanel>
 
     <StackPanel Orientation="Horizontal">
       <CheckBox Name="cbLabelsFading" IsChecked="{Binding LabelsFading, Mode=TwoWay}" />
-      <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Labels fading" Target="{Binding ElementName=cbLabelsFading}"/>
+      <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Labels Fading" Target="{Binding ElementName=cbLabelsFading}"/>
     </StackPanel>
 
   </clipflair:BaseWindow.PropertyItems>
