@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: MapView.cs
-//Version: 20130110
+//Version: 20130114
 
 using Microsoft.Maps.MapControl;
 using Microsoft.Maps.MapControl.Core;
@@ -24,6 +24,7 @@ namespace ClipFlair.Windows.Views
     #region Fields
 
     //fields are initialized at "SetDefaults" method
+    private bool navigationVisible;
     private string mode;
     private bool labelsVisible;
     private bool labelsFading;
@@ -31,6 +32,21 @@ namespace ClipFlair.Windows.Views
     #endregion
 
     #region Properties
+
+    [DataMember]
+    [DefaultValue(IMapViewerDefaults.DefaultNavigationVisible)]
+    public bool NavigationVisible
+    {
+      get { return navigationVisible; }
+      set
+      {
+        if (value != navigationVisible)
+        {
+          navigationVisible = value;
+          RaisePropertyChanged(IMapViewerProperties.PropertyNavigationVisible);
+        }
+      }
+    }
 
     public MapMode ModeValue
     {
@@ -120,6 +136,7 @@ namespace ClipFlair.Windows.Views
       Title = IMapViewerDefaults.DefaultTitle;
 
       //MapView defaults
+      NavigationVisible = IMapViewerDefaults.DefaultNavigationVisible;
       Mode = IMapViewerDefaults.DefaultMode;
       LabelsVisible = IMapViewerDefaults.DefaultLabelsVisible;
       LabelsFading = IMapViewerDefaults.DefaultLabelsFading;
