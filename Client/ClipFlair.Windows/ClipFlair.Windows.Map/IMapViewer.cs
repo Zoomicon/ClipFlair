@@ -12,6 +12,7 @@ namespace ClipFlair.Windows.Views
   public static class IMapViewerProperties
   {
     public const string PropertyNavigationVisible = "NavigationVisible";
+    public const string PropertyCulture = "Culture"; //e.g. "en-us"
     public const string PropertyMode = "Mode"; //Road, Aerial
     public const string PropertyLabelsVisible = "LabelsVisible";
     public const string PropertyLabelsFading = "LabelsFading";
@@ -20,6 +21,7 @@ namespace ClipFlair.Windows.Views
   public interface IMapViewer : IView
   {
     bool NavigationVisible { get; set; }
+    string Culture { get; set; }
     MapMode ModeValue { get; set; }
     string Mode { get; set; }
     bool LabelsVisible { get; set; }

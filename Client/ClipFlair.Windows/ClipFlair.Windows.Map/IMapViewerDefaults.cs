@@ -19,6 +19,7 @@ namespace ClipFlair.Windows.Views
     #endregion
 
     public const bool DefaultNavigationVisible = true;
+    public const string DefaultCulture = "en-us";
     public const string DefaultMode = "Aerial";
     public const bool DefaultLabelsVisible = true;
     public const bool DefaultLabelsFading = false;

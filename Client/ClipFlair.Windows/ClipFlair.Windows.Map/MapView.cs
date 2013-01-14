@@ -25,6 +25,7 @@ namespace ClipFlair.Windows.Views
 
     //fields are initialized at "SetDefaults" method
     private bool navigationVisible;
+    private string culture;
     private string mode;
     private bool labelsVisible;
     private bool labelsFading;
@@ -44,6 +45,21 @@ namespace ClipFlair.Windows.Views
         {
           navigationVisible = value;
           RaisePropertyChanged(IMapViewerProperties.PropertyNavigationVisible);
+        }
+      }
+    }
+
+    [DataMember]
+    [DefaultValue(IMapViewerDefaults.DefaultCulture)]
+    public string Culture
+    {
+      get { return culture; }
+      set
+      {
+        if (value != culture)
+        {
+          culture = value;
+          RaisePropertyChanged(IMapViewerProperties.PropertyCulture);
         }
       }
     }
@@ -137,6 +153,7 @@ namespace ClipFlair.Windows.Views
 
       //MapView defaults
       NavigationVisible = IMapViewerDefaults.DefaultNavigationVisible;
+      Culture = IMapViewerDefaults.DefaultCulture;
       Mode = IMapViewerDefaults.DefaultMode;
       LabelsVisible = IMapViewerDefaults.DefaultLabelsVisible;
       LabelsFading = IMapViewerDefaults.DefaultLabelsFading;
