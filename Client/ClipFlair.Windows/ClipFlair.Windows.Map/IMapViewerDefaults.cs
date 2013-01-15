@@ -1,7 +1,8 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: IMapViewerDefaults.cs
-//Version: 20130114
+//Version: 20130115
 
+using Microsoft.Maps.MapControl;
 using Microsoft.Maps.MapControl.Core;
 
 using System;
@@ -27,6 +28,10 @@ namespace ClipFlair.Windows.Views
     public const string DefaultMode = "Aerial";
     public const bool DefaultLabelsVisible = true;
     public const bool DefaultLabelsFading = false;
+    public const double DefaultLatitude = 0;
+    public const double DefaultLongitude = 0;
+    public const double DefaultAltitude = 0;
+    public static Location DefaultMapCenter = new Location(DefaultLatitude, DefaultLongitude, DefaultAltitude);
     public const double DefaultMapZoom = 1.0;
   }
 

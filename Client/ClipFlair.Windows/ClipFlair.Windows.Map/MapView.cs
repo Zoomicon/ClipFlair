@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: MapView.cs
-//Version: 20130114
+//Version: 20130115
 
 using Microsoft.Maps.MapControl;
 using Microsoft.Maps.MapControl.Core;
@@ -31,6 +31,7 @@ namespace ClipFlair.Windows.Views
     private string mode;
     private bool labelsVisible;
     private bool labelsFading;
+    private Location mapCenter;
     private double mapZoom;
 
     #endregion
@@ -173,6 +174,61 @@ namespace ClipFlair.Windows.Views
       }
     }
 
+    [DefaultValue(IMapViewerDefaults.DefaultLatitude)]
+    public double Latitude
+    {
+      get { return mapCenter.Latitude; }
+      set
+      {
+        if (value != mapCenter.Latitude)
+          MapCenter = new Location(mapCenter) { Latitude = value };
+      }
+    }
+
+    [DefaultValue(IMapViewerDefaults.DefaultLongitude)]
+    public double Longitude
+    {
+      get { return mapCenter.Longitude; }
+      set
+      {
+        if (value != mapCenter.Longitude)
+          MapCenter = new Location(mapCenter) { Longitude = value };
+      }
+    }
+
+    [DefaultValue(IMapViewerDefaults.DefaultAltitude)]
+    public double Altitude
+    {
+      get { return mapCenter.Altitude; }
+      set
+      {
+        if (value != mapCenter.Altitude)
+          MapCenter = new Location(mapCenter) { Altitude = value };
+      }
+    }
+
+    [DataMember]
+    public Location MapCenter
+    {
+      get { return mapCenter; }
+      set
+      {
+        if (value != mapCenter)
+        {
+          bool latitudeChanged = (mapCenter == null) || (value == null) || (mapCenter.Latitude != value.Latitude);
+          bool longitudeChanged = (mapCenter == null) || (value == null) || (mapCenter.Longitude != value.Longitude);
+          bool altitudeChanged = (mapCenter == null) || (value == null) || (mapCenter.Altitude != value.Altitude);
+
+          mapCenter = value;
+
+          RaisePropertyChanged(IMapViewerProperties.PropertyMapCenter);
+          if (latitudeChanged) RaisePropertyChanged(IMapViewerProperties.PropertyLatitude);
+          if (longitudeChanged) RaisePropertyChanged(IMapViewerProperties.PropertyLongitude);
+          if (altitudeChanged) RaisePropertyChanged(IMapViewerProperties.PropertyAltitude);
+        }
+      }
+    }
+
     [DataMember]
     [DefaultValue(IMapViewerDefaults.DefaultMapZoom)]
     public double MapZoom
@@ -209,6 +265,7 @@ namespace ClipFlair.Windows.Views
       Mode = IMapViewerDefaults.DefaultMode;
       LabelsVisible = IMapViewerDefaults.DefaultLabelsVisible;
       LabelsFading = IMapViewerDefaults.DefaultLabelsFading;
+      MapCenter = IMapViewerDefaults.DefaultMapCenter;
       MapZoom = IMapViewerDefaults.DefaultMapZoom;
     }
 

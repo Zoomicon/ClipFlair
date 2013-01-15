@@ -1,6 +1,6 @@
 ﻿<!--
 Filename: MapWindow.xaml
-Version: 20130114
+Version: 20130115
 -->
 
 <clipflair:BaseWindow x:Class="ClipFlair.Windows.MapWindow"
@@ -37,6 +37,7 @@ Version: 20130114
            ScaleVisibility="{Binding ScaleVisible, Mode=TwoWay, Converter={StaticResource BooleanToVisibilityConverter}}"
            Culture="{Binding Culture, Mode=TwoWay}"
            ModeChanged="map_ModeChanged"
+           Center="{Binding MapCenter, Mode=TwoWay}"
            ZoomLevel="{Binding MapZoom, Mode=TwoWay}"
            />
   <!-- UseInertia="{Binding Inertia, Mode=TwoWay}" -->
@@ -84,7 +85,24 @@ Version: 20130114
       <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Labels Fading" Target="{Binding ElementName=cbLabelsFading}"/>
     </StackPanel>
 
-    <StackPanel Orientation="Vertical" Name="propMapZoom">
+    <StackPanel Orientation="Vertical">
+      <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Latitude:" Target="{Binding ElementName=edLatitude}" />
+      <TextBox Name="edLatitude" Text="{Binding Latitude, Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=true}" />
+    </StackPanel>
+
+    <StackPanel Orientation="Vertical">
+      <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Longitude:" Target="{Binding ElementName=edLongitude}" />
+      <TextBox Name="edLongitude" Text="{Binding Longitude, Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=true}" />
+    </StackPanel>
+    
+<!--
+    <StackPanel Orientation="Vertical">
+      <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Altitude:" Target="{Binding ElementName=edAltitude}" />
+      <TextBox Name="edAltitude" Text="{Binding Altitude, Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=true}" />
+    </StackPanel>
+-->
+    
+    <StackPanel Orientation="Vertical">
       <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Map Zoom:" Target="{Binding ElementName=sldMapZoom}" />
       <!-- <TextBox Name="edMapZoom" Text="{Binding MapZoom, Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=true}" /> -->
       <Slider Name="sldMapZoom" Value="{Binding MapZoom, Mode=TwoWay}" Minimum="1.0" Maximum="13.0" SmallChange="0.5" LargeChange="1.0" Orientation="Horizontal" />

@@ -1,7 +1,8 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: IMapViewer.cs
-//Version: 20130114
+//Version: 20130115
 
+using Microsoft.Maps.MapControl;
 using Microsoft.Maps.MapControl.Core;
 
 using System;
@@ -18,6 +19,10 @@ namespace ClipFlair.Windows.Views
     public const string PropertyMode = "Mode"; //Road, Aerial
     public const string PropertyLabelsVisible = "LabelsVisible";
     public const string PropertyLabelsFading = "LabelsFading";
+    public const string PropertyLatitude = "Latitude";
+    public const string PropertyLongitude = "Longitude";
+    public const string PropertyAltitude = "Altitude";
+    public const string PropertyMapCenter = "MapCenter";
     public const string PropertyMapZoom = "MapZoom";
   }
 
@@ -31,6 +36,9 @@ namespace ClipFlair.Windows.Views
     string Mode { get; set; }
     bool LabelsVisible { get; set; }
     bool LabelsFading { get; set; }
+    double Latitude { get; set; }
+    double Longitude { get; set; }
+    Location MapCenter { get; set; }
     double MapZoom { get; set; }
   }
 
