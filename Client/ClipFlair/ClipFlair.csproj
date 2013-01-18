@@ -108,10 +108,7 @@
     </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Diagrams\Windows.cd" />
-    <None Include="Diagrams\Windows.Views.ViewModels.cd" />
     <None Include="Properties\AppManifest.xml" />
-    <None Include="Diagrams\Windows.Views.Interfaces.cd" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ClipFlair.Windows\ClipFlair.Windows.Activity\ClipFlair.Windows.Activity.csproj">

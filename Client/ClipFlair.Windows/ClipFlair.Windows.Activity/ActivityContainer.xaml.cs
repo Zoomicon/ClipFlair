@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: ActivityContainer.xaml.cs
-//Version: 20130114
+//Version: 20130118
 
 //TODO: add ContentPartsZoomable property
 //TODO: move zoom slider UI to FloatingWindowHostZUI's XAML template
@@ -275,6 +275,7 @@ namespace ClipFlair.Windows
       //TODO: remove this when no hard-coded bindings are needed any more
       if (window is MediaPlayerWindow) BindMediaPlayerWindow((MediaPlayerWindow)window);
       else if (window is CaptionsGridWindow) BindCaptionsGridWindow((CaptionsGridWindow)window);
+      else if (window is TextEditorWindow) BindTextEditorWindow((TextEditorWindow)window);
     }
 
     private void BindMediaPlayerWindow(MediaPlayerWindow window)
@@ -292,7 +293,7 @@ namespace ClipFlair.Windows
         {
           MessageBox.Show("Failed to bind component: " + ex.Message); //TODO: find parent window
         }
-    } //TODO: check why it won't sync smoothly (see what was doing in LvS, maybe ignore time events that are very close to current time)
+    } //TODO: check why it won't sync smoothly (see what was doing in LvS, maybe ignore time events that are very close to current time) //most probably need to ignore small time differences at sync
 
     private void BindCaptionsGridWindow(CaptionsGridWindow window)
     {
@@ -311,6 +312,20 @@ namespace ClipFlair.Windows
         }
     }
 
+    private void BindTextEditorWindow(TextEditorWindow window)
+    {
+      if (window.View != null && View != null)
+        try
+        {
+          BindingUtils.BindProperties(window.View, ICaptionsGridProperties.PropertyTime,
+                                      View, IActivityProperties.PropertyTime); //TODO: should rebind after changing view if the window is inside a BaseWindow (get its View and bind to it)
+        }
+        catch (Exception ex)
+        {
+          MessageBox.Show("Failed to bind component: " + ex.Message); //TODO: find parent window
+        }
+    }
+    
     #endregion
 
     #if PART_NESTED_ACTIVITY
@@ -349,7 +364,7 @@ namespace ClipFlair.Windows
       w.View.Title = "Revoicing";
       w.View.CaptionVisible = false;
       w.View.AudioVisible = true;
-      w.View.Width = ICaptionsGridDefaults.DefaultWidth_Revoicing;
+      w.View.Width = CaptionsGridDefaults.DefaultWidth_Revoicing;
     }
 
     #endif

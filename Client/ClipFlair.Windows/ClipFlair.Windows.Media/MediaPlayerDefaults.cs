@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
-//Filename: IMediaPlayerDefaults.cs
-//Version: 20130114
+//Filename: MediaPlayerDefaults.cs
+//Version: 20130118
 
 using Microsoft.SilverlightMediaFramework.Core.Accessibility.Captions;
 
@@ -10,14 +10,14 @@ using System.Windows;
 namespace ClipFlair.Windows.Views
 {
 
-  public static class IMediaPlayerDefaults
+  public static class MediaPlayerDefaults
   {
     #region IView defaults - overrides
-    
+
     public const string DefaultTitle = "Media";
     public const double DefaultWidth = 600;
     public const double DefaultHeight = 400;
-    
+
     #endregion
 
     public const Uri DefaultSource = null;
@@ -30,6 +30,31 @@ namespace ClipFlair.Windows.Views
     public const bool DefaultVideoVisible = true;
     public const bool DefaultControllerVisible = true;
     public const bool DefaultCaptionsVisible = true;
-  }
 
+    #region Methods
+
+    public static void SetDefaults(IMediaPlayer player)
+    {
+      //IView defaults and overrides
+      ViewDefaults.SetDefaults(player);
+      player.Title = DefaultTitle;
+      player.Width = DefaultWidth;
+      player.Height = DefaultHeight;
+
+      //IMediaPlayer defaults
+      player.Source = DefaultSource;
+      player.Time = DefaultTime;
+      player.Captions = DefaultCaptions;
+      player.Speed = DefaultSpeed;
+      player.Volume = DefaultVolume;
+      player.AutoPlay = DefaultAutoPlay;
+      player.Looping = DefaultLooping;
+      player.VideoVisible = DefaultVideoVisible;
+      player.ControllerVisible = DefaultControllerVisible;
+      player.CaptionsVisible = DefaultCaptionsVisible;
+    }
+
+    #endregion
+
+  }
 }

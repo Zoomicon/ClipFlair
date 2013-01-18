@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: MediaPlayer.cs
-//Version: 20121219
+//Version: 20130118
 
 using System;
 using System.Linq;
@@ -196,8 +196,15 @@ namespace ClipFlair.MediaPlayer
     /// </summary>
     protected virtual void OnTimeChanged(TimeSpan oldTime, TimeSpan newTime)
     {
-      if (newTime != null && base.PlaybackPosition != newTime) //check against PlayBackPosition, not oldTime to avoid loops
-        this.SeekToPosition(newTime);
+      try
+      {
+        if (newTime != null && base.PlaybackPosition != newTime) //check against PlayBackPosition, not oldTime to avoid loops
+          this.SeekToPosition(newTime);
+      }
+      catch
+      {
+        //NOP
+      }
     }
 
     #endregion

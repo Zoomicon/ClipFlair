@@ -82,7 +82,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="IMediaPlayer.cs" />
-    <Compile Include="IMediaPlayerDefaults.cs" />
+    <Compile Include="MediaPlayerDefaults.cs" />
     <Compile Include="MediaWindowFactory.cs" />
     <Compile Include="MediaPlayerView.cs" />
     <Compile Include="MediaPlayerWindow.xaml.cs">

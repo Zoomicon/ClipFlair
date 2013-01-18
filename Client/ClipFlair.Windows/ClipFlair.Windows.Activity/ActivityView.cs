@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: ActivityView.cs
-//Version: 20130114
+//Version: 20130118
 
 //TODO: add "Inertia" property
 
@@ -25,7 +25,7 @@ namespace ClipFlair.Windows.Views
         
     #region Fields
 
-    //fields are initialized at "SetDefaults" method
+    //fields are initialized via respective properties at "SetDefaults" method
     private Uri source;
     private TimeSpan time;
     private CaptionRegion captions;
@@ -42,7 +42,7 @@ namespace ClipFlair.Windows.Views
     #region Properties
     
     [DataMember]
-    [DefaultValue(IActivityDefaults.DefaultSource)]
+    [DefaultValue(ActivityDefaults.DefaultSource)]
     public Uri Source
     {
       get { return source; }
@@ -57,7 +57,7 @@ namespace ClipFlair.Windows.Views
     }
 
     [DataMember]
-    //[DefaultValue(IActivityDefaults.DefaultTime)]
+    //[DefaultValue(ActivityDefaults.DefaultTime)]
     public TimeSpan Time
     {
       get { return time; }
@@ -72,7 +72,7 @@ namespace ClipFlair.Windows.Views
     }
 
     //don't make this a DataMember (not storing in Activity)
-    [DefaultValue(IActivityDefaults.DefaultCaptions)]
+    [DefaultValue(ActivityDefaults.DefaultCaptions)]
     public CaptionRegion Captions
     {
       get { return captions; }
@@ -90,7 +90,7 @@ namespace ClipFlair.Windows.Views
     }
 
     [DataMember]
-    //[DefaultValue(IActivityDefaults.DefaultViewPosition)]
+    //[DefaultValue(ActivityDefaults.DefaultViewPosition)]
     public Point ViewPosition
     {
       get { return viewPosition; }
@@ -105,7 +105,7 @@ namespace ClipFlair.Windows.Views
     }
 
     [DataMember]
-    [DefaultValue(IActivityDefaults.DefaultViewWidth)]
+    [DefaultValue(ActivityDefaults.DefaultViewWidth)]
     public double ViewWidth
     {
       get { return viewWidth; }
@@ -120,7 +120,7 @@ namespace ClipFlair.Windows.Views
     }
     
     [DataMember]
-    [DefaultValue(IActivityDefaults.DefaultViewHeight)]
+    [DefaultValue(ActivityDefaults.DefaultViewHeight)]
     public double ViewHeight
     {
       get { return viewHeight; }
@@ -135,7 +135,7 @@ namespace ClipFlair.Windows.Views
     }
 
     [DataMember]
-    [DefaultValue(IActivityDefaults.DefaultContentZoom)]
+    [DefaultValue(ActivityDefaults.DefaultContentZoom)]
     public double ContentZoom
     {
       get { return contentZoom; }
@@ -150,7 +150,7 @@ namespace ClipFlair.Windows.Views
     }
 
     [DataMember]
-    [DefaultValue(IActivityDefaults.DefaultContentZoomable)]
+    [DefaultValue(ActivityDefaults.DefaultContentZoomable)]
     public bool ContentZoomable
     {
       get { return contentZoomable; }
@@ -165,7 +165,7 @@ namespace ClipFlair.Windows.Views
     }
 
     [DataMember]
-    [DefaultValue(IActivityDefaults.DefaultContentPartsConfigurable)]
+    [DefaultValue(ActivityDefaults.DefaultContentPartsConfigurable)]
     public bool ContentPartsConfigurable
     {
       get { return contentPartsConfigurable; }
@@ -180,7 +180,7 @@ namespace ClipFlair.Windows.Views
     }
 
     [DataMember]
-    [DefaultValue(ITextEditorDefaults.DefaultToolbarVisible)]
+    [DefaultValue(ActivityDefaults.DefaultToolbarVisible)]
     public bool ToolbarVisible
     {
       get { return toolbarVisible; }
@@ -189,7 +189,7 @@ namespace ClipFlair.Windows.Views
         if (value != toolbarVisible)
         {
           toolbarVisible = value;
-          RaisePropertyChanged(ITextEditorProperties.PropertyToolbarVisible);
+          RaisePropertyChanged(IActivityProperties.PropertyToolbarVisible);
         }
       }
     }
@@ -199,29 +199,11 @@ namespace ClipFlair.Windows.Views
     #region Methods
 
     public override void SetDefaults() //do not call at constructor, BaseView does it already
-    { //Must set property values, not fields
-
-      //BaseView defaults and overrides
-      base.SetDefaults();
-      Title = IActivityDefaults.DefaultTitle;
-      Width = IActivityDefaults.DefaultWidth;
-      Height = IActivityDefaults.DefaultHeight;
-
-      //ActivityView defaults
-      Source = IActivityDefaults.DefaultSource;
-      Time = IActivityDefaults.DefaultTime;
-      Captions = IActivityDefaults.DefaultCaptions;
-      ViewPosition = IActivityDefaults.DefaultViewPosition;
-      ViewWidth = IActivityDefaults.DefaultViewWidth;
-      ViewHeight = IActivityDefaults.DefaultViewHeight;
-      ContentZoom = IActivityDefaults.DefaultContentZoom;
-      ContentZoomable = IActivityDefaults.DefaultContentZoomable;
-      ContentPartsConfigurable = IActivityDefaults.DefaultContentPartsConfigurable;
-      ToolbarVisible = IActivityDefaults.DefaultToolbarVisible;
+    {
+      ActivityDefaults.SetDefaults(this); //this makes sure we set public properties (invoking "set" accessors), not fields //It also calls ViewDefaults.SetDefaults
     }
 
     #endregion
-
 
   }
 

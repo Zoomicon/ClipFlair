@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: MediaPlayerView.cs
-//Version: 20130114
+//Version: 20130118
 
 using Microsoft.SilverlightMediaFramework.Core.Accessibility.Captions;
 
@@ -22,7 +22,7 @@ namespace ClipFlair.Windows.Views
         
     #region Fields
 
-    //fields are initialized at "SetDefaults" method
+    //fields are initialized via respective properties at "SetDefaults" method
     private Uri source;
     private TimeSpan time;
     private CaptionRegion captions;
@@ -38,8 +38,8 @@ namespace ClipFlair.Windows.Views
 
     #region Properties
     
-    [DataMember(Order=1)] //Order=1 is for making sure this is deserialized after all other fields, including the Time field which has Order=0
-    [DefaultValue(IMediaPlayerDefaults.DefaultSource)]
+    [DataMember(Order=1)] //Order=1 is for making sure this is deserialized after other fields, including Time which has Order=0
+    [DefaultValue(MediaPlayerDefaults.DefaultSource)]
     public Uri Source
     {
       get { return source; }
@@ -53,8 +53,8 @@ namespace ClipFlair.Windows.Views
       }
     }
 
-    [DataMember(Order=0)] //TODO: should make MediaPlayer try to play from current time value (only when another movie is loaded from the UI/playlist should reset time to 0)
-    //[DefaultValue(IMediaPlayerDefaults.DefaultTime)] //can't use static fields here (and we're forced to use one for TimeSpan unfortunately, doesn't work with const)
+    [DataMember(Order=0)] //TODO: see why it stops loading state if we use Order=1 here and Order=0 at Source property //TODO: maybe make source respect current Time? (when setting source from backpanel could erase Time with an event handler)
+    //[DefaultValue(MediaPlayerDefaults.DefaultTime)] //can't use static fields here (and we're forced to use one for TimeSpan unfortunately, doesn't work with const)
     public TimeSpan Time
     {
       get { return time; }
@@ -69,7 +69,7 @@ namespace ClipFlair.Windows.Views
     }
 
     //don't make this a DataMember (not storing in MediaPlayer)
-    [DefaultValue(IMediaPlayerDefaults.DefaultCaptions)]
+    [DefaultValue(MediaPlayerDefaults.DefaultCaptions)]
     public CaptionRegion Captions
     {
       get { return captions; }
@@ -87,7 +87,7 @@ namespace ClipFlair.Windows.Views
     }
 
     [DataMember]
-    [DefaultValue(IMediaPlayerDefaults.DefaultSpeed)]
+    [DefaultValue(MediaPlayerDefaults.DefaultSpeed)]
     public double Speed
     {
       get { return speed; }
@@ -102,7 +102,7 @@ namespace ClipFlair.Windows.Views
     }
 
     [DataMember]
-    [DefaultValue(IMediaPlayerDefaults.DefaultVolume)]
+    [DefaultValue(MediaPlayerDefaults.DefaultVolume)]
     public double Volume
     {
       get { return volume; }
@@ -117,7 +117,7 @@ namespace ClipFlair.Windows.Views
     }
 
     [DataMember]
-    [DefaultValue(IMediaPlayerDefaults.DefaultAutoPlay)]
+    [DefaultValue(MediaPlayerDefaults.DefaultAutoPlay)]
     public bool AutoPlay
     {
       get { return autoPlay; }
@@ -132,7 +132,7 @@ namespace ClipFlair.Windows.Views
     }
 
     [DataMember]
-    [DefaultValue(IMediaPlayerDefaults.DefaultLooping)]
+    [DefaultValue(MediaPlayerDefaults.DefaultLooping)]
     public bool Looping
     {
       get { return looping; }
@@ -147,7 +147,7 @@ namespace ClipFlair.Windows.Views
     }
 
     [DataMember]
-    [DefaultValue(IMediaPlayerDefaults.DefaultVideoVisible)]
+    [DefaultValue(MediaPlayerDefaults.DefaultVideoVisible)]
     public bool VideoVisible
     {
       get { return videoVisible; }
@@ -162,7 +162,7 @@ namespace ClipFlair.Windows.Views
     }
 
     [DataMember]
-    [DefaultValue(IMediaPlayerDefaults.DefaultControllerVisible)]
+    [DefaultValue(MediaPlayerDefaults.DefaultControllerVisible)]
     public bool ControllerVisible
     {
       get { return controllerVisible; }
@@ -177,7 +177,7 @@ namespace ClipFlair.Windows.Views
     }
 
     [DataMember]
-    [DefaultValue(IMediaPlayerDefaults.DefaultCaptionsVisible)]
+    [DefaultValue(MediaPlayerDefaults.DefaultCaptionsVisible)]
     public bool CaptionsVisible
     {
       get { return captionsVisible; }
@@ -196,25 +196,8 @@ namespace ClipFlair.Windows.Views
     #region Methods
 
     public override void SetDefaults() //do not call at constructor, BaseView does it already
-    { //Must set property values, not fields
-
-      //BaseView defaults and overrides
-      base.SetDefaults();
-      Title = IMediaPlayerDefaults.DefaultTitle;
-      Width = IMediaPlayerDefaults.DefaultWidth;
-      Height = IMediaPlayerDefaults.DefaultHeight;
-
-      //MediaPlayerView defaults
-      Source = IMediaPlayerDefaults.DefaultSource;
-      Time = IMediaPlayerDefaults.DefaultTime;
-      Captions = IMediaPlayerDefaults.DefaultCaptions;
-      Speed = IMediaPlayerDefaults.DefaultSpeed;
-      Volume = IMediaPlayerDefaults.DefaultVolume;
-      AutoPlay = IMediaPlayerDefaults.DefaultAutoPlay;
-      Looping = IMediaPlayerDefaults.DefaultLooping;
-      VideoVisible = IMediaPlayerDefaults.DefaultVideoVisible;
-      ControllerVisible = IMediaPlayerDefaults.DefaultControllerVisible;
-      CaptionsVisible = IMediaPlayerDefaults.DefaultCaptionsVisible;
+    {
+      MediaPlayerDefaults.SetDefaults(this); //this makes sure we set public properties (invoking "set" accessors), not fields //It also calls ViewDefaults.SetDefaults
     }
  
     public void Play()

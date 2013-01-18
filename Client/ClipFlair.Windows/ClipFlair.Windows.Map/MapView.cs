@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: MapView.cs
-//Version: 20130115
+//Version: 20130118
 
 using Microsoft.Maps.MapControl;
 using Microsoft.Maps.MapControl.Core;
@@ -23,7 +23,7 @@ namespace ClipFlair.Windows.Views
 
     #region Fields
 
-    //fields are initialized at "SetDefaults" method
+    //fields are initialized via respective properties at "SetDefaults" method
     private bool inertia;
     private bool navigationVisible;
     private bool scaleVisible;
@@ -39,7 +39,7 @@ namespace ClipFlair.Windows.Views
     #region Properties
 
     [DataMember]
-    [DefaultValue(IMapViewerDefaults.DefaultInertia)]
+    [DefaultValue(MapViewerDefaults.DefaultInertia)]
     public bool Inertia
     {
       get { return inertia; }
@@ -54,7 +54,7 @@ namespace ClipFlair.Windows.Views
     }
 
     [DataMember]
-    [DefaultValue(IMapViewerDefaults.DefaultNavigationVisible)]
+    [DefaultValue(MapViewerDefaults.DefaultNavigationVisible)]
     public bool NavigationVisible
     {
       get { return navigationVisible; }
@@ -69,7 +69,7 @@ namespace ClipFlair.Windows.Views
     }
 
     [DataMember]
-    [DefaultValue(IMapViewerDefaults.DefaultScaleVisible)]
+    [DefaultValue(MapViewerDefaults.DefaultScaleVisible)]
     public bool ScaleVisible
     {
       get { return scaleVisible; }
@@ -84,7 +84,7 @@ namespace ClipFlair.Windows.Views
     }
 
     [DataMember]
-    [DefaultValue(IMapViewerDefaults.DefaultCulture)]
+    [DefaultValue(MapViewerDefaults.DefaultCulture)]
     public string Culture
     {
       get { return culture; }
@@ -130,7 +130,7 @@ namespace ClipFlair.Windows.Views
     }
 
     [DataMember]
-    [DefaultValue(IMapViewerDefaults.DefaultMode)]
+    [DefaultValue(MapViewerDefaults.DefaultMode)]
     public string Mode
     {
       get { return mode; }
@@ -145,7 +145,7 @@ namespace ClipFlair.Windows.Views
     }
 
     [DataMember]
-    [DefaultValue(IMapViewerDefaults.DefaultLabelsVisible)]
+    [DefaultValue(MapViewerDefaults.DefaultLabelsVisible)]
     public bool LabelsVisible
     {
       get { return labelsVisible; }
@@ -160,7 +160,7 @@ namespace ClipFlair.Windows.Views
     }
 
     [DataMember]
-    [DefaultValue(IMapViewerDefaults.DefaultLabelsFading)]
+    [DefaultValue(MapViewerDefaults.DefaultLabelsFading)]
     public bool LabelsFading
     {
       get { return labelsFading; }
@@ -174,7 +174,7 @@ namespace ClipFlair.Windows.Views
       }
     }
 
-    [DefaultValue(IMapViewerDefaults.DefaultLatitude)]
+    [DefaultValue(MapViewerDefaults.DefaultLatitude)]
     public double Latitude
     {
       get { return mapCenter.Latitude; }
@@ -185,7 +185,7 @@ namespace ClipFlair.Windows.Views
       }
     }
 
-    [DefaultValue(IMapViewerDefaults.DefaultLongitude)]
+    [DefaultValue(MapViewerDefaults.DefaultLongitude)]
     public double Longitude
     {
       get { return mapCenter.Longitude; }
@@ -196,7 +196,7 @@ namespace ClipFlair.Windows.Views
       }
     }
 
-    [DefaultValue(IMapViewerDefaults.DefaultAltitude)]
+    [DefaultValue(MapViewerDefaults.DefaultAltitude)]
     public double Altitude
     {
       get { return mapCenter.Altitude; }
@@ -230,7 +230,7 @@ namespace ClipFlair.Windows.Views
     }
 
     [DataMember]
-    [DefaultValue(IMapViewerDefaults.DefaultMapZoom)]
+    [DefaultValue(MapViewerDefaults.DefaultMapZoom)]
     public double MapZoom
     {
       get { return mapZoom; }
@@ -249,24 +249,8 @@ namespace ClipFlair.Windows.Views
     #region Methods
 
     public override void SetDefaults() //do not call at constructor, BaseView does it already
-    { //Must set property values, not fields
-
-      //BaseView defaults and overrides
-      base.SetDefaults();
-      Title = IMapViewerDefaults.DefaultTitle;
-      Width = IMapViewerDefaults.DefaultWidth;
-      Height = IMapViewerDefaults.DefaultHeight;
-
-      //MapView defaults
-      Inertia = IMapViewerDefaults.DefaultInertia;
-      NavigationVisible = IMapViewerDefaults.DefaultNavigationVisible;
-      ScaleVisible = IMapViewerDefaults.DefaultScaleVisible;
-      Culture = IMapViewerDefaults.DefaultCulture;
-      Mode = IMapViewerDefaults.DefaultMode;
-      LabelsVisible = IMapViewerDefaults.DefaultLabelsVisible;
-      LabelsFading = IMapViewerDefaults.DefaultLabelsFading;
-      MapCenter = IMapViewerDefaults.DefaultMapCenter;
-      MapZoom = IMapViewerDefaults.DefaultMapZoom;
+    {
+      MapViewerDefaults.SetDefaults(this); //this makes sure we set public properties (invoking "set" accessors), not fields //It also calls ViewDefaults.SetDefaults
     }
 
    #endregion

@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: TextEditorView.cs
-//Version: 20130114
+//Version: 20130118
 
 using System;
 using System.ComponentModel;
@@ -20,8 +20,9 @@ namespace ClipFlair.Windows.Views
 
     #region Fields
 
-    //fields are initialized at "SetDefaults" method
+    //fields are initialized via respective properties at "SetDefaults" method
     private Uri source;
+    private TimeSpan time;
     private bool toolbarVisible;
     private bool editable;
     private bool rtl;
@@ -31,7 +32,7 @@ namespace ClipFlair.Windows.Views
     #region Properties
 
     [DataMember]
-    [DefaultValue(ITextEditorDefaults.DefaultSource)]
+    [DefaultValue(TextEditorDefaults.DefaultSource)]
     public Uri Source
     {
       get { return source; }
@@ -45,8 +46,23 @@ namespace ClipFlair.Windows.Views
       }
     }
 
+    [DataMember(Order = 0)] //Order=0 means this gets deserialized after other fields (that don't have order set)
+    //[DefaultValue(TextEditorDefaults.DefaultTime)] //can't use static fields here (and we're forced to use one for TimeSpan unfortunately, doesn't work with const)
+    public TimeSpan Time
+    {
+      get { return time; }
+      set
+      {
+        if (value != time)
+        {
+          time = value;
+          RaisePropertyChanged(ITextEditorProperties.PropertyTime);
+        }
+      }
+    }
+
     [DataMember]
-    [DefaultValue(ITextEditorDefaults.DefaultToolbarVisible)]
+    [DefaultValue(TextEditorDefaults.DefaultToolbarVisible)]
     public bool ToolbarVisible
     {
       get { return toolbarVisible; }
@@ -61,7 +77,7 @@ namespace ClipFlair.Windows.Views
     }
 
     [DataMember]
-    [DefaultValue(ITextEditorDefaults.DefaultEditable)]
+    [DefaultValue(TextEditorDefaults.DefaultEditable)]
     public bool Editable
     {
       get { return editable; }
@@ -76,7 +92,7 @@ namespace ClipFlair.Windows.Views
     }
 
     [DataMember]
-    [DefaultValue(ITextEditorDefaults.DefaultRTL)]
+    [DefaultValue(TextEditorDefaults.DefaultRTL)]
     public bool RTL
     {
       get { return rtl; }
@@ -95,19 +111,8 @@ namespace ClipFlair.Windows.Views
     #region Methods
 
     public override void SetDefaults() //do not call at constructor, BaseView does it already
-    { //Must set property values, not fields
-
-      //BaseView defaults and overrides
-      base.SetDefaults();
-      Title = ITextEditorDefaults.DefaultTitle;
-      Width = ITextEditorDefaults.DefaultWidth;
-      Height = ITextEditorDefaults.DefaultHeight;
-
-      //TextEditorView defaults
-      Source = ITextEditorDefaults.DefaultSource;
-      ToolbarVisible = ITextEditorDefaults.DefaultToolbarVisible;
-      Editable = ITextEditorDefaults.DefaultEditable;
-      RTL = ITextEditorDefaults.DefaultRTL;
+    {
+      TextEditorDefaults.SetDefaults(this); //this makes sure we set public properties (invoking "set" accessors), not fields //It also calls ViewDefaults.SetDefaults
     }
 
     #endregion

@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
-//Filename: IActivityDefaults.cs
-//Version: 20130114
+//Filename: ActivityDefaults.cs
+//Version: 20130118
 
 using Microsoft.SilverlightMediaFramework.Core.Accessibility.Captions;
 
@@ -10,7 +10,7 @@ using System.Windows;
 namespace ClipFlair.Windows.Views
 {
 
-  public static class IActivityDefaults
+  public static class ActivityDefaults
   {
 
     #region IView defaults - overrides
@@ -31,6 +31,32 @@ namespace ClipFlair.Windows.Views
     public const bool DefaultContentZoomable = true;
     public const bool DefaultContentPartsConfigurable = true;
     public const bool DefaultToolbarVisible = true;
+
+    #region Methods
+
+    public static void SetDefaults(IActivity activity)
+    {
+      //IView defaults and overrides
+      ViewDefaults.SetDefaults(activity);
+      activity.Title = DefaultTitle;
+      activity.Width = DefaultWidth;
+      activity.Height = DefaultHeight;
+
+      //IActivity defaults
+      activity.Source = DefaultSource;
+      activity.Time = DefaultTime;
+      activity.Captions = DefaultCaptions;
+      activity.ViewPosition = DefaultViewPosition;
+      activity.ViewWidth = DefaultViewWidth;
+      activity.ViewHeight = DefaultViewHeight;
+      activity.ContentZoom = DefaultContentZoom;
+      activity.ContentZoomable = DefaultContentZoomable;
+      activity.ContentPartsConfigurable = DefaultContentPartsConfigurable;
+      activity.ToolbarVisible = DefaultToolbarVisible;
+    }
+
+    #endregion
+
   }
 
 }
