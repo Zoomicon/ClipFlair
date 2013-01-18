@@ -5,7 +5,7 @@
 <!--
 Project: ClipFlair (http://ClipFlair.codeplex.com)
 Filename: ClipFlairPlayground.aspx
-Version: 20121224
+Version: 20130118
 -->
 
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -83,18 +83,25 @@ Version: 20121224
 
     function onClosing() {
       if (activity().View.WarnOnClosing)
-        event.returnValue = "Are you sure you want to close ClipFlair Playground?";
+        return "Are you sure you want to close ClipFlair Playground?";
     }
 
     function onClosed() {
       activity().View.WarnOnClosing = false;
     }
 
+    function installEventHandlers() {
+      window.onbeforeunload = onClosing;
+      window.onunload = onClosed;
+    }
+
+    installEventHandlers();
+
   </script>
 
 </head>
 
-<body onbeforeunload="onClosing()" onunload="onClosed()">
+<body>
 
   <form id="form1" runat="server" style="width:100%; height:100%">
     <div id="silverlightControlHost">
