@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
-//Filename: IMapViewerDefaults.cs
-//Version: 20130115
+//Filename: MapViewerDefaults.cs
+//Version: 20130118
 
 using Microsoft.Maps.MapControl;
 using Microsoft.Maps.MapControl.Core;
@@ -11,7 +11,7 @@ using System.Windows;
 namespace ClipFlair.Windows.Views
 {
 
-  public static class IMapViewerDefaults
+  public static class MapViewerDefaults
   {
     #region IView defaults - overrides
 
@@ -33,6 +33,31 @@ namespace ClipFlair.Windows.Views
     public const double DefaultAltitude = 0;
     public static Location DefaultMapCenter = new Location(DefaultLatitude, DefaultLongitude, DefaultAltitude);
     public const double DefaultMapZoom = 1.0;
+
+    #region Methods
+
+    public static void SetDefaults(IMapViewer map)
+    {
+      //IView defaults and overrides
+      ViewDefaults.SetDefaults(map);
+      map.Title = DefaultTitle;
+      map.Width = DefaultWidth;
+      map.Height = DefaultHeight;
+
+      //IMapViewer defaults
+      map.Inertia = DefaultInertia;
+      map.NavigationVisible = DefaultNavigationVisible;
+      map.ScaleVisible = DefaultScaleVisible;
+      map.Culture = DefaultCulture;
+      map.Mode = DefaultMode;
+      map.LabelsVisible = DefaultLabelsVisible;
+      map.LabelsFading = DefaultLabelsFading;
+      map.MapCenter = DefaultMapCenter;
+      map.MapZoom = DefaultMapZoom;
+    }
+
+    #endregion
+
   }
 
 }

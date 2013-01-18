@@ -88,7 +88,7 @@
     <Compile Include="ActivityView.cs" />
     <Compile Include="ActivityWindowFactory.cs" />
     <Compile Include="IActivity.cs" />
-    <Compile Include="IActivityDefaults.cs" />
+    <Compile Include="ActivityDefaults.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -160,6 +160,13 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Diagrams\Windows.cd" />
+    <None Include="Diagrams\Windows.Views.Interfaces.cd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Diagrams\Windows.Views.ViewModels.cd" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Silverlight\$(SilverlightVersion)\Microsoft.Silverlight.CSharp.targets" />
   <ProjectExtensions>

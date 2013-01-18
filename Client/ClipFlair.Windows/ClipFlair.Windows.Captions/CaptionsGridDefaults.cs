@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
-//Filename: ICaptionsGridDefaults.cs
-//Version: 20130114
+//Filename: CaptionsGridDefaults.cs
+//Version: 20130118
 
 using Microsoft.SilverlightMediaFramework.Core.Accessibility.Captions;
 
@@ -10,7 +10,7 @@ using System.Windows;
 namespace ClipFlair.Windows.Views
 {
 
-  public static class ICaptionsGridDefaults
+  public static class CaptionsGridDefaults
   {
 
     #region IView defaults - overrides
@@ -33,6 +33,32 @@ namespace ClipFlair.Windows.Views
     public const bool DefaultCaptionVisible = true;
     public const bool DefaultAudioVisible = false;
     public const bool DefaultCommentsVisible = false;
+
+    #region Methods
+
+    public static void SetDefaults(ICaptionsGrid captions)
+    {
+      //IView defaults and overrides
+      ViewDefaults.SetDefaults(captions);
+      captions.Title = DefaultTitle;
+      captions.Width = DefaultWidth;
+      captions.Height = DefaultHeight;
+
+      //ICaptionsGrid defaults
+      captions.Source = DefaultSource;
+      captions.Time = DefaultTime;
+      captions.Captions = DefaultCaptions;
+      captions.RoleVisible = DefaultRoleVisible;
+      captions.StartTimeVisible = DefaultStartTimeVisible;
+      captions.EndTimeVisible = DefaultEndTimeVisible;
+      captions.DurationVisible = DefaultDurationVisible;
+      captions.CaptionVisible = DefaultCaptionVisible;
+      captions.AudioVisible = DefaultAudioVisible;
+      captions.CommentsVisible = DefaultCommentsVisible;
+    }
+
+    #endregion
+
   }
 
 }

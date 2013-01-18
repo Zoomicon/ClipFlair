@@ -1,7 +1,7 @@
 ﻿<!-- 
 Project: ClipFlair (http://ClipFlair.codeplex.com)
 Filename: TextEditorWindow.xaml.cs
-Version: 20130114
+Version: 20130118
 -->
   
 <clipflair:BaseWindow x:Class="ClipFlair.Windows.TextEditorWindow"
@@ -55,8 +55,13 @@ Version: 20130114
     <StackPanel Orientation="Horizontal">
       <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Right to Left (RTL) Text Direction" Target="{Binding ElementName=edRTL}"/>
       <CheckBox Name="edRTL" IsChecked="{Binding RTL, Mode=TwoWay}" />
-    </StackPanel>    
-    
+    </StackPanel>
+
+    <StackPanel Orientation="Vertical">
+      <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Time:" Target="{Binding ElementName=edTime}" />
+      <TextBox Name="edTime" Text="{Binding Time, Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=true}" />
+    </StackPanel>
+
   </clipflair:BaseWindow.PropertyItems>
 
 </clipflair:BaseWindow>

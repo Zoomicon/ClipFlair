@@ -81,7 +81,7 @@
   <ItemGroup>
     <Compile Include="MapWindowFactory.cs" />
     <Compile Include="IMapViewer.cs" />
-    <Compile Include="IMapViewerDefaults.cs" />
+    <Compile Include="MapViewerDefaults.cs" />
     <Compile Include="MapView.cs" />
     <Compile Include="MapWindow.xaml.cs">
       <DependentUpon>MapWindow.xaml</DependentUpon>

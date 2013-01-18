@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: BaseWindow.xaml.cs
-//Version: 20130110
+//Version: 20130118
 
 //TODO: unbind control at close
 //TODO: do not allow to set too low opacity values that could make windows disappear
@@ -130,9 +130,9 @@ namespace ClipFlair.Windows
         propResizable.Visibility = visibility;
         propZoomable.Visibility = visibility;
 
-        if (value) MoveEnabled = false; else MoveEnabled = IViewDefaults.DefaultMoveable;
-        if (value) ResizeEnabled = false; else ResizeEnabled = IViewDefaults.DefaultResizable;
-        if (value) ScaleEnabled = false; else ScaleEnabled = IViewDefaults.DefaultZoomable;      
+        if (value) MoveEnabled = false; else MoveEnabled = ViewDefaults.DefaultMoveable;
+        if (value) ResizeEnabled = false; else ResizeEnabled = ViewDefaults.DefaultResizable;
+        if (value) ScaleEnabled = false; else ScaleEnabled = ViewDefaults.DefaultZoomable;      
       }
     }
 

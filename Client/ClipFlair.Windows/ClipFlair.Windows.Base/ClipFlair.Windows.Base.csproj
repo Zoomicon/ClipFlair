@@ -85,7 +85,7 @@
     </Compile>
     <Compile Include="IWindowFactory.cs" />
     <Compile Include="IView.cs" />
-    <Compile Include="IViewDefaults.cs" />
+    <Compile Include="ViewDefaults.cs" />
     <Compile Include="OptionsLoadSaveControl.xaml.cs">
       <DependentUpon>OptionsLoadSaveControl.xaml</DependentUpon>
     </Compile>

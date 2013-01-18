@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: ImageView.cs
-//Version: 20130114
+//Version: 20130118
 
 //TODO: maybe allow to load local image and store it in .clipflair.zip file (show image from memorystream)
 
@@ -23,7 +23,7 @@ namespace ClipFlair.Windows.Views
 
     #region Fields
 
-    //fields are initialized at "SetDefaults" method
+    //fields are initialized via respective properties at "SetDefaults" method
     private Uri source;
     private Stretch stretch;
 
@@ -32,7 +32,7 @@ namespace ClipFlair.Windows.Views
     #region Properties
 
     [DataMember]
-    [DefaultValue(IImageViewerDefaults.DefaultSource)]
+    [DefaultValue(ImageViewerDefaults.DefaultSource)]
     public Uri Source
     {
       get { return source; }
@@ -47,7 +47,7 @@ namespace ClipFlair.Windows.Views
     }
 
     [DataMember]
-    [DefaultValue(IImageViewerDefaults.DefaultStretch)]
+    [DefaultValue(ImageViewerDefaults.DefaultStretch)]
     public Stretch Stretch
     {
       get { return stretch; }
@@ -70,19 +70,10 @@ namespace ClipFlair.Windows.Views
     #endregion
 
     #region Methods
-
+  
     public override void SetDefaults() //do not call at constructor, BaseView does it already
-    { //Must set property values, not fields
-
-      //BaseView defaults and overrides
-      base.SetDefaults();
-      Title = IImageViewerDefaults.DefaultTitle;
-      Width = IImageViewerDefaults.DefaultWidth;
-      Height = IImageViewerDefaults.DefaultHeight;
-
-      //ImageView defaults
-      Source = IImageViewerDefaults.DefaultSource;
-      Stretch = IImageViewerDefaults.DefaultStretch;
+    {
+      ImageViewerDefaults.SetDefaults(this); //this makes sure we set public properties (invoking "set" accessors), not fields //It also calls ViewDefaults.SetDefaults
     }
 
     #endregion

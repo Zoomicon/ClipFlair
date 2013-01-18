@@ -75,7 +75,7 @@
   <ItemGroup>
     <Compile Include="ImageWindowFactory.cs" />
     <Compile Include="IImageViewer.cs" />
-    <Compile Include="IImageViewerDefaults.cs" />
+    <Compile Include="ImageViewerDefaults.cs" />
     <Compile Include="ImageView.cs" />
     <Compile Include="ImageWindow.xaml.cs">
       <DependentUpon>ImageWindow.xaml</DependentUpon>

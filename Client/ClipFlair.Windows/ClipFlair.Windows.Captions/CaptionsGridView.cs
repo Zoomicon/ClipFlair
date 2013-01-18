@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: CaptionsGridView.cs
-//Version: 20130114
+//Version: 20130118
 
 using Microsoft.SilverlightMediaFramework.Core.Accessibility.Captions;
 
@@ -22,7 +22,7 @@ namespace ClipFlair.Windows.Views
 
     #region Fields
 
-    //fields are initialized at "SetDefaults" method
+    //fields are initialized via respective properties at "SetDefaults" method
     private Uri source;
     private TimeSpan time;
     private CaptionRegion captions;
@@ -39,7 +39,7 @@ namespace ClipFlair.Windows.Views
     #region Properties
 
     [DataMember]
-    [DefaultValue(ICaptionsGridDefaults.DefaultSource)]
+    [DefaultValue(CaptionsGridDefaults.DefaultSource)]
     public Uri Source
     {
       get { return source; }
@@ -54,7 +54,7 @@ namespace ClipFlair.Windows.Views
     }
 
     [DataMember]
-    //[DefaultValue(ICaptionsGridDefaults.DefaultTime)] //can't use static fields here (we're forced to use static instead of const since we set a non-null default value)
+    //[DefaultValue(CaptionsGridDefaults.DefaultTime)] //can't use static fields here (we're forced to use static instead of const since we set a non-null default value)
     public TimeSpan Time
     {
       get { return time; }
@@ -69,7 +69,7 @@ namespace ClipFlair.Windows.Views
     }
 
     //don't make this a DataMember (storing separately)
-    [DefaultValue(ICaptionsGridDefaults.DefaultCaptions)]
+    [DefaultValue(CaptionsGridDefaults.DefaultCaptions)]
     public CaptionRegion Captions
     {
       get { return captions; }
@@ -87,7 +87,7 @@ namespace ClipFlair.Windows.Views
     }
 
     [DataMember]
-    [DefaultValue(ICaptionsGridDefaults.DefaultStartTimeVisible)]
+    [DefaultValue(CaptionsGridDefaults.DefaultStartTimeVisible)]
     public bool StartTimeVisible
     {
       get { return startTimeVisible; }
@@ -102,7 +102,7 @@ namespace ClipFlair.Windows.Views
     }
 
     [DataMember]
-    [DefaultValue(ICaptionsGridDefaults.DefaultEndTimeVisible)]
+    [DefaultValue(CaptionsGridDefaults.DefaultEndTimeVisible)]
     public bool EndTimeVisible
     {
       get { return endTimeVisible; }
@@ -116,7 +116,7 @@ namespace ClipFlair.Windows.Views
     }
 
     [DataMember]
-    [DefaultValue(ICaptionsGridDefaults.DefaultDurationVisible)]
+    [DefaultValue(CaptionsGridDefaults.DefaultDurationVisible)]
 
     public bool DurationVisible
     {
@@ -129,7 +129,7 @@ namespace ClipFlair.Windows.Views
     }
 
     [DataMember]
-    [DefaultValue(ICaptionsGridDefaults.DefaultRoleVisible)]
+    [DefaultValue(CaptionsGridDefaults.DefaultRoleVisible)]
     public bool RoleVisible
     {
       get { return roleVisible; }
@@ -144,7 +144,7 @@ namespace ClipFlair.Windows.Views
     }
     
     [DataMember]
-    [DefaultValue(ICaptionsGridDefaults.DefaultCaptionVisible)]
+    [DefaultValue(CaptionsGridDefaults.DefaultCaptionVisible)]
     public bool CaptionVisible
     {
       get { return captionVisible; }
@@ -156,7 +156,7 @@ namespace ClipFlair.Windows.Views
     }
 
     [DataMember]
-    [DefaultValue(ICaptionsGridDefaults.DefaultAudioVisible)]
+    [DefaultValue(CaptionsGridDefaults.DefaultAudioVisible)]
     public bool AudioVisible
     {
       get { return audioVisible; }
@@ -168,7 +168,7 @@ namespace ClipFlair.Windows.Views
     }
 
     [DataMember]
-    [DefaultValue(ICaptionsGridDefaults.DefaultCommentsVisible)]
+    [DefaultValue(CaptionsGridDefaults.DefaultCommentsVisible)]
     public bool CommentsVisible
     {
       get { return commentsVisible; }
@@ -184,25 +184,8 @@ namespace ClipFlair.Windows.Views
     #region Methods
 
     public override void SetDefaults() //do not call at constructor, BaseView does it already
-    { //Must set property values, not fields
-
-      //BaseView defaults and overrides
-      base.SetDefaults();
-      Title = ICaptionsGridDefaults.DefaultTitle;
-      Width = ICaptionsGridDefaults.DefaultWidth;
-      Height = ICaptionsGridDefaults.DefaultHeight;
-
-      //CaptionsGridView defaults
-      Source = ICaptionsGridDefaults.DefaultSource;
-      Time = ICaptionsGridDefaults.DefaultTime;
-      Captions = ICaptionsGridDefaults.DefaultCaptions;
-      RoleVisible = ICaptionsGridDefaults.DefaultRoleVisible;
-      StartTimeVisible = ICaptionsGridDefaults.DefaultStartTimeVisible;
-      EndTimeVisible = ICaptionsGridDefaults.DefaultEndTimeVisible;
-      DurationVisible = ICaptionsGridDefaults.DefaultDurationVisible;
-      CaptionVisible = ICaptionsGridDefaults.DefaultCaptionVisible;
-      AudioVisible = ICaptionsGridDefaults.DefaultAudioVisible;
-      CommentsVisible = ICaptionsGridDefaults.DefaultCommentsVisible;
+    {
+      CaptionsGridDefaults.SetDefaults(this); //this makes sure we set public properties (invoking "set" accessors), not fields //It also calls ViewDefaults.SetDefaults
     }
 
     #endregion
