@@ -15,7 +15,18 @@ Version: 20130121
   <title>ClipFlair Playground</title>
 
   <link rel="shortcut icon" type="image/ico" href="favicon.ico" />
+
+  <meta property="fb:admins" content="313381898712634"/>
+  <meta property="og:url" content="http://clipflair.net"/>
+  <meta property="og:title" content="ClipFlair"/>
+  <meta property="og:site_name" content="ClipFlair"/>
+  <meta property="og:description" content="Foreign Language Learning through Interactive Revoicing and Captioning of Clips"/>
+  <meta property="og:type" content="website"/>
+  <meta property="og:image" content="http://clipflair.net/wp-content/uploads/2012/06/clipflair-logo02.jpg"/>
+  <meta property="og:locale" content="en_us"/>
+
   <meta name="application-name" content="ClipFlair Playground" />
+
   <meta name="msapplication-starturl" content="http://play.clipflair.net" />
   <meta name="msapplication-window" content="width=1024;height=768" />
   <meta name="msapplication-task" content="name=ClipFlair Playground; action-uri=http://play.clipflair.net/; icon-uri=http://play.clipflair.net/favicon.ico" />
