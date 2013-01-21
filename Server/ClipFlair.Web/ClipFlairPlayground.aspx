@@ -5,7 +5,7 @@
 <!--
 Project: ClipFlair (http://ClipFlair.codeplex.com)
 Filename: ClipFlairPlayground.aspx
-Version: 20130118
+Version: 20130121
 -->
 
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -14,6 +14,18 @@ Version: 20130118
 
   <title>ClipFlair Playground</title>
 
+  <link rel="shortcut icon" type="image/ico" href="favicon.ico" />
+  <meta name="application-name" content="ClipFlair Playground" />
+  <meta name="msapplication-starturl" content="http://play.clipflair.net" />
+  <meta name="msapplication-window" content="width=1024;height=768" />
+  <meta name="msapplication-task" content="name=ClipFlair Playground; action-uri=http://play.clipflair.net/; icon-uri=http://play.clipflair.net/favicon.ico" />
+  <meta name="msapplication-task" content="name=ClipFlair Social Network; action-uri=http://social.clipflair.net/; icon-uri=http://social.clipflair.net/favicon.ico" />
+  <meta name="msapplication-task" content="name=ClipFlair overview; action-uri=http://clipflair.net/overview/; icon-uri=http://clipflair.net/wp-content/themes/clipflair-theme/favicon.ico" />
+  <meta name="msapplication-task" content="name=ClipFlair aims & objectives; action-uri=http://clipflair.net/aims-objectives/; icon-uri=http://clipflair.net/wp-content/themes/clipflair-theme/favicon.ico" />
+  <meta name="msapplication-task" content="name=Follow ClipFlair on Facebook; action-uri=http://www.facebook.com/ClipFlair; icon-uri=http://clipflair.net/wp-content/themes/clipflair-theme/favicon.ico" />
+  <meta name="msapplication-task" content="name=Follow ClipFlair on Twitter; action-uri=http://twitter.com/ClipFlair; icon-uri=http://clipflair.net/wp-content/themes/clipflair-theme/favicon.ico" />
+  <meta name="msapplication-task" content="name=Follow ClipFlair on SlideShare; action-uri=http://www.slideshare.net/ClipFlair; icon-uri=http://clipflair.net/wp-content/themes/clipflair-theme/favicon.ico" />
+  
   <style type="text/css">
     html, body
     {
