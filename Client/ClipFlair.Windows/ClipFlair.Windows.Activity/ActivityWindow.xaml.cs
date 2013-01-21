@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: ActivityWindow.xaml.cs
-//Version: 20121224
+//Version: 20130121
 
 using ClipFlair.Windows.Views;
 
@@ -66,12 +66,22 @@ namespace ClipFlair.Windows
     public override void LoadOptions(ZipFile zip, string zipFolder = "")
     {
       base.LoadOptions(zip, zipFolder); //this will set the View of the ActivityWindow, which will set the view of the ActivityContainer control too
+      View.Busy = true; //set busy flag again since the above command will set it to false after loading
 
       activity.DisableChildrenWarnOnClosing();
       activity.RemoveWindows(); //don't call Windows.Clear(), won't work //TODO (remove this note when fixed): don't call Windows.RemoveAll(), won't do bindings currently
 
-      foreach (ZipEntry childZip in zip.SelectEntries("*.clipflair.zip", zipFolder))
-        LoadWindow(childZip);
+      try
+      {
+
+        foreach (ZipEntry childZip in zip.SelectEntries("*.clipflair.zip", zipFolder))
+          LoadWindow(childZip);
+
+      }
+      finally
+      {
+        View.Busy = false;
+      }
 
       if (IsTopLevel) //if this activity window is the outer container
       {

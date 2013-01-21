@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: BaseWindow.xaml.cs
-//Version: 20130118
+//Version: 20130121
 
 //TODO: unbind control at close
 //TODO: do not allow to set too low opacity values that could make windows disappear
@@ -176,6 +176,8 @@ namespace ClipFlair.Windows
       if (uri == null) return;
 
       WebClient webClient = new WebClient();
+      
+      //set up OpenReadCompleted event handler
       webClient.OpenReadCompleted += (s, e) =>
       {
         try
@@ -194,10 +196,24 @@ namespace ClipFlair.Windows
         }
         catch (Exception ex)
         {
-          MessageBox.Show("ClipFlair options load from URL failed: " + ex.ToString()); //TODO: find the parent window
+          MessageBox.Show("ClipFlair options load from URL failed: " + ex.Message); //TODO: find the parent window
+        }
+        finally
+        {
+          View.Busy = false;
         }
       };
-      webClient.OpenReadAsync(uri);
+
+      try
+      {
+        View.Busy = true; //the busy flag will be reset back to false either at OpenReadComplete event handler (on success) or at the exception handler below (on failure)
+        webClient.OpenReadAsync(uri); //open the stream asynchronously
+      }
+      catch (Exception ex)
+      {
+        View.Busy = false;
+        MessageBox.Show("ClipFlair options load from URL failed: " + ex.Message); //TODO: find the parent window
+      }
     }
 
     public void LoadOptions(Stream stream, string zipFolder = "") //doesn't close stream
@@ -208,9 +224,21 @@ namespace ClipFlair.Windows
 
     public virtual void LoadOptions(ZipFile zip, string zipFolder = "")
     {
+      View.Busy = true;
       DataContractSerializer serializer = new DataContractSerializer(View.GetType()); //assuming current View isn't null and has been set by descendent class with wanted BaseView descendent //TODO: maybe use some property to return appropriate View type
-      using (Stream stream = zip[zipFolder + "/" + View.GetType().FullName + ".options.xml"].OpenReader())
-        View = (IView)serializer.ReadObject(stream);
+      try
+      {
+        using (Stream stream = zip[zipFolder + "/" + View.GetType().FullName + ".options.xml"].OpenReader())
+          View = (IView)serializer.ReadObject(stream); //this will set a new View that defaults to Busy=false
+      }
+      catch (Exception e)
+      {
+        MessageBox.Show("ClipFlair options load failed: " + e.Message); //TODO: find the parent window
+      }
+      finally
+      {
+        View.Busy = false; //in any case (error or not) clear the Busy flag
+      }
     }
 
     public static BaseWindow LoadWindow(Stream stream, string zipFolder = "") //doesn't close stream

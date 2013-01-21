@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: BaseView.cs
-//Version: 20130118
+//Version: 20130121
 
 
 using System.ComponentModel;
@@ -36,6 +36,7 @@ namespace ClipFlair.Windows.Views
 
     #region Fields
 
+    private bool busy;
     private Uri optionsSource;
     private string id;
     private string title;
@@ -52,6 +53,21 @@ namespace ClipFlair.Windows.Views
     #endregion
 
     #region Properties
+
+    //Not storable
+    [DefaultValue(ViewDefaults.DefaultBusy)]
+    public bool Busy
+    {
+      get { return busy; }
+      set
+      {
+        if (value != busy)
+        {
+          busy = value;
+          RaisePropertyChanged(IViewProperties.PropertyBusy);
+        }
+      }
+    }
 
     [DataMember]
     [DefaultValue(ViewDefaults.DefaultOptionsSource)]
