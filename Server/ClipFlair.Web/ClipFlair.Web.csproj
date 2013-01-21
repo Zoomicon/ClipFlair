@@ -62,6 +62,7 @@
     <None Include="Images\clipflair-logo02_314x314.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <Content Include="favicon.ico" />
     <Content Include="Silverlight.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
