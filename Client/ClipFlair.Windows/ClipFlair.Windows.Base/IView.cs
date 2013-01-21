@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: IView.cs
-//Version: 20121219
+//Version: 20130121
 
 using System;
 using System.ComponentModel;
@@ -11,6 +11,7 @@ namespace ClipFlair.Windows.Views
 
   public static class IViewProperties
   {
+    public const string PropertyBusy = "Busy";
     public const string PropertyOptionsSource = "OptionsSource";
     public const string PropertyID = "ID";
     public const string PropertyTitle = "Title";
@@ -27,6 +28,7 @@ namespace ClipFlair.Windows.Views
 
   public interface IView: INotifyPropertyChanged
   {
+    bool Busy { get; set; }
     Uri OptionsSource { get; set; }
     string ID { get; set; }
     string Title { get; set; }

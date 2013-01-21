@@ -1,19 +1,21 @@
 ﻿<!--
 Project: ClipFlair (http://ClipFlair.codeplex.com)
 Filename: BaseWindow.xaml
-Version: 20130114
+Version: 20130121
 -->
 
 <float:FloatingWindow x:Class="ClipFlair.Windows.BaseWindow"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:d="http://schemas.microsoft.com/expression/blend/2008" d:DesignHeight="400" d:DesignWidth="400"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk"
     xmlns:toolkit="http://schemas.microsoft.com/winfx/2006/xaml/presentation/toolkit"
     xmlns:flip="clr-namespace:FlipPanel;assembly=FlipPanel"
     xmlns:float="clr-namespace:SilverFlow.Controls;assembly=SilverFlow.Controls"                      
     xmlns:local="clr-namespace:ClipFlair.Windows.Base"
+    mc:Ignorable="d"
+    d:DesignHeight="400" d:DesignWidth="400"
                       
     HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
     HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch"
@@ -33,140 +35,150 @@ Version: 20130114
 
   <float:FloatingWindow.Resources>
     <ResourceDictionary>
-       <ResourceDictionary.MergedDictionaries>
-          <ResourceDictionary Source="/SilverFlow.Controls;component/Themes/generic.xaml"/>
-          <ResourceDictionary Source="/ClipFlair.Windows.Base;component/Themes/Default.xaml" />
-          <ResourceDictionary Source="/FlipPanel;component/Themes/RotateVerticalTheme.xaml" />
+      <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="/SilverFlow.Controls;component/Themes/generic.xaml"/>
+        <ResourceDictionary Source="/ClipFlair.Windows.Base;component/Themes/Default.xaml" />
+        <ResourceDictionary Source="/FlipPanel;component/Themes/RotateVerticalTheme.xaml" />
       </ResourceDictionary.MergedDictionaries>
     </ResourceDictionary>
   </float:FloatingWindow.Resources>
 
-  <flip:FlipPanel Name="FlipPanel" 
-                  HorizontalAlignment="Stretch" 
-                  VerticalAlignment="Stretch" 
-                  HorizontalContentAlignment="Stretch"
-                  VerticalContentAlignment="Stretch"
-                  Style="{StaticResource FlipPanel_RotateVerticalStyle}"
-                  Margin="1"
-                  > <!-- needs a margin on the right and bottom so that any scrollbar shown doesn't steal window resize drags - using a uniform margin for content centering -->
+  <toolkit:BusyIndicator BusyContent="Loading..."
+                         IsBusy="{Binding Busy}"
+                         HorizontalAlignment="Stretch"
+                         VerticalAlignment="Stretch"
+                         HorizontalContentAlignment="Stretch"
+                         VerticalContentAlignment="Stretch" 
+                         >
+    <flip:FlipPanel
+      Name="FlipPanel" 
+      HorizontalAlignment="Stretch" 
+      VerticalAlignment="Stretch" 
+      HorizontalContentAlignment="Stretch"
+      VerticalContentAlignment="Stretch"
+      Style="{StaticResource FlipPanel_RotateVerticalStyle}"
+      Margin="1"
+      >
+      <!-- needed a margin on the right and bottom so that any scrollbar shown doesn't steal window resize drags - using a uniform margin for content centering -->
 
-    <!-- descendents should define children of BaseWindow.FrontContent (implied content property for BaseWindow) in the XAML -->
+      <!-- descendents should define children of BaseWindow.FrontContent (implied content property for BaseWindow) in the XAML -->
 
-    <flip:FlipPanel.BackContent>
-      <!-- descendents should define children of BaseWindow.PropertyItems in the XAML (defining children of FlipPanel.BackContent will make them show below the scroller and accordion) -->
+      <flip:FlipPanel.BackContent>
+        <!-- descendents should define children of BaseWindow.PropertyItems in the XAML (defining children of FlipPanel.BackContent will make them show below the scroller and accordion) -->
 
-      <ScrollViewer HorizontalAlignment="Stretch" VerticalAlignment="Stretch" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
-        <Grid>
-          <Grid.RowDefinitions>
-            <RowDefinition Height="29" />
-            <RowDefinition Height="*" />
-          </Grid.RowDefinitions>
+        <ScrollViewer HorizontalAlignment="Stretch" VerticalAlignment="Stretch" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
+          <Grid>
+            <Grid.RowDefinitions>
+              <RowDefinition Height="29" />
+              <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
 
-          <local:OptionsLoadSaveControl x:Name="ctrlOptionsLoadSave" />
+            <local:OptionsLoadSaveControl x:Name="ctrlOptionsLoadSave" />
 
-<!--
+            <!--
             <StackPanel Orientation="Horizontal">
               <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Options Source (URL):" Target="{Binding ElementName=edOptionsURL}" />
               <TextBox Name="edOptionsURL" Text="{Binding OptionsSource, Mode=TwoWay}" HorizontalAlignment="Stretch" />
             </StackPanel>
 -->
 
-          <toolkit:Accordion Grid.Row="1" SelectionMode="ZeroOrMore" SelectionSequence="Simultaneous" ExpandDirection="Down" HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch">
+            <toolkit:Accordion Grid.Row="1" SelectionMode="ZeroOrMore" SelectionSequence="Simultaneous" ExpandDirection="Down" HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch">
 
-            <toolkit:AccordionItem Header="View Options" IsSelected="False" Background="Transparent" HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch">
-              <toolkit:AccordionItem.Content>
+              <toolkit:AccordionItem Header="View Options" IsSelected="False" Background="Transparent" HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch">
+                <toolkit:AccordionItem.Content>
 
-                <StackPanel Name="PropertiesPanelBase" Orientation="Vertical" Margin="10,10,10,10" HorizontalAlignment="Stretch">
+                  <StackPanel Name="PropertiesPanelBase" Orientation="Vertical" Margin="10,10,10,10" HorizontalAlignment="Stretch">
 
-                  <StackPanel.Resources>
-                    <Style TargetType="StackPanel" BasedOn="{StaticResource PropertyStackPanelStyle}" />
-                  </StackPanel.Resources>
+                    <StackPanel.Resources>
+                      <Style TargetType="StackPanel" BasedOn="{StaticResource PropertyStackPanelStyle}" />
+                    </StackPanel.Resources>
 
-                  <StackPanel Orientation="Vertical" Name="propID">
-                    <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="ID:" Target="{Binding ElementName=edID}" />
-                    <TextBox Name="edID" Text="{Binding ID, Mode=TwoWay}" />
+                    <StackPanel Orientation="Vertical" Name="propID">
+                      <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="ID:" Target="{Binding ElementName=edID}" />
+                      <TextBox Name="edID" Text="{Binding ID, Mode=TwoWay}" />
+                    </StackPanel>
+
+                    <StackPanel Orientation="Vertical" Name="propTitle">
+                      <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Title:" Target="{Binding ElementName=edTitle}" />
+                      <TextBox Name="edTitle" Text="{Binding Title, Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=true}" />
+                    </StackPanel>
+
+                    <StackPanel Orientation="Vertical" Name="propPosition">
+                      <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Position:" Target="{Binding ElementName=edPosition}" />
+                      <TextBox Name="edPosition" Text="{Binding Position, Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=true}" />
+                    </StackPanel>
+
+                    <StackPanel Orientation="Vertical" Name="propWidth">
+                      <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Width:" Target="{Binding ElementName=edWidth}" />
+                      <TextBox Name="edWidth" Text="{Binding Width, Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=true}" />
+                    </StackPanel>
+
+                    <StackPanel Orientation="Vertical" Name="propHeight">
+                      <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Height:" Target="{Binding ElementName=edHeight}" />
+                      <TextBox Name="edHeight" Text="{Binding Height, Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=true}" />
+                    </StackPanel>
+
+                    <StackPanel Orientation="Vertical" Name="propZoom">
+                      <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Zoom:" Target="{Binding ElementName=edZoom}" />
+                      <TextBox Name="edZoom" Text="{Binding Zoom, Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=true}" />
+                      <!-- can't use a slider here, since the grabbed slider thumb would move away from the mouse while zooming in/out -->
+                    </StackPanel>
+
+                    <StackPanel Orientation="Vertical" Name="propOpacity">
+                      <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Opacity:" Target="{Binding ElementName=sldOpacity}" />
+                      <!-- <TextBox Name="edOpacity" Text="{Binding Opacity, Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=true}" /> -->
+                      <Slider Name="sldOpacity" Value="{Binding Opacity, Mode=TwoWay}" Minimum="0.1" Maximum="1" SmallChange="0.05" LargeChange="0.1" Orientation="Horizontal" />
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal" Name="propMoveable">
+                      <CheckBox Name="cbMoveable" IsChecked="{Binding Moveable, Mode=TwoWay}" />
+                      <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Moveable" Target="{Binding ElementName=cbMoveable}"/>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal" Name="propResizable">
+                      <CheckBox Name="cbResizable" IsChecked="{Binding Resizable, Mode=TwoWay}" />
+                      <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Resizable" Target="{Binding ElementName=cbResizable}"/>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal" Name="propZoomable">
+                      <CheckBox Name="cbZoomable" IsChecked="{Binding Zoomable, Mode=TwoWay}" />
+                      <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Zoomable" Target="{Binding ElementName=cbZoomable}"/>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal" Name="propWarnOnClosing">
+                      <CheckBox Name="cbWarnOnClosing" IsChecked="{Binding WarnOnClosing, Mode=TwoWay}" />
+                      <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Warn on closing" Target="{Binding ElementName=cbWarnOnClosing}"/>
+                    </StackPanel>
+
                   </StackPanel>
 
-                  <StackPanel Orientation="Vertical" Name="propTitle">
-                    <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Title:" Target="{Binding ElementName=edTitle}" />
-                    <TextBox Name="edTitle" Text="{Binding Title, Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=true}" />
+                </toolkit:AccordionItem.Content>
+              </toolkit:AccordionItem>
+
+              <toolkit:AccordionItem Header="Content Options" IsSelected="True" Background="Transparent" HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch">
+                <toolkit:AccordionItem.Content>
+
+                  <StackPanel Name="PropertiesPanel" Orientation="Vertical" Margin="10,10,10,10" HorizontalAlignment="Stretch">
+
+                    <StackPanel.Resources>
+                      <Style TargetType="StackPanel" BasedOn="{StaticResource PropertyStackPanelStyle}" />
+                    </StackPanel.Resources>
+
+                    <!-- descendents should add items (better be a list of StackPanels) under a clipflair:BaseWindow.PropertyItems node in XAML -->
+
                   </StackPanel>
 
-                  <StackPanel Orientation="Vertical" Name="propPosition">
-                    <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Position:" Target="{Binding ElementName=edPosition}" />
-                    <TextBox Name="edPosition" Text="{Binding Position, Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=true}" />
-                  </StackPanel>
+                </toolkit:AccordionItem.Content>
+              </toolkit:AccordionItem>
 
-                  <StackPanel Orientation="Vertical" Name="propWidth">
-                    <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Width:" Target="{Binding ElementName=edWidth}" />
-                    <TextBox Name="edWidth" Text="{Binding Width, Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=true}" />
-                  </StackPanel>
+            </toolkit:Accordion>
 
-                  <StackPanel Orientation="Vertical" Name="propHeight">
-                    <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Height:" Target="{Binding ElementName=edHeight}" />
-                    <TextBox Name="edHeight" Text="{Binding Height, Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=true}" />
-                  </StackPanel>
+          </Grid>
+        </ScrollViewer>
 
-                  <StackPanel Orientation="Vertical" Name="propZoom">
-                    <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Zoom:" Target="{Binding ElementName=edZoom}" />
-                    <TextBox Name="edZoom" Text="{Binding Zoom, Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=true}" />
-                    <!-- can't use a slider here, since the grabbed slider thumb would move away from the mouse while zooming in/out -->
-                  </StackPanel>
+      </flip:FlipPanel.BackContent>
 
-                  <StackPanel Orientation="Vertical" Name="propOpacity">
-                    <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Opacity:" Target="{Binding ElementName=sldOpacity}" />
-                    <!-- <TextBox Name="edOpacity" Text="{Binding Opacity, Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=true}" /> -->
-                    <Slider Name="sldOpacity" Value="{Binding Opacity, Mode=TwoWay}" Minimum="0.1" Maximum="1" SmallChange="0.05" LargeChange="0.1" Orientation="Horizontal" />
-                  </StackPanel>
-
-                  <StackPanel Orientation="Horizontal" Name="propMoveable">
-                    <CheckBox Name="cbMoveable" IsChecked="{Binding Moveable, Mode=TwoWay}" />
-                    <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Moveable" Target="{Binding ElementName=cbMoveable}"/>
-                  </StackPanel>
-
-                  <StackPanel Orientation="Horizontal" Name="propResizable">
-                    <CheckBox Name="cbResizable" IsChecked="{Binding Resizable, Mode=TwoWay}" />
-                    <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Resizable" Target="{Binding ElementName=cbResizable}"/>
-                  </StackPanel>
-
-                  <StackPanel Orientation="Horizontal" Name="propZoomable">
-                    <CheckBox Name="cbZoomable" IsChecked="{Binding Zoomable, Mode=TwoWay}" />
-                    <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Zoomable" Target="{Binding ElementName=cbZoomable}"/>
-                  </StackPanel>
-
-                  <StackPanel Orientation="Horizontal" Name="propWarnOnClosing">
-                    <CheckBox Name="cbWarnOnClosing" IsChecked="{Binding WarnOnClosing, Mode=TwoWay}" />
-                    <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Warn on closing" Target="{Binding ElementName=cbWarnOnClosing}"/>
-                  </StackPanel>
-
-                </StackPanel>
-
-              </toolkit:AccordionItem.Content>
-            </toolkit:AccordionItem>
-
-            <toolkit:AccordionItem Header="Content Options" IsSelected="True" Background="Transparent" HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch">
-              <toolkit:AccordionItem.Content>
-
-                <StackPanel Name="PropertiesPanel" Orientation="Vertical" Margin="10,10,10,10" HorizontalAlignment="Stretch">
-
-                  <StackPanel.Resources>
-                    <Style TargetType="StackPanel" BasedOn="{StaticResource PropertyStackPanelStyle}" />
-                  </StackPanel.Resources>
-
-                  <!-- descendents should add items (better be a list of StackPanels) under a clipflair:BaseWindow.PropertyItems node in XAML -->
-
-                </StackPanel>
-
-              </toolkit:AccordionItem.Content>
-            </toolkit:AccordionItem>
-
-          </toolkit:Accordion>
-
-        </Grid>
-      </ScrollViewer>
-
-    </flip:FlipPanel.BackContent>
-
-  </flip:FlipPanel>
+    </flip:FlipPanel>
+  </toolkit:BusyIndicator>
 
 </float:FloatingWindow>
