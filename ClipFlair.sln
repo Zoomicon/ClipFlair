@@ -23,7 +23,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SilverTextEditor.Silverligh
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FloatingWindowZUI.Silverlight", "Client\FloatingWindowZUI\FloatingWindowZUI.Silverlight\FloatingWindowZUI.Silverlight.csproj", "{D7D67F52-7B9B-4DE5-9B72-534664F296B7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Utils.Silverlight", "Client\Converters\Utils.Silverlight.csproj", "{E784B6A1-A300-4571-A881-B15240EEE377}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClipFlair.Utils.Silverlight", "Client\Converters\ClipFlair.Utils.Silverlight.csproj", "{E784B6A1-A300-4571-A881-B15240EEE377}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ClipFlair.Libraries", "ClipFlair.Libraries", "{9226D211-9A9D-4F42-A166-8495F0C188A4}"
 EndProject

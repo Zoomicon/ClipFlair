@@ -1,7 +1,7 @@
 ﻿<!--
 Project: ClipFlair (http://ClipFlair.codeplex.com)
 Filename: CaptionsGridWindow.xaml
-Version: 20130114
+Version: 20130122
 -->
   
 <clipflair:BaseWindow x:Class="ClipFlair.Windows.CaptionsGridWindow"
@@ -28,7 +28,7 @@ Version: 20130114
 
   <captions:CaptionsGrid Name="gridCaptions"
                          HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
-                         
+
                          Time="{Binding Time, Mode=TwoWay}"
                          Captions="{Binding Captions, Mode=TwoWay}"
                          RoleVisible="{Binding RoleVisible, Mode=TwoWay}"
@@ -36,6 +36,7 @@ Version: 20130114
                          EndTimeVisible="{Binding EndTimeVisible, Mode=TwoWay}"
                          DurationVisible="{Binding DurationVisible, Mode=TwoWay}"
                          CaptionVisible="{Binding CaptionVisible, Mode=TwoWay}"
+                         WPMVisible="{Binding WPMVisible, Mode=TwoWay}"
                          AudioVisible="{Binding AudioVisible, Mode=TwoWay}"
                          CommentsVisible="{Binding CommentsVisible, Mode=TwoWay}"
   /> <!-- Source="{Binding Path=Source, Mode=TwoWay}" -->
@@ -81,6 +82,11 @@ Version: 20130114
       <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Caption visible" Target="{Binding ElementName=cbCaptionVisible}"/>
     </StackPanel>
 
+    <StackPanel Orientation="Horizontal">
+      <CheckBox Name="cbWPMVisible" IsChecked="{Binding WPMVisible, Mode=TwoWay}" />
+      <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="WPM (Words-per-minute) visible" Target="{Binding ElementName=cbWPMVisible}"/>
+    </StackPanel>
+    
     <StackPanel Orientation="Horizontal">
       <CheckBox Name="cbAudioVisible" IsChecked="{Binding AudioVisible, Mode=TwoWay}" />
       <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Audio visible" Target="{Binding ElementName=cbAudioVisible}"/>

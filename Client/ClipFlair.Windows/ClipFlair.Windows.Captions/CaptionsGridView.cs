@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: CaptionsGridView.cs
-//Version: 20130118
+//Version: 20130122
 
 using Microsoft.SilverlightMediaFramework.Core.Accessibility.Captions;
 
@@ -31,6 +31,7 @@ namespace ClipFlair.Windows.Views
     private bool endTimeVisible;
     private bool durationVisible;
     private bool captionVisible;
+    private bool wpmVisible;
     private bool audioVisible;
     private bool commentsVisible;
 
@@ -152,6 +153,18 @@ namespace ClipFlair.Windows.Views
       {
         captionVisible = value;
         RaisePropertyChanged(ICaptionsGridProperties.PropertyCaptionVisible);
+      }
+    }
+
+    [DataMember]
+    [DefaultValue(CaptionsGridDefaults.DefaultWPMVisible)]
+    public bool WPMVisible
+    {
+      get { return wpmVisible; }
+      set
+      {
+        wpmVisible = value;
+        RaisePropertyChanged(ICaptionsGridProperties.PropertyWPMVisible);
       }
     }
 
