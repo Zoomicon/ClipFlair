@@ -1,7 +1,7 @@
 ﻿<!-- 
 Project: ClipFlair (http://ClipFlair.codeplex.com)
 Filename: Generic.xaml
-Version: 20121215
+Version: 20130122
 -->
   
 <ResourceDictionary
@@ -27,7 +27,7 @@ Version: 20121215
   </DataTemplate>
 
   <DataTemplate x:Key="StartTimeCellEditTemplate">
-    <TextBox Margin="4" Text="{Binding Begin, StringFormat='hh\\:mm\\:ss\\.FFF', Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=true}" />
+    <TextBox Text="{Binding Begin, StringFormat='hh\\:mm\\:ss\\.FFF', Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=true}" />
     <!--<input:TimeUpDown Format="hh:mm:ss" Value="{Binding Begin, Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=true}" />-->
   </DataTemplate>
 
@@ -42,8 +42,8 @@ Version: 20121215
   </DataTemplate>
 
   <DataTemplate x:Key="EndTimeCellEditTemplate">
-    <TextBox Margin="4" Text="{Binding End, StringFormat='hh\\:mm\\:ss\\.FFF', Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=true}" />
-    <!--<input:TimeUpDown Format="hh:mm:ss" Minimum="{Binding Begin}"  Value="{Binding End, Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=true}" />-->
+    <TextBox Text="{Binding End, StringFormat='hh\\:mm\\:ss\\.FFF', Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=true}" />
+    <!--<input:TimeUpDown Format="hh:mm:ss" Minimum="{Binding Begin}" Value="{Binding End, Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=true}" />-->
   </DataTemplate>
 
   <!-- Duration -->
@@ -56,6 +56,11 @@ Version: 20121215
     <TextBlock Margin="4" Text="{Binding Duration, StringFormat='hh\\:mm\\:ss\\.FFF'}" />
   </DataTemplate>
 
+  <DataTemplate x:Key="DurationCellEditTemplate">
+    <TextBox Text="{Binding Duration, StringFormat='hh\\:mm\\:ss\\.FFF', Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=true}" />
+    <!--<input:TimeUpDown Format="hh:mm:ss" Value="{Binding Duration, Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=true}" />-->
+  </DataTemplate>
+
   <!-- Role -->
 
   <DataTemplate x:Key="RoleCellTemplate">
@@ -63,7 +68,7 @@ Version: 20121215
   </DataTemplate>
 
   <DataTemplate x:Key="RoleCellEditTemplate">
-    <!-- <TextBox Margin="4" Text="{Binding Role, Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=true}" /> -->
+    <!-- <TextBox Text="{Binding Role, Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=true}" /> -->
     <controls:AutoCompleteBox Text="{Binding Role, Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=true}" 
                               ItemsSource="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:CaptionsGrid}, Path=Roles}" 
                               IsTextCompletionEnabled="True"
@@ -82,13 +87,19 @@ Version: 20121215
   </DataTemplate>
 
   <DataTemplate x:Key="CaptionCellEditTemplate">
-    <TextBox Margin="4" AcceptsReturn="True" Text="{Binding Content, Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=true}" />
+    <TextBox AcceptsReturn="True" Text="{Binding Content, Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=true}" />
   </DataTemplate>
- 
+
+  <!-- WPM -->
+
+  <DataTemplate x:Key="WPMCellTemplate">
+    <TextBlock Margin="4" Text="{Binding WPM, StringFormat='F2'}" />
+  </DataTemplate>
+
   <!-- Audio -->
   
   <DataTemplate x:Key="AudioCellTemplate">
-    <audio:AudioRecorderControl Audio="{Binding RelativeSource={RelativeSource AncestorType=FrameworkElement}, Path=DataContext.Audio, Mode=TwoWay}" /> <!-- AudioRecorderControl sets its DataContext to its ViewModel, so it doesn't inherit its parent's DataContext -->
+    <audio:AudioRecorderControl Margin="2" Audio="{Binding RelativeSource={RelativeSource AncestorType=FrameworkElement}, Path=DataContext.Audio, Mode=TwoWay}" /> <!-- AudioRecorderControl sets its DataContext to its ViewModel, so it doesn't inherit its parent's DataContext -->
   </DataTemplate>
 
   <!-- Comments -->
@@ -98,7 +109,7 @@ Version: 20121215
   </DataTemplate>
 
   <DataTemplate x:Key="CommentsCellEditTemplate">
-    <TextBox Margin="4" AcceptsReturn="True" Text="{Binding Comments, Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=true}" />
+    <TextBox AcceptsReturn="True" Text="{Binding Comments, Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=true}" />
   </DataTemplate>
 
   <!-- EditableCombo --> 

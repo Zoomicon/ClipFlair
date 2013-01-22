@@ -116,6 +116,10 @@
       <Project>{BF52BDBA-830F-4CD4-AA9C-F653B6448184}</Project>
       <Name>AudioRecorderControl.Silverlight</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\..\Converters\ClipFlair.Utils.Silverlight.csproj">
+      <Project>{E784B6A1-A300-4571-A881-B15240EEE377}</Project>
+      <Name>ClipFlair.Utils.Silverlight</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\MediaPlayer\MediaPlayer.Silverlight\MediaPlayer.Silverlight.csproj">
       <Project>{DD195CFE-B418-4C76-8F51-EEE8E28FAA41}</Project>
       <Name>MediaPlayer.Silverlight</Name>

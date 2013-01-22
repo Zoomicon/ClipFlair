@@ -1,7 +1,7 @@
 ﻿<!--
 Project: ClipFlair (http://ClipFlair.codeplex.com)
 Filename: CaptionsGrid.xaml
-Version: 20121214
+Version: 20130122
 -->
   
   <UserControl x:Class="ClipFlair.CaptionsGrid.CaptionsGrid"
@@ -55,7 +55,7 @@ Version: 20121214
         <Image Source="Images/caption_remove.png"/>
       </Button>
 
-      <TextBlock Text="|" VerticalAlignment="Center" Foreground="DarkGray" />
+      <TextBlock Visibility="Collapsed" Text="|" VerticalAlignment="Center" Foreground="DarkGray" />
 
       <Button Visibility="Collapsed" Name="btnStart" Click="btnStart_Click">
         <ToolTipService.ToolTip>
@@ -97,9 +97,10 @@ Version: 20121214
       <sdk:DataGrid.Columns>
         <sdk:DataGridTemplateColumn Header="Start" CellTemplate="{StaticResource StartTimeCellTemplate}" CellEditingTemplate="{StaticResource StartTimeCellEditTemplate}" />
         <sdk:DataGridTemplateColumn Header="End" CellTemplate="{StaticResource EndTimeCellTemplate}" CellEditingTemplate="{StaticResource EndTimeCellEditTemplate}" />
-        <sdk:DataGridTemplateColumn Header="Duration" CellTemplate="{StaticResource DurationCellTemplate}" IsReadOnly="True"/>
+        <sdk:DataGridTemplateColumn Header="Duration" CellTemplate="{StaticResource DurationCellTemplate}" CellEditingTemplate="{StaticResource DurationCellEditTemplate}" />
         <sdk:DataGridTemplateColumn Header="Role" CellTemplate="{StaticResource RoleCellTemplate}" CellEditingTemplate="{StaticResource RoleCellEditTemplate}" />
         <sdk:DataGridTemplateColumn Header="Caption" Width="*" CellTemplate="{StaticResource CaptionCellTemplate}" CellEditingTemplate="{StaticResource CaptionCellEditTemplate}" />
+        <sdk:DataGridTemplateColumn Header="WPM" Width="50" CellTemplate="{StaticResource WPMCellTemplate}" IsReadOnly="True" />
         <sdk:DataGridTemplateColumn Header="Audio" Width="100" CellTemplate="{StaticResource AudioCellTemplate}" IsReadOnly="True" />
         <sdk:DataGridTemplateColumn Header="Comments" Width="100" CellTemplate="{StaticResource CommentsCellTemplate}" CellEditingTemplate="{StaticResource CommentsCellEditTemplate}" />
       </sdk:DataGrid.Columns>

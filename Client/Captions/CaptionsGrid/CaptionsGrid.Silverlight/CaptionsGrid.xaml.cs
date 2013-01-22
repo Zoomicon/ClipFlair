@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: CaptionsGrid.xaml.cs
-//Version: 20121215
+//Version: 20130122
 
 using ClipFlair.AudioRecorder;
 using ClipFlair.CaptionsLib.Utils;
@@ -15,7 +15,6 @@ using System.Windows.Controls;
 using System.Collections.Generic;
 
 using Microsoft.SilverlightMediaFramework.Core.Accessibility.Captions;
-
 
 //TODO: upon end of content cell edit, need to jump to some other previous time (for 0 jump to next time, say 0.02) to update player view, or throw some event that captions changed?
 
@@ -42,8 +41,9 @@ namespace ClipFlair.CaptionsGrid
       ColumnDuration = gridCaptions.Columns[2];
       ColumnRole = gridCaptions.Columns[3];
       ColumnCaption = gridCaptions.Columns[4];
-      ColumnAudio = gridCaptions.Columns[5];
-      ColumnComments = gridCaptions.Columns[6];
+      ColumnWPM = gridCaptions.Columns[5];
+      ColumnAudio = gridCaptions.Columns[6];
+      ColumnComments = gridCaptions.Columns[7];
 
       gridCaptions.ClipboardCopyMode = DataGridClipboardCopyMode.IncludeHeader;
       gridCaptions.SelectionMode = DataGridSelectionMode.Single;
@@ -67,12 +67,13 @@ namespace ClipFlair.CaptionsGrid
 
     #region Columns
 
-    //not using column indices as constants, using column references instead to allow for column reordering
+    //not using column indices as constants, using column references instead to allow for column reordering by the user
     public DataGridColumn ColumnRole { get; private set; }
     public DataGridColumn ColumnStartTime { get; private set; }
     public DataGridColumn ColumnEndTime { get; private set; }
     public DataGridColumn ColumnDuration { get; private set; }
     public DataGridColumn ColumnCaption { get; private set; }
+    public DataGridColumn ColumnWPM { get; private set; }
     public DataGridColumn ColumnAudio { get; private set; }
     public DataGridColumn ColumnComments { get; private set; }
 
@@ -347,6 +348,43 @@ namespace ClipFlair.CaptionsGrid
 
     #endregion
 
+    #region WPMVisible
+
+    /// <summary>
+    /// WPMVisible Dependency Property
+    /// </summary>
+    public static readonly DependencyProperty WPMVisibleProperty =
+        DependencyProperty.Register("WPMVisible", typeof(bool), typeof(CaptionsGrid),
+            new FrameworkPropertyMetadata(true, new PropertyChangedCallback(OnWPMVisibleChanged)));
+
+    /// <summary>
+    /// Gets or sets the WPMVisible property. 
+    /// </summary>
+    public bool WPMVisible
+    {
+      get { return (bool)GetValue(WPMVisibleProperty); }
+      set { SetValue(WPMVisibleProperty, value); }
+    }
+
+    /// <summary>
+    /// Handles changes to the WPMVisible property.
+    /// </summary>
+    private static void OnWPMVisibleChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    {
+      CaptionsGrid target = (CaptionsGrid)d;
+      target.OnWPMVisibleChanged((bool)e.OldValue, target.WPMVisible);
+    }
+
+    /// <summary>
+    /// Provides derived classes an opportunity to handle changes to the WPMVisible property.
+    /// </summary>
+    protected virtual void OnWPMVisibleChanged(bool oldValue, bool newValue)
+    {
+      ColumnWPM.Visibility = (newValue) ? Visibility.Visible : Visibility.Collapsed;
+    }
+
+    #endregion
+
     #region AudioVisible
 
     /// <summary>
@@ -432,6 +470,8 @@ namespace ClipFlair.CaptionsGrid
     
     #endregion
 
+    #region --- Methods ---
+
     private CaptionElement AddCaption()
     {
       if (Captions == null) return null;
@@ -450,6 +490,8 @@ namespace ClipFlair.CaptionsGrid
       
       return newCaption;
     }
+
+    #endregion
 
     #region --- Events ---
 

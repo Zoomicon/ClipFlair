@@ -1,15 +1,16 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: BaseWindow.xaml.cs
-//Version: 20130121
+//Version: 20130122
 
 //TODO: unbind control at close
-//TODO: do not allow to set too low opacity values that could make windows disappear
 
 #define PROPERTY_CHANGE_SUPPORT
 
 using ClipFlair.Utils.Extensions;
 using ClipFlair.Windows.Dialogs;
 using ClipFlair.Windows.Views;
+
+using WPFCompatibility;
 
 using SilverFlow.Controls;
 using Ionic.Zip;
@@ -136,6 +137,49 @@ namespace ClipFlair.Windows
       }
     }
 
+    #region Flipped
+
+    /// <summary>
+    /// Flipped Dependency Property
+    /// </summary>
+    public static readonly DependencyProperty FlippedProperty =
+        DependencyProperty.Register("Flipped", typeof(bool), typeof(BaseWindow),
+            new FrameworkPropertyMetadata((bool)false,
+                FrameworkPropertyMetadataOptions.None,
+                new PropertyChangedCallback(OnFlippedChanged)));
+
+    /// <summary>
+    /// Gets or sets the Flipped property.
+    /// </summary>
+    public bool Flipped
+    {
+      get { return (bool)GetValue(FlippedProperty); }
+      set { SetValue(FlippedProperty, value); }
+    }
+
+    /// <summary>
+    /// Handles changes to the Flipped property.
+    /// </summary>
+    private static void OnFlippedChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    {
+      BaseWindow target = (BaseWindow)d;
+      bool oldFlipped = (bool)e.OldValue;
+      bool newFlipped = target.Flipped;
+      target.OnFlippedChanged(oldFlipped, newFlipped);
+    }
+
+    /// <summary>
+    /// Provides derived classes an opportunity to handle changes to the Flipped property.
+    /// </summary>
+    protected virtual void OnFlippedChanged(bool oldFlipped, bool newFlipped)
+    {
+      FlipPanel.IsFlipped = newFlipped; //Note: must make sure we don't set FlipPanel.IsFlipped directly elsewhere to keep its state in-sync with the Flipped dependency property
+    }
+
+    #endregion
+
+    
+
     #endregion
 
     #region Methods
@@ -166,7 +210,7 @@ namespace ClipFlair.Windows
         //keeping tab stop functionality for future back to front flips
       }
 
-      FlipPanel.IsFlipped = !FlipPanel.IsFlipped; //flip the view to show/hide window options
+      Flipped = !Flipped; //flip the view to show/hide window options
     }
 
     #region Load / Save Options
@@ -191,7 +235,7 @@ namespace ClipFlair.Windows
               memStream.Position = 0;
               LoadOptions(memStream);
             }
-            FlipPanel.IsFlipped = false; //flip the view back to front after succesful options loading //since this is an asynchronous operation we have to flip here
+            Flipped = false; //flip the view back to front after succesful options loading //since this is an asynchronous operation we have to flip here
           }
         }
         catch (Exception ex)
@@ -399,7 +443,7 @@ namespace ClipFlair.Windows
           using (Stream stream = dlg.File.OpenRead()) //will close the stream when done
           {
             LoadOptions(stream);
-            FlipPanel.IsFlipped = false; //flip the view back to front after succesful options loading
+            Flipped = false; //flip the view back to front after succesful options loading
           }
       }
       catch (NullReferenceException)
