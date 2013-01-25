@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: Command.cs
-//Version: 20121125
+//Version: 20130123
 
 using System;
 using System.Windows;
@@ -12,8 +12,6 @@ namespace ClipFlair.AudioRecorder
   public class Command : DependencyObject, ICommand
   {
     public Action ExecuteAction { get; set; }
-
-    private bool _canExecute;
 
     #region IsEnabled
 
