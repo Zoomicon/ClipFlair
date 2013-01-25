@@ -1,6 +1,8 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: AudioRecorderControl.xaml.cs
-//Version: 20121224
+//Version: 20130123
+
+//TODO: fix so that when ToggleCommand is unchecked the respective toggle button listens for respective event and unchecks too
 
 using WPFCompatibility;
 
@@ -9,6 +11,7 @@ using System.ComponentModel;
 using System.IO;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 
 namespace ClipFlair.AudioRecorder
 {
@@ -19,6 +22,12 @@ namespace ClipFlair.AudioRecorder
     {
       View = new AudioRecorderView(); //must do first
       InitializeComponent();
+
+      //Need to use a MouseLeftButtonDownHandler, to handle mouse events first, before any hosting control (and since the Button/ToggleButton handles the ButtonDown events internally in favor of Click event, asking to process handled events too)
+      btnRecord.AddHandler(MouseLeftButtonDownEvent, new MouseButtonEventHandler(MouseLeftButtonDownHandler), true);
+      //don't add handler for btnPlay, since Silverlight doesn't always notify when media finished playing in the case of WAV audio
+      btnLoad.AddHandler(MouseLeftButtonDownEvent, new MouseButtonEventHandler(MouseLeftButtonDownHandler), true);
+      btnSave.AddHandler(MouseLeftButtonDownEvent, new MouseButtonEventHandler(MouseLeftButtonDownHandler), true);
 
       //Unloaded += (s, e) => View = null; //release property change event handlers
     }
@@ -68,7 +77,7 @@ namespace ClipFlair.AudioRecorder
 
     #endregion
 
-     #region Audio
+    #region Audio
 
     /// <summary>
     /// Audio Dependency Property
@@ -107,6 +116,15 @@ namespace ClipFlair.AudioRecorder
     }
 
     #endregion
+
+    #endregion
+
+    #region Events
+
+    private void MouseLeftButtonDownHandler(object sender, MouseButtonEventArgs e)
+    {
+      View.Busy = true;
+    }
 
     #endregion
 

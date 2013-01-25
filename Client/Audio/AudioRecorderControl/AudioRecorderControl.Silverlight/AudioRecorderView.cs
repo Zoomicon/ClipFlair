@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: AudioRecorderView.cs
-//Version: 20121223
+//Version: 20130123
 
 using ClipFlair.AudioLib;
 
@@ -20,6 +20,7 @@ namespace ClipFlair.AudioRecorder
 
     #region Constants
 
+    public const string PROPERTY_BUSY = "Busy";
     public const string PROPERTY_AUDIO = "Audio";
 
     const string MSG_NO_AUDIO = "No access to audio device";
@@ -40,6 +41,7 @@ namespace ClipFlair.AudioRecorder
 
     #region Fields
 
+    private bool busy = false;
     private Stream _audio;
     private WaveMediaStreamSource wavMss;
     private MediaElement player = new MediaElement();
@@ -79,6 +81,19 @@ namespace ClipFlair.AudioRecorder
     public bool HasAudio
     {
       get { return (Audio != null); }
+    }
+
+    public bool Busy
+    {
+      get { return busy; }
+      set
+      {
+        if (busy != value)
+        {
+          busy = value;
+          RaisePropertyChanged(PROPERTY_BUSY);
+        }
+      }
     }
 
     public Stream Audio
@@ -173,12 +188,15 @@ namespace ClipFlair.AudioRecorder
 
     public void Record()
     {
+      Busy = true;
+
       if (!CanRecord)
       {
         RecordCommand.IsChecked = false; //depress recording toggle button //don't talk to ToggleButton directly
         Reset();
         Status = MSG_NO_AUDIO;
         MessageBox.Show(Status); //TODO: find parent window
+        Busy = false;
         return;
       }
 
@@ -200,6 +218,7 @@ namespace ClipFlair.AudioRecorder
         RecordCommand.IsChecked = false; //depress recording toggle button //don't talk to ToggleButton directly
         Reset();
         Status = MSG_RECORD_FAILED + e.Message;
+        Busy = false;
         MessageBox.Show(Status); //TODO: find parent window
       }
 
@@ -207,35 +226,44 @@ namespace ClipFlair.AudioRecorder
 
     public void StopRecording()
     {
-      if (_captureSource.State == CaptureState.Started)
+      if (_captureSource.State != CaptureState.Started)
       {
-        _captureSource.Stop();
-
-        try
-        {
-          Audio = new MemoryStream();
-          WavManager.SavePcmToWav(_sink.BackingStream, Audio, _sink.CurrentFormat);
-
-          Status = MSG_RECORDED;
-
-          RecordCommand.IsEnabled = true;
-          LoadCommand.IsEnabled = true;
-          PlayCommand.IsEnabled = true;
-          SaveCommand.IsEnabled = true;
-        }
-        catch (Exception e)
-        {
-          Audio = null;
-          Reset();
-          Status = MSG_RECORD_FAILED + e.Message;
-          MessageBox.Show(Status); //TODO: find parent window
-        }
-
+        Busy = false;
+        return;
       }
+
+      _captureSource.Stop();
+
+      try
+      {
+        Audio = new MemoryStream();
+        WavManager.SavePcmToWav(_sink.BackingStream, Audio, _sink.CurrentFormat);
+
+        Status = MSG_RECORDED;
+
+        RecordCommand.IsEnabled = true;
+        LoadCommand.IsEnabled = true;
+        PlayCommand.IsEnabled = true;
+        SaveCommand.IsEnabled = true;
+      }
+      catch (Exception e)
+      {
+        Audio = null;
+        Reset();
+        Status = MSG_RECORD_FAILED + e.Message;
+        MessageBox.Show(Status); //TODO: find parent window
+      }
+      finally
+      {
+        Busy = false;
+      }
+
     }
 
     public void Play()
     {
+      if (Busy) return;
+
       if (!HasAudio)
       {
         //PlayCommand.IsChecked = false; //depress playback toggle button //don't talk to ToggleButton directly
@@ -267,13 +295,23 @@ namespace ClipFlair.AudioRecorder
       {
         //NOP
       }
+      finally
+      {
+        Busy = false;
+      }
     }
 
     #region Load-Save
 
     public void LoadFile() //this has to be called by user-initiated event handler
     {
-      if (openFileDialog.ShowDialog() == false) return;
+      if (openFileDialog.ShowDialog() == false)
+      {
+        Busy = false;
+        return;
+      }
+
+      Busy = true;
 
       try
       {
@@ -296,6 +334,10 @@ namespace ClipFlair.AudioRecorder
         Status = MSG_LOAD_FAILED + e.Message;
         MessageBox.Show(Status); //TODO: find parent window
       }
+      finally
+      {
+        Busy = false;
+      }
     }
 
     public void SaveFile() //this has to be called by user-initiated event handler
@@ -303,10 +345,17 @@ namespace ClipFlair.AudioRecorder
       if (!HasAudio)
       {
         MessageBox.Show("No audio available to save");
+        Busy = false;
         return;
       }
 
-      if (saveFileDialog.ShowDialog() == false) return;
+      if (saveFileDialog.ShowDialog() == false)
+      {
+        Busy = false;
+        return;
+      }
+
+      Busy = true;
 
       try
       {
@@ -324,6 +373,10 @@ namespace ClipFlair.AudioRecorder
       {
         Status = MSG_SAVE_FAILED + e.Message;
         MessageBox.Show(Status); //TODO: find parent window
+      }
+      finally
+      {
+        Busy = false;
       }
     }
 
