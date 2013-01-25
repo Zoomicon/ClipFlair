@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: MessageDialog.xaml.cs
-//Version: 20121222
+//Version: 20130124
 
 using System;
 using System.Windows;
@@ -39,7 +39,8 @@ namespace ClipFlair.Windows.Dialogs
       InputDialog prompt = new InputDialog();
       prompt.Title = title;
       prompt.Message = message;
-      prompt.Closing += closingHandler;
+      if (closingHandler != null) 
+        prompt.Closing += closingHandler;
       prompt.Show();
     }
 

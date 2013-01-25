@@ -1,7 +1,7 @@
 ﻿<!--
 Project: ClipFlair (http://ClipFlair.codeplex.com)
 Filename: CaptionsGrid.xaml
-Version: 20130122
+Version: 20130124
 -->
   
   <UserControl x:Class="ClipFlair.CaptionsGrid.CaptionsGrid"
@@ -55,16 +55,16 @@ Version: 20130122
         <Image Source="Images/caption_remove.png"/>
       </Button>
 
-      <TextBlock Visibility="Collapsed" Text="|" VerticalAlignment="Center" Foreground="DarkGray" />
+      <TextBlock Text="|" VerticalAlignment="Center" Foreground="DarkGray" />
 
-      <Button Visibility="Collapsed" Name="btnStart" Click="btnStart_Click">
+      <Button Name="btnStart" Click="btnStart_Click">
         <ToolTipService.ToolTip>
           <ToolTip Content="{Binding tooltip_caption_start, Source={StaticResource localizedStrings}}"/>
         </ToolTipService.ToolTip>
         <Image Source="Images/caption_start.png"/>
       </Button>
 
-      <Button Visibility="Collapsed" Name="btnEnd" Click="btnEnd_Click">
+      <Button Name="btnEnd" Click="btnEnd_Click">
         <ToolTipService.ToolTip>
           <ToolTip Content="{Binding tooltip_caption_end, Source={StaticResource localizedStrings}}"/>
         </ToolTipService.ToolTip>

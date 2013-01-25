@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: CaptionsGrid.xaml.cs
-//Version: 20130122
+//Version: 20130125
 
 using ClipFlair.AudioRecorder;
 using ClipFlair.CaptionsLib.Utils;
@@ -48,6 +48,14 @@ namespace ClipFlair.CaptionsGrid
       gridCaptions.ClipboardCopyMode = DataGridClipboardCopyMode.IncludeHeader;
       gridCaptions.SelectionMode = DataGridSelectionMode.Single;
       gridCaptions.SelectionChanged += new SelectionChangedEventHandler(DataGrid_SelectionChanged);
+  
+      gridCaptions.BeginningEdit += (s, e) => { 
+        Editing = true;
+      };
+      gridCaptions.CellEditEnded += (s, e) => { 
+        Editing = false;
+      };
+
     }
 
     protected void DataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -55,7 +63,9 @@ namespace ClipFlair.CaptionsGrid
       CaptionElement selectedCaption = (CaptionElement)gridCaptions.SelectedItem;
       if (selectedCaption != null)
       {
-        gridCaptions.ScrollIntoView(selectedCaption, gridCaptions.Columns[0]); //scroll vertically to show selected caption's row (and horizontally if needed to show 1st row)
+        DataGridColumn scrollToColumn = gridCaptions.CurrentColumn;
+        if (scrollToColumn == null) scrollToColumn = gridCaptions.Columns[0]; //if no column selected scroll to show 1st one
+        gridCaptions.ScrollIntoView(selectedCaption, scrollToColumn); //scroll vertically to show selected caption's row
         //cells that are scrolled out of view aren't created yet and won't give us their content //TODO: blog this workarround (needed if the row is out of view or not rendered yet)
           
         Time = selectedCaption.Begin;
@@ -65,6 +75,8 @@ namespace ClipFlair.CaptionsGrid
 
     #region --- Properties ---
 
+    public bool Editing { get; private set; }
+ 
     #region Columns
 
     //not using column indices as constants, using column references instead to allow for column reordering by the user
@@ -112,13 +124,29 @@ namespace ClipFlair.CaptionsGrid
     /// <summary>
     /// Provides derived classes an opportunity to handle changes to the Time property.
     /// </summary>
-    protected virtual void OnTimeChanged(TimeSpan oldTime, TimeSpan newTime)
+    protected virtual void OnTimeChanged(TimeSpan oldTime, TimeSpan newTime) //if StartTime or EndTime cell is being edited (doesn't work), update its value with current Time, else if any caption contains current Time select it (else keep current selection)
     {
       CaptionElement activeCaption = null;
-      foreach (CaptionElement c in Captions.Children.WhereActiveAtPosition(newTime))
-        activeCaption = c; //if multiple captions cover this position, select the last one
-      
-      gridCaptions.SelectedItem = activeCaption; //this will deselect if no active caption at that time position
+ /*       activeCaption = (CaptionElement)gridCaptions.SelectedItem;
+      DataGridColumn curcol = gridCaptions.CurrentColumn;
+
+      if (curcol == ColumnStartTime || curcol == ColumnEndTime)
+      {
+        object txt = curcol.GetCellContent(activeCaption);
+        if (txt is TextBox) //since Editing property doesn't seem to work OK, not checking it above, but using this check instead
+        {
+          string timeStr = newTime.ToString("hh:mm:ss.FFF");
+          ((TextBox)txt).Text = timeStr;
+        }
+      }
+      else */
+      {
+        foreach (CaptionElement c in Captions.Children.WhereActiveAtPosition(newTime))
+          activeCaption = c; //if multiple captions cover this position, select the last one
+
+        if (activeCaption != null) //remember last selected caption (do not deselect if no active caption at current time position) so that we can change its start/end times using respective buttons
+          gridCaptions.SelectedItem = activeCaption;
+      }
     }
 
     #endregion
@@ -459,6 +487,8 @@ namespace ClipFlair.CaptionsGrid
 
     #endregion
 
+    #region Roles
+
     public IEnumerable<string> Roles
     {
       get
@@ -467,7 +497,9 @@ namespace ClipFlair.CaptionsGrid
         return (from caption in Captions.Children select ((CaptionElementExt)caption).Role).Distinct().OrderBy(n => n);
       }
     }
-    
+
+    #endregion
+
     #endregion
 
     #region --- Methods ---
@@ -531,7 +563,7 @@ namespace ClipFlair.CaptionsGrid
       if (selectedCaption != null)
         selectedCaption.End = Time;
       else
-        AddCaption().End = Time;
+        AddCaption().End = Time; //also sets the begin time, no need to do AddCaption().Begin = Time;
     }
 
     #endregion

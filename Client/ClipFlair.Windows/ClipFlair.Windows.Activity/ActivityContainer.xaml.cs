@@ -267,7 +267,7 @@ namespace ClipFlair.Windows
       return window;
     }
 
-    #region binding
+    #region Binding
 
     private void BindWindow(BaseWindow window)
     {
