@@ -5,7 +5,7 @@
 <!--
 Project: ClipFlair (http://ClipFlair.codeplex.com)
 Filename: ClipFlairPlayground.aspx
-Version: 20130121
+Version: 20130130
 -->
 
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -17,9 +17,9 @@ Version: 20130121
   <link rel="shortcut icon" type="image/ico" href="favicon.ico" />
 
   <meta property="fb:admins" content="313381898712634"/>
-  <meta property="og:url" content="http://clipflair.net"/>
-  <meta property="og:title" content="ClipFlair"/>
-  <meta property="og:site_name" content="ClipFlair"/>
+  <meta property="og:url" content="http://play.clipflair.net"/>
+  <meta property="og:title" content="ClipFlair Playground"/>
+  <meta property="og:site_name" content="ClipFlair Playground"/>
   <meta property="og:description" content="Foreign Language Learning through Interactive Revoicing and Captioning of Clips"/>
   <meta property="og:type" content="website"/>
   <meta property="og:image" content="http://clipflair.net/wp-content/uploads/2012/06/clipflair-logo02.jpg"/>
@@ -106,7 +106,7 @@ Version: 20130121
 
     function onClosing() {
       if (activity().View.WarnOnClosing)
-        return "Are you sure you want to close ClipFlair Playground?";
+        return "Do you want to exit ClipFlair Playground?";
     }
 
     function onClosed() {

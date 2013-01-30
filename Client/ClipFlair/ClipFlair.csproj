@@ -99,6 +99,7 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="App_Extensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -118,6 +119,10 @@
     <ProjectReference Include="..\ClipFlair.Windows\ClipFlair.Windows.Base\ClipFlair.Windows.Base.csproj">
       <Project>{4CE71FC4-B8D9-4305-AE15-2F0501CA58B3}</Project>
       <Name>ClipFlair.Windows.Base</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ClipFlair.Windows\ClipFlair.Windows.Image\ClipFlair.Windows.Image.csproj">
+      <Project>{AA7B9EC6-8A08-4300-827B-65A66818BAF7}</Project>
+      <Name>ClipFlair.Windows.Image</Name>
     </ProjectReference>
     <ProjectReference Include="..\ClipFlair.Windows\ClipFlair.Windows.Media\ClipFlair.Windows.Media.csproj">
       <Project>{A14AC96C-D998-4C35-B1C0-415535D1378B}</Project>
