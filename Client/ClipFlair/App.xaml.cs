@@ -1,12 +1,14 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: App.xaml.cs
-//Version: 20121224
+//Version: 20130130
 
 using ClipFlair.Windows;
+
 using SilverFlow.Controls;
 
 using System;
 using System.Collections.Generic;
+using System.Threading;
 using System.Windows;
 using System.Windows.Browser;
 using System.Windows.Threading;
@@ -16,9 +18,26 @@ namespace ClipFlair
 
   public partial class App : Application
   {
+    
+    #region Constants
+
+    private const string CLIPFLAIR_GALLERY_ACTIVITY = "http://gallery.clipflair.net/activity/";
+    private const string CLIPFLAIR_GALLERY_VIDEO = "http://gallery.clipflair.net/video/";
+    private const string CLIPFLAIR_GALLERY_AUDIO = "http://gallery.clipflair.net/audio/";
+    private const string CLIPFLAIR_GALLERY_TEXT = "http://gallery.clipflair.net/text/";
+    private const string CLIPFLAIR_GALLERY_IMAGE = "http://gallery.clipflair.net/image/";
+    private const string CLIPFLAIR_GALLERY_MAP = "http://gallery.clipflair.net/map/";
 
     private const string PARAMETER_ACTIVITY = "activity";
+    private const string PARAMETER_COMPONENT = "component";
     private const string PARAMETER_MEDIA = "media";
+    private const string PARAMETER_VIDEO = "video";
+    private const string PARAMETER_AUDIO = "audio";
+    private const string PARAMETER_TEXT = "text";
+    private const string PARAMETER_IMAGE = "image";
+    private const string PARAMETER_MAP = "map";
+
+    #endregion
 
     public App()
     {
@@ -36,31 +55,19 @@ namespace ClipFlair
       UpdateOOB(); //TODO: run this from background thread, seems to take some time //CALLING THIS FIRST, SINCE THE REST OF THE CODE COULD THROW AN EXCEPTION WHICH WOULD BLOCK UPDATES (AND ALSO TO MAKE USE OF THE TIME TO SET UP THE APP, SINCE UPDATING OCCURS IN THE BACKGROUND)
     
       FloatingWindowHost host = new FloatingWindowHost(); //don't use FloatingWindowHostZUI here
-      
-      ActivityWindow activityWindow = new ActivityWindow();
-      activityWindow.IsTopLevel = true; //hide backpanel properties not relevant when not being a child window
-      host.Add(activityWindow);
-
-      activityWindow.Position = new Point(0, 0);
-      activityWindow.MaximizeWindow(); //TODO: seems MaximizeAction is broken, need to check original FloatingWindow control (Silverlight version)
-      
-      activityWindow.ShowMaximizeButton = false;
-      activityWindow.ShowMinimizeButton = false;
-      activityWindow.ShowCloseButton = false;
+      ActivityWindow activityWindow = CreateActivityWindow(host);
 
       if (IsRunningOutOfBrowser) //Must not set this for in-browser apps, else warning that this will be ignored will be shown at runtime
 
         App.Current.MainWindow.Closing += (s, ev) => //due to a bug in Silverlight, this has to be attached BEFORE setting the App's RootVisual
         {
           if (activityWindow.View.WarnOnClosing)
-            if (MessageBox.Show("Do you want to exit ClipFlair Playground?", "Confirmation", MessageBoxButton.OKCancel) != MessageBoxResult.OK)
+            if (MessageBox.Show("Do you want to exit " + ProductName + "?", "Confirmation", MessageBoxButton.OKCancel) != MessageBoxResult.OK)
               ev.Cancel = true;
             else //proceed with app closing
               activityWindow.View.WarnOnClosing = false; //disable warning before proceeding with close (not really needed, since the ActivityWindow checks if it's TopLevel or not)
         }; //TODO: add Closing (with cancel) event handler) in webpage script too for when running in-browser
 
-      else
-        HtmlPage.RegisterScriptableObject("activity", activityWindow);
 
       host.Rendered += (s, ev) =>
       {
@@ -70,30 +77,86 @@ namespace ClipFlair
         if (IsRunningOutOfBrowser)
           activityWindow.ShowLoadURLDialog();
         else
-        {
-          IDictionary<string, string> queryString = HtmlPage.Document.QueryString;
-          bool foundParam = false;
-          if (queryString.ContainsKey(PARAMETER_ACTIVITY))
-          {
-            activityWindow.LoadOptions(new Uri(queryString[PARAMETER_ACTIVITY], UriKind.Absolute));
-            foundParam = true;
-          }
-          if (queryString.ContainsKey(PARAMETER_MEDIA)) //TODO: if an activity parameter is also given we should wait for it to load first (or fail to load)
-          {
-            MediaPlayerWindow w = new MediaPlayerWindow();
-            activityWindow.activityContainer.AddWindowInViewCenter(w);
-            w.View.Source = new Uri(queryString[PARAMETER_MEDIA], UriKind.Absolute);
-            foundParam = true;
-          }
-          //...PARAMETER_CAPTIONS, PARAMETER_COMPONENT etc.
-          if (!foundParam) 
+          if (!ParseUrlParameters(activityWindow)) 
             activityWindow.ShowLoadURLDialog();
-        }
       };
 
       RootVisual = host;
 
+      if (!IsRunningOutOfBrowser)
+        HtmlPage.RegisterScriptableObject("activity", activityWindow); //NOTE: must do this only after setting RootVisual
+      
       //MessageBox.Show("ClipFlair loaded"); //uncomment this to test the loading indicator
+    }
+
+    private ActivityWindow CreateActivityWindow(FloatingWindowHost host)
+    {
+      ActivityWindow w = new ActivityWindow();
+      w.IsTopLevel = true; //hide backpanel properties not relevant when not being a child window
+      host.Add(w);
+
+      w.Position = new Point(0, 0);
+      w.MaximizeWindow(); //TODO: seems MaximizeAction is broken, need to check original FloatingWindow control (Silverlight version)
+
+      w.ShowMaximizeButton = false;
+      w.ShowMinimizeButton = false;
+      w.ShowCloseButton = false;
+
+      return w;
+    }
+
+    private bool ParseUrlParameters(ActivityWindow activityWindow)
+    {
+      IDictionary<string, string> queryString = HtmlPage.Document.QueryString;
+      bool foundParam = false;
+      if (queryString.ContainsKey(PARAMETER_ACTIVITY))
+      {
+        activityWindow.LoadOptions(new Uri(new Uri(CLIPFLAIR_GALLERY_ACTIVITY), queryString[PARAMETER_ACTIVITY]));
+        foundParam = true;
+      }
+      if (queryString.ContainsKey(PARAMETER_MEDIA))
+      {
+        WaitTillNotBusy(activityWindow); //TODO: doesn't work (should wait for any activity to load first)
+        MediaPlayerWindow w = new MediaPlayerWindow();
+        activityWindow.activityContainer.AddWindowInViewCenter(w);
+        w.View.Source = new Uri(new Uri(CLIPFLAIR_GALLERY_VIDEO), queryString[PARAMETER_MEDIA]);
+        foundParam = true;
+      }
+      if (queryString.ContainsKey(PARAMETER_VIDEO))
+      {
+        WaitTillNotBusy(activityWindow); //TODO: doesn't work (should wait for any activity to load first)
+        MediaPlayerWindow w = new MediaPlayerWindow();
+        activityWindow.activityContainer.AddWindowInViewCenter(w);
+        w.View.Source = new Uri(new Uri(CLIPFLAIR_GALLERY_VIDEO), queryString[PARAMETER_VIDEO]);
+        foundParam = true;
+      }
+      if (queryString.ContainsKey(PARAMETER_AUDIO))
+      {
+        WaitTillNotBusy(activityWindow); //TODO: doesn't work (should wait for any activity to load first)
+        MediaPlayerWindow w = new MediaPlayerWindow();
+        activityWindow.activityContainer.AddWindowInViewCenter(w);
+        w.View.VideoVisible = false;
+        w.View.Source = new Uri(new Uri(CLIPFLAIR_GALLERY_AUDIO), queryString[PARAMETER_AUDIO]);
+        foundParam = true;
+      }
+      if (queryString.ContainsKey(PARAMETER_IMAGE))
+      {
+        WaitTillNotBusy(activityWindow); //TODO: doesn't work (should wait for any activity to load first)
+        ImageWindow w = new ImageWindow();
+        activityWindow.activityContainer.AddWindowInViewCenter(w);
+        w.View.Source = new Uri(new Uri(CLIPFLAIR_GALLERY_IMAGE), queryString[PARAMETER_IMAGE]);
+        foundParam = true;
+      }
+
+      //TODO: add ...PARAMETER_CAPTIONS, PARAMETER_COMPONENT, TEXT, MAP etc.
+      
+      return foundParam;
+    }
+
+    private void WaitTillNotBusy(ActivityWindow w)
+    {
+      while (w.View.Busy) 
+        Thread.Sleep(100); //wait for 1/10 sec
     }
 
     private void Application_Exit(object sender, EventArgs e)

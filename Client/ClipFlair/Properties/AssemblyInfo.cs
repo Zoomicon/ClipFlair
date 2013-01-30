@@ -5,12 +5,12 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("ClipFlair")]
+[assembly: AssemblyTitle("ClipFlair Playground")]
 [assembly: AssemblyDescription("Foreign Language Learning through Interactive Revoicing and Captioning of Clips")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("http://ClipFlair.net")]
-[assembly: AssemblyProduct("ClipFlair")]
-[assembly: AssemblyCopyright("Copyright ©  2012")]
+[assembly: AssemblyCompany("ClipFlair (http://ClipFlair.net)")]
+[assembly: AssemblyProduct("ClipFlair Playground")]
+[assembly: AssemblyCopyright("Copyright ©  2012-2013")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
