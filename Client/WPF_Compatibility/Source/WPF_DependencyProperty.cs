@@ -1,5 +1,5 @@
 ﻿//Filename: WPF_DependencyProperty
-//Version: 20120606
+//Version: 20130131
 //Author: George Birbilis <birbilis@kagi.com>
 
 using System;
@@ -15,7 +15,8 @@ namespace WPFCompatibility
         {
             DependencyProperty dp = DependencyProperty.Register(name, propertyType, ownerType, typeMetadata);
 #if SILVERLIGHT
-            FrameworkPropertyMetadata.AssociatePropertyWithCoercionMethod(dp, typeMetadata.CoerceValueCallback);
+            if (typeMetadata != null && typeMetadata.CoerceValueCallback != null) 
+              FrameworkPropertyMetadata.AssociatePropertyWithCoercionMethod(dp, typeMetadata.CoerceValueCallback);
 #endif
             return dp;
         }

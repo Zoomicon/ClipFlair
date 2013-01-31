@@ -1,11 +1,11 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: OptionsLoadSaveControl.xaml.cs
-//Version: 20121221
+//Version: 20130131
 
 using System.Windows;
 using System.Windows.Controls;
 
-namespace ClipFlair.Windows.Base
+namespace ClipFlair.UI.Widgets
 {
 
   public partial class OptionsLoadSaveControl : UserControl

@@ -1,9 +1,8 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: ActivityContainer.xaml.cs
-//Version: 20130118
+//Version: 20130131
 
 //TODO: add ContentPartsZoomable property
-//TODO: move zoom slider UI to FloatingWindowHostZUI's XAML template
 //TODO: add to FloatingWindowHostZUI a rezoom to fit button
 //TODO: must clear bindings when child window closes (now seem to stay as zombies hearing revoicing entries play at given time)
 
@@ -50,9 +49,7 @@ namespace ClipFlair.Windows
       BindingUtils.RegisterForNotification("ContentOffsetY", zuiContainer.ZoomHost, (d, e) => { if (View != null) { View.ViewPosition = new Point(zuiContainer.ZoomHost.ContentOffsetX, zuiContainer.ZoomHost.ContentOffsetY); } });
       BindingUtils.RegisterForNotification("ContentViewportWidth", zuiContainer.ZoomHost, (d, e) => { if (View != null) { View.ViewWidth = (double)e.NewValue; } });
       BindingUtils.RegisterForNotification("ContentViewportHeight", zuiContainer.ZoomHost, (d, e) => { if (View != null) { View.ViewHeight = (double)e.NewValue; } });
-      BindingUtils.RegisterForNotification("ContentScale", zuiContainer.ZoomHost, (d, e) => { if (View != null) { View.ContentZoom = (double)e.NewValue; } });
-      BindingUtils.RegisterForNotification("ContentScalable", zuiContainer.ZoomHost, (d, e) => { if (View != null) { View.ContentZoomable = (bool)e.NewValue; } });
-
+ 
       LoadParts();
     }
 
@@ -121,8 +118,6 @@ namespace ClipFlair.Windows
       View.ViewPosition = new Point(zuiContainer.ZoomHost.ContentOffsetX, zuiContainer.ZoomHost.ContentOffsetY);
       View.ViewWidth = zuiContainer.ZoomHost.ContentViewportWidth;
       View.ViewHeight = zuiContainer.ZoomHost.ContentViewportHeight;
-      View.ContentZoom = zuiContainer.ZoomHost.ContentScale;
-      View.ContentZoomable = zuiContainer.ZoomHost.ContentScalable;
       View.ContentPartsConfigurable = zuiContainer.WindowsConfigurable;
     }
 
@@ -150,8 +145,6 @@ namespace ClipFlair.Windows
         zuiContainer.ZoomHost.ContentOffsetY = View.ViewPosition.Y;
         zuiContainer.ZoomHost.ContentViewportWidth = View.ViewWidth;
         zuiContainer.ZoomHost.ContentViewportHeight = View.ViewHeight;
-        zuiContainer.ZoomHost.ContentScale = View.ContentZoom;
-        zuiContainer.ZoomHost.ContentScalable = View.ContentZoomable;
         //...
       }
       else switch (e.PropertyName) //string equality check in .NET uses ordinal (binary) comparison semantics by default
@@ -165,12 +158,6 @@ namespace ClipFlair.Windows
             break;
           case IActivityProperties.PropertyViewHeight:
             zuiContainer.ZoomHost.ContentViewportHeight = View.ViewHeight;
-            break;
-          case IActivityProperties.PropertyContentZoom:
-            zuiContainer.ZoomHost.ContentScale = View.ContentZoom;
-            break;
-          case IActivityProperties.PropertyContentZoomable:
-            zuiContainer.ZoomHost.ContentScalable = View.ContentZoomable;
             break;
           //...
         }
@@ -252,9 +239,11 @@ namespace ClipFlair.Windows
 
     public BaseWindow AddWindowInViewCenter(BaseWindow window)
     {
-      window.Scale = 1.0d / zuiContainer.ZoomHost.ContentScale; //TODO: !!! don't use host.Scale, has bug and is always 1
       ZoomAndPanControl host = zuiContainer.ZoomHost;
-      Point startPoint = new Point((host.ContentOffsetX + host.ViewportWidth / 2) * host.ContentScale, (zuiContainer.ContentOffsetY + host.ViewportHeight / 2) * zuiContainer.ContentScale); //Center at current view
+      double zoom = host.ContentScale;
+      window.Scale = 1.0d / zoom;
+      Point startPoint = new Point((host.ContentOffsetX + host.ViewportWidth / 2) * zoom,
+                                   (host.ContentOffsetY + host.ViewportHeight / 2) * zoom); //Center at current view
       zuiContainer.Add(window).Show(startPoint);
       BindWindow(window);
       return window;

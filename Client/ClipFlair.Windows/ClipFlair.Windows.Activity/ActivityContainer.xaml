@@ -1,20 +1,20 @@
 ﻿<!--
 Project: ClipFlair (http://ClipFlair.codeplex.com)
 Filename: ActivityContainer.xaml
-Version: 20121223
+Version: 20130131
 -->
 
 <UserControl x:Class="ClipFlair.Windows.ActivityContainer" 
   xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d" 
-  xmlns:d="http://schemas.microsoft.com/expression/blend/2008" d:DesignWidth="800" d:DesignHeight="600"
+  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
   xmlns:float="clr-namespace:SilverFlow.Controls;assembly=SilverFlow.Controls"
   xmlns:zui="clr-namespace:FloatingWindowZUI;assembly=FloatingWindowZUI"
-  xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk"               
   xmlns:clipflair="clr-namespace:ClipFlair.Windows"
-  xmlns:clipflairbase="clr-namespace:ClipFlair.Windows.Base;assembly=ClipFlair.Windows.Base"
+  xmlns:widgets="clr-namespace:ClipFlair.UI.Widgets;assembly=ClipFlair.UI.Widgets.Silverlight"
   xmlns:utils="clr-namespace:System.Windows.Controls;assembly=WPF_Compatibility"
+  d:DesignWidth="800" d:DesignHeight="600"
   >
   <!-- //EXAMPLE//
   xmlns:map="clr-namespace:ClipFlair.Windows;assembly=ClipFlair.Windows.Map"
@@ -27,9 +27,7 @@ Version: 20121223
       <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="/ClipFlair.Windows.Base;component/Themes/Default.xaml" />
       </ResourceDictionary.MergedDictionaries>
-
-      <utils:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" /> 
-   
+  
     </ResourceDictionary>
   </UserControl.Resources>
 
@@ -48,12 +46,17 @@ Version: 20121223
       ShowMinimizedOnlyInIconbar="False"
       WindowsConfigurable="{Binding ContentPartsConfigurable, Mode=TwoWay}"
       IsBottomBarVisible ="{Binding ToolbarVisible, Mode=TwoWay}"
+      ContentScalable="{Binding ContentZoomable, Mode=TwoWay}"
+      ContentScale="{Binding ContentZoom, Mode=TwoWay}"
+      MinContentScale="0.3"
+      MaxContentScale="3"
       >
       <!-- ContentZoom="{Binding ContentScale, Mode=TwoWay}" --> <!-- doesn't work yet, need to use inner child ZoomHost of it -->
 
       <zui:FloatingWindowHostZUI.Bar>
         <StackPanel Orientation="Horizontal">
-          <!-- <TextBlock Text="Windows" VerticalAlignment="Center" Margin="0,0,5,0" /> -->
+          <widgets:OptionsLoadSaveControl LoadURLClick="OptionsLoadSaveControl_LoadURLClick" LoadClick="OptionsLoadSaveControl_LoadClick" SaveClick="OptionsLoadSaveControl_SaveClick" />
+          <TextBlock Text=" " />
           <Button Name="btnAddNestedActivity" Visibility="Collapsed" Content="+ Nested Activity" VerticalAlignment="Center" Margin="0,0,5,0" />
           <Button Name="btnAddMedia" Visibility="Collapsed" Content="+ Media" VerticalAlignment="Center" Margin="0,0,5,0" />
           <Button Name="btnAddCaptions" Visibility="Collapsed" Content="+ Captions" VerticalAlignment="Center" Margin="0,0,5,0" />
@@ -61,14 +64,6 @@ Version: 20121223
           <Button Name="btnAddText" Visibility="Collapsed" Content="+ Text" VerticalAlignment="Center" Margin="0,0,5,0" />
           <Button Name="btnAddImage" Visibility="Collapsed" Content="+ Image" VerticalAlignment="Center" Margin="0,0,5,0" />
           <Button Name="btnAddMap" Visibility="Collapsed" Content="+ Map" VerticalAlignment="Center" Margin="0,0,5,0" />
-
-          <clipflairbase:OptionsLoadSaveControl LoadURLClick="OptionsLoadSaveControl_LoadURLClick" LoadClick="OptionsLoadSaveControl_LoadClick" SaveClick="OptionsLoadSaveControl_SaveClick" />
-          
-          <StackPanel Orientation="Horizontal" Visibility="{Binding ContentZoomable, Converter={StaticResource BooleanToVisibilityConverter}}">
-            <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Zoom:" Target="{Binding ElementName=sldZoom}" />
-            <Slider Name="sldZoom" Minimum="0.1" Maximum="3" SmallChange="0.1" LargeChange="0.5" Value="{Binding ContentZoom, Mode=TwoWay}" Width="150" />
-          </StackPanel>
-
         </StackPanel>
       </zui:FloatingWindowHostZUI.Bar>
 

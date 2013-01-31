@@ -1,7 +1,7 @@
 ﻿<!--
 Project: ClipFlair (http://ClipFlair.codeplex.com)
 Filename: BaseWindow.xaml
-Version: 20130121
+Version: 20130131
 -->
 
 <float:FloatingWindow x:Class="ClipFlair.Windows.BaseWindow"
@@ -13,7 +13,7 @@ Version: 20130121
     xmlns:toolkit="http://schemas.microsoft.com/winfx/2006/xaml/presentation/toolkit"
     xmlns:flip="clr-namespace:FlipPanel;assembly=FlipPanel"
     xmlns:float="clr-namespace:SilverFlow.Controls;assembly=SilverFlow.Controls"                      
-    xmlns:local="clr-namespace:ClipFlair.Windows.Base"
+    xmlns:widgets="clr-namespace:ClipFlair.UI.Widgets;assembly=ClipFlair.UI.Widgets.Silverlight"
     mc:Ignorable="d"
     d:DesignHeight="400" d:DesignWidth="400"
                       
@@ -73,7 +73,7 @@ Version: 20130121
               <RowDefinition Height="*" />
             </Grid.RowDefinitions>
 
-            <local:OptionsLoadSaveControl x:Name="ctrlOptionsLoadSave" />
+            <widgets:OptionsLoadSaveControl x:Name="ctrlOptionsLoadSave" />
 
             <!--
             <StackPanel Orientation="Horizontal">
