@@ -1,7 +1,7 @@
 ﻿<!--
 Project: ClipFlair (http://ClipFlair.codeplex.com)
 Filename: ActivityWindow.xaml
-Version: 20130114
+Version: 20130131
 -->
 
 <clipflair:BaseWindow x:Class="ClipFlair.Windows.ActivityWindow"
@@ -49,7 +49,10 @@ Version: 20130114
                FontWeight="ExtraBold" 
                FontStretch="UltraExpanded"
                Foreground="Blue" Background="Aquamarine"
-               Content=" BETA " />
+               Content=" BETA "
+               Cursor="Hand"
+               MouseLeftButtonDown="lblBeta_MouseLeftButtonDown"
+               />
 
   </Grid>
 

@@ -1,5 +1,5 @@
 ﻿//Filename: FrameworkPropertyMetadata.cs
-//Version: 20120606
+//Version: 20130131
 //Editor: George Birbilis <birbilis@kagi.com>
 
 //Based on: http://drwpf.com/blog/2010/05/05/value-coercion-for-the-masses/
@@ -170,10 +170,11 @@ namespace System.Windows
 
         public static void AssociatePropertyWithCoercionMethod(DependencyProperty dp, CoerceValueCallback coerceValueCallback)
         {
+            if (coerceValueCallback == null)
+                throw new NullReferenceException("coerceValueCallback cannot be null");
+
             if (!_dependencyPropertyCoercionMap.ContainsKey(dp))
-            {
                 _dependencyPropertyCoercionMap[dp] = coerceValueCallback;
-            }
         }
 
         internal static void DoExplicitCoercion(DependencyObject d, DependencyProperty dp)

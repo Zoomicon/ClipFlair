@@ -1,13 +1,14 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: BaseWindow.xaml.cs
-//Version: 20130122
+//Version: 20130131
 
 //TODO: unbind control at close
 
 #define PROPERTY_CHANGE_SUPPORT
 
 using ClipFlair.Utils.Extensions;
-using ClipFlair.Windows.Dialogs;
+using ClipFlair.UI.Dialogs;
+using ClipFlair.UI.Widgets;
 using ClipFlair.Windows.Views;
 
 using WPFCompatibility;
@@ -35,6 +36,14 @@ namespace ClipFlair.Windows
   public partial class BaseWindow : FloatingWindow
   {
 
+    #region Constants
+
+    public const string CLIPFLAIR_TUTORIALS = "http://social.clipflair.net/Pages/Tutorials.aspx";
+
+    #endregion
+
+    #region Child Window Factories
+
     public static IWindowFactory ActivityWindowFactory { get; protected set; }
     public static IWindowFactory MediaPlayerWindowFactory { get; protected set; }
     public static IWindowFactory CaptionsGridWindowFactory { get; protected set; }
@@ -42,8 +51,14 @@ namespace ClipFlair.Windows
     public static IWindowFactory ImageWindowFactory { get; protected set; }
     public static IWindowFactory MapWindowFactory { get; protected set; }
 
+    #endregion
+
+    #region Fields
+
     private bool isTopLevel;
-  
+
+    #endregion
+
     public BaseWindow()
     {
       if (Application.Current.Host.Settings.EnableGPUAcceleration) //GPU acceleration can been turned on at HTML/ASPX page or at OOB settings for OOB apps
@@ -190,11 +205,11 @@ namespace ClipFlair.Windows
       {
         try
         {
-          new Uri("http://social.clipflair.net/Pages/Tutorials.aspx").NavigateTo();
+          new Uri(CLIPFLAIR_TUTORIALS).NavigateTo();
         }
         catch
         {
-          MessageBox.Show("For help see http://social.clipflair.net/Pages/Tutorials.aspx");
+          MessageBox.Show("For help see " + CLIPFLAIR_TUTORIALS);
         }
       });
     }

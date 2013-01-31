@@ -104,6 +104,10 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\ClipFlair.UI\ClipFlair.UI.Widgets\ClipFlair.UI.Widgets.Silverlight.csproj">
+      <Project>{0771A5EA-F8F5-4BB4-A29E-2FD3CF9A5088}</Project>
+      <Name>ClipFlair.UI.Widgets.Silverlight</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Converters\ClipFlair.Utils.Silverlight.csproj">
       <Project>{E784B6A1-A300-4571-A881-B15240EEE377}</Project>
       <Name>ClipFlair.Utils.Silverlight</Name>

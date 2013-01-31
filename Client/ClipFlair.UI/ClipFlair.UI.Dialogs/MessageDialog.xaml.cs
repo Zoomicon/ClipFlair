@@ -1,13 +1,13 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: MessageDialog.xaml.cs
-//Version: 20130124
+//Version: 20130131
 
 using System;
 using System.Windows;
 using System.Windows.Controls;
 using System.ComponentModel;
 
-namespace ClipFlair.Windows.Dialogs
+namespace ClipFlair.UI.Dialogs
 {
   public partial class MessageDialog : ChildWindow
   {
