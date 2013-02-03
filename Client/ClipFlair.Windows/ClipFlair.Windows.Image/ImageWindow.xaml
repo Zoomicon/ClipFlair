@@ -1,6 +1,6 @@
 ﻿<!--
 Filename: ImageWindow.xaml
-Version: 20130114
+Version: 20130203
 -->
 
 <clipflair:BaseWindow x:Class="ClipFlair.Windows.ImageWindow"
@@ -51,7 +51,7 @@ Version: 20130114
   <clipflair:BaseWindow.PropertyItems>
 
     <StackPanel Orientation="Vertical">
-      <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Image URL" Target="{Binding ElementName=edImageURL}"/>
+      <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Image Source (URL)" Target="{Binding ElementName=edImageURL}"/>
       <TextBox Name="edImageURL" Text="{Binding Source, Mode=TwoWay}" HorizontalAlignment="Stretch" />
     </StackPanel>
 
