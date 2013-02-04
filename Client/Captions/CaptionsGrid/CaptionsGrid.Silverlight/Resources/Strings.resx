@@ -135,4 +135,10 @@
   <data name="tooltip_caption_start" xml:space="preserve">
     <value>Set selected caption's start time</value>
   </data>
+  <data name="captions_export" xml:space="preserve">
+    <value>Export</value>
+  </data>
+  <data name="captions_import" xml:space="preserve">
+    <value>Import</value>
+  </data>
 </root>
