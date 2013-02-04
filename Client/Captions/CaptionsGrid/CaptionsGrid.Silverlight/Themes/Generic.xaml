@@ -1,7 +1,7 @@
 ﻿<!-- 
 Project: ClipFlair (http://ClipFlair.codeplex.com)
 Filename: Generic.xaml
-Version: 20130122
+Version: 20130203
 -->
   
 <ResourceDictionary
@@ -14,6 +14,10 @@ Version: 20130122
  > <!--  xmlns:input="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Input.Toolkit" -->
 
   <res:Strings x:Key="localizedStrings"/>
+
+  <Style TargetType="Button">
+    <Setter Property="Cursor" Value="Hand" />
+  </Style>
 
   <!-- StartTime -->
   
