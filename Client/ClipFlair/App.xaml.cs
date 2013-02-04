@@ -74,6 +74,7 @@ namespace ClipFlair
         host.IsBottomBarVisible = false; //hide outer container's bottom bar, only want to show the one of the ActivityContainer that the ActivityWindow hosts
         activityWindow.Width = host.ActualWidth;
         activityWindow.Height = host.ActualHeight;
+ 
         if (IsRunningOutOfBrowser)
           activityWindow.ShowLoadURLDialog();
         else
