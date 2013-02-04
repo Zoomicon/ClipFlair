@@ -161,8 +161,7 @@ namespace ClipFlair.Windows
             zuiContainer.ZoomHost.ContentViewportHeight = View.ViewHeight;
             break;
           case IActivityProperties.PropertyContentZoomToFit: //doesn't seem to get called
-            if (View.ContentZoomToFit)
-              zuiContainer.ZoomToFit();
+            CheckZoomToFit();
             break;
           //...
         }
@@ -171,6 +170,17 @@ namespace ClipFlair.Windows
     #endregion
 
     #region Windows
+
+    public void ZoomToFit()
+    {
+      zuiContainer.ZoomToFit();
+    }
+
+    public void CheckZoomToFit()
+    {
+      if (View.ContentZoomToFit)
+        ZoomToFit();
+    }
 
     public FloatingWindowCollection Windows //TODO: in the future listen for change events to it (remove/add) to unbind windows or do any default bindings with the container
     {

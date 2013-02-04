@@ -3,6 +3,7 @@
 //Version: 20130204
 
 using ClipFlair.Utils.Extensions;
+using ClipFlair.Utils.Bindings;
 using ClipFlair.Windows.Views;
 
 using Ionic.Zip;
@@ -42,9 +43,10 @@ namespace ClipFlair.Windows
       MapWindowFactory = activity.MapWindowFactory;
 
       defaultLoadURL = DEFAULT_ACTIVITY;
-    }
 
-    #region --- Properties ---
+      BindingUtils.RegisterForNotification("Width", this, (d, e) => { CheckZoomToFit(); });
+      BindingUtils.RegisterForNotification("Height", this, (d, e) => { CheckZoomToFit(); });
+    }
 
     #region View
 
@@ -56,7 +58,8 @@ namespace ClipFlair.Windows
         base.View = value;
         activity.View = (IActivity)value; //set the view of the activity control too
       }
-    }
+    }
+
     public IActivity ActivityView
     {
       get { return (IActivity)View; }
@@ -70,7 +73,10 @@ namespace ClipFlair.Windows
 
     #endregion
 
-    #endregion
+    public void CheckZoomToFit()
+    {
+      activity.CheckZoomToFit();
+    }
 
     #region Load / Save Options
 
@@ -112,8 +118,7 @@ namespace ClipFlair.Windows
         */
       } //TODO: most probably needed cause Width/Height View settings of ActivityContainer when top window aren't set correctly (App.xaml has event that resizes window to get container size, but may occur without view finding out?)
 
-      if (activity.View.ContentZoomToFit)
-        activity.zuiContainer.ZoomToFit();
+      CheckZoomToFit();
     }
 
     public void LoadWindow(ZipEntry childZip)
