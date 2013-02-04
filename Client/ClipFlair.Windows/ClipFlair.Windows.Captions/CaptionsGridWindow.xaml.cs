@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: CaptionsGridWindow.xaml.cs
-//Version: 20121221
+//Version: 20130204
 
 //TODO: add Source property to CaptionsGrid control and use data-binding to bind it to CaptionsGridView's Source property
 
@@ -27,10 +27,10 @@ namespace ClipFlair.Windows
 
     #region --- Properties ---
 
-    public new ICaptionsGrid View //hiding parent property
+    public ICaptionsGrid CaptionsGridView
     {
-      get { return (ICaptionsGrid)base.View; } //delegating to parent property
-      set { base.View = value; }
+      get { return (ICaptionsGrid)View; }
+      set { View = value; }
     }
     
     #endregion
@@ -47,12 +47,12 @@ namespace ClipFlair.Windows
       if (captionsEntry != null) 
       {
         gridCaptions.LoadCaptions(captionsEntry.OpenReader(), captionsEntry.FileName);
-        View.Captions = gridCaptions.Captions; //TODO: this is temprorary till it is found out why the binding in the XAML between grid and the window doesn't work (may be cause of the findancestor in the binding - probably need to set the binding in code)
+        CaptionsGridView.Captions = gridCaptions.Captions; //TODO: this is temprorary till it is found out why the binding in the XAML between grid and the window doesn't work (may be cause of the findancestor in the binding - probably need to set the binding in code)
       } else 
-        View.Captions = new CaptionRegion();
+        CaptionsGridView.Captions = new CaptionRegion();
 
       //load any audio associated to each caption
-      foreach (CaptionElement caption in View.Captions.Children)
+      foreach (CaptionElement caption in CaptionsGridView.Captions.Children)
         LoadAudio(caption, zip, zipFolder);
     }
 
@@ -69,7 +69,7 @@ namespace ClipFlair.Windows
 
       zip.AddEntry(zipFolder + "/captions.srt", SaveCaptions); //save captions //TODO: maybe not save when no captions are available
 
-      foreach (CaptionElement caption in View.Captions.Children) //save any audio associated to each caption
+      foreach (CaptionElement caption in CaptionsGridView.Captions.Children) //save any audio associated to each caption
         SaveAudio(caption, zip, zipFolder);
     }
 

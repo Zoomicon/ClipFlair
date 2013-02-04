@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: ActivityView.cs
-//Version: 20130118
+//Version: 20130204
 
 //TODO: add "Inertia" property
 
@@ -34,6 +34,7 @@ namespace ClipFlair.Windows.Views
     private double viewHeight;
     private double contentZoom;
     private bool contentZoomable;
+    private bool contentZoomToFit;
     private bool contentPartsConfigurable;
     private bool toolbarVisible;
 
@@ -160,6 +161,21 @@ namespace ClipFlair.Windows.Views
         {
           contentZoomable = value;
           RaisePropertyChanged(IActivityProperties.PropertyContentZoomable);
+        }
+      }
+    }
+
+    [DataMember]
+    [DefaultValue(ActivityDefaults.DefaultContentZoomToFit)]
+    public bool ContentZoomToFit
+    {
+      get { return contentZoomToFit; }
+      set
+      {
+        if (value != contentZoomToFit)
+        {
+          contentZoomToFit = value;
+          RaisePropertyChanged(IActivityProperties.PropertyContentZoomToFit);
         }
       }
     }

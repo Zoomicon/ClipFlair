@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: IActivity.cs
-//Version: 20121219
+//Version: 20130204
 
 using Microsoft.SilverlightMediaFramework.Core.Accessibility.Captions;
 
@@ -20,6 +20,7 @@ namespace ClipFlair.Windows.Views
     public const string PropertyViewHeight = "ViewHeight";
     public const string PropertyContentZoom = "ContentZoom";
     public const string PropertyContentZoomable = "ContentZoomable";
+    public const string PropertyContentZoomToFit = "ContentZoomToFit";
     public const string PropertyContentPartsConfigurable = "ContentPartsConfigurable";
     public const string PropertyToolbarVisible = "ToolbarVisible";
 
@@ -36,6 +37,7 @@ namespace ClipFlair.Windows.Views
     double ViewHeight { get; set; }
     double ContentZoom { get; set; }
     bool ContentZoomable { get; set; }
+    bool ContentZoomToFit { get; set; }
     bool ContentPartsConfigurable { get; set; }
     bool ToolbarVisible { get; set; }
   }

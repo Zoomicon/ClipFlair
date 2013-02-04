@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: ImageWindow.xaml.cs
-//Version: 20130110
+//Version: 20130204
 
 using ClipFlair.Windows.Views;
 
@@ -17,10 +17,10 @@ namespace ClipFlair.Windows
 
     #region View
 
-    public new IImageViewer View //hiding parent property
+    public IImageViewer ImageView
     {
-      get { return (IImageViewer)base.View; } //delegating to parent property
-      set { base.View = value; }
+      get { return (IImageViewer)View; }
+      set { View = value; }
     }
 
     #endregion

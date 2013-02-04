@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: TextEditorWindow.xaml.cs
-//Version: 20121221
+//Version: 20130204
 
 using ClipFlair.Windows.Views;
 
@@ -22,10 +22,10 @@ namespace ClipFlair.Windows
 
     #region View
 
-    public new ITextEditor View //hiding parent property
+    public ITextEditor TextEditorView
     {
-      get { return (ITextEditor)base.View; } //delegating to parent property
-      set { base.View = value; }
+      get { return (ITextEditor)View; }
+      set { View = value; }
     }
 
     #endregion

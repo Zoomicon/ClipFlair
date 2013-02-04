@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: ActivityWindow.xaml.cs
-//Version: 20130131
+//Version: 20130204
 
 using ClipFlair.Utils.Extensions;
 using ClipFlair.Windows.Views;
@@ -48,14 +48,19 @@ namespace ClipFlair.Windows
 
     #region View
 
-    public new IActivity View //hiding parent property
+    public override IView View
     {
       get { return (IActivity)base.View; } //delegating to parent property
       set
       {
         base.View = value;
-        activity.View = value; //set the view of the activity control too
+        activity.View = (IActivity)value; //set the view of the activity control too
       }
+    }
+    public IActivity ActivityView
+    {
+      get { return (IActivity)View; }
+      set { View = value; }
     }
 
     public ActivityContainer activityContainer
@@ -79,10 +84,8 @@ namespace ClipFlair.Windows
 
       try
       {
-
         foreach (ZipEntry childZip in zip.SelectEntries("*.clipflair.zip", zipFolder))
           LoadWindow(childZip);
-
       }
       finally
       {
@@ -108,6 +111,9 @@ namespace ClipFlair.Windows
         View.ViewHeight = Height;
         */
       } //TODO: most probably needed cause Width/Height View settings of ActivityContainer when top window aren't set correctly (App.xaml has event that resizes window to get container size, but may occur without view finding out?)
+
+      if (activity.View.ContentZoomToFit)
+        activity.zuiContainer.ZoomToFit();
     }
 
     public void LoadWindow(ZipEntry childZip)

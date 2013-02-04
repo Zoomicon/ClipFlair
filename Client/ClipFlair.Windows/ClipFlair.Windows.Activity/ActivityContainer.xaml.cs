@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: ActivityContainer.xaml.cs
-//Version: 20130131
+//Version: 20130204
 
 //TODO: add ContentPartsZoomable property
 //TODO: add to FloatingWindowHostZUI a rezoom to fit button
@@ -137,6 +137,7 @@ namespace ClipFlair.Windows
       }
     }
 
+    //TODO: try to replace these with bindings, as long as they're unbound/rebound when view changes
     protected void View_PropertyChanged(object sender, PropertyChangedEventArgs e) //note: for View.ContentPartsConfigurable using data binding in XAML (binds to zuiContainer.WindowsConfigurable)
     {
       if (e.PropertyName == null) //multiple (not specified) properties have changed, consider all as changed
@@ -158,6 +159,10 @@ namespace ClipFlair.Windows
             break;
           case IActivityProperties.PropertyViewHeight:
             zuiContainer.ZoomHost.ContentViewportHeight = View.ViewHeight;
+            break;
+          case IActivityProperties.PropertyContentZoomToFit: //doesn't seem to get called
+            if (View.ContentZoomToFit)
+              zuiContainer.ZoomToFit();
             break;
           //...
         }
@@ -215,13 +220,13 @@ namespace ClipFlair.Windows
         { //for new child window instances the user adds must reset their properties to match their containers so that they don't cause other components bound to the container to lose their Time/Captions when these get bound as sources to the container (which AddWindow does by calling BindWindow)
           if (w is MediaPlayerWindow)
           {
-            IMediaPlayer v = ((MediaPlayerWindow)w).View;
+            IMediaPlayer v = ((MediaPlayerWindow)w).MediaPlayerView;
             v.Time = View.Time;
             v.Captions = View.Captions;
           }
           else if (w is CaptionsGridWindow)
           {
-            ICaptionsGrid v = ((CaptionsGridWindow)w).View;
+            ICaptionsGrid v = ((CaptionsGridWindow)w).CaptionsGridView;
             v.Time = View.Time;
             v.Captions = View.Captions;
           }
@@ -331,7 +336,7 @@ namespace ClipFlair.Windows
     private void btnAddMedia_Click(object sender, RoutedEventArgs e)
     {
       MediaPlayerWindow w = (MediaPlayerWindow)AddWindow(MediaPlayerWindowFactory, true);
-      w.View.Source = new Uri("http://video3.smoothhd.com.edgesuite.net/ondemand/Big%20Buck%20Bunny%20Adaptive.ism/Manifest", UriKind.Absolute);
+      w.MediaPlayerView.Source = new Uri("http://video3.smoothhd.com.edgesuite.net/ondemand/Big%20Buck%20Bunny%20Adaptive.ism/Manifest", UriKind.Absolute);
     }
 
     #endif
@@ -351,8 +356,8 @@ namespace ClipFlair.Windows
     {
       CaptionsGridWindow w = (CaptionsGridWindow)AddWindow(CaptionsGridWindowFactory, true);
       w.View.Title = "Revoicing";
-      w.View.CaptionVisible = false;
-      w.View.AudioVisible = true;
+      w.CaptionsGridView.CaptionVisible = false;
+      w.CaptionsGridView.AudioVisible = true;
       w.View.Width = CaptionsGridDefaults.DefaultWidth_Revoicing;
     }
 
@@ -372,7 +377,7 @@ namespace ClipFlair.Windows
     private void btnAddImage_Click(object sender, RoutedEventArgs e)
     {
       ImageWindow w = (ImageWindow)AddWindow(ImageWindowFactory, true);
-      w.View.Source = new Uri("http://clipflair.net/wp-content/themes/clipflair-theme/images/clipflair-logo.jpg", UriKind.Absolute);
+      w.ImageView.Source = new Uri("http://clipflair.net/wp-content/themes/clipflair-theme/images/clipflair-logo.jpg", UriKind.Absolute);
     }
 
     #endif

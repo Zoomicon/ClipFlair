@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: MapWindow.xaml.cs
-//Version: 20130110
+//Version: 20130204
 
 using ClipFlair.Windows.Views;
 
@@ -17,15 +17,15 @@ namespace ClipFlair.Windows
     {
       View = new MapView(); //must initialize the view first
       InitializeComponent();
-      map.Mode = View.ModeValue; //this Map property doesn't support data-binding
+      map.Mode = MapView.ModeValue; //this Map property doesn't support data-binding
     }
 
     #region View
 
-    public new IMapViewer View //hiding parent property
+    public IMapViewer MapView
     {
-      get { return (IMapViewer)base.View; } //delegating to parent property
-      set { base.View = value; }
+      get { return (IMapViewer)View; }
+      set { View = value; }
     }
 
     protected override void View_PropertyChanged(object sender, PropertyChangedEventArgs e)
@@ -36,7 +36,7 @@ namespace ClipFlair.Windows
  
       if (e.PropertyName == null) //multiple (not specified) properties have changed, consider all as changed
       {
-        map.Mode = View.ModeValue;
+        map.Mode = MapView.ModeValue;
         //...
       }
       else switch (e.PropertyName)
@@ -44,7 +44,7 @@ namespace ClipFlair.Windows
         case IMapViewerProperties.PropertyMode:
         case IMapViewerProperties.PropertyLabelsVisible:
         case IMapViewerProperties.PropertyLabelsFading:
-          map.Mode = View.ModeValue;
+          map.Mode = MapView.ModeValue;
           break;
         //...
         default:
@@ -60,7 +60,7 @@ namespace ClipFlair.Windows
     private void map_ModeChanged(object sender, MapEventArgs e)
     {
       if (View != null)
-        View.ModeValue = map.Mode;
+        MapView.ModeValue = map.Mode;
     }
 
     #endregion

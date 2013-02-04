@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: MediaPlayerWindow.xaml.cs
-//Version: 20121221
+//Version: 20130204
 
 using ClipFlair.Windows.Views;
 
@@ -22,10 +22,10 @@ namespace ClipFlair.Windows
 
     #region --- Properties ---
 
-    public new IMediaPlayer View //hiding parent property
+    public IMediaPlayer MediaPlayerView
     {
-      get {return (IMediaPlayer)base.View; } //delegating to parent property
-      set { base.View = value; }
+      get {return (IMediaPlayer)View; }
+      set { View = value; }
     }
   
     #endregion
