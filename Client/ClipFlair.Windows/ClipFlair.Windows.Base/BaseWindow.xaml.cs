@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: BaseWindow.xaml.cs
-//Version: 20130131
+//Version: 20130204
 
 //TODO: unbind control at close
 
@@ -82,7 +82,7 @@ namespace ClipFlair.Windows
 
     #region Properties
 
-    public IView View
+    public virtual IView View
     {
       get { return (IView)DataContext; }
       set

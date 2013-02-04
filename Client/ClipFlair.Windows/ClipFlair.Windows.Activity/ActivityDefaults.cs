@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: ActivityDefaults.cs
-//Version: 20130118
+//Version: 20130204
 
 using Microsoft.SilverlightMediaFramework.Core.Accessibility.Captions;
 
@@ -29,6 +29,7 @@ namespace ClipFlair.Windows.Views
     public const double DefaultViewHeight = 700;
     public const double DefaultContentZoom = 1.0;
     public const bool DefaultContentZoomable = true;
+    public const bool DefaultContentZoomToFit = true;
     public const bool DefaultContentPartsConfigurable = true;
     public const bool DefaultToolbarVisible = true;
 
@@ -51,6 +52,7 @@ namespace ClipFlair.Windows.Views
       activity.ViewHeight = DefaultViewHeight;
       activity.ContentZoom = DefaultContentZoom;
       activity.ContentZoomable = DefaultContentZoomable;
+      activity.ContentZoomToFit = DefaultContentZoomToFit;
       activity.ContentPartsConfigurable = DefaultContentPartsConfigurable;
       activity.ToolbarVisible = DefaultToolbarVisible;
     }

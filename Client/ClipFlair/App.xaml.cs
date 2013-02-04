@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: App.xaml.cs
-//Version: 20130130
+//Version: 20130204
 
 using ClipFlair.Windows;
 
@@ -119,7 +119,7 @@ namespace ClipFlair
         WaitTillNotBusy(activityWindow); //TODO: doesn't work (should wait for any activity to load first)
         MediaPlayerWindow w = new MediaPlayerWindow();
         activityWindow.activityContainer.AddWindowInViewCenter(w);
-        w.View.Source = new Uri(new Uri(CLIPFLAIR_GALLERY_VIDEO), queryString[PARAMETER_MEDIA]);
+        w.MediaPlayerView.Source = new Uri(new Uri(CLIPFLAIR_GALLERY_VIDEO), queryString[PARAMETER_MEDIA]);
         foundParam = true;
       }
       if (queryString.ContainsKey(PARAMETER_VIDEO))
@@ -127,7 +127,7 @@ namespace ClipFlair
         WaitTillNotBusy(activityWindow); //TODO: doesn't work (should wait for any activity to load first)
         MediaPlayerWindow w = new MediaPlayerWindow();
         activityWindow.activityContainer.AddWindowInViewCenter(w);
-        w.View.Source = new Uri(new Uri(CLIPFLAIR_GALLERY_VIDEO), queryString[PARAMETER_VIDEO]);
+        w.MediaPlayerView.Source = new Uri(new Uri(CLIPFLAIR_GALLERY_VIDEO), queryString[PARAMETER_VIDEO]);
         foundParam = true;
       }
       if (queryString.ContainsKey(PARAMETER_AUDIO))
@@ -135,8 +135,8 @@ namespace ClipFlair
         WaitTillNotBusy(activityWindow); //TODO: doesn't work (should wait for any activity to load first)
         MediaPlayerWindow w = new MediaPlayerWindow();
         activityWindow.activityContainer.AddWindowInViewCenter(w);
-        w.View.VideoVisible = false;
-        w.View.Source = new Uri(new Uri(CLIPFLAIR_GALLERY_AUDIO), queryString[PARAMETER_AUDIO]);
+        w.MediaPlayerView.VideoVisible = false;
+        w.MediaPlayerView.Source = new Uri(new Uri(CLIPFLAIR_GALLERY_AUDIO), queryString[PARAMETER_AUDIO]);
         foundParam = true;
       }
       if (queryString.ContainsKey(PARAMETER_IMAGE))
@@ -144,7 +144,7 @@ namespace ClipFlair
         WaitTillNotBusy(activityWindow); //TODO: doesn't work (should wait for any activity to load first)
         ImageWindow w = new ImageWindow();
         activityWindow.activityContainer.AddWindowInViewCenter(w);
-        w.View.Source = new Uri(new Uri(CLIPFLAIR_GALLERY_IMAGE), queryString[PARAMETER_IMAGE]);
+        w.ImageView.Source = new Uri(new Uri(CLIPFLAIR_GALLERY_IMAGE), queryString[PARAMETER_IMAGE]);
         foundParam = true;
       }
 

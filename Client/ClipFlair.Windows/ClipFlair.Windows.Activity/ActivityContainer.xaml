@@ -1,7 +1,7 @@
 ﻿<!--
 Project: ClipFlair (http://ClipFlair.codeplex.com)
 Filename: ActivityContainer.xaml
-Version: 20130131
+Version: 20130204
 -->
 
 <UserControl x:Class="ClipFlair.Windows.ActivityContainer" 
@@ -51,7 +51,6 @@ Version: 20130131
       MinContentScale="0.3"
       MaxContentScale="3"
       >
-      <!-- ContentZoom="{Binding ContentScale, Mode=TwoWay}" --> <!-- doesn't work yet, need to use inner child ZoomHost of it -->
 
       <zui:FloatingWindowHostZUI.Bar>
         <StackPanel Orientation="Horizontal">
