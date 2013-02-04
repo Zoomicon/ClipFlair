@@ -1,7 +1,7 @@
 ﻿<!--
 Project: ClipFlair (http://ClipFlair.codeplex.com)
 Filename: MessageDialog.xaml
-Version: 20130131
+Version: 20130204
 -->
   
 <controls:ChildWindow 
@@ -14,6 +14,12 @@ Version: 20130131
   d:DesignHeight="131" d:DesignWidth="254"
   Title="Input" 
   >
+  
+  <controls:ChildWindow.Resources>
+    <Style TargetType="Button">
+      <Setter Property="Cursor" Value="Hand"/>
+    </Style>
+  </controls:ChildWindow.Resources>
 
   <Grid x:Name="LayoutRoot" Margin="5">
     <Grid.RowDefinitions>

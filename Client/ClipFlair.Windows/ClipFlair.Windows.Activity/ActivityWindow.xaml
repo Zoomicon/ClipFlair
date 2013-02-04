@@ -1,7 +1,7 @@
 ﻿<!--
 Project: ClipFlair (http://ClipFlair.codeplex.com)
 Filename: ActivityWindow.xaml
-Version: 20130131
+Version: 20130203
 -->
 
 <clipflair:BaseWindow x:Class="ClipFlair.Windows.ActivityWindow"
@@ -52,6 +52,7 @@ Version: 20130131
                Content=" BETA "
                Cursor="Hand"
                MouseLeftButtonDown="lblBeta_MouseLeftButtonDown"
+               ToolTipService.ToolTip="Send feedback"
                />
 
   </Grid>
