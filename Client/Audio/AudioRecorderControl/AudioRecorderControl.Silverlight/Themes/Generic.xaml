@@ -1,6 +1,6 @@
 ﻿<!--
 Filename: Generic.xaml
-Version: 20121224
+Version: 20130203
 -->
 
 <ResourceDictionary
@@ -8,8 +8,16 @@ Version: 20121224
   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
   >
 
+  <Style TargetType="Button">
+    <Setter Property="Cursor" Value="Hand" />
+  </Style>
+
+  <Style TargetType="ToggleButton">
+    <Setter Property="Cursor" Value="Hand" />
+  </Style>
+
   <ControlTemplate x:Key="RecordCommandStyle" TargetType="ToggleButton">
-    <Grid>
+    <Grid Cursor="Hand">
       <VisualStateManager.VisualStateGroups>
 
         <VisualStateGroup x:Name="CommonStates">
