@@ -1,6 +1,6 @@
 ﻿<!-- 
 Filename: Generic.xaml
-Version: 20130131
+Version: 20130203
 -->
   
 <ResourceDictionary
@@ -97,6 +97,7 @@ Version: 20130131
             <StackPanel Grid.Column="1" Orientation="Horizontal" Visibility="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=ContentScalable, Converter={StaticResource BooleanToVisibilityConverter}}">
               <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Zoom:" Target="{Binding ElementName=sldScale}" />
               <Slider x:Name="sldScale"
+                      Cursor="Hand"
                       Minimum="{TemplateBinding MinContentScale}" Maximum="{TemplateBinding MaxContentScale}"
                       SmallChange="0.1" LargeChange="0.5"
                       Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=ContentScale, Mode=TwoWay}"
