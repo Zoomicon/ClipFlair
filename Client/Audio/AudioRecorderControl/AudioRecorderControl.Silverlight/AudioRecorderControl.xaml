@@ -1,6 +1,6 @@
 ﻿<!--
 Filename: AudioRecorderControl.xaml
-Version: 20121224
+Version: 20130204
 -->
 
 <UserControl
@@ -30,41 +30,33 @@ Version: 20121224
                   IsEnabled="{Binding Path=RecordCommand.IsEnabled, Mode=TwoWay}"
                   IsChecked="{Binding Path=RecordCommand.IsChecked, Mode=TwoWay}"
                   Template="{StaticResource RecordCommandStyle}"
-                  Width="20" Height="20" Margin="3,0,0,0">
-      <ToolTipService.ToolTip>
-        <ToolTip Content="Record audio" />
-      </ToolTipService.ToolTip>
-    </ToggleButton>
+                  Width="20" Height="20" Margin="3,0,0,0"
+                  ToolTipService.ToolTip="Record audio"
+                  />
 
     <Button x:Name="btnPlay"
-                  Command="{Binding PlayCommand}"
-                  Visibility="{Binding Path=PlayCommand.IsEnabled, Converter={StaticResource BooleanToVisibilityConverter}}"
-                  Template="{StaticResource PlayCommandStyle}"
-                  Width="20" Height="20" Margin="3,0,3,0">
-      <ToolTipService.ToolTip>
-        <ToolTip Content="Play audio" />
-      </ToolTipService.ToolTip>
-    </Button>
+            Command="{Binding PlayCommand}"
+            Visibility="{Binding Path=PlayCommand.IsEnabled, Converter={StaticResource BooleanToVisibilityConverter}}"
+            Template="{StaticResource PlayCommandStyle}"
+            Width="20" Height="20" Margin="3,0,3,0"
+            ToolTipService.ToolTip="Play audio"
+            />
 
     <Button x:Name="btnLoad"
             Command="{Binding LoadCommand}"
             Visibility="{Binding Path=LoadCommand.IsEnabled, Converter={StaticResource BooleanToVisibilityConverter}}"
             Template="{StaticResource LoadCommandStyle}"
-            Width="20" Height="20" Margin="0,0,3,0">
-      <ToolTipService.ToolTip>
-        <ToolTip Content="Load audio from .WAV file" />
-      </ToolTipService.ToolTip>
-    </Button>
+            Width="20" Height="20" Margin="0,0,3,0"
+            ToolTipService.ToolTip="Load audio from .WAV file"
+            />
 
     <Button x:Name="btnSave"
             Command="{Binding SaveCommand}"
             Visibility="{Binding Path=SaveCommand.IsEnabled, Converter={StaticResource BooleanToVisibilityConverter}}"
             Template="{StaticResource SaveCommandStyle}"
-            Width="20" Height="20" Margin="0,0,3,0">
-      <ToolTipService.ToolTip>
-        <ToolTip Content="Save audio to .WAV file" />
-      </ToolTipService.ToolTip>
-    </Button>
+            Width="20" Height="20" Margin="0,0,3,0"
+            ToolTipService.ToolTip="Save audio to .WAV file"
+            />
 
   </StackPanel>
 
