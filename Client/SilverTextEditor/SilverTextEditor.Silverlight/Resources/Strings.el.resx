@@ -204,4 +204,7 @@
   <data name="tooltip_Timestamp" xml:space="preserve">
     <value>Εισαγωγή χρονοσήμανσης</value>
   </data>
+  <data name="tooltip_TextDirection" xml:space="preserve">
+    <value>Κατεύθυνση κειμένου</value>
+  </data>
 </root>

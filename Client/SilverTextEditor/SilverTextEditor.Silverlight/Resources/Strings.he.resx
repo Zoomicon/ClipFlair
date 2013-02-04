@@ -204,4 +204,7 @@
   <data name="tooltip_Timestamp" xml:space="preserve">
     <value>Insert timestamp</value>
   </data>
+  <data name="tooltip_TextDirection" xml:space="preserve">
+    <value>Text Direction</value>
+  </data>
 </root>

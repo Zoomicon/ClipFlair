@@ -132,9 +132,6 @@
   <data name="color_Yellow" xml:space="preserve">
     <value>Yellow</value>
   </data>
-  <data name="RTL_Button_Caption" xml:space="preserve">
-    <value>LTR</value>
-  </data>
   <data name="tooltip_Bold" xml:space="preserve">
     <value>Bold</value>
   </data>
@@ -203,5 +200,8 @@
   </data>
   <data name="tooltip_Timestamp" xml:space="preserve">
     <value>Insert timestamp</value>
+  </data>
+  <data name="tooltip_TextDirection" xml:space="preserve">
+    <value>Text Direction</value>
   </data>
 </root>
