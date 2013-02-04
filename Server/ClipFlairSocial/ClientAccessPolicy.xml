@@ -3,7 +3,7 @@
     <cross-domain-access>
         <policy>
             <allow-from http-request-headers="*">
-                <domain uri="*"/>
+                <domain uri="http://play.clipflair.net"/>
             </allow-from>
             <grant-to>
                 <resource path="/" include-subpaths="true"/>
