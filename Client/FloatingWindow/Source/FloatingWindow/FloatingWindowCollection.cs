@@ -1,6 +1,7 @@
 ﻿//Filename: FloatingWindowCollection.cs
-//Version: 20121112
+//Version: 20130204
 
+using System.Windows;
 using System.Collections.ObjectModel;
 
 namespace SilverFlow.Controls
@@ -23,6 +24,21 @@ namespace SilverFlow.Controls
       FloatingWindow[] c = new FloatingWindow[Count];
       CopyTo(c, 0);
       foreach (FloatingWindow w in c) Remove(w);
+    }
+
+    public Rect BoundingRectangle
+    {
+      get
+      {
+        if (Count > 0)
+        {
+          Rect result = Items[0].BoundingRectangle;
+          for (int i = 1; i < Count; i++)
+            result.Union(Items[i].BoundingRectangle);
+          return result;
+        }
+        return Rect.Empty;
+      }
     }
     
   }

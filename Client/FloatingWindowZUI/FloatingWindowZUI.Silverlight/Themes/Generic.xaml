@@ -1,6 +1,6 @@
 ﻿<!-- 
 Filename: Generic.xaml
-Version: 20130203
+Version: 20130204
 -->
   
 <ResourceDictionary
@@ -95,13 +95,20 @@ Version: 20130203
                     Margin="10,-4,10,0" IsOpen="{Binding IsOpen, ElementName=PART_IconBar}" />
 
             <StackPanel Grid.Column="1" Orientation="Horizontal" Visibility="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=ContentScalable, Converter={StaticResource BooleanToVisibilityConverter}}">
-              <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Zoom:" Target="{Binding ElementName=sldScale}" />
-              <Slider x:Name="sldScale"
+              <Button x:Name="PART_ZoomToFitButton"
+                      Cursor="Hand"
+                      ToolTipService.ToolTip="Zoom to Fit"
+                      >
+                <Image Source="/FloatingWindowZUI;component/Images/ZoomToFit.png" />
+              </Button>
+              <Slider x:Name="PART_ZoomSlider"
                       Cursor="Hand"
                       Minimum="{TemplateBinding MinContentScale}" Maximum="{TemplateBinding MaxContentScale}"
                       SmallChange="0.1" LargeChange="0.5"
                       Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=ContentScale, Mode=TwoWay}"
-                      Width="150" />
+                      Width="150"
+                      ToolTipService.ToolTip="Zoom"
+                      />
             </StackPanel>
 
             <Border Grid.Column="2">
@@ -129,11 +136,6 @@ Version: 20130203
     <Setter Property="OverlayBrush" Value="#90202030" />
     <Setter Property="Background" Value="#FF7ED2E9" />
     <Setter Property="Template" Value="{StaticResource FloatingWindowHostZUI_DefaultTemplate}" />
-  </Style>
-
-  <Style x:Key="PropertyLabelStyle" TargetType="sdk:Label">
-    <Setter Property="FontWeight" Value="SemiBold" />
-    <Setter Property="Margin" Value="5,0,5,0" />
   </Style>
 
 </ResourceDictionary>
