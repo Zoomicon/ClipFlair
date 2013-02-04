@@ -132,9 +132,6 @@
   <data name="color_Yellow" xml:space="preserve">
     <value>أصفر</value>
   </data>
-  <data name="RTL_Button_Caption" xml:space="preserve">
-    <value>RTL</value>
-  </data>
   <data name="tooltip_Bold" xml:space="preserve">
     <value>جريئة</value>
   </data>
@@ -171,9 +168,6 @@
   <data name="tooltip_Underline" xml:space="preserve">
     <value>وأكد</value>
   </data>
-  <data name="txt_Header_Direction" xml:space="preserve">
-    <value>من اليمين إلى اليسار</value>
-  </data>
   <data name="txt_Status_Ready" xml:space="preserve">
     <value>جاهز</value>
   </data>
@@ -206,5 +200,8 @@
   </data>
   <data name="tooltip_TextDirection" xml:space="preserve">
     <value>Text Direction</value>
+  </data>
+  <data name="tooltip_EditViewMode" xml:space="preserve">
+    <value>Edit / View Mode</value>
   </data>
 </root>
