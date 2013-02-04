@@ -1,5 +1,5 @@
 ﻿//Filename: ZoomAndPanControl.cs
-//Version: 20121219
+//Version: 20130204
 //Editor: George Birbilis <birbilis@kagi.com>
 
 //Based on:
@@ -365,6 +365,8 @@ namespace ZoomAndPan
         /// </summary>
         public void ZoomTo(Rect contentRect)
         {
+            if (contentRect.IsEmpty) return;
+
             double scaleX = this.ContentViewportWidth / contentRect.Width;
             double scaleY = this.ContentViewportHeight / contentRect.Height;
             double newScale = this.ContentScale * Math.Min(scaleX, scaleY);
@@ -374,6 +376,8 @@ namespace ZoomAndPan
 
         public void ScrollToCenter(Rect contentRect)
         {
+          if (contentRect.IsEmpty) return;
+
           double scaleX = this.ContentViewportWidth / contentRect.Width;
           double scaleY = this.ContentViewportHeight / contentRect.Height;
 
