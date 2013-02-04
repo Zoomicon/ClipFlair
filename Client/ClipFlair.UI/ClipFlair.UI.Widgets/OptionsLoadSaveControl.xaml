@@ -1,7 +1,7 @@
 ﻿<!--
 Project: ClipFlair (http://ClipFlair.codeplex.com
 Filename: OptionsLoadSaveControl.xaml
-Version: 20130131
+Version: 20130204
 -->
   
 <UserControl x:Class="ClipFlair.UI.Widgets.OptionsLoadSaveControl"
@@ -13,24 +13,15 @@ Version: 20130131
 
   <StackPanel Name="LayoutRoot" Orientation="Horizontal" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
 
-    <Button Name="btnLoadURL" Margin="3,0,3,0" Click="btnLoadURL_Click">
-      <ToolTipService.ToolTip>
-        <ToolTip Content="Load options from URL" />
-      </ToolTipService.ToolTip>
+    <Button Name="btnLoadURL" Margin="3,0,3,0" Click="btnLoadURL_Click" ToolTipService.ToolTip="Load options from URL">
       <Image Source="/ClipFlair.Windows.Base;component/Images/loadURL.png" />
     </Button>
 
-    <Button Name="btnLoad" Margin="3,0,3,0" Click="btnLoad_Click">
-      <ToolTipService.ToolTip>
-        <ToolTip Content="Load options" />
-      </ToolTipService.ToolTip>
+    <Button Name="btnLoad" Margin="3,0,3,0" Click="btnLoad_Click" ToolTipService.ToolTip="Load options">
       <Image Source="/ClipFlair.Windows.Base;component/Images/load.png" />
     </Button>
 
-    <Button Name="btnSave" Margin="3,0,3,0" Click="btnSave_Click">
-      <ToolTipService.ToolTip>
-        <ToolTip Content="Save options" />
-      </ToolTipService.ToolTip>
+    <Button Name="btnSave" Margin="3,0,3,0" Click="btnSave_Click" ToolTipService.ToolTip="Save options">
       <Image Source="/ClipFlair.Windows.Base;component/Images/save.png" />
     </Button>
 
