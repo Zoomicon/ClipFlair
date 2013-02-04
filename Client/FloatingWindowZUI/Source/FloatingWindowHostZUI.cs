@@ -1,5 +1,5 @@
 ﻿//Filename: FloatingWindowHostZUI.cs
-//Version: 20130131
+//Version: 20130204
 
 using SilverFlow.Controls;
 using SilverFlow.Controls.Extensions;
@@ -31,6 +31,8 @@ namespace FloatingWindowZUI
   [TemplatePart(Name = PART_BottomBar, Type = typeof(FrameworkElement))]
   [TemplatePart(Name = PART_BootstrapButton, Type = typeof(BootstrapButton))]
   [TemplatePart(Name = PART_BarContent, Type = typeof(ContentControl))]
+  [TemplatePart(Name = PART_ZoomToFitButton, Type=typeof(Button))]
+  [TemplatePart(Name = PART_ZoomSlider, Type=typeof(Slider))]
   [TemplateVisualState(Name = VSMSTATE_VisibleOverlay, GroupName = VSMGROUP_Overlay)]
   [TemplateVisualState(Name = VSMSTATE_HiddenOverlay, GroupName = VSMGROUP_Overlay)]
   [StyleTypedProperty(Property = PROPERTY_BottomBarStyle, StyleTargetType = typeof(Border))]
@@ -43,11 +45,16 @@ namespace FloatingWindowZUI
     #region Part names
 
     protected const string PART_ZoomHost = "PART_ZoomHost";
+    protected const string PART_ZoomToFitButton = "PART_ZoomToFitButton";
+    protected const string PART_ZoomSlider = "PART_ZoomSlider";
 
     #endregion
 
-    protected ZoomAndPanControl _zoomHost;
 
+    #region ZoomHost
+
+    protected ZoomAndPanControl _zoomHost;
+    
     public ZoomAndPanControl ZoomHost {
       get
       {
@@ -60,6 +67,46 @@ namespace FloatingWindowZUI
       }
     }
 
+    #endregion
+
+    #region ZoomToFitButton
+
+    protected Button _zoomToFitButton;
+
+    public Button ZoomToFitButton
+    {
+      get
+      {
+        if (_zoomToFitButton == null) ApplyTemplate();
+        return _zoomToFitButton;
+      }
+      private set
+      {
+        _zoomToFitButton = value;
+      }
+    }
+
+    #endregion
+
+    #region ZoomSlider
+
+    protected Slider _zoomSlider;
+
+    public Slider ZoomSlider
+    {
+      get
+      {
+        if (_zoomSlider == null) ApplyTemplate();
+        return _zoomSlider;
+      }
+      private set
+      {
+        _zoomSlider = value;
+      }
+    }
+
+    #endregion
+    
     public FloatingWindowHostZUI()
     {
       ApplyStyle();
@@ -77,10 +124,24 @@ namespace FloatingWindowZUI
 
       ZoomHost = base.GetTemplateChild(PART_ZoomHost) as ZoomAndPanControl;
       ZoomHost.ContentScale = ContentScale; //TODO: also need event handler for the property to apply content scale to ZoomHost
-
       ZoomHost.IsDefaultMouseHandling = true; //use default mouse handling
 
+      ZoomToFitButton = base.GetTemplateChild(PART_ZoomToFitButton) as Button;
+      ZoomToFitButton.Click += new RoutedEventHandler(ZoomToFitButton_Click);
+
+      ZoomSlider = base.GetTemplateChild(PART_ZoomSlider) as Slider;
+
       SubscribeToFloatingWindowEvents();
+    }
+
+    void ZoomToFitButton_Click(object sender, RoutedEventArgs e)
+    {
+      ZoomToFit();
+    }
+
+    public void ZoomToFit()
+    {
+      ZoomHost.ZoomTo(Windows.BoundingRectangle);
     }
 
     #region ContentScalable
