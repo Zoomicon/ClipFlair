@@ -162,9 +162,6 @@
   <data name="tooltip_Underline" xml:space="preserve">
     <value>Underlined</value>
   </data>
-  <data name="txt_Header_Direction" xml:space="preserve">
-    <value>Left To Right</value>
-  </data>
   <data name="txt_Status_Ready" xml:space="preserve">
     <value>Ready</value>
   </data>
@@ -203,5 +200,8 @@
   </data>
   <data name="tooltip_TextDirection" xml:space="preserve">
     <value>Text Direction</value>
+  </data>
+  <data name="tooltip_EditViewMode" xml:space="preserve">
+    <value>Edit / View Mode</value>
   </data>
 </root>

@@ -133,6 +133,15 @@ namespace SilverTextEditor.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Edit / View Mode.
+        /// </summary>
+        public static string tooltip_EditViewMode {
+            get {
+                return ResourceManager.GetString("tooltip_EditViewMode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Insert Hyperlink.
         /// </summary>
         public static string tooltip_Hyperlink {
@@ -264,15 +273,6 @@ namespace SilverTextEditor.Resources {
         public static string txt_Font {
             get {
                 return ResourceManager.GetString("txt_Font", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Left To Right.
-        /// </summary>
-        public static string txt_Header_Direction {
-            get {
-                return ResourceManager.GetString("txt_Header_Direction", resourceCulture);
             }
         }
         

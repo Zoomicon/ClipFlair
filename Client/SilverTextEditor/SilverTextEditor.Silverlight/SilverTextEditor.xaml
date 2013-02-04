@@ -257,7 +257,7 @@ Version: 20130204
               <Image Source="Images/LTR.png" />
             </ToggleButton>
 
-            <ToggleButton x:Name="btnEditable" IsChecked="{Binding Editable, Mode=TwoWay}" ToolTipService.ToolTip="Edit / View Mode">
+            <ToggleButton x:Name="btnEditable" IsChecked="{Binding Editable, Mode=TwoWay}" ToolTipService.ToolTip="{Binding tooltip_EditViewMode, Source={StaticResource localizedStrings}}">
               <Image Source="Images/Edit.png" />
             </ToggleButton>
 

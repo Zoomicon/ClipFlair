@@ -132,9 +132,6 @@
   <data name="color_Yellow" xml:space="preserve">
     <value>Κίτρινο</value>
   </data>
-  <data name="RTL_Button_Caption" xml:space="preserve">
-    <value>LTR</value>
-  </data>
   <data name="tooltip_Bold" xml:space="preserve">
     <value>Έντονα</value>
   </data>
@@ -171,9 +168,6 @@
   <data name="tooltip_Underline" xml:space="preserve">
     <value>Υπογραμμισμένα</value>
   </data>
-  <data name="txt_Header_Direction" xml:space="preserve">
-    <value>Από αριστερά προς δεξιά</value>
-  </data>
   <data name="txt_Status_Ready" xml:space="preserve">
     <value>Έτοιμο</value>
   </data>
@@ -206,5 +200,8 @@
   </data>
   <data name="tooltip_TextDirection" xml:space="preserve">
     <value>Κατεύθυνση κειμένου</value>
+  </data>
+  <data name="tooltip_EditViewMode" xml:space="preserve">
+    <value>Επεξεργασία / Προβολή ανάγνωσης</value>
   </data>
 </root>
