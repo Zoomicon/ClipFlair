@@ -7,7 +7,7 @@
 //TODO: must clear bindings when child window closes (now seem to stay as zombies hearing revoicing entries play at given time)
 
 //#define PART_NESTED_ACTIVITY
-#define PART_MEDIA
+#define PART_CLIP
 #define PART_CAPTIONS
 #define PART_REVOICING
 #define PART_TEXT
@@ -69,9 +69,9 @@ namespace ClipFlair.Windows
       btnAddNestedActivity.Click += new RoutedEventHandler(btnAddNestedActivity_Click);
       #endif
 
-      #if PART_MEDIA
-      btnAddMedia.Visibility = Visibility.Visible;
-      btnAddMedia.Click += new RoutedEventHandler(btnAddMedia_Click);
+      #if PART_CLIP
+      btnAddClip.Visibility = Visibility.Visible;
+      btnAddClip.Click += new RoutedEventHandler(btnAddClip_Click);
       #endif
 
       #if PART_CAPTIONS
@@ -341,9 +341,9 @@ namespace ClipFlair.Windows
 
     #endif
 
-    #if PART_MEDIA
+    #if PART_CLIP
 
-    private void btnAddMedia_Click(object sender, RoutedEventArgs e)
+    private void btnAddClip_Click(object sender, RoutedEventArgs e)
     {
       MediaPlayerWindow w = (MediaPlayerWindow)AddWindow(MediaPlayerWindowFactory, true);
       w.MediaPlayerView.Source = new Uri("http://video3.smoothhd.com.edgesuite.net/ondemand/Big%20Buck%20Bunny%20Adaptive.ism/Manifest", UriKind.Absolute);

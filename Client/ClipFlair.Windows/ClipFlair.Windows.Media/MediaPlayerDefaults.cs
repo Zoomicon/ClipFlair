@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: MediaPlayerDefaults.cs
-//Version: 20130118
+//Version: 20130210
 
 using Microsoft.SilverlightMediaFramework.Core.Accessibility.Captions;
 
@@ -14,7 +14,7 @@ namespace ClipFlair.Windows.Views
   {
     #region IView defaults - overrides
 
-    public const string DefaultTitle = "Media";
+    public const string DefaultTitle = "Clip";
     public const double DefaultWidth = 600;
     public const double DefaultHeight = 400;
 
