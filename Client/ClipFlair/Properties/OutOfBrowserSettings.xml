@@ -1,7 +1,7 @@
 <OutOfBrowserSettings ShortName="ClipFlair" EnableGPUAcceleration="True" ShowInstallMenuItem="True">
   <OutOfBrowserSettings.Blurb>ClipFlair - Foreign Language Learning through Interactive Revoicing and Captioning of Clips</OutOfBrowserSettings.Blurb>
   <OutOfBrowserSettings.WindowSettings>
-    <WindowSettings Title="ClipFlair Playground" Height="740" Width="1000" />
+    <WindowSettings Title="ClipFlair Studio" Height="740" Width="1000" />
   </OutOfBrowserSettings.WindowSettings>
   <OutOfBrowserSettings.Icons>
     <Icon Size="16,16">Images/clipflair_logo03_16x16.png</Icon>

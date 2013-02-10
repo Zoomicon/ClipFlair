@@ -4,32 +4,32 @@
 
 <!--
 Project: ClipFlair (http://ClipFlair.codeplex.com)
-Filename: ClipFlairPlayground.aspx
-Version: 20130130
+Filename: ClipFlair.aspx
+Version: 20130210
 -->
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 
 <head runat="server">
 
-  <title>ClipFlair Playground</title>
+  <title>ClipFlair Studio</title>
 
   <link rel="shortcut icon" type="image/ico" href="favicon.ico" />
 
   <meta property="fb:admins" content="313381898712634"/>
-  <meta property="og:url" content="http://play.clipflair.net"/>
-  <meta property="og:title" content="ClipFlair Playground"/>
-  <meta property="og:site_name" content="ClipFlair Playground"/>
+  <meta property="og:url" content="http://studio.clipflair.net"/>
+  <meta property="og:title" content="ClipFlair Studio"/>
+  <meta property="og:site_name" content="ClipFlair Studio"/>
   <meta property="og:description" content="Foreign Language Learning through Interactive Revoicing and Captioning of Clips"/>
   <meta property="og:type" content="website"/>
   <meta property="og:image" content="http://clipflair.net/wp-content/uploads/2012/06/clipflair-logo02.jpg"/>
   <meta property="og:locale" content="en_us"/>
 
-  <meta name="application-name" content="ClipFlair Playground" />
+  <meta name="application-name" content="ClipFlair Studio" />
 
-  <meta name="msapplication-starturl" content="http://play.clipflair.net" />
+  <meta name="msapplication-starturl" content="http://studio.clipflair.net" />
   <meta name="msapplication-window" content="width=1024;height=768" />
-  <meta name="msapplication-task" content="name=ClipFlair Playground; action-uri=http://play.clipflair.net/; icon-uri=http://play.clipflair.net/favicon.ico" />
+  <meta name="msapplication-task" content="name=ClipFlair Studio; action-uri=http://studio.clipflair.net/; icon-uri=http://studio.clipflair.net/favicon.ico" />
   <meta name="msapplication-task" content="name=ClipFlair Social Network; action-uri=http://social.clipflair.net/; icon-uri=http://social.clipflair.net/favicon.ico" />
   <meta name="msapplication-task" content="name=ClipFlair overview; action-uri=http://clipflair.net/overview/; icon-uri=http://clipflair.net/wp-content/themes/clipflair-theme/favicon.ico" />
   <meta name="msapplication-task" content="name=ClipFlair aims & objectives; action-uri=http://clipflair.net/aims-objectives/; icon-uri=http://clipflair.net/wp-content/themes/clipflair-theme/favicon.ico" />
@@ -106,7 +106,7 @@ Version: 20130130
 
     function onClosing() {
       if (activity().View.WarnOnClosing)
-        return "Do you want to exit ClipFlair Playground?";
+        return "Do you want to exit ClipFlair Studio?";
     }
 
     function onClosed() {
