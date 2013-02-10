@@ -57,7 +57,7 @@ Version: 20130204
           <widgets:OptionsLoadSaveControl LoadURLClick="OptionsLoadSaveControl_LoadURLClick" LoadClick="OptionsLoadSaveControl_LoadClick" SaveClick="OptionsLoadSaveControl_SaveClick" />
           <TextBlock Text=" " />
           <Button Name="btnAddNestedActivity" Visibility="Collapsed" Content="+ Nested Activity" VerticalAlignment="Center" Margin="0,0,5,0" />
-          <Button Name="btnAddMedia" Visibility="Collapsed" Content="+ Media" VerticalAlignment="Center" Margin="0,0,5,0" />
+          <Button Name="btnAddClip" Visibility="Collapsed" Content="+ Clip" VerticalAlignment="Center" Margin="0,0,5,0" />
           <Button Name="btnAddCaptions" Visibility="Collapsed" Content="+ Captions" VerticalAlignment="Center" Margin="0,0,5,0" />
           <Button Name="btnAddRevoicing" Visibility="Collapsed" Content="+ Revoicing" VerticalAlignment="Center" Margin="0,0,5,0" />
           <Button Name="btnAddText" Visibility="Collapsed" Content="+ Text" VerticalAlignment="Center" Margin="0,0,5,0" />
