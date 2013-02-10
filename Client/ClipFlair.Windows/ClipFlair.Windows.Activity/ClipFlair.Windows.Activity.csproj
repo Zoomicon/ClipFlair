@@ -167,9 +167,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Diagrams\Windows.cd" />
-    <None Include="Diagrams\Windows.Views.Interfaces.cd">
-      <SubType>Designer</SubType>
-    </None>
+    <None Include="Diagrams\Windows.Views.Interfaces.cd" />
     <None Include="Diagrams\Windows.Views.ViewModels.cd" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Silverlight\$(SilverlightVersion)\Microsoft.Silverlight.CSharp.targets" />
