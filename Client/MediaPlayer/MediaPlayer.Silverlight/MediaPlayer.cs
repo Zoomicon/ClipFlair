@@ -27,8 +27,15 @@ namespace ClipFlair.MediaPlayer
     {
       base.OnApplyTemplate();
 
-      ShowPlaylistElement.Content = "..."; //don't show "Playlist" text but show "..." instead to avoid localizing it and because it can distract viewers from the captions' text //TODO: should maybe show an Image here or expose this as a property?
+      ApplyTemplateOverrides();
 
+      UpdateVolumeElement(); //patch for SMF bug
+    }
+
+    protected void ApplyTemplateOverrides()
+    {
+      ShowPlaylistElement.Content = "..."; //don't show "Playlist" text but show "..." instead to avoid localizing it and because it can distract viewers from the captions' text //TODO: should maybe show an Image here or expose this as a property?
+      
       //apply UI template overrides
       OnFullScreenButtonVisibleChanged(!FullScreenButtonVisible, FullScreenButtonVisible);
       OnSlowMotionButtonVisibleChanged(!SlowMotionButtonVisible, SlowMotionButtonVisible);
@@ -42,16 +49,12 @@ namespace ClipFlair.MediaPlayer
       if (GraphToggleElement!=null) GraphToggleElement.Visibility = Visibility.Collapsed;
       if (ControlStripToggleElement != null) ControlStripToggleElement.Visibility = Visibility.Visible;
       */
-
-      UpdateVolumeElement(); //patch for SMF bug
     }
 
     protected void UpdateVolumeElement()
     {
-      //patch for SMF to update the VolumeElement UI with any already set VolumeLevel
-      double volume = VolumeLevel;
-      VolumeLevel = (volume == 1) ? 0.9 : 1;
-      VolumeLevel = volume;
+      //patch for SMF to update VolumeElement UI with any already set VolumeLevel
+      VolumeElement.VolumeLevel = VolumeLevel;
     }
 
     protected override void OnMediaOpened()
