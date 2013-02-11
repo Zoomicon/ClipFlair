@@ -1,8 +1,10 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: MediaPlayerWindow.xaml.cs
-//Version: 20130204
+//Version: 20130211
 
 using ClipFlair.Windows.Views;
+
+using Ionic.Zip;
 
 using System;
 using System.Windows;
@@ -30,7 +32,30 @@ namespace ClipFlair.Windows
   
     #endregion
 
-    #region Offline 
+    #region Methods
+
+    public override void LoadOptions(ZipFile zip, string zipFolder = "")
+    {
+      base.LoadOptions(zip, zipFolder);
+
+      if (player.VolumeLevel == MediaPlayerView.Volume) //SMF-bug patch: change volume temporarily, so that the volume control gets updated correctly after state loading
+        if (player.VolumeLevel < 1)
+          player.VolumeLevel = 1;
+        else
+          player.VolumeLevel = 0.9;
+      player.VolumeLevel = MediaPlayerView.Volume; //try to set again the volume (patch for SMF bug: keeps the volume widget at wrong position)
+    }
+ 
+    #endregion
+
+    #region Events
+
+    private void player_MediaOpened(object sender, EventArgs e)
+    {
+      player.Time = MediaPlayerView.Time; //apply the stored time value //TODO: doesn't seem to work (maybe the view's time has already changed)
+    }
+
+    #region Offline
     //TODO: need Smooth Streaming ISO Cache plugin for SMF from Media Experiences project at codeplex since this now works only for ProgressiveDownload media
 
     private void btnSaveOffline_Click(object sender, RoutedEventArgs e) //TODO: doesn't seem to work, maybe needs offline cache plugin or respective SMF assemblies
@@ -62,6 +87,8 @@ namespace ClipFlair.Windows
         MessageBox.Show("Error: " + ex.Message); //TODO: find parent window and pass here
       }
     }
+
+    #endregion
 
     #endregion
 

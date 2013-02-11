@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: IMediaPlayer.cs
-//Version: 20121202
+//Version: 20130211
 
 using Microsoft.SilverlightMediaFramework.Core.Accessibility.Captions;
 
