@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: MediaPlayer.cs
-//Version: 20130118
+//Version: 20130211
 
 using System;
 using System.Linq;
@@ -42,6 +42,16 @@ namespace ClipFlair.MediaPlayer
       if (GraphToggleElement!=null) GraphToggleElement.Visibility = Visibility.Collapsed;
       if (ControlStripToggleElement != null) ControlStripToggleElement.Visibility = Visibility.Visible;
       */
+
+      UpdateVolumeElement(); //patch for SMF bug
+    }
+
+    protected void UpdateVolumeElement()
+    {
+      //patch for SMF to update the VolumeElement UI with any already set VolumeLevel
+      double volume = VolumeLevel;
+      VolumeLevel = (volume == 1) ? 0.9 : 1;
+      VolumeLevel = volume;
     }
 
     protected override void OnMediaOpened()

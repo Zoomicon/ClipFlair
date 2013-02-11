@@ -1,7 +1,7 @@
 ﻿<!--
 Project: ClipFlair (http://ClipFlair.codeplex.com)
 Filename: MediaPlayerWindow.xaml
-Version: 20130114
+Version: 20130211
 -->
   
 <clipflair:BaseWindow x:Class="ClipFlair.Windows.MediaPlayerWindow"
@@ -48,6 +48,8 @@ Version: 20130114
                  RewindButtonVisible="True"
                  FastForwardButtonVisible="True"
                  FullScreenButtonVisible="False" AllowDoubleClickToggle="False"
+                     
+                 MediaOpened="player_MediaOpened"
                  >
   </media:MediaPlayer>
 
@@ -81,7 +83,13 @@ Version: 20130114
       <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Looping" Target="{Binding ElementName=cbLooping}"/>
     </StackPanel>
 
-    <StackPanel Orientation="Horizontal">
+    <StackPanel Orientation="Vertical" Name="propVolume">
+      <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Volume:" Target="{Binding ElementName=sldVolume}" />
+      <!-- <TextBox Name="edVolume" Text="{Binding Volume, Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=true}" /> -->
+      <Slider Name="sldVolume" Value="{Binding Volume, Mode=TwoWay}" Minimum="0" Maximum="1" SmallChange="0.05" LargeChange="0.1" Orientation="Horizontal" />
+    </StackPanel>
+        
+     <StackPanel Orientation="Horizontal">
       <CheckBox Name="cbVideoVisible" IsChecked="{Binding VideoVisible, Mode=TwoWay}" />
       <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Video visible" Target="{Binding ElementName=cbVideoVisible}"/>
     </StackPanel>
