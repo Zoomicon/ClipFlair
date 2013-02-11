@@ -3,16 +3,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml" >
 
 <head>
-
     <title>Site Under Maintenance</title>
-
 </head>
 
 <body>
 
-    <h1>ClipFlair Social Network website is under maintentance</h1>
+    <h1>ClipFlair Studio web application is under maintentance</h1>
 
- 
 
     <h2>Please come back later...</h2>
 
