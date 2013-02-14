@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<preserve resultType="2" virtualPath="/Portal.csproj/App_Browsers/" hash="3fcf5fef" filehash="b8c8b0b62d644d83" flags="110000" assembly="App_Browsers" type="ASP.ApplicationBrowserCapabilitiesFactory">
+    <filedeps>
+        <filedep name="/Portal.csproj/App_Browsers/CSSFriendlyAdapters.browser" />
+        <filedep name="/Portal.csproj/App_Browsers/Form.browser" />
+    </filedeps>
+</preserve>
