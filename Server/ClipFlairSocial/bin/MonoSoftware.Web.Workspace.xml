@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>MonoSoftware.Web.Workspace</name>
+    </assembly>
+    <members>
+        <member name="M:MonoSoftware.Web.Workspace.IEntity2Extension.ToLocalizedString(System.Type,System.String,System.String)">
+            <summary>
+            Internal method used in Lookups.
+            </summary>
+            <param name="entityType"></param>
+            <param name="propertyName"></param>
+            <param name="propertyValue"></param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>
