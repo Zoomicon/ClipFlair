@@ -1,0 +1,3730 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>MonoSoftware.Web</name>
+    </assembly>
+    <members>
+        <member name="T:MonoSoftware.Web.AntiSpam.AntiSpamConfigurationSection">
+            <summary>
+            AntiSpam configuration definition in the main config file. 
+            </summary>
+        </member>
+        <member name="P:MonoSoftware.Web.AntiSpam.AntiSpamConfigurationSection.Providers">
+            <summary>
+            Gets the anti spam providers.
+            </summary>
+        </member>
+        <member name="T:MonoSoftware.Web.AntiSpam.AntiSpamProviderElement">
+            <summary>
+            Anti spam provider configuration element.
+            </summary>
+        </member>
+        <member name="M:MonoSoftware.Web.AntiSpam.AntiSpamProviderElement.#cctor">
+            <summary>
+            Predefines the valid properties and prepares the property collection.
+            </summary>
+        </member>
+        <member name="P:MonoSoftware.Web.AntiSpam.AntiSpamProviderElement.Name">
+            <summary>
+            Gets the Name setting.
+            </summary>
+        </member>
+        <member name="P:MonoSoftware.Web.AntiSpam.AntiSpamProviderElement.Type">
+            <summary>
+            Gets the Type setting.
+            </summary>
+        </member>
+        <member name="P:MonoSoftware.Web.AntiSpam.AntiSpamProviderElement.ApiKey">
+            <summary>
+            Gets the Api Key setting.
+            </summary>
+        </member>
+        <member name="P:MonoSoftware.Web.AntiSpam.AntiSpamProviderElement.Properties">
+            <summary>
+            Override the Properties collection and return our custom one.
+            </summary>
+        </member>
+        <member name="T:MonoSoftware.Web.AntiSpam.AntiSpamProviderElementCollection">
+            <summary>
+            Anti spam provider element collection.
+            </summary>
+        </member>
+        <member name="M:MonoSoftware.Web.AntiSpam.AntiSpamProviderElementCollection.#cctor">
+            <summary>
+            Static anti spam provider configuration constructor.
+            </summary>
+        </member>
+        <member name="M:MonoSoftware.Web.AntiSpam.AntiSpamProviderElementCollection.#ctor">
+            <summary>
+            Constructor
+            </summary>
+        </member>
+        <member name="M:MonoSoftware.Web.AntiSpam.AntiSpamProviderElementCollection.CreateNewElement">
+            <summary>
+            When overridden in a derived class, creates a new System.Configuration.ConfigurationElement.
+            </summary>
+            <returns>A new AntiSpamProviderElement.</returns>
+        </member>
+        <member name="M:MonoSoftware.Web.AntiSpam.AntiSpamProviderElementCollection.GetElementKey(System.Configuration.ConfigurationElement)">
+            <summary>
+            Gets the element key for a specified configuration element when overridden
+                in a derived class.
+            </summary>
+            <param name="element">The System.Configuration.ConfigurationElement to return the key for.</param>
+            <returns>An System.Object that acts as the key for the specified AntiSpamProviderElement.</returns>
+        </member>
+        <member name="P:MonoSoftware.Web.AntiSpam.AntiSpamProviderElementCollection.Properties">
+            <summary>
+            Gets the provider properties.
+            </summary>
+        </member>
+        <member name="P:MonoSoftware.Web.AntiSpam.AntiSpamProviderElementCollection.CollectionType">
+            <summary>
+            Gets the providers collection type.
+            </summary>
+        </member>
+        <member name="P:MonoSoftware.Web.AntiSpam.AntiSpamProviderElementCollection.Item(System.Int32)">
+            <summary>
+            Gets or sets anti spam provider element.
+            </summary>
+            <param name="index">Index of the element</param>
+            <returns>Anti spam provider element</returns>
+        </member>
+        <member name="P:MonoSoftware.Web.AntiSpam.AntiSpamProviderElementCollection.Item(System.String)">
+            <summary>
+            Gets the anti spam provider element by it's name.
+            </summary>
+            <param name="name">Name of the provider</param>
+            <returns>Anti spam provider element</returns>
+        </member>
+        <member name="T:MonoSoftware.Web.AntiSpam.AntiSpamProviders.Akismet.Akismet">
+            <summary>
+            Class that encapsulates the functionality need to submit requests to the Akismet antispam service. Based on the code by Joel Thoms, http://www.joel.net/me/weblog.aspx.
+            </summary>
+        </member>
+        <member name="F:MonoSoftware.Web.AntiSpam.AntiSpamProviders.Akismet.Akismet.CharSet">
+            <summary>
+            Character set.
+            </summary>
+        </member>
+        <member name="M:MonoSoftware.Web.AntiSpam.AntiSpamProviders.Akismet.Akismet.#ctor(System.String)">
+            <summary>
+            Constructor, creates an Akismet API object.
+            </summary>
+        </member>
+        <member name="M:MonoSoftware.Web.AntiSpam.AntiSpamProviders.Akismet.Akismet.VerifyKey">
+            <summary>Verifies your wordpress.com key.</summary>
+            <returns>'True' is key is valid.</returns>
+        </member>
+        <member name="M:MonoSoftware.Web.AntiSpam.AntiSpamProviders.Akismet.Akismet.CommentCheck(MonoSoftware.Web.AntiSpam.AntiSpamProviders.Akismet.AkismetComment)">
+            <summary>Checks AkismetComment object against Akismet database.</summary>
+            <param name="comment">AkismetComment object to check.</param>
+            <returns>'True' if spam, 'False' if not spam.</returns>
+        </member>
+        <member name="M:MonoSoftware.Web.AntiSpam.AntiSpamProviders.Akismet.Akismet.SubmitSpam(MonoSoftware.Web.AntiSpam.AntiSpamProviders.Akismet.AkismetComment)">
+            <summary>Submits AkismetComment object into Akismet database.</summary>
+            <param name="comment">AkismetComment object to submit.</param>
+        </member>
+        <member name="M:MonoSoftware.Web.AntiSpam.AntiSpamProviders.Akismet.Akismet.SubmitHam(MonoSoftware.Web.AntiSpam.AntiSpamProviders.Akismet.AkismetComment)">
+            <summary>Retracts false positive from Akismet database.</summary>
+            <param name="comment">AkismetComment object to retract.</param>
+        </member>
+        <member name="M:MonoSoftware.Web.AntiSpam.AntiSpamProviders.Akismet.Akismet.CreateData(MonoSoftware.Web.AntiSpam.AntiSpamProviders.Akismet.AkismetComment)">
+            <summary>Takes an AkismetComment object and returns an (escaped) string of data to POST.</summary>
+            <param name="comment">AkismetComment object to translate.</param>
+            <returns>A System.String containing the data to POST to Akismet API.</returns>
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:MonoSoftware.Web.AntiSpam.AntiSpamProviders.Akismet.Akismet.HttpPost(System.String,System.String,System.String)" -->
+        <member name="T:MonoSoftware.Web.AntiSpam.AntiSpamProviders.Akismet.AkismetAntiSpamProvider">
+            <summary>
+            Implementation of the anti spam provider interface for Akismet.
+            </summary>
+        </member>
+        <member name="T:MonoSoftware.Web.AntiSpam.IAntiSpamProvider">
+            <summary>
+            Interface for antispam providers.
+            </summary>
+        </member>
+        <member name="M:MonoSoftware.Web.AntiSpam.IAntiSpamProvider.CheckSpam">
+            <summary>
+            Checks if comment is spam.
+            </summary>
+            <returns>True if comment is spam, false otherwise.</returns>
+        </member>
+        <member name="M:MonoSoftware.Web.AntiSpam.IAntiSpamProvider.AnnoncePost">
+            <summary>
+            Announces blog posts.
+            </summary>
+        </member>
+        <member name="M:MonoSoftware.Web.AntiSpam.IAntiSpamProvider.ReportSpam">
+            <summary>
+            Reports comment as spam.
+            </summary>
+        </member>
+        <member name="M:MonoSoftware.Web.AntiSpam.IAntiSpamProvider.ReportHam">
+            <summary>
+            Reports comment as spam.
+            </summary>
+        </member>
+        <member name="P:MonoSoftware.Web.AntiSpam.IAntiSpamProvider.Content">
+            <summary>
+            Gets or sets Content entity (used for submitting content for spam evaluation).
+            </summary>
+        </member>
+        <member name="P:MonoSoftware.Web.AntiSpam.IAntiSpamProvider.Spaminess">
+            <summary>
+            Gets Spaminess figure returned by Defensio.
+            </summary>
+        </member>
+        <member name="P:MonoSoftware.Web.AntiSpam.IAntiSpamProvider.Signature">
+            <summary>
+            Gets Signature returned by Defensio.
+            </summary>
+        </member>
+        <member name="M:MonoSoftware.Web.AntiSpam.AntiSpamProviders.Akismet.AkismetAntiSpamProvider.#ctor(System.String)">
+            <summary>
+            Constructor.
+            </summary>
+            <param name="apiKey">API key.</param>
+        </member>
+        <member name="M:MonoSoftware.Web.AntiSpam.AntiSpamProviders.Akismet.AkismetAntiSpamProvider.CheckSpam">
+            <summary>
+            Checks spam.
+            </summary>
+            <returns>True if the content is spam, false otherwise.</returns>
+        </member>
+        <member name="M:MonoSoftware.Web.AntiSpam.AntiSpamProviders.Akismet.AkismetAntiSpamProvider.AnnoncePost">
+            <summary>
+            Announces content post. Not used with Akimset.
+            </summary>
+        </member>
+        <member name="M:MonoSoftware.Web.AntiSpam.AntiSpamProviders.Akismet.AkismetAntiSpamProvider.ReportSpam">
+            <summary>
+            Reports spam.
+            </summary>
+        </member>
+        <member name="M:MonoSoftware.Web.AntiSpam.AntiSpamProviders.Akismet.AkismetAntiSpamProvider.ReportHam">
+            <summary>
+            Reports ham.
+            </summary>
+        </member>
+        <member name="P:MonoSoftware.Web.AntiSpam.AntiSpamProviders.Akismet.AkismetAntiSpamProvider.Content">
+            <summary>
+            Gets or sets content entity.
+            </summary>
+        </member>
+        <member name="P:MonoSoftware.Web.AntiSpam.AntiSpamProviders.Akismet.AkismetAntiSpamProvider.Spaminess">
+            <summary>
+            Gets Spaminess.
+            </summary>
+        </member>
+        <member name="P:MonoSoftware.Web.AntiSpam.AntiSpamProviders.Akismet.AkismetAntiSpamProvider.Signature">
+            <summary>
+            Gets Signature.
+            </summary>
+        </member>
+        <member name="T:MonoSoftware.Web.AntiSpam.AntiSpamProviders.Akismet.AkismetComment">
+            <summary>
+            Class that holds comments for submission to Akismet service.
+            </summary>
+        </member>
+        <member name="F:MonoSoftware.Web.AntiSpam.AntiSpamProviders.Akismet.AkismetComment.CommentName">
+            <summary>
+            Comment name.
+            </summary>
+        </member>
+        <member name="F:MonoSoftware.Web.AntiSpam.AntiSpamProviders.Akismet.AkismetComment.UserIp">
+            <summary>
+            User IP.
+            </summary>
+        </member>
+        <member name="F:MonoSoftware.Web.AntiSpam.AntiSpamProviders.Akismet.AkismetComment.UserAgent">
+            <summary>
+            User agent.
+            </summary>
+        </member>
+        <member name="F:MonoSoftware.Web.AntiSpam.AntiSpamProviders.Akismet.AkismetComment.Referrer">
+            <summary>
+            Referrer.
+            </summary>
+        </member>
+        <member name="F:MonoSoftware.Web.AntiSpam.AntiSpamProviders.Akismet.AkismetComment.Permalink">
+            <summary>
+            Permalink.
+            </summary>
+        </member>
+        <member name="F:MonoSoftware.Web.AntiSpam.AntiSpamProviders.Akismet.AkismetComment.CommentType">
+            <summary>
+            Comment type.
+            </summary>
+        </member>
+        <member name="F:MonoSoftware.Web.AntiSpam.AntiSpamProviders.Akismet.AkismetComment.CommentAuthor">
+            <summary>
+            Comment author.
+            </summary>
+        </member>
+        <member name="F:MonoSoftware.Web.AntiSpam.AntiSpamProviders.Akismet.AkismetComment.CommentAuthorEmail">
+            <summary>
+            Author's email.
+            </summary>
+        </member>
+        <member name="F:MonoSoftware.Web.AntiSpam.AntiSpamProviders.Akismet.AkismetComment.CommentAuthorUrl">
+            <summary>
+            Author's URL.
+            </summary>
+        </member>
+        <member name="F:MonoSoftware.Web.AntiSpam.AntiSpamProviders.Akismet.AkismetComment.CommentContent">
+            <summary>
+            Comment content.
+            </summary>
+        </member>
+        <member name="T:MonoSoftware.Web.AntiSpam.AntiSpamProviders.Defensio.AnnounceArticle">
+            <summary>
+            Announces articles to the defensio webservice.
+            </summary>
+        </member>
+        <member name="M:MonoSoftware.Web.AntiSpam.AntiSpamProviders.Defensio.AnnounceArticle.Submit">
+            <summary>
+            Submits this instance.
+            </summary>
+        </member>
+        <member name="P:MonoSoftware.Web.AntiSpam.AntiSpamProviders.Defensio.AnnounceArticle.OwnerUrl">
+            <summary>
+            Sets the owner URL.
+            </summary>
+            <value>The owner URL.</value>
+        </member>
+        <member name="P:MonoSoftware.Web.AntiSpam.AntiSpamProviders.Defensio.AnnounceArticle.Author">
+            <summary>
+            Sets the author.
+            </summary>
+            <value>The author.</value>
+        </member>
+        <member name="P:MonoSoftware.Web.AntiSpam.AntiSpamProviders.Defensio.AnnounceArticle.Email">
+            <summary>
+            Sets the email.
+            </summary>
+            <value>The email.</value>
+        </member>
+        <member name="P:MonoSoftware.Web.AntiSpam.AntiSpamProviders.Defensio.AnnounceArticle.Title">
+            <summary>
+            Sets the title.
+            </summary>
+            <value>The title.</value>
+        </member>
+        <member name="P:MonoSoftware.Web.AntiSpam.AntiSpamProviders.Defensio.AnnounceArticle.Content">
+            <summary>
+            Sets the content.
+            </summary>
+        </member>
+        <member name="P:MonoSoftware.Web.AntiSpam.AntiSpamProviders.Defensio.AnnounceArticle.Permalink">
+            <summary>
+            Sets the permalink.
+            </summary>
+            <value>The permalink.</value>
+        </member>
+        <member name="P:MonoSoftware.Web.AntiSpam.AntiSpamProviders.Defensio.AnnounceArticle.Status">
+            <summary>
+            Gets the status.
+            </summary>
+            <value>The status.</value>
+        </member>
+        <member name="P:MonoSoftware.Web.AntiSpam.AntiSpamProviders.Defensio.AnnounceArticle.Message">
+            <summary>
+            Gets the message.
+            </summary>
+            <value>The message.</value>
+        </member>
+        <member name="P:MonoSoftware.Web.AntiSpam.AntiSpamProviders.Defensio.AnnounceArticle.ApiVersion">
+            <summary>
+            Gets the API version.
+            </summary>
+            <value>The API version.</value>
+        </member>
+        <member name="P:MonoSoftware.Web.AntiSpam.AntiSpamProviders.Defensio.AnnounceArticle.XmlResult">
+            <summary>
+            Gets the XML result.
+            </summary>
+            <value>The XML result.</value>
+        </member>
+        <member name="T:MonoSoftware.Web.AntiSpam.AntiSpamProviders.Defensio.AuditComment">
+            <summary>
+            Sends a content to defensio for auditting. Returns a spaminess rating and a "spam" indicator.
+            </summary>
+        </member>
+        <member name="M:MonoSoftware.Web.AntiSpam.AntiSpamProviders.Defensio.AuditComment.Submit">
+            <summary>
+            Submits this instance.
+            </summary>
+        </member>
+        <member name="P:MonoSoftware.Web.AntiSpam.AntiSpamProviders.Defensio.AuditComment.OwnerUrl">
+            <summary>
+            Sets the owner URL.
+            </summary>
+            <value>The owner URL.</value>
+        </member>
+        <member name="P:MonoSoftware.Web.AntiSpam.AntiSpamProviders.Defensio.AuditComment.Ip">
+            <summary>
+            Sets the ip.
+            </summary>
+            <value>The ip.</value>
+        </member>
+        <member name="P:MonoSoftware.Web.AntiSpam.AntiSpamProviders.Defensio.AuditComment.ArticleDate">
+            <summary>
+            Sets the article date.
+            </summary>
+            <value>The article date.</value>
+        </member>
+        <member name="P:MonoSoftware.Web.AntiSpam.AntiSpamProviders.Defensio.AuditComment.CommentAuthor">
+            <summary>
+            Sets the comment author.
+            </summary>
+            <value>The comment author.</value>
+        </member>
+        <member name="P:MonoSoftware.Web.AntiSpam.AntiSpamProviders.Defensio.AuditComment.CommentType">
+            <summary>
+            Sets the type of the comment.
+            </summary>
+            <value>The type of the comment.</value>
+        </member>
+        <member name="P:MonoSoftware.Web.AntiSpam.AntiSpamProviders.Defensio.AuditComment.CommentContent">
+            <summary>
+            Sets the content of the comment.
+            </summary>
+            <value>The content of the comment.</value>
+        </member>
+        <member name="P:MonoSoftware.Web.AntiSpam.AntiSpamProviders.Defensio.AuditComment.CommentAuthorEmail">
+            <summary>
+            Sets the comment author email.
+            </summary>
+            <value>The comment author email.</value>
+        </member>
+        <member name="P:MonoSoftware.Web.AntiSpam.AntiSpamProviders.Defensio.AuditComment.CommentAuthorUrl">
+            <summary>
+            Sets the comment author URL.
+            </summary>
+            <value>The comment author URL.</value>
+        </member>
+        <member name="P:MonoSoftware.Web.AntiSpam.AntiSpamProviders.Defensio.AuditComment.Permalink">
+            <summary>
+            Sets the permalink.
+            </summary>
+            <value>The permalink.</value>
+        </member>
+        <member name="P:MonoSoftware.Web.AntiSpam.AntiSpamProviders.Defensio.AuditComment.Referrer">
+            <summary>
+            Sets the referrer.
+            </summary>
+            <value>The referrer.</value>
+        </member>
+        <member name="P:MonoSoftware.Web.AntiSpam.AntiSpamProviders.Defensio.AuditComment.UserLoggedIn">
+            <summary>
+            Sets a value indicating whether [user logged in].
+            </summary>
+            <value><c>true</c> if [user logged in]; otherwise, <c>false</c>.</value>
+        </member>
+        <member name="P:MonoSoftware.Web.AntiSpam.AntiSpamProviders.Defensio.AuditComment.TrustedUser">
+            <summary>
+            Sets a value indicating whether [trusted user].
+            </summary>
+            <value><c>true</c> if [trusted user]; otherwise, <c>false</c>.</value>
+        </member>
+        <member name="P:MonoSoftware.Web.AntiSpam.AntiSpamProviders.Defensio.AuditComment.Status">
+            <summary>
+            Gets the status.
+            </summary>
+            <value>The status.</value>
+        </member>
+        <member name="P:MonoSoftware.Web.AntiSpam.AntiSpamProviders.Defensio.AuditComment.Message">
+            <summary>
+            Gets the message.
+            </summary>
+            <value>The message.</value>
+        </member>
+        <member name="P:MonoSoftware.Web.AntiSpam.AntiSpamProviders.Defensio.AuditComment.ApiVersion">
+            <summary>
+            Gets the API version.
+            </summary>
+            <value>The API version.</value>
+        </member>
+        <member name="P:MonoSoftware.Web.AntiSpam.AntiSpamProviders.Defensio.AuditComment.Signature">
+            <summary>
+            Gets the signature.
+            </summary>
+            <value>The signature.</value>
+        </member>
+        <member name="P:MonoSoftware.Web.AntiSpam.AntiSpamProviders.Defensio.AuditComment.Spam">
+            <summary>
+            Gets a value indicating whether this <see cref="T:MonoSoftware.Web.AntiSpam.AntiSpamProviders.Defensio.AuditComment"/> is spam.
+            </summary>
+            <value><c>true</c> if spam; otherwise, <c>false</c>.</value>
+        </member>
+        <member name="P:MonoSoftware.Web.AntiSpam.AntiSpamProviders.Defensio.AuditComment.Spaminess">
+            <summary>
+            Gets the spaminess.
+            </summary>
+            <value>The spaminess.</value>
+        </member>
+        <member name="P:MonoSoftware.Web.AntiSpam.AntiSpamProviders.Defensio.AuditComment.XmlResult">
+            <summary>
+            Gets the XML result.
+            </summary>
+            <value>The XML result.</value>
+        </member>
+        <member name="T:MonoSoftware.Web.AntiSpam.AntiSpamProviders.Defensio.DefensioAntiSpamProvider">
+            <summary>
+            Implementation of anti spam provider interface for Defensio.
+            </summary>
+        </member>
+        <member name="M:MonoSoftware.Web.AntiSpam.AntiSpamProviders.Defensio.DefensioAntiSpamProvider.#ctor(System.String)">
+            <summary>
+            Constuctor.
+            </summary>
+            <param name="apiKey">API key.</param>
+        </member>
+        <member name="M:MonoSoftware.Web.AntiSpam.AntiSpamProviders.Defensio.DefensioAntiSpamProvider.CheckSpam">
+            <summary>
+            Checks spam.
+            </summary>
+            <returns>True if the comment is spam, false otherwise.</returns>
+        </member>
+        <member name="M:MonoSoftware.Web.AntiSpam.AntiSpamProviders.Defensio.DefensioAntiSpamProvider.AnnoncePost">
+            <summary>
+            Announces content post.
+            </summary>
+        </member>
+        <member name="M:MonoSoftware.Web.AntiSpam.AntiSpamProviders.Defensio.DefensioAntiSpamProvider.ReportSpam">
+            <summary>
+            Reports spam.
+            </summary>
+        </member>
+        <member name="M:MonoSoftware.Web.AntiSpam.AntiSpamProviders.Defensio.DefensioAntiSpamProvider.ReportHam">
+            <summary>
+            Reports ham.
+            </summary>
+        </member>
+        <member name="P:MonoSoftware.Web.AntiSpam.AntiSpamProviders.Defensio.DefensioAntiSpamProvider.Content">
+            <summary>
+            Gets or sets content entity.
+            </summary>
+        </member>
+        <member name="P:MonoSoftware.Web.AntiSpam.AntiSpamProviders.Defensio.DefensioAntiSpamProvider.Spaminess">
+            <summary>
+            Gets Spaminess factor.
+            </summary>
+        </member>
+        <member name="P:MonoSoftware.Web.AntiSpam.AntiSpamProviders.Defensio.DefensioAntiSpamProvider.Signature">
+            <summary>
+            Gets content signature.
+            </summary>
+        </member>
+        <member name="M:MonoSoftware.Web.AntiSpam.AntiSpamProviders.Defensio.GetStats.Submit">
+            <summary>
+            Submits this instance.
+            </summary>
+        </member>
+        <member name="P:MonoSoftware.Web.AntiSpam.AntiSpamProviders.Defensio.GetStats.OwnerUrl">
+            <summary>
+            Sets the owner URL.
+            </summary>
+            <value>The owner URL.</value>
+        </member>
+        <member name="P:MonoSoftware.Web.AntiSpam.AntiSpamProviders.Defensio.GetStats.Status">
+            <summary>
+            Gets the status.
+            </summary>
+            <value>The status.</value>
+        </member>
+        <member name="P:MonoSoftware.Web.AntiSpam.AntiSpamProviders.Defensio.GetStats.Message">
+            <summary>
+            Gets the message.
+            </summary>
+            <value>The message.</value>
+        </member>
+        <member name="P:MonoSoftware.Web.AntiSpam.AntiSpamProviders.Defensio.GetStats.ApiVersion">
+            <summary>
+            Gets the API version.
+            </summary>
+            <value>The API version.</value>
+        </member>
+        <member name="P:MonoSoftware.Web.AntiSpam.AntiSpamProviders.Defensio.GetStats.Accuracy">
+            <summary>
+            Gets the accuracy.
+            </summary>
+            <value>The accuracy.</value>
+        </member>
+        <member name="P:MonoSoftware.Web.AntiSpam.AntiSpamProviders.Defensio.GetStats.Spam">
+            <summary>
+            Gets number of spam comments identified.
+            </summary>
+            <value>The spam.</value>
+        </member>
+        <member name="P:MonoSoftware.Web.AntiSpam.AntiSpamProviders.Defensio.GetStats.Ham">
+            <summary>
+            Gets the number of ham comments identified.
+            </summary>
+            <value>The ham.</value>
+        </member>
+        <member name="P:MonoSoftware.Web.AntiSpam.AntiSpamProviders.Defensio.GetStats.FalsePositives">
+            <summary>
+            Gets the number false positives.
+            </summary>
+            <value>The false positives.</value>
+        </member>
+        <member name="P:MonoSoftware.Web.AntiSpam.AntiSpamProviders.Defensio.GetStats.FalseNegatives">
+            <summary>
+            Gets the number of false negatives.
+            </summary>
+            <value>The false negatives.</value>
+        </member>
+        <member name="P:MonoSoftware.Web.AntiSpam.AntiSpamProviders.Defensio.GetStats.XmlResult">
+            <summary>
+            Gets the XML result.
+            </summary>
+            <value>The XML result.</value>
+        </member>
+        <member name="T:MonoSoftware.Web.AntiSpam.AntiSpamProviders.Defensio.PostSubmitter">
+            <summary>
+            Submits post data to a url.
+            </summary>
+        </member>
+        <member name="M:MonoSoftware.Web.AntiSpam.AntiSpamProviders.Defensio.PostSubmitter.#ctor">
+            <summary>
+            Default constructor.
+            </summary>
+        </member>
+        <member name="M:MonoSoftware.Web.AntiSpam.AntiSpamProviders.Defensio.PostSubmitter.#ctor(System.String)">
+            <summary>
+            Constructor that accepts a url as a parameter
+            </summary>
+            <param name="url">The url where the post will be submitted to.</param>
+        </member>
+        <member name="M:MonoSoftware.Web.AntiSpam.AntiSpamProviders.Defensio.PostSubmitter.#ctor(System.String,System.Collections.Specialized.NameValueCollection)">
+            <summary>
+            Constructor allowing the setting of the url and items to post.
+            </summary>
+            <param name="url">the url for the post.</param>
+            <param name="values">The values for the post.</param>
+        </member>
+        <member name="M:MonoSoftware.Web.AntiSpam.AntiSpamProviders.Defensio.PostSubmitter.Post">
+            <summary>
+            Posts the supplied data to specified url.
+            </summary>
+            <returns>a string containing the result of the post.</returns>
+        </member>
+        <member name="M:MonoSoftware.Web.AntiSpam.AntiSpamProviders.Defensio.PostSubmitter.XmlPost">
+            <summary>
+            Posts the supplied data to specified url.
+            </summary>
+            <returns>a string containing the result of the post.</returns>
+        </member>
+        <member name="M:MonoSoftware.Web.AntiSpam.AntiSpamProviders.Defensio.PostSubmitter.Post(System.String)">
+            <summary>
+            Posts the supplied data to specified url.
+            </summary>
+            <param name="url">The url to post to.</param>
+            <returns>a string containing the result of the post.</returns>
+        </member>
+        <member name="M:MonoSoftware.Web.AntiSpam.AntiSpamProviders.Defensio.PostSubmitter.Post(System.String,System.Collections.Specialized.NameValueCollection)">
+            <summary>
+            Posts the supplied data to specified url.
+            </summary>
+            <param name="url">The url to post to.</param>
+            <param name="values">The values to post.</param>
+            <returns>a string containing the result of the post.</returns>
+        </member>
+        <member name="M:MonoSoftware.Web.AntiSpam.AntiSpamProviders.Defensio.PostSubmitter.PostData(System.String,System.String)">
+            <summary>
+            Posts data to a specified url. Note that this assumes that you have already url encoded the post data.
+            </summary>
+            <param name="postData">The data to post.</param>
+            <param name="url">the url to post to.</param>
+            <returns>Returns the result of the post.</returns>
+        </member>
+        <member name="M:MonoSoftware.Web.AntiSpam.AntiSpamProviders.Defensio.PostSubmitter.EncodeAndAddItem(System.Text.StringBuilder@,System.String,System.String)">
+            <summary>
+            Encodes an item and ads it to the string.
+            </summary>
+            <param name="baseRequest">The previously encoded data.</param>
+            <param name="dataItem">The data to encode.</param>
+            <returns>A string containing the old data and the previously encoded data.</returns>
+        </member>
+        <member name="P:MonoSoftware.Web.AntiSpam.AntiSpamProviders.Defensio.PostSubmitter.Url">
+            <summary>
+            Gets or sets the url to submit the post to.
+            </summary>
+        </member>
+        <member name="P:MonoSoftware.Web.AntiSpam.AntiSpamProviders.Defensio.PostSubmitter.PostItems">
+            <summary>
+            Gets or sets the name value collection of items to post.
+            </summary>
+        </member>
+        <member name="P:MonoSoftware.Web.AntiSpam.AntiSpamProviders.Defensio.PostSubmitter.Type">
+            <summary>
+            Gets or sets the type of action to perform against the url.
+            </summary>
+        </member>
+        <member name="T:MonoSoftware.Web.AntiSpam.AntiSpamProviders.Defensio.PostSubmitter.PostTypeEnum">
+            <summary>
+            Determines what type of post to perform.
+            </summary>
+        </member>
+        <member name="F:MonoSoftware.Web.AntiSpam.AntiSpamProviders.Defensio.PostSubmitter.PostTypeEnum.Get">
+            <summary>
+            Does a get against the source.
+            </summary>
+        </member>
+        <member name="F:MonoSoftware.Web.AntiSpam.AntiSpamProviders.Defensio.PostSubmitter.PostTypeEnum.Post">
+            <summary>
+            Does a post against the source.
+            </summary>
+        </member>
+        <member name="T:MonoSoftware.Web.AntiSpam.AntiSpamProviders.Defensio.ReportFalseNegatives">
+            <summary>
+            Reports a false negative to defensio.
+            </summary>
+        </member>
+        <member name="M:MonoSoftware.Web.AntiSpam.AntiSpamProviders.Defensio.ReportFalseNegatives.Submit">
+            <summary>
+            Submits this instance.
+            </summary>
+        </member>
+        <member name="P:MonoSoftware.Web.AntiSpam.AntiSpamProviders.Defensio.ReportFalseNegatives.OwnerUrl">
+            <summary>
+            Sets the owner URL.
+            </summary>
+            <value>The owner URL.</value>
+        </member>
+        <member name="P:MonoSoftware.Web.AntiSpam.AntiSpamProviders.Defensio.ReportFalseNegatives.Signatures">
+            <summary>
+            Sets the signatures.
+            </summary>
+            <value>The signatures.</value>
+        </member>
+        <member name="P:MonoSoftware.Web.AntiSpam.AntiSpamProviders.Defensio.ReportFalseNegatives.Status">
+            <summary>
+            Gets the status.
+            </summary>
+            <value>The status.</value>
+        </member>
+        <member name="P:MonoSoftware.Web.AntiSpam.AntiSpamProviders.Defensio.ReportFalseNegatives.Message">
+            <summary>
+            Gets the message.
+            </summary>
+            <value>The message.</value>
+        </member>
+        <member name="P:MonoSoftware.Web.AntiSpam.AntiSpamProviders.Defensio.ReportFalseNegatives.ApiVersion">
+            <summary>
+            Gets the API version.
+            </summary>
+            <value>The API version.</value>
+        </member>
+        <member name="P:MonoSoftware.Web.AntiSpam.AntiSpamProviders.Defensio.ReportFalseNegatives.XmlResult">
+            <summary>
+            Gets the XML result.
+            </summary>
+            <value>The XML result.</value>
+        </member>
+        <member name="T:MonoSoftware.Web.AntiSpam.AntiSpamProviders.Defensio.ReportFalsePositives">
+            <summary>
+            Reports a false positive to defensio
+            </summary>
+        </member>
+        <member name="M:MonoSoftware.Web.AntiSpam.AntiSpamProviders.Defensio.ReportFalsePositives.Submit">
+            <summary>
+            Submits this instance.
+            </summary>
+        </member>
+        <member name="P:MonoSoftware.Web.AntiSpam.AntiSpamProviders.Defensio.ReportFalsePositives.OwnerUrl">
+            <summary>
+            Sets the owner URL.
+            </summary>
+            <value>The owner URL.</value>
+        </member>
+        <member name="P:MonoSoftware.Web.AntiSpam.AntiSpamProviders.Defensio.ReportFalsePositives.Signatures">
+            <summary>
+            Sets the signatures.
+            </summary>
+            <value>The signatures.</value>
+        </member>
+        <member name="P:MonoSoftware.Web.AntiSpam.AntiSpamProviders.Defensio.ReportFalsePositives.Status">
+            <summary>
+            Gets the status.
+            </summary>
+            <value>The status.</value>
+        </member>
+        <member name="P:MonoSoftware.Web.AntiSpam.AntiSpamProviders.Defensio.ReportFalsePositives.Message">
+            <summary>
+            Gets the message.
+            </summary>
+            <value>The message.</value>
+        </member>
+        <member name="P:MonoSoftware.Web.AntiSpam.AntiSpamProviders.Defensio.ReportFalsePositives.ApiVersion">
+            <summary>
+            Gets the API version.
+            </summary>
+            <value>The API version.</value>
+        </member>
+        <member name="P:MonoSoftware.Web.AntiSpam.AntiSpamProviders.Defensio.ReportFalsePositives.XmlResult">
+            <summary>
+            Gets the XML result.
+            </summary>
+            <value>The XML result.</value>
+        </member>
+        <member name="T:MonoSoftware.Web.AntiSpam.AntiSpamProviders.Defensio.Settings">
+            <summary>
+            Defensio settings.
+            </summary>
+        </member>
+        <member name="P:MonoSoftware.Web.AntiSpam.AntiSpamProviders.Defensio.Settings.ApiKey">
+            <summary>
+            Gets or sets the Defensio API key.
+            </summary>
+        </member>
+        <member name="P:MonoSoftware.Web.AntiSpam.AntiSpamProviders.Defensio.Settings.ApiVersion">
+            <summary>
+            Gets or sets Defensio API version.
+            </summary>
+        </member>
+        <member name="P:MonoSoftware.Web.AntiSpam.AntiSpamProviders.Defensio.Settings.ServiceType">
+            <summary>
+            Gets or sets Defension service type.
+            </summary>
+        </member>
+        <member name="T:MonoSoftware.Web.AntiSpam.AntiSpamProviders.Defensio.ValidateKey">
+            <summary>
+            Validates the api key.
+            </summary>
+        </member>
+        <member name="M:MonoSoftware.Web.AntiSpam.AntiSpamProviders.Defensio.ValidateKey.Submit">
+            <summary>
+            Submits this instance.
+            </summary>
+        </member>
+        <member name="P:MonoSoftware.Web.AntiSpam.AntiSpamProviders.Defensio.ValidateKey.OwnerUrl">
+            <summary>
+            Sets the owner URL.
+            </summary>
+            <value>The owner URL.</value>
+        </member>
+        <member name="P:MonoSoftware.Web.AntiSpam.AntiSpamProviders.Defensio.ValidateKey.ApiKey">
+            <summary>
+            Sets the API key.
+            </summary>
+            <value>The API key.</value>
+        </member>
+        <member name="P:MonoSoftware.Web.AntiSpam.AntiSpamProviders.Defensio.ValidateKey.Status">
+            <summary>
+            Gets the status.
+            </summary>
+            <value>The status.</value>
+        </member>
+        <member name="P:MonoSoftware.Web.AntiSpam.AntiSpamProviders.Defensio.ValidateKey.Message">
+            <summary>
+            Gets the message.
+            </summary>
+            <value>The message.</value>
+        </member>
+        <member name="P:MonoSoftware.Web.AntiSpam.AntiSpamProviders.Defensio.ValidateKey.ApiVersion">
+            <summary>
+            Gets the API version.
+            </summary>
+            <value>The API version.</value>
+        </member>
+        <member name="P:MonoSoftware.Web.AntiSpam.AntiSpamProviders.Defensio.ValidateKey.XmlResult">
+            <summary>
+            Gets the XML result.
+            </summary>
+            <value>The XML result.</value>
+        </member>
+        <member name="T:MonoSoftware.Web.AntiSpam.IAntiSpamContent">
+            <summary>
+            Class that holds content for submission to Akismet service.
+            </summary>
+        </member>
+        <member name="P:MonoSoftware.Web.AntiSpam.IAntiSpamContent.ContentName">
+            <summary>
+            Gets or sets content name.
+            </summary>
+        </member>
+        <member name="P:MonoSoftware.Web.AntiSpam.IAntiSpamContent.Ip">
+            <summary>
+            Gets or sets User IP.
+            </summary>
+        </member>
+        <member name="P:MonoSoftware.Web.AntiSpam.IAntiSpamContent.UserAgent">
+            <summary>
+            Gets or sets User agent.
+            </summary>
+        </member>
+        <member name="P:MonoSoftware.Web.AntiSpam.IAntiSpamContent.Referrer">
+            <summary>
+            Gets or sets Referrer.
+            </summary>
+        </member>
+        <member name="P:MonoSoftware.Web.AntiSpam.IAntiSpamContent.ContentType">
+            <summary>
+            Gets or sets Content type.
+            </summary>
+        </member>
+        <member name="P:MonoSoftware.Web.AntiSpam.IAntiSpamContent.ContentAuthor">
+            <summary>
+            Gets or sets Content author.
+            </summary>
+        </member>
+        <member name="P:MonoSoftware.Web.AntiSpam.IAntiSpamContent.ContentAuthorEmail">
+            <summary>
+            Gets or sets Author's email.
+            </summary>
+        </member>
+        <member name="P:MonoSoftware.Web.AntiSpam.IAntiSpamContent.ContentAuthorUrl">
+            <summary>
+            Gets or sets Author's URL.
+            </summary>
+        </member>
+        <member name="P:MonoSoftware.Web.AntiSpam.IAntiSpamContent.Content">
+            <summary>
+            Gets or sets Content.
+            </summary>
+        </member>
+        <member name="P:MonoSoftware.Web.AntiSpam.IAntiSpamContent.Signature">
+            <summary>
+            Gets or sets Signature.
+            </summary>
+        </member>
+        <member name="P:MonoSoftware.Web.AntiSpam.IAntiSpamContent.DateCreated">
+            <summary>
+            Gets or sets DateCreated.
+            </summary>
+        </member>
+        <member name="P:MonoSoftware.Web.AntiSpam.IAntiSpamContent.IsSpam">
+            <summary>
+            Gets or sets is spam flag.
+            </summary>
+        </member>
+        <member name="P:MonoSoftware.Web.AntiSpam.IAntiSpamContent.Spaminess">
+            <summary>
+            Gets or sets Spaminess flag.
+            </summary>
+        </member>
+        <member name="P:MonoSoftware.Web.AntiSpam.IAntiSpamContent.IsApproved">
+            <summary>
+            Gets or sets is approved flag.
+            </summary>
+        </member>
+        <member name="T:MonoSoftware.Web.AntiSpam.SpamContentValidator">
+            <summary>
+            Used to validate content using validation services like Akismet and Defensio.
+            </summary>
+        </member>
+        <member name="M:MonoSoftware.Web.AntiSpam.SpamContentValidator.#ctor">
+            <summary>
+            Constructor.
+            </summary>
+        </member>
+        <member name="M:MonoSoftware.Web.AntiSpam.SpamContentValidator.OnErrorOccurred(System.Exception)">
+            <summary>
+            Raises the error occurred event.
+            </summary>
+            <param name="ex">Thrown exception</param>
+        </member>
+        <member name="M:MonoSoftware.Web.AntiSpam.SpamContentValidator.GetProviders">
+            <summary>
+            Gets all providers from the config file.
+            </summary>
+            <returns>List of antispam providers.</returns>
+        </member>
+        <member name="M:MonoSoftware.Web.AntiSpam.SpamContentValidator.ValidateComment(MonoSoftware.Web.AntiSpam.IAntiSpamContent)">
+            <summary>
+            Validates a content by querying all available antispam providers.
+            </summary>
+            <param name="content">Submission content</param>
+        </member>
+        <member name="M:MonoSoftware.Web.AntiSpam.SpamContentValidator.ReportSpam(MonoSoftware.Web.AntiSpam.IAntiSpamContent)">
+            <summary>
+            Reports spam comments to all registered providers.
+            </summary>
+            <param name="content">Submission content</param>
+        </member>
+        <member name="M:MonoSoftware.Web.AntiSpam.SpamContentValidator.ReportHam(MonoSoftware.Web.AntiSpam.IAntiSpamContent)">
+            <summary>
+            Reports "ham" (valid comments) to all registered providers.
+            </summary>
+            <param name="content">Submission content</param>
+        </member>
+        <member name="M:MonoSoftware.Web.AntiSpam.SpamContentValidator.AnnouncePost(MonoSoftware.Web.AntiSpam.IAntiSpamContent)">
+            <summary>
+            Announces content posts to all registered providers.
+            </summary>
+            <param name="content">Submission content</param>
+        </member>
+        <member name="E:MonoSoftware.Web.AntiSpam.SpamContentValidator.ErrorOccurred">
+            <summary>
+            Error occurred event handler.
+            </summary>
+        </member>
+        <member name="P:MonoSoftware.Web.AntiSpam.SpamContentValidator.Providers">
+            <summary>
+            Gets List of antispam providers used in the portal instance.
+            </summary>
+        </member>
+        <member name="T:MonoSoftware.Web.Caching.AspNetCacheProvider">
+            <summary>
+            Asp.Net Cache provider.
+            </summary>
+        </member>
+        <member name="T:MonoSoftware.Web.Caching.ICacheProvider">
+            <summary>
+            Cache provider interface. 
+            </summary>
+        </member>
+        <member name="M:MonoSoftware.Web.Caching.ICacheProvider.Store(System.String,System.Object)">
+            <summary>
+            Stores item in the cache.
+            </summary>
+            <param name="key">Key.</param>
+            <param name="data">Data to store.</param>
+        </member>
+        <member name="M:MonoSoftware.Web.Caching.ICacheProvider.Remove(System.String)">
+            <summary>
+            Removes the item in the cache.
+            </summary>
+            <param name="key">Key for item that should be removed.</param>
+        </member>
+        <member name="M:MonoSoftware.Web.Caching.ICacheProvider.RemoveAll(System.String)">
+            <summary>
+            Removes all items that starts with the key that is passed as a parameter.
+            </summary>
+            <param name="key">Key that must be present in a key that is to be removed.</param>
+        </member>
+        <member name="M:MonoSoftware.Web.Caching.ICacheProvider.Get``1(System.String)">
+            <summary>
+            Retieves the item from the cache.
+            </summary>
+            <typeparam name="T">Type of the item to be retrieved.</typeparam>
+            <param name="key">Key of the item to be retrieved.</param>
+            <returns>The object from the cache with the key that is passed as a parameter.</returns>
+        </member>
+        <member name="M:MonoSoftware.Web.Caching.ICacheProvider.Get(System.String)">
+            <summary>
+            Retieves the item from the cache.
+            </summary>
+            <param name="key">Key of the item to be retrieved.</param>
+            <returns>The object from the cache with the key that is passed as a parameter.</returns>
+        </member>
+        <member name="P:MonoSoftware.Web.Caching.ICacheProvider.Timeout">
+            <summary>
+            Gets or sets Cache timeout in seconds.
+            </summary>
+        </member>
+        <member name="P:MonoSoftware.Web.Caching.ICacheProvider.Priortiy">
+            <summary>
+            Gets or sets cache item priority level.
+            </summary>
+        </member>
+        <member name="M:MonoSoftware.Web.Caching.AspNetCacheProvider.#ctor">
+            <summary>
+            Asp.Net Cache Provider.
+            </summary>
+        </member>
+        <member name="M:MonoSoftware.Web.Caching.AspNetCacheProvider.Store(System.String,System.Object)">
+            <summary>
+            Stores the item in the repository based on the key.
+            </summary>
+            <param name="key">Key of the item that should be stored.</param>
+            <param name="data">Item data</param>
+        </member>
+        <member name="M:MonoSoftware.Web.Caching.AspNetCacheProvider.Store(System.String,System.Object,System.Web.Caching.CacheDependency)">
+            <summary>
+            Stores the item in the repository based on the key.
+            </summary>
+            <param name="key">Key of the item that should be stored.</param>
+            <param name="data">Item data</param>
+            <param name="dependency">Cache dependency</param>
+        </member>
+        <member name="M:MonoSoftware.Web.Caching.AspNetCacheProvider.Store(System.String,System.Object,System.Web.Caching.CacheDependency,System.Web.Caching.CacheItemRemovedCallback)">
+            <summary>
+            Stores the item in the repository based on the key.
+            </summary>
+            <param name="key">Key of the item that should be stored.</param>
+            <param name="data">Item data</param>
+            <param name="dependency">Cache dependency</param>
+            <param name="removedCallback">Cache item removed callback</param>
+        </member>
+        <member name="M:MonoSoftware.Web.Caching.AspNetCacheProvider.Remove(System.String)">
+            <summary>
+            Removes the item from the repository.
+            </summary>
+            <param name="key">Key of the item that should be removed.</param>
+        </member>
+        <member name="M:MonoSoftware.Web.Caching.AspNetCacheProvider.RemoveAll(System.String)">
+            <summary>
+            Removes all the items from the repository.
+            </summary>
+            <param name="key">Key of the item that should be removed.</param>
+        </member>
+        <member name="M:MonoSoftware.Web.Caching.AspNetCacheProvider.Get``1(System.String)">
+            <summary>
+            Retrieves the item from the repository.
+            </summary>
+            <typeparam name="T">Type of the item to be retrieved.</typeparam>
+            <param name="key">Key of the item to be retrieved.</param>
+            <returns>The object from the cache with the key that is passed as a parameter.</returns>
+        </member>
+        <member name="M:MonoSoftware.Web.Caching.AspNetCacheProvider.Get(System.String)">
+            <summary>
+            Retrieves the item from the repository.
+            </summary>
+            <param name="key">Key of the item to be retrieved.</param>
+            <returns>The object from the cache with the key that is passed as a parameter.</returns>
+        </member>
+        <member name="P:MonoSoftware.Web.Caching.AspNetCacheProvider.UseAbsoluteExipiration">
+            <summary>
+            Gets or sets if absolute expiration is turned on.
+            <para>
+            Note: Absolute expiration is turned on by default.
+            </para>
+            </summary>
+        </member>
+        <member name="P:MonoSoftware.Web.Caching.AspNetCacheProvider.Priortiy">
+            <summary>
+            Gets or sets cache item priority level.
+            <para>
+            Note: Default is <see cref="F:MonoSoftware.Web.Caching.CacheItemPriorityLevel.AboveNormal"/>
+            </para>
+            </summary>
+        </member>
+        <member name="P:MonoSoftware.Web.Caching.AspNetCacheProvider.Timeout">
+            <summary>
+            Gets or sets the cache timeout period in seconds.
+            <para>
+            Note: Default is zero.
+            </para>
+            </summary>
+        </member>
+        <member name="T:MonoSoftware.Web.Caching.CacheConfigurationSection">
+            <summary>
+            Cache configuration definition in the main config file. 
+            </summary>
+        </member>
+        <member name="P:MonoSoftware.Web.Caching.CacheConfigurationSection.Providers">
+            <summary>
+            Providers collection.
+            </summary>
+        </member>
+        <member name="P:MonoSoftware.Web.Caching.CacheConfigurationSection.DefaultProvider">
+            <summary>
+            Default provider.
+            </summary>
+        </member>
+        <member name="P:MonoSoftware.Web.Caching.CacheConfigurationSection.DefaultSystemCacheDuration">
+            <summary>
+            Default system cache duration.
+            </summary>
+        </member>
+        <member name="P:MonoSoftware.Web.Caching.CacheConfigurationSection.DefaultWebPartCacheDuration">
+            <summary>
+            Default Web part cache duration.
+            </summary>
+        </member>
+        <member name="T:MonoSoftware.Web.Caching.CacheProviderElement">
+            <summary>
+            Cache provider configuration element.
+            </summary>
+        </member>
+        <member name="M:MonoSoftware.Web.Caching.CacheProviderElement.#cctor">
+            <summary>
+            Predefines the valid properties and prepares the property collection.
+            </summary>
+        </member>
+        <member name="P:MonoSoftware.Web.Caching.CacheProviderElement.Name">
+            <summary>
+            Gets the Name setting.
+            </summary>
+        </member>
+        <member name="P:MonoSoftware.Web.Caching.CacheProviderElement.Type">
+            <summary>
+            Gets the Type setting.
+            </summary>
+        </member>
+        <member name="P:MonoSoftware.Web.Caching.CacheProviderElement.Properties">
+            <summary>
+            Override the Properties collection and return our custom one.
+            </summary>
+        </member>
+        <member name="T:MonoSoftware.Web.Caching.CacheProviderElementCollection">
+            <summary>
+            Cache provider element collection.
+            </summary>
+        </member>
+        <member name="T:MonoSoftware.Web.Caching.CacheItemPriorityLevel">
+            <summary>
+            Specifies the relative priority of items stored in the System.Web.Caching.Cache
+                object.
+            </summary>
+        </member>
+        <member name="F:MonoSoftware.Web.Caching.CacheItemPriorityLevel.Low">
+            <summary>
+            Cache items with this priority level are the most likely to be deleted from
+            the cache.
+            </summary>
+        </member>
+        <member name="F:MonoSoftware.Web.Caching.CacheItemPriorityLevel.BelowNormal">
+            <summary>
+            Cache items with this priority level are more likely to be deleted from the
+            cache as the server frees system memory than items assigned a MonoSoftware.Web.Caching.CacheItemPriorityLevel.Normal
+            priority.
+            </summary>
+        </member>
+        <member name="F:MonoSoftware.Web.Caching.CacheItemPriorityLevel.Normal">
+            <summary>
+            Cache items with this priority level are likely to be deleted from the cache
+            as the server frees system memory only after those items with MonoSoftware.Web.Caching.CacheItemPriorityLevel.Low
+            or System.Web.Caching.CacheItemPriority.BelowNormal priority. This is the
+            default.
+            </summary>
+        </member>
+        <member name="F:MonoSoftware.Web.Caching.CacheItemPriorityLevel.Default">
+            <summary>
+            The default value for a cached item's priority is MonoSoftware.Web.Caching.CacheItemPriorityLevel.Normal.
+            </summary>
+        </member>
+        <member name="F:MonoSoftware.Web.Caching.CacheItemPriorityLevel.AboveNormal">
+            <summary>
+            Cache items with this priority level are less likely to be deleted as the
+            server frees system memory than those assigned a MonoSoftware.Web.Caching.CacheItemPriorityLevel.Normal
+            priority.
+            </summary>
+        </member>
+        <member name="F:MonoSoftware.Web.Caching.CacheItemPriorityLevel.High">
+            <summary>
+            Cache items with this priority level are the least likely to be deleted from
+            the cache as the server frees system memory.
+            </summary>
+        </member>
+        <member name="F:MonoSoftware.Web.Caching.CacheItemPriorityLevel.NotRemovable">
+            <summary>
+            The cache items with this priority level will not be automatically deleted
+             from the cache as the server frees system memory. However, items with this
+             priority level are removed along with other items according to the item's
+             absolute or sliding expiration time.
+            </summary>
+        </member>
+        <member name="T:MonoSoftware.Web.Caching.CacheManager">
+            <summary>
+            Provider-based cache manager.
+            </summary>
+        </member>
+        <member name="M:MonoSoftware.Web.Caching.CacheManager.GetInstance(System.String,System.Int32)">
+            <summary>
+            Get the instance of the Cache Manager.
+            </summary>
+            <param name="baseKey">Base cache key</param>
+            <param name="timeout">Cache timeout (in seconds)</param>
+            <returns>Cache manager</returns>
+        </member>
+        <member name="M:MonoSoftware.Web.Caching.CacheManager.GetInstance(System.String)">
+            <summary>
+            Get the instance of the Cache Manager.
+            </summary>
+            <param name="baseKey">Base cache key</param>
+            <returns>Cache manager</returns>
+        </member>
+        <member name="M:MonoSoftware.Web.Caching.CacheManager.GetInstance(System.Int32)">
+            <summary>
+            Get the instance of the Cache Manager.
+            </summary>
+            <param name="timeout">Cache timeout (in seconds)</param>
+            <returns>Cache manager</returns>
+        </member>
+        <member name="M:MonoSoftware.Web.Caching.CacheManager.GetInstance">
+            <summary>
+             Get the instance of the Cache Manager.
+            </summary>
+            <returns>Cache manager</returns>
+        </member>
+        <member name="M:MonoSoftware.Web.Caching.CacheManager.GetProvider">
+            <summary>
+            Gets a default provider from the config file.
+            </summary>
+            <returns>Default cache provider.</returns>
+        </member>
+        <member name="M:MonoSoftware.Web.Caching.CacheManager.RetrieveDefaultCacheDuration">
+            <summary>
+            Retrieves default cache duration times.
+            </summary>
+        </member>
+        <member name="M:MonoSoftware.Web.Caching.CacheManager.#ctor(System.String,System.Int32)">
+            <summary>
+             Get the instance of the Cache Manager.
+            </summary>
+            <param name="baseKey">Base cache key</param>
+            <param name="timeout">Cache timeout (in seconds)</param>
+        </member>
+        <member name="M:MonoSoftware.Web.Caching.CacheManager.Store(System.Object,System.Object[])">
+            <summary>
+            Stores the item in the repository based on the array of parameters that are used to generate the key.
+            </summary>
+            <param name="data">Item data</param>
+            <param name="keyParameters">Key parameters</param>
+        </member>
+        <member name="M:MonoSoftware.Web.Caching.CacheManager.Remove(System.String)">
+            <summary>
+            Removes the item from the repository.
+            </summary>
+            <param name="key">Key of the item that should be removed.</param>
+        </member>
+        <member name="M:MonoSoftware.Web.Caching.CacheManager.Remove(System.Object[])">
+            <summary>
+            Remove the item from the repository.
+            </summary>
+            <param name="keyParameters">Key parameters in cache key of the item that should be removed.</param>
+        </member>
+        <member name="M:MonoSoftware.Web.Caching.CacheManager.RemoveAll(System.Object[])">
+            <summary>
+            Remove all items from the repository.
+            </summary>
+            <param name="keyParameters">Key parameters in cache key of the item that should be removed.</param>
+        </member>
+        <member name="M:MonoSoftware.Web.Caching.CacheManager.RemoveAll">
+            <summary>
+            Remove all items from the repository.
+            </summary>
+        </member>
+        <member name="M:MonoSoftware.Web.Caching.CacheManager.Get``1(System.String)">
+            <summary>
+            Retrieves the item from the repository.
+            </summary>
+            <typeparam name="T">Type of the item to be retrieved.</typeparam>
+            <param name="key">Key of the item to be retrieved.</param>
+            <returns>The object from the cache with the key that is passed as a parameter.</returns>
+        </member>
+        <member name="M:MonoSoftware.Web.Caching.CacheManager.Get``1(System.Object[])">
+            <summary>
+            Retrieves the item from the repository.
+            </summary>
+            <typeparam name="T">Type of the item to be retrieved.</typeparam>
+            <param name="keyParameters">Key parameters in cache key of the item to be retrieved.</param>
+            <returns>The object from the cache with the key parameters that are passed as a parameter.</returns>
+        </member>
+        <member name="M:MonoSoftware.Web.Caching.CacheManager.GenerateKeyRoot(System.Object[])">
+            <summary>
+            Generates a key root, additional parameters (applicationId and languageId) may be added later for grater uniqueness. Used directly in the RemoveAll operations since additional parameters interfere with the process of searching for similar keys.
+            </summary>
+            <param name="keyParameters">Key paramaters</param>
+            <returns>Key root.</returns>
+        </member>
+        <member name="M:MonoSoftware.Web.Caching.CacheManager.GenerateKey(System.Object[])">
+            <summary>
+            Generates a key based on the param array to guarantee uniqueness of the cached item.
+            </summary>
+            <param name="keyParameters">Parameters for generating a unique cache key.</param>
+        </member>
+        <member name="P:MonoSoftware.Web.Caching.CacheManager.DefaultSystemCacheDuration">
+            <summary>
+            Time in seconds for storing system values (user profiles, roles, etc.). If set to zero no caching is performed. 
+            </summary>
+        </member>
+        <member name="P:MonoSoftware.Web.Caching.CacheManager.DefaultWebPartCacheDuration">
+            <summary>
+            Time in seconds for Web parts / other front-end modules. If greater than zero all cacheable parts will be set to this value, unless they are individually set to some other value. 
+            </summary>
+        </member>
+        <member name="P:MonoSoftware.Web.Caching.CacheManager.CurrentProvider">
+            <summary>
+            Gets the current cache provider instance.
+            </summary>
+        </member>
+        <member name="P:MonoSoftware.Web.Caching.CacheManager.BaseKey">
+            <summary>
+            Gets or sets base cache key.
+            </summary>
+        </member>
+        <member name="P:MonoSoftware.Web.Caching.CacheManager.KeyUsesAppId">
+            <summary>
+            Gets or Sets if cache key uses Asp.Net Application Id.
+            </summary>
+        </member>
+        <member name="P:MonoSoftware.Web.Caching.CacheManager.ApplicationId">
+            <summary>
+            Gets or Sets an Application Id.
+            </summary>
+        </member>
+        <member name="P:MonoSoftware.Web.Caching.CacheManager.KeyUsesLangId">
+            <summary>
+            Gets or sets if cache key uses MonoX language Id.
+            </summary>
+        </member>
+        <member name="P:MonoSoftware.Web.Caching.CacheManager.LanguageId">
+            <summary>
+            Gets or Sets a Language Id.
+            </summary>
+        </member>
+        <member name="T:MonoSoftware.Web.Caching.RequestProvider">
+            <summary>
+            Request provider.
+            </summary>
+        </member>
+        <member name="M:MonoSoftware.Web.Caching.RequestProvider.Store(System.String,System.Object)">
+            <summary>
+            Stores the item in the repository based on the key.
+            </summary>
+            <param name="key">Key of the item that should be stored.</param>
+            <param name="data">Item data</param>
+        </member>
+        <member name="M:MonoSoftware.Web.Caching.RequestProvider.Remove(System.String)">
+            <summary>
+            Removes the item from the repository.
+            </summary>
+            <param name="key">Key of the item that should be removed.</param>
+        </member>
+        <member name="M:MonoSoftware.Web.Caching.RequestProvider.RemoveAll(System.String)">
+            <summary>
+            Removes all the items from the repository.
+            </summary>
+            <param name="key">Key of the item that should be removed.</param>
+        </member>
+        <member name="M:MonoSoftware.Web.Caching.RequestProvider.Get``1(System.String)">
+            <summary>
+            Retrieves the item from the repository.
+            </summary>
+            <typeparam name="T">Type of the item to be retrieved.</typeparam>
+            <param name="key">Key of the item to be retrieved.</param>
+            <returns>The object from the cache with the key that is passed as a parameter.</returns>
+        </member>
+        <member name="M:MonoSoftware.Web.Caching.RequestProvider.Get(System.String)">
+            <summary>
+            Retrieves the item from the repository.
+            </summary>
+            <param name="key">Key of the item to be retrieved.</param>
+            <returns>The object from the cache with the key that is passed as a parameter.</returns>
+        </member>
+        <member name="P:MonoSoftware.Web.Caching.RequestProvider.Timeout">
+            <summary>
+            Gets or sets the cache timeout period in seconds.
+            <para>
+            Note: Default is zero.
+            </para>
+            </summary>
+        </member>
+        <member name="P:MonoSoftware.Web.Caching.RequestProvider.Priortiy">
+            <summary>
+            Not implemented.
+            </summary>
+        </member>
+        <!-- Badly formed XML comment ignored for member "T:MonoSoftware.Web.CodeExpressionBuilder" -->
+        <member name="M:MonoSoftware.Web.CodeExpressionBuilder.GetCodeExpression(System.Web.UI.BoundPropertyEntry,System.Object,System.Web.Compilation.ExpressionBuilderContext)">
+            <summary>
+            Generates code expression.
+            </summary>
+            <param name="entry">bound property entry</param>
+            <param name="parsedData">Parsed data</param>
+            <param name="context">Expression builder context</param>
+            <returns>Code expression.</returns>
+        </member>
+        <member name="T:MonoSoftware.Web.DataManager.VisibilityState">
+            <summary>
+            Control visibility state.
+            </summary>
+        </member>
+        <member name="F:MonoSoftware.Web.DataManager.VisibilityState.VisiblePreview">
+            <summary>
+            Visible preview mode.
+            </summary>
+        </member>
+        <member name="F:MonoSoftware.Web.DataManager.VisibilityState.VisibleEdit">
+            <summary>
+            Visible edit mode.
+            </summary>
+        </member>
+        <member name="F:MonoSoftware.Web.DataManager.VisibilityState.Hidden">
+            <summary>
+            Hidden.
+            </summary>
+        </member>
+        <member name="T:MonoSoftware.Web.DataManager.DataManagerEventHandler">
+            <summary>
+            Data manager event handler.
+            </summary>
+            <param name="dataBindings">Data manager binding collection</param>
+        </member>
+        <member name="T:MonoSoftware.Web.DataManager.DataManagerBindingEventHandler">
+            <summary>
+            Data manager binding event handler.
+            </summary>
+            <param name="dataBinding">Data manager binding</param>
+        </member>
+        <member name="T:MonoSoftware.Web.DataManager.DataManagerTransferEventHandler">
+            <summary>
+            Data manager transfer event handler.
+            </summary>
+            <param name="dataSource">Data source</param>
+            <param name="dataBindings">Data manager binding collection</param>
+        </member>
+        <member name="T:MonoSoftware.Web.DataManager.DataManagerTransferBindingEventHandler">
+            <summary>
+            Data manager transfer binding event handler.
+            </summary>
+            <param name="dataBinding">Data manager binding</param>
+            <param name="e">Data manager transfer event arguments</param>
+        </member>
+        <member name="T:MonoSoftware.Web.DataManager.DataManager">
+            <summary>
+            Data management used for the simple data transfer to and from web controls.
+            </summary>
+        </member>
+        <member name="F:MonoSoftware.Web.DataManager.DataManager._dataBindings">
+            <summary>
+            Data bindings collection.
+            </summary>
+        </member>
+        <member name="M:MonoSoftware.Web.DataManager.DataManager.OnVisibilityInitializing(MonoSoftware.Web.DataManager.DataManagerBindingCollection)">
+            <summary>
+            Raise Data manager visibility initializing event.
+            </summary>
+            <param name="dataBindings">Data manager binding collection</param>
+        </member>
+        <member name="M:MonoSoftware.Web.DataManager.DataManager.OnVisibilityInitialized(MonoSoftware.Web.DataManager.DataManagerBindingCollection)">
+            <summary>
+            Raise Data manager visibility initialized event.
+            </summary>
+            <param name="dataBindings">Data manager binding collection</param>
+        </member>
+        <member name="M:MonoSoftware.Web.DataManager.DataManager.OnControlVisibilityInitializing(MonoSoftware.Web.DataManager.DataManagerVisibilityEventArgs)">
+            <summary>
+            Raise Data manager control visibility initializing event.
+            </summary>
+            <param name="e">Visibility event arguments</param>
+        </member>
+        <member name="M:MonoSoftware.Web.DataManager.DataManager.OnControlVisibilityInitialized(MonoSoftware.Web.DataManager.DataManagerVisibilityEventArgs)">
+            <summary>
+            Raise Data manager control visibility initialized event.
+            </summary>
+            <param name="e">Visibility event arguments</param>
+        </member>
+        <member name="M:MonoSoftware.Web.DataManager.DataManager.OnToControlsTransfering(System.Object,MonoSoftware.Web.DataManager.DataManagerBindingCollection)">
+            <summary>
+            Raise Data manager to controls transfering event.
+            </summary>
+            <param name="dataSource">Data source</param>
+            <param name="dataBindings">Data manager binding collection</param>
+        </member>
+        <member name="M:MonoSoftware.Web.DataManager.DataManager.OnToControlsTransfered(System.Object,MonoSoftware.Web.DataManager.DataManagerBindingCollection)">
+            <summary>
+            Raise Data manager to controls transfered event.
+            </summary>
+            <param name="dataSource">Data source</param>
+            <param name="dataBindings">Data manager binding collection</param>
+        </member>
+        <member name="M:MonoSoftware.Web.DataManager.DataManager.OnToControlTransfering(MonoSoftware.Web.DataManager.DataManagerBinding,MonoSoftware.Web.DataManager.DataManagerTransferEventArgs)">
+            <summary>
+            Raise Data manager to control transfering event.
+            </summary>
+            <param name="dataBinding">Data manager binding</param>
+            <param name="e">Data manager transfer event arguments</param>
+        </member>
+        <member name="M:MonoSoftware.Web.DataManager.DataManager.OnToControlTransfered(MonoSoftware.Web.DataManager.DataManagerBinding,MonoSoftware.Web.DataManager.DataManagerTransferEventArgs)">
+            <summary>
+            Raise Data manager to control transfered event.
+            </summary>
+            <param name="dataBinding">Data manager binding</param>
+            <param name="e">Data manager transfer event arguments</param>
+        </member>
+        <member name="M:MonoSoftware.Web.DataManager.DataManager.OnFromControlsTransfering(System.Object,MonoSoftware.Web.DataManager.DataManagerBindingCollection)">
+            <summary>
+            Raise Data manager from controls transfering event.
+            </summary>
+            <param name="dataSource">Data source</param>
+            <param name="dataBindings">Data manager binding collection</param>
+        </member>
+        <member name="M:MonoSoftware.Web.DataManager.DataManager.OnFromControlsTransfered(System.Object,MonoSoftware.Web.DataManager.DataManagerBindingCollection)">
+            <summary>
+            Raise Data manager from controls transfered event.
+            </summary>
+            <param name="dataSource">Data source</param>
+            <param name="dataBindings">Data manager binding collection</param>
+        </member>
+        <member name="M:MonoSoftware.Web.DataManager.DataManager.OnFromControlTransfering(MonoSoftware.Web.DataManager.DataManagerBinding,MonoSoftware.Web.DataManager.DataManagerTransferEventArgs)">
+            <summary>
+            Raise Data manager from control transfering event.
+            </summary>
+            <param name="dataBinding">Data manager binding</param>
+            <param name="e">Data manager transfer event arguments</param>
+        </member>
+        <member name="M:MonoSoftware.Web.DataManager.DataManager.OnFromControlTransfered(MonoSoftware.Web.DataManager.DataManagerBinding,MonoSoftware.Web.DataManager.DataManagerTransferEventArgs)">
+            <summary>
+            Raise Data manager from control transfered event.
+            </summary>
+            <param name="dataBinding">Data manager binding</param>
+            <param name="e">Data manager transfer event arguments</param>
+        </member>
+        <member name="M:MonoSoftware.Web.DataManager.DataManager.OnControlsClearing(MonoSoftware.Web.DataManager.DataManagerBindingCollection)">
+            <summary>
+            Raise Data manager clearing controls event.
+            </summary>
+            <param name="dataBindings">Data manager binding collection</param>
+        </member>
+        <member name="M:MonoSoftware.Web.DataManager.DataManager.OnControlsCleared(MonoSoftware.Web.DataManager.DataManagerBindingCollection)">
+            <summary>
+            Raise Data manager cleared controls event.
+            </summary>
+            <param name="dataBindings">Data manager binding collection</param>
+        </member>
+        <member name="M:MonoSoftware.Web.DataManager.DataManager.OnControlClearing(MonoSoftware.Web.DataManager.DataManagerBinding,MonoSoftware.Web.DataManager.DataManagerTransferEventArgs)">
+            <summary>
+            Raise Data manager clearing control event.
+            </summary>
+            <param name="dataBinding">Data manager binding</param>
+            <param name="e">Data manager transfer event arguments</param>
+        </member>
+        <member name="M:MonoSoftware.Web.DataManager.DataManager.OnControlCleared(MonoSoftware.Web.DataManager.DataManagerBinding,MonoSoftware.Web.DataManager.DataManagerTransferEventArgs)">
+            <summary>
+            Raise Data manager cleared control event.
+            </summary>
+            <param name="dataBinding">Data manager binding</param>
+            <param name="e">Data manager transfer event arguments</param>
+        </member>
+        <member name="M:MonoSoftware.Web.DataManager.DataManager.InitControlVisibility">
+            <summary>
+            Initialize control visibility.
+            </summary>
+        </member>
+        <member name="M:MonoSoftware.Web.DataManager.DataManager.TransferDataToControls(System.Object)">
+            <summary>
+            Transfer data to controls depending on working mode.
+            </summary>
+            <param name="dataSource">Data source to transfer to controls</param>
+        </member>
+        <member name="M:MonoSoftware.Web.DataManager.DataManager.TransferDataFromControls(System.Object)">
+            <summary>
+            Transfer data from controls.
+            </summary>
+            <param name="dataSource">Data source in which the data will be transfered</param>
+        </member>
+        <member name="M:MonoSoftware.Web.DataManager.DataManager.ClearControls">
+            <summary>
+            Clear controls.
+            </summary>
+        </member>
+        <member name="E:MonoSoftware.Web.DataManager.DataManager.VisibilityInitializing">
+            <summary>
+            Data manager visibility initializing event.
+            </summary>
+        </member>
+        <member name="E:MonoSoftware.Web.DataManager.DataManager.VisibilityInitialized">
+            <summary>
+            Data manager visibility initialized event.
+            </summary>
+        </member>
+        <member name="E:MonoSoftware.Web.DataManager.DataManager.ControlVisibilityInitializing">
+            <summary>
+            Data manager control visibility initializing event.
+            </summary>
+        </member>
+        <member name="E:MonoSoftware.Web.DataManager.DataManager.ControlVisibilityInitialized">
+            <summary>
+            Data manager control visibility initialized event.
+            </summary>
+        </member>
+        <member name="E:MonoSoftware.Web.DataManager.DataManager.ToControlsTransfering">
+            <summary>
+            Data manager to controls transfering event.
+            </summary>
+        </member>
+        <member name="E:MonoSoftware.Web.DataManager.DataManager.ToControlsTransfered">
+            <summary>
+            Data manager to controls transfered event.
+            </summary>
+        </member>
+        <member name="E:MonoSoftware.Web.DataManager.DataManager.ToControlTransfering">
+            <summary>
+            Data manager to control transfering event.
+            </summary>
+        </member>
+        <member name="E:MonoSoftware.Web.DataManager.DataManager.ToControlTransfered">
+            <summary>
+            Data manager to control transfered event.
+            </summary>
+        </member>
+        <member name="E:MonoSoftware.Web.DataManager.DataManager.FromControlsTransfering">
+            <summary>
+            Data manager from controls transfering event.
+            </summary>
+        </member>
+        <member name="E:MonoSoftware.Web.DataManager.DataManager.FromControlsTransfered">
+            <summary>
+            Data manager from controls transfered event.
+            </summary>
+        </member>
+        <member name="E:MonoSoftware.Web.DataManager.DataManager.FromControlTransfering">
+            <summary>
+            Data manager from control transfering event.
+            </summary>
+        </member>
+        <member name="E:MonoSoftware.Web.DataManager.DataManager.FromControlTransfered">
+            <summary>
+            Data manager from control transfered event.
+            </summary>
+        </member>
+        <member name="E:MonoSoftware.Web.DataManager.DataManager.ControlsClearing">
+            <summary>
+            Data manager clearing controls event.
+            </summary>
+        </member>
+        <member name="E:MonoSoftware.Web.DataManager.DataManager.ControlsCleared">
+            <summary>
+            Data manager cleared controls event.
+            </summary>
+        </member>
+        <member name="E:MonoSoftware.Web.DataManager.DataManager.ControlClearing">
+            <summary>
+            Data manager clearing control event.
+            </summary>
+        </member>
+        <member name="E:MonoSoftware.Web.DataManager.DataManager.ControlCleared">
+            <summary>
+            Data manager cleared control event.
+            </summary>
+        </member>
+        <member name="P:MonoSoftware.Web.DataManager.DataManager.IsPreviewMode">
+            <summary>
+            Gets or sets if control is in preview mode.
+            </summary>
+        </member>
+        <member name="P:MonoSoftware.Web.DataManager.DataManager.DataBindings">
+            <summary>
+            Gets or sets data manager data bindings.
+            </summary>
+        </member>
+        <member name="P:MonoSoftware.Web.DataManager.DataManager.AutoValidationGroup">
+            <summary>
+            Gets or sets the auto validation group.
+            <para>
+            Note: Data manager will use this value to set validation group value to all binding controls.
+            </para>
+            </summary>
+        </member>
+        <member name="T:MonoSoftware.Web.DataManager.DataManagerBinding">
+            <summary>
+            Data manager control mapping used to automate the proces of hiding, showing and transfering data to control.
+            </summary>
+        </member>
+        <member name="P:MonoSoftware.Web.DataManager.DataManagerBinding.EditControl">
+            <summary>
+            Gets or sets edit control.
+            </summary>        
+        </member>
+        <member name="P:MonoSoftware.Web.DataManager.DataManagerBinding.EditControlValueProperty">
+            <summary>
+            Gets or sets the edit control value property.
+            </summary>
+        </member>
+        <member name="P:MonoSoftware.Web.DataManager.DataManagerBinding.PreviewControl">
+            <summary>
+            Gets or sets preview control.
+            </summary>        
+        </member>
+        <member name="P:MonoSoftware.Web.DataManager.DataManagerBinding.PreviewControlValueProperty">
+            <summary>
+            Gets or sets the preview control value property.
+            </summary>
+        </member>
+        <member name="P:MonoSoftware.Web.DataManager.DataManagerBinding.FieldName">
+            <summary>
+            Gets or sets the field name where to transfer value.
+            </summary>
+        </member>
+        <member name="P:MonoSoftware.Web.DataManager.DataManagerBinding.Validators">
+            <summary>
+            Gets or sets the validators used with edit control.
+            </summary>        
+        </member>
+        <member name="P:MonoSoftware.Web.DataManager.DataManagerBinding.ReferencedContainers">
+            <summary>
+            Gets or sets the referenced containsers used with the field.
+            <para>
+            Note: Referenced containers are used with hidden fields feature on data manager (e.g. if field is hidden then all referenced containers will be hidden).
+            </para>
+            </summary>        
+        </member>
+        <member name="T:MonoSoftware.Web.DataManager.DataManagerBindingCollection">
+            <summary>
+            Data manager binding collection.
+            </summary>
+        </member>
+        <member name="M:MonoSoftware.Web.DataManager.DataManagerBindingCollection.Add(System.Web.UI.Control,System.String)">
+            <summary>
+            Initialize binding for control.
+            </summary>
+            <param name="editControl">Edit control</param>
+            <param name="fieldName">Bind property or field name</param>
+        </member>
+        <member name="M:MonoSoftware.Web.DataManager.DataManagerBindingCollection.Add(System.Web.UI.Control,System.String,System.String)">
+            <summary>
+            Initialize binding for control.
+            </summary>
+            <param name="editControl">Edit control</param>
+            <param name="editControlValueProperty">Edit control value property</param>
+            <param name="fieldName">Bind property or field name</param>
+        </member>
+        <member name="M:MonoSoftware.Web.DataManager.DataManagerBindingCollection.Add(System.Web.UI.Control,System.Web.UI.Control,System.String)">
+            <summary>
+            Initialize binding for control.
+            </summary>
+            <param name="editControl">Edit control</param>
+            <param name="previewControl">Preview control</param>
+            <param name="fieldName">Bind property or field name</param>
+        </member>
+        <member name="M:MonoSoftware.Web.DataManager.DataManagerBindingCollection.Add(System.Web.UI.Control,System.Web.UI.Control,System.String,System.Web.UI.Control[])">
+            <summary>
+            Initialize binding for control.
+            </summary>
+            <param name="editControl">Edit control</param>
+            <param name="previewControl">Preview control</param>
+            <param name="fieldName">Bind property or field name</param>
+            <param name="referencedContainers">Referenced containers used with hidden feilds feature</param>
+        </member>
+        <member name="M:MonoSoftware.Web.DataManager.DataManagerBindingCollection.Add(System.Web.UI.Control,System.String,System.Web.UI.Control,System.String,System.String)">
+            <summary>
+            Initialize binding for control.
+            </summary>
+            <param name="editControl">Edit control</param>
+            <param name="editControlValueProperty">Edit control value property</param>
+            <param name="previewControl">Preview control</param>
+            <param name="previewControlValueProperty">Preview control value property</param>
+            <param name="fieldName">Bind property or field name</param>
+        </member>
+        <member name="M:MonoSoftware.Web.DataManager.DataManagerBindingCollection.Add(System.Web.UI.Control,System.String,System.Web.UI.Control,System.String,System.String,System.Web.UI.WebControls.BaseValidator[])">
+            <summary>
+            Initialize binding for control.
+            </summary>
+            <param name="editControl">Edit control</param>
+            <param name="editControlValueProperty">Edit control value property</param>
+            <param name="previewControl">Preview control</param>        
+            <param name="previewControlValueProperty">Preview control value property</param>
+            <param name="fieldName">Bind property or field name</param>
+            <param name="validators">Validators used for edit control</param>
+        </member>
+        <member name="M:MonoSoftware.Web.DataManager.DataManagerBindingCollection.Add(System.Web.UI.Control,System.String,System.Web.UI.Control,System.String,System.String,System.Web.UI.Control[],System.Web.UI.WebControls.BaseValidator[])">
+            <summary>
+            Initialize binding for control.
+            </summary>
+            <param name="editControl">Edit control</param>
+            <param name="editControlValueProperty">Edit control value property</param>
+            <param name="previewControl">Preview control</param>        
+            <param name="previewControlValueProperty">Preview control value property</param>
+            <param name="fieldName">Bind property or field name</param>
+            <param name="referencedContainers">Referenced containers used with hidden feilds feature</param>
+            <param name="validators">Validators used for edit control</param>
+        </member>
+        <member name="P:MonoSoftware.Web.DataManager.DataManagerBindingCollection.Item(System.String)">
+            <summary>
+            The field name based index of the element to get or set.
+            </summary>
+            <param name="fieldName">Field name</param>
+            <returns>Data binding</returns>
+        </member>
+        <member name="T:MonoSoftware.Web.DataManager.DataManagerTransferEventArgs">
+            <summary>
+            Data manager transfer event arguments.
+            </summary>
+        </member>
+        <member name="M:MonoSoftware.Web.DataManager.DataManagerTransferEventArgs.#ctor(System.Web.UI.Control,System.String,System.Type,System.Object)">
+            <summary>
+            Constructor.
+            </summary>
+            <param name="bindingControl">Binding control</param>
+            <param name="bindingControlPropertyName">Binding control property name</param>
+            <param name="bindingControlPropertyType">Binding control property type</param>
+            <param name="fieldValue">Field value from the data source</param>
+        </member>
+        <member name="P:MonoSoftware.Web.DataManager.DataManagerTransferEventArgs.FieldValue">
+            <summary>
+            Gets the field value from the data source.
+            </summary>
+        </member>
+        <member name="P:MonoSoftware.Web.DataManager.DataManagerTransferEventArgs.BindingControl">
+            <summary>
+            Gets the binding control.
+            </summary>         
+        </member>
+        <member name="P:MonoSoftware.Web.DataManager.DataManagerTransferEventArgs.BindingControlPropertyName">
+            <summary>
+            Gets the binding control property name.
+            </summary>
+        </member>
+        <member name="P:MonoSoftware.Web.DataManager.DataManagerTransferEventArgs.BindingControlPropertyType">
+            <summary>
+            Gets the binding control property type.
+            </summary>
+        </member>
+        <member name="T:MonoSoftware.Web.DataManager.DataManagerVisibilityEventArgs">
+            <summary>
+            Data manager visibility event arguments.
+            </summary>
+        </member>
+        <member name="M:MonoSoftware.Web.DataManager.DataManagerVisibilityEventArgs.#ctor(MonoSoftware.Web.DataManager.VisibilityState,MonoSoftware.Web.DataManager.DataManagerBinding)">
+            <summary>
+            Constructor.
+            </summary>
+            <param name="visibilityState">Visibility state</param>
+            <param name="binding">Binding</param>
+        </member>
+        <member name="P:MonoSoftware.Web.DataManager.DataManagerVisibilityEventArgs.VisibilityState">
+            <summary>
+            Gets visibility status.
+            </summary>
+        </member>
+        <member name="P:MonoSoftware.Web.DataManager.DataManagerVisibilityEventArgs.Binding">
+            <summary>
+            Gets data manager binding.
+            </summary>
+        </member>
+        <member name="T:MonoSoftware.Web.MembershipProviderExtension">
+            <summary>
+            Extensions for MembershipProvider class.
+            </summary>
+        </member>
+        <member name="M:MonoSoftware.Web.MembershipProviderExtension.EncodePassword(System.Web.Security.MembershipProvider,System.Web.Security.MembershipPasswordFormat,System.String,System.String)">
+            <summary>
+            Encode the plain password (Asp.net password encode mechanism).
+            </summary>
+            <param name="provider">Membership provider</param>
+            <param name="passwordFormat">Password format.</param>
+            <param name="password">Plain password</param>
+            <param name="base64Salt">Base 64 salt</param>
+            <returns>Encoded password</returns>
+        </member>
+        <member name="M:MonoSoftware.Web.MembershipProviderExtension.DecodePassword(System.Web.Security.MembershipProvider,System.Web.Security.MembershipPasswordFormat,System.String)">
+            <summary>
+            Decode the password (Asp.net password decode mechanism).
+            </summary>
+            <param name="provider">Membership provider</param>
+            <param name="passwordFormat">Password format.</param>
+            <param name="password">Encoded password</param>
+            <returns>Decoded password</returns>
+        </member>
+        <member name="M:MonoSoftware.Web.MembershipProviderExtension.CreateSalt(System.Web.Security.MembershipProvider)">
+            <summary>
+            Create base 64 salt.
+            </summary>
+            <param name="provider">Membership provider</param>
+            <returns>Base 64 salt</returns>
+        </member>
+        <member name="T:MonoSoftware.Web.LinkButtonExtension">
+            <summary>
+            <see cref="T:System.Web.UI.WebControls.LinkButton"/> extension methods.
+            </summary>
+        </member>
+        <member name="M:MonoSoftware.Web.LinkButtonExtension.GetPostBackEventReference(System.Web.UI.WebControls.LinkButton)">
+            <summary>
+            Returns a string that can be used in a client event to cause postback to
+            the server. The reference string is defined by the specified <see cref="T:System.Web.UI.PostBackOptions"/>
+            instance.
+            </summary>
+            <param name="control">Control that will provide post back event reference</param>
+            <returns> A string that, when treated as script on the client, initiates the client postback.</returns>
+        </member>
+        <member name="M:MonoSoftware.Web.LinkButtonExtension.GetPostBackEventReference(System.Web.UI.WebControls.LinkButton,System.String)">
+            <summary>
+            Returns a string that can be used in a client event to cause postback to
+            the server. The reference string is defined by the specified <see cref="T:System.Web.UI.PostBackOptions"/>
+            instance.
+            </summary>
+            <param name="control">Control that will provide post back event reference</param>
+            <param name="argument">The optional parameter passed during the postback event.</param>
+            <returns> A string that, when treated as script on the client, initiates the client postback.</returns>
+        </member>
+        <member name="M:MonoSoftware.Web.LinkButtonExtension.GetPostBackEventReference(System.Web.UI.WebControls.LinkButton,System.Web.UI.ClientScriptManager)">
+            <summary>
+            Returns a string that can be used in a client event to cause postback to
+            the server. The reference string is defined by the specified <see cref="T:System.Web.UI.PostBackOptions"/>
+            instance.
+            </summary>
+            <param name="control">Control that will provide post back event reference</param>
+            <param name="clientScriptManager">Client script manager</param>
+            <returns> A string that, when treated as script on the client, initiates the client postback.</returns>
+        </member>
+        <member name="M:MonoSoftware.Web.LinkButtonExtension.GetPostBackEventReference(System.Web.UI.WebControls.LinkButton,System.String,System.Web.UI.ClientScriptManager)">
+            <summary>
+            Returns a string that can be used in a client event to cause postback to
+            the server. The reference string is defined by the specified <see cref="T:System.Web.UI.PostBackOptions"/>
+            instance.
+            </summary>
+            <param name="control">Control that will provide post back event reference</param>
+            <param name="argument">The optional parameter passed during the postback event.</param>
+            <param name="clientScriptManager">Client script manager</param>
+            <returns> A string that, when treated as script on the client, initiates the client postback.</returns>
+        </member>
+        <member name="T:MonoSoftware.Web.MembershipUserExtension">
+            <summary>
+            Extensions to MembershipUser class.
+            </summary>
+        </member>
+        <member name="M:MonoSoftware.Web.MembershipUserExtension.GetProviderUserKey(System.Web.Security.MembershipUser)">
+            <summary>
+            Provides a "clean", Guid-based provider user key. Some of the providers, like ActiveDirectoryMembership provider, do not return the Guid-based key, which interferes with the DB design.
+            </summary>
+            <param name="user">Membership user.</param>
+            <returns>Guid-based provider user key.</returns>
+        </member>
+        <member name="T:MonoSoftware.Web.PageExtension">
+            <summary>
+            Page related extension methods.
+            </summary>
+        </member>
+        <member name="M:MonoSoftware.Web.PageExtension.GetPostBackControl(System.Web.UI.Page,System.Web.UI.Control)">
+            <summary>
+            Returns the control that has caused the postback.
+            </summary>
+            <param name="page">Page which executed a postback.</param>
+            <param name="root">Root control under which the postback control is to be found.</param>
+            <returns>Control that has caused a postback.</returns>
+        </member>
+        <member name="M:MonoSoftware.Web.PageExtension.GetPostBackControl(System.Web.UI.Page)">
+            <summary>
+            Returns the control that has caused the postback.
+            </summary>
+            <param name="page">Page.</param>
+            <returns>Control that has caused the postback.</returns>
+        </member>
+        <member name="M:MonoSoftware.Web.PageExtension.IsAsyncPostBack">
+            <summary>
+            Returns true if page is in Ajax callback, false otherwise.
+            </summary>
+            <param name="page">An instance of the page.</param>
+            <returns>True if the page is in Ajax callback, false otherwise.</returns>
+        </member>
+        <member name="M:MonoSoftware.Web.PageExtension.IsAsyncPostBack(System.Web.UI.Page)">
+            <summary>
+            Returns true if page is in Ajax callback, false otherwise.
+            </summary>
+            <param name="page">An instance of the page.</param>
+            <returns>True if the page is in Ajax callback, false otherwise.</returns>
+        </member>
+        <member name="T:MonoSoftware.Web.WebClientExtensions">
+            <summary>
+            Extension methods for <see cref="T:System.Net.WebClient"/>.
+            </summary>
+        </member>
+        <member name="M:MonoSoftware.Web.WebClientExtensions.GetResponseContentType(System.Net.WebClient)">
+            <summary>
+            Gets the values of the HTTP 
+            <a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.17">Content-Type</a>
+            response header as an instance of the <see cref="T:System.Net.Mime.ContentType"/> object.
+            </summary>
+        </member>
+        <member name="M:MonoSoftware.Web.WebClientExtensions.DownloadStringUsingResponseEncoding(System.Net.WebClient,System.String)">
+            <summary>
+            Same as <see cref="M:System.Net.WebClient.DownloadString(System.String)"/> except it
+            correctly use the character set indicated in the response to decode
+            the string. Otherwise it uses <see cref="P:System.Net.WebClient.Encoding"/>.
+            </summary>
+        </member>
+        <member name="M:MonoSoftware.Web.WebClientExtensions.DownloadStringUsingResponseEncoding(System.Net.WebClient,System.Uri)">
+            <summary>
+            Same as <see cref="M:System.Net.WebClient.DownloadString(System.Uri)"/> except it
+            correctly use the character set indicated in the response to decode
+            the string. Otherwise it uses <see cref="P:System.Net.WebClient.Encoding"/>.
+            </summary>
+        </member>
+        <member name="T:MonoSoftware.Web.JavascriptFormatter">
+            <summary>
+            Handles client-side code aspects.
+            </summary>
+        </member>
+        <member name="M:MonoSoftware.Web.JavascriptFormatter.EncodeStringQuoted(System.String)">
+            <summary>
+            Encodes a string to be represented as a string literal. The format is essentially a JSON string.
+            
+            The string returned includes outer quotes.
+            </summary>
+            <param name="s">String to encode</param>
+            <returns>Encoded string</returns>
+        </member>
+        <member name="M:MonoSoftware.Web.JavascriptFormatter.EncodeString(System.String)">
+            <summary>
+            Encodes a string to be represented as a string literal. The format is essentially a JSON string.
+            </summary>
+            <param name="s">String to encode</param>
+            <returns>Encoded string</returns>
+        </member>
+        <member name="T:MonoSoftware.Web.ControlExtension">
+            <summary>
+            <see cref="T:System.Web.UI.Control"/> extension methods.
+            </summary>
+        </member>
+        <member name="M:MonoSoftware.Web.ControlExtension.FindControlRecursive(System.Web.UI.Control,System.String)">
+            <summary>
+            Recursively finds a child control by Id.
+            </summary>
+            <param name="control">Control</param>
+            <param name="id">Child control's Id</param>
+            <returns></returns>
+        </member>
+        <member name="M:MonoSoftware.Web.ControlExtension.SelectFirst``1(System.Web.UI.Control,System.Predicate{System.Web.UI.Control})">
+            <summary>
+            Recursively searches Control hierarchy for matches for Predicate and returns it as T.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="from"></param>
+            <param name="predicate"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MonoSoftware.Web.ControlExtension.SelectFirst``1(System.Web.UI.Control)">
+            <summary>
+            Recursively searches Control hierarchy for the first control that 
+            matches the type of T and returns it as T
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="from"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MonoSoftware.Web.ControlExtension.Select``1(System.Web.UI.Control,System.Predicate{System.Web.UI.Control})">
+            <summary>
+            Recursively search Control hierarcy for ALL controls that 
+            matches the given Predicate and returns them as T.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="from"></param>
+            <param name="predicate"></param>
+            <returns></returns>
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:MonoSoftware.Web.ControlExtension.Select``1(System.Web.UI.Control)" -->
+        <member name="M:MonoSoftware.Web.ControlExtension.ResolveServerUrl(System.Web.UI.Page,System.String)">
+            <summary>
+            Returns a fully qualified absolute server Url which includes
+            the protocol, server and port in addition to the server relative Url.
+            </summary>
+            <remarks>
+            Works like Control.ResolveUrl including support for ~ syntax but returns an absolute URL. 
+            This method is useful for generating Urls for AJAX methods.
+            </remarks>
+            <param name="ServerUrl">Any Url, either App relative or fully qualified</param>
+            <returns>A fully qualified absolute server Url</returns>
+        </member>
+        <member name="M:MonoSoftware.Web.ControlExtension.ResolveServerUrl(System.Web.UI.Page,System.String,System.Boolean)">
+            <summary>
+            Returns a fully qualified absolute server Url which includes
+            the protocol, server and port in addition to the server relative Url. 
+            It can also force https protocol.
+            </summary>
+            <remarks>
+            Works like Control.ResolveUrl including support for ~ syntax but returns an absolute URL. 
+            This method is useful for generating Urls for AJAX methods.
+            </remarks>
+            <param name="serverUrl">Any Url, either App relative or fully qualified</param>
+            <param name="forceHttps">if true forces the url to use https</param>
+            <returns>A fully qualified absolute server Url</returns>
+        </member>
+        <member name="M:MonoSoftware.Web.ControlExtension.HideWithCss(System.Web.UI.Control)">
+            <summary>
+            Hides a control via css display attribute.
+            </summary>
+            <param name="ctrl">Control to hide</param>
+        </member>
+        <member name="M:MonoSoftware.Web.ControlExtension.ShowWithCss(System.Web.UI.Control)">
+            <summary>
+            Displays a control via css display attribute.
+            </summary>
+            <param name="ctrl">Control to show</param>
+        </member>
+        <member name="M:MonoSoftware.Web.ControlExtension.ToggleVisibilityWithCss(System.Web.UI.Control)">
+            <summary>
+            Toggles control visibility via CSS display attribute.
+            </summary>
+            <param name="ctrl">Control</param>
+        </member>
+        <member name="T:MonoSoftware.Web.HttpRequestExtension">
+            <summary>
+            HttpRequest extension class used to extend the http request functionality. 
+            </summary>
+        </member>
+        <member name="M:MonoSoftware.Web.HttpRequestExtension.GetBrowserSettings(System.Web.HttpRequest)">
+            <summary>
+            Gets the browser settings.
+            </summary>
+            <param name="request">Http request to use</param>
+            <returns>Browser settings</returns>
+        </member>
+        <member name="M:MonoSoftware.Web.HttpRequestExtension.GetAbsoluteRawUri">
+            <summary>
+            Gets absolute rewritten uri.
+            </summary>
+            <returns>Absolute rewritten uri</returns>
+        </member>
+        <member name="M:MonoSoftware.Web.HttpRequestExtension.GetAbsoluteRawUri(System.Web.HttpRequest)">
+            <summary>
+            Gets absolute rewritten uri.
+            </summary>
+            <param name="request">Http Request</param>
+            <returns>Absolute rewritten uri</returns>
+        </member>
+        <member name="M:MonoSoftware.Web.HttpRequestExtension.IsMobileClient(System.Web.HttpRequest)">
+            <summary>
+            Determines if the request originated from a mobile-device client and stores the result in a cookie/session.
+            </summary>
+            <param name="request">Http request</param>
+            <returns>True if the request originated from a mobile client, false otherwise.</returns>
+        </member>
+        <member name="T:MonoSoftware.Web.BrowserSettings">
+            <summary>
+            Browsers settings.
+            </summary>
+        </member>
+        <member name="M:MonoSoftware.Web.BrowserSettings.#ctor(System.Web.HttpRequest)">
+            <summary>
+            Constructor.
+            </summary>
+            <param name="request">Http request to use for browser settigns gathering</param>
+        </member>
+        <member name="M:MonoSoftware.Web.BrowserSettings.#ctor(System.Web.HttpBrowserCapabilities)">
+            <summary>
+            Constructor.
+            </summary>
+            <param name="browserCapabilities">Information on the capabilities of the browser that is running on the client.</param>
+        </member>
+        <member name="M:MonoSoftware.Web.BrowserSettings.#ctor">
+            <summary>
+            Constructor.
+            </summary>
+        </member>
+        <member name="M:MonoSoftware.Web.BrowserSettings.InitBrowserSettings(System.Web.HttpBrowserCapabilities)">
+            <summary>
+            Initialize browser settings.
+            </summary>
+            <param name="browserCapabilities">Information on the capabilities of the browser that is running on the client.</param>
+        </member>
+        <member name="P:MonoSoftware.Web.BrowserSettings.Type">
+            <summary>
+            Gets or sets a browser type.
+            </summary>
+        </member>
+        <member name="P:MonoSoftware.Web.BrowserSettings.SubType">
+            <summary>
+            Gets or sets a browser subtype.
+            </summary>
+        </member>
+        <member name="P:MonoSoftware.Web.BrowserSettings.Name">
+            <summary>
+            Gets or sets a raw browser name.
+            </summary>
+        </member>
+        <member name="P:MonoSoftware.Web.BrowserSettings.Version">
+            <summary>
+            Gets or sets browser version.
+            </summary>
+        </member>
+        <member name="T:MonoSoftware.Web.BrowserType">
+            <summary>
+            Browser type.
+            </summary>
+        </member>
+        <member name="F:MonoSoftware.Web.BrowserType.None">
+            <summary>
+            None / Not available.
+            </summary>
+        </member>
+        <member name="F:MonoSoftware.Web.BrowserType.Unknown">
+            <summary>
+            Unknown.
+            </summary>
+        </member>
+        <member name="F:MonoSoftware.Web.BrowserType.IE">
+            <summary>
+            IE browser, unknown version.
+            </summary>
+        </member>
+        <member name="F:MonoSoftware.Web.BrowserType.IE5">
+            <summary>
+            IE browser, version 5.
+            </summary>
+        </member>
+        <member name="F:MonoSoftware.Web.BrowserType.IE6">
+            <summary>
+            IE browser, version 6.
+            </summary>
+        </member>
+        <member name="F:MonoSoftware.Web.BrowserType.IE7">
+            <summary>
+            IE browser, version 7.
+            </summary>
+        </member>
+        <member name="F:MonoSoftware.Web.BrowserType.IE8">
+            <summary>
+            IE browser, version 8.
+            </summary>
+        </member>
+        <member name="F:MonoSoftware.Web.BrowserType.FireFox">
+            <summary>
+            FireFox browser, unknown version.
+            </summary>
+        </member>
+        <member name="F:MonoSoftware.Web.BrowserType.FireFox2">
+            <summary>
+            FireFox browser, version 2.
+            </summary>
+        </member>
+        <member name="F:MonoSoftware.Web.BrowserType.FireFox3">
+            <summary>
+            FireFox browser, version 3.
+            </summary>
+        </member>
+        <member name="F:MonoSoftware.Web.BrowserType.FireFox36">
+            <summary>
+            FireFox browser, version 3.6.
+            </summary>
+        </member>
+        <member name="F:MonoSoftware.Web.BrowserType.Safari">
+            <summary>
+            Safari browser, unknown version.
+            </summary>
+        </member>
+        <member name="T:MonoSoftware.Web.HttpResponseExtension">
+            <summary>
+            Extension related to HttpResponse.
+            </summary>
+        </member>
+        <member name="T:MonoSoftware.Web.IPrincipalExtension">
+            <summary>
+            Extension related to IPrincipal.
+            </summary>
+        </member>
+        <member name="M:MonoSoftware.Web.IPrincipalExtension.GetProviderUserKey(System.Security.Principal.IPrincipal)">
+            <summary>
+            Gets the cached ProviderUserKey.
+            </summary>
+            <param name="user">IPrincipal</param>
+            <returns>ProviderUserKey</returns>
+        </member>
+        <member name="M:MonoSoftware.Web.IPrincipalExtension.GetMembershipUser(System.Security.Principal.IPrincipal)">
+            <summary>
+            Gets the cached MembershipUser.
+            </summary>
+            <param name="user">IPrincipal</param>
+            <returns>MembershipUser</returns>
+        </member>
+        <member name="M:MonoSoftware.Web.StringExtension.Append``1(System.String,MonoSoftware.Web.UrlParam{``0},``0)">
+            <summary>
+            Generic method for strongly typed url creation.
+            </summary>
+            <remarks>
+            If param is already present in the url, it's overriden with the new value.
+            </remarks>
+            <typeparam name="T">Type of UrlParam</typeparam>
+            <param name="url">Url string</param>
+            <param name="urlParam">Url parameter</param>
+            <param name="value">Url parameter's value</param>
+            <returns>A string with appended url parameter and its value.</returns>
+        </member>
+        <member name="M:MonoSoftware.Web.StringExtension.Remove``1(System.String,MonoSoftware.Web.UrlParam{``0})">
+            <summary>
+            Generic method for strongly typed url removal.
+            </summary>
+            <typeparam name="T">Type of UrlParam</typeparam>
+            <param name="url">Url string</param>
+            <param name="urlParam">Url parameter</param>
+            <returns>A string with removed url parameter.</returns>
+        </member>
+        <member name="M:MonoSoftware.Web.StringExtension.RemoveFromUrl(System.String,System.Collections.Generic.List{System.String})">
+            <summary>
+            Method for url parameters removal.
+            </summary>
+            <param name="url">Url string</param>
+            <param name="urlParameters">Url parameter</param>
+            <returns>A string with removed url parameters.</returns>
+        </member>
+        <member name="M:MonoSoftware.Web.StringExtension.RemoveFromUrl(System.String,System.String)">
+            <summary>
+            Method for url parameter removal.
+            </summary>
+            <param name="url">Url string</param>
+            <param name="urlParameter">Url parameter</param>
+            <returns>A string with removed url parameter.</returns>
+        </member>
+        <member name="M:MonoSoftware.Web.StringExtension.FormatWith``1(System.String,MonoSoftware.Web.UrlParam{``0},``0)">
+            <summary>
+            Generic method for strongly typed url <see cref="M:MonoSoftware.Core.StringExtension.FormatWith(System.String,System.Object)"></see> method usage.
+            </summary>
+            <remarks>
+            If param is already present in the url, it's overriden with the new value.
+            </remarks>
+            <typeparam name="T">Type of UrlParam</typeparam>
+            <param name="urlFormat">Url format string</param>
+            <param name="urlParam">Url parameter</param>
+            <param name="value">Url parameter's value</param>
+            <returns>A string formatted with url parameter and its value.</returns>
+        </member>
+        <member name="M:MonoSoftware.Web.StringExtension.FormatWith``1(System.String,System.IFormatProvider,MonoSoftware.Web.UrlParam{``0},``0)">
+            <summary>
+            Generic method for strongly typed url <see cref="M:MonoSoftware.Core.StringExtension.FormatWith(System.String,System.Object)"></see> method usage.
+            </summary>
+            <remarks>
+            If param is already present in the url, it's overriden with the new value.
+            </remarks>
+            <typeparam name="T">Type of UrlParam</typeparam>
+            <param name="urlFormat">Url format string</param>
+            /// <param name="provider">Format provider.</param>
+            <param name="urlParam">Url parameter</param>
+            <param name="value">Url parameter's value</param>
+            <returns>A string formatted with url parameter and its value.</returns>
+        </member>
+        <member name="F:MonoSoftware.Web.HtmlFormatter.HtmlEntities">
+            <summary>
+            List of reserved characters in HTML.
+            </summary>
+        </member>
+        <member name="M:MonoSoftware.Web.HtmlFormatter.ContainsTags(System.String)">
+            <summary>
+            Check if string contain HTML tags.
+            </summary>
+            <param name="value">String value to check</param>
+            <returns>True if value contains HTML tags, False otherwise</returns>
+        </member>
+        <member name="M:MonoSoftware.Web.HtmlFormatter.StripTags(System.String)">
+            <summary>
+            Strips tags from the provided HTML string.
+            </summary>
+            <param name="value">String value to strip tags from</param>
+            <returns>Parsed HTML string without tags</returns>
+        </member>
+        <member name="M:MonoSoftware.Web.HtmlFormatter.StripTags(System.String,System.Boolean)">
+            <summary>
+            Strips tags from the provided HTML string.
+            </summary>
+            <param name="value">String value to strip tags from</param>
+            <param name="retainBreaks">Retains break tags</param>
+            <returns>Parsed HTML string without tags</returns>
+        </member>
+        <member name="M:MonoSoftware.Web.HtmlFormatter.RemoveHtmlTag(System.String,System.String)">
+            <summary>
+            Removes specified tag from the provided HTML string.
+            </summary>
+            <param name="value">String HTML value to strip tags from</param>
+            <param name="removeTag">Tag to remove</param>
+            <returns>Parsed HTML string without tags</returns>
+        </member>
+        <member name="M:MonoSoftware.Web.HtmlFormatter.EncodeBreaks(System.String)">
+            <summary>
+            Encodes html breaks to carriage return.
+            </summary>
+            <param name="value">Html</param>
+            <returns>Filtered html</returns>
+        </member>
+        <member name="M:MonoSoftware.Web.HtmlFormatter.DecodeBreaks(System.String)">
+            <summary>
+            Decodes carriage return to html breaks.
+            </summary>
+            <param name="value">Html</param>
+            <returns>Filtered html</returns>
+        </member>
+        <member name="M:MonoSoftware.Web.HtmlFormatter.SanitizeHtml(System.String)">
+            <summary>
+            Sanitizes "unsecured" text that may be prone to XSS attacks
+            </summary>
+            <param name="html">Html to sanitize</param>
+            <returns>Sanitized string without XSS-sensitive data</returns>
+        </member>
+        <member name="M:MonoSoftware.Web.HtmlFormatter.SanitizeHtml(System.String,System.Boolean)">
+            <summary>
+            Sanitizes "unsecured" text that may be prone to XSS attacks
+            </summary>
+            <param name="html">Html to sanitize</param>
+            <param name="decodeHTMLEntities">Decode HTML entities to avoid double encoding</param>
+            <returns>Sanitized string without XSS-sensitive data</returns>
+        </member>
+        <member name="M:MonoSoftware.Web.HtmlFormatter.Tokenize(System.String)">
+            <summary>
+            Gets the tokenized HTML from input HTML.
+            </summary>
+            <param name="input">Input HTML</param>
+            <returns>Tokenized HTML queue</returns>
+        </member>
+        <member name="M:MonoSoftware.Web.HtmlFormatter.Html2Txt(System.String)">
+            <summary>
+            Removes all HTML formatting from the page (e.g. head, script sections are removed).
+            </summary>
+            <param name="sourceHtml">HTML code of the page</param>
+            <returns>Clean text without any HTML tags</returns>
+        </member>
+        <member name="M:MonoSoftware.Web.HtmlFormatter.CreateCssLink(System.Web.UI.Page,System.String)">
+            <summary>
+            Creates a CSS link in the header of the page.
+            </summary>
+            <param name="page">Page</param>
+            <param name="url">Link URL</param>
+        </member>
+        <member name="M:MonoSoftware.Web.HtmlFormatter.CreateFaviconLink(System.Web.UI.Page,System.String)">
+            <summary>
+            Creates a Favicon link in the header of the page.
+            </summary>
+            <param name="page">Page</param>
+            <param name="favIcon">Favicon URL</param>
+        </member>
+        <member name="T:MonoSoftware.Web.HtmlFormatter.HtmlSanitizer">
+            <summary>
+            Class used to sanitize the HTML input
+            Credits go to http://refactormycode.com/codes/333-sanitize-html
+            </summary>
+        </member>
+        <member name="M:MonoSoftware.Web.HtmlFormatter.HtmlSanitizer.MakeHtmlSafe(System.String,System.Boolean)">
+            <summary>
+            This method html encodes the input string but allows certain safe HTML tags by rewriting them with safe attribute tags        
+            </summary>
+            <param name="input">Html input</param>
+            <param name="decodeHTMLEntities">Decode HTML entities to avoid double encoding</param>
+            <returns>Safe HTML</returns>
+        </member>
+        <member name="M:MonoSoftware.Web.HtmlFormatter.HtmlSanitizer.TagAttribute.#ctor">
+            <summary>
+            Constructor
+            </summary>
+        </member>
+        <member name="M:MonoSoftware.Web.HtmlFormatter.HtmlSanitizer.TagAttribute.#ctor(System.String,System.String,System.Char)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="name">Name</param>
+            <param name="value">Value</param>
+            <param name="quote">Quote</param>
+        </member>
+        <member name="M:MonoSoftware.Web.HtmlFormatter.HtmlSanitizer.TagAttribute.IsValidForTag(MonoSoftware.Web.HtmlFormatter.HtmlSanitizer.TagAttribute,MonoSoftware.Web.HtmlFormatter.HtmlSanitizer.AcceptableTag)">
+            <summary>
+            Is attribute valid for a tag
+            </summary>
+            <param name="att">Attribute</param>
+            <param name="tag">Tag</param>
+            <returns>True if attribute is valid, false otherwise</returns>
+        </member>
+        <member name="M:MonoSoftware.Web.HtmlFormatter.HtmlSanitizer.TagAttribute.ValueAsEncodedUrl">
+            <summary>
+            Url encoding
+            </summary>
+            <returns>URLencoded value</returns>
+        </member>
+        <member name="M:MonoSoftware.Web.HtmlFormatter.HtmlSanitizer.TagAttribute.ValueAsEncodedHtml">
+            <summary>
+            HTML encoding
+            </summary>
+            <returns>HTMLencoded value</returns>
+        </member>
+        <member name="P:MonoSoftware.Web.HtmlFormatter.HtmlSanitizer.TagAttribute.Name">
+            <summary>
+            Name
+            </summary>
+        </member>
+        <member name="P:MonoSoftware.Web.HtmlFormatter.HtmlSanitizer.TagAttribute.Value">
+            <summary>
+            Value
+            </summary>
+        </member>
+        <member name="P:MonoSoftware.Web.HtmlFormatter.HtmlSanitizer.TagAttribute.Quote">
+            <summary>
+            Gets or sets the quote character.
+            </summary>
+        </member>
+        <member name="T:MonoSoftware.Web.Services.AspCompatWebServiceHandler">
+             <summary>
+             A class used for running ASMX Web Services on STA Threads.
+             </summary>
+             <remarks>
+             Origin: http://msdn.microsoft.com/en-us/magazine/cc163544.aspx
+             Usage (in web.config):
+             <code>
+             <configuration>
+              <system.web>
+                <httpHandlers>
+                  <add verb="*" path="*.asmx"
+                    type="AspCompatWebServiceHandler, [YourAssemblyName or _code for App_Code folder]" />
+                </httpHandlers>
+              </system.web>
+            </configuration>
+             </code>
+             </remarks>
+        </member>
+        <member name="T:MonoSoftware.Web.Services.WebServiceLocalSecurityHandlerFactory">
+            <summary>
+            Used for restricting direct web service access to just the local computer.
+            </summary>
+            <remarks>
+            This may be needed when there are several different IIS locations pointing to the same service (for example localization sub-folder apps like en, de, it,...),
+            which makes it cumbersome to set the restriction separatelly for each location directly in the IIS.
+            In order to set it up, one needs to add the following line to the web.config:
+            <add verb="*" path="*.asmx" type="MonoSoftware.Web.Services.WebServiceLocalSecurityHandlerFactory" />
+            Typically, services that are accompanying web sites are used for the scheduled maintenance tasks, which is usually done via .vbs script.
+            In that kind of scenario, one should also prevent the access to the .vbs too via:
+            <add verb="*" path="*.vbs" type="System.Web.HttpForbiddenHandler" />
+            provided that the IIS uses ASP.NET for handling .vbs requests (and it often is, since many scenarios require 
+            the url rewriting enabled, which makes all the extensions in the IIS handled by the ASP.NET).
+            </remarks>
+        </member>
+        <member name="M:MonoSoftware.Web.Template.#ctor(System.Web.UI.Control)">
+            <summary>
+            Defines a template implementation where container control's template will be filled with <paramref name="templateControl"/>.
+            </summary>
+            <param name="templateControl">Template control</param>
+        </member>
+        <member name="M:MonoSoftware.Web.Template.#ctor(System.Action{System.Web.UI.Control})">
+            <summary>
+            Defines a template implementation where container control's template will be dynamically filled via <paramref name="templateDelegate"/>.
+            </summary>
+            <param name="templateDelegate">Template delegate</param>
+        </member>
+        <member name="M:MonoSoftware.Web.Template.System#Web#UI#ITemplate#InstantiateIn(System.Web.UI.Control)">
+            <summary>
+            Implementation of InstatiateIn method.
+            </summary>
+            <param name="container">ITemplate container</param>
+        </member>
+        <member name="T:MonoSoftware.Web.UrlBuilder">
+            <summary>
+            Url builder utility class used for URL manipulations.
+            </summary>
+        </member>
+        <member name="M:MonoSoftware.Web.UrlBuilder.#ctor">
+            <summary>
+            Url builder constructor.
+            </summary>
+        </member>
+        <member name="M:MonoSoftware.Web.UrlBuilder.#ctor(System.String)">
+            <summary>
+            Url builder constructor.
+            </summary>
+            <param name="uri">Absolute Uri</param>
+        </member>
+        <member name="M:MonoSoftware.Web.UrlBuilder.#ctor(System.Uri)">
+            <summary>
+            Url builder constructor.
+            </summary>
+            <param name="uri">Uri object</param>
+        </member>
+        <member name="M:MonoSoftware.Web.UrlBuilder.#ctor(System.String,System.String)">
+            <summary>
+            Url builder constructor.
+            </summary>
+            <param name="schemeName">Scheme name</param>
+            <param name="hostName">Host name</param>
+        </member>
+        <member name="M:MonoSoftware.Web.UrlBuilder.#ctor(System.String,System.String,System.Int32)">
+            <summary>
+            Url builder constructor.
+            </summary>
+            <param name="scheme">Scheme</param>
+            <param name="host">Host</param>
+            <param name="portNumber">Post number</param>
+        </member>
+        <member name="M:MonoSoftware.Web.UrlBuilder.#ctor(System.String,System.String,System.Int32,System.String)">
+            <summary>
+            Url builder constructor.
+            </summary>
+            <param name="scheme">Scheme</param>
+            <param name="host">Host</param>
+            <param name="port">Port</param>
+            <param name="pathValue">Path value</param>
+        </member>
+        <member name="M:MonoSoftware.Web.UrlBuilder.#ctor(System.String,System.String,System.Int32,System.String,System.String)">
+            <summary>
+            Url builder constructor.
+            </summary>
+            <param name="scheme">Scheme</param>
+            <param name="host">Host</param>
+            <param name="port">Port</param>
+            <param name="path">Path</param>
+            <param name="extraValue">Extra value</param>
+        </member>
+        <member name="M:MonoSoftware.Web.UrlBuilder.#ctor(System.Web.UI.Page)">
+            <summary>
+            Url builder constructor.
+            </summary>
+            <param name="page">Page object</param>
+        </member>
+        <member name="M:MonoSoftware.Web.UrlBuilder.ToString">
+            <summary>
+            Gets string representation of Uri.
+            </summary>
+            <returns>String representation of Uri</returns>
+        </member>
+        <member name="M:MonoSoftware.Web.UrlBuilder.Navigate">
+            <summary>
+            Navigates to specified Uri.
+            </summary>
+        </member>
+        <member name="M:MonoSoftware.Web.UrlBuilder.Navigate(System.Boolean)">
+            <summary>
+            Navigates to specified Uri.
+            </summary>
+            <param name="endResponse">End response</param>
+        </member>
+        <member name="P:MonoSoftware.Web.UrlBuilder.QueryString">
+            <summary>
+            Gets query string.
+            </summary>
+        </member>
+        <member name="P:MonoSoftware.Web.UrlBuilder.PageName">
+            <summary>
+            Gets or sets a page name.
+            </summary>
+        </member>
+        <member name="P:MonoSoftware.Web.UrlBuilder.Query">
+            <summary>
+            Gets or sets query string.
+            </summary>
+        </member>
+        <member name="T:MonoSoftware.Web.UrlEncoder">
+            <summary>
+            Performs file-safe URL encoding, as opposed to standard UrlEncode functionality in ASP.NET that does not take into account the file system special characters (and others like "#"), resulting in "Bad request".
+            </summary>
+        </member>
+        <member name="M:MonoSoftware.Web.UrlEncoder.UrlDecode(System.String)">
+            <summary>
+            Decodes an URL string.
+            </summary>
+            <param name="decode">String to decode.</param>
+            <returns>URL-decoded string.</returns>
+        </member>
+        <member name="M:MonoSoftware.Web.UrlEncoder.UrlEncode(System.String)">
+            <summary>
+            Performs URL encoding on a string.
+            </summary>
+            <param name="encode">String to encode.</param>
+            <returns>URL-encoded string.</returns>
+        </member>
+        <member name="M:MonoSoftware.Web.UrlEncoder.UrlBase64Encode(System.String)">
+            <summary>
+             Converts a url to its equivalent System.String representation encoded with base 64 digits. 
+            </summary>
+            <param name="encode">String to encode.</param>
+            <returns>URL-encoded string.</returns>
+        </member>
+        <member name="M:MonoSoftware.Web.UrlEncoder.UrlBase64Decode(System.String)">
+            <summary>
+            Converts the specified System.String, which encodes binary data as base 64 digits, to a url.
+            </summary>
+            <param name="decode">String to decode.</param>
+            <returns>URL-decoded string.</returns>
+        </member>
+        <member name="M:MonoSoftware.Web.UrlFormatter.ResolveUrl(System.String)">
+            <summary>
+            Returns a site relative HTTP path from a partial path starting out with a ~.
+            Same syntax that ASP.Net internally supports but this method can be used
+            outside of the Page framework.
+            
+            Works like Control.ResolveUrl including support for ~ syntax
+            but returns an absolute URL.
+            </summary>
+            <param name="originalUrl">Any Url including those starting with ~</param>
+            <returns>relative url</returns>
+        </member>
+        <member name="M:MonoSoftware.Web.UrlFormatter.ResolveServerUrl(System.String,System.Boolean)">
+            <summary>
+            This method returns a fully qualified absolute server Url which includes
+            the protocol, server, port in addition to the server relative Url.
+            
+            Works like Control.ResolveUrl including support for ~ syntax
+            but returns an absolute URL.
+            </summary>
+            <param name="ServerUrl">Any Url, either App relative or fully qualified</param>
+            <param name="forceHttps">if true forces the url to use https</param>
+            <returns></returns>
+        </member>
+        <member name="M:MonoSoftware.Web.UrlFormatter.ResolveServerUrl(System.String)">
+            <summary>
+            This method returns a fully qualified absolute server Url which includes
+            the protocol, server, port in addition to the server relative Url.
+            
+            It work like Page.ResolveUrl, but adds these to the beginning.
+            This method is useful for generating Urls for AJAX methods
+            </summary>
+            <param name="ServerUrl">Any Url, either App relative or fully qualified</param>
+            <returns></returns>
+        </member>
+        <member name="M:MonoSoftware.Web.UrlFormatter.ForceUriToHttps(System.Uri)">
+            <summary>
+            Forces the Uri to use https
+            </summary>
+        </member>
+        <member name="M:MonoSoftware.Web.UrlFormatter.ToRelativePath(System.String)">
+            <summary>
+            Converts Physical Path To Relative Path. 
+            Note: Physical Path needs to be under the current Web application's root.
+            </summary>
+            <param name="physicalPath">Physical path</param>
+            <returns>Relative path</returns>
+        </member>
+        <member name="M:MonoSoftware.Web.UrlFormatter.ToRelativeUrl(System.String)">
+            <summary>
+            Converts the absolute path to the relative path.
+            </summary>
+            <param name="url">Url to convert.</param>
+            <returns>Relative URL.</returns>
+        </member>
+        <member name="M:MonoSoftware.Web.UrlFormatter.GetHostNameFromURL(System.String)">
+            <summary>
+            Retrieve Host name from full URL e.g. http://www.host.com?someparam=value
+            </summary>
+            <param name="urlToParse"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MonoSoftware.Web.UrlFormatter.GetHostNameFromURL(System.String,System.Boolean)">
+            <summary>
+            Retrieve Host name from full URL e.g. http://www.host.com?someparam=value and strip prefix
+            </summary>
+            <param name="stripPrefix">Strip prefix</param>
+            <param name="urlToParse">Url to parse</param>
+            <returns>Host name</returns>
+        </member>
+        <member name="M:MonoSoftware.Web.UrlFormatter.GetLocalhostNameFromURL(System.String)">
+            <summary>
+            Retrieve Localhost name and application path from full URL e.g. http://www.host.com/apppath/somepage.aspx?someparam=value.
+            Used for development only.
+            </summary>
+            <param name="urlToParse">Url to parse</param>
+            <returns>Localhost name</returns>
+        </member>
+        <member name="T:MonoSoftware.Web.UrlSeoOptimizer">
+            <summary>
+            Url optimizer utility class.
+            </summary>
+            <remarks>
+            Initially taken from http://horizonguy.wordpress.com/2008/10/18/optimize-a-url-for-seo-using-c/.
+            Improved and added additional handling of non-ASCII characters, currently Croatian, German and some other.
+            </remarks>
+        </member>
+        <member name="F:MonoSoftware.Web.UrlSeoOptimizer.removedCharacters">
+            <summary>
+            Invalid characters that are removed from the url.
+            </summary>
+        </member>
+        <member name="F:MonoSoftware.Web.UrlSeoOptimizer.dashCharacters">
+            <summary>
+            Invalid characters that are replaced with dash (there is a higher probability that these characters separate 2 words than that they are just a simple interpunction characters).
+            </summary>
+        </member>
+        <member name="F:MonoSoftware.Web.UrlSeoOptimizer.nonASCIICharacterReplacements">
+            <summary>
+            non ASCII characters and their replacements
+            </summary>
+        </member>
+        <member name="M:MonoSoftware.Web.UrlSeoOptimizer.#cctor">
+            <summary>
+            Initialize the list of mappings.
+            </summary>
+        </member>
+        <member name="M:MonoSoftware.Web.UrlSeoOptimizer.GetOptimizedString(System.String)">
+            <summary>
+            Gets an SEO optimized string.
+            </summary>
+            <param name="s">String to optimize</param>
+            <returns>Optimized string</returns>
+        </member>
+        <member name="T:MonoSoftware.Web.UnicodeStrings">
+            <summary>
+            A supplemental class for manipulating and normalizing
+            Unicode strings.
+            </summary>
+        </member>
+        <member name="M:MonoSoftware.Web.UnicodeStrings.LatinToAscii(System.String)">
+            <summary>
+            Strips diacritics from a Latin-character
+            Unicode string. Leaves non-Latin characters as they
+            were.
+            </summary>
+            <param name="InString">A Unicode string.</param>
+            <returns>ASCII-range characters, plus any non-Latin characters in the string</returns>
+        </member>
+        <member name="M:MonoSoftware.Web.UnicodeStrings.ToUnichar(System.String)">
+            <summary>
+            Takes a hexadecimal string and converts it to a 
+            Unicode character
+            </summary>
+            <param name="HexString">A four-digit number in hex notation (eg, 00E7).</param>
+            <returns>A unicode character, as string.</returns>
+        </member>
+        <member name="M:MonoSoftware.Web.UnicodeStrings.InitializeCharacterTable">
+            <summary>
+            Stores Unicode characters and their "normalized"
+            values to a hash table. Character codes are referenced
+            by hex numbers because that's the most common way to
+            refer to them.
+            </summary>
+        </member>
+        <member name="T:MonoSoftware.Web.WebClientEx">
+            <summary>
+            Overriden web client class that exposes cookies collection, timeout an duser agent properties from the underlying HttpWebRequest.
+            </summary>
+        </member>
+        <member name="M:MonoSoftware.Web.WebClientEx.#ctor">
+            <summary>
+            Constructor.
+            </summary>
+        </member>
+        <member name="M:MonoSoftware.Web.WebClientEx.GetWebRequest(System.Uri)">
+            <summary>
+            Overrides base method to allow setting cookies, timeout and user agent.
+            </summary>
+            <param name="address">Address for the request.</param>
+            <returns>Web request object.</returns>
+        </member>
+        <member name="P:MonoSoftware.Web.WebClientEx.CookieContainer">
+            <summary>
+            Cookie container.
+            </summary>
+        </member>
+        <member name="P:MonoSoftware.Web.WebClientEx.UserAgent">
+            <summary>
+            User agent.
+            </summary>
+        </member>
+        <member name="P:MonoSoftware.Web.WebClientEx.Timeout">
+            <summary>
+            Timeout in miliseconds.
+            </summary>
+        </member>
+        <member name="T:MonoSoftware.Web.Controls.Captcha.CaptchaHandler">
+            <summary>
+            Captcha handler HttpHandler.
+            </summary>
+        </member>
+        <member name="F:MonoSoftware.Web.Controls.Captcha.CaptchaHandler.currentContext">
+            <summary>
+            Current context.
+            </summary>
+        </member>
+        <member name="F:MonoSoftware.Web.Controls.Captcha.CaptchaHandler.CaptchaModuleIdParameter">
+            <summary>
+            Captcha module id session parameter.
+            </summary>
+        </member>
+        <member name="F:MonoSoftware.Web.Controls.Captcha.CaptchaHandler.CaptchaWidthParameter">
+            <summary>
+            Captcha width query parameter.
+            </summary>
+        </member>
+        <member name="F:MonoSoftware.Web.Controls.Captcha.CaptchaHandler.CaptchaHeightParameter">
+            <summary>
+            Captcha height query parameter.
+            </summary>
+        </member>
+        <member name="F:MonoSoftware.Web.Controls.Captcha.CaptchaHandler.CaptchaBackgroundColorParameter">
+            <summary>
+            Captcha BackgroundColor query parameter.
+            </summary>
+        </member>
+        <member name="F:MonoSoftware.Web.Controls.Captcha.CaptchaHandler.CaptchaForeColorParameter">
+            <summary>
+            Captcha ForeColor query parameter.
+            </summary>
+        </member>
+        <member name="F:MonoSoftware.Web.Controls.Captcha.CaptchaHandler.CaptchaFontFamilyParameter">
+            <summary>
+            Captcha Font family query parameter.
+            </summary>
+        </member>
+        <member name="M:MonoSoftware.Web.Controls.Captcha.CaptchaHandler.ProcessRequest(System.Web.HttpContext)">
+            <summary>
+            Process request method - actually produces the RSS feed.
+            </summary>
+            <param name="context">Http context</param>
+        </member>
+        <member name="P:MonoSoftware.Web.Controls.Captcha.CaptchaHandler.CaptchaModuleId">
+            <summary>
+            Gets captcha module id.
+            </summary>
+        </member>
+        <member name="P:MonoSoftware.Web.Controls.Captcha.CaptchaHandler.CaptchaCode">
+            <summary>
+            Gets captcha code.
+            </summary>
+        </member>
+        <member name="P:MonoSoftware.Web.Controls.Captcha.CaptchaHandler.CaptchaWidth">
+            <summary>
+            Gets the captcha image width.
+            </summary>
+        </member>
+        <member name="P:MonoSoftware.Web.Controls.Captcha.CaptchaHandler.CaptchaHeight">
+            <summary>
+            Gets the captcha image height.
+            </summary>
+        </member>
+        <member name="P:MonoSoftware.Web.Controls.Captcha.CaptchaHandler.CaptchaBackgroundColor">
+            <summary>
+            Gets the captcha image background color.
+            </summary>
+        </member>
+        <member name="P:MonoSoftware.Web.Controls.Captcha.CaptchaHandler.CaptchaForeColor">
+            <summary>
+            Gets the captcha image fore color.
+            </summary>
+        </member>
+        <member name="P:MonoSoftware.Web.Controls.Captcha.CaptchaHandler.CaptchaCaptchaFontFamily">
+            <summary>
+            Gets the captcha image font family.
+            </summary>
+        </member>
+        <member name="P:MonoSoftware.Web.Controls.Captcha.CaptchaHandler.IsReusable">
+            <summary>
+            Indicates if the handler is reusable.
+            </summary>
+        </member>
+        <member name="T:MonoSoftware.Web.Controls.Captcha.CaptchaImage">
+            <summary>
+            Captcha Image.
+            </summary>
+        </member>
+        <member name="M:MonoSoftware.Web.Controls.Captcha.CaptchaImage.#ctor(System.String,System.Int32,System.Int32)">
+            <summary>
+            Initializes a new instance of the CaptchaImage class using the
+            specified text, width and height.
+            </summary>
+            <param name="text">Captcha text</param>
+            <param name="width">Width</param>
+            <param name="height">Height</param>
+        </member>
+        <member name="M:MonoSoftware.Web.Controls.Captcha.CaptchaImage.#ctor(System.String,System.Int32,System.Int32,System.String)">
+            <summary>
+            Initializes a new instance of the CaptchaImage class using the
+            specified text, width, height and font family.
+            </summary>
+            <param name="text">Captcha text</param>
+            <param name="width">Width</param>
+            <param name="height">Height</param>
+            <param name="fontFamilyName">Font family name</param>
+        </member>
+        <member name="M:MonoSoftware.Web.Controls.Captcha.CaptchaImage.#ctor(System.String,System.Int32,System.Int32,System.String,System.Drawing.Color,System.Drawing.Color)">
+            <summary>
+            Initializes a new instance of the CaptchaImage class using the
+            specified text, width, height, font family, ForeColor and BackgroundColor.
+            </summary>
+            <param name="text">Captcha text</param>
+            <param name="width">Width</param>
+            <param name="height">Height</param>
+            <param name="fontFamilyName">Font family name</param>
+            <param name="foreColor">Fore color</param>
+            <param name="backgroundColor">Background color</param>
+        </member>
+        <member name="M:MonoSoftware.Web.Controls.Captcha.CaptchaImage.Finalize">
+            <summary>
+            This member overrides Object.Finalize.
+            </summary>
+        </member>
+        <member name="M:MonoSoftware.Web.Controls.Captcha.CaptchaImage.Dispose">
+            <summary>
+            Releases all resources used by this object. 
+            </summary>
+        </member>
+        <member name="M:MonoSoftware.Web.Controls.Captcha.CaptchaImage.Dispose(System.Boolean)">
+            <summary>
+            Custom Dispose method to clean up unmanaged resources.
+            </summary>
+            <param name="disposing">Disposing</param>
+        </member>
+        <member name="M:MonoSoftware.Web.Controls.Captcha.CaptchaImage.SetDimensions(System.Int32,System.Int32)">
+            <summary>
+            Sets the image width and height.
+            </summary>
+            <param name="width">Width</param>
+            <param name="height">Height</param>
+        </member>
+        <member name="M:MonoSoftware.Web.Controls.Captcha.CaptchaImage.SetFamilyName(System.String)">
+            <summary>
+            Sets the font used for the image text.
+            </summary>
+            <param name="familyName">Font family name</param>
+        </member>
+        <member name="M:MonoSoftware.Web.Controls.Captcha.CaptchaImage.GenerateImage">
+            <summary>
+            Creates the bitmap image.
+            </summary>
+        </member>
+        <member name="M:MonoSoftware.Web.Controls.Captcha.CaptchaImage.GenerateRandomCode(MonoSoftware.Web.Controls.Captcha.CaptchaType,System.Int32)">
+            <summary>
+            Generate random captcha code.
+            </summary>
+            <param name="ctype">Captcha type</param>
+            <param name="numberOfChars">Number of characters</param>
+            <returns>Captcha code</returns>
+        </member>
+        <member name="P:MonoSoftware.Web.Controls.Captcha.CaptchaImage.Text">
+            <summary>
+            Gets the text value.
+            </summary>
+        </member>
+        <member name="P:MonoSoftware.Web.Controls.Captcha.CaptchaImage.Image">
+            <summary>
+            Gets the captcha image.
+            </summary>
+        </member>
+        <member name="P:MonoSoftware.Web.Controls.Captcha.CaptchaImage.Width">
+            <summary>
+            Gets the Width.
+            </summary>
+        </member>
+        <member name="P:MonoSoftware.Web.Controls.Captcha.CaptchaImage.Height">
+            <summary>
+            Gets the Height.
+            </summary>
+        </member>
+        <member name="P:MonoSoftware.Web.Controls.Captcha.CaptchaImage.BackgroundColor">
+            <summary>
+            Gets the background color.
+            </summary>
+        </member>
+        <member name="P:MonoSoftware.Web.Controls.Captcha.CaptchaImage.ForeColor">
+            <summary>
+            Gets the Fore color.
+            </summary>
+        </member>
+        <member name="T:MonoSoftware.Web.Controls.Captcha.CaptchaType">
+            <summary>
+            Captcha type.
+            </summary>
+        </member>
+        <member name="F:MonoSoftware.Web.Controls.Captcha.CaptchaType.Numeric">
+            <summary>
+            Numeric code.
+            </summary>
+        </member>
+        <member name="F:MonoSoftware.Web.Controls.Captcha.CaptchaType.Alpha">
+            <summary>
+            Alpha code.
+            </summary>
+        </member>
+        <member name="F:MonoSoftware.Web.Controls.Captcha.CaptchaType.AlphaNumeric">
+            <summary>
+            Alpha-numeric code.
+            </summary>
+        </member>
+        <member name="T:MonoSoftware.Web.Controls.ExtendedImageButton">
+            <summary>
+            Extended image button.
+            <para>
+            Note: Added Hover funtionality.
+            </para>
+            </summary>
+        </member>
+        <member name="P:MonoSoftware.Web.Controls.ExtendedImageButton.HoverImageUrl">
+            <summary>
+            Gets or sets hover image url.
+            </summary>
+        </member>
+        <member name="T:MonoSoftware.Web.Controls.GoogleMapsMarker">
+            <summary>
+            Google maps marker.
+            </summary>
+        </member>
+        <member name="M:MonoSoftware.Web.Controls.GoogleMapsMarker.#ctor(System.Double,System.Double,System.String)">
+            <summary>
+            Constructor.
+            </summary>
+            <param name="latitude">Marker latitude</param>
+            <param name="longitude">Marker longitude</param>
+            <param name="infoHtml">Marker information html</param>
+        </member>
+        <member name="M:MonoSoftware.Web.Controls.GoogleMapsMarker.#ctor">
+            <summary>
+            Constructor.
+            </summary>
+        </member>
+        <member name="P:MonoSoftware.Web.Controls.GoogleMapsMarker.Latitude">
+            <summary>
+            Gets or sets latitude.
+            </summary>
+        </member>
+        <member name="P:MonoSoftware.Web.Controls.GoogleMapsMarker.Longitude">
+            <summary>
+            Gets or sets longitude.
+            </summary>
+        </member>
+        <member name="P:MonoSoftware.Web.Controls.GoogleMapsMarker.InfoHtml">
+            <summary>
+            Gets or sets marker information html.
+            </summary>
+        </member>
+        <member name="F:MonoSoftware.Web.Controls.RegExValidator.AllowedSymbols">
+            <summary>
+            Allowed Symbols.
+            </summary>
+        </member>
+        <member name="F:MonoSoftware.Web.Controls.RegExValidator.Alpha">
+            <summary>
+            Alpha
+            </summary>
+        </member>
+        <member name="F:MonoSoftware.Web.Controls.RegExValidator.Numeric">
+            <summary>
+            Numeric
+            </summary>
+        </member>
+        <member name="F:MonoSoftware.Web.Controls.RegExValidator.AlphaNumeric">
+            <summary>
+            Alpha Numeric
+            </summary>
+        </member>
+        <member name="F:MonoSoftware.Web.Controls.RegExValidator.AlphaWithSymbols">
+            <summary>
+            Alpha with symbols
+            </summary>
+        </member>
+        <member name="F:MonoSoftware.Web.Controls.RegExValidator.NumericWithSymbols">
+            <summary>
+            Numeric with symbols
+            </summary>
+        </member>
+        <member name="F:MonoSoftware.Web.Controls.RegExValidator.NumericWithSymbolsMicroSet">
+            <summary>
+            Numeric with symbols micro set
+            </summary>
+        </member>
+        <member name="F:MonoSoftware.Web.Controls.RegExValidator.AlphaNumericWithSymbols">
+            <summary>
+            Alpha Numeric with symbols
+            </summary>
+        </member>
+        <member name="F:MonoSoftware.Web.Controls.RegExValidator.AlphaNumericWithSymbolsMicroSet">
+            <summary>
+            Alpha Numeric with symbols micro set
+            </summary>
+        </member>
+        <member name="F:MonoSoftware.Web.Controls.RegExValidator.AlphaNumericWithSymbolsMicroSetNoSpaces">
+            <summary>
+            Alpha Numeric with symbols micro set but no spaces
+            </summary>
+        </member>
+        <member name="F:MonoSoftware.Web.Controls.RegExValidator.AlphaAllowedSpecialChr">
+            <summary>
+            Alpha with allowed special characters
+            </summary>
+        </member>
+        <member name="F:MonoSoftware.Web.Controls.RegExValidator.NumericAllowedSpecialChr">
+            <summary>
+            Numeric with allowed special characters
+            </summary>
+        </member>
+        <member name="F:MonoSoftware.Web.Controls.RegExValidator.AlphaNumericAllowedSpecialChr">
+            <summary>
+            Alpha numeric with allowed special cahracters
+            </summary>
+        </member>
+        <member name="F:MonoSoftware.Web.Controls.RegExValidator.AlphaWithSymbolsAllowedSpecialChr">
+            <summary>
+            Alpha with symbols and allowed special characters
+            </summary>
+        </member>
+        <member name="F:MonoSoftware.Web.Controls.RegExValidator.NumericWithSymbolsAllowedSpecialChr">
+            <summary>
+            Numeric with symbols and allowed special characters
+            </summary>
+        </member>
+        <member name="F:MonoSoftware.Web.Controls.RegExValidator.AlphaNumericWithSymbolsAllowedSpecialChr">
+            <summary>
+            Alpha numeric with symbols and allowed special characters
+            </summary>
+        </member>
+        <member name="F:MonoSoftware.Web.Controls.RegExValidator.DateRegEx">
+            <summary>
+            Date
+            </summary>
+        </member>
+        <member name="F:MonoSoftware.Web.Controls.RegExValidator.TimeRegEx">
+            <summary>
+            Time
+            </summary>
+        </member>
+        <member name="F:MonoSoftware.Web.Controls.RegExValidator.ShortTimeRegEx">
+            <summary>
+            Short time
+            </summary>
+        </member>
+        <member name="F:MonoSoftware.Web.Controls.RegExValidator.DateTimeRegEx">
+            <summary>
+            Date time
+            </summary>
+        </member>
+        <member name="F:MonoSoftware.Web.Controls.RegExValidator.Url">
+            <summary>
+            Url
+            </summary>
+        </member>
+        <member name="F:MonoSoftware.Web.Controls.RegExValidator.EMail">
+            <summary>
+            Email
+            </summary>
+        </member>
+        <member name="F:MonoSoftware.Web.Controls.RegExValidator.DayRegEx">
+            <summary>
+            Day
+            </summary>
+        </member>
+        <member name="F:MonoSoftware.Web.Controls.RegExValidator.MonthRegEx">
+            <summary>
+            Month
+            </summary>
+        </member>
+        <member name="F:MonoSoftware.Web.Controls.RegExValidator.YearRegEx">
+            <summary>
+            Year
+            </summary>
+        </member>
+        <member name="M:MonoSoftware.Web.Controls.RegExValidator.#ctor">
+            <summary>
+            Constructor.
+            </summary>
+        </member>
+        <member name="M:MonoSoftware.Web.Controls.RegExValidator.OnLoad(System.EventArgs)">
+            <summary>
+            OnLoad overrides Control.OnLoad.
+            </summary>
+            <param name="e">Event args</param>
+        </member>
+        <member name="M:MonoSoftware.Web.Controls.RegExValidator.GetValidationExpression">
+            <summary>
+            Gets validation expression.
+            </summary>
+            <returns>Validation expression</returns>
+        </member>
+        <member name="M:MonoSoftware.Web.Controls.RegExValidator.GetValidationExpression(MonoSoftware.Web.Controls.RegExTypes)">
+            <summary>
+            Gets validation expression.
+            </summary>
+            <param name="type">RegEx type</param>
+            <returns>Validation expression</returns>
+        </member>
+        <member name="P:MonoSoftware.Web.Controls.RegExValidator.ValidationType">
+            <summary>
+            Gets or sets validation type.
+            </summary>
+        </member>
+        <member name="P:MonoSoftware.Web.Controls.RegExValidator.MinLength">
+            <summary>
+            Gets or sets minimum length.
+            </summary>
+        </member>
+        <member name="P:MonoSoftware.Web.Controls.RegExValidator.MaxLength">
+            <summary>
+            Gets or sets maximum length.
+            </summary>
+        </member>
+        <member name="P:MonoSoftware.Web.Controls.RegExValidator.LenParam">
+            <summary>
+            Gets or sets length parameter.
+            </summary>
+        </member>
+        <member name="P:MonoSoftware.Web.Controls.RegExValidator.DisplayRegEx">
+            <summary>
+            Gets or sets display regex type.
+            </summary>
+        </member>
+        <member name="P:MonoSoftware.Web.Controls.RegExValidator.RegExDecimal">
+            <summary>
+            Gets or sets RegEx decimal expression.
+            </summary>
+        </member>
+        <member name="T:MonoSoftware.Web.Controls.RegExTypes">
+            <summary>
+            RegEx types.
+            </summary>
+        </member>
+        <member name="F:MonoSoftware.Web.Controls.RegExTypes.None">
+            <summary>
+            None
+            </summary>
+        </member>
+        <member name="F:MonoSoftware.Web.Controls.RegExTypes.Alpha">
+            <summary>
+            Alpha
+            </summary>
+        </member>
+        <member name="F:MonoSoftware.Web.Controls.RegExTypes.Numeric">
+            <summary>
+            Numeric
+            </summary>
+        </member>
+        <member name="F:MonoSoftware.Web.Controls.RegExTypes.NumericDecimal">
+            <summary>
+            Numeric decimal
+            </summary>
+        </member>
+        <member name="F:MonoSoftware.Web.Controls.RegExTypes.NumericInt32">
+            <summary>
+            Numeric Int32
+            </summary>
+        </member>
+        <member name="F:MonoSoftware.Web.Controls.RegExTypes.AlphaNumeric">
+            <summary>
+            Alpha numeric
+            </summary>
+        </member>
+        <member name="F:MonoSoftware.Web.Controls.RegExTypes.AlphaWithSymbols">
+            <summary>
+            Alpha with symbols
+            </summary>
+        </member>
+        <member name="F:MonoSoftware.Web.Controls.RegExTypes.NumericWithSymbols">
+            <summary>
+            Numeric with symbols
+            </summary>
+        </member>
+        <member name="F:MonoSoftware.Web.Controls.RegExTypes.NumericWithSymbolsMicroSet">
+            <summary>
+            Numeric with symbols micro set
+            </summary>
+        </member>
+        <member name="F:MonoSoftware.Web.Controls.RegExTypes.AlphaNumericWithSymbols">
+            <summary>
+            Aplha numeric with symbols
+            </summary>
+        </member>
+        <member name="F:MonoSoftware.Web.Controls.RegExTypes.AlphaNumericWithSymbolsMicroSet">
+            <summary>
+            Alpha numeric with symbols micro set
+            </summary>
+        </member>
+        <member name="F:MonoSoftware.Web.Controls.RegExTypes.AlphaNumericWithSymbolsMicroSetNoSpaces">
+            <summary>
+            Alpha numeric with symbols micro set and no spaces
+            </summary>
+        </member>
+        <member name="F:MonoSoftware.Web.Controls.RegExTypes.AlphaAllowedSpecialChr">
+            <summary>
+            Alpha with allowed special characters
+            </summary>
+        </member>
+        <member name="F:MonoSoftware.Web.Controls.RegExTypes.NumericAllowedSpecialChr">
+            <summary>
+            Numeric with allowed special characters
+            </summary>
+        </member>
+        <member name="F:MonoSoftware.Web.Controls.RegExTypes.AlphaNumericAllowedSpecialChr">
+            <summary>
+            Alpha numeric with allowed special characters
+            </summary>
+        </member>
+        <member name="F:MonoSoftware.Web.Controls.RegExTypes.AlphaWithSymbolsAllowedSpecialChr">
+            <summary>
+            Alpha with symbols and allowed special characters
+            </summary>
+        </member>
+        <member name="F:MonoSoftware.Web.Controls.RegExTypes.NumericWithSymbolsAllowedSpecialChr">
+            <summary>
+            Numeric with symbols and allowed special characters
+            </summary>
+        </member>
+        <member name="F:MonoSoftware.Web.Controls.RegExTypes.AlphaNumericWithSymbolsAllowedSpecialChr">
+            <summary>
+            Alpha numeric with symbols and allowed special characters
+            </summary>
+        </member>
+        <member name="F:MonoSoftware.Web.Controls.RegExTypes.EMail">
+            <summary>
+            Email
+            </summary>
+        </member>
+        <member name="F:MonoSoftware.Web.Controls.RegExTypes.URL">
+            <summary>
+            Url
+            </summary>
+        </member>
+        <member name="F:MonoSoftware.Web.Controls.RegExTypes.Date">
+            <summary>
+            Date
+            </summary>
+        </member>
+        <member name="F:MonoSoftware.Web.Controls.RegExTypes.Time">
+            <summary>
+            Time
+            </summary>
+        </member>
+        <member name="F:MonoSoftware.Web.Controls.RegExTypes.ShortTime">
+            <summary>
+            Short time
+            </summary>
+        </member>
+        <member name="F:MonoSoftware.Web.Controls.RegExTypes.DateTime">
+            <summary>
+            DateTime
+            </summary>
+        </member>
+        <member name="F:MonoSoftware.Web.Controls.RegExTypes.Day">
+            <summary>
+            Day
+            </summary>
+        </member>
+        <member name="F:MonoSoftware.Web.Controls.RegExTypes.Month">
+            <summary>
+            Month
+            </summary>
+        </member>
+        <member name="F:MonoSoftware.Web.Controls.RegExTypes.Year">
+            <summary>
+            Year
+            </summary>
+        </member>
+        <member name="T:MonoSoftware.Web.Controls.RegExDisplayType">
+            <summary>
+            RegEx display types
+            </summary>
+        </member>
+        <member name="F:MonoSoftware.Web.Controls.RegExDisplayType.Dynamic">
+            <summary>
+            Dynamic
+            </summary>
+        </member>
+        <member name="F:MonoSoftware.Web.Controls.RegExDisplayType.None">
+            <summary>
+            None
+            </summary>
+        </member>
+        <member name="F:MonoSoftware.Web.Controls.RegExDisplayType.Static">
+            <summary>
+            Static
+            </summary>
+        </member>
+        <member name="T:MonoSoftware.Web.Controls.ThreeStateCheckBox">
+            <summary>
+            Represents a 3-stage checkbox with a blank, checked and unchecked state represented by an empty checkbox, a checked checkbox,
+            or a checkbox with a red X in it.
+            </summary>
+        </member>
+        <member name="M:MonoSoftware.Web.Controls.ThreeStateCheckBox.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:MonoSoftware.Web.Controls.ThreeStateCheckBox"/> class.
+            </summary>
+        </member>
+        <member name="M:MonoSoftware.Web.Controls.ThreeStateCheckBox.checkBox_Command(System.Object,System.Web.UI.WebControls.CommandEventArgs)">
+            <summary>
+            Handles the Command event of the checkBox control.
+            </summary>
+            <param name="sender">The source of the event.</param>
+            <param name="e">The <see cref="T:System.Web.UI.WebControls.CommandEventArgs"/> instance containing the event data.</param>
+        </member>
+        <member name="M:MonoSoftware.Web.Controls.ThreeStateCheckBox.OnCheckChanged(System.EventArgs)">
+            <summary>
+            Raises the <see cref="E:CheckChanged"/> event of the
+            <see cref="T:MonoSoftware.Web.Controls.ThreeStateCheckBox"/> control.
+            This allows you to handle the event directly.
+            </summary>
+            <param name="e">The <see cref="T:System.EventArgs"/> instance containing the event data.</param>
+        </member>
+        <member name="M:MonoSoftware.Web.Controls.ThreeStateCheckBox.CreateChildControls">
+            <summary>
+            Called by the ASP.NET page framework to notify server controls that use composition-based implementation to create any child controls they contain in preparation for posting back or rendering.
+            </summary>
+        </member>
+        <member name="M:MonoSoftware.Web.Controls.ThreeStateCheckBox.OnPreRender(System.EventArgs)">
+            <summary>
+            Raises the <see cref="E:System.Web.UI.Control.PreRender"/> event.
+            </summary>
+            <param name="e">An <see cref="T:System.EventArgs"/> object that contains the event data.</param>
+        </member>
+        <member name="M:MonoSoftware.Web.Controls.ThreeStateCheckBox.GetScriptReferences">
+            <summary>
+            Gets the script references.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:MonoSoftware.Web.Controls.ThreeStateCheckBox.GetScriptDescriptors">
+            <summary>
+            Gets the script descriptors.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:MonoSoftware.Web.Controls.ThreeStateCheckBox.ScriptManager">
+            <summary>
+            Gets the script manager.
+            </summary>
+            <value>The script manager.</value>
+        </member>
+        <member name="P:MonoSoftware.Web.Controls.ThreeStateCheckBox.ShowText">
+            <summary>
+            Gets or sets a value indicating whether the <see cref="T:MonoSoftware.Web.Controls.ThreeStateCheckBox"/>
+            should show text beside the actual checkbox.
+            </summary>
+            <value><c>true</c> to show text beside <see cref="T:MonoSoftware.Web.Controls.ThreeStateCheckBox"/>
+            control; otherwise, <c>false</c>. The default is
+            <c>true</c>.</value>
+        </member>
+        <!-- Badly formed XML comment ignored for member "P:MonoSoftware.Web.Controls.ThreeStateCheckBox.CheckedStateLabel" -->
+        <!-- Badly formed XML comment ignored for member "P:MonoSoftware.Web.Controls.ThreeStateCheckBox.UncheckedStateLabel" -->
+        <!-- Badly formed XML comment ignored for member "P:MonoSoftware.Web.Controls.ThreeStateCheckBox.UndefinedStateLabel" -->
+        <member name="P:MonoSoftware.Web.Controls.ThreeStateCheckBox.AutoPostBack">
+            <summary>
+            Gets or sets a value indicating whether the <see cref="T:MonoSoftware.Web.Controls.ThreeStateCheckBox"/>
+            state automatically posts back to the server when clicked.
+            </summary>
+            <value><c>true</c> to automatically post the state of the <see cref="T:MonoSoftware.Web.Controls.ThreeStateCheckBox"/>
+            control to the server when it is clicked; otherwise, <c>false</c>. The default is
+            <c>false</c>.</value>
+        </member>
+        <member name="P:MonoSoftware.Web.Controls.ThreeStateCheckBox.CausesValidation">
+            <summary>
+            Gets or sets a value indicating whether validation is performed when the 
+            <see cref="T:MonoSoftware.Web.Controls.ThreeStateCheckBox"/> control is selected.
+            </summary>
+            <value><c>true</c> if validation is performed when the 
+            <see cref="T:MonoSoftware.Web.Controls.ThreeStateCheckBox"/> is clicked; 
+            otherwise, <c>false</c>. The default is <c>false</c>.</value>
+        </member>
+        <member name="P:MonoSoftware.Web.Controls.ThreeStateCheckBox.ValidationGroup">
+            <summary>
+            Gets or sets the group of controls for which the <see cref="T:MonoSoftware.Web.Controls.ThreeStateCheckBox"/>
+            control causes validation when it posts back to the server.
+            </summary>
+            <value>The group of controls for which the <see cref="T:MonoSoftware.Web.Controls.ThreeStateCheckBox"/>
+            causes validation when it posts back to the server. The default is an empty string ("").</value>
+        </member>
+        <member name="P:MonoSoftware.Web.Controls.ThreeStateCheckBox.ThreeStateEnabled">
+            <summary>
+            Gets or sets if three state check box mode is enabled.
+            </summary>
+        </member>
+        <member name="P:MonoSoftware.Web.Controls.ThreeStateCheckBox.Checked">
+            <summary>
+            Gets or sets a value indicating the checked state of the checkbox, either blank, checked or unchecked.
+            </summary>
+            <value>Checked to indicate a checked state, blank to indicate the default or no preference state and unchecked to indicate
+            the explicitly unchecked or denied state.</value>
+        </member>
+        <member name="P:MonoSoftware.Web.Controls.ThreeStateCheckBox.CommandArgument">
+            <summary>
+            Gets or sets the data key which is available upon post back for easily identifying this particular check box.
+            </summary>
+            <value>The data key which is available upon post back for easily identifying this particular check box.</value>
+        </member>
+        <member name="E:MonoSoftware.Web.Controls.ThreeStateCheckBox.CheckedChanged">
+            <summary>
+            Occurs when the value of the Checked property changes between posts to the server.
+            </summary>
+        </member>
+        <member name="T:MonoSoftware.Web.Security.ActiveDirectoryConfigurationSection">
+            <summary>
+            Configuration section for the Active Directory integration. This enables users to work with AD without enabling impersonation (which doesn't allow for storing server name anyway).
+            </summary>
+        </member>
+        <member name="P:MonoSoftware.Web.Security.ActiveDirectoryConfigurationSection.Server">
+            <summary>
+            AD server name.
+            </summary>
+        </member>
+        <member name="P:MonoSoftware.Web.Security.ActiveDirectoryConfigurationSection.Username">
+            <summary>
+            AD username.
+            </summary>
+        </member>
+        <member name="P:MonoSoftware.Web.Security.ActiveDirectoryConfigurationSection.Password">
+            <summary>
+            AD password.
+            </summary>
+        </member>
+        <member name="T:MonoSoftware.Web.Security.AspNetHostingSecurity">
+            <summary>
+            Asp.net hosting and security utility class.
+            </summary>
+        </member>
+        <member name="M:MonoSoftware.Web.Security.AspNetHostingSecurity.GetCurrentTrustLevel">
+            <summary>
+            Retrieves the trust level of the environment application is running under.
+            </summary>
+            <returns>Hosting permission level (trust level).</returns>
+        </member>
+        <member name="T:MonoSoftware.Web.Security.DigestAuthenticationModule">
+            <summary>
+            Module that is used to provide HTTP Digest Authentication, probably the simplest method of adding security to Web services without resorting to advanced authentication schemes.
+            </summary>
+        </member>
+        <member name="M:MonoSoftware.Web.Security.DigestAuthenticationModule.#ctor">
+            <summary>
+            Constructor.
+            </summary>
+        </member>
+        <member name="M:MonoSoftware.Web.Security.DigestAuthenticationModule.Dispose">
+            <summary>
+            Dispose method.
+            </summary>
+        </member>
+        <member name="M:MonoSoftware.Web.Security.DigestAuthenticationModule.Init(System.Web.HttpApplication)">
+            <summary>
+            Initialization.
+            </summary>
+            <param name="application">HTTP application.</param>
+        </member>
+        <member name="M:MonoSoftware.Web.Security.DigestAuthenticationModule.OnAuthenticateRequest(System.Object,System.EventArgs)">
+            <summary>
+            Hanldes OnAuthenticateRequest and provides HTTP Digest auth functionality.
+            </summary>
+            <param name="source">Source.</param>
+            <param name="eventArgs">Event args.</param>
+        </member>
+        <member name="M:MonoSoftware.Web.Security.DigestAuthenticationModule.OnEndRequest(System.Object,System.EventArgs)">
+            <summary>
+            Hanldes the end request event. Adds the WWW-Authenticate header with the digest challenge.
+            </summary>
+            <param name="source">Source.</param>
+            <param name="eventArgs">Event arguments.</param>
+        </member>
+        <member name="M:MonoSoftware.Web.Security.DigestAuthenticationModule.GetCurrentNonce">
+            <summary>
+            This implementation will create a nonce which is the text representation of the current time, plus one minute.  The nonce will be valid for this minute.
+            </summary>
+            <returns>Nonce value.</returns>
+        </member>
+        <member name="M:MonoSoftware.Web.Security.DigestAuthenticationModule.IsValidNonce(System.String)">
+            <summary>
+            Checks if Nonce value is valid.
+            </summary>
+            <param name="nonce">Nonce value.</param>
+            <returns>True if nonce is valid, false otherwise.</returns>
+        </member>
+        <member name="M:MonoSoftware.Web.Security.DigestAuthenticationModule.GetPasswordAndRoles(System.String,System.String@,System.String[]@)">
+            <summary>
+            Gets password and roles for the user that is accessing the protected path. This implementation uses the ASP.NET membership infrastructure to validate the user.
+            </summary>
+            <param name="username">User name.</param>
+            <param name="password">User password.</param>
+            <param name="roles">Roles for the current user, if the user exists.</param>
+            <returns>True if the user with such username exists, false otherwise.</returns>
+        </member>
+        <member name="T:MonoSoftware.Web.Security.Membership">
+            <summary>
+            Membership-related security functionality.
+            </summary>
+        </member>
+        <member name="F:MonoSoftware.Web.Security.Membership.ProviderUserKeyCacheKey">
+            <summary>
+            Provider user key used as a cache key for storing user data to the cache.
+            </summary>
+        </member>
+        <member name="M:MonoSoftware.Web.Security.Membership.GetProviderUserKey">
+            <summary>
+            Retrieves provider user key for a current user.
+            </summary>
+            <returns>Provider user key.</returns>
+        </member>
+        <member name="M:MonoSoftware.Web.Security.Membership.GetProviderUserKey(System.String)">
+            <summary>
+            Retrieves provider user key for a user with specified user name.
+            </summary>
+            <param name="userName"></param>
+            <returns>Provider user key.</returns>
+        </member>
+        <member name="M:MonoSoftware.Web.Security.Membership.InvalidateProviderUserKey(System.String)">
+            <summary>
+            Invalidates the provider user key cache for a user with specified user name.
+            </summary>
+            <param name="userName">User name</param>
+            <returns>Provider user key.</returns>
+        </member>
+        <member name="M:MonoSoftware.Web.Security.Membership.GetAdObjectGuid(System.String)">
+            <summary>
+            Returns Active Directory object GUID (by default AD membership provider uses string SIDs instead of GUIDs).
+            </summary>
+            <param name="sid">User SID.</param>
+            <returns>Active Directory object GUID.</returns>
+        </member>
+        <member name="M:MonoSoftware.Web.Security.Membership.GetPrincipalContext">
+            <summary>
+            Instantiates an ActiveDirectory PrincipalContext based on the server, username and password data from the ActiveDirectoryConfiguration section in the config file (impersonation is used if no username and data are provided in the config file).
+            </summary>
+            <returns>PricipalContext, or null if it cannot be instantiated.</returns>
+        </member>
+    </members>
+</doc>
