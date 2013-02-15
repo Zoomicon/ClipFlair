@@ -582,7 +582,7 @@ h1, h2, h3{
 	background: none;
 	margin: 0px;
 	padding: 5px 0px;
-	border-bottom: dotted1px #dcdcdc;
+	border-bottom: dotted 1px #dcdcdc;
 }
 /**** Sidebar - END ****/
 
@@ -610,7 +610,7 @@ h1, h2, h3{
 }
 .MonoXSearchHeader a:hover
 {
-	text-decoration:undeline;
+	text-decoration:underline;
 }
 .MonoxSearchFooter
 {
@@ -922,7 +922,7 @@ h1, h2, h3{
 .footer-wrapper .footer UL LI.align-right{
 
  float:right;
- margin-right:4x;
+ margin-right:4px;
  margin-left:4px;
 }
 
@@ -6333,7 +6333,7 @@ font-family: Verdana, Arial, Helvetica, sans-serif;
 font-size: 26px;
 font-weight: normal;
 font-style: normal;
-margin: 0px 0px 20p
+margin: 0px 0px 20px
 }
 .contact-info STRONG
 {
