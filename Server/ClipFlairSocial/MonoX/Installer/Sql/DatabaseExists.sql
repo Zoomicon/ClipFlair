@@ -1,1 +1,0 @@
-Select case when EXISTS (SELECT name FROM sys.databases WHERE name = N'{0}')  then Cast('True' as Bit) else Cast('False' as Bit) end
