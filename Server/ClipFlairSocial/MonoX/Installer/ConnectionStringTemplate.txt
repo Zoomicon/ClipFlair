@@ -1,4 +1,0 @@
-<connectionStrings>
-    <remove name="LocalSqlServer"/>
-    <add name="LocalSqlServer" connectionString="{0}"  providerName="System.Data.SqlClient"/>
-</connectionStrings>
