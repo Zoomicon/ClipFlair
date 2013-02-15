@@ -1,0 +1,29 @@
+﻿.tweet-list
+{
+	width:200px;
+}
+
+.tweet-list-item
+{
+    font-family: Tahoma;
+	font-size:12px;	
+}
+
+.tweet-list-item .date
+{
+	font-size: 10px;
+    color: #5B5B5B;
+    font-family: Arial;
+    padding: 2px;
+}
+
+.tweet-list-item a
+{
+    color: #2E6C8B;
+    text-decoration: none;
+}
+.tweet-list-item a:hover
+{
+    color: #2E6C8B;
+    text-decoration: underline;
+}

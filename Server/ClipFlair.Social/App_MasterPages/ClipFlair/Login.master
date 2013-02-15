@@ -1,0 +1,65 @@
+<%@ Master 
+    Language="C#" 
+    AutoEventWireup="True" 
+    EnableTheming="true"
+    Inherits="MonoSoftware.MonoX.MasterPages.Default" 
+    MasterPageFile="~/MonoX/MasterPages/MonoX.master" 
+    Codebehind="Default.master.cs" %>
+<%@ MasterType VirtualPath="~/MonoX/MasterPages/MonoX.master" %>
+<%@ Import Namespace="MonoSoftware.MonoX.Resources" %>
+
+<%@ Register TagPrefix="MonoX" TagName="MembershipNavigation" Src="~/MonoX/MasterPages/MembershipNavigation.ascx" %>
+<%@ Register TagPrefix="MonoX" TagName="Membership" Src="~/MonoX/ModuleGallery/Membership/MembershipEditor.ascx" %>
+<%@ Register TagPrefix="MonoX" TagName="LoginRpx" Src="~/MonoX/ModuleGallery/LoginRpx.ascx" %>
+<%@ Register TagPrefix="MonoX" TagName="PageFooter" Src="~/MonoX/MasterPages/PageFooter.ascx" %>
+
+<%@ Register Assembly="MonoX" Namespace="MonoSoftware.MonoX" TagPrefix="portal" %>
+
+
+<asp:Content ContentPlaceHolderID="cp" runat="server">
+<asp:ScriptManagerProxy ID="scriptManagerProxy" runat="server"></asp:ScriptManagerProxy>
+  <div class="beta-icon"></div>
+  <div class="wrapper">
+	<div class="header-wrapper">
+   	    <div class="header">
+       	    <a href='<%= MonoSoftware.Web.UrlFormatter.ResolveServerUrl(MonoSoftware.MonoX.Utilities.LocalizationUtility.RewriteLink("~/Default.aspx")) %>' class="logo"><img runat="server" src="<%$ Code: MonoSoftware.MonoX.Paths.App_Themes.img.logo_png %>" alt="MonoX" /></a>             
+            <asp:ContentPlaceHolder ID="cp" runat="server">
+            </asp:ContentPlaceHolder>
+        </div>
+        <!--javascript to hide / show divs-->
+        <script language="JavaScript">
+            function hide(id) {
+                var state = document.getElementById(id).style.display;
+                    document.getElementById(id).style.display = 'none';
+            } 
+            function show(id) {
+                var state = document.getElementById(id).style.display;
+                    document.getElementById(id).style.display = 'block';
+            }
+        </script>
+        <div class="register_cont">
+            <div class="registration_wrap">
+                <div id="registration_form">
+                    <!--<h2>Not a member? Sign Up here:</h2>-->
+                    <MonoX:Membership runat="server" ID="ctlMembershipEditor" />
+                    <p class="social-invitation">...or login with social networks<br/><a href="#" title="Login with social networks" onclick="show('social_login'); hide('registration_form');" class="social_login_link"></a></p>
+                    <a href="http://clipflair.net" target="_blank" class="learn_more"></a>
+                </div>
+                <div id="social_login">
+                        <MonoX:LoginRpx runat="server" ID="ctlLoginRpx" Width="100%" ApiKey=""  />
+                        <div class="login-warning"><asp:Literal runat="server" Visible="<% $Code: MonoSoftware.MonoX.ApplicationSettings.EnableUserRegistration %>" Text="<% $Code: PageResources.Login_RpxWarning %>"></asp:Literal></div>
+                        <p class="social-invitation2">...or register with ClipFlair<br/><a href="#" title="Sign up with ClipFlair" onclick="hide('social_login'); show('registration_form');" class="register_link"></a></p>
+                        <a href="http://clipflair.net" target="_blank" class="learn_more"></a>
+                </div>
+                
+                
+            </div>
+        </div>
+        
+        
+    </div>        
+   
+    
+    <MonoX:PageFooter runat="server" ID="ctlFooter"/>
+  </div>
+</asp:Content>

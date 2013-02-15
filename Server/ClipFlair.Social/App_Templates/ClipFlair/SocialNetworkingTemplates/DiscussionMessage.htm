@@ -1,0 +1,65 @@
+﻿<div class="message  jq_snNote <# UnapprovedClass #> <# SpamClass #> <# AnsweredBackgroundClass #> <# PinItemBackgroundClass #>">
+    <div class="pin-image"></div>
+    <div class="left-side">                
+        <div class="info-box <# UnansweredClass #> <# AnsweredClass #> <# PinItemClass #>" title="<# AnswerToolTip #>">
+            <table cellpadding="0" cellspacing="0" width="100%">
+                <tr>
+                    <td colspan="2" class="num-avatar">
+                        <table cellpadding="0" cellspacing="0" width="100%">
+                            <tr>
+                                <td class="number">                                            
+                                    #if( $PostLinkVisible )
+                                    <a href="<# PostUrl #>" title="<# PostToolTip #>" name="<# PostIDPermalink #>"><# PostText #></a>
+                                    #end
+                                </td>
+                                <td class="avatar">
+                                    <a href="<# ProfileUrl #>" title="<# Username #>"><# Avatar #></a>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <tr>                        
+                    <td class="reputation">
+                        <div title="<# UserScoreToolTip #>">
+                            <strong><# UserScore #></strong>
+                            <span><# UserScoreText #></span>                                    
+                        </div>
+                    </td>
+                    <td class="total-posts">
+                        <div title="<# TotalPostsToolTip #>">
+                            <strong><# TotalPostsCount #></strong>
+                            <span><# TotalPostsText #></span>                                    
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        #if( $RatingVisible )
+        <div class="rating">
+            <# Rating #>
+        </div>
+        #end
+        #if( $AnsweringVisible )
+        <div class="mark">
+            <span class="<# UnansweredClass #> <# AnsweredClass #>" ><# Answer #></span>
+        </div>
+        #end
+    </div>
+    <div class="content">
+        <div class="author">
+            <a href="<# ProfileUrl #>" title="<# Username #>"><# Username #></a>
+            <span><# Date #></span>
+        </div>
+        <div class="post-content">
+            <# Content #>
+        </div>
+        <div>
+            <# Files #>
+        </div>
+        <div class="options">
+            <# ReportPost #><# ApproveReportedPost #><# DisapproveReportedPost #>
+            <# Edit #><# Delete #><# DeleteStatus #><# DisapproveDelete #> #if( $ApproveOptionsVisible ) <# Approve #> #end  #if( $SpamOptionsVisible ) <# ReportHam #><# ReportSpam #> #end #if( $PinItemVisible ) <# TogglePinItem #> #end
+        </div>
+    </div>
+</div>

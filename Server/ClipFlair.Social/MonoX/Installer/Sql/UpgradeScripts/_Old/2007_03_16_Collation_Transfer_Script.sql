@@ -1,0 +1,52 @@
+--ALTER View vw_aspnet_Applications   ALTER COLUMN ApplicationName nvarchar(256) COLLATE Latin1_General_CI_AS NOT NULL
+--ALTER View vw_aspnet_Applications   ALTER COLUMN LoweredApplicationName nvarchar(256) COLLATE Latin1_General_CI_AS NOT NULL
+--ALTER View vw_aspnet_Applications   ALTER COLUMN Description nvarchar(256) COLLATE Latin1_General_CI_AS NULL
+--ALTER View vw_aspnet_Users   ALTER COLUMN UserName nvarchar(256) COLLATE Latin1_General_CI_AS NOT NULL
+--ALTER View vw_aspnet_Users   ALTER COLUMN LoweredUserName nvarchar(256) COLLATE Latin1_General_CI_AS NOT NULL
+--ALTER View vw_aspnet_Users   ALTER COLUMN MobileAlias nvarchar(16) COLLATE Latin1_General_CI_AS NULL
+--ALTER View vw_aspnet_MembershipUsers   ALTER COLUMN MobilePIN nvarchar(16) COLLATE Latin1_General_CI_AS NULL
+--ALTER View vw_aspnet_MembershipUsers   ALTER COLUMN Email nvarchar(256) COLLATE Latin1_General_CI_AS NULL
+--ALTER View vw_aspnet_MembershipUsers   ALTER COLUMN LoweredEmail nvarchar(256) COLLATE Latin1_General_CI_AS NULL
+--ALTER View vw_aspnet_MembershipUsers   ALTER COLUMN PasswordQuestion nvarchar(256) COLLATE Latin1_General_CI_AS NULL
+--ALTER View vw_aspnet_MembershipUsers   ALTER COLUMN PasswordAnswer nvarchar(128) COLLATE Latin1_General_CI_AS NULL
+--ALTER View vw_aspnet_MembershipUsers   ALTER COLUMN Comment ntext COLLATE Latin1_General_CI_AS NULL
+--ALTER View vw_aspnet_MembershipUsers   ALTER COLUMN UserName nvarchar(256) COLLATE Latin1_General_CI_AS NOT NULL
+--ALTER View vw_aspnet_MembershipUsers   ALTER COLUMN MobileAlias nvarchar(16) COLLATE Latin1_General_CI_AS NULL
+--ALTER View vw_aspnet_Roles   ALTER COLUMN RoleName nvarchar(256) COLLATE Latin1_General_CI_AS NOT NULL
+--ALTER View vw_aspnet_Roles   ALTER COLUMN LoweredRoleName nvarchar(256) COLLATE Latin1_General_CI_AS NOT NULL
+--ALTER View vw_aspnet_Roles   ALTER COLUMN Description nvarchar(256) COLLATE Latin1_General_CI_AS NULL
+--ALTER View vw_aspnet_WebPartState_Paths   ALTER COLUMN Path nvarchar(256) COLLATE Latin1_General_CI_AS NOT NULL
+--ALTER View vw_aspnet_WebPartState_Paths   ALTER COLUMN LoweredPath nvarchar(256) COLLATE Latin1_General_CI_AS NOT NULL
+
+--ALTER TABLE aspnet_Users   ALTER COLUMN UserName nvarchar(256) COLLATE Latin1_General_CI_AS NOT NULL
+--ALTER TABLE aspnet_Users   ALTER COLUMN LoweredUserName nvarchar(256) COLLATE Latin1_General_CI_AS NOT NULL
+--ALTER TABLE aspnet_Users   ALTER COLUMN MobileAlias nvarchar(16) COLLATE Latin1_General_CI_AS NULL
+--ALTER TABLE aspnet_SchemaVersions   ALTER COLUMN Feature nvarchar(128) COLLATE Latin1_General_CI_AS NOT NULL
+--ALTER TABLE aspnet_SchemaVersions   ALTER COLUMN CompatibleSchemaVersion nvarchar(128) COLLATE Latin1_General_CI_AS NOT NULL
+--ALTER TABLE aspnet_Membership   ALTER COLUMN Password nvarchar(128) COLLATE Latin1_General_CI_AS NOT NULL
+--ALTER TABLE aspnet_Membership   ALTER COLUMN PasswordSalt nvarchar(128) COLLATE Latin1_General_CI_AS NOT NULL
+--ALTER TABLE aspnet_Membership   ALTER COLUMN MobilePIN nvarchar(16) COLLATE Latin1_General_CI_AS NULL
+--ALTER TABLE aspnet_Membership   ALTER COLUMN Email nvarchar(256) COLLATE Latin1_General_CI_AS NULL
+--ALTER TABLE aspnet_Membership   ALTER COLUMN LoweredEmail nvarchar(256) COLLATE Latin1_General_CI_AS NULL
+--ALTER TABLE aspnet_Membership   ALTER COLUMN PasswordQuestion nvarchar(256) COLLATE Latin1_General_CI_AS NULL
+--ALTER TABLE aspnet_Membership   ALTER COLUMN PasswordAnswer nvarchar(128) COLLATE Latin1_General_CI_AS NULL
+--ALTER TABLE aspnet_Membership   ALTER COLUMN Comment ntext COLLATE Latin1_General_CI_AS NULL
+--ALTER TABLE aspnet_Profile   ALTER COLUMN PropertyNames ntext COLLATE Latin1_General_CI_AS NOT NULL
+--ALTER TABLE aspnet_Profile   ALTER COLUMN PropertyValuesString ntext COLLATE Latin1_General_CI_AS NOT NULL
+--ALTER TABLE aspnet_Roles   ALTER COLUMN RoleName nvarchar(256) COLLATE Latin1_General_CI_AS NOT NULL
+--ALTER TABLE aspnet_Roles   ALTER COLUMN LoweredRoleName nvarchar(256) COLLATE Latin1_General_CI_AS NOT NULL
+--ALTER TABLE aspnet_Roles   ALTER COLUMN Description nvarchar(256) COLLATE Latin1_General_CI_AS NULL
+--ALTER TABLE aspnet_Paths   ALTER COLUMN Path nvarchar(256) COLLATE Latin1_General_CI_AS NOT NULL
+--ALTER TABLE aspnet_Paths   ALTER COLUMN LoweredPath nvarchar(256) COLLATE Latin1_General_CI_AS NOT NULL
+--ALTER TABLE aspnet_WebEvent_Events   ALTER COLUMN EventId char(32) COLLATE Latin1_General_CI_AS NOT NULL
+--ALTER TABLE aspnet_WebEvent_Events   ALTER COLUMN EventType nvarchar(256) COLLATE Latin1_General_CI_AS NOT NULL
+--ALTER TABLE aspnet_WebEvent_Events   ALTER COLUMN Message nvarchar(1024) COLLATE Latin1_General_CI_AS NULL
+--ALTER TABLE aspnet_WebEvent_Events   ALTER COLUMN ApplicationPath nvarchar(256) COLLATE Latin1_General_CI_AS NULL
+--ALTER TABLE aspnet_WebEvent_Events   ALTER COLUMN ApplicationVirtualPath nvarchar(256) COLLATE Latin1_General_CI_AS NULL
+--ALTER TABLE aspnet_WebEvent_Events   ALTER COLUMN MachineName nvarchar(256) COLLATE Latin1_General_CI_AS NOT NULL
+--ALTER TABLE aspnet_WebEvent_Events   ALTER COLUMN RequestUrl nvarchar(1024) COLLATE Latin1_General_CI_AS NULL
+--ALTER TABLE aspnet_WebEvent_Events   ALTER COLUMN ExceptionType nvarchar(256) COLLATE Latin1_General_CI_AS NULL
+--ALTER TABLE aspnet_WebEvent_Events   ALTER COLUMN Details ntext COLLATE Latin1_General_CI_AS NULL
+--ALTER TABLE aspnet_Applications   ALTER COLUMN ApplicationName nvarchar(256) COLLATE Latin1_General_CI_AS NOT NULL
+--ALTER TABLE aspnet_Applications   ALTER COLUMN LoweredApplicationName nvarchar(256) COLLATE Latin1_General_CI_AS NOT NULL
+--ALTER TABLE aspnet_Applications   ALTER COLUMN Description nvarchar(256) COLLATE Latin1_General_CI_AS NULL

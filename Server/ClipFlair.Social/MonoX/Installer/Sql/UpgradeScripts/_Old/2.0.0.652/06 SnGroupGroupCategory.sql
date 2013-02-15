@@ -1,0 +1,1 @@
+/* Obsolete - this table is not used anymore. */

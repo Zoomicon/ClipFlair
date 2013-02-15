@@ -1,0 +1,576 @@
+﻿body 
+{
+	background-color:Gray;
+}
+
+/* Master page style - START */
+
+.installer_main
+{
+	margin: 5% auto 0px auto;
+	width:650px;
+	height:640px;
+	border: solid 1px #D9EAF8;
+	background-color:White;
+}
+
+.installer_header
+{
+	width:650px;
+	height:100px;	
+	background-image:url('img/header_bg.jpg');	
+	background-color:White;
+}
+
+.installer_header_logo
+{
+	width: 109px;
+	margin-left: 15px;
+	margin-right:5px;
+	height:70px;	
+	float: right;	
+}
+
+.installer_header_logo img
+{
+	margin-top:10px;
+	margin-right:25px;
+	float:right;	
+}
+
+.installer_header_logo .installer_header_version
+{	
+	font-size:10px;	
+}
+
+.installer_header_welcome
+{
+	width: 500px;
+	margin-left:5px;
+	margin-right:5px;
+	margin-top: 50px;
+	font-size:25px;
+	font-family:Arial,Helvetica,sans-serif;
+	color:#037BC7;	
+	float: left;
+	overflow:hidden;
+	
+}
+
+.installer_header_welcome .monox-version
+{		
+	font-size:15px;
+	font-family:Arial,Helvetica,sans-serif;
+	color:#037BC7;		
+	float:left;
+}
+
+.installer_content
+{
+	margin-left:5px;
+	margin-right:5px;
+	border-top:solid 1px #D9EAF8;
+	border-bottom:solid 1px #D9EAF8;
+	width:640px;
+	height:460px;	
+	background-color:White;
+	font-size:15px;
+	font-family:Arial,Helvetica,sans-serif;
+	color:Black;
+	vertical-align:top;	
+}
+
+.installer_footer
+{
+	width:650px;
+	height:80px;	
+	background-position:bottom;
+	background-repeat:repeat-x;
+	background-image:url('img/footer_bg.jpg');	
+	background-color:White;	
+}
+
+.installer_footer_cp
+{
+	padding-left: 6px;
+	padding-top: 2px;
+	padding-bottom: 2px;
+	overflow:auto;
+	height:16px;
+	font: normal 11px Arial, Verdana, Sans-serif;
+	color: Red;
+	text-align:left;
+}
+
+.installer_footer_buttons
+{
+	padding-top:10px;
+	padding-left:5px;
+	padding-right:5px;
+}
+
+.installer_button
+{
+	width: 85px;
+	height: 22px;
+	font: normal 11px Arial, Verdana, Sans-serif;
+	color: #52534b;
+	border: 0px;
+	background: transparent url(Img/buttonBg.gif) no-repeat;
+	margin:2px;
+}
+
+.installer_button:hover
+{
+	width: 85px;
+	height: 22px;
+	font: normal 11px Arial, Verdana, Sans-serif;
+	color: #52534b;
+	border: 0px;
+	background: transparent url(Img/buttonBg_hover.gif) no-repeat;
+	margin:2px;
+}
+
+.installer_button_big
+{
+	width: 160px;
+	height: 22px;
+	font: normal 11px Arial, Verdana, Sans-serif;
+	color: #52534b;
+	border: 0px;
+	background: transparent url(Img/buttonBgMid.gif) no-repeat;
+	margin:2px;
+}
+
+.installer_button_big:hover
+{
+	width: 160px;
+	height: 22px;
+	font: normal 11px Arial, Verdana, Sans-serif;
+	color: #52534b;
+	border: 0px;
+	background: transparent url(Img/buttonBgMid_hover.gif) no-repeat;
+	margin:2px;
+}
+/* Master page style - END */
+
+/* General - START */
+
+.installer_editform
+{
+}
+
+.installer_editform p 
+{
+	clear: left;
+	margin: 0;
+	padding: 0;
+	padding-top: 5px;
+}
+
+.installer_editform p label
+{
+	float:left;
+	width:75%;
+}
+
+.installer_editform p INPUT
+{
+	width:97%;
+}
+
+.installer_editform .installer_option
+{
+	font-size:12px;
+	font-weight:bold;
+}
+
+.installer_editform .installer_note
+{
+	padding-left:20px;
+	font-size:11px;
+}
+
+/* General - END */
+
+/* Default - START */
+
+.installer_content .installer_default 
+{
+	font-size:12px;
+	font-family:Arial,Helvetica,sans-serif;
+	color:Black;	
+}
+
+.installer_content .installer_default ul li
+{
+	font-size:12px;
+	font-family:Arial,Helvetica,sans-serif;
+	color:Black;
+	padding-top:5px;
+	padding-bottom:5px;
+}
+
+.installer_content .installer_default .item_info,
+.installer_content .installer_default a
+{
+	font-size:11px;
+	font-family:Arial,Helvetica,sans-serif;
+	color:Black;
+}
+
+/* Default - END */
+
+/* License - START */
+
+.installer_content .installer_license 
+{
+	font-size:12px;
+	font-family:Arial,Helvetica,sans-serif;
+	color:Black;
+	padding-top:5px;
+	padding-bottom:5px;
+}
+
+.installer_content .installer_license .installer_textarea
+{
+	width:635px;
+	height:400px;
+}
+
+.installer_content .installer_license .installer_options
+{
+	padding-top:10px;
+	padding-bottom:5px;	
+}
+
+.installer_content .installer_license .installer_printable
+{
+	color:Black;
+	padding-left:20px;
+	background: transparent url(Img/Printer.jpg) no-repeat;
+}
+
+
+/* License - END */
+
+/* SQL Info - START */
+
+.installer_content .installer_sqlinfo
+{
+	font-size:12px;
+	font-family:Arial,Helvetica,sans-serif;
+	color:Black;
+	padding-top:5px;
+	padding-bottom:5px;
+}
+
+.installer_content .installer_sqlinfo .installer_data
+{
+	padding-top:35px;
+	padding-bottom:5px;
+}
+
+.installer_content .installer_sqlinfo .installer_data .installer_editform
+{
+	padding-top:15px;
+}
+
+/* SQL Info - END */
+
+/* DB Info - START */
+
+.installer_content .installer_dbinfo
+{
+	font-size:12px;
+	font-family:Arial,Helvetica,sans-serif;
+	color:Black;
+	padding-top:5px;
+	padding-bottom:5px;
+}
+
+.installer_content .installer_dbinfo .installer_data
+{
+	padding-top:35px;
+	padding-bottom:5px;
+}
+
+.installer_content .installer_dbinfo .installer_data .installer_editform
+{
+	padding-top:15px;
+}
+
+
+/* DB Info - END */
+
+/* Install Options - START */
+
+.installer_content .installer_complete
+{
+	font-size:12px;
+	font-family:Arial,Helvetica,sans-serif;
+	color:Black;
+	padding-top:5px;
+	padding-bottom:5px;
+}
+
+.installer_content .installer_complete .installer_data 
+{
+	
+}
+
+.installer_content .installer_complete .installer_data .installer_log
+{
+	padding:5px;
+	border: solid 1px Black;
+	width:625px;
+	height:370px;
+	overflow:auto;
+	cursor:default;
+}
+
+.installer_content .installer_complete .installer_data .installer_log .active
+{
+	display:block;
+	text-align:right;
+}
+
+.installer_content .installer_complete .installer_data .installer_log .deactive
+{
+	display:none;
+	text-align:right;
+}
+
+.installer_content .installer_complete .installer_data xmp
+{
+	font-size:10px;
+	display:block;
+	font-family:Arial,Helvetica,sans-serif !important;
+	margin:0px !important;
+	white-space:pre !important;
+	width:625;
+	overflow-x:auto;
+	overflow-y:hidden;
+}
+
+.installer_content .installer_complete .installer_data .xmp1 
+{
+	height:70px;
+}
+
+.installer_content .installer_complete .installer_data .xmp2 
+{
+	height:40px;
+}
+
+.AdminLargeButton
+{
+	width: 190px;
+	height: 22px;
+	font: normal 11px Arial, Verdana, Sans-serif;
+	color: #52534b;
+	border: 0px;
+	background: transparent url(Img/LargebuttonBg.gif) no-repeat;
+	margin:2px;
+	cursor: pointer;
+}
+
+.AdminLargeButton:hover
+{
+	width: 190px;
+	height: 22px;
+	font: normal 11px Arial, Verdana, Sans-serif;
+	color: #52534b;
+	border: 0px;
+	background: transparent url(Img/LargebuttonBg_hover.gif) no-repeat;
+	margin:2px;
+}
+
+.installer-advanced-settings
+{
+	overflow-y:scroll;
+	height:450px;
+}
+
+/* Install Options - END */
+
+/**** Input Form Start ****/
+.input-form
+{
+	
+}
+.input-form DL
+{
+	margin: 0px;
+	padding: 0px;
+}
+.input-form DL DD
+{
+	margin: 10px 0px;
+	padding: 0px;
+	overflow: hidden;
+	vertical-align: top;
+}
+.input-form LABEL
+{	
+	display: inline-block;
+	margin-bottom: 3px;
+	vertical-align: top;
+}
+.input-form .label
+{	
+	width: 20%;
+	display: inline-block;
+	margin-bottom: 3px;
+	vertical-align: top;
+}
+.input-form INPUT[type="text"],
+.input-form .short-textbox
+{
+	font-family: Trebuchet MS, Arial, Helvetica, sans-serif;
+	font-size: 13px;
+	color: #666;
+	width: 98%;
+	padding: 5px 0px;
+	display: inline-block;
+	border: solid 1px #cbd3d9;
+}
+.input-form .short-textbox
+{
+	width: 50% !important;	
+	display: block !important;
+}
+.input-form TEXTAREA
+{
+	font-family: Trebuchet MS, Arial, Helvetica, sans-serif;
+	font-size: 13px;
+	color: #666;
+	width: 98%;
+	display: inline-block;
+	border: solid 1px #cbd3d9;
+}
+.input-form SELECT
+{
+	font-family: Trebuchet MS, Arial, Helvetica, sans-serif;
+	font-size: 13px;
+	color: #666;
+	width: 98%;
+	display: inline-block;
+	border: solid 1px #cbd3d9;
+}
+.RadListBox_Web20 .rlbGroup
+{
+	font-family: Trebuchet MS, Arial, Helvetica, sans-serif !important;
+	font-size: 13px !important;
+	color: #666 !important;	
+	display: inline-block !important;
+	border: solid 1px #cbd3d9 !important;
+}
+.input-form INPUT[type="checkbox"]
+{
+	float: left;
+}
+.input-form .check-box-list
+{
+	width: 98%;
+	border: solid 1px #cbd3d9;
+	padding: 5px;
+}
+.input-form .small-links
+{
+	font-size: 11px;
+	margin-top: 3px;
+	text-align: right;
+	padding-right: 12px;
+}
+.input-form .button-holder
+{
+	text-align: right;
+	padding: 5px 12px 0px 0px;
+}
+/**** Input Form End ****/
+
+/***** Light Box Simple Start *****/
+.light-box-simple
+{
+	width: 100%;
+	margin-bottom:10px;
+}
+.light-box-simple .left-top-corner
+{
+	width: 5px;
+	height: 5px;
+	background: url(img/light-box-simple-top-left-corner.png) no-repeat;
+}
+.light-box-simple .top
+{
+	height: 5px;
+	background: #e9f0f6;
+}
+.light-box-simple .right-top-corner
+{
+	width: 5px;
+	height: 5px;
+	background: url(img/light-box-simple-top-right-corner.png) no-repeat;	
+}
+.light-box-simple .left-side
+{
+	width: 5px;
+	background: #e9f0f6;	
+}
+.light-box-simple .center-content
+{
+	background-color: #e9f0f6;
+	padding: 5px;
+}
+.light-box-simple .right-side
+{
+	width: 5px;
+	background: #e9f0f6;
+}
+.light-box-simple .left-bottom-corner
+{
+	width: 5px;
+	height: 5px;
+	background: url(img/light-box-simple-bottom-left-corner.png) no-repeat;	
+}
+.light-box-simple .right-bottom-corner
+{
+	width: 5px;
+	height: 5px;
+	background: url(img/light-box-simple-bottom-right-corner.png) no-repeat;	
+}
+.light-box-simple .bottom
+{
+	height: 5px;
+	background: #e9f0f6;
+}
+/***** Light Box Simple End *****/
+.permissions
+{
+	width: 615px;
+	height: 200px;
+	overflow-y: scroll;
+	overflow-x: hidden;
+	border: 1px solid #D7E7F4;
+	padding: 5px 5px 0px 5px;
+	margin: 10px;
+}
+.permissions .permissions-box
+{		
+	padding: 10px;
+	margin-bottom: 5px;	
+	background: #e5eff8;
+	overflow: hidden;
+}
+.permissions .permissions-box IMG
+{	
+	float: left;
+	margin-right: 10px;
+}
+.permissions .permissions-box .button-holder
+{
+	float: right;
+	overflow: hidden;
+	clear: both;
+}

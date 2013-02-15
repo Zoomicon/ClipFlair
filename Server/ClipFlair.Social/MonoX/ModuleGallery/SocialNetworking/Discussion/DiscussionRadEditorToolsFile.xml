@@ -1,0 +1,179 @@
+<root>
+<tools name="MainToolbar" isribbon = "false" dockable="true">
+    <tool name="Copy" shortcut="CTRL+C"/>
+    <tool name="Paste" shortcut="CTRL+V"/>
+    <tool separator="true"/>
+    <tool name="Undo" shortcut="CTRL+Z"/>
+    <tool name="Redo" shortcut="CTRL+Y"/>
+  </tools>
+  <tools name="AA" isribbon = "false">
+    <tool name="Bold" shortcut="CTRL+B"/>
+    <tool name="Italic" shortcut="CTRL+I"/>
+    <tool name="Underline" shortcut="CTRL+U"/>   
+    <tool name="StrikeThrough"/>
+	<tool separator="true"/>
+	<tool name="JustifyLeft" />
+    <tool name="JustifyCenter" />
+    <tool name="JustifyRight" />
+    <tool name="JustifyFull" />
+    <tool name="JustifyNone" />
+    <tool separator="true"/>
+    <tool name="Indent" />
+    <tool name="Outdent" />
+    <tool separator="true"/>
+    <tool name="InsertLink" />
+    <tool name="Unlink" shortcut="CTRL+SHIFT+K"/>
+    <tool name="FormatCodeBlock" />
+  </tools>  
+  <snippets>
+  </snippets>
+  <symbols></symbols>
+  <fontNames>	</fontNames>
+  <fontSizes></fontSizes>
+  <colors></colors>
+  <paragraphs></paragraphs>
+  <classes></classes>
+  <dialogParameters></dialogParameters>
+  <languages></languages>
+  <contextMenus></contextMenus>
+</root>
+<!-- ==============================================================================================
+The ToolsFile must have a valid structure as shown below
+All attributes and their values are case sensitive! 
+<root>
+  <modules>
+    <module />
+    <module/>
+  </modules>
+  <tools>
+    <tool />
+    <tool />
+     ...
+  </tools>
+	... 
+  <colors>
+    <color/>
+    <color/>
+  </colors>
+</root> 
+
+<tool> element valid attributes:
+ 
+name (required): Bold Italic Underline StrikeThrough Superscript Subscript 
+JustifyLeft JustifyCenter JustifyRight JustifyFull InsertOrderedList InsertUnorderedList 
+Outdent Indent Cut Copy Paste PasteFromWord 
+PastePlainText PasteAsHtml Print Undo Redo ImageManager 
+AbsolutePosition LinkManager Unlink InsertBoldHorizontalRule InsertTable ToggleTableBorder 
+FormatBlock ApplyClass FontName  FontSize InsertCustomLink Custom 
+InsertSymbol BackColor ForeColor FlashManager MediaManager SpellCheck 
+FormatStripper InsertParagraph InsertSnippet Help FindAndReplace DocumentManager 
+PasteFromWordNoFontsNoSizes InsertFormElement InsertDate InsertTime TemplateManager ToggleScreenMode 
+Zoom ModuleManager ToggleDocking RepeatLastCommand AboutDialog  
+ 
+title
+(not required):
+ Some hint string for this tool.
+ 
+shortcut
+(not required):
+ The key combination for the specific tool. Examples:
+	<tool name="TemplateManager" shortcut="Ctrl+Shift+Alt+N"/> 
+	<tool name="LinkManager" shortcut="Ctrl+L" /> 
+
+
+<separator> element
+true/false Indicates whether a separator should appear at current position. 
+
+<tools> element valid attributes:
+name (required): This string will identify the toolbar. 
+enabled (not required): true/false (Indicates whether the tool will be available on the client or not)
+visible (not required):
+ true/false (Indicates whether the tool should appear in the toolbar or not. This toolbar will be available client-side - the property defines only the visibility of the tool.) 
+dockable (not required):
+ true/false (Indicates whether you will be able to drag&drop the toolbar to the docking zones) 
+
+<module> element valid attributes:
+(module elements should appear as child elements of an element "modules")
+name (required):
+ The friendly name of the module. When in floating mode the name will appear in the tool's titlebar.
+dockable (not required):
+ (Indicates whether you will be able to drag&drop the tool to the docking zones)
+enabled (not required):
+ (Indicates whether the module will be available on the client or not)
+visible (not required):
+ (Indicates whether the module should appear in the toolbar or not. This module will be available client-side - the property defines only the visibility of the module. ) 
+
+<link> element valid attributes:
+(link elements should appear as child elements of an element "links")
+name (required):
+ Link/Category Name/Alias
+href (not required):
+ URL of the link/category
+target (not required):
+ The target window of the link
+tooltip (not required):
+ The tooltip for the link
+ 
+<symbol> element valid attributes:
+(symbol elements should appear as child elements of an element "symbols")
+value (required):
+ The symbol to be displayed
+
+<font> element valid attributes:
+(font elements should appear as child elements of a tool element with "name" attribute set to "fontNames")
+name (required):
+ Font Name
+ 
+<class> element valid attributes:
+(class elements should appear as child elements of an element "classes")
+name (required):
+ Class Alias 
+value (required):
+ Class Name 
+
+<paragraph> element valid attributes:
+(paragraph elements should appear as child elements of an element "paragraphs")
+ 
+name (required):
+ Paragraph Alias 
+value (required):
+ Paragraph Name 
+
+<color> element valid attributes:
+(color elements should appear as child elements of an element "colors")
+value (not required):
+ Hex value of the color 
+
+<snippet> element valid attributes:
+(snippet elements should appear as child elements of an element "snippets")
+name (required):
+ Snippet Alias
+ 
+<language> element valid attributes:
+(language elements should appear as child elements of an element "Languages")
+code (required):
+ Language code
+title (required):
+ Language Title
+ 
+The contextMenus tag in the Tools file allows you to change the default or specify custom context menus for different HTML elements.
+<contextMenu > element valid attributes:
+(contextMenu elements should appear as child elements of an element "contextMenus")
+forElement (required):
+ The HTML element that will call this menu.
+enabled (required):
+ Defines if this context menu is switched.
+
+The example below shows how to attach custom context menus for <A> and <P> elements.
+
+<contextMenus>
+   <contextMenu forElement="A" enabled="false">
+   </contextMenu>
+   <contextMenu forElement="P">
+       <tool name="JustifyLeft" />
+       <tool name="JustifyCenter" />
+       <tool name="JustifyRight" />
+       <tool name="JustifyFull" />
+   </contextMenu>
+</contextMenus> 			
+=============================================================================================== -->

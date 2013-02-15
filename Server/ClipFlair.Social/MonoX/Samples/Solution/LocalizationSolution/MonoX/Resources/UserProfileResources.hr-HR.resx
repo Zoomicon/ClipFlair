@@ -1,0 +1,249 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="EditProfile_AboutMySelf" xml:space="preserve">
+    <value>O meni:</value>
+  </data>
+  <data name="EditProfile_Address" xml:space="preserve">
+    <value>Adresa:</value>
+  </data>
+  <data name="EditProfile_BirthDate" xml:space="preserve">
+    <value>Datum rođenja:</value>
+  </data>
+  <data name="EditProfile_City" xml:space="preserve">
+    <value>Naselje:</value>
+  </data>
+  <data name="EditProfile_ConfirmPassword" xml:space="preserve">
+    <value>Potvrdite lozinku:</value>
+  </data>
+  <data name="EditProfile_Country" xml:space="preserve">
+    <value>Država:</value>
+  </data>
+  <data name="EditProfile_Email" xml:space="preserve">
+    <value>E-mail:</value>
+  </data>
+  <data name="EditProfile_FirstName" xml:space="preserve">
+    <value>Ime:</value>
+  </data>
+  <data name="EditProfile_Info" xml:space="preserve">
+    <value>Molimo da koristite ovu formu za izmjenu Vašeg korisničkog profila.</value>
+  </data>
+  <data name="EditProfile_LastName" xml:space="preserve">
+    <value>Prezime:</value>
+  </data>
+  <data name="EditProfile_NoUser" xml:space="preserve">
+    <value>Korisnik ne postoji.</value>
+  </data>
+  <data name="EditProfile_Password" xml:space="preserve">
+    <value>Nova lozinka:</value>
+  </data>
+  <data name="EditProfile_PasswordCompareErrorMessage" xml:space="preserve">
+    <value>Lozinka i Potvrda lozinke polja moraju biti identična.</value>
+  </data>
+  <data name="EditProfile_PasswordCompareText" xml:space="preserve">
+    <value>!</value>
+  </data>
+  <data name="EditProfile_RegexEmailErrorMessage" xml:space="preserve">
+    <value>Ispravna E-Mail adresa je potrebna</value>
+  </data>
+  <data name="EditProfile_RegexEmailText" xml:space="preserve">
+    <value>!</value>
+  </data>
+  <data name="EditProfile_ReqFirstNameErrorMessage" xml:space="preserve">
+    <value>Ime je obvezno polje</value>
+  </data>
+  <data name="EditProfile_ReqFirstNameText" xml:space="preserve">
+    <value>*</value>
+  </data>
+  <data name="EditProfile_ReqLastNameErrorMessage" xml:space="preserve">
+    <value>Prezime je obvezno polje</value>
+  </data>
+  <data name="EditProfile_ReqLastNameText" xml:space="preserve">
+    <value>*</value>
+  </data>
+  <data name="EditProfile_RowBasicInfo" xml:space="preserve">
+    <value>OSNOVNE INFORMACIJE</value>
+  </data>
+  <data name="EditProfile_RowOtherInfo" xml:space="preserve">
+    <value>OSTALE INFORMACIJE</value>
+  </data>
+  <data name="EditProfile_RowPasswordTitle" xml:space="preserve">
+    <value>Unesite Vašu lozinku dva puta da izbjegnete pogreške. Vaša lozinka bi trebala sadržavati barem 6 znamenki ili brojeva.</value>
+  </data>
+  <data name="EditProfile_Saved" xml:space="preserve">
+    <value>Korisnički profil uspješno snimljen.</value>
+  </data>
+  <data name="EditProfile_TimeZone" xml:space="preserve">
+    <value>Vremenska zona</value>
+  </data>
+  <data name="EditProfile_Title" xml:space="preserve">
+    <value>Konfiguriraj korisnički profil</value>
+  </data>
+  <data name="EditProfile_ValSumHeaderText" xml:space="preserve">
+    <value>Molimo ispravite slijedeće pogreške:</value>
+  </data>
+  <data name="EditProfile_WebSites" xml:space="preserve">
+    <value>Moje web stranice:</value>
+  </data>
+  <data name="EditProfile_ZipCode" xml:space="preserve">
+    <value>Poštanski broj:</value>
+  </data>
+  <data name="UserAvatar_Caption" xml:space="preserve">
+    <value>Korisnička slika</value>
+  </data>
+  <data name="UserAvatar_InvalidFile" xml:space="preserve">
+    <value>Neispravna datoteka.</value>
+  </data>
+  <data name="UserProfileModule_DefaultMyStatusText" xml:space="preserve">
+    <value>Upišite svoj status ovdje ...</value>
+  </data>
+  <data name="UserProfileModule_EditProfile" xml:space="preserve">
+    <value>Izmjena profila</value>
+  </data>
+  <data name="UserProfileModule_MyStatusEmpty" xml:space="preserve">
+    <value>Vaš status će biti prikazan ovdje</value>
+  </data>
+  <data name="UserProfileModule_RemoveStatus_ToolTip" xml:space="preserve">
+    <value>Obriši moj status</value>
+  </data>
+  <data name="UserProfileModule_SetMyStatus" xml:space="preserve">
+    <value>Postavi</value>
+  </data>
+  <data name="UserProfileModule_Title" xml:space="preserve">
+    <value>Korisnički profil</value>
+  </data>
+  <data name="UserProfileModule_User" xml:space="preserve">
+    <value>Odaberi korisnika:</value>
+  </data>
+  <data name="UserProfileModule_ViewProfile" xml:space="preserve">
+    <value>Pregled profila</value>
+  </data>
+  <data name="UserProfile_Browse" xml:space="preserve">
+    <value>Odaberi</value>
+  </data>
+  <data name="UserProfile_Clear" xml:space="preserve">
+    <value>Obriši sliku</value>
+  </data>
+  <data name="UserProfile_Save" xml:space="preserve">
+    <value>Snimi</value>
+  </data>
+  <data name="UserScore" xml:space="preserve">
+    <value>Reputacija</value>
+  </data>
+</root>

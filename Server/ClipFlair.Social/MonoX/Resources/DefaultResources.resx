@@ -1,0 +1,956 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="ActivationEmailRecovery_Title" xml:space="preserve">
+    <value>Activation E-mail Recovery</value>
+  </data>
+  <data name="ActivationEmailRecovery_UserName" xml:space="preserve">
+    <value>User name</value>
+  </data>
+  <data name="Button_Send" xml:space="preserve">
+    <value>Send</value>
+  </data>
+  <data name="Email_Activation_HtmlContent" xml:space="preserve">
+    <value>Dear &lt;i&gt;{0}&lt;/i&gt;, this is an account activation e-mail from {1}. Please click on the following link in order to activate your account:
+&lt;br /&gt;&lt;br /&gt;
+&lt;a href="{2}"&gt;{2}&lt;/a&gt;
+&lt;br /&gt;&lt;br /&gt;&lt;br /&gt;
+Sincerely,
+&lt;br /&gt;&lt;br /&gt;
+Your {1} team</value>
+  </data>
+  <data name="Email_Activation_PlainContent" xml:space="preserve">
+    <value>Dear {0}, this is an account activation e-mail from {1}. Please go to the following link in order to activate your account:
+
+{2}
+
+
+Sincerely,
+
+Your {1} team</value>
+  </data>
+  <data name="Email_Activation_Title" xml:space="preserve">
+    <value>Account Activation</value>
+  </data>
+  <data name="Email_PasswordRecovery_HtmlContent" xml:space="preserve">
+    <value>Dear &lt;i&gt;{0}&lt;/i&gt;, we have just received a password retrieval request for your username at {1}.
+&lt;br /&gt;&lt;br /&gt;
+Your password is: &lt;b&gt;{2}&lt;/b&gt;
+&lt;br /&gt;&lt;br /&gt;&lt;br /&gt;
+Sincerely,
+&lt;br /&gt;&lt;br /&gt;
+Your {1} team</value>
+  </data>
+  <data name="Email_PasswordRecovery_PlainContent" xml:space="preserve">
+    <value>Dear {0}, we have received a password retrieval request for your username at {1}.
+
+Your password is: {2}
+
+
+Sincerely,
+
+Your {1} team</value>
+  </data>
+  <data name="Email_PasswordRecovery_Title" xml:space="preserve">
+    <value>Password Reminder</value>
+  </data>
+  <data name="ErrorMessage_ActivationEmail" xml:space="preserve">
+    <value>An uexpected error has occured while sending you an activation e-mail. Your account has been successfully created but you can't login until you activate it via activation e-mail. To resend your activation e-mail please go to the &lt;a href="{0}"&gt;Activation e-mail recovery&lt;/a&gt; page. If the problem persists, please contact us.</value>
+  </data>
+  <data name="ErrorMessage_ActivationEmailRecovery_UserAlreadyActive" xml:space="preserve">
+    <value>Your account is active, there is no need to send you the activation e-mail.</value>
+  </data>
+  <data name="ErrorMessage_ActivationUrl" xml:space="preserve">
+    <value>There is a problem with your activation link. If you've copied and pasted it in your browser, please make sure that it is identical to the link you've got in the activation e-mail. If you clicked on it or you are sure you copied/pasted it correctly and it still doesn't work, then please contact our support.</value>
+  </data>
+  <data name="ErrorMessage_InvalidUserName" xml:space="preserve">
+    <value>The user with the entered user name does not exist.</value>
+  </data>
+  <data name="ErrorMessage_Login" xml:space="preserve">
+    <value>Login failed, invalid user name or password.</value>
+  </data>
+  <data name="ErrorMessage_Login_LockedOut" xml:space="preserve">
+    <value>Your account has been locked out because of too many invalid login attempts. Please contact us to have your account unlocked.</value>
+  </data>
+  <data name="ErrorMessage_Login_NotActivated" xml:space="preserve">
+    <value>Your account has not yet been activated. Please activate it via an activation e-mail we sent you. If you didn't get the e-mail, then please try resending it by going to the &lt;a href="{0}"&gt;Activation E-mail Recovery&lt;/a&gt; page. If you can't send or receive the activation e-mail, please contact us.</value>
+  </data>
+  <data name="ErrorMessage_OpenId_AuthenticationCanceled" xml:space="preserve">
+    <value>OpenID authentication canceled.</value>
+  </data>
+  <data name="ErrorMessage_OpenId_AuthenticationFailed" xml:space="preserve">
+    <value>OpenID authentication failed. Please check your OpenID.</value>
+  </data>
+  <data name="ErrorMessage_OpenId_Format" xml:space="preserve">
+    <value>Wrong format of the OpenID login.</value>
+  </data>
+  <data name="ErrorMessage_OpenId_ImmediateMode" xml:space="preserve">
+    <value>You must log into your OpenId provider first to use immediate mode.</value>
+  </data>
+  <data name="Global_Email" xml:space="preserve">
+    <value>E-mail</value>
+  </data>
+  <data name="Global_Password" xml:space="preserve">
+    <value>Password</value>
+  </data>
+  <data name="Global_RepeatPassword" xml:space="preserve">
+    <value>Repeat password</value>
+  </data>
+  <data name="Global_UserName" xml:space="preserve">
+    <value>User name</value>
+  </data>
+  <data name="Message_AccountActivated_Description" xml:space="preserve">
+    <value>Your account has been successfully activated and you have been automatically signed in.</value>
+  </data>
+  <data name="Message_AccountActivated_Title" xml:space="preserve">
+    <value>Account Activation</value>
+  </data>
+  <data name="Message_AccountActivationEmailSent_Description" xml:space="preserve">
+    <value>To activate your account, please click on the link in the e-mail. Your account we'll be activated and you'll be automatically signed in.&lt;br /&gt;If you don't get the e-mail within 10 minutes, please contact us.</value>
+  </data>
+  <data name="Message_AccountActivationEmailSent_Title" xml:space="preserve">
+    <value>Activation e-mail has been successfully sent.</value>
+  </data>
+  <data name="Message_AccountCreated_Description" xml:space="preserve">
+    <value>Thanks for creating your account. The last step you need to do is activating it. An e-mail has been sent to the address you provided.To activate your account, please click on the link in the e-mail. Your account we'll be activated and you'll be automatically signed in.&lt;br /&gt;&lt;br /&gt;If you don't get the e-mail within 10 minutes, please try to resend it by going to the &lt;a href="{0}"&gt;Activation E-mail Recovery&lt;/a&gt; page. If you keep experiencing problems, please contact us.</value>
+  </data>
+  <data name="Message_AccountCreated_Title" xml:space="preserve">
+    <value>Your account has been successfully created.</value>
+  </data>
+  <data name="Message_PasswordRecoveryEmailSent_Description" xml:space="preserve">
+    <value>Please check your e-mail, a message with your password should arrive soon.&lt;br /&gt;If you don't get our e-mail within 10 minutes, please contact us.</value>
+  </data>
+  <data name="Message_PasswordRecoveryEmailSent_Title" xml:space="preserve">
+    <value>Password reminder e-mail has been successfully sent.</value>
+  </data>
+  <data name="PasswordlRecovery_UserName" xml:space="preserve">
+    <value>User name</value>
+  </data>
+  <data name="PasswordRecovery_Title" xml:space="preserve">
+    <value>Password Recovery</value>
+  </data>
+  <data name="ValidationMessage_Email" xml:space="preserve">
+    <value>Please enter a valid e-mail address for '{0}'.</value>
+  </data>
+  <data name="ValidationMessage_Name" xml:space="preserve">
+    <value>Please only use letters, numbers and punctuation for the '{0}'.</value>
+  </data>
+  <data name="ValidationMessage_PasswordMatch" xml:space="preserve">
+    <value>The password entry does not match the repeat password entry.</value>
+  </data>
+  <data name="ValidationMessage_RequiredField" xml:space="preserve">
+    <value>Please enter a value for '{0}'.</value>
+  </data>
+  <data name="MembershipEditor_CreateAccount" xml:space="preserve">
+    <value>Create Account</value>
+  </data>
+  <data name="MembershipEditor_Email" xml:space="preserve">
+    <value>E-mail</value>
+  </data>
+  <data name="MembershipEditor_Password" xml:space="preserve">
+    <value>Password</value>
+  </data>
+  <data name="MembershipEditor_RememberMe" xml:space="preserve">
+    <value>Remember me</value>
+  </data>
+  <data name="MembershipEditor_RepeatPassword" xml:space="preserve">
+    <value>Repeat password</value>
+  </data>
+  <data name="MembershipEditor_Title_CreateAccount" xml:space="preserve">
+    <value>Account Registration</value>
+  </data>
+  <data name="MembershipEditor_Title_UpdateAccount" xml:space="preserve">
+    <value>Update Account</value>
+  </data>
+  <data name="MembershipEditor_UpdateAccount" xml:space="preserve">
+    <value>Update Account</value>
+  </data>
+  <data name="MembershipEditor_UserName" xml:space="preserve">
+    <value>User name</value>
+  </data>
+  <data name="Login_Login" xml:space="preserve">
+    <value>Log In</value>
+  </data>
+  <data name="Login_OpenId" xml:space="preserve">
+    <value>OpenID</value>
+  </data>
+  <data name="Login_OpenId_Error_Create" xml:space="preserve">
+    <value>User account cannot be created: </value>
+  </data>
+  <data name="Login_OpenId_Example" xml:space="preserve">
+    <value>Example:</value>
+  </data>
+  <data name="Login_OpenId_Login" xml:space="preserve">
+    <value>OpenID login:</value>
+  </data>
+  <data name="Login_OpenId_PasswordQuestion" xml:space="preserve">
+    <value>This is an OpenID account. What nickname did you supply?</value>
+  </data>
+  <data name="Login_OpenId_Register" xml:space="preserve">
+    <value>Get OpenID now</value>
+  </data>
+  <data name="Login_OpenId_Register_ToolTip" xml:space="preserve">
+    <value>Sign up for a free OpenID account</value>
+  </data>
+  <data name="Login_OpenId_Title" xml:space="preserve">
+    <value>Log in using your OpenID</value>
+  </data>
+  <data name="Login_Password" xml:space="preserve">
+    <value>Password:</value>
+  </data>
+  <data name="Login_PasswordRecoveryText" xml:space="preserve">
+    <value>Forgot password?</value>
+  </data>
+  <data name="Login_Register" xml:space="preserve">
+    <value>Register</value>
+  </data>
+  <data name="Login_RememberMe" xml:space="preserve">
+    <value>Remember me</value>
+  </data>
+  <data name="Login_Title" xml:space="preserve">
+    <value>Log in using your username and password</value>
+  </data>
+  <data name="Login_UserName" xml:space="preserve">
+    <value>User name:</value>
+  </data>
+  <data name="Button_Cancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="Button_Save" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="Button_Cancel_AccessKey" xml:space="preserve">
+    <value>C</value>
+  </data>
+  <data name="Button_Close" xml:space="preserve">
+    <value>Close</value>
+  </data>
+  <data name="Button_Close_AccessKey" xml:space="preserve">
+    <value>C</value>
+  </data>
+  <data name="Button_Save_AccessKey" xml:space="preserve">
+    <value>S</value>
+  </data>
+  <data name="Global_Error" xml:space="preserve">
+    <value>Error</value>
+  </data>
+  <data name="Global_OK" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="UserPicker_ToolTip" xml:space="preserve">
+    <value>Tip: start typing the username, first or last name of the person you want to contact. You can enter unlimited values in this field, separate individual entries by commas.</value>
+  </data>
+  <data name="Button_Delete" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="Button_Delete_AccessKey" xml:space="preserve">
+    <value>D</value>
+  </data>
+  <data name="Button_Update" xml:space="preserve">
+    <value>Update</value>
+  </data>
+  <data name="Button_Update_AccessKey" xml:space="preserve">
+    <value>U</value>
+  </data>
+  <data name="Button_Edit" xml:space="preserve">
+    <value>Edit</value>
+  </data>
+  <data name="Button_Edit_AccessKey" xml:space="preserve">
+    <value>E</value>
+  </data>
+  <data name="Button_Upload" xml:space="preserve">
+    <value>Upload</value>
+  </data>
+  <data name="Button_Upload_AccessKey" xml:space="preserve">
+    <value>U</value>
+  </data>
+  <data name="HtmlEditor_DefaultText" xml:space="preserve">
+    <value>Please enter your text here.</value>
+  </data>
+  <data name="HtmlEditor_EditVerbDescription" xml:space="preserve">
+    <value>Edit text in this Web part</value>
+  </data>
+  <data name="HtmlEditor_EditVerbText" xml:space="preserve">
+    <value>Edit</value>
+  </data>
+  <data name="HtmlEditor_History" xml:space="preserve">
+    <value>Backup history</value>
+  </data>
+  <data name="HtmlEditor_ResetConfirmation" xml:space="preserve">
+    <value>The content of this Web part will be re-set to its initial value. Continue?</value>
+  </data>
+  <data name="HtmlEditor_ResetVerbDescription" xml:space="preserve">
+    <value>Reset the content of this Web part</value>
+  </data>
+  <data name="HtmlEditor_ResetVerbText" xml:space="preserve">
+    <value>Reset</value>
+  </data>
+  <data name="Confirmation_RequestErrorText" xml:space="preserve">
+    <value>Your request was not processed successfully. Please contact support for more information.</value>
+  </data>
+  <data name="Confirmation_RequestErrorTitle" xml:space="preserve">
+    <value>An error has occured!</value>
+  </data>
+  <data name="HtmlEditor_DefaultTitle" xml:space="preserve">
+    <value>Title</value>
+  </data>
+  <data name="AjaxConfirm_ConfirmDialogMessage" xml:space="preserve">
+    <value>Ok / Cancel ?</value>
+  </data>
+  <data name="AjaxConfirm_ConfirmDialogTitle" xml:space="preserve">
+    <value>Confirm</value>
+  </data>
+  <data name="AjaxConfirm_DeleteDialogMessage" xml:space="preserve">
+    <value>Are you sure ?</value>
+  </data>
+  <data name="AjaxConfirm_DeleteDialogTitle" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="CustomRadEditor_MaxLenReached" xml:space="preserve">
+    <value>You have reached maximum number ({0}) of allowed characters!</value>
+  </data>
+  <data name="DualListBox_MaxErrorMessage" xml:space="preserve">
+    <value>Maximum number of allowed items reached!</value>
+  </data>
+  <data name="DualListBox_MinErrorMessage" xml:space="preserve">
+    <value>Minimum number of allowed items reached!</value>
+  </data>
+  <data name="DualListBox_MinItemsRequired" xml:space="preserve">
+    <value>Minimum of {0} items are required!</value>
+  </data>
+  <data name="DualListBox_NoPreference" xml:space="preserve">
+    <value>No preference</value>
+  </data>
+  <data name="LocaleChanger_DefaultLangTitle" xml:space="preserve">
+    <value>Default</value>
+  </data>
+  <data name="PageModeChanger_ModeDropdownToolTip" xml:space="preserve">
+    <value>Choose page mode </value>
+  </data>
+  <data name="Button_Send_AccessKey" xml:space="preserve">
+    <value>S</value>
+  </data>
+  <data name="Captcha_imgCaptcha_AlternateText" xml:space="preserve">
+    <value>Visual verification</value>
+  </data>
+  <data name="Captcha_ImgCaptcha_ToolTip" xml:space="preserve">
+    <value>Please enter the security code as shown in the image.</value>
+  </data>
+  <data name="Captcha_LblInvalidCaptcha_Text" xml:space="preserve">
+    <value>Captcha code is invalid. Please try again.</value>
+  </data>
+  <data name="Captcha_Loading" xml:space="preserve">
+    <value>Loading ...</value>
+  </data>
+  <data name="Captcha_RefreshCode" xml:space="preserve">
+    <value>Refresh the Captcha code</value>
+  </data>
+  <data name="Captcha_ReqCaptchaCode_ErrorMessage" xml:space="preserve">
+    <value>Please provide a captcha code.</value>
+  </data>
+  <data name="ContactForm_Email" xml:space="preserve">
+    <value>Your E-Mail address:</value>
+  </data>
+  <data name="ContactForm_Message" xml:space="preserve">
+    <value>Message:</value>
+  </data>
+  <data name="ContactForm_Name" xml:space="preserve">
+    <value>Your name:</value>
+  </data>
+  <data name="ContactForm_Subject" xml:space="preserve">
+    <value>Subject:</value>
+  </data>
+  <data name="ContactForm_SuccessfulSend" xml:space="preserve">
+    <value>Your message was sent.</value>
+  </data>
+  <data name="ContactForm_Title" xml:space="preserve">
+    <value>Send Us an E-Mail</value>
+  </data>
+  <data name="ContactForm_UnSuccessfulSend" xml:space="preserve">
+    <value>Your message wasn't sent. Please try again.</value>
+  </data>
+  <data name="Label_Loading" xml:space="preserve">
+    <value>Loading...</value>
+  </data>
+  <data name="Label_NoData" xml:space="preserve">
+    <value>No data could be found to satisfy your search criteria.</value>
+  </data>
+  <data name="LoginName_FormatString" xml:space="preserve">
+    <value>You are logged in as: {0}</value>
+  </data>
+  <data name="LoginStatus_LoginText" xml:space="preserve">
+    <value>Click here to log in</value>
+  </data>
+  <data name="LoginStatus_LogoutText" xml:space="preserve">
+    <value>Log out by clicking here</value>
+  </data>
+  <data name="MonoXMaster_AppearanceEditorPart_Title" xml:space="preserve">
+    <value>Appearance</value>
+  </data>
+  <data name="MonoXMaster_AutoRegisterCatalogPart_Title" xml:space="preserve">
+    <value>Main part catalog</value>
+  </data>
+  <data name="MonoXMaster_BehaviorEditorPart_Title" xml:space="preserve">
+    <value>Behavior</value>
+  </data>
+  <data name="MonoXMaster_CatalogPane_Text" xml:space="preserve">
+    <value>Web part catalog</value>
+  </data>
+  <data name="MonoXMaster_CatalogZone_EmptyZoneText" xml:space="preserve">
+    <value>Web part catalog is empty.</value>
+  </data>
+  <data name="MonoXMaster_CatalogZone_HeaderText" xml:space="preserve">
+    <value>Web part catalog</value>
+  </data>
+  <data name="MonoXMaster_CatalogZone_InstructionText" xml:space="preserve">
+    <value>Select the Web part catalog you would like to browse.</value>
+  </data>
+  <data name="MonoXMaster_CatalogZone_SelectTargetZoneText" xml:space="preserve">
+    <value>Add to:</value>
+  </data>
+  <data name="MonoXMaster_ConnectionsPane_Text" xml:space="preserve">
+    <value>Web part connections</value>
+  </data>
+  <data name="MonoXMaster_ConnectionsZone_ConfigureConnectionTitle" xml:space="preserve">
+    <value>Configure Connection</value>
+  </data>
+  <data name="MonoXMaster_ConnectionsZone_ConnectToConsumerInstructionText" xml:space="preserve">
+    <value>Create consumer connections for this Web Part.</value>
+  </data>
+  <data name="MonoXMaster_ConnectionsZone_ConnectToConsumerText" xml:space="preserve">
+    <value>Click here to create a connection to a Consumer</value>
+  </data>
+  <data name="MonoXMaster_ConnectionsZone_ConnectToConsumerTitle" xml:space="preserve">
+    <value>Send Data to Web Part</value>
+  </data>
+  <data name="MonoXMaster_ConnectionsZone_ConnectToProviderInstructionText" xml:space="preserve">
+    <value>Create provider connections for this Web Part.</value>
+  </data>
+  <data name="MonoXMaster_ConnectionsZone_ConnectToProviderText" xml:space="preserve">
+    <value>Click here to create a connection to a Provider</value>
+  </data>
+  <data name="MonoXMaster_ConnectionsZone_ConnectToProviderTitle" xml:space="preserve">
+    <value>Get Data from Web Part</value>
+  </data>
+  <data name="MonoXMaster_ConnectionsZone_ConsumersInstructionText" xml:space="preserve">
+    <value>Web parts that the current Web part sends information to:</value>
+  </data>
+  <data name="MonoXMaster_ConnectionsZone_ConsumersTitle" xml:space="preserve">
+    <value>Consumers</value>
+  </data>
+  <data name="MonoXMaster_ConnectionsZone_ExistingConnectionErrorMessage" xml:space="preserve">
+    <value>This connection is currently inactive due to the unavailability of one of its end points.</value>
+  </data>
+  <data name="MonoXMaster_ConnectionsZone_GetFromText" xml:space="preserve">
+    <value>From:</value>
+  </data>
+  <data name="MonoXMaster_ConnectionsZone_GetText" xml:space="preserve">
+    <value>Get:</value>
+  </data>
+  <data name="MonoXMaster_ConnectionsZone_HeaderText" xml:space="preserve">
+    <value>Web part connections</value>
+  </data>
+  <data name="MonoXMaster_ConnectionsZone_InstructionText" xml:space="preserve">
+    <value>Manage the connections for the current Web part.</value>
+  </data>
+  <data name="MonoXMaster_ConnectionsZone_InstructionTitle" xml:space="preserve">
+    <value>Manage the connections for {0}</value>
+  </data>
+  <data name="MonoXMaster_ConnectionsZone_NewConnectionErrorMessage" xml:space="preserve">
+    <value>Can't continue with the creation of this connection because at least one of the Web Parts or connection points has disappeared or has become incompatible with the currently selected Web Part or is already used by another connection and doesn't support multiple connections.</value>
+  </data>
+  <data name="MonoXMaster_ConnectionsZone_NoExistingConnectionInstructionText" xml:space="preserve">
+    <value>There are no active connections available in your Web Part. You may create a new connection by selecting the links above if there are compatible Web Parts on the page.</value>
+  </data>
+  <data name="MonoXMaster_ConnectionsZone_NoExistingConnectionTitle" xml:space="preserve">
+    <value>No active connections</value>
+  </data>
+  <data name="MonoXMaster_ConnectionsZone_ProvidersInstructionText" xml:space="preserve">
+    <value>Web parts that the current Web part gets information from:</value>
+  </data>
+  <data name="MonoXMaster_ConnectionsZone_ProvidersTitle" xml:space="preserve">
+    <value>Providers</value>
+  </data>
+  <data name="MonoXMaster_ConnectionsZone_SendText" xml:space="preserve">
+    <value>Send:</value>
+  </data>
+  <data name="MonoXMaster_ConnectionsZone_SendToText" xml:space="preserve">
+    <value>To:</value>
+  </data>
+  <data name="MonoXMaster_CopiedCatalogPart_Title" xml:space="preserve">
+    <value>Web part clipboard</value>
+  </data>
+  <data name="MonoXMaster_CurrentLanguageText" xml:space="preserve">
+    <value>Current language</value>
+  </data>
+  <data name="MonoXMaster_CurrentModeText" xml:space="preserve">
+    <value>Current mode</value>
+  </data>
+  <data name="MonoXMaster_DeclarativeCatalogPart_Title" xml:space="preserve">
+    <value>Declarative part catalog</value>
+  </data>
+  <data name="MonoXMaster_EditorPane_Text" xml:space="preserve">
+    <value>Web part properties</value>
+  </data>
+  <data name="MonoXMaster_EditorZone_ApplyVerb_Description" xml:space="preserve">
+    <value>Applies changes</value>
+  </data>
+  <data name="MonoXMaster_EditorZone_ApplyVerb_Text" xml:space="preserve">
+    <value>Apply</value>
+  </data>
+  <data name="MonoXMaster_EditorZone_CancelVerb_Description" xml:space="preserve">
+    <value>Cancels changes</value>
+  </data>
+  <data name="MonoXMaster_EditorZone_CancelVerb_Text" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="MonoXMaster_EditorZone_EmptyZoneText" xml:space="preserve">
+    <value>There are no available editor parts.</value>
+  </data>
+  <data name="MonoXMaster_EditorZone_HeaderText" xml:space="preserve">
+    <value>Properties editor</value>
+  </data>
+  <data name="MonoXMaster_EditorZone_InstructionText" xml:space="preserve">
+    <value>Modify the properties of the Web Part, then click OK or Apply to apply your changes.</value>
+  </data>
+  <data name="MonoXMaster_EditorZone_OKVerb_Description" xml:space="preserve">
+    <value>Applies changes and closes editor</value>
+  </data>
+  <data name="MonoXMaster_EditorZone_OKVerb_Text" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="MonoXMaster_ImgHelp_ToolTip" xml:space="preserve">
+    <value>MonoX User Manual</value>
+  </data>
+  <data name="MonoXMaster_ImgToggle_AlternateText" xml:space="preserve">
+    <value>Toggle administrative panel</value>
+  </data>
+  <data name="MonoXMaster_ImgToggle_ToolTip" xml:space="preserve">
+    <value>Toggle administrative panel</value>
+  </data>
+  <data name="MonoXMaster_ImportCatalogPart_Title" xml:space="preserve">
+    <value>Imported parts catalog</value>
+  </data>
+  <data name="MonoXMaster_LayoutEditorPart_Title" xml:space="preserve">
+    <value>Layout</value>
+  </data>
+  <data name="MonoXMaster_LoginNameShort_FormatString" xml:space="preserve">
+    <value>You are logged in as: {0}</value>
+  </data>
+  <data name="MonoXMaster_LoginName_FormatString" xml:space="preserve">
+    <value>You are logged in as: {0}</value>
+  </data>
+  <data name="MonoXMaster_LoginName_ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="MonoXMaster_LoginStatusShort_LogoutText" xml:space="preserve">
+    <value>Log out</value>
+  </data>
+  <data name="MonoXMaster_LoginStatus_LoginText" xml:space="preserve">
+    <value>Login</value>
+  </data>
+  <data name="MonoXMaster_LoginStatus_LogoutText" xml:space="preserve">
+    <value>Logout</value>
+  </data>
+  <data name="MonoXMaster_LoginStatus_ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="MonoXMaster_LtlClickHere_Text" xml:space="preserve">
+    <value>Change the look and functionality of this page</value>
+  </data>
+  <data name="MonoXMaster_LtlPortalAdmin_Text" xml:space="preserve">
+    <value>Go to the portal administration area</value>
+  </data>
+  <data name="MonoXMaster_PageCatalogPart_Title" xml:space="preserve">
+    <value>Closed parts catalog</value>
+  </data>
+  <data name="MonoXMaster_PageTasksPane_Text" xml:space="preserve">
+    <value>Page tasks</value>
+  </data>
+  <data name="MonoXMaster_PnlToggle_GroupingText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="MonoXMaster_PnlToggle_ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="MonoXMaster_PnlToolboxMain_GroupingText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="MonoXMaster_PnlToolboxMain_ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="MonoXMaster_PortalModuleTasksPane_Text" xml:space="preserve">
+    <value>Web part tasks</value>
+  </data>
+  <data name="MonoXMaster_PropertyGridEditorPart_Title" xml:space="preserve">
+    <value>Custom properties</value>
+  </data>
+  <data name="News_Title" xml:space="preserve">
+    <value>News</value>
+  </data>
+  <data name="Poll_ResultsButtonText" xml:space="preserve">
+    <value>Results</value>
+  </data>
+  <data name="Poll_TotalVotesTemplateText" xml:space="preserve">
+    <value>Total: {0} vote(s).</value>
+  </data>
+  <data name="Poll_VoteButtonText" xml:space="preserve">
+    <value>Vote</value>
+  </data>
+  <data name="Search_BtnSearch2" xml:space="preserve">
+    <value>Go</value>
+  </data>
+  <data name="Search_BtnSearchTooltip" xml:space="preserve">
+    <value>Click to start your search</value>
+  </data>
+  <data name="Search_LabNoSearchProviderSelected" xml:space="preserve">
+    <value>There are no search providers selected.</value>
+  </data>
+  <data name="Button_OK" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="Button_OK_AccessKey" xml:space="preserve">
+    <value>O</value>
+  </data>
+  <data name="LoginRpx_Email" xml:space="preserve">
+    <value>E-mail:</value>
+  </data>
+  <data name="LoginRpx_EmailDescription" xml:space="preserve">
+    <value>Your login provider does not disclose the e-mail address that is needed to create a fully functional account. Please fill in the box below.</value>
+  </data>
+  <data name="LoginRpx_Title" xml:space="preserve">
+    <value>Enter e-mail</value>
+  </data>
+  <data name="SiteSearch_DefaultText" xml:space="preserve">
+    <value>Search...</value>
+  </data>
+  <data name="PeopleSearch_DefaultText" xml:space="preserve">
+    <value>Search people</value>
+  </data>
+  <data name="Search_Go" xml:space="preserve">
+    <value>Go</value>
+  </data>
+  <data name="Login_RegisterInvitation" xml:space="preserve">
+    <value>No account? Register here!</value>
+  </data>
+  <data name="Captcha_ImageTitle" xml:space="preserve">
+    <value>Captcha AntiSpam Security</value>
+  </data>
+  <data name="Captcha_LongInfo" xml:space="preserve">
+    <value>&lt;a href="http://en.wikipedia.org/wiki/CAPTCHA" title="Click here to get more informtion on Captcha"&gt;CAPTCHAs&lt;/a&gt; are used to prevent automated software from performing actions 
+                    which degrade the quality of service of a given system, 
+                    whether due to abuse or resource expenditure.</value>
+  </data>
+  <data name="Captcha_ShortInfo" xml:space="preserve">
+    <value>Please type in the code shown in the image.</value>
+  </data>
+  <data name="ContactForm_AddressLabel" xml:space="preserve">
+    <value>Address:</value>
+  </data>
+  <data name="ContactForm_ContactInfoTitle" xml:space="preserve">
+    <value>Contact info</value>
+  </data>
+  <data name="ContactForm_FaxLabel" xml:space="preserve">
+    <value>Fax:</value>
+  </data>
+  <data name="ContactForm_PhoneLabel" xml:space="preserve">
+    <value>Phone:</value>
+  </data>
+  <data name="ContactForm_SendButton" xml:space="preserve">
+    <value>Send Now</value>
+  </data>
+  <data name="PasswordRecovery_SentSuccessfully" xml:space="preserve">
+    <value>Email was sent successfully.</value>
+  </data>
+  <data name="PasswordRecovery_SentUnSuccessfully" xml:space="preserve">
+    <value>An error has occured while trying to send an e-mail message.</value>
+  </data>
+  <data name="Login_ViewProfile" xml:space="preserve">
+    <value>User profile</value>
+  </data>
+  <data name="Search_EnterSearchPhrase" xml:space="preserve">
+    <value>Please enter search phrase</value>
+  </data>
+  <data name="Registration_RegistrationNotAllowed_Description" xml:space="preserve">
+    <value>Registration is not allowed on this site. Please contact support service if you want to open a user account.</value>
+  </data>
+  <data name="Registration_RegistrationNotAllowed_Title" xml:space="preserve">
+    <value>Registration not allowed</value>
+  </data>
+  <data name="CachedOnFormatText" xml:space="preserve">
+    <value>Cached on {0}</value>
+  </data>
+  <data name="Refresh" xml:space="preserve">
+    <value>Refresh</value>
+  </data>
+  <data name="ErrorMessage_Upload" xml:space="preserve">
+    <value>All files could not be uploaded. Please ensure that all files that are being uploaded have the correct extension and size.</value>
+  </data>
+  <data name="DateTimeExtension_DaysAgo" xml:space="preserve">
+    <value>{0} day(s)</value>
+  </data>
+  <data name="DateTimeExtension_FormatPrefix" xml:space="preserve">
+    <value />
+  </data>
+  <data name="DateTimeExtension_FormatSufix" xml:space="preserve">
+    <value> ago</value>
+  </data>
+  <data name="DateTimeExtension_HoursAgo" xml:space="preserve">
+    <value>{0} hour(s)</value>
+  </data>
+  <data name="DateTimeExtension_JustNow" xml:space="preserve">
+    <value>just now</value>
+  </data>
+  <data name="DateTimeExtension_MinutesAgo" xml:space="preserve">
+    <value>{0} minute(s)</value>
+  </data>
+  <data name="DateTimeExtension_MonthsAgo" xml:space="preserve">
+    <value>{0} month(s)</value>
+  </data>
+  <data name="DateTimeExtension_OneHourAgo" xml:space="preserve">
+    <value>1 hour</value>
+  </data>
+  <data name="DateTimeExtension_OneMinuteAgo" xml:space="preserve">
+    <value>1 minute</value>
+  </data>
+  <data name="DateTimeExtension_OneYearAgo" xml:space="preserve">
+    <value>1 year</value>
+  </data>
+  <data name="DateTimeExtension_WeeksAgo" xml:space="preserve">
+    <value>{0} week(s)</value>
+  </data>
+  <data name="DateTimeExtension_YearsAgo" xml:space="preserve">
+    <value>{0} year(s)</value>
+  </data>
+  <data name="DateTimeExtension_Yesterday" xml:space="preserve">
+    <value>yesterday</value>
+  </data>
+  <data name="DateTimeExtension_OneWeekAgo" xml:space="preserve">
+    <value>1 week</value>
+  </data>
+  <data name="MonoXRating_CaptionToolTip" xml:space="preserve">
+    <value>Content is rated {0:f2} of {1} vote(s).</value>
+  </data>
+  <data name="MonoXRating_Caption" xml:space="preserve">
+    <value>Rated {0:f2}, {1} vote(s).</value>
+  </data>
+  <data name="MonoXRating_RatingHistorySubTitle" xml:space="preserve">
+    <value>Shows who have rated the content, and the rating score.</value>
+  </data>
+  <data name="MonoXRating_RatingHistoryTitle" xml:space="preserve">
+    <value>Rating history</value>
+  </data>
+  <data name="MonoXRating_ViewHistory" xml:space="preserve">
+    <value>Rating history</value>
+  </data>
+  <data name="MonoXRating_NotRated" xml:space="preserve">
+    <value>This content has not been rated yet.</value>
+  </data>
+  <data name="MonoXMaster_ConnectionsZone_GeneralInstructionsText" xml:space="preserve">
+    <value>Please select Web parts that are communication providers or consumers and choose "Connect" menu verb to display more options in this pane.</value>
+  </data>
+  <data name="SyntaxHighlighter_EmptyPlaceHolderCaption" xml:space="preserve">
+    <value>enter code here</value>
+  </data>
+  <data name="SyntaxHighlighter_MenuRootItemCaption" xml:space="preserve">
+    <value>Insert code</value>
+  </data>
+  <data name="MessageCenter" xml:space="preserve">
+    <value>Go to message center</value>
+  </data>
+  <data name="RelatedContent_Title" xml:space="preserve">
+    <value>Related content</value>
+  </data>
+  <data name="MonoXRating_NoRatePermission" xml:space="preserve">
+    <value>You can not rate this content (e.g. You are not authenitcated, This is your content, You already rated this content etc.).</value>
+  </data>
+  <data name="MonoXRating_RatedByNotMember" xml:space="preserve">
+    <value>Unauthenticated user</value>
+  </data>
+  <data name="ErrorMessage_NotEnablePasswordReset" xml:space="preserve">
+    <value>Password reset is not enabled.</value>
+  </data>
+  <data name="ErrorMessage_NotEnablePasswordRetrieval" xml:space="preserve">
+    <value>Password retrieval is not enabled.</value>
+  </data>
+  <data name="NotValidUserDataPP" xml:space="preserve">
+    <value>User data is not valid! Please fetch all user data.</value>
+  </data>
+  <data name="MonoXMaster_HiddenCatalogPart_Title" xml:space="preserve">
+    <value>Hidden parts catalog</value>
+  </data>
+  <data name="OpenSocial_Allow" xml:space="preserve">
+    <value>Allow</value>
+  </data>
+  <data name="OpenSocial_Deny" xml:space="preserve">
+    <value>Deny</value>
+  </data>
+  <data name="OpenSocial_RequestMessage" xml:space="preserve">
+    <value>{0} application wants to access your social data?</value>
+  </data>
+  <data name="ContactForm_MissingContactEMailAddress" xml:space="preserve">
+    <value>Contact e-mail address is missing. Please contact the web site administrator.</value>
+  </data>
+  <data name="Message_AccountUpdated" xml:space="preserve">
+    <value>Your account has been successfully updated.</value>
+  </data>
+  <data name="ErrorMessage_UserAccountHasBeenLockedOut" xml:space="preserve">
+    <value>Password was not retrieved (e.g. The user account has been locked out, etc. ).</value>
+  </data>
+  <data name="DemoIndicator" xml:space="preserve">
+    <value>This is a demo site for MonoX. Please visit &lt;a href="http://www.mono-software.com/"&gt;Mono Software&lt;/a&gt; for more info.</value>
+  </data>
+  <data name="DropHere" xml:space="preserve">
+    <value>Drop here</value>
+  </data>
+  <data name="MembershipEditor_TimeZone" xml:space="preserve">
+    <value>Time zone</value>
+  </data>
+  <data name="PasswordRecovery_TitleChange" xml:space="preserve">
+    <value>Change your password</value>
+  </data>
+  <data name="Email_PasswordRecoveryRequest_HtmlContent" xml:space="preserve">
+    <value>Dear &lt;i&gt;{0}&lt;/i&gt;, we have just received a password retrieval request for your username at {1}.
+&lt;br /&gt;&lt;br /&gt;
+Please click here to change your password: &lt;b&gt;{2}&lt;/b&gt;
+&lt;br /&gt;&lt;br /&gt;&lt;br /&gt;
+Sincerely,
+&lt;br /&gt;&lt;br /&gt;
+Your {1} team</value>
+  </data>
+  <data name="Email_PasswordRecoveryRequest_PlainContent" xml:space="preserve">
+    <value>Dear {0}, we have received a password retrieval request for your username at {1}.
+
+Please click here to change your password: {2}
+
+
+Sincerely,
+
+Your {1} team</value>
+  </data>
+  <data name="PasswordRecovery_RequestExpired" xml:space="preserve">
+    <value>Password recovery request has expired</value>
+  </data>
+  <data name="DynamicPager_ViewLess" xml:space="preserve">
+    <value>View less</value>
+  </data>
+  <data name="DynamicPager_ViewMore" xml:space="preserve">
+    <value>View more</value>
+  </data>
+</root>

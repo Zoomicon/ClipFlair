@@ -1,0 +1,951 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="ActivationEmailRecovery_Title" xml:space="preserve">
+    <value>Aktivasyon için E-posta Gönderimi</value>
+  </data>
+  <data name="ActivationEmailRecovery_UserName" xml:space="preserve">
+    <value>Kullanıcı adı</value>
+  </data>
+  <data name="Button_Send" xml:space="preserve">
+    <value>Gönder</value>
+  </data>
+  <data name="Email_Activation_HtmlContent" xml:space="preserve">
+    <value>Sayın &lt;i&gt;{0}&lt;/i&gt;, bu {1} tarafından gönderilmiş bir aktivasyon postasıdır. Üyeliğinizi aktive edebilmek için, linke tıklayınız:
+&lt;br /&gt;&lt;br /&gt;
+&lt;a href="{2}"&gt;{2}&lt;/a&gt;
+&lt;br /&gt;&lt;br /&gt;&lt;br /&gt;
+Saygılarımızla,
+&lt;br /&gt;&lt;br /&gt;
+{1} takımı</value>
+  </data>
+  <data name="Email_Activation_PlainContent" xml:space="preserve">
+    <value>Sayın {0},Bu, {1} tarafından gönderilen bir aktivasyon e-postasıdır. Aboneliğinizi aktif duruma getirebilmek için lütfen verilen bu linke tıklayınız:
+
+{2}
+
+
+Saygılarımızla,
+
+ {1} takımı</value>
+  </data>
+  <data name="Email_Activation_Title" xml:space="preserve">
+    <value>Hesap aktivasyonu</value>
+  </data>
+  <data name="Email_PasswordRecovery_HtmlContent" xml:space="preserve">
+    <value>Sayın &lt;i&gt;{0}&lt;/i&gt;, kullanıcı adı ile kayıtlı olduğunuz {1} isimli sitemizden şifre anımsatması talep ettiniz.
+&lt;br /&gt;&lt;br /&gt;
+Şifreniz: &lt;b&gt;{2}&lt;/b&gt;
+&lt;br /&gt;&lt;br /&gt;&lt;br /&gt;
+Saygılarımızla,
+&lt;br /&gt;&lt;br /&gt;
+{1} takımı</value>
+  </data>
+  <data name="Email_PasswordRecovery_PlainContent" xml:space="preserve">
+    <value>Sayın {0}, abonesi olduğunuz {1} isimli sitemiz için bir şifre anımsatıcı talep ettiniz.
+Şifreniz: {2} saygılarımızla, {1} takımı</value>
+  </data>
+  <data name="Email_PasswordRecovery_Title" xml:space="preserve">
+    <value>Şifre Anımsatıcı</value>
+  </data>
+  <data name="ErrorMessage_ActivationEmail" xml:space="preserve">
+    <value>Size bir aktivasyon maili gönderilirken beklenmeyen bir hata oluştu. Aboneliğiniz başarılı biçimde oluşturulmuştur. Ancak bu aboneliğinizi e-posta yolu ile 
+aktive etmeden kullanamazsınız. Size yeni bir aktivasyon e-postası gönderebilmemiz için lütfen &lt;a href="{0}"&gt;Aktivasyon e-postası kurtarma&lt;/a&gt; sayfasını ziyaret ediniz. Eğer sorun devam ederse lütfen bizimle bağlantı kurunuz.</value>
+  </data>
+  <data name="ErrorMessage_ActivationEmailRecovery_UserAlreadyActive" xml:space="preserve">
+    <value>Üyeliğiniz aktif durumda, aktivasyon için bir e-posta gönderilmesi gereksiz.</value>
+  </data>
+  <data name="ErrorMessage_ActivationUrl" xml:space="preserve">
+    <value>Aktivasyon linkinizle ilişkili bir sorun saptanmıştır. Eğer linki kopyala-yapıştır yaparak tarayıcınıza taşıdınızsa lütfen size gönderdiğimiz link olduğundan
+emin olunuz.Eğer doğru linki kullandığınızı düşünüyorsanız ve sorun devam ediyorsa lütfen bizimle bağlantı  kurunuz.</value>
+  </data>
+  <data name="ErrorMessage_InvalidUserName" xml:space="preserve">
+    <value>Girdiğiniz kullanıcı adına sahip bir kullanıcı bulunmamaktadır.</value>
+  </data>
+  <data name="ErrorMessage_Login" xml:space="preserve">
+    <value>Giriş denemesi başarısız. yanlış kullanıcı adı ya da şifre!</value>
+  </data>
+  <data name="ErrorMessage_Login_LockedOut" xml:space="preserve">
+    <value>Çok fazla sayıda başarısız giriş denemesinde bulunduğunuzdan dolayı aboneliğiniz kilitlenmiştir. Kilidin kaldırılması için lütfen bizimle bağlantı kurunuz.</value>
+  </data>
+  <data name="ErrorMessage_Login_NotActivated" xml:space="preserve">
+    <value>Aboneliğiniz henüz aktive edilmemiştir. Lütfen size gönderidğimiz aktivasyon e-postasında bulunan linke tıklayarak aboneliğinizi aktive ediniz.
+Eğer aktivasyon e-postasını almadıysanız, &lt;a href="{0}"&gt;Aktivasyon E-postası Kurtarma&lt;/a&gt; sayfasını ziyaret ederek yeniden gönderilmesini sağlayabilirsiniz.
+Eğer aktivasyon e-postasını alamıyor ya da gönderemiyorsanız lütfen bizimle bağlantı kurunuz.</value>
+  </data>
+  <data name="ErrorMessage_OpenId_AuthenticationCanceled" xml:space="preserve">
+    <value>OpenID kimlik denetimi (authentication )  iptal edildi.</value>
+  </data>
+  <data name="ErrorMessage_OpenId_AuthenticationFailed" xml:space="preserve">
+    <value>OpenID kimlik denetimi (authentication) başarısız. OpenID hesabınızı kontrol ediniz.</value>
+  </data>
+  <data name="ErrorMessage_OpenId_Format" xml:space="preserve">
+    <value> OpenID girişi için yanlış format.</value>
+  </data>
+  <data name="ErrorMessage_OpenId_ImmediateMode" xml:space="preserve">
+    <value>Hızlı giriş modu için öncelikle OpenId sağlayıcınıza giriş yapmalısınız.</value>
+  </data>
+  <data name="Global_Email" xml:space="preserve">
+    <value>E-posta</value>
+  </data>
+  <data name="Global_Password" xml:space="preserve">
+    <value>Şifre</value>
+  </data>
+  <data name="Global_RepeatPassword" xml:space="preserve">
+    <value>Şifre tekrarı</value>
+  </data>
+  <data name="Global_UserName" xml:space="preserve">
+    <value>Kullanıcı adı</value>
+  </data>
+  <data name="Message_AccountActivated_Description" xml:space="preserve">
+    <value>Aboneliğiniz başarılı olarak aktive edildi ve sisteme otomatik olarak giriş yaptınız. </value>
+  </data>
+  <data name="Message_AccountActivated_Title" xml:space="preserve">
+    <value>Üyelik Aktivasyonu</value>
+  </data>
+  <data name="Message_AccountActivationEmailSent_Description" xml:space="preserve">
+    <value>Aboneliğinizi aktive etmek için size gönderidiğimiz aktivasyon e-postası içinde bulunan linke tıklayınız. Linke tıkladığınızda aboneliğiniz aktive edilecek ve sisteme otomatik olarak
+giriş yapmış olacaksınız. Aktivasyon e-postasını 10 dak. içerisinde almazsanız, lütfen bizimle bağlantı kurunuz.</value>
+  </data>
+  <data name="Message_AccountActivationEmailSent_Title" xml:space="preserve">
+    <value>Aktivasyon e-postası başarılı olarak gönderildi.</value>
+  </data>
+  <data name="Message_AccountCreated_Description" xml:space="preserve">
+    <value>Aboneliğiniz için teşekkür ederiz. Son aşama aboneliğinizin aktif hale getirilmesidir. Bildirdiğiniz e-posta adresine bir aktivasyon e-postası gönderilmiştir. Aboneliğinizi
+aktive edebilmek için, bu e-posta içerisinde bulunan aktivasyon linkine tıklayınız. Aboneliğiniz aktive edilecek ve sisteme otomatik olarak giriş yapmış olacaksınız.&lt;br /&gt;&lt;br /&gt;
+Aktivasyon e-postasını 10 dak. içerisinde almazsanız,  Size yeni bir aktivasyon e-postası gönderebilmemiz için lütfen &lt;a href="{0}"&gt;Aktivasyon e-postası kurtarma&lt;/a&gt; sayfasını ziyaret ediniz. Eğer sorun devam ederse lütfen bizimle bağlantı kurunuz.</value>
+  </data>
+  <data name="Message_AccountCreated_Title" xml:space="preserve">
+    <value>Aboneliğiniz başarılı olarak tamamlandı.</value>
+  </data>
+  <data name="Message_PasswordRecoveryEmailSent_Description" xml:space="preserve">
+    <value>Lütfen e-postanızı kontrol ediniz, şifrenizi içeren bir mesaj çok kısa bir zaman içinde size ulaşacaktır.10 dak içerisinde e-postayı alamazsanız, lütfen bizimle bağlantı kurunuz.</value>
+  </data>
+  <data name="Message_PasswordRecoveryEmailSent_Title" xml:space="preserve">
+    <value>Şifre anımsatıcı e-posta başarılı olarak gönderildi.</value>
+  </data>
+  <data name="PasswordlRecovery_UserName" xml:space="preserve">
+    <value>Kullanıcı adı</value>
+  </data>
+  <data name="PasswordRecovery_Title" xml:space="preserve">
+    <value>Şifre kurtarma</value>
+  </data>
+  <data name="ValidationMessage_Email" xml:space="preserve">
+    <value> '{0}' için lütfen geçerli bir e-posta adresi giriniz.</value>
+  </data>
+  <data name="ValidationMessage_Name" xml:space="preserve">
+    <value> '{0}' için lütfen sadece harfleri,rakamları ya da noktalama işaretlerini kullanınız.</value>
+  </data>
+  <data name="ValidationMessage_PasswordMatch" xml:space="preserve">
+    <value>Şifre ve şifre tekrarı alanlarında bulunan değerler uyuşmamaktadır.</value>
+  </data>
+  <data name="ValidationMessage_RequiredField" xml:space="preserve">
+    <value> '{0}' için lütfen bir değer giriniz.</value>
+  </data>
+  <data name="MembershipEditor_CreateAccount" xml:space="preserve">
+    <value>Hesap Oluştur</value>
+  </data>
+  <data name="MembershipEditor_Email" xml:space="preserve">
+    <value>E-posta</value>
+  </data>
+  <data name="MembershipEditor_Password" xml:space="preserve">
+    <value>Şifre</value>
+  </data>
+  <data name="MembershipEditor_RememberMe" xml:space="preserve">
+    <value>Beni anımsa</value>
+  </data>
+  <data name="MembershipEditor_RepeatPassword" xml:space="preserve">
+    <value>Yeniden şifre</value>
+  </data>
+  <data name="MembershipEditor_Title_CreateAccount" xml:space="preserve">
+    <value>Hesap Oluşturma</value>
+  </data>
+  <data name="MembershipEditor_Title_UpdateAccount" xml:space="preserve">
+    <value>Hesap Güncelleme</value>
+  </data>
+  <data name="MembershipEditor_UpdateAccount" xml:space="preserve">
+    <value>Hesap Güncelleme</value>
+  </data>
+  <data name="MembershipEditor_UserName" xml:space="preserve">
+    <value>Kullanıcı adı</value>
+  </data>
+  <data name="Login_Login" xml:space="preserve">
+    <value>Giriş</value>
+  </data>
+  <data name="Login_OpenId" xml:space="preserve">
+    <value>OpenID</value>
+  </data>
+  <data name="Login_OpenId_Error_Create" xml:space="preserve">
+    <value>Kullanıcı hesabı oluşturulamıyor: </value>
+  </data>
+  <data name="Login_OpenId_Example" xml:space="preserve">
+    <value>Örnek:</value>
+  </data>
+  <data name="Login_OpenId_Login" xml:space="preserve">
+    <value>OpenID girişi:</value>
+  </data>
+  <data name="Login_OpenId_PasswordQuestion" xml:space="preserve">
+    <value>Bu bir OpenID aboneliğidir.Verdiğiniz Nick ne idi?</value>
+  </data>
+  <data name="Login_OpenId_Register" xml:space="preserve">
+    <value>Şimdi  OpenID al</value>
+  </data>
+  <data name="Login_OpenId_Register_ToolTip" xml:space="preserve">
+    <value>Ücretsiz OpenID hesabı için başvuru yap</value>
+  </data>
+  <data name="Login_OpenId_Title" xml:space="preserve">
+    <value> OpenID kullanarak giriş</value>
+  </data>
+  <data name="Login_Password" xml:space="preserve">
+    <value>Şifre:</value>
+  </data>
+  <data name="Login_PasswordRecoveryText" xml:space="preserve">
+    <value>Şifrenizi mi unuttunuz?</value>
+  </data>
+  <data name="Login_Register" xml:space="preserve">
+    <value>Kayıt ol</value>
+  </data>
+  <data name="Login_RememberMe" xml:space="preserve">
+    <value>Beni anımsa</value>
+  </data>
+  <data name="Login_Title" xml:space="preserve">
+    <value>Kullanıcı adı ve şifre ile giriş yap</value>
+  </data>
+  <data name="Login_UserName" xml:space="preserve">
+    <value>Kullanıcı adı:</value>
+  </data>
+  <data name="Button_Cancel" xml:space="preserve">
+    <value>İptal</value>
+  </data>
+  <data name="Button_Save" xml:space="preserve">
+    <value>Sakla</value>
+  </data>
+  <data name="Button_Cancel_AccessKey" xml:space="preserve">
+    <value>C</value>
+  </data>
+  <data name="Button_Close" xml:space="preserve">
+    <value>Kapat</value>
+  </data>
+  <data name="Button_Close_AccessKey" xml:space="preserve">
+    <value>C</value>
+  </data>
+  <data name="Button_Save_AccessKey" xml:space="preserve">
+    <value>S</value>
+  </data>
+  <data name="Global_Error" xml:space="preserve">
+    <value>Hata</value>
+  </data>
+  <data name="Global_OK" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="UserPicker_ToolTip" xml:space="preserve">
+    <value>İpucu: Bağlantı kurmak istediğinizi kullanıcının, kullanıcı adını, adını ya da soyadını yazınız. Virgüllerle ayrılmış sonsuz sayıda değer girebilirsiniz.</value>
+  </data>
+  <data name="Button_Delete" xml:space="preserve">
+    <value>Sil</value>
+  </data>
+  <data name="Button_Delete_AccessKey" xml:space="preserve">
+    <value>D</value>
+  </data>
+  <data name="Button_Update" xml:space="preserve">
+    <value>Güncelle</value>
+  </data>
+  <data name="Button_Update_AccessKey" xml:space="preserve">
+    <value>U</value>
+  </data>
+  <data name="Button_Edit" xml:space="preserve">
+    <value>Düzenle</value>
+  </data>
+  <data name="Button_Edit_AccessKey" xml:space="preserve">
+    <value>E</value>
+  </data>
+  <data name="Button_Upload" xml:space="preserve">
+    <value>Yükle</value>
+  </data>
+  <data name="Button_Upload_AccessKey" xml:space="preserve">
+    <value>U</value>
+  </data>
+  <data name="HtmlEditor_DefaultText" xml:space="preserve">
+    <value>İçeriği buraya yazınız lütfen.</value>
+  </data>
+  <data name="HtmlEditor_EditVerbDescription" xml:space="preserve">
+    <value>Bu modül içeriğini düzenle</value>
+  </data>
+  <data name="HtmlEditor_EditVerbText" xml:space="preserve">
+    <value>Düzenle</value>
+  </data>
+  <data name="HtmlEditor_History" xml:space="preserve">
+    <value>Yedekleme tarihçesi</value>
+  </data>
+  <data name="HtmlEditor_ResetConfirmation" xml:space="preserve">
+    <value>Modül içeriği sıfırlanacaktır. Devam?</value>
+  </data>
+  <data name="HtmlEditor_ResetVerbDescription" xml:space="preserve">
+    <value>Bu modül içeriğini yeniden ayarla (reset)</value>
+  </data>
+  <data name="HtmlEditor_ResetVerbText" xml:space="preserve">
+    <value>Sıfırla</value>
+  </data>
+  <data name="Confirmation_RequestErrorText" xml:space="preserve">
+    <value>İsteğiniz başarılı biçimde işlenemedi.Daha fazla bilgi için destek ile bağlantı kurunuz.</value>
+  </data>
+  <data name="Confirmation_RequestErrorTitle" xml:space="preserve">
+    <value>Bir hata oluştu!</value>
+  </data>
+  <data name="HtmlEditor_DefaultTitle" xml:space="preserve">
+    <value>Başlığı buraya giriniz</value>
+  </data>
+  <data name="AjaxConfirm_ConfirmDialogMessage" xml:space="preserve">
+    <value>Ok / İptal ?</value>
+  </data>
+  <data name="AjaxConfirm_ConfirmDialogTitle" xml:space="preserve">
+    <value>Onayla</value>
+  </data>
+  <data name="AjaxConfirm_DeleteDialogMessage" xml:space="preserve">
+    <value>Emin misiniz?</value>
+  </data>
+  <data name="AjaxConfirm_DeleteDialogTitle" xml:space="preserve">
+    <value>Sil</value>
+  </data>
+  <data name="CustomRadEditor_MaxLenReached" xml:space="preserve">
+    <value>Maksimum olarak izin verilen  ({0}) karakter sayısına ulaştınız!</value>
+  </data>
+  <data name="DualListBox_MaxErrorMessage" xml:space="preserve">
+    <value>İzin verilen maksimum öğe sayısına ulaşıldı!</value>
+  </data>
+  <data name="DualListBox_MinErrorMessage" xml:space="preserve">
+    <value>İzin verilen minimum öğe sayısına ulaşıldı!</value>
+  </data>
+  <data name="DualListBox_MinItemsRequired" xml:space="preserve">
+    <value>En az  {0} öğe gerekli!</value>
+  </data>
+  <data name="DualListBox_NoPreference" xml:space="preserve">
+    <value>Seçim yapılmamış</value>
+  </data>
+  <data name="LocaleChanger_DefaultLangTitle" xml:space="preserve">
+    <value>Varsayılan</value>
+  </data>
+  <data name="PageModeChanger_ModeDropdownToolTip" xml:space="preserve">
+    <value>Sayfa modunu seçin</value>
+  </data>
+  <data name="Button_Send_AccessKey" xml:space="preserve">
+    <value>S</value>
+  </data>
+  <data name="Captcha_imgCaptcha_AlternateText" xml:space="preserve">
+    <value>Görsel doğrulama</value>
+  </data>
+  <data name="Captcha_ImgCaptcha_ToolTip" xml:space="preserve">
+    <value>Lütfen resim üzerinde gösterildiği gibi güvenlik kodunu giriniz.</value>
+  </data>
+  <data name="Captcha_LblInvalidCaptcha_Text" xml:space="preserve">
+    <value>Captcha kodu geçersiz. Lütfen yeniden deneyiniz.</value>
+  </data>
+  <data name="Captcha_Loading" xml:space="preserve">
+    <value>Yüklüyor ...</value>
+  </data>
+  <data name="Captcha_RefreshCode" xml:space="preserve">
+    <value>Captcha kodunu yenile</value>
+  </data>
+  <data name="Captcha_ReqCaptchaCode_ErrorMessage" xml:space="preserve">
+    <value>Lütfen bir captcha kodu giriniz.</value>
+  </data>
+  <data name="ContactForm_Email" xml:space="preserve">
+    <value>E-posta adresiniz:</value>
+  </data>
+  <data name="ContactForm_Message" xml:space="preserve">
+    <value>Mesaj:</value>
+  </data>
+  <data name="ContactForm_Name" xml:space="preserve">
+    <value>Adınız:</value>
+  </data>
+  <data name="ContactForm_Subject" xml:space="preserve">
+    <value>Konu:</value>
+  </data>
+  <data name="ContactForm_SuccessfulSend" xml:space="preserve">
+    <value>Mesajınız gönderildi.</value>
+  </data>
+  <data name="ContactForm_Title" xml:space="preserve">
+    <value>Bize E-posta Yolu ile Ulaşın</value>
+  </data>
+  <data name="ContactForm_UnSuccessfulSend" xml:space="preserve">
+    <value>Mesajınız gönderilemedi. Lütfen yeniden deneyiniz.</value>
+  </data>
+  <data name="Label_Loading" xml:space="preserve">
+    <value>Yüklüyor...</value>
+  </data>
+  <data name="Label_NoData" xml:space="preserve">
+    <value>Arama kriterlerinize uyan bir veri bulunamadı</value>
+  </data>
+  <data name="LoginName_FormatString" xml:space="preserve">
+    <value>Giriş yaptığınız kullanıcı adı: {0}</value>
+  </data>
+  <data name="LoginStatus_LoginText" xml:space="preserve">
+    <value>Giriş yapmak için buraya tıklayınız</value>
+  </data>
+  <data name="LoginStatus_LogoutText" xml:space="preserve">
+    <value>Buraya tıklayarak çıkış yapınız</value>
+  </data>
+  <data name="MonoXMaster_AppearanceEditorPart_Title" xml:space="preserve">
+    <value>Görünüm</value>
+  </data>
+  <data name="MonoXMaster_AutoRegisterCatalogPart_Title" xml:space="preserve">
+    <value>Ana Web part kataloğu</value>
+  </data>
+  <data name="MonoXMaster_BehaviorEditorPart_Title" xml:space="preserve">
+    <value>Davranış</value>
+  </data>
+  <data name="MonoXMaster_CatalogPane_Text" xml:space="preserve">
+    <value>Modül kataloğu</value>
+  </data>
+  <data name="MonoXMaster_CatalogZone_EmptyZoneText" xml:space="preserve">
+    <value>Web part kataloğu boş.</value>
+  </data>
+  <data name="MonoXMaster_CatalogZone_HeaderText" xml:space="preserve">
+    <value>Web part kataloğu</value>
+  </data>
+  <data name="MonoXMaster_CatalogZone_InstructionText" xml:space="preserve">
+    <value>Görmek istediğiniz web part kataloğunu seçiniz.</value>
+  </data>
+  <data name="MonoXMaster_CatalogZone_SelectTargetZoneText" xml:space="preserve">
+    <value>Eklenecek alan:</value>
+  </data>
+  <data name="MonoXMaster_ConnectionsPane_Text" xml:space="preserve">
+    <value>Modül  bağlantıları</value>
+  </data>
+  <data name="MonoXMaster_ConnectionsZone_ConfigureConnectionTitle" xml:space="preserve">
+    <value>Bağlantı Konfigürasyonu</value>
+  </data>
+  <data name="MonoXMaster_ConnectionsZone_ConnectToConsumerInstructionText" xml:space="preserve">
+    <value>Bu web part için tüketici (consumer) bağlantıları oluştur.</value>
+  </data>
+  <data name="MonoXMaster_ConnectionsZone_ConnectToConsumerText" xml:space="preserve">
+    <value>Tüketici  (consumer)için bağlantı oluştur</value>
+  </data>
+  <data name="MonoXMaster_ConnectionsZone_ConnectToConsumerTitle" xml:space="preserve">
+    <value>Web Part'a veri gönder</value>
+  </data>
+  <data name="MonoXMaster_ConnectionsZone_ConnectToProviderInstructionText" xml:space="preserve">
+    <value>Bu Web Part için sağlayıcı bağlantılarını oluştur.</value>
+  </data>
+  <data name="MonoXMaster_ConnectionsZone_ConnectToProviderText" xml:space="preserve">
+    <value>Sağlayıcıya (provider) bağlantı oluştur.</value>
+  </data>
+  <data name="MonoXMaster_ConnectionsZone_ConnectToProviderTitle" xml:space="preserve">
+    <value> Web Part'dan veri al</value>
+  </data>
+  <data name="MonoXMaster_ConnectionsZone_ConsumersInstructionText" xml:space="preserve">
+    <value>Seçili  Web Part'ın  veri gönderdiği Web Part'lar:</value>
+  </data>
+  <data name="MonoXMaster_ConnectionsZone_ConsumersTitle" xml:space="preserve">
+    <value>Tüketiciler (Consumers)</value>
+  </data>
+  <data name="MonoXMaster_ConnectionsZone_ExistingConnectionErrorMessage" xml:space="preserve">
+    <value>Bu  bağlantı, uç noktalarından (end points) birinin yokluğu nedeniyle aktif değildir.</value>
+  </data>
+  <data name="MonoXMaster_ConnectionsZone_GetFromText" xml:space="preserve">
+    <value>Nereden:</value>
+  </data>
+  <data name="MonoXMaster_ConnectionsZone_GetText" xml:space="preserve">
+    <value>Al:</value>
+  </data>
+  <data name="MonoXMaster_ConnectionsZone_HeaderText" xml:space="preserve">
+    <value>Web part bağlantıları</value>
+  </data>
+  <data name="MonoXMaster_ConnectionsZone_InstructionText" xml:space="preserve">
+    <value>Bu  Web part için bağlantıların yönetimi.</value>
+  </data>
+  <data name="MonoXMaster_ConnectionsZone_InstructionTitle" xml:space="preserve">
+    <value> {0} için bağlantıların yönetimi </value>
+  </data>
+  <data name="MonoXMaster_ConnectionsZone_NewConnectionErrorMessage" xml:space="preserve">
+    <value>Bu bağlantının oluşturulmasına devam edilemeyecektir. En azından bir web part ya da bağlantı noktası, şu anda seçili olan web part için işlevsiz ya da uyumsuz duruma gelmiştir 
+ya da birden fazla bağlantıyı (multiple connection) desteklemeyen  başka bir bağlantı tarafından kullanılmaktadır.</value>
+  </data>
+  <data name="MonoXMaster_ConnectionsZone_NoExistingConnectionInstructionText" xml:space="preserve">
+    <value>Web partınız için kullanılabilir aktif bağlantı yok. Eğer sayfa üzerinde uyumlu web partlar varsa yukarıdaki linkeri kullanarak yeni bir bağlantı oluşturabilirsiniz.</value>
+  </data>
+  <data name="MonoXMaster_ConnectionsZone_NoExistingConnectionTitle" xml:space="preserve">
+    <value>Aktif bağlantı yok</value>
+  </data>
+  <data name="MonoXMaster_ConnectionsZone_ProvidersInstructionText" xml:space="preserve">
+    <value>Seçili web partın veri aldığı web partlar:</value>
+  </data>
+  <data name="MonoXMaster_ConnectionsZone_ProvidersTitle" xml:space="preserve">
+    <value>Sağlayıcılar (Providers)</value>
+  </data>
+  <data name="MonoXMaster_ConnectionsZone_SendText" xml:space="preserve">
+    <value>Gönder:</value>
+  </data>
+  <data name="MonoXMaster_ConnectionsZone_SendToText" xml:space="preserve">
+    <value>Kime:</value>
+  </data>
+  <data name="MonoXMaster_CopiedCatalogPart_Title" xml:space="preserve">
+    <value>Web part panosu</value>
+  </data>
+  <data name="MonoXMaster_CurrentLanguageText" xml:space="preserve">
+    <value>Seçili dil</value>
+  </data>
+  <data name="MonoXMaster_CurrentModeText" xml:space="preserve">
+    <value>Seçili mod</value>
+  </data>
+  <data name="MonoXMaster_DeclarativeCatalogPart_Title" xml:space="preserve">
+    <value>Açıklayıcı Web part kataloğu</value>
+  </data>
+  <data name="MonoXMaster_EditorPane_Text" xml:space="preserve">
+    <value>Module özellikleri</value>
+  </data>
+  <data name="MonoXMaster_EditorZone_ApplyVerb_Description" xml:space="preserve">
+    <value>Uygulanan değişiklikler</value>
+  </data>
+  <data name="MonoXMaster_EditorZone_ApplyVerb_Text" xml:space="preserve">
+    <value>Uygula</value>
+  </data>
+  <data name="MonoXMaster_EditorZone_CancelVerb_Description" xml:space="preserve">
+    <value>Yapılan değişiklikleri iptal ederi</value>
+  </data>
+  <data name="MonoXMaster_EditorZone_CancelVerb_Text" xml:space="preserve">
+    <value>İptal</value>
+  </data>
+  <data name="MonoXMaster_EditorZone_EmptyZoneText" xml:space="preserve">
+    <value>Kullanılabilir editör partı yok.</value>
+  </data>
+  <data name="MonoXMaster_EditorZone_HeaderText" xml:space="preserve">
+    <value>Özellikler (Properties) editörü</value>
+  </data>
+  <data name="MonoXMaster_EditorZone_InstructionText" xml:space="preserve">
+    <value> Web Partın özelliklerini değiştirin, ve değişiklikleri uygulamak için  OK ya da  Uygula butonuna tıklayın.</value>
+  </data>
+  <data name="MonoXMaster_EditorZone_OKVerb_Description" xml:space="preserve">
+    <value>Değişiklikleri uygular ve editörü kapatır</value>
+  </data>
+  <data name="MonoXMaster_EditorZone_OKVerb_Text" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="MonoXMaster_ImgHelp_ToolTip" xml:space="preserve">
+    <value>MonoX Kullanıcı Klavuzu</value>
+  </data>
+  <data name="MonoXMaster_ImgToggle_AlternateText" xml:space="preserve">
+    <value>Toggle yönetim paneli</value>
+  </data>
+  <data name="MonoXMaster_ImgToggle_ToolTip" xml:space="preserve">
+    <value>Toggle yönetim paneli</value>
+  </data>
+  <data name="MonoXMaster_ImportCatalogPart_Title" xml:space="preserve">
+    <value>Import edilen  Web partları</value>
+  </data>
+  <data name="MonoXMaster_LayoutEditorPart_Title" xml:space="preserve">
+    <value>Yerleşim</value>
+  </data>
+  <data name="MonoXMaster_LoginNameShort_FormatString" xml:space="preserve">
+    <value>Giriş yaptığınız kullanıcı adı: {0}</value>
+  </data>
+  <data name="MonoXMaster_LoginName_FormatString" xml:space="preserve">
+    <value>Giriş yaptığınız kullanıcı adı: {0}</value>
+  </data>
+  <data name="MonoXMaster_LoginName_ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="MonoXMaster_LoginStatusShort_LogoutText" xml:space="preserve">
+    <value>Çıkış</value>
+  </data>
+  <data name="MonoXMaster_LoginStatus_LoginText" xml:space="preserve">
+    <value>Giriş</value>
+  </data>
+  <data name="MonoXMaster_LoginStatus_LogoutText" xml:space="preserve">
+    <value>Çıkış</value>
+  </data>
+  <data name="MonoXMaster_LoginStatus_ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="MonoXMaster_LtlClickHere_Text" xml:space="preserve">
+    <value>Bu sayfanın görünümünü ve fonksiyonlarını değiştirin</value>
+  </data>
+  <data name="MonoXMaster_LtlPortalAdmin_Text" xml:space="preserve">
+    <value>Portal yönetimi alanına git</value>
+  </data>
+  <data name="MonoXMaster_PageCatalogPart_Title" xml:space="preserve">
+    <value>Sayfa kataloğu</value>
+  </data>
+  <data name="MonoXMaster_PageTasksPane_Text" xml:space="preserve">
+    <value>Sayfa görevleri</value>
+  </data>
+  <data name="MonoXMaster_PnlToggle_GroupingText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="MonoXMaster_PnlToggle_ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="MonoXMaster_PnlToolboxMain_GroupingText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="MonoXMaster_PnlToolboxMain_ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="MonoXMaster_PortalModuleTasksPane_Text" xml:space="preserve">
+    <value>Portal modül görevleri</value>
+  </data>
+  <data name="MonoXMaster_PropertyGridEditorPart_Title" xml:space="preserve">
+    <value>Özelleştirilmiş nitelikler</value>
+  </data>
+  <data name="News_Title" xml:space="preserve">
+    <value>Haberler</value>
+  </data>
+  <data name="Poll_ResultsButtonText" xml:space="preserve">
+    <value>Sonuçlar</value>
+  </data>
+  <data name="Poll_TotalVotesTemplateText" xml:space="preserve">
+    <value>Toplam: {0} oy.</value>
+  </data>
+  <data name="Poll_VoteButtonText" xml:space="preserve">
+    <value>Oy ver</value>
+  </data>
+  <data name="Search_BtnSearch2" xml:space="preserve">
+    <value>Git</value>
+  </data>
+  <data name="Search_BtnSearchTooltip" xml:space="preserve">
+    <value>Aramanızı yapmak için tıklayınız</value>
+  </data>
+  <data name="Search_LabNoSearchProviderSelected" xml:space="preserve">
+    <value>Seçilmiş arama sağlayıcısı yok.</value>
+  </data>
+  <data name="Button_OK" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="Button_OK_AccessKey" xml:space="preserve">
+    <value>O</value>
+  </data>
+  <data name="LoginRpx_Email" xml:space="preserve">
+    <value>E-posta:</value>
+  </data>
+  <data name="LoginRpx_EmailDescription" xml:space="preserve">
+    <value>Giriş (login) sağlayıcınız fonksiyonel bir abonelik oluşturabilmek için gerekli olan e-posta adresini vermemektedir. Lütfen aşağıdaki kutucuğu doldurunuz.</value>
+  </data>
+  <data name="LoginRpx_Title" xml:space="preserve">
+    <value> e-posta gir</value>
+  </data>
+  <data name="SiteSearch_DefaultText" xml:space="preserve">
+    <value>Ara...</value>
+  </data>
+  <data name="PeopleSearch_DefaultText" xml:space="preserve">
+    <value>Kullanıcı ara</value>
+  </data>
+  <data name="Search_Go" xml:space="preserve">
+    <value>Git</value>
+  </data>
+  <data name="Login_RegisterInvitation" xml:space="preserve">
+    <value>Üye değil misiniz? Hemen kaydolunl!</value>
+  </data>
+  <data name="Captcha_ImageTitle" xml:space="preserve">
+    <value>Captcha AntiSpam Güvenliği</value>
+  </data>
+  <data name="Captcha_LongInfo" xml:space="preserve">
+    <value>&lt;a href="http://en.wikipedia.org/wiki/CAPTCHA" title="Captcha hakkında daha fazla bilgi almak için buraya tıklayınız"&gt;CAPTCHA&lt;/a&gt;, otomatik bazı yazılımların, verilen servisin kalitesini
+düşürmesini engellemek için kullanılmaktadır.</value>
+  </data>
+  <data name="Captcha_ShortInfo" xml:space="preserve">
+    <value>Lütfen resim üzerinde gösterilen kodu tam olarak giriniz.</value>
+  </data>
+  <data name="ContactForm_AddressLabel" xml:space="preserve">
+    <value>Adres:</value>
+  </data>
+  <data name="ContactForm_ContactInfoTitle" xml:space="preserve">
+    <value>İletişim bilgisi</value>
+  </data>
+  <data name="ContactForm_FaxLabel" xml:space="preserve">
+    <value>Faks:</value>
+  </data>
+  <data name="ContactForm_PhoneLabel" xml:space="preserve">
+    <value>Telefon:</value>
+  </data>
+  <data name="ContactForm_SendButton" xml:space="preserve">
+    <value>Şimdi gönder</value>
+  </data>
+  <data name="PasswordRecovery_SentSuccessfully" xml:space="preserve">
+    <value>E-posta başarılı olarak gönderildi</value>
+  </data>
+  <data name="PasswordRecovery_SentUnSuccessfully" xml:space="preserve">
+    <value>E-posta gönderilirken hata oluştul.</value>
+  </data>
+  <data name="Login_ViewProfile" xml:space="preserve">
+    <value>Kullanıcı profili</value>
+  </data>
+  <data name="Search_EnterSearchPhrase" xml:space="preserve">
+    <value>Lütfen aranacak sözcükleri giriniz</value>
+  </data>
+  <data name="Registration_RegistrationNotAllowed_Description" xml:space="preserve">
+    <value>Bu site üzerinde yeni üyeliğe izin verilmemektedir.Eğer yeni bir kullanıcı hesabı oluşturmak istiyorsanız destek servisi ile bağlantı kurunuz.</value>
+  </data>
+  <data name="Registration_RegistrationNotAllowed_Title" xml:space="preserve">
+    <value>Yeni üyeliğe izin verilmemektedir</value>
+  </data>
+  <data name="CachedOnFormatText" xml:space="preserve">
+    <value>Önbelleğe alındı {0}</value>
+  </data>
+  <data name="Refresh" xml:space="preserve">
+    <value>Yenile</value>
+  </data>
+  <data name="ErrorMessage_Upload" xml:space="preserve">
+    <value>All files could not be uploaded. Please ensure that all files that are being uploaded have the correct extension and size.</value>
+  </data>
+  <data name="DateTimeExtension_DaysAgo" xml:space="preserve">
+    <value>{0} gün</value>
+  </data>
+  <data name="DateTimeExtension_FormatPrefix" xml:space="preserve">
+    <value />
+  </data>
+  <data name="DateTimeExtension_FormatSufix" xml:space="preserve">
+    <value> önce</value>
+  </data>
+  <data name="DateTimeExtension_HoursAgo" xml:space="preserve">
+    <value>{0} saat</value>
+  </data>
+  <data name="DateTimeExtension_JustNow" xml:space="preserve">
+    <value>henüz</value>
+  </data>
+  <data name="DateTimeExtension_MinutesAgo" xml:space="preserve">
+    <value>{0} dakika</value>
+  </data>
+  <data name="DateTimeExtension_MonthsAgo" xml:space="preserve">
+    <value>{0} ay</value>
+  </data>
+  <data name="DateTimeExtension_OneHourAgo" xml:space="preserve">
+    <value>1 saat</value>
+  </data>
+  <data name="DateTimeExtension_OneMinuteAgo" xml:space="preserve">
+    <value>1 dakika</value>
+  </data>
+  <data name="DateTimeExtension_OneYearAgo" xml:space="preserve">
+    <value>1 yıl</value>
+  </data>
+  <data name="DateTimeExtension_WeeksAgo" xml:space="preserve">
+    <value>{0} hafta</value>
+  </data>
+  <data name="DateTimeExtension_YearsAgo" xml:space="preserve">
+    <value>{0} yıl</value>
+  </data>
+  <data name="DateTimeExtension_Yesterday" xml:space="preserve">
+    <value>dün</value>
+  </data>
+  <data name="DateTimeExtension_OneWeekAgo" xml:space="preserve">
+    <value>1 hafta</value>
+  </data>
+  <data name="MonoXRating_CaptionToolTip" xml:space="preserve">
+    <value>İçerik {1} de {0:f2} oy aldı.</value>
+  </data>
+  <data name="MonoXRating_Caption" xml:space="preserve">
+    <value>İçerik {1} de {0:f2} oy aldı.</value>
+  </data>
+  <data name="MonoXRating_RatingHistorySubTitle" xml:space="preserve">
+    <value>Bu içeriği kimin oyladığını ve puanını gösterir.</value>
+  </data>
+  <data name="MonoXRating_RatingHistoryTitle" xml:space="preserve">
+    <value>Oylama geçmişi</value>
+  </data>
+  <data name="MonoXRating_ViewHistory" xml:space="preserve">
+    <value>Oylama geçmişi</value>
+  </data>
+  <data name="MonoXRating_NotRated" xml:space="preserve">
+    <value>Bu içeriğe henüz oy verilmedi.</value>
+  </data>
+  <data name="MonoXMaster_ConnectionsZone_GeneralInstructionsText" xml:space="preserve">
+    <value>İletişim sağlayıcısı ya da tüketicisi olan web partları seçin ve daha fazla seçenek görüntülemek için Bağlan (Connect) menüsüne tıklayın.</value>
+  </data>
+  <data name="SyntaxHighlighter_EmptyPlaceHolderCaption" xml:space="preserve">
+    <value>kodu buraya girin</value>
+  </data>
+  <data name="SyntaxHighlighter_MenuRootItemCaption" xml:space="preserve">
+    <value>Kod gir</value>
+  </data>
+  <data name="NotValidUserDataPP" xml:space="preserve">
+    <value>Kullanıcı verisi geçerli değil! Lütfen tüm kullanıcı bilgisini alınız.</value>
+  </data>
+  <data name="ContactForm_MissingContactEMailAddress" xml:space="preserve">
+    <value>İletişim e-posta adresi eksik. Lütfen site yönetimi ile irtibata geçiniz..</value>
+  </data>
+  <data name="DemoIndicator" xml:space="preserve">
+    <value>Bu website MonoX ile geliştirilmiştir. Ayrıntılı bilgi için &lt;a href="http://www.mono-software.com/"&gt;Mono Software&lt;/a&gt; sitesini ziyaret edin.</value>
+  </data>
+  <data name="DropHere" xml:space="preserve">
+    <value>Buraya bırak</value>
+  </data>
+  <data name="Email_PasswordRecoveryRequest_HtmlContent" xml:space="preserve">
+    <value>Merhaba &lt;i&gt;{0}&lt;/i&gt;, {1} sitesinde bulunan hesabınız için şifre kurtarma talebi aldık.
+&lt;br /&gt;&lt;br /&gt;
+Şifrenizi değiştirmek için lütfen buraya tıklayın: &lt;b&gt;{2}&lt;/b&gt;
+&lt;br /&gt;&lt;br /&gt;&lt;br /&gt;
+Saygılarımızla,
+&lt;br /&gt;&lt;br /&gt;
+{1} takımı</value>
+  </data>
+  <data name="Email_PasswordRecoveryRequest_PlainContent" xml:space="preserve">
+    <value>Merhaba {0}, {1} sitesinde bulunan hesabınız için şifre kurtarma talebi aldık.
+
+Şifrenizi değiştirmek için lütfen buraya tıklayın: {2}
+
+
+Saygılarımızla,
+
+{1} takımı</value>
+  </data>
+  <data name="ErrorMessage_NotEnablePasswordReset" xml:space="preserve">
+    <value>Şifre sıfırlama özelliği etkin değil.</value>
+  </data>
+  <data name="ErrorMessage_NotEnablePasswordRetrieval" xml:space="preserve">
+    <value>Şifre kurtarma özelliği etkin değil.</value>
+  </data>
+  <data name="ErrorMessage_UserAccountHasBeenLockedOut" xml:space="preserve">
+    <value>Şifre kurtarılamadı (ör. Kullanıcı hesabı yasaklandı, v.b.).</value>
+  </data>
+  <data name="MembershipEditor_TimeZone" xml:space="preserve">
+    <value>Zaman dilimi</value>
+  </data>
+  <data name="MessageCenter" xml:space="preserve">
+    <value>Mesaj alanına git</value>
+  </data>
+  <data name="Message_AccountUpdated" xml:space="preserve">
+    <value>Hesabınız başarıyla güncellendi.</value>
+  </data>
+  <data name="MonoXMaster_HiddenCatalogPart_Title" xml:space="preserve">
+    <value>Gizli partlar kataloğu</value>
+  </data>
+  <data name="MonoXRating_NoRatePermission" xml:space="preserve">
+    <value>Bu içeriğe oy veremezsiniz (ör. Yetkilendirilmediniz, Bu sizin içeriğiniz, ya da daha önce oy kullandınız v.b.).</value>
+  </data>
+  <data name="MonoXRating_RatedByNotMember" xml:space="preserve">
+    <value>Yetkisiz kullanıcı</value>
+  </data>
+  <data name="OpenSocial_Allow" xml:space="preserve">
+    <value>İzin ver</value>
+  </data>
+  <data name="OpenSocial_Deny" xml:space="preserve">
+    <value>Reddet</value>
+  </data>
+  <data name="OpenSocial_RequestMessage" xml:space="preserve">
+    <value>{0} uygulaması sosyal verinize erişmek istiyor?</value>
+  </data>
+  <data name="PasswordRecovery_RequestExpired" xml:space="preserve">
+    <value>Şifre kurtarma talebi zaman aşımına uğradı</value>
+  </data>
+  <data name="PasswordRecovery_TitleChange" xml:space="preserve">
+    <value>Şifreni değiştir</value>
+  </data>
+  <data name="RelatedContent_Title" xml:space="preserve">
+    <value>Bağlantılı içerik</value>
+  </data>
+</root>
