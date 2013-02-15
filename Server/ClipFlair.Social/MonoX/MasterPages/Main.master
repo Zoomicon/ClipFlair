@@ -1,0 +1,19 @@
+<%@ Master Language="C#" AutoEventWireup="true" Inherits="MonoSoftware.MonoX.MasterPages.Main" EnableTheming="true" Codebehind="Main.master.cs" %>
+<%@ Register Src="~/MonoX/MasterPages/AjaxErrorHandler.ascx" TagPrefix="monox" TagName="AjaxErrorHandler" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" <asp:Literal runat="server" ID="ltlRootHtml" />>
+<head runat="server">
+    <title></title>   
+</head>
+<body style="height:100%">
+    <form id="form1" runat="server" style="height: 100%">
+        <asp:ScriptManager ID="AjaxScriptManager" runat="server">
+        </asp:ScriptManager>    
+        <monox:AjaxErrorHandler id="ajaxErrorHandler" runat="server"></monox:AjaxErrorHandler>
+        <asp:ContentPlaceHolder ID="cp" runat="server">
+        </asp:ContentPlaceHolder>
+    </form>
+</body>
+</html>

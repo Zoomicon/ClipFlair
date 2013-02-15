@@ -1,0 +1,1 @@
+<%@ WebHandler Language="C#" CodeBehind="SiteMap.ashx.cs" Class="MonoSoftware.MonoX.SiteMap.SiteMap" %>

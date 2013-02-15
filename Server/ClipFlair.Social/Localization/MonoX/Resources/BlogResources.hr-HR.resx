@@ -1,0 +1,390 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AllCategories" xml:space="preserve">
+    <value>Svi</value>
+  </data>
+  <data name="Author" xml:space="preserve">
+    <value>Autor</value>
+  </data>
+  <data name="BlogCategories_NoData" xml:space="preserve">
+    <value>Ne postoje kategorije za ovaj blog.</value>
+  </data>
+  <data name="Categories" xml:space="preserve">
+    <value>Kategorije</value>
+  </data>
+  <data name="Comments" xml:space="preserve">
+    <value>Komentari</value>
+  </data>
+  <data name="Comments_ApprovalAlert" xml:space="preserve">
+    <value>Svi komentari podliježu odobrenju administratora prije nego što budu javno objavljeni.</value>
+  </data>
+  <data name="Comments_Approve" xml:space="preserve">
+    <value>Odobri</value>
+  </data>
+  <data name="Comments_Comment" xml:space="preserve">
+    <value>Komentar</value>
+  </data>
+  <data name="Comments_ConfirmDelete" xml:space="preserve">
+    <value>Ovaj će komentar biti obrisan. Jeste li sigurni?</value>
+  </data>
+  <data name="Comments_Email" xml:space="preserve">
+    <value>E-mail:*</value>
+  </data>
+  <data name="Comments_ErrorMessage_Comments" xml:space="preserve">
+    <value>Sadržaj komentara mora biti unesen.</value>
+  </data>
+  <data name="Comments_ErrorMessage_EmailFormat" xml:space="preserve">
+    <value>Molimo unijeti ispravnu e-mail adresu.</value>
+  </data>
+  <data name="Comments_ErrorMessage_EmailRequired" xml:space="preserve">
+    <value>E-mail adresa mora biti unesena. Adresa se ne prikazuje javno.</value>
+  </data>
+  <data name="Comments_ErrorMessage_Name" xml:space="preserve">
+    <value>Ime mora biti uneseno.</value>
+  </data>
+  <data name="Comments_MailSubject" xml:space="preserve">
+    <value>{0} je komentirao na blog članak {1}</value>
+  </data>
+  <data name="Comments_Name" xml:space="preserve">
+    <value>Ime:*</value>
+  </data>
+  <data name="Comments_Notify" xml:space="preserve">
+    <value>Obavijesti me kada se pojavi novi komentar na ovaj post</value>
+  </data>
+  <data name="Comments_ReportHam" xml:space="preserve">
+    <value>Prijavi kao "ham"</value>
+  </data>
+  <data name="Comments_ReportSpam" xml:space="preserve">
+    <value>Prijavi kao spam</value>
+  </data>
+  <data name="Comments_Save" xml:space="preserve">
+    <value>Pošalji</value>
+  </data>
+  <data name="Comments_Url" xml:space="preserve">
+    <value>Web adresa:</value>
+  </data>
+  <data name="ConfirmDelete" xml:space="preserve">
+    <value>Ovaj će članak biti obrisan. Jeste li sigurni?</value>
+  </data>
+  <data name="ConfirmDeleteSpam" xml:space="preserve">
+    <value>Svi komentari na ovaj post koji su označeni kao spam će biti obrisani. Jeste li sigurni?</value>
+  </data>
+  <data name="ConfirmDeleteUnapproved" xml:space="preserve">
+    <value>Svi neodobreni komentari na ovaj post će biti obrisani. Jeste li sigurni?</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Obriši</value>
+  </data>
+  <data name="DeleteSpam" xml:space="preserve">
+    <value>Obriši spam</value>
+  </data>
+  <data name="DeleteUnapproved" xml:space="preserve">
+    <value>Obriši neodobrene</value>
+  </data>
+  <data name="Edit" xml:space="preserve">
+    <value>Uredi</value>
+  </data>
+  <data name="Edit_Application" xml:space="preserve">
+    <value>Aplikacija:</value>
+  </data>
+  <data name="Edit_Attachments" xml:space="preserve">
+    <value>Datoteke:</value>
+  </data>
+  <data name="Edit_Cancel" xml:space="preserve">
+    <value>O(d)ustani</value>
+  </data>
+  <data name="Edit_Cancel_AccessKey" xml:space="preserve">
+    <value>D</value>
+  </data>
+  <data name="Edit_Categories" xml:space="preserve">
+    <value>Kategorije:</value>
+  </data>
+  <data name="Edit_Content" xml:space="preserve">
+    <value>Sadržaj:</value>
+  </data>
+  <data name="Edit_Description" xml:space="preserve">
+    <value>Sažetak:</value>
+  </data>
+  <data name="Edit_ErrorMessage_TitleRequired" xml:space="preserve">
+    <value>Molimo unijeti naslov članka!</value>
+  </data>
+  <data name="Edit_IsCommentingAllowed" xml:space="preserve">
+    <value>Dozvoli komentare ?</value>
+  </data>
+  <data name="Edit_IsPublished" xml:space="preserve">
+    <value>Objavi članak ?</value>
+  </data>
+  <data name="Edit_Roles" xml:space="preserve">
+    <value>Korisničke uloge koje mogu pristupiti odabranom postu:</value>
+  </data>
+  <data name="Edit_Save" xml:space="preserve">
+    <value>(O)bjavi</value>
+  </data>
+  <data name="Edit_Save_AccessKey" xml:space="preserve">
+    <value>O</value>
+  </data>
+  <data name="Edit_Tags" xml:space="preserve">
+    <value>Tagovi:</value>
+  </data>
+  <data name="Edit_TagTheNet" xml:space="preserve">
+    <value>TagThe.Net</value>
+  </data>
+  <data name="Edit_Title" xml:space="preserve">
+    <value>Naslov članka:</value>
+  </data>
+  <data name="Edit_Yahoo" xml:space="preserve">
+    <value>Yahoo Term Extraction</value>
+  </data>
+  <data name="Email" xml:space="preserve">
+    <value>E-mail</value>
+  </data>
+  <data name="InvitationText" xml:space="preserve">
+    <value>Možda će ti se svidjeti ovaj članak</value>
+  </data>
+  <data name="NoRatingText" xml:space="preserve">
+    <value>Ovaj članak još nije ocijenjen.</value>
+  </data>
+  <data name="RatingText" xml:space="preserve">
+    <value>Trenutna ocjena {0:f2} od {1} korisnika</value>
+  </data>
+  <data name="Tags" xml:space="preserve">
+    <value>Tagovi</value>
+  </data>
+  <data name="AddNewPost" xml:space="preserve">
+    <value>Dodaj novi članak</value>
+  </data>
+  <data name="NoBlogPostsWarning" xml:space="preserve">
+    <value>&lt;br /&gt;Nema članaka u zahtjevanom periodu&lt;br /&gt;</value>
+  </data>
+  <data name="BlogEditors" xml:space="preserve">
+    <value>Uređivači bloga</value>
+  </data>
+  <data name="BlogSettings" xml:space="preserve">
+    <value>Postavke bloga</value>
+  </data>
+  <data name="Settings_EditorsTooltip" xml:space="preserve">
+    <value>Savjet: Unesite korisnička imena za koja želite da imaju mogućnost uređivanja ovog bloga. Imena razdvojite zarezom.</value>
+  </data>
+  <data name="Home" xml:space="preserve">
+    <value>Početna</value>
+  </data>
+  <data name="Publish" xml:space="preserve">
+    <value>Objavi</value>
+  </data>
+  <data name="Unpublish" xml:space="preserve">
+    <value>Sakrij</value>
+  </data>
+  <data name="Edit_PublishDate" xml:space="preserve">
+    <value>Objaviti na dan:</value>
+  </data>
+  <data name="AllBlogPosts" xml:space="preserve">
+    <value>Svi objavljeni članci</value>
+  </data>
+  <data name="BlogManageCategories_AddNew" xml:space="preserve">
+    <value>Dodaj kategoriju</value>
+  </data>
+  <data name="BlogManageCategories_Categories" xml:space="preserve">
+    <value>Blog kategorije</value>
+  </data>
+  <data name="BlogManageCategories_Update" xml:space="preserve">
+    <value>Snimi</value>
+  </data>
+  <data name="BlogSettings_Description" xml:space="preserve">
+    <value>Opis:</value>
+  </data>
+  <data name="Comments_ValidationSummary" xml:space="preserve">
+    <value>Slijedeći problemi moraju biti ispravljeni prije nastavka rada:</value>
+  </data>
+  <data name="Edit_ValidationSummary" xml:space="preserve">
+    <value>Please fix the following issues:</value>
+  </data>
+  <data name="Edit_ValidationSummary1" xml:space="preserve">
+    <value>Slijedeći problemi moraju biti ispravljeni prije nastavka rada:</value>
+  </data>
+  <data name="Edit_EditCategories" xml:space="preserve">
+    <value>Uredi kategorije</value>
+  </data>
+  <data name="CommentsAdmin" xml:space="preserve">
+    <value>Komentari</value>
+  </data>
+  <data name="Comments_Comments" xml:space="preserve">
+    <value>Komentari</value>
+  </data>
+  <data name="Comments_ErrorMessage_UrlFormat" xml:space="preserve">
+    <value>Molimo unijeti ispravnu Web adresu, uključujući http:// prefix.</value>
+  </data>
+  <data name="Comments_Sender_Url" xml:space="preserve">
+    <value>Pošiljateljev URL:</value>
+  </data>
+  <data name="Edit_BlogTitle" xml:space="preserve">
+    <value>Naziv bloga:</value>
+  </data>
+  <data name="BlogInfo" xml:space="preserve">
+    <value>Blog info</value>
+  </data>
+  <data name="AuthorDescriptionFormatString" xml:space="preserve">
+    <value>Članci autora: {0}</value>
+  </data>
+  <data name="CategoryDescriptionFormatString" xml:space="preserve">
+    <value>Članci u kategoriji {0}</value>
+  </data>
+  <data name="SearchDescriptionFormatString" xml:space="preserve">
+    <value>Članci s ključnim riječima: {0}</value>
+  </data>
+  <data name="TagDescriptionFormatString" xml:space="preserve">
+    <value>Članci označeni sa {0}</value>
+  </data>
+  <data name="PostCannotBeFound" xml:space="preserve">
+    <value>Članak koji tražite nije moguće pronaći. </value>
+  </data>
+  <data name="BlogPost_NewCommentAdded" xml:space="preserve">
+    <value>Novi komentar je dodan na blog članak na koji ste pretplaćeni.</value>
+  </data>
+  <data name="BlogPost_NewCommentClickToReply" xml:space="preserve">
+    <value>Klikni ovdje za dodavanje nove poruke.</value>
+  </data>
+  <data name="RelatedContent" xml:space="preserve">
+    <value>Vezani blog članci</value>
+  </data>
+  <data name="BlogList" xml:space="preserve">
+    <value>Svi blogovi</value>
+  </data>
+  <data name="BlogPostList_Filter_ShowAll" xml:space="preserve">
+    <value>Svi članci</value>
+  </data>
+  <data name="BlogPostList_Filter_ShowAllToolTip" xml:space="preserve">
+    <value>Prikaži sve članke</value>
+  </data>
+  <data name="BlogPostList_Filter_ShowPublished" xml:space="preserve">
+    <value>Objavljeni članci</value>
+  </data>
+  <data name="BlogPostList_Filter_ShowPublishedToolTip" xml:space="preserve">
+    <value>Prikaži samo objavljene članke</value>
+  </data>
+  <data name="BlogPostList_Filter_ShowUnPublished" xml:space="preserve">
+    <value>Neobjavljeni članci</value>
+  </data>
+  <data name="BlogPostList_Filter_ShowUnPublishedToolTip" xml:space="preserve">
+    <value>Prikaži samo neobjavljene članke</value>
+  </data>
+  <data name="BlogPostList_Filter_Title" xml:space="preserve">
+    <value>Trenutni filter</value>
+  </data>
+</root>

@@ -1,0 +1,1 @@
+﻿<%@ ServiceHost Language="C#" Debug="true" Service="OpenSocial.Service.OpenSocial" CodeBehind="OpenSocial.svc.cs" Factory="OpenSocial.Service.OpenSocialServiceFactory" %>

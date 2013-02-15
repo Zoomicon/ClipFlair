@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" ?> 
+<manifest xmlns="http://schemas.microsoft.com/wlw/manifest/weblog">
+  <options>
+    <clientType>Metaweblog</clientType>
+	  <supportsEmbeds>Yes</supportsEmbeds>
+	  <supportsKeywords>Yes</supportsKeywords>
+	  <supportsNewCategories>Yes</supportsNewCategories>
+	  <supportsNewCategoriesInline>Yes</supportsNewCategoriesInline>
+	  <supportsMultipleCategories>Yes</supportsMultipleCategories>
+	  <supportsCommentPolicy>Yes</supportsCommentPolicy>
+	  <supportsSlug>Yes</supportsSlug>
+	  <supportsExcerpt>Yes</supportsExcerpt>
+	  <supportsPages>No</supportsPages>
+	  <supportsPageParent>No</supportsPageParent>
+    <supportsAuthor>No</supportsAuthor>
+    <requiresHtmlTitles>No</requiresHtmlTitles>
+    <supportsExtendedEntries>Yes</supportsExtendedEntries>
+    <supportsPostAsDraft>Yes</supportsPostAsDraft>
+    <supportsTrackbacks>Yes</supportsTrackbacks>
+    <supportsPingPolicy>Yes</supportsPingPolicy>
+  </options>
+  <weblog>
+    <ServiceName>MonoX</ServiceName>
+    <imageUrl>App_Themes/DefaultAdmin/img/mono16.png</imageUrl>
+    <watermarkImageUrl>App_Themes/DefaultAdmin/img/mono84.png</watermarkImageUrl>
+    <homepageLinkText>View your blog</homepageLinkText>
+    <adminLinkText>Manage your blog</adminLinkText>  
+    <adminUrl><![CDATA[{blog-postapi-url}/../MonoX/Admin/Default.aspx]]></adminUrl>
+  </weblog>
+</manifest>

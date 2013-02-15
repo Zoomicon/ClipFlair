@@ -1,0 +1,935 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="ActivationEmailRecovery_Title" xml:space="preserve">
+    <value>Slanje aktivacijske poruke</value>
+  </data>
+  <data name="ActivationEmailRecovery_UserName" xml:space="preserve">
+    <value>Korisnik</value>
+  </data>
+  <data name="AjaxConfirm_ConfirmDialogMessage" xml:space="preserve">
+    <value>Ok / Otkaži ?</value>
+  </data>
+  <data name="AjaxConfirm_ConfirmDialogTitle" xml:space="preserve">
+    <value>Potvrdi</value>
+  </data>
+  <data name="AjaxConfirm_DeleteDialogMessage" xml:space="preserve">
+    <value>Jeste li sigurni?</value>
+  </data>
+  <data name="AjaxConfirm_DeleteDialogTitle" xml:space="preserve">
+    <value>Obriši</value>
+  </data>
+  <data name="Button_Cancel" xml:space="preserve">
+    <value>Odustani</value>
+  </data>
+  <data name="Button_Cancel_AccessKey" xml:space="preserve">
+    <value>O</value>
+  </data>
+  <data name="Button_Close" xml:space="preserve">
+    <value>Zatvori</value>
+  </data>
+  <data name="Button_Close_AccessKey" xml:space="preserve">
+    <value>Z</value>
+  </data>
+  <data name="Button_Delete" xml:space="preserve">
+    <value>Briši</value>
+  </data>
+  <data name="Button_Delete_AccessKey" xml:space="preserve">
+    <value>B</value>
+  </data>
+  <data name="Button_Edit" xml:space="preserve">
+    <value>Promjeni</value>
+  </data>
+  <data name="Button_Edit_AccessKey" xml:space="preserve">
+    <value>P</value>
+  </data>
+  <data name="Button_Save" xml:space="preserve">
+    <value>Snimi</value>
+  </data>
+  <data name="Button_Save_AccessKey" xml:space="preserve">
+    <value>S</value>
+  </data>
+  <data name="Button_Send" xml:space="preserve">
+    <value>Pošalji</value>
+  </data>
+  <data name="Button_Send_AccessKey" xml:space="preserve">
+    <value>P</value>
+  </data>
+  <data name="Button_Update" xml:space="preserve">
+    <value>Unesi</value>
+  </data>
+  <data name="Button_Update_AccessKey" xml:space="preserve">
+    <value>U</value>
+  </data>
+  <data name="Button_Upload" xml:space="preserve">
+    <value>Upload</value>
+  </data>
+  <data name="Button_Upload_AccessKey" xml:space="preserve">
+    <value>U</value>
+  </data>
+  <data name="Captcha_imgCaptcha_AlternateText" xml:space="preserve">
+    <value>Vizualna verifikacija</value>
+  </data>
+  <data name="Captcha_ImgCaptcha_ToolTip" xml:space="preserve">
+    <value>Molimo upišete sigurnosni kod koji je prikazan na slici.</value>
+  </data>
+  <data name="Captcha_LblInvalidCaptcha_Text" xml:space="preserve">
+    <value>Captcha kod je neispravan. Molimo pokušajte ponovno.</value>
+  </data>
+  <data name="Captcha_RefreshCode" xml:space="preserve">
+    <value>Osvježi Captcha kod</value>
+  </data>
+  <data name="Captcha_ReqCaptchaCode_ErrorMessage" xml:space="preserve">
+    <value>Molimo upišete sigurnosni kod.</value>
+  </data>
+  <data name="Confirmation_RequestErrorText" xml:space="preserve">
+    <value>Vaš zahtjev nije ispravno formatiran i kao takav ne može biti obrađen.</value>
+  </data>
+  <data name="Confirmation_RequestErrorTitle" xml:space="preserve">
+    <value>Pogreška kod obrade zahtjeva.</value>
+  </data>
+  <data name="ContactForm_Email" xml:space="preserve">
+    <value>Vaša e-mail adresa:</value>
+  </data>
+  <data name="ContactForm_Message" xml:space="preserve">
+    <value>Poruka:</value>
+  </data>
+  <data name="ContactForm_Name" xml:space="preserve">
+    <value>Vaše ime:</value>
+  </data>
+  <data name="ContactForm_Subject" xml:space="preserve">
+    <value>Predmet:</value>
+  </data>
+  <data name="ContactForm_SuccessfulSend" xml:space="preserve">
+    <value>Vaša poruka je poslana.</value>
+  </data>
+  <data name="ContactForm_Title" xml:space="preserve">
+    <value>Obrazac za kontakt</value>
+  </data>
+  <data name="ContactForm_UnSuccessfulSend" xml:space="preserve">
+    <value>Poruka nije poslana, molimo pokušajte ponovo.</value>
+  </data>
+  <data name="CustomRadEditor_MaxLenReached" xml:space="preserve">
+    <value>Dosegli ste limit od maksimalno {0} dozvoljenih karaktera!</value>
+  </data>
+  <data name="DualListBox_MaxErrorMessage" xml:space="preserve">
+    <value>Dosegnut maksimalan broj stavki!</value>
+  </data>
+  <data name="DualListBox_MinErrorMessage" xml:space="preserve">
+    <value>Dosegnut minimalan broj stavki!</value>
+  </data>
+  <data name="DualListBox_MinItemsRequired" xml:space="preserve">
+    <value>Minimum od {0} stavki mora biti prisutan!</value>
+  </data>
+  <data name="DualListBox_NoPreference" xml:space="preserve">
+    <value>Prazno</value>
+  </data>
+  <data name="Email_Activation_HtmlContent" xml:space="preserve">
+    <value>Poštovani/a &lt;i&gt;{0}&lt;/i&gt;, ovo je e-mail za aktiviranje vašeg {1} korisničkog računa. Molimo kliknite na sljedeći link kako biste aktivirali vaš korisnički račun:
+&lt;br /&gt;&lt;br /&gt;
+&lt;a href="{2}"&gt;{2}&lt;/a&gt;
+&lt;br /&gt;&lt;br /&gt;&lt;br /&gt;
+Pozdrav,
+&lt;br /&gt;&lt;br /&gt;
+Vaš {1} tim</value>
+  </data>
+  <data name="Email_Activation_PlainContent" xml:space="preserve">
+    <value>Poštovani/a {0}, ovo je e-mail za aktiviranje vašeg {1} korisničkog računa. Molimo kliknite na sljedeći link kako biste aktivirali vaš korisnički račun:
+
+{2}
+
+
+Pozdrav,
+
+Vaš {1} tim</value>
+  </data>
+  <data name="Email_Activation_Title" xml:space="preserve">
+    <value>Aktivacija korisničkog računa</value>
+  </data>
+  <data name="Email_PasswordRecovery_HtmlContent" xml:space="preserve">
+    <value>Poštovani/a &lt;i&gt;{0}&lt;/i&gt;, zaprimili smo zahtjev za slanje zaboravljene lozinke za vaš {1} korisnički račun.
+&lt;br /&gt;&lt;br /&gt;
+Vaša lozinka je: &lt;b&gt;{2}&lt;/b&gt;
+&lt;br /&gt;&lt;br /&gt;&lt;br /&gt;
+Pozdrav,
+&lt;br /&gt;&lt;br /&gt;
+Vaš {1} tim</value>
+  </data>
+  <data name="Email_PasswordRecovery_PlainContent" xml:space="preserve">
+    <value>Poštovani/a {0}, zaprimili smo zahtjev za slanje zaboravljene lozinke za vaš {1} korisnički račun.
+
+Vaša lozinka je: {2}
+
+
+Pozdrav,
+
+Vaš {1} tim</value>
+  </data>
+  <data name="Email_PasswordRecovery_Title" xml:space="preserve">
+    <value>Zaboravljena lozinka</value>
+  </data>
+  <data name="ErrorMessage_ActivationEmail" xml:space="preserve">
+    <value>Došlo je do neočekivane pogreške prilikom slanja aktivacijskog e-maila. Vaš korisnički račun je uspješno kreiran, ali se ne možete ulogirati bez aktivacije. Da bi ponovo pokušali poslati aktivacijski e-mail, molimo posjetite &lt;a href="{0}"&gt;stranicu za slanje aktivacijske poruke&lt;/a&gt;. Ukoliko se problem nastavi ponavljati, molimo kontaktirajte nas.</value>
+  </data>
+  <data name="ErrorMessage_ActivationEmailRecovery_UserAlreadyActive" xml:space="preserve">
+    <value>Vaš korisnički račun je već aktiviran, nema potrebe za slanjem aktivacijskog e-maila.</value>
+  </data>
+  <data name="ErrorMessage_ActivationUrl" xml:space="preserve">
+    <value>Došlo je do problema pri aktivaciji. Ukoliko ste vaš aktivacijski link kopirali u adresno polje vašeg internet preglednika, molimo provjerite da je u potpunosti identičan linku koji ste dobili u aktivacijskom e-mailu. Ukoliko ste direktno kliknuli na link u e-mailu ili ste sigurni da ste u potpunosti točno kopirali link u vaš internet preglednik, molimo kontaktirajte našu podršku.</value>
+  </data>
+  <data name="ErrorMessage_InvalidUserName" xml:space="preserve">
+    <value>Ne postoji korisnik sa navedenim korisničkim imenom.</value>
+  </data>
+  <data name="ErrorMessage_Login" xml:space="preserve">
+    <value>Logiranje nije uspjelo, neispravno korisničko ime ili lozinka.</value>
+  </data>
+  <data name="ErrorMessage_Login_LockedOut" xml:space="preserve">
+    <value>Vaš korisnički račun je zaključan usljed previše neispravnih pokušaja logiranja. Molimo kontaktirajte nas kako bi otključali vaš korisnički račun.</value>
+  </data>
+  <data name="ErrorMessage_Login_NotActivated" xml:space="preserve">
+    <value>Vaš korisnički račun još uvijek nije aktivaran. Molimo aktivirajte ga pomoću aktivacijskog e-mail-a koji vam je poslan. Ukoliko niste dobili e-mail, pokušajte ga ponovo generirati odlaskom na &lt;a href="{0}"&gt;stranicu za slanje aktivacijske poruke&lt;/a&gt;. Ukoliko niste u mogućnosti primiti aktivacijski e-mail, molimo kontaktirajte nas.</value>
+  </data>
+  <data name="ErrorMessage_OpenId_AuthenticationCanceled" xml:space="preserve">
+    <value>OpenID autentikacija je prekinuta.</value>
+  </data>
+  <data name="ErrorMessage_OpenId_AuthenticationFailed" xml:space="preserve">
+    <value>Neuspješna OpenID autentikacija. Molimo provjerite vaš OpenID.</value>
+  </data>
+  <data name="ErrorMessage_OpenId_Format" xml:space="preserve">
+    <value>Pogrešan format OpenID logina.</value>
+  </data>
+  <data name="ErrorMessage_OpenId_ImmediateMode" xml:space="preserve">
+    <value>Morate se prijaviti na OpenID sustav za korištenje ovog moda.</value>
+  </data>
+  <data name="Global_Email" xml:space="preserve">
+    <value>E-mail</value>
+  </data>
+  <data name="Global_Error" xml:space="preserve">
+    <value>Greška</value>
+  </data>
+  <data name="Global_OK" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="Global_Password" xml:space="preserve">
+    <value>Lozinka</value>
+  </data>
+  <data name="Global_RepeatPassword" xml:space="preserve">
+    <value>Ponovi lozinku</value>
+  </data>
+  <data name="Global_UserName" xml:space="preserve">
+    <value>Korisnik</value>
+  </data>
+  <data name="HtmlEditor_DefaultText" xml:space="preserve">
+    <value>Molimo unesite tekst u ovaj modul.</value>
+  </data>
+  <data name="HtmlEditor_DefaultTitle" xml:space="preserve">
+    <value>Unesite naslov</value>
+  </data>
+  <data name="HtmlEditor_EditVerbDescription" xml:space="preserve">
+    <value>Izmjena teksta</value>
+  </data>
+  <data name="HtmlEditor_EditVerbText" xml:space="preserve">
+    <value>Izmjeni</value>
+  </data>
+  <data name="HtmlEditor_History" xml:space="preserve">
+    <value>Povijest promjena</value>
+  </data>
+  <data name="HtmlEditor_ResetConfirmation" xml:space="preserve">
+    <value>Sadržaj ovog modula će biti postavljen na inicijalnu vrijednost. Nastavak?</value>
+  </data>
+  <data name="HtmlEditor_ResetVerbDescription" xml:space="preserve">
+    <value>Resetiranje sadržaja modula</value>
+  </data>
+  <data name="HtmlEditor_ResetVerbText" xml:space="preserve">
+    <value>Reset</value>
+  </data>
+  <data name="Label_Loading" xml:space="preserve">
+    <value>Učitavanje...</value>
+  </data>
+  <data name="Label_NoData" xml:space="preserve">
+    <value>Nema podataka koji odgovaraju kriterijima za pretraživanje.</value>
+  </data>
+  <data name="LocaleChanger_DefaultLangTitle" xml:space="preserve">
+    <value>Osnovni</value>
+  </data>
+  <data name="LoginName_FormatString" xml:space="preserve">
+    <value>Prijavljeni ste kao: {0}</value>
+  </data>
+  <data name="LoginStatus_LoginText" xml:space="preserve">
+    <value>Kliknite ovdje za prijavu</value>
+  </data>
+  <data name="LoginStatus_LogoutText" xml:space="preserve">
+    <value>Kliknite ovdje za odjavu</value>
+  </data>
+  <data name="Login_Login" xml:space="preserve">
+    <value>Prijava</value>
+  </data>
+  <data name="Login_OpenId" xml:space="preserve">
+    <value>OpenID</value>
+  </data>
+  <data name="Login_OpenId_Error_Create" xml:space="preserve">
+    <value>Korisnički račun nije moguće kreirati.</value>
+  </data>
+  <data name="Login_OpenId_Example" xml:space="preserve">
+    <value>Primjer:</value>
+  </data>
+  <data name="Login_OpenId_Login" xml:space="preserve">
+    <value>OpenID:</value>
+  </data>
+  <data name="Login_OpenId_PasswordQuestion" xml:space="preserve">
+    <value>Ovo je OpenID korisničko ime. Koji nadimak koristite u OpenID sustavu?</value>
+  </data>
+  <data name="Login_OpenId_Register" xml:space="preserve">
+    <value>Prijava za OpenID</value>
+  </data>
+  <data name="Login_OpenId_Register_ToolTip" xml:space="preserve">
+    <value>Prijavite se za besplatni OpenID korisnički račun</value>
+  </data>
+  <data name="Login_OpenId_Title" xml:space="preserve">
+    <value>Prijava uporabom OpenID sustava</value>
+  </data>
+  <data name="Login_Password" xml:space="preserve">
+    <value>Lozinka:</value>
+  </data>
+  <data name="Login_PasswordRecoveryText" xml:space="preserve">
+    <value>Pronalaženje zaboravljene lozinke</value>
+  </data>
+  <data name="Login_Register" xml:space="preserve">
+    <value>Registracija</value>
+  </data>
+  <data name="Login_RememberMe" xml:space="preserve">
+    <value>Zapamti me</value>
+  </data>
+  <data name="Login_Title" xml:space="preserve">
+    <value>Unesite vaše podatke</value>
+  </data>
+  <data name="Login_UserName" xml:space="preserve">
+    <value>Korisnik:</value>
+  </data>
+  <data name="MembershipEditor_CreateAccount" xml:space="preserve">
+    <value>Izradi moj račun</value>
+  </data>
+  <data name="MembershipEditor_Email" xml:space="preserve">
+    <value>E-mail</value>
+  </data>
+  <data name="MembershipEditor_Password" xml:space="preserve">
+    <value>Lozinka</value>
+  </data>
+  <data name="MembershipEditor_RememberMe" xml:space="preserve">
+    <value>Zapamti me</value>
+  </data>
+  <data name="MembershipEditor_RepeatPassword" xml:space="preserve">
+    <value>Ponovi lozinku</value>
+  </data>
+  <data name="MembershipEditor_Title_CreateAccount" xml:space="preserve">
+    <value>Registriracija novog korisničkog računa</value>
+  </data>
+  <data name="MembershipEditor_Title_UpdateAccount" xml:space="preserve">
+    <value>Promjena korisničkog računa</value>
+  </data>
+  <data name="MembershipEditor_UpdateAccount" xml:space="preserve">
+    <value>Snimi promjene</value>
+  </data>
+  <data name="MembershipEditor_UserName" xml:space="preserve">
+    <value>Korisnik</value>
+  </data>
+  <data name="Message_AccountActivated_Description" xml:space="preserve">
+    <value>Vaš korisnički račun je uspješno aktiviran. Aktivacijom ste se automatski logirali.</value>
+  </data>
+  <data name="Message_AccountActivated_Title" xml:space="preserve">
+    <value>Aktivacija korisničkog računa</value>
+  </data>
+  <data name="Message_AccountActivationEmailSent_Description" xml:space="preserve">
+    <value>E-mail je poslan na adresu koju ste naveli.&lt;br /&gt;U njemu se nalazi aktivacijski link na koji je potrebno kliknuti. Nakon toga će vaš račun postati aktiviran i automatski ćete biti ulogirani.&lt;br /&gt;Ukoliko ne dobijete e-mail u roku od 10 minuta, molimo kontaktirajte nas.</value>
+  </data>
+  <data name="Message_AccountActivationEmailSent_Title" xml:space="preserve">
+    <value>Aktivacijski e-mail je uspješno poslan.</value>
+  </data>
+  <data name="Message_AccountCreated_Description" xml:space="preserve">
+    <value>Da bi se mogli logirati, potrebno je aktivirati vaš korisnički račun. E-mail je poslan na adresu koju ste naveli. U njemu se nalazi aktivacijski link na koji je potrebno kliknuti. Nakon toga će vaš račun postati aktiviran i automatski ćete biti ulogirani.&lt;br /&gt;&lt;br /&gt;Ukoliko ne dobijete e-mail u roku od 10 minuta, molimo pokušajte ga ponovo generirati odlaskom na &lt;a href="{0}"&gt;stranicu za slanje aktivacijske poruke&lt;/a&gt;. Ukoliko se problem nastavi ponavljati, molimo kontaktirajte nas.</value>
+  </data>
+  <data name="Message_AccountCreated_Title" xml:space="preserve">
+    <value>Vaš korisnički račun je uspješno kreiran.</value>
+  </data>
+  <data name="Message_PasswordRecoveryEmailSent_Description" xml:space="preserve">
+    <value>Molimo provjerite vaš e-mail, uskoro bi trebali dobiti poruku sa vašom lozinkom.&lt;br /&gt;Ukoliko ne dobijete e-mail u roku od 10 minuta, molimo kontaktirajte nas.</value>
+  </data>
+  <data name="Message_PasswordRecoveryEmailSent_Title" xml:space="preserve">
+    <value>E-mail sa zaboravljenom lozinkom je uspješno poslan.</value>
+  </data>
+  <data name="MonoXMaster_AppearanceEditorPart_Title" xml:space="preserve">
+    <value>Prikaz</value>
+  </data>
+  <data name="MonoXMaster_AutoRegisterCatalogPart_Title" xml:space="preserve">
+    <value>Glavni katalog Web modula</value>
+  </data>
+  <data name="MonoXMaster_BehaviorEditorPart_Title" xml:space="preserve">
+    <value>Ponašanje</value>
+  </data>
+  <data name="MonoXMaster_CatalogPane_Text" xml:space="preserve">
+    <value>Katalog modula</value>
+  </data>
+  <data name="MonoXMaster_CatalogZone_EmptyZoneText" xml:space="preserve">
+    <value>Katalog Web modula je trenutno prazan.</value>
+  </data>
+  <data name="MonoXMaster_CatalogZone_HeaderText" xml:space="preserve">
+    <value>Katalog modula</value>
+  </data>
+  <data name="MonoXMaster_CatalogZone_InstructionText" xml:space="preserve">
+    <value>Odaberite katalog koji želite koristiti.</value>
+  </data>
+  <data name="MonoXMaster_CatalogZone_SelectTargetZoneText" xml:space="preserve">
+    <value>Dodaj u:</value>
+  </data>
+  <data name="MonoXMaster_ConnectionsPane_Text" xml:space="preserve">
+    <value>Komunikacija modula</value>
+  </data>
+  <data name="MonoXMaster_ConnectionsZone_ConfigureConnectionTitle" xml:space="preserve">
+    <value>Upravljanje konekcijama</value>
+  </data>
+  <data name="MonoXMaster_ConnectionsZone_ConnectToConsumerInstructionText" xml:space="preserve">
+    <value>Kreirajte korisničku konekciju za ovaj modul.</value>
+  </data>
+  <data name="MonoXMaster_ConnectionsZone_ConnectToConsumerText" xml:space="preserve">
+    <value>Kreirajte konekciju prema korisničkom modulu.</value>
+  </data>
+  <data name="MonoXMaster_ConnectionsZone_ConnectToConsumerTitle" xml:space="preserve">
+    <value>Slanje podataka</value>
+  </data>
+  <data name="MonoXMaster_ConnectionsZone_ConnectToProviderInstructionText" xml:space="preserve">
+    <value>Kreirajte davateljsku konekciju za ovaj modul.</value>
+  </data>
+  <data name="MonoXMaster_ConnectionsZone_ConnectToProviderText" xml:space="preserve">
+    <value>Kreirajte konekciju prema davateljskom modulu.</value>
+  </data>
+  <data name="MonoXMaster_ConnectionsZone_ConnectToProviderTitle" xml:space="preserve">
+    <value>Preuzimanje podataka iz Web modula</value>
+  </data>
+  <data name="MonoXMaster_ConnectionsZone_ConsumersInstructionText" xml:space="preserve">
+    <value>Moduli kojima odabrani modul trenutno šalje podatke:</value>
+  </data>
+  <data name="MonoXMaster_ConnectionsZone_ConsumersTitle" xml:space="preserve">
+    <value>Korisnici</value>
+  </data>
+  <data name="MonoXMaster_ConnectionsZone_ExistingConnectionErrorMessage" xml:space="preserve">
+    <value>Ova je konekcija trenutno neaktivna jer neke od komunikacijskih krajnjih točaka nisu dostupne.</value>
+  </data>
+  <data name="MonoXMaster_ConnectionsZone_GetFromText" xml:space="preserve">
+    <value>Od:</value>
+  </data>
+  <data name="MonoXMaster_ConnectionsZone_GetText" xml:space="preserve">
+    <value>Preuzmi:</value>
+  </data>
+  <data name="MonoXMaster_ConnectionsZone_HeaderText" xml:space="preserve">
+    <value>Komunikacija modula</value>
+  </data>
+  <data name="MonoXMaster_ConnectionsZone_InstructionText" xml:space="preserve">
+    <value>Upravljanje konekcijama za odabrani Web modul.</value>
+  </data>
+  <data name="MonoXMaster_ConnectionsZone_InstructionTitle" xml:space="preserve">
+    <value>Upravljanje konakcijama za {0}</value>
+  </data>
+  <data name="MonoXMaster_ConnectionsZone_NewConnectionErrorMessage" xml:space="preserve">
+    <value>Nije moguće nastaviti s kreiranjem konekcije jer odabrani moduli ili nisu dostupni ili nisu kompatibilni, odnosno  ne podržavaju višestruke konekcije.</value>
+  </data>
+  <data name="MonoXMaster_ConnectionsZone_NoExistingConnectionInstructionText" xml:space="preserve">
+    <value>Nema aktivnih konekcija. Možete kreirati novu konekciju koristeći navedene linkove ukoliko na stranici postoje kompatibilni komunikacijski moduli.</value>
+  </data>
+  <data name="MonoXMaster_ConnectionsZone_NoExistingConnectionTitle" xml:space="preserve">
+    <value>Nema aktivnih konakcija</value>
+  </data>
+  <data name="MonoXMaster_ConnectionsZone_ProvidersInstructionText" xml:space="preserve">
+    <value>Moduli od kojih odabrani modul prima podatke:</value>
+  </data>
+  <data name="MonoXMaster_ConnectionsZone_ProvidersTitle" xml:space="preserve">
+    <value>Davatelji</value>
+  </data>
+  <data name="MonoXMaster_ConnectionsZone_SendText" xml:space="preserve">
+    <value>Pošiljatelj:</value>
+  </data>
+  <data name="MonoXMaster_ConnectionsZone_SendToText" xml:space="preserve">
+    <value>Primatelj:</value>
+  </data>
+  <data name="MonoXMaster_CopiedCatalogPart_Title" xml:space="preserve">
+    <value>Kopirani moduli</value>
+  </data>
+  <data name="MonoXMaster_CurrentLanguageText" xml:space="preserve">
+    <value>Aktivni jezik</value>
+  </data>
+  <data name="MonoXMaster_CurrentModeText" xml:space="preserve">
+    <value>Način rada</value>
+  </data>
+  <data name="MonoXMaster_DeclarativeCatalogPart_Title" xml:space="preserve">
+    <value>Deklarativni katalog Web modula</value>
+  </data>
+  <data name="MonoXMaster_EditorPane_Text" xml:space="preserve">
+    <value>Svojstva modula</value>
+  </data>
+  <data name="MonoXMaster_EditorZone_ApplyVerb_Description" xml:space="preserve">
+    <value>Snima promjene</value>
+  </data>
+  <data name="MonoXMaster_EditorZone_ApplyVerb_Text" xml:space="preserve">
+    <value>Primjeni</value>
+  </data>
+  <data name="MonoXMaster_EditorZone_CancelVerb_Description" xml:space="preserve">
+    <value>Otkazuje promjene</value>
+  </data>
+  <data name="MonoXMaster_EditorZone_CancelVerb_Text" xml:space="preserve">
+    <value>Otkaži</value>
+  </data>
+  <data name="MonoXMaster_EditorZone_EmptyZoneText" xml:space="preserve">
+    <value>Nema dostupnih uređivačkih modula.</value>
+  </data>
+  <data name="MonoXMaster_EditorZone_HeaderText" xml:space="preserve">
+    <value>Uređivanje svojstava modula</value>
+  </data>
+  <data name="MonoXMaster_EditorZone_InstructionText" xml:space="preserve">
+    <value>Podesite željena svojstva i po završetku kliknite na OK za spremanje promjena.</value>
+  </data>
+  <data name="MonoXMaster_EditorZone_OKVerb_Description" xml:space="preserve">
+    <value>Snima promjena i zatvara editor</value>
+  </data>
+  <data name="MonoXMaster_EditorZone_OKVerb_Text" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="MonoXMaster_ImgHelp_ToolTip" xml:space="preserve">
+    <value>MonoX Priručnik</value>
+  </data>
+  <data name="MonoXMaster_ImgToggle_AlternateText" xml:space="preserve">
+    <value>Otvaranje/zatvaranje administrativnog panela</value>
+  </data>
+  <data name="MonoXMaster_ImgToggle_ToolTip" xml:space="preserve">
+    <value>Otvaranje/zatvaranje administrativnog panela</value>
+  </data>
+  <data name="MonoXMaster_ImportCatalogPart_Title" xml:space="preserve">
+    <value>Uvezeni Web moduli</value>
+  </data>
+  <data name="MonoXMaster_LayoutEditorPart_Title" xml:space="preserve">
+    <value>Raspored</value>
+  </data>
+  <data name="MonoXMaster_LoginNameShort_FormatString" xml:space="preserve">
+    <value>Prijavljeni ste kao: {0}</value>
+  </data>
+  <data name="MonoXMaster_LoginName_FormatString" xml:space="preserve">
+    <value>Prijavljeni ste kao: {0}</value>
+  </data>
+  <data name="MonoXMaster_LoginName_ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="MonoXMaster_LoginStatusShort_LogoutText" xml:space="preserve">
+    <value>Kliknite za odjavu</value>
+  </data>
+  <data name="MonoXMaster_LoginStatus_LoginText" xml:space="preserve">
+    <value>Prijava</value>
+  </data>
+  <data name="MonoXMaster_LoginStatus_LogoutText" xml:space="preserve">
+    <value>Odjava</value>
+  </data>
+  <data name="MonoXMaster_LoginStatus_ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="MonoXMaster_LtlClickHere_Text" xml:space="preserve">
+    <value>Promjena izgleda i funkcionalnosti stranice</value>
+  </data>
+  <data name="MonoXMaster_LtlPortalAdmin_Text" xml:space="preserve">
+    <value>Glavni administracijski panel</value>
+  </data>
+  <data name="MonoXMaster_PageCatalogPart_Title" xml:space="preserve">
+    <value>Katalog zatvorenih modula</value>
+  </data>
+  <data name="MonoXMaster_PageTasksPane_Text" xml:space="preserve">
+    <value>Akcije</value>
+  </data>
+  <data name="MonoXMaster_PnlToggle_GroupingText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="MonoXMaster_PnlToggle_ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="MonoXMaster_PnlToolboxMain_GroupingText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="MonoXMaster_PnlToolboxMain_ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="MonoXMaster_PortalModuleTasksPane_Text" xml:space="preserve">
+    <value>Rad s portalskim modulima</value>
+  </data>
+  <data name="MonoXMaster_PropertyGridEditorPart_Title" xml:space="preserve">
+    <value>Posebna svojstva</value>
+  </data>
+  <data name="News_Title" xml:space="preserve">
+    <value>Vijesti</value>
+  </data>
+  <data name="PageModeChanger_ModeDropdownToolTip" xml:space="preserve">
+    <value>Odaberite način rada</value>
+  </data>
+  <data name="PasswordRecovery_Title" xml:space="preserve">
+    <value>Zaboravljena lozinka</value>
+  </data>
+  <data name="PasswordRecovery_UserName" xml:space="preserve">
+    <value>Korisnik</value>
+  </data>
+  <data name="Poll_ResultsButtonText" xml:space="preserve">
+    <value>Rezultati</value>
+  </data>
+  <data name="Poll_TotalVotesTemplateText" xml:space="preserve">
+    <value>Ukupno: {0} glas(ova). </value>
+  </data>
+  <data name="Poll_VoteButtonText" xml:space="preserve">
+    <value>Glasuj</value>
+  </data>
+  <data name="Search_BtnSearch2" xml:space="preserve">
+    <value>Idi</value>
+  </data>
+  <data name="Search_BtnSearchTooltip" xml:space="preserve">
+    <value>Kliknite ovdje za pretraživanje</value>
+  </data>
+  <data name="Search_LabNoSearchProviderSelected" xml:space="preserve">
+    <value>Nije odabran niti jedan provider za traženje.</value>
+  </data>
+  <data name="UserPicker_ToolTip" xml:space="preserve">
+    <value>Savjet: korisnike možete pronaći tako što počnete tipkati korisničko ime, ime ili prezime korisnika. Možete unijeti neograničen broj korisnika - pojedinačna imena razdvojite zarezima.</value>
+  </data>
+  <data name="ValidationMessage_Email" xml:space="preserve">
+    <value>Molimo unesite ispravnu vrijednost za '{0}'.</value>
+  </data>
+  <data name="ValidationMessage_Name" xml:space="preserve">
+    <value>Molimo koristite samo slova, brojeve i interpunkcijske znakove za '{0}'.</value>
+  </data>
+  <data name="ValidationMessage_PasswordMatch" xml:space="preserve">
+    <value>Unesena lozinka i ponovljena lozinka nisu iste.</value>
+  </data>
+  <data name="ValidationMessage_RequiredField" xml:space="preserve">
+    <value>Molimo unesite vrijednost za '{0}'.</value>
+  </data>
+  <data name="PeopleSearch_DefaultText" xml:space="preserve">
+    <value>Pretraživanje korisnika</value>
+  </data>
+  <data name="SiteSearch_DefaultText" xml:space="preserve">
+    <value>Traži...</value>
+  </data>
+  <data name="Search_Go" xml:space="preserve">
+    <value>Idi</value>
+  </data>
+  <data name="Footer_Register" xml:space="preserve">
+    <value>Nemate korisnički račun? Registrirajte se ovdje!</value>
+  </data>
+  <data name="Login_RegisterInvitation" xml:space="preserve">
+    <value>Registrirajte se ovdje!</value>
+  </data>
+  <data name="Captcha_ImageTitle" xml:space="preserve">
+    <value>Captcha AntiSpam Sigurnost</value>
+  </data>
+  <data name="Captcha_LongInfo" xml:space="preserve">
+    <value>&lt;a href="http://en.wikipedia.org/wiki/CAPTCHA" title="Kliknite ovdje za više informacija o Captcha-i"&gt;CAPTCHA&lt;/a&gt; se koriste za sprečavanje automatiziranog softvera od obavljanja radnji
+                    koji degradiraju kvalitetu usluge određenog sustava,
+                    bilo zbog zlouporabe ili prekomjernog korištenja resursa.</value>
+  </data>
+  <data name="Captcha_ShortInfo" xml:space="preserve">
+    <value>Molimo utipkajte sigurnosni kod prikazan na slici.</value>
+  </data>
+  <data name="ContactForm_AddressLabel" xml:space="preserve">
+    <value>Adresa:</value>
+  </data>
+  <data name="ContactForm_ContactInfoTitle" xml:space="preserve">
+    <value>Kontakt informacije</value>
+  </data>
+  <data name="ContactForm_FaxLabel" xml:space="preserve">
+    <value>Fax:</value>
+  </data>
+  <data name="ContactForm_PhoneLabel" xml:space="preserve">
+    <value>Telefon:</value>
+  </data>
+  <data name="ContactForm_SendButton" xml:space="preserve">
+    <value>Pošalji</value>
+  </data>
+  <data name="Login_ViewProfile" xml:space="preserve">
+    <value>Profil korisnika</value>
+  </data>
+  <data name="Search_EnterSearchPhrase" xml:space="preserve">
+    <value>Unesite kriterije za pretraživanje</value>
+  </data>
+  <data name="Registration_RegistrationNotAllowed_Description" xml:space="preserve">
+    <value>Registracija nije omogućena na ovom portalu, molimo kontaktirajte korisničku podršku ukoliko želite otvoriti korisnički račun.</value>
+  </data>
+  <data name="Registration_RegistrationNotAllowed_Title" xml:space="preserve">
+    <value>Registracija nije dozvoljena</value>
+  </data>
+  <data name="CachedOnFormatText" xml:space="preserve">
+    <value>U cacheu od {0}</value>
+  </data>
+  <data name="Refresh" xml:space="preserve">
+    <value>Osvježi</value>
+  </data>
+  <data name="ErrorMessage_Upload" xml:space="preserve">
+    <value>Greška kod uploada dataoteka. Molimo provjerite da li sve datoteke imaju ispravnu ekstenziju i veličinu.</value>
+  </data>
+  <data name="DateTimeExtension_DaysAgo" xml:space="preserve">
+    <value>{0} dan(a)</value>
+  </data>
+  <data name="DateTimeExtension_FormatPrefix" xml:space="preserve">
+    <value>prije </value>
+  </data>
+  <data name="DateTimeExtension_FormatSufix" xml:space="preserve">
+    <value />
+  </data>
+  <data name="DateTimeExtension_HoursAgo" xml:space="preserve">
+    <value>{0} sat(i)</value>
+  </data>
+  <data name="DateTimeExtension_JustNow" xml:space="preserve">
+    <value>ovog trenutka</value>
+  </data>
+  <data name="DateTimeExtension_MinutesAgo" xml:space="preserve">
+    <value>{0} minute(a)</value>
+  </data>
+  <data name="DateTimeExtension_MonthsAgo" xml:space="preserve">
+    <value>{0} mjesec(i)</value>
+  </data>
+  <data name="DateTimeExtension_OneHourAgo" xml:space="preserve">
+    <value>jednog sata</value>
+  </data>
+  <data name="DateTimeExtension_OneMinuteAgo" xml:space="preserve">
+    <value>1 minute</value>
+  </data>
+  <data name="DateTimeExtension_OneYearAgo" xml:space="preserve">
+    <value>1 godine</value>
+  </data>
+  <data name="DateTimeExtension_WeeksAgo" xml:space="preserve">
+    <value>{0} tjedan(a)</value>
+  </data>
+  <data name="DateTimeExtension_YearsAgo" xml:space="preserve">
+    <value>{0} godina</value>
+  </data>
+  <data name="DateTimeExtension_Yesterday" xml:space="preserve">
+    <value>jučer</value>
+  </data>
+  <data name="DateTimeExtension_OneWeekAgo" xml:space="preserve">
+    <value>1 tjedna</value>
+  </data>
+  <data name="MonoXRating_CaptionToolTip" xml:space="preserve">
+    <value>Sadržaj je ocijenjen sa {0:f2} od ukupno {1} glas(ova).</value>
+  </data>
+  <data name="MonoXRating_Caption" xml:space="preserve">
+    <value>Ocjena {0:f2}, {1} glas(ova).</value>
+  </data>
+  <data name="MonoXRating_RatingHistorySubTitle" xml:space="preserve">
+    <value>Prikaz osoba koje su ocjenile ovaj sadržaj i dodjeljenih ocjena.</value>
+  </data>
+  <data name="MonoXRating_RatingHistoryTitle" xml:space="preserve">
+    <value>Povijest ocjena</value>
+  </data>
+  <data name="MonoXRating_ViewHistory" xml:space="preserve">
+    <value>Povijest ocjena</value>
+  </data>
+  <data name="MonoXRating_NotRated" xml:space="preserve">
+    <value>Ovaj sadržaj još nije ocijenjen.</value>
+  </data>
+  <data name="MonoXMaster_ConnectionsZone_GeneralInstructionsText" xml:space="preserve">
+    <value>Molimo odabrati modul koji je komunikacijski "provider" ili "consumer" za prikaz više detalja.</value>
+  </data>
+  <data name="SyntaxHighlighter_EmptyPlaceHolderCaption" xml:space="preserve">
+    <value>unesi kod ovdje</value>
+  </data>
+  <data name="SyntaxHighlighter_MenuRootItemCaption" xml:space="preserve">
+    <value>Unesi kod</value>
+  </data>
+  <data name="MessageCenter" xml:space="preserve">
+    <value>Pregled poruka</value>
+  </data>
+  <data name="PasswordlRecovery_UserName" xml:space="preserve">
+    <value>Korisnik</value>
+  </data>
+  <data name="RelatedContent_Title" xml:space="preserve">
+    <value>Povezani sadržaj</value>
+  </data>
+  <data name="MonoXRating_NoRatePermission" xml:space="preserve">
+    <value>Ne možete ocijeniti ovaj sadržaj (npr. Niste autenticirani, Ovo je vaš sadržaj, Već ste ocijenili ovaj sadržaj itd.).</value>
+  </data>
+  <data name="MonoXRating_RatedByNotMember" xml:space="preserve">
+    <value>Neautenticirani korisnik</value>
+  </data>
+  <data name="ErrorMessage_NotEnablePasswordReset" xml:space="preserve">
+    <value>Resetiranje lozinke nije omogućeno.</value>
+  </data>
+  <data name="ErrorMessage_NotEnablePasswordRetrieval" xml:space="preserve">
+    <value>Dohvaćanje lozinke nije omogućeno.</value>
+  </data>
+  <data name="NotValidUserDataPP" xml:space="preserve">
+    <value>Korisnički podaci nisu više validni, molimo osvježiti podatke.</value>
+  </data>
+  <data name="MonoXMaster_HiddenCatalogPart_Title" xml:space="preserve">
+    <value>Katalog skrivenih modula</value>
+  </data>
+  <data name="PasswordRecovery_SentUnSuccessfully" xml:space="preserve">
+    <value>Greška pri slanju e-maila.</value>
+  </data>
+  <data name="OpenSocial_Allow" xml:space="preserve">
+    <value>Dozvoli</value>
+  </data>
+  <data name="OpenSocial_Deny" xml:space="preserve">
+    <value>Odbij</value>
+  </data>
+  <data name="OpenSocial_RequestMessage" xml:space="preserve">
+    <value>{0} aplikacija zahtjeva pristup vašim društvenim podacima?</value>
+  </data>
+  <data name="ContactForm_MissingContactEMailAddress" xml:space="preserve">
+    <value>Kontakt e-mail adresa nije unesena. Molimo kontaktirajte administratora.</value>
+  </data>
+  <data name="Message_AccountUpdated" xml:space="preserve">
+    <value>Korisnički račun je uspiješno osvježen.</value>
+  </data>
+  <data name="ErrorMessage_UserAccountHasBeenLockedOut" xml:space="preserve">
+    <value>Lozinka nije dohvaćena (Mogući razlozi: Korisnički račun je zaključan, itd. ).</value>
+  </data>
+  <data name="DemoIndicator" xml:space="preserve">
+    <value>Ovo je MonoX demo site. Posjetite &lt;a href="http://www.mono-software.com/"&gt;Mono Software&lt;/a&gt; za više detalja.</value>
+  </data>
+  <data name="DropHere" xml:space="preserve">
+    <value>Spustite modul ovdje</value>
+  </data>
+  <data name="MembershipEditor_TimeZone" xml:space="preserve">
+    <value>Vremenska zona</value>
+  </data>
+  <data name="PasswordRecovery_TitleChange" xml:space="preserve">
+    <value>Izmjena lozinke</value>
+  </data>
+  <data name="Email_PasswordRecoveryRequest_HtmlContent" xml:space="preserve">
+    <value>Poštovani/a &lt;i&gt;{0}&lt;/i&gt;, zaprimili smo zahtjev za slanje zaboravljene lozinke za vaš {1} korisnički račun.
+&lt;br /&gt;&lt;br /&gt;
+Molimo kliknite ovdje za izmjenu lozinke: &lt;b&gt;{2}&lt;/b&gt;
+&lt;br /&gt;&lt;br /&gt;&lt;br /&gt;
+Pozdrav,
+&lt;br /&gt;&lt;br /&gt;
+Vaš {1} tim</value>
+  </data>
+  <data name="Email_PasswordRecoveryRequest_PlainContent" xml:space="preserve">
+    <value>Poštovani/a {0}, zaprimili smo zahtjev za izmjenu lozinke za vaš {1} korisnički račun.
+
+Molimo kliknite ovdje za izmjenu lozinke: {2}
+
+
+Pozdrav,
+
+Vaš {1} tim</value>
+  </data>
+  <data name="PasswordRecovery_RequestExpired" xml:space="preserve">
+    <value>Zahtijev za izmjenu lozinke je istekao</value>
+  </data>
+</root>

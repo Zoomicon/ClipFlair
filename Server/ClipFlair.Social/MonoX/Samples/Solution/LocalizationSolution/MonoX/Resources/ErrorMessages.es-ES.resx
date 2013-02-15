@@ -1,0 +1,201 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Authorization_Description" xml:space="preserve">
+    <value>No está autorizado para ver esta página.</value>
+  </data>
+  <data name="Authorization_Login" xml:space="preserve">
+    <value>No está autorizado para ver esta página. Por favor ingrese (login) con credenciales apropiadas para proceder a esta página.</value>
+  </data>
+  <data name="Authorization_Title" xml:space="preserve">
+    <value>Acceso Denegado</value>
+  </data>
+  <data name="CannotFindLicenseFile" xml:space="preserve">
+    <value>No encuentra el archivo de licencia. Por favor registrar su instalación de MonoX y colocar la licencia en la carpeta bin.</value>
+  </data>
+  <data name="DomainNotLicensed" xml:space="preserve">
+    <value>El dominio {0} no está incluído en la lista de dominios licenciado. Por favor registrar este dominio.</value>
+  </data>
+  <data name="EmailSendingFailed" xml:space="preserve">
+    <value>Ocurrió un error mientras le enviaba un e-mail. Por favor, trate de nuevo, y si el problema persiste, por favor contáctenos.</value>
+  </data>
+  <data name="EntityIdRequired" xml:space="preserve">
+    <value>¡Se requiere un ID de entidad!</value>
+  </data>
+  <data name="ImageTypeRequired" xml:space="preserve">
+    <value>¡Se requiere un tipo de imagen!</value>
+  </data>
+  <data name="LicenseExpired" xml:space="preserve">
+    <value>Esta licencia ha expirado. Por favor obtenga una licencia válida y colóquela en la carpeta bin de este portal.</value>
+  </data>
+  <data name="Membership_Create_UnknownError" xml:space="preserve">
+    <value>Ocurrió un error desconocido. No pudo crear la cuenta, por favor intente más tarde. Si el problema persiste, por favor contáctenos.</value>
+  </data>
+  <data name="Membership_DuplicateEmail" xml:space="preserve">
+    <value>Ya existe un usuario con esta dirección de e-mail.</value>
+  </data>
+  <data name="Membership_DuplicateUserName" xml:space="preserve">
+    <value>Ya existe un usuario con este nombre de usuario.</value>
+  </data>
+  <data name="Membership_InvalidPassword" xml:space="preserve">
+    <value>La palabra clave que nos provee es inválida. Debe tener al menos {0} charactere(s) {1}.</value>
+  </data>
+  <data name="Membership_InvalidPassword_Suffix" xml:space="preserve">
+    <value> y contener al menos {0} caracteres que no sean alfanuméricos.</value>
+  </data>
+  <data name="Membership_Update_UnknownError" xml:space="preserve">
+    <value>Ocurrió un error desconocido. La cuenta no pudo actualizarse, por favor intente de nuevo más tarde. Si el problema persiste, por favor contáctenos.</value>
+  </data>
+  <data name="NumberOfUsersExceeded" xml:space="preserve">
+    <value>La cantidad de usuarios del portal para la edición gratis de MonoX fué excedida. Por favor adquiera una licencia comercial para remover esta limitante.</value>
+  </data>
+  <data name="PageNotFound" xml:space="preserve">
+    <value>Página no encontrada</value>
+  </data>
+  <data name="PageNotFoundDescription" xml:space="preserve">
+    <value>No pudimos encontrar la página que Ud. pidió.</value>
+  </data>
+  <data name="SessionExpired_Description" xml:space="preserve">
+    <value>Ha pasado un tiempo desde su última acción en el navegador. Como resultado, los datos temporales de esta página han expirado y Ud. necesita re-iniciar su proceso de navegación desde el inicio.</value>
+  </data>
+  <data name="SessionExpired_Title" xml:space="preserve">
+    <value>Sesión Expirada</value>
+  </data>
+  <data name="SignatureNotValid" xml:space="preserve">
+    <value>La firma en su archivo de licencia no es válida. Por favor obtenga un archivo válido de licencia.</value>
+  </data>
+  <data name="ToContinueWorkingWithApplication" xml:space="preserve">
+    <value>Para continuar trabajando con la aplicación por favor dé click</value>
+  </data>
+  <data name="ToContinueWorkingWithApplicationClickHere" xml:space="preserve">
+    <value>acá</value>
+  </data>
+  <data name="Unexpected_Title" xml:space="preserve">
+    <value>Error no Esperado</value>
+  </data>
+  <data name="UnhandledError" xml:space="preserve">
+    <value>Ocurrió un error en la aplicación.</value>
+  </data>
+  <data name="UnhandledErrorLongMessage" xml:space="preserve">
+    <value>Este evento ha sido registrado en la bitácora y será atendido por el departamento de mantenimiento. Apreciamos su paciencia.</value>
+  </data>
+  <data name="VersionError" xml:space="preserve">
+    <value>El archivo de licencia necesita actualizarse a la versión {0}.</value>
+  </data>
+</root>

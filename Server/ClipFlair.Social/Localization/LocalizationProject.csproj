@@ -1,0 +1,260 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{F1E09B58-108E-414A-A7F6-654D3EA44AD6}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>MonoSoftware.MonoX</RootNamespace>
+    <AssemblyName>MonoX</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <UpgradeBackupLocation />
+    <UseIISExpress>false</UseIISExpress>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Xml.Linq" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="MonoX\Resources\AdminResources.da-DK.resx" />
+    <EmbeddedResource Include="MonoX\Resources\AdminResources.hr-HR.resx" />
+    <EmbeddedResource Include="MonoX\Resources\AdminResources.it-IT.resx" />
+    <EmbeddedResource Include="MonoX\Resources\AdminResources.resx" />
+    <EmbeddedResource Include="MonoX\Resources\AdminResources.tr-TR.resx" />
+    <EmbeddedResource Include="MonoX\Resources\BlogResources.cs-CZ.resx" />
+    <EmbeddedResource Include="MonoX\Resources\BlogResources.da-DK.resx" />
+    <EmbeddedResource Include="MonoX\Resources\BlogResources.de-DE.resx" />
+    <EmbeddedResource Include="MonoX\Resources\BlogResources.es-ES.resx" />
+    <EmbeddedResource Include="MonoX\Resources\BlogResources.hr-HR.resx" />
+    <EmbeddedResource Include="MonoX\Resources\BlogResources.hu-HU.resx" />
+    <EmbeddedResource Include="MonoX\Resources\BlogResources.it-IT.resx" />
+    <EmbeddedResource Include="MonoX\Resources\BlogResources.pl-PL.resx" />
+    <EmbeddedResource Include="MonoX\Resources\BlogResources.resx" />
+    <EmbeddedResource Include="MonoX\Resources\BlogResources.sk-SK.resx" />
+    <EmbeddedResource Include="MonoX\Resources\BlogResources.tr-TR.resx" />
+    <EmbeddedResource Include="MonoX\Resources\GlobalText.el-GR.resx" />
+    <EmbeddedResource Include="MonoX\Resources\DefaultResources.el-GR.resx" />
+    <EmbeddedResource Include="MonoX\Resources\DefaultResources.cs-CZ.resx" />
+    <EmbeddedResource Include="MonoX\Resources\DefaultResources.da-DK.resx" />
+    <EmbeddedResource Include="MonoX\Resources\DefaultResources.de-DE.resx" />
+    <EmbeddedResource Include="MonoX\Resources\DefaultResources.es-ES.resx" />
+    <EmbeddedResource Include="MonoX\Resources\DefaultResources.hr-HR.resx" />
+    <EmbeddedResource Include="MonoX\Resources\DefaultResources.hu-HU.resx" />
+    <EmbeddedResource Include="MonoX\Resources\DefaultResources.it-IT.resx" />
+    <EmbeddedResource Include="MonoX\Resources\DefaultResources.pl-PL.resx" />
+    <EmbeddedResource Include="MonoX\Resources\DefaultResources.resx" />
+    <EmbeddedResource Include="MonoX\Resources\DefaultResources.sk-SK.resx" />
+    <EmbeddedResource Include="MonoX\Resources\DefaultResources.tr-TR.resx" />
+    <EmbeddedResource Include="MonoX\Resources\ErrorMessages.cs-CZ.resx" />
+    <EmbeddedResource Include="MonoX\Resources\ErrorMessages.da-DK.resx" />
+    <EmbeddedResource Include="MonoX\Resources\ErrorMessages.de-DE.resx" />
+    <EmbeddedResource Include="MonoX\Resources\ErrorMessages.es-ES.resx" />
+    <EmbeddedResource Include="MonoX\Resources\ErrorMessages.hr-HR.resx" />
+    <EmbeddedResource Include="MonoX\Resources\ErrorMessages.hu-HU.resx" />
+    <EmbeddedResource Include="MonoX\Resources\ErrorMessages.it-IT.resx" />
+    <EmbeddedResource Include="MonoX\Resources\ErrorMessages.pl-PL.resx" />
+    <EmbeddedResource Include="MonoX\Resources\ErrorMessages.resx" />
+    <EmbeddedResource Include="MonoX\Resources\ErrorMessages.sk-SK.resx" />
+    <EmbeddedResource Include="MonoX\Resources\ErrorMessages.tr-TR.resx" />
+    <EmbeddedResource Include="MonoX\Resources\EventModuleResources.da-DK.resx" />
+    <EmbeddedResource Include="MonoX\Resources\EventModuleResources.hr-HR.resx" />
+    <EmbeddedResource Include="MonoX\Resources\EventModuleResources.resx" />
+    <EmbeddedResource Include="MonoX\Resources\EventModuleResources.tr-TR.resx" />
+    <EmbeddedResource Include="MonoX\Resources\GlobalText.da-DK.resx" />
+    <EmbeddedResource Include="MonoX\Resources\GlobalText.de-DE.resx" />
+    <EmbeddedResource Include="MonoX\Resources\GlobalText.hr-HR.resx" />
+    <EmbeddedResource Include="MonoX\Resources\GlobalText.it-IT.resx" />
+    <EmbeddedResource Include="MonoX\Resources\GlobalText.resx" />
+    <EmbeddedResource Include="MonoX\Resources\GlobalText.tr-TR.resx" />
+    <EmbeddedResource Include="MonoX\Resources\InstallerResources.es-ES.resx" />
+    <EmbeddedResource Include="MonoX\Resources\InstallerResources.hr-HR.resx" />
+    <EmbeddedResource Include="MonoX\Resources\InstallerResources.resx" />
+    <EmbeddedResource Include="MonoX\Resources\InstallerResources.tr-TR.resx" />
+    <EmbeddedResource Include="MonoX\Resources\JavascriptMessages.da-DK.resx" />
+    <EmbeddedResource Include="MonoX\Resources\JavascriptMessages.hr-HR.resx" />
+    <EmbeddedResource Include="MonoX\Resources\JavascriptMessages.it-IT.resx" />
+    <EmbeddedResource Include="MonoX\Resources\JavascriptMessages.resx" />
+    <EmbeddedResource Include="MonoX\Resources\JavascriptMessages.tr-TR.resx" />
+    <EmbeddedResource Include="MonoX\Resources\MobileResources.hr-HR.resx" />
+    <EmbeddedResource Include="MonoX\Resources\MobileResources.resx" />
+    <EmbeddedResource Include="MonoX\Resources\MobileResources.tr-TR.resx" />
+    <EmbeddedResource Include="MonoX\Resources\Newsletter.da-DK.resx" />
+    <EmbeddedResource Include="MonoX\Resources\Newsletter.es-ES.resx" />
+    <EmbeddedResource Include="MonoX\Resources\Newsletter.hr-HR.resx" />
+    <EmbeddedResource Include="MonoX\Resources\Newsletter.it-IT.resx" />
+    <EmbeddedResource Include="MonoX\Resources\Newsletter.resx" />
+    <EmbeddedResource Include="MonoX\Resources\Newsletter.tr-TR.resx" />
+    <EmbeddedResource Include="MonoX\Resources\PageResources.da-DK.resx" />
+    <EmbeddedResource Include="MonoX\Resources\PageResources.es-ES.resx" />
+    <EmbeddedResource Include="MonoX\Resources\PageResources.hr-HR.resx" />
+    <EmbeddedResource Include="MonoX\Resources\PageResources.it-IT.resx" />
+    <EmbeddedResource Include="MonoX\Resources\PageResources.resx" />
+    <EmbeddedResource Include="MonoX\Resources\PageResources.tr-TR.resx" />
+    <EmbeddedResource Include="MonoX\Resources\Search.da-DK.resx" />
+    <EmbeddedResource Include="MonoX\Resources\Search.es-ES.resx" />
+    <EmbeddedResource Include="MonoX\Resources\Search.hr-HR.resx" />
+    <EmbeddedResource Include="MonoX\Resources\Search.resx" />
+    <EmbeddedResource Include="MonoX\Resources\Search.tr-TR.resx" />
+    <EmbeddedResource Include="MonoX\Resources\SocialNetworkingResources.cs-CZ.resx" />
+    <EmbeddedResource Include="MonoX\Resources\SocialNetworkingResources.da-DK.resx" />
+    <EmbeddedResource Include="MonoX\Resources\SocialNetworkingResources.es-ES.resx" />
+    <EmbeddedResource Include="MonoX\Resources\SocialNetworkingResources.hr-HR.resx" />
+    <EmbeddedResource Include="MonoX\Resources\SocialNetworkingResources.hu-HU.resx" />
+    <EmbeddedResource Include="MonoX\Resources\SocialNetworkingResources.it-IT.resx" />
+    <EmbeddedResource Include="MonoX\Resources\SocialNetworkingResources.pl-PL.resx" />
+    <EmbeddedResource Include="MonoX\Resources\SocialNetworkingResources.resx" />
+    <EmbeddedResource Include="MonoX\Resources\SocialNetworkingResources.sk-SK.resx" />
+    <EmbeddedResource Include="MonoX\Resources\SocialNetworkingResources.tr-TR.resx" />
+    <EmbeddedResource Include="MonoX\Resources\UserProfileResources.cs-CZ.resx" />
+    <EmbeddedResource Include="MonoX\Resources\UserProfileResources.da-DK.resx" />
+    <EmbeddedResource Include="MonoX\Resources\UserProfileResources.de-DE.resx" />
+    <EmbeddedResource Include="MonoX\Resources\UserProfileResources.es-ES.resx" />
+    <EmbeddedResource Include="MonoX\Resources\UserProfileResources.hr-HR.resx" />
+    <EmbeddedResource Include="MonoX\Resources\UserProfileResources.hu-HU.resx" />
+    <EmbeddedResource Include="MonoX\Resources\UserProfileResources.it-IT.resx" />
+    <EmbeddedResource Include="MonoX\Resources\UserProfileResources.pl-PL.resx" />
+    <EmbeddedResource Include="MonoX\Resources\UserProfileResources.resx" />
+    <EmbeddedResource Include="MonoX\Resources\UserProfileResources.sk-SK.resx" />
+    <EmbeddedResource Include="MonoX\Resources\UserProfileResources.tr-TR.resx" />
+    <EmbeddedResource Include="MonoX\Resources\Logging\LogMessages.da-DK.resx" />
+    <EmbeddedResource Include="MonoX\Resources\Logging\LogMessages.es-ES.resx" />
+    <EmbeddedResource Include="MonoX\Resources\Logging\LogMessages.hr-HR.resx" />
+    <EmbeddedResource Include="MonoX\Resources\Logging\LogMessages.it-IT.resx" />
+    <EmbeddedResource Include="MonoX\Resources\Logging\LogMessages.resx" />
+    <EmbeddedResource Include="MonoX\Resources\Logging\LogMessages.tr-TR.resx" />
+    <EmbeddedResource Include="MonoX\Resources\MetaWeblog\MetaWeblog.da-DK.resx" />
+    <EmbeddedResource Include="MonoX\Resources\MetaWeblog\MetaWeblog.es-ES.resx" />
+    <EmbeddedResource Include="MonoX\Resources\MetaWeblog\MetaWeblog.hr-HR.resx" />
+    <EmbeddedResource Include="MonoX\Resources\MetaWeblog\MetaWeblog.resx" />
+    <EmbeddedResource Include="MonoX\Resources\MetaWeblog\MetaWeblog.tr-TR.resx" />
+    <EmbeddedResource Include="MonoX\Resources\News\CategoryContextMenuOperations.da-DK.resx" />
+    <EmbeddedResource Include="MonoX\Resources\News\CategoryContextMenuOperations.hr-HR.resx" />
+    <EmbeddedResource Include="MonoX\Resources\News\CategoryContextMenuOperations.resx" />
+    <EmbeddedResource Include="MonoX\Resources\News\CategoryContextMenuOperations.tr-TR.resx" />
+    <EmbeddedResource Include="MonoX\Resources\News\News.da-DK.resx" />
+    <EmbeddedResource Include="MonoX\Resources\News\News.hr-HR.resx" />
+    <EmbeddedResource Include="MonoX\Resources\News\News.resx" />
+    <EmbeddedResource Include="MonoX\Resources\News\News.tr-TR.resx" />
+    <EmbeddedResource Include="MonoX\Resources\News\NewsAdmin.da-DK.resx" />
+    <EmbeddedResource Include="MonoX\Resources\News\NewsAdmin.es-ES.resx" />
+    <EmbeddedResource Include="MonoX\Resources\News\NewsAdmin.hr-HR.resx" />
+    <EmbeddedResource Include="MonoX\Resources\News\NewsAdmin.it-IT.resx" />
+    <EmbeddedResource Include="MonoX\Resources\News\NewsAdmin.resx" />
+    <EmbeddedResource Include="MonoX\Resources\News\NewsAdmin.tr-TR.resx" />
+    <EmbeddedResource Include="MonoX\Resources\PrivacyManager\PrivacyEditorResource.da-DK.resx" />
+    <EmbeddedResource Include="MonoX\Resources\PrivacyManager\PrivacyEditorResource.es-ES.resx" />
+    <EmbeddedResource Include="MonoX\Resources\PrivacyManager\PrivacyEditorResource.hr-HR.resx" />
+    <EmbeddedResource Include="MonoX\Resources\PrivacyManager\PrivacyEditorResource.resx" />
+    <EmbeddedResource Include="MonoX\Resources\PrivacyManager\PrivacyEditorResource.tr-TR.resx" />
+    <EmbeddedResource Include="MonoX\Resources\WebParts\AutoRegisterCatalogPart.es-ES.resx" />
+    <EmbeddedResource Include="MonoX\Resources\WebParts\AutoRegisterCatalogPart.hr-HR.resx" />
+    <EmbeddedResource Include="MonoX\Resources\WebParts\AutoRegisterCatalogPart.resx" />
+    <EmbeddedResource Include="MonoX\Resources\WebParts\AutoRegisterCatalogPart.tr-TR.resx" />
+    <EmbeddedResource Include="MonoX\Resources\WebParts\BasePart.es-ES.resx" />
+    <EmbeddedResource Include="MonoX\Resources\WebParts\BasePart.hr-HR.resx" />
+    <EmbeddedResource Include="MonoX\Resources\WebParts\BasePart.resx" />
+    <EmbeddedResource Include="MonoX\Resources\WebParts\BasePart.tr-TR.resx" />
+    <EmbeddedResource Include="MonoX\Resources\WebParts\CopiedCatalogPart.es-ES.resx" />
+    <EmbeddedResource Include="MonoX\Resources\WebParts\CopiedCatalogPart.hr-HR.resx" />
+    <EmbeddedResource Include="MonoX\Resources\WebParts\CopiedCatalogPart.resx" />
+    <EmbeddedResource Include="MonoX\Resources\WebParts\CopiedCatalogPart.tr-TR.resx" />
+    <EmbeddedResource Include="MonoX\Resources\WebParts\PortalImportCatalogPart.es-ES.resx" />
+    <EmbeddedResource Include="MonoX\Resources\WebParts\PortalImportCatalogPart.hr-HR.resx" />
+    <EmbeddedResource Include="MonoX\Resources\WebParts\PortalImportCatalogPart.resx" />
+    <EmbeddedResource Include="MonoX\Resources\WebParts\PortalImportCatalogPart.tr-TR.resx" />
+    <EmbeddedResource Include="MonoX\Resources\WebParts\PortalWebPartZone.es-ES.resx" />
+    <EmbeddedResource Include="MonoX\Resources\WebParts\PortalWebPartZone.hr-HR.resx" />
+    <EmbeddedResource Include="MonoX\Resources\WebParts\PortalWebPartZone.resx" />
+    <EmbeddedResource Include="MonoX\Resources\WebParts\PortalWebPartZone.tr-TR.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="web.Debug.config">
+      <DependentUpon>web.config</DependentUpon>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="web.Release.config">
+      <DependentUpon>web.config</DependentUpon>
+    </Content>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>False</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>3064</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>
+          </IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <PropertyGroup>
+    <PostBuildEvent>rd /Q /S $(TargetDir)en-US
+md $(TargetDir)en-US
+move /Y $(TargetPath) $(TargetDir)en-US\MonoX.resources.dll 
+rd /Q /S $(TargetDir)bin
+del  /Q $(TargetDir)MonoX.pdb</PostBuildEvent>
+  </PropertyGroup>
+</Project>

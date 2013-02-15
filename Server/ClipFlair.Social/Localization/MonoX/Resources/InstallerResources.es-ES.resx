@@ -1,0 +1,492 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="DatabaseInfo_btnCreateNew" xml:space="preserve">
+    <value>Usar una base de datos vacia</value>
+  </data>
+  <data name="DatabaseInfo_btnExisting" xml:space="preserve">
+    <value>Use una base de datos instalada existente por una versión anterior de MonoX</value>
+  </data>
+  <data name="DatabaseInfo_btnMultiApp" xml:space="preserve">
+    <value>AVANZADO: Configuración de una instancia de MonoX de nuevo bajo la base de datos existente</value>
+  </data>
+  <data name="DatabaseInfo_labNote1" xml:space="preserve">
+    <value>Esta opción creará todas las tablas que requiere de MonoX en una base de datos vacía. Todavía es necesario realizar todos los pasos de instalación de requisitos previos (crear una base de datos vacía y la configuración de seguridad adecuada) como se describe en la sección de instalación del manual de usuario.</value>
+  </data>
+  <data name="DatabaseInfo_labNote2" xml:space="preserve">
+    <value>Esta opción se saltará todas las medidas relacionadas con la base de datos del asistente. Esto puede ser útil en varios escenarios de actualización o migración</value>
+  </data>
+  <data name="DatabaseInfo_labNote3" xml:space="preserve">
+    <value>Esta opción debe ser utulizada para con el proposito de instalaciones multi portal.</value>
+  </data>
+  <data name="DatabaseInfo_labSubTitle" xml:space="preserve">
+    <value>Elegir la base de datos donde se desea instalar MonoX</value>
+  </data>
+  <data name="DatabaseInfo_NextText" xml:space="preserve">
+    <value>Finalizar&gt;</value>
+  </data>
+  <data name="DatabaseInfo_PageTitle" xml:space="preserve">
+    <value>Configuración de la base de datos</value>
+  </data>
+  <data name="DatabaseInfo_Title" xml:space="preserve">
+    <value>Seleccionar base de datos</value>
+  </data>
+  <data name="Default_labIIS" xml:space="preserve">
+    <value>Internet Information Server</value>
+  </data>
+  <data name="Default_labIISInfo" xml:space="preserve">
+    <value>IIS o un software de servidor web compatible debe ser instalado</value>
+  </data>
+  <data name="Default_labMSNet" xml:space="preserve">
+    <value>Microsoft .NET Framework</value>
+  </data>
+  <data name="Default_labMSNetInfo" xml:space="preserve">
+    <value>Versión 3.5 o superior de . NET Framework debe ser instalado</value>
+  </data>
+  <data name="Default_labRequirements" xml:space="preserve">
+    <value>Requerimientos:</value>
+  </data>
+  <data name="Default_labSQL" xml:space="preserve">
+    <value>Microsoft SQL Server</value>
+  </data>
+  <data name="Default_linkIIS" xml:space="preserve">
+    <value>Obtener ayuda instalando IIS</value>
+  </data>
+  <data name="Default_linkMSNet3" xml:space="preserve">
+    <value>Obtener ayuda instalando .NET framework (3.0)</value>
+  </data>
+  <data name="Default_PageTitle" xml:space="preserve">
+    <value>Bienvenido</value>
+  </data>
+  <data name="Default_Title" xml:space="preserve">
+    <value>Bienvenido al asistente de instalación de MonoX</value>
+  </data>
+  <data name="InstallComplete_ApplicationCreated" xml:space="preserve">
+    <value>Aplicación creada</value>
+  </data>
+  <data name="InstallComplete_CreatingApplication" xml:space="preserve">
+    <value>Creando aplicación...</value>
+  </data>
+  <data name="InstallComplete_CreatingDatabase" xml:space="preserve">
+    <value>Creando base de datos...</value>
+  </data>
+  <data name="InstallComplete_CustomButtonText" xml:space="preserve">
+    <value>Reintentar</value>
+  </data>
+  <data name="InstallComplete_DatabaseCreated" xml:space="preserve">
+    <value>Base de datos creada.</value>
+  </data>
+  <data name="InstallComplete_FolderPermissionsSet" xml:space="preserve">
+    <value>Permisos de folder establecidos para "{0}".</value>
+  </data>
+  <data name="InstallComplete_ImportedAspnet_Applications" xml:space="preserve">
+    <value>Importado: "aspnet_Applications".</value>
+  </data>
+  <data name="InstallComplete_ImportedAspnet_Membership" xml:space="preserve">
+    <value>Importado: "aspnet_Membership".</value>
+  </data>
+  <data name="InstallComplete_ImportedAspnet_Roles" xml:space="preserve">
+    <value>Importado: "aspnet_Roles".</value>
+  </data>
+  <data name="InstallComplete_ImportedAspnet_SchemaVersions" xml:space="preserve">
+    <value>Importado: "aspnet_SchemaVersions".</value>
+  </data>
+  <data name="InstallComplete_ImportedAspnet_Users" xml:space="preserve">
+    <value>Importado: "aspnet_Users".</value>
+  </data>
+  <data name="InstallComplete_ImportedAspnet_UsersInRoles" xml:space="preserve">
+    <value>Importado: "aspnet_UsersInRoles".</value>
+  </data>
+  <data name="InstallComplete_ImportedBlogData" xml:space="preserve">
+    <value>Importado: "Blog sample data" ...</value>
+  </data>
+  <data name="InstallComplete_ImportedDocument" xml:space="preserve">
+    <value>Importado: "Document".</value>
+  </data>
+  <data name="InstallComplete_ImportedLanguage" xml:space="preserve">
+    <value>Importado: "Language".</value>
+  </data>
+  <data name="InstallComplete_ImportedLocalizationBinary" xml:space="preserve">
+    <value>Importado: "LocalizationBinary".</value>
+  </data>
+  <data name="InstallComplete_ImportedLocalizationSource" xml:space="preserve">
+    <value>Importado: "LocalizationSource".</value>
+  </data>
+  <data name="InstallComplete_ImportedLocalizationString" xml:space="preserve">
+    <value>Importado: "LocalizationString".</value>
+  </data>
+  <data name="InstallComplete_ImportedNavigation" xml:space="preserve">
+    <value>Importado: "Navigation".</value>
+  </data>
+  <data name="InstallComplete_ImportedNavigationLocalization" xml:space="preserve">
+    <value>Importado: "NavigationLocalization".</value>
+  </data>
+  <data name="InstallComplete_ImportedPage" xml:space="preserve">
+    <value>Importado: "Page".</value>
+  </data>
+  <data name="InstallComplete_ImportedPageLocalization" xml:space="preserve">
+    <value>Importado: "PageLocalization".</value>
+  </data>
+  <data name="InstallComplete_ImportedPageRole" xml:space="preserve">
+    <value>Importado: "PageRole".</value>
+  </data>
+  <data name="InstallComplete_ImportedSNData" xml:space="preserve">
+    <value>Importado: "Social network sample data" ...</value>
+  </data>
+  <data name="InstallComplete_ImportedTitle" xml:space="preserve">
+    <value>Importado.</value>
+  </data>
+  <data name="InstallComplete_ImportingAspnet_Applications" xml:space="preserve">
+    <value>Importando: "aspnet_Applications" ...</value>
+  </data>
+  <data name="InstallComplete_ImportingAspnet_Membership" xml:space="preserve">
+    <value>Importando: "aspnet_Membership" ...</value>
+  </data>
+  <data name="InstallComplete_ImportingAspnet_Roles" xml:space="preserve">
+    <value>Importando: "aspnet_Roles" ...</value>
+  </data>
+  <data name="InstallComplete_ImportingAspnet_SchemaVersions" xml:space="preserve">
+    <value>Importando: "aspnet_SchemaVersions" ...</value>
+  </data>
+  <data name="InstallComplete_ImportingAspnet_Users" xml:space="preserve">
+    <value>Importando: "aspnet_Users" ...</value>
+  </data>
+  <data name="InstallComplete_ImportingAspnet_UsersInRoles" xml:space="preserve">
+    <value>Importando:"aspnet_UsersInRoles" ...</value>
+  </data>
+  <data name="InstallComplete_ImportingBlogData" xml:space="preserve">
+    <value>Importando: "Blog sample data" ...</value>
+  </data>
+  <data name="InstallComplete_ImportingDocument" xml:space="preserve">
+    <value>Importando: "Document" ...</value>
+  </data>
+  <data name="InstallComplete_ImportingExistingData" xml:space="preserve">
+    <value>Importando: data ...</value>
+  </data>
+  <data name="InstallComplete_ImportingLanguage" xml:space="preserve">
+    <value>Importando: "Language" ...</value>
+  </data>
+  <data name="InstallComplete_ImportingLocalizationBinary" xml:space="preserve">
+    <value>Importando: "LocalizationBinary" ...</value>
+  </data>
+  <data name="InstallComplete_ImportingLocalizationSource" xml:space="preserve">
+    <value>Importando: "LocalizationSource" ...</value>
+  </data>
+  <data name="InstallComplete_ImportingLocalizationString" xml:space="preserve">
+    <value>Importando: "LocalizationString" ...</value>
+  </data>
+  <data name="InstallComplete_ImportingNavigation" xml:space="preserve">
+    <value>Importando: "Navigation" ...</value>
+  </data>
+  <data name="InstallComplete_ImportingNavigationLocalization" xml:space="preserve">
+    <value>Importando: "NavigationLocalization" ...</value>
+  </data>
+  <data name="InstallComplete_ImportingPage" xml:space="preserve">
+    <value>Importando: "Page" ...</value>
+  </data>
+  <data name="InstallComplete_ImportingPageLocalization" xml:space="preserve">
+    <value>Importando: "PageLocalization" ...</value>
+  </data>
+  <data name="InstallComplete_ImportingPageRole" xml:space="preserve">
+    <value>Importando: "PageRole" ...</value>
+  </data>
+  <data name="InstallComplete_ImportingSNData" xml:space="preserve">
+    <value>Importando: "Social network sample data" ...</value>
+  </data>
+  <data name="InstallComplete_ImportingTitle" xml:space="preserve">
+    <value>Importando:</value>
+  </data>
+  <data name="InstallComplete_InfoStep_Complete" xml:space="preserve">
+    <value>Instalación completa!</value>
+  </data>
+  <data name="InstallComplete_InfoStep_Start" xml:space="preserve">
+    <value>Iniciando instalación...</value>
+  </data>
+  <data name="InstallComplete_InProgress" xml:space="preserve">
+    <value>Instalación en progreso...</value>
+  </data>
+  <data name="InstallComplete_labSubTitle" xml:space="preserve">
+    <value>Por favor, espere mientras el asistente realiza las operaciones de instalación ...</value>
+  </data>
+  <data name="InstallComplete_lnkHere" xml:space="preserve">
+    <value>Aca</value>
+  </data>
+  <data name="InstallComplete_NextText" xml:space="preserve">
+    <value>Sitio Web &gt;</value>
+  </data>
+  <data name="InstallComplete_Note" xml:space="preserve">
+    <value>Tenga en cuenta: El proceso de trabajo (Cuenta: {0}) tiene que tener permisos de escritura en el archivo web.config para escribir todos los ajustes y completar el proceso de instalación.</value>
+  </data>
+  <data name="InstallComplete_Note2" xml:space="preserve">
+    <value>Una vez que haya terminado, haga clic</value>
+  </data>
+  <data name="InstallComplete_Note3" xml:space="preserve">
+    <value>para desplazarse a su nuevo sitio web.</value>
+  </data>
+  <data name="InstallComplete_PageTitle" xml:space="preserve">
+    <value>Completado</value>
+  </data>
+  <data name="InstallComplete_SettingFolderPermissions" xml:space="preserve">
+    <value>Configuración de los permisos de carpeta para "{0}" ...</value>
+  </data>
+  <data name="InstallComplete_Title" xml:space="preserve">
+    <value>Completado.</value>
+  </data>
+  <data name="Master_btnCancel" xml:space="preserve">
+    <value>Cancelar</value>
+  </data>
+  <data name="Master_btnCustom" xml:space="preserve">
+    <value>Personalizar</value>
+  </data>
+  <data name="Master_btnNext" xml:space="preserve">
+    <value>Siguiente &gt;</value>
+  </data>
+  <data name="Master_btnPrevious" xml:space="preserve">
+    <value>&lt; Anterior</value>
+  </data>
+  <data name="Master_EmptyHeaderTitle" xml:space="preserve">
+    <value>Título de cabecera vacío</value>
+  </data>
+  <data name="Title" xml:space="preserve">
+    <value>Instalación de MonoX</value>
+  </data>
+  <data name="License_AgreeRequired" xml:space="preserve">
+    <value>Por favor, confirme que está de acuerdo con el contrato de licencia.</value>
+  </data>
+  <data name="License_btnPrintable" xml:space="preserve">
+    <value>Versión imprimible</value>
+  </data>
+  <data name="License_chkAgree" xml:space="preserve">
+    <value>Estoy de acuerdo</value>
+  </data>
+  <data name="License_PageTitle" xml:space="preserve">
+    <value>Acuerdo de Licencia</value>
+  </data>
+  <data name="License_Title" xml:space="preserve">
+    <value>Licencia MonoX</value>
+  </data>
+  <data name="NewApplication_chkExistingMembershipProvider" xml:space="preserve">
+    <value>¿Uso del proveedor de suscripciones ya existente??</value>
+  </data>
+  <data name="NewApplication_labCloneAppName" xml:space="preserve">
+    <value>Aplicación a clonar:</value>
+  </data>
+  <data name="NewApplication_labNewAppName" xml:space="preserve">
+    <value>Nuevo nombre de aplicación:</value>
+  </data>
+  <data name="NewApplication_labSubTitle" xml:space="preserve">
+    <value>Ambiente de multiples aplicacónes</value>
+  </data>
+  <data name="NewApplication_NextText" xml:space="preserve">
+    <value>Finalizar &gt;</value>
+  </data>
+  <data name="NewApplication_PageTitle" xml:space="preserve">
+    <value>Nueva instalación de aplicación</value>
+  </data>
+  <data name="NewApplication_Title" xml:space="preserve">
+    <value>Nueva instalación de aplicación</value>
+  </data>
+  <data name="SQLInfo_chkImpersonationEnabled" xml:space="preserve">
+    <value>Suplantación de ASP.NET habilitados (Nota: cambiar el valor se reiniciará el asistente)</value>
+  </data>
+  <data name="SQLInfo_labNote" xml:space="preserve">
+    <value>Tenga en cuenta que &lt;b&gt; la autenticación de Windows &lt;/ b&gt; requiere la suplantación de ASP.NET para estar habilitado en el archivo web.config para conectar al servidor SQL. Además, tendrá que establecer los permisos de acceso adecuados para el "{0}" del usuario en el SQL Server Management Studio.</value>
+  </data>
+  <data name="SQLInfo_labPassword" xml:space="preserve">
+    <value>Password:</value>
+  </data>
+  <data name="SQLInfo_labSQLServerName" xml:space="preserve">
+    <value>Nombre de servidor de base de datos o dirección IP: </value>
+  </data>
+  <data name="SQLInfo_labSubTitle" xml:space="preserve">
+    <value>Seleccione un nombre de servidor de base de datos y la información de Login.</value>
+  </data>
+  <data name="SQLInfo_labUsername" xml:space="preserve">
+    <value>Nombre de usuario:</value>
+  </data>
+  <data name="SQLInfo_PageTitle" xml:space="preserve">
+    <value>Información del servidor de base de datos</value>
+  </data>
+  <data name="SQLInfo_ServerNoFound" xml:space="preserve">
+    <value>No se pudo encontrar servidor SQL con ese nombre.</value>
+  </data>
+  <data name="SQLInfo_sqlAuthTitle" xml:space="preserve">
+    <value>Autenticación de SQL Server </value>
+  </data>
+  <data name="SQLInfo_Title" xml:space="preserve">
+    <value>Acceso de base de datos de MonoX</value>
+  </data>
+  <data name="SQLInfo_winAuthTitle" xml:space="preserve">
+    <value>Autenticacion de Windows</value>
+  </data>
+  <data name="InstallComplete_ImportedOther" xml:space="preserve">
+    <value>Importado: "MonoX data".</value>
+  </data>
+  <data name="InstallComplete_ImportingOther" xml:space="preserve">
+    <value>Importando: "MonoX data" ...</value>
+  </data>
+  <data name="DatabaseInfo_AdvancedSettings" xml:space="preserve">
+    <value>Propiedades avanzadas MonoX</value>
+  </data>
+  <data name="AdvancedSettings_Title" xml:space="preserve">
+    <value>Propiedades avanzadas</value>
+  </data>
+  <data name="AdvancedSettings_NextText" xml:space="preserve">
+    <value>Finish &gt;</value>
+  </data>
+  <data name="Default_linkMSNet31" xml:space="preserve">
+    <value>Obtener ayuda instalando .NET framework (3.0 SP1)</value>
+  </data>
+  <data name="Default_linkMSNet35" xml:space="preserve">
+    <value>Obtener ayuda instalando .NET framework (3.5)</value>
+  </data>
+  <data name="InstallComplete_FolderPermissionsNotSet" xml:space="preserve">
+    <value>Advertencia: Los permisos de carpeta no se establece en la carpeta "{0}". Por favor corriga los permisos de escritura manual para la cuenta: "{1}".</value>
+  </data>
+  <data name="PermissionCheckBox_Ok" xml:space="preserve">
+    <value>La '{0}' cuente tiene permisos '{1}' en el '{2}' folder.</value>
+  </data>
+  <data name="PermissionCheckBox_Skip" xml:space="preserve">
+    <value>Omitir</value>
+  </data>
+  <data name="PermissionCheckBox_TestAgain" xml:space="preserve">
+    <value>Provar permisos de nuevo</value>
+  </data>
+  <data name="PermissionCheckBox_Warning" xml:space="preserve">
+    <value>La '{0}' cuenta no contiene '{1}' permisos en '{2}'. Aunque esto no es un error fatal, es muy recomendable que configurar estos permisos.</value>
+  </data>
+  <data name="InstallComplete_ImportedNewsData" xml:space="preserve">
+    <value>Importado: news data ...</value>
+  </data>
+  <data name="InstallComplete_ImportingNewsData" xml:space="preserve">
+    <value>Importando datos de noticia ...</value>
+  </data>
+  <data name="MonoXVersion" xml:space="preserve">
+    <value>MonoX de ASP.NET {0}. Descargar MonoX de otras versiones &lt;a href="{1}" title="MonoX"&gt; aquí &lt;/ a&gt;.</value>
+  </data>
+  <data name="DatabaseInfo_UnableToFindExistingMonoXDatabase" xml:space="preserve">
+    <value>Una base de datos de MonoX de validez no puede ser localizada bajo el nombre seleccionado.</value>
+  </data>
+  <data name="SQLInfo_EnterDatabaseName" xml:space="preserve">
+    <value>No se pueden listar las bases de datos- por favor, introduzca un nombre de base de datos manualmente</value>
+  </data>
+  <data name="SQLInfo_EnterDatabaseServerName" xml:space="preserve">
+    <value>No se pueden listar los servidores - por favor introduzca un nombre de base de datos manualmente</value>
+  </data>
+</root>

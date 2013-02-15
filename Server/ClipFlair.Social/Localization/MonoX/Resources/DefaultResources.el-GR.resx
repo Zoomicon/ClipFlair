@@ -1,0 +1,956 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="ActivationEmailRecovery_Title" xml:space="preserve">
+    <value>Ανάκτηση e-mail ενεργοποίησης</value>
+  </data>
+  <data name="ActivationEmailRecovery_UserName" xml:space="preserve">
+    <value>Όνομα χρήστη</value>
+  </data>
+  <data name="Button_Send" xml:space="preserve">
+    <value>Αποστολή</value>
+  </data>
+  <data name="Email_Activation_HtmlContent" xml:space="preserve">
+    <value>Αγαπητέ/η &lt;i&gt;{0}&lt;/i&gt;, αυτό είναι ένα e-mail ενεργοποίησης λογιαριασμού από το {1}. Παρακαλώ ακολουθήστε τον παρακάτω σύνδεσμο για να ενεργοποιήσετε το λογαριασμό σας:
+&lt;br /&gt;&lt;br /&gt;
+&lt;a href="{2}"&gt;{2}&lt;/a&gt;
+&lt;br /&gt;&lt;br /&gt;&lt;br /&gt;
+Ειλικρινώς,
+&lt;br /&gt;&lt;br /&gt;
+Η ομάδα του {1}</value>
+  </data>
+  <data name="Email_Activation_PlainContent" xml:space="preserve">
+    <value>Αγαπητέ/η {0}, αυτό είναι ένα e-mail ενεργοποίησης λογαριασμού από το {1}. Παρακαλώ ακολουθήστε τον παρακάτω σύνδεσμο για να ενεργοποιήσετε το λογαριασμό σας:
+
+{2}
+
+
+Ειλικρινώς,
+
+Η ομάδα του {1}</value>
+  </data>
+  <data name="Email_Activation_Title" xml:space="preserve">
+    <value>Ενεργοποίηση λογαριασμού</value>
+  </data>
+  <data name="Email_PasswordRecovery_HtmlContent" xml:space="preserve">
+    <value>Αγαπητέ/η &lt;i&gt;{0}&lt;/i&gt;, λάβαμε μια αίτηση για ανάκτηση κωδικού πρόσβασης για το όνομα χρήστη σας στο {1}.
+&lt;br /&gt;&lt;br /&gt;
+Ο κωδικός πρόσβασης σας είναι: &lt;b&gt;{2}&lt;/b&gt;
+&lt;br /&gt;&lt;br /&gt;&lt;br /&gt;
+Ειλικρινώς,
+&lt;br /&gt;&lt;br /&gt;
+Η ομάδα του {1}</value>
+  </data>
+  <data name="Email_PasswordRecovery_PlainContent" xml:space="preserve">
+    <value>Αγαπητέ/η {0}, λάβαμε μια αίτηση για ανάκτηση κωδικού πρόσβασης για το όνομα χρήστη σας στο {1}.
+
+Ο κωδικός πρόσβασης σας είναι: {2}
+
+
+Ειλικρινώς,
+
+Η ομάδα του {1}</value>
+  </data>
+  <data name="Email_PasswordRecovery_Title" xml:space="preserve">
+    <value>Υπενθύμηση κωδικού πρόσβασης</value>
+  </data>
+  <data name="ErrorMessage_ActivationEmail" xml:space="preserve">
+    <value>Ένα μη αναμενόμενο σφάλμα συνέβει καθώς σας αποστέλαμε ένα e-mail ενεργοποίησης. Ο λογαριασμός σας έχει επιτυχώς δημιουργηθεί αλλά δεν μπορείτε να κάνετε είσοδο μέχρι να τον ενεργοποιήσετε μέσω του e-mail ενεργοποίησης. Για να ξανασταλεί το e-mail ενεργοποίησης παρακαλώ πηγαίντε στη σελίδα &lt;a href="{0}"&gt;Ανάκτηση e-mail ενεργοποίησης&lt;/a&gt;. Αν το πρόβλημα επιμείνει, παρακαλώ επικοινωνήστε μαζί μας.</value>
+  </data>
+  <data name="ErrorMessage_ActivationEmailRecovery_UserAlreadyActive" xml:space="preserve">
+    <value>Ο λογαριασμός σας είναι ενεργός, δεν υπάρχει ανάγκη να σας αποσταλεί e-mail ενεργοποίησης.</value>
+  </data>
+  <data name="ErrorMessage_ActivationUrl" xml:space="preserve">
+    <value>Υπάρχει πρόβλημα με το σύνδεσμο ενεργοποίησης σας. Αν τον αντιγράψατε και επικολλήσατε στο πρόγραμμα πλοήγησης σας, παρακαλώ σιγουρευτείτε ότι είναι ταυτόσημος με το σύνδεσμο που λάβατε στο e-mail ενεργοποίησης. Αν πατήσατε πάνω του ή είστε σίγουροι πως τον αντιγράψατε/επικολλήσατε σωστά και ακόμη δε λειτουργεί, τότε παρακαλώ επικοινωνήστε με την υπηρεσία υποστήριξης μας.</value>
+  </data>
+  <data name="ErrorMessage_InvalidUserName" xml:space="preserve">
+    <value>Δεν υπάρχει χρήστης με το δοθέν όνομα χρήστη.</value>
+  </data>
+  <data name="ErrorMessage_Login" xml:space="preserve">
+    <value>Η είσοδος απέτυχε, άκυρο όνομα χρήστη ή κωδικός πρόσβασης.</value>
+  </data>
+  <data name="ErrorMessage_Login_LockedOut" xml:space="preserve">
+    <value>Ο λογαριασμός σας έχει κλειδωθεί λόγω πολλών άκυρων προσπαθειών εισόδου. Παρακαλώ επικοινωνήστε μαζί μας για να ξεκλειδωθεί ο λογαριασμός σας.</value>
+  </data>
+  <data name="ErrorMessage_Login_NotActivated" xml:space="preserve">
+    <value>Ο λογαριασμός σας δεν έχει ακόμη ενεργοποιηθεί. Παρακαλώ ενεργοποιήστε τον μέσω ενός e-mail ενεργοποίησης που σας στείλαμε. Αν δε λάβατε το e-mail, τότε παρακαλώ προσπαθήστε να το ξαναστείλετε πηγαίνοντας στη σελίδα &lt;a href="{0}"&gt;Ανάκτηση e-mail ενεργοποίησης&lt;/a&gt;. Αν δεν μπορείτε να στείλετε ή να λάβετε το e-mail ενεργοποίησης, παρακαλώ επικοινωνήστε μαζί μας.</value>
+  </data>
+  <data name="ErrorMessage_OpenId_AuthenticationCanceled" xml:space="preserve">
+    <value>Η πιστοποίηση OpenID ακυρώθηκε.</value>
+  </data>
+  <data name="ErrorMessage_OpenId_AuthenticationFailed" xml:space="preserve">
+    <value>Η πιστοποίηση OpenID απέτυχε. Παρακαλώ ελέγξτε το OpenID σας.</value>
+  </data>
+  <data name="ErrorMessage_OpenId_Format" xml:space="preserve">
+    <value>Λάθος μορφοποίηση του OpenID εισόδου.</value>
+  </data>
+  <data name="ErrorMessage_OpenId_ImmediateMode" xml:space="preserve">
+    <value>Πρέπει να εισέλθετε στον πάροχο σας OpenId πρώτα για να χρησιμοποιήσετε την άμεση κατάσταση.</value>
+  </data>
+  <data name="Global_Email" xml:space="preserve">
+    <value>E-mail</value>
+  </data>
+  <data name="Global_Password" xml:space="preserve">
+    <value>Κωδικός πρόσβασης</value>
+  </data>
+  <data name="Global_RepeatPassword" xml:space="preserve">
+    <value>Επανάληψη κωδικού πρόσβασης</value>
+  </data>
+  <data name="Global_UserName" xml:space="preserve">
+    <value>Όνομα χρήστη</value>
+  </data>
+  <data name="Message_AccountActivated_Description" xml:space="preserve">
+    <value>Ο λογαριασμός σας ενεργοποιήθηκε επιτυχώς και έχετε εισέλθει αυτόματα.</value>
+  </data>
+  <data name="Message_AccountActivated_Title" xml:space="preserve">
+    <value>Ενεργοποίηση λογαριασμού</value>
+  </data>
+  <data name="Message_AccountActivationEmailSent_Description" xml:space="preserve">
+    <value>Για να ενεργοποιήσετε το λογαριασμό σας, παρακαλώ ακολουθήστε το σύνδεσμο στο e-mail. Ο λογαριασμός σας θα ενεργοποιηθεί και θα εισέλθετε αυτόματα.&lt;br /&gt;Αν δε λάβετε το e-mail μέσα σε 10 λεπτά, παρακαλώ επικοινήστε μαζί μας.</value>
+  </data>
+  <data name="Message_AccountActivationEmailSent_Title" xml:space="preserve">
+    <value>Το e-mail ενεργοποίησης έχει αποσταλεί.</value>
+  </data>
+  <data name="Message_AccountCreated_Description" xml:space="preserve">
+    <value>Ευχαριστούμε που δημιουργήσατε το λογαριασμό σας. Το τελευταίο βήμα που χρειάζεται να κάνετε είναι να τον ενεργοποιήσετε. Ένα e-mail έχει αποσταλεί στη διεύθυνση που παρείχατε. Για να ενεργοποιήσετε το λογαριασμό σας, παρακαλώ ακολουθήστε το σύνδεσμο στο e-mail. Ο λογαριασμός σας θα ενεργοποιηθεί και θα εισέλθετε αυτόματα.&lt;br /&gt;&lt;br /&gt;Αν δεν λάβετε το e-mail μέσα σε 10 λεπτά, παρακαλώ δοκιμάστε να το ξαναστείλετε πηγαίνοντας στη σελίδα &lt;a href="{0}"&gt;Ανάκτηση e-mail ενεργοποίησης&lt;/a&gt;. Αν συνεχίσετε να αντιμετωπίζετε προβλήματα, παρακαλούμε επικοινωνήστε μαζί μας.</value>
+  </data>
+  <data name="Message_AccountCreated_Title" xml:space="preserve">
+    <value>Ο λογαριασμός σας δημιουργήθηκε επιτυχώς.</value>
+  </data>
+  <data name="Message_PasswordRecoveryEmailSent_Description" xml:space="preserve">
+    <value>Παρακαλώ ελέγξτε το e-mail σας, ένα μήνυμα με τον κωδικό σας θα πρέπει να αφιχθεί σύντομα.&lt;br /&gt;Αν δεν λάβετε το e-mail μας μέσα σε 10 λεπτά, παρακαλώ επικοινωνήστε μαζί μας.</value>
+  </data>
+  <data name="Message_PasswordRecoveryEmailSent_Title" xml:space="preserve">
+    <value>Το e-mail υπενθύμισης κωδικού έχει αποσταλεί επιτυχώς.</value>
+  </data>
+  <data name="PasswordlRecovery_UserName" xml:space="preserve">
+    <value>Όνομα χρήστη</value>
+  </data>
+  <data name="PasswordRecovery_Title" xml:space="preserve">
+    <value>Ανάκτηση κωδικού</value>
+  </data>
+  <data name="ValidationMessage_Email" xml:space="preserve">
+    <value>Παρακαλώ εισάγετε μια έγκυρη διεύθυνση e-mail για '{0}'.</value>
+  </data>
+  <data name="ValidationMessage_Name" xml:space="preserve">
+    <value>Παρακαλώ χρησιμοποιήστε μόνο γράμματα, αριθμούς και σημεία στίξης για το '{0}'.</value>
+  </data>
+  <data name="ValidationMessage_PasswordMatch" xml:space="preserve">
+    <value>Ο κωδικός εισόδου που δόθηκε δεν ταιριάζει με τη δοθείσα επανάληψη κωδικού εισόδου.</value>
+  </data>
+  <data name="ValidationMessage_RequiredField" xml:space="preserve">
+    <value>Παρακαλώ εισάγετε μια τιμή για '{0}'.</value>
+  </data>
+  <data name="MembershipEditor_CreateAccount" xml:space="preserve">
+    <value>Δημιουργία λογαριασμού</value>
+  </data>
+  <data name="MembershipEditor_Email" xml:space="preserve">
+    <value>E-mail</value>
+  </data>
+  <data name="MembershipEditor_Password" xml:space="preserve">
+    <value>Κωδικός πρόσβασης</value>
+  </data>
+  <data name="MembershipEditor_RememberMe" xml:space="preserve">
+    <value>Αυτόματη επανασύνδεση</value>
+  </data>
+  <data name="MembershipEditor_RepeatPassword" xml:space="preserve">
+    <value>Επανάληψη κωδικού πρόσβασης</value>
+  </data>
+  <data name="MembershipEditor_Title_CreateAccount" xml:space="preserve">
+    <value>Εγγραφή λογαριασμού</value>
+  </data>
+  <data name="MembershipEditor_Title_UpdateAccount" xml:space="preserve">
+    <value>Ενημέρωση λογαριασμού</value>
+  </data>
+  <data name="MembershipEditor_UpdateAccount" xml:space="preserve">
+    <value>Ενημέρωση λογαριασμού</value>
+  </data>
+  <data name="MembershipEditor_UserName" xml:space="preserve">
+    <value>Όνομα χρήστη</value>
+  </data>
+  <data name="Login_Login" xml:space="preserve">
+    <value>Είσοδος</value>
+  </data>
+  <data name="Login_OpenId" xml:space="preserve">
+    <value>OpenID</value>
+  </data>
+  <data name="Login_OpenId_Error_Create" xml:space="preserve">
+    <value>Δε μπόρεσε να δημιουργηθεί ο λογαριασμός χρήστη: </value>
+  </data>
+  <data name="Login_OpenId_Example" xml:space="preserve">
+    <value>Παράδειγμα:</value>
+  </data>
+  <data name="Login_OpenId_Login" xml:space="preserve">
+    <value>OpenID είσοδος:</value>
+  </data>
+  <data name="Login_OpenId_PasswordQuestion" xml:space="preserve">
+    <value>Αυτός είναι ένας λογαριασμός OpenID. Τι ψευδώνυμο δώσατε;</value>
+  </data>
+  <data name="Login_OpenId_Register" xml:space="preserve">
+    <value>Λάβετε OpenID τώρα</value>
+  </data>
+  <data name="Login_OpenId_Register_ToolTip" xml:space="preserve">
+    <value>Εγγραφείτε για ένα δωρεάν λογαριασμό OpenID</value>
+  </data>
+  <data name="Login_OpenId_Title" xml:space="preserve">
+    <value>Εισέλθετε χρησιμοποιώντας το OpenID σας</value>
+  </data>
+  <data name="Login_Password" xml:space="preserve">
+    <value>Κωδικός πρόσβασης:</value>
+  </data>
+  <data name="Login_PasswordRecoveryText" xml:space="preserve">
+    <value>Ξεχάσατε τον κωδικό πρόσβασης;</value>
+  </data>
+  <data name="Login_Register" xml:space="preserve">
+    <value>Εγγραφή</value>
+  </data>
+  <data name="Login_RememberMe" xml:space="preserve">
+    <value>Αυτόματη επανασύνδεση</value>
+  </data>
+  <data name="Login_Title" xml:space="preserve">
+    <value>Εισέλθετε χρησιμοποιώντας το όνομα χρήστη και τον κωδικό πρόσβασης σας</value>
+  </data>
+  <data name="Login_UserName" xml:space="preserve">
+    <value>Όνομα χρήστη:</value>
+  </data>
+  <data name="Button_Cancel" xml:space="preserve">
+    <value>Ακύρωση</value>
+  </data>
+  <data name="Button_Save" xml:space="preserve">
+    <value>Αποθήκευση</value>
+  </data>
+  <data name="Button_Cancel_AccessKey" xml:space="preserve">
+    <value>C</value>
+  </data>
+  <data name="Button_Close" xml:space="preserve">
+    <value>Κλείσιμο</value>
+  </data>
+  <data name="Button_Close_AccessKey" xml:space="preserve">
+    <value>C</value>
+  </data>
+  <data name="Button_Save_AccessKey" xml:space="preserve">
+    <value>S</value>
+  </data>
+  <data name="Global_Error" xml:space="preserve">
+    <value>Σφάλμα</value>
+  </data>
+  <data name="Global_OK" xml:space="preserve">
+    <value>Εντάξει</value>
+  </data>
+  <data name="UserPicker_ToolTip" xml:space="preserve">
+    <value>Συμβουλή: ξεκινήστε τυπώνοντας το όνομα χρήστη, όνομα ή επώνυμο του ατόμου με το οποίο θέλετε να έρθετε σε επαφή. Μπορείτε να εισάγετε απεριόριστες τιμές σε αυτό το πεδίο, διαχωρίστε ξεχωριστές εγγραφές με κόμμα.</value>
+  </data>
+  <data name="Button_Delete" xml:space="preserve">
+    <value>Διαγραφή</value>
+  </data>
+  <data name="Button_Delete_AccessKey" xml:space="preserve">
+    <value>D</value>
+  </data>
+  <data name="Button_Update" xml:space="preserve">
+    <value>Ενημέρωση</value>
+  </data>
+  <data name="Button_Update_AccessKey" xml:space="preserve">
+    <value>U</value>
+  </data>
+  <data name="Button_Edit" xml:space="preserve">
+    <value>Επεξεργασία</value>
+  </data>
+  <data name="Button_Edit_AccessKey" xml:space="preserve">
+    <value>E</value>
+  </data>
+  <data name="Button_Upload" xml:space="preserve">
+    <value>Ανέβασμα</value>
+  </data>
+  <data name="Button_Upload_AccessKey" xml:space="preserve">
+    <value>U</value>
+  </data>
+  <data name="HtmlEditor_DefaultText" xml:space="preserve">
+    <value>Παρακαλώ εισάγετε το κείμενο σας εδώ.</value>
+  </data>
+  <data name="HtmlEditor_EditVerbDescription" xml:space="preserve">
+    <value>Επεξεργασία κειμένου σε αυτό το Web part</value>
+  </data>
+  <data name="HtmlEditor_EditVerbText" xml:space="preserve">
+    <value>Επεξεργασία</value>
+  </data>
+  <data name="HtmlEditor_History" xml:space="preserve">
+    <value>Ιστορικό αντιγράφων ασφαλείας</value>
+  </data>
+  <data name="HtmlEditor_ResetConfirmation" xml:space="preserve">
+    <value>Το περιεχόμενο αυτού του Web part θα επαναφερθεί στην αρχική του τιμή. Θα προχωρήσετε;</value>
+  </data>
+  <data name="HtmlEditor_ResetVerbDescription" xml:space="preserve">
+    <value>Επαναφορά του περιεχομένου αυτού του Web part</value>
+  </data>
+  <data name="HtmlEditor_ResetVerbText" xml:space="preserve">
+    <value>Επαναφορά</value>
+  </data>
+  <data name="Confirmation_RequestErrorText" xml:space="preserve">
+    <value>Το αίτημα σας δεν επεξεργάστηκε επιτυχώς. Παρακαλώ επικοινωνήστε με την υπηρεσία υποστήριξης για περισσότερες πληροφορίες.</value>
+  </data>
+  <data name="Confirmation_RequestErrorTitle" xml:space="preserve">
+    <value>Συνέβη ένα σφάλμα!</value>
+  </data>
+  <data name="HtmlEditor_DefaultTitle" xml:space="preserve">
+    <value>Τίτλος</value>
+  </data>
+  <data name="AjaxConfirm_ConfirmDialogMessage" xml:space="preserve">
+    <value>Εντάξει / Ακύρωση ;</value>
+  </data>
+  <data name="AjaxConfirm_ConfirmDialogTitle" xml:space="preserve">
+    <value>Επιβεβαίωση</value>
+  </data>
+  <data name="AjaxConfirm_DeleteDialogMessage" xml:space="preserve">
+    <value>Είστε σίγουροι ;</value>
+  </data>
+  <data name="AjaxConfirm_DeleteDialogTitle" xml:space="preserve">
+    <value>Διαγραφή</value>
+  </data>
+  <data name="CustomRadEditor_MaxLenReached" xml:space="preserve">
+    <value>Φτάσατε το μέγιστο όριο πλήθους ({0}) επιτρεπόμενων χαρακτήρων!</value>
+  </data>
+  <data name="DualListBox_MaxErrorMessage" xml:space="preserve">
+    <value>Φτάσατε στο μέγιστος αριθμό επιτρεπόμενων στοιχείων!</value>
+  </data>
+  <data name="DualListBox_MinErrorMessage" xml:space="preserve">
+    <value>Φτάσατε στον ελάχιστο αριθμό επιτρεπόμενων στοιχείων!</value>
+  </data>
+  <data name="DualListBox_MinItemsRequired" xml:space="preserve">
+    <value>Χρειάζονται τουλάχιστον {0} στοιχεία!</value>
+  </data>
+  <data name="DualListBox_NoPreference" xml:space="preserve">
+    <value>Χωρίς προτίμηση</value>
+  </data>
+  <data name="LocaleChanger_DefaultLangTitle" xml:space="preserve">
+    <value>Προεπιλεγμένη</value>
+  </data>
+  <data name="PageModeChanger_ModeDropdownToolTip" xml:space="preserve">
+    <value>Επιλέξτε κατάσταση σελίδας</value>
+  </data>
+  <data name="Button_Send_AccessKey" xml:space="preserve">
+    <value>S</value>
+  </data>
+  <data name="Captcha_imgCaptcha_AlternateText" xml:space="preserve">
+    <value>Οπτική επαλήθευση</value>
+  </data>
+  <data name="Captcha_ImgCaptcha_ToolTip" xml:space="preserve">
+    <value>Παρακαλώ εισάγετε τον κωδικό ασφαλείας όπως εμφανίζεται στην εικόνα.</value>
+  </data>
+  <data name="Captcha_LblInvalidCaptcha_Text" xml:space="preserve">
+    <value>Άκυρος κωδικός Captcha. Παρακαλώ δοκιμάστε ξανά.</value>
+  </data>
+  <data name="Captcha_Loading" xml:space="preserve">
+    <value>Φόρτωμα ...</value>
+  </data>
+  <data name="Captcha_RefreshCode" xml:space="preserve">
+    <value>Ανανέωση του κωδικού Captcha</value>
+  </data>
+  <data name="Captcha_ReqCaptchaCode_ErrorMessage" xml:space="preserve">
+    <value>Παρακαλώ εισάγετε κωδικό captcha.</value>
+  </data>
+  <data name="ContactForm_Email" xml:space="preserve">
+    <value>Διεύθυνση e-mail:</value>
+  </data>
+  <data name="ContactForm_Message" xml:space="preserve">
+    <value>Μήνυμα:</value>
+  </data>
+  <data name="ContactForm_Name" xml:space="preserve">
+    <value>Όνομα:</value>
+  </data>
+  <data name="ContactForm_Subject" xml:space="preserve">
+    <value>Θέμα:</value>
+  </data>
+  <data name="ContactForm_SuccessfulSend" xml:space="preserve">
+    <value>Το μήνυμα σας στάλθηκε.</value>
+  </data>
+  <data name="ContactForm_Title" xml:space="preserve">
+    <value>Στείλτε μας ένα e-mail</value>
+  </data>
+  <data name="ContactForm_UnSuccessfulSend" xml:space="preserve">
+    <value>Το μήνυμα σας δε στάλθηκε. Παρακαλώ προσπαθήστε ξανά.</value>
+  </data>
+  <data name="Label_Loading" xml:space="preserve">
+    <value>Φόρτωμα...</value>
+  </data>
+  <data name="Label_NoData" xml:space="preserve">
+    <value>Δε βρέθηκαν δεδομένα που να ικανοποιούν τα κριτήρια αναζήτησης σας.</value>
+  </data>
+  <data name="LoginName_FormatString" xml:space="preserve">
+    <value>Έχετε εισέλθει ως: {0}</value>
+  </data>
+  <data name="LoginStatus_LoginText" xml:space="preserve">
+    <value>Πατήστε εδώ για είσοδο</value>
+  </data>
+  <data name="LoginStatus_LogoutText" xml:space="preserve">
+    <value>Πατήστε εδώ για έξοδο</value>
+  </data>
+  <data name="MonoXMaster_AppearanceEditorPart_Title" xml:space="preserve">
+    <value>Εμφάνιση</value>
+  </data>
+  <data name="MonoXMaster_AutoRegisterCatalogPart_Title" xml:space="preserve">
+    <value>Κύριος κατάλογος Web part</value>
+  </data>
+  <data name="MonoXMaster_BehaviorEditorPart_Title" xml:space="preserve">
+    <value>Συμπεριφορά</value>
+  </data>
+  <data name="MonoXMaster_CatalogPane_Text" xml:space="preserve">
+    <value>Κατάλογος Web part</value>
+  </data>
+  <data name="MonoXMaster_CatalogZone_EmptyZoneText" xml:space="preserve">
+    <value>Ο κατάλογος Web part catalog είναι κενός.</value>
+  </data>
+  <data name="MonoXMaster_CatalogZone_HeaderText" xml:space="preserve">
+    <value>Κατάλογος Web part</value>
+  </data>
+  <data name="MonoXMaster_CatalogZone_InstructionText" xml:space="preserve">
+    <value>Επιλέξτε τον κατάλογο Web part όπου θα θέλατε να δείτε.</value>
+  </data>
+  <data name="MonoXMaster_CatalogZone_SelectTargetZoneText" xml:space="preserve">
+    <value>Προσθήκη σε:</value>
+  </data>
+  <data name="MonoXMaster_ConnectionsPane_Text" xml:space="preserve">
+    <value>Συνδέσεις Web part</value>
+  </data>
+  <data name="MonoXMaster_ConnectionsZone_ConfigureConnectionTitle" xml:space="preserve">
+    <value>Ρύθμιση σύνδεσης</value>
+  </data>
+  <data name="MonoXMaster_ConnectionsZone_ConnectToConsumerInstructionText" xml:space="preserve">
+    <value>Δημιουργήστε συνδέσης καταναλωτή για αυτό το Web Part.</value>
+  </data>
+  <data name="MonoXMaster_ConnectionsZone_ConnectToConsumerText" xml:space="preserve">
+    <value>Πατήστε εδώ για να δημιουργήστε μια σύνδεση σε έναν Καταναλωτή</value>
+  </data>
+  <data name="MonoXMaster_ConnectionsZone_ConnectToConsumerTitle" xml:space="preserve">
+    <value>Αποστολή δεδομένων σε Web Part</value>
+  </data>
+  <data name="MonoXMaster_ConnectionsZone_ConnectToProviderInstructionText" xml:space="preserve">
+    <value>Δημιουργήστε συνδέσεις παρόχου για αυτό το Web Part.</value>
+  </data>
+  <data name="MonoXMaster_ConnectionsZone_ConnectToProviderText" xml:space="preserve">
+    <value>Πατήστε εδώ για να δημιουργήστε μια σύνδεση σε έναν Πάροχο</value>
+  </data>
+  <data name="MonoXMaster_ConnectionsZone_ConnectToProviderTitle" xml:space="preserve">
+    <value>Λήψη δεδομένων από Web Part</value>
+  </data>
+  <data name="MonoXMaster_ConnectionsZone_ConsumersInstructionText" xml:space="preserve">
+    <value>Web part προς τα οποία το τρέχον Web part αποστέλει πληροφορίες:</value>
+  </data>
+  <data name="MonoXMaster_ConnectionsZone_ConsumersTitle" xml:space="preserve">
+    <value>Καταναλωτές</value>
+  </data>
+  <data name="MonoXMaster_ConnectionsZone_ExistingConnectionErrorMessage" xml:space="preserve">
+    <value>Η σύνδεση αυτή είναι αυτή τη στιγμή ανενεργή λόγω μη διαθεσιμότητας ενός από τα άκρα της.</value>
+  </data>
+  <data name="MonoXMaster_ConnectionsZone_GetFromText" xml:space="preserve">
+    <value>Από:</value>
+  </data>
+  <data name="MonoXMaster_ConnectionsZone_GetText" xml:space="preserve">
+    <value>Λήψη:</value>
+  </data>
+  <data name="MonoXMaster_ConnectionsZone_HeaderText" xml:space="preserve">
+    <value>Συνδέσεις Web part</value>
+  </data>
+  <data name="MonoXMaster_ConnectionsZone_InstructionText" xml:space="preserve">
+    <value>Διαχείριση συνδέσεων για το τρέχον Web part.</value>
+  </data>
+  <data name="MonoXMaster_ConnectionsZone_InstructionTitle" xml:space="preserve">
+    <value>Διαχείριση συνδέσεων για {0}</value>
+  </data>
+  <data name="MonoXMaster_ConnectionsZone_NewConnectionErrorMessage" xml:space="preserve">
+    <value>Δεν μπορεί να προχωρήσει η δημιουργία αυτής της σύνδεσης επειδή τουλάχιστον ένα από τα Web Part ή τα σημεία σύνδεσης έχει εξαφανιστεί ή έχει γίνει ασύμβατο με το τρέχον επιλεγμένο Web Part ή χρησιμοποιείται ήδη από άλλη σύνδεση και δεν υποστηρίζει πολλαπλές συνδέσεις.</value>
+  </data>
+  <data name="MonoXMaster_ConnectionsZone_NoExistingConnectionInstructionText" xml:space="preserve">
+    <value>Δεν υπάρχουν ενεργές συνδέσεις διαθέσιμες στο Web Part σας. Μπορείτε να δημιουργήσετε μια καινούργια σύνδεση επιλέγοντας τους παραπάνω συνδέσμους αν υπάρχουν συμβατά Web Part στη σελίδα.</value>
+  </data>
+  <data name="MonoXMaster_ConnectionsZone_NoExistingConnectionTitle" xml:space="preserve">
+    <value>Καμία ενεργή σύνδεση</value>
+  </data>
+  <data name="MonoXMaster_ConnectionsZone_ProvidersInstructionText" xml:space="preserve">
+    <value>Web part από τα οποία παίρνει πληροφορίες το τρέχον Web part:</value>
+  </data>
+  <data name="MonoXMaster_ConnectionsZone_ProvidersTitle" xml:space="preserve">
+    <value>Πάροχοι</value>
+  </data>
+  <data name="MonoXMaster_ConnectionsZone_SendText" xml:space="preserve">
+    <value>Αποστολή:</value>
+  </data>
+  <data name="MonoXMaster_ConnectionsZone_SendToText" xml:space="preserve">
+    <value>Προς:</value>
+  </data>
+  <data name="MonoXMaster_CopiedCatalogPart_Title" xml:space="preserve">
+    <value>Πρόχειρο των Web part</value>
+  </data>
+  <data name="MonoXMaster_CurrentLanguageText" xml:space="preserve">
+    <value>Τρέχουσα γλώσσα</value>
+  </data>
+  <data name="MonoXMaster_CurrentModeText" xml:space="preserve">
+    <value>Τρέχουσα κατάσταση</value>
+  </data>
+  <data name="MonoXMaster_DeclarativeCatalogPart_Title" xml:space="preserve">
+    <value>Δηλωτικός κατάλογος Web part</value>
+  </data>
+  <data name="MonoXMaster_EditorPane_Text" xml:space="preserve">
+    <value>Ιδιότητες Web part</value>
+  </data>
+  <data name="MonoXMaster_EditorZone_ApplyVerb_Description" xml:space="preserve">
+    <value>Εφαρμόζει τις αλλαγές</value>
+  </data>
+  <data name="MonoXMaster_EditorZone_ApplyVerb_Text" xml:space="preserve">
+    <value>Εφαρμογή</value>
+  </data>
+  <data name="MonoXMaster_EditorZone_CancelVerb_Description" xml:space="preserve">
+    <value>Ακυρώνει τις αλλαγές</value>
+  </data>
+  <data name="MonoXMaster_EditorZone_CancelVerb_Text" xml:space="preserve">
+    <value>Ακύρωση</value>
+  </data>
+  <data name="MonoXMaster_EditorZone_EmptyZoneText" xml:space="preserve">
+    <value>Δεν υπάρχουν διαθέσιμα Web part επεξεργαστή.</value>
+  </data>
+  <data name="MonoXMaster_EditorZone_HeaderText" xml:space="preserve">
+    <value>Επεξεργαστής ιδιοτήτων</value>
+  </data>
+  <data name="MonoXMaster_EditorZone_InstructionText" xml:space="preserve">
+    <value>Τροποποιήστε τις ιδιότητες του Web Part, έπειτα πατήστε Εντάξει ή Εφαρμογή για να εφαρμόσετε τις αλλαγές σας.</value>
+  </data>
+  <data name="MonoXMaster_EditorZone_OKVerb_Description" xml:space="preserve">
+    <value>Εφαρμόζει τις αλλαγές και κλείνει τον επεξεργαστή</value>
+  </data>
+  <data name="MonoXMaster_EditorZone_OKVerb_Text" xml:space="preserve">
+    <value>Εντάξει</value>
+  </data>
+  <data name="MonoXMaster_ImgHelp_ToolTip" xml:space="preserve">
+    <value>Βιβλίο χρήστη MonoX</value>
+  </data>
+  <data name="MonoXMaster_ImgToggle_AlternateText" xml:space="preserve">
+    <value>Εναλλαγή περιοχής διαχείρισης</value>
+  </data>
+  <data name="MonoXMaster_ImgToggle_ToolTip" xml:space="preserve">
+    <value>Εναλλαγή περιοχής διαχείρισης</value>
+  </data>
+  <data name="MonoXMaster_ImportCatalogPart_Title" xml:space="preserve">
+    <value>Κατάλογος εισηγμένων Web part</value>
+  </data>
+  <data name="MonoXMaster_LayoutEditorPart_Title" xml:space="preserve">
+    <value>Διαρύθμιση</value>
+  </data>
+  <data name="MonoXMaster_LoginNameShort_FormatString" xml:space="preserve">
+    <value>Έχετε εισέλθει ως: {0}</value>
+  </data>
+  <data name="MonoXMaster_LoginName_FormatString" xml:space="preserve">
+    <value>Έχετε εισέλθει ως: {0}</value>
+  </data>
+  <data name="MonoXMaster_LoginName_ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="MonoXMaster_LoginStatusShort_LogoutText" xml:space="preserve">
+    <value>Έξοδος</value>
+  </data>
+  <data name="MonoXMaster_LoginStatus_LoginText" xml:space="preserve">
+    <value>Είσοδος</value>
+  </data>
+  <data name="MonoXMaster_LoginStatus_LogoutText" xml:space="preserve">
+    <value>Έξοδος</value>
+  </data>
+  <data name="MonoXMaster_LoginStatus_ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="MonoXMaster_LtlClickHere_Text" xml:space="preserve">
+    <value>Αλλαγή της όψης και λειτουργικότητας αυτής της σελίδας</value>
+  </data>
+  <data name="MonoXMaster_LtlPortalAdmin_Text" xml:space="preserve">
+    <value>Μετάβαση στην περιοχή διαχείρισης</value>
+  </data>
+  <data name="MonoXMaster_PageCatalogPart_Title" xml:space="preserve">
+    <value>Κατάλογος κλειστών Web part</value>
+  </data>
+  <data name="MonoXMaster_PageTasksPane_Text" xml:space="preserve">
+    <value>Ενέργειες σελίδας</value>
+  </data>
+  <data name="MonoXMaster_PnlToggle_GroupingText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="MonoXMaster_PnlToggle_ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="MonoXMaster_PnlToolboxMain_GroupingText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="MonoXMaster_PnlToolboxMain_ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="MonoXMaster_PortalModuleTasksPane_Text" xml:space="preserve">
+    <value>Ενέργειες Web part</value>
+  </data>
+  <data name="MonoXMaster_PropertyGridEditorPart_Title" xml:space="preserve">
+    <value>Προσαρμοσμένες ιδιότητες</value>
+  </data>
+  <data name="News_Title" xml:space="preserve">
+    <value>Νέα</value>
+  </data>
+  <data name="Poll_ResultsButtonText" xml:space="preserve">
+    <value>Αποτελέσματα</value>
+  </data>
+  <data name="Poll_TotalVotesTemplateText" xml:space="preserve">
+    <value>Σύνολο: {0} ψήφος(οι).</value>
+  </data>
+  <data name="Poll_VoteButtonText" xml:space="preserve">
+    <value>Ψήφιση</value>
+  </data>
+  <data name="Search_BtnSearch2" xml:space="preserve">
+    <value>Μετάβαση</value>
+  </data>
+  <data name="Search_BtnSearchTooltip" xml:space="preserve">
+    <value>Πατήστε για έναρξη αναζήτησης</value>
+  </data>
+  <data name="Search_LabNoSearchProviderSelected" xml:space="preserve">
+    <value>Δεν επιλέχθηκαν πάροχης αναζήτησης.</value>
+  </data>
+  <data name="Button_OK" xml:space="preserve">
+    <value>Εντάξει</value>
+  </data>
+  <data name="Button_OK_AccessKey" xml:space="preserve">
+    <value>O</value>
+  </data>
+  <data name="LoginRpx_Email" xml:space="preserve">
+    <value>E-mail:</value>
+  </data>
+  <data name="LoginRpx_EmailDescription" xml:space="preserve">
+    <value>Ο πάροχος εισόδου σας δεν αποκαλύπτει τη διεύθυνση e-mail που χρειάζεται για τη δημιουργία ενός πλήρως λειτουργικού λογαριασμού. Παρακαλώ συμπληρώστε το παρακάτω πεδίο.</value>
+  </data>
+  <data name="LoginRpx_Title" xml:space="preserve">
+    <value>Εισάγετε e-mail</value>
+  </data>
+  <data name="SiteSearch_DefaultText" xml:space="preserve">
+    <value>Αναζήτηση...</value>
+  </data>
+  <data name="PeopleSearch_DefaultText" xml:space="preserve">
+    <value>Αναζήτηση ατόμων</value>
+  </data>
+  <data name="Search_Go" xml:space="preserve">
+    <value>Μετάβαση</value>
+  </data>
+  <data name="Login_RegisterInvitation" xml:space="preserve">
+    <value>Χωρίς λογαριασμό; Εγγραφείτε εδώ!</value>
+  </data>
+  <data name="Captcha_ImageTitle" xml:space="preserve">
+    <value>Ασφάλεια κατά ανεπιθύμητης αλληλογραφίας (Captcha)</value>
+  </data>
+  <data name="Captcha_LongInfo" xml:space="preserve">
+    <value>Τα &lt;a href="http://en.wikipedia.org/wiki/CAPTCHA" title="Πατήστε εδώ για περισσότερες πληροφορίες σχετικά με το Captcha"&gt;CAPTCHA&lt;/a&gt; χρησιμοποιούνται για να αποτρέψουν αυτοματοποιημένο λογισμικό να πραγματοποιεί ενέργειες 
+                    που μειώνουν την ποιότητα υπηρεσιών ενός συστήματος, 
+                    είτε λόγω κατάχρησης είτε λόγω εξάντλησης των διαθέσιμων πόρων.</value>
+  </data>
+  <data name="Captcha_ShortInfo" xml:space="preserve">
+    <value>Παρακαλώ πληκτρολογήστε τον κωδικό που εμφανίζεται στην εικόνα.</value>
+  </data>
+  <data name="ContactForm_AddressLabel" xml:space="preserve">
+    <value>Διεύθυνση:</value>
+  </data>
+  <data name="ContactForm_ContactInfoTitle" xml:space="preserve">
+    <value>Πληροφορίες επικοινωνίας</value>
+  </data>
+  <data name="ContactForm_FaxLabel" xml:space="preserve">
+    <value>Fax:</value>
+  </data>
+  <data name="ContactForm_PhoneLabel" xml:space="preserve">
+    <value>Τηλέφωνο:</value>
+  </data>
+  <data name="ContactForm_SendButton" xml:space="preserve">
+    <value>Αποστολή</value>
+  </data>
+  <data name="PasswordRecovery_SentSuccessfully" xml:space="preserve">
+    <value>Το e-mail στάλθηκε επιτυχώς.</value>
+  </data>
+  <data name="PasswordRecovery_SentUnSuccessfully" xml:space="preserve">
+    <value>Συνέβει σφάλμα κατά την προσπάθεια αποστολής ενός μηνύματος e-mail.</value>
+  </data>
+  <data name="Login_ViewProfile" xml:space="preserve">
+    <value>Προφίλ χρήστη</value>
+  </data>
+  <data name="Search_EnterSearchPhrase" xml:space="preserve">
+    <value>Παρακαλώ εισάγετε φράση αναζήτησης</value>
+  </data>
+  <data name="Registration_RegistrationNotAllowed_Description" xml:space="preserve">
+    <value>Δεν επιτρέπεται εγγραφή σε αυτόν τον ιστότοπο. Παρακαλώ επικοινωνήστε με την υπηρεσία υποστήριξης αν θέλετε ν'ανοίξετε ένα λογαριασμό χρήστη.</value>
+  </data>
+  <data name="Registration_RegistrationNotAllowed_Title" xml:space="preserve">
+    <value>Δεν επιτρέπεται εγγραφή</value>
+  </data>
+  <data name="CachedOnFormatText" xml:space="preserve">
+    <value>Αποθηκεύτηκε προσωρινά στις {0}</value>
+  </data>
+  <data name="Refresh" xml:space="preserve">
+    <value>Ανανέωση</value>
+  </data>
+  <data name="ErrorMessage_Upload" xml:space="preserve">
+    <value>Δεν μπόρεσαν ν'ανεβούν όλα τα αρχεία. Παρακαλώ βεβαιωθείτε ότι όλα τα αρχεία που ανεβάζετε έχουν τη σωστή κατάληξη και μέγεθος.</value>
+  </data>
+  <data name="DateTimeExtension_DaysAgo" xml:space="preserve">
+    <value>{0} ημέρα(ες)</value>
+  </data>
+  <data name="DateTimeExtension_FormatPrefix" xml:space="preserve">
+    <value />
+  </data>
+  <data name="DateTimeExtension_FormatSufix" xml:space="preserve">
+    <value> πριν</value>
+  </data>
+  <data name="DateTimeExtension_HoursAgo" xml:space="preserve">
+    <value>{0} ώρα(ες)</value>
+  </data>
+  <data name="DateTimeExtension_JustNow" xml:space="preserve">
+    <value>μόλις τώρα</value>
+  </data>
+  <data name="DateTimeExtension_MinutesAgo" xml:space="preserve">
+    <value>{0} λεπτό(α)</value>
+  </data>
+  <data name="DateTimeExtension_MonthsAgo" xml:space="preserve">
+    <value>{0} μήνας(ες)</value>
+  </data>
+  <data name="DateTimeExtension_OneHourAgo" xml:space="preserve">
+    <value>1 ώρα</value>
+  </data>
+  <data name="DateTimeExtension_OneMinuteAgo" xml:space="preserve">
+    <value>1 λεπτό</value>
+  </data>
+  <data name="DateTimeExtension_OneYearAgo" xml:space="preserve">
+    <value>1 χρόνος</value>
+  </data>
+  <data name="DateTimeExtension_WeeksAgo" xml:space="preserve">
+    <value>{0} εβδομάδα(ες)</value>
+  </data>
+  <data name="DateTimeExtension_YearsAgo" xml:space="preserve">
+    <value>{0} χρόνος(ια)</value>
+  </data>
+  <data name="DateTimeExtension_Yesterday" xml:space="preserve">
+    <value>χθές</value>
+  </data>
+  <data name="DateTimeExtension_OneWeekAgo" xml:space="preserve">
+    <value>1 εβδομάδα</value>
+  </data>
+  <data name="MonoXRating_CaptionToolTip" xml:space="preserve">
+    <value>Το περιεχόμενο έχει αξιολογηθεί {0:f2} από {1} ψήφο(ους).</value>
+  </data>
+  <data name="MonoXRating_Caption" xml:space="preserve">
+    <value>Αξιολογήθηκε {0:f2}, {1} ψήφος(οι).</value>
+  </data>
+  <data name="MonoXRating_RatingHistorySubTitle" xml:space="preserve">
+    <value>Δείχνει ποιοί έχουν αξιολογήσει το περιεχόμενο και το βαθμό αξιολόγησης.</value>
+  </data>
+  <data name="MonoXRating_RatingHistoryTitle" xml:space="preserve">
+    <value>Ιστορικό αξιολόγησης</value>
+  </data>
+  <data name="MonoXRating_ViewHistory" xml:space="preserve">
+    <value>Ιστορικό αξιολόγησης</value>
+  </data>
+  <data name="MonoXRating_NotRated" xml:space="preserve">
+    <value>Το περιεχόμενο αυτό δεν έχει αξιολογηθεί ακόμη.</value>
+  </data>
+  <data name="MonoXMaster_ConnectionsZone_GeneralInstructionsText" xml:space="preserve">
+    <value>Παρακαλώ επιλέξτε Web part που είναι πάροχοι ή καταναλωτές επικοινωνίας και επιλέξτε την ενέργεια "Σύνδεση" από το μενού για να εμφανίσετε περισσότερες επιλογές σε αυτή την περιοχή.</value>
+  </data>
+  <data name="SyntaxHighlighter_EmptyPlaceHolderCaption" xml:space="preserve">
+    <value>εισάγετε κωδικό εδώ</value>
+  </data>
+  <data name="SyntaxHighlighter_MenuRootItemCaption" xml:space="preserve">
+    <value>Εισαγωγή κωδικού</value>
+  </data>
+  <data name="MessageCenter" xml:space="preserve">
+    <value>Μετάβαση στο κέντρο μηνυμάτων</value>
+  </data>
+  <data name="RelatedContent_Title" xml:space="preserve">
+    <value>Σχετικό περιεχόμενο</value>
+  </data>
+  <data name="MonoXRating_NoRatePermission" xml:space="preserve">
+    <value>Δεν μπορείτε να αξιολογήσετε αυτό το περιεχόμενο (π.χ. Δεν είστε πιστοποημένος, Πρόκειται για δικό σας περιεχόμενο, Ήδη αξιολογήσατε αυτό το περιεχόμενο κλπ.).</value>
+  </data>
+  <data name="MonoXRating_RatedByNotMember" xml:space="preserve">
+    <value>Μη πιστοποιημένος χρήστης</value>
+  </data>
+  <data name="ErrorMessage_NotEnablePasswordReset" xml:space="preserve">
+    <value>Η επαναφορά κωδικού πρόσβασης δεν είναι ενεργοποιημένη.</value>
+  </data>
+  <data name="ErrorMessage_NotEnablePasswordRetrieval" xml:space="preserve">
+    <value>Η ανάκτηση κωδικού πρόσβασης δεν είναι ενεργοποιημένη.</value>
+  </data>
+  <data name="NotValidUserDataPP" xml:space="preserve">
+    <value>Τα δεδομένα χρήστη είναι άκυρα! Παρακαλώ φέρετε όλα τα δεδομένα χρήστη.</value>
+  </data>
+  <data name="MonoXMaster_HiddenCatalogPart_Title" xml:space="preserve">
+    <value>Κατάλογος κρυφών Web part</value>
+  </data>
+  <data name="OpenSocial_Allow" xml:space="preserve">
+    <value>Επίτρεψη</value>
+  </data>
+  <data name="OpenSocial_Deny" xml:space="preserve">
+    <value>Απόρριψη</value>
+  </data>
+  <data name="OpenSocial_RequestMessage" xml:space="preserve">
+    <value>Η εφαρμογή {0} θέλει να προσπελάσει τα δεδομένα κοινωνικής δικτύωσης σας.</value>
+  </data>
+  <data name="ContactForm_MissingContactEMailAddress" xml:space="preserve">
+    <value>Η διεύθυνση e-mail επικοινωνίας απουσιάζει. Παρακαλώ επικοινωνήστε με το διαχειριστή του ιστότοπου.</value>
+  </data>
+  <data name="Message_AccountUpdated" xml:space="preserve">
+    <value>Ο λογαριασμός σας ενημερώθηκε επιτυχώς.</value>
+  </data>
+  <data name="ErrorMessage_UserAccountHasBeenLockedOut" xml:space="preserve">
+    <value>Ο κωδικός δε λήφθηκε (π.χ. Ο λογαριασμός χρήστη έχει κλειδωθεί, κλπ.).</value>
+  </data>
+  <data name="DemoIndicator" xml:space="preserve">
+    <value>Αυτός είναι ένας ιστότοπος επίδειξης για το MonoX. Παρακαλώ επισκεφτείτε τη &lt;a href="http://www.mono-software.com/"&gt;Mono Software&lt;/a&gt; για περισσότερες πληροφορίες.</value>
+  </data>
+  <data name="DropHere" xml:space="preserve">
+    <value>Ρίψτε εδώ</value>
+  </data>
+  <data name="MembershipEditor_TimeZone" xml:space="preserve">
+    <value>Ζώνη ώρας</value>
+  </data>
+  <data name="PasswordRecovery_TitleChange" xml:space="preserve">
+    <value>Αλλαγή κωδικού πρόσβασης</value>
+  </data>
+  <data name="Email_PasswordRecoveryRequest_HtmlContent" xml:space="preserve">
+    <value>Αγαπητέ/η &lt;i&gt;{0}&lt;/i&gt;, λάβαμε μια αίτηση για ανάκτηση κωδικού πρόσβασης για το όνομα χρήστη σας στο {1}.
+&lt;br /&gt;&lt;br /&gt;
+Παρακαλώ πατήστε εδώ για να αλλάξτε τον κωδικό πρόσβασης σας: &lt;b&gt;{2}&lt;/b&gt;
+&lt;br /&gt;&lt;br /&gt;&lt;br /&gt;
+Ειλικρινώς,
+&lt;br /&gt;&lt;br /&gt;
+Η ομάδα του {1}</value>
+  </data>
+  <data name="Email_PasswordRecoveryRequest_PlainContent" xml:space="preserve">
+    <value>Αγαπητέ/η {0}, λάβαμε μια αίτηση για ανάκτηση κωδικού πρόσβασης για το όνομα χρήστη σας στο {1}.
+
+Παρακαλώ πατήστε εδώ για να αλλάξτε τον κωδικό πρόσβασης σας: {2}
+
+
+Ειλικρινώς,
+
+Η ομάδα του {1}</value>
+  </data>
+  <data name="PasswordRecovery_RequestExpired" xml:space="preserve">
+    <value>Η αίτηση ανάκτησης κωδικού έχει λήξει</value>
+  </data>
+  <data name="DynamicPager_ViewLess" xml:space="preserve">
+    <value>Προβολή λιγότερων</value>
+  </data>
+  <data name="DynamicPager_ViewMore" xml:space="preserve">
+    <value>Προβολή περισσότερων</value>
+  </data>
+</root>
