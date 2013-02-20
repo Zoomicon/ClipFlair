@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: App.xaml.cs
-//Version: 20130204
+//Version: 20130220
 
 using ClipFlair.Windows;
 
@@ -66,7 +66,7 @@ namespace ClipFlair
               ev.Cancel = true;
             else //proceed with app closing
               activityWindow.View.WarnOnClosing = false; //disable warning before proceeding with close (not really needed, since the ActivityWindow checks if it's TopLevel or not)
-        }; //TODO: add Closing (with cancel) event handler) in webpage script too for when running in-browser
+        }; //TODO: add Closing (with cancel) event handler in webpage script too for when running in-browser
 
 
       host.Rendered += (s, ev) =>
