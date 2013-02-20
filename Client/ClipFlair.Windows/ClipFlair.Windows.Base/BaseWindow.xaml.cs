@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: BaseWindow.xaml.cs
-//Version: 20130204
+//Version: 20130220
 
 //TODO: unbind control at close
 
@@ -281,7 +281,7 @@ namespace ClipFlair.Windows
         LoadOptions(zip, zipFolder); //reading from root folder
     }
 
-    public virtual void LoadOptions(ZipFile zip, string zipFolder = "")
+    public virtual void LoadOptions(ZipFile zip, string zipFolder = "") //THIS IS THE CORE LOADING LOGIC
     {
       View.Busy = true;
       DataContractSerializer serializer = new DataContractSerializer(View.GetType()); //assuming current View isn't null and has been set by descendent class with wanted BaseView descendent //TODO: maybe use some property to return appropriate View type
@@ -357,13 +357,13 @@ namespace ClipFlair.Windows
       }
     }
 
-    public virtual void SaveOptions(ZipFile zip, string zipFolder = "")
-    { //TODO: not optimal implementation, should try to pipe streams without first saving into memory
-      MemoryStream stream = new MemoryStream(); //don't close this (e.g. don't write "using" here), DotNetZip should close that stream and has been set by descendent class with wanted BaseView descendent //TODO: maybe use some property to return appropriate View type
-      DataContractSerializer serializer = new DataContractSerializer(View.GetType()); //assuming current View isn't null
-      serializer.WriteObject(stream, View);
-      stream.Position = 0;
-      ZipEntry optionsXML = zip.AddEntry(zipFolder + "/" + View.GetType().FullName + ".options.xml", stream);
+    public virtual void SaveOptions(ZipFile zip, string zipFolder = "") //THIS IS THE CORE SAVING LOGIC
+    {
+      ZipEntry optionsXML = zip.AddEntry(zipFolder + "/" + View.GetType().FullName + ".options.xml", 
+        new WriteDelegate((entryName, stream) => { 
+          DataContractSerializer serializer = new DataContractSerializer(View.GetType()); //assuming current View isn't null
+          serializer.WriteObject(stream, View);
+        }) );
     }
 
     #endregion
@@ -510,6 +510,14 @@ namespace ClipFlair.Windows
 
     #endregion
 
+    #region Events
+
+    public event EventHandler Loading;
+    public event EventHandler Loaded;
+    public event EventHandler Saving;
+    public event EventHandler Saved;
+
+    #endregion
   }
 
 }
