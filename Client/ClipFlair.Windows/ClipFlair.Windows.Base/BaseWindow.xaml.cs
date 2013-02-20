@@ -78,7 +78,7 @@ namespace ClipFlair.Windows
       ctrlOptionsLoadSave.LoadURLClick += new RoutedEventHandler(btnLoadURL_Click);
       ctrlOptionsLoadSave.LoadClick += new RoutedEventHandler(btnLoad_Click);
       ctrlOptionsLoadSave.SaveClick += new RoutedEventHandler(btnSave_Click);
-     }
+    }
 
     #region Properties
 
@@ -87,22 +87,22 @@ namespace ClipFlair.Windows
       get { return (IView)DataContext; }
       set
       {
-        #if PROPERTY_CHANGE_SUPPORT
+#if PROPERTY_CHANGE_SUPPORT
         //remove property changed handler from old view
         if (DataContext != null)
           View.PropertyChanged -= new PropertyChangedEventHandler(View_PropertyChanged); //IView inherits from INotifyPropertyChanged
-        
+
         //add property changed handler to new view
         if (value != null)
           value.PropertyChanged += new PropertyChangedEventHandler(View_PropertyChanged);
-        #endif
+#endif
 
         //set the new view (must do after setting property change event handler)
         DataContext = value;
 
-        #if PROPERTY_CHANGE_SUPPORT
-        if (value!=null) View_PropertyChanged(View, new PropertyChangedEventArgs(null)); //notify property change listeners that all properties of the view changed
-        #endif
+#if PROPERTY_CHANGE_SUPPORT
+        if (value != null) View_PropertyChanged(View, new PropertyChangedEventArgs(null)); //notify property change listeners that all properties of the view changed
+#endif
 
         OnViewChanged(); //make sure ViewChangedEventHandler is fired
       }
@@ -148,7 +148,7 @@ namespace ClipFlair.Windows
 
         if (value) MoveEnabled = false; else MoveEnabled = ViewDefaults.DefaultMoveable;
         if (value) ResizeEnabled = false; else ResizeEnabled = ViewDefaults.DefaultResizable;
-        if (value) ScaleEnabled = false; else ScaleEnabled = ViewDefaults.DefaultZoomable;      
+        if (value) ScaleEnabled = false; else ScaleEnabled = ViewDefaults.DefaultZoomable;
       }
     }
 
@@ -193,8 +193,6 @@ namespace ClipFlair.Windows
 
     #endregion
 
-    
-
     #endregion
 
     #region Methods
@@ -228,14 +226,38 @@ namespace ClipFlair.Windows
       Flipped = !Flipped; //flip the view to show/hide window options
     }
 
-    #region Load / Save Options
+    #region ---------------- Load ----------------
+
+    public virtual void LoadOptions(ZipFile zip, string zipFolder = "") //THIS IS THE CORE LOADING LOGIC
+    {
+      if (LoadingOptions != null) LoadingOptions(this, null); //notify any listeners
+
+      View.Busy = true;
+      try
+      {
+        DataContractSerializer serializer = new DataContractSerializer(View.GetType()); //assuming current View isn't null and has been set by descendent class with wanted BaseView descendent //TODO: maybe use some property to return appropriate View type
+
+        using (Stream stream = zip[zipFolder + "/" + View.GetType().FullName + ".options.xml"].OpenReader())
+          View = (IView)serializer.ReadObject(stream); //this will set a new View that defaults to Busy=false
+
+        if (LoadedOptions != null) LoadedOptions(this, null); //notify any listeners
+      }
+      catch (Exception e)
+      {
+        MessageBox.Show("ClipFlair options load failed: " + e.Message); //TODO: find the parent window
+      }
+      finally
+      {
+        View.Busy = false; //in any case (error or not) clear the Busy flag
+      }
+    }
 
     public void LoadOptions(Uri uri)
     {
       if (uri == null) return;
 
       WebClient webClient = new WebClient();
-      
+
       //set up OpenReadCompleted event handler
       webClient.OpenReadCompleted += (s, e) =>
       {
@@ -279,25 +301,6 @@ namespace ClipFlair.Windows
     {
       using (ZipFile zip = ZipFile.Read(stream))
         LoadOptions(zip, zipFolder); //reading from root folder
-    }
-
-    public virtual void LoadOptions(ZipFile zip, string zipFolder = "") //THIS IS THE CORE LOADING LOGIC
-    {
-      View.Busy = true;
-      DataContractSerializer serializer = new DataContractSerializer(View.GetType()); //assuming current View isn't null and has been set by descendent class with wanted BaseView descendent //TODO: maybe use some property to return appropriate View type
-      try
-      {
-        using (Stream stream = zip[zipFolder + "/" + View.GetType().FullName + ".options.xml"].OpenReader())
-          View = (IView)serializer.ReadObject(stream); //this will set a new View that defaults to Busy=false
-      }
-      catch (Exception e)
-      {
-        MessageBox.Show("ClipFlair options load failed: " + e.Message); //TODO: find the parent window
-      }
-      finally
-      {
-        View.Busy = false; //in any case (error or not) clear the Busy flag
-      }
     }
 
     public static BaseWindow LoadWindow(Stream stream, string zipFolder = "") //doesn't close stream
@@ -346,6 +349,36 @@ namespace ClipFlair.Windows
       return null;
     }
 
+    #endregion
+
+    #region  ---------------- Save ----------------
+
+    public virtual void SaveOptions(ZipFile zip, string zipFolder = "") //THIS IS THE CORE SAVING LOGIC
+    {
+      if (SavingOptions != null) SavingOptions(this, null); //notify any listeners
+
+      View.Busy = true;
+      try
+      {
+        ZipEntry optionsXML = zip.AddEntry(zipFolder + "/" + View.GetType().FullName + ".options.xml",
+          new WriteDelegate((entryName, stream) =>
+          {
+            DataContractSerializer serializer = new DataContractSerializer(View.GetType()); //assuming current View isn't null
+            serializer.WriteObject(stream, View);
+          }));
+      }
+      catch (Exception e)
+      {
+        MessageBox.Show("ClipFlair options save failed: " + e.Message); //TODO: find the parent window
+      }
+      finally
+      {
+        View.Busy = false; //in any case (error or not) clear the Busy flag
+      }
+
+      if (SavedOptions != null) SavedOptions(this, null); //notify any listeners
+    }
+
     public void SaveOptions(Stream stream, string zipFolder = "") //doesn't close stream
     {
       using (ZipFile zip = new ZipFile(Encoding.UTF8))
@@ -355,15 +388,6 @@ namespace ClipFlair.Windows
         zip.Save(stream);
         stream.Flush(); //flush all buffers
       }
-    }
-
-    public virtual void SaveOptions(ZipFile zip, string zipFolder = "") //THIS IS THE CORE SAVING LOGIC
-    {
-      ZipEntry optionsXML = zip.AddEntry(zipFolder + "/" + View.GetType().FullName + ".options.xml", 
-        new WriteDelegate((entryName, stream) => { 
-          DataContractSerializer serializer = new DataContractSerializer(View.GetType()); //assuming current View isn't null
-          serializer.WriteObject(stream, View);
-        }) );
     }
 
     #endregion
@@ -398,7 +422,7 @@ namespace ClipFlair.Windows
         ViewChanged(this, View); //fire ViewChanged event handler
     }
 
-    #if PROPERTY_CHANGE_SUPPORT
+#if PROPERTY_CHANGE_SUPPORT
     protected virtual void View_PropertyChanged(object sender, PropertyChangedEventArgs e)
     {
       /*
@@ -420,11 +444,11 @@ namespace ClipFlair.Windows
           }
       */
     }
-    #endif
+#endif
 
     protected string defaultLoadURL = "";
 
-    public virtual void ShowLoadURLDialog(string loadItemTitle="ClipFlair Component Template")
+    public virtual void ShowLoadURLDialog(string loadItemTitle = "ClipFlair Component Template")
     {
       try
       {
@@ -433,7 +457,7 @@ namespace ClipFlair.Windows
           string input = ((InputDialog)s).Input;
           if (input != null && input.Trim() != "") //ignoring empty URLs
             LoadOptions(new Uri(input, UriKind.Absolute)); //since that is an asynchronous operation we expect from it to flip the view back to front after succesful loading
-        }, (s2,ex2) => ShowHelp());
+        }, (s2, ex2) => ShowHelp());
       }
       catch (NullReferenceException)
       {
@@ -502,7 +526,7 @@ namespace ClipFlair.Windows
     {
       ShowLoadDialog();
     }
-  
+
     protected void btnSave_Click(object sender, RoutedEventArgs e)
     {
       ShowSaveDialog();
@@ -512,10 +536,10 @@ namespace ClipFlair.Windows
 
     #region Events
 
-    public event EventHandler Loading;
-    public event EventHandler Loaded;
-    public event EventHandler Saving;
-    public event EventHandler Saved;
+    public event EventHandler LoadingOptions;
+    public event EventHandler LoadedOptions;
+    public event EventHandler SavingOptions;
+    public event EventHandler SavedOptions;
 
     #endregion
   }
