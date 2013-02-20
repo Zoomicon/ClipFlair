@@ -166,6 +166,7 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Diagrams\Activity.cd" />
     <None Include="Diagrams\Windows.cd" />
     <None Include="Diagrams\Windows.Views.Interfaces.cd" />
     <None Include="Diagrams\Windows.Views.ViewModels.cd" />

@@ -16,7 +16,7 @@
     <Lollipop Position="0.929" />
   </Class>
   <Class Name="ClipFlair.Windows.Views.MediaPlayerView">
-    <Position X="3.5" Y="6" Width="1.75" />
+    <Position X="3.5" Y="6" Width="2" />
     <TypeIdentifier />
     <Lollipop Position="0.944" />
   </Class>
@@ -28,7 +28,7 @@
   <Class Name="ClipFlair.Windows.Views.ActivityView">
     <Position X="0.75" Y="6" Width="2.25" />
     <TypeIdentifier>
-      <HashCode>AIABAAAAQggAACIIAAAgAANAAAADQQAAAAUAAACEAQA=</HashCode>
+      <HashCode>AIEBAAAAQggAACIIAAAgAANAAAADQQAAAAUAAQCEAQA=</HashCode>
       <FileName>ActivityView.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="1.367" />
