@@ -1,6 +1,9 @@
-/****************************************/
-/********** MonoX Demo - START **********/
-/****************************************/
+/*
+Project: ClipFlair (http://ClipFlair.codeplex.com)
+Filename: App_Themes/ClipFlair/Default.css
+Version: 20130221
+*/
+
 body, table, td, th, p, ul, li, ol, h1, h2, h3
 {
 	margin: 0px;
@@ -8441,3 +8444,5 @@ ul.material-list li .material-list-container p.info span.tag{
 	background-image:url(img/promote-wall_btn_on.png);
 	
 }
+
+a img { border: none; } /* hide image border shown for image links in IE */
