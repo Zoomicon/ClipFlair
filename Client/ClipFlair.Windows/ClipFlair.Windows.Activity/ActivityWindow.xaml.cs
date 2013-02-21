@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: ActivityWindow.xaml.cs
-//Version: 20130210
+//Version: 20130221
 
 using ClipFlair.Utils.Extensions;
 using ClipFlair.Utils.Bindings;
@@ -112,11 +112,11 @@ namespace ClipFlair.Windows
         Position = new Point(0, 0);
         Scale = 1.0;
         Opacity = 1.0;
-        View.ViewPosition = new Point(0, 0);
-        View.ViewWidth = Width;
-        View.ViewHeight = Height;
-        */
-      } //TODO: most probably needed cause Width/Height View settings of ActivityContainer when top window aren't set correctly (App.xaml has event that resizes window to get container size, but may occur without view finding out?)
+        ActivityView.ViewPosition = new Point(0, 0);
+        ActivityView.ViewWidth = Width;
+        ActivityView.ViewHeight = Height;
+        */ 
+      } //TODO: most probably needed cause Width/Height View settings of ActivityContainer (when top window) aren't set correctly (App.xaml has event that resizes window to get container size, but may occur without view finding out?)
 
       CheckZoomToFit();
     }
