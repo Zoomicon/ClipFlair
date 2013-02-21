@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: ActivityContainer.xaml.cs
-//Version: 20130204
+//Version: 20130221
 
 //TODO: add ContentPartsZoomable property
 //TODO: add to FloatingWindowHostZUI a rezoom to fit button
@@ -173,7 +173,7 @@ namespace ClipFlair.Windows
 
     public void ZoomToFit()
     {
-      zuiContainer.ZoomToFit();
+      Dispatcher.BeginInvoke(() => { zuiContainer.ZoomToFit(); }); //make sure we invoke this on the UI thread, else it won't always work correctly
     }
 
     public void CheckZoomToFit()
