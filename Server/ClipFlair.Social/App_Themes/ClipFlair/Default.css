@@ -8113,6 +8113,9 @@ h2.gray-title{
 	
 }
 
+/* ---- GALLERY START ---- */
+
+
 ul.material-list{
 	float:left;
 	width:100%;
@@ -8186,7 +8189,6 @@ ul.material-list li .material-list-container a:hover.img_container{
 ul.material-list li .material-list-container .img_container img{
 	width: 120px;
 	border:none;
-	
 }
 
 ul.material-list li .material-list-container h2.material-title{
@@ -8244,7 +8246,7 @@ ul.material-list li .material-list-container p.links{
 ul.material-list li .material-list-container p.info span.tag{
  padding-left:6px;
  padding-right:18px;
- background-image:url(img/indicator.gif);
+ background-image:url(img/Gallery/indicator.gif);
  background-repeat:no-repeat;
  background-position: left center;
  
@@ -8254,9 +8256,7 @@ ul.material-list li .material-list-container p.info span.tag{
  
 }
 
-
- .links a.material-copy-link, .links a.material-play, .links a.material-open, .links a.material-preview, .links a.material-download {
- 
+.links a.material-copy-link, .links a.material-play, .links a.material-open, .links a.material-preview, .links a.material-download {
  padding-right:8px;
  margin-left:6px;
  font-size:11px;
@@ -8266,47 +8266,47 @@ ul.material-list li .material-list-container p.info span.tag{
  
 }
 
-.links a:hover{
+.links a:hover {
 	text-decoration:underline;
 }
 
 .links a.material-details{
- background-image:url(img/details-icon.gif);
+ background-image:url(img/Gallery/details-icon.gif);
  padding-left:10px;
  background-repeat:no-repeat;
  background-position: left center;
 }
 
 .links a.material-copy-link{
- background-image:url(img/copy-link-icon.gif);
+ background-image:url(img/Gallery/copy-link-icon.gif);
  padding-left:18px;
  background-repeat:no-repeat;
  background-position: left center;
 }
 
 .links a.material-play{
- background-image:url(img/play-icon.gif);
+ background-image:url(img/Gallery/play-icon.gif);
  padding-left:10px;
  background-repeat:no-repeat;
  background-position: left center;
 }
 
 .links a.material-open{
- background-image:url(img/open-icon.gif);
+ background-image:url(img/Gallery/open-icon.gif);
  padding-left:14px;
  background-repeat:no-repeat;
  background-position: left center;
 }
 
 .links a.material-preview{
- background-image:url(img/preview-icon.gif);
+ background-image:url(img/Gallery/preview-icon.gif);
  padding-left:13px;
  background-repeat:no-repeat;
  background-position: left center;
 }
 
 .links a.material-download{
- background-image:url(img/download-icon.gif);
+ background-image:url(img/Gallery/download-icon.gif);
  padding-left:10px;
  background-repeat:no-repeat;
  background-position: left center;
@@ -8418,14 +8418,14 @@ ul.material-list li .material-list-container p.info span.tag{
 	float:left;
 	width:280px;
 	height:38px;
-	background-image:url(img/use-it_btn.png);
+	background-image:url(img/Gallery/use-it_btn.png);
 	text-decoration:none;
 	margin:10px 0 5px 0;
 }
 
 .activity-body .left-column a:hover.use-it{
 
-	background-image:url(img/use-it_btn_on.png);
+	background-image:url(img/Gallery/use-it_btn_on.png);
 	
 }
 
@@ -8434,15 +8434,17 @@ ul.material-list li .material-list-container p.info span.tag{
 	float:left;
 	width:280px;
 	height:38px;
-	background-image:url(img/promote-wall_btn.png);
+	background-image:url(img/Gallery/promote-wall_btn.png);
 	text-decoration:none;
 	margin:5px 0 10px 0;
 }
 
 .activity-body .left-column a:hover.promote-it{
 
-	background-image:url(img/promote-wall_btn_on.png);
+	background-image:url(img/Gallery/promote-wall_btn_on.png);
 	
 }
+
+/* ---- GALLERY END ---- */
 
 a img { border: none; } /* hide image border shown for image links in IE */
