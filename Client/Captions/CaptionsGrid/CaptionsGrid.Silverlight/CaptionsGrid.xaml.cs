@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: CaptionsGrid.xaml.cs
-//Version: 20130125
+//Version: 20130222
 
 using ClipFlair.AudioRecorder;
 using ClipFlair.CaptionsLib.Utils;
@@ -191,39 +191,39 @@ namespace ClipFlair.CaptionsGrid
 
     #endregion
 
-    #region RoleVisible
+    #region ToolbarVisible
 
     /// <summary>
-    /// RoleVisible Dependency Property
+    /// ToolbarVisible Dependency Property
     /// </summary>
-    public static readonly DependencyProperty RoleVisibleProperty =
-        DependencyProperty.Register("RoleVisible", typeof(bool), typeof(CaptionsGrid),
-            new FrameworkPropertyMetadata(true, new PropertyChangedCallback(OnRoleVisibleChanged)));
+    public static readonly DependencyProperty ToolbarVisibleProperty =
+        DependencyProperty.Register("ToolbarVisible", typeof(bool), typeof(CaptionsGrid),
+            new FrameworkPropertyMetadata(true, new PropertyChangedCallback(OnToolbarVisibleChanged)));
 
     /// <summary>
-    /// Gets or sets the RoleVisible property. 
+    /// Gets or sets the ToolbarVisible property.
     /// </summary>
-    public bool RoleVisible
+    public bool ToolbarVisible
     {
-      get { return (bool)GetValue(RoleVisibleProperty); }
-      set { SetValue(RoleVisibleProperty, value); }
+      get { return (bool)GetValue(ToolbarVisibleProperty); }
+      set { SetValue(ToolbarVisibleProperty, value); }
     }
 
     /// <summary>
-    /// Handles changes to the RoleVisible property.
+    /// Handles changes to the ToolbarVisible property.
     /// </summary>
-    private static void OnRoleVisibleChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    private static void OnToolbarVisibleChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
       CaptionsGrid target = (CaptionsGrid)d;
-      target.OnRoleVisibleChanged((bool)e.OldValue, target.RoleVisible);
+      target.OnToolbarVisibleChanged((bool)e.OldValue, target.ToolbarVisible);
     }
 
     /// <summary>
-    /// Provides derived classes an opportunity to handle changes to the RoleVisible property.
+    /// Provides derived classes an opportunity to handle changes to the IsAvailable property.
     /// </summary>
-    protected virtual void OnRoleVisibleChanged(bool oldValue, bool newValue)
+    protected virtual void OnToolbarVisibleChanged(bool oldToolbarVisible, bool newToolbarVisible)
     {
-      ColumnRole.Visibility = (newValue) ? Visibility.Visible : Visibility.Collapsed;
+      Toolbar.Visibility = (newToolbarVisible) ? Visibility.Visible : Visibility.Collapsed;
     }
 
     #endregion
@@ -335,6 +335,43 @@ namespace ClipFlair.CaptionsGrid
     protected virtual void OnDurationVisibleChanged(bool oldValue, bool newValue)
     {
       ColumnDuration.Visibility = (newValue) ? Visibility.Visible : Visibility.Collapsed;
+    }
+
+    #endregion
+
+    #region RoleVisible
+
+    /// <summary>
+    /// RoleVisible Dependency Property
+    /// </summary>
+    public static readonly DependencyProperty RoleVisibleProperty =
+        DependencyProperty.Register("RoleVisible", typeof(bool), typeof(CaptionsGrid),
+            new FrameworkPropertyMetadata(true, new PropertyChangedCallback(OnRoleVisibleChanged)));
+
+    /// <summary>
+    /// Gets or sets the RoleVisible property. 
+    /// </summary>
+    public bool RoleVisible
+    {
+      get { return (bool)GetValue(RoleVisibleProperty); }
+      set { SetValue(RoleVisibleProperty, value); }
+    }
+
+    /// <summary>
+    /// Handles changes to the RoleVisible property.
+    /// </summary>
+    private static void OnRoleVisibleChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    {
+      CaptionsGrid target = (CaptionsGrid)d;
+      target.OnRoleVisibleChanged((bool)e.OldValue, target.RoleVisible);
+    }
+
+    /// <summary>
+    /// Provides derived classes an opportunity to handle changes to the RoleVisible property.
+    /// </summary>
+    protected virtual void OnRoleVisibleChanged(bool oldValue, bool newValue)
+    {
+      ColumnRole.Visibility = (newValue) ? Visibility.Visible : Visibility.Collapsed;
     }
 
     #endregion
