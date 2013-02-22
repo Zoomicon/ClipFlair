@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: CaptionsGridDefaults.cs
-//Version: 20130122
+//Version: 20130222
 
 using Microsoft.SilverlightMediaFramework.Core.Accessibility.Captions;
 
@@ -26,10 +26,11 @@ namespace ClipFlair.Windows.Views
     public const Uri DefaultSource = null;
     public static readonly TimeSpan DefaultTime = TimeSpan.Zero;
     public const CaptionRegion DefaultCaptions = null; //don't make this "static readonly", it's an object reference, not a struct (better check for "null" in the view and create default instance if needed)
-    public const bool DefaultRoleVisible = true;
+    public const bool DefaultToolbarVisible = true;
     public const bool DefaultStartTimeVisible = true;
     public const bool DefaultEndTimeVisible = true;
     public const bool DefaultDurationVisible = false;
+    public const bool DefaultRoleVisible = true;
     public const bool DefaultCaptionVisible = true;
     public const bool DefaultWPMVisible = false;
     public const bool DefaultAudioVisible = false;
@@ -49,10 +50,11 @@ namespace ClipFlair.Windows.Views
       captions.Source = DefaultSource;
       captions.Time = DefaultTime;
       captions.Captions = DefaultCaptions;
-      captions.RoleVisible = DefaultRoleVisible;
+      captions.ToolbarVisible = DefaultToolbarVisible;
       captions.StartTimeVisible = DefaultStartTimeVisible;
       captions.EndTimeVisible = DefaultEndTimeVisible;
       captions.DurationVisible = DefaultDurationVisible;
+      captions.RoleVisible = DefaultRoleVisible;
       captions.CaptionVisible = DefaultCaptionVisible;
       captions.WPMVisible = DefaultWPMVisible;
       captions.AudioVisible = DefaultAudioVisible;
