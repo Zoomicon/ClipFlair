@@ -1,7 +1,7 @@
 ﻿<!--
 Project: ClipFlair (http://ClipFlair.codeplex.com)
 Filename: CaptionsGrid.xaml
-Version: 20130204
+Version: 20130222
 -->
   
   <UserControl x:Class="ClipFlair.CaptionsGrid.CaptionsGrid"
@@ -26,14 +26,14 @@ Version: 20130204
         Background="White"
         >
     <Grid.RowDefinitions>
-      <RowDefinition Height="29" />
+      <RowDefinition Height="Auto" />
       <RowDefinition Height="*" />
     </Grid.RowDefinitions>
     
     <toolkit:WrapPanel Name="Toolbar"
                 Grid.Row="0"
                 Orientation="Horizontal"
-                HorizontalAlignment="Stretch"
+                MaxHeight="29"
                 >
       <toolkit:WrapPanel.Resources>
         <Style TargetType="Button">
@@ -43,7 +43,7 @@ Version: 20130204
       </toolkit:WrapPanel.Resources>
       
       <Button Name="btnAdd" Click="btnAdd_Click" ToolTipService.ToolTip="{Binding tooltip_caption_add, Source={StaticResource localizedStrings}}">
-        <Image Source="Images/caption_add.png"/>
+        <Image Source="Images/caption_add.png" />
       </Button>
       
       <Button Name="btnRemove" Click="btnRemove_Click" ToolTipService.ToolTip="{Binding tooltip_caption_remove, Source={StaticResource localizedStrings}}">
@@ -72,7 +72,6 @@ Version: 20130204
     
     <sdk:DataGrid Name="gridCaptions"
                   Grid.Row="1" 
-                  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" 
                   AutoGenerateColumns="False"
                   RowBackground="White"
                   AlternatingRowBackground="Beige"
@@ -88,6 +87,7 @@ Version: 20130204
         <sdk:DataGridTemplateColumn Header="Comments" Width="100" CellTemplate="{StaticResource CommentsCellTemplate}" CellEditingTemplate="{StaticResource CommentsCellEditTemplate}" />
       </sdk:DataGrid.Columns>
     </sdk:DataGrid>
+    
   </Grid>
   
 </UserControl>
