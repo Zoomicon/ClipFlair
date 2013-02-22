@@ -1,10 +1,11 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: BaseWindow.xaml.cs
-//Version: 20130220
+//Version: 20130222
 
 //TODO: unbind control at close
 
 #define PROPERTY_CHANGE_SUPPORT
+#define WRITE_FORMATTED_XML
 
 using ClipFlair.Utils.Extensions;
 using ClipFlair.UI.Dialogs;
@@ -27,6 +28,7 @@ using System.Windows.Browser;
 using System.Windows.Controls;
 using System.Windows.Markup;
 using System.Windows.Media;
+using System.Xml;
 
 namespace ClipFlair.Windows
 {
@@ -39,6 +41,10 @@ namespace ClipFlair.Windows
     #region Constants
 
     public const string CLIPFLAIR_TUTORIALS = "http://social.clipflair.net/Pages/Tutorials.aspx";
+
+    #if WRITE_FORMATTED_XML
+    private static XmlWriterSettings XML_WRITER_SETTINGS = new XmlWriterSettings() { Indent=true, IndentChars="  "};
+    #endif
 
     #endregion
 
@@ -364,7 +370,12 @@ namespace ClipFlair.Windows
           new WriteDelegate((entryName, stream) =>
           {
             DataContractSerializer serializer = new DataContractSerializer(View.GetType()); //assuming current View isn't null
+            #if WRITE_FORMATTED_XML
+            using (XmlWriter writer = XmlWriter.Create(stream, XML_WRITER_SETTINGS))
+              serializer.WriteObject(writer, View);
+            #else
             serializer.WriteObject(stream, View);
+            #endif
           }));
       }
       catch (Exception e)
