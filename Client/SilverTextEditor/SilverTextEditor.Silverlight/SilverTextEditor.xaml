@@ -1,9 +1,7 @@
 ﻿<!--
 Filename: SilverTextEditor.xaml
-Version: 20130204
+Version: 20130222
 -->
-
-<!-- TODO: resize images that have hardcoded width/height -->
 
 <UserControl x:Class="SilverTextEditor.SilverTextEditor"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
@@ -64,37 +62,37 @@ Version: 20130204
                     Background="#FFDDEFFA"
                     >
 
-          <!--Clipboard Toolbar -->
+          <!-- File Toolbar -->
           <StackPanel Orientation="Horizontal">
 
-            <!-- File Toolbar -->
-            <StackPanel Orientation="Horizontal">
+            <!-- <TextBlock Style="{StaticResource MenuLabel}" Text="{Binding txt_File, Source={StaticResource localizedStrings}}" /> -->
 
-              <!-- <TextBlock Style="{StaticResource MenuLabel}" Text="{Binding txt_File, Source={StaticResource localizedStrings}}" /> -->
-
-              <Button x:Name="btnNew" Click="btnNew_Click" 
+            <Button x:Name="btnNew" Click="btnNew_Click" 
                       ToolTipService.ToolTip="{Binding tooltip_New, Source={StaticResource localizedStrings}}"
                       Visibility="{Binding Editable, Converter={StaticResource BooleanToVisibilityConverter}}"
                       >
-                <Image Source="Images/New.png"/>
-              </Button>
+              <Image Source="Images/New.png"/>
+            </Button>
 
-              <Button  x:Name="btnOpen" Click="btnOpen_Click" 
+            <Button  x:Name="btnOpen" Click="btnOpen_Click" 
                        ToolTipService.ToolTip="{Binding tooltip_Open, Source={StaticResource localizedStrings}}"
                        Visibility="{Binding Editable, Converter={StaticResource BooleanToVisibilityConverter}}"
                        >
-                <Image Source="Images/Open.png"/>
-              </Button>
+              <Image Source="Images/Open.png"/>
+            </Button>
 
-              <Button x:Name="btnSave" Click="btnSave_Click" ToolTipService.ToolTip="{Binding tooltip_Save, Source={StaticResource localizedStrings}}">
-                <Image Source="Images/Save.png"/>
-              </Button>
+            <Button x:Name="btnSave" Click="btnSave_Click" ToolTipService.ToolTip="{Binding tooltip_Save, Source={StaticResource localizedStrings}}">
+              <Image Source="Images/Save.png"/>
+            </Button>
 
-              <Button x:Name="btnPrint" Click="btnPrint_Click" ToolTipService.ToolTip="{Binding tooltip_Print, Source={StaticResource localizedStrings}}">
-                <Image Source="Images/Print.png" />
-              </Button>
+            <Button x:Name="btnPrint" Click="btnPrint_Click" ToolTipService.ToolTip="{Binding tooltip_Print, Source={StaticResource localizedStrings}}">
+              <Image Source="Images/Print.png" />
+            </Button>
 
-            </StackPanel>
+          </StackPanel>
+
+          <!--Clipboard Toolbar -->
+          <StackPanel Orientation="Horizontal">
 
             <TextBlock Style="{StaticResource MenuLabel}" Text="" />
 
@@ -132,7 +130,6 @@ Version: 20130204
                       FontFamily="{Binding SelectedItem.FontFamily, RelativeSource={RelativeSource Self}}" 
                       FontSize="{Binding SelectedItem.FontSize, RelativeSource={RelativeSource Self}}" 
                       SelectionChanged="cmbFonts_SelectionChanged" 
-                      Height="22"
                       >
               <ComboBoxItem Content="Arial" Tag="Arial" FontFamily="Arial" FontSize="12"/>
               <ComboBoxItem Content="Arial Black" Tag="Arial Black" FontFamily="Arial Black" FontSize="12"/>
@@ -152,7 +149,6 @@ Version: 20130204
                       Visibility="{Binding Editable, Converter={StaticResource BooleanToVisibilityConverter}}"
                       FontSize="14" 
                       SelectionChanged="cmbFontSizes_SelectionChanged" 
-                      Height="22"
                       >
               <ComboBoxItem Content="8" Tag="8"/>
               <ComboBoxItem Content="9" Tag="9"/>
@@ -176,7 +172,6 @@ Version: 20130204
                       Visibility="{Binding Editable, Converter={StaticResource BooleanToVisibilityConverter}}"
                       SelectionChanged="cmbFontColors_SelectionChanged" 
                       SelectedIndex="0" 
-                      Height="22"
                       >
               <ComboBoxItem Tag="FFFF0000">
                 <Rectangle Width="22" Height="14" Fill="Red" Margin="2,0,0,0" />
