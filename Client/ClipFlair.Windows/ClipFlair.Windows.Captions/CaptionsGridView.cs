@@ -26,6 +26,7 @@ namespace ClipFlair.Windows.Views
     private Uri source;
     private TimeSpan time;
     private CaptionRegion captions;
+    private bool toolbarVisible;
     private bool roleVisible;
     private bool startTimeVisible;
     private bool endTimeVisible;
@@ -83,6 +84,21 @@ namespace ClipFlair.Windows.Views
         {
           captions = value;
           RaisePropertyChanged(ICaptionsGridProperties.PropertyCaptions);
+        }
+      }
+    }
+
+    [DataMember]
+    [DefaultValue(CaptionsGridDefaults.DefaultToolbarVisible)]
+    public bool ToolbarVisible
+    {
+      get { return toolbarVisible; }
+      set
+      {
+        if (value != toolbarVisible)
+        {
+          toolbarVisible = value;
+          RaisePropertyChanged(ICaptionsGridProperties.PropertyToolbarVisible);
         }
       }
     }
