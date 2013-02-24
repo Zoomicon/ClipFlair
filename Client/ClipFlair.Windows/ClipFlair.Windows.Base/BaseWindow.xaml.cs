@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: BaseWindow.xaml.cs
-//Version: 20130222
+//Version: 20130224
 
 //TODO: unbind control at close
 
@@ -40,6 +40,7 @@ namespace ClipFlair.Windows
 
     #region Constants
 
+    public const string CLIPFLAIR_EXTENSION = ".clipflair.zip";
     public const string CLIPFLAIR_TUTORIALS = "http://social.clipflair.net/Pages/Tutorials.aspx";
 
     #if WRITE_FORMATTED_XML
@@ -463,12 +464,14 @@ namespace ClipFlair.Windows
     {
       try
       {
-        InputDialog.Show("Load " + loadItemTitle, "URL:", defaultLoadURL, (s, ex) =>
+        InputDialog.Show("Load " + loadItemTitle, "URL:", defaultLoadURL, 
+        (s, ex) =>
         {
           string input = ((InputDialog)s).Input;
           if (input != null && input.Trim() != "") //ignoring empty URLs
             LoadOptions(new Uri(input, UriKind.Absolute)); //since that is an asynchronous operation we expect from it to flip the view back to front after succesful loading
-        }, (s2, ex2) => ShowHelp());
+        },
+        (s2, ex2) => ShowHelp());
       }
       catch (NullReferenceException)
       {
@@ -485,9 +488,9 @@ namespace ClipFlair.Windows
       try
       {
         OpenFileDialog dlg = new OpenFileDialog();
-        dlg.Filter = "ClipFlair archive|*.clipflair.zip";
+        dlg.Filter = "ClipFlair archive|*" + CLIPFLAIR_EXTENSION;
         dlg.FilterIndex = 1; //note: this index is 1-based, not 0-based
-        //dlg.DefaultExt = ".clipflair.zip"; //OpenFileDialog doesn't seem to have a DefaultExt like SaveFileDialog
+        //dlg.DefaultExt = CLIPFLAIR_EXTENSION; //OpenFileDialog doesn't seem to have a DefaultExt like SaveFileDialog
 
         if (dlg.ShowDialog() == true) //TODO: find the parent window
           using (Stream stream = dlg.File.OpenRead()) //will close the stream when done
@@ -513,10 +516,10 @@ namespace ClipFlair.Windows
       try
       {
         SaveFileDialog dlg = new SaveFileDialog();
-        dlg.Filter = "ClipFlair archive|*.clipflair.zip";
+        dlg.Filter = "ClipFlair archive|*" + CLIPFLAIR_EXTENSION;
         //dlg.FilterIndex = 1; //note: this index is 1-based, not 0-based //do not set if DefaultExt is supplied
-        //dlg.DefaultFileName = View.Title + ".clipflair.zip"; //Silverlight will prompt "Do you want to save X?" (where X is the DefaultFileName value). If we set this, but the prompt can go under the main window, so avoid it
-        dlg.DefaultExt = ".clipflair.zip"; //this doesn't seem to be used if FilterIndex is set
+        //dlg.DefaultFileName = View.Title + CLIPFLAIR_EXTENSION; //Silverlight will prompt "Do you want to save X?" (where X is the DefaultFileName value). If we set this, but the prompt can go under the main window, so avoid it
+        dlg.DefaultExt = CLIPFLAIR_EXTENSION; //this doesn't seem to be used if FilterIndex is set
 
         if (dlg.ShowDialog() == true) //TODO: find the parent window
           using (Stream stream = dlg.OpenFile()) //will close the stream when done
