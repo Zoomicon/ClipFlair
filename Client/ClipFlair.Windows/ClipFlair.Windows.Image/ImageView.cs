@@ -2,7 +2,7 @@
 //Filename: ImageView.cs
 //Version: 20130118
 
-//TODO: maybe allow to load local image and store it in .clipflair.zip file (show image from memorystream)
+//TODO: maybe allow to load local image and store it in options file (show image from memorystream)
 
 using System;
 using System.ComponentModel;
