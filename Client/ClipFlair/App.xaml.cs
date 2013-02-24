@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: App.xaml.cs
-//Version: 20130220
+//Version: 20130224
 
 using ClipFlair.Windows;
 
@@ -112,7 +112,7 @@ namespace ClipFlair
       bool foundParam = false;
       if (queryString.ContainsKey(PARAMETER_ACTIVITY))
       {
-        activityWindow.LoadOptions(new Uri(new Uri(CLIPFLAIR_GALLERY_ACTIVITY), queryString[PARAMETER_ACTIVITY]));
+        activityWindow.LoadOptions(makeActivityUri(queryString[PARAMETER_ACTIVITY]));
         foundParam = true;
       }
       if (queryString.ContainsKey(PARAMETER_MEDIA))
@@ -152,6 +152,15 @@ namespace ClipFlair
       //TODO: add ...PARAMETER_CAPTIONS, PARAMETER_COMPONENT, TEXT, MAP etc.
       
       return foundParam;
+    }
+
+    private Uri makeActivityUri(string param) //TODO: reuse this code at load-activity-from-url dialog
+    {
+      Uri result = new Uri(new Uri(CLIPFLAIR_GALLERY_ACTIVITY), param);
+      string s = result.ToString();
+      if (s.StartsWith(CLIPFLAIR_GALLERY_ACTIVITY, StringComparison.OrdinalIgnoreCase) && !s.EndsWith(BaseWindow.CLIPFLAIR_EXTENSION, StringComparison.OrdinalIgnoreCase))
+        result = new Uri(s + BaseWindow.CLIPFLAIR_EXTENSION);
+      return result;
     }
 
     private void WaitTillNotBusy(ActivityWindow w)
