@@ -171,6 +171,22 @@
     <None Include="Diagrams\Windows.Views.Interfaces.cd" />
     <None Include="Diagrams\Windows.Views.ViewModels.cd" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\AddCaptions.png" />
+    <Resource Include="Images\AddCaptions_hover.png" />
+    <Resource Include="Images\AddImage.png" />
+    <Resource Include="Images\AddImage_hover.png" />
+    <Resource Include="Images\AddRevoicing.png" />
+    <Resource Include="Images\AddRevoicing_hover.png" />
+    <Resource Include="Images\AddText.png" />
+    <Resource Include="Images\AddText_hover.png" />
+    <Resource Include="Images\AddClip.png" />
+    <Resource Include="Images\AddClip_hover.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\AddMap.png" />
+    <Resource Include="Images\AddMap_hover.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Silverlight\$(SilverlightVersion)\Microsoft.Silverlight.CSharp.targets" />
   <ProjectExtensions>
     <VisualStudio>
