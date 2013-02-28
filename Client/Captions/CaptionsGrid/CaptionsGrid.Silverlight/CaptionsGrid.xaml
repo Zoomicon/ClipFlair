@@ -1,7 +1,7 @@
 ﻿<!--
 Project: ClipFlair (http://ClipFlair.codeplex.com)
 Filename: CaptionsGrid.xaml
-Version: 20130222
+Version: 20130227
 -->
   
   <UserControl x:Class="ClipFlair.CaptionsGrid.CaptionsGrid"
@@ -42,30 +42,38 @@ Version: 20130222
         </Style>
       </toolkit:WrapPanel.Resources>
       
-      <Button Name="btnAdd" Click="btnAdd_Click" ToolTipService.ToolTip="{Binding tooltip_caption_add, Source={StaticResource localizedStrings}}">
+      <Button Name="btnAdd" Click="btnAdd_Click"
+              ToolTipService.ToolTip="{Binding tooltip_caption_add, Source={StaticResource localizedStrings}}">
         <Image Source="Images/caption_add.png" />
       </Button>
       
-      <Button Name="btnRemove" Click="btnRemove_Click" ToolTipService.ToolTip="{Binding tooltip_caption_remove, Source={StaticResource localizedStrings}}">
+      <Button Name="btnRemove" Click="btnRemove_Click"
+              ToolTipService.ToolTip="{Binding tooltip_caption_remove, Source={StaticResource localizedStrings}}">
         <Image Source="Images/caption_remove.png"/>
       </Button>
 
       <TextBlock Text="|" VerticalAlignment="Center" Foreground="DarkGray" />
 
-      <Button Name="btnStart" Click="btnStart_Click" ToolTipService.ToolTip="{Binding tooltip_caption_start, Source={StaticResource localizedStrings}}">
+      <Button Name="btnStart" Click="btnStart_Click"
+              ToolTipService.ToolTip="{Binding tooltip_caption_start, Source={StaticResource localizedStrings}}">
         <Image Source="Images/caption_start.png"/>
       </Button>
 
-      <Button Name="btnEnd" Click="btnEnd_Click" ToolTipService.ToolTip="{Binding tooltip_caption_end, Source={StaticResource localizedStrings}}">
+      <Button Name="btnEnd" Click="btnEnd_Click"
+              ToolTipService.ToolTip="{Binding tooltip_caption_end, Source={StaticResource localizedStrings}}">
         <Image Source="Images/caption_end.png"/>
       </Button>
 
       <TextBlock Text="|" VerticalAlignment="Center" Foreground="DarkGray" />
 
-      <Button Name="btnImport" Content="{Binding captions_import, Source={StaticResource localizedStrings}}" Click="btnImport_Click" ToolTipService.ToolTip="{Binding tooltip_captions_import, Source={StaticResource localizedStrings}}">
+      <Button Name="btnImport" Click="btnImport_Click"
+              Content="{Binding captions_import, Source={StaticResource localizedStrings}}"
+              ToolTipService.ToolTip="{Binding tooltip_captions_import, Source={StaticResource localizedStrings}}">
       </Button>
 
-      <Button Name="btnExport" Content="{Binding captions_export, Source={StaticResource localizedStrings}}" Click="btnExport_Click" ToolTipService.ToolTip="{Binding tooltip_captions_export, Source={StaticResource localizedStrings}}">
+      <Button Name="btnExport" Click="btnExport_Click"
+              Content="{Binding captions_export, Source={StaticResource localizedStrings}}"
+              ToolTipService.ToolTip="{Binding tooltip_captions_export, Source={StaticResource localizedStrings}}">
       </Button>
         
     </toolkit:WrapPanel>

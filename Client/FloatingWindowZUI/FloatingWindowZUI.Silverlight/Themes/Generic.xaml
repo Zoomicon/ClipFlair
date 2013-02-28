@@ -1,6 +1,6 @@
 ﻿<!-- 
 Filename: Generic.xaml
-Version: 20130204
+Version: 20130227
 -->
   
 <ResourceDictionary
@@ -97,6 +97,7 @@ Version: 20130204
             <StackPanel Grid.Column="1" Orientation="Horizontal" Visibility="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=ContentScalable, Converter={StaticResource BooleanToVisibilityConverter}}">
               <Button x:Name="PART_ZoomToFitButton"
                       Cursor="Hand"
+                      BorderThickness="0"
                       ToolTipService.ToolTip="Zoom to Fit"
                       >
                 <Image Source="/FloatingWindowZUI;component/Images/ZoomToFit.png" />

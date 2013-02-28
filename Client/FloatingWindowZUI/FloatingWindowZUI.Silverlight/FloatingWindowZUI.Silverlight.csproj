@@ -128,9 +128,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="..\Images\ZoomToFit.png">
-      <Link>Images\ZoomToFit.png</Link>
-    </Resource>
+    <Resource Include="Images\ZoomToFit.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Silverlight\$(SilverlightVersion)\Microsoft.Silverlight.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

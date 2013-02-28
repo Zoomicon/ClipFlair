@@ -1,7 +1,7 @@
 ﻿<!--
 Project: ClipFlair (http://ClipFlair.codeplex.com)
 Filename: ActivityContainer.xaml
-Version: 20130204
+Version: 20130227
 -->
 
 <UserControl x:Class="ClipFlair.Windows.ActivityContainer" 
@@ -56,13 +56,57 @@ Version: 20130204
         <StackPanel Orientation="Horizontal">
           <widgets:OptionsLoadSaveControl LoadURLClick="OptionsLoadSaveControl_LoadURLClick" LoadClick="OptionsLoadSaveControl_LoadClick" SaveClick="OptionsLoadSaveControl_SaveClick" />
           <TextBlock Text=" " />
-          <Button Name="btnAddNestedActivity" Visibility="Collapsed" Content="+ Nested Activity" VerticalAlignment="Center" Margin="0,0,5,0" />
-          <Button Name="btnAddClip" Visibility="Collapsed" Content="+ Clip" VerticalAlignment="Center" Margin="0,0,5,0" />
-          <Button Name="btnAddCaptions" Visibility="Collapsed" Content="+ Captions" VerticalAlignment="Center" Margin="0,0,5,0" />
-          <Button Name="btnAddRevoicing" Visibility="Collapsed" Content="+ Revoicing" VerticalAlignment="Center" Margin="0,0,5,0" />
-          <Button Name="btnAddText" Visibility="Collapsed" Content="+ Text" VerticalAlignment="Center" Margin="0,0,5,0" />
-          <Button Name="btnAddImage" Visibility="Collapsed" Content="+ Image" VerticalAlignment="Center" Margin="0,0,5,0" />
-          <Button Name="btnAddMap" Visibility="Collapsed" Content="+ Map" VerticalAlignment="Center" Margin="0,0,5,0" />
+          
+          <Button Name="btnAddNestedActivity" Visibility="Collapsed"
+                  Content="+ Nested Activity"
+                  VerticalAlignment="Center" Margin="0,0,5,0"
+                  BorderThickness="0"                  
+                  ToolTipService.ToolTip="Add nested Activity">
+          <!--  <Image Source="Images/AddActivity.png" /> -->
+          </Button>
+
+          <Button Name="btnAddClip" Visibility="Collapsed"
+                  VerticalAlignment="Center" Margin="0,0,5,0"
+                  BorderThickness="0"
+                  ToolTipService.ToolTip="Add Clip">
+            <Image Source="Images/AddClip.png" />
+          </Button>
+
+          <Button Name="btnAddCaptions" Visibility="Collapsed"
+                  VerticalAlignment="Center" Margin="0,0,5,0"
+                  BorderThickness="0"                  
+                  ToolTipService.ToolTip="Add Captions">
+            <Image Source="Images/AddCaptions.png" />
+          </Button>
+
+          <Button Name="btnAddRevoicing" Visibility="Collapsed"
+                  VerticalAlignment="Center" Margin="0,0,5,0"
+                  BorderThickness="0"                  
+                  ToolTipService.ToolTip="Add Revoicing">
+            <Image Source="Images/AddRevoicing.png" />
+          </Button>
+
+          <Button Name="btnAddText" Visibility="Collapsed"
+                  VerticalAlignment="Center" Margin="0,0,5,0"
+                  BorderThickness="0"                  
+                  ToolTipService.ToolTip="Add Text">
+            <Image Source="Images/AddText.png" />
+          </Button>
+
+          <Button Name="btnAddImage" Visibility="Collapsed"
+                  VerticalAlignment="Center" Margin="0,0,5,0"
+                  BorderThickness="0"                  
+                  ToolTipService.ToolTip="Add Image">
+            <Image Source="Images/AddImage.png" />
+          </Button>
+
+          <Button Name="btnAddMap" Visibility="Collapsed"
+                  VerticalAlignment="Center" Margin="0,0,5,0"
+                  BorderThickness="0"                  
+                  ToolTipService.ToolTip="Add Map">
+            <Image Source="Images/AddMap.png" />
+          </Button>
+          
         </StackPanel>
       </zui:FloatingWindowHostZUI.Bar>
 
