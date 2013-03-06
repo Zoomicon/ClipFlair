@@ -8217,8 +8217,8 @@ ul.material-list li .material-list-container h2.material-title a:hover{
 }
 
 ul.material-list li .material-list-container p.description{
- float:left;
- width:800px;
+ /*float:left;
+ width:800px;*/
  display:block;
  clear:right;
  padding:0;
@@ -8252,7 +8252,7 @@ ul.material-list li .material-list-container p.info span.tag{
  
  font-size:11px;
  font-style:italic;
- line-height:8px;
+ line-height:17px;
  
 }
 
