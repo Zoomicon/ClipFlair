@@ -2,7 +2,7 @@
 //Filename: CaptionElementExt.cs
 //Version: 20130122
 
-using ClipFlair.Utils.Extensions;
+using Utils.Extensions;
 
 using Microsoft.SilverlightMediaFramework.Core.Accessibility.Captions;
 

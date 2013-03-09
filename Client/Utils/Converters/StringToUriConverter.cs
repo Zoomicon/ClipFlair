@@ -5,9 +5,9 @@
 using System;
 using System.Windows.Data;
 
-using ClipFlair.Utils.Extensions;
+using Utils.Extensions;
 
-namespace ClipFlair.Utils.Converters
+namespace Utils.Converters
 {
 
     [ValueConversion(typeof(string), typeof(Uri))]

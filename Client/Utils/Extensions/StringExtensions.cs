@@ -4,7 +4,7 @@
 
 using System;
 
-namespace ClipFlair.Utils.Extensions
+namespace Utils.Extensions
 {
   public static class StringExtensions
   {
