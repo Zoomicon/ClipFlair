@@ -2,12 +2,12 @@
 //Filename: StringExtensions.cs
 //Version: 20121224
 
-using ClipFlair.Utils;
+using Utils;
 
 using System;
 using System.Runtime.InteropServices.Automation;
 
-namespace ClipFlair.Utils.Extensions
+namespace Utils.Extensions
 {
     public static class UriExtensions
     {

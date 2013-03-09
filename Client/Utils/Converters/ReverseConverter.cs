@@ -10,7 +10,7 @@ using System.Windows;
 using System.Windows.Data;
 using System.Globalization;
 
-namespace ClipFlair.Utils.Converters
+namespace Utils.Converters
 {
 
   public class ReverseConverter : IValueConverter

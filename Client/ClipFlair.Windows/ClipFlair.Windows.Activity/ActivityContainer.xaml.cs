@@ -17,7 +17,7 @@
 //TODO: maybe use MEF Deployment Catalog and put components in separate XAPs (each one a Silverlight app, set to reuse the same Web PRoject) and imported here with CopyLocal=False
 
 using ClipFlair.Windows.Views;
-using ClipFlair.Utils.Bindings;
+using Utils.Bindings;
 
 using ZoomAndPan;
 using SilverFlow.Controls;

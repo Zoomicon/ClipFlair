@@ -1,7 +1,7 @@
 ﻿<!--
 Project: ClipFlair (http://ClipFlair.codeplex.com)
 Filename: Default.xaml
-Version: 20130131
+Version: 20130309
 -->
 
 <ResourceDictionary
@@ -29,4 +29,17 @@ Version: 20130131
     <Setter Property="Cursor" Value="Hand" />
   </Style>
 
+  <!--
+  <Style TargetType="ToolTip">
+    <Setter Property="VerticalOffset" Value="50" /> 
+    <Setter Property="ContentTemplate">
+      <Setter.Value>
+        <DataTemplate>
+          <TextBlock TextWrapping="Wrap" Width="200" Text="{Binding}" />
+        </DataTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+  -->
+  
 </ResourceDictionary>

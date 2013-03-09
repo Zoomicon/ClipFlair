@@ -107,10 +107,6 @@
       <Project>{0771A5EA-F8F5-4BB4-A29E-2FD3CF9A5088}</Project>
       <Name>ClipFlair.UI.Widgets.Silverlight</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Converters\ClipFlair.Utils.Silverlight.csproj">
-      <Project>{E784B6A1-A300-4571-A881-B15240EEE377}</Project>
-      <Name>ClipFlair.Utils.Silverlight</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\FlipPanel\FlipPanel.Silverlight\FlipPanel.Silverlight.csproj">
       <Project>{245ABF59-8751-46FB-A37E-E5EE253342AD}</Project>
       <Name>FlipPanel.Silverlight</Name>
@@ -118,6 +114,10 @@
     <ProjectReference Include="..\..\FloatingWindow\FloatingWindow.Silverlight\FloatingWindow.Silverlight.csproj">
       <Project>{3F3D3C8C-9724-4531-A04D-B92049F64686}</Project>
       <Name>FloatingWindow.Silverlight</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Utils\Utils.Silverlight.csproj">
+      <Project>{E784B6A1-A300-4571-A881-B15240EEE377}</Project>
+      <Name>Utils.Silverlight</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\WPF_Compatibility\WPF_Compatibility.Silverlight\WPF_Compatibility.Silverlight.csproj">
       <Project>{7DC832CC-2D97-4DBC-B963-3F77C1F20730}</Project>

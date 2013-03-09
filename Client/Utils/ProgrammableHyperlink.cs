@@ -5,7 +5,7 @@
 using System;
 using System.Windows.Controls;
 
-namespace ClipFlair.Utils
+namespace Utils
 {
   public class ProgrammableHyperlink : HyperlinkButton
   {

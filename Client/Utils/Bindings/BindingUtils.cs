@@ -2,7 +2,7 @@
 //Filename: BindingUtils.cs
 //Version: 20121205
 
-using ClipFlair.Utils.Bindings;
+using Utils.Bindings;
 
 using System;
 using System.ComponentModel;
@@ -12,7 +12,7 @@ using System.Windows.Controls;
 using System.Windows.Data;
 using System.Collections.Generic;
 
-namespace ClipFlair.Utils.Bindings
+namespace Utils.Bindings
 {
   public static class BindingUtils
   {

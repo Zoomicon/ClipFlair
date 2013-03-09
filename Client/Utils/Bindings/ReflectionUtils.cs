@@ -5,7 +5,7 @@
 using System;
 using System.Reflection;
 
-namespace ClipFlair.Utils.Bindings
+namespace Utils.Bindings
 {
   public static class ReflectionUtils
   {

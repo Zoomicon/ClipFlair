@@ -7,7 +7,7 @@
 #define PROPERTY_CHANGE_SUPPORT
 #define WRITE_FORMATTED_XML
 
-using ClipFlair.Utils.Extensions;
+using Utils.Extensions;
 using ClipFlair.UI.Dialogs;
 using ClipFlair.UI.Widgets;
 using ClipFlair.Windows.Views;

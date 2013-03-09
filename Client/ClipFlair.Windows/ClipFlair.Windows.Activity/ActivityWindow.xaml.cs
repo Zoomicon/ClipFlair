@@ -2,8 +2,8 @@
 //Filename: ActivityWindow.xaml.cs
 //Version: 20130224
 
-using ClipFlair.Utils.Extensions;
-using ClipFlair.Utils.Bindings;
+using Utils.Extensions;
+using Utils.Bindings;
 using ClipFlair.Windows.Views;
 
 using Ionic.Zip;

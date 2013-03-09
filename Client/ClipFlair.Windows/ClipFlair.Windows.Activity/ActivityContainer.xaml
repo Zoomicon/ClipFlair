@@ -1,7 +1,7 @@
 ﻿<!--
 Project: ClipFlair (http://ClipFlair.codeplex.com)
 Filename: ActivityContainer.xaml
-Version: 20130227
+Version: 20130309
 -->
 
 <UserControl x:Class="ClipFlair.Windows.ActivityContainer" 
@@ -14,6 +14,7 @@ Version: 20130227
   xmlns:clipflair="clr-namespace:ClipFlair.Windows"
   xmlns:widgets="clr-namespace:ClipFlair.UI.Widgets;assembly=ClipFlair.UI.Widgets.Silverlight"
   xmlns:utils="clr-namespace:System.Windows.Controls;assembly=WPF_Compatibility"
+  xmlns:hover="clr-namespace:ImageButton;assembly=ImageButton"
   d:DesignWidth="800" d:DesignHeight="600"
   >
   <!-- //EXAMPLE//
@@ -65,47 +66,48 @@ Version: 20130227
           <!--  <Image Source="Images/AddActivity.png" /> -->
           </Button>
 
-          <Button Name="btnAddClip" Visibility="Collapsed"
+          <hover:ImageButton Name="btnAddClip" Visibility="Collapsed"
                   VerticalAlignment="Center" Margin="0,0,5,0"
                   BorderThickness="0"
-                  ToolTipService.ToolTip="Add Clip">
-            <Image Source="Images/AddClip.png" />
-          </Button>
+                  ToolTipService.ToolTip="Add Clip"
+                             Width="50" Height="50"
+                  ImageNormal="Images/AddClip.png"
+                  ImageHover="Images/AddClip_hover.png" />
 
-          <Button Name="btnAddCaptions" Visibility="Collapsed"
+          <hover:ImageButton Name="btnAddCaptions" Visibility="Collapsed"
                   VerticalAlignment="Center" Margin="0,0,5,0"
                   BorderThickness="0"                  
-                  ToolTipService.ToolTip="Add Captions">
-            <Image Source="Images/AddCaptions.png" />
-          </Button>
+                  ToolTipService.ToolTip="Add Captions"
+                  ImageNormal="Images/AddCaptions.png"
+                  ImageHover="Images/AddCaptions_hover.png" />
 
-          <Button Name="btnAddRevoicing" Visibility="Collapsed"
+          <hover:ImageButton Name="btnAddRevoicing" Visibility="Collapsed"
                   VerticalAlignment="Center" Margin="0,0,5,0"
                   BorderThickness="0"                  
-                  ToolTipService.ToolTip="Add Revoicing">
-            <Image Source="Images/AddRevoicing.png" />
-          </Button>
+                  ToolTipService.ToolTip="Add Revoicing"
+                  ImageNormal="Images/AddRevoicing.png"
+                  ImageHover="Images/AddRevoicing_hover.png" />
 
-          <Button Name="btnAddText" Visibility="Collapsed"
+          <hover:ImageButton Name="btnAddText" Visibility="Collapsed"
                   VerticalAlignment="Center" Margin="0,0,5,0"
                   BorderThickness="0"                  
-                  ToolTipService.ToolTip="Add Text">
-            <Image Source="Images/AddText.png" />
-          </Button>
+                  ToolTipService.ToolTip="Add Text"
+                  ImageNormal="Images/AddText.png"
+                  ImageHover="Images/AddText_hover.png" />
 
-          <Button Name="btnAddImage" Visibility="Collapsed"
+          <hover:ImageButton Name="btnAddImage" Visibility="Collapsed"
                   VerticalAlignment="Center" Margin="0,0,5,0"
                   BorderThickness="0"                  
-                  ToolTipService.ToolTip="Add Image">
-            <Image Source="Images/AddImage.png" />
-          </Button>
+                  ToolTipService.ToolTip="Add Image"
+                  ImageNormal="Images/AddImage.png"
+                   ImageHover="Images/AddImage_hover.png" />
 
-          <Button Name="btnAddMap" Visibility="Collapsed"
+          <hover:ImageButton Name="btnAddMap" Visibility="Collapsed"
                   VerticalAlignment="Center" Margin="0,0,5,0"
                   BorderThickness="0"                  
-                  ToolTipService.ToolTip="Add Map">
-            <Image Source="Images/AddMap.png" />
-          </Button>
+                  ToolTipService.ToolTip="Add Map"
+                  ImageNormal="Images/AddMap.png"
+                  ImageHover="Images/AddMap_hover.png" />
           
         </StackPanel>
       </zui:FloatingWindowHostZUI.Bar>
