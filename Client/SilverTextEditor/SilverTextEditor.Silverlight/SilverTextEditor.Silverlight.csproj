@@ -147,26 +147,8 @@
     <None Include="Properties\AppManifest.xml" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\Bold.png" />
-    <Resource Include="Images\Copy.png" />
-    <Resource Include="Images\Cut.png" />
-    <Resource Include="Images\Hyperlink.png" />
     <Resource Include="Images\Image.png" />
-    <Resource Include="Images\Italic.png" />
     <Resource Include="Images\New.png" />
-    <Resource Include="Images\Open.png" />
-    <Resource Include="Images\Paste.png" />
-    <Resource Include="Images\Print.png" />
-    <Resource Include="Images\Save.png" />
-    <Resource Include="Images\Underline.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\LTR.png" />
-    <Resource Include="Images\RTL.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\Edit.png" />
-    <Resource Include="Images\View.png" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Resources\Strings.el.resx">
@@ -185,15 +167,16 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\Calendar.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\Annotation_New.png" />
+    <Resource Include="Images\Highlight.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\OutOfBrowserSettings.xml" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\ImageButton\ImageButton.Silverlight\ImageButton.Silverlight.csproj">
+      <Project>{127105AF-C0F4-40F8-87C5-D6C391552936}</Project>
+      <Name>ImageButton.Silverlight</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\WPF_Compatibility\WPF_Compatibility.Silverlight\WPF_Compatibility.Silverlight.csproj">
       <Project>{7DC832CC-2D97-4DBC-B963-3F77C1F20730}</Project>
       <Name>WPF_Compatibility.Silverlight</Name>
@@ -210,6 +193,38 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Bold.png" />
+    <Resource Include="Images\Bold_hover.png" />
+    <Resource Include="Images\Copy.png" />
+    <Resource Include="Images\Copy_hover.png" />
+    <Resource Include="Images\Cut.png" />
+    <Resource Include="Images\Cut_hover.png" />
+    <Resource Include="Images\EditMode.png" />
+    <Resource Include="Images\EditMode_hover.png" />
+    <Resource Include="Images\Export.png" />
+    <Resource Include="Images\Export_hover.png" />
+    <Resource Include="Images\Hyperlink.png" />
+    <Resource Include="Images\Hyperlink_hover.png" />
+    <Resource Include="Images\Import.png" />
+    <Resource Include="Images\Import_hover.png" />
+    <Resource Include="Images\InsertTime.png" />
+    <Resource Include="Images\InsertTime_hover.png" />
+    <Resource Include="Images\Italic.png" />
+    <Resource Include="Images\Italic_hover.png" />
+    <Resource Include="Images\LTR.png" />
+    <Resource Include="Images\LTR_hover.png" />
+    <Resource Include="Images\Paste.png" />
+    <Resource Include="Images\Paste_hover.png" />
+    <Resource Include="Images\Print.png" />
+    <Resource Include="Images\Print_hover.png" />
+    <Resource Include="Images\ReadingMode.png" />
+    <Resource Include="Images\ReadingMode_hoover.png" />
+    <Resource Include="Images\RTL.png" />
+    <Resource Include="Images\RTL_hover.png" />
+    <Resource Include="Images\Underline.png" />
+    <Resource Include="Images\Underline_hover.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Silverlight\$(SilverlightVersion)\Microsoft.Silverlight.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
