@@ -139,6 +139,15 @@
   <ItemGroup>
     <None Include="Base.cd" />
   </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Images\Close.png" />
+    <Resource Include="Images\Close_hover.png" />
+    <Resource Include="Images\Help.png" />
+    <Resource Include="Images\Help_hover.png" />
+    <Resource Include="Images\Options.png" />
+    <Resource Include="Images\Options_hover.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Silverlight\$(SilverlightVersion)\Microsoft.Silverlight.CSharp.targets" />
   <ProjectExtensions>
     <VisualStudio>

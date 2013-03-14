@@ -1,15 +1,23 @@
 ﻿<!--
 Project: ClipFlair (http://ClipFlair.codeplex.com)
-Filename: Default.xaml
+Filename: Generic.xaml
 Version: 20130314 
 -->
 
 <ResourceDictionary
  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
- xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk"    
- xmlns:local="clr-namespace:FlipPanel;assembly=FlipPanel"
-  >
+ xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk"  
+ xmlns:float="clr-namespace:SilverFlow.Controls;assembly=SilverFlow.Controls"
+ xmlns:local="clr-namespace:ClipFlair.Windows"
+ xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+ xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+ mc:Ignorable="d"
+ >
+
+  <ResourceDictionary.MergedDictionaries>
+    <ResourceDictionary Source="/SilverFlow.Controls;component/Themes/generic.xaml" />
+  </ResourceDictionary.MergedDictionaries>
 
   <Style x:Key="PropertyLabelStyle" TargetType="sdk:Label">
     <Setter Property="FontWeight" Value="SemiBold" />
@@ -20,7 +28,7 @@ Version: 20130314
     <Setter Property="Margin" Value="0,5,0,5" />
     <Setter Property="HorizontalAlignment" Value="Stretch" />
   </Style>
-  
+
   <Style TargetType="Button">
     <Setter Property="Cursor" Value="Hand" />
   </Style>
@@ -31,6 +39,7 @@ Version: 20130314
 
   <Style TargetType="Slider">
     <Setter Property="Cursor" Value="Hand" />
+    <Setter Property="Foreground" Value="#948985" />
   </Style>
 
   <!--
@@ -45,5 +54,129 @@ Version: 20130314
     </Setter>
   </Style>
   -->
-  
+
+  <LinearGradientBrush x:Key="ClipFlairTitleBackground" StartPoint="0,0" EndPoint="0,1">
+    <GradientStop Color="#2171D2" Offset="0" />
+    <GradientStop Color="#1868C9" Offset="1" />
+  </LinearGradientBrush>
+
+  <Style x:Key="ClipFlairTitleStyle" TargetType="ContentControl">
+    <Setter Property="IsTabStop" Value="False"/>
+    <Setter Property="HorizontalAlignment" Value="Stretch"/>
+    <Setter Property="VerticalAlignment" Value="Center"/>
+    <Setter Property="Margin" Value="6,3,6,3"/>
+    <Setter Property="UseLayoutRounding" Value="True"/>
+    <Setter Property="FontWeight" Value="Bold"/>
+    <Setter Property="Foreground" Value="#E6E5EA"/>
+    <Setter Property="FontSize" Value="10"/>
+  </Style>
+
+  <Style x:Key="ClipFlairHelpButtonStyle" TargetType="Button">
+    <Setter Property="Cursor" Value="Hand"/>
+    <Setter Property="IsTabStop" Value="False"/>
+    <Setter Property="VerticalAlignment" Value="Top"/>
+    <Setter Property="VerticalContentAlignment" Value="Top"/>
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="Button">
+          <Grid>
+            <VisualStateManager.VisualStateGroups>
+              <VisualStateGroup x:Name="CommonStates">
+                <VisualStateGroup.Transitions>
+                  <VisualTransition GeneratedDuration="0:0:0.1">
+                    <VisualTransition.GeneratedEasingFunction>
+                      <CubicEase EasingMode="EaseOut"/>
+                    </VisualTransition.GeneratedEasingFunction>
+                  </VisualTransition>
+                </VisualStateGroup.Transitions>
+                <VisualState x:Name="Normal"/>
+                <VisualState x:Name="MouseOver">
+                  <Storyboard>
+                    <DoubleAnimation To="1" Duration="0" Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="ImageHover" d:IsOptimized="True"/>
+                  </Storyboard>
+                </VisualState>
+                <VisualState x:Name="Pressed"/>
+                <VisualState x:Name="Disabled"/>
+              </VisualStateGroup>
+            </VisualStateManager.VisualStateGroups>
+            <Image x:Name="Image" Source="/ClipFlair.Windows.Base;component/Images/Help.png" Stretch="None"/>
+            <Image x:Name="ImageHover" Source="/ClipFlair.Windows.Base;component/Images/Help_hover.png" Stretch="None" Opacity="0"/>
+          </Grid>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+
+  <Style x:Key="ClipFlairOptionsButtonStyle" TargetType="Button">
+    <Setter Property="Cursor" Value="Hand"/>
+    <Setter Property="IsTabStop" Value="False"/>
+    <Setter Property="VerticalAlignment" Value="Top"/>
+    <Setter Property="VerticalContentAlignment" Value="Top"/>
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="Button">
+          <Grid>
+            <VisualStateManager.VisualStateGroups>
+              <VisualStateGroup x:Name="CommonStates">
+                <VisualStateGroup.Transitions>
+                  <VisualTransition GeneratedDuration="0:0:0.1">
+                    <VisualTransition.GeneratedEasingFunction>
+                      <CubicEase EasingMode="EaseOut"/>
+                    </VisualTransition.GeneratedEasingFunction>
+                  </VisualTransition>
+                </VisualStateGroup.Transitions>
+                <VisualState x:Name="Normal"/>
+                <VisualState x:Name="MouseOver">
+                  <Storyboard>
+                    <DoubleAnimation To="1" Duration="0" Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="ImageHover" d:IsOptimized="True"/>
+                  </Storyboard>
+                </VisualState>
+                <VisualState x:Name="Pressed"/>
+                <VisualState x:Name="Disabled"/>
+              </VisualStateGroup>
+            </VisualStateManager.VisualStateGroups>
+            <Image x:Name="Image" Source="/ClipFlair.Windows.Base;component/Images/Options.png" Stretch="None"/>
+            <Image x:Name="ImageHover" Source="/ClipFlair.Windows.Base;component/Images/Options_hover.png" Stretch="None" Opacity="0"/>
+          </Grid>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+
+  <Style x:Key="ClipFlairCloseButtonStyle" TargetType="Button">
+    <Setter Property="Cursor" Value="Hand"/>
+    <Setter Property="IsTabStop" Value="False"/>
+    <Setter Property="VerticalAlignment" Value="Top"/>
+    <Setter Property="VerticalContentAlignment" Value="Top"/>
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="Button">
+          <Grid>
+            <VisualStateManager.VisualStateGroups>
+              <VisualStateGroup x:Name="CommonStates">
+                <VisualStateGroup.Transitions>
+                  <VisualTransition GeneratedDuration="0:0:0.1">
+                    <VisualTransition.GeneratedEasingFunction>
+                      <CubicEase EasingMode="EaseOut"/>
+                    </VisualTransition.GeneratedEasingFunction>
+                  </VisualTransition>
+                </VisualStateGroup.Transitions>
+                <VisualState x:Name="Normal"/>
+                <VisualState x:Name="MouseOver">
+                  <Storyboard>
+                    <DoubleAnimation To="1" Duration="0" Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="ImageHover" d:IsOptimized="True"/>
+                  </Storyboard>
+                </VisualState>
+                <VisualState x:Name="Pressed"/>
+                <VisualState x:Name="Disabled"/>
+              </VisualStateGroup>
+            </VisualStateManager.VisualStateGroups>
+            <Image x:Name="Image" Source="/ClipFlair.Windows.Base;component/Images/Close.png" Stretch="None"/>
+            <Image x:Name="ImageHover" Source="/ClipFlair.Windows.Base;component/Images/Close_hover.png" Stretch="None" Opacity="0"/>
+          </Grid>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+
 </ResourceDictionary>
