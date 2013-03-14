@@ -1,6 +1,6 @@
 ﻿<!--
 Filename: SilverTextEditor.xaml
-Version: 20130222
+Version: 20130314
 -->
 
 <UserControl x:Class="SilverTextEditor.SilverTextEditor"
@@ -10,6 +10,7 @@ Version: 20130222
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008" d:DesignHeight="240" d:DesignWidth="593" 
     xmlns:toolkit="http://schemas.microsoft.com/winfx/2006/xaml/presentation/toolkit" 
     xmlns:utils="clr-namespace:System.Windows.Controls;assembly=WPF_Compatibility"             
+    xmlns:btn="clr-namespace:ImageButton;assembly=ImageButton"
     FontFamily="Calibri"
     >
 
@@ -65,71 +66,85 @@ Version: 20130222
           <!-- File Toolbar -->
           <StackPanel Orientation="Horizontal">
 
-            <!-- <TextBlock Style="{StaticResource MenuLabel}" Text="{Binding txt_File, Source={StaticResource localizedStrings}}" /> -->
+            <btn:ImageButton
+              x:Name="btnNew" Click="btnNew_Click" 
+              ToolTipService.ToolTip="{Binding tooltip_New, Source={StaticResource localizedStrings}}"
+              Visibility="{Binding Editable, Converter={StaticResource BooleanToVisibilityConverter}}"
+              ImageNormal="Images/New.png"
+              ImageHover="Images/New_hover.png"
+              Margin="2"
+              />
 
-            <Button x:Name="btnNew" Click="btnNew_Click" 
-                      ToolTipService.ToolTip="{Binding tooltip_New, Source={StaticResource localizedStrings}}"
-                      Visibility="{Binding Editable, Converter={StaticResource BooleanToVisibilityConverter}}"
-                      >
-              <Image Source="Images/New.png"/>
-            </Button>
+            <btn:ImageButton
+              x:Name="btnOpen" Click="btnOpen_Click" 
+              ToolTipService.ToolTip="{Binding tooltip_Open, Source={StaticResource localizedStrings}}"
+              Visibility="{Binding Editable, Converter={StaticResource BooleanToVisibilityConverter}}"
+              ImageNormal="Images/Import.png"
+              ImageHover="Images/Import_hover.png"
+              Margin="2"
+              />
+             
+            <btn:ImageButton
+              x:Name="btnSave" Click="btnSave_Click"
+              ToolTipService.ToolTip="{Binding tooltip_Save, Source={StaticResource localizedStrings}}"
+              ImageNormal="Images/Export.png"
+              ImageHover="Images/Export_hover.png"
+              Margin="2"
+              />
 
-            <Button  x:Name="btnOpen" Click="btnOpen_Click" 
-                       ToolTipService.ToolTip="{Binding tooltip_Open, Source={StaticResource localizedStrings}}"
-                       Visibility="{Binding Editable, Converter={StaticResource BooleanToVisibilityConverter}}"
-                       >
-              <Image Source="Images/Open.png"/>
-            </Button>
-
-            <Button x:Name="btnSave" Click="btnSave_Click" ToolTipService.ToolTip="{Binding tooltip_Save, Source={StaticResource localizedStrings}}">
-              <Image Source="Images/Save.png"/>
-            </Button>
-
-            <Button x:Name="btnPrint" Click="btnPrint_Click" ToolTipService.ToolTip="{Binding tooltip_Print, Source={StaticResource localizedStrings}}">
-              <Image Source="Images/Print.png" />
-            </Button>
+            <btn:ImageButton
+              x:Name="btnPrint"
+              Click="btnPrint_Click"
+              ToolTipService.ToolTip="{Binding tooltip_Print, Source={StaticResource localizedStrings}}"
+              ImageNormal="Images/Print.png"
+              ImageHover="Images/Print_hover.png"
+              Margin="2"
+              />
 
           </StackPanel>
 
           <!--Clipboard Toolbar -->
           <StackPanel Orientation="Horizontal">
 
-            <TextBlock Style="{StaticResource MenuLabel}" Text="" />
+            <btn:ImageButton
+              x:Name="btnPaste" Click="btnPaste_Click" 
+              ToolTipService.ToolTip="{Binding tooltip_Paste, Source={StaticResource localizedStrings}}"
+              Visibility="{Binding Editable, Converter={StaticResource BooleanToVisibilityConverter}}"
+              ImageNormal="Images/Paste.png"
+              ImageHover="Images/Paste_hover.png"
+              Margin="2"
+              />
 
-            <!-- <TextBlock Style="{StaticResource MenuLabel}" Text="{Binding txt_Clipboard, Source={StaticResource localizedStrings}}" /> -->
+            <btn:ImageButton
+              x:Name="btnCut" Click="btnCut_Click"
+              ToolTipService.ToolTip="{Binding tooltip_Cut, Source={StaticResource localizedStrings}}"
+              Visibility="{Binding Editable, Converter={StaticResource BooleanToVisibilityConverter}}"
+              ImageNormal="Images/Cut.png"
+              ImageHover="Images/Cut_hover.png"
+              Margin="2"
+              />
 
-            <Button x:Name="btnPaste" Click="btnPaste_Click" 
-                    ToolTipService.ToolTip="{Binding tooltip_Paste, Source={StaticResource localizedStrings}}"
-                    Visibility="{Binding Editable, Converter={StaticResource BooleanToVisibilityConverter}}"
-                    >
-              <Image Source="Images/Paste.png" />
-            </Button>
-
-            <Button x:Name="btnCut" Click="btnCut_Click" 
-                    ToolTipService.ToolTip="{Binding tooltip_Cut, Source={StaticResource localizedStrings}}"
-                    Visibility="{Binding Editable, Converter={StaticResource BooleanToVisibilityConverter}}"
-                    >
-              <Image Source="Images/Cut.png" d:IsLocked="True"/>
-            </Button>
-
-            <Button x:Name="btnCopy" Click="btnCopy_Click" ToolTipService.ToolTip="{Binding tooltip_Copy, Source={StaticResource localizedStrings}}">
-              <Image Source="Images/Copy.png" d:IsLocked="True"/>
-            </Button>
+            <btn:ImageButton
+              x:Name="btnCopy" Click="btnCopy_Click"
+              ToolTipService.ToolTip="{Binding tooltip_Copy, Source={StaticResource localizedStrings}}"
+              ImageNormal="Images/Copy.png"
+              ImageHover="Images/Copy_hover.png"
+              Margin="2"
+              />
 
           </StackPanel>
 
           <TextBlock Style="{StaticResource MenuLabel}" Text="" />
 
           <!--Fonts Toolbar-->
-          <StackPanel Orientation="Horizontal">
-
-            <!-- <TextBlock Style="{StaticResource MenuLabel}" Text="{Binding txt_Font, Source={StaticResource localizedStrings}}" /> -->
+          <StackPanel Orientation="Horizontal" Margin="2">
 
             <ComboBox x:Name="cmbFonts" 
                       Visibility="{Binding Editable, Converter={StaticResource BooleanToVisibilityConverter}}"
                       FontFamily="{Binding SelectedItem.FontFamily, RelativeSource={RelativeSource Self}}" 
                       FontSize="{Binding SelectedItem.FontSize, RelativeSource={RelativeSource Self}}" 
                       SelectionChanged="cmbFonts_SelectionChanged" 
+                      Margin="2"
                       >
               <ComboBoxItem Content="Arial" Tag="Arial" FontFamily="Arial" FontSize="12"/>
               <ComboBoxItem Content="Arial Black" Tag="Arial Black" FontFamily="Arial Black" FontSize="12"/>
@@ -149,6 +164,7 @@ Version: 20130222
                       Visibility="{Binding Editable, Converter={StaticResource BooleanToVisibilityConverter}}"
                       FontSize="14" 
                       SelectionChanged="cmbFontSizes_SelectionChanged" 
+                      Margin="2"
                       >
               <ComboBoxItem Content="8" Tag="8"/>
               <ComboBoxItem Content="9" Tag="9"/>
@@ -172,6 +188,7 @@ Version: 20130222
                       Visibility="{Binding Editable, Converter={StaticResource BooleanToVisibilityConverter}}"
                       SelectionChanged="cmbFontColors_SelectionChanged" 
                       SelectedIndex="0" 
+                      Margin="2"
                       >
               <ComboBoxItem Tag="FFFF0000">
                 <Rectangle Width="22" Height="14" Fill="Red" Margin="2,0,0,0" />
@@ -190,26 +207,30 @@ Version: 20130222
               </ComboBoxItem>
             </ComboBox>
 
-            <Button x:Name="btnBold" Click="btnBold_Click" 
-                    ToolTipService.ToolTip="{Binding tooltip_Bold, Source={StaticResource localizedStrings}}"
-                    Visibility="{Binding Editable, Converter={StaticResource BooleanToVisibilityConverter}}"
-                    >
-              <Image Source="Images/Bold.png" d:IsLocked="True"/>
-            </Button>
+            <btn:ImageButton
+              x:Name="btnBold"
+              Click="btnBold_Click" 
+              ToolTipService.ToolTip="{Binding tooltip_Bold, Source={StaticResource localizedStrings}}"
+              Visibility="{Binding Editable, Converter={StaticResource BooleanToVisibilityConverter}}"
+              ImageNormal="Images/Bold.png"
+              ImageHover="Images/Bold_hover.png"
+              />
 
-            <Button x:Name="btnItalic" Click="btnItalic_Click" 
-                    ToolTipService.ToolTip="{Binding tooltip_Italic, Source={StaticResource localizedStrings}}"
-                    Visibility="{Binding Editable, Converter={StaticResource BooleanToVisibilityConverter}}"
-                    >
-              <Image Source="Images/Italic.png"/>
-            </Button>
+            <btn:ImageButton
+              x:Name="btnItalic" Click="btnItalic_Click" 
+              ToolTipService.ToolTip="{Binding tooltip_Italic, Source={StaticResource localizedStrings}}"
+              Visibility="{Binding Editable, Converter={StaticResource BooleanToVisibilityConverter}}"
+              ImageNormal="Images/Italic.png"
+              ImageHover="Images/Italic_hover.png"
+              />
 
-            <Button x:Name="btnUnderline" Click="btnUnderline_Click" 
-                    ToolTipService.ToolTip="{Binding tooltip_Underline, Source={StaticResource localizedStrings}}"
-                    Visibility="{Binding Editable, Converter={StaticResource BooleanToVisibilityConverter}}"
-                    >
-              <Image Source="Images/Underline.png"/>
-            </Button>
+            <btn:ImageButton
+              x:Name="btnUnderline" Click="btnUnderline_Click" 
+              ToolTipService.ToolTip="{Binding tooltip_Underline, Source={StaticResource localizedStrings}}"
+              Visibility="{Binding Editable, Converter={StaticResource BooleanToVisibilityConverter}}"
+              ImageNormal="Images/Underline.png"
+              ImageHover="Images/Underline_hover.png"
+            />
 
           </StackPanel>
 
@@ -218,52 +239,79 @@ Version: 20130222
           <!-- Insert Toolbar -->
           <StackPanel Orientation="Horizontal">
 
-            <!-- <TextBlock Style="{StaticResource MenuLabel}" Text="{Binding txt_Insert, Source={StaticResource localizedStrings}}" /> -->
             <!--
-            <Button x:Name="btnImage" Click="btnImage_Click" ToolTipService.ToolTip="{Binding tooltip_Image, Source={StaticResource localizedStrings}}">
-              <Image Source="Images/Image.png" />
-            </Button>
+            <btn:ImageButton
+              x:Name="btnImage" Click="btnImage_Click"
+              ToolTipService.ToolTip="{Binding tooltip_Image, Source={StaticResource localizedStrings}}"
+              ImageNormal="Images/Image.png"
+              ImageHover="Images/Image_hover.png"
+              Margin="2"
+              />
+            />
             -->
 
-            <Button x:Name="btnHyperlink" Click="btnHyperlink_Click" 
-                    ToolTipService.ToolTip="{Binding tooltip_Hyperlink, Source={StaticResource localizedStrings}}"
-                    Visibility="{Binding Editable, Converter={StaticResource BooleanToVisibilityConverter}}"
-                    >
-              <Image Source="Images/Hyperlink.png" />
-            </Button>
+            <btn:ImageButton
+              x:Name="btnHyperlink" Click="btnHyperlink_Click" 
+              ToolTipService.ToolTip="{Binding tooltip_Hyperlink, Source={StaticResource localizedStrings}}"
+              Visibility="{Binding Editable, Converter={StaticResource BooleanToVisibilityConverter}}"
+              ImageNormal="Images/Hyperlink.png"
+              ImageHover="Images/Hyperlink_hover.png"
+              Margin="2"
+              />
 
-            <Button x:Name="btnTimestamp" Click="btnTimestamp_Click" 
-                    ToolTipService.ToolTip="{Binding tooltip_Timestamp, Source={StaticResource localizedStrings}}"
-                    Visibility="{Binding Editable, Converter={StaticResource BooleanToVisibilityConverter}}"
-                    >
-              <Image Source="Images/Calendar.png" />
-            </Button>
+            <btn:ImageButton
+              x:Name="btnTimestamp" Click="btnTimestamp_Click" 
+              ToolTipService.ToolTip="{Binding tooltip_Timestamp, Source={StaticResource localizedStrings}}"
+              Visibility="{Binding Editable, Converter={StaticResource BooleanToVisibilityConverter}}"
+              ImageNormal="Images/InsertTime.png"
+              ImageHover="Images/InsertTime_hover.png"
+              Margin="2"
+              />
 
           </StackPanel>
-
-          <TextBlock Style="{StaticResource MenuLabel}" Text="" />
 
           <!-- Display Toolbar -->
           <StackPanel Orientation="Horizontal">
 
             <!-- <TextBlock Style="{StaticResource MenuLabel}" Text="{Binding txt_Display, Source={StaticResource localizedStrings}}" /> -->
 
-            <ToggleButton x:Name="btnRTL" IsChecked="{Binding RTL, Mode=TwoWay}" ToolTipService.ToolTip="{Binding tooltip_TextDirection, Source={StaticResource localizedStrings}}">
+            <ToggleButton
+              x:Name="btnRTL"
+              IsChecked="{Binding RTL, Mode=TwoWay}"
+              ToolTipService.ToolTip="{Binding tooltip_TextDirection, Source={StaticResource localizedStrings}}"
+              Margin="2"
+              >
               <Image Source="Images/LTR.png" />
             </ToggleButton>
 
-            <ToggleButton x:Name="btnEditable" IsChecked="{Binding Editable, Mode=TwoWay}" ToolTipService.ToolTip="{Binding tooltip_EditViewMode, Source={StaticResource localizedStrings}}">
-              <Image Source="Images/Edit.png" />
+            <ToggleButton
+              x:Name="btnHighlight"
+              Checked="btnHighlight_Checked"
+              ToolTipService.ToolTip="{Binding txt_Highlight, Source={StaticResource localizedStrings}}"
+              Margin="2"
+              >
+              <Image Source="Images/Highlight.png" />
             </ToggleButton>
 
-            <ToggleButton x:Name="btnHighlight" Checked="btnHighlight_Checked" ToolTipService.ToolTip="{Binding txt_Highlight, Source={StaticResource localizedStrings}}">
-              <Image Source="Images/Annotation_New.png" />
+            <ToggleButton
+              x:Name="btnEditable"
+              IsChecked="{Binding Editable, Mode=TwoWay}"
+              ToolTipService.ToolTip="{Binding tooltip_EditViewMode, Source={StaticResource localizedStrings}}"
+              Margin="2"
+              >
+              <Image Source="Images/EditMode.png" />
             </ToggleButton>
 
             <!--
           <TextBlock Style="{StaticResource MenuLabel}" Text="{Binding txt_XAML, Source={StaticResource localizedStrings}}" />
           
-          <ToggleButton x:Name="btnMarkUp" Checked="btnMarkUp_Checked" Unchecked="btnMarkUp_Checked" ToolTipService.ToolTip="{Binding txt_XAML, Source={StaticResource localizedStrings}}">
+          <ToggleButton 
+            x:Name="btnMarkUp" 
+            Checked="btnMarkUp_Checked"
+            Unchecked="btnMarkUp_Checked"
+            ToolTipService.ToolTip="{Binding txt_XAML, Source={StaticResource localizedStrings}}"
+            Margin="2"
+            >
             <TextBlock FontSize="25" Text="&lt;&lt;>>"/>
           </ToggleButton>
 -->
@@ -280,7 +328,7 @@ Version: 20130222
           </Rectangle>
  -->
 
-          <!-- TODO: see http://stackoverflow.com/questions/8930841/change-togglebutton-image-when-clicked-silverlight on how to use two images in XAML for toggle buttons or make custom toggle button that accepts two images -->
+          <!-- TODO: see http://stackoverflow.com/questions/8930841/change-togglebtn:ImageButton-image-when-clicked-silverlight on how to use two images in XAML for toggle btn:ImageButtons or make custom toggle btn:ImageButton that accepts two images -->
 
           <RichTextBox x:Name="rtb" 
                        AllowDrop="True" 

@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: SilverTextEditor.xaml.cs
-//Version: 20121122
+//Version: 20130314
 
 //Originated from Microsoft sample (MSPL license)
 
@@ -112,7 +112,7 @@ namespace SilverTextEditor
       rtb.IsReadOnly = !newEditable;
       
       //Set the button image based on the state of the toggle button.
-      btnEditable.Content = SilverTextEditor.createImageFromUri(new Uri(newEditable ? "/SilverTextEditor;component/Images/Edit.png" : "/SilverTextEditor;component/Images/View.png", UriKind.RelativeOrAbsolute));
+      btnEditable.Content = SilverTextEditor.createImageFromUri(new Uri(newEditable ? "/SilverTextEditor;component/Images/EditMode.png" : "/SilverTextEditor;component/Images/ReadingMode.png", UriKind.RelativeOrAbsolute));
 
       ReturnFocus();
     }
