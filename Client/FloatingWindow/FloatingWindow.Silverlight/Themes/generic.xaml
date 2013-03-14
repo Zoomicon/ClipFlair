@@ -438,7 +438,7 @@
     </Setter>
   </Style>
 
-  <Style TargetType="controls:FloatingWindow">
+  <Style x:Key="FloatingWindowStyle" TargetType="controls:FloatingWindow">
     <Setter Property="Width" Value="300"/>
     <Setter Property="Height" Value="200"/>
     <Setter Property="IsTabStop" Value="False"/>
@@ -624,6 +624,8 @@
     </Setter>
   </Style>
 
+  <Style TargetType="controls:FloatingWindow" BasedOn="{StaticResource FloatingWindowStyle}" />
+  
   <Style x:Key="BootstrapButtonStyle" TargetType="controls:BootstrapButton">
     <Setter Property="Width" Value="24"/>
     <Setter Property="Height" Value="24"/>

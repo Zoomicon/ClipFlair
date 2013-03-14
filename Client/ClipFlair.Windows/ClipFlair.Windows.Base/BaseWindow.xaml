@@ -14,16 +14,13 @@ Version: 20130131
     xmlns:flip="clr-namespace:FlipPanel;assembly=FlipPanel"
     xmlns:float="clr-namespace:SilverFlow.Controls;assembly=SilverFlow.Controls"                      
     xmlns:widgets="clr-namespace:ClipFlair.UI.Widgets;assembly=ClipFlair.UI.Widgets.Silverlight"
+    xmlns:local="clr-namespace:ClipFlair.Windows;assembly=ClipFlair.Windows.Base"
     mc:Ignorable="d"
     d:DesignHeight="400" d:DesignWidth="400"
                       
     HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
     HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch"
     
-    Background="#F3F3F3"
-    BorderBrush="#1868C9"
-    BorderThickness="3"
-                      
     Tag="{Binding ID, Mode=TwoWay}"
     Title="{Binding Title, Mode=TwoWay}"
     IconText="{Binding Title, Mode=TwoWay}"
@@ -35,14 +32,7 @@ Version: 20130131
     MoveEnabled="{Binding Moveable, Mode=TwoWay}"
     ResizeEnabled="{Binding Resizable, Mode=TwoWay}"        
     ScaleEnabled="{Binding Zoomable, Mode=TwoWay}"
-   >
-  
-  <float:FloatingWindow.TitleBackground>
-    <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
-      <GradientStop Color="#2171D2" Offset="0" />
-      <GradientStop Color="#1868C9" Offset="1" />
-    </LinearGradientBrush>
-  </float:FloatingWindow.TitleBackground>
+    >
 
   <float:FloatingWindow.Resources>
     <ResourceDictionary>
@@ -52,8 +42,22 @@ Version: 20130131
         <ResourceDictionary Source="/FlipPanel;component/Themes/RotateVerticalTheme.xaml" />
       </ResourceDictionary.MergedDictionaries>
     </ResourceDictionary>
+
   </float:FloatingWindow.Resources>
 
+  <float:FloatingWindow.Style>
+    <Style TargetType="float:FloatingWindow" BasedOn="{StaticResource FloatingWindowStyle}">
+      <Setter Property="Background" Value="#F3F3F3" />
+      <Setter Property="BorderBrush" Value="#1868C9" />
+      <Setter Property="BorderThickness" Value="3" />
+      <Setter Property="TitleStyle" Value="{StaticResource ClipFlairTitleStyle}" />
+      <Setter Property="TitleBackground" Value="{StaticResource ClipFlairTitleBackground}" />
+      <Setter Property="HelpButtonStyle"  Value="{StaticResource ClipFlairHelpButtonStyle}" />
+      <Setter Property="OptionsButtonStyle" Value="{StaticResource ClipFlairOptionsButtonStyle}" />
+      <Setter Property="CloseButtonStyle" Value="{StaticResource ClipFlairCloseButtonStyle}" />
+    </Style>
+  </float:FloatingWindow.Style>
+  
   <toolkit:BusyIndicator BusyContent="Loading..."
                          IsBusy="{Binding Busy}"
                          HorizontalAlignment="Stretch"

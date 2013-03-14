@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: BaseWindow.xaml.cs
-//Version: 20130224
+//Version: 20130314
 
 //TODO: unbind control at close
 
@@ -75,7 +75,7 @@ namespace ClipFlair.Windows
       ShowMinimizeButton = false; //!!! (till the sliding windows bar is fixed)
 
       InitializeComponent(); //can change properties from XAML, so must do after the commands above
-
+     
       //BindingUtils.RegisterForNotification("Title", this, (d, e) => { if (View != null) { View.Title = (bool)e.NewValue; } }); //not used, using data binding in XAML instead
 
       HelpRequested += (s, e) => ShowHelp();
