@@ -69,7 +69,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Text", "Text", "{2214B910-0
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Utils.Silverlight", "Client\Utils\Utils.Silverlight.csproj", "{E784B6A1-A300-4571-A881-B15240EEE377}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImageButton.Silverlight", "Client\ImageButton\ImageButton.Silverlight\ImageButton.Silverlight.csproj", "{127105AF-C0F4-40F8-87C5-D6C391552936}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImageButtons.Silverlight", "Client\ImageButtons\ImageButtons.Silverlight\ImageButtons.Silverlight.csproj", "{127105AF-C0F4-40F8-87C5-D6C391552936}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

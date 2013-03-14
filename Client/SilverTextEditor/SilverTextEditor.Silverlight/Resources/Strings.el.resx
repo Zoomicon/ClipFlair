@@ -150,8 +150,8 @@
   <data name="tooltip_Italic" xml:space="preserve">
     <value>Πλάγια</value>
   </data>
-  <data name="tooltip_New" xml:space="preserve">
-    <value>Δημιουργία νέου εγγράφου</value>
+  <data name="tooltip_Clear" xml:space="preserve">
+    <value>Καθαρισμός</value>
   </data>
   <data name="tooltip_Open" xml:space="preserve">
     <value>Άνοιγμα υπάρχοντος εγγράφου</value>

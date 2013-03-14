@@ -116,6 +116,10 @@
       <Project>{BF52BDBA-830F-4CD4-AA9C-F653B6448184}</Project>
       <Name>AudioRecorderControl.Silverlight</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\..\ImageButtons\ImageButtons.Silverlight\ImageButtons.Silverlight.csproj">
+      <Project>{127105AF-C0F4-40F8-87C5-D6C391552936}</Project>
+      <Name>ImageButtons.Silverlight</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\MediaPlayer\MediaPlayer.Silverlight\MediaPlayer.Silverlight.csproj">
       <Project>{DD195CFE-B418-4C76-8F51-EEE8E28FAA41}</Project>
       <Name>MediaPlayer.Silverlight</Name>
@@ -134,10 +138,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\caption_add.png" />
-    <Resource Include="Images\caption_remove.png" />
-  </ItemGroup>
-  <ItemGroup>
     <EmbeddedResource Include="Resources\Strings.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Strings.Designer.cs</LastGenOutput>
@@ -145,10 +145,18 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\caption_end.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\caption_start.png" />
+    <Resource Include="Images\DeleteCaption.png" />
+    <Resource Include="Images\DeleteCaption_hover.png" />
+    <Resource Include="Images\ExportCaptions.png" />
+    <Resource Include="Images\ExportCaptions_hover.png" />
+    <Resource Include="Images\ImportCaptions.png" />
+    <Resource Include="Images\ImportCaptions_hover.png" />
+    <Resource Include="Images\NewCaption.png" />
+    <Resource Include="Images\NewCaption_hover.png" />
+    <Resource Include="Images\SetEndTime.png" />
+    <Resource Include="Images\SetEndTime_hover.png" />
+    <Resource Include="Images\SetStartTime.png" />
+    <Resource Include="Images\SetStartTime_hover.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Silverlight\$(SilverlightVersion)\Microsoft.Silverlight.CSharp.targets" />
   <ProjectExtensions>

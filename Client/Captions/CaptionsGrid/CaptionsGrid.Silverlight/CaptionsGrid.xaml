@@ -1,19 +1,20 @@
 ﻿<!--
 Project: ClipFlair (http://ClipFlair.codeplex.com)
 Filename: CaptionsGrid.xaml
-Version: 20130227
+Version: 20130314
 -->
-  
-  <UserControl x:Class="ClipFlair.CaptionsGrid.CaptionsGrid"
+
+<UserControl x:Class="ClipFlair.CaptionsGrid.CaptionsGrid"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008" d:DesignHeight="167" d:DesignWidth="856"
     xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk"
-    xmlns:toolkit="http://schemas.microsoft.com/winfx/2006/xaml/presentation/toolkit" 
+    xmlns:toolkit="http://schemas.microsoft.com/winfx/2006/xaml/presentation/toolkit"
+    xmlns:btn="clr-namespace:ImageButtons;assembly=ImageButtons"
     xmlns:captions="clr-namespace:ClipFlair.CaptionsGrid"
    >
-    
+
   <UserControl.Resources>
     <ResourceDictionary>
       <ResourceDictionary.MergedDictionaries>
@@ -29,61 +30,95 @@ Version: 20130227
       <RowDefinition Height="Auto" />
       <RowDefinition Height="*" />
     </Grid.RowDefinitions>
-    
+
     <toolkit:WrapPanel Name="Toolbar"
                 Grid.Row="0"
                 Orientation="Horizontal"
-                MaxHeight="29"
+                MaxHeight="36"
                 >
       <toolkit:WrapPanel.Resources>
-        <Style TargetType="Button">
-          <Setter Property="Cursor" Value="Hand" />
-          <Setter Property="Margin" Value="3,4,3,4" />
+        <Style TargetType="StackPanel">
+          <Setter Property="Margin" Value="1,2" />
+        </Style>
+        <Style TargetType="btn:ImageButton">
+          <Setter Property="Margin" Value="1,2" />
+        </Style>
+        <Style TargetType="btn:ImageToggleButton">
+          <Setter Property="Margin" Value="1,2" />
         </Style>
       </toolkit:WrapPanel.Resources>
-      
-      <Button Name="btnAdd" Click="btnAdd_Click"
-              ToolTipService.ToolTip="{Binding tooltip_caption_add, Source={StaticResource localizedStrings}}">
-        <Image Source="Images/caption_add.png" />
-      </Button>
-      
-      <Button Name="btnRemove" Click="btnRemove_Click"
-              ToolTipService.ToolTip="{Binding tooltip_caption_remove, Source={StaticResource localizedStrings}}">
-        <Image Source="Images/caption_remove.png"/>
-      </Button>
 
-      <TextBlock Text="|" VerticalAlignment="Center" Foreground="DarkGray" />
+      <StackPanel Orientation="Horizontal">
 
-      <Button Name="btnStart" Click="btnStart_Click"
-              ToolTipService.ToolTip="{Binding tooltip_caption_start, Source={StaticResource localizedStrings}}">
-        <Image Source="Images/caption_start.png"/>
-      </Button>
+        <btn:ImageButton
+          Name="btnAdd" Click="btnAdd_Click"
+          ToolTipService.ToolTip="{Binding tooltip_caption_add, Source={StaticResource localizedStrings}}"
+          Image="Images/NewCaption.png"
+          ImageHover="Images/NewCaption_hover.png"
+          />
 
-      <Button Name="btnEnd" Click="btnEnd_Click"
-              ToolTipService.ToolTip="{Binding tooltip_caption_end, Source={StaticResource localizedStrings}}">
-        <Image Source="Images/caption_end.png"/>
-      </Button>
+        <btn:ImageButton
+          Name="btnRemove" Click="btnRemove_Click"
+          ToolTipService.ToolTip="{Binding tooltip_caption_remove, Source={StaticResource localizedStrings}}"
+          Image="Images/DeleteCaption.png"
+          ImageHover="Images/DeleteCaption_hover.png"
+          />
 
-      <TextBlock Text="|" VerticalAlignment="Center" Foreground="DarkGray" />
+      </StackPanel>
 
-      <Button Name="btnImport" Click="btnImport_Click"
-              Content="{Binding captions_import, Source={StaticResource localizedStrings}}"
-              ToolTipService.ToolTip="{Binding tooltip_captions_import, Source={StaticResource localizedStrings}}">
-      </Button>
+      <StackPanel Orientation="Horizontal">
 
-      <Button Name="btnExport" Click="btnExport_Click"
-              Content="{Binding captions_export, Source={StaticResource localizedStrings}}"
-              ToolTipService.ToolTip="{Binding tooltip_captions_export, Source={StaticResource localizedStrings}}">
-      </Button>
-        
+        <btn:ImageButton
+          Name="btnStart" Click="btnStart_Click"
+          ToolTipService.ToolTip="{Binding tooltip_caption_start, Source={StaticResource localizedStrings}}"
+          Image="Images/SetStartTime.png"
+          ImageHover="Images/SetStartTime_hover.png"
+          />
+
+        <btn:ImageButton
+          Name="btnEnd" Click="btnEnd_Click"
+          ToolTipService.ToolTip="{Binding tooltip_caption_end, Source={StaticResource localizedStrings}}"
+          Image="Images/SetEndTime.png"
+          ImageHover="Images/SetEndTime_hover.png"
+          />
+
+      </StackPanel>
+
+      <StackPanel Orientation="Horizontal">
+
+        <btn:ImageButton
+          Name="btnImport" Click="btnImport_Click"
+          ToolTipService.ToolTip="{Binding tooltip_captions_import, Source={StaticResource localizedStrings}}"
+          Image="Images/ImportCaptions.png"
+          ImageHover="Images/ImportCaptions_hover.png"
+          />
+
+        <btn:ImageButton
+          Name="btnExport" Click="btnExport_Click"
+          ToolTipService.ToolTip="{Binding tooltip_captions_export, Source={StaticResource localizedStrings}}"
+          Image="Images/ExportCaptions.png"
+          ImageHover="Images/ExportCaptions_hover.png"
+          />
+
+      </StackPanel>
+
     </toolkit:WrapPanel>
-    
+
     <sdk:DataGrid Name="gridCaptions"
                   Grid.Row="1" 
                   AutoGenerateColumns="False"
-                  RowBackground="White"
-                  AlternatingRowBackground="Beige"
+                  RowBackground="#F3F3F3"
+                  AlternatingRowBackground="#FFFFFF"
                   ItemsSource="{Binding Path=Captions.Children, RelativeSource={RelativeSource AncestorType=captions:CaptionsGrid}}">
+      
+      <!-- THIS SEEMS TO BE IGNORED (possibly some other control is placed in the header)
+      <sdk:DataGrid.ColumnHeaderStyle>
+        <Style TargetType="sdk:DataGridColumnHeader">
+          <Setter Property="Background" Value="#FFFFFF" />
+        </Style>
+      </sdk:DataGrid.ColumnHeaderStyle>
+      -->
+      
       <sdk:DataGrid.Columns>
         <sdk:DataGridTemplateColumn Header="Start" CellTemplate="{StaticResource StartTimeCellTemplate}" CellEditingTemplate="{StaticResource StartTimeCellEditTemplate}" />
         <sdk:DataGridTemplateColumn Header="End" CellTemplate="{StaticResource EndTimeCellTemplate}" CellEditingTemplate="{StaticResource EndTimeCellEditTemplate}" />
@@ -91,11 +126,11 @@ Version: 20130227
         <sdk:DataGridTemplateColumn Header="Role" CellTemplate="{StaticResource RoleCellTemplate}" CellEditingTemplate="{StaticResource RoleCellEditTemplate}" />
         <sdk:DataGridTemplateColumn Header="Caption" Width="*" CellTemplate="{StaticResource CaptionCellTemplate}" CellEditingTemplate="{StaticResource CaptionCellEditTemplate}" />
         <sdk:DataGridTemplateColumn Header="WPM" Width="50" CellTemplate="{StaticResource WPMCellTemplate}" IsReadOnly="True" />
-        <sdk:DataGridTemplateColumn Header="Audio" Width="100" CellTemplate="{StaticResource AudioCellTemplate}" IsReadOnly="True" />
+        <sdk:DataGridTemplateColumn Header="Audio" Width="110" CellTemplate="{StaticResource AudioCellTemplate}" IsReadOnly="True" />
         <sdk:DataGridTemplateColumn Header="Comments" Width="100" CellTemplate="{StaticResource CommentsCellTemplate}" CellEditingTemplate="{StaticResource CommentsCellEditTemplate}" />
       </sdk:DataGrid.Columns>
     </sdk:DataGrid>
-    
+
   </Grid>
-  
+
 </UserControl>

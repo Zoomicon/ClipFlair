@@ -1,6 +1,6 @@
 ﻿<!-- 
 Filename: Generic.xaml
-Version: 20130227
+Version: 20130314
 -->
   
 <ResourceDictionary
@@ -12,6 +12,7 @@ Version: 20130227
   xmlns:zoom="clr-namespace:ZoomAndPan;assembly=ZoomAndPan"
   xmlns:zui="clr-namespace:FloatingWindowZUI;assembly=FloatingWindowZUI"
   xmlns:utils="clr-namespace:System.Windows.Controls;assembly=WPF_Compatibility"
+  xmlns:btn="clr-namespace:ImageButtons;assembly=ImageButtons"
   >
 
   <ResourceDictionary.MergedDictionaries>
@@ -95,13 +96,19 @@ Version: 20130227
                     Margin="10,-4,10,0" IsOpen="{Binding IsOpen, ElementName=PART_IconBar}" />
 
             <StackPanel Grid.Column="1" Orientation="Horizontal" Visibility="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=ContentScalable, Converter={StaticResource BooleanToVisibilityConverter}}">
-              <Button x:Name="PART_ZoomToFitButton"
-                      Cursor="Hand"
-                      BorderThickness="0"
-                      ToolTipService.ToolTip="Zoom to Fit"
-                      >
-                <Image Source="/FloatingWindowZUI;component/Images/ZoomToFit.png" />
-              </Button>
+
+              <StackPanel.Background> <!-- TODO: expose this brush as property and use TemplateBinding here -->
+                <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                  <GradientStop Color="#3A2721" Offset="0" />
+                  <GradientStop Color="#2E1B15" Offset="1" />
+                </LinearGradientBrush>
+              </StackPanel.Background>
+              
+              <btn:ImageButton x:Name="PART_ZoomToFitButton"
+                 ToolTipService.ToolTip="Zoom to Fit"
+                 Image="/FloatingWindowZUI;component/Images/ZoomToFit.png"
+                 ImageHover="/FloatingWindowZUI;component/Images/ZoomToFit_hover.png"
+                 />
               <Slider x:Name="PART_ZoomSlider"
                       Cursor="Hand"
                       Minimum="{TemplateBinding MinContentScale}" Maximum="{TemplateBinding MaxContentScale}"
