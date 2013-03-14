@@ -10,6 +10,8 @@
 
 //TODO: allow to add checkbox controls and remember their state (checked/unchecked) in the text
 
+using SilverTextEditor.Resources;
+
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -359,7 +361,7 @@ namespace SilverTextEditor
 
           theDoc.EndPrint += (s, args) =>
           {
-            MessageBox.Show("The document printed successfully", "Text Editor", MessageBoxButton.OK);
+            //could show prompt that the document printed succesfully here
           };
 
           //theDoc.Print("SilverTextEditor");
@@ -660,10 +662,11 @@ namespace SilverTextEditor
 
     #region FileOperations
 
-    //Clears the contents of the existing file.
-    private void btnNew_Click(object sender, RoutedEventArgs e)
+    //Clears all content
+    private void btnClear_Click(object sender, RoutedEventArgs e)
     {
-      rtb.Blocks.Clear();
+      if (MessageBox.Show("Clear contents?", "Confirmation", MessageBoxButton.OKCancel) == MessageBoxResult.OK) //TODO: find parent window //TODO: localize
+        Xaml = "";
     }
 
     //Opens an existing file
@@ -681,7 +684,7 @@ namespace SilverTextEditor
       }
       catch (Exception ex)
       {
-        MessageBox.Show("Text load failed: " + ex.Message); //TODO: should find parent window
+        MessageBox.Show("Text load failed: " + ex.Message); //TODO: should find parent window //TODO: localize
       }
     }
 
@@ -702,7 +705,7 @@ namespace SilverTextEditor
       }
       catch (Exception ex)
       {
-        MessageBox.Show("Text save failed: " + ex.Message); //TODO: should find parent window
+        MessageBox.Show("Text save failed: " + ex.Message); //TODO: should find parent window //TODO: localize
       }
     }
 

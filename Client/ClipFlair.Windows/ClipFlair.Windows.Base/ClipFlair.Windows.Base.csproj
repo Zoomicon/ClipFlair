@@ -137,15 +137,6 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\save.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\load.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\loadURL.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Base.cd" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Silverlight\$(SilverlightVersion)\Microsoft.Silverlight.CSharp.targets" />

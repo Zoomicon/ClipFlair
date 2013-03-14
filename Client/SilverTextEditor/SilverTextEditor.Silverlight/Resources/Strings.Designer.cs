@@ -115,6 +115,16 @@ namespace SilverTextEditor.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Clear
+        ///.
+        /// </summary>
+        public static string tooltip_Clear {
+            get {
+                return ResourceManager.GetString("tooltip_Clear", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Copy Text.
         /// </summary>
         public static string tooltip_Copy {
@@ -165,15 +175,6 @@ namespace SilverTextEditor.Resources {
         public static string tooltip_Italic {
             get {
                 return ResourceManager.GetString("tooltip_Italic", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Create new document.
-        /// </summary>
-        public static string tooltip_New {
-            get {
-                return ResourceManager.GetString("tooltip_New", resourceCulture);
             }
         }
         

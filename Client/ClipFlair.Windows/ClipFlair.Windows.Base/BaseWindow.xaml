@@ -20,6 +20,10 @@ Version: 20130131
     HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
     HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch"
     
+    Background="#F3F3F3"
+    BorderBrush="#1868C9"
+    BorderThickness="3"
+                      
     Tag="{Binding ID, Mode=TwoWay}"
     Title="{Binding Title, Mode=TwoWay}"
     IconText="{Binding Title, Mode=TwoWay}"
@@ -32,6 +36,13 @@ Version: 20130131
     ResizeEnabled="{Binding Resizable, Mode=TwoWay}"        
     ScaleEnabled="{Binding Zoomable, Mode=TwoWay}"
    >
+  
+  <float:FloatingWindow.TitleBackground>
+    <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+      <GradientStop Color="#2171D2" Offset="0" />
+      <GradientStop Color="#1868C9" Offset="1" />
+    </LinearGradientBrush>
+  </float:FloatingWindow.TitleBackground>
 
   <float:FloatingWindow.Resources>
     <ResourceDictionary>

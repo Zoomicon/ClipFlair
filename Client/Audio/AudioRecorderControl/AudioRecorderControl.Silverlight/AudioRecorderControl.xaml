@@ -1,62 +1,69 @@
 ﻿<!--
 Filename: AudioRecorderControl.xaml
-Version: 20130204
+Version: 20130314
 -->
 
 <UserControl
+    x:Class="ClipFlair.AudioRecorder.AudioRecorderControl" 
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:utils="clr-namespace:System.Windows.Controls;assembly=WPF_Compatibility"
+    xmlns:btn="clr-namespace:ImageButtons;assembly=ImageButtons"
     mc:Ignorable="d" d:DesignHeight="29" d:DesignWidth="99"  
-    x:Class="ClipFlair.AudioRecorder.AudioRecorderControl" 
     >
 
   <UserControl.Resources>
     <ResourceDictionary>
-      <ResourceDictionary.MergedDictionaries>
-        <ResourceDictionary Source="/AudioRecorder;component/Themes/Generic.xaml"/>
-      </ResourceDictionary.MergedDictionaries>
-
       <utils:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
     </ResourceDictionary>
   </UserControl.Resources>
 
   <StackPanel x:Name="LayoutRoot" Orientation="Horizontal">
 
-    <ToggleButton x:Name="btnRecord" 
-                  Visibility="{Binding Path=RecordCommand.IsEnabled, Converter={StaticResource BooleanToVisibilityConverter}}"
-                  IsEnabled="{Binding Path=RecordCommand.IsEnabled, Mode=TwoWay}"
-                  IsChecked="{Binding Path=RecordCommand.IsChecked, Mode=TwoWay}"
-                  Template="{StaticResource RecordCommandStyle}"
-                  Width="20" Height="20" Margin="3,0,0,0"
-                  ToolTipService.ToolTip="Record audio"
-                  />
+    <btn:ImageToggleButton
+      x:Name="btnRecord" 
+      Visibility="{Binding Path=RecordCommand.IsEnabled, Converter={StaticResource BooleanToVisibilityConverter}}"
+      IsEnabled="{Binding Path=RecordCommand.IsEnabled, Mode=TwoWay}"
+      IsChecked="{Binding Path=RecordCommand.IsChecked, Mode=TwoWay}"
+      Margin="3,0,0,0"
+      ToolTipService.ToolTip="Record audio"
+      Image="Images/Record.png"
+      ImageHover="Images/Record_hover.png"
+      ImageChecked="Images/Stop.png"
+      ImageCheckedHover="Images/Stop_hover.png"
+      />
 
-    <Button x:Name="btnPlay"
-            Command="{Binding PlayCommand}"
-            Visibility="{Binding Path=PlayCommand.IsEnabled, Converter={StaticResource BooleanToVisibilityConverter}}"
-            Template="{StaticResource PlayCommandStyle}"
-            Width="20" Height="20" Margin="3,0,3,0"
-            ToolTipService.ToolTip="Play audio"
-            />
+    <btn:ImageButton
+      x:Name="btnPlay"
+      Command="{Binding PlayCommand}"
+      Visibility="{Binding Path=PlayCommand.IsEnabled, Converter={StaticResource BooleanToVisibilityConverter}}"
+      Margin="3,0,3,0"
+      ToolTipService.ToolTip="Play audio"
+      Image="Images/Play.png"
+      ImageHover="Images/Play_hover.png"
+      />
 
-    <Button x:Name="btnLoad"
-            Command="{Binding LoadCommand}"
-            Visibility="{Binding Path=LoadCommand.IsEnabled, Converter={StaticResource BooleanToVisibilityConverter}}"
-            Template="{StaticResource LoadCommandStyle}"
-            Width="20" Height="20" Margin="0,0,3,0"
-            ToolTipService.ToolTip="Load audio from .WAV file"
-            />
+    <btn:ImageButton 
+      x:Name="btnLoad"
+      Command="{Binding LoadCommand}"
+      Visibility="{Binding Path=LoadCommand.IsEnabled, Converter={StaticResource BooleanToVisibilityConverter}}"
+      Margin="0,0,3,0"
+      ToolTipService.ToolTip="Load audio from .WAV file"
+      Image="Images/LoadAudio.png"
+      ImageHover="Images/LoadAudio_hover.png"
+      />
 
-    <Button x:Name="btnSave"
-            Command="{Binding SaveCommand}"
-            Visibility="{Binding Path=SaveCommand.IsEnabled, Converter={StaticResource BooleanToVisibilityConverter}}"
-            Template="{StaticResource SaveCommandStyle}"
-            Width="20" Height="20" Margin="0,0,3,0"
-            ToolTipService.ToolTip="Save audio to .WAV file"
-            />
+    <btn:ImageButton
+      x:Name="btnSave"
+      Command="{Binding SaveCommand}"
+      Visibility="{Binding Path=SaveCommand.IsEnabled, Converter={StaticResource BooleanToVisibilityConverter}}"
+      Margin="0,0,3,0"
+      ToolTipService.ToolTip="Save audio to .WAV file"
+      Image="Images/SaveAudio.png"
+      ImageHover="Images/SaveAudio_hover.png"
+      />
 
   </StackPanel>
 

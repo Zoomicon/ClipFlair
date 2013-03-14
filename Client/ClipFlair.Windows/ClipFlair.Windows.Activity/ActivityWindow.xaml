@@ -1,7 +1,7 @@
 ﻿<!--
 Project: ClipFlair (http://ClipFlair.codeplex.com)
 Filename: ActivityWindow.xaml
-Version: 20130204
+Version: 20130314
 -->
 
 <clipflair:BaseWindow x:Class="ClipFlair.Windows.ActivityWindow"
@@ -13,9 +13,20 @@ Version: 20130204
   xmlns:clipflair="clr-namespace:ClipFlair.Windows;assembly=ClipFlair.Windows.Base"
   xmlns:local="clr-namespace:ClipFlair.Windows"
   mc:Ignorable="d"
+                      
+  BorderBrush="#321F19"
+  BorderThickness="3"
+                      
   d:DesignWidth="1000" d:DesignHeight="700"
   >
 
+  <clipflair:BaseWindow.TitleBackground>
+    <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+      <GradientStop Color="#503933" Offset="0" />
+      <GradientStop Color="#321F19" Offset="1" />
+    </LinearGradientBrush>  
+  </clipflair:BaseWindow.TitleBackground>
+  
   <clipflair:BaseWindow.Resources>
     <ResourceDictionary>
       <ResourceDictionary.MergedDictionaries>
@@ -45,11 +56,11 @@ Version: 20130204
     <sdk:Label Name="lblBeta" 
                Grid.Row="0" Grid.Column="0" 
                HorizontalAlignment="Right" VerticalAlignment="Bottom" 
-               Margin="0,0,3,3"
+               Margin="0,0,5,3"
                FontWeight="ExtraBold" 
                FontStretch="UltraExpanded"
-               Foreground="Blue" Background="Aquamarine"
-               Content=" BETA "
+               Foreground="#909A15"
+               Content="beta"
                Cursor="Hand"
                MouseLeftButtonDown="lblBeta_MouseLeftButtonDown"
                ToolTipService.ToolTip="Send feedback"

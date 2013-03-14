@@ -1,7 +1,7 @@
 ﻿<!--
 Project: ClipFlair (http://ClipFlair.codeplex.com)
 Filename: Default.xaml
-Version: 20130309
+Version: 20130314 
 -->
 
 <ResourceDictionary
@@ -24,7 +24,11 @@ Version: 20130309
   <Style TargetType="Button">
     <Setter Property="Cursor" Value="Hand" />
   </Style>
-  
+
+  <Style TargetType="ToggleButton">
+    <Setter Property="Cursor" Value="Hand" />
+  </Style>
+
   <Style TargetType="Slider">
     <Setter Property="Cursor" Value="Hand" />
   </Style>
