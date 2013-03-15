@@ -1,7 +1,7 @@
 ﻿<!--
 Project: ClipFlair (http://ClipFlair.codeplex.com)
 Filename: CaptionsGrid.xaml
-Version: 20130314
+Version: 20130315
 -->
 
 <UserControl x:Class="ClipFlair.CaptionsGrid.CaptionsGrid"
@@ -23,9 +23,8 @@ Version: 20130314
     </ResourceDictionary>
   </UserControl.Resources>
 
-  <Grid x:Name="LayoutRoot" 
-        Background="White"
-        >
+  <Grid x:Name="LayoutRoot">
+    
     <Grid.RowDefinitions>
       <RowDefinition Height="Auto" />
       <RowDefinition Height="*" />
@@ -34,17 +33,18 @@ Version: 20130314
     <toolkit:WrapPanel Name="Toolbar"
                 Grid.Row="0"
                 Orientation="Horizontal"
-                MaxHeight="36"
+                MaxHeight="39"
+                Background="{StaticResource ToolbarBackground}"
                 >
       <toolkit:WrapPanel.Resources>
         <Style TargetType="StackPanel">
-          <Setter Property="Margin" Value="1,2" />
+          <Setter Property="Margin" Value="4,0" />
         </Style>
         <Style TargetType="btn:ImageButton">
-          <Setter Property="Margin" Value="1,2" />
+          <Setter Property="Margin" Value="1,5" />
         </Style>
         <Style TargetType="btn:ImageToggleButton">
-          <Setter Property="Margin" Value="1,2" />
+          <Setter Property="Margin" Value="1,5" />
         </Style>
       </toolkit:WrapPanel.Resources>
 
@@ -105,29 +105,24 @@ Version: 20130314
     </toolkit:WrapPanel>
 
     <sdk:DataGrid Name="gridCaptions"
-                  Grid.Row="1" 
+                  Grid.Row="1"
+                  Background="#F3F3F3"
                   AutoGenerateColumns="False"
                   RowBackground="#F3F3F3"
+                  ColumnHeaderStyle="{StaticResource ColumnHeaderStyle}"
                   AlternatingRowBackground="#FFFFFF"
-                  ItemsSource="{Binding Path=Captions.Children, RelativeSource={RelativeSource AncestorType=captions:CaptionsGrid}}">
-      
-      <!-- THIS SEEMS TO BE IGNORED (possibly some other control is placed in the header)
-      <sdk:DataGrid.ColumnHeaderStyle>
-        <Style TargetType="sdk:DataGridColumnHeader">
-          <Setter Property="Background" Value="#FFFFFF" />
-        </Style>
-      </sdk:DataGrid.ColumnHeaderStyle>
-      -->
+                  ItemsSource="{Binding Path=Captions.Children, RelativeSource={RelativeSource AncestorType=captions:CaptionsGrid}}"
+                  >
       
       <sdk:DataGrid.Columns>
-        <sdk:DataGridTemplateColumn Header="Start" CellTemplate="{StaticResource StartTimeCellTemplate}" CellEditingTemplate="{StaticResource StartTimeCellEditTemplate}" />
-        <sdk:DataGridTemplateColumn Header="End" CellTemplate="{StaticResource EndTimeCellTemplate}" CellEditingTemplate="{StaticResource EndTimeCellEditTemplate}" />
-        <sdk:DataGridTemplateColumn Header="Duration" CellTemplate="{StaticResource DurationCellTemplate}" CellEditingTemplate="{StaticResource DurationCellEditTemplate}" />
-        <sdk:DataGridTemplateColumn Header="Role" CellTemplate="{StaticResource RoleCellTemplate}" CellEditingTemplate="{StaticResource RoleCellEditTemplate}" />
-        <sdk:DataGridTemplateColumn Header="Caption" Width="*" CellTemplate="{StaticResource CaptionCellTemplate}" CellEditingTemplate="{StaticResource CaptionCellEditTemplate}" />
+        <sdk:DataGridTemplateColumn Header="START" CellTemplate="{StaticResource StartTimeCellTemplate}" CellEditingTemplate="{StaticResource StartTimeCellEditTemplate}" />
+        <sdk:DataGridTemplateColumn Header="END" CellTemplate="{StaticResource EndTimeCellTemplate}" CellEditingTemplate="{StaticResource EndTimeCellEditTemplate}" />
+        <sdk:DataGridTemplateColumn Header="DURATION" CellTemplate="{StaticResource DurationCellTemplate}" CellEditingTemplate="{StaticResource DurationCellEditTemplate}" />
+        <sdk:DataGridTemplateColumn Header="ROLE" CellTemplate="{StaticResource RoleCellTemplate}" CellEditingTemplate="{StaticResource RoleCellEditTemplate}" />
+        <sdk:DataGridTemplateColumn Header="CAPTION" Width="*" CellTemplate="{StaticResource CaptionCellTemplate}" CellEditingTemplate="{StaticResource CaptionCellEditTemplate}" />
         <sdk:DataGridTemplateColumn Header="WPM" Width="50" CellTemplate="{StaticResource WPMCellTemplate}" IsReadOnly="True" />
-        <sdk:DataGridTemplateColumn Header="Audio" Width="110" CellTemplate="{StaticResource AudioCellTemplate}" IsReadOnly="True" />
-        <sdk:DataGridTemplateColumn Header="Comments" Width="100" CellTemplate="{StaticResource CommentsCellTemplate}" CellEditingTemplate="{StaticResource CommentsCellEditTemplate}" />
+        <sdk:DataGridTemplateColumn Header="AUDIO" Width="110" CellTemplate="{StaticResource AudioCellTemplate}" IsReadOnly="True" />
+        <sdk:DataGridTemplateColumn Header="COMMENTS" Width="100" CellTemplate="{StaticResource CommentsCellTemplate}" CellEditingTemplate="{StaticResource CommentsCellEditTemplate}" />
       </sdk:DataGrid.Columns>
     </sdk:DataGrid>
 

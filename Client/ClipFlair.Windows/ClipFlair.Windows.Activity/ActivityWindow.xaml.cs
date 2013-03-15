@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: ActivityWindow.xaml.cs
-//Version: 20130224
+//Version: 20130315
 
 using Utils.Extensions;
 using Utils.Bindings;
@@ -32,6 +32,11 @@ namespace ClipFlair.Windows
     public ActivityWindow()
     {
       InitializeComponent();
+
+      OptionsLoadSave.LoadURLTooltip = "Load activity from URL";
+      OptionsLoadSave.LoadTooltip = "Load activity from file";
+      OptionsLoadSave.SaveTooltip = "Save activity to file";
+      
       View = activity.View; //set window's View to be the same as the nested activity's View
 
       //copy Window Factory objects (initialized in activity using MEF) to static fields so that code in BaseWindow can use them

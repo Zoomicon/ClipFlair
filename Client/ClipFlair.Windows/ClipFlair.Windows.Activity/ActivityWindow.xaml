@@ -1,7 +1,7 @@
 ﻿<!--
 Project: ClipFlair (http://ClipFlair.codeplex.com)
 Filename: ActivityWindow.xaml
-Version: 20130314
+Version: 20130315
 -->
 
 <clipflair:BaseWindow x:Class="ClipFlair.Windows.ActivityWindow"
@@ -14,7 +14,7 @@ Version: 20130314
   xmlns:local="clr-namespace:ClipFlair.Windows"
   mc:Ignorable="d"
                       
-  BorderBrush="#321F19"
+  BorderBrush="#503933"
   BorderThickness="3"
                       
   d:DesignWidth="1000" d:DesignHeight="700"
@@ -56,7 +56,7 @@ Version: 20130314
     <sdk:Label Name="lblBeta" 
                Grid.Row="0" Grid.Column="0" 
                HorizontalAlignment="Right" VerticalAlignment="Bottom" 
-               Margin="0,0,5,3"
+               Margin="0,0,8,8"
                FontWeight="ExtraBold" 
                FontStretch="UltraExpanded"
                Foreground="#909A15"
