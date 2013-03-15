@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<modelStoreModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm4="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm5="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/SimpleShapesModel" xmlns:dm9="http://schemas.microsoft.com/dsltools/UseCaseModel"
+<modelStoreModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm4="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm5="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/VisualStudio/TeamArchitect/ComponentDesigner" xmlns:dm9="http://schemas.microsoft.com/dsltools/SimpleShapesModel" xmlns:dm10="http://schemas.microsoft.com/dsltools/UseCaseModel"
   dslVersion="1.0.0.0"
   Id="932621b2-5f91-42d5-909b-e824a279f791"
   name="ClipFlair" xmlns="http://schemas.microsoft.com/dsltools/ModelStore">
@@ -21,7 +21,7 @@
     <packageHasNamedElement>
       <useCase
         Id="92b01433-8777-4a6f-99c3-54615a40a524"
-        name="Subtitling"
+        name="Captioning"
         isAbstract="false"
         isLeaf="false">
         <additions>
@@ -29,28 +29,28 @@
             Id="2f745a42-8e0f-4516-9d65-77d798ec331b">
             <useCaseMoniker
               Id="564a765c-65a3-4c9b-be76-922687a8300c"
-              LastKnownName="Create subtitle"
+              LastKnownName="Add caption"
               LastKnownLocation="ClipFlair.uml" />
           </include>
           <include
             Id="a094e07a-29e1-4a44-a44b-7af3c449c28d">
             <useCaseMoniker
               Id="7cf5c18e-cf1e-4927-a464-76f631e788a0"
-              LastKnownName="Select subtitle"
+              LastKnownName="Select caption"
               LastKnownLocation="ClipFlair.uml" />
           </include>
           <include
             Id="5ef2fb2d-882c-49d1-be8c-eb86998eb459">
             <useCaseMoniker
               Id="65b9f034-6a9f-42a5-b29f-638d8003233a"
-              LastKnownName="Edit subtitle"
+              LastKnownName="Edit caption"
               LastKnownLocation="ClipFlair.uml" />
           </include>
           <include
             Id="2b2a16e9-b472-4108-8678-9b2cb34835f8">
             <useCaseMoniker
               Id="264384c4-c5d3-4018-85ad-443218ce2630"
-              LastKnownName="Delete subtitle"
+              LastKnownName="Delete caption"
               LastKnownLocation="ClipFlair.uml" />
           </include>
         </additions>
@@ -59,7 +59,7 @@
     <packageHasNamedElement>
       <useCase
         Id="564a765c-65a3-4c9b-be76-922687a8300c"
-        name="Create subtitle"
+        name="Add caption"
         isAbstract="false"
         isLeaf="false">
         <additions>
@@ -67,7 +67,7 @@
             Id="55011185-84ec-4d28-b837-11b6e78be2a6">
             <useCaseMoniker
               Id="65b9f034-6a9f-42a5-b29f-638d8003233a"
-              LastKnownName="Edit subtitle"
+              LastKnownName="Edit caption"
               LastKnownLocation="ClipFlair.uml" />
           </include>
         </additions>
@@ -76,7 +76,7 @@
     <packageHasNamedElement>
       <useCase
         Id="7cf5c18e-cf1e-4927-a464-76f631e788a0"
-        name="Select subtitle"
+        name="Select caption"
         isAbstract="false"
         isLeaf="false">
         <additions>
@@ -93,7 +93,7 @@
     <packageHasNamedElement>
       <useCase
         Id="264384c4-c5d3-4018-85ad-443218ce2630"
-        name="Delete subtitle"
+        name="Delete caption"
         isAbstract="false"
         isLeaf="false">
         <suppliersInternal>
@@ -101,7 +101,7 @@
             Id="ad9b39ff-d120-4660-92f0-3a1621de6550">
             <useCaseMoniker
               Id="7cf5c18e-cf1e-4927-a464-76f631e788a0"
-              LastKnownName="Select subtitle"
+              LastKnownName="Select caption"
               LastKnownLocation="ClipFlair.uml" />
           </dependency>
         </suppliersInternal>
@@ -110,7 +110,7 @@
     <packageHasNamedElement>
       <useCase
         Id="65b9f034-6a9f-42a5-b29f-638d8003233a"
-        name="Edit subtitle"
+        name="Edit caption"
         isAbstract="false"
         isLeaf="false">
         <suppliersInternal>
@@ -118,7 +118,7 @@
             Id="d1bb645c-4bfe-43c8-ba55-3d4182359335">
             <useCaseMoniker
               Id="7cf5c18e-cf1e-4927-a464-76f631e788a0"
-              LastKnownName="Select subtitle"
+              LastKnownName="Select caption"
               LastKnownLocation="ClipFlair.uml" />
           </dependency>
         </suppliersInternal>
@@ -127,21 +127,21 @@
             Id="a9b310c2-9895-40a7-ae2c-53b25772d90d">
             <useCaseMoniker
               Id="2ab5dd5d-5124-44fa-ba03-48d2cffa7155"
-              LastKnownName="Edit subtitle start time"
+              LastKnownName="Update caption start time"
               LastKnownLocation="ClipFlair.uml" />
           </include>
           <include
             Id="2eaee957-f396-40a7-a555-7d30aecad503">
             <useCaseMoniker
               Id="b120c165-6c6f-445c-b84e-836d10c96594"
-              LastKnownName="Edit subtitle end time"
+              LastKnownName="Update caption end time"
               LastKnownLocation="ClipFlair.uml" />
           </include>
           <include
             Id="0ff5902c-fac7-47c6-adb2-6431cbe8d83f">
             <useCaseMoniker
               Id="b6583160-5ccb-455c-b4ef-cbf192aed9d0"
-              LastKnownName="Edit subtitle part text"
+              LastKnownName="Update caption content"
               LastKnownLocation="ClipFlair.uml" />
           </include>
           <include
@@ -157,14 +157,14 @@
     <packageHasNamedElement>
       <useCase
         Id="2ab5dd5d-5124-44fa-ba03-48d2cffa7155"
-        name="Edit subtitle start time"
+        name="Update caption start time"
         isAbstract="false"
         isLeaf="false" />
     </packageHasNamedElement>
     <packageHasNamedElement>
       <useCase
         Id="b120c165-6c6f-445c-b84e-836d10c96594"
-        name="Edit subtitle end time"
+        name="Update caption end time"
         isAbstract="false"
         isLeaf="false" />
     </packageHasNamedElement>
@@ -185,7 +185,7 @@
     <packageHasNamedElement>
       <useCase
         Id="b6583160-5ccb-455c-b4ef-cbf192aed9d0"
-        name="Edit subtitle part text"
+        name="Update caption content"
         isAbstract="false"
         isLeaf="false">
         <suppliersInternal>
@@ -598,7 +598,7 @@
             isAbstract="false">
             <useCaseMoniker
               Id="92b01433-8777-4a6f-99c3-54615a40a524"
-              LastKnownName="Subtitling"
+              LastKnownName="Captioning"
               LastKnownLocation="ClipFlair.uml" />
             <relationshipOwnedElementsInternal>
               <associationHasOwnedEnds>

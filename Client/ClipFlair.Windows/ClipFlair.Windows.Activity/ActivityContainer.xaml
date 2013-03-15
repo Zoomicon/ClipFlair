@@ -1,7 +1,7 @@
 ﻿<!--
 Project: ClipFlair (http://ClipFlair.codeplex.com)
 Filename: ActivityContainer.xaml
-Version: 20130314
+Version: 20130315
 -->
 
 <UserControl x:Class="ClipFlair.Windows.ActivityContainer" 
@@ -29,6 +29,11 @@ Version: 20130314
         <ResourceDictionary Source="/ClipFlair.Windows.Base;component/Themes/Default.xaml" />
       </ResourceDictionary.MergedDictionaries>
 
+      <LinearGradientBrush x:Key="ClipFlairActivityToolbarBackground" StartPoint="0,0" EndPoint="0,1">
+        <GradientStop Color="#3A2721" Offset="0" />
+        <GradientStop Color="#2E1B15" Offset="1" />
+      </LinearGradientBrush>
+
     </ResourceDictionary>
   </UserControl.Resources>
 
@@ -53,63 +58,83 @@ Version: 20130314
       MaxContentScale="3"
       >
 
+      <zui:FloatingWindowHostZUI.BottomBarStyle>
+        <Style TargetType="Border" BasedOn="{StaticResource BottomBarStyle}">
+          <Setter Property="Height" Value="35" />
+          <Setter Property="Background" Value="{StaticResource ClipFlairActivityToolbarBackground}" />
+          <Setter Property="BorderThickness" Value="0" />
+        </Style>
+      </zui:FloatingWindowHostZUI.BottomBarStyle>
+
       <zui:FloatingWindowHostZUI.Bar>
+        
+        <StackPanel 
+          Orientation="Horizontal"
+          HorizontalAlignment="Stretch"
+          Background="{StaticResource ClipFlairActivityToolbarBackground}"          
+          >
 
-        <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
-          
-          <StackPanel.Background>
-              <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
-                <GradientStop Color="#3A2721" Offset="0" />
-                <GradientStop Color="#2E1B15" Offset="1" />
-              </LinearGradientBrush>
-          </StackPanel.Background>
-          
-          <widgets:OptionsLoadSaveControl LoadURLClick="OptionsLoadSaveControl_LoadURLClick" LoadClick="OptionsLoadSaveControl_LoadClick" SaveClick="OptionsLoadSaveControl_SaveClick" />
+          <widgets:OptionsLoadSaveControl
+            LoadURLTooltip="Load activity from URL"
+            LoadTooltip="Load activity from file"
+            SaveTooltip="Save activity to file"
+            LoadURLClick="OptionsLoadSaveControl_LoadURLClick"
+            LoadClick="OptionsLoadSaveControl_LoadClick"
+            SaveClick="OptionsLoadSaveControl_SaveClick"
+            Margin="20,0"
+            />
 
-          <TextBlock Text=" " />
+          <StackPanel Name="panelAddComponents" Orientation="Horizontal">
 
-          <Button Name="btnAddNestedActivity" Visibility="Collapsed"
-                  Content="+ Nested Activity"
-                  VerticalAlignment="Center" Margin="0,0,5,0"
-                  ToolTipService.ToolTip="Add nested Activity">
-            <!--  <Image Source="Images/AddActivity.png" /> -->
-          </Button>
+            <Button
+              Name="btnAddNestedActivity" Visibility="Collapsed"
+              Content="+ Nested Activity"
+              VerticalAlignment="Center" Margin="0,0,5,0"
+              ToolTipService.ToolTip="Add nested Activity">
+              <!-- <Image Source="Images/AddActivity.png" /> -->
+            </Button>
 
-          <hover:ImageButton Name="btnAddClip" Visibility="Collapsed"
-                  VerticalAlignment="Center" Margin="0,0,5,0"
-                  ToolTipService.ToolTip="Add Clip"
-                  Image="Images/AddClip.png"
-                  ImageHover="Images/AddClip_hover.png" />
+            <hover:ImageButton
+              Name="btnAddClip" Visibility="Collapsed"
+              VerticalAlignment="Center" Margin="0,0,5,0"
+              ToolTipService.ToolTip="Add Clip"
+              Image="Images/AddClip.png"
+              ImageHover="Images/AddClip_hover.png" />
 
-          <hover:ImageButton Name="btnAddCaptions" Visibility="Collapsed"
-                  VerticalAlignment="Center" Margin="0,0,5,0"
-                  ToolTipService.ToolTip="Add Captions"
-                  Image="Images/AddCaptions.png"
-                  ImageHover="Images/AddCaptions_hover.png" />
+            <hover:ImageButton
+              Name="btnAddCaptions" Visibility="Collapsed"
+              VerticalAlignment="Center" Margin="0,0,5,0"
+              ToolTipService.ToolTip="Add Captions"
+              Image="Images/AddCaptions.png"
+              ImageHover="Images/AddCaptions_hover.png" />
 
-          <hover:ImageButton Name="btnAddRevoicing" Visibility="Collapsed"
-                  VerticalAlignment="Center" Margin="0,0,5,0"
-                  ToolTipService.ToolTip="Add Revoicing"
-                  Image="Images/AddRevoicing.png"
-                  ImageHover="Images/AddRevoicing_hover.png" />
+            <hover:ImageButton
+              Name="btnAddRevoicing" Visibility="Collapsed"
+              VerticalAlignment="Center" Margin="0,0,5,0"
+              ToolTipService.ToolTip="Add Revoicing"
+              Image="Images/AddRevoicing.png"
+              ImageHover="Images/AddRevoicing_hover.png" />
 
-          <hover:ImageButton Name="btnAddText" Visibility="Collapsed"
-                  VerticalAlignment="Center" Margin="0,0,5,0"
-                  ToolTipService.ToolTip="Add Text"
-                  Image="Images/AddText.png"
-                  ImageHover="Images/AddText_hover.png" />
+            <hover:ImageButton
+              Name="btnAddText" Visibility="Collapsed"
+              VerticalAlignment="Center" Margin="0,0,5,0"
+              ToolTipService.ToolTip="Add Text"
+              Image="Images/AddText.png"
+              ImageHover="Images/AddText_hover.png" />
 
-          <hover:ImageButton Name="btnAddImage" Visibility="Collapsed"
+            <hover:ImageButton Name="btnAddImage" Visibility="Collapsed"
                   VerticalAlignment="Center" Margin="0,0,5,0"
                   ToolTipService.ToolTip="Add Image"
                   Image="Images/AddImage.png"
                    ImageHover="Images/AddImage_hover.png" />
 
-          <hover:ImageButton Name="btnAddMap" Visibility="Collapsed"
+            <hover:ImageButton Name="btnAddMap" Visibility="Collapsed"
                   VerticalAlignment="Center" Margin="0,0,5,0"
                   ToolTipService.ToolTip="Add Map"
                   Image="Images/AddMap.png"
                   ImageHover="Images/AddMap_hover.png" />
+
+          </StackPanel>
 
         </StackPanel>
 

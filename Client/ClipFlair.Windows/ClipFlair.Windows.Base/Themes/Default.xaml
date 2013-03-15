@@ -1,7 +1,7 @@
 ﻿<!--
 Project: ClipFlair (http://ClipFlair.codeplex.com)
 Filename: Generic.xaml
-Version: 20130314 
+Version: 20130315
 -->
 
 <ResourceDictionary
@@ -55,6 +55,11 @@ Version: 20130314
   </Style>
   -->
 
+  <LinearGradientBrush x:Key="ToolbarBackground" StartPoint="0,0" EndPoint="0,1">
+    <GradientStop Color="#7EBDE6" Offset="0" />
+    <GradientStop Color="#90CFF8" Offset="1" />
+  </LinearGradientBrush>
+
   <LinearGradientBrush x:Key="ClipFlairTitleBackground" StartPoint="0,0" EndPoint="0,1">
     <GradientStop Color="#2171D2" Offset="0" />
     <GradientStop Color="#1868C9" Offset="1" />
@@ -74,12 +79,13 @@ Version: 20130314
   <Style x:Key="ClipFlairHelpButtonStyle" TargetType="Button">
     <Setter Property="Cursor" Value="Hand"/>
     <Setter Property="IsTabStop" Value="False"/>
-    <Setter Property="VerticalAlignment" Value="Top"/>
-    <Setter Property="VerticalContentAlignment" Value="Top"/>
+    <Setter Property="VerticalAlignment" Value="Center"/>
+    <Setter Property="VerticalContentAlignment" Value="Center"/>
+    <Setter Property="Margin" Value="1,1" />
     <Setter Property="Template">
       <Setter.Value>
         <ControlTemplate TargetType="Button">
-          <Grid>
+          <Grid Margin="{TemplateBinding Margin}">
             <VisualStateManager.VisualStateGroups>
               <VisualStateGroup x:Name="CommonStates">
                 <VisualStateGroup.Transitions>
@@ -99,8 +105,8 @@ Version: 20130314
                 <VisualState x:Name="Disabled"/>
               </VisualStateGroup>
             </VisualStateManager.VisualStateGroups>
-            <Image x:Name="Image" Source="/ClipFlair.Windows.Base;component/Images/Help.png" Stretch="None"/>
-            <Image x:Name="ImageHover" Source="/ClipFlair.Windows.Base;component/Images/Help_hover.png" Stretch="None" Opacity="0"/>
+            <Image x:Name="Image" Source="/ClipFlair.Windows.Base;component/Images/Help.png" Stretch="None" />
+            <Image x:Name="ImageHover" Source="/ClipFlair.Windows.Base;component/Images/Help_hover.png" Stretch="None" Opacity="0" />
           </Grid>
         </ControlTemplate>
       </Setter.Value>
@@ -110,12 +116,13 @@ Version: 20130314
   <Style x:Key="ClipFlairOptionsButtonStyle" TargetType="Button">
     <Setter Property="Cursor" Value="Hand"/>
     <Setter Property="IsTabStop" Value="False"/>
-    <Setter Property="VerticalAlignment" Value="Top"/>
-    <Setter Property="VerticalContentAlignment" Value="Top"/>
+    <Setter Property="VerticalAlignment" Value="Center"/>
+    <Setter Property="VerticalContentAlignment" Value="Center"/>
+    <Setter Property="Margin" Value="1,1" />
     <Setter Property="Template">
       <Setter.Value>
         <ControlTemplate TargetType="Button">
-          <Grid>
+          <Grid Margin="{TemplateBinding Margin}">
             <VisualStateManager.VisualStateGroups>
               <VisualStateGroup x:Name="CommonStates">
                 <VisualStateGroup.Transitions>
@@ -135,8 +142,8 @@ Version: 20130314
                 <VisualState x:Name="Disabled"/>
               </VisualStateGroup>
             </VisualStateManager.VisualStateGroups>
-            <Image x:Name="Image" Source="/ClipFlair.Windows.Base;component/Images/Options.png" Stretch="None"/>
-            <Image x:Name="ImageHover" Source="/ClipFlair.Windows.Base;component/Images/Options_hover.png" Stretch="None" Opacity="0"/>
+            <Image x:Name="Image" Source="/ClipFlair.Windows.Base;component/Images/Options.png" Stretch="None" />
+            <Image x:Name="ImageHover" Source="/ClipFlair.Windows.Base;component/Images/Options_hover.png" Stretch="None" Opacity="0" />
           </Grid>
         </ControlTemplate>
       </Setter.Value>
@@ -146,12 +153,13 @@ Version: 20130314
   <Style x:Key="ClipFlairCloseButtonStyle" TargetType="Button">
     <Setter Property="Cursor" Value="Hand"/>
     <Setter Property="IsTabStop" Value="False"/>
-    <Setter Property="VerticalAlignment" Value="Top"/>
-    <Setter Property="VerticalContentAlignment" Value="Top"/>
+    <Setter Property="VerticalAlignment" Value="Center"/>
+    <Setter Property="VerticalContentAlignment" Value="Center"/>
+    <Setter Property="Margin" Value="1,1" />
     <Setter Property="Template">
       <Setter.Value>
         <ControlTemplate TargetType="Button">
-          <Grid>
+          <Grid Margin="{TemplateBinding Margin}">
             <VisualStateManager.VisualStateGroups>
               <VisualStateGroup x:Name="CommonStates">
                 <VisualStateGroup.Transitions>
@@ -171,8 +179,8 @@ Version: 20130314
                 <VisualState x:Name="Disabled"/>
               </VisualStateGroup>
             </VisualStateManager.VisualStateGroups>
-            <Image x:Name="Image" Source="/ClipFlair.Windows.Base;component/Images/Close.png" Stretch="None"/>
-            <Image x:Name="ImageHover" Source="/ClipFlair.Windows.Base;component/Images/Close_hover.png" Stretch="None" Opacity="0"/>
+            <Image x:Name="Image" Source="/ClipFlair.Windows.Base;component/Images/Close.png" Stretch="None" />
+            <Image x:Name="ImageHover" Source="/ClipFlair.Windows.Base;component/Images/Close_hover.png" Stretch="None" Opacity="0" />
           </Grid>
         </ControlTemplate>
       </Setter.Value>

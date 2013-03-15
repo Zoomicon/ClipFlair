@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: OptionsLoadSaveControl.xaml.cs
-//Version: 20130131
+//Version: 20130315
 
 using System.Windows;
 using System.Windows.Controls;
@@ -15,6 +15,38 @@ namespace ClipFlair.UI.Widgets
     {
       InitializeComponent();
     }
+
+    #region LoadURLTooltip
+
+    public string LoadURLTooltip
+    {
+      get { return (string)btnLoadURL.GetValue(ToolTipService.ToolTipProperty); }
+      set { btnLoadURL.SetValue(ToolTipService.ToolTipProperty, value); }
+    }
+
+    #endregion
+    
+    #region LoadTooltip
+
+    public string LoadTooltip
+    {
+      get { return (string)btnLoad.GetValue(ToolTipService.ToolTipProperty); }
+      set { btnLoad.SetValue(ToolTipService.ToolTipProperty, value); }
+    }
+
+    #endregion
+
+    #region SaveTooltip
+
+    public string SaveTooltip
+    {
+      get { return (string)btnSave.GetValue(ToolTipService.ToolTipProperty); }
+      set { btnSave.SetValue(ToolTipService.ToolTipProperty, value); }
+    }
+
+    #endregion
+
+    #region Events
 
     public event RoutedEventHandler LoadURLClick;
     public event RoutedEventHandler LoadClick;
@@ -38,6 +70,8 @@ namespace ClipFlair.UI.Widgets
         SaveClick(this, e);
     }
 
+    #endregion
+  
   }
 
 }

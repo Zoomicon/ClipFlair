@@ -1,7 +1,7 @@
 ﻿<!--
 Project: ClipFlair (http://ClipFlair.codeplex.com
 Filename: OptionsLoadSaveControl.xaml
-Version: 20130314
+Version: 20130315
 -->
 
 <UserControl x:Class="ClipFlair.UI.Widgets.OptionsLoadSaveControl"
@@ -14,12 +14,12 @@ Version: 20130314
 
   <StackPanel Name="LayoutRoot"
               Orientation="Horizontal"
+              Background="{Binding Path=Background, RelativeSource={RelativeSource AncestorType=UserControl}}"
               HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
 
     <btn:ImageButton Name="btnLoadURL"
                      Margin="3,0,3,0"
                      Click="btnLoadURL_Click"
-                     ToolTipService.ToolTip="Load options from URL"
                      Image="Images/LoadURL.png"
                      ImageHover="Images/LoadURL_hover.png"
                      />
@@ -27,7 +27,6 @@ Version: 20130314
     <btn:ImageButton Name="btnLoad"
                      Margin="3,0,3,0"
                      Click="btnLoad_Click"
-                     ToolTipService.ToolTip="Load options"
                      Image="Images/Load.png"
                      ImageHover="Images/Load_hover.png"
                      />
@@ -35,7 +34,6 @@ Version: 20130314
     <btn:ImageButton Name="btnSave"
                      Margin="3,0,3,0"
                      Click="btnSave_Click"
-                     ToolTipService.ToolTip="Save options"
                      Image="Images/Save.png"
                      ImageHover="Images/Save_hover.png"
                      />

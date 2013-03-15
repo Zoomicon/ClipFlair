@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: BaseWindow.xaml.cs
-//Version: 20130314
+//Version: 20130315
 
 //TODO: unbind control at close
 
@@ -63,6 +63,7 @@ namespace ClipFlair.Windows
     #region Fields
 
     private bool isTopLevel;
+    protected OptionsLoadSaveControl OptionsLoadSave;
 
     #endregion
 
@@ -75,6 +76,7 @@ namespace ClipFlair.Windows
       ShowMinimizeButton = false; //!!! (till the sliding windows bar is fixed)
 
       InitializeComponent(); //can change properties from XAML, so must do after the commands above
+      OptionsLoadSave = ctrlOptionsLoadSave;
      
       //BindingUtils.RegisterForNotification("Title", this, (d, e) => { if (View != null) { View.Title = (bool)e.NewValue; } }); //not used, using data binding in XAML instead
 
@@ -139,7 +141,7 @@ namespace ClipFlair.Windows
 
     public bool IsTopLevel
     {
-      get { return isTopLevel; }
+      get { return isTopLevel;  }
       set
       {
         isTopLevel = value;

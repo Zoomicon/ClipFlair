@@ -1,6 +1,6 @@
 ﻿<!--
 Filename: SilverTextEditor.xaml
-Version: 20130314
+Version: 20130315
 -->
 
 <UserControl x:Class="SilverTextEditor.SilverTextEditor"
@@ -60,23 +60,23 @@ Version: 20130314
         <toolkit:WrapPanel x:Name="Toolbar"
                     Orientation="Horizontal" 
                     Grid.Row="0"
-                    Background="#FFDDEFFA"
+                    Background="{StaticResource ToolbarBackground}"
                     >
           <toolkit:WrapPanel.Resources>
             <Style TargetType="StackPanel">
-              <Setter Property="Margin" Value="1,2" />
+              <Setter Property="Margin" Value="2,0" />
             </Style>
             <Style TargetType="ComboBox">
-              <Setter Property="Margin" Value="1,2" />
+              <Setter Property="Margin" Value="1,5" />
             </Style>
             <Style TargetType="btn:ImageButton">
-              <Setter Property="Margin" Value="1,2" />
+              <Setter Property="Margin" Value="1,5" />
             </Style>
             <Style TargetType="btn:ImageToggleButton">
-              <Setter Property="Margin" Value="1,2" />
+              <Setter Property="Margin" Value="1,5" />
             </Style>
           </toolkit:WrapPanel.Resources>
-
+        
           <!-- File Toolbar -->
           <StackPanel Orientation="Horizontal">
 

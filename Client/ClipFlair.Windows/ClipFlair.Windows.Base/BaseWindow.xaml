@@ -1,7 +1,7 @@
 ﻿<!--
 Project: ClipFlair (http://ClipFlair.codeplex.com)
 Filename: BaseWindow.xaml
-Version: 20130131
+Version: 20130315
 -->
 
 <float:FloatingWindow x:Class="ClipFlair.Windows.BaseWindow"
@@ -38,8 +38,8 @@ Version: 20130131
     <ResourceDictionary>
       <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="/SilverFlow.Controls;component/Themes/generic.xaml"/>
-        <ResourceDictionary Source="/ClipFlair.Windows.Base;component/Themes/Default.xaml" />
         <ResourceDictionary Source="/FlipPanel;component/Themes/RotateVerticalTheme.xaml" />
+        <ResourceDictionary Source="/ClipFlair.Windows.Base;component/Themes/Default.xaml" />
       </ResourceDictionary.MergedDictionaries>
     </ResourceDictionary>
 
@@ -48,7 +48,7 @@ Version: 20130131
   <float:FloatingWindow.Style>
     <Style TargetType="float:FloatingWindow" BasedOn="{StaticResource FloatingWindowStyle}">
       <Setter Property="Background" Value="#F3F3F3" />
-      <Setter Property="BorderBrush" Value="#1868C9" />
+      <Setter Property="BorderBrush" Value="#2171D2" />
       <Setter Property="BorderThickness" Value="3" />
       <Setter Property="TitleStyle" Value="{StaticResource ClipFlairTitleStyle}" />
       <Setter Property="TitleBackground" Value="{StaticResource ClipFlairTitleBackground}" />
@@ -56,6 +56,7 @@ Version: 20130131
       <Setter Property="OptionsButtonStyle" Value="{StaticResource ClipFlairOptionsButtonStyle}" />
       <Setter Property="CloseButtonStyle" Value="{StaticResource ClipFlairCloseButtonStyle}" />
     </Style>
+
   </float:FloatingWindow.Style>
   
   <toolkit:BusyIndicator BusyContent="Loading..."
@@ -72,9 +73,7 @@ Version: 20130131
       HorizontalContentAlignment="Stretch"
       VerticalContentAlignment="Stretch"
       Style="{StaticResource FlipPanel_RotateVerticalStyle}"
-      Margin="1"
       >
-      <!-- needed a margin on the right and bottom so that any scrollbar shown doesn't steal window resize drags - using a uniform margin for content centering -->
 
       <!-- descendents should define children of BaseWindow.FrontContent (implied content property for BaseWindow) in the XAML -->
 
@@ -88,16 +87,22 @@ Version: 20130131
               <RowDefinition Height="*" />
             </Grid.RowDefinitions>
 
-            <widgets:OptionsLoadSaveControl x:Name="ctrlOptionsLoadSave" />
+            <widgets:OptionsLoadSaveControl HorizontalAlignment="Stretch"
+              Name="ctrlOptionsLoadSave"
+              LoadURLTooltip="Load component from URL"
+              LoadTooltip="Load component from file"
+              SaveTooltip="Save component to file"
+              Background="{StaticResource ToolbarBackground}"
+              />
 
             <!--
             <StackPanel Orientation="Horizontal">
               <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Options Source (URL):" Target="{Binding ElementName=edOptionsURL}" />
               <TextBox Name="edOptionsURL" Text="{Binding OptionsSource, Mode=TwoWay}" HorizontalAlignment="Stretch" />
             </StackPanel>
--->
+            -->
 
-            <toolkit:Accordion Grid.Row="1" SelectionMode="ZeroOrMore" SelectionSequence="Simultaneous" ExpandDirection="Down" HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch">
+            <toolkit:Accordion Grid.Row="1" SelectionMode="ZeroOrOne" SelectionSequence="Simultaneous" ExpandDirection="Down" HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch">
 
               <toolkit:AccordionItem Header="View Options" IsSelected="False" Background="Transparent" HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch">
                 <toolkit:AccordionItem.Content>
