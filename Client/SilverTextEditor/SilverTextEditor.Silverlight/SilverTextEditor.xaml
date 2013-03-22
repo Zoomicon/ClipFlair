@@ -1,6 +1,6 @@
 ﻿<!--
 Filename: SilverTextEditor.xaml
-Version: 20130315
+Version: 20130322
 -->
 
 <UserControl x:Class="SilverTextEditor.SilverTextEditor"
@@ -149,6 +149,7 @@ Version: 20130315
                       FontFamily="{Binding SelectedItem.FontFamily, RelativeSource={RelativeSource Self}}" 
                       FontSize="{Binding SelectedItem.FontSize, RelativeSource={RelativeSource Self}}" 
                       SelectionChanged="cmbFonts_SelectionChanged" 
+                      IsDropDownOpen="False"                      
                       >
               <ComboBoxItem Content="Arial" Tag="Arial" FontFamily="Arial" FontSize="12"/>
               <ComboBoxItem Content="Arial Black" Tag="Arial Black" FontFamily="Arial Black" FontSize="12"/>
@@ -168,6 +169,7 @@ Version: 20130315
                       Visibility="{Binding Editable, Converter={StaticResource BooleanToVisibilityConverter}}"
                       FontSize="14" 
                       SelectionChanged="cmbFontSizes_SelectionChanged" 
+                      IsDropDownOpen="False"                      
                       >
               <ComboBoxItem Content="8" Tag="8"/>
               <ComboBoxItem Content="9" Tag="9"/>
@@ -190,22 +192,53 @@ Version: 20130315
             <ComboBox x:Name="cmbFontColors" 
                       Visibility="{Binding Editable, Converter={StaticResource BooleanToVisibilityConverter}}"
                       SelectionChanged="cmbFontColors_SelectionChanged" 
-                      SelectedIndex="0" 
+                      SelectedIndex="0"
+                      IsDropDownOpen="False"
                       >
-              <ComboBoxItem Tag="FFFF0000">
-                <Rectangle Width="22" Height="14" Fill="Red" Margin="2,0,0,0" />
+              <ComboBoxItem Tag="FF0A0200" IsSelected="True">
+                <Rectangle Width="22" Height="14" Fill="#0A0200" />
               </ComboBoxItem>
-              <ComboBoxItem Tag="FF008000">
-                <Rectangle Width="22" Height="14" Fill="Green" Margin="2,0,0,0" />
+              <ComboBoxItem Tag="FFADADAD">
+                <Rectangle Width="22" Height="14" Fill="#ADADAD" />
               </ComboBoxItem>
-              <ComboBoxItem Tag="FF0000FF">
-                <Rectangle Width="22" Height="14" Fill="Blue" Margin="2,0,0,0" />
+              <ComboBoxItem Tag="FFE32F21">
+                <Rectangle Width="22" Height="14" Fill="#E32F21" />
               </ComboBoxItem>
-              <ComboBoxItem Tag="FFFFFF00">
-                <Rectangle Width="22" Height="14" Fill="Yellow" Margin="2,0,0,0" />
+              <ComboBoxItem Tag="FFEA8934">
+                <Rectangle Width="22" Height="14" Fill="#EA8934" />
               </ComboBoxItem>
-              <ComboBoxItem Tag="FF000000" IsSelected="True">
-                <Rectangle Width="22" Height="14" Fill="Black" Margin="2,0,0,0" />
+              <ComboBoxItem Tag="FF67847D">
+                <Rectangle Width="22" Height="14" Fill="#67847D" />
+              </ComboBoxItem>
+              <ComboBoxItem Tag="FF0057AE">
+                <Rectangle Width="22" Height="14" Fill="#0057AE" />
+              </ComboBoxItem>
+              <ComboBoxItem Tag="FF0F75E3">
+                <Rectangle Width="22" Height="14" Fill="#0F75E3" />
+              </ComboBoxItem>
+              <ComboBoxItem Tag="FFB0B535">
+                <Rectangle Width="22" Height="14" Fill="#B0B535" />
+              </ComboBoxItem>
+              <ComboBoxItem Tag="FF582770">
+                <Rectangle Width="22" Height="14" Fill="#582770" />
+              </ComboBoxItem>
+              <ComboBoxItem Tag="FFC11F3E">
+                <Rectangle Width="22" Height="14" Fill="#C11F3E" />
+              </ComboBoxItem>
+              <ComboBoxItem Tag="FFFC9D9A">
+                <Rectangle Width="22" Height="14" Fill="#FC9D9A" />
+              </ComboBoxItem>
+              <ComboBoxItem Tag="FFFFFFFF">
+                <Rectangle Width="22" Height="14" Fill="#FFFFFF" Stroke="Black" StrokeThickness="1" />
+              </ComboBoxItem>
+              <ComboBoxItem Tag="FF0D4161">
+                <Rectangle Width="22" Height="14" Fill="#0D4161" />
+              </ComboBoxItem>
+              <ComboBoxItem Tag="FFF9D423">
+                <Rectangle Width="22" Height="14" Fill="#F9D423" />
+              </ComboBoxItem>
+              <ComboBoxItem Tag="FF3FB8AF">
+                <Rectangle Width="22" Height="14" Fill="#3FB8AF" />
               </ComboBoxItem>
             </ComboBox>
 
