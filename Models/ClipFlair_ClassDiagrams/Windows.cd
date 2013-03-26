@@ -1,11 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="NameAndType">
   <Class Name="ClipFlair.Windows.ActivityWindow">
-    <Position X="0.5" Y="10" Width="2.5" />
-    <TypeIdentifier>
-      <HashCode>ABAGABCACAACgAAABABEgAoAACABAAAAAAAAAAAIAEA=</HashCode>
-      <FileName>ActivityWindow.xaml.cs</FileName>
-    </TypeIdentifier>
+    <Position X="0.5" Y="10.75" Width="2.5" />
+    <TypeIdentifier />
   </Class>
   <Class Name="ClipFlair.Windows.BaseWindow">
     <Position X="7" Y="0.5" Width="3" />
@@ -20,23 +17,23 @@
     <TypeIdentifier />
   </Class>
   <Class Name="ClipFlair.Windows.CaptionsGridWindow">
-    <Position X="6.5" Y="10" Width="2" />
+    <Position X="6.5" Y="10.75" Width="2" />
     <TypeIdentifier />
   </Class>
   <Class Name="ClipFlair.Windows.ImageWindow">
-    <Position X="12" Y="10" Width="2" />
+    <Position X="12" Y="10.75" Width="2" />
     <TypeIdentifier />
   </Class>
   <Class Name="ClipFlair.Windows.MediaPlayerWindow">
-    <Position X="3.75" Y="10" Width="2" />
+    <Position X="3.75" Y="10.75" Width="2" />
     <TypeIdentifier />
   </Class>
   <Class Name="ClipFlair.Windows.TextEditorWindow">
-    <Position X="9.25" Y="10" Width="2" />
+    <Position X="9.25" Y="10.75" Width="2" />
     <TypeIdentifier />
   </Class>
   <Class Name="ClipFlair.Windows.MapWindow">
-    <Position X="14.75" Y="10" Width="2.25" />
+    <Position X="14.75" Y="10.75" Width="2.25" />
     <TypeIdentifier />
   </Class>
   <Font Name="Tahoma" Size="8.25" />
