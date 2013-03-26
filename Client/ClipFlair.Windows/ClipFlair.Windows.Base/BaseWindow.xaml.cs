@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: BaseWindow.xaml.cs
-//Version: 20130315
+//Version: 20130326
 
 //TODO: unbind control at close
 
@@ -40,7 +40,7 @@ namespace ClipFlair.Windows
 
     #region Constants
 
-    public const string CLIPFLAIR_EXTENSION = ".clipflair.zip";
+    public const string ACTIVITY_EXTENSION = ".clipflair.zip";
     public const string CLIPFLAIR_TUTORIALS = "http://social.clipflair.net/Pages/Tutorials.aspx";
 
     #if WRITE_FORMATTED_XML
@@ -490,9 +490,9 @@ namespace ClipFlair.Windows
       try
       {
         OpenFileDialog dlg = new OpenFileDialog();
-        dlg.Filter = "ClipFlair archive|*" + CLIPFLAIR_EXTENSION;
+        dlg.Filter = "ClipFlair archive|*" + ACTIVITY_EXTENSION;
         dlg.FilterIndex = 1; //note: this index is 1-based, not 0-based
-        //dlg.DefaultExt = CLIPFLAIR_EXTENSION; //OpenFileDialog doesn't seem to have a DefaultExt like SaveFileDialog
+        //dlg.DefaultExt = ACTIVITY_EXTENSION; //OpenFileDialog doesn't seem to have a DefaultExt like SaveFileDialog
 
         if (dlg.ShowDialog() == true) //TODO: find the parent window
           using (Stream stream = dlg.File.OpenRead()) //will close the stream when done
@@ -518,10 +518,10 @@ namespace ClipFlair.Windows
       try
       {
         SaveFileDialog dlg = new SaveFileDialog();
-        dlg.Filter = "ClipFlair archive|*" + CLIPFLAIR_EXTENSION;
+        dlg.Filter = "ClipFlair archive|*" + ACTIVITY_EXTENSION;
         //dlg.FilterIndex = 1; //note: this index is 1-based, not 0-based //do not set if DefaultExt is supplied
-        //dlg.DefaultFileName = View.Title + CLIPFLAIR_EXTENSION; //Silverlight will prompt "Do you want to save X?" (where X is the DefaultFileName value). If we set this, but the prompt can go under the main window, so avoid it
-        dlg.DefaultExt = CLIPFLAIR_EXTENSION; //this doesn't seem to be used if FilterIndex is set
+        //dlg.DefaultFileName = View.Title + ACTIVITY_EXTENSION; //Silverlight will prompt "Do you want to save X?" (where X is the DefaultFileName value). If we set this, but the prompt can go under the main window, so avoid it
+        dlg.DefaultExt = ACTIVITY_EXTENSION; //this doesn't seem to be used if FilterIndex is set
 
         if (dlg.ShowDialog() == true) //TODO: find the parent window
           using (Stream stream = dlg.OpenFile()) //will close the stream when done

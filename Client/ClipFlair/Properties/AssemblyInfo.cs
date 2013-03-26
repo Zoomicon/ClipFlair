@@ -9,7 +9,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyDescription("Foreign Language Learning through Interactive Revoicing and Captioning of Clips")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("ClipFlair (http://ClipFlair.net)")]
-[assembly: AssemblyProduct("ClipFlair Studio")]
+[assembly: AssemblyProduct("ClipFlair")]
 [assembly: AssemblyCopyright("Copyright ©  2012-2013")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
