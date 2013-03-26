@@ -1,6 +1,8 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: MediaPlayer.cs
-//Version: 20130211
+//Version: 20130326
+
+using Utils.Extensions;
 
 using System;
 using System.Linq;
@@ -138,6 +140,9 @@ namespace ClipFlair.MediaPlayer
       //playlistItem.StartPosition = ... //TODO: see newSource.Fragment and accept Media URIs here to jump directly to time position? (Stop action should maybe also then go there, plus ignore Time value at state load)
 
       string newSourceStr = newSource.AbsoluteUri;
+
+      //When people share videos via Dropbox, they can get different URLs depending on whether they share from their public foler or not and whether they use the OS file context menu's Dropbox/Share link option or use the dropbox website to create a link to the file. Need to remove https and use to dl.dropbox.com server to point to the download file
+      newSourceStr = newSourceStr.ReplacePrefix(new String[]{"https://dl.dropbox.com/s/", "https://www.dropbox.com/s/", "http://www.dropbox.com/s/"}, "http://dl.dropbox.com/s/", StringComparison.OrdinalIgnoreCase);
 
       if (newSourceStr.EndsWith(".ism", StringComparison.OrdinalIgnoreCase))
         newSourceStr = newSourceStr + "/manifest"; //append "/manifest" to URIs ending in ".ism" (Smooth Streaming)
