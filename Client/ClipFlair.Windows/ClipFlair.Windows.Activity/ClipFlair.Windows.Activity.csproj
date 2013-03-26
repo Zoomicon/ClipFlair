@@ -170,12 +170,6 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Diagrams\Activity.cd" />
-    <None Include="Diagrams\Windows.cd" />
-    <None Include="Diagrams\Windows.Views.Interfaces.cd" />
-    <None Include="Diagrams\Windows.Views.ViewModels.cd" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Images\AddCaptions.png" />
     <Resource Include="Images\AddCaptions_hover.png" />
     <Resource Include="Images\AddImage.png" />

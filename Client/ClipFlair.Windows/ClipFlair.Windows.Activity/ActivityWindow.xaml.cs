@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: ActivityWindow.xaml.cs
-//Version: 20130315
+//Version: 20130326
 
 using Utils.Extensions;
 using Utils.Bindings;
@@ -95,7 +95,7 @@ namespace ClipFlair.Windows
 
       try
       {
-        foreach (ZipEntry childZip in zip.SelectEntries("*" + BaseWindow.CLIPFLAIR_EXTENSION, zipFolder))
+        foreach (ZipEntry childZip in zip.SelectEntries("*" + BaseWindow.ACTIVITY_EXTENSION, zipFolder))
           LoadWindow(childZip);
       }
       finally
@@ -151,7 +151,7 @@ namespace ClipFlair.Windows
       string title = ((string)window.Title).TrimStart(); //using TrimStart() to not have filenames start with space chars in case it's an issue with ZIP spec
       if (title == "") title = window.GetType().Name;
       zip.AddEntry(
-        zipFolder + "/" + title + " - " + Guid.NewGuid() + BaseWindow.CLIPFLAIR_EXTENSION,
+        zipFolder + "/" + title + " - " + Guid.NewGuid() + BaseWindow.ACTIVITY_EXTENSION,
         new WriteDelegate((entryName, stream) => { window.SaveOptions(stream); })); //save ZIP file for child window 
     }
 
