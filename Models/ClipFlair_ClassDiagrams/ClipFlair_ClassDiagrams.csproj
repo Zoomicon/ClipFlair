@@ -1,0 +1,153 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.50727</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{22FFD488-C706-4ABA-ABD1-3BFBE40A46C5}</ProjectGuid>
+    <ProjectTypeGuids>{A1591282-1198-4647-A2B1-27E5FF5F6F3B};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ClipFlair_ClassDiagrams</RootNamespace>
+    <AssemblyName>ClipFlair_ClassDiagrams</AssemblyName>
+    <TargetFrameworkIdentifier>Silverlight</TargetFrameworkIdentifier>
+    <TargetFrameworkVersion>v5.0</TargetFrameworkVersion>
+    <SilverlightVersion>$(TargetFrameworkVersion)</SilverlightVersion>
+    <SilverlightApplication>false</SilverlightApplication>
+    <ValidateXaml>true</ValidateXaml>
+    <ThrowErrorsInValidation>true</ThrowErrorsInValidation>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <!-- This property group is only here to support building this project using the 
+       MSBuild 3.5 toolset. In order to work correctly with this older toolset, it needs 
+       to set the TargetFrameworkVersion to v3.5 -->
+  <PropertyGroup Condition="'$(MSBuildToolsVersion)' == '3.5'">
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>Bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;TRACE;SILVERLIGHT</DefineConstants>
+    <NoStdLib>true</NoStdLib>
+    <NoConfig>true</NoConfig>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>Bin\Release</OutputPath>
+    <DefineConstants>TRACE;SILVERLIGHT</DefineConstants>
+    <NoStdLib>true</NoStdLib>
+    <NoConfig>true</NoConfig>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="mscorlib" />
+    <Reference Include="System.Windows" />
+    <Reference Include="system" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Net" />
+    <Reference Include="System.Windows.Browser" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Activity.cd" />
+    <None Include="App.cd" />
+    <None Include="Dialogs.cd" />
+    <None Include="Widgets.cd" />
+    <None Include="Windows.cd" />
+    <None Include="Windows.Views.Interfaces.cd" />
+    <None Include="Windows.Views.ViewModels.cd" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Client\ClipFlair.UI\ClipFlair.UI.Dialogs\ClipFlair.UI.Dialogs.Silverlight.csproj">
+      <Project>{C6900312-0545-4E5E-9FE0-2AEF75674E29}</Project>
+      <Name>ClipFlair.UI.Dialogs.Silverlight</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Client\ClipFlair.UI\ClipFlair.UI.Widgets\ClipFlair.UI.Widgets.Silverlight.csproj">
+      <Project>{0771A5EA-F8F5-4BB4-A29E-2FD3CF9A5088}</Project>
+      <Name>ClipFlair.UI.Widgets.Silverlight</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Client\ClipFlair.Windows\ClipFlair.Windows.Activity\ClipFlair.Windows.Activity.csproj">
+      <Project>{5C611A60-153B-4781-801D-6F9C1653AE32}</Project>
+      <Name>ClipFlair.Windows.Activity</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Client\ClipFlair.Windows\ClipFlair.Windows.Base\ClipFlair.Windows.Base.csproj">
+      <Project>{4CE71FC4-B8D9-4305-AE15-2F0501CA58B3}</Project>
+      <Name>ClipFlair.Windows.Base</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Client\ClipFlair.Windows\ClipFlair.Windows.Captions\ClipFlair.Windows.Captions.csproj">
+      <Project>{38818955-5894-441C-9B80-69C38BEC9A76}</Project>
+      <Name>ClipFlair.Windows.Captions</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Client\ClipFlair.Windows\ClipFlair.Windows.Image\ClipFlair.Windows.Image.csproj">
+      <Project>{AA7B9EC6-8A08-4300-827B-65A66818BAF7}</Project>
+      <Name>ClipFlair.Windows.Image</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Client\ClipFlair.Windows\ClipFlair.Windows.Map\ClipFlair.Windows.Map.csproj">
+      <Project>{40580DAE-80A5-49E4-BDD8-DAFDB9D4E088}</Project>
+      <Name>ClipFlair.Windows.Map</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Client\ClipFlair.Windows\ClipFlair.Windows.Media\ClipFlair.Windows.Media.csproj">
+      <Project>{A14AC96C-D998-4C35-B1C0-415535D1378B}</Project>
+      <Name>ClipFlair.Windows.Media</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Client\ClipFlair.Windows\ClipFlair.Windows.Text\ClipFlair.Windows.Text.csproj">
+      <Project>{396DD176-BC1D-45CF-900E-4FC85B7398FC}</Project>
+      <Name>ClipFlair.Windows.Text</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Client\ClipFlair\ClipFlair.csproj">
+      <Project>{31498ABB-31AA-4FFA-BB32-98FCA11BB52A}</Project>
+      <Name>ClipFlair</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Silverlight\$(SilverlightVersion)\Microsoft.Silverlight.CSharp.targets" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{A1591282-1198-4647-A2B1-27E5FF5F6F3B}">
+        <SilverlightProjectProperties />
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
