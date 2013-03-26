@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: App.xaml.cs
-//Version: 20130224
+//Version: 20130326
 
 using ClipFlair.Windows;
 
@@ -21,21 +21,24 @@ namespace ClipFlair
     
     #region Constants
 
-    private const string CLIPFLAIR_GALLERY_ACTIVITY = "http://gallery.clipflair.net/activity/";
-    private const string CLIPFLAIR_GALLERY_VIDEO = "http://gallery.clipflair.net/video/";
-    private const string CLIPFLAIR_GALLERY_AUDIO = "http://gallery.clipflair.net/audio/";
-    private const string CLIPFLAIR_GALLERY_TEXT = "http://gallery.clipflair.net/text/";
-    private const string CLIPFLAIR_GALLERY_IMAGE = "http://gallery.clipflair.net/image/";
-    private const string CLIPFLAIR_GALLERY_MAP = "http://gallery.clipflair.net/map/";
+    public const string CLIPFLAIR_GALLERY_ACTIVITY = "http://gallery.clipflair.net/activity/";
+    public const string CLIPFLAIR_GALLERY_VIDEO = "http://gallery.clipflair.net/video/";
+    public const string CLIPFLAIR_GALLERY_AUDIO = "http://gallery.clipflair.net/audio/";
+    public const string CLIPFLAIR_GALLERY_TEXT = "http://gallery.clipflair.net/text/";
+    public const string CLIPFLAIR_GALLERY_IMAGE = "http://gallery.clipflair.net/image/";
+    public const string CLIPFLAIR_GALLERY_MAP = "http://gallery.clipflair.net/map/";
 
-    private const string PARAMETER_ACTIVITY = "activity";
-    private const string PARAMETER_COMPONENT = "component";
-    private const string PARAMETER_MEDIA = "media";
-    private const string PARAMETER_VIDEO = "video";
-    private const string PARAMETER_AUDIO = "audio";
-    private const string PARAMETER_TEXT = "text";
-    private const string PARAMETER_IMAGE = "image";
-    private const string PARAMETER_MAP = "map";
+    private const string SMOOTH_STREAM_EXTENSION_SHORT = ".ism";
+    private const string SMOOTH_STREAM_EXTENSION = ".ism/Manifest";
+
+    public const string PARAMETER_ACTIVITY = "activity";
+    public const string PARAMETER_COMPONENT = "component";
+    public const string PARAMETER_MEDIA = "media";
+    public const string PARAMETER_VIDEO = "video";
+    public const string PARAMETER_AUDIO = "audio";
+    public const string PARAMETER_TEXT = "text";
+    public const string PARAMETER_IMAGE = "image";
+    public const string PARAMETER_MAP = "map";
 
     #endregion
 
@@ -119,31 +122,39 @@ namespace ClipFlair
       {
         WaitTillNotBusy(activityWindow); //TODO: doesn't work (should wait for any activity to load first)
         MediaPlayerWindow w = new MediaPlayerWindow();
+        w.Width = 800;
+        w.Height = 600;
         activityWindow.activityContainer.AddWindowInViewCenter(w);
-        w.MediaPlayerView.Source = new Uri(new Uri(CLIPFLAIR_GALLERY_VIDEO), queryString[PARAMETER_MEDIA]);
+        w.MediaPlayerView.Source = makeClipUri(CLIPFLAIR_GALLERY_VIDEO, queryString[PARAMETER_MEDIA]);
         foundParam = true;
       }
       if (queryString.ContainsKey(PARAMETER_VIDEO))
       {
         WaitTillNotBusy(activityWindow); //TODO: doesn't work (should wait for any activity to load first)
         MediaPlayerWindow w = new MediaPlayerWindow();
+        w.Width = 800;
+        w.Height = 600;
         activityWindow.activityContainer.AddWindowInViewCenter(w);
-        w.MediaPlayerView.Source = new Uri(new Uri(CLIPFLAIR_GALLERY_VIDEO), queryString[PARAMETER_VIDEO]);
+        w.MediaPlayerView.Source = makeClipUri(CLIPFLAIR_GALLERY_VIDEO, queryString[PARAMETER_VIDEO]);
         foundParam = true;
       }
       if (queryString.ContainsKey(PARAMETER_AUDIO))
       {
         WaitTillNotBusy(activityWindow); //TODO: doesn't work (should wait for any activity to load first)
         MediaPlayerWindow w = new MediaPlayerWindow();
+        //w.Width = 800;
+        //w.Height = 600;
         activityWindow.activityContainer.AddWindowInViewCenter(w);
         w.MediaPlayerView.VideoVisible = false;
-        w.MediaPlayerView.Source = new Uri(new Uri(CLIPFLAIR_GALLERY_AUDIO), queryString[PARAMETER_AUDIO]);
+        w.MediaPlayerView.Source = makeClipUri(CLIPFLAIR_GALLERY_AUDIO, queryString[PARAMETER_AUDIO]);
         foundParam = true;
       }
       if (queryString.ContainsKey(PARAMETER_IMAGE))
       {
         WaitTillNotBusy(activityWindow); //TODO: doesn't work (should wait for any activity to load first)
         ImageWindow w = new ImageWindow();
+        w.Width = 800;
+        w.Height = 600; 
         activityWindow.activityContainer.AddWindowInViewCenter(w);
         w.ImageView.Source = new Uri(new Uri(CLIPFLAIR_GALLERY_IMAGE), queryString[PARAMETER_IMAGE]);
         foundParam = true;
@@ -154,12 +165,25 @@ namespace ClipFlair
       return foundParam;
     }
 
-    private Uri makeActivityUri(string param) //TODO: reuse this code at load-activity-from-url dialog
+    public static Uri makeActivityUri(string param) //TODO: reuse this code at load-activity-from-url dialog
     {
       Uri result = new Uri(new Uri(CLIPFLAIR_GALLERY_ACTIVITY), param);
       string s = result.ToString();
-      if (s.StartsWith(CLIPFLAIR_GALLERY_ACTIVITY, StringComparison.OrdinalIgnoreCase) && !s.EndsWith(BaseWindow.CLIPFLAIR_EXTENSION, StringComparison.OrdinalIgnoreCase))
-        result = new Uri(s + BaseWindow.CLIPFLAIR_EXTENSION);
+      if (s.StartsWith(CLIPFLAIR_GALLERY_ACTIVITY, StringComparison.OrdinalIgnoreCase) && !s.EndsWith(BaseWindow.ACTIVITY_EXTENSION, StringComparison.OrdinalIgnoreCase))
+        result = new Uri(s + BaseWindow.ACTIVITY_EXTENSION);
+      return result;
+    }
+
+    public static Uri makeClipUri(string galleryBaseUri, string param) //TODO: reuse this code at Clip component
+    {
+      if (!param.Contains("/"))
+        param = param + "/" + param; //all smooth streams are in a subfolder
+      Uri result = new Uri(new Uri(galleryBaseUri), param);
+      string s = result.ToString();
+      if (s.StartsWith(galleryBaseUri, StringComparison.OrdinalIgnoreCase) && 
+           !s.EndsWith(SMOOTH_STREAM_EXTENSION_SHORT, StringComparison.OrdinalIgnoreCase) &&
+           !s.EndsWith(SMOOTH_STREAM_EXTENSION, StringComparison.OrdinalIgnoreCase) )
+        result = new Uri(s + SMOOTH_STREAM_EXTENSION);
       return result;
     }
 
