@@ -1,18 +1,19 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: ActivityContainer.xaml.cs
-//Version: 20130221
+//Version: 20130227
 
 //TODO: add ContentPartsZoomable property
 //TODO: add to FloatingWindowHostZUI a rezoom to fit button
 //TODO: must clear bindings when child window closes (now seem to stay as zombies hearing revoicing entries play at given time)
 
-//#define PART_NESTED_ACTIVITY
 #define PART_CLIP
 #define PART_CAPTIONS
 #define PART_REVOICING
 #define PART_TEXT
 #define PART_IMAGE
 #define PART_MAP
+#define PART_GALLERY
+//#define PART_NESTED_ACTIVITY
 
 //TODO: maybe use MEF Deployment Catalog and put components in separate XAPs (each one a Silverlight app, set to reuse the same Web PRoject) and imported here with CopyLocal=False
 
@@ -57,17 +58,13 @@ namespace ClipFlair.Windows
     {
       AggregateCatalog partsCatalog = new AggregateCatalog();
       //don't put the following in conditional compilation block, all are needed for loading of saved options
-      partsCatalog.Catalogs.Add(new AssemblyCatalog(Assembly.GetExecutingAssembly())); //typeof(ActivityWindow).Assembly
       partsCatalog.Catalogs.Add(new AssemblyCatalog(typeof(MediaPlayerWindow).Assembly));
       partsCatalog.Catalogs.Add(new AssemblyCatalog(typeof(CaptionsGridWindow).Assembly));
       partsCatalog.Catalogs.Add(new AssemblyCatalog(typeof(TextEditorWindow).Assembly));
       partsCatalog.Catalogs.Add(new AssemblyCatalog(typeof(ImageWindow).Assembly));
       partsCatalog.Catalogs.Add(new AssemblyCatalog(typeof(MapWindow).Assembly));
-
-      #if PART_NESTED_ACTIVITY
-      btnAddNestedActivity.Visibility = Visibility.Visible;
-      btnAddNestedActivity.Click += new RoutedEventHandler(btnAddNestedActivity_Click);
-      #endif
+      partsCatalog.Catalogs.Add(new AssemblyCatalog(typeof(GalleryWindow).Assembly));
+      partsCatalog.Catalogs.Add(new AssemblyCatalog(Assembly.GetExecutingAssembly())); //typeof(ActivityWindow).Assembly
 
       #if PART_CLIP
       btnAddClip.Visibility = Visibility.Visible;
@@ -97,6 +94,16 @@ namespace ClipFlair.Windows
       #if PART_MAP
       btnAddMap.Visibility = Visibility.Visible;
       btnAddMap.Click += new RoutedEventHandler(btnAddMap_Click);
+      #endif
+
+      #if PART_GALLERY
+      btnAddGallery.Visibility = Visibility.Visible;
+      btnAddGallery.Click += new RoutedEventHandler(btnAddGallery_Click);
+      #endif
+
+      #if PART_NESTED_ACTIVITY
+      btnAddNestedActivity.Visibility = Visibility.Visible;
+      btnAddNestedActivity.Click += new RoutedEventHandler(btnAddNestedActivity_Click);
       #endif
 
       CompositionContainer container = new CompositionContainer(partsCatalog);
@@ -200,9 +207,6 @@ namespace ClipFlair.Windows
         window.View.WarnOnClosing = false;
     }
 
-    [Import("ClipFlair.Windows.Views.ActivityView", typeof(IWindowFactory), RequiredCreationPolicy = CreationPolicy.Shared)]
-    public IWindowFactory ActivityWindowFactory { get; set; }
-
     [Import("ClipFlair.Windows.Views.MediaPlayerView", typeof(IWindowFactory), RequiredCreationPolicy = CreationPolicy.Shared)]
     public IWindowFactory MediaPlayerWindowFactory { get; set; }
 
@@ -217,6 +221,12 @@ namespace ClipFlair.Windows
 
     [Import("ClipFlair.Windows.Views.MapView", typeof(IWindowFactory), RequiredCreationPolicy = CreationPolicy.Shared)]
     public IWindowFactory MapWindowFactory { get; set; }
+
+    [Import("ClipFlair.Windows.Views.GalleryView", typeof(IWindowFactory), RequiredCreationPolicy = CreationPolicy.Shared)]
+    public IWindowFactory GalleryWindowFactory { get; set; }
+
+    [Import("ClipFlair.Windows.Views.ActivityView", typeof(IWindowFactory), RequiredCreationPolicy = CreationPolicy.Shared)]
+    public IWindowFactory ActivityWindowFactory { get; set; }
 
     public BaseWindow AddWindow(IWindowFactory windowFactory, bool newInstance = false)
     {
@@ -332,15 +342,6 @@ namespace ClipFlair.Windows
     
     #endregion
 
-    #if PART_NESTED_ACTIVITY
-
-    private void btnAddNestedActivity_Click(object sender, RoutedEventArgs e)
-    {
-      AddWindow(ActivityWindowFactory.CreateWindow(), true);
-    }
-
-    #endif
-
     #if PART_CLIP
 
     private void btnAddClip_Click(object sender, RoutedEventArgs e)
@@ -397,6 +398,24 @@ namespace ClipFlair.Windows
     private void btnAddMap_Click(object sender, RoutedEventArgs e)
     {
       AddWindow(MapWindowFactory, true);
+    }
+
+    #endif
+
+    #if PART_GALLERY
+
+    private void btnAddGallery_Click(object sender, RoutedEventArgs e)
+    {
+      AddWindow(GalleryWindowFactory, true);
+    }
+
+    #endif
+
+    #if PART_NESTED_ACTIVITY
+
+    private void btnAddNestedActivity_Click(object sender, RoutedEventArgs e)
+    {
+      AddWindow(ActivityWindowFactory, true);
     }
 
     #endif
