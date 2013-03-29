@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
-//Filename: CaptionsGridWindowFactory.cs
-//Version: 2012121
+//Filename: MapWindowFactory.cs
+//Version: 20130326
 
 using System.ComponentModel.Composition;
 
