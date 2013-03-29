@@ -111,7 +111,7 @@
       <Project>{245ABF59-8751-46FB-A37E-E5EE253342AD}</Project>
       <Name>FlipPanel.Silverlight</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\FloatingWindow\FloatingWindow.Silverlight\FloatingWindow.Silverlight.csproj">
+    <ProjectReference Include="..\..\ZUI\FloatingWindow\FloatingWindow.Silverlight\FloatingWindow.Silverlight.csproj">
       <Project>{3F3D3C8C-9724-4531-A04D-B92049F64686}</Project>
       <Name>FloatingWindow.Silverlight</Name>
     </ProjectReference>
@@ -136,10 +136,6 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup>
-    <None Include="Base.cd" />
-  </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <Resource Include="Images\Close.png" />
     <Resource Include="Images\Close_hover.png" />

@@ -1,7 +1,7 @@
 ﻿<!--
 Project: ClipFlair (http://ClipFlair.codeplex.com)
 Filename: BaseWindow.xaml
-Version: 20130315
+Version: 20130327
 -->
 
 <float:FloatingWindow x:Class="ClipFlair.Windows.BaseWindow"
@@ -38,7 +38,7 @@ Version: 20130315
     <ResourceDictionary>
       <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="/SilverFlow.Controls;component/Themes/generic.xaml"/>
-        <ResourceDictionary Source="/FlipPanel;component/Themes/RotateVerticalTheme.xaml" />
+        <ResourceDictionary Source="/FlipPanel;component/Themes/DropDownTheme.xaml" />
         <ResourceDictionary Source="/ClipFlair.Windows.Base;component/Themes/Default.xaml" />
       </ResourceDictionary.MergedDictionaries>
     </ResourceDictionary>
@@ -72,7 +72,7 @@ Version: 20130315
       VerticalAlignment="Stretch" 
       HorizontalContentAlignment="Stretch"
       VerticalContentAlignment="Stretch"
-      Style="{StaticResource FlipPanel_RotateVerticalStyle}"
+      Style="{StaticResource FlipPanel_DropDownStyle}"
       >
 
       <!-- descendents should define children of BaseWindow.FrontContent (implied content property for BaseWindow) in the XAML -->
