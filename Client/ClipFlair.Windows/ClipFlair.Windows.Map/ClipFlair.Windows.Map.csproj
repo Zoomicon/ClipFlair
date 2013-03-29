@@ -76,7 +76,6 @@
     <Reference Include="System.Net" />
     <Reference Include="System.Windows.Browser" />
     <Reference Include="System.Windows.Controls.Data.Input, Version=5.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
-    <Reference Include="System.Windows.Controls.Layout.Toolkit, Version=5.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MapWindowFactory.cs" />
@@ -95,7 +94,7 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\FloatingWindow\FloatingWindow.Silverlight\FloatingWindow.Silverlight.csproj">
+    <ProjectReference Include="..\..\ZUI\FloatingWindow\FloatingWindow.Silverlight\FloatingWindow.Silverlight.csproj">
       <Project>{3F3D3C8C-9724-4531-A04D-B92049F64686}</Project>
       <Name>FloatingWindow.Silverlight</Name>
     </ProjectReference>
@@ -119,9 +118,6 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Map.cd" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Silverlight\$(SilverlightVersion)\Microsoft.Silverlight.CSharp.targets" />
   <ProjectExtensions>
