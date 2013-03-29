@@ -1,5 +1,7 @@
 ﻿//Filename: FlipPanel.cs
-//Version: 20121203
+//Version: 20130326
+
+using WPFCompatibility;
 
 using System.Windows;
 using System.Windows.Controls;
@@ -17,8 +19,9 @@ namespace FlipPanel
     {
         public static readonly DependencyProperty FrontContentProperty = DependencyProperty.Register("FrontContent", typeof(object), typeof(FlipPanel), null);
         public static readonly DependencyProperty BackContentProperty = DependencyProperty.Register("BackContent", typeof(object), typeof(FlipPanel), null);
-        public static readonly DependencyProperty CornerRadiusProperty = DependencyProperty.Register("CornerRadius", typeof(CornerRadius), typeof(FlipPanel), null);        
-        public static readonly DependencyProperty IsFlippedProperty = DependencyProperty.Register("IsFlipped", typeof(bool), typeof(FlipPanel), null);
+        public static readonly DependencyProperty CornerRadiusProperty = DependencyProperty.Register("CornerRadius", typeof(CornerRadius), typeof(FlipPanel), null);
+        public static readonly DependencyProperty IsFlippedProperty = DependencyProperty.Register("IsFlipped", typeof(bool), typeof(FlipPanel), new FrameworkPropertyMetadata(false));
+        public static readonly DependencyProperty IsAnimatedProperty = DependencyProperty.Register("IsAnimated", typeof(bool), typeof(FlipPanel), new FrameworkPropertyMetadata(true));
 
         public object FrontContent
         {
@@ -42,13 +45,19 @@ namespace FlipPanel
         {
             get { return (bool)GetValue(IsFlippedProperty); }
 
-            set
+            set //TODO: property setters may not be called when a property is set via XAML databinding, should use a callback handler for the dependency property instead to do ChangeVisualState
             {
                 SetValue(IsFlippedProperty, value);
-                ChangeVisualState(true);
+                ChangeVisualState(IsAnimated);
             }
         }
 
+        public bool IsAnimated
+        {
+          get { return (bool)GetValue(IsAnimatedProperty); }
+          set { SetValue(IsAnimatedProperty, value); }
+        }
+      
         public FlipPanel()
         {
             DefaultStyleKey = typeof(FlipPanel);
@@ -67,13 +76,12 @@ namespace FlipPanel
             ToggleButton flipButtonAlternate = base.GetTemplateChild("FlipButtonAlternate") as ToggleButton;
             if (flipButtonAlternate != null) flipButtonAlternate.Click += flipButton_Click;
 
-            this.ChangeVisualState(false);
+            this.ChangeVisualState(false); //do not do any animation at this phase
         }
 
         private void flipButton_Click(object sender, RoutedEventArgs e)
         {
             this.IsFlipped = !this.IsFlipped;
-            ChangeVisualState(true);
         }
 
         private void ChangeVisualState(bool useTransitions)
