@@ -40,12 +40,13 @@ namespace ClipFlair.Windows
       View = activity.View; //set window's View to be the same as the nested activity's View
 
       //copy Window Factory objects (initialized in activity using MEF) to static fields so that code in BaseWindow can use them
-      ActivityWindowFactory = activity.ActivityWindowFactory;
       MediaPlayerWindowFactory = activity.MediaPlayerWindowFactory;
       CaptionsGridWindowFactory = activity.CaptionsGridWindowFactory;
       TextEditorWindowFactory = activity.TextEditorWindowFactory;
       ImageWindowFactory = activity.ImageWindowFactory;
       MapWindowFactory = activity.MapWindowFactory;
+      GalleryWindowFactory = activity.GalleryWindowFactory;
+      ActivityWindowFactory = activity.ActivityWindowFactory;
 
       defaultLoadURL = DEFAULT_ACTIVITY;
 

@@ -1,7 +1,7 @@
 ﻿<!--
 Project: ClipFlair (http://ClipFlair.codeplex.com)
 Filename: ActivityContainer.xaml
-Version: 20130315
+Version: 20130327
 -->
 
 <UserControl x:Class="ClipFlair.Windows.ActivityContainer" 
@@ -86,14 +86,6 @@ Version: 20130315
 
           <StackPanel Name="panelAddComponents" Orientation="Horizontal">
 
-            <Button
-              Name="btnAddNestedActivity" Visibility="Collapsed"
-              Content="+ Nested Activity"
-              VerticalAlignment="Center" Margin="0,0,5,0"
-              ToolTipService.ToolTip="Add nested Activity">
-              <!-- <Image Source="Images/AddActivity.png" /> -->
-            </Button>
-
             <hover:ImageButton
               Name="btnAddClip" Visibility="Collapsed"
               VerticalAlignment="Center" Margin="0,0,5,0"
@@ -122,17 +114,33 @@ Version: 20130315
               Image="Images/AddText.png"
               ImageHover="Images/AddText_hover.png" />
 
-            <hover:ImageButton Name="btnAddImage" Visibility="Collapsed"
-                  VerticalAlignment="Center" Margin="0,0,5,0"
-                  ToolTipService.ToolTip="Add Image"
-                  Image="Images/AddImage.png"
-                   ImageHover="Images/AddImage_hover.png" />
+            <hover:ImageButton
+              Name="btnAddImage" Visibility="Collapsed"
+              VerticalAlignment="Center" Margin="0,0,5,0"
+              ToolTipService.ToolTip="Add Image"
+              Image="Images/AddImage.png"
+              ImageHover="Images/AddImage_hover.png" />
 
-            <hover:ImageButton Name="btnAddMap" Visibility="Collapsed"
-                  VerticalAlignment="Center" Margin="0,0,5,0"
-                  ToolTipService.ToolTip="Add Map"
-                  Image="Images/AddMap.png"
-                  ImageHover="Images/AddMap_hover.png" />
+            <hover:ImageButton
+              Name="btnAddMap" Visibility="Collapsed"
+              VerticalAlignment="Center" Margin="0,0,5,0"
+              ToolTipService.ToolTip="Add Map"
+              Image="Images/AddMap.png"
+              ImageHover="Images/AddMap_hover.png" />
+
+            <hover:ImageButton
+              Name="btnAddGallery" Visibility="Collapsed"
+              VerticalAlignment="Center" Margin="0,0,5,0"              
+              ToolTipService.ToolTip="Add Gallery"
+              Image="Images/AddGallery.png"
+              ImageHover="Images/AddGallery_hover.png"
+              />
+
+            <Button
+              Name="btnAddNestedActivity" Visibility="Collapsed"
+              Content="+Activity"
+              VerticalAlignment="Center" Margin="0,0,5,0"
+              ToolTipService.ToolTip="Add nested Activity" />
 
           </StackPanel>
 
