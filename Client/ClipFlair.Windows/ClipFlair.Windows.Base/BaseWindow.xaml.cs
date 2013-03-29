@@ -51,12 +51,13 @@ namespace ClipFlair.Windows
 
     #region Child Window Factories
 
-    public static IWindowFactory ActivityWindowFactory { get; protected set; }
     public static IWindowFactory MediaPlayerWindowFactory { get; protected set; }
     public static IWindowFactory CaptionsGridWindowFactory { get; protected set; }
     public static IWindowFactory TextEditorWindowFactory { get; protected set; }
     public static IWindowFactory ImageWindowFactory { get; protected set; }
     public static IWindowFactory MapWindowFactory { get; protected set; }
+    public static IWindowFactory GalleryWindowFactory { get; protected set; }
+    public static IWindowFactory ActivityWindowFactory { get; protected set; }
 
     #endregion
 
@@ -202,6 +203,47 @@ namespace ClipFlair.Windows
 
     #endregion
 
+    #region IsAnimated
+
+    /// <summary>
+    /// IsAnimated Dependency Property
+    /// </summary>
+    public static readonly DependencyProperty IsAnimatedProperty =
+        DependencyProperty.Register("IsAnimated", typeof(bool), typeof(BaseWindow),
+            new FrameworkPropertyMetadata(true,
+                FrameworkPropertyMetadataOptions.None,
+                new PropertyChangedCallback(OnIsAnimatedChanged)));
+
+    /// <summary>
+    /// Gets or sets the IsAnimated property.
+    /// </summary>
+    public bool IsAnimated
+    {
+      get { return (bool)GetValue(IsAnimatedProperty); }
+      set { SetValue(IsAnimatedProperty, value); }
+    }
+
+    /// <summary>
+    /// Handles changes to the IsAnimated property.
+    /// </summary>
+    private static void OnIsAnimatedChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    {
+      BaseWindow target = (BaseWindow)d;
+      bool oldIsAnimated = (bool)e.OldValue;
+      bool newIsAnimated = target.IsAnimated;
+      target.OnIsAnimatedChanged(oldIsAnimated, newIsAnimated);
+    }
+
+    /// <summary>
+    /// Provides derived classes an opportunity to handle changes to the IsAnimated property.
+    /// </summary>
+    protected virtual void OnIsAnimatedChanged(bool oldIsAnimated, bool newIsAnimated)
+    {
+      FlipPanel.IsAnimated = newIsAnimated;
+    }
+
+    #endregion
+
     #endregion
 
     #region Methods
@@ -221,7 +263,7 @@ namespace ClipFlair.Windows
       });
     }
 
-    public void ShowOptions()
+    public virtual void ShowOptions()
     {
       //try to set focus to front content so that changes to property editboxes at the back content are applied
       if (!Focus())
@@ -329,9 +371,6 @@ namespace ClipFlair.Windows
         IWindowFactory windowFactory;
         switch (typeName)
         {
-          case "ClipFlair.Windows.Views.ActivityView":
-            windowFactory = ActivityWindowFactory;
-            break;
           case "ClipFlair.Windows.Views.MediaPlayerView":
             windowFactory = MediaPlayerWindowFactory;
             break;
@@ -346,6 +385,12 @@ namespace ClipFlair.Windows
             break;
           case "ClipFlair.Windows.Views.MapView":
             windowFactory = MapWindowFactory;
+            break;
+          case "ClipFlair.Windows.Views.GalleryView":
+            windowFactory = GalleryWindowFactory;
+            break;
+          case "ClipFlair.Windows.Views.ActivityView":
+            windowFactory = ActivityWindowFactory;
             break;
           default:
             throw new Exception("Unknown view type");
