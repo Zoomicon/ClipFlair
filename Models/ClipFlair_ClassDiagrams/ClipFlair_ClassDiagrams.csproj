@@ -17,6 +17,7 @@
     <SilverlightApplication>false</SilverlightApplication>
     <ValidateXaml>true</ValidateXaml>
     <ThrowErrorsInValidation>true</ThrowErrorsInValidation>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -29,7 +30,6 @@
     <MapFileExtensions>true</MapFileExtensions>
     <ApplicationRevision>0</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
-    <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
@@ -73,13 +73,20 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Activity.cd" />
+    <None Include="Windows\Activity.cd" />
     <None Include="App.cd" />
+    <None Include="Windows\Base.cd" />
+    <None Include="Windows\Captions.cd" />
     <None Include="Dialogs.cd" />
+    <None Include="Windows\Gallery.cd" />
+    <None Include="Windows\Image.cd" />
+    <None Include="Windows\Map.cd" />
+    <None Include="Windows\Media.cd" />
+    <None Include="Windows\Text.cd" />
     <None Include="Widgets.cd" />
-    <None Include="Windows.cd" />
-    <None Include="Windows.Views.Interfaces.cd" />
-    <None Include="Windows.Views.ViewModels.cd" />
+    <None Include="Windows\Windows.cd" />
+    <None Include="Windows\Windows.Views.Interfaces.cd" />
+    <None Include="Windows\Windows.Views.ViewModels.cd" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Client\ClipFlair.UI\ClipFlair.UI.Dialogs\ClipFlair.UI.Dialogs.Silverlight.csproj">
@@ -101,6 +108,10 @@
     <ProjectReference Include="..\..\Client\ClipFlair.Windows\ClipFlair.Windows.Captions\ClipFlair.Windows.Captions.csproj">
       <Project>{38818955-5894-441C-9B80-69C38BEC9A76}</Project>
       <Name>ClipFlair.Windows.Captions</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Client\ClipFlair.Windows\ClipFlair.Windows.Gallery\ClipFlair.Windows.Gallery.csproj">
+      <Project>{0E256C84-FBAC-4E81-BA5C-85D44E76F19E}</Project>
+      <Name>ClipFlair.Windows.Gallery</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Client\ClipFlair.Windows\ClipFlair.Windows.Image\ClipFlair.Windows.Image.csproj">
       <Project>{AA7B9EC6-8A08-4300-827B-65A66818BAF7}</Project>

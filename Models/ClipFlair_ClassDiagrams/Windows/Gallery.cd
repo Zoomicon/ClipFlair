@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="NameAndType">
+  <Class Name="ClipFlair.Windows.Views.IGalleryViewerProperties">
+    <Position X="0.5" Y="0.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAABA=</HashCode>
+      <FileName>IGalleryViewer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ClipFlair.Windows.Views.GalleryViewerDefaults">
+    <Position X="2.75" Y="0.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAQEACAAAAAAAAAAAAAAEAAAAAAAAAAAAIABA=</HashCode>
+      <FileName>GalleryViewerDefaults.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ClipFlair.Windows.Views.GalleryView" BaseTypeListCollapsed="true">
+    <Position X="5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAQgAAAAIAAAAAAAAAAAAAABAAAAAQABAAAAA=</HashCode>
+      <FileName>GalleryView.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="ClipFlair.Windows.GalleryWindow">
+    <Position X="7" Y="1.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>GalleryWindow.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ClipFlair.Windows.Gallery.GalleryWindowFactory" BaseTypeListCollapsed="true">
+    <Position X="7" Y="0.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>GalleryWindowFactory.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Interface Name="ClipFlair.Windows.Views.IGalleryViewer">
+    <Position X="0.5" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAA=</HashCode>
+      <FileName>IGalleryViewer.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Tahoma" Size="8.25" />
+</ClassDiagram>
