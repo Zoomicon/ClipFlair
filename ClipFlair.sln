@@ -15,13 +15,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FlipPanel.Silverlight", "Cl
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPF_Compatibility.Silverlight", "Client\WPF_Compatibility\WPF_Compatibility.Silverlight\WPF_Compatibility.Silverlight.csproj", "{7DC832CC-2D97-4DBC-B963-3F77C1F20730}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZoomAndPan.Silverlight", "Client\ZoomAndPan\ZoomAndPan.Silverlight\ZoomAndPan.Silverlight.csproj", "{8E75887A-A164-41B8-86D5-8DC37768B5A3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZoomAndPan.Silverlight", "Client\ZUI\ZoomAndPan\ZoomAndPan.Silverlight\ZoomAndPan.Silverlight.csproj", "{8E75887A-A164-41B8-86D5-8DC37768B5A3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FloatingWindow.Silverlight", "Client\FloatingWindow\FloatingWindow.Silverlight\FloatingWindow.Silverlight.csproj", "{3F3D3C8C-9724-4531-A04D-B92049F64686}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FloatingWindow.Silverlight", "Client\ZUI\FloatingWindow\FloatingWindow.Silverlight\FloatingWindow.Silverlight.csproj", "{3F3D3C8C-9724-4531-A04D-B92049F64686}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SilverTextEditor.Silverlight", "Client\SilverTextEditor\SilverTextEditor.Silverlight\SilverTextEditor.Silverlight.csproj", "{52F76969-E7CD-414F-8E98-4FF90EE48B05}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FloatingWindowZUI.Silverlight", "Client\FloatingWindowZUI\FloatingWindowZUI.Silverlight\FloatingWindowZUI.Silverlight.csproj", "{D7D67F52-7B9B-4DE5-9B72-534664F296B7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FloatingWindowZUI.Silverlight", "Client\ZUI\FloatingWindowZUI\FloatingWindowZUI.Silverlight\FloatingWindowZUI.Silverlight.csproj", "{D7D67F52-7B9B-4DE5-9B72-534664F296B7}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_Libraries", "_Libraries", "{9226D211-9A9D-4F42-A166-8495F0C188A4}"
 EndProject
@@ -74,6 +74,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClipFlair_ClassDiagrams", "Models\ClipFlair_ClassDiagrams\ClipFlair_ClassDiagrams.csproj", "{22FFD488-C706-4ABA-ABD1-3BFBE40A46C5}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClipFlair.Windows.Gallery", "Client\ClipFlair.Windows\ClipFlair.Windows.Gallery\ClipFlair.Windows.Gallery.csproj", "{0E256C84-FBAC-4E81-BA5C-85D44E76F19E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PivotViewerExt.Silverlight", "Client\ZUI\PivotViewerExt.Silverlight\PivotViewerExt.Silverlight.csproj", "{DC69A8CE-040F-405B-B26B-9338B26FCF21}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -189,6 +191,10 @@ Global
 		{0E256C84-FBAC-4E81-BA5C-85D44E76F19E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0E256C84-FBAC-4E81-BA5C-85D44E76F19E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0E256C84-FBAC-4E81-BA5C-85D44E76F19E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DC69A8CE-040F-405B-B26B-9338B26FCF21}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DC69A8CE-040F-405B-B26B-9338B26FCF21}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DC69A8CE-040F-405B-B26B-9338B26FCF21}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DC69A8CE-040F-405B-B26B-9338B26FCF21}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -199,13 +205,14 @@ Global
 		{2214B910-0DEA-4202-A9BA-280ACBCF839B} = {9226D211-9A9D-4F42-A166-8495F0C188A4}
 		{AB8CB11F-F724-4E42-BEED-74A778A61FC9} = {9226D211-9A9D-4F42-A166-8495F0C188A4}
 		{B7B8DC32-93ED-44CC-A0F5-8A3D99A4EA08} = {9226D211-9A9D-4F42-A166-8495F0C188A4}
-		{245ABF59-8751-46FB-A37E-E5EE253342AD} = {CB37E211-5126-4625-9817-AD0946C5F23F}
 		{7DC832CC-2D97-4DBC-B963-3F77C1F20730} = {CB37E211-5126-4625-9817-AD0946C5F23F}
 		{E784B6A1-A300-4571-A881-B15240EEE377} = {CB37E211-5126-4625-9817-AD0946C5F23F}
 		{127105AF-C0F4-40F8-87C5-D6C391552936} = {CB37E211-5126-4625-9817-AD0946C5F23F}
 		{3F3D3C8C-9724-4531-A04D-B92049F64686} = {FBDD15EE-2A2C-4180-9286-123757F78949}
 		{D7D67F52-7B9B-4DE5-9B72-534664F296B7} = {FBDD15EE-2A2C-4180-9286-123757F78949}
 		{8E75887A-A164-41B8-86D5-8DC37768B5A3} = {FBDD15EE-2A2C-4180-9286-123757F78949}
+		{DC69A8CE-040F-405B-B26B-9338B26FCF21} = {FBDD15EE-2A2C-4180-9286-123757F78949}
+		{245ABF59-8751-46FB-A37E-E5EE253342AD} = {FBDD15EE-2A2C-4180-9286-123757F78949}
 		{52F76969-E7CD-414F-8E98-4FF90EE48B05} = {2214B910-0DEA-4202-A9BA-280ACBCF839B}
 		{BF52BDBA-830F-4CD4-AA9C-F653B6448184} = {AB8CB11F-F724-4E42-BEED-74A778A61FC9}
 		{A5E8BFFB-DA12-4EE4-9CA4-667412D98614} = {AB8CB11F-F724-4E42-BEED-74A778A61FC9}
