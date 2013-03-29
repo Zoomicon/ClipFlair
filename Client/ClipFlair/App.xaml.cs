@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: App.xaml.cs
-//Version: 20130326
+//Version: 20130327
 
 using ClipFlair.Windows;
 
@@ -27,6 +27,7 @@ namespace ClipFlair
     public const string CLIPFLAIR_GALLERY_TEXT = "http://gallery.clipflair.net/text/";
     public const string CLIPFLAIR_GALLERY_IMAGE = "http://gallery.clipflair.net/image/";
     public const string CLIPFLAIR_GALLERY_MAP = "http://gallery.clipflair.net/map/";
+    public const string CLIPFLAIR_GALLERY_COLLECTION = "http://gallery.clipflair.net/collection/";
 
     private const string SMOOTH_STREAM_EXTENSION_SHORT = ".ism";
     private const string SMOOTH_STREAM_EXTENSION = ".ism/Manifest";
@@ -39,6 +40,8 @@ namespace ClipFlair
     public const string PARAMETER_TEXT = "text";
     public const string PARAMETER_IMAGE = "image";
     public const string PARAMETER_MAP = "map";
+    public const string PARAMETER_GALLERY = "gallery";
+    public const string PARAMETER_COLLECTION = "collection";
 
     #endregion
 
@@ -113,11 +116,13 @@ namespace ClipFlair
     {
       IDictionary<string, string> queryString = HtmlPage.Document.QueryString;
       bool foundParam = false;
+
       if (queryString.ContainsKey(PARAMETER_ACTIVITY))
       {
         activityWindow.LoadOptions(makeActivityUri(queryString[PARAMETER_ACTIVITY]));
         foundParam = true;
       }
+
       if (queryString.ContainsKey(PARAMETER_MEDIA))
       {
         WaitTillNotBusy(activityWindow); //TODO: doesn't work (should wait for any activity to load first)
@@ -138,6 +143,7 @@ namespace ClipFlair
         w.MediaPlayerView.Source = makeClipUri(CLIPFLAIR_GALLERY_VIDEO, queryString[PARAMETER_VIDEO]);
         foundParam = true;
       }
+
       if (queryString.ContainsKey(PARAMETER_AUDIO))
       {
         WaitTillNotBusy(activityWindow); //TODO: doesn't work (should wait for any activity to load first)
@@ -149,6 +155,7 @@ namespace ClipFlair
         w.MediaPlayerView.Source = makeClipUri(CLIPFLAIR_GALLERY_AUDIO, queryString[PARAMETER_AUDIO]);
         foundParam = true;
       }
+
       if (queryString.ContainsKey(PARAMETER_IMAGE))
       {
         WaitTillNotBusy(activityWindow); //TODO: doesn't work (should wait for any activity to load first)
@@ -157,6 +164,27 @@ namespace ClipFlair
         w.Height = 600; 
         activityWindow.activityContainer.AddWindowInViewCenter(w);
         w.ImageView.Source = new Uri(new Uri(CLIPFLAIR_GALLERY_IMAGE), queryString[PARAMETER_IMAGE]);
+        foundParam = true;
+      }
+
+      if (queryString.ContainsKey(PARAMETER_GALLERY))
+      {
+        WaitTillNotBusy(activityWindow); //TODO: doesn't work (should wait for any activity to load first)
+        GalleryWindow w = new GalleryWindow();
+        w.Width = 800;
+        w.Height = 600;
+        activityWindow.activityContainer.AddWindowInViewCenter(w);
+        w.GalleryView.Source = new Uri(new Uri(CLIPFLAIR_GALLERY_COLLECTION), queryString[PARAMETER_GALLERY]);
+        foundParam = true;
+      }
+      if (queryString.ContainsKey(PARAMETER_COLLECTION))
+      {
+        WaitTillNotBusy(activityWindow); //TODO: doesn't work (should wait for any activity to load first)
+        GalleryWindow w = new GalleryWindow();
+        w.Width = 800;
+        w.Height = 600;
+        activityWindow.activityContainer.AddWindowInViewCenter(w);
+        w.GalleryView.Source = new Uri(new Uri(CLIPFLAIR_GALLERY_COLLECTION), queryString[PARAMETER_COLLECTION]);
         foundParam = true;
       }
 
