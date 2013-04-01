@@ -9,7 +9,7 @@
     <ProjectTypeGuids>{A1591282-1198-4647-A2B1-27E5FF5F6F3B};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ClipFlair.AudioLib</RootNamespace>
+    <RootNamespace>AudioLib</RootNamespace>
     <AssemblyName>AudioLib</AssemblyName>
     <TargetFrameworkIdentifier>Silverlight</TargetFrameworkIdentifier>
     <TargetFrameworkVersion>v5.0</TargetFrameworkVersion>
@@ -66,6 +66,9 @@
     <Reference Include="System.Windows" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\Source\AudioFormatEx.cs">
+      <Link>AudioFormatEx.cs</Link>
+    </Compile>
     <Compile Include="..\Source\MemoryAudioSink.cs">
       <Link>MemoryAudioSink.cs</Link>
     </Compile>

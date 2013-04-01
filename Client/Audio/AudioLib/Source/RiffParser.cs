@@ -1,5 +1,5 @@
 ﻿//Filename: RiffParser.cs
-//Version: 20120912
+//Version: 20130401
 
 //-----------------------------------------------------------------------
 // <copyright file="RiffParser.cs" company="Gilles Khouzam">
@@ -13,7 +13,7 @@ using System;
 using System.Diagnostics;
 using System.IO;
 
-namespace ClipFlair.AudioLib
+namespace AudioLib
 {
 
     /// <summary>

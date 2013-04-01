@@ -1,5 +1,5 @@
 ﻿//Filename: WaveMediaStreamSource.cs
-//Version: 20120912
+//Version: 20130401
 
 //-----------------------------------------------------------------------
 // <copyright file="WaveMediaStreamSource.cs" company="Gilles Khouzam">
@@ -14,7 +14,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Windows.Media;
 
-namespace ClipFlair.AudioLib
+namespace AudioLib
 {
 
     /// <summary>

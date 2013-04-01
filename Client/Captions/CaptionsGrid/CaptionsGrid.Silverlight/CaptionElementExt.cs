@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: CaptionElementExt.cs
-//Version: 20130122
+//Version: 20130401
 
 using Utils.Extensions;
 
@@ -131,16 +131,6 @@ namespace ClipFlair.CaptionsGrid
         NotifyPropertyChanged(PROPERTY_COMMENTS);
       }
     }
-
-    #region static methods
-
-    public static bool HasAudio(CaptionElement caption)
-    {
-      CaptionElementExt c = caption as CaptionElementExt;
-      return (c != null) ? (c.Audio != null) : false;
-    }
-
-    #endregion
 
   }
 }

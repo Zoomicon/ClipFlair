@@ -29,7 +29,7 @@ namespace ClipFlair.CaptionsGrid.Resources {
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        public Strings() {
+        public  Strings() {
         }
         
         /// <summary>
@@ -75,6 +75,15 @@ namespace ClipFlair.CaptionsGrid.Resources {
         public static string captions_import {
             get {
                 return ResourceManager.GetString("captions_import", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Audio files (*.wav)|*.wav.
+        /// </summary>
+        public static string filter_wav {
+            get {
+                return ResourceManager.GetString("filter_wav", resourceCulture);
             }
         }
         
@@ -129,6 +138,15 @@ namespace ClipFlair.CaptionsGrid.Resources {
         public static string tooltip_captions_import {
             get {
                 return ResourceManager.GetString("tooltip_captions_import", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Save all audio in a single .WAV file.
+        /// </summary>
+        public static string tooltip_merged_audio_save {
+            get {
+                return ResourceManager.GetString("tooltip_merged_audio_save", resourceCulture);
             }
         }
     }
