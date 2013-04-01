@@ -1,7 +1,7 @@
 ﻿<!--
 Project: ClipFlair (http://ClipFlair.codeplex.com)
 Filename: CaptionsGrid.xaml
-Version: 20130315
+Version: 20130401
 -->
 
 <UserControl x:Class="ClipFlair.CaptionsGrid.CaptionsGrid"
@@ -102,6 +102,17 @@ Version: 20130315
 
       </StackPanel>
 
+      <StackPanel Orientation="Horizontal">
+
+        <btn:ImageButton
+          Name="btnSaveMergedAudio" Click="btnSaveMergedAudio_Click"
+          ToolTipService.ToolTip="{Binding tooltip_merged_audio_save, Source={StaticResource localizedStrings}}"
+          Image="Images/SaveMergedAudio.png"
+          ImageHover="Images/SaveMergedAudio_hover.png"
+          />
+
+      </StackPanel>
+
     </toolkit:WrapPanel>
 
     <sdk:DataGrid Name="gridCaptions"
@@ -121,7 +132,7 @@ Version: 20130315
         <sdk:DataGridTemplateColumn Header="ROLE" CellTemplate="{StaticResource RoleCellTemplate}" CellEditingTemplate="{StaticResource RoleCellEditTemplate}" />
         <sdk:DataGridTemplateColumn Header="CAPTION" Width="*" CellTemplate="{StaticResource CaptionCellTemplate}" CellEditingTemplate="{StaticResource CaptionCellEditTemplate}" />
         <sdk:DataGridTemplateColumn Header="WPM" Width="50" CellTemplate="{StaticResource WPMCellTemplate}" IsReadOnly="True" />
-        <sdk:DataGridTemplateColumn Header="AUDIO" Width="110" CellTemplate="{StaticResource AudioCellTemplate}" IsReadOnly="True" />
+        <sdk:DataGridTemplateColumn Header="AUDIO" Width="118" CellTemplate="{StaticResource AudioCellTemplate}" IsReadOnly="True" />
         <sdk:DataGridTemplateColumn Header="COMMENTS" Width="100" CellTemplate="{StaticResource CommentsCellTemplate}" CellEditingTemplate="{StaticResource CommentsCellEditTemplate}" />
       </sdk:DataGrid.Columns>
     </sdk:DataGrid>

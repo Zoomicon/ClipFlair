@@ -1,10 +1,11 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: CaptionsGrid.xaml.cs
-//Version: 20130222
+//Version: 20130401
 
 using ClipFlair.AudioRecorder;
 using ClipFlair.CaptionsLib.Utils;
 using ClipFlair.CaptionsLib.Models;
+using ClipFlair.CaptionsGrid.Resources;
 
 using System;
 using System.IO;
@@ -482,7 +483,9 @@ namespace ClipFlair.CaptionsGrid
     /// </summary>
     protected virtual void OnAudioVisibleChanged(bool oldValue, bool newValue)
     {
-      ColumnAudio.Visibility = (newValue) ? Visibility.Visible : Visibility.Collapsed;
+      Visibility visibility = (newValue) ? Visibility.Visible : Visibility.Collapsed;
+      ColumnAudio.Visibility = visibility;
+      btnSaveMergedAudio.Visibility = visibility;
     }
 
     #endregion
@@ -680,6 +683,26 @@ namespace ClipFlair.CaptionsGrid
       if (captionExt == null) return;
 
       AudioRecorderView.SaveAudio(stream, captionExt.Audio); //keep save logic encapsulated so that we can add encoding/compression there
+    }
+
+    public static void SaveAudio(CaptionRegion captions, Stream stream)
+    {
+      CaptionAudioHelper.SaveAudio(captions, stream);
+    }
+
+    private void btnSaveMergedAudio_Click(object sender, RoutedEventArgs e)
+    {
+      //MessageBox.Show("This feature is currently being implemented (will not yet merge audio at correct times)");
+      //TODO: Note (add to blog, append to related past article or refer to it): Can't show a message dialog from an event handler in Silverlight and then try to show a file dialog (dialog has to be user initiated it says)
+
+      SaveFileDialog saveFileDialog = new SaveFileDialog() { Filter = Strings.filter_wav };
+
+      if (saveFileDialog.ShowDialog() == true)
+        using (Stream stream = saveFileDialog.OpenFile())
+        {
+          SaveAudio(Captions, stream);
+          stream.Flush(); //write any buffers to file
+        }
     }
 
     #endregion

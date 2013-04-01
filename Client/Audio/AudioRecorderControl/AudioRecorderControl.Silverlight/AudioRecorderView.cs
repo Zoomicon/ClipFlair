@@ -1,8 +1,8 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: AudioRecorderView.cs
-//Version: 20130123
+//Version: 20130401
 
-using ClipFlair.AudioLib;
+using AudioLib;
 
 using System;
 using System.ComponentModel;
@@ -36,6 +36,7 @@ namespace ClipFlair.AudioRecorder
     const string MSG_SAVING = "Saving...";
     const string MSG_SAVED = "Saved OK";
     const string MSG_SAVE_FAILED = "Could not save: ";
+    const string MSG_NO_AUDIO_TO_SAVE = "No audio available to save";
 
     #endregion
 
@@ -47,9 +48,7 @@ namespace ClipFlair.AudioRecorder
     private MediaElement player = new MediaElement();
     private MemoryAudioSink _sink;
     private CaptureSource _captureSource;
-    private OpenFileDialog openFileDialog = new OpenFileDialog() { Filter = MSG_FILE_FILTER };
-    private SaveFileDialog saveFileDialog = new SaveFileDialog() { Filter = MSG_FILE_FILTER };
-
+  
     #endregion
 
     #region Properties
@@ -237,7 +236,8 @@ namespace ClipFlair.AudioRecorder
       try
       {
         Audio = new MemoryStream();
-        WavManager.SavePcmToWav(_sink.BackingStream, Audio, _sink.CurrentFormat);
+        WavManager.SavePcmToWav(_sink.BackingStream, Audio, new AudioFormatEx(_sink.CurrentFormat));
+        _sink.CloseStream(); //close the backing stream, will be reallocated at next recording
 
         Status = MSG_RECORDED;
 
@@ -305,6 +305,8 @@ namespace ClipFlair.AudioRecorder
 
     public void LoadFile() //this has to be called by user-initiated event handler
     {
+      OpenFileDialog openFileDialog = new OpenFileDialog() { Filter = MSG_FILE_FILTER };
+
       if (openFileDialog.ShowDialog() == false)
       {
         Busy = false;
@@ -344,10 +346,12 @@ namespace ClipFlair.AudioRecorder
     {
       if (!HasAudio)
       {
-        MessageBox.Show("No audio available to save");
+        MessageBox.Show(MSG_NO_AUDIO_TO_SAVE);
         Busy = false;
         return;
       }
+
+      SaveFileDialog saveFileDialog = new SaveFileDialog() { Filter = MSG_FILE_FILTER };
 
       if (saveFileDialog.ShowDialog() == false)
       {

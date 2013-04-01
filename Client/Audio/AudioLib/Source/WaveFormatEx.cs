@@ -1,5 +1,5 @@
 ﻿//Filename: WaveFormatEx.cs
-//Version: 20120912
+//Version: 20130401
 
 //-----------------------------------------------------------------------
 // <copyright file="WaveFormatEx.cs" company="Gilles Khouzam">
@@ -12,7 +12,7 @@
 
 using System;
 
-namespace ClipFlair.AudioLib
+namespace AudioLib
 {
 
     /// <summary>

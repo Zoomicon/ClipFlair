@@ -141,4 +141,10 @@
   <data name="captions_import" xml:space="preserve">
     <value>Import</value>
   </data>
+  <data name="filter_wav" xml:space="preserve">
+    <value>Audio files (*.wav)|*.wav</value>
+  </data>
+  <data name="tooltip_merged_audio_save" xml:space="preserve">
+    <value>Save all audio in a single .WAV file</value>
+  </data>
 </root>

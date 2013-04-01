@@ -1,11 +1,11 @@
 ﻿//Filename: MemoryAudioSink.cs
-//Version: 20120912
+//Version: 20130401
 
 using System;
 using System.Windows.Media;
 using System.IO;
 
-namespace ClipFlair.AudioLib
+namespace AudioLib
 {
 
   public class MemoryAudioSink : AudioSink
@@ -25,6 +25,14 @@ namespace ClipFlair.AudioLib
       get { return _format; }
     }
 
+    public void CloseStream() //OnCaptureStarted reallocates the stream
+    {
+      _stream.Close();
+      _stream = null;
+    }
+
+    #region Events
+ 
     protected override void OnCaptureStarted()
     {
       _stream = new MemoryStream(1024);
@@ -47,6 +55,9 @@ namespace ClipFlair.AudioLib
       // New audio data arrived, write them to the stream.
       _stream.Write(sampleData, 0, sampleData.Length);
     }
+
+    #endregion
+
   }
 
 }
