@@ -152,10 +152,6 @@
   <ItemGroup>
     <Resource Include="Images\DeleteCaption.png" />
     <Resource Include="Images\DeleteCaption_hover.png" />
-    <Resource Include="Images\ExportCaptions.png" />
-    <Resource Include="Images\ExportCaptions_hover.png" />
-    <Resource Include="Images\ImportCaptions.png" />
-    <Resource Include="Images\ImportCaptions_hover.png" />
     <Resource Include="Images\NewCaption.png" />
     <Resource Include="Images\NewCaption_hover.png" />
     <Resource Include="Images\SetEndTime.png" />
@@ -166,6 +162,12 @@
   <ItemGroup>
     <Resource Include="Images\SaveMergedAudio.png" />
     <Resource Include="Images\SaveMergedAudio_hover.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\ExportTimingCaptions.png" />
+    <Resource Include="Images\ExportTimingCaptions_hover.png" />
+    <Resource Include="Images\ImportTimingCaptions.png" />
+    <Resource Include="Images\ImportTimingCaptions_hover.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Silverlight\$(SilverlightVersion)\Microsoft.Silverlight.CSharp.targets" />
   <ProjectExtensions>

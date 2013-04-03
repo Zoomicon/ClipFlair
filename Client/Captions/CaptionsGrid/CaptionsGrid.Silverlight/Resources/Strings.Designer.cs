@@ -29,7 +29,7 @@ namespace ClipFlair.CaptionsGrid.Resources {
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        public  Strings() {
+        public Strings() {
         }
         
         /// <summary>
@@ -124,7 +124,7 @@ namespace ClipFlair.CaptionsGrid.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Export captions to TTS, SRT and other file formats.
+        ///   Looks up a localized string similar to Export timing &amp; captions to TTS, SRT and other file formats.
         /// </summary>
         public static string tooltip_captions_export {
             get {
@@ -133,7 +133,7 @@ namespace ClipFlair.CaptionsGrid.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Import captions from TTS, SRT and other file formats.
+        ///   Looks up a localized string similar to Import timing &amp; captions from TTS, SRT and other file formats.
         /// </summary>
         public static string tooltip_captions_import {
             get {

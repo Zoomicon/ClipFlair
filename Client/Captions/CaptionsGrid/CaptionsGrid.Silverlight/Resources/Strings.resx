@@ -124,10 +124,10 @@
     <value>Remove selected caption</value>
   </data>
   <data name="tooltip_captions_import" xml:space="preserve">
-    <value>Import captions from TTS, SRT and other file formats</value>
+    <value>Import timing &amp; captions from TTS, SRT and other file formats</value>
   </data>
   <data name="tooltip_captions_export" xml:space="preserve">
-    <value>Export captions to TTS, SRT and other file formats</value>
+    <value>Export timing &amp; captions to TTS, SRT and other file formats</value>
   </data>
   <data name="tooltip_caption_end" xml:space="preserve">
     <value>Set selected caption's end time</value>
