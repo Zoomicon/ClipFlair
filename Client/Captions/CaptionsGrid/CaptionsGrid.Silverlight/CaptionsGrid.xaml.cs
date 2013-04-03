@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: CaptionsGrid.xaml.cs
-//Version: 20130401
+//Version: 20130403
 
 using ClipFlair.AudioRecorder;
 using ClipFlair.CaptionsLib.Utils;
@@ -692,9 +692,6 @@ namespace ClipFlair.CaptionsGrid
 
     private void btnSaveMergedAudio_Click(object sender, RoutedEventArgs e)
     {
-      //MessageBox.Show("This feature is currently being implemented (will not yet merge audio at correct times)");
-      //TODO: Note (add to blog, append to related past article or refer to it): Can't show a message dialog from an event handler in Silverlight and then try to show a file dialog (dialog has to be user initiated it says)
-
       SaveFileDialog saveFileDialog = new SaveFileDialog() { Filter = Strings.filter_wav };
 
       if (saveFileDialog.ShowDialog() == true)

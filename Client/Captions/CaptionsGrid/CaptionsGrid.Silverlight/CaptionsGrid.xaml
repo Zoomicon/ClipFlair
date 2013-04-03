@@ -1,7 +1,7 @@
 ﻿<!--
 Project: ClipFlair (http://ClipFlair.codeplex.com)
 Filename: CaptionsGrid.xaml
-Version: 20130401
+Version: 20130402
 -->
 
 <UserControl x:Class="ClipFlair.CaptionsGrid.CaptionsGrid"
@@ -89,15 +89,15 @@ Version: 20130401
         <btn:ImageButton
           Name="btnImport" Click="btnImport_Click"
           ToolTipService.ToolTip="{Binding tooltip_captions_import, Source={StaticResource localizedStrings}}"
-          Image="Images/ImportCaptions.png"
-          ImageHover="Images/ImportCaptions_hover.png"
+          Image="Images/ImportTimingCaptions.png"
+          ImageHover="Images/ImportTimingCaptions_hover.png"
           />
 
         <btn:ImageButton
           Name="btnExport" Click="btnExport_Click"
           ToolTipService.ToolTip="{Binding tooltip_captions_export, Source={StaticResource localizedStrings}}"
-          Image="Images/ExportCaptions.png"
-          ImageHover="Images/ExportCaptions_hover.png"
+          Image="Images/ExportTimingCaptions.png"
+          ImageHover="Images/ExportTimingCaptions_hover.png"
           />
 
       </StackPanel>
