@@ -1,5 +1,5 @@
 ﻿//Filename: WavManager.cs
-//Version: 20130401
+//Version: 20130403
 //Editor: George Birbilis (http://zoomicon.com)
 
 using System;
@@ -11,6 +11,8 @@ namespace AudioLib
 
   public class WavManager
   {
+
+    public const int WAV_HEADER_SIZE = 44;
 
     public static void WriteWavHeader(Stream output, AudioFormatEx audioFormat, uint rawDataLength)
     {
@@ -36,10 +38,10 @@ namespace AudioLib
 
       // Total Length Of Package To Follow
       // Computed as data length plus the header length without the data
-      // we have written so far and this data (44 - 4 ("RIFF") - 4 (this data))
-      bwOutput.Write(rawDataLength + 36);
+      // we have written so far and this data (44 - 4 ("RIFF") - 4 (this number))
+      bwOutput.Write(rawDataLength + WAV_HEADER_SIZE - 4 - 4);
 
-      bwOutput.Write("WAVE".ToCharArray());
+      bwOutput.Write("WAVE".ToCharArray()); //RIFF data type
 
       // -- FORMAT chunk
 
@@ -78,55 +80,60 @@ namespace AudioLib
       bwOutput.Write(rawDataLength);
     }
 
-    public static void WriteRawData(Stream rawData, Stream output, AudioFormatEx audioFormat)
+    public static void WriteRawData(Stream rawData, Stream output, uint offset = 0, long maxCount = -1)
     {
       BinaryWriter bwOutput = new BinaryWriter(output);
 
       // Reset position in rawData and remember its origin position
       long originalRawDataStreamPosition = rawData.Position;
-      rawData.Seek(0, SeekOrigin.Begin);
+      rawData.Seek(offset, SeekOrigin.Begin); //0-indexed, skipping 44 bytes (the WAV header)
 
-      // Append all data from rawData stream into output stream.
+     // Append data from rawData stream into output stream.
       byte[] buffer = new byte[4096];
       int read;       // number of bytes read in one iteration
-      while ((read = rawData.Read(buffer, 0, 4096)) > 0)
+      while ( (maxCount != 0) && (read = rawData.Read(buffer, 0, (maxCount < 0 || maxCount >= 4096)? 4096 : (int)maxCount)) > 0 )
+      {
         bwOutput.Write(buffer, 0, read);
+         if (maxCount >= 0) maxCount-= read; //when maxCount was initially >=0, then after final read this will do maxCount-maxCount=0 and loop will stop when it checks for maxCount!=0
+       }
 
       // Restore origin position
       rawData.Seek(originalRawDataStreamPosition, SeekOrigin.Begin);
     }
 
-    public static void WriteSilence(Stream outputStream, AudioFormatEx audioFormat, double seconds)
+    public static void WriteSilence(Stream outputStream, WAVEFORMATEX audioFormat, double msec)
     {
-      // Calculate Bytes/Sample and Bytes/Second
-      ushort bytesPerSample = (ushort)(audioFormat.BitsPerSample * audioFormat.Channels / 8); // 1=8 bit Mono, 2=8 bit Stereo or 16 bit Mono, 4=16 bit Stereo
-      uint bytesPerSecond = (uint)(bytesPerSample * audioFormat.SamplesPerSecond);
-      uint bytes = (uint)Math.Round(bytesPerSecond * seconds);
+      if (msec <= 0) return;
 
+      long bytes = audioFormat.BufferSizeFromAudioDuration((long)(msec * 10000)); //expects duration in 100-nanosecond units (hns)
+      
       BinaryWriter b = new BinaryWriter(outputStream);
       for (uint i = 0; i < bytes; i++)
         b.Write((byte)0);
     }
 
-    public static void SavePcmToWav(Stream rawData, Stream output, AudioFormatEx audioFormat) //TODO: add optional maxSeconds parameter
+    public static void SavePcmToWav(Stream rawData, Stream output, AudioFormatEx audioFormat, uint offset = 0, long maxLength = -1) //TODO: add optional maxSeconds parameter
     {
       WriteWavHeader(output, audioFormat, (uint)rawData.Length);
-      WriteRawData(rawData, output, audioFormat); //raw PCM data
+      WriteRawData(rawData, output, offset, maxLength); //raw PCM data
     }
 
-    public static void SavePcmToWav(Stream[] rawData, Stream output, AudioFormatEx audioFormat)
+    public static void SavePcmToWav(Stream[] rawData, Stream output, AudioFormatEx audioFormat, uint offset = 0, long maxLength = -1) //Saves WAV concatenating multiple raw data streams (each optionally starting at offset and cropped at maxLength)
     {
       // Get total raw data stream length
       uint len = 0;
       foreach (Stream s in rawData)
-        len += (uint)s.Length;
+      {
+        uint lengthAfterOffset = (uint)s.Length - offset;
+        len += (lengthAfterOffset <= maxLength) ? lengthAfterOffset : (uint)maxLength;
+      }
 
       // Write WAV header
       WriteWavHeader(output, audioFormat, len);
 
       // Write raw PCM data streams in sequence
       foreach (Stream s in rawData)
-        WriteRawData(s, output, audioFormat);
+        WriteRawData(s, output, offset, maxLength);
     }
 
     public static void ConcatenateWavs(Stream[] wavs, Stream output)
@@ -135,7 +142,7 @@ namespace AudioLib
 
       // Get total raw data stream length
       uint len = 0;
-      for (int i=0; i<wavs.Length; i++)
+      for (int i = 0; i < wavs.Length; i++)
       {
         WavParser wavParser = new WavParser(wavs[i]);
         parsedWavs[i] = wavParser;
@@ -147,8 +154,8 @@ namespace AudioLib
 
       // Write raw PCM data streams in sequence
       for (int i=0; i<wavs.Length; i++)
-        WriteRawData(wavs[i], output, parsedWavs[i].AudioFormat); //TODO: need to specify start offset and length (get offset from parsedWav [make sure we save the chunk data pos] - get length as max of the parsedWav.rawWaveSize)
-    } //TODO: need to copy and adapt this code in the method that makes wav from CaptionRegion - there it will need to add silence to fit times and also crop wavs depending on duration)
+        WriteRawData(wavs[i], output, WAV_HEADER_SIZE, parsedWavs[i].RawWaveSize); //trim at the end to ignore any extra data chunks (like the ones in BWF [Broadcast Wave Format])
+    }
 
   }
 

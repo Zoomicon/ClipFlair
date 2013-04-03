@@ -1,5 +1,5 @@
 ﻿//Filename: WaveMediaStreamSource.cs
-//Version: 20130401
+//Version: 20130403
 
 //-----------------------------------------------------------------------
 // <copyright file="WaveMediaStreamSource.cs" company="Gilles Khouzam">
@@ -197,7 +197,7 @@ namespace AudioLib
         /// <summary>
         /// Called when asked to seek to a new position
         /// </summary>
-        /// <param name="seekToTime">the time to seek to</param>
+        /// <param name="seekToTime">the time to seek to (in 100-nanosecond units [hns])</param>
         protected override void SeekAsync(long seekToTime)
         {
             if (seekToTime > this.wavParser.Duration)
@@ -206,6 +206,7 @@ namespace AudioLib
             }
 
             this.currentPosition = this.wavParser.WaveFormatEx.BufferSizeFromAudioDuration(seekToTime) + this.startPosition;
+            this.wavParser.MoveToChunkOffset((uint)this.wavParser.WaveFormatEx.BufferSizeFromAudioDuration(seekToTime)); //correction posted by original author at http://blogs.msdn.com/b/gillesk/archive/2009/03/23/playing-back-wave-files-in-silverlight.aspx#10388916
             this.currentTimeStamp = seekToTime;
             ReportSeekCompleted(seekToTime);
         }
