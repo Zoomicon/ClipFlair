@@ -144,6 +144,7 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <None Include="SilverTextEditor.cd" />
     <None Include="Properties\AppManifest.xml" />
   </ItemGroup>
   <ItemGroup>

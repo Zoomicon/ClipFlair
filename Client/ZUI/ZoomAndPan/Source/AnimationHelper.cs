@@ -1,8 +1,12 @@
 ﻿//AnimationHelper.cs
-//Version: 20130326
+//Version: 20130406
 
 using System;
 using System.Windows;
+
+#if !SILVERLIGHT
+using System.Windows.Media.Animation;
+#endif
 
 namespace ZoomAndPan
 {

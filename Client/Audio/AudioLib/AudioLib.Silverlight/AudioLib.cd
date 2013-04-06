@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="AudioLib.AudioFormatEx">
+    <Position X="4.75" Y="5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAEAAAAAAAABAAAAAACAACAAAAAgAAABAQAAAAEAA=</HashCode>
+      <FileName>C:\Dropbox\ClipFlairDev\ClipFlair_Source\Client\Audio\AudioLib\Source\AudioFormatEx.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AudioLib.MemoryAudioSink">
+    <Position X="7.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgAAACAAAAAQAAAAAAEAAAAAAAAAAAABQABAAAAAAFA=</HashCode>
+      <FileName>C:\Dropbox\ClipFlairDev\ClipFlair_Source\Client\Audio\AudioLib\Source\MemoryAudioSink.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AudioLib.RiffParser">
+    <Position X="0.5" Y="0.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AEoVQEAICSBAAEAAABABIgICAAQgASAACCAAAAAAAQA=</HashCode>
+      <FileName>C:\Dropbox\ClipFlairDev\ClipFlair_Source\Client\Audio\AudioLib\Source\RiffParser.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="AudioLib.WAVEFORMATEX">
+    <Position X="4.75" Y="0.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAIEAAAgAAEQAhAAAAAACgAAgAAIAACAAAAEEI=</HashCode>
+      <FileName>C:\Dropbox\ClipFlairDev\ClipFlair_Source\Client\Audio\AudioLib\Source\WaveFormatEx.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AudioLib.WaveMediaStreamSource" BaseTypeListCollapsed="true">
+    <Position X="7.5" Y="4" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAEAAAAADAAABAAAAAAAgQSAAAAhAAACAAQAAKAAEA=</HashCode>
+      <FileName>C:\Dropbox\ClipFlairDev\ClipFlair_Source\Client\Audio\AudioLib\Source\WaveMediaStreamSource.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="AudioLib.WavManager">
+    <Position X="9.5" Y="0.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAEAAAAAAAAgAAAAAAAAAAgAAABAAAAAAEAEAAAAAAA=</HashCode>
+      <FileName>C:\Dropbox\ClipFlairDev\ClipFlair_Source\Client\Audio\AudioLib\Source\WavManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AudioLib.WavParser">
+    <Position X="3" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAQQAIAADACAAAAABAAQAAAAAABAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>C:\Dropbox\ClipFlairDev\ClipFlair_Source\Client\Audio\AudioLib\Source\WavParser.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Struct Name="AudioLib.RiffChunk">
+    <Position X="3" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAABAgACAAAAAAAAAAAAEAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>C:\Dropbox\ClipFlairDev\ClipFlair_Source\Client\Audio\AudioLib\Source\RiffParser.cs</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Enum Name="AudioLib.FourCC">
+    <Position X="3" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAgAAAAAAAAAAAAAAAAAAACCAAAAAAAIAAAAQI=</HashCode>
+      <FileName>C:\Dropbox\ClipFlairDev\ClipFlair_Source\Client\Audio\AudioLib\Source\RiffParser.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Tahoma" Size="8.25" />
+</ClassDiagram>

@@ -1,9 +1,8 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: ActivityContainer.xaml.cs
-//Version: 20130227
+//Version: 20130406
 
 //TODO: add ContentPartsZoomable property
-//TODO: add to FloatingWindowHostZUI a rezoom to fit button
 //TODO: must clear bindings when child window closes (now seem to stay as zombies hearing revoicing entries play at given time)
 
 #define PART_CLIP
@@ -267,9 +266,9 @@ namespace ClipFlair.Windows
       ZoomAndPanControl host = zuiContainer.ZoomHost;
       double zoom = host.ContentScale;
       window.Scale = 1.0d / zoom;
-      Point startPoint = new Point((host.ContentOffsetX + host.ViewportWidth / 2) * zoom,
-                                   (host.ContentOffsetY + host.ViewportHeight / 2) * zoom); //Center at current view
-      zuiContainer.Add(window).Show(startPoint);
+      Point startPoint = new Point(host.ContentOffsetX + host.ContentViewportWidth / 2,
+                                   host.ContentOffsetY + host.ContentViewportHeight / 2); //Center at current view //must use ContentViewport methods, not Viewport ones (they give width/height in content coordinates)
+      zuiContainer.Add(window).Show(startPoint, true);
       BindWindow(window);
       return window;
     }

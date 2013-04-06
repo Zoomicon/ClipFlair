@@ -1,5 +1,6 @@
 ﻿//Filename: ZoomAndPanControl_Mouse.cs
-//Version: 20121103
+//Version: 20130405
+//Editor: George Birbilis (http://zoomicon.com)
 
 using System;
 using System.Windows;
@@ -315,22 +316,6 @@ namespace ZoomAndPan
       #endregion
 
       #region Mouse Helper methods
-
-      /// <summary>
-      /// Zoom out
-      /// </summary>
-      private void ZoomOut(Point contentZoomCenter)
-      {
-        ZoomAboutPoint(ContentScale - 0.2, contentZoomCenter);
-      }
-
-      /// <summary>
-      /// Zoom in
-      /// </summary>
-      private void ZoomIn(Point contentZoomCenter)
-      {
-        ZoomAboutPoint(ContentScale + 0.2, contentZoomCenter);
-      }
 
       /// <summary>
       /// Initialise the rectangle that the use is dragging out.

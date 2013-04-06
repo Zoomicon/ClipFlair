@@ -127,7 +127,9 @@ Version: 20130315
       </Grid>
 
       <Grid x:Name="PART_Overlay" Background="{TemplateBinding OverlayBrush}" Opacity="0" Visibility="Collapsed" />
+      
       <Canvas x:Name="PART_ModalCanvas" />
+      
     </Grid>
   </ControlTemplate>
 

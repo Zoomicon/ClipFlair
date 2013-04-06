@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="SilverTextEditor.App">
+    <Position X="9.25" Y="0.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAgAAAAAEAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAA=</HashCode>
+      <FileName>App.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SilverTextEditor.ContextMenu">
+    <Position X="7.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAABBABIABAIAAAAAAAAAEgAAAACAAAACAAgA=</HashCode>
+      <FileName>ContextMenu.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SilverTextEditor.InsertURL">
+    <Position X="5.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>InsertURL.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SilverTextEditor.PrintPreview">
+    <Position X="5.5" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABACAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAA=</HashCode>
+      <FileName>PrintPreview.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SilverTextEditor.RTBContextMenu">
+    <Position X="7.25" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAwAABAAAAAAAAAABAAACAAAAAAAAA=</HashCode>
+      <FileName>RTBContextMenu.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SilverTextEditor.SilverTextEditor">
+    <Position X="0.5" Y="0.5" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>BACBiIBSAIIygCAAAAAAJCICIAAAIRFAUGICEAkMkAA=</HashCode>
+      <FileName>SilverTextEditor.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SilverTextEditor.Resources.Strings">
+    <Position X="3.5" Y="0.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>CABAIAAUEQMiAEAACgKBmAAACwCAADRABAAAAAAAAIA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Tahoma" Size="8.25" />
+</ClassDiagram>

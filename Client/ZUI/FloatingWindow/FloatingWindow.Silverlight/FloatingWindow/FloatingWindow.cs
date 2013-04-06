@@ -1,5 +1,5 @@
 //Filename: FloatingWindow.cs
-//Version: 20121223
+//Version: 20130406
 
 using System;
 using System.Collections.ObjectModel;
@@ -1287,7 +1287,7 @@ namespace SilverFlow.Controls
         {
             get
             {
-                return new Point((HostPanel.ActualWidth - Width.ValueOrZero()) / 2, (HostPanel.ActualHeight - Height.ValueOrZero()) / 2);
+                return new Point((HostPanel.ActualWidth - ActualWidth.ValueOrZero()) / 2, (HostPanel.ActualHeight - ActualHeight.ValueOrZero()) / 2); //Birbilis: using ActualWidth/ActualHeight to cater for any applied ScaleTransform
             }
         }
 
@@ -1320,9 +1320,10 @@ namespace SilverFlow.Controls
         /// </summary>
         /// <param name="x">X-coordinate.</param>
         /// <param name="y">Y-coordinate.</param>
-        public void Show(double x, double y)
+        /// <param name="centered">Center arround point</param>
+        public void Show(double x, double y, bool centered = false)
         {
-            Show(new Point(x, y));
+            Show(new Point(x, y), centered);
         }
 
         /// <summary>
@@ -1341,11 +1342,12 @@ namespace SilverFlow.Controls
         /// Shows the window in the specified coordinates, relative to the window's Host.
         /// </summary>
         /// <param name="point">Coordinates of the upper-left corner of the window.</param>
-        public void Show(Point point)
+        /// <param name="centered">Center arround point</param>
+        public void Show(Point point, bool centered = false)
         {
             CheckHost();
             Action<Point> action = new Action<Point>(ShowWindow);
-            this.FloatingWindowHost.ShowWindow(action, point);
+            this.FloatingWindowHost.ShowWindow(action, (centered)? new Point(point.X - Width/2 * Scale, point.Y - Height/2 * Scale) : point); 
         }
 
         /// <summary>
@@ -1403,8 +1405,8 @@ namespace SilverFlow.Controls
             }
             else
             {
-                MoveWindow(point);
-                this.SetVisible(true);
+              MoveWindow(point);
+              this.SetVisible(true);
             }
         }
 

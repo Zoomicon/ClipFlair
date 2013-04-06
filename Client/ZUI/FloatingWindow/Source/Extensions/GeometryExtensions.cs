@@ -1,5 +1,6 @@
 ﻿//Filename: GeometryExtensions.cs
-//Version: 20120810
+//Version: 20130406
+//Editor: George Birbilis (http://zoomicon.com)
 
 using System;
 using System.Windows;
@@ -34,6 +35,16 @@ namespace SilverFlow.Controls.Extensions
                 X = (point.X < 0) ? 0 : point.X,
                 Y = (point.Y < 0) ? 0 : point.Y
             };
+        }
+
+        /// <summary>
+        /// Gets scaled size.
+        /// </summary>
+        /// <param name="size">Size.</param>
+        /// <returns>Scaled size.</returns>
+        public static Size Scaled(this Size size, double factor) //Birbilis
+        {
+          return new Size(size.Width * factor, size.Height * factor);
         }
 
         /// <summary>
@@ -160,13 +171,24 @@ namespace SilverFlow.Controls.Extensions
         /// </summary>
         /// <param name="point">The point.</param>
         /// <param name="size">Distance to add.</param>
-        /// <returns>New point</returns>
+        /// <returns>New point.</returns>
         public static Point Add(this Point point, Size size)
         {
             return new Point(point.X + size.Width, point.Y + size.Height);
         }
 
         /// <summary>
+        /// Subtracts an offset specified by the Size from the specified point.
+        /// </summary>
+        /// <param name="point">The point.</param>
+        /// <param name="size">Distance to subtract.</param>
+        /// <returns>New point.</returns>
+        public static Point Subtract(this Point point, Size size)
+        {
+          return new Point(point.X - size.Width, point.Y - size.Height);
+        }
+
+      /// <summary>
         /// Determines whether dimensions are Not a Number (NaN).
         /// </summary>
         /// <param name="size">The size.</param>

@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: ImageView.cs
-//Version: 20130118
+//Version: 20130406
 
 //TODO: maybe allow to load local image and store it in options file (show image from memorystream)
 
@@ -25,7 +25,7 @@ namespace ClipFlair.Windows.Views
 
     //fields are initialized via respective properties at "SetDefaults" method
     private Uri source;
-    private Stretch stretch;
+    private bool contentZoomToFit;
 
     #endregion
 
@@ -47,24 +47,18 @@ namespace ClipFlair.Windows.Views
     }
 
     [DataMember]
-    [DefaultValue(ImageViewerDefaults.DefaultStretch)]
-    public Stretch Stretch
+    [DefaultValue(ImageViewerDefaults.DefaultContentZoomToFit)]
+    public bool ContentZoomToFit
     {
-      get { return stretch; }
+      get { return contentZoomToFit; }
       set
       {
-        if (value != stretch)
+        if (value != contentZoomToFit)
         {
-          stretch = value;
-          RaisePropertyChanged(IImageViewerProperties.PropertyStretch);
+          contentZoomToFit = value;
+          RaisePropertyChanged(IImageViewerProperties.PropertyContentZoomToFit);
         }
       }
-    }
-
-    public string StretchText
-    {
-      get { return Stretch.ToString(); }
-      set { Stretch = (Stretch)Enum.Parse(typeof(Stretch), value, true); }
     }
 
     #endregion
