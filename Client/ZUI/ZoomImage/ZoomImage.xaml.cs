@@ -1,10 +1,11 @@
 ﻿//Filename: ZoomImage.xaml.cs
-//Version: 20130406
+//Version: 20130407
 //Author: George Birbilis (http://zoomicon.com)
 //Based on http://samples.msdn.microsoft.com/Silverlight/SampleBrowser DeepZoom samples
 
 
 //TODO: add ZoomButtonsVisible and maybe Zoomable property
+//TODO: add way to select the mode programmatically since some URIs may not provide a file extension (or if it has no extension try first to open as image and if it fails its the XML content for DeepZoom which shouldn't take long to reload into MultiScaleImage used as fallback)
 
 using Utils.Bindings;
 using Utils.Extensions;
@@ -155,7 +156,7 @@ namespace ZoomImage
       }
 
       Uri uri = PreprocessUri(newSource);
-      if (uri.ToString().EndsWith(new String[]{".dzi",".xml"}, StringComparison.OrdinalIgnoreCase)) //.DZI for DeepZoom Image and .XML for DeepZoom Image Collection
+      if (uri.ToString().EndsWith(new String[]{".dzi",".dzc",".xml"}, StringComparison.OrdinalIgnoreCase)) //.DZI or .XML for DeepZoom Image and .DZC or .XML for DeepZoom Image Collection (there's also .DZIZ for zipped package with assets, but should be only for authoring/editing tools use)
       {
         scrollPlainZoom.Visibility = Visibility.Collapsed; //hide the ScrollViewer parent of ZoomAndPan control that hosts the classic Image control
         imgPlain.Source = null;
