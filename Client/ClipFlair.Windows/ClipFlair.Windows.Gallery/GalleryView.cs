@@ -1,8 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: GalleryView.cs
-//Version: 20130326
-
-//TODO: maybe allow to load local Gallery and store it in options file (show Gallery from memorystream)
+//Version: 20130406
 
 using System;
 using System.ComponentModel;
@@ -25,7 +23,6 @@ namespace ClipFlair.Windows.Views
 
     //fields are initialized via respective properties at "SetDefaults" method
     private Uri source;
-    private Stretch stretch;
 
     #endregion
 
@@ -44,27 +41,6 @@ namespace ClipFlair.Windows.Views
           RaisePropertyChanged(IGalleryViewerProperties.PropertySource);
         }
       }
-    }
-
-    [DataMember]
-    [DefaultValue(GalleryViewerDefaults.DefaultStretch)]
-    public Stretch Stretch
-    {
-      get { return stretch; }
-      set
-      {
-        if (value != stretch)
-        {
-          stretch = value;
-          RaisePropertyChanged(IGalleryViewerProperties.PropertyStretch);
-        }
-      }
-    }
-
-    public string StretchText
-    {
-      get { return Stretch.ToString(); }
-      set { Stretch = (Stretch)Enum.Parse(typeof(Stretch), value, true); }
     }
 
     #endregion

@@ -1,6 +1,6 @@
 ﻿<!--
 Filename: AudioRecorderControl.xaml
-Version: 20130314
+Version: 20130404
 -->
 
 <UserControl
@@ -11,7 +11,7 @@ Version: 20130314
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:utils="clr-namespace:System.Windows.Controls;assembly=WPF_Compatibility"
     xmlns:btn="clr-namespace:ImageButtons;assembly=ImageButtons"
-    mc:Ignorable="d" d:DesignHeight="29" d:DesignWidth="99"  
+    mc:Ignorable="d" d:DesignHeight="30" d:DesignWidth="116"  
     >
 
   <UserControl.Resources>
@@ -35,15 +35,32 @@ Version: 20130314
       ImageCheckedHover="Images/Stop_hover.png"
       />
 
+    <!--
+    <btn:ImageToggleButton
+      x:Name="btnPlay"
+      Visibility="{Binding Path=PlayCommand.IsEnabled, Converter={StaticResource BooleanToVisibilityConverter}}"
+      IsEnabled="{Binding Path=PlayCommand.IsEnabled, Mode=TwoWay}"
+      IsChecked="{Binding Path=PlayCommand.IsChecked, Mode=TwoWay}"
+      Margin="3,0,3,0"
+      ToolTipService.ToolTip="Play audio"
+      Image="Images/Play.png"
+      ImageHover="Images/Play_hover.png"
+      ImageChecked="Images/Stop.png"
+      ImageCheckedHover="Images/Stop_hover.png"
+      />
+    -->
+
+    <!-- -->
     <btn:ImageButton
       x:Name="btnPlay"
-      Command="{Binding PlayCommand}"
       Visibility="{Binding Path=PlayCommand.IsEnabled, Converter={StaticResource BooleanToVisibilityConverter}}"
+      Command="{Binding PlayCommand}" 
       Margin="3,0,3,0"
       ToolTipService.ToolTip="Play audio"
       Image="Images/Play.png"
       ImageHover="Images/Play_hover.png"
       />
+    <!-- -->
 
     <btn:ImageButton 
       x:Name="btnLoad"

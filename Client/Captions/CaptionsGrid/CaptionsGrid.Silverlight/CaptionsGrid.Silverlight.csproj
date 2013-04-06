@@ -169,6 +169,9 @@
     <Resource Include="Images\ImportTimingCaptions.png" />
     <Resource Include="Images\ImportTimingCaptions_hover.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="CaptionsGrid.cd" />
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Silverlight\$(SilverlightVersion)\Microsoft.Silverlight.CSharp.targets" />
   <ProjectExtensions>
     <VisualStudio>

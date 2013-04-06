@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="NameAndType">
+  <Class Name="FlipPanel.FlipPanel">
+    <Position X="0.5" Y="0.5" Width="3" />
+    <TypeIdentifier>
+      <HashCode>ABgAAABAQABAAABAAAAAABAAAAEACAAIAAADBAAAAAA=</HashCode>
+      <FileName>C:\Dropbox\ClipFlairDev\ClipFlair_Source\Client\FlipPanel\Source\FlipPanel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Tahoma" Size="8.25" />
+</ClassDiagram>

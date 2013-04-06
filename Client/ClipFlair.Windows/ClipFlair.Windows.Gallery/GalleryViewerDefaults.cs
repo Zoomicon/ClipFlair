@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: GalleryViewerDefaults.cs
-//Version: 20130326
+//Version: 20130406
 
 using System;
 using System.Windows;
@@ -20,7 +20,6 @@ namespace ClipFlair.Windows.Views
     #endregion
 
     public const Uri DefaultSource = null;
-    public const Stretch DefaultStretch = Stretch.Uniform;
 
     #region Methods
 
@@ -34,7 +33,6 @@ namespace ClipFlair.Windows.Views
 
       //IGalleryViewer defaults
       Gallery.Source = DefaultSource;
-      Gallery.Stretch = DefaultStretch;
     }
 
     #endregion

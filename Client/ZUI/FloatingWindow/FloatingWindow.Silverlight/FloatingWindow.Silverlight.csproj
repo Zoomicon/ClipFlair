@@ -176,7 +176,9 @@
       <Name>WPF_Compatibility.Silverlight</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="FloatingWindow.cd" />
+  </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\Options.png" />
   </ItemGroup>

@@ -1,6 +1,6 @@
 ﻿<!--
 Filename: ImageWindow.xaml
-Version: 20130203
+Version: 20130406
 -->
 
 <clipflair:BaseWindow x:Class="ClipFlair.Windows.ImageWindow"
@@ -11,6 +11,7 @@ Version: 20130203
   xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk"  
   xmlns:clipflair="clr-namespace:ClipFlair.Windows;assembly=ClipFlair.Windows.Base"    
   xmlns:clipflairview="clr-namespace:ClipFlair.Windows.Views"
+  xmlns:zoom="clr-namespace:ZoomImage;assembly=ZoomImage" 
   mc:Ignorable="d"
   d:DesignWidth="400" d:DesignHeight="400"
   >
@@ -23,29 +24,15 @@ Version: 20130203
     </ResourceDictionary>
   </clipflair:BaseWindow.Resources>
   
-<!--    
-  <clipflair:BaseWindow.View>
-    <clipflairview:ImageView 
-      Source="http://clipflair.net/wp-content/themes/clipflair-theme/images/clipflair-logo.jpg" 
-      Stretch="Uniform"
-     />
-  </clipflair:BaseWindow.View>
--->    
-
   <!--<clipflair:BaseWindow.FrontContent>-->
 
-  <Image Name="imgContent"
-         HorizontalAlignment="Stretch" VerticalAlignment="Stretch" 
-         Source="{Binding Source, Mode=OneWay}"
-         Stretch="{Binding Stretch, Mode=OneWay}"
-         >
-    <!--
-    <Image.Source>
-      <BitmapImage UriSource="{Binding Source, Mode=OneWay}" />
-    </Image.Source>
-    -->
-  </Image>
-
+  <zoom:ZoomImage 
+    Name="imgContent"
+    HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+    Source="{Binding Source, Mode=Oneway}"
+    ContentZoomToFit="{Binding ContentZoomToFit, Mode=TwoWay}"
+    />
+  
   <!--</clipflair:BaseWindow.FrontContent>-->
 
   <clipflair:BaseWindow.PropertyItems>
@@ -55,15 +42,9 @@ Version: 20130203
       <TextBox Name="edImageURL" Text="{Binding Source, Mode=TwoWay}" HorizontalAlignment="Stretch" />
     </StackPanel>
 
-    <StackPanel Orientation="Vertical">
-      <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Stretch" Target="{Binding ElementName=comboStretch}"/>
-      <!-- <TextBox Name="edStretch" Text="{Binding Stretch, Mode=TwoWay}" HorizontalAlignment="Stretch" /> -->
-      <ComboBox Name="comboStretch" SelectedValue="{Binding StretchText, Mode=TwoWay}" DisplayMemberPath="Content" SelectedValuePath="Tag">
-        <ComboBoxItem Content="None" Tag="None" />
-        <ComboBoxItem Content="Fill" Tag="Fill" />
-        <ComboBoxItem Content="Uniform" Tag="Uniform" />
-        <ComboBoxItem Content="Uniform to fill" Tag="UniformToFill" />
-      </ComboBox>
+    <StackPanel Orientation="Horizontal">
+      <CheckBox Name="cbContentZoomToFit" IsChecked="{Binding ContentZoomToFit, Mode=TwoWay}" />
+      <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Content Zoom to Fit" Target="{Binding ElementName=cbContentZoomToFit}"/>
     </StackPanel>
 
   </clipflair:BaseWindow.PropertyItems>

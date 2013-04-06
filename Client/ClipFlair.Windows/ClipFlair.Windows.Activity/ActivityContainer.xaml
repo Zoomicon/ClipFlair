@@ -49,7 +49,7 @@ Version: 20130327
       Name="zuiContainer" 
       Grid.Row="0" Grid.Column="0" 
       SnapinEnabled="True" 
-      ShowMinimizedOnlyInIconbar="False"
+      
       WindowsConfigurable="{Binding ContentPartsConfigurable, Mode=TwoWay}"
       IsBottomBarVisible ="{Binding ToolbarVisible, Mode=TwoWay}"
       ContentScalable="{Binding ContentZoomable, Mode=TwoWay}"

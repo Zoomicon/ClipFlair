@@ -1,5 +1,5 @@
 ﻿//Filename: FloatingWindowHost.cs
-//Version: 20121218
+//Version: 20130406
 
 using System;
 using System.Collections.Generic;
@@ -557,7 +557,7 @@ namespace SilverFlow.Controls
         /// <value>The floating windows collection.</value>
         public IEnumerable<FloatingWindow> FloatingWindows
         {
-            get { return hostCanvas.Children.OfType<FloatingWindow>(); }
+          get { return /* Windows.AsEnumerable(); */ hostCanvas.Children.OfType<FloatingWindow>(); }
         }
 
         #region Windows Property

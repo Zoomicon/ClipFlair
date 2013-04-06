@@ -1,7 +1,7 @@
 ﻿<!--
 Project: ClipFlair (http://ClipFlair.codeplex.com)
 Filename: MediaPlayerWindow.xaml
-Version: 20130211
+Version: 20130404
 -->
   
 <clipflair:BaseWindow x:Class="ClipFlair.Windows.MediaPlayerWindow"
@@ -42,12 +42,14 @@ Version: 20130211
                  IsControlStripVisible="{Binding ControllerVisible, Mode=TwoWay}"
                  CaptionsVisible="{Binding CaptionsVisible, Mode=TwoWay}"
                      
+                 AllowSpaceBarToggle="True"
+                     
                  PlaylistButtonVisible="True"
                  SlowMotionButtonVisible="False"
                  ReplayButtonVisible="False"
                  RewindButtonVisible="True"
                  FastForwardButtonVisible="True"
-                 FullScreenButtonVisible="False" AllowDoubleClickToggle="False"
+                 FullScreenButtonVisible="False"
                      
                  MediaOpened="player_MediaOpened"
                  >

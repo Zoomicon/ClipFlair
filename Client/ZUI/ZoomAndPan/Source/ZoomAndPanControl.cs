@@ -1,5 +1,5 @@
 ﻿//Filename: ZoomAndPanControl.cs
-//Version: 20130326
+//Version: 20130405
 //Editor: George Birbilis <birbilis@kagi.com>
 
 //Based on:
@@ -508,6 +508,55 @@ namespace ZoomAndPan
 
             ZoomTo(new Rect(0, 0, content.ActualWidth, content.ActualHeight));
         }
+
+        /// <summary>
+        /// Zoom out at logical point
+        /// </summary>
+        public void ZoomOut(Point contentZoomCenter, double ZoomFactorStep = 0.2) //Birbilis
+        {
+          ZoomAboutPoint(ContentScale - ZoomFactorStep, contentZoomCenter);
+        }
+
+        /// <summary>
+        /// Zoom out at view center
+        /// </summary>
+        public void ZoomOut(double ZoomFactorStep = 0.2) //Birbilis
+        {
+          Point contentViewCenter = new Point(ContentOffsetX + ContentViewportWidth/2, ContentOffsetY + ContentViewportHeight/2);
+          ZoomOut(contentViewCenter, ZoomFactorStep);
+        }
+    
+        /// <summary>
+        /// Zoom in at logical point
+        /// </summary>
+        public void ZoomIn(Point contentZoomCenter, double ZoomFactorStep = 0.2) //Birbilis
+        {
+          ZoomAboutPoint(ContentScale + ZoomFactorStep, contentZoomCenter);
+        }
+
+        /// <summary>
+        /// Zoom in at view center
+        /// </summary>
+        public void ZoomIn(double ZoomFactorStep = 0.2) //Birbilis
+        {
+          Point contentViewCenter = new Point(ContentOffsetX + ContentViewportWidth / 2, ContentOffsetY + ContentViewportHeight / 2);
+          ZoomIn(contentViewCenter, ZoomFactorStep);
+        }
+
+        //Modelled after respective method in MultiScaleImage
+        public Point ElementToLogicalPoint(Point elementPoint) //Birbilis
+        {
+          return new Point( ContentOffsetX + (elementPoint.X * ContentScale),
+                            ContentOffsetY + (elementPoint.Y * ContentScale) );
+        }
+
+        //Modelled after respective method in MultiScaleImage
+        public Point LogicalToElementPoint(Point logicalPoint) //Birbilis
+        {
+          return new Point( (logicalPoint.X - ContentOffsetX) / ContentScale,
+                            (logicalPoint.Y - ContentOffsetY) / ContentScale );
+        }
+
         #endregion Methods
 
         #region Internal Methods

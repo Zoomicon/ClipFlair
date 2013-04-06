@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: ImageViewerDefaults.cs
-//Version: 20130118
+//Version: 20130406
 
 using System;
 using System.Windows;
@@ -20,7 +20,7 @@ namespace ClipFlair.Windows.Views
     #endregion
 
     public const Uri DefaultSource = null;
-    public const Stretch DefaultStretch = Stretch.Uniform;
+    public const bool DefaultContentZoomToFit = true;
 
     #region Methods
 
@@ -34,7 +34,7 @@ namespace ClipFlair.Windows.Views
 
       //IImageViewer defaults
       image.Source = DefaultSource;
-      image.Stretch = DefaultStretch;
+      image.ContentZoomToFit = DefaultContentZoomToFit;
     }
 
     #endregion

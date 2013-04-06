@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Utils.Bindings.BindingUtils">
+    <Position X="5.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAACABAAABAwAAAAAAAAAIAAAAAAAA=</HashCode>
+      <FileName>Bindings\BindingUtils.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Utils.Bindings.ReflectionUtils">
+    <Position X="5.75" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAAAAAgAgAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Bindings\ReflectionUtils.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Utils.Converters.ReverseConverter">
+    <Position X="0.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABAAAAAAAAAAAAAAIAAAAAAAAgAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Converters\ReverseConverter.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Utils.Converters.StringToUriConverter" BaseTypeListCollapsed="true">
+    <Position X="0.5" Y="4.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAIAAAAAAAAgAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Converters\StringToUriConverter.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Utils.Converters.VisibilityToBooleanConverter">
+    <Position X="0.5" Y="2.5" Width="2.25" />
+    <InheritanceLine Type="Utils.Converters.ReverseConverter" FixedToPoint="true">
+      <Path>
+        <Point X="1.25" Y="2.192" />
+        <Point X="1.25" Y="2.5" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Converters\VisibilityToBooleanConverter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Utils.Extensions.StringExtensions">
+    <Position X="3.25" Y="0.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAABAQAAAAAAAAAAAFAAAAAA=</HashCode>
+      <FileName>Extensions\StringExtensions.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Utils.Extensions.UriExtensions">
+    <Position X="3.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Extensions\UriExtensions.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Utils.ProgrammableHyperlink">
+    <Position X="7.75" Y="0.5" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ProgrammableHyperlink.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Tahoma" Size="8.25" />
+</ClassDiagram>

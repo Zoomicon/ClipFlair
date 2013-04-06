@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: StringExtensions.cs
-//Version: 20130326
+//Version: 20130405
 
 using System;
 
@@ -31,12 +31,28 @@ namespace Utils.Extensions
       return count;
     }
 
-    public static string ReplacePrefix(this string s, string fromPrefix, string toPrefix, StringComparison comparisonType)
+    public static bool StartsWith(this string s, string[] suffixes, StringComparison comparisonType = StringComparison.CurrentCulture)
+    {
+      foreach (string suffix in suffixes)
+        if (s.StartsWith(suffix, comparisonType))
+          return true;
+      return false;
+    }
+
+    public static bool EndsWith(this string s, string[] suffixes, StringComparison comparisonType = StringComparison.CurrentCulture)
+    {
+      foreach (string suffix in suffixes)
+        if (s.EndsWith(suffix, comparisonType)) 
+          return true;
+      return false;
+    }
+
+    public static string ReplacePrefix(this string s, string fromPrefix, string toPrefix, StringComparison comparisonType = StringComparison.CurrentCulture)
     {
       return (s.StartsWith(fromPrefix, comparisonType)) ? toPrefix + s.Substring(fromPrefix.Length) : s;
     }
 
-    public static string ReplacePrefix(this string s, string[] fromPrefix, string toPrefix, StringComparison comparisonType)
+    public static string ReplacePrefix(this string s, string[] fromPrefix, string toPrefix, StringComparison comparisonType = StringComparison.CurrentCulture)
     {
       foreach (string prefix in fromPrefix)
         if (s.StartsWith(prefix, comparisonType))
@@ -44,12 +60,12 @@ namespace Utils.Extensions
       return s;
     }
 
-    public static string ReplaceSuffix(this string s, string fromSuffix, string toSuffix, StringComparison comparisonType)
+    public static string ReplaceSuffix(this string s, string fromSuffix, string toSuffix, StringComparison comparisonType = StringComparison.CurrentCulture)
     {
       return (s.EndsWith(fromSuffix, comparisonType)) ? s.Substring(0, s.Length - fromSuffix.Length) + toSuffix : s;
     }
 
-    public static string ReplaceSuffix(this string s, string[] fromSuffix, string toSuffix, StringComparison comparisonType)
+    public static string ReplaceSuffix(this string s, string[] fromSuffix, string toSuffix, StringComparison comparisonType = StringComparison.CurrentCulture)
     {
       foreach (string suffix in fromSuffix)
         if (s.EndsWith(suffix, comparisonType))
