@@ -1,9 +1,9 @@
 ﻿<!--
 Project: ClipFlair (http://ClipFlair.codeplex.com)
 Filename: MediaPlayerWindow.xaml
-Version: 20130404
+Version: 20130419
 -->
-  
+
 <clipflair:BaseWindow x:Class="ClipFlair.Windows.MediaPlayerWindow"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -12,8 +12,9 @@ Version: 20130404
     xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk"  
     xmlns:clipflair="clr-namespace:ClipFlair.Windows;assembly=ClipFlair.Windows.Base"    
     xmlns:media="clr-namespace:ClipFlair.MediaPlayer;assembly=MediaPlayer"
+    xmlns:btn="clr-namespace:ImageButtons;assembly=ImageButtons"
     mc:Ignorable="d"
-    d:DesignWidth="600" d:DesignHeight="400"
+    d:DesignWidth="531" d:DesignHeight="242"
     >
 
   <clipflair:BaseWindow.Resources>
@@ -23,36 +24,44 @@ Version: 20130404
       </ResourceDictionary.MergedDictionaries>
     </ResourceDictionary>
   </clipflair:BaseWindow.Resources>
-
+  
   <!--<clipflair:BaseWindow.FrontContent>-->
 
   <media:MediaPlayer Name="player" 
-                 HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+     HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
                  
-                 Source="{Binding Source, Mode=TwoWay}"
+     Source="{Binding Source, Mode=TwoWay}"
                      
-                 Time="{Binding Time, Mode=TwoWay}"
-                 Captions1="{Binding Captions, Mode=TwoWay}"
+     Time="{Binding Time, Mode=TwoWay}"
+     Captions1="{Binding Captions, Mode=TwoWay}"
                      
-                 VolumeLevel="{Binding Volume, Mode=TwoWay}"
-                 AutoPlay="{Binding AutoPlay, Mode=TwoWay}"
-                 ContinuousPlay="{Binding Looping, Mode=TwoWay}"
+     VolumeLevel="{Binding Volume, Mode=TwoWay}"
+     Balance="{Binding Balance, Mode=TwoWay}"
+                      
+     AutoPlay="{Binding AutoPlay, Mode=TwoWay}"
+     ContinuousPlay="{Binding Looping, Mode=TwoWay}"
                      
-                 VideoVisible="{Binding VideoVisible, Mode=TwoWay}"
-                 IsControlStripVisible="{Binding ControllerVisible, Mode=TwoWay}"
-                 CaptionsVisible="{Binding CaptionsVisible, Mode=TwoWay}"
+     VideoVisible="{Binding VideoVisible, Mode=TwoWay}"
+     IsControlStripVisible="{Binding ControllerVisible, Mode=TwoWay}"
+     CaptionsVisible="{Binding CaptionsVisible, Mode=TwoWay}"
                      
-                 AllowSpaceBarToggle="True"
+     AllowSpaceBarToggle="True"
+     SeekWhileScrubbing="True"
                      
-                 PlaylistButtonVisible="True"
-                 SlowMotionButtonVisible="False"
-                 ReplayButtonVisible="False"
-                 RewindButtonVisible="True"
-                 FastForwardButtonVisible="True"
-                 FullScreenButtonVisible="False"
+     RewindButtonVisible="True"
+     FastForwardButtonVisible="True"
+     PlaylistButtonVisible="True"
+
+     ReplayButtonVisible="True"
+     ReplayOffset="{Binding ReplayOffset, Mode=TwoWay}"
+
+     SlowMotionButtonVisible="False"
+     FullScreenButtonVisible="False"
                      
-                 MediaOpened="player_MediaOpened"
-                 >
+     MediaOpened="player_MediaOpened"
+     TimelineMarkerReached="player_TimelineMarkerReached"
+     TimelineMarkerLeft="player_TimelineMarkerLeft"
+     >
   </media:MediaPlayer>
 
   <!--</clipflair:BaseWindow.FrontContent>-->
@@ -60,19 +69,37 @@ Version: 20130404
   <clipflair:BaseWindow.PropertyItems>
 
     <StackPanel Orientation="Vertical">
-      <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Media Source (URL):" Target="{Binding ElementName=edMediaURL}" />
-      <TextBox Name="edMediaURL" Text="{Binding Source, Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=true}" />
-      <!-- -->
+      <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Media Source:" Target="{Binding ElementName=btnLoadMedia}" />
+      
+      <Grid>
+        <Grid.ColumnDefinitions>
+          <ColumnDefinition Width="Auto" />
+          <ColumnDefinition Width="Auto" />          
+          <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <btn:ImageButton Name="btnLoadMedia" Image="Images/LoadMedia.png" ImageHover="Images/LoadMedia_hover.png" Click="btnLoadMedia_Click" ToolTipService.ToolTip="Open local media file" Grid.Column="0" />
+        
+        <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="URL:" Target="{Binding ElementName=edMediaURL}" Margin="5,0" Grid.Column="1" />
+        <TextBox Name="edMediaURL" Text="{Binding Source, Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=true}" HorizontalScrollBarVisibility="Auto" Grid.Column="2" />
+        
+      </Grid>
+      
       <StackPanel Orientation="Horizontal">
         <Button Name="btnSaveOffline" Content="Store playlist offline" Click="btnSaveOffline_Click" Margin="0,0,5,0" />
         <Button Name="btnLoadOffline" Content="Load playlist previously stored offline" Click="btnLoadOffline_Click" />
       </StackPanel>
-      <!-- -->      
+      
     </StackPanel>
-    
+
     <StackPanel Orientation="Vertical">
       <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Time:" Target="{Binding ElementName=edTime}" />
       <TextBox Name="edTime" Text="{Binding Time, Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=true}" />
+    </StackPanel>
+
+    <StackPanel Orientation="Vertical">
+      <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="ReplayOffset:" Target="{Binding ElementName=edReplayOffset}" />
+      <TextBox Name="edReplayOffset" Text="{Binding ReplayOffset, Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=true}" />
     </StackPanel>
 
     <StackPanel Orientation="Horizontal">
@@ -90,8 +117,14 @@ Version: 20130404
       <!-- <TextBox Name="edVolume" Text="{Binding Volume, Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=true}" /> -->
       <Slider Name="sldVolume" Value="{Binding Volume, Mode=TwoWay}" Minimum="0" Maximum="1" SmallChange="0.05" LargeChange="0.1" Orientation="Horizontal" />
     </StackPanel>
-        
-     <StackPanel Orientation="Horizontal">
+
+    <StackPanel Orientation="Vertical" Name="propBalance">
+      <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Balance:" Target="{Binding ElementName=sldBalance}" />
+      <!-- <TextBox Name="edBalance" Text="{Binding Balance, Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=true}" /> -->
+      <Slider Name="sldBalance" Value="{Binding Balance, Mode=TwoWay}" Minimum="-1" Maximum="1" SmallChange="0.05" LargeChange="0.1" Orientation="Horizontal" />
+    </StackPanel>
+
+    <StackPanel Orientation="Horizontal">
       <CheckBox Name="cbVideoVisible" IsChecked="{Binding VideoVisible, Mode=TwoWay}" />
       <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Video visible" Target="{Binding ElementName=cbVideoVisible}"/>
     </StackPanel>
@@ -119,8 +152,8 @@ Version: 20130404
         <CheckBox Name="cbGraphVisible" IsChecked="{Binding Path=GraphVisible, ElementName=player, Mode=TwoWay}" />
         <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Graph visible" Target="{Binding ElementName=cbGraphVisible}"/>
       </StackPanel>
-      
-    </StackPanel>      
+
+    </StackPanel>
 
   </clipflair:BaseWindow.PropertyItems>
 

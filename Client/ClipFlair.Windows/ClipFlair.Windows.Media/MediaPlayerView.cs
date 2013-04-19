@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: MediaPlayerView.cs
-//Version: 20130211
+//Version: 20130419
 
 using Microsoft.SilverlightMediaFramework.Core.Accessibility.Captions;
 
@@ -25,9 +25,11 @@ namespace ClipFlair.Windows.Views
     //fields are initialized via respective properties at "SetDefaults" method
     private Uri source;
     private TimeSpan time;
+    private TimeSpan replayOffset;
     private CaptionRegion captions;
     private double speed;
     private double volume;
+    private double balance;
     private bool autoPlay;
     private bool looping;
     private bool videoVisible;
@@ -64,6 +66,21 @@ namespace ClipFlair.Windows.Views
         {
           time = value;
           RaisePropertyChanged(IMediaPlayerProperties.PropertyTime);
+        }
+      }
+    }
+
+    [DataMember]
+    //[DefaultValue(MediaPlayerDefaults.DefaultReplayOffset)] //can't use static fields here (and we're forced to use one for TimeSpan unfortunately, doesn't work with const)
+    public TimeSpan ReplayOffset
+    {
+      get { return replayOffset; }
+      set
+      {
+        if (value != replayOffset)
+        {
+          replayOffset = value;
+          RaisePropertyChanged(IMediaPlayerProperties.PropertyReplayOffset);
         }
       }
     }
@@ -116,6 +133,22 @@ namespace ClipFlair.Windows.Views
       }
     }
 
+
+    [DataMember]
+    [DefaultValue(MediaPlayerDefaults.DefaultBalance)]
+    public double Balance
+    {
+      get { return balance; }
+      set
+      {
+        if (value != balance)
+        {
+          balance = value;
+          RaisePropertyChanged(IMediaPlayerProperties.PropertyBalance);
+        }
+      }
+    }
+    
     [DataMember]
     [DefaultValue(MediaPlayerDefaults.DefaultAutoPlay)]
     public bool AutoPlay

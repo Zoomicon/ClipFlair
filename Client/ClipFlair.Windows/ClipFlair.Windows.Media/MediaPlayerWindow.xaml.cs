@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: MediaPlayerWindow.xaml.cs
-//Version: 20130211
+//Version: 20130419
 
 using ClipFlair.Windows.Views;
 
@@ -16,10 +16,15 @@ namespace ClipFlair.Windows
 
   public partial class MediaPlayerWindow : BaseWindow
   {
+
+    private TimeSpan defaultReplayOffset;
+
     public MediaPlayerWindow()
     {
       View = new MediaPlayerView(); //must set the view first
       InitializeComponent();
+
+      defaultReplayOffset = player.ReplayOffset; //can set ReplayOffset in XAML
     }
 
     #region --- Properties ---
@@ -50,10 +55,28 @@ namespace ClipFlair.Windows
 
     #region Events
 
+    private void btnLoadMedia_Click(object sender, RoutedEventArgs e)
+    {
+      player.PlayLocalFile();
+    }
+
     private void player_MediaOpened(object sender, EventArgs e)
     {
       player.Time = MediaPlayerView.Time; //apply the stored time value //TODO: doesn't seem to work (maybe the view's time has already changed)
     }
+
+    private void player_TimelineMarkerReached(object sender, Microsoft.SilverlightMediaFramework.Core.TimelineMarkerReachedInfo e)
+    {
+      if (defaultReplayOffset == TimeSpan.Zero) //only when a ReplayOffset hasn't been set in XAML
+        player.ReplayOffset = e.Marker.Duration;
+    }
+
+    private void player_TimelineMarkerLeft(object sender, Microsoft.SilverlightMediaFramework.Core.CustomEventArgs<TimelineMediaMarker> e)
+    {
+      player.ReplayOffset = defaultReplayOffset; //only used when not in a timeline marker range
+    }
+
+    #endregion
 
     #region Offline
     //TODO: need Smooth Streaming ISO Cache plugin for SMF from Media Experiences project at codeplex since this now works only for ProgressiveDownload media
@@ -87,8 +110,6 @@ namespace ClipFlair.Windows
         MessageBox.Show("Error: " + ex.Message); //TODO: find parent window and pass here
       }
     }
-
-    #endregion
 
     #endregion
 
