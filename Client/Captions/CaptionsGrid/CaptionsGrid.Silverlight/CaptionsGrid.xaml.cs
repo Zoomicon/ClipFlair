@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: CaptionsGrid.xaml.cs
-//Version: 20130403
+//Version: 20130419
 
 using ClipFlair.AudioRecorder;
 using ClipFlair.CaptionsLib.Utils;
@@ -615,7 +615,7 @@ namespace ClipFlair.CaptionsGrid
       try
       {
         OpenFileDialog dlg = new OpenFileDialog();
-        dlg.Filter = "Subtitle files (SRT, TTS)|*.srt;*.tts|SRT files|*.srt|TTS files|*.tts";
+        dlg.Filter = "Subtitle files (*.srt, *.tts)|*.srt;*.tts|SRT files (*.srt)|*.srt|TTS files (*.tts)|*.tts";
         dlg.FilterIndex = 1; //note: this index is 1-based, not 0-based
         
         if (dlg.ShowDialog() == true) //TODO: find the parent window
