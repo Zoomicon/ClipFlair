@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: BaseWindow.xaml.cs
-//Version: 20130326
+//Version: 20130419
 
 //TODO: unbind control at close
 
@@ -535,7 +535,7 @@ namespace ClipFlair.Windows
       try
       {
         OpenFileDialog dlg = new OpenFileDialog();
-        dlg.Filter = "ClipFlair archive|*" + ACTIVITY_EXTENSION;
+        dlg.Filter = "ClipFlair archive (*." + ACTIVITY_EXTENSION + ")|*" + ACTIVITY_EXTENSION;
         dlg.FilterIndex = 1; //note: this index is 1-based, not 0-based
         //dlg.DefaultExt = ACTIVITY_EXTENSION; //OpenFileDialog doesn't seem to have a DefaultExt like SaveFileDialog
 
@@ -563,7 +563,7 @@ namespace ClipFlair.Windows
       try
       {
         SaveFileDialog dlg = new SaveFileDialog();
-        dlg.Filter = "ClipFlair archive|*" + ACTIVITY_EXTENSION;
+        dlg.Filter = "ClipFlair archive (*." + ACTIVITY_EXTENSION + ")|*" + ACTIVITY_EXTENSION;
         //dlg.FilterIndex = 1; //note: this index is 1-based, not 0-based //do not set if DefaultExt is supplied
         //dlg.DefaultFileName = View.Title + ACTIVITY_EXTENSION; //Silverlight will prompt "Do you want to save X?" (where X is the DefaultFileName value). If we set this, but the prompt can go under the main window, so avoid it
         dlg.DefaultExt = ACTIVITY_EXTENSION; //this doesn't seem to be used if FilterIndex is set
@@ -578,17 +578,17 @@ namespace ClipFlair.Windows
       }
     }
 
-    protected void btnLoadURL_Click(object sender, RoutedEventArgs e)
+    private void btnLoadURL_Click(object sender, RoutedEventArgs e)
     {
       ShowLoadURLDialog();
     }
 
-    protected void btnLoad_Click(object sender, RoutedEventArgs e)
+    private void btnLoad_Click(object sender, RoutedEventArgs e)
     {
       ShowLoadDialog();
     }
 
-    protected void btnSave_Click(object sender, RoutedEventArgs e)
+    private void btnSave_Click(object sender, RoutedEventArgs e)
     {
       ShowSaveDialog();
     }
