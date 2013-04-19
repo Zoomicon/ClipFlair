@@ -95,6 +95,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\ImageButtons\ImageButtons.Silverlight\ImageButtons.Silverlight.csproj">
+      <Project>{127105AF-C0F4-40F8-87C5-D6C391552936}</Project>
+      <Name>ImageButtons.Silverlight</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\ZUI\FloatingWindow\FloatingWindow.Silverlight\FloatingWindow.Silverlight.csproj">
       <Project>{3F3D3C8C-9724-4531-A04D-B92049F64686}</Project>
       <Name>FloatingWindow.Silverlight</Name>
@@ -129,6 +133,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\LoadMedia.png" />
+    <Resource Include="Images\LoadMedia_hover.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Silverlight\$(SilverlightVersion)\Microsoft.Silverlight.CSharp.targets" />
   <ProjectExtensions>
