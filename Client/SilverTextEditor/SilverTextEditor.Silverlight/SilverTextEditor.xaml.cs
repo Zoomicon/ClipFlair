@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: SilverTextEditor.xaml.cs
-//Version: 20130314
+//Version: 20130419
 
 //Originated from Microsoft sample (MSPL license)
 
@@ -9,6 +9,7 @@
 //      (Currently one needs to open Resources\Strings.Designer.cs and change internal constructor to public)
 
 //TODO: allow to add checkbox controls and remember their state (checked/unchecked) in the text
+//TODO: allow adding images (from URL) and remember them at reload (could add as special text and then parse it?)
 
 using SilverTextEditor.Resources;
 
@@ -676,7 +677,7 @@ namespace SilverTextEditor
       {
         OpenFileDialog ofd = new OpenFileDialog();
         ofd.Multiselect = false;
-        ofd.Filter = "ClipFlair Saved Text Files|*.text|All Files|*.*";
+        ofd.Filter = "ClipFlair Saved Text Files (*.text)|*.text|All Files|*.*";
 
         if (ofd.ShowDialog().Value)
           using (Stream stream = ofd.File.OpenRead())
@@ -716,7 +717,24 @@ namespace SilverTextEditor
     public string Xaml
     {
       get { return rtb.Xaml; }
-      set { if (value != null && value.Trim() != "") rtb.Xaml = value; else rtb.Blocks.Clear();  } //allows to set null or blank value to clear the RichTextBox
+      set { 
+        if (value != null && value.Trim() != "") {
+          rtb.Xaml = value;
+          ScrollToStart();
+        }
+        else
+          rtb.Blocks.Clear();
+      } //allows to set null or blank value to clear the RichTextBox
+    }
+
+    public void ScrollToStart()
+    {
+      rtb.Selection.Select(rtb.ContentStart, rtb.ContentStart);
+    }
+
+    public void ScrollToEnd()
+    {
+      rtb.Selection.Select(rtb.ContentEnd, rtb.ContentEnd);
     }
 
     public void LoadResource(string resourcePath) //doesn't close stream
