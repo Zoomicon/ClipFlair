@@ -1,7 +1,7 @@
 ﻿<!--
 Project: ClipFlair (http://ClipFlair.codeplex.com)
 Filename: ActivityContainer.xaml
-Version: 20130327
+Version: 20130419
 -->
 
 <UserControl x:Class="ClipFlair.Windows.ActivityContainer" 
@@ -14,7 +14,7 @@ Version: 20130327
   xmlns:clipflair="clr-namespace:ClipFlair.Windows"
   xmlns:widgets="clr-namespace:ClipFlair.UI.Widgets;assembly=ClipFlair.UI.Widgets.Silverlight"
   xmlns:utils="clr-namespace:System.Windows.Controls;assembly=WPF_Compatibility"
-  xmlns:hover="clr-namespace:ImageButtons;assembly=ImageButtons"
+  xmlns:btn="clr-namespace:ImageButtons;assembly=ImageButtons"
   d:DesignWidth="800" d:DesignHeight="600"
   >
   <!-- //EXAMPLE//
@@ -86,49 +86,49 @@ Version: 20130327
 
           <StackPanel Name="panelAddComponents" Orientation="Horizontal">
 
-            <hover:ImageButton
+            <btn:ImageButton
               Name="btnAddClip" Visibility="Collapsed"
               VerticalAlignment="Center" Margin="0,0,5,0"
               ToolTipService.ToolTip="Add Clip"
               Image="Images/AddClip.png"
               ImageHover="Images/AddClip_hover.png" />
 
-            <hover:ImageButton
+            <btn:ImageButton
               Name="btnAddCaptions" Visibility="Collapsed"
               VerticalAlignment="Center" Margin="0,0,5,0"
               ToolTipService.ToolTip="Add Captions"
               Image="Images/AddCaptions.png"
               ImageHover="Images/AddCaptions_hover.png" />
 
-            <hover:ImageButton
+            <btn:ImageButton
               Name="btnAddRevoicing" Visibility="Collapsed"
               VerticalAlignment="Center" Margin="0,0,5,0"
               ToolTipService.ToolTip="Add Revoicing"
               Image="Images/AddRevoicing.png"
               ImageHover="Images/AddRevoicing_hover.png" />
 
-            <hover:ImageButton
+            <btn:ImageButton
               Name="btnAddText" Visibility="Collapsed"
               VerticalAlignment="Center" Margin="0,0,5,0"
               ToolTipService.ToolTip="Add Text"
               Image="Images/AddText.png"
               ImageHover="Images/AddText_hover.png" />
 
-            <hover:ImageButton
+            <btn:ImageButton
               Name="btnAddImage" Visibility="Collapsed"
               VerticalAlignment="Center" Margin="0,0,5,0"
               ToolTipService.ToolTip="Add Image"
               Image="Images/AddImage.png"
               ImageHover="Images/AddImage_hover.png" />
 
-            <hover:ImageButton
+            <btn:ImageButton
               Name="btnAddMap" Visibility="Collapsed"
               VerticalAlignment="Center" Margin="0,0,5,0"
               ToolTipService.ToolTip="Add Map"
               Image="Images/AddMap.png"
               ImageHover="Images/AddMap_hover.png" />
 
-            <hover:ImageButton
+            <btn:ImageButton
               Name="btnAddGallery" Visibility="Collapsed"
               VerticalAlignment="Center" Margin="0,0,5,0"              
               ToolTipService.ToolTip="Add Gallery"

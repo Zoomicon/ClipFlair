@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: ActivityWindow.xaml.cs
-//Version: 20130326
+//Version: 20130419
 
 using Utils.Extensions;
 using Utils.Bindings;
@@ -185,17 +185,17 @@ namespace ClipFlair.Windows
 
     private void activity_LoadURLClick(object sender, RoutedEventArgs e)
     {
-      btnLoadURL_Click(sender, e);
+      ShowLoadURLDialog("ClipFlair Activity"); //there is a bug with overriden methods using the parent method initializer for default parameters, so have to explicitly pass the parameter here
     }
 
     private void activity_LoadClick(object sender, RoutedEventArgs e)
     {
-      btnLoad_Click(sender, e);
+      ShowLoadDialog();
     }
 
     private void activity_SaveClick(object sender, RoutedEventArgs e)
     {
-      btnSave_Click(sender, e);
+      ShowSaveDialog();
     }
 
     #endregion
