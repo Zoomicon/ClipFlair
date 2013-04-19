@@ -1,18 +1,21 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: MediaPlayer.cs
-//Version: 20130326
+//Version: 20130419
 
 using Utils.Extensions;
 
 using System;
+using System.IO;
 using System.Linq;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Media;
 
 using Microsoft.SilverlightMediaFramework.Core;
 using Microsoft.SilverlightMediaFramework.Core.Media;
 using Microsoft.SilverlightMediaFramework.Core.Accessibility.Captions;
 using Microsoft.SilverlightMediaFramework.Plugins.Primitives;
+using Microsoft.SilverlightMediaFramework.Plugins;
 
 namespace ClipFlair.MediaPlayer
 {
@@ -20,76 +23,15 @@ namespace ClipFlair.MediaPlayer
   public class MediaPlayer : SMFPlayer
   {
 
+    #region Fields
+
+    protected IMediaPlugin activeMediaPlugin;
+
+    #endregion
+
     public MediaPlayer()
     {
       AddEventHandlers();
-    }
-
-    public override void OnApplyTemplate()
-    {
-      base.OnApplyTemplate();
-
-      ApplyTemplateOverrides();
-
-      UpdateVolumeElement(); //patch for SMF bug
-    }
-
-    protected void ApplyTemplateOverrides()
-    {
-      ShowPlaylistElement.Content = "..."; //don't show "Playlist" text but show "..." instead to avoid localizing it and because it can distract viewers from the captions' text //TODO: should maybe show an Image here or expose this as a property?
-      
-      //apply UI template overrides
-      OnFullScreenButtonVisibleChanged(!FullScreenButtonVisible, FullScreenButtonVisible);
-      OnSlowMotionButtonVisibleChanged(!SlowMotionButtonVisible, SlowMotionButtonVisible);
-      OnReplayButtonVisibleChanged(!ReplayButtonVisible, ReplayButtonVisible);
-      OnRewindButtonVisibleChanged(!RewindButtonVisible, RewindButtonVisible);
-      OnFastForwardButtonVisibleChanged(!FastForwardButtonVisible, FastForwardButtonVisible);
-      OnPlaylistButtonVisibleChanged(!PlaylistButtonVisible, PlaylistButtonVisible);
-
-      //the following don't seem to do something:
-      /* 
-      if (GraphToggleElement!=null) GraphToggleElement.Visibility = Visibility.Collapsed;
-      if (ControlStripToggleElement != null) ControlStripToggleElement.Visibility = Visibility.Visible;
-      */
-    }
-
-    protected void UpdateVolumeElement()
-    {
-      //patch for SMF to update VolumeElement UI with any already set VolumeLevel
-      VolumeElement.VolumeLevel = VolumeLevel;
-    }
-
-    protected override void OnMediaOpened()
-    {
-      base.OnMediaOpened();
-      UpdateCaptions1(Captions1);
-    }
-
-    protected virtual void AddEventHandlers()
-    {
-      //listen for changed to PlaybackPosition and sync with Time
-      PlaybackPositionChanged += new EventHandler<CustomEventArgs<TimeSpan>>(Player_PlaybackPositionChanged);
-
-      //listen for changes to CaptionsVisibility and sync with CaptionsVisible
-      CaptionsVisibilityChanged += new EventHandler(Player_CaptionsVisibilityChanged);
-    }
-
-    protected virtual void RemoveEventHandlers()
-    {
-      PlaybackPositionChanged -= new EventHandler<CustomEventArgs<TimeSpan>>(Player_PlaybackPositionChanged);
-      CaptionsVisibilityChanged -= new EventHandler(Player_CaptionsVisibilityChanged);
-    }
-
-    protected void Player_PlaybackPositionChanged(object sender, CustomEventArgs<TimeSpan> args)
-    {
-      TimeSpan newTime = (TimeSpan)args.Value;
-      if (Time != newTime) //check this for speedup and to avoid loops
-        Time = newTime;
-    }
-
-    protected void Player_CaptionsVisibilityChanged(object sender, EventArgs args) //EventArgs.Empty is passed here by SMF (could have been passing the new value of the CaptionsVisibility)
-    {
-      CaptionsVisible = (CaptionsVisibility == FeatureVisibility.Visible) ? true : false;
     }
 
     #region --- Properties ---
@@ -144,6 +86,8 @@ namespace ClipFlair.MediaPlayer
       //When people share videos via Dropbox, they can get different URLs depending on whether they share from their public foler or not and whether they use the OS file context menu's Dropbox/Share link option or use the dropbox website to create a link to the file. Need to remove https and use to dl.dropbox.com server to point to the download file
       newSourceStr = newSourceStr.ReplacePrefix(new String[]{"https://dl.dropbox.com/s/", "https://www.dropbox.com/s/", "http://www.dropbox.com/s/"}, "http://dl.dropbox.com/s/", StringComparison.OrdinalIgnoreCase);
 
+      newSourceStr = newSourceStr.ReplacePrefix("https://", "http://"); //TODO: add support for https:// (now trying to fallback to http://)
+
       if (newSourceStr.EndsWith(".ism", StringComparison.OrdinalIgnoreCase))
         newSourceStr = newSourceStr + "/manifest"; //append "/manifest" to URIs ending in ".ism" (Smooth Streaming)
 
@@ -161,7 +105,9 @@ namespace ClipFlair.MediaPlayer
         string ss = newSourceStr.Split('.').Last();
         s = newSourceStr.Substring(0, newSourceStr.Length - ss.Length - 1); //-1 to remove the dot too
       }
+
       playlistItem.Title = new Uri(s).GetComponents(UriComponents.Path, UriFormat.Unescaped).Split('/').Last();
+
       playlistItem.ThumbSource = new Uri(s + "_Thumb.jpg");
 
       /*
@@ -172,9 +118,7 @@ namespace ClipFlair.MediaPlayer
             playlistItem.MarkerResources = markerResources;
       */
 
-      //Playlist.Clear(); //skip this to allow going back to previous items from playlist
-      Playlist.Add(playlistItem);
-      GoToPlaylistItem(Playlist.Count - 1);
+      Play(playlistItem);
     }
 
     #endregion
@@ -223,6 +167,48 @@ namespace ClipFlair.MediaPlayer
       {
         //NOP
       }
+    }
+
+    #endregion
+
+    #region Balance
+
+    /// <summary>
+    /// Balance Dependency Property
+    /// </summary>
+    public static readonly DependencyProperty BalanceProperty =
+        DependencyProperty.Register("Balance", typeof(double), typeof(MediaPlayer),
+            new FrameworkPropertyMetadata(0.0,
+                FrameworkPropertyMetadataOptions.None,
+                new PropertyChangedCallback(OnBalanceChanged)));
+
+    /// <summary>
+    /// Gets or sets the Balance property
+    /// </summary>
+    public double Balance
+    {
+      get { return (double)GetValue(BalanceProperty); }
+      set { SetValue(BalanceProperty, value); }
+    }
+
+    /// <summary>
+    /// Handles changes to the Balance property.
+    /// </summary>
+    private static void OnBalanceChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    {
+      MediaPlayer target = (MediaPlayer)d;
+      double oldBalance = (double)e.OldValue;
+      double newBalance = target.Balance;
+      target.OnBalanceChanged(oldBalance, newBalance);
+    }
+
+    /// <summary>
+    /// Provides derived classes an opportunity to handle changes to the Balance property.
+    /// </summary>
+    protected virtual void OnBalanceChanged(double oldBalance, double newBalance)
+    {
+      if (activeMediaPlugin != null)
+        activeMediaPlugin.Balance = newBalance;
     }
 
     #endregion
@@ -688,6 +674,45 @@ namespace ClipFlair.MediaPlayer
 
     #region --- Methods ---
 
+    public void PlayLocalFile() //Note: this has to be initiated by user action (Silverlight security)
+    {
+      try
+      {
+        OpenFileDialog dlg = new OpenFileDialog();
+        dlg.Filter = "Media files (*.wmv, *.mp4, *.wma, *.mp3)|*.wmv;*.mp4;*.wma;*.mp3";
+        dlg.FilterIndex = 1; //note: this index is 1-based, not 0-based //OpenFileDialog doesn't seem to have a DefaultExt like SaveFileDialog
+
+        if (dlg.ShowDialog() == true) //TODO: find the parent window
+          Play(dlg.File.OpenRead(), dlg.File.Name); //TODO: when playlist is cleared should close the stream (not sure if can listen for playlistitem lifetime events)
+      }
+      catch (NullReferenceException)
+      {
+        MessageBox.Show("Loading from file failed - These saved options may be for other window"); //TODO: find the parent window
+      }
+      catch (Exception ex)
+      {
+        MessageBox.Show("Loading from file failed: " + ex.Message); //TODO: find the parent window
+      }
+    }
+
+    public void Play(Stream stream, string title = "")
+    {
+      Source = null; //clear source URL since we're loading directly from a Stream
+
+      PlaylistItem playlistItem = new PlaylistItem();
+      playlistItem.StreamSource = stream;
+      playlistItem.Title = title;
+
+      Play(playlistItem);
+    }
+
+    public void Play(PlaylistItem playlistItem)
+    {
+      //Playlist.Clear(); //skip this to allow going back to previous items from playlist
+      Playlist.Add(playlistItem);
+      GoToPlaylistItem(Playlist.Count - 1);
+    }
+
     public void UpdateCaptions1(CaptionRegion newCaptions1)
     {
       if (Captions == null) return; //must check this since media may not be ready yet (setting captions again [cached at the dependency property] at OnMediaOpened event handler
@@ -745,7 +770,88 @@ namespace ClipFlair.MediaPlayer
       theCaption.Style.FontSize = length;
     }
 
+    protected void ApplyTemplateOverrides()
+    {
+      ShowPlaylistElement.Content = "..."; //don't show "Playlist" text but show "..." instead to avoid localizing it and because it can distract viewers from the captions' text //TODO: should maybe show an Image here or expose this as a property?
+
+      //apply UI template overrides
+      OnFullScreenButtonVisibleChanged(!FullScreenButtonVisible, FullScreenButtonVisible);
+      OnSlowMotionButtonVisibleChanged(!SlowMotionButtonVisible, SlowMotionButtonVisible);
+      OnReplayButtonVisibleChanged(!ReplayButtonVisible, ReplayButtonVisible);
+      OnRewindButtonVisibleChanged(!RewindButtonVisible, RewindButtonVisible);
+      OnFastForwardButtonVisibleChanged(!FastForwardButtonVisible, FastForwardButtonVisible);
+      OnPlaylistButtonVisibleChanged(!PlaylistButtonVisible, PlaylistButtonVisible);
+
+      //the following don't seem to do something:
+      /* 
+      if (GraphToggleElement!=null) GraphToggleElement.Visibility = Visibility.Collapsed;
+      if (ControlStripToggleElement != null) ControlStripToggleElement.Visibility = Visibility.Visible;
+      */
+    }
+
+    protected void UpdateVolumeElement()
+    {
+      //patch for SMF to update VolumeElement UI with any already set VolumeLevel
+      VolumeElement.VolumeLevel = VolumeLevel;
+    }
+
     #endregion
+
+    #region Events
+
+    protected virtual void AddEventHandlers()
+    {
+      //listen for changed to PlaybackPosition and sync with Time
+      PlaybackPositionChanged += new EventHandler<CustomEventArgs<TimeSpan>>(Player_PlaybackPositionChanged);
+
+      //listen for changes to CaptionsVisibility and sync with CaptionsVisible
+      CaptionsVisibilityChanged += new EventHandler(Player_CaptionsVisibilityChanged);
+
+      //listen to MediaPlugin registration and keep reference to use for getting Balance property which is not exposed by SMFPlayer 2.7
+      MediaPluginRegistered += new EventHandler<CustomEventArgs<IMediaPlugin>>(MediaPlayer_MediaPluginRegistered);
+    }
+
+    protected virtual void RemoveEventHandlers()
+    {
+      PlaybackPositionChanged -= new EventHandler<CustomEventArgs<TimeSpan>>(Player_PlaybackPositionChanged);
+      CaptionsVisibilityChanged -= new EventHandler(Player_CaptionsVisibilityChanged);
+    }
+
+    public override void OnApplyTemplate()
+    {
+      base.OnApplyTemplate();
+
+      ApplyTemplateOverrides();
+
+      UpdateVolumeElement(); //patch for SMF bug
+    }
+
+    protected override void OnMediaOpened()
+    {
+      base.OnMediaOpened();
+      UpdateCaptions1(Captions1);
+    }
+    
+    protected void MediaPlayer_MediaPluginRegistered(object source, CustomEventArgs<IMediaPlugin> args)
+    {
+      activeMediaPlugin = args.Value;
+      activeMediaPlugin.Balance = Balance;
+    }
+
+    protected void Player_PlaybackPositionChanged(object sender, CustomEventArgs<TimeSpan> args)
+    {
+      TimeSpan newTime = (TimeSpan)args.Value;
+      if (Time != newTime) //check this for speedup and to avoid loops
+        Time = newTime;
+    }
+
+    protected void Player_CaptionsVisibilityChanged(object sender, EventArgs args) //EventArgs.Empty is passed here by SMF (could have been passing the new value of the CaptionsVisibility)
+    {
+      CaptionsVisible = (CaptionsVisibility == FeatureVisibility.Visible) ? true : false;
+    }
+
+    #endregion
+
   }
 
 }
