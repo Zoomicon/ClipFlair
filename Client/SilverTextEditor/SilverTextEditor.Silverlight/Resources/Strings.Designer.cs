@@ -115,8 +115,7 @@ namespace SilverTextEditor.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Clear
-        ///.
+        ///   Looks up a localized string similar to Clear.
         /// </summary>
         public static string tooltip_Clear {
             get {
@@ -206,7 +205,7 @@ namespace SilverTextEditor.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Save changes.
+        ///   Looks up a localized string similar to Save to external file.
         /// </summary>
         public static string tooltip_Save {
             get {
