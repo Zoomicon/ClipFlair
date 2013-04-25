@@ -163,7 +163,7 @@
     <value>Εκτύπωση εγγράφου</value>
   </data>
   <data name="tooltip_Save" xml:space="preserve">
-    <value>Αποθήκευση αλλαγών</value>
+    <value>Αποθήκευση σε εξωτερικό αρχείο</value>
   </data>
   <data name="tooltip_Underline" xml:space="preserve">
     <value>Υπογραμμισμένα</value>

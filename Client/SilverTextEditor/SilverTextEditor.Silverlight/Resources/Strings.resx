@@ -145,8 +145,7 @@
     <value>Italic</value>
   </data>
   <data name="tooltip_Clear" xml:space="preserve">
-    <value>Clear
-</value>
+    <value>Clear</value>
   </data>
   <data name="tooltip_Open" xml:space="preserve">
     <value>Open existing document</value>
@@ -158,7 +157,7 @@
     <value>Print Document</value>
   </data>
   <data name="tooltip_Save" xml:space="preserve">
-    <value>Save changes</value>
+    <value>Save to external file</value>
   </data>
   <data name="tooltip_Underline" xml:space="preserve">
     <value>Underlined</value>
