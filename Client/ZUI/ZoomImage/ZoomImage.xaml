@@ -1,6 +1,6 @@
 ﻿<!--
 Filename: ZoomImage.xaml
-Version: 20130406
+Version: 20130430
 Author: George Birbilis (http://zoomicon.com)  
 -->
 
@@ -12,7 +12,10 @@ Author: George Birbilis (http://zoomicon.com)
     xmlns:zoom="clr-namespace:ZoomAndPan;assembly=ZoomAndPan"  
     xmlns:btn="clr-namespace:ImageButtons;assembly=ImageButtons"  
     mc:Ignorable="d"
-    d:DesignHeight="300" d:DesignWidth="300">
+    d:DesignHeight="300" d:DesignWidth="300"
+    MouseEnter="UserControl_MouseEnter"
+    MouseLeave="UserControl_MouseLeave"
+    >
 
   <Grid x:Name="LayoutRoot">
     <Grid.RowDefinitions>
@@ -55,6 +58,7 @@ Author: George Birbilis (http://zoomicon.com)
       Orientation="Horizontal"
       HorizontalAlignment="Right" VerticalAlignment="Bottom" 
       Margin="25"
+      Visibility="Collapsed"
       >
       <StackPanel.Resources>
         <Style TargetType="btn:ImageButton">
