@@ -1,10 +1,11 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: App.xaml.cs
-//Version: 20130327
+//Version: 20130430
 
 using ClipFlair.Windows;
 
 using SilverFlow.Controls;
+using Utils.Extensions;
 
 using System;
 using System.Collections.Generic;
@@ -31,6 +32,7 @@ namespace ClipFlair
 
     private const string SMOOTH_STREAM_EXTENSION_SHORT = ".ism";
     private const string SMOOTH_STREAM_EXTENSION = ".ism/Manifest";
+    private const string GALLERY_EXTENSION = ".cxml";
 
     public const string PARAMETER_ACTIVITY = "activity";
     public const string PARAMETER_COMPONENT = "component";
@@ -174,7 +176,7 @@ namespace ClipFlair
         w.Width = 800;
         w.Height = 600;
         activityWindow.activityContainer.AddWindowInViewCenter(w);
-        w.GalleryView.Source = new Uri(new Uri(CLIPFLAIR_GALLERY_COLLECTION), queryString[PARAMETER_GALLERY]);
+        w.GalleryView.Source = makeGalleryUri(queryString[PARAMETER_GALLERY]);
         foundParam = true;
       }
       if (queryString.ContainsKey(PARAMETER_COLLECTION))
@@ -197,8 +199,8 @@ namespace ClipFlair
     {
       Uri result = new Uri(new Uri(CLIPFLAIR_GALLERY_ACTIVITY), param);
       string s = result.ToString();
-      if (s.StartsWith(CLIPFLAIR_GALLERY_ACTIVITY, StringComparison.OrdinalIgnoreCase) && !s.EndsWith(BaseWindow.ACTIVITY_EXTENSION, StringComparison.OrdinalIgnoreCase))
-        result = new Uri(s + BaseWindow.ACTIVITY_EXTENSION);
+      if (s.StartsWith(CLIPFLAIR_GALLERY_ACTIVITY, StringComparison.OrdinalIgnoreCase) && !s.EndsWith(new String[]{BaseWindow.CLIPFLAIR_EXTENSION, BaseWindow.CLIPFLAIR_ZIP_EXTENSION}, StringComparison.OrdinalIgnoreCase))
+        result = new Uri(s + BaseWindow.CLIPFLAIR_ZIP_EXTENSION); //TODO: change this when activities are renamed at the gallery to use .clipflair instead of .clipflair.zip extension (can use URL rewrites for the old activities)
       return result;
     }
 
@@ -212,6 +214,15 @@ namespace ClipFlair
            !s.EndsWith(SMOOTH_STREAM_EXTENSION_SHORT, StringComparison.OrdinalIgnoreCase) &&
            !s.EndsWith(SMOOTH_STREAM_EXTENSION, StringComparison.OrdinalIgnoreCase) )
         result = new Uri(s + SMOOTH_STREAM_EXTENSION);
+      return result;
+    }
+
+    public static Uri makeGalleryUri(string param) //TODO: reuse this code at Gallery component
+    {
+      Uri result = new Uri(new Uri(CLIPFLAIR_GALLERY_COLLECTION), param);
+      string s = result.ToString();
+      if (s.StartsWith(CLIPFLAIR_GALLERY_COLLECTION, StringComparison.OrdinalIgnoreCase) && !s.EndsWith(GALLERY_EXTENSION, StringComparison.OrdinalIgnoreCase))
+        result = new Uri(s + GALLERY_EXTENSION);
       return result;
     }
 
