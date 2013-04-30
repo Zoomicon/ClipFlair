@@ -1,10 +1,9 @@
 ﻿//Filename: ZoomImage.xaml.cs
-//Version: 20130407
+//Version: 20130430
 //Author: George Birbilis (http://zoomicon.com)
 //Based on http://samples.msdn.microsoft.com/Silverlight/SampleBrowser DeepZoom samples
 
-
-//TODO: add ZoomButtonsVisible and maybe Zoomable property
+//TODO: add ZoomButtonsAlwaysVisible or maybe Zoomable property
 //TODO: add way to select the mode programmatically since some URIs may not provide a file extension (or if it has no extension try first to open as image and if it fails its the XML content for DeepZoom which shouldn't take long to reload into MultiScaleImage used as fallback)
 
 using Utils.Bindings;
@@ -250,6 +249,16 @@ namespace ZoomImage
 
     #region Events
 
+    private void UserControl_MouseEnter(object sender, MouseEventArgs e)
+    {
+      zoomControls.Visibility = Visibility.Visible;
+    }
+
+    private void UserControl_MouseLeave(object sender, MouseEventArgs e)
+    {
+      zoomControls.Visibility = Visibility.Collapsed;
+    }
+
     private void btnZoomIn_Click(object sender, RoutedEventArgs e)
     {
       ZoomIn();
@@ -270,13 +279,11 @@ namespace ZoomImage
       e.Handled = true;
       Zoom(ZoomStep * Math.Sign(e.Delta), e.GetPosition((UIElement)sender));
     }
-
-    
+  
     Point lastMouseLogicalPos = new Point();
     Point lastMouseViewPort = new Point();
     bool duringDrag = false;
-   
-
+  
     private void control_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
     {
       if ((Keyboard.Modifiers & ModifierKeys.Alt) != 0)
@@ -331,6 +338,6 @@ namespace ZoomImage
     }
 
     #endregion
-    
+   
   }
 }
