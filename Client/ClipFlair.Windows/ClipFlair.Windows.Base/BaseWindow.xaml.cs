@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: BaseWindow.xaml.cs
-//Version: 20130419
+//Version: 20130430
 
 //TODO: unbind control at close
 
@@ -40,7 +40,10 @@ namespace ClipFlair.Windows
 
     #region Constants
 
-    public const string ACTIVITY_EXTENSION = ".clipflair.zip";
+    public const string CLIPFLAIR_EXTENSION = ".clipflair";
+    public const string CLIPFLAIR_ZIP_EXTENSION = ".clipflair.zip";
+    public const string CLIPFLAIR_LOAD_FILTER = "ClipFlair archive (*.clipflair, *.clipflair.zip)|*.clipflair;*.clipflair.zip";
+    public const string CLIPFLAIR_SAVE_FILTER = "ClipFlair archive (*.clipflair)|*.clipflair|ClipFlair archive (*.clipflair.zip)|*.clipflair.zip";
     public const string CLIPFLAIR_TUTORIALS = "http://social.clipflair.net/Pages/Tutorials.aspx";
 
     #if WRITE_FORMATTED_XML
@@ -535,9 +538,9 @@ namespace ClipFlair.Windows
       try
       {
         OpenFileDialog dlg = new OpenFileDialog();
-        dlg.Filter = "ClipFlair archive (*." + ACTIVITY_EXTENSION + ")|*" + ACTIVITY_EXTENSION;
+        dlg.Filter = CLIPFLAIR_LOAD_FILTER;
         dlg.FilterIndex = 1; //note: this index is 1-based, not 0-based
-        //dlg.DefaultExt = ACTIVITY_EXTENSION; //OpenFileDialog doesn't seem to have a DefaultExt like SaveFileDialog
+        //dlg.DefaultExt = CLIPFLAIR_EXTENSION; //OpenFileDialog doesn't seem to have a DefaultExt like SaveFileDialog
 
         if (dlg.ShowDialog() == true) //TODO: find the parent window
           using (Stream stream = dlg.File.OpenRead()) //will close the stream when done
@@ -563,10 +566,10 @@ namespace ClipFlair.Windows
       try
       {
         SaveFileDialog dlg = new SaveFileDialog();
-        dlg.Filter = "ClipFlair archive (*." + ACTIVITY_EXTENSION + ")|*" + ACTIVITY_EXTENSION;
-        //dlg.FilterIndex = 1; //note: this index is 1-based, not 0-based //do not set if DefaultExt is supplied
-        //dlg.DefaultFileName = View.Title + ACTIVITY_EXTENSION; //Silverlight will prompt "Do you want to save X?" (where X is the DefaultFileName value). If we set this, but the prompt can go under the main window, so avoid it
-        dlg.DefaultExt = ACTIVITY_EXTENSION; //this doesn't seem to be used if FilterIndex is set
+        dlg.Filter = CLIPFLAIR_SAVE_FILTER;
+        dlg.FilterIndex = 2; //note: this index is 1-based, not 0-based //do not set if DefaultExt is supplied //TODO: after Social is configured to allow uploading .clipflair files, change this to 1
+        //dlg.DefaultFileName = View.Title + CLIPFLAIR_EXTENSION; //Silverlight will prompt "Do you want to save X?" (where X is the DefaultFileName value). If we set this, but the prompt can go under the main window, so avoid it
+        //dlg.DefaultExt = CLIPFLAIR_EXTENSION; //this doesn't seem to be used, it uses the selected index of the filter anyway (even if you don't set FilterIndex)
 
         if (dlg.ShowDialog() == true) //TODO: find the parent window
           using (Stream stream = dlg.OpenFile()) //will close the stream when done
