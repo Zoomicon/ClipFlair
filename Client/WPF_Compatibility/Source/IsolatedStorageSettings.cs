@@ -1,4 +1,7 @@
-﻿//
+﻿//Filename: IsolatedStorageSettings.cs
+//Version: 20130501
+
+//
 // System.IO.IsolatedStorage.IsolatedStorageSettings
 //
 // Contact:
@@ -55,7 +58,7 @@ namespace System.IO.IsolatedStorage {
       container = isf;
 
       if (!isf.FileExists (LocalSettings)) {
-        settings = new Dictionary<string, object> ();
+        settings = new Dictionary<string, object>();
         return;
       }
 
@@ -65,16 +68,16 @@ namespace System.IO.IsolatedStorage {
           try {
             settings = (Dictionary<string, object>) reader.ReadObject (fs);
           } catch (Xml.XmlException) {
-            settings = new Dictionary<string, object> ();
+            settings = new Dictionary<string, object>();
           }
         }
       }
     }
 
-    ~IsolatedStorageSettings ()
+    ~IsolatedStorageSettings()
     {
       // settings are automatically saved if the application close normally
-      Save ();
+      Save();
     }
 
     // static properties
@@ -137,9 +140,9 @@ namespace System.IO.IsolatedStorage {
     }
 
     // This method is emitted as virtual due to: https://bugzilla.novell.com/show_bug.cgi?id=446507
-    public void Clear ()
+    public void Clear()
     {
-      settings.Clear ();
+      settings.Clear();
     }
 
     public bool Contains (string key)
@@ -154,10 +157,10 @@ namespace System.IO.IsolatedStorage {
       return settings.Remove (key);
     }
 
-    public void Save ()
+    public void Save()
     {
       using (IsolatedStorageFileStream fs = container.CreateFile (LocalSettings)) {
-        DataContractSerializer ser = new DataContractSerializer (settings.GetType ());
+        DataContractSerializer ser = new DataContractSerializer (settings.GetType());
         ser.WriteObject (fs, settings);
       }
     }
@@ -188,9 +191,9 @@ namespace System.IO.IsolatedStorage {
       settings.Add (item.Key, item.Value);
     }
 
-    void ICollection<KeyValuePair<string, object>>.Clear ()
+    void ICollection<KeyValuePair<string, object>>.Clear()
     {
-      settings.Clear ();
+      settings.Clear();
     }
 
     bool ICollection<KeyValuePair<string, object>>.Contains (KeyValuePair<string, object> item)
@@ -244,9 +247,9 @@ namespace System.IO.IsolatedStorage {
       settings.Add (s, value);
     }
 
-    void IDictionary.Clear ()
+    void IDictionary.Clear()
     {
-      settings.Clear ();
+      settings.Clear();
     }
 
     bool IDictionary.Contains (object key)
@@ -300,20 +303,20 @@ namespace System.IO.IsolatedStorage {
     }
 
 
-    IEnumerator<KeyValuePair<string, object>> IEnumerable<KeyValuePair<string, object>>.GetEnumerator ()
+    IEnumerator<KeyValuePair<string, object>> IEnumerable<KeyValuePair<string, object>>.GetEnumerator()
     {
-      return settings.GetEnumerator ();
+      return settings.GetEnumerator();
     }
 
-    IEnumerator IEnumerable.GetEnumerator ()
+    IEnumerator IEnumerable.GetEnumerator()
     {
-      return settings.GetEnumerator ();
+      return settings.GetEnumerator();
     }
 
 
-    IDictionaryEnumerator IDictionary.GetEnumerator ()
+    IDictionaryEnumerator IDictionary.GetEnumerator()
     {
-      return settings.GetEnumerator ();
+      return settings.GetEnumerator();
     }
   }
 }

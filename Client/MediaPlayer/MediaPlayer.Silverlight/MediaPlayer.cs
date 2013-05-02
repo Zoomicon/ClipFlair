@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: MediaPlayer.cs
-//Version: 20130419
+//Version: 20130501
 
 using Utils.Extensions;
 
@@ -685,13 +685,9 @@ namespace ClipFlair.MediaPlayer
         if (dlg.ShowDialog() == true) //TODO: find the parent window
           Play(dlg.File.OpenRead(), dlg.File.Name); //TODO: when playlist is cleared should close the stream (not sure if can listen for playlistitem lifetime events)
       }
-      catch (NullReferenceException)
+      catch (Exception e)
       {
-        MessageBox.Show("Loading from file failed - These saved options may be for other window"); //TODO: find the parent window
-      }
-      catch (Exception ex)
-      {
-        MessageBox.Show("Loading from file failed: " + ex.Message); //TODO: find the parent window
+        MessageBox.Show("Loading failed: " + e.Message); //TODO: find the parent window
       }
     }
 
