@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: ConfirmDialog.xaml.cs
-//Version: 20130131
+//Version: 20130501
 
 using System;
 using System.Windows;
@@ -36,7 +36,7 @@ namespace ClipFlair.UI.Dialogs
 
     public static void Show(string title, string message, EventHandler<CancelEventArgs> closingHandler)
     {
-      InputDialog prompt = new InputDialog();
+      ConfirmDialog prompt = new ConfirmDialog();
       prompt.Title = title;
       prompt.Message = message;
       prompt.Closing += closingHandler;

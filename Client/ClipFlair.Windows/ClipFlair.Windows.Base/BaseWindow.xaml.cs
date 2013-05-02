@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: BaseWindow.xaml.cs
-//Version: 20130430
+//Version: 20130501
 
 //TODO: unbind control at close
 
@@ -261,7 +261,7 @@ namespace ClipFlair.Windows
         }
         catch
         {
-          MessageBox.Show("For help see " + CLIPFLAIR_TUTORIALS);
+          MessageDialog.Show("Help", "Please visit " + CLIPFLAIR_TUTORIALS);
         }
       });
     }
@@ -289,16 +289,25 @@ namespace ClipFlair.Windows
       View.Busy = true;
       try
       {
-        DataContractSerializer serializer = new DataContractSerializer(View.GetType()); //assuming current View isn't null and has been set by descendent class with wanted BaseView descendent //TODO: maybe use some property to return appropriate View type
+        foreach (ZipEntry options in zip.SelectEntries("*.options.xml", zipFolder))
+        {
+          //Note: we try to load the 1st file that ends in ".options.xml" (so that a component can support various versions
+          //of saved state, e.g. both ClipFlair.Windows.Views.TextEditorView [that one had a data contract namespace typo] and
+          //ClipFlair.Windows.Views.TextEditorView2 [replacing the older view] implement ITextEditor interface and can be set as TextEditorView to TextEditorWindow)
 
-        using (Stream stream = zip[zipFolder + "/" + View.GetType().FullName + ".options.xml"].OpenReader())
-          View = (IView)serializer.ReadObject(stream); //this will set a new View that defaults to Busy=false
+          DataContractSerializer serializer = new DataContractSerializer(GetType().Assembly.GetType(options.FileName.ReplaceSuffix(".options.xml", ""), true)); //assuming the view exists in the same assembly as the component
 
-        if (LoadedOptions != null) LoadedOptions(this, null); //notify any listeners
+          using (Stream stream = options.OpenReader())
+            View = (IView)serializer.ReadObject(stream); //this will set a new View that defaults to Busy=false
+
+          if (LoadedOptions != null) LoadedOptions(this, null); //notify any listeners
+
+          break; //expecting only one .options.xml file
+        }
       }
       catch (Exception e)
       {
-        MessageBox.Show("ClipFlair options load failed: " + e.Message); //TODO: find the parent window
+        ErrorDialog.Show("Loading failed", e);
       }
       finally
       {
@@ -331,7 +340,7 @@ namespace ClipFlair.Windows
         }
         catch (Exception ex)
         {
-          MessageBox.Show("ClipFlair options load from URL failed: " + ex.Message); //TODO: find the parent window
+          ErrorDialog.Show("Loading failed", ex);
         }
         finally
         {
@@ -347,7 +356,7 @@ namespace ClipFlair.Windows
       catch (Exception ex)
       {
         View.Busy = false;
-        MessageBox.Show("ClipFlair options load from URL failed: " + ex.Message); //TODO: find the parent window
+        ErrorDialog.Show("Loading failed", ex);
       }
     }
 
@@ -381,6 +390,7 @@ namespace ClipFlair.Windows
             windowFactory = CaptionsGridWindowFactory;
             break;
           case "ClipFlair.Windows.Views.TextEditorView":
+          case "ClipFlair.Windows.Views.TextEditorView2":
             windowFactory = TextEditorWindowFactory;
             break;
           case "ClipFlair.Windows.Views.ImageView":
@@ -431,7 +441,7 @@ namespace ClipFlair.Windows
       }
       catch (Exception e)
       {
-        MessageBox.Show("ClipFlair options save failed: " + e.Message); //TODO: find the parent window
+        ErrorDialog.Show("Saving failed", e);
       }
       finally
       {
@@ -523,13 +533,13 @@ namespace ClipFlair.Windows
         },
         (s2, ex2) => ShowHelp());
       }
-      catch (NullReferenceException)
+      catch (NullReferenceException ex)
       {
-        MessageBox.Show("Loading from URL failed - These saved options may be for other window"); //TODO: find the parent window
+        ErrorDialog.Show("Loading failed - Saved options may be for other window", ex);
       }
       catch (Exception ex)
       {
-        MessageBox.Show("Loading from URL failed: " + ex.Message); //TODO: find the parent window
+        ErrorDialog.Show("Loading failed", ex);
       }
     }
 
@@ -549,13 +559,13 @@ namespace ClipFlair.Windows
             Flipped = false; //flip the view back to front after succesful options loading
           }
       }
-      catch (NullReferenceException)
+      catch (NullReferenceException ex)
       {
-        MessageBox.Show("Loading from file failed - These saved options may be for other window"); //TODO: find the parent window
+        ErrorDialog.Show("Loading failed - Saved options may be for other window", ex);
       }
       catch (Exception ex)
       {
-        MessageBox.Show("Loading from file failed: " + ex.Message); //TODO: find the parent window
+        ErrorDialog.Show("Loading failed", ex);
       }
     }
 
@@ -577,7 +587,7 @@ namespace ClipFlair.Windows
       }
       catch (Exception ex)
       {
-        MessageBox.Show("Saving to file failed: " + ex.Message); //TODO: find the parent window
+        ErrorDialog.Show("Saving failed", ex);
       }
     }
 

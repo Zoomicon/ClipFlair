@@ -1,7 +1,8 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: App.xaml.cs
-//Version: 20130430
+//Version: 20130501
 
+using ClipFlair.UI.Dialogs;
 using ClipFlair.Windows;
 
 using SilverFlow.Controls;
@@ -261,9 +262,9 @@ namespace ClipFlair
       CheckAndDownloadUpdateCompleted -= new CheckAndDownloadUpdateCompletedEventHandler(OnCheckAndDownloadUpdateCompleted); //detach event handler
 
       if (e.UpdateAvailable) //update was found and downloaded
-        MessageBox.Show("Update has been downloaded, will be used at next application launch"); //TODO: should try to show this on UI thread?
+        MessageDialog.Show("", "Update downloaded, will use at next launch");
       else if (e.Error!=null) //error during update process
-        MessageBox.Show("Couldn't download application update: " + e.Error.Message);
+        ErrorDialog.Show("Update failed", e.Error);
     }
 
     #endregion

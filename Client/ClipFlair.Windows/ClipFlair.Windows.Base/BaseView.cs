@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: BaseView.cs
-//Version: 20130121
+//Version: 20130501
 
 
 using System.ComponentModel;
@@ -20,6 +20,25 @@ namespace ClipFlair.Windows.Views
     public BaseView()
     {
       SetDefaults(); //ancestors don't need to call "SetDefaults" at their constructors since this constructor is always called
+    }
+
+    public BaseView(IView view)
+    {
+      if (view == null) return;
+
+      Busy = view.Busy;
+      OptionsSource = view.OptionsSource;
+      ID = view.ID;
+      Title = view.Title;
+      Position = view.Position;
+      Width = view.Width;
+      Height = view.Height;
+      Zoom = view.Zoom;
+      Opacity = view.Opacity;
+      Moveable = view.Moveable;
+      Resizable = view.Resizable;
+      Zoomable = view.Zoomable;
+      WarnOnClosing = view.WarnOnClosing;
     }
 
     #region INotifyPropertyChanged

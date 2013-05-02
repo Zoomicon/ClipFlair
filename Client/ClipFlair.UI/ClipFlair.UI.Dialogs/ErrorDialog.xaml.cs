@@ -1,5 +1,5 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
-//Filename: MessageDialog.xaml.cs
+//Filename: ErrorDialog.xaml.cs
 //Version: 20130501
 
 using System;
@@ -9,11 +9,20 @@ using System.ComponentModel;
 
 namespace ClipFlair.UI.Dialogs
 {
-  public partial class MessageDialog : ChildWindow
+  public partial class ErrorDialog : ChildWindow
   {
-    public MessageDialog()
+    public ErrorDialog()
     {
       InitializeComponent();
+    }
+
+    public ErrorDialog(Exception e) : this()
+    {
+      Message = e.Message;
+      Details = e.StackTrace;
+      Exception inner = e.InnerException;
+      if (inner != null)
+        Details = Details + "\n\n" + inner.Message + inner.StackTrace; 
     }
 
     #region Properties
@@ -26,15 +35,20 @@ namespace ClipFlair.UI.Dialogs
       set { lblMessage.Text = value; }
     }
 
+    public string Details
+    {
+      get { return txtDetails.Text; }
+      set { txtDetails.Text = value; }
+    }
+
     #endregion
 
     #region Methods
 
-    public static void Show(string title, string message, EventHandler<CancelEventArgs> closingHandler = null)
+    public static void Show(string title, Exception e, EventHandler<CancelEventArgs> closingHandler = null)
     {
-      MessageDialog prompt = new MessageDialog();
+      ErrorDialog prompt = new ErrorDialog(e);
       prompt.Title = title;
-      prompt.Message = message;
       if (closingHandler != null) 
         prompt.Closing += closingHandler;
       prompt.Show();

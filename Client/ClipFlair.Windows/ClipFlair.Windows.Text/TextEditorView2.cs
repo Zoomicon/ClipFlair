@@ -1,8 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
-//Filename: TextEditorView.cs
+//Filename: TextEditorView2.cs
 //Version: 20130501
-
-//NOTE: Do not add any more properties to this view, kept for backwards compatibility. Use TextEditorView2 instead.
 
 using System;
 using System.ComponentModel;
@@ -13,11 +11,21 @@ namespace ClipFlair.Windows.Views
 {
 
   [ScriptableType]
-  [DataContract(Namespace = "http://clipflair.net/Contracts/Views")] //"Views" is a typo here in the contract (kept as is for backwards compatibility), replaced with "View" at TextEditorView2
-  public class TextEditorView : BaseView, ITextEditor
+  [DataContract(Namespace = "http://clipflair.net/Contracts/View")] //Using the correct contract name (compared to the older TextEditorView that had a typo ["Views" instead of "View"])
+  public class TextEditorView2 : BaseView, ITextEditor
   {
-    public TextEditorView()
+    public TextEditorView2()
     {
+    }
+
+    public TextEditorView2(ITextEditor view) : base(view)
+    {
+      if (view == null) return;
+
+      Source = view.Source;
+      ToolbarVisible = view.ToolbarVisible;
+      Editable = view.Editable;
+      RTL = view.RTL;      
     }
 
     #region Fields
