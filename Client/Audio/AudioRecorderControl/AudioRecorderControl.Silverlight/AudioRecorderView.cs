@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: AudioRecorderView.cs
-//Version: 20130404
+//Version: 20130504
 
 using AudioLib;
 
@@ -131,6 +131,11 @@ namespace ClipFlair.AudioRecorder
 
     #region Constructor
 
+    public static AudioFormat PickAudioFormat(AudioCaptureDevice audioCaptureDevice, AudioFormatEx desiredFormat)
+    {
+      return AudioFormatEx.PickAudioFormat(audioCaptureDevice.SupportedFormats, desiredFormat);
+     }
+
     public AudioRecorderView()
     {
 
@@ -162,10 +167,7 @@ namespace ClipFlair.AudioRecorder
         ExecuteAction = () => SaveFile()
       };
 
-      AudioCaptureDevice audioDevice = CaptureDeviceConfiguration.GetDefaultAudioCaptureDevice();
-      _captureSource = new CaptureSource() { AudioCaptureDevice = audioDevice };
-
-      Volume = 1.0; //set to highest volume (1.0), since MediaElement's default is 0.5
+       Volume = 1.0; //set playback to highest volume (1.0) - MediaElement's default is 0.5
 
       //player.MediaOpened += new RoutedEventHandler(MediaElement_MediaOpened);
       //player.MediaEnded += new RoutedEventHandler(MediaElement_MediaEnded);
@@ -204,7 +206,17 @@ namespace ClipFlair.AudioRecorder
 
       try
       {
-        _sink = new MemoryAudioSink();
+        if (_captureSource == null) //do not try to run this code at construction time, since we need to first request audio device access
+        {
+          AudioCaptureDevice audioDevice = CaptureDeviceConfiguration.GetDefaultAudioCaptureDevice();
+          if (audioDevice != null)
+          {
+            audioDevice.DesiredFormat = PickAudioFormat(audioDevice, new AudioFormatEx(WaveFormatType.Pcm, 1, 16, 44100)); //mono, 8-bit, 44.1Khz (only supporting 16-bit playback, make sure we record at same bit depth) //if not found, will set to null which is the default value
+            _captureSource = new CaptureSource() { AudioCaptureDevice = audioDevice };
+          }
+        }  //TODO: maybe do something if _captureSource is still null here
+
+        _sink = new MemoryAudioSink(); //TODO: should we dispose previous sink if any? (esp. if it uses a backing memory stream)
         _sink.CaptureSource = _captureSource;
         _captureSource.Start(); //assuming captureSource is stopped
 
