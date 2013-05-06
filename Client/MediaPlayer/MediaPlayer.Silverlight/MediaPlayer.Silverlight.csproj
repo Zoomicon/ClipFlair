@@ -62,13 +62,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.SilverlightMediaFramework.Core, Version=2.2012.605.0, Culture=neutral, PublicKeyToken=6687ff884a90c6a6, processorArchitecture=MSIL" />
-    <Reference Include="Microsoft.SilverlightMediaFramework.Logging, Version=2.2012.605.0, Culture=neutral, PublicKeyToken=47c1bfd3f360fec7, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.SilverlightMediaFramework.Plugins, Version=2.2012.605.0, Culture=neutral, PublicKeyToken=3dd5df9571bfd1e7, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.SilverlightMediaFramework.Plugins.Heuristics, Version=2.2012.605.0, Culture=neutral, PublicKeyToken=24473241fae5094b, processorArchitecture=MSIL" />
-    <Reference Include="Microsoft.SilverlightMediaFramework.Plugins.Monitoring, Version=2.2012.605.0, Culture=neutral, PublicKeyToken=03b302bede0ad828, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.SilverlightMediaFramework.Plugins.Progressive, Version=2.2012.605.0, Culture=neutral, PublicKeyToken=f5b35820df7ecf58, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.SilverlightMediaFramework.Plugins.SmoothStreaming, Version=2.2012.605.0, Culture=neutral, PublicKeyToken=17913f4360e6936c, processorArchitecture=MSIL" />
-    <Reference Include="Microsoft.SilverlightMediaFramework.Plugins.TimedText, Version=2.2012.605.0, Culture=neutral, PublicKeyToken=5f67d0f7027ac716, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.SilverlightMediaFramework.Utilities, Version=2.2012.605.0, Culture=neutral, PublicKeyToken=2018901a52f7a62c, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.Web.Media.SmoothStreaming, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="mscorlib" />
