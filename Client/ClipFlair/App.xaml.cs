@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: App.xaml.cs
-//Version: 20130501
+//Version: 20130507
 
 using ClipFlair.UI.Dialogs;
 using ClipFlair.Windows;
@@ -83,12 +83,12 @@ namespace ClipFlair
         host.IsBottomBarVisible = false; //hide outer container's bottom bar, only want to show the one of the ActivityContainer that the ActivityWindow hosts
         activityWindow.Width = host.ActualWidth;
         activityWindow.Height = host.ActualHeight;
- 
-        if (IsRunningOutOfBrowser)
+
+        if (!ParseUrlParameters(activityWindow)) //ParseUrlParameters returns false if IsRunningOutOfBrowser is true
+        {
+          activityWindow.activityContainer.AddGallery();
           activityWindow.ShowLoadURLDialog();
-        else
-          if (!ParseUrlParameters(activityWindow)) 
-            activityWindow.ShowLoadURLDialog();
+        }
       };
 
       RootVisual = host;
@@ -117,6 +117,9 @@ namespace ClipFlair
 
     private bool ParseUrlParameters(ActivityWindow activityWindow)
     {
+      if (IsRunningOutOfBrowser)
+        return false;
+
       IDictionary<string, string> queryString = HtmlPage.Document.QueryString;
       bool foundParam = false;
 
