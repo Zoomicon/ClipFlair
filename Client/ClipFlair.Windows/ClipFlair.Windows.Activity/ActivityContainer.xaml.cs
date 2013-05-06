@@ -1,7 +1,8 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: ActivityContainer.xaml.cs
-//Version: 20130406
+//Version: 20130507
 
+//TODO: add ContentPartsCloseable property
 //TODO: add ContentPartsZoomable property
 //TODO: must clear bindings when child window closes (now seem to stay as zombies hearing revoicing entries play at given time)
 
@@ -341,80 +342,121 @@ namespace ClipFlair.Windows
     
     #endregion
 
+    public void AddClip()
+    {
+      MediaPlayerWindow w = (MediaPlayerWindow)AddWindow(MediaPlayerWindowFactory, newInstance: true);
+      w.MediaPlayerView.Source = new Uri("http://video3.smoothhd.com.edgesuite.net/ondemand/Big%20Buck%20Bunny%20Adaptive.ism/Manifest", UriKind.Absolute);
+    }
+
     #if PART_CLIP
 
     private void btnAddClip_Click(object sender, RoutedEventArgs e)
     {
-      MediaPlayerWindow w = (MediaPlayerWindow)AddWindow(MediaPlayerWindowFactory, true);
-      w.MediaPlayerView.Source = new Uri("http://video3.smoothhd.com.edgesuite.net/ondemand/Big%20Buck%20Bunny%20Adaptive.ism/Manifest", UriKind.Absolute);
+      AddClip();
     }
 
     #endif
+
+    public void AddCaptions()
+    {
+      AddWindow(CaptionsGridWindowFactory, newInstance: true);
+    }
 
     #if PART_CAPTIONS
 
     private void btnAddCaptions_Click(object sender, RoutedEventArgs e)
     {
-      AddWindow(CaptionsGridWindowFactory, true);
+      AddCaptions();
     }
 
     #endif
 
-    #if PART_REVOICING
-
-    private void btnAddRevoicing_Click(object sender, RoutedEventArgs e)
+    public void AddRevoicing()
     {
-      CaptionsGridWindow w = (CaptionsGridWindow)AddWindow(CaptionsGridWindowFactory, true);
+      CaptionsGridWindow w = (CaptionsGridWindow)AddWindow(CaptionsGridWindowFactory, newInstance: true);
       w.View.Title = "Revoicing";
       w.CaptionsGridView.CaptionVisible = false;
       w.CaptionsGridView.AudioVisible = true;
       w.View.Width = CaptionsGridDefaults.DefaultWidth_Revoicing;
     }
 
+    #if PART_REVOICING
+
+    private void btnAddRevoicing_Click(object sender, RoutedEventArgs e)
+    {
+      AddRevoicing();
+    }
+
     #endif
+
+    public void AddText()
+    {
+      AddWindow(TextEditorWindowFactory, newInstance: true);
+    }
 
     #if PART_TEXT
 
     private void btnAddText_Click(object sender, RoutedEventArgs e)
     {
-      AddWindow(TextEditorWindowFactory, true);
+      AddText();
     }
 
     #endif
+
+    public void AddImage()
+    {
+      ImageWindow w = (ImageWindow)AddWindow(ImageWindowFactory, newInstance: true);
+      w.ImageView.Source = new Uri("http://gallery.clipflair.net/image/clipflair-logo.jpg", UriKind.Absolute);
+    }
 
     #if PART_IMAGE
 
     private void btnAddImage_Click(object sender, RoutedEventArgs e)
     {
-      ImageWindow w = (ImageWindow)AddWindow(ImageWindowFactory, true);
-      w.ImageView.Source = new Uri("http://clipflair.net/wp-content/themes/clipflair-theme/images/clipflair-logo.jpg", UriKind.Absolute);
+      AddImage();
     }
 
     #endif
+
+    public void AddMap()
+    {
+      AddWindow(MapWindowFactory, newInstance: true);
+    }
 
     #if PART_MAP
 
     private void btnAddMap_Click(object sender, RoutedEventArgs e)
     {
-      AddWindow(MapWindowFactory, true);
+      AddMap();
     }
 
     #endif
+
+    public void AddGallery()
+    {
+      GalleryWindow w = (GalleryWindow)AddWindow(GalleryWindowFactory, newInstance: true);
+      w.GalleryView.Source = new Uri("http://gallery.clipflair.net/collection/activities.cxml");
+    }
 
     #if PART_GALLERY
 
     private void btnAddGallery_Click(object sender, RoutedEventArgs e)
     {
-      AddWindow(GalleryWindowFactory, true);
+      AddGallery();
     }
 
     #endif
+
+    public void AddNestedActivity()
+    {
+      AddWindow(ActivityWindowFactory, newInstance: true);
+    }
 
     #if PART_NESTED_ACTIVITY
 
     private void btnAddNestedActivity_Click(object sender, RoutedEventArgs e)
     {
-      AddWindow(ActivityWindowFactory, true);
+      AddNestedActivity();
     }
 
     #endif
