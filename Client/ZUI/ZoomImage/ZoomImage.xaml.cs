@@ -1,5 +1,5 @@
 ﻿//Filename: ZoomImage.xaml.cs
-//Version: 20130430
+//Version: 20130507
 //Author: George Birbilis (http://zoomicon.com)
 //Based on http://samples.msdn.microsoft.com/Silverlight/SampleBrowser DeepZoom samples
 
@@ -286,18 +286,32 @@ namespace ZoomImage
   
     private void control_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
     {
+      #if SILVERLIGHT
+      if (e.ClickCount == 2)
+      {
+        control_MouseLeftDoubleClick(sender, e);
+        return;
+      }
+      #endif
+
       if ((Keyboard.Modifiers & ModifierKeys.Alt) != 0)
-      {
-        e.Handled = true;
-        Zoom(ZoomStep, e.GetPosition((UIElement)sender));
-      }
-      else
-      {
-        if (!DeepZoomMode) return; 
-        lastMouseLogicalPos = e.GetPosition(imgDeepZoom);
-        lastMouseViewPort = imgDeepZoom.ViewportOrigin;
-        duringDrag = true;
-      }
+        {
+          e.Handled = true;
+          Zoom(ZoomStep, e.GetPosition((UIElement)sender));
+        }
+        else
+        {
+          if (!DeepZoomMode) return;
+          lastMouseLogicalPos = e.GetPosition(imgDeepZoom);
+          lastMouseViewPort = imgDeepZoom.ViewportOrigin;
+          duringDrag = true;
+        }
+    }
+
+    private void control_MouseLeftDoubleClick(object sender, MouseButtonEventArgs e)
+    {
+      e.Handled = true;
+      Zoom(ZoomStep, e.GetPosition((UIElement)sender));
     }
 
     private void control_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)

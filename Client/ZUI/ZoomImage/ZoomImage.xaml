@@ -1,6 +1,6 @@
 ﻿<!--
 Filename: ZoomImage.xaml
-Version: 20130430
+Version: 20130507
 Author: George Birbilis (http://zoomicon.com)  
 -->
 
@@ -44,10 +44,13 @@ Author: George Birbilis (http://zoomicon.com)
 
       <zoom:ZoomAndPanControl
         Name="imgPlainZoom"
+        MouseLeftButtonUp="control_MouseLeftButtonUp"
         MouseRightButtonDown="control_MouseRightButtonDown"
         IsDefaultMouseHandling="True"
         > <!-- handling MouseLeftButtonDown MouseWheel in code -->
-        <Image Name="imgPlain" ImageOpened="control_ImageOpenSucceeded" />
+        <Image
+          Name="imgPlain"
+          ImageOpened="control_ImageOpenSucceeded" />
       </zoom:ZoomAndPanControl>
 
     </ScrollViewer>
