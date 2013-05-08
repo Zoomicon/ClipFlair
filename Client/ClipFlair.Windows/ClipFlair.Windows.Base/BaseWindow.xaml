@@ -32,7 +32,9 @@ Version: 20130508
     MoveEnabled="{Binding Moveable, Mode=TwoWay}"
     ResizeEnabled="{Binding Resizable, Mode=TwoWay}"        
     ScaleEnabled="{Binding Zoomable, Mode=TwoWay}"
-    >
+                      
+    ShowScreenshotButton="False"
+    > <!-- hiding screenshot button due to Silverlight security issue: not rendering cross-domain content to WriteableBitmap -->
 
   <float:FloatingWindow.Resources>
     <ResourceDictionary>
