@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: CaptionsGrid.xaml.cs
-//Version: 20130419
+//Version: 20130508
 
 using ClipFlair.AudioRecorder;
 using ClipFlair.CaptionsLib.Utils;
@@ -614,9 +614,11 @@ namespace ClipFlair.CaptionsGrid
     {
       try
       {
-        OpenFileDialog dlg = new OpenFileDialog();
-        dlg.Filter = "Subtitle files (*.srt, *.tts)|*.srt;*.tts|SRT files (*.srt)|*.srt|TTS files (*.tts)|*.tts";
-        dlg.FilterIndex = 1; //note: this index is 1-based, not 0-based
+        OpenFileDialog dlg = new OpenFileDialog()
+        {
+          Filter = "Subtitle files (*.srt, *.tts)|*.srt;*.tts|SRT files (*.srt)|*.srt|TTS files (*.tts)|*.tts",
+          FilterIndex = 1 //note: this index is 1-based, not 0-based
+        };
         
         if (dlg.ShowDialog() == true) //TODO: find the parent window
          using (Stream stream = dlg.File.OpenRead()) //closes stream when finished
@@ -636,11 +638,13 @@ namespace ClipFlair.CaptionsGrid
 
       try
       {
-        SaveFileDialog dlg = new SaveFileDialog();
-        dlg.Filter = "Subtitle files (SRT, TTS, FAB, ENC)|*.srt;*.tts;*.fab;*.enc|SRT files|*.srt|FAB files|*.fab|Adobe Encore files|*.enc|TTS files|*.tts";
-        //dlg.FilterIndex = 1; //note: this index is 1-based, not 0-based //not needed if we set DefaultExt
-        //dlg.DefaultFileName = "Captions"; //Silverlight will prompt "Do you want to save Captions?" if we set this, but the prompt can go under the main window, so avoid it
-        dlg.DefaultExt = ".srt"; //this doesn't seem to be used if you set FilterIndex
+        SaveFileDialog dlg = new SaveFileDialog()
+        {
+          Filter = "Subtitle files (SRT, TTS, FAB, ENC)|*.srt;*.tts;*.fab;*.enc|SRT files|*.srt|FAB files|*.fab|Adobe Encore files|*.enc|TTS files|*.tts",
+          //FilterIndex = 1, //note: this index is 1-based, not 0-based //not needed if we set DefaultExt
+          //DefaultFileName = "Captions", //Silverlight will prompt "Do you want to save Captions?" if we set this, but the prompt can go under the main window, so avoid it
+          DefaultExt = ".srt" //this doesn't seem to be used if you set FilterIndex
+        };
 
         if (dlg.ShowDialog() == true) //TODO: find the parent window
           using (Stream stream = dlg.OpenFile()) //closes stream when finished
@@ -692,7 +696,9 @@ namespace ClipFlair.CaptionsGrid
 
     private void btnSaveMergedAudio_Click(object sender, RoutedEventArgs e)
     {
-      SaveFileDialog saveFileDialog = new SaveFileDialog() { Filter = Strings.filter_wav };
+      SaveFileDialog saveFileDialog = new SaveFileDialog() {
+        Filter = Strings.filter_wav
+      };
 
       if (saveFileDialog.ShowDialog() == true)
         using (Stream stream = saveFileDialog.OpenFile())

@@ -1,6 +1,6 @@
 ﻿<!--
   Filename: generic.xaml 
-  Version: 20130203
+  Version: 20130508
 -->
 
 <ResourceDictionary
@@ -25,6 +25,57 @@
     <GradientStop Color="White" Offset="0"/>
     <GradientStop Color="#FFe7ebed" Offset="1"/>
   </LinearGradientBrush>
+
+  <Style x:Key="ScreenshotButtonStyle" TargetType="Button">
+    <Setter Property="Cursor" Value="Hand"/>
+    <Setter Property="Foreground" Value="{StaticResource WindowButtonForeground}"/>
+    <Setter Property="BorderBrush" Value="{StaticResource WindowButtonBorderBrush}"/>
+    <Setter Property="BorderThickness" Value="1,0,1,1"/>
+    <Setter Property="Width" Value="25"/>
+    <Setter Property="Height" Value="15"/>
+    <Setter Property="IsTabStop" Value="False"/>
+    <Setter Property="VerticalAlignment" Value="Top"/>
+    <Setter Property="VerticalContentAlignment" Value="Top"/>
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="Button">
+          <Grid x:Name="Root" Background="Transparent" Width="{TemplateBinding Width}" Height="{TemplateBinding Height}" >
+            <VisualStateManager.VisualStateGroups>
+              <VisualStateGroup x:Name="CommonStates">
+                <VisualState x:Name="Normal" />
+                <VisualState x:Name="MouseOver">
+                  <Storyboard>
+                    <ColorAnimation Duration="0" To="#FFa9afa9" Storyboard.TargetProperty="(Border.Background).(GradientBrush.GradientStops)[0].(GradientStop.Color)" Storyboard.TargetName="ButtonBorder" />
+                    <ColorAnimation Duration="0" To="#FFa64ca6" Storyboard.TargetProperty="(Border.Background).(GradientBrush.GradientStops)[1].(GradientStop.Color)" Storyboard.TargetName="ButtonBorder" />
+                  </Storyboard>
+                </VisualState>
+                <VisualState x:Name="Pressed">
+                  <Storyboard>
+                    <ColorAnimation Duration="0" To="#FFaa80aa" Storyboard.TargetProperty="(Border.Background).(GradientBrush.GradientStops)[0].(GradientStop.Color)" Storyboard.TargetName="ButtonBorder" />
+                    <ColorAnimation Duration="0" To="#FF5a005a" Storyboard.TargetProperty="(Border.Background).(GradientBrush.GradientStops)[1].(GradientStop.Color)" Storyboard.TargetName="ButtonBorder" />
+                  </Storyboard>
+                </VisualState>
+                <VisualState x:Name="Disabled">
+                  <Storyboard>
+                    <DoubleAnimation Duration="0" Storyboard.TargetName="Root" Storyboard.TargetProperty="Opacity" To="0.5"/>
+                  </Storyboard>
+                </VisualState>
+              </VisualStateGroup>
+            </VisualStateManager.VisualStateGroups>
+            <Border x:Name="ButtonBorder" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" UseLayoutRounding="True">
+              <Border.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                  <GradientStop Offset="0"/>
+                  <GradientStop Offset="1"/>
+                </LinearGradientBrush>
+              </Border.Background>
+              <Image Source="/SilverFlow.Controls;component/Images/Screenshot.png" x:Name="BaseImage" Margin="1,1,1,1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Stretch="Uniform" />
+            </Border>
+          </Grid>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
 
   <Style x:Key="HelpButtonStyle" TargetType="Button">
     <Setter Property="Cursor" Value="Hand"/>
@@ -564,24 +615,31 @@
                         <ColumnDefinition Width="Auto"/>
                         <ColumnDefinition Width="Auto"/>
                         <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
                         <ColumnDefinition Width="6"/>
                       </Grid.ColumnDefinitions>
 
                       <ContentControl x:Name="TitleContent" Content="{TemplateBinding Title}" Style="{StaticResource FloatingWindowTitleStyle}" />
 
-                      <Button x:Name="HelpButton" Style="{StaticResource HelpButtonStyle}" Grid.Column="1">
+                      <Button x:Name="ScreenshotButton" Style="{StaticResource ScreenshotButtonStyle}" Grid.Column="1">
+                        <ToolTipService.ToolTip>
+                          <ToolTip Style="{StaticResource WindowButtonToolTipStyle}" Content="Screenshot" />
+                        </ToolTipService.ToolTip>
+                      </Button>
+
+                      <Button x:Name="HelpButton" Style="{StaticResource HelpButtonStyle}" Grid.Column="2">
                         <ToolTipService.ToolTip>
                           <ToolTip Style="{StaticResource WindowButtonToolTipStyle}" Content="Help" />
                         </ToolTipService.ToolTip>
                       </Button>
 
-                      <Button x:Name="OptionsButton" Style="{StaticResource OptionsButtonStyle}" Grid.Column="2">
+                      <Button x:Name="OptionsButton" Style="{StaticResource OptionsButtonStyle}" Grid.Column="3">
                         <ToolTipService.ToolTip>
                           <ToolTip Style="{StaticResource WindowButtonToolTipStyle}" Content="Options" />
                         </ToolTipService.ToolTip>
                       </Button>
 
-                      <StackPanel x:Name="MenuPanel" Orientation="Horizontal"  Grid.Column="3" VerticalAlignment="Top">
+                      <StackPanel x:Name="MenuPanel" Orientation="Horizontal"  Grid.Column="4" VerticalAlignment="Top">
                         <Button x:Name="MinimizeButton" Style="{StaticResource MinimizeButtonStyle}">
                           <ToolTipService.ToolTip>
                             <ToolTip Style="{StaticResource WindowButtonToolTipStyle}" Content="Minimize" />
@@ -599,7 +657,7 @@
                         </Button>
                       </StackPanel>
 
-                      <Button x:Name="CloseButton" Style="{StaticResource CloseButtonStyle}" Grid.Column="4">
+                      <Button x:Name="CloseButton" Style="{StaticResource CloseButtonStyle}" Grid.Column="5">
                         <ToolTipService.ToolTip>
                           <ToolTip Style="{StaticResource WindowButtonToolTipStyle}" Content="Close" />
                         </ToolTipService.ToolTip>

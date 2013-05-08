@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: ActivityContainer.xaml.cs
-//Version: 20130507
+//Version: 20130508
 
 //TODO: add ContentPartsCloseable property
 //TODO: add ContentPartsZoomable property
@@ -125,7 +125,7 @@ namespace ClipFlair.Windows
       View.ViewPosition = new Point(zuiContainer.ZoomHost.ContentOffsetX, zuiContainer.ZoomHost.ContentOffsetY);
       View.ViewWidth = zuiContainer.ZoomHost.ContentViewportWidth;
       View.ViewHeight = zuiContainer.ZoomHost.ContentViewportHeight;
-      View.ContentPartsConfigurable = zuiContainer.WindowsConfigurable;
+      View.ContentPartsConfigurable = zuiContainer.ShowOptionsButton; //TODO: add similar choice for Screenshot and Help buttons
     }
 
     public IActivity View

@@ -1,14 +1,20 @@
-﻿//Version: 20120710
+﻿//Filename: BitmapHelper.cs
+//Version: 20130508
 
 using System;
+using System.Globalization;
+using System.IO;
 using System.Windows;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using SilverFlow.Controls.Extensions;
 using System.Windows.Controls;
 using System.Windows.Data;
-using System.Globalization;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+
+using SilverFlow.Controls.Extensions;
+
 using WPFCompatibility;
+
+using FluxJpeg.Core;
 
 namespace SilverFlow.Controls.Helpers
 {
@@ -53,7 +59,7 @@ namespace SilverFlow.Controls.Helpers
             ScaleTransform transform = null;
 
             // If the element is an image - do not scale it
-            if (!(element is Image))
+            if (!(element is System.Windows.Controls.Image))
             {
 
 #endif
@@ -103,5 +109,46 @@ namespace SilverFlow.Controls.Helpers
 
             return bitmap;
         }
+
+        public void SaveToJPEG(WriteableBitmap bitmap, Stream stream)
+        {
+          int width = bitmap.PixelWidth;
+          int height = bitmap.PixelHeight;
+          int bands = 3;
+          byte[][,] raster = new byte[bands][,];
+
+          //Convert the Image to pass into FJCore
+          //Code From http://stackoverflow.com/questions/1139200/using-fjcore-to-encode-silverlight-writeablebitmap
+          for (int i = 0; i < bands; i++)
+            raster[i] = new byte[width, height];
+
+          for (int row = 0; row < height; row++)
+            for (int column = 0; column < width; column++)
+            {
+              int pixel = bitmap.Pixels[width * row + column];
+              raster[0][column, row] = (byte)(pixel >> 16);
+              raster[1][column, row] = (byte)(pixel >> 8);
+              raster[2][column, row] = (byte)pixel;
+            }
+
+          ColorModel model = new ColorModel { colorspace = ColorSpace.RGB };
+          FluxJpeg.Core.Image img = new FluxJpeg.Core.Image(model, raster);
+
+          //Encode the Image as a JPEG
+          //MemoryStream stream = new MemoryStream();
+          FluxJpeg.Core.Encoder.JpegEncoder encoder = new FluxJpeg.Core.Encoder.JpegEncoder(img, 100, stream);
+          encoder.Encode();
+
+          /*
+          //Back to the start
+          stream.Seek(0, SeekOrigin.Begin);
+
+          //Get the Bytes and write them to the stream
+          byte[] binaryData = new Byte[stream.Length];
+          long bytesRead = stream.Read(binaryData, 0, (int)stream.Length);
+          fs.Write(binaryData, 0, binaryData.Length);
+          */
+        }
+        
     }
 }

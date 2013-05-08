@@ -1,7 +1,8 @@
 //Filename: FloatingWindow.cs
-//Version: 20130406
+//Version: 20130508
 
 using System;
+using System.IO;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
@@ -11,6 +12,8 @@ using System.Windows.Controls.Primitives;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
+using System.Windows.Media.Imaging;
+
 using SilverFlow.Controls.Controllers;
 using SilverFlow.Controls.Enums;
 using SilverFlow.Controls.Extensions;
@@ -26,6 +29,7 @@ namespace SilverFlow.Controls
     /// </summary>
     [TemplatePart(Name = PART_Chrome, Type = typeof(FrameworkElement))]
     [TemplatePart(Name = PART_TitleContent, Type = typeof(ContentControl))]
+    [TemplatePart(Name = PART_ScreenshotButton, Type = typeof(ButtonBase))]
     [TemplatePart(Name = PART_HelpButton, Type = typeof(ButtonBase))]
     [TemplatePart(Name = PART_OptionsButton, Type = typeof(ButtonBase))]
     [TemplatePart(Name = PART_CloseButton, Type = typeof(ButtonBase))]
@@ -39,6 +43,7 @@ namespace SilverFlow.Controls
     [TemplateVisualState(Name = VSMSTATE_StateRestored, GroupName = VSMGROUP_Window)]
     [TemplateVisualState(Name = VSMSTATE_StateNormal, GroupName = VSMGROUP_Button)]
     [StyleTypedProperty(Property = PROPERTY_TitleStyle, StyleTargetType = typeof(ContentControl))]
+    [StyleTypedProperty(Property = PROPERTY_ScreenshotButtonStyle, StyleTargetType = typeof(Button))]
     [StyleTypedProperty(Property = PROPERTY_HelpButtonStyle, StyleTargetType = typeof(Button))]
     [StyleTypedProperty(Property = PROPERTY_OptionsButtonStyle, StyleTargetType = typeof(Button))]
     [StyleTypedProperty(Property = PROPERTY_CloseButtonStyle, StyleTargetType = typeof(Button))]
@@ -52,6 +57,7 @@ namespace SilverFlow.Controls
         // Template parts
         private const string PART_Chrome = "Chrome";
         private const string PART_TitleContent = "TitleContent";
+        private const string PART_ScreenshotButton = "ScreenshotButton";
         private const string PART_HelpButton = "HelpButton";
         private const string PART_OptionsButton = "OptionsButton";
         private const string PART_CloseButton = "CloseButton";
@@ -76,6 +82,7 @@ namespace SilverFlow.Controls
 
         // Style typed properties
         private const string PROPERTY_TitleStyle = "TitleStyle";
+        private const string PROPERTY_ScreenshotButtonStyle = "ScreenshotButtonStyle";
         private const string PROPERTY_HelpButtonStyle = "HelpButtonStyle";
         private const string PROPERTY_OptionsButtonStyle = "OptionsButtonStyle";
         private const string PROPERTY_CloseButtonStyle = "CloseButtonStyle";
@@ -90,6 +97,46 @@ namespace SilverFlow.Controls
         private const double MaximizingDurationInMilliseconds = 20;
         private const double MinimizingDurationInMilliseconds = 200;
         private const double RestoringDurationInMilliseconds = 20;
+
+        #endregion
+
+        #region public bool ShowScreenshotButton
+
+        /// <summary>
+        /// Gets or sets a value indicating whether to show Screenshot button.
+        /// </summary>
+        /// <value><c>true</c> if to show Screenshot button; otherwise, <c>false</c>.</value>
+        public bool ShowScreenshotButton
+        {
+          get { return (bool)GetValue(ShowScreenshotButtonProperty); }
+          set { SetValue(ShowScreenshotButtonProperty, value); }
+        }
+
+        /// <summary>
+        /// Identifies the <see cref="FloatingWindow.ShowScreenshotButton" /> dependency property.
+        /// </summary>
+        /// <value>
+        /// The identifier for the <see cref="FloatingWindow.ShowScreenshotButton" /> dependency property.
+        /// </value>
+        public static readonly DependencyProperty ShowScreenshotButtonProperty =
+            DependencyProperty.Register(
+            "ShowScreenshotButton",
+            typeof(bool),
+            typeof(FloatingWindow),
+            new PropertyMetadata(true, OnShowScreenshotButtonPropertyChanged));
+
+        /// <summary>
+        /// ShowScreenshotButtonProperty PropertyChangedCallback call back static function.
+        /// </summary>
+        /// <param name="d">FloatingWindow object whose ShowScreenshotButton property is changed.</param>
+        /// <param name="e">DependencyPropertyChangedEventArgs which contains the old and new values.</param>
+        private static void OnShowScreenshotButtonPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+          FloatingWindow window = (FloatingWindow)d;
+
+          if (window.screenshotButton != null)
+            window.screenshotButton.SetVisible((bool)e.NewValue);
+        }
 
         #endregion
 
@@ -761,6 +808,47 @@ namespace SilverFlow.Controls
 
         #endregion
 
+        #region public Style ScreenshotButtonStyle
+
+        /// <summary>
+        /// Gets or sets the style of the Screenshot button.
+        /// </summary>
+        public Style ScreenshotButtonStyle
+        {
+          get { return GetValue(ScreenshotButtonStyleProperty) as Style; }
+          set { SetValue(ScreenshotButtonStyleProperty, value); }
+        }
+
+        /// <summary>
+        /// Identifies the <see cref="FloatingWindow.ScreenshotButtonStyleProperty" /> dependency property.
+        /// </summary>
+        public static readonly DependencyProperty ScreenshotButtonStyleProperty =
+            DependencyProperty.Register(
+                "ScreenshotButtonStyle",
+                typeof(Style),
+                typeof(FloatingWindow),
+                new PropertyMetadata(OnScreenshotButtonStylePropertyChanged));
+
+        /// <summary>
+        /// ScreenshotButtonStyle PropertyChangedCallback call back static function.
+        /// </summary>
+        /// <param name="d">FloatingWindow object whose ScreenshotButtonStyle property is changed.</param>
+        /// <param name="e">The <see cref="System.Windows.DependencyPropertyChangedEventArgs"/> instance containing the event data.</param>
+        private static void OnScreenshotButtonStylePropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+          var window = (FloatingWindow)d;
+          if (window != null)
+          {
+            Style style = e.NewValue as Style;
+            window.ScreenshotButtonStyle = style;
+
+            if (window.screenshotButton != null)
+              window.screenshotButton.Style = style;
+          }
+        }
+
+        #endregion
+
         #region public Style HelpButtonStyle
 
         /// <summary>
@@ -1046,6 +1134,7 @@ namespace SilverFlow.Controls
         private ContentControl titleContent;
         private Border contentBorder;
 
+        private ButtonBase screenshotButton;
         private ButtonBase helpButton;
         private ButtonBase optionsButton;
         private ButtonBase closeButton;
@@ -1107,6 +1196,11 @@ namespace SilverFlow.Controls
         /// Occurs when the <see cref="FloatingWindow" /> is deactivated.
         /// </summary>
         public event EventHandler Deactivated;
+
+        /// <summary>
+        /// Occurs when screenshot is requested.
+        /// </summary>
+        public event EventHandler ScreenshotRequested;
 
         /// <summary>
         /// Occurs when help is requested.
@@ -1552,6 +1646,14 @@ namespace SilverFlow.Controls
         }
 
         /// <summary>
+        /// Performs Screeshot action.
+        /// </summary>
+        public virtual void Screenshot()
+        {
+          OnScreenshot(EventArgs.Empty);
+        }
+
+        /// <summary>
         /// Performs Help action.
         /// </summary>
         public virtual void Help()
@@ -1567,6 +1669,16 @@ namespace SilverFlow.Controls
           OnOptions(EventArgs.Empty);
         }
 
+        /// <summary>
+        /// Executed when the Screenshot button is clicked.
+        /// </summary>
+        /// <param name="sender">Sender object.</param>
+        /// <param name="e">Routed event args.</param>
+        private void ScreenshotButton_Click(object sender, RoutedEventArgs e)
+        {
+          Screenshot();
+        }
+      
         /// <summary>
         /// Executed when the Help button is clicked.
         /// </summary>
@@ -1628,6 +1740,7 @@ namespace SilverFlow.Controls
             chrome = GetTemplateChild(PART_Chrome) as FrameworkElement;
             titleContent = GetTemplateChild(PART_TitleContent) as ContentControl;
             contentPresenter = GetTemplateChild(PART_ContentPresenter) as FrameworkElement;
+            screenshotButton = GetTemplateChild(PART_ScreenshotButton) as ButtonBase;
             helpButton = GetTemplateChild(PART_HelpButton) as ButtonBase;
             optionsButton = GetTemplateChild(PART_OptionsButton) as ButtonBase;
             closeButton = GetTemplateChild(PART_CloseButton) as ButtonBase;
@@ -1648,6 +1761,9 @@ namespace SilverFlow.Controls
             GetStoryboards();
             SetInitialRootPosition();
             InitializeContentRootTransformGroup();
+
+            if (screenshotButton != null)
+              screenshotButton.SetVisible(ShowScreenshotButton);
 
             if (helpButton != null)
               helpButton.SetVisible(ShowHelpButton);
@@ -1688,11 +1804,15 @@ namespace SilverFlow.Controls
             if (closeButton != null && this.CloseButtonStyle != null)
                 closeButton.Style = this.CloseButtonStyle;
 
-            if (optionsButton != null && this.OptionsButtonStyle != null)
-              optionsButton.Style = this.OptionsButtonStyle;
+            if (screenshotButton != null && this.ScreenshotButtonStyle != null)
+              screenshotButton.Style = this.ScreenshotButtonStyle;
 
             if (helpButton != null && this.HelpButtonStyle != null)
               helpButton.Style = this.HelpButtonStyle;
+
+            if (optionsButton != null && this.OptionsButtonStyle != null)
+              optionsButton.Style = this.OptionsButtonStyle;
+
         }
 
         /// <summary>
@@ -1788,9 +1908,7 @@ namespace SilverFlow.Controls
         {
             EventHandler handler = Activated;
             if (handler != null)
-            {
                 handler(this, e);
-            }
         }
 
         /// <summary>
@@ -1801,9 +1919,28 @@ namespace SilverFlow.Controls
         {
             EventHandler handler = Deactivated;
             if (handler != null)
-            {
                 handler(this, e);
-            }
+        }
+
+        /// <summary>
+        /// Raises the <see cref="FloatingWindow.ScreenshotRequested" /> event.
+        /// </summary>
+        /// <param name="e">The event data.</param>
+        protected virtual void OnScreenshot(EventArgs e)
+        {
+          EventHandler handler = ScreenshotRequested;
+          if (handler != null)
+            handler(this, e);
+
+          SaveFileDialog dlg = new SaveFileDialog()
+          {
+            //DefaultFileName = ( (Title == null) || String.IsNullOrWhiteSpace(Title.ToString()) )? "" : Title + ".jpg", //not using this, because Silverlight would ask "Do you want to save..."
+            Filter="JPEG image (*.jpg)|*.jpg"
+          };
+
+          if (dlg.ShowDialog() == true)
+            using (Stream stream = dlg.OpenFile())
+              bitmapHelper.SaveToJPEG((WriteableBitmap)GetImage(), stream);
         }
 
         /// <summary>
@@ -1814,9 +1951,7 @@ namespace SilverFlow.Controls
         {
           EventHandler handler = HelpRequested;
           if (handler != null)
-          {
             handler(this, e);
-          }
         }
 
         /// <summary>
@@ -1827,9 +1962,7 @@ namespace SilverFlow.Controls
         {
           EventHandler handler = OptionsRequested;
           if (handler != null)
-          {
             handler(this, e);
-          }
         }
 
         /// <summary>
@@ -1844,9 +1977,7 @@ namespace SilverFlow.Controls
 
             EventHandler handler = Closed;
             if (handler != null)
-            {
                 handler(this, e);
-            }
 
             Dispose();
         }
@@ -1859,9 +1990,7 @@ namespace SilverFlow.Controls
         {
             EventHandler<CancelEventArgs> handler = Closing;
             if (handler != null)
-            {
                 handler(this, e);
-            }
         }
 
         /// <summary>
@@ -1872,9 +2001,7 @@ namespace SilverFlow.Controls
         {
             EventHandler handler = Maximized;
             if (handler != null)
-            {
                 handler(this, e);
-            }
         }
 
         /// <summary>
@@ -1885,9 +2012,7 @@ namespace SilverFlow.Controls
         {
             EventHandler handler = Minimized;
             if (handler != null)
-            {
                 handler(this, e);
-            }
         }
 
         /// <summary>
@@ -1898,9 +2023,7 @@ namespace SilverFlow.Controls
         {
             EventHandler handler = Restored;
             if (handler != null)
-            {
                 handler(this, e);
-            }
         }
 
         /// <summary>
@@ -2058,6 +2181,9 @@ namespace SilverFlow.Controls
         /// </summary>
         private void SubscribeToTemplatePartEvents()
         {
+            if (screenshotButton != null)
+                screenshotButton.Click += new RoutedEventHandler(ScreenshotButton_Click);
+
             if (helpButton != null)
                 helpButton.Click += new RoutedEventHandler(HelpButton_Click);
 
@@ -2082,6 +2208,9 @@ namespace SilverFlow.Controls
         /// </summary>
         private void UnsubscribeFromTemplatePartEvents()
         {
+            if (screenshotButton != null)
+                screenshotButton.Click -= new RoutedEventHandler(ScreenshotButton_Click);
+          
             if (helpButton != null)
                 helpButton.Click -= new RoutedEventHandler(HelpButton_Click);
 
@@ -2179,7 +2308,7 @@ namespace SilverFlow.Controls
         /// Creates a thumbnail of the window.
         /// </summary>
         /// <returns>Bitmap containing thumbnail image.</returns>
-        private ImageSource GetThumbnailImage()
+        public ImageSource GetThumbnailImage()
         {
             // If an Icon is specified - use it as a thumbnail displayed on the iconbar
             // Otherwise, display the window itself
@@ -2187,6 +2316,11 @@ namespace SilverFlow.Controls
             ImageSource bitmap = bitmapHelper.RenderVisual(icon, FloatingWindowHost.IconWidth, FloatingWindowHost.IconHeight);
 
             return bitmap;
+        }
+
+        public ImageSource GetImage()
+        {
+          return bitmapHelper.RenderVisual(contentRoot, contentRoot.Width, contentRoot.Height);
         }
 
         /// <summary>
@@ -2528,12 +2662,13 @@ namespace SilverFlow.Controls
         /// <returns><c>true</c> if mouse is mouse over buttons.</returns>
         private bool IsMouseOverButtons(Point position, UIElement origin)
         {
-            return (minimizeButton.IsVisible() && minimizeButton.ContainsPoint(position, origin)) ||
-                   (maximizeButton.IsVisible() && maximizeButton.ContainsPoint(position, origin)) ||
-                   (restoreButton.IsVisible() && restoreButton.ContainsPoint(position, origin)) ||
-                   (closeButton.IsVisible() && closeButton.ContainsPoint(position, origin)) ||
-                   (optionsButton.IsVisible() && optionsButton.ContainsPoint(position, origin)) ||
-                   (helpButton.IsVisible() && helpButton.ContainsPoint(position, origin));
+          return (minimizeButton.IsVisible() && minimizeButton.ContainsPoint(position, origin)) ||
+                 (maximizeButton.IsVisible() && maximizeButton.ContainsPoint(position, origin)) ||
+                 (restoreButton.IsVisible() && restoreButton.ContainsPoint(position, origin)) ||
+                 (closeButton.IsVisible() && closeButton.ContainsPoint(position, origin)) ||
+                 (screenshotButton.IsVisible() && screenshotButton.ContainsPoint(position, origin)) ||
+                 (helpButton.IsVisible() && helpButton.ContainsPoint(position, origin)) ||
+                 (optionsButton.IsVisible() && optionsButton.ContainsPoint(position, origin));
         }
 
         /// <summary>

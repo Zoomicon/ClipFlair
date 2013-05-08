@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: SilverTextEditor.xaml.cs
-//Version: 20130419
+//Version: 20130508
 
 //Originated from Microsoft sample (MSPL license)
 
@@ -675,9 +675,11 @@ namespace SilverTextEditor
     {
       try
       {
-        OpenFileDialog ofd = new OpenFileDialog();
-        ofd.Multiselect = false;
-        ofd.Filter = "ClipFlair Saved Text Files (*.text)|*.text|All Files|*.*";
+        OpenFileDialog ofd = new OpenFileDialog()
+        {
+          //Multiselect = false, //this is false by default so no need to set it
+          Filter = "ClipFlair Saved Text Files (*.text)|*.text|All Files|*.*"
+        };
 
         if (ofd.ShowDialog().Value)
           using (Stream stream = ofd.File.OpenRead())
@@ -694,11 +696,13 @@ namespace SilverTextEditor
     {
       try
       {
-        SaveFileDialog sfd = new SaveFileDialog();
-        sfd.Filter = "ClipFlair Saved Text Files|*.text|All Files|*.*";
-        sfd.FilterIndex = 1; //1-based index, not 0-based //do not set this if DefaultExt is used
-        //sfd.DefaultFileName = "Text"; //Silverlight will prompt "Do you want to save Text?" if we set this, but the prompt can go under the main window, so avoid it
-        sfd.DefaultExt = ".text"; //don't set FilterIndex if this is set
+        SaveFileDialog sfd = new SaveFileDialog()
+        {
+          Filter = "ClipFlair Saved Text Files|*.text|All Files|*.*",
+          FilterIndex = 1, //1-based index, not 0-based //do not set this if DefaultExt is used
+          //DefaultFileName = "Text", //Silverlight will prompt "Do you want to save Text?" if we set this, but the prompt can go under the main window, so avoid it
+          DefaultExt = ".text" //don't set FilterIndex if this is set
+        };
 
         if (sfd.ShowDialog().Value)
           using (Stream stream = sfd.OpenFile())

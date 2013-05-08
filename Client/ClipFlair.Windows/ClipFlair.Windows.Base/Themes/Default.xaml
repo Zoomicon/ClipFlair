@@ -1,7 +1,7 @@
 ﻿<!--
 Project: ClipFlair (http://ClipFlair.codeplex.com)
 Filename: Generic.xaml
-Version: 20130315
+Version: 20130508
 -->
 
 <ResourceDictionary
@@ -74,6 +74,43 @@ Version: 20130315
     <Setter Property="FontWeight" Value="Bold"/>
     <Setter Property="Foreground" Value="#E6E5EA"/>
     <Setter Property="FontSize" Value="10"/>
+  </Style>
+
+  <Style x:Key="ClipFlairScreenshotButtonStyle" TargetType="Button">
+    <Setter Property="Cursor" Value="Hand"/>
+    <Setter Property="IsTabStop" Value="False"/>
+    <Setter Property="VerticalAlignment" Value="Center"/>
+    <Setter Property="VerticalContentAlignment" Value="Center"/>
+    <Setter Property="Margin" Value="1,1" />
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="Button">
+          <Grid Margin="{TemplateBinding Margin}">
+            <VisualStateManager.VisualStateGroups>
+              <VisualStateGroup x:Name="CommonStates">
+                <VisualStateGroup.Transitions>
+                  <VisualTransition GeneratedDuration="0:0:0.1">
+                    <VisualTransition.GeneratedEasingFunction>
+                      <CubicEase EasingMode="EaseOut"/>
+                    </VisualTransition.GeneratedEasingFunction>
+                  </VisualTransition>
+                </VisualStateGroup.Transitions>
+                <VisualState x:Name="Normal"/>
+                <VisualState x:Name="MouseOver">
+                  <Storyboard>
+                    <DoubleAnimation To="1" Duration="0" Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="ImageHover" d:IsOptimized="True"/>
+                  </Storyboard>
+                </VisualState>
+                <VisualState x:Name="Pressed"/>
+                <VisualState x:Name="Disabled"/>
+              </VisualStateGroup>
+            </VisualStateManager.VisualStateGroups>
+            <Image x:Name="Image" Source="/ClipFlair.Windows.Base;component/Images/Screenshot.png" Stretch="None" />
+            <Image x:Name="ImageHover" Source="/ClipFlair.Windows.Base;component/Images/Screenshot_hover.png" Stretch="None" Opacity="0" />
+          </Grid>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
   </Style>
 
   <Style x:Key="ClipFlairHelpButtonStyle" TargetType="Button">
