@@ -1,7 +1,7 @@
 ﻿<!--
 Project: ClipFlair (http://ClipFlair.codeplex.com)
 Filename: ActivityContainer.xaml
-Version: 20130419
+Version: 20130508
 -->
 
 <UserControl x:Class="ClipFlair.Windows.ActivityContainer" 
@@ -50,7 +50,7 @@ Version: 20130419
       Grid.Row="0" Grid.Column="0" 
       SnapinEnabled="True" 
       
-      WindowsConfigurable="{Binding ContentPartsConfigurable, Mode=TwoWay}"
+      ShowOptionsButton="{Binding ContentPartsConfigurable, Mode=TwoWay}"
       IsBottomBarVisible ="{Binding ToolbarVisible, Mode=TwoWay}"
       ContentScalable="{Binding ContentZoomable, Mode=TwoWay}"
       ContentScale="{Binding ContentZoom, Mode=TwoWay}"

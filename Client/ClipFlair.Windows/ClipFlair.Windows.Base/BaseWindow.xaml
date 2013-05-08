@@ -1,7 +1,7 @@
 ﻿<!--
 Project: ClipFlair (http://ClipFlair.codeplex.com)
 Filename: BaseWindow.xaml
-Version: 20130327
+Version: 20130508
 -->
 
 <float:FloatingWindow x:Class="ClipFlair.Windows.BaseWindow"
@@ -52,6 +52,7 @@ Version: 20130327
       <Setter Property="BorderThickness" Value="3" />
       <Setter Property="TitleStyle" Value="{StaticResource ClipFlairTitleStyle}" />
       <Setter Property="TitleBackground" Value="{StaticResource ClipFlairTitleBackground}" />
+      <Setter Property="ScreenshotButtonStyle"  Value="{StaticResource ClipFlairScreenshotButtonStyle}" />
       <Setter Property="HelpButtonStyle"  Value="{StaticResource ClipFlairHelpButtonStyle}" />
       <Setter Property="OptionsButtonStyle" Value="{StaticResource ClipFlairOptionsButtonStyle}" />
       <Setter Property="CloseButtonStyle" Value="{StaticResource ClipFlairCloseButtonStyle}" />

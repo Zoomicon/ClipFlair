@@ -66,6 +66,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="FJ.Core">
+      <HintPath>..\..\..\Lib\FJ.Core.dll</HintPath>
+    </Reference>
     <Reference Include="mscorlib" />
     <Reference Include="system" />
     <Reference Include="System.Core" />
@@ -181,6 +184,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\Options.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Screenshot.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Silverlight\$(SilverlightVersion)\Microsoft.Silverlight.CSharp.targets" />
   <ProjectExtensions>

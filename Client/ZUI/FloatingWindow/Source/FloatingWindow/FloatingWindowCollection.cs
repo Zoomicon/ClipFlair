@@ -1,5 +1,5 @@
 ﻿//Filename: FloatingWindowCollection.cs
-//Version: 20130204
+//Version: 20130508
 
 using System.Windows;
 using System.Collections.ObjectModel;
@@ -9,6 +9,24 @@ namespace SilverFlow.Controls
 
   public class FloatingWindowCollection : ObservableCollection<FloatingWindow>
   {
+
+    public bool ShowScreenshotButton
+    {
+      set
+      {
+        foreach (FloatingWindow w in this)
+          w.ShowScreenshotButton = value;
+      }
+    }
+    
+    public bool ShowHelpButton
+    {
+      set
+      {
+        foreach (FloatingWindow w in this)
+          w.ShowHelpButton = value;
+      }
+    }
 
     public bool ShowOptionsButton
     {

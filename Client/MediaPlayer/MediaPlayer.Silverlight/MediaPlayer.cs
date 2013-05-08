@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: MediaPlayer.cs
-//Version: 20130501
+//Version: 20130508
 
 using Utils.Extensions;
 
@@ -678,9 +678,11 @@ namespace ClipFlair.MediaPlayer
     {
       try
       {
-        OpenFileDialog dlg = new OpenFileDialog();
-        dlg.Filter = "Media files (*.wmv, *.mp4, *.wma, *.mp3)|*.wmv;*.mp4;*.wma;*.mp3";
-        dlg.FilterIndex = 1; //note: this index is 1-based, not 0-based //OpenFileDialog doesn't seem to have a DefaultExt like SaveFileDialog
+        OpenFileDialog dlg = new OpenFileDialog()
+        {
+          Filter = "Media files (*.wmv, *.mp4, *.wma, *.mp3)|*.wmv;*.mp4;*.wma;*.mp3",
+          FilterIndex = 1 //note: this index is 1-based, not 0-based //OpenFileDialog doesn't seem to have a DefaultExt like SaveFileDialog
+        };
 
         if (dlg.ShowDialog() == true) //TODO: find the parent window
           Play(dlg.File.OpenRead(), dlg.File.Name); //TODO: when playlist is cleared should close the stream (not sure if can listen for playlistitem lifetime events)

@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: AudioRecorderView.cs
-//Version: 20130504
+//Version: 20130508
 
 using AudioLib;
 
@@ -325,7 +325,10 @@ namespace ClipFlair.AudioRecorder
 
     public void LoadFile() //this has to be called by user-initiated event handler
     {
-      OpenFileDialog openFileDialog = new OpenFileDialog() { Filter = MSG_FILE_FILTER };
+      OpenFileDialog openFileDialog = new OpenFileDialog()
+      {
+        Filter = MSG_FILE_FILTER
+      };
 
       if (openFileDialog.ShowDialog() == false)
       {
@@ -371,7 +374,10 @@ namespace ClipFlair.AudioRecorder
         return;
       }
 
-      SaveFileDialog saveFileDialog = new SaveFileDialog() { Filter = MSG_FILE_FILTER };
+      SaveFileDialog saveFileDialog = new SaveFileDialog()
+      {
+        Filter = MSG_FILE_FILTER
+      };
 
       if (saveFileDialog.ShowDialog() == false)
       {

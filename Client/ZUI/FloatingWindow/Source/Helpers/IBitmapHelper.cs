@@ -1,5 +1,10 @@
-﻿using System.Windows;
+﻿//Filename: IBitmapHelper.cs
+//Version: 20130508
+
+using System.IO;
+using System.Windows;
 using System.Windows.Media;
+using System.Windows.Media.Imaging;
 
 namespace SilverFlow.Controls.Helpers
 {
@@ -16,5 +21,7 @@ namespace SilverFlow.Controls.Helpers
         /// <param name="imageHeight">Image height.</param>
         /// <returns>Bitmap image of the element.</returns>
         ImageSource RenderVisual(FrameworkElement element, double imageWidth, double imageHeight);
+        void SaveToJPEG(WriteableBitmap bitmap, Stream stream);
+
     }
 }

@@ -1,5 +1,5 @@
 ﻿//Filename: FloatingWindowHost.cs
-//Version: 20130406
+//Version: 20130508
 
 using System;
 using System.Collections.Generic;
@@ -219,37 +219,115 @@ namespace SilverFlow.Controls
 
         #endregion
 
-        #region public bool WindowsConfigurable
+        #region public bool ShowScreenshotButton
 
         /// <summary>
         /// Gets or sets a value indicating whether window bars show configuration button.
         /// </summary>
         /// <value><c>true</c> if snap in is enabled; otherwise, <c>false</c>.</value>
-        public bool WindowsConfigurable
+        public bool ShowScreenshotButton
         {
-          get { return (bool)GetValue(WindowsConfigurableProperty); }
-          set { SetValue(WindowsConfigurableProperty, value); }
+          get { return (bool)GetValue(ShowScreenshotButtonProperty); }
+          set { SetValue(ShowScreenshotButtonProperty, value); }
         }
 
         /// <summary>
-        /// Identifies the <see cref="FloatingWindowHost.WindowsConfigurable" /> dependency property.
+        /// Identifies the <see cref="FloatingWindowHost.ShowScreenshotButton" /> dependency property.
         /// </summary>
         /// <value>
-        /// The identifier for the <see cref="FloatingWindowHost.WindowsConfigurable" /> dependency property.
+        /// The identifier for the <see cref="FloatingWindowHost.ShowScreenshot" /> dependency property.
         /// </value>
-        public static readonly DependencyProperty WindowsConfigurableProperty =
+        public static readonly DependencyProperty ShowScreenshotButtonProperty =
             DependencyProperty.Register(
-            "WindowsConfigurable",
+            "ShowScreenshotButton",
             typeof(bool),
             typeof(FloatingWindowHost),
-            new PropertyMetadata(true, WindowsConfigurablePropertyChanged));
+            new PropertyMetadata(true, ShowScreenshotButtonPropertyChanged));
 
         /// <summary>
-        /// WindowsConfigurable PropertyChangedCallback call back static function.
+        /// ShowScreenshotButton PropertyChangedCallback call back static function.
         /// </summary>
-        /// <param name="d">FloatingWindowHost object whose WindowsConfigurable property is changed.</param>
+        /// <param name="d">FloatingWindowHost object whose ShowScreenshotButton property is changed.</param>
         /// <param name="e">The <see cref="System.Windows.DependencyPropertyChangedEventArgs"/> instance containing the event data.</param>
-        private static void WindowsConfigurablePropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        private static void ShowScreenshotButtonPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+          FloatingWindowHost host = (FloatingWindowHost)d;
+          if (host != null && host.Windows != null && e.NewValue != null)
+            host.Windows.ShowScreenshotButton = (bool)e.NewValue;
+        }
+
+        #endregion
+
+        #region public bool ShowHelpButton
+
+        /// <summary>
+        /// Gets or sets a value indicating whether window bars show configuration button.
+        /// </summary>
+        /// <value><c>true</c> if snap in is enabled; otherwise, <c>false</c>.</value>
+        public bool ShowHelpButton
+        {
+          get { return (bool)GetValue(ShowHelpButtonProperty); }
+          set { SetValue(ShowHelpButtonProperty, value); }
+        }
+
+        /// <summary>
+        /// Identifies the <see cref="FloatingWindowHost.ShowHelpButton" /> dependency property.
+        /// </summary>
+        /// <value>
+        /// The identifier for the <see cref="FloatingWindowHost.ShowHelp" /> dependency property.
+        /// </value>
+        public static readonly DependencyProperty ShowHelpButtonProperty =
+            DependencyProperty.Register(
+            "ShowHelpButton",
+            typeof(bool),
+            typeof(FloatingWindowHost),
+            new PropertyMetadata(true, ShowHelpButtonPropertyChanged));
+
+        /// <summary>
+        /// ShowHelpButton PropertyChangedCallback call back static function.
+        /// </summary>
+        /// <param name="d">FloatingWindowHost object whose ShowHelpButton property is changed.</param>
+        /// <param name="e">The <see cref="System.Windows.DependencyPropertyChangedEventArgs"/> instance containing the event data.</param>
+        private static void ShowHelpButtonPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+          FloatingWindowHost host = (FloatingWindowHost)d;
+          if (host != null && host.Windows != null && e.NewValue != null)
+            host.Windows.ShowHelpButton = (bool)e.NewValue;
+        }
+
+        #endregion
+
+        #region public bool ShowOptionsButton
+
+        /// <summary>
+        /// Gets or sets a value indicating whether window bars show configuration button.
+        /// </summary>
+        /// <value><c>true</c> if snap in is enabled; otherwise, <c>false</c>.</value>
+        public bool ShowOptionsButton
+        {
+          get { return (bool)GetValue(ShowOptionsButtonProperty); }
+          set { SetValue(ShowOptionsButtonProperty, value); }
+        }
+
+        /// <summary>
+        /// Identifies the <see cref="FloatingWindowHost.ShowOptionsButton" /> dependency property.
+        /// </summary>
+        /// <value>
+        /// The identifier for the <see cref="FloatingWindowHost.ShowOptions" /> dependency property.
+        /// </value>
+        public static readonly DependencyProperty ShowOptionsButtonProperty =
+            DependencyProperty.Register(
+            "ShowOptionsButton",
+            typeof(bool),
+            typeof(FloatingWindowHost),
+            new PropertyMetadata(true, ShowOptionsButtonPropertyChanged));
+
+        /// <summary>
+        /// ShowOptionsButton PropertyChangedCallback call back static function.
+        /// </summary>
+        /// <param name="d">FloatingWindowHost object whose ShowOptionsButton property is changed.</param>
+        /// <param name="e">The <see cref="System.Windows.DependencyPropertyChangedEventArgs"/> instance containing the event data.</param>
+        private static void ShowOptionsButtonPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
           FloatingWindowHost host = (FloatingWindowHost)d;
           if (host != null && host.Windows != null && e.NewValue != null)
