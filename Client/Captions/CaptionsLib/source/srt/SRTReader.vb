@@ -1,5 +1,5 @@
 ﻿'Description: SRTReader class
-'Version: 20121016
+'Version: 20130511
 
 Imports ClipFlair.CaptionsLib.SRT.SRTUtils
 
@@ -15,7 +15,7 @@ Namespace ClipFlair.CaptionsLib.SRT
     Public Overrides Sub ReadCaption(ByVal Caption As CaptionElement, ByVal reader As TextReader)
       Dim line As String = reader.ReadLine()
       Dim c As String = ""
-      While (line IsNot Nothing) AndAlso (line <> "")
+      While (line IsNot Nothing) AndAlso (line <> "") 'TODO: must change this to detect a blank line (treated as separator) before the end of the file or just before a line with the next number
         If (c <> "") Then c += vbCrLf
         c += line
         line = reader.ReadLine()
