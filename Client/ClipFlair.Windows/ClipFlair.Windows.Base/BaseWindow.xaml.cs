@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: BaseWindow.xaml.cs
-//Version: 20130508
+//Version: 20130520
 
 //TODO: unbind control at close
 
@@ -580,7 +580,7 @@ namespace ClipFlair.Windows
         SaveFileDialog dlg = new SaveFileDialog()
         {
           Filter = CLIPFLAIR_SAVE_FILTER,
-          FilterIndex = 2, //note: this index is 1-based, not 0-based //do not set if DefaultExt is supplied //TODO: after Social is configured to allow uploading .clipflair files, change this to 1
+          FilterIndex = 1, //note: this index is 1-based, not 0-based //do not set if DefaultExt is supplied
           //DefaultFileName = View.Title + CLIPFLAIR_EXTENSION, //Silverlight will prompt "Do you want to save X?" (where X is the DefaultFileName value). If we set this, but the prompt can go under the main window, so avoid it
           //DefaultExt = CLIPFLAIR_EXTENSION //this doesn't seem to be used, it uses the selected index of the filter anyway (even if you don't set FilterIndex)
         };
