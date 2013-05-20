@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: App.xaml.cs
-//Version: 20130507
+//Version: 20130520
 
 using ClipFlair.UI.Dialogs;
 using ClipFlair.Windows;
@@ -199,12 +199,19 @@ namespace ClipFlair
       return foundParam;
     }
 
-    public static Uri makeActivityUri(string param) //TODO: reuse this code at load-activity-from-url dialog
+    public static Uri makeActivityUri(string param) //TODO: reuse this code at load-activity-from-url dialog and activity component
     {
-      Uri result = new Uri(new Uri(CLIPFLAIR_GALLERY_ACTIVITY), param);
+      Uri result = new Uri(new Uri(CLIPFLAIR_GALLERY_ACTIVITY), param); //make a full URL if it's a partial one
+
       string s = result.ToString();
-      if (s.StartsWith(CLIPFLAIR_GALLERY_ACTIVITY, StringComparison.OrdinalIgnoreCase) && !s.EndsWith(new String[]{BaseWindow.CLIPFLAIR_EXTENSION, BaseWindow.CLIPFLAIR_ZIP_EXTENSION}, StringComparison.OrdinalIgnoreCase))
-        result = new Uri(s + BaseWindow.CLIPFLAIR_ZIP_EXTENSION); //TODO: change this when activities are renamed at the gallery to use .clipflair instead of .clipflair.zip extension (can use URL rewrites for the old activities)
+      if (s.StartsWith(CLIPFLAIR_GALLERY_ACTIVITY, StringComparison.OrdinalIgnoreCase) &&
+          !s.EndsWith(BaseWindow.CLIPFLAIR_EXTENSION, StringComparison.OrdinalIgnoreCase))
+      
+        if (s.EndsWith(BaseWindow.CLIPFLAIR_ZIP_EXTENSION, StringComparison.OrdinalIgnoreCase)) //all .clipflair.zip files have been renamed to .clipflair in the gallery
+          result = new Uri(s.ReplaceSuffix(BaseWindow.CLIPFLAIR_ZIP_EXTENSION, BaseWindow.CLIPFLAIR_EXTENSION, StringComparison.OrdinalIgnoreCase));
+        else
+          result = new Uri(s + BaseWindow.CLIPFLAIR_EXTENSION);
+
       return result;
     }
 
@@ -212,21 +219,26 @@ namespace ClipFlair
     {
       if (!param.Contains("/"))
         param = param + "/" + param; //all smooth streams are in a subfolder
-      Uri result = new Uri(new Uri(galleryBaseUri), param);
+
+      Uri result = new Uri(new Uri(galleryBaseUri), param); //make a full URL if it's a partial one
+
       string s = result.ToString();
       if (s.StartsWith(galleryBaseUri, StringComparison.OrdinalIgnoreCase) && 
-           !s.EndsWith(SMOOTH_STREAM_EXTENSION_SHORT, StringComparison.OrdinalIgnoreCase) &&
-           !s.EndsWith(SMOOTH_STREAM_EXTENSION, StringComparison.OrdinalIgnoreCase) )
+          !s.EndsWith(SMOOTH_STREAM_EXTENSION_SHORT, StringComparison.OrdinalIgnoreCase) &&
+          !s.EndsWith(SMOOTH_STREAM_EXTENSION, StringComparison.OrdinalIgnoreCase) )
         result = new Uri(s + SMOOTH_STREAM_EXTENSION);
+
       return result;
     }
 
     public static Uri makeGalleryUri(string param) //TODO: reuse this code at Gallery component
     {
-      Uri result = new Uri(new Uri(CLIPFLAIR_GALLERY_COLLECTION), param);
+      Uri result = new Uri(new Uri(CLIPFLAIR_GALLERY_COLLECTION), param); //make a full URL if it's a partial one
+
       string s = result.ToString();
       if (s.StartsWith(CLIPFLAIR_GALLERY_COLLECTION, StringComparison.OrdinalIgnoreCase) && !s.EndsWith(GALLERY_EXTENSION, StringComparison.OrdinalIgnoreCase))
         result = new Uri(s + GALLERY_EXTENSION);
+
       return result;
     }
 
