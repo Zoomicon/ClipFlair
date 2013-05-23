@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: GalleryViewerDefaults.cs
-//Version: 20130406
+//Version: 20130522
 
 using System;
 using System.Windows;
@@ -14,8 +14,8 @@ namespace ClipFlair.Windows.Views
     #region IView defaults - overrides
     
     public const string DefaultTitle = "Gallery";
-    public const double DefaultWidth = 600;
-    public const double DefaultHeight = 400;
+    public const double DefaultWidth = 800;
+    public const double DefaultHeight = 600;
         
     #endregion
 
