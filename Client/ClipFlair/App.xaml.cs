@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: App.xaml.cs
-//Version: 20130520
+//Version: 20130522
 
 using ClipFlair.UI.Dialogs;
 using ClipFlair.Windows;
@@ -139,6 +139,7 @@ namespace ClipFlair
         w.MediaPlayerView.Source = makeClipUri(CLIPFLAIR_GALLERY_VIDEO, queryString[PARAMETER_MEDIA]);
         foundParam = true;
       }
+
       if (queryString.ContainsKey(PARAMETER_VIDEO))
       {
         WaitTillNotBusy(activityWindow); //TODO: doesn't work (should wait for any activity to load first)
@@ -183,6 +184,7 @@ namespace ClipFlair
         w.GalleryView.Source = makeGalleryUri(queryString[PARAMETER_GALLERY]);
         foundParam = true;
       }
+
       if (queryString.ContainsKey(PARAMETER_COLLECTION))
       {
         WaitTillNotBusy(activityWindow); //TODO: doesn't work (should wait for any activity to load first)

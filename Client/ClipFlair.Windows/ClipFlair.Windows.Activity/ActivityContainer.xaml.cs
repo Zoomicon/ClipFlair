@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: ActivityContainer.xaml.cs
-//Version: 20130508
+//Version: 20130522
 
 //TODO: add ContentPartsCloseable property
 //TODO: add ContentPartsZoomable property
@@ -342,10 +342,58 @@ namespace ClipFlair.Windows
     
     #endregion
 
-    public void AddClip()
+    public MediaPlayerWindow AddClip()
     {
       MediaPlayerWindow w = (MediaPlayerWindow)AddWindow(MediaPlayerWindowFactory, newInstance: true);
       w.MediaPlayerView.Source = new Uri("http://video3.smoothhd.com.edgesuite.net/ondemand/Big%20Buck%20Bunny%20Adaptive.ism/Manifest", UriKind.Absolute);
+      return w;
+    }
+
+    public CaptionsGridWindow AddCaptions()
+    {
+      CaptionsGridWindow w = (CaptionsGridWindow)AddWindow(CaptionsGridWindowFactory, newInstance: true);
+      return w;
+    }
+
+    public CaptionsGridWindow AddRevoicing()
+    {
+      CaptionsGridWindow w = (CaptionsGridWindow)AddWindow(CaptionsGridWindowFactory, newInstance: true);
+      w.View.Title = "Revoicing";
+      w.CaptionsGridView.CaptionVisible = false;
+      w.CaptionsGridView.AudioVisible = true;
+      w.View.Width = CaptionsGridDefaults.DefaultWidth_Revoicing;
+      return w;
+    }
+
+    public TextEditorWindow AddText()
+    {
+      TextEditorWindow w = (TextEditorWindow)AddWindow(TextEditorWindowFactory, newInstance: true);
+      return w;
+    }
+
+    public ImageWindow AddImage()
+    {
+      ImageWindow w = (ImageWindow)AddWindow(ImageWindowFactory, newInstance: true);
+      w.ImageView.Source = new Uri("http://gallery.clipflair.net/image/clipflair-logo.jpg", UriKind.Absolute);
+      return w;
+    }
+
+    public MapWindow AddMap()
+    {
+      MapWindow w = (MapWindow)AddWindow(MapWindowFactory, newInstance: true);
+      return w;
+    }
+
+    public GalleryWindow AddGallery()
+    {
+      GalleryWindow w = (GalleryWindow)AddWindow(GalleryWindowFactory, newInstance: true);
+      w.GalleryView.Source = new Uri("http://gallery.clipflair.net/collection/activities.cxml");
+      return w;
+    }
+
+    public void AddNestedActivity()
+    {
+      AddWindow(ActivityWindowFactory, newInstance: true);
     }
 
     #if PART_CLIP
@@ -357,11 +405,6 @@ namespace ClipFlair.Windows
 
     #endif
 
-    public void AddCaptions()
-    {
-      AddWindow(CaptionsGridWindowFactory, newInstance: true);
-    }
-
     #if PART_CAPTIONS
 
     private void btnAddCaptions_Click(object sender, RoutedEventArgs e)
@@ -371,15 +414,6 @@ namespace ClipFlair.Windows
 
     #endif
 
-    public void AddRevoicing()
-    {
-      CaptionsGridWindow w = (CaptionsGridWindow)AddWindow(CaptionsGridWindowFactory, newInstance: true);
-      w.View.Title = "Revoicing";
-      w.CaptionsGridView.CaptionVisible = false;
-      w.CaptionsGridView.AudioVisible = true;
-      w.View.Width = CaptionsGridDefaults.DefaultWidth_Revoicing;
-    }
-
     #if PART_REVOICING
 
     private void btnAddRevoicing_Click(object sender, RoutedEventArgs e)
@@ -388,12 +422,7 @@ namespace ClipFlair.Windows
     }
 
     #endif
-
-    public void AddText()
-    {
-      AddWindow(TextEditorWindowFactory, newInstance: true);
-    }
-
+ 
     #if PART_TEXT
 
     private void btnAddText_Click(object sender, RoutedEventArgs e)
@@ -402,12 +431,6 @@ namespace ClipFlair.Windows
     }
 
     #endif
-
-    public void AddImage()
-    {
-      ImageWindow w = (ImageWindow)AddWindow(ImageWindowFactory, newInstance: true);
-      w.ImageView.Source = new Uri("http://gallery.clipflair.net/image/clipflair-logo.jpg", UriKind.Absolute);
-    }
 
     #if PART_IMAGE
 
@@ -418,11 +441,6 @@ namespace ClipFlair.Windows
 
     #endif
 
-    public void AddMap()
-    {
-      AddWindow(MapWindowFactory, newInstance: true);
-    }
-
     #if PART_MAP
 
     private void btnAddMap_Click(object sender, RoutedEventArgs e)
@@ -432,12 +450,6 @@ namespace ClipFlair.Windows
 
     #endif
 
-    public void AddGallery()
-    {
-      GalleryWindow w = (GalleryWindow)AddWindow(GalleryWindowFactory, newInstance: true);
-      w.GalleryView.Source = new Uri("http://gallery.clipflair.net/collection/activities.cxml");
-    }
-
     #if PART_GALLERY
 
     private void btnAddGallery_Click(object sender, RoutedEventArgs e)
@@ -446,11 +458,6 @@ namespace ClipFlair.Windows
     }
 
     #endif
-
-    public void AddNestedActivity()
-    {
-      AddWindow(ActivityWindowFactory, newInstance: true);
-    }
 
     #if PART_NESTED_ACTIVITY
 
