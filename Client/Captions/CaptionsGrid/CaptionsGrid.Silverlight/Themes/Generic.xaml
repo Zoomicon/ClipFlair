@@ -1,7 +1,7 @@
 ﻿<!-- 
 Project: ClipFlair (http://ClipFlair.codeplex.com)
 Filename: Generic.xaml
-Version: 20130315
+Version: 20130528
 -->
   
 <ResourceDictionary
@@ -91,11 +91,11 @@ Version: 20130315
   <!-- Caption -->
   
   <DataTemplate x:Key="CaptionCellTemplate">
-    <TextBlock Margin="4" Text="{Binding Content}" />
+    <TextBlock Margin="4" Text="{Binding Caption}" />
   </DataTemplate>
 
   <DataTemplate x:Key="CaptionCellEditTemplate">
-    <TextBox AcceptsReturn="True" Text="{Binding Content, Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=true}" />
+    <TextBox AcceptsReturn="True" Text="{Binding Caption, Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=true}" />
   </DataTemplate>
 
   <!-- WPM -->
