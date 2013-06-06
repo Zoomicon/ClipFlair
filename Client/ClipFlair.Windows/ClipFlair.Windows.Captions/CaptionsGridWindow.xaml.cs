@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: CaptionsGridWindow.xaml.cs
-//Version: 20130401
+//Version: 20130606
 
 //TODO: add Source property to CaptionsGrid control and use data-binding to bind it to CaptionsGridView's Source property
 
@@ -18,6 +18,9 @@ namespace ClipFlair.Windows
 
   public partial class CaptionsGridWindow : BaseWindow
   {
+
+    public const string DEFAULT_CAPTIONS = "captions.srt";
+    public const string ALTERNATIVE_CAPTIONS = "captions.tts";
 
     public CaptionsGridWindow()
     {
@@ -42,8 +45,8 @@ namespace ClipFlair.Windows
       base.LoadOptions(zip, zipFolder);
 
       //load captions
-      ZipEntry captionsEntry = zip[zipFolder + "/captions.srt"];
-      if (captionsEntry == null) captionsEntry = zip[zipFolder + "/captions.tts"]; //if captions.srt not found, look for captions.tts
+      ZipEntry captionsEntry = zip[zipFolder + "/" + DEFAULT_CAPTIONS];
+      if (captionsEntry == null) captionsEntry = zip[zipFolder + "/" + ALTERNATIVE_CAPTIONS]; //if one of SRT/TTS not found, look for the other type
       if (captionsEntry != null) 
       {
         gridCaptions.LoadCaptions(captionsEntry.OpenReader(), captionsEntry.FileName);
@@ -67,7 +70,7 @@ namespace ClipFlair.Windows
     {
       base.SaveOptions(zip, zipFolder);
 
-      zip.AddEntry(zipFolder + "/captions.srt", SaveCaptions); //save captions //TODO: maybe not save when no captions are available
+      zip.AddEntry(zipFolder + "/" + DEFAULT_CAPTIONS, SaveCaptions); //save captions //saving even when no captions are available as a placeholder for user to edit manually
 
       foreach (CaptionElement caption in CaptionsGridView.Captions.Children) //save any audio associated to each caption
         SaveAudio(caption, zip, zipFolder);

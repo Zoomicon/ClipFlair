@@ -85,8 +85,11 @@
     <Compile Include="CaptionsGridWindow.xaml.cs">
       <DependentUpon>CaptionsGridWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ICaptionsGrid.cs" />
     <Compile Include="CaptionsGridDefaults.cs" />
+    <Compile Include="ICaptionsGrid.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ICaptionsGridProperties.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

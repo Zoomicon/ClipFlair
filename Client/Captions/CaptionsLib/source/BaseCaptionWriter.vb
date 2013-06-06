@@ -1,6 +1,6 @@
 ﻿'Project: ClipFlair (http://ClipFlair.codeplex.com)
 'Filename: BaseCaptionWriter.vb
-'Version: 20121111
+'Version: 20130606
 
 Imports ClipFlair.CaptionsLib.Models
 
@@ -27,9 +27,10 @@ Namespace ClipFlair.CaptionsLib
     End Sub
 
     Public Overloads Sub WriteCaptions(ByVal captions As CaptionRegion, ByVal writer As TextWriter) Implements ICaptionsWriter.WriteCaptions
+      writer.NewLine = vbCrLf
       WriteHeader(writer)
-      For Each s As CaptionElement In captions.Children
-        WriteCaption(s, writer)
+      For Each c As CaptionElement In captions.Children
+        WriteCaption(c, writer)
       Next
       WriteFooter(writer)
       writer.Flush() 'write out any buffered data

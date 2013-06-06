@@ -1,7 +1,7 @@
 ﻿<!--
 Project: ClipFlair (http://ClipFlair.codeplex.com)
 Filename: CaptionsGridWindow.xaml
-Version: 20130222
+Version: 20130606
 -->
   
 <clipflair:BaseWindow x:Class="ClipFlair.Windows.CaptionsGridWindow"
@@ -40,6 +40,7 @@ Version: 20130222
                          WPMVisible="{Binding WPMVisible, Mode=TwoWay}"
                          AudioVisible="{Binding AudioVisible, Mode=TwoWay}"
                          CommentsVisible="{Binding CommentsVisible, Mode=TwoWay}"
+                         RTL="{Binding RTL, Mode=TwoWay}"
   /> <!-- Source="{Binding Path=Source, Mode=TwoWay}" -->
 
   <!--</clipflair:BaseWindow.FrontContent>-->
@@ -101,8 +102,13 @@ Version: 20130222
     <StackPanel Orientation="Horizontal">
       <CheckBox Name="cbCommentsVisible" IsChecked="{Binding CommentsVisible, Mode=TwoWay}" />
       <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Comments visible" Target="{Binding ElementName=cbCommentsVisible}"/>
-    </StackPanel>    
-    
+    </StackPanel>
+
+    <StackPanel Orientation="Horizontal">
+      <CheckBox Name="cbRTL" IsChecked="{Binding RTL, Mode=TwoWay}" />
+      <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Right to Left (RTL) Text Direction" Target="{Binding ElementName=cbRTL}"/>
+    </StackPanel>
+  
   </clipflair:BaseWindow.PropertyItems>
 
 </clipflair:BaseWindow>
