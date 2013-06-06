@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: CaptionsGrid.xaml.cs
-//Version: 20130508
+//Version: 20130606
 
 using ClipFlair.AudioRecorder;
 using ClipFlair.CaptionsLib.Utils;
@@ -187,7 +187,10 @@ namespace ClipFlair.CaptionsGrid
     /// </summary>
     protected virtual void OnCaptionsChanged(CaptionRegion oldCaptions, CaptionRegion newCaptions)
     {
-      if (newCaptions == null) Captions = new CaptionRegion(); //this assumes two-way data-binding that will propagate back to setter
+      if (newCaptions == null)
+        Captions = new CaptionRegion(); //this assumes two-way data-binding that will propagate back to setter
+
+      UpdateCaptionsRTL();
     }
 
     #endregion
@@ -540,9 +543,56 @@ namespace ClipFlair.CaptionsGrid
 
     #endregion
 
+    #region RTL
+
+    /// <summary>
+    /// RTL Dependency Property
+    /// </summary>
+    public static readonly DependencyProperty RTLProperty =
+        DependencyProperty.Register("RTL", typeof(bool), typeof(CaptionsGrid),
+            new FrameworkPropertyMetadata(false, new PropertyChangedCallback(OnRTLChanged)));
+
+    /// <summary>
+    /// Gets or sets the RTL property.
+    /// </summary>
+    public bool RTL
+    {
+      get { return (bool)GetValue(RTLProperty); }
+      set { SetValue(RTLProperty, value); }
+    }
+
+    /// <summary>
+    /// Handles changes to the RTL property.
+    /// </summary>
+    private static void OnRTLChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    {
+      CaptionsGrid target = (CaptionsGrid)d;
+      target.OnRTLChanged((bool)e.OldValue, target.RTL);
+    }
+
+    /// <summary>
+    /// Provides derived classes an opportunity to handle changes to the IsAvailable property.
+    /// </summary>
+    protected virtual void OnRTLChanged(bool oldRTL, bool newRTL)
+    {
+      UpdateCaptionsRTL();
+    }
+
+    #endregion
+
     #endregion
 
     #region --- Methods ---
+
+    private void UpdateCaptionsRTL()
+    {
+      if (Captions != null)
+      {
+        bool value = RTL;
+        foreach (CaptionElementExt c in Captions.Children)
+          c.RTL = value;
+      }
+    }
 
     private CaptionElement AddCaption()
     {
@@ -551,8 +601,9 @@ namespace ClipFlair.CaptionsGrid
       CaptionElement newCaption = new CaptionElementExt()
       {
         Begin = Time,
-        End = Time + CaptionDefaultDuration
-      }; //TODO: edit blog about Scale transform to also suggest new ScaleTransform() { ScaleX=..., ScaleY=... }; after checking that is works in recent C#
+        End = Time + CaptionDefaultDuration,
+        RTL = this.RTL //this refers to CaptionsGrid here
+      };
 
       ClipFlair.MediaPlayer.MediaPlayer.StyleCaption(newCaption); //This is needed else the new caption text won't show up in the MediaPlayer
 

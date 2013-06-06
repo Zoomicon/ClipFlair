@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: CaptionsGridDefaults.cs
-//Version: 20130222
+//Version: 20130606
 
 using Microsoft.SilverlightMediaFramework.Core.Accessibility.Captions;
 
@@ -35,6 +35,7 @@ namespace ClipFlair.Windows.Views
     public const bool DefaultWPMVisible = false;
     public const bool DefaultAudioVisible = false;
     public const bool DefaultCommentsVisible = false;
+    public const bool DefaultRTL = false;
 
     #region Methods
 
@@ -59,6 +60,7 @@ namespace ClipFlair.Windows.Views
       captions.WPMVisible = DefaultWPMVisible;
       captions.AudioVisible = DefaultAudioVisible;
       captions.CommentsVisible = DefaultCommentsVisible;
+      captions.RTL = DefaultRTL;
     }
 
     #endregion

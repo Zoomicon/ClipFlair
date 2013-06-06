@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: CaptionElementExt.cs
-//Version: 20130528
+//Version: 20130606
 
 using Utils.Extensions;
 
@@ -26,14 +26,16 @@ namespace ClipFlair.CaptionsGrid
     public const string PROPERTY_WPM = "WPM";
     public const string PROPERTY_AUDIO = "Audio";
     public const string PROPERTY_COMMENTS = "Comments";
+    public const string PROPERTY_RTL = "RTL";
 
     public const string DEFAULT_ROLE_SEPARATOR = ": "; //note: has a space at the end
 
     private string _roleSeparator = DEFAULT_ROLE_SEPARATOR;
-    private string _role;
-    private string _caption;
-    private Stream _audio;
-    private string _comments;
+    private string _role; //=null
+    private string _caption; //=null
+    private Stream _audio; //=null 
+    private string _comments; //=null
+    private bool _rtl; //=false
 
     public CaptionElementExt()
     {
@@ -202,8 +204,11 @@ namespace ClipFlair.CaptionsGrid
       get { return _audio; }
       set
       {
-        _audio = value;
-        NotifyPropertyChanged(PROPERTY_AUDIO);
+        if (_audio != value)
+        {
+          _audio = value;
+          NotifyPropertyChanged(PROPERTY_AUDIO);
+        }
       }
     }
 
@@ -216,8 +221,28 @@ namespace ClipFlair.CaptionsGrid
       get { return _comments; }
       set
       {
-        _comments = value;
-        NotifyPropertyChanged(PROPERTY_COMMENTS);
+        if (_comments != value)
+        {
+          _comments = value;
+          NotifyPropertyChanged(PROPERTY_COMMENTS);
+        }
+      }
+    }
+
+    /// <summary>
+    /// Gets or sets the RTL (right to left) direction for this marker item.
+    /// </summary>
+    [ScriptableMember]
+    public bool RTL
+    {
+      get { return _rtl; }
+      set
+      {
+        if (_rtl != value)
+        {
+          _rtl = value;
+          NotifyPropertyChanged(PROPERTY_RTL);
+        }
       }
     }
 
