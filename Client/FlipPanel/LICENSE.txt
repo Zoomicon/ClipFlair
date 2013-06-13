@@ -1,6 +1,0 @@
-This is based on a sample from the amazing "Pro Silverlight 5 in C#" book by Matthew MacDonald
-
-I believe you can use the code (including my modifications) as you wish, provided you give due credit
-
-sincerely,
-George Birbilis (http://zoomicon.com)
