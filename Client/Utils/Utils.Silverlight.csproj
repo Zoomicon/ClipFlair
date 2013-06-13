@@ -70,6 +70,8 @@
   <ItemGroup>
     <Compile Include="Bindings\BindingUtils.cs" />
     <Compile Include="Bindings\ReflectionUtils.cs" />
+    <Compile Include="Converters\BooleanToFlowDirectionConverter.cs" />
+    <Compile Include="Converters\FlowDirectionToBooleanConverter.cs" />
     <Compile Include="Extensions\UriExtensions.cs" />
     <Compile Include="ProgrammableHyperlink.cs" />
     <Compile Include="Converters\ReverseConverter.cs" />

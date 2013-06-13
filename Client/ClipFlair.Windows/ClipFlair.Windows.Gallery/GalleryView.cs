@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: GalleryView.cs
-//Version: 20130406
+//Version: 20130613
 
 using System;
 using System.ComponentModel;
@@ -13,7 +13,7 @@ namespace ClipFlair.Windows.Views
 
   [ScriptableType]
   [DataContract(Namespace = "http://clipflair.net/Contracts/View")]
-  public class GalleryView: BaseView, IGalleryViewer
+  public class GalleryView: BaseView, IGallery
   {
     public GalleryView()
     {
@@ -29,7 +29,7 @@ namespace ClipFlair.Windows.Views
     #region Properties
 
     [DataMember]
-    [DefaultValue(GalleryViewerDefaults.DefaultSource)]
+    [DefaultValue(GalleryDefaults.DefaultSource)]
     public Uri Source
     {
       get { return source; }
@@ -38,7 +38,7 @@ namespace ClipFlair.Windows.Views
         if (value != source)
         {
           source = value;
-          RaisePropertyChanged(IGalleryViewerProperties.PropertySource);
+          RaisePropertyChanged(IGalleryProperties.PropertySource);
         }
       }
     }
@@ -49,7 +49,7 @@ namespace ClipFlair.Windows.Views
   
     public override void SetDefaults() //do not call at constructor, BaseView does it already
     {
-      GalleryViewerDefaults.SetDefaults(this); //this makes sure we set public properties (invoking "set" accessors), not fields //It also calls ViewDefaults.SetDefaults
+      GalleryDefaults.SetDefaults(this); //this makes sure we set public properties (invoking "set" accessors), not fields //It also calls ViewDefaults.SetDefaults
     }
 
     #endregion

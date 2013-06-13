@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: BaseWindow.xaml.cs
-//Version: 20130520
+//Version: 20130613
 
 //TODO: unbind control at close
 
@@ -76,9 +76,6 @@ namespace ClipFlair.Windows
       if (Application.Current.Host.Settings.EnableGPUAcceleration) //GPU acceleration can been turned on at HTML/ASPX page or at OOB settings for OOB apps
         CacheMode = new BitmapCache(); //must do this before setting the "Scale" property, since that will set "RenderAtScale" property of the BitmapCache
 
-      ShowMaximizeButton = false; //!!! (till we fix it to resize to current visible view area and to allow moving the window in that case only [when it's not same size as parent])
-      ShowMinimizeButton = false; //!!! (till the sliding windows bar is fixed)
-
       InitializeComponent(); //can change properties from XAML, so must do after the commands above
       OptionsLoadSave = ctrlOptionsLoadSave;
      
@@ -94,6 +91,12 @@ namespace ClipFlair.Windows
     }
 
     #region Properties
+
+    [ScriptableMember]
+    public BaseView GetView() //NOTE: need to return BaseView and not IView since the HTMLBridge doesn't seem to support interface types
+    {
+      return (BaseView)View;
+    }
 
     public virtual IView View
     {

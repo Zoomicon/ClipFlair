@@ -5,6 +5,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPF_Compatibility.Silverlig
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPF_Compatibility.WPF", "WPF_Compatibility.WPF\WPF_Compatibility.WPF.csproj", "{DC154E89-74E8-4ADC-95B5-0772CA254F71}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPF_Compatibility.WindowsPhone", "WPF_Compatibility.WindowsPhone\WPF_Compatibility.WindowsPhone.csproj", "{280683A7-E949-4E5F-87A3-D445C68A270F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -19,6 +21,10 @@ Global
 		{DC154E89-74E8-4ADC-95B5-0772CA254F71}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DC154E89-74E8-4ADC-95B5-0772CA254F71}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DC154E89-74E8-4ADC-95B5-0772CA254F71}.Release|Any CPU.Build.0 = Release|Any CPU
+		{280683A7-E949-4E5F-87A3-D445C68A270F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{280683A7-E949-4E5F-87A3-D445C68A270F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{280683A7-E949-4E5F-87A3-D445C68A270F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{280683A7-E949-4E5F-87A3-D445C68A270F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

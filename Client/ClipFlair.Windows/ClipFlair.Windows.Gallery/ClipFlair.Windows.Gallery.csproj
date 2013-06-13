@@ -76,8 +76,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="GalleryWindowFactory.cs" />
-    <Compile Include="IGalleryViewer.cs" />
-    <Compile Include="GalleryViewerDefaults.cs" />
+    <Compile Include="IGallery.cs" />
+    <Compile Include="GalleryDefaults.cs" />
     <Compile Include="GalleryView.cs" />
     <Compile Include="GalleryWindow.xaml.cs">
       <DependentUpon>GalleryWindow.xaml</DependentUpon>

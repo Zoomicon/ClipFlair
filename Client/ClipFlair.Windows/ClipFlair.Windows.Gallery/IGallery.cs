@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
-//Filename: IGalleryViewer.cs
-//Version: 20130406
+//Filename: IGallery.cs
+//Version: 20130613
 
 using System;
 using System.Windows.Media;
@@ -8,12 +8,12 @@ using System.Windows.Media;
 namespace ClipFlair.Windows.Views
 {
 
-  public static class IGalleryViewerProperties
+  public static class IGalleryProperties
   {
     public const string PropertySource = "Source";
   }
 
-  public interface IGalleryViewer : IView
+  public interface IGallery : IView
   {
     Uri Source { get; set; }
   }

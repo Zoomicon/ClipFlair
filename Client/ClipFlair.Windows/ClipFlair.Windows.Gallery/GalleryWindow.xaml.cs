@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: GalleryWindow.xaml.cs
-//Version: 20130327
+//Version: 20130613
 
 using ClipFlair.Windows.Views;
 
@@ -21,9 +21,9 @@ namespace ClipFlair.Windows
 
     #region View
 
-    public IGalleryViewer GalleryView
+    public IGallery GalleryView
     {
-      get { return (IGalleryViewer)View; }
+      get { return (IGallery)View; }
       set { View = value; }
     }
 

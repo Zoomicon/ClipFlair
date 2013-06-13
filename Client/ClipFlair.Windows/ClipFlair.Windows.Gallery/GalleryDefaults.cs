@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
-//Filename: GalleryViewerDefaults.cs
-//Version: 20130522
+//Filename: GalleryDefaults.cs
+//Version: 20130613
 
 using System;
 using System.Windows;
@@ -9,7 +9,7 @@ using System.Windows.Media;
 namespace ClipFlair.Windows.Views
 {
 
-  public static class GalleryViewerDefaults
+  public static class GalleryDefaults
   {
     #region IView defaults - overrides
     
@@ -23,7 +23,7 @@ namespace ClipFlair.Windows.Views
 
     #region Methods
 
-    public static void SetDefaults(IGalleryViewer Gallery)
+    public static void SetDefaults(IGallery Gallery)
     {
       //IView defaults and overrides
       ViewDefaults.SetDefaults(Gallery);

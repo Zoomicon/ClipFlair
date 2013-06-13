@@ -5,12 +5,12 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.50727</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{22FFD488-C706-4ABA-ABD1-3BFBE40A46C5}</ProjectGuid>
+    <ProjectGuid>{127105AF-C0F4-40F8-87C5-D6C391552936}</ProjectGuid>
     <ProjectTypeGuids>{A1591282-1198-4647-A2B1-27E5FF5F6F3B};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ClipFlair.Windows.ClassDiagrams</RootNamespace>
-    <AssemblyName>ClipFlair.Windows.ClassDiagrams</AssemblyName>
+    <RootNamespace>ImageButtons</RootNamespace>
+    <AssemblyName>ImageButtons</AssemblyName>
     <TargetFrameworkIdentifier>Silverlight</TargetFrameworkIdentifier>
     <TargetFrameworkVersion>v5.0</TargetFrameworkVersion>
     <SilverlightVersion>$(TargetFrameworkVersion)</SilverlightVersion>
@@ -64,72 +64,18 @@
     <Reference Include="mscorlib" />
     <Reference Include="System.Windows" />
     <Reference Include="system" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Xml" />
-    <Reference Include="System.Net" />
-    <Reference Include="System.Windows.Browser" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\Source\ImageButton.cs">
+      <Link>ImageButton.cs</Link>
+    </Compile>
+    <Compile Include="..\Source\ImageToggleButton.cs">
+      <Link>ImageToggleButton.cs</Link>
+    </Compile>
+    <Compile Include="..\Source\ImageToggleButtonSideBySide.cs">
+      <Link>ImageToggleButtonSideBySide.cs</Link>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Windows\Activity.cd" />
-    <None Include="Windows\Base.cd" />
-    <None Include="Windows\Captions.cd" />
-    <None Include="Windows\Gallery.cd" />
-    <None Include="Windows\Image.cd" />
-    <None Include="Windows\Map.cd" />
-    <None Include="Windows\Media.cd" />
-    <None Include="Windows\Text.cd" />
-    <None Include="Windows\Windows.cd" />
-    <None Include="Windows\Windows.Views.Interfaces.cd" />
-    <None Include="Windows\Windows.Views.ViewModels.cd" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\Client\ClipFlair.UI\ClipFlair.UI.Dialogs\ClipFlair.UI.Dialogs.Silverlight.csproj">
-      <Project>{C6900312-0545-4E5E-9FE0-2AEF75674E29}</Project>
-      <Name>ClipFlair.UI.Dialogs.Silverlight</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Client\ClipFlair.UI\ClipFlair.UI.Widgets\ClipFlair.UI.Widgets.Silverlight.csproj">
-      <Project>{0771A5EA-F8F5-4BB4-A29E-2FD3CF9A5088}</Project>
-      <Name>ClipFlair.UI.Widgets.Silverlight</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Client\ClipFlair.Windows\ClipFlair.Windows.Activity\ClipFlair.Windows.Activity.csproj">
-      <Project>{5C611A60-153B-4781-801D-6F9C1653AE32}</Project>
-      <Name>ClipFlair.Windows.Activity</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Client\ClipFlair.Windows\ClipFlair.Windows.Base\ClipFlair.Windows.Base.csproj">
-      <Project>{4CE71FC4-B8D9-4305-AE15-2F0501CA58B3}</Project>
-      <Name>ClipFlair.Windows.Base</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Client\ClipFlair.Windows\ClipFlair.Windows.Captions\ClipFlair.Windows.Captions.csproj">
-      <Project>{38818955-5894-441C-9B80-69C38BEC9A76}</Project>
-      <Name>ClipFlair.Windows.Captions</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Client\ClipFlair.Windows\ClipFlair.Windows.Gallery\ClipFlair.Windows.Gallery.csproj">
-      <Project>{0E256C84-FBAC-4E81-BA5C-85D44E76F19E}</Project>
-      <Name>ClipFlair.Windows.Gallery</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Client\ClipFlair.Windows\ClipFlair.Windows.Image\ClipFlair.Windows.Image.csproj">
-      <Project>{AA7B9EC6-8A08-4300-827B-65A66818BAF7}</Project>
-      <Name>ClipFlair.Windows.Image</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Client\ClipFlair.Windows\ClipFlair.Windows.Map\ClipFlair.Windows.Map.csproj">
-      <Project>{40580DAE-80A5-49E4-BDD8-DAFDB9D4E088}</Project>
-      <Name>ClipFlair.Windows.Map</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Client\ClipFlair.Windows\ClipFlair.Windows.Media\ClipFlair.Windows.Media.csproj">
-      <Project>{A14AC96C-D998-4C35-B1C0-415535D1378B}</Project>
-      <Name>ClipFlair.Windows.Media</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Client\ClipFlair.Windows\ClipFlair.Windows.Text\ClipFlair.Windows.Text.csproj">
-      <Project>{396DD176-BC1D-45CF-900E-4FC85B7398FC}</Project>
-      <Name>ClipFlair.Windows.Text</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Client\ClipFlair\ClipFlair.csproj">
-      <Project>{31498ABB-31AA-4FFA-BB32-98FCA11BB52A}</Project>
-      <Name>ClipFlair</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
@@ -142,6 +88,16 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="..\Source\Themes\Generic.xaml">
+      <Link>Themes\Generic.xaml</Link>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ImageButtons.cd" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Silverlight\$(SilverlightVersion)\Microsoft.Silverlight.CSharp.targets" />
   <ProjectExtensions>

@@ -1,0 +1,136 @@
+﻿<!-- 
+Filename: RotateHorizontalWithButtonTheme.xaml
+Version: 20121004
+-->
+  
+<ResourceDictionary
+ xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+ xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+ xmlns:local="clr-namespace:FlipPanel;assembly=FlipPanel">
+
+  <ControlTemplate x:Key="FlipPanel_RotateHorizontalWithButtonTemplate" TargetType="local:FlipPanel">
+    <Grid
+      HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
+      VerticalAlignment="{TemplateBinding VerticalAlignment}"
+      >
+      
+      <VisualStateManager.VisualStateGroups>
+        <VisualStateGroup x:Name="ViewStates">
+          <VisualStateGroup.Transitions>
+
+            <VisualTransition To="Normal" From="Flipped" GeneratedDuration="0:0:0.7">
+              <Storyboard>
+                <DoubleAnimation Storyboard.TargetName="BackContentProjection"
+                     Storyboard.TargetProperty="RotationY" To="-90" Duration="0:0:0.5"></DoubleAnimation>
+                <DoubleAnimation Storyboard.TargetName="FrontContentProjection"  BeginTime="0:0:0.5"
+                         Storyboard.TargetProperty="RotationY" To="0" Duration="0:0:0.5"></DoubleAnimation>
+              </Storyboard>
+            </VisualTransition>
+
+            <VisualTransition To="Flipped" From="Normal" GeneratedDuration="0:0:0.7">
+              <Storyboard>
+                <DoubleAnimation Storyboard.TargetName="FrontContentProjection"
+                         Storyboard.TargetProperty="RotationY" To="90" Duration="0:0:0.5"></DoubleAnimation>
+                <DoubleAnimation Storyboard.TargetName="BackContentProjection" BeginTime="0:0:0.5"
+                         Storyboard.TargetProperty="RotationY" To="0" Duration="0:0:0.5"></DoubleAnimation>
+              </Storyboard>
+            </VisualTransition>
+
+          </VisualStateGroup.Transitions>
+
+          <VisualState x:Name="Normal">
+            <Storyboard>
+              <DoubleAnimation Storyboard.TargetName="BackContentProjection"
+                       Storyboard.TargetProperty="RotationY" To="-90" Duration="0:0:0"></DoubleAnimation>
+            </Storyboard>
+          </VisualState>
+
+          <VisualState x:Name="Flipped">
+            <Storyboard>
+              <DoubleAnimation Storyboard.TargetName="FrontContentProjection"
+                       Storyboard.TargetProperty="RotationY" To="90" Duration="0:0:0"></DoubleAnimation>
+
+              <DoubleAnimation Storyboard.TargetName="FlipButtonTransform"
+                       Storyboard.TargetProperty="Angle" Duration="0:0:0" To="90"></DoubleAnimation>
+            </Storyboard>
+          </VisualState>
+        </VisualStateGroup>
+      </VisualStateManager.VisualStateGroups>
+
+      <Grid.RowDefinitions>
+        <RowDefinition Height="*" />
+        <RowDefinition Height="Auto" />
+      </Grid.RowDefinitions>
+
+      <!--Front content -->
+
+      <Border Grid.Row="0"
+              BorderBrush="{TemplateBinding BorderBrush}"
+              BorderThickness="{TemplateBinding BorderThickness}"
+              CornerRadius="{TemplateBinding CornerRadius}"
+              Background="{TemplateBinding Background}">
+
+        <Border.Projection>
+          <PlaneProjection x:Name="FrontContentProjection"></PlaneProjection>
+        </Border.Projection>
+
+        <ContentPresenter Content="{TemplateBinding FrontContent}"            
+                          HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                          VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                          />
+
+      </Border>
+
+      <!-- Back content -->
+
+      <Border 
+        Grid.Row="0"
+        BorderBrush="{TemplateBinding BorderBrush}"
+        BorderThickness="{TemplateBinding BorderThickness}"
+        CornerRadius="{TemplateBinding CornerRadius}"
+        Background="{TemplateBinding Background}">
+
+        <Border.Projection>
+          <PlaneProjection x:Name="BackContentProjection"></PlaneProjection>
+        </Border.Projection>
+
+        <ContentPresenter Content="{TemplateBinding BackContent}"
+                          HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                          VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                          />
+
+      </Border>
+
+      <!-- Flip button -->
+
+      <ToggleButton Grid.Row="1" x:Name="FlipButton" RenderTransformOrigin="0.5,0.5"
+                     Margin="0,10,0,0">
+        <ToggleButton.Template>
+          <ControlTemplate>
+            <Grid>
+              <Ellipse Stroke="#FFA9A9A9"  Fill="AliceBlue"   Width="19" Height="19"  />
+              <Path RenderTransformOrigin="0.5,0.5" Data="M1,1.5L4.5,5 8,1.5"
+                             Stroke="#FF666666" StrokeThickness="2"
+                             HorizontalAlignment="Center" VerticalAlignment="Center">
+
+              </Path>
+            </Grid>
+          </ControlTemplate>
+        </ToggleButton.Template>
+
+        <ToggleButton.RenderTransform>
+          <RotateTransform x:Name="FlipButtonTransform" Angle="-90"></RotateTransform>
+        </ToggleButton.RenderTransform>
+
+      </ToggleButton>
+
+    </Grid>
+
+  </ControlTemplate>
+
+  <Style x:Key="FlipPanel_RotateHorizontalWithButtonStyle" TargetType="local:FlipPanel">
+    <Setter Property="Template" Value="{StaticResource FlipPanel_RotateHorizontalWithButtonTemplate}"/>
+  </Style>
+
+</ResourceDictionary>
+  

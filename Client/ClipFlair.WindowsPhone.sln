@@ -1,0 +1,42 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClipFlair.WindowsPhone", "ClipFlair.WindowsPhone\ClipFlair.WindowsPhone.csproj", "{9685A7AA-F32F-441B-8439-87A7215B9648}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_Libraries", "_Libraries", "{50DE38C5-0210-40A4-B0FF-AC882A705F3A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ZUI", "ZUI", "{26E9BB37-DD10-4E45-83D8-7A0771D37ADA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FlipPanel.WindowsPhone", "ZUI\FlipPanel\FlipPanel.WindowsPhone\FlipPanel.WindowsPhone.csproj", "{FE312796-4F57-4B4B-87BE-2583B98363A2}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Helpers", "Helpers", "{52A6050B-A526-4CDE-8B5A-A2916E5D156C}"
+	ProjectSection(SolutionItems) = preProject
+		ClipFlair.WindowsPhone\WPF_Compatibility.WindowsPhone.csproj = ClipFlair.WindowsPhone\WPF_Compatibility.WindowsPhone.csproj
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9685A7AA-F32F-441B-8439-87A7215B9648}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9685A7AA-F32F-441B-8439-87A7215B9648}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9685A7AA-F32F-441B-8439-87A7215B9648}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{9685A7AA-F32F-441B-8439-87A7215B9648}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9685A7AA-F32F-441B-8439-87A7215B9648}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9685A7AA-F32F-441B-8439-87A7215B9648}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{FE312796-4F57-4B4B-87BE-2583B98363A2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FE312796-4F57-4B4B-87BE-2583B98363A2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FE312796-4F57-4B4B-87BE-2583B98363A2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FE312796-4F57-4B4B-87BE-2583B98363A2}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{26E9BB37-DD10-4E45-83D8-7A0771D37ADA} = {50DE38C5-0210-40A4-B0FF-AC882A705F3A}
+		{52A6050B-A526-4CDE-8B5A-A2916E5D156C} = {50DE38C5-0210-40A4-B0FF-AC882A705F3A}
+		{FE312796-4F57-4B4B-87BE-2583B98363A2} = {26E9BB37-DD10-4E45-83D8-7A0771D37ADA}
+	EndGlobalSection
+EndGlobal
