@@ -1,0 +1,1073 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<modelStoreModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm4="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm5="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/VisualStudio/TeamArchitect/ComponentDesigner" xmlns:dm9="http://schemas.microsoft.com/dsltools/SimpleShapesModel" xmlns:dm10="http://schemas.microsoft.com/dsltools/UseCaseModel"
+  dslVersion="1.0.0.0"
+  Id="932621b2-5f91-42d5-909b-e824a279f791"
+  name="ClipFlair" xmlns="http://schemas.microsoft.com/dsltools/ModelStore">
+  <profileInstances>
+    <packageHasProfileInstances
+      Id="0caec977-1f8c-4ba3-a7db-8cc9ad9cc73b">
+      <profileInstance
+        Id="e34d544e-0fea-4ed6-ac5e-1b74119ac791"
+        name="StandardProfileL2" />
+    </packageHasProfileInstances>
+    <packageHasProfileInstances
+      Id="29349502-908c-4fda-9054-c48619c59ed0">
+      <profileInstance
+        Id="532ea607-fb19-44b8-8502-3351b05452be"
+        name="StandardProfileL3" />
+    </packageHasProfileInstances>
+  </profileInstances>
+  <packagedElements>
+    <packageHasNamedElement>
+      <useCase
+        Id="92b01433-8777-4a6f-99c3-54615a40a524"
+        name="Captioning"
+        isAbstract="false"
+        isLeaf="false">
+        <additions>
+          <include
+            Id="2f745a42-8e0f-4516-9d65-77d798ec331b">
+            <useCaseMoniker
+              Id="564a765c-65a3-4c9b-be76-922687a8300c"
+              LastKnownName="Add caption"
+              LastKnownLocation="ClipFlair.uml" />
+          </include>
+          <include
+            Id="a094e07a-29e1-4a44-a44b-7af3c449c28d">
+            <useCaseMoniker
+              Id="7cf5c18e-cf1e-4927-a464-76f631e788a0"
+              LastKnownName="Select caption"
+              LastKnownLocation="ClipFlair.uml" />
+          </include>
+          <include
+            Id="5ef2fb2d-882c-49d1-be8c-eb86998eb459">
+            <useCaseMoniker
+              Id="65b9f034-6a9f-42a5-b29f-638d8003233a"
+              LastKnownName="Edit caption"
+              LastKnownLocation="ClipFlair.uml" />
+          </include>
+          <include
+            Id="2b2a16e9-b472-4108-8678-9b2cb34835f8">
+            <useCaseMoniker
+              Id="264384c4-c5d3-4018-85ad-443218ce2630"
+              LastKnownName="Delete caption"
+              LastKnownLocation="ClipFlair.uml" />
+          </include>
+        </additions>
+      </useCase>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="564a765c-65a3-4c9b-be76-922687a8300c"
+        name="Add caption"
+        isAbstract="false"
+        isLeaf="false">
+        <additions>
+          <include
+            Id="55011185-84ec-4d28-b837-11b6e78be2a6">
+            <useCaseMoniker
+              Id="65b9f034-6a9f-42a5-b29f-638d8003233a"
+              LastKnownName="Edit caption"
+              LastKnownLocation="ClipFlair.uml" />
+          </include>
+        </additions>
+      </useCase>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="7cf5c18e-cf1e-4927-a464-76f631e788a0"
+        name="Select caption"
+        isAbstract="false"
+        isLeaf="false">
+        <additions>
+          <include
+            Id="7b89687d-e496-48db-aff9-c449dd539e84">
+            <useCaseMoniker
+              Id="43d6949c-7cf9-46ea-a9bf-bb38776e97f3"
+              LastKnownName="Select subtitle part"
+              LastKnownLocation="ClipFlair.uml" />
+          </include>
+        </additions>
+      </useCase>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="264384c4-c5d3-4018-85ad-443218ce2630"
+        name="Delete caption"
+        isAbstract="false"
+        isLeaf="false">
+        <suppliersInternal>
+          <dependency
+            Id="ad9b39ff-d120-4660-92f0-3a1621de6550">
+            <useCaseMoniker
+              Id="7cf5c18e-cf1e-4927-a464-76f631e788a0"
+              LastKnownName="Select caption"
+              LastKnownLocation="ClipFlair.uml" />
+          </dependency>
+        </suppliersInternal>
+      </useCase>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="65b9f034-6a9f-42a5-b29f-638d8003233a"
+        name="Edit caption"
+        isAbstract="false"
+        isLeaf="false">
+        <suppliersInternal>
+          <dependency
+            Id="d1bb645c-4bfe-43c8-ba55-3d4182359335">
+            <useCaseMoniker
+              Id="7cf5c18e-cf1e-4927-a464-76f631e788a0"
+              LastKnownName="Select caption"
+              LastKnownLocation="ClipFlair.uml" />
+          </dependency>
+        </suppliersInternal>
+        <additions>
+          <include
+            Id="a9b310c2-9895-40a7-ae2c-53b25772d90d">
+            <useCaseMoniker
+              Id="2ab5dd5d-5124-44fa-ba03-48d2cffa7155"
+              LastKnownName="Update caption start time"
+              LastKnownLocation="ClipFlair.uml" />
+          </include>
+          <include
+            Id="2eaee957-f396-40a7-a555-7d30aecad503">
+            <useCaseMoniker
+              Id="b120c165-6c6f-445c-b84e-836d10c96594"
+              LastKnownName="Update caption end time"
+              LastKnownLocation="ClipFlair.uml" />
+          </include>
+          <include
+            Id="0ff5902c-fac7-47c6-adb2-6431cbe8d83f">
+            <useCaseMoniker
+              Id="b6583160-5ccb-455c-b4ef-cbf192aed9d0"
+              LastKnownName="Update caption content"
+              LastKnownLocation="ClipFlair.uml" />
+          </include>
+          <include
+            Id="681e5a8e-cbf7-4177-b8a6-f6d114f0f02e">
+            <useCaseMoniker
+              Id="ece0865f-172d-4bfe-a140-d9c77b66ad28"
+              LastKnownName="Delete subtitle part"
+              LastKnownLocation="ClipFlair.uml" />
+          </include>
+        </additions>
+      </useCase>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="2ab5dd5d-5124-44fa-ba03-48d2cffa7155"
+        name="Update caption start time"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="b120c165-6c6f-445c-b84e-836d10c96594"
+        name="Update caption end time"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="80d4eaf5-a52d-4c60-9182-53d3681fea30"
+        name="Set subtitle text"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="43d6949c-7cf9-46ea-a9bf-bb38776e97f3"
+        name="Select subtitle part"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="b6583160-5ccb-455c-b4ef-cbf192aed9d0"
+        name="Update caption content"
+        isAbstract="false"
+        isLeaf="false">
+        <suppliersInternal>
+          <dependency
+            Id="fd6a1ab2-c690-4d60-acdd-2732ae34b165">
+            <useCaseMoniker
+              Id="43d6949c-7cf9-46ea-a9bf-bb38776e97f3"
+              LastKnownName="Select subtitle part"
+              LastKnownLocation="ClipFlair.uml" />
+          </dependency>
+        </suppliersInternal>
+      </useCase>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="ece0865f-172d-4bfe-a140-d9c77b66ad28"
+        name="Delete subtitle part"
+        isAbstract="false"
+        isLeaf="false">
+        <suppliersInternal>
+          <dependency
+            Id="3c4d5ac8-8b10-4947-a2f4-17ff56e11e05">
+            <useCaseMoniker
+              Id="43d6949c-7cf9-46ea-a9bf-bb38776e97f3"
+              LastKnownName="Select subtitle part"
+              LastKnownLocation="ClipFlair.uml" />
+          </dependency>
+        </suppliersInternal>
+      </useCase>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="01b8c633-ced7-468b-955f-9d428317ee90"
+        name="UseCase1"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="16d428fd-4c93-477b-a7b5-ebcf245eef68"
+        name="Revoicing"
+        isAbstract="false"
+        isLeaf="false">
+        <additions>
+          <include
+            Id="6b17b830-61da-4eaf-85a1-45290981ce44">
+            <useCaseMoniker
+              Id="2487a153-94b2-42a5-bae4-c891480b9660"
+              LastKnownName="Create revoicing entry"
+              LastKnownLocation="ClipFlair.uml" />
+          </include>
+          <include
+            Id="d0fcae76-1c9f-4f24-9bb8-dbd97839e822">
+            <useCaseMoniker
+              Id="533f7721-3690-4df0-975b-049c5aa45664"
+              LastKnownName="Select revoicing entry"
+              LastKnownLocation="ClipFlair.uml" />
+          </include>
+        </additions>
+      </useCase>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="2487a153-94b2-42a5-bae4-c891480b9660"
+        name="Create revoicing entry"
+        isAbstract="false"
+        isLeaf="false">
+        <additions>
+          <include
+            Id="79599776-bb2c-4d69-80c2-9430ff293073">
+            <useCaseMoniker
+              Id="453055c9-9d94-4ca7-a905-9733e6b13392"
+              LastKnownName="Edit revoicing entry"
+              LastKnownLocation="ClipFlair.uml" />
+          </include>
+        </additions>
+      </useCase>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="533f7721-3690-4df0-975b-049c5aa45664"
+        name="Select revoicing entry"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="547479c3-a3c5-4d81-bfb5-5ce2ef074fb0"
+        name="Delete revoicing entry"
+        isAbstract="false"
+        isLeaf="false">
+        <suppliersInternal>
+          <dependency
+            Id="54db7b23-d1f2-40a3-b522-67c14c2ea5e4">
+            <useCaseMoniker
+              Id="533f7721-3690-4df0-975b-049c5aa45664"
+              LastKnownName="Select revoicing entry"
+              LastKnownLocation="ClipFlair.uml" />
+          </dependency>
+        </suppliersInternal>
+      </useCase>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="453055c9-9d94-4ca7-a905-9733e6b13392"
+        name="Edit revoicing entry"
+        isAbstract="false"
+        isLeaf="false">
+        <suppliersInternal>
+          <dependency
+            Id="c5aa201d-a7b4-4d66-8855-335a804e1706">
+            <useCaseMoniker
+              Id="533f7721-3690-4df0-975b-049c5aa45664"
+              LastKnownName="Select revoicing entry"
+              LastKnownLocation="ClipFlair.uml" />
+          </dependency>
+        </suppliersInternal>
+        <additions>
+          <include
+            Id="6c769a61-9945-4356-baec-2ab5f82087f5">
+            <useCaseMoniker
+              Id="cd5beced-8906-4305-a95f-69c7cddd05da"
+              LastKnownName="Edit revoicing entry start time"
+              LastKnownLocation="ClipFlair.uml" />
+          </include>
+          <include
+            Id="ef59b368-ac58-438d-a7f6-1edec2f1485d">
+            <useCaseMoniker
+              Id="113d7843-f689-48ed-b73f-6b4f4193ea4a"
+              LastKnownName="Edit revoicing entry end time"
+              LastKnownLocation="ClipFlair.uml" />
+          </include>
+          <include
+            Id="059e5841-a1f4-45fb-8b08-c4952ee5c88f">
+            <useCaseMoniker
+              Id="3ee62234-4810-4c1a-8f1f-def6598bb6ef"
+              LastKnownName="Edit revoicing entry audio"
+              LastKnownLocation="ClipFlair.uml" />
+          </include>
+          <include
+            Id="e7bf3e45-9958-4ab6-956e-3b64b351284f">
+            <useCaseMoniker
+              Id="d4dcfefc-90d7-4908-bd5d-b6274419a2ee"
+              LastKnownName="Edit revoicing entry audio"
+              LastKnownLocation="ClipFlair.uml" />
+          </include>
+        </additions>
+      </useCase>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="cd5beced-8906-4305-a95f-69c7cddd05da"
+        name="Edit revoicing entry start time"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="113d7843-f689-48ed-b73f-6b4f4193ea4a"
+        name="Edit revoicing entry end time"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="e67b989c-4069-43ad-8e86-26050ed11d0d"
+        name="Select subtitle part1"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="c297b8b6-b9ca-4908-8c39-4d0213f2ce5d"
+        name="Edit subtitle part text1"
+        isAbstract="false"
+        isLeaf="false">
+        <suppliersInternal>
+          <dependency
+            Id="d0b368d7-4601-411c-a846-07f31d5550b4">
+            <useCaseMoniker
+              Id="e67b989c-4069-43ad-8e86-26050ed11d0d"
+              LastKnownName="Select subtitle part1"
+              LastKnownLocation="ClipFlair.uml" />
+          </dependency>
+        </suppliersInternal>
+      </useCase>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="d5cd3bb4-52d6-403e-9b9f-6542cd94244f"
+        name="Delete subtitle part1"
+        isAbstract="false"
+        isLeaf="false">
+        <suppliersInternal>
+          <dependency
+            Id="cb73bb2c-59f0-45d7-b9f3-582a7e2f68fe">
+            <useCaseMoniker
+              Id="e67b989c-4069-43ad-8e86-26050ed11d0d"
+              LastKnownName="Select subtitle part1"
+              LastKnownLocation="ClipFlair.uml" />
+          </dependency>
+        </suppliersInternal>
+      </useCase>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="3ee62234-4810-4c1a-8f1f-def6598bb6ef"
+        name="Edit revoicing entry audio"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="070596f2-1500-4880-8886-9f2f5dfc59df"
+        name="Audio Editing"
+        isAbstract="false"
+        isLeaf="false">
+        <additions>
+          <include
+            Id="e3a1b7e2-f89b-4b97-a4f4-dfc3ce45e78e">
+            <useCaseMoniker
+              Id="2fac3e54-e6ca-4346-a4d8-4e4666dfa2c4"
+              LastKnownName="Select Time Range"
+              LastKnownLocation="ClipFlair.uml" />
+          </include>
+          <include
+            Id="d449b2fc-fd94-48f7-a006-d4a24539497b">
+            <useCaseMoniker
+              Id="abab88b1-b9f6-4c6e-b653-d59d998cd2bc"
+              LastKnownName="New audio"
+              LastKnownLocation="ClipFlair.uml" />
+          </include>
+          <include
+            Id="a7316988-07b4-4b31-a1c9-c7f9375914b1">
+            <useCaseMoniker
+              Id="8f47d0b8-1dad-40fa-81eb-827e2cf518ad"
+              LastKnownName="Edit audio range"
+              LastKnownLocation="ClipFlair.uml" />
+          </include>
+        </additions>
+      </useCase>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="cc16b9de-2798-4d08-bd58-084dde42849a"
+        name="Select in point"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="2387f8f4-8b7c-4c4b-96be-0d726312cb7c"
+        name="Select out point"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="2fac3e54-e6ca-4346-a4d8-4e4666dfa2c4"
+        name="Select Time Range"
+        isAbstract="false"
+        isLeaf="false">
+        <additions>
+          <include
+            Id="72fc27b8-cf9c-4a40-993f-2cef0a5751b9">
+            <useCaseMoniker
+              Id="cc16b9de-2798-4d08-bd58-084dde42849a"
+              LastKnownName="Select in point"
+              LastKnownLocation="ClipFlair.uml" />
+          </include>
+          <include
+            Id="5633fce9-e6b5-431f-97bd-be740a112f41">
+            <useCaseMoniker
+              Id="2387f8f4-8b7c-4c4b-96be-0d726312cb7c"
+              LastKnownName="Select out point"
+              LastKnownLocation="ClipFlair.uml" />
+          </include>
+        </additions>
+      </useCase>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="abab88b1-b9f6-4c6e-b653-d59d998cd2bc"
+        name="New audio"
+        isAbstract="false"
+        isLeaf="false">
+        <additions>
+          <include
+            Id="f3a84b10-de9f-49df-bcc8-f322b5ba1d71">
+            <useCaseMoniker
+              Id="cd80c5a3-e7b4-48a0-9e98-86cbd603aaa4"
+              LastKnownName="Record audio"
+              LastKnownLocation="ClipFlair.uml" />
+          </include>
+          <include
+            Id="c8c0b0c6-c235-4354-b0f2-b316864448b0">
+            <useCaseMoniker
+              Id="236f7f83-6b29-440a-bcdd-0cc54f2d019d"
+              LastKnownName="Import audio"
+              LastKnownLocation="ClipFlair.uml" />
+          </include>
+        </additions>
+      </useCase>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="cd80c5a3-e7b4-48a0-9e98-86cbd603aaa4"
+        name="Record audio"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="236f7f83-6b29-440a-bcdd-0cc54f2d019d"
+        name="Import audio"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <actor
+        Id="9742ba0b-b8a8-4efb-aa2c-4f263ff20a28"
+        name="ClipFlair user"
+        isAbstract="false"
+        isLeaf="false">
+        <targetEnds>
+          <association
+            Id="83777dfb-b71b-4e46-b04d-96edb5096e88"
+            isDerived="false"
+            sourceEndRoleName="ClipFlair user"
+            targetEndRoleName="Audio Editing"
+            isLeaf="false"
+            isAbstract="false">
+            <useCaseMoniker
+              Id="070596f2-1500-4880-8886-9f2f5dfc59df"
+              LastKnownName="Audio Editing"
+              LastKnownLocation="ClipFlair.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="996ab239-25cf-4b59-b587-987001d2dd0e"
+                  name="ClipFlair user"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="d0d863b7-dcd4-41da-91cf-4dbcefbf9270"
+                  name="Audio Editing"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+          <association
+            Id="52d7ccb9-c371-49df-a567-cda01e7f35b2"
+            isDerived="false"
+            sourceEndRoleName="ClipFlair user"
+            targetEndRoleName="Revoicing"
+            isLeaf="false"
+            isAbstract="false">
+            <useCaseMoniker
+              Id="16d428fd-4c93-477b-a7b5-ebcf245eef68"
+              LastKnownName="Revoicing"
+              LastKnownLocation="ClipFlair.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="b1b004f5-135c-449e-a94a-c2d80c76e842"
+                  name="ClipFlair user"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="51b7d909-8653-4717-9235-756b377b2f1a"
+                  name="Revoicing"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+          <association
+            Id="9e2c817a-68c4-45a3-979a-2565ce94d5d7"
+            isDerived="false"
+            sourceEndRoleName="ClipFlair user"
+            targetEndRoleName="Subtitling"
+            isLeaf="false"
+            isAbstract="false">
+            <useCaseMoniker
+              Id="92b01433-8777-4a6f-99c3-54615a40a524"
+              LastKnownName="Captioning"
+              LastKnownLocation="ClipFlair.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="e84d25c1-b61d-4cd5-8e74-6b41b87326db"
+                  name="ClipFlair user"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="beea6cdb-a0a9-4602-a0dc-f07268159bab"
+                  name="Subtitling"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+          <association
+            Id="a2dfdc9a-bca4-44b7-a9ba-67bb2f9c55d8"
+            isDerived="false"
+            sourceEndRoleName="ClipFlair user"
+            targetEndRoleName="Subtitling1"
+            isLeaf="false"
+            isAbstract="false">
+            <useCaseMoniker
+              Id="76a53c6a-31e9-424d-892a-fe150b1c6f33"
+              LastKnownName="Captioning"
+              LastKnownLocation="ClipFlair.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="b9a4ac57-19a0-457c-8c15-e9bc16d9bc51"
+                  name="ClipFlair user"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="53b92a29-03e4-4fc7-bc19-ba2a723a357b"
+                  name="Subtitling1"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+        </targetEnds>
+      </actor>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <actor
+        Id="1e82b1ee-f198-422e-92d3-6b34d335d1bd"
+        name="Administrator"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <actor
+        Id="e6ec6af9-13fb-4e0c-8517-e2a950e0131e"
+        name="Moderator"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="d4dcfefc-90d7-4908-bd5d-b6274419a2ee"
+        name="Edit revoicing entry audio"
+        isAbstract="false"
+        isLeaf="false">
+        <generalsInternal>
+          <generalization
+            Id="406ccd8f-105b-4f67-8e1c-9c438c5b1b03"
+            isSubstitutable="false">
+            <useCaseMoniker
+              Id="070596f2-1500-4880-8886-9f2f5dfc59df"
+              LastKnownName="Audio Editing"
+              LastKnownLocation="ClipFlair.uml" />
+          </generalization>
+        </generalsInternal>
+      </useCase>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="8f47d0b8-1dad-40fa-81eb-827e2cf518ad"
+        name="Edit audio range"
+        isAbstract="false"
+        isLeaf="false">
+        <suppliersInternal>
+          <dependency
+            Id="29d430ee-f248-4638-ac00-deeeda0954ac">
+            <useCaseMoniker
+              Id="2fac3e54-e6ca-4346-a4d8-4e4666dfa2c4"
+              LastKnownName="Select Time Range"
+              LastKnownLocation="ClipFlair.uml" />
+          </dependency>
+        </suppliersInternal>
+        <additions>
+          <include
+            Id="59de6568-035e-44b4-ada2-9a8bc2613e28">
+            <useCaseMoniker
+              Id="f9a51f6b-b6e4-489e-9767-1cc1e8d706c7"
+              LastKnownName="Crop"
+              LastKnownLocation="ClipFlair.uml" />
+          </include>
+          <include
+            Id="f648b9f7-69d0-47ad-a5d6-79b86274659b">
+            <useCaseMoniker
+              Id="34c763d0-7ee9-4758-8499-d482e848a39f"
+              LastKnownName="Cut"
+              LastKnownLocation="ClipFlair.uml" />
+          </include>
+          <include
+            Id="d9f9e140-777f-4615-a8ae-ccd2689dd1ea">
+            <useCaseMoniker
+              Id="216fca52-7369-438a-8f2a-e5700b5ff8a8"
+              LastKnownName="Paste"
+              LastKnownLocation="ClipFlair.uml" />
+          </include>
+          <include
+            Id="4bce56f6-7793-47b0-b0a7-065be0224d41">
+            <useCaseMoniker
+              Id="8eb397d6-2452-42af-8c72-a4f4951e4926"
+              LastKnownName="Copy"
+              LastKnownLocation="ClipFlair.uml" />
+          </include>
+        </additions>
+      </useCase>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="f9a51f6b-b6e4-489e-9767-1cc1e8d706c7"
+        name="Crop"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="34c763d0-7ee9-4758-8499-d482e848a39f"
+        name="Cut"
+        isAbstract="false"
+        isLeaf="false">
+        <subjects>
+          <subsystemMoniker
+            Id="3bebc281-9197-46ca-9b4c-9c093fb68670"
+            LastKnownName="Audio clipboard"
+            LastKnownLocation="ClipFlair.uml" />
+        </subjects>
+      </useCase>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="216fca52-7369-438a-8f2a-e5700b5ff8a8"
+        name="Paste"
+        isAbstract="false"
+        isLeaf="false">
+        <subjects>
+          <subsystemMoniker
+            Id="3bebc281-9197-46ca-9b4c-9c093fb68670"
+            LastKnownName="Audio clipboard"
+            LastKnownLocation="ClipFlair.uml" />
+        </subjects>
+      </useCase>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="8eb397d6-2452-42af-8c72-a4f4951e4926"
+        name="Copy"
+        isAbstract="false"
+        isLeaf="false">
+        <subjects>
+          <subsystemMoniker
+            Id="3bebc281-9197-46ca-9b4c-9c093fb68670"
+            LastKnownName="Audio clipboard"
+            LastKnownLocation="ClipFlair.uml" />
+        </subjects>
+      </useCase>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <subsystem
+        Id="3bebc281-9197-46ca-9b4c-9c093fb68670"
+        name="Audio clipboard"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="76a53c6a-31e9-424d-892a-fe150b1c6f33"
+        name="Captioning"
+        isAbstract="false"
+        isLeaf="false">
+        <additions>
+          <include
+            Id="f057a047-7570-493f-bb9d-422b005f8036">
+            <useCaseMoniker
+              Id="c84fc605-ca66-4f48-9b58-78853bc11dee"
+              LastKnownName="Create caption"
+              LastKnownLocation="ClipFlair.uml" />
+          </include>
+          <include
+            Id="7ca55728-514a-4127-9249-9ae8c86c421e">
+            <useCaseMoniker
+              Id="5d9aaab5-e1a1-46b0-b005-64038959fb99"
+              LastKnownName="Select caption"
+              LastKnownLocation="ClipFlair.uml" />
+          </include>
+          <include
+            Id="61859abc-a84e-4f7b-b81f-ada296004f2a">
+            <useCaseMoniker
+              Id="e59c3f5e-38de-415d-9626-50940211478d"
+              LastKnownName="Edit caption"
+              LastKnownLocation="ClipFlair.uml" />
+          </include>
+          <include
+            Id="bd2fda16-6bf0-4d40-82cd-f00afc1857d5">
+            <useCaseMoniker
+              Id="fe7b7d19-1292-46c9-bfbb-4349090e90a9"
+              LastKnownName="Delete caption"
+              LastKnownLocation="ClipFlair.uml" />
+          </include>
+        </additions>
+      </useCase>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="c84fc605-ca66-4f48-9b58-78853bc11dee"
+        name="Create caption"
+        isAbstract="false"
+        isLeaf="false">
+        <additions>
+          <include
+            Id="d0763efc-280c-44fc-8ce7-3543f7cab7c5">
+            <useCaseMoniker
+              Id="e59c3f5e-38de-415d-9626-50940211478d"
+              LastKnownName="Edit caption"
+              LastKnownLocation="ClipFlair.uml" />
+          </include>
+        </additions>
+      </useCase>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="5d9aaab5-e1a1-46b0-b005-64038959fb99"
+        name="Select caption"
+        isAbstract="false"
+        isLeaf="false">
+        <additions>
+          <include
+            Id="a798e574-489e-4bd3-bf65-608310d00d80">
+            <useCaseMoniker
+              Id="9e1c4582-8296-4313-a223-ab366e4bfd3d"
+              LastKnownName="Select subtitle part2"
+              LastKnownLocation="ClipFlair.uml" />
+          </include>
+        </additions>
+      </useCase>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="fe7b7d19-1292-46c9-bfbb-4349090e90a9"
+        name="Delete caption"
+        isAbstract="false"
+        isLeaf="false">
+        <suppliersInternal>
+          <dependency
+            Id="b264f229-d3d5-4e4e-87d6-2283931dfb6e">
+            <useCaseMoniker
+              Id="5d9aaab5-e1a1-46b0-b005-64038959fb99"
+              LastKnownName="Select caption"
+              LastKnownLocation="ClipFlair.uml" />
+          </dependency>
+        </suppliersInternal>
+      </useCase>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="e59c3f5e-38de-415d-9626-50940211478d"
+        name="Edit caption"
+        isAbstract="false"
+        isLeaf="false">
+        <suppliersInternal>
+          <dependency
+            Id="2384be78-9e09-4d22-82f4-238d23170ea9">
+            <useCaseMoniker
+              Id="5d9aaab5-e1a1-46b0-b005-64038959fb99"
+              LastKnownName="Select caption"
+              LastKnownLocation="ClipFlair.uml" />
+          </dependency>
+          <dependency
+            Id="e57ec1db-26ce-4a2b-8c07-5cb7c02e63e7">
+            <useCaseMoniker
+              Id="9e1c4582-8296-4313-a223-ab366e4bfd3d"
+              LastKnownName="Select subtitle part2"
+              LastKnownLocation="ClipFlair.uml" />
+          </dependency>
+        </suppliersInternal>
+        <additions>
+          <include
+            Id="198108a8-ed3c-420d-bfab-f24b44b4d866">
+            <useCaseMoniker
+              Id="c61d9a4a-1322-4d50-bdcb-6b79126c5850"
+              LastKnownName="Edit caption start time"
+              LastKnownLocation="ClipFlair.uml" />
+          </include>
+          <include
+            Id="be57b93f-75fb-4516-98b1-8364cab52b3a">
+            <useCaseMoniker
+              Id="0b93f788-3719-4b04-888f-0fba119e5721"
+              LastKnownName="Edit caption end time"
+              LastKnownLocation="ClipFlair.uml" />
+          </include>
+          <include
+            Id="721be64d-ca49-434a-8e2e-845cd442ee56">
+            <useCaseMoniker
+              Id="6a5a1fa2-2c90-4dce-881c-442a5498cea7"
+              LastKnownName="Edit subtitle part text2"
+              LastKnownLocation="ClipFlair.uml" />
+          </include>
+          <include
+            Id="d712a15e-ac7f-4eee-9a49-f0502c51560d">
+            <useCaseMoniker
+              Id="19689f52-44a3-4820-b6a8-d8fcdd3f0bbb"
+              LastKnownName="Delete subtitle part2"
+              LastKnownLocation="ClipFlair.uml" />
+          </include>
+          <include
+            Id="797b2290-4bab-4001-846e-c482d539f090">
+            <useCaseMoniker
+              Id="25b1fa50-cd8c-46a1-a1c0-ffb7ec93e431"
+              LastKnownName="Edit caption text"
+              LastKnownLocation="ClipFlair.uml" />
+          </include>
+          <include
+            Id="8f60c97b-1ea2-464e-a513-6824e1f491ee">
+            <useCaseMoniker
+              Id="c001abb3-36c1-4615-8b95-e963ef84d0ee"
+              LastKnownName="Edit caption position"
+              LastKnownLocation="ClipFlair.uml" />
+          </include>
+        </additions>
+      </useCase>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="c61d9a4a-1322-4d50-bdcb-6b79126c5850"
+        name="Edit caption start time"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="0b93f788-3719-4b04-888f-0fba119e5721"
+        name="Edit caption end time"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="9e1c4582-8296-4313-a223-ab366e4bfd3d"
+        name="Select subtitle part2"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="6a5a1fa2-2c90-4dce-881c-442a5498cea7"
+        name="Edit subtitle part text2"
+        isAbstract="false"
+        isLeaf="false">
+        <suppliersInternal>
+          <dependency
+            Id="d804d298-b649-4c22-b391-7660e8bc415a">
+            <useCaseMoniker
+              Id="9e1c4582-8296-4313-a223-ab366e4bfd3d"
+              LastKnownName="Select subtitle part2"
+              LastKnownLocation="ClipFlair.uml" />
+          </dependency>
+        </suppliersInternal>
+      </useCase>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="19689f52-44a3-4820-b6a8-d8fcdd3f0bbb"
+        name="Delete subtitle part2"
+        isAbstract="false"
+        isLeaf="false">
+        <suppliersInternal>
+          <dependency
+            Id="be5024d1-b46a-446e-a747-190b3458ae64">
+            <useCaseMoniker
+              Id="9e1c4582-8296-4313-a223-ab366e4bfd3d"
+              LastKnownName="Select subtitle part2"
+              LastKnownLocation="ClipFlair.uml" />
+          </dependency>
+        </suppliersInternal>
+      </useCase>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="25b1fa50-cd8c-46a1-a1c0-ffb7ec93e431"
+        name="Edit caption text"
+        isAbstract="false"
+        isLeaf="false">
+        <additions>
+          <include
+            Id="13c0cb44-4593-4b21-a40b-f3b62cc6f2df">
+            <useCaseMoniker
+              Id="cdd14a98-621d-43d7-b307-e70b24bf179a"
+              LastKnownName="Edit caption formatting"
+              LastKnownLocation="ClipFlair.uml" />
+          </include>
+        </additions>
+      </useCase>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="cdd14a98-621d-43d7-b307-e70b24bf179a"
+        name="Edit caption formatting"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="c001abb3-36c1-4615-8b95-e963ef84d0ee"
+        name="Edit caption position"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+  </packagedElements>
+  <primitiveType
+    Id="220a3521-e091-4221-bae9-3ef9018e845c"
+    name="Integer"
+    isAbstract="false"
+    isLeaf="false" />
+  <primitiveType
+    Id="8943dc84-709e-4f62-b15a-a3273aa6f165"
+    name="Boolean"
+    isAbstract="false"
+    isLeaf="false" />
+  <primitiveType
+    Id="59259974-6d55-42c6-b7bd-763d77ac8ef9"
+    name="String"
+    isAbstract="false"
+    isLeaf="false" />
+  <primitiveType
+    Id="3ab42e7d-4969-445a-b209-471f5cb8209c"
+    name="UnlimitedNatural"
+    isAbstract="false"
+    isLeaf="false" />
+</modelStoreModel>

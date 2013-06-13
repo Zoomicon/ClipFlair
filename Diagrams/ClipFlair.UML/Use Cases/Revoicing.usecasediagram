@@ -1,0 +1,154 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<useCaseModelRoot xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm4="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm5="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/ModelStore" xmlns:dm9="http://schemas.microsoft.com/dsltools/SimpleShapesModel" dslVersion="1.0.0.0" Id="09cba3e5-ad2c-474b-93b0-3f79677cef0f" name="Revoicing" linkedPackageId="e5223ea9-e631-4187-b8ea-ab67ca15d9fd" xmlns="http://schemas.microsoft.com/dsltools/UseCaseModel">
+  <packagedElements>
+    <useCaseModelRootHasTypes>
+      <useCase Id="52f7f555-a5da-4a45-8629-45f2d4177ebd" name="Revoicing" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="16d428fd-4c93-477b-a7b5-ebcf245eef68" />
+        <additions>
+          <include Id="b8a3a79a-7a34-4eaa-a2a2-c9d3d4d9ee18">
+            <useCaseMoniker Id="ac7f3790-6a95-4a0c-aaa3-baa069721626" LastKnownName="Create revoicing entry" />
+            <elementDefinition Id="6b17b830-61da-4eaf-85a1-45290981ce44" />
+          </include>
+          <include Id="6e58a0c5-38f7-4a03-be6f-28f8efa52d2d">
+            <useCaseMoniker Id="abb53664-451c-4b6e-bb89-d91ae3bdaa00" LastKnownName="Select revoicing entry" />
+            <elementDefinition Id="d0fcae76-1c9f-4f24-9bb8-dbd97839e822" />
+          </include>
+        </additions>
+      </useCase>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <useCase Id="ac7f3790-6a95-4a0c-aaa3-baa069721626" name="Create revoicing entry" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="2487a153-94b2-42a5-bae4-c891480b9660" />
+        <additions>
+          <include Id="ee6af52b-f292-45a4-bac1-b7d58d7e9391">
+            <useCaseMoniker Id="69ba3c34-f394-4ba9-9229-bdb6b43eac3f" LastKnownName="Edit revoicing entry" />
+            <elementDefinition Id="79599776-bb2c-4d69-80c2-9430ff293073" />
+          </include>
+        </additions>
+      </useCase>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <useCase Id="abb53664-451c-4b6e-bb89-d91ae3bdaa00" name="Select revoicing entry" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="533f7721-3690-4df0-975b-049c5aa45664" />
+      </useCase>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <useCase Id="eda9795f-1dc5-4d20-8edb-35a6c057f9ae" name="Delete revoicing entry" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="547479c3-a3c5-4d81-bfb5-5ce2ef074fb0" />
+        <suppliersInternal>
+          <dependency Id="4e27c846-110b-44f6-9b9c-2ecc0e1a7550">
+            <useCaseMoniker Id="abb53664-451c-4b6e-bb89-d91ae3bdaa00" LastKnownName="Select revoicing entry" />
+            <elementDefinition Id="54db7b23-d1f2-40a3-b522-67c14c2ea5e4" />
+          </dependency>
+        </suppliersInternal>
+      </useCase>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <useCase Id="69ba3c34-f394-4ba9-9229-bdb6b43eac3f" name="Edit revoicing entry" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="453055c9-9d94-4ca7-a905-9733e6b13392" />
+        <suppliersInternal>
+          <dependency Id="5f6a3cc0-5b16-48bd-aa2c-f03a283cb05f">
+            <useCaseMoniker Id="abb53664-451c-4b6e-bb89-d91ae3bdaa00" LastKnownName="Select revoicing entry" />
+            <elementDefinition Id="c5aa201d-a7b4-4d66-8855-335a804e1706" />
+          </dependency>
+        </suppliersInternal>
+        <additions>
+          <include Id="f897305a-f9f9-41ee-b15b-a546cdef0ee6">
+            <useCaseMoniker Id="3c3ea280-44a5-47d3-9c56-8e2a8c063a6e" LastKnownName="Edit revoicing entry start time" />
+            <elementDefinition Id="6c769a61-9945-4356-baec-2ab5f82087f5" />
+          </include>
+          <include Id="ac46292e-3bfd-42a4-a6e0-35b3e997d2f2">
+            <useCaseMoniker Id="1af60d7e-562d-460a-a448-43f73845d542" LastKnownName="Edit revoicing entry end time" />
+            <elementDefinition Id="ef59b368-ac58-438d-a7f6-1edec2f1485d" />
+          </include>
+          <include Id="bb46ebc8-4b97-455f-96fa-4543745d636d">
+            <useCaseMoniker Id="422609e0-a57e-4a5a-9534-1464177051d1" LastKnownName="Edit revoicing entry audio" />
+            <elementDefinition Id="e7bf3e45-9958-4ab6-956e-3b64b351284f" />
+          </include>
+        </additions>
+      </useCase>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <useCase Id="3c3ea280-44a5-47d3-9c56-8e2a8c063a6e" name="Edit revoicing entry start time" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="cd5beced-8906-4305-a95f-69c7cddd05da" />
+      </useCase>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <useCase Id="1af60d7e-562d-460a-a448-43f73845d542" name="Edit revoicing entry end time" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="113d7843-f689-48ed-b73f-6b4f4193ea4a" />
+      </useCase>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <actor Id="e0eb8ec9-d18a-49cb-81df-2bdf3ac2dc63" name="ClipFlair user" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="9742ba0b-b8a8-4efb-aa2c-4f263ff20a28" />
+        <targetEnds>
+          <association Id="464c3e08-2455-4967-bb44-b0fea0d48ea8" isDerived="false" sourceEndRoleName="ClipFlair user" targetEndRoleName="Audio Editing" isLeaf="false" isAbstract="false">
+            <useCaseMoniker Id="215593a0-d024-4f4d-8a73-c77bf7046086" LastKnownName="Audio Editing" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="ed0e22fa-7f05-4469-b85c-053450d92fce" name="ClipFlair user" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="996ab239-25cf-4b59-b587-987001d2dd0e" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="daea609c-2661-4966-a301-8ed8180609b9" name="Audio Editing" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="d0d863b7-dcd4-41da-91cf-4dbcefbf9270" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="83777dfb-b71b-4e46-b04d-96edb5096e88" />
+          </association>
+          <association Id="c9aba88a-9c65-4078-b4ca-3543daa09dc1" isDerived="false" sourceEndRoleName="ClipFlair user" targetEndRoleName="Revoicing" isLeaf="false" isAbstract="false">
+            <useCaseMoniker Id="52f7f555-a5da-4a45-8629-45f2d4177ebd" LastKnownName="Revoicing" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="c92d0702-c19f-405a-992a-50954e25f0a7" name="ClipFlair user" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="b1b004f5-135c-449e-a94a-c2d80c76e842" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="13c12538-2271-419b-b861-50112fb6728d" name="Revoicing" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="51b7d909-8653-4717-9235-756b377b2f1a" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="52d7ccb9-c371-49df-a567-cda01e7f35b2" />
+          </association>
+        </targetEnds>
+      </actor>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <useCase Id="215593a0-d024-4f4d-8a73-c77bf7046086" name="Audio Editing" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="070596f2-1500-4880-8886-9f2f5dfc59df" />
+      </useCase>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <useCase Id="422609e0-a57e-4a5a-9534-1464177051d1" name="Edit revoicing entry audio" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="d4dcfefc-90d7-4908-bd5d-b6274419a2ee" />
+        <generalsInternal>
+          <generalization Id="03b1233f-eec8-4d5f-ab3c-a0eaac4f7755" isSubstitutable="false">
+            <useCaseMoniker Id="215593a0-d024-4f4d-8a73-c77bf7046086" LastKnownName="Audio Editing" />
+            <elementDefinition Id="406ccd8f-105b-4f67-8e1c-9c438c5b1b03" />
+          </generalization>
+        </generalsInternal>
+      </useCase>
+    </useCaseModelRootHasTypes>
+  </packagedElements>
+  <package Id="e5223ea9-e631-4187-b8ea-ab67ca15d9fd" name="ClipFlair">
+    <elementDefinition Id="932621b2-5f91-42d5-909b-e824a279f791" />
+    <profileInstances>
+      <packageHasProfileInstances Id="6e821c01-2875-48e7-83c4-4513d4bfaf0f">
+        <profileInstance Id="6769057d-272f-46d5-b944-11a2ec017276" name="StandardProfileL2">
+          <elementDefinition Id="e34d544e-0fea-4ed6-ac5e-1b74119ac791" />
+        </profileInstance>
+        <elementDefinition Id="0caec977-1f8c-4ba3-a7db-8cc9ad9cc73b" />
+      </packageHasProfileInstances>
+      <packageHasProfileInstances Id="46a5bc57-d7be-4bd1-969c-bd037959aa1c">
+        <profileInstance Id="348132d6-8cbd-4506-95a9-1dcef443bc1a" name="StandardProfileL3">
+          <elementDefinition Id="532ea607-fb19-44b8-8502-3351b05452be" />
+        </profileInstance>
+        <elementDefinition Id="29349502-908c-4fda-9054-c48619c59ed0" />
+      </packageHasProfileInstances>
+    </profileInstances>
+  </package>
+</useCaseModelRoot>
