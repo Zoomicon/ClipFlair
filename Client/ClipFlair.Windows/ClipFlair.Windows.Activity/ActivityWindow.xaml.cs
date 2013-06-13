@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: ActivityWindow.xaml.cs
-//Version: 20130520
+//Version: 20130613
 
 using Utils.Extensions;
 using Utils.Bindings;
@@ -72,7 +72,7 @@ namespace ClipFlair.Windows
       set { View = value; }
     }
 
-    public ActivityContainer activityContainer
+    public ActivityContainer Container
     {
       get { return activity; }
     }

@@ -2,7 +2,6 @@
 //Filename: BaseView.cs
 //Version: 20130501
 
-
 using System.ComponentModel;
 using System;
 using System.Runtime.Serialization;

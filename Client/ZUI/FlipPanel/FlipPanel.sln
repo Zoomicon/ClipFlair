@@ -1,0 +1,38 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FlipPanel.Silverlight", "FlipPanel.Silverlight\FlipPanel.Silverlight.csproj", "{245ABF59-8751-46FB-A37E-E5EE253342AD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FlipPanel.Silverlight.Demo", "FlipPanel.Silverlight.Demo\FlipPanel.Silverlight.Demo.csproj", "{7944BE92-030E-4A43-832B-DCA543EFCFDE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FlipPanel.Silverlight.Demo.Web", "FlipPanel.Silverlight.Demo.Web\FlipPanel.Silverlight.Demo.Web.csproj", "{70608BF1-0310-45D0-96A6-744A2F00DB83}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FlipPanel.WindowsPhone", "FlipPanel.WindowsPhone\FlipPanel.WindowsPhone.csproj", "{FE312796-4F57-4B4B-87BE-2583B98363A2}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{245ABF59-8751-46FB-A37E-E5EE253342AD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{245ABF59-8751-46FB-A37E-E5EE253342AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{245ABF59-8751-46FB-A37E-E5EE253342AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{245ABF59-8751-46FB-A37E-E5EE253342AD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7944BE92-030E-4A43-832B-DCA543EFCFDE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7944BE92-030E-4A43-832B-DCA543EFCFDE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7944BE92-030E-4A43-832B-DCA543EFCFDE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7944BE92-030E-4A43-832B-DCA543EFCFDE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{70608BF1-0310-45D0-96A6-744A2F00DB83}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{70608BF1-0310-45D0-96A6-744A2F00DB83}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{70608BF1-0310-45D0-96A6-744A2F00DB83}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{70608BF1-0310-45D0-96A6-744A2F00DB83}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FE312796-4F57-4B4B-87BE-2583B98363A2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FE312796-4F57-4B4B-87BE-2583B98363A2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FE312796-4F57-4B4B-87BE-2583B98363A2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FE312796-4F57-4B4B-87BE-2583B98363A2}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

@@ -121,10 +121,6 @@
       <Project>{BF52BDBA-830F-4CD4-AA9C-F653B6448184}</Project>
       <Name>AudioRecorderControl.Silverlight</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\ImageButtons\ImageButtons.Silverlight\ImageButtons.Silverlight.csproj">
-      <Project>{127105AF-C0F4-40F8-87C5-D6C391552936}</Project>
-      <Name>ImageButtons.Silverlight</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\..\MediaPlayer\MediaPlayer.Silverlight\MediaPlayer.Silverlight.csproj">
       <Project>{DD195CFE-B418-4C76-8F51-EEE8E28FAA41}</Project>
       <Name>MediaPlayer.Silverlight</Name>
@@ -136,6 +132,10 @@
     <ProjectReference Include="..\..\..\WPF_Compatibility\WPF_Compatibility.Silverlight\WPF_Compatibility.Silverlight.csproj">
       <Project>{7DC832CC-2D97-4DBC-B963-3F77C1F20730}</Project>
       <Name>WPF_Compatibility.Silverlight</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\ZUI\ImageButtons\ImageButtons.Silverlight\ImageButtons.Silverlight.csproj">
+      <Project>{127105AF-C0F4-40F8-87C5-D6C391552936}</Project>
+      <Name>ImageButtons.Silverlight</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\CaptionsLib\CaptionsLib.Silverlight\CaptionsLib.Silverlight.vbproj">
       <Project>{782E0F64-CDCE-41AA-9B7E-80714B1EE663}</Project>

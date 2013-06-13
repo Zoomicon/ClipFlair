@@ -1,0 +1,138 @@
+﻿<!-- 
+Filename: DropDownWithButtonTheme.xaml
+Version: 20121004
+-->
+  
+<ResourceDictionary
+ xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+ xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+ xmlns:local="clr-namespace:FlipPanel;assembly=FlipPanel">
+
+  <ControlTemplate x:Key="FlipPanel_DropDownWithButtonTemplate" TargetType="local:FlipPanel">
+    <Grid
+      HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
+      VerticalAlignment="{TemplateBinding VerticalAlignment}"      
+      >
+      <VisualStateManager.VisualStateGroups>
+        <VisualStateGroup x:Name="ViewStates">
+          <VisualStateGroup.Transitions>
+            <VisualTransition GeneratedDuration="0:0:0.5">
+            </VisualTransition>
+          </VisualStateGroup.Transitions>
+
+          <VisualState x:Name="Normal">
+            <Storyboard>
+              <DoubleAnimation Storyboard.TargetName="BackContentTransform"
+                       Storyboard.TargetProperty="ScaleY" To="0" Duration="0:0:0"></DoubleAnimation>
+
+              <DoubleAnimation Storyboard.TargetName="BackContentEffect" 
+                       Storyboard.TargetProperty="Radius" To="30" Duration="0:0:0"></DoubleAnimation>
+
+            </Storyboard>
+          </VisualState>
+
+          <VisualState x:Name="Flipped">
+            <Storyboard>
+              <DoubleAnimation Storyboard.TargetName="FrontContentTransform"
+                       Storyboard.TargetProperty="ScaleY" To="0" Duration="0:0:0"></DoubleAnimation>
+
+              <DoubleAnimation Storyboard.TargetName="FrontContentEffect" 
+                       Storyboard.TargetProperty="Radius" To="30" Duration="0:0:0"></DoubleAnimation>
+
+            </Storyboard>
+          </VisualState>
+        </VisualStateGroup>
+      </VisualStateManager.VisualStateGroups>
+
+      <Grid.RowDefinitions>
+        <RowDefinition Height="*" />
+        <RowDefinition Height="Auto" />
+      </Grid.RowDefinitions>
+
+      <!-- Front content -->
+      <Border Grid.Row="0"
+              BorderBrush="{TemplateBinding BorderBrush}"
+              BorderThickness="{TemplateBinding BorderThickness}"
+              CornerRadius="{TemplateBinding CornerRadius}"
+                            Background="{TemplateBinding Background}" 
+               >
+
+        <Border.RenderTransform>
+          <ScaleTransform x:Name="FrontContentTransform"></ScaleTransform>
+        </Border.RenderTransform>
+
+        <Border.Effect>
+          <BlurEffect x:Name="FrontContentEffect" Radius="0"></BlurEffect>
+        </Border.Effect>
+
+        <Grid>
+          <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+          </Grid.RowDefinitions>
+          
+          <ContentPresenter Grid.Row="0" 
+                            Content="{TemplateBinding FrontContent}" 
+                            HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                            VerticalAlignment="{TemplateBinding VerticalContentAlignment}"            
+            />
+
+          <!-- Flip button (front) -->
+          <Rectangle Grid.Row="1" Stretch="Fill" Fill="LightSteelBlue"></Rectangle>
+          <ToggleButton Grid.Row="1" x:Name="FlipButton" Margin="5" Padding="15,0" 
+                        Content="˄" FontWeight="Bold" FontSize="12" HorizontalAlignment="Right"/>
+          
+        </Grid>
+
+      </Border>
+
+      <!-- Back content -->
+      <Border Grid.Row="0"
+              BorderBrush="{TemplateBinding BorderBrush}"
+              BorderThickness="{TemplateBinding BorderThickness}"
+              CornerRadius="{TemplateBinding CornerRadius}"
+              Background="{TemplateBinding Background}" RenderTransformOrigin="0,1">
+
+        <Border.RenderTransform>
+          <ScaleTransform x:Name="BackContentTransform"></ScaleTransform>
+        </Border.RenderTransform>
+
+        <Border.Effect>
+          <BlurEffect x:Name="BackContentEffect" Radius="0"></BlurEffect>
+        </Border.Effect>
+        
+        <Grid>
+          <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+          </Grid.RowDefinitions>
+
+          <!-- Flip button (back) -->
+          <Rectangle Grid.Row="0" Stretch="Fill" Fill="LightSteelBlue"></Rectangle>
+          <ToggleButton x:Name="FlipButtonAlternate" 
+                        Grid.Row="0" 
+                        Margin="5" Padding="15,0" 
+                        Content="˅" 
+                        FontWeight="Bold" FontSize="12" 
+                        HorizontalAlignment="Right" />
+
+          <ContentPresenter Grid.Row="1" 
+                            Content="{TemplateBinding BackContent}" 
+                            HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                            VerticalAlignment="{TemplateBinding VerticalContentAlignment}"            
+                            />
+
+        </Grid>
+
+      </Border>
+
+    </Grid>
+
+  </ControlTemplate>
+
+  <Style x:Key="FlipPanel_DropDownWithButtonStyle" TargetType="local:FlipPanel">
+    <Setter Property="Template" Value="{StaticResource FlipPanel_DropDownWithButtonTemplate}"/>
+  </Style>
+
+</ResourceDictionary>
+  

@@ -105,13 +105,13 @@
     <Resource Include="Images\Save_hover.png" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\ImageButtons\ImageButtons.Silverlight\ImageButtons.Silverlight.csproj">
+    <None Include="Widgets.cd" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\ZUI\ImageButtons\ImageButtons.Silverlight\ImageButtons.Silverlight.csproj">
       <Project>{127105AF-C0F4-40F8-87C5-D6C391552936}</Project>
       <Name>ImageButtons.Silverlight</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Widgets.cd" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Silverlight\$(SilverlightVersion)\Microsoft.Silverlight.CSharp.targets" />
   <ProjectExtensions>

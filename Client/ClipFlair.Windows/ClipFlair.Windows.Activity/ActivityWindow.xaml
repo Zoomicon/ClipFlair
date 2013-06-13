@@ -1,7 +1,7 @@
 ﻿<!--
 Project: ClipFlair (http://ClipFlair.codeplex.com)
 Filename: ActivityWindow.xaml
-Version: 20130315
+Version: 20130613
 -->
 
 <clipflair:BaseWindow x:Class="ClipFlair.Windows.ActivityWindow"
@@ -101,8 +101,8 @@ Version: 20130315
 
     <StackPanel Orientation="Vertical">
       <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Content Zoom:" Target="{Binding ElementName=sldContentZoom}" />
-      <!-- <TextBox Name="edContentZoom" Text="{Binding ContentZoom, Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=true}" /> -->
-      <Slider Name="sldContentZoom" Minimum="0.3" Maximum="3" SmallChange="0.1" LargeChange="0.5" Value="{Binding ContentZoom, Mode=TwoWay}" />
+      <TextBox Name="edContentZoom" Text="{Binding ContentZoom, Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=true}"/>
+      <Slider Name="sldContentZoom" Minimum="0.3" Maximum="3" SmallChange="0.1" LargeChange="0.5" Value="{Binding ContentZoom, Mode=TwoWay}"/>
     </StackPanel>
 
     <StackPanel Orientation="Horizontal">

@@ -1,7 +1,7 @@
 ﻿<!--
 Project: ClipFlair (http://ClipFlair.codeplex.com)
 Filename: BaseWindow.xaml
-Version: 20130508
+Version: 20130612
 -->
 
 <float:FloatingWindow x:Class="ClipFlair.Windows.BaseWindow"
@@ -32,6 +32,9 @@ Version: 20130508
     MoveEnabled="{Binding Moveable, Mode=TwoWay}"
     ResizeEnabled="{Binding Resizable, Mode=TwoWay}"        
     ScaleEnabled="{Binding Zoomable, Mode=TwoWay}"
+    
+    ShowMinimizeButton="False"
+    ShowMaximizeButton="False"
                       
     ShowScreenshotButton="False"
     > <!-- hiding screenshot button due to Silverlight security issue: not rendering cross-domain content to WriteableBitmap -->
@@ -44,7 +47,6 @@ Version: 20130508
         <ResourceDictionary Source="/ClipFlair.Windows.Base;component/Themes/Default.xaml" />
       </ResourceDictionary.MergedDictionaries>
     </ResourceDictionary>
-
   </float:FloatingWindow.Resources>
 
   <float:FloatingWindow.Style>

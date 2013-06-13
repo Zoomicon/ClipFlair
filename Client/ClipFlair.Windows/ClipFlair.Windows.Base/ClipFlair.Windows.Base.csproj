@@ -107,7 +107,7 @@
       <Project>{0771A5EA-F8F5-4BB4-A29E-2FD3CF9A5088}</Project>
       <Name>ClipFlair.UI.Widgets.Silverlight</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\FlipPanel\FlipPanel.Silverlight\FlipPanel.Silverlight.csproj">
+    <ProjectReference Include="..\..\ZUI\FlipPanel\FlipPanel.Silverlight\FlipPanel.Silverlight.csproj">
       <Project>{245ABF59-8751-46FB-A37E-E5EE253342AD}</Project>
       <Name>FlipPanel.Silverlight</Name>
     </ProjectReference>
