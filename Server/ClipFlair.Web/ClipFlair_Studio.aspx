@@ -4,8 +4,8 @@
 
 <!--
 Project: ClipFlair (http://ClipFlair.codeplex.com)
-Filename: ClipFlair.aspx
-Version: 20130210
+Filename: ClipFlair_Studio.aspx
+Version: 20130613
 -->
 
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -94,23 +94,42 @@ Version: 20130210
       throw new Error(errMsg);
     }
 
-    function onSilverlightLoad(sender, args) {
-      var control = document.getElementById("silverlightControl");
-      control.focus();
+    function silverlightControl() {
+      return document.getElementById("silverlightControl");
     }
 
-    function activity() {
-      var control = document.getElementById("silverlightControl");
-      return control.content.activity;
+    function onSilverlightLoad(sender, args) {
+      var control = silverlightControl();
+      if (control != null)
+        control.focus();
+    }
+
+    function activityWindow() {
+      var control = silverlightControl();
+      if ( (control != null) && (control.content != null) )
+        return control.content.activityWindow;
+      else
+        return null; //need this so that it doesn't return undefined
+    }
+
+    function activityView() {
+      var activityWindow = activityWindow();
+      if (activityWindow != null)
+        return activityWindow.GetView();
+      else
+        return null; //need this so that it doesn't return undefined
     }
 
     function onClosing() {
-      if (activity().View.WarnOnClosing)
-        return "Do you want to exit ClipFlair Studio?";
+      var activityView = activityView();
+      if ( (activityView != null) && (activityView().WarnOnClosing) )
+        return "Do you want to exit ClipFlair Studio?"; //else return undefined is implied (no onClosing message that is)
     }
 
     function onClosed() {
-      activity().View.WarnOnClosing = false;
+      var activityView = activityView();
+      if (activityView != null)
+        activityView().WarnOnClosing = false;
     }
 
     function installEventHandlers() {
