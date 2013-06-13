@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="NameAndType">
+  <Class Name="ClipFlair.Windows.ActivityContainer">
+    <Position X="12.25" Y="0.5" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAAAgACAAAIQABASAgACDAEEBEgRBGIxCBAAIEAAgAA=</HashCode>
+      <FileName>ActivityContainer.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ClipFlair.Windows.ActivityWindow">
+    <Position X="9.5" Y="1.75" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>ABAGABCACAACgAAABABEgAoAACABAAAAAAAAAAAIAEA=</HashCode>
+      <FileName>ActivityWindow.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ClipFlair.Windows.Views.ActivityDefaults">
+    <Position X="3.5" Y="0.5" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>gAAAAEAAQEADAAAAAACCAAAEAQEAAAACACEAAAAIAAA=</HashCode>
+      <FileName>ActivityDefaults.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ClipFlair.Windows.Views.ActivityView" BaseTypeListCollapsed="true">
+    <Position X="6.75" Y="0.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AIEBAAAAQggAACIIAAAgAANAAAADQQAAAAUAAQCEAQA=</HashCode>
+      <FileName>ActivityView.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="ClipFlair.Windows.Views.IActivityProperties">
+    <Position X="0.5" Y="0.5" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAgAEAAAAABAAAAgRgAAEAARBA=</HashCode>
+      <FileName>IActivity.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ClipFlair.Windows.Activity.ActivityWindowFactory" BaseTypeListCollapsed="true">
+    <Position X="9.5" Y="0.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ActivityWindowFactory.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Interface Name="ClipFlair.Windows.Views.IActivity">
+    <Position X="0.5" Y="3.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AIEAAAAAAggAACAAAAAAAANAAAAAAQAAAAAAAAAEAQA=</HashCode>
+      <FileName>IActivity.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Tahoma" Size="8.25" />
+</ClassDiagram>

@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="NameAndType">
+  <Class Name="ClipFlair.Windows.Views.ICaptionsGridProperties">
+    <Position X="0.5" Y="0.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAIAAAgAACAAACAAAAAAAAAIAAAgAAQAAAAAARFA=</HashCode>
+      <FileName>ICaptionsGrid.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ClipFlair.Windows.Views.CaptionsGridDefaults">
+    <Position X="3" Y="0.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>ABAAAAAAQMMGAAAAgAAAQAAAABEAAACCACAAAAAIAAA=</HashCode>
+      <FileName>CaptionsGridDefaults.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ClipFlair.Windows.Views.CaptionsGridView" BaseTypeListCollapsed="true">
+    <Position X="5.75" Y="0.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAABBAAAQgAAAAIAAAAAAEBAACAEQAgkQAQIJEQEAQA=</HashCode>
+      <FileName>CaptionsGridView.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="ClipFlair.Windows.CaptionsGridWindow">
+    <Position X="8.25" Y="1.75" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAEAAAAgAgAAAAABAAAAAAAAAAAAAAgAAAIAAAACAA=</HashCode>
+      <FileName>CaptionsGridWindow.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ClipFlair.Windows.Captions.CaptionsGridWindowFactory" BaseTypeListCollapsed="true">
+    <Position X="8.25" Y="0.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>CaptionsGridWindowFactory.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Interface Name="ClipFlair.Windows.Views.ICaptionsGrid">
+    <Position X="0.5" Y="3.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAgAAAAAAAAAAAEBAACAAAAggQAQABAQAAQA=</HashCode>
+      <FileName>ICaptionsGrid.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Tahoma" Size="8.25" />
+</ClassDiagram>

@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="NameAndType">
+  <Class Name="ClipFlair.Windows.Views.BaseView">
+    <Position X="6.5" Y="0.5" Width="3.25" />
+    <TypeIdentifier />
+    <Lollipop Position="2.148" />
+  </Class>
+  <Class Name="ClipFlair.Windows.Views.CaptionsGridView">
+    <Position X="5.75" Y="6" Width="2" />
+    <TypeIdentifier />
+    <Lollipop Position="1.169" />
+  </Class>
+  <Class Name="ClipFlair.Windows.Views.ImageView">
+    <Position X="10.5" Y="6" Width="1.5" />
+    <TypeIdentifier />
+    <Lollipop Position="0.929" />
+  </Class>
+  <Class Name="ClipFlair.Windows.Views.MediaPlayerView">
+    <Position X="3.5" Y="6" Width="2" />
+    <TypeIdentifier />
+    <Lollipop Position="0.944" />
+  </Class>
+  <Class Name="ClipFlair.Windows.Views.TextEditorView">
+    <Position X="8.25" Y="6" Width="1.75" />
+    <TypeIdentifier />
+    <Lollipop Position="1.033" />
+  </Class>
+  <Class Name="ClipFlair.Windows.Views.ActivityView">
+    <Position X="0.75" Y="6" Width="2.25" />
+    <TypeIdentifier />
+    <Lollipop Position="1.367" />
+  </Class>
+  <Class Name="ClipFlair.Windows.Views.MapView">
+    <Position X="12.5" Y="6" Width="1.75" />
+    <TypeIdentifier />
+    <Lollipop Position="1.148" />
+  </Class>
+  <Class Name="ClipFlair.Windows.Views.GalleryView">
+    <Position X="14.75" Y="6" Width="1.5" />
+    <TypeIdentifier />
+    <Lollipop Position="1.137" />
+  </Class>
+  <Font Name="Tahoma" Size="8.25" />
+</ClassDiagram>
