@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: App.xaml.cs
-//Version: 20130522
+//Version: 20130613
 
 using ClipFlair.UI.Dialogs;
 using ClipFlair.Windows;
@@ -84,18 +84,18 @@ namespace ClipFlair
         activityWindow.Width = host.ActualWidth;
         activityWindow.Height = host.ActualHeight;
 
+        if (!IsRunningOutOfBrowser)
+          HtmlPage.RegisterScriptableObject("activityWindow", activityWindow); //NOTE: must do this only after setting RootVisual (obviously for Rendered to be called this will have occured)
+        
         if (!ParseUrlParameters(activityWindow)) //ParseUrlParameters returns false if IsRunningOutOfBrowser is true
         {
-          activityWindow.activityContainer.AddGallery();
+          activityWindow.Container.AddGallery();
           activityWindow.ShowLoadURLDialog();
         }
       };
 
       RootVisual = host;
-
-      if (!IsRunningOutOfBrowser)
-        HtmlPage.RegisterScriptableObject("activity", activityWindow); //NOTE: must do this only after setting RootVisual
-      
+     
       //MessageBox.Show("ClipFlair loaded"); //uncomment this to test the loading indicator
     }
 
@@ -135,7 +135,7 @@ namespace ClipFlair
         MediaPlayerWindow w = new MediaPlayerWindow();
         w.Width = 800;
         w.Height = 600;
-        activityWindow.activityContainer.AddWindowInViewCenter(w);
+        activityWindow.Container.AddWindowInViewCenter(w);
         w.MediaPlayerView.Source = makeClipUri(CLIPFLAIR_GALLERY_VIDEO, queryString[PARAMETER_MEDIA]);
         foundParam = true;
       }
@@ -146,7 +146,7 @@ namespace ClipFlair
         MediaPlayerWindow w = new MediaPlayerWindow();
         w.Width = 800;
         w.Height = 600;
-        activityWindow.activityContainer.AddWindowInViewCenter(w);
+        activityWindow.Container.AddWindowInViewCenter(w);
         w.MediaPlayerView.Source = makeClipUri(CLIPFLAIR_GALLERY_VIDEO, queryString[PARAMETER_VIDEO]);
         foundParam = true;
       }
@@ -157,7 +157,7 @@ namespace ClipFlair
         MediaPlayerWindow w = new MediaPlayerWindow();
         //w.Width = 800;
         //w.Height = 600;
-        activityWindow.activityContainer.AddWindowInViewCenter(w);
+        activityWindow.Container.AddWindowInViewCenter(w);
         w.MediaPlayerView.VideoVisible = false;
         w.MediaPlayerView.Source = makeClipUri(CLIPFLAIR_GALLERY_AUDIO, queryString[PARAMETER_AUDIO]);
         foundParam = true;
@@ -169,7 +169,7 @@ namespace ClipFlair
         ImageWindow w = new ImageWindow();
         w.Width = 800;
         w.Height = 600; 
-        activityWindow.activityContainer.AddWindowInViewCenter(w);
+        activityWindow.Container.AddWindowInViewCenter(w);
         w.ImageView.Source = new Uri(new Uri(CLIPFLAIR_GALLERY_IMAGE), queryString[PARAMETER_IMAGE]);
         foundParam = true;
       }
@@ -180,7 +180,7 @@ namespace ClipFlair
         GalleryWindow w = new GalleryWindow();
         w.Width = 800;
         w.Height = 600;
-        activityWindow.activityContainer.AddWindowInViewCenter(w);
+        activityWindow.Container.AddWindowInViewCenter(w);
         w.GalleryView.Source = makeGalleryUri(queryString[PARAMETER_GALLERY]);
         foundParam = true;
       }
@@ -191,7 +191,7 @@ namespace ClipFlair
         GalleryWindow w = new GalleryWindow();
         w.Width = 800;
         w.Height = 600;
-        activityWindow.activityContainer.AddWindowInViewCenter(w);
+        activityWindow.Container.AddWindowInViewCenter(w);
         w.GalleryView.Source = new Uri(new Uri(CLIPFLAIR_GALLERY_COLLECTION), queryString[PARAMETER_COLLECTION]);
         foundParam = true;
       }
