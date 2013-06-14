@@ -113,23 +113,23 @@ Version: 20130613
     }
 
     function activityView() {
-      var activityWindow = activityWindow();
-      if (activityWindow != null)
-        return activityWindow.GetView();
+      var a = activityWindow();
+      if (a != null)
+        return a.GetView();
       else
         return null; //need this so that it doesn't return undefined
     }
 
     function onClosing() {
-      var activityView = activityView();
-      if ( (activityView != null) && (activityView().WarnOnClosing) )
+      var a = activityView();
+      if ( (a != null) && (a.WarnOnClosing) )
         return "Do you want to exit ClipFlair Studio?"; //else return undefined is implied (no onClosing message that is)
     }
 
     function onClosed() {
-      var activityView = activityView();
-      if (activityView != null)
-        activityView().WarnOnClosing = false;
+      var a = activityView();
+      if (a != null)
+        a.WarnOnClosing = false;
     }
 
     function installEventHandlers() {
