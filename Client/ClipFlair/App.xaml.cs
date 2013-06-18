@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: App.xaml.cs
-//Version: 20130613
+//Version: 20130618
 
 using ClipFlair.UI.Dialogs;
 using ClipFlair.Windows;
@@ -89,7 +89,9 @@ namespace ClipFlair
         
         if (!ParseUrlParameters(activityWindow)) //ParseUrlParameters returns false if IsRunningOutOfBrowser is true
         {
-          activityWindow.Container.AddGallery();
+          GalleryWindow w = activityWindow.Container.AddGallery();
+          w.Width = activityWindow.Width;
+          w.Height = activityWindow.Height - 80;
           activityWindow.ShowLoadURLDialog();
         }
       };
