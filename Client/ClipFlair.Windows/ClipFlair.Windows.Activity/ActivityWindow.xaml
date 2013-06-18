@@ -1,7 +1,7 @@
 ﻿<!--
 Project: ClipFlair (http://ClipFlair.codeplex.com)
 Filename: ActivityWindow.xaml
-Version: 20130613
+Version: 20130618
 -->
 
 <clipflair:BaseWindow x:Class="ClipFlair.Windows.ActivityWindow"
@@ -17,8 +17,11 @@ Version: 20130613
   BorderBrush="#503933"
   BorderThickness="3"
                       
+  ShowScreenshotButton="False"                     
+                      
   d:DesignWidth="1000" d:DesignHeight="700"
-  >
+  > <!-- hiding screenshot button due to Silverlight security issue: not rendering cross-domain content to WriteableBitmap -->
+
 
   <clipflair:BaseWindow.TitleBackground>
     <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
