@@ -47,7 +47,13 @@ Version: 20130322
       </VisualStateGroup>
     </VisualStateManager.VisualStateGroups>
 
-    <Border x:Name="ApplicationBorder" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" MaxWidth="900" Margin="0,0,0,0" BorderThickness="1" BorderBrush="#FF646464">
+    <Border x:Name="ApplicationBorder"
+      HorizontalAlignment="Stretch"
+      VerticalAlignment="Stretch"
+      MaxWidth="900"
+      Margin="0,0,0,0"
+      BorderThickness="1"
+      BorderBrush="#FF646464"> <!-- TODO: add ContentZoom option to work like Word? -->
 
       <Grid Name="MainGrid">
 
