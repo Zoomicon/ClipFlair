@@ -1,5 +1,5 @@
 ﻿//Filename: ZoomAndPanControl.cs
-//Version: 20130405
+//Version: 20130622
 //Editor: George Birbilis <birbilis@kagi.com>
 
 //Based on:
@@ -597,9 +597,10 @@ namespace ZoomAndPan
                 //
                 // Setup the transform on the content so that we can scale it by 'ContentScale'.
                 //
-                this.contentScaleTransform = new ScaleTransform(); //Silverlight doesn't support constructor that takes ScaleX/ScaleY params
-                this.contentScaleTransform.ScaleX = this.ContentScale;
-                this.contentScaleTransform.ScaleY = this.ContentScale;
+                this.contentScaleTransform = new ScaleTransform() {
+                  ScaleX = this.ContentScale, 
+                  ScaleY = this.ContentScale
+                };
 
                 //
                 // Setup the transform on the content so that we can translate it by 'ContentOffsetX' and 'ContentOffsetY'.
