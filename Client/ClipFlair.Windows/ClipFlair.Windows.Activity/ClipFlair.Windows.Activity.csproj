@@ -74,6 +74,7 @@
     <Reference Include="system" />
     <Reference Include="System.Core" />
     <Reference Include="System.Windows.Browser" />
+    <Reference Include="System.Windows.Controls, Version=5.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Windows.Controls.Data.Input, Version=5.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Windows.Controls.Layout.Toolkit, Version=5.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Net" />
@@ -104,6 +105,10 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\ClipFlair.UI\ClipFlair.UI.Dialogs\ClipFlair.UI.Dialogs.Silverlight.csproj">
+      <Project>{C6900312-0545-4E5E-9FE0-2AEF75674E29}</Project>
+      <Name>ClipFlair.UI.Dialogs.Silverlight</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\ClipFlair.UI\ClipFlair.UI.Widgets\ClipFlair.UI.Widgets.Silverlight.csproj">
       <Project>{0771A5EA-F8F5-4BB4-A29E-2FD3CF9A5088}</Project>
       <Name>ClipFlair.UI.Widgets.Silverlight</Name>
