@@ -5,7 +5,7 @@
 <!--
 Project: ClipFlair (http://ClipFlair.codeplex.com)
 Filename: ClipFlair_Studio.aspx
-Version: 20130613
+Version: 20130618
 -->
 
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -121,9 +121,11 @@ Version: 20130613
     }
 
     function onClosing() {
-      var a = activityView();
-      if ( (a != null) && (a.WarnOnClosing) )
-        return "Do you want to exit ClipFlair Studio?"; //else return undefined is implied (no onClosing message that is)
+      //TODO: fix this to work OK when many tabs are closing at the same time (maybe an IE10 bug? Shows many confirmation dialogs and have to focus each page 1st to reply them)
+    
+//      var a = activityView();
+//      if ( (a != null) && (a.WarnOnClosing) )
+//        return "Do you want to exit ClipFlair Studio?"; //else return undefined is implied (no onClosing message that is)
     }
 
     function onClosed() {
