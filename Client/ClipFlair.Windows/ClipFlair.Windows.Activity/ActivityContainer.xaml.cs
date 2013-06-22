@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: ActivityContainer.xaml.cs
-//Version: 20130522
+//Version: 20130621
 
 //TODO: add ContentPartsCloseable property
 //TODO: add ContentPartsZoomable property
@@ -17,7 +17,9 @@
 
 //TODO: maybe use MEF Deployment Catalog and put components in separate XAPs (each one a Silverlight app, set to reuse the same Web PRoject) and imported here with CopyLocal=False
 
+using ClipFlair.UI.Dialogs;
 using ClipFlair.Windows.Views;
+
 using Utils.Bindings;
 
 using ZoomAndPan;
@@ -237,7 +239,7 @@ namespace ClipFlair.Windows
         if (!newInstance)
           AddWindow(w);
         else
-        { //for new child window instances the user adds must reset their properties to match their containers so that they don't cause other components bound to the container to lose their Time/Captions when these get bound as sources to the container (which AddWindow does by calling BindWindow)
+        { //for new child window instances (that the user adds), must reset their properties to match their containers so that they don't cause other components bound to the container to lose their Time/Captions when these get bound as sources to the container (which AddWindow does by calling BindWindow)
           if (w is MediaPlayerWindow)
           {
             IMediaPlayer v = ((MediaPlayerWindow)w).MediaPlayerView;
@@ -257,16 +259,21 @@ namespace ClipFlair.Windows
       }
       catch (Exception e)
       {
-        MessageBox.Show("Failed to create component: " + e.Message); //TODO: find parent window
+        ErrorDialog.Show("Failed to create component", e);
         return null;
       }
     }
 
-    public BaseWindow AddWindowInViewCenter(BaseWindow window)
+    public BaseWindow AddWindowInViewCenter(BaseWindow window, bool autozoom = false) //TODO: have param to add some randomness (within given x,y offsets)
     {
       ZoomAndPanControl host = zuiContainer.ZoomHost;
-      double zoom = host.ContentScale;
-      window.Scale = 1.0d / zoom;
+
+      if (autozoom) //TODO: see why when using autozoom at zoomed out container on small screens, new windows can get out of screen bounds on the top
+      {
+        double zoom = host.ContentScale;
+        window.Scale = 1.0d / zoom;
+      }
+      
       Point startPoint = new Point(host.ContentOffsetX + host.ContentViewportWidth / 2,
                                    host.ContentOffsetY + host.ContentViewportHeight / 2); //Center at current view //must use ContentViewport methods, not Viewport ones (they give width/height in content coordinates)
       zuiContainer.Add(window).Show(startPoint, true);
@@ -305,7 +312,7 @@ namespace ClipFlair.Windows
         }
         catch (Exception ex)
         {
-          MessageBox.Show("Failed to bind component: " + ex.Message); //TODO: find parent window
+          ErrorDialog.Show("Failed to bind component", ex);
         }
     } //TODO: check why it won't sync smoothly (see what was doing in LvS, maybe ignore time events that are very close to current time) //most probably need to ignore small time differences at sync
 
@@ -322,7 +329,7 @@ namespace ClipFlair.Windows
         }
         catch (Exception ex)
         {
-          MessageBox.Show("Failed to bind component: " + ex.Message); //TODO: find parent window
+          ErrorDialog.Show("Failed to bind component", ex);
         }
     }
 
@@ -336,7 +343,7 @@ namespace ClipFlair.Windows
         }
         catch (Exception ex)
         {
-          MessageBox.Show("Failed to bind component: " + ex.Message); //TODO: find parent window
+          ErrorDialog.Show("Failed to bind component", ex);
         }
     }
     
