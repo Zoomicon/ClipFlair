@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<!--
+Project: ClipFlair (http://ClipFlair.codeplex.com)
+Filename: Language.xml
+Version: 20130703
+-->
+
+<Facet Name="Language">
+  <String Value="Basque" />
+  <String Value="Catalan" />
+  <String Value="Chinese" />
+  <String Value="English" />
+  <String Value="Estonian" />
+  <String Value="Greek" />
+  <String Value="Irish" />
+  <String Value="Irish Gaeilge" />
+  <String Value="Italian" />
+  <String Value="Polish" />
+  <String Value="Romanian" />
+  <String Value="Spanish" /> 
+  <!-- TODO -->
+</Facet>

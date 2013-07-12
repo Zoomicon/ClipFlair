@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<!--
+Project: ClipFlair (http://ClipFlair.codeplex.com)
+Filename: LanguageCombination.xml
+Version: 20130704
+-->
+
+<Facet Name="Language Combination">
+  <String Value="Intralingual" />
+  <String Value="Interlingual" />
+  <!-- ??? -->
+</Facet>

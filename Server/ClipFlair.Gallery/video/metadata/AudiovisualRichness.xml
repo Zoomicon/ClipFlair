@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<!--
+Project: ClipFlair (http://ClipFlair.codeplex.com)
+Filename: AudiovisualRichness.xml
+Version: 20130703
+-->
+
+<Facet Name="Audiovisual richness">
+  <String Value="Visual - Semiotic" />
+  <String Value="Lexis - Grammar" />
+  <String Value="Narrative - Plot" />
+  <String Value="Action - Camera" />
+  <String Value="Verbal - Pragmatic" />
+  <String Value="Characters" />  
+</Facet>

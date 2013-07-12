@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<!--
+Project: ClipFlair (http://ClipFlair.codeplex.com)
+Filename: AVSkills.xml
+Version: 20130711
+-->
+
+<Facet Name="AV skills">
+  <String Value="AV Watching" />
+  <String Value="AV Listening" />
+  <String Value="AV Reading" />
+  <String Value="AV Speaking" />
+  <String Value="AV Writing" />
+  <String Value="Picture-literacy" />
+</Facet>

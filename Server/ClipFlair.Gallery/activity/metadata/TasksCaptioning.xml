@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<!--
+Project: ClipFlair (http://ClipFlair.codeplex.com)
+Filename: TasksCaptioning.xml
+Version: 20130704
+-->
+
+<Facet Name="Tasks - Captioning">
+  <String Value="Intertitles" />
+  <String Value="Multimodal Writing" />
+  <String Value="Speech bubbles" />
+  <String Value="Subtitles" />
+</Facet>

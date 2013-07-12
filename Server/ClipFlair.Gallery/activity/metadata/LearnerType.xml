@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<!--
+Project: ClipFlair (http://ClipFlair.codeplex.com)
+Filename: LearnerType.xml
+Version: 20130704
+-->
+
+<Facet Name="Learner Type">
+  <String Value="Teacher dependent" />
+  <String Value="Guided" />
+  <String Value="Independent" />
+</Facet>
