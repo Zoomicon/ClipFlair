@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: App.xaml.cs
-//Version: 20130618
+//Version: 20130711
 
 using ClipFlair.UI.Dialogs;
 using ClipFlair.Windows;
@@ -194,7 +194,7 @@ namespace ClipFlair
         w.Width = 800;
         w.Height = 600;
         activityWindow.Container.AddWindowInViewCenter(w);
-        w.GalleryView.Source = new Uri(new Uri(CLIPFLAIR_GALLERY_COLLECTION), queryString[PARAMETER_COLLECTION]);
+        w.GalleryView.Source = makeGalleryUri(queryString[PARAMETER_COLLECTION]);
         foundParam = true;
       }
 
@@ -234,13 +234,14 @@ namespace ClipFlair
 
       return result;
     }
-
+    
     public static Uri makeGalleryUri(string param) //TODO: reuse this code at Gallery component
     {
       Uri result = new Uri(new Uri(CLIPFLAIR_GALLERY_COLLECTION), param); //make a full URL if it's a partial one
 
       string s = result.ToString();
-      if (s.StartsWith(CLIPFLAIR_GALLERY_COLLECTION, StringComparison.OrdinalIgnoreCase) && !s.EndsWith(GALLERY_EXTENSION, StringComparison.OrdinalIgnoreCase))
+      if (s.StartsWith(CLIPFLAIR_GALLERY_COLLECTION, StringComparison.OrdinalIgnoreCase) &&
+          !s.EndsWith(GALLERY_EXTENSION, StringComparison.OrdinalIgnoreCase))
         result = new Uri(s + GALLERY_EXTENSION);
 
       return result;
@@ -308,9 +309,8 @@ namespace ClipFlair
         Dispatcher dispatcher = Deployment.Current.Dispatcher;
         if (dispatcher != null) 
           dispatcher.BeginInvoke(
-            () => 
-                MessageBox.Show("Unexpected error: " + e.ExceptionObject.Message + "\n" + e.ExceptionObject.StackTrace) //TODO: find parent window?
-              //ReportErrorToDOM(e) //don't use this, uses Browser's error facility (wouldn't work in OOB)
+            () => ErrorDialog.Show("Unexpected error", e.ExceptionObject)
+                  //ReportErrorToDOM(e) //don't use this, uses Browser's error facility (wouldn't work in OOB)
           );
     }
 

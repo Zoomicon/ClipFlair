@@ -49,10 +49,12 @@
   <ItemGroup>
     <Content Include="App_Offline.htm.txt" />
     <Content Include="ClientBin\ClipFlair.xap" />
-    <Content Include="ClipFlair_Studio.aspx" />
+    <Content Include="ClipFlair_Studio.html" />
     <None Include="Images\clipflair-logo02_314x314.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <Content Include="GPU.html" />
+    <Content Include="noGPU.html" />
     <Content Include="favicon.ico" />
     <Content Include="Silverlight.js" />
     <Content Include="Web.config" />
@@ -75,7 +77,7 @@
         <WebProjectProperties>
           <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>4767</DevelopmentServerPort>
+          <DevelopmentServerPort>7206</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>http://localhost/ClipFlair.Web</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>

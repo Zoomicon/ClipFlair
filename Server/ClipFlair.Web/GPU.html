@@ -1,0 +1,180 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<!--
+Project: ClipFlair (http://ClipFlair.codeplex.com)
+Filename: ClipFlair_Studio.html
+Version: 20130701
+-->
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head runat="server">
+
+  <title>ClipFlair Studio</title>
+
+  <link rel="shortcut icon" type="image/ico" href="favicon.ico" />
+
+  <meta property="fb:admins" content="313381898712634"/>
+  <meta property="og:url" content="http://studio.clipflair.net"/>
+  <meta property="og:title" content="ClipFlair Studio"/>
+  <meta property="og:site_name" content="ClipFlair Studio"/>
+  <meta property="og:description" content="Foreign Language Learning through Interactive Revoicing and Captioning of Clips"/>
+  <meta property="og:type" content="website"/>
+  <meta property="og:image" content="http://clipflair.net/wp-content/uploads/2012/06/clipflair-logo02.jpg"/>
+  <meta property="og:locale" content="en_us"/>
+
+  <meta name="application-name" content="ClipFlair Studio" />
+
+  <meta name="msapplication-starturl" content="http://studio.clipflair.net" />
+  <meta name="msapplication-window" content="width=1024;height=768" />
+  <meta name="msapplication-task" content="name=ClipFlair Studio; action-uri=http://studio.clipflair.net/; icon-uri=http://studio.clipflair.net/favicon.ico" />
+  <meta name="msapplication-task" content="name=ClipFlair Social Network; action-uri=http://social.clipflair.net/; icon-uri=http://social.clipflair.net/favicon.ico" />
+  <meta name="msapplication-task" content="name=ClipFlair overview; action-uri=http://clipflair.net/overview/; icon-uri=http://clipflair.net/wp-content/themes/clipflair-theme/favicon.ico" />
+  <meta name="msapplication-task" content="name=ClipFlair aims & objectives; action-uri=http://clipflair.net/aims-objectives/; icon-uri=http://clipflair.net/wp-content/themes/clipflair-theme/favicon.ico" />
+  <meta name="msapplication-task" content="name=Follow ClipFlair on Facebook; action-uri=http://www.facebook.com/ClipFlair; icon-uri=http://clipflair.net/wp-content/themes/clipflair-theme/favicon.ico" />
+  <meta name="msapplication-task" content="name=Follow ClipFlair on Twitter; action-uri=http://twitter.com/ClipFlair; icon-uri=http://clipflair.net/wp-content/themes/clipflair-theme/favicon.ico" />
+  <meta name="msapplication-task" content="name=Follow ClipFlair on SlideShare; action-uri=http://www.slideshare.net/ClipFlair; icon-uri=http://clipflair.net/wp-content/themes/clipflair-theme/favicon.ico" />
+  
+  <style type="text/css">
+    html, body
+    {
+      height: 100%;
+      overflow: hidden;
+    }
+    body
+    {
+      padding: 0;
+      margin: 0;
+    }
+    #silverlightControlHost
+    {
+      height: 100%;
+      text-align: center;
+    }
+  </style>
+
+  <script type="text/javascript" src="Silverlight.js"></script>
+
+  <script type="text/javascript">
+
+    function onSilverlightError(sender, args) {
+      var appSource = "";
+      if (sender != null && sender != 0) {
+        appSource = sender.getHost().Source;
+      }
+
+      var errorType = args.ErrorType;
+      var iErrorCode = args.ErrorCode;
+
+      if (errorType == "ImageError" || errorType == "MediaError") {
+        return;
+      }
+
+      var errMsg = "Unhandled Error in Silverlight Application " + appSource + "\n";
+
+      errMsg += "Code: " + iErrorCode + "    \n";
+      errMsg += "Category: " + errorType + "       \n";
+      errMsg += "Message: " + args.ErrorMessage + "     \n";
+
+      if (errorType == "ParserError") {
+        errMsg += "File: " + args.xamlFile + "     \n";
+        errMsg += "Line: " + args.lineNumber + "     \n";
+        errMsg += "Position: " + args.charPosition + "     \n";
+      }
+      else if (errorType == "RuntimeError") {
+        if (args.lineNumber != 0) {
+          errMsg += "Line: " + args.lineNumber + "     \n";
+          errMsg += "Position: " + args.charPosition + "     \n";
+        }
+        errMsg += "MethodName: " + args.methodName + "     \n";
+      }
+
+      throw new Error(errMsg);
+    }
+
+    function silverlightControl() {
+      return document.getElementById("silverlightControl");
+    }
+
+    function onSilverlightLoad(sender, args) {
+      var control = silverlightControl();
+      if (control != null)
+        control.focus();
+    }
+
+    function activityWindow() {
+      var control = silverlightControl();
+      if ( (control != null) && (control.content != null) )
+        return control.content.activityWindow;
+      else
+        return null; //need this so that it doesn't return undefined
+    }
+
+    function activityView() {
+      var a = activityWindow();
+      if (a != null)
+        return a.GetView();
+      else
+        return null; //need this so that it doesn't return undefined
+    }
+
+    function onClosing() {
+      //TODO: fix this to work OK when many tabs are closing at the same time (maybe an IE10 bug? Shows many confirmation dialogs and have to focus each page 1st to reply them)
+    
+//      var a = activityView();
+//      if ( (a != null) && (a.WarnOnClosing) )
+//        return "Do you want to exit ClipFlair Studio?"; //else return undefined is implied (no onClosing message that is)
+    }
+
+    function onClosed() {
+      var a = activityView();
+      if (a != null)
+        a.WarnOnClosing = false;
+    }
+
+    function installEventHandlers() {
+      window.onbeforeunload = onClosing;
+      window.onunload = onClosed;
+    }
+
+    installEventHandlers();
+
+  </script>
+
+</head>
+
+<body>
+
+  <form id="form1" runat="server" style="width:100%; height:100%">
+    <div id="silverlightControlHost">
+      <object 
+        id="silverlightControl"
+        data="data:application/x-silverlight-2,"
+        type="application/x-silverlight-2"
+        width="100%" height="100%"
+        >
+        <param name="source" value="ClientBin/ClipFlair.xap" />
+        
+        <param name="onError" value="onSilverlightError" />
+        <param name="onLoad" value="onSilverlightLoad" />
+
+        <param name="enableGPUAcceleration" value="true" />
+        <param name="MaxFrameRate" value="60" />
+        
+        <param name="enableCacheVisualization" value="true" />
+        <param name="enableFramerateCounter" value="true" />
+        <param name="enableRedrawRegions" value="true" />
+
+        <param name="background" value="white" />
+
+        <param name="minRuntimeVersion" value="5.0.61118.0" />
+        <param name="autoUpgrade" value="true" />
+        <a href="http://go.microsoft.com/fwlink/?LinkID=149156&v=5.0.61118.0" style="text-decoration:none"> <img src="http://go.microsoft.com/fwlink/?LinkId=161376" alt="Get Microsoft Silverlight" style="border-style:none"/> </a>
+      </object>
+      <iframe id="_sl_historyFrame" style="visibility:hidden;height:0px;width:0px;border:0px"></iframe>
+    </div>
+  </form>
+
+</body>
+
+</html>

@@ -99,6 +99,9 @@
     <Compile Include="..\Source\WPF_DependencyProperty.cs">
       <Link>WPF_DependencyProperty.cs</Link>
     </Compile>
+    <Compile Include="..\Source\WPF_DesignerProperties.cs">
+      <Link>WPF_DesignerProperties.cs</Link>
+    </Compile>
     <Compile Include="..\Source\WPF_Rect.cs">
       <Link>WPF_Rect.cs</Link>
     </Compile>
@@ -107,6 +110,9 @@
     </Compile>
     <Compile Include="..\Source\WPF_UIElement.cs">
       <Link>WPF_UIElement.cs</Link>
+    </Compile>
+    <Compile Include="..\Source\XamlReader.cs">
+      <Link>XamlReader.cs</Link>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

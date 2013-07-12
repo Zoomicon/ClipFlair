@@ -1,9 +1,10 @@
 ﻿//Filename: FlipPanel.cs
-//Version: 20130612
+//Version: 20130704
 
 using WPFCompatibility;
 
 using System;
+using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
@@ -11,24 +12,66 @@ using System.Windows.Markup;
 
 namespace FlipPanel
 {
-  [TemplatePart(Name = "FlipButton", Type = typeof(ToggleButton))]
-  [TemplatePart(Name = "FlipButtonAlternate", Type = typeof(ToggleButton))]
-  [TemplateVisualState(Name = "Normal", GroupName = "ViewStates")]
-  [TemplateVisualState(Name = "Flipped", GroupName = "ViewStates")]
+  [TemplatePart(Name=PART_LAYOUTROOT, Type = typeof(Grid))]
+  [TemplatePart(Name = PART_FLIPBUTTON, Type = typeof(ToggleButton))]
+  [TemplatePart(Name = PART_FLIPBUTTONALTERNATE, Type = typeof(ToggleButton))]
+  [TemplateVisualState(Name = STATE_NORMAL, GroupName = STATE_GROUP)]
+  [TemplateVisualState(Name = STATE_FLIPPED, GroupName = STATE_GROUP)]
   [ContentProperty("FrontContent")]
   public class FlipPanel : Control
   {
 
-    #region Constructor
+    #region Constants
+
+    public const string PART_LAYOUTROOT = "LayoutRoot";
+    public const string PART_FLIPBUTTON = "FlipButton";
+    public const string PART_FLIPBUTTONALTERNATE = "FlipButtonAlternate";
+
+    public const string STATE_GROUP = "ViewStates";
+    public const string STATE_NORMAL = "Normal";
+    public const string STATE_FLIPPED = "Flipped";
+
+    #endregion
+
+    #region --- Constructor ---
 
     public FlipPanel()
     {
       DefaultStyleKey = typeof(FlipPanel);
     }
 
+    private void RegisterVSMevent()
+    {
+      Collection<VisualStateGroup> grps = (Collection<VisualStateGroup>)VisualStateManager.GetVisualStateGroups((FrameworkElement)base.GetTemplateChild(PART_LAYOUTROOT));
+      foreach (VisualStateGroup grp in grps)
+      {
+        if (grp.Name == STATE_GROUP)
+        {
+          //grp.CurrentStateChanged += (s, e) => OnFlipped();
+
+          //this is not the same as above
+          Collection<VisualState> states = (Collection<VisualState>)grp.States;
+          foreach (VisualState state in states)
+          {
+            switch (state.Name)
+            {
+              case STATE_NORMAL:
+                state.Storyboard.Completed += (s,e) => OnFlipped();
+                break;
+              case STATE_FLIPPED:
+                state.Storyboard.Completed += (s,e) => OnFlipped();
+                break;
+            }
+          }
+
+          break;
+        }
+      }
+    }
+
     #endregion
 
-    #region Properties
+    #region --- Properties ---
 
     #region FrontContent
 
@@ -66,6 +109,12 @@ namespace FlipPanel
 
     #endregion
 
+    #region IsFlipping
+
+    public bool IsFlipping { get; protected set; }
+
+    #endregion
+
     #region IsFlipped
 
     public static readonly DependencyProperty IsFlippedProperty = 
@@ -86,8 +135,8 @@ namespace FlipPanel
     protected void OnIsFlippedChanged(bool oldIsFlipped, bool newIsFlipped)
     {
       if (oldIsFlipped != newIsFlipped) {
-        ChangeVisualState(IsAnimated);
-        OnFlipped();
+        OnFlipping();
+        ChangeVisualState(IsAnimated); //storyboard completion event will call "OnFlipped"
       }
     }
 
@@ -113,12 +162,12 @@ namespace FlipPanel
 
     #endregion
 
-    #region Methods
+    #region --- Methods ---
 
     public void DoFlip()
     {
       if (IsEnabled)
-        this.IsFlipped = !this.IsFlipped;
+        IsFlipped = !IsFlipped;
     }
 
     private void ChangeVisualState(bool useTransitions)
@@ -131,13 +180,17 @@ namespace FlipPanel
 
     #endregion
     
-    #region Events
+    #region --- Events ---
 
+    public event EventHandler Flipping;
     public event EventHandler Flipped;
 
     public override void OnApplyTemplate()
     {
       base.OnApplyTemplate();
+
+      RegisterVSMevent();
+
       ToggleButton flipButton = base.GetTemplateChild("FlipButton") as ToggleButton;
       if (flipButton != null) flipButton.Click += flipButton_Click;
 
@@ -156,8 +209,16 @@ namespace FlipPanel
       DoFlip();
     }
 
-    protected void OnFlipped()
+    protected virtual void OnFlipping()
     {
+      IsFlipping = true;
+      if (Flipping != null)
+        Flipping(this, EventArgs.Empty);
+    }
+
+    protected virtual void OnFlipped()
+    {
+      IsFlipping = false; //note: don't set "IsFlipped" here by mistake
       if (Flipped != null)
         Flipped(this, EventArgs.Empty);
     }

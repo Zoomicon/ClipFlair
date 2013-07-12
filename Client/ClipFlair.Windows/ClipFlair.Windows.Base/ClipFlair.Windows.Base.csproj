@@ -83,6 +83,7 @@
     <Compile Include="BaseWindow.xaml.cs">
       <DependentUpon>BaseWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="IViewProperties.cs" />
     <Compile Include="IWindowFactory.cs" />
     <Compile Include="IView.cs" />
     <Compile Include="ViewDefaults.cs" />
@@ -115,7 +116,7 @@
       <Project>{3F3D3C8C-9724-4531-A04D-B92049F64686}</Project>
       <Name>FloatingWindow.Silverlight</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Utils\Utils.Silverlight.csproj">
+    <ProjectReference Include="..\..\Utils\Utils.Silverlight\Utils.Silverlight.csproj">
       <Project>{E784B6A1-A300-4571-A881-B15240EEE377}</Project>
       <Name>Utils.Silverlight</Name>
     </ProjectReference>

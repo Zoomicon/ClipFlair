@@ -1,6 +1,6 @@
 ﻿<!--
 Filename: SilverTextEditor.xaml
-Version: 20130322
+Version: 20130701
 -->
 
 <UserControl x:Class="SilverTextEditor.SilverTextEditor"
@@ -299,10 +299,10 @@ Version: 20130322
             <btn:ImageButton
               x:Name="btnTimestamp" Click="btnTimestamp_Click" 
               ToolTipService.ToolTip="{Binding tooltip_Timestamp, Source={StaticResource localizedStrings}}"
-              Visibility="{Binding Editable, Converter={StaticResource BooleanToVisibilityConverter}}"
+              Visibility="Collapsed"
               Image="Images/InsertTime.png"
               ImageHover="Images/InsertTime_hover.png"
-              />
+              /> <!-- Visibility="{Binding Editable, Converter={StaticResource BooleanToVisibilityConverter}}" -->
 
           </StackPanel>
 
@@ -321,6 +321,7 @@ Version: 20130322
 
             <btn:ImageToggleButton
               x:Name="btnHighlight"
+              Visibility="Collapsed"
               Checked="btnHighlight_Checked"
               ToolTipService.ToolTip="{Binding txt_Highlight, Source={StaticResource localizedStrings}}"
               Image="Images/HighlightNone.png"

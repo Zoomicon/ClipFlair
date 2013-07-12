@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: SilverTextEditor.xaml.cs
-//Version: 20130508
+//Version: 20130701
 
 //Originated from Microsoft sample (MSPL license)
 
@@ -11,7 +11,9 @@
 //TODO: allow to add checkbox controls and remember their state (checked/unchecked) in the text
 //TODO: allow adding images (from URL) and remember them at reload (could add as special text and then parse it?)
 
-using SilverTextEditor.Resources;
+using Utils.Extensions;
+
+//using SilverTextEditor.Resources;
 
 using System;
 using System.Collections.Generic;
@@ -115,7 +117,8 @@ namespace SilverTextEditor
       rtb.IsReadOnly = !newEditable;
       
       //Set the button image based on the state of the toggle button.
-      btnEditable.Content = SilverTextEditor.createImageFromUri(new Uri(newEditable ? "/SilverTextEditor;component/Images/EditMode.png" : "/SilverTextEditor;component/Images/ReadingMode.png", UriKind.RelativeOrAbsolute));
+      //btnEditable.Content = new Uri(newEditable ? "/SilverTextEditor;component/Images/EditMode.png" : "/SilverTextEditor;component/Images/ReadingMode.png", UriKind.RelativeOrAbsolute).CreateImage();
+      //NOT USED (since we use ImageToggleButtonSideBySide)
 
       ReturnFocus();
     }
@@ -157,7 +160,7 @@ namespace SilverTextEditor
       RTBGrid.FlowDirection = (newRTL) ? System.Windows.FlowDirection.RightToLeft : System.Windows.FlowDirection.LeftToRight; //not using ApplicationBorder anymore, don't want to flip the toolbar direction too
 
       //Set the button image based on the state of the toggle button. 
-      btnRTL.Content = SilverTextEditor.createImageFromUri(new Uri(newRTL ? "/SilverTextEditor;component/Images/RTL.png" : "/SilverTextEditor;component/Images/LTR.png", UriKind.RelativeOrAbsolute));
+      btnRTL.Content = new Uri(newRTL ? "/SilverTextEditor;component/Images/RTL.png" : "/SilverTextEditor;component/Images/LTR.png", UriKind.RelativeOrAbsolute).CreateImage();
 
       ReturnFocus();
     }
@@ -237,10 +240,10 @@ namespace SilverTextEditor
         string color = (cmbFontColors.SelectedItem as ComboBoxItem).Tag.ToString();
 
         SolidColorBrush brush = new SolidColorBrush(Color.FromArgb(
-            byte.Parse(color.Substring(0, 2), System.Globalization.NumberStyles.HexNumber),
-            byte.Parse(color.Substring(2, 2), System.Globalization.NumberStyles.HexNumber),
-            byte.Parse(color.Substring(4, 2), System.Globalization.NumberStyles.HexNumber),
-            byte.Parse(color.Substring(6, 2), System.Globalization.NumberStyles.HexNumber)));
+          byte.Parse(color.Substring(0, 2), System.Globalization.NumberStyles.HexNumber),
+          byte.Parse(color.Substring(2, 2), System.Globalization.NumberStyles.HexNumber),
+          byte.Parse(color.Substring(4, 2), System.Globalization.NumberStyles.HexNumber),
+          byte.Parse(color.Substring(6, 2), System.Globalization.NumberStyles.HexNumber)));
 
         rtb.Selection.ApplyPropertyValue(Run.ForegroundProperty, brush);
       }
@@ -254,31 +257,19 @@ namespace SilverTextEditor
         //Insert an image into the RichTextBox //COMMENTED OUT SINCE IT CAN'T STORE INLINE UI ELEMENTS (RICHBOX'S XAML PROPERTY DOESN'T INCLUDE THEM)
         private void btnImage_Click(object sender, RoutedEventArgs e)
         {
-            InlineUIContainer container = new InlineUIContainer();
+          InlineUIContainer container = new InlineUIContainer();
+          container.Child = new Uri("/SilverTextEditor;component/Images/Desert.jpg", UriKind.RelativeOrAbsolute).CreateImage(); //should show filedialog to select image here
 
-            container.Child = SilverTextEditor.createImageFromUri(new Uri("/SilverTextEditor;component/Images/Desert.jpg", UriKind.RelativeOrAbsolute)); //should show filedialog to select image here
-
-            rtb.Selection.Insert(container);
-            ReturnFocus();
+          rtb.Selection.Insert(container);
+  
+          ReturnFocus();
         }
   */
-
-    private static Image createImageFromUri(Uri URI, double? width = null, double? height = null)
-    {
-      Image img = new Image();
-      img.Stretch = Stretch.Uniform;
-      if (width!=null) img.Width = (double)width;
-      if (height!=null) img.Height = (double)height;
-      BitmapImage bi = new BitmapImage(URI);
-      img.Source = bi;
-      img.Tag = bi.UriSource.ToString();
-      return img;
-    }
 
     //Insert timestamp into the RichTextBox
     private void btnTimestamp_Click(object sender, RoutedEventArgs e)
     {
-      rtb.Selection.Text = "[" + DateTime.UtcNow.ToString() + " UTC" + "]";
+      rtb.Selection.Text = "[" + DateTime.UtcNow.ToString() + " UTC" + "]"; //TODO: change this to call a callback function if any is registered to get the "time"
       ReturnFocus();
     }
 
@@ -784,6 +775,7 @@ namespace SilverTextEditor
       if (rtb != null)
         rtb.Focus();
     }
+
     #endregion
 
   }

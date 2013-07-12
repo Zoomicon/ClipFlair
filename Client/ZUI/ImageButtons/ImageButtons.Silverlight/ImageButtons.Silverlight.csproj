@@ -97,7 +97,9 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <None Include="ImageButtons.cd" />
+    <None Include="..\ImageButtons.cd">
+      <Link>ImageButtons.cd</Link>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Silverlight\$(SilverlightVersion)\Microsoft.Silverlight.CSharp.targets" />
   <ProjectExtensions>

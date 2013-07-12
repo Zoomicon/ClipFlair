@@ -1,6 +1,6 @@
 ﻿<!--
 Filename: GalleryWindow.xaml
-Version: 20130522
+Version: 20130702
 -->
 
 <clipflair:BaseWindow x:Class="ClipFlair.Windows.GalleryWindow"
@@ -8,28 +8,52 @@ Version: 20130522
   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
   xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-  xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk"  
-  xmlns:pivot="clr-namespace:PivotViewerExt;assembly=PivotViewerExt"
+  xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk"
+  xmlns:pivotex="clr-namespace:PivotViewerExt;assembly=PivotViewerExt"
   xmlns:clipflair="clr-namespace:ClipFlair.Windows;assembly=ClipFlair.Windows.Base"    
   xmlns:clipflairview="clr-namespace:ClipFlair.Windows.Views"
+  xmlns:utils="clr-namespace:Utils.Converters;assembly=Utils.Silverlight"
   mc:Ignorable="d"
   d:DesignWidth="800" d:DesignHeight="600"
-  >
+  > <!-- xmlns:pivot="clr-namespace:System.Windows.Controls.Pivot;assembly=System.Windows.Controls.Pivot" -->
 
   <clipflair:BaseWindow.Resources>
     <ResourceDictionary>
       <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="/ClipFlair.Windows.Base;component/Themes/Default.xaml" />
       </ResourceDictionary.MergedDictionaries>
+
+      <utils:HtmlEncodedToDecodedStringConverter x:Key="EncodedToDecodedStringConverter" />
+
     </ResourceDictionary>
   </clipflair:BaseWindow.Resources>
   
   <!--<clipflair:BaseWindow.FrontContent>-->
 
-  <pivot:PivotViewerExt Name="pivot"
-         HorizontalAlignment="Stretch" VerticalAlignment="Stretch" 
-         Source="{Binding Source, Mode=OneWay}"
-         />
+  <pivotex:PivotViewerExt Name="pivot"
+    HorizontalAlignment="Stretch" VerticalAlignment="Stretch" 
+    Source="{Binding Source, Mode=TwoWay}"
+    Filter="{Binding Filter, Mode=TwoWay}"
+    >
+
+    <!--
+    <pivotex:PivotViewerExt.ItemAdornerStyle>
+      <Style TargetType="pivot:PivotViewerItemAdorner">
+        <Setter Property="Template">
+          <Setter.Value>
+            <ControlTemplate TargetType="pivot:PivotViewerItemAdorner">
+              <pivot:PivotViewerDefaultItemAdorner
+                IsTabStop="False"
+                CommandsRequested="GetCommands"
+                IsItemSelected="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=IsItemSelected}" />
+            </ControlTemplate>
+          </Setter.Value>
+        </Setter>
+      </Style>
+    </pivotex:PivotViewerExt.ItemAdornerStyle>
+    -->
+
+  </pivotex:PivotViewerExt>
 
   <!--</clipflair:BaseWindow.FrontContent>-->
 
@@ -39,6 +63,11 @@ Version: 20130522
       <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Gallery Source (URL)" Target="{Binding ElementName=edGalleryURL}"/>
       <TextBox Name="edGalleryURL" Text="{Binding Source, Mode=TwoWay}" HorizontalAlignment="Stretch" />
     </StackPanel>
+
+    <StackPanel Orientation="Vertical">
+      <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Filter" Target="{Binding ElementName=edFilter}"/>
+      <TextBox Name="edFilter" Text="{Binding Filter, Mode=TwoWay}" HorizontalAlignment="Stretch" />
+    </StackPanel> <!-- , Converter={StaticResource EncodedToDecodedStringConverter} -->
 
   </clipflair:BaseWindow.PropertyItems>
 

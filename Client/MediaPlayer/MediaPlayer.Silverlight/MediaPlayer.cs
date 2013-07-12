@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: MediaPlayer.cs
-//Version: 20130508
+//Version: 20130703
 
 using Utils.Extensions;
 
@@ -20,17 +20,33 @@ using Microsoft.SilverlightMediaFramework.Plugins;
 namespace ClipFlair.MediaPlayer
 {
 
+  [TemplatePart(Name = PART_BitrateMonitorElement, Type = typeof(BitrateMonitor))]
   public class MediaPlayer : SMFPlayer
   {
 
+    #region Constants
+
+    internal const string PART_BitrateMonitorElement = "BitrateMonitorElement";
+
+    private const double CAPTION_REGION_LEFT = 0; //0.05;
+    private const double CAPTION_REGION_TOP = 0.05;
+    private const double CAPTION_REGION_WIDTH = 1; //0.9; //SMF 2.7 has a bug here, it wraps caption text at the video boundary instead of at the caption region max boundary (as defined by Origin and Extend)
+    private const double CAPTION_REGION_HEIGHT = 0.9;
+
+    #endregion
+    
     #region Fields
 
     protected IMediaPlugin activeMediaPlugin;
-
+    protected BitrateMonitor BitrateMonitorElement;
+    
     #endregion
 
     public MediaPlayer()
     {
+      if (Application.Current.Host.Settings.EnableGPUAcceleration) //GPU acceleration can been turned on at HTML/ASPX page or at OOB settings for OOB apps
+        CacheMode = new BitmapCache(); //TEST    
+
       AddEventHandlers();
     }
 
@@ -118,7 +134,7 @@ namespace ClipFlair.MediaPlayer
             playlistItem.MarkerResources = markerResources;
       */
 
-      Play(playlistItem);
+      Open(playlistItem);
     }
 
     #endregion
@@ -379,10 +395,51 @@ namespace ClipFlair.MediaPlayer
     protected virtual void OnGraphVisibleChanged(bool oldGraphVisible, bool newGraphVisible)
     {
       PlayerGraphVisibility = (newGraphVisible) ? FeatureVisibility.Visible : FeatureVisibility.Disabled;
+      GraphToggleElement.Visibility = (newGraphVisible) ? Visibility.Visible : Visibility.Collapsed;
     }
 
     #endregion
 
+    #region BitrateVisible
+
+    /// <summary>
+    /// BitrateVisible Dependency Property
+    /// </summary>
+    public static readonly DependencyProperty BitrateVisibleProperty =
+        DependencyProperty.Register("BitrateVisible", typeof(bool), typeof(MediaPlayer),
+            new FrameworkPropertyMetadata(false,
+            new PropertyChangedCallback(OnBitrateVisibleChanged)));
+
+    /// <summary>
+    /// Gets or sets the BitrateVisible property
+    /// </summary>
+    public bool BitrateVisible
+    {
+      get { return (bool)GetValue(BitrateVisibleProperty); }
+      set { SetValue(BitrateVisibleProperty, value); }
+    }
+
+    /// <summary>
+    /// Handles changes to the BitrateVisible property.
+    /// </summary>
+    private static void OnBitrateVisibleChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    {
+      MediaPlayer target = (MediaPlayer)d;
+      bool oldBitrateVisible = (bool)e.OldValue;
+      bool newBitrateVisible = target.BitrateVisible;
+      target.OnBitrateVisibleChanged(oldBitrateVisible, newBitrateVisible);
+    }
+
+    /// <summary>
+    /// Provides derived classes an opportunity to handle changes to the BitrateVisible property.
+    /// </summary>
+    protected virtual void OnBitrateVisibleChanged(bool oldBitrateVisible, bool newBitrateVisible)
+    {
+      BitrateMonitorElement.Visibility = (newBitrateVisible) ? Visibility.Visible : Visibility.Collapsed;
+    }
+
+    #endregion
+        
     #region FullScreenButtonVisible
 
     /// <summary>
@@ -674,7 +731,7 @@ namespace ClipFlair.MediaPlayer
 
     #region --- Methods ---
 
-    public void PlayLocalFile() //Note: this has to be initiated by user action (Silverlight security)
+    public void OpenLocalFile() //Note: this has to be initiated by user action (Silverlight security)
     {
       try
       {
@@ -685,7 +742,7 @@ namespace ClipFlair.MediaPlayer
         };
 
         if (dlg.ShowDialog() == true) //TODO: find the parent window
-          Play(dlg.File.OpenRead(), dlg.File.Name); //TODO: when playlist is cleared should close the stream (not sure if can listen for playlistitem lifetime events)
+          Open(dlg.File.OpenRead(), dlg.File.Name); //TODO: when playlist is cleared should close the stream (not sure if can listen for playlistitem lifetime events)
       }
       catch (Exception e)
       {
@@ -693,7 +750,7 @@ namespace ClipFlair.MediaPlayer
       }
     }
 
-    public void Play(Stream stream, string title = "")
+    public void Open(Stream stream, string title = "")
     {
       Source = null; //clear source URL since we're loading directly from a Stream
 
@@ -701,10 +758,10 @@ namespace ClipFlair.MediaPlayer
       playlistItem.StreamSource = stream;
       playlistItem.Title = title;
 
-      Play(playlistItem);
+      Open(playlistItem);
     }
 
-    public void Play(PlaylistItem playlistItem)
+    public void Open(PlaylistItem playlistItem)
     {
       //Playlist.Clear(); //skip this to allow going back to previous items from playlist
       Playlist.Add(playlistItem);
@@ -720,11 +777,6 @@ namespace ClipFlair.MediaPlayer
       if (newCaptions1 != null)
         Captions.Add(newCaptions1);
     }
-
-    private const double CAPTION_REGION_LEFT = 0; //0.05;
-    private const double CAPTION_REGION_TOP = 0.05;
-    private const double CAPTION_REGION_WIDTH = 1; //0.9; //SMF 2.7 has a bug here, it wraps caption text at the video boundary instead of at the caption region max boundary (as defined by Origin and Extend)
-    private const double CAPTION_REGION_HEIGHT = 0.9;
 
     public static void StyleCaptions(CaptionRegion theCaptions)
     {
@@ -795,7 +847,7 @@ namespace ClipFlair.MediaPlayer
 
     #endregion
 
-    #region Events
+    #region --- Events ----
 
     protected virtual void AddEventHandlers()
     {
@@ -819,6 +871,8 @@ namespace ClipFlair.MediaPlayer
     {
       base.OnApplyTemplate();
 
+      BitrateMonitorElement = GetTemplateChild("BitrateMonitorElement") as BitrateMonitor;
+
       ApplyTemplateOverrides();
 
       UpdateVolumeElement(); //patch for SMF bug
@@ -827,12 +881,14 @@ namespace ClipFlair.MediaPlayer
     protected override void OnMediaOpened()
     {
       base.OnMediaOpened();
+      OnBitrateVisibleChanged(!BitrateVisible, BitrateVisible); //BitrateMonitorElement seems to be shown by default after media opening
       UpdateCaptions1(Captions1);
     }
     
     protected void MediaPlayer_MediaPluginRegistered(object source, CustomEventArgs<IMediaPlugin> args)
     {
       activeMediaPlugin = args.Value;
+      activeMediaPlugin.EnableGPUAcceleration = true; //make sure GPU acceleration is used by SSME etc. plugins
       activeMediaPlugin.Balance = Balance;
     }
 

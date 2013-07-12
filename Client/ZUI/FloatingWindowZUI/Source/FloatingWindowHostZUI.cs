@@ -239,7 +239,7 @@ namespace FloatingWindowZUI
             break;
           case NotifyCollectionChangedAction.Remove:
             foreach (FloatingWindow w in e.OldItems)
-              UnsubscribeFromFloatingWidnowEvents(w);
+              UnsubscribeFromFloatingWindowEvents(w);
             break;
         }
       };
@@ -255,7 +255,7 @@ namespace FloatingWindowZUI
       w.MouseWheel += new MouseWheelEventHandler(FloatingWindow_MouseWheel);
     }
 
-    private void UnsubscribeFromFloatingWidnowEvents(FloatingWindow w)
+    private void UnsubscribeFromFloatingWindowEvents(FloatingWindow w)
     {
       //w.RemoveHandler(MouseLeftButtonDownEvent, new MouseButtonEventHandler(FloatingWindow_MouseLeftButtonDown));
       //w.RemoveHandler(MouseRightButtonDownEvent, new MouseButtonEventHandler(FloatingWindow_MouseRightButtonDown));
@@ -293,10 +293,11 @@ namespace FloatingWindowZUI
 
     private void FloatingWindow_MouseWheel(object sender, MouseWheelEventArgs e)
     {
-      if ((Keyboard.Modifiers & ModifierKeys.Control) != 0)
+      FloatingWindow window = (FloatingWindow)sender;
+      if (window.ScaleEnabled && (Keyboard.Modifiers & ModifierKeys.Control) != 0)
       {
-        FloatingWindow window = (FloatingWindow)sender; //delta should be either >0 or <0
-        //Point mousePosition = args.GetPosition(HostPanel); //could use mousePosition here to center the window to the mouse point or something, but better have the logic at FloatingWindow.Scale itself, to recenter arround its previous center point after scaling
+        //delta should be either >0 or <0
+        //Point mousePosition = args.GetPosition(HostPanel); //could use mousePosition here to center the window to the mouse point or something, but preferred to have the logic at FloatingWindow.Scale itself, to recenter arround its previous center point after scaling
         if (e.Delta > 0)
           window.Scale += 0.05; //zoom in
         else if (e.Delta < 0)
