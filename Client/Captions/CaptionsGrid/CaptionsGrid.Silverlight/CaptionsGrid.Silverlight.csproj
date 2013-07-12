@@ -125,7 +125,7 @@
       <Project>{DD195CFE-B418-4C76-8F51-EEE8E28FAA41}</Project>
       <Name>MediaPlayer.Silverlight</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\Utils\Utils.Silverlight.csproj">
+    <ProjectReference Include="..\..\..\Utils\Utils.Silverlight\Utils.Silverlight.csproj">
       <Project>{E784B6A1-A300-4571-A881-B15240EEE377}</Project>
       <Name>Utils.Silverlight</Name>
     </ProjectReference>
@@ -171,6 +171,18 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="CaptionsGrid.cd" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\LTR.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\LTR_hover.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\RTL.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\RTL_hover.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Silverlight\$(SilverlightVersion)\Microsoft.Silverlight.CSharp.targets" />
   <ProjectExtensions>

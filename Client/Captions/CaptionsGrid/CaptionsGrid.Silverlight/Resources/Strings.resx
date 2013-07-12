@@ -147,4 +147,7 @@
   <data name="tooltip_merged_audio_save" xml:space="preserve">
     <value>Save all audio in a single .WAV file</value>
   </data>
+  <data name="tooltip_TextDirection" xml:space="preserve">
+    <value>Text Direction</value>
+  </data>
 </root>
