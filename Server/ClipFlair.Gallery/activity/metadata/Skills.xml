@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<!--
+Project: ClipFlair (http://ClipFlair.codeplex.com)
+Filename: Skills.xml
+Version: 20130704
+-->
+
+<Facet Name="Skills">
+  <String Value="Listening" />
+  <String Value="Reading" />
+  <String Value="Speaking" />
+  <String Value="Writing" />
+</Facet>

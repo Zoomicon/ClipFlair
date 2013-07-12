@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<!--
+Project: ClipFlair (http://ClipFlair.codeplex.com)
+Filename: Genre.xml
+Version: 20130703
+-->
+
+<Facet Name="Genre">
+  <String Value="Animation" />
+  <String Value="Biography" />
+  <String Value="Comedy" />
+  <String Value="Concert" />
+  <String Value="Documentary" />
+  <String Value="Drama" />
+  <String Value="Educational" />
+  <String Value="Factual" />
+  <String Value="Fiction" />
+  <String Value="Gastronomy" />
+  <String Value="Interview" />
+  <String Value="Kids" />
+  <String Value="News" />
+  <String Value="Presentation" />
+  <String Value="Reportage" />
+  <String Value="Science Fiction" />
+  <String Value="Show" />
+  <String Value="Slideshow" />
+  <String Value="Story" />
+  <String Value="Thriller" />
+  <String Value="Tourist" />
+  <String Value="Tutorial" />
+</Facet>

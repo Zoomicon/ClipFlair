@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<!--
+Project: ClipFlair (http://ClipFlair.codeplex.com)
+Filename: Level.xml
+Version: 20130704
+-->
+
+<Facet Name="Level">
+  <String Value="A1" />
+  <String Value="A2" />
+  <String Value="B1" />
+  <String Value="B2" />
+  <String Value="C1" />
+  <String Value="C2" />
+</Facet>

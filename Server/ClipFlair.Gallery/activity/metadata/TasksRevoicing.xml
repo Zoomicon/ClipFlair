@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<!--
+Project: ClipFlair (http://ClipFlair.codeplex.com)
+Filename: TasksRevoicing.xml
+Version: 20130704
+-->
+
+<Facet Name="Tasks - Revoicing">
+  <String Value="Audio Description" />
+  <String Value="Dubbing" />
+  <String Value="Free Commentary" />
+  <String Value="Karaoke" />
+  <String Value="Voice-over" />  
+</Facet>
