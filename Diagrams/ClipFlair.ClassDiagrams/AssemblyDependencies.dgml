@@ -887,7 +887,7 @@
     <Node Id="@1905" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" Label="SetTopmostWindow" />
     <Node Id="@1906" Category="CodeSchema_Method" CodeSchemaProperty_IsInternal="True" Label="ShowWindowAsModal" />
     <Node Id="@1907" Category="CodeSchema_Method" CodeSchemaProperty_IsPrivate="True" Label="SubscribeToFloatingWindowEvents" />
-    <Node Id="@1908" Category="CodeSchema_Method" CodeSchemaProperty_IsPrivate="True" Label="UnsubscribeFromFloatingWidnowEvents" />
+    <Node Id="@1908" Category="CodeSchema_Method" CodeSchemaProperty_IsPrivate="True" Label="UnsubscribeFromFloatingWindowEvents" />
     <Node Id="@1909" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" Label="set_Windows" />
     <Node Id="@1910" Category="CodeSchema_Method" CodeSchemaProperty_IsCompilerGenerated="True" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" Label="set_FloatingWindowHost" />
     <Node Id="@1911" Category="CodeSchema_Method" CodeSchemaProperty_IsCompilerGenerated="True" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" Label="set_FloatingWindowHost" />
@@ -20766,7 +20766,7 @@
     <Alias n="1905" Id="(@67 @109 @110 Member=(Name=SetTopmostWindow @1879))" />
     <Alias n="1906" Id="(@67 @109 @110 Member=(Name=ShowWindowAsModal @1879))" />
     <Alias n="1907" Id="(@29 @191 @908 Member=(Name=SubscribeToFloatingWindowEvents @1879))" />
-    <Alias n="1908" Id="(@29 @191 @908 Member=(Name=UnsubscribeFromFloatingWidnowEvents @1879))" />
+    <Alias n="1908" Id="(@29 @191 @908 Member=(Name=UnsubscribeFromFloatingWindowEvents @1879))" />
     <Alias n="1909" Id="(@67 @109 @110 Member=(Name=set_Windows OverloadingParameters=[@907]))" />
     <Alias n="1910" Id="(@67 @109 @371 Member=(Name=set_FloatingWindowHost OverloadingParameters=[@111]))" />
     <Alias n="1911" Id="(@67 @109 @117 Member=(Name=set_FloatingWindowHost OverloadingParameters=[@111]))" />

@@ -861,7 +861,7 @@
     <Node Id="@1864" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" Label="SetTopmostWindow" />
     <Node Id="@1865" Category="CodeSchema_Method" CodeSchemaProperty_IsInternal="True" Label="ShowWindowAsModal" />
     <Node Id="@1866" Category="CodeSchema_Method" CodeSchemaProperty_IsPrivate="True" Label="SubscribeToFloatingWindowEvents" />
-    <Node Id="@1867" Category="CodeSchema_Method" CodeSchemaProperty_IsPrivate="True" Label="UnsubscribeFromFloatingWidnowEvents" />
+    <Node Id="@1867" Category="CodeSchema_Method" CodeSchemaProperty_IsPrivate="True" Label="UnsubscribeFromFloatingWindowEvents" />
     <Node Id="@1868" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" Label="set_Windows" />
     <Node Id="@1869" Category="CodeSchema_Method" CodeSchemaProperty_IsPrivate="True" Label="CreateActivityWindow" />
     <Node Id="@187" Category="CodeSchema_Namespace" Group="Collapsed" Label="SilverFlow.Controls" />
@@ -20638,7 +20638,7 @@
     <Alias n="1864" Id="(@51 @83 @84 Member=(Name=SetTopmostWindow @1838))" />
     <Alias n="1865" Id="(@51 @83 @84 Member=(Name=ShowWindowAsModal @1838))" />
     <Alias n="1866" Id="(@24 @151 @857 Member=(Name=SubscribeToFloatingWindowEvents @1838))" />
-    <Alias n="1867" Id="(@24 @151 @857 Member=(Name=UnsubscribeFromFloatingWidnowEvents @1838))" />
+    <Alias n="1867" Id="(@24 @151 @857 Member=(Name=UnsubscribeFromFloatingWindowEvents @1838))" />
     <Alias n="1868" Id="(@51 @83 @84 Member=(Name=set_Windows OverloadingParameters=[@856]))" />
     <Alias n="1869" Id="(@45 @104 @640 Member=(Name=CreateActivityWindow OverloadingParameters=[@85]))" />
     <Alias n="1870" Id="(@51 @83 @307 Member=(Name=set_FloatingWindowHost OverloadingParameters=[@85]))" />

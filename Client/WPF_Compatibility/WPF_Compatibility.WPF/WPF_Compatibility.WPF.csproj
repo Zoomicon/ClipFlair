@@ -48,7 +48,9 @@
   <ItemGroup>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
+    <Reference Include="System" />
     <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Xaml" />
     <Reference Include="System.Xml" />
     <Reference Include="WindowsBase" />
   </ItemGroup>
@@ -68,6 +70,12 @@
     <Compile Include="..\Source\IsolatedStorageSettings.cs">
       <Link>IsolatedStorageSettings.cs</Link>
     </Compile>
+    <Compile Include="..\Source\MouseButton.cs">
+      <Link>MouseButton.cs</Link>
+    </Compile>
+    <Compile Include="..\Source\ValueConversionAttribute.cs">
+      <Link>ValueConversionAttribute.cs</Link>
+    </Compile>
     <Compile Include="..\Source\Visual.cs">
       <Link>Visual.cs</Link>
     </Compile>
@@ -80,6 +88,9 @@
     <Compile Include="..\Source\WPF_DependencyProperty.cs">
       <Link>WPF_DependencyProperty.cs</Link>
     </Compile>
+    <Compile Include="..\Source\WPF_DesignerProperties.cs">
+      <Link>WPF_DesignerProperties.cs</Link>
+    </Compile>
     <Compile Include="..\Source\WPF_Rect.cs">
       <Link>WPF_Rect.cs</Link>
     </Compile>
@@ -88,6 +99,9 @@
     </Compile>
     <Compile Include="..\Source\WPF_UIElement.cs">
       <Link>WPF_UIElement.cs</Link>
+    </Compile>
+    <Compile Include="..\Source\XamlReader.cs">
+      <Link>XamlReader.cs</Link>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

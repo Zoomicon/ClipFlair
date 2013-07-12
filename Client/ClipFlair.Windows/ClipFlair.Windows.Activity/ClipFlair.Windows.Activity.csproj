@@ -88,6 +88,7 @@
     </Compile>
     <Compile Include="ActivityView.cs" />
     <Compile Include="ActivityWindowFactory.cs" />
+    <Compile Include="IActivityProperties.cs" />
     <Compile Include="IActivity.cs" />
     <Compile Include="ActivityDefaults.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -121,7 +122,7 @@
       <Project>{3F3D3C8C-9724-4531-A04D-B92049F64686}</Project>
       <Name>FloatingWindow.Silverlight</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Utils\Utils.Silverlight.csproj">
+    <ProjectReference Include="..\..\Utils\Utils.Silverlight\Utils.Silverlight.csproj">
       <Project>{E784B6A1-A300-4571-A881-B15240EEE377}</Project>
       <Name>Utils.Silverlight</Name>
     </ProjectReference>

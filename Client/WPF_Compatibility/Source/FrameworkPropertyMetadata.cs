@@ -53,7 +53,7 @@ namespace System.Windows
 
     public class FrameworkPropertyMetadata : PropertyMetadata
     {
-        #region constructors
+        #region --- Constructor ---s
 
         public FrameworkPropertyMetadata() :
             base(DependencyProperty.UnsetValue)
@@ -120,7 +120,7 @@ namespace System.Windows
 
         #endregion
 
-        #region properties
+        #region --- Properties ---
 
         public CoerceValueCallback CoerceValueCallback { get; set; } //Birbilis
 
@@ -159,7 +159,7 @@ namespace System.Windows
 
         #endregion
 
-        #region methods
+        #region --- Methods ---
 
         #region internal
 
@@ -294,7 +294,7 @@ namespace System.Windows
 
         private class CoercedPropertyInfo
         {
-            #region properties
+            #region --- Properties ---
 
             public object BaseValue { get; set; }
 
@@ -312,7 +312,7 @@ namespace System.Windows
 
             #endregion
 
-            #region methods
+            #region --- Methods ---
 
             private bool ReadFlag(CoercionOptions id)
             {
@@ -355,7 +355,7 @@ namespace System.Windows
 
         private class PropertyChangeHook
         {
-            #region constructor
+            #region --- Constructor ---
 
             internal PropertyChangeHook(FrameworkPropertyMetadataOptions flags, PropertyChangedCallback propertyChangedCallback, CoerceValueCallback coerceValueCallback)
             {
@@ -377,7 +377,7 @@ namespace System.Windows
 
             #endregion
 
-            #region properties
+            #region --- Properties ---
 
             private bool AffectsArrange
             {
@@ -405,7 +405,7 @@ namespace System.Windows
 
             #endregion
 
-            #region methods
+            #region --- Methods ---
 
             #region public
 

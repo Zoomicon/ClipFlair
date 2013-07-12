@@ -18,11 +18,13 @@ Version: 20130115
 
   <clipflair:BaseWindow.Resources>
     <ResourceDictionary>
+      
       <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="/ClipFlair.Windows.Base;component/Themes/Default.xaml" />
       </ResourceDictionary.MergedDictionaries>
 
       <utils:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+      
     </ResourceDictionary>
   </clipflair:BaseWindow.Resources>
 

@@ -1,6 +1,6 @@
 ﻿<!--
   Filename: generic.xaml 
-  Version: 20130508
+  Version: 20130701
 -->
 
 <ResourceDictionary
@@ -607,7 +607,7 @@
                     <RowDefinition/>
                   </Grid.RowDefinitions>
 
-                  <Border x:Name="Chrome" Width="Auto" Background="{TemplateBinding TitleBackground}" UseLayoutRounding="False" CornerRadius="2,2,0,0">
+                  <Border x:Name="Chrome" Width="Auto" Background="{TemplateBinding TitleBackground}" UseLayoutRounding="True" CornerRadius="2,2,0,0"> <!-- Note: changed to UseLayoutRounding="True" to help with GPU acceleration -->
                     <Grid Height="Auto" Width="Auto">
                       <Grid.ColumnDefinitions>
                         <ColumnDefinition/>

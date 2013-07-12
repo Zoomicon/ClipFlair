@@ -86,6 +86,10 @@
     <Reference Include="System.Windows.Controls.Layout.Toolkit, Version=5.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IMediaPlayerProperties.cs" />
+    <Compile Include="MediaPlayerOptions.xaml.cs">
+      <DependentUpon>MediaPlayerOptions.xaml</DependentUpon>
+    </Compile>
     <Compile Include="IMediaPlayer.cs" />
     <Compile Include="MediaPlayerDefaults.cs" />
     <Compile Include="MediaWindowFactory.cs" />
@@ -131,6 +135,10 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <Page Include="MediaPlayerOptions.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="MediaPlayerWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

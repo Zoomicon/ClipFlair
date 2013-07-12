@@ -76,7 +76,9 @@
     <None Include="AssemblyDependencies.dgml">
       <SubType>Designer</SubType>
     </None>
-    <None Include="ClassDependencies.dgml" />
+    <None Include="ClassDependencies.dgml">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="NamespaceDependencies.dgml">
       <SubType>Designer</SubType>
     </None>
@@ -133,9 +135,9 @@
       <Project>{396DD176-BC1D-45CF-900E-4FC85B7398FC}</Project>
       <Name>ClipFlair.Windows.Text</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Client\ClipFlair\ClipFlair.csproj">
+    <ProjectReference Include="..\..\Client\ClipFlair\ClipFlair.Studio.csproj">
       <Project>{31498ABB-31AA-4FFA-BB32-98FCA11BB52A}</Project>
-      <Name>ClipFlair</Name>
+      <Name>ClipFlair.Studio</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

@@ -1,5 +1,5 @@
 ﻿//Filename: PivotViewerExt.cs
-//Version: 20130327
+//Version: 20130701
 
 using WPFCompatibility;
 
@@ -18,11 +18,23 @@ namespace PivotViewerExt
   public class PivotViewerExt : PivotViewer
   {
 
+    public PivotViewerExt()
+    {
+      FilterChanged += (s, e) => {
+        string f = Filter;
+        if (!String.IsNullOrEmpty(f))
+          filter = f;
+      };
+    }
+
     #region Fields
 
     private CxmlCollectionSource cxml = null;
+    private string filter = "";
 
     #endregion
+
+    #region Properties
 
     #region Source
 
@@ -60,16 +72,9 @@ namespace PivotViewerExt
     /// </summary>
     protected virtual void OnSourceChanged(Uri oldSource, Uri newSource)
     {
-      if (newSource == null)
-      {
-        Clear();
-        if (cxml != null)
-        {
-          cxml.StateChanged -= OnCollectionStateChanged;
-          cxml = null;
-        }
-      }
-      else
+      Clear();
+
+      if (newSource != null)
       {
         cxml = new CxmlCollectionSource();
         cxml.StateChanged += OnCollectionStateChanged; //must first set this, then "UriSource" just in case of a collection that is cached and comes up very fast
@@ -79,28 +84,39 @@ namespace PivotViewerExt
 
     #endregion
 
+    #endregion
+
     #region Methods
 
     public void Clear()
     {
+      if (cxml != null)
+      {
+        cxml.StateChanged -= OnCollectionStateChanged;
+        cxml = null;
+      }
+
+      filter = ""; //must clear this separately
+      Filter = "";
       PivotProperties = null;
       ItemTemplates = null;
       ItemsSource = null;
     }
 
     #endregion
-
-  
+ 
     #region Events
 
-/*
+    /*
+    CollectionViewerView cvv;
+
     public override void OnApplyTemplate()
     {
       base.OnApplyTemplate();
       Grid partContainer = (Grid)this.GetTemplateChild("PART_Container");
-      CollectionViewerView cvv = (CollectionViewerView)partContainer.Children[2];
+      cvv = (CollectionViewerView)partContainer.Children[2];
     }
-*/
+    */
 
     private void OnCollectionStateChanged(object sender, CxmlCollectionStateChangedEventArgs e)
     {
@@ -111,8 +127,20 @@ namespace PivotViewerExt
           break;
         case CxmlCollectionState.Loaded:
           PivotProperties = cxml.ItemProperties.ToList();
+          //TODO: search for property names in WrapProperties list (need to add that) and set them to wrap
           ItemTemplates = cxml.ItemTemplates;
           ItemsSource = cxml.Items;
+
+          Filter = filter; //re-apply filter
+          //SortPivotProperty = (PivotViewerProperty)PivotProperties.GetEnumerator().Current; //doesn't work
+ 
+          //View = GraphView; //need to refresh the view to show the images from the filter (could try to set the same view [GridView] or switch to other for a moment maybe). //TODO: add some event that CXML was loaded or make this overridable (?)
+          //base.SetViewerState(base.SerializeViewerState()); //REFRESH
+
+          InvalidateMeasure();
+          InvalidateArrange();
+          UpdateLayout();
+
           break;
       }
     }

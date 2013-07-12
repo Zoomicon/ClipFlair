@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: BaseWindow.xaml.cs
-//Version: 20130613
+//Version: 20130628
 
 //TODO: unbind control at close
 
@@ -73,8 +73,9 @@ namespace ClipFlair.Windows
 
     public BaseWindow()
     {
-      if (Application.Current.Host.Settings.EnableGPUAcceleration) //GPU acceleration can been turned on at HTML/ASPX page or at OOB settings for OOB apps
-        CacheMode = new BitmapCache(); //must do this before setting the "Scale" property, since that will set "RenderAtScale" property of the BitmapCache
+      //if (Application.Current.Host.Settings.EnableGPUAcceleration) //GPU acceleration can been turned on at HTML/ASPX page or at OOB settings for OOB apps
+      //  CacheMode = new BitmapCache(); //must do this before setting the "Scale" property, since that will set "RenderAtScale" property of the BitmapCache
+      //NOTE: causes issue with video acceleration
 
       InitializeComponent(); //can change properties from XAML, so must do after the commands above
       OptionsLoadSave = ctrlOptionsLoadSave;

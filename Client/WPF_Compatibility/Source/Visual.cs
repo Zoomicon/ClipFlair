@@ -22,7 +22,7 @@ namespace WPFCompatibility
 
     #endregion
 
-    #region Properties
+    #region --- Properties ---
 
     public UIElement Element
     {
@@ -122,7 +122,7 @@ namespace WPFCompatibility
 
     #endregion
 
-    #region Methods
+    #region --- Methods ---
 
     public GeneralTransform TransformToAncestor(UIElement visual)
     {

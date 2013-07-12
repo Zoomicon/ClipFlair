@@ -1,10 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: ICaptionsGrid.cs
-//Version: 20130606
-
-using Microsoft.SilverlightMediaFramework.Core.Accessibility.Captions;
-
-using System;
+//Version: 20130710
 
 namespace ClipFlair.Windows.Views
 {

@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: GalleryDefaults.cs
-//Version: 20130613
+//Version: 20130701
 
 using System;
 using System.Windows;
@@ -20,19 +20,21 @@ namespace ClipFlair.Windows.Views
     #endregion
 
     public const Uri DefaultSource = null;
+    public const string DefaultFilter = "";
 
     #region Methods
 
-    public static void SetDefaults(IGallery Gallery)
+    public static void SetDefaults(IGallery gallery)
     {
       //IView defaults and overrides
-      ViewDefaults.SetDefaults(Gallery);
-      Gallery.Title = DefaultTitle;
-      Gallery.Width = DefaultWidth;
-      Gallery.Height = DefaultHeight;
+      ViewDefaults.SetDefaults(gallery);
+      gallery.Title = DefaultTitle;
+      gallery.Width = DefaultWidth;
+      gallery.Height = DefaultHeight;
 
       //IGalleryViewer defaults
-      Gallery.Source = DefaultSource;
+      gallery.Source = DefaultSource;
+      gallery.Filter = DefaultFilter;
     }
 
     #endregion

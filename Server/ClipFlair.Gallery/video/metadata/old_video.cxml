@@ -1,0 +1,3031 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Collection SchemaVersion="1.0" Name="ClipFlair video clips" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:p="http://schemas.microsoft.com/livelabs/pivot/collection/2009" xmlns="http://schemas.microsoft.com/collection/metadata/2009">
+  <FacetCategories>
+    <FacetCategory Name="Filename" Type="String" p:IsFilterVisible="false" p:IsMetaDataVisible="false" p:IsWordWheelVisible="false" />
+    <FacetCategory Name="Audio language" Type="String" p:IsFilterVisible="true" p:IsMetaDataVisible="true" p:IsWordWheelVisible="true" />
+    <FacetCategory Name="Captions language (on the clip)" Type="String" p:IsFilterVisible="true" p:IsMetaDataVisible="true" p:IsWordWheelVisible="true" />
+    <FacetCategory Name="Genre" Type="String" p:IsFilterVisible="true" p:IsMetaDataVisible="true" p:IsWordWheelVisible="true" />
+    <FacetCategory Name="Age restricted (18+)" Type="String" p:IsFilterVisible="true" p:IsMetaDataVisible="true" p:IsWordWheelVisible="true" />
+    <FacetCategory Name="Duration (hh:mm:ss)" Type="String" p:IsFilterVisible="true" p:IsMetaDataVisible="true" p:IsWordWheelVisible="true" />
+    <FacetCategory Name="Audiovisual richness" Type="String" p:IsFilterVisible="true" p:IsMetaDataVisible="true" p:IsWordWheelVisible="true" />
+    <FacetCategory Name="Pedagogical adaptability" Type="String" p:IsFilterVisible="true" p:IsMetaDataVisible="true" p:IsWordWheelVisible="true" />
+    <FacetCategory Name="Author / Source" Type="String" p:IsFilterVisible="true" p:IsMetaDataVisible="true" p:IsWordWheelVisible="true" />
+    <FacetCategory Name="License" Type="String" p:IsFilterVisible="true" p:IsMetaDataVisible="true" p:IsWordWheelVisible="true" />
+  </FacetCategories>
+  <Items xmlns="">
+    <Item Id="3" Name="En Casa de los padres de Rosa" Img="../video/almodovar-clip1/almodovar-clip1_thumb.jpg" Href="http://studio.clipflair.net?video=almodovar-clip1">
+      <Description>
+      </Description>
+      <Facets>
+        <Facet Name="Filename">
+          <String Value="almodovar-clip1">
+          </String>
+        </Facet>
+        <Facet Name="Audio language">
+          <String Value="Spanish">
+          </String>
+        </Facet>
+        <Facet Name="Genre">
+          <String Value="Fiction" />
+          <String Value="Drama">
+          </String>
+        </Facet>
+        <Facet Name="Age restricted (18+)">
+          <String Value="No">
+          </String>
+        </Facet>
+        <Facet Name="Duration (hh:mm:ss)">
+          <String Value="'00:02:47">
+          </String>
+        </Facet>
+        <Facet Name="Audiovisual richness">
+          <String Value="Visual - Semiotic" />
+          <String Value="Lexis - Grammar" />
+          <String Value="Narrative - Plot" />
+          <String Value="Action - Camera" />
+          <String Value="Verbal - Pragmatic" />
+          <String Value="Characters" />
+        </Facet>
+        <Facet Name="Pedagogical adaptability">
+          <String Value="Yes">
+          </String>
+        </Facet>
+        <Facet Name="Author / Source">
+          <String Value="Todo Sobre Mi Madre (purchased DVD)">
+          </String>
+        </Facet>
+        <Facet Name="License">
+          <String Value="Educational excemption Berne Convention,art.9(2), TRIPS agreement, art.13. applied to  (short clips under three minutes)">
+          </String>
+        </Facet>
+      </Facets>
+    </Item>
+    <Item Id="4" Name="RosettaStone" Img="../video/KhanAcademy_RosettaStone.mp4/KhanAcademy_RosettaStone.mp4_thumb.jpg" Href="http://studio.clipflair.net?video=KhanAcademy_RosettaStone.mp4">
+      <Description>
+      </Description>
+      <Facets>
+        <Facet Name="Filename">
+          <String Value="KhanAcademy_RosettaStone.mp4">
+          </String>
+        </Facet>
+        <Facet Name="Audio language">
+          <String Value="English">
+          </String>
+        </Facet>
+        <Facet Name="Genre">
+          <String Value="Documentary">
+          </String>
+        </Facet>
+        <Facet Name="Age restricted (18+)">
+          <String Value="No">
+          </String>
+        </Facet>
+        <Facet Name="Duration (hh:mm:ss)">
+          <String Value="'00:03:55">
+          </String>
+        </Facet>
+        <Facet Name="Audiovisual richness">
+          <String Value="Visual - Semiotic" />
+          <String Value="Lexis - Grammar" />
+          <String Value="Verbal - Pragmatic" />
+        </Facet>
+        <Facet Name="Pedagogical adaptability">
+          <String Value="Yes">
+          </String>
+        </Facet>
+        <Facet Name="Author / Source">
+          <String Value="Khan Academy https://www.khanacademy.org/humanities/history/ancient-medieval/v/rosetta-stone--196-b-c-e">
+          </String>
+        </Facet>
+        <Facet Name="License">
+          <String Value="cc">
+          </String>
+        </Facet>
+      </Facets>
+    </Item>
+    <Item Id="5" Name="Lucas_y _sus_hermanos" Img="../video/Lucas_y_sus_hermanos/Lucas_y_sus_hermanos_thumb.jpg" Href="http://studio.clipflair.net?video=Lucas_y_sus_hermanos">
+      <Description>
+      </Description>
+      <Facets>
+        <Facet Name="Filename">
+          <String Value="Lucas_y_sus_hermanos">
+          </String>
+        </Facet>
+        <Facet Name="Audio language">
+          <String Value="Spanish">
+          </String>
+        </Facet>
+        <Facet Name="Genre">
+          <String Value="Interview">
+          </String>
+        </Facet>
+        <Facet Name="Age restricted (18+)">
+          <String Value="No">
+          </String>
+        </Facet>
+        <Facet Name="Duration (hh:mm:ss)">
+          <String Value="'00:1:23">
+          </String>
+        </Facet>
+        <Facet Name="Audiovisual richness">
+          <String Value="Visual - Semiotic" />
+          <String Value="Lexis - Grammar" />
+          <String Value="Narrative - Plot" />
+          <String Value="Verbal - Pragmatic" />
+          <String Value="Characters" />
+        </Facet>
+        <Facet Name="Pedagogical adaptability">
+          <String Value="Yes">
+          </String>
+        </Facet>
+        <Facet Name="Author / Source">
+          <String Value="It's my own video.">
+          </String>
+        </Facet>
+        <Facet Name="License">
+          <String Value="It's my own video (permission given by eldest boy to be used)">
+          </String>
+        </Facet>
+      </Facets>
+    </Item>
+    <Item Id="6" Name="Movimiento 15M" Img="../video/15M_Activity_narrator/15M_Activity_narrator_thumb.jpg" Href="http://studio.clipflair.net?video=15M_Activity_narrator">
+      <Description>
+      </Description>
+      <Facets>
+        <Facet Name="Filename">
+          <String Value="15M_Activity_narrator">
+          </String>
+        </Facet>
+        <Facet Name="Audio language">
+          <String Value="Spanish">
+          </String>
+        </Facet>
+        <Facet Name="Genre">
+          <String Value="Documentary">
+          </String>
+        </Facet>
+        <Facet Name="Age restricted (18+)">
+          <String Value="No">
+          </String>
+        </Facet>
+        <Facet Name="Duration (hh:mm:ss)">
+          <String Value="'00:01:40">
+          </String>
+        </Facet>
+        <Facet Name="Audiovisual richness">
+          <String Value="Visual - Semiotic" />
+          <String Value="Lexis - Grammar" />
+          <String Value="Narrative - Plot" />
+          <String Value="Action - Camera" />
+        </Facet>
+        <Facet Name="Pedagogical adaptability">
+          <String Value="Yes">
+          </String>
+        </Facet>
+        <Facet Name="License">
+          <String Value="licenced as cc-by-sa">
+          </String>
+        </Facet>
+      </Facets>
+    </Item>
+    <Item Id="7" Name="Supercafetera_3" Img="../video/LSC1x03/LSC1x03_thumb.jpg" Href="http://studio.clipflair.net?video=LSC1x03">
+      <Description>
+      </Description>
+      <Facets>
+        <Facet Name="Filename">
+          <String Value="LSC1x03">
+          </String>
+        </Facet>
+        <Facet Name="Audio language">
+          <String Value="Spanish">
+          </String>
+        </Facet>
+        <Facet Name="Genre">
+          <String Value="Fiction" />
+          <String Value="Comedy">
+          </String>
+        </Facet>
+        <Facet Name="Age restricted (18+)">
+          <String Value="No">
+          </String>
+        </Facet>
+        <Facet Name="Duration (hh:mm:ss)">
+          <String Value="'00:2:55">
+          </String>
+        </Facet>
+        <Facet Name="Audiovisual richness">
+          <String Value="Visual - Semiotic" />
+          <String Value="Lexis - Grammar" />
+          <String Value="Narrative - Plot" />
+          <String Value="Action - Camera" />
+          <String Value="Verbal - Pragmatic" />
+          <String Value="Characters" />
+        </Facet>
+        <Facet Name="Pedagogical adaptability">
+          <String Value="Yes">
+          </String>
+        </Facet>
+        <Facet Name="License">
+          <String Value="Permission given by the producer.">
+          </String>
+        </Facet>
+      </Facets>
+    </Item>
+    <Item Id="8" Name="Warszawa" Img="../video/Warszawa.mp4/Warszawa.mp4_thumb.jpg" Href="http://studio.clipflair.net?video=Warszawa.mp4">
+      <Description>
+      </Description>
+      <Facets>
+        <Facet Name="Filename">
+          <String Value="Warszawa.mp4">
+          </String>
+        </Facet>
+        <Facet Name="Audio language">
+          <String Value="Silent clip">
+          </String>
+        </Facet>
+        <Facet Name="Captions language (on the clip)">
+          <String Value="Polish">
+          </String>
+        </Facet>
+        <Facet Name="Genre">
+          <String Value="Slideshow">
+          </String>
+        </Facet>
+        <Facet Name="Age restricted (18+)">
+          <String Value="No">
+          </String>
+        </Facet>
+        <Facet Name="Duration (hh:mm:ss)">
+          <String Value="'00:01:04">
+          </String>
+        </Facet>
+        <Facet Name="Audiovisual richness">
+          <String Value="Visual - Semiotic" />
+        </Facet>
+        <Facet Name="Pedagogical adaptability">
+          <String Value="Yes">
+          </String>
+        </Facet>
+        <Facet Name="Author / Source">
+          <String Value="AgnieszkaSzarkowska">
+          </String>
+        </Facet>
+        <Facet Name="License">
+          <String Value="cc">
+          </String>
+        </Facet>
+      </Facets>
+    </Item>
+    <Item Id="9" Name="Cheesecake" Img="../video/KwestiaSmaku_Cheesecake.mp4/KwestiaSmaku_Cheesecake.mp4_thumb.jpg" Href="http://studio.clipflair.net?video=KwestiaSmaku_Cheesecake.mp4">
+      <Description>
+      </Description>
+      <Facets>
+        <Facet Name="Filename">
+          <String Value="KwestiaSmaku_Cheesecake.mp4">
+          </String>
+        </Facet>
+        <Facet Name="Audio language">
+          <String Value="Silent clip">
+          </String>
+        </Facet>
+        <Facet Name="Captions language (on the clip)">
+          <String Value="Polish">
+          </String>
+        </Facet>
+        <Facet Name="Genre">
+          <String Value="Gastronomy">
+          </String>
+        </Facet>
+        <Facet Name="Age restricted (18+)">
+          <String Value="No">
+          </String>
+        </Facet>
+        <Facet Name="Duration (hh:mm:ss)">
+          <String Value="'00:02:20">
+          </String>
+        </Facet>
+        <Facet Name="Audiovisual richness">
+          <String Value="Visual - Semiotic" />
+        </Facet>
+        <Facet Name="Pedagogical adaptability">
+          <String Value="Not sure">
+          </String>
+        </Facet>
+        <Facet Name="Author / Source">
+          <String Value="Kwestia Smaku http://www.kwestiasmaku.com/desery/serniki/idealny/przepis.html">
+          </String>
+        </Facet>
+        <Facet Name="License">
+          <String Value="Agreement to use by the author">
+          </String>
+        </Facet>
+      </Facets>
+    </Item>
+    <Item Id="10" Name="Chinese numbers" Img="../video/Chinese-numbers-complete/Chinese-numbers-complete_thumb.jpg" Href="http://studio.clipflair.net?video=Chinese-numbers-complete">
+      <Description>
+      </Description>
+      <Facets>
+        <Facet Name="Filename">
+          <String Value="Chinese-numbers-complete">
+          </String>
+        </Facet>
+        <Facet Name="Audio language">
+          <String Value="Silent clip">
+          </String>
+        </Facet>
+        <Facet Name="Captions language (on the clip)">
+          <String Value="Chinese">
+          </String>
+        </Facet>
+        <Facet Name="Genre">
+          <String Value="Educational">
+          </String>
+        </Facet>
+        <Facet Name="Age restricted (18+)">
+          <String Value="No">
+          </String>
+        </Facet>
+        <Facet Name="Duration (hh:mm:ss)">
+          <String Value="'00:02:10">
+          </String>
+        </Facet>
+        <Facet Name="Audiovisual richness">
+          <String Value="Visual - Semiotic" />
+        </Facet>
+        <Facet Name="Pedagogical adaptability">
+          <String Value="Yes">
+          </String>
+        </Facet>
+        <Facet Name="Author / Source">
+          <String Value="Sara Rovira-Esteva">
+          </String>
+        </Facet>
+        <Facet Name="License">
+          <String Value="I did it myself">
+          </String>
+        </Facet>
+      </Facets>
+    </Item>
+    <Item Id="11" Name="Chinese recipie1" Img="../video/ZH_4_pingguojichi-recepta.mp4/ZH_4_pingguojichi-recepta.mp4_thumb.jpg" Href="http://studio.clipflair.net?video=ZH_4_pingguojichi-recepta.mp4">
+      <Description>
+      </Description>
+      <Facets>
+        <Facet Name="Filename">
+          <String Value="ZH_4_pingguojichi-recepta.mp4">
+          </String>
+        </Facet>
+        <Facet Name="Audio language">
+          <String Value="Chinese">
+          </String>
+        </Facet>
+        <Facet Name="Captions language (on the clip)">
+          <String Value="Chinese">
+          </String>
+        </Facet>
+        <Facet Name="Genre">
+          <String Value="Gastronomy">
+          </String>
+        </Facet>
+        <Facet Name="Age restricted (18+)">
+          <String Value="No">
+          </String>
+        </Facet>
+        <Facet Name="Duration (hh:mm:ss)">
+          <String Value="'00:05:25">
+          </String>
+        </Facet>
+        <Facet Name="Audiovisual richness">
+          <String Value="Visual - Semiotic" />
+          <String Value="Lexis - Grammar" />
+          <String Value="Verbal - Pragmatic" />
+        </Facet>
+        <Facet Name="Pedagogical adaptability">
+          <String Value="Yes">
+          </String>
+        </Facet>
+        <Facet Name="Author / Source">
+          <String Value="Recorded from CCTV">
+          </String>
+        </Facet>
+        <Facet Name="License">
+          <String Value="No idea">
+          </String>
+        </Facet>
+      </Facets>
+    </Item>
+    <Item Id="12" Name="Chinese recipie2" Img="../video/ZH_4_pingugojichi-tiankong/ZH_4_pingugojichi-tiankong_thumb.jpg" Href="http://studio.clipflair.net?video=ZH_4_pingugojichi-tiankong">
+      <Description>
+      </Description>
+      <Facets>
+        <Facet Name="Filename">
+          <String Value="ZH_4_pingugojichi-tiankong">
+          </String>
+        </Facet>
+        <Facet Name="Audio language">
+          <String Value="Chinese">
+          </String>
+        </Facet>
+        <Facet Name="Captions language (on the clip)">
+          <String Value="Chinese">
+          </String>
+        </Facet>
+        <Facet Name="Genre">
+          <String Value="Gastronomy">
+          </String>
+        </Facet>
+        <Facet Name="Age restricted (18+)">
+          <String Value="No">
+          </String>
+        </Facet>
+        <Facet Name="Duration (hh:mm:ss)">
+          <String Value="'00:01:56">
+          </String>
+        </Facet>
+        <Facet Name="Audiovisual richness">
+          <String Value="Visual - Semiotic" />
+          <String Value="Lexis - Grammar" />
+          <String Value="Characters" />
+        </Facet>
+        <Facet Name="Pedagogical adaptability">
+          <String Value="Yes">
+          </String>
+        </Facet>
+        <Facet Name="Author / Source">
+          <String Value="Recorded from CCTV">
+          </String>
+        </Facet>
+        <Facet Name="License">
+          <String Value="No idea">
+          </String>
+        </Facet>
+      </Facets>
+    </Item>
+    <Item Id="13" Name="Practice pinyin" Img="../video/ZH_1_pinyin1/ZH_1_pinyin1_thumb.jpg" Href="http://studio.clipflair.net?video=ZH_1_pinyin1">
+      <Description>
+      </Description>
+      <Facets>
+        <Facet Name="Filename">
+          <String Value="ZH_1_pinyin1">
+          </String>
+        </Facet>
+        <Facet Name="Audio language">
+          <String Value="Chinese">
+          </String>
+        </Facet>
+        <Facet Name="Captions language (on the clip)">
+          <String Value="Chinese">
+          </String>
+        </Facet>
+        <Facet Name="Genre">
+          <String Value="Animation" />
+        </Facet>
+        <Facet Name="Age restricted (18+)">
+          <String Value="No">
+          </String>
+        </Facet>
+        <Facet Name="Duration (hh:mm:ss)">
+          <String Value="'00:00:42">
+          </String>
+        </Facet>
+        <Facet Name="Audiovisual richness">
+          <String Value="Visual - Semiotic" />
+          <String Value="Lexis - Grammar" />
+          <String Value="Verbal - Pragmatic" />
+          <String Value="Characters" />
+        </Facet>
+        <Facet Name="Pedagogical adaptability">
+          <String Value="Yes">
+          </String>
+        </Facet>
+        <Facet Name="Author / Source">
+          <String Value="No idea">
+          </String>
+          <String Value="it was Helena who passed it to me">
+          </String>
+        </Facet>
+        <Facet Name="License">
+          <String Value="No idea">
+          </String>
+        </Facet>
+      </Facets>
+    </Item>
+    <Item Id="14" Name="Mícheál Ó Coileáin: Beathaisnéis" Img="../video/MichealOCoileain/MichealOCoileain_thumb.jpg" Href="http://studio.clipflair.net?video=MichealOCoileain">
+      <Description>
+      </Description>
+      <Facets>
+        <Facet Name="Filename">
+          <String Value="MichealOCoileain">
+          </String>
+        </Facet>
+        <Facet Name="Audio language">
+          <String Value="Irish">
+          </String>
+        </Facet>
+        <Facet Name="Captions language (on the clip)">
+          <String Value="Irish">
+          </String>
+        </Facet>
+        <Facet Name="Genre">
+          <String Value="Biography">
+          </String>
+        </Facet>
+        <Facet Name="Age restricted (18+)">
+          <String Value="No">
+          </String>
+        </Facet>
+        <Facet Name="Duration (hh:mm:ss)">
+          <String Value="'00:07:19">
+          </String>
+        </Facet>
+        <Facet Name="Audiovisual richness">
+          <String Value="Visual - Semiotic" />
+          <String Value="Lexis - Grammar" />
+          <String Value="Narrative - Plot" />
+          <String Value="Action - Camera" />
+        </Facet>
+        <Facet Name="Pedagogical adaptability">
+          <String Value="Yes">
+          </String>
+        </Facet>
+        <Facet Name="Author / Source">
+          <String Value="Traolach Ó Donabháin">
+          </String>
+        </Facet>
+        <Facet Name="License">
+          <String Value="CC BY-NC-SA">
+          </String>
+        </Facet>
+      </Facets>
+    </Item>
+    <Item Id="15" Name="Ár nArán Laethúil" Img="../video/ArNaranLaethuil/ArNaranLaethuil_thumb.jpg" Href="http://studio.clipflair.net?video=ArNaranLaethuil">
+      <Description>
+      </Description>
+      <Facets>
+        <Facet Name="Filename">
+          <String Value="ArNaranLaethuil">
+          </String>
+        </Facet>
+        <Facet Name="Audio language">
+          <String Value="Irish">
+          </String>
+        </Facet>
+        <Facet Name="Captions language (on the clip)">
+          <String Value="Irish">
+          </String>
+        </Facet>
+        <Facet Name="Genre">
+          <String Value="Documentary">
+          </String>
+        </Facet>
+        <Facet Name="Age restricted (18+)">
+          <String Value="No">
+          </String>
+        </Facet>
+        <Facet Name="Duration (hh:mm:ss)">
+          <String Value="'00:08:47">
+          </String>
+        </Facet>
+        <Facet Name="Audiovisual richness">
+          <String Value="Visual - Semiotic" />
+          <String Value="Lexis - Grammar" />
+          <String Value="Narrative - Plot" />
+          <String Value="Action - Camera" />
+        </Facet>
+        <Facet Name="Pedagogical adaptability">
+          <String Value="Yes">
+          </String>
+        </Facet>
+        <Facet Name="Author / Source">
+          <String Value="Seán Ó Céilleachair">
+          </String>
+        </Facet>
+        <Facet Name="License">
+          <String Value="CC BY-NC-SA">
+          </String>
+        </Facet>
+      </Facets>
+    </Item>
+    <Item Id="16" Name="Bia agus Deoch" Img="../video/biaDeochFoodItemsRND/biaDeochFoodItemsRND_thumb.jpg" Href="http://studio.clipflair.net?video=biaDeochFoodItemsRND">
+      <Description>
+      </Description>
+      <Facets>
+        <Facet Name="Filename">
+          <String Value="biaDeochFoodItemsRND">
+          </String>
+        </Facet>
+        <Facet Name="Audio language">
+          <String Value="Irish">
+          </String>
+        </Facet>
+        <Facet Name="Captions language (on the clip)">
+          <String Value="Irish">
+          </String>
+        </Facet>
+        <Facet Name="Genre">
+          <String Value="Animation" />
+          <String Value="Factual">
+          </String>
+        </Facet>
+        <Facet Name="Age restricted (18+)">
+          <String Value="No">
+          </String>
+        </Facet>
+        <Facet Name="Duration (hh:mm:ss)">
+          <String Value="'00:06:03">
+          </String>
+        </Facet>
+        <Facet Name="Audiovisual richness">
+          <String Value="Visual - Semiotic" />
+          <String Value="Lexis - Grammar" />
+          <String Value="Narrative - Plot" />
+          <String Value="Action - Camera" />
+        </Facet>
+        <Facet Name="Pedagogical adaptability">
+          <String Value="Not sure">
+          </String>
+        </Facet>
+        <Facet Name="Author / Source">
+          <String Value="Rose Ní Dhubhda">
+          </String>
+        </Facet>
+        <Facet Name="License">
+          <String Value="CC BY-NC-SA">
+          </String>
+        </Facet>
+      </Facets>
+    </Item>
+    <Item Id="17" Name="Canzone Di Natale" Img="../video/canzoneDiNataleNoSubtitlesRND/canzoneDiNataleNoSubtitlesRND_thumb.jpg" Href="http://studio.clipflair.net?video=canzoneDiNataleNoSubtitlesRND">
+      <Description>
+      </Description>
+      <Facets>
+        <Facet Name="Filename">
+          <String Value="canzoneDiNataleNoSubtitlesRND">
+          </String>
+        </Facet>
+        <Facet Name="Audio language">
+          <String Value="Italian">
+          </String>
+        </Facet>
+        <Facet Name="Genre">
+          <String Value="Fiction" />
+          <String Value="Animation" />
+          <String Value="Fiction">
+          </String>
+        </Facet>
+        <Facet Name="Age restricted (18+)">
+          <String Value="No">
+          </String>
+        </Facet>
+        <Facet Name="Duration (hh:mm:ss)">
+          <String Value="'00:01:30">
+          </String>
+        </Facet>
+        <Facet Name="Audiovisual richness">
+          <String Value="Visual - Semiotic" />
+          <String Value="Lexis - Grammar" />
+        </Facet>
+        <Facet Name="Pedagogical adaptability">
+          <String Value="Yes">
+          </String>
+        </Facet>
+        <Facet Name="Author / Source">
+          <String Value="Rose Ní Dhubhda">
+          </String>
+        </Facet>
+        <Facet Name="License">
+          <String Value="CC BY-NC-SA">
+          </String>
+        </Facet>
+      </Facets>
+    </Item>
+    <Item Id="18" Name="Christmas Song: Rudolph The Red-Nosed Reindeer" Img="../video/childrenSongRudolphEnglishRND/childrenSongRudolphEnglishRND_thumb.jpg" Href="http://studio.clipflair.net?video=childrenSongRudolphEnglishRND">
+      <Description>
+      </Description>
+      <Facets>
+        <Facet Name="Filename">
+          <String Value="childrenSongRudolphEnglishRND">
+          </String>
+        </Facet>
+        <Facet Name="Audio language">
+          <String Value="English">
+          </String>
+        </Facet>
+        <Facet Name="Genre">
+          <String Value="Fiction" />
+          <String Value="Animation" />
+          <String Value="Fiction">
+          </String>
+        </Facet>
+        <Facet Name="Age restricted (18+)">
+          <String Value="No">
+          </String>
+        </Facet>
+        <Facet Name="Duration (hh:mm:ss)">
+          <String Value="'00:01:30">
+          </String>
+        </Facet>
+        <Facet Name="Audiovisual richness">
+          <String Value="Visual - Semiotic" />
+          <String Value="Lexis - Grammar" />
+        </Facet>
+        <Facet Name="Pedagogical adaptability">
+          <String Value="Yes">
+          </String>
+        </Facet>
+        <Facet Name="Author / Source">
+          <String Value="Rose Ní Dhubhda">
+          </String>
+        </Facet>
+        <Facet Name="License">
+          <String Value="CC BY-NC-SA">
+          </String>
+        </Facet>
+      </Facets>
+    </Item>
+    <Item Id="19" Name="Ceolchoirm na Nollag" Img="../video/paistiCeolNollagGanFhotheidilRND/paistiCeolNollagGanFhotheidilRND_thumb.jpg" Href="http://studio.clipflair.net?video=paistiCeolNollagGanFhotheidilRND">
+      <Description>
+      </Description>
+      <Facets>
+        <Facet Name="Filename">
+          <String Value="paistiCeolNollagGanFhotheidilRND">
+          </String>
+        </Facet>
+        <Facet Name="Audio language">
+          <String Value="Irish">
+          </String>
+        </Facet>
+        <Facet Name="Genre">
+          <String Value="Fiction" />
+          <String Value="Animation" />
+          <String Value="Fiction">
+          </String>
+        </Facet>
+        <Facet Name="Age restricted (18+)">
+          <String Value="No">
+          </String>
+        </Facet>
+        <Facet Name="Duration (hh:mm:ss)">
+          <String Value="'00:01:30">
+          </String>
+        </Facet>
+        <Facet Name="Audiovisual richness">
+          <String Value="Visual - Semiotic" />
+          <String Value="Lexis - Grammar" />
+        </Facet>
+        <Facet Name="Pedagogical adaptability">
+          <String Value="Yes">
+          </String>
+        </Facet>
+        <Facet Name="Author / Source">
+          <String Value="Rose Ní Dhubhda">
+          </String>
+        </Facet>
+        <Facet Name="License">
+          <String Value="CC BY-NC-SA">
+          </String>
+        </Facet>
+      </Facets>
+    </Item>
+    <Item Id="20" Name="Uimhreacha: Ag Comhaireamh" Img="../video/countingAgComhaireamhRND/countingAgComhaireamhRND_thumb.jpg" Href="http://studio.clipflair.net?video=countingAgComhaireamhRND">
+      <Description>
+      </Description>
+      <Facets>
+        <Facet Name="Filename">
+          <String Value="countingAgComhaireamhRND">
+          </String>
+        </Facet>
+        <Facet Name="Audio language">
+          <String Value="Irish">
+          </String>
+        </Facet>
+        <Facet Name="Genre">
+          <String Value="Fiction" />
+          <String Value="Animation" />
+        </Facet>
+        <Facet Name="Age restricted (18+)">
+          <String Value="No">
+          </String>
+        </Facet>
+        <Facet Name="Duration (hh:mm:ss)">
+          <String Value="'00:05:50">
+          </String>
+        </Facet>
+        <Facet Name="Audiovisual richness">
+          <String Value="Visual - Semiotic" />
+          <String Value="Lexis - Grammar" />
+          <String Value="Narrative - Plot" />
+          <String Value="Verbal - Pragmatic" />
+          <String Value="Characters" />
+        </Facet>
+        <Facet Name="Pedagogical adaptability">
+          <String Value="Yes">
+          </String>
+        </Facet>
+        <Facet Name="Author / Source">
+          <String Value="Rose Ní Dhubhda">
+          </String>
+        </Facet>
+        <Facet Name="License">
+          <String Value="CC BY-NC-SA">
+          </String>
+        </Facet>
+      </Facets>
+    </Item>
+    <Item Id="21" Name="Basic Conversation in Irish" Img="../video/introductionsIrishRND/introductionsIrishRND_thumb.jpg" Href="http://studio.clipflair.net?video=introductionsIrishRND">
+      <Description>
+      </Description>
+      <Facets>
+        <Facet Name="Filename">
+          <String Value="introductionsIrishRND">
+          </String>
+        </Facet>
+        <Facet Name="Audio language">
+          <String Value="Irish">
+          </String>
+        </Facet>
+        <Facet Name="Captions language (on the clip)">
+          <String Value="Irish">
+          </String>
+        </Facet>
+        <Facet Name="Genre">
+          <String Value="Fiction" />
+          <String Value="Animation" />
+        </Facet>
+        <Facet Name="Age restricted (18+)">
+          <String Value="No">
+          </String>
+        </Facet>
+        <Facet Name="Duration (hh:mm:ss)">
+          <String Value="'00:03:30">
+          </String>
+        </Facet>
+        <Facet Name="Audiovisual richness">
+          <String Value="Visual - Semiotic" />
+          <String Value="Lexis - Grammar" />
+          <String Value="Narrative - Plot" />
+          <String Value="Action - Camera" />
+        </Facet>
+        <Facet Name="Pedagogical adaptability">
+          <String Value="No">
+          </String>
+        </Facet>
+        <Facet Name="Author / Source">
+          <String Value="Rose Ní Dhubhda">
+          </String>
+        </Facet>
+        <Facet Name="License">
+          <String Value="CC BY-NC-SA">
+          </String>
+        </Facet>
+      </Facets>
+    </Item>
+    <Item Id="22" Name="Tomhais sa Seomra Ranga" Img="../video/riddlesInClassRND/riddlesInClassRND_thumb.jpg" Href="http://studio.clipflair.net?video=riddlesInClassRND">
+      <Description>
+      </Description>
+      <Facets>
+        <Facet Name="Filename">
+          <String Value="riddlesInClassRND">
+          </String>
+        </Facet>
+        <Facet Name="Audio language">
+          <String Value="Irish">
+          </String>
+        </Facet>
+        <Facet Name="Genre">
+          <String Value="Fiction" />
+          <String Value="Animation" />
+        </Facet>
+        <Facet Name="Age restricted (18+)">
+          <String Value="No">
+          </String>
+        </Facet>
+        <Facet Name="Duration (hh:mm:ss)">
+          <String Value="'00:04:00">
+          </String>
+        </Facet>
+        <Facet Name="Audiovisual richness">
+          <String Value="Visual - Semiotic" />
+          <String Value="Lexis - Grammar" />
+          <String Value="Narrative - Plot" />
+          <String Value="Verbal - Pragmatic" />
+          <String Value="Characters" />
+        </Facet>
+        <Facet Name="Pedagogical adaptability">
+          <String Value="Yes">
+          </String>
+        </Facet>
+        <Facet Name="Author / Source">
+          <String Value="Rose Ní Dhubhda">
+          </String>
+        </Facet>
+        <Facet Name="License">
+          <String Value="CC BY-NC-SA">
+          </String>
+        </Facet>
+      </Facets>
+    </Item>
+    <Item Id="23" Name="Visit Britain Culture" Img="../video/VisitBritain/VisitBritain_thumb.jpg" Href="http://studio.clipflair.net?video=VisitBritain">
+      <Description>
+      </Description>
+      <Facets>
+        <Facet Name="Filename">
+          <String Value="VisitBritain">
+          </String>
+        </Facet>
+        <Facet Name="Audio language">
+          <String Value="English">
+          </String>
+        </Facet>
+        <Facet Name="Captions language (on the clip)">
+          <String Value="English">
+          </String>
+        </Facet>
+        <Facet Name="Genre">
+          <String Value="Tourist,Advertisement">
+          </String>
+        </Facet>
+        <Facet Name="Age restricted (18+)">
+          <String Value="No">
+          </String>
+        </Facet>
+        <Facet Name="Duration (hh:mm:ss)">
+          <String Value="'00:03:21">
+          </String>
+        </Facet>
+        <Facet Name="Audiovisual richness">
+          <String Value="Visual - Semiotic" />
+          <String Value="Action - Camera" />
+        </Facet>
+        <Facet Name="Pedagogical adaptability">
+          <String Value="Yes">
+          </String>
+        </Facet>
+        <Facet Name="Author / Source">
+          <String Value="Youtube (Visit Britain TV)">
+          </String>
+        </Facet>
+        <Facet Name="License">
+          <String Value="public (youtube)">
+          </String>
+        </Facet>
+      </Facets>
+    </Item>
+    <Item Id="24" Name="Edinburgh Inspiring Capital" Img="../video/EdinburghInspiringCapitalvisit/EdinburghInspiringCapitalvisit_thumb.jpg" Href="http://studio.clipflair.net?video=EdinburghInspiringCapitalvisit">
+      <Description>
+      </Description>
+      <Facets>
+        <Facet Name="Filename">
+          <String Value="EdinburghInspiringCapitalvisit">
+          </String>
+        </Facet>
+        <Facet Name="Audio language">
+          <String Value="Silent clip">
+          </String>
+        </Facet>
+        <Facet Name="Captions language (on the clip)">
+          <String Value="English">
+          </String>
+        </Facet>
+        <Facet Name="Genre">
+          <String Value="Tourist">
+          </String>
+        </Facet>
+        <Facet Name="Age restricted (18+)">
+          <String Value="No">
+          </String>
+        </Facet>
+        <Facet Name="Duration (hh:mm:ss)">
+          <String Value="'00:02:22">
+          </String>
+        </Facet>
+        <Facet Name="Audiovisual richness">
+          <String Value="Visual - Semiotic" />
+          <String Value="Action - Camera" />
+        </Facet>
+        <Facet Name="Pedagogical adaptability">
+          <String Value="Yes">
+          </String>
+        </Facet>
+        <Facet Name="Author / Source">
+          <String Value="Youtube (Visit Britain TV)">
+          </String>
+        </Facet>
+        <Facet Name="License">
+          <String Value="public (youtube)">
+          </String>
+        </Facet>
+      </Facets>
+    </Item>
+    <Item Id="25" Name="Abecadło ślubnych obrzędów" Img="../video/AbecadloSlubnychObrzedow.mp4/AbecadloSlubnychObrzedow.mp4_thumb.jpg" Href="http://studio.clipflair.net?video=AbecadloSlubnychObrzedow.mp4">
+      <Description>
+      </Description>
+      <Facets>
+        <Facet Name="Filename">
+          <String Value="AbecadloSlubnychObrzedow.mp4">
+          </String>
+        </Facet>
+        <Facet Name="Audio language">
+          <String Value="Polish">
+          </String>
+        </Facet>
+        <Facet Name="Captions language (on the clip)">
+          <String Value="Polish">
+          </String>
+        </Facet>
+        <Facet Name="Genre">
+          <String Value="Reportage">
+          </String>
+        </Facet>
+        <Facet Name="Age restricted (18+)">
+          <String Value="No">
+          </String>
+        </Facet>
+        <Facet Name="Duration (hh:mm:ss)">
+          <String Value="'00:01:28">
+          </String>
+        </Facet>
+        <Facet Name="Audiovisual richness">
+          <String Value="Visual - Semiotic" />
+          <String Value="Lexis - Grammar" />
+          <String Value="Narrative - Plot" />
+        </Facet>
+        <Facet Name="Pedagogical adaptability">
+          <String Value="Yes">
+          </String>
+        </Facet>
+        <Facet Name="Author / Source">
+          <String Value="Zuzanna Cichocka">
+          </String>
+          <String Value="Katarzyna Miedzik">
+          </String>
+          <String Value="MonikaTrela">
+          </String>
+          <String Value="Erwin Zalewski">
+          </String>
+        </Facet>
+        <Facet Name="License">
+          <String Value="CC_BY">
+          </String>
+        </Facet>
+      </Facets>
+    </Item>
+    <Item Id="26" Name="Maggie the witch" Img="../video/maggie_the_witch.mp4/maggie_the_witch.mp4_thumb.jpg" Href="http://studio.clipflair.net?video=maggie_the_witch.mp4">
+      <Description>
+      </Description>
+      <Facets>
+        <Facet Name="Filename">
+          <String Value="maggie_the_witch.mp4">
+          </String>
+        </Facet>
+        <Facet Name="Audio language">
+          <String Value="English">
+          </String>
+        </Facet>
+        <Facet Name="Genre">
+          <String Value="Animation" />
+          <String Value="Story">
+          </String>
+        </Facet>
+        <Facet Name="Age restricted (18+)">
+          <String Value="No">
+          </String>
+        </Facet>
+        <Facet Name="Duration (hh:mm:ss)">
+          <String Value="'00:00:59">
+          </String>
+        </Facet>
+        <Facet Name="Audiovisual richness">
+          <String Value="Visual - Semiotic" />
+          <String Value="Lexis - Grammar" />
+          <String Value="Narrative - Plot" />
+          <String Value="Action - Camera" />
+          <String Value="Characters" />
+        </Facet>
+        <Facet Name="Pedagogical adaptability">
+          <String Value="Yes">
+          </String>
+        </Facet>
+        <Facet Name="Author / Source">
+          <String Value="Joanna Pietrulewicz">
+          </String>
+        </Facet>
+        <Facet Name="License">
+          <String Value="CC-BY">
+          </String>
+        </Facet>
+      </Facets>
+    </Item>
+    <Item Id="27" Name="Polskie tańce narodowe" Img="../video/PolishNationalDances.mp4/PolishNationalDances.mp4_thumb.jpg" Href="http://studio.clipflair.net?video=PolishNationalDances.mp4">
+      <Description>
+      </Description>
+      <Facets>
+        <Facet Name="Filename">
+          <String Value="PolishNationalDances.mp4">
+          </String>
+        </Facet>
+        <Facet Name="Audio language">
+          <String Value="Polish">
+          </String>
+        </Facet>
+        <Facet Name="Captions language (on the clip)">
+          <String Value="Polish">
+          </String>
+        </Facet>
+        <Facet Name="Genre">
+          <String Value="Documentary">
+          </String>
+        </Facet>
+        <Facet Name="Age restricted (18+)">
+          <String Value="No">
+          </String>
+        </Facet>
+        <Facet Name="Duration (hh:mm:ss)">
+          <String Value="'00:02:27">
+          </String>
+        </Facet>
+        <Facet Name="Audiovisual richness">
+          <String Value="Visual - Semiotic" />
+          <String Value="Lexis - Grammar" />
+          <String Value="Narrative - Plot" />
+          <String Value="Action - Camera" />
+        </Facet>
+        <Facet Name="Pedagogical adaptability">
+          <String Value="Yes">
+          </String>
+        </Facet>
+        <Facet Name="Author / Source">
+          <String Value="Natalia Łobacz">
+          </String>
+          <String Value="Anna Ostromecka">
+          </String>
+          <String Value="Marta Zaręba">
+          </String>
+        </Facet>
+        <Facet Name="License">
+          <String Value="CC-BY">
+          </String>
+        </Facet>
+      </Facets>
+    </Item>
+    <Item Id="28" Name="Pyszna Zapiekanka" Img="../video/Zapiekanka.mp4/Zapiekanka.mp4_thumb.jpg" Href="http://studio.clipflair.net?video=Zapiekanka.mp4">
+      <Description>
+      </Description>
+      <Facets>
+        <Facet Name="Filename">
+          <String Value="Zapiekanka.mp4">
+          </String>
+        </Facet>
+        <Facet Name="Audio language">
+          <String Value="Polish">
+          </String>
+        </Facet>
+        <Facet Name="Genre">
+          <String Value="Documentary">
+          </String>
+        </Facet>
+        <Facet Name="Age restricted (18+)">
+          <String Value="No">
+          </String>
+        </Facet>
+        <Facet Name="Duration (hh:mm:ss)">
+          <String Value="'00:01:25">
+          </String>
+        </Facet>
+        <Facet Name="Audiovisual richness">
+          <String Value="Visual - Semiotic" />
+          <String Value="Lexis - Grammar" />
+          <String Value="Narrative - Plot" />
+          <String Value="Action - Camera" />
+        </Facet>
+        <Facet Name="Pedagogical adaptability">
+          <String Value="Yes">
+          </String>
+        </Facet>
+        <Facet Name="Author / Source">
+          <String Value="Małgorzata Marek">
+          </String>
+          <String Value="Helena Szczudłowska">
+          </String>
+          <String Value="Joanna Aleksiejuk">
+          </String>
+        </Facet>
+        <Facet Name="License">
+          <String Value="CC-BY">
+          </String>
+        </Facet>
+      </Facets>
+    </Item>
+    <Item Id="29" Name="Święconka" Img="../video/Swieconka.mp4/Swieconka.mp4_thumb.jpg" Href="http://studio.clipflair.net?video=Swieconka.mp4">
+      <Description>
+      </Description>
+      <Facets>
+        <Facet Name="Filename">
+          <String Value="Swieconka.mp4">
+          </String>
+        </Facet>
+        <Facet Name="Audio language">
+          <String Value="Polish">
+          </String>
+        </Facet>
+        <Facet Name="Genre">
+          <String Value="Story">
+          </String>
+        </Facet>
+        <Facet Name="Age restricted (18+)">
+          <String Value="No">
+          </String>
+        </Facet>
+        <Facet Name="Duration (hh:mm:ss)">
+          <String Value="'00:01:25">
+          </String>
+        </Facet>
+        <Facet Name="Audiovisual richness">
+          <String Value="Visual - Semiotic" />
+          <String Value="Lexis - Grammar" />
+          <String Value="Narrative - Plot" />
+          <String Value="Verbal - Pragmatic" />
+          <String Value="Characters" />
+        </Facet>
+        <Facet Name="Pedagogical adaptability">
+          <String Value="Yes">
+          </String>
+        </Facet>
+        <Facet Name="Author / Source">
+          <String Value="Ewa Sołtysik">
+          </String>
+          <String Value="Adam gryszkiewicz">
+          </String>
+          <String Value="Aleksandra Borycka">
+          </String>
+        </Facet>
+        <Facet Name="License">
+          <String Value="CC-BY">
+          </String>
+        </Facet>
+      </Facets>
+    </Item>
+    <Item Id="30" Name="Please demolish my school" Img="../video/Demolition_2/Demolition_2_thumb.jpg" Href="http://studio.clipflair.net?video=Demolition_2">
+      <Description>
+      </Description>
+      <Facets>
+        <Facet Name="Filename">
+          <String Value="Demolition_2">
+          </String>
+        </Facet>
+        <Facet Name="Audio language">
+          <String Value="English">
+          </String>
+        </Facet>
+        <Facet Name="Genre">
+          <String Value="Comedy">
+          </String>
+        </Facet>
+        <Facet Name="Age restricted (18+)">
+          <String Value="No">
+          </String>
+        </Facet>
+        <Facet Name="Duration (hh:mm:ss)">
+          <String Value="'00:02:39">
+          </String>
+        </Facet>
+        <Facet Name="Audiovisual richness">
+          <String Value="Lexis - Grammar" />
+          <String Value="Narrative - Plot" />
+          <String Value="Verbal - Pragmatic" />
+          <String Value="Characters" />
+        </Facet>
+        <Facet Name="Pedagogical adaptability">
+          <String Value="Yes">
+          </String>
+        </Facet>
+        <Facet Name="Author / Source">
+          <String Value="Rebecca Barry/http://www.youtube.com/watch?v=kTAtg7mvbs4">
+          </String>
+        </Facet>
+        <Facet Name="License">
+          <String Value="Standard YouTube License">
+          </String>
+        </Facet>
+      </Facets>
+    </Item>
+    <Item Id="31" Name="Walking in the woods" Img="../video/Gloam/Gloam_thumb.jpg" Href="http://studio.clipflair.net?video=Gloam">
+      <Description>
+      </Description>
+      <Facets>
+        <Facet Name="Filename">
+          <String Value="Gloam">
+          </String>
+        </Facet>
+        <Facet Name="Audio language">
+          <String Value="Silent clip (no audio language)">
+          </String>
+        </Facet>
+        <Facet Name="Genre">
+          <String Value="Animation" />
+          <String Value="Thriller,Science Fiction">
+          </String>
+        </Facet>
+        <Facet Name="Age restricted (18+)">
+          <String Value="No">
+          </String>
+        </Facet>
+        <Facet Name="Duration (hh:mm:ss)">
+          <String Value="'00:02:33">
+          </String>
+        </Facet>
+        <Facet Name="Audiovisual richness">
+          <String Value="Visual - Semiotic" />
+          <String Value="Narrative - Plot" />
+          <String Value="Action - Camera" />
+        </Facet>
+        <Facet Name="Pedagogical adaptability">
+          <String Value="Yes">
+          </String>
+        </Facet>
+        <Facet Name="Author / Source">
+          <String Value="David Elwell &amp; Gareth Hughes/http://vimeo.com/50513691">
+          </String>
+        </Facet>
+        <Facet Name="License">
+          <String Value="CC BY Non commercial">
+          </String>
+        </Facet>
+      </Facets>
+    </Item>
+    <Item Id="32" Name="Car addicts" Img="../video/MP2_I074470EN1H/MP2_I074470EN1H_thumb.jpg" Href="http://studio.clipflair.net?video=MP2_I074470EN1H">
+      <Description>
+      </Description>
+      <Facets>
+        <Facet Name="Filename">
+          <String Value="MP2_I074470EN1H">
+          </String>
+        </Facet>
+        <Facet Name="Audio language">
+          <String Value="English">
+          </String>
+        </Facet>
+        <Facet Name="Genre">
+          <String Value="Animation" />
+          <String Value="Educational">
+          </String>
+        </Facet>
+        <Facet Name="Age restricted (18+)">
+          <String Value="No">
+          </String>
+        </Facet>
+        <Facet Name="Duration (hh:mm:ss)">
+          <String Value="'00:02:33">
+          </String>
+        </Facet>
+        <Facet Name="Audiovisual richness">
+          <String Value="Visual - Semiotic" />
+          <String Value="Lexis - Grammar" />
+          <String Value="Verbal - Pragmatic" />
+        </Facet>
+        <Facet Name="Pedagogical adaptability">
+          <String Value="Yes">
+          </String>
+        </Facet>
+        <Facet Name="Author / Source">
+          <String Value="EU Directorate- General for Mobility &amp; Transport/http://ec.europa.eu/avservices/video/player.cfm?sitelang=en&amp;ref=I074470">
+          </String>
+        </Facet>
+        <Facet Name="License">
+          <String Value="CC BY ">
+          </String>
+        </Facet>
+      </Facets>
+    </Item>
+    <Item Id="33" Name="芝麻街：身体器官 (Sesame Street: body parts)" Img="../video/ZH_2_resultatius/ZH_2_resultatius_thumb.jpg" Href="http://studio.clipflair.net?video=ZH_2_resultatius">
+      <Description>
+      </Description>
+      <Facets>
+        <Facet Name="Filename">
+          <String Value="ZH_2_resultatius">
+          </String>
+        </Facet>
+        <Facet Name="Audio language">
+          <String Value="Chinese">
+          </String>
+        </Facet>
+        <Facet Name="Captions language (on the clip)">
+          <String Value="Chinese">
+          </String>
+        </Facet>
+        <Facet Name="Genre">
+          <String Value="Fiction" />
+          <String Value="Animation" />
+          <String Value="Kids,Entertainment">
+          </String>
+        </Facet>
+        <Facet Name="Age restricted (18+)">
+          <String Value="No">
+          </String>
+        </Facet>
+        <Facet Name="Duration (hh:mm:ss)">
+          <String Value="'02:20">
+          </String>
+        </Facet>
+        <Facet Name="Audiovisual richness">
+          <String Value="Visual - Semiotic" />
+          <String Value="Lexis - Grammar" />
+          <String Value="Verbal - Pragmatic" />
+          <String Value="Characters" />
+        </Facet>
+        <Facet Name="Pedagogical adaptability">
+          <String Value="Yes">
+          </String>
+        </Facet>
+        <Facet Name="License">
+          <String Value="Educational excemption Berne Convention,art.9(2), TRIPS agreement, art.13. (applied to short clips under three minutes)">
+          </String>
+        </Facet>
+      </Facets>
+    </Item>
+    <Item Id="34" Name="向左走， 向右走: 讲故事 (Turn left, turn right: telling a story" Img="../video/ZH_3_zuoyou/ZH_3_zuoyou_thumb.jpg" Href="http://studio.clipflair.net?video=ZH_3_zuoyou">
+      <Description>
+      </Description>
+      <Facets>
+        <Facet Name="Filename">
+          <String Value="ZH_3_zuoyou">
+          </String>
+        </Facet>
+        <Facet Name="Audio language">
+          <String Value="Chinese">
+          </String>
+        </Facet>
+        <Facet Name="Captions language (on the clip)">
+          <String Value="Chinese">
+          </String>
+        </Facet>
+        <Facet Name="Genre">
+          <String Value="Fiction" />
+          <String Value="Comedy">
+          </String>
+        </Facet>
+        <Facet Name="Age restricted (18+)">
+          <String Value="No">
+          </String>
+        </Facet>
+        <Facet Name="Duration (hh:mm:ss)">
+          <String Value="'03:34">
+          </String>
+        </Facet>
+        <Facet Name="Audiovisual richness">
+          <String Value="Visual - Semiotic" />
+          <String Value="Lexis - Grammar" />
+          <String Value="Narrative - Plot" />
+          <String Value="Action - Camera" />
+          <String Value="Verbal - Pragmatic" />
+          <String Value="Characters" />
+        </Facet>
+        <Facet Name="Pedagogical adaptability">
+          <String Value="Yes">
+          </String>
+        </Facet>
+        <Facet Name="Author / Source">
+          <String Value="向左走， 向右走 (Turn left">
+          </String>
+          <String Value="turn right)">
+          </String>
+          <String Value="(taiwanese film)DVD">
+          </String>
+        </Facet>
+        <Facet Name="License">
+          <String Value="&quot;Educational excemption Berne Convention,art.9(2), TRIPS agreement, art.13. (applied to short clips under three minutes)&quot;">
+          </String>
+        </Facet>
+      </Facets>
+    </Item>
+    <Item Id="35" Name="Alya Read, a computational heart" Img="../video/AlyaRed_A_Computational_Heart/AlyaRed_A_Computational_Heart_thumb.jpg" Href="http://studio.clipflair.net?video=AlyaRed_A_Computational_Heart">
+      <Description>
+      </Description>
+      <Facets>
+        <Facet Name="Filename">
+          <String Value="AlyaRed_A_Computational_Heart">
+          </String>
+        </Facet>
+        <Facet Name="Audio language">
+          <String Value="English">
+          </String>
+        </Facet>
+        <Facet Name="Genre">
+          <String Value="Animation" />
+          <String Value="Documentary">
+          </String>
+        </Facet>
+        <Facet Name="Age restricted (18+)">
+          <String Value="No">
+          </String>
+        </Facet>
+        <Facet Name="Duration (hh:mm:ss)">
+          <String Value="'04:13">
+          </String>
+        </Facet>
+        <Facet Name="Audiovisual richness">
+          <String Value="Visual - Semiotic" />
+          <String Value="Lexis - Grammar" />
+          <String Value="Narrative - Plot" />
+          <String Value="Action - Camera" />
+        </Facet>
+        <Facet Name="Pedagogical adaptability">
+          <String Value="Yes">
+          </String>
+        </Facet>
+        <Facet Name="Author / Source">
+          <String Value="BSCVisualization">
+          </String>
+          <String Value="http://www.youtube.com/user/BSCCNS/featured">
+          </String>
+        </Facet>
+        <Facet Name="License">
+          <String Value="Authorised to ClipFlair by the authors">
+          </String>
+        </Facet>
+      </Facets>
+    </Item>
+    <Item Id="36" Name="Tutorial 1. Covering the basics" Img="../video/tutorial-1_covering_the_basics/tutorial-1_covering_the_basics_thumb.jpg" Href="http://studio.clipflair.net?video=tutorial-1_covering_the_basics">
+      <Description>
+      </Description>
+      <Facets>
+        <Facet Name="Filename">
+          <String Value="tutorial-1_covering_the_basics">
+          </String>
+        </Facet>
+        <Facet Name="Audio language">
+          <String Value="Silent clip (no audio language)">
+          </String>
+        </Facet>
+        <Facet Name="Captions language (on the clip)">
+          <String Value="English">
+          </String>
+        </Facet>
+        <Facet Name="Genre">
+          <String Value="Tutorial">
+          </String>
+        </Facet>
+        <Facet Name="Age restricted (18+)">
+          <String Value="No">
+          </String>
+        </Facet>
+        <Facet Name="Duration (hh:mm:ss)">
+          <String Value="'00:01:49">
+          </String>
+        </Facet>
+        <Facet Name="Pedagogical adaptability">
+          <String Value="Not sure">
+          </String>
+        </Facet>
+        <Facet Name="Author / Source">
+          <String Value="ClipFlair team">
+          </String>
+        </Facet>
+        <Facet Name="License">
+          <String Value="cc-by-nc">
+          </String>
+        </Facet>
+      </Facets>
+    </Item>
+    <Item Id="37" Name="Llurba spotting " Img="../video/244_Llurba_spotting/244_Llurba_spotting_thumb.jpg" Href="http://studio.clipflair.net?video=244_Llurba_spotting">
+      <Description>
+      </Description>
+      <Facets>
+        <Facet Name="Filename">
+          <String Value="244_Llurba_spotting">
+          </String>
+        </Facet>
+        <Facet Name="Author / Source">
+          <String Value="Audiovisual Translation: Subtitling (Translation Practices Explained">
+          </String>
+          <String Value="Vol. 11). Jorge Díaz Cintas and Aline Remael. Manchester: St. Jerome Publishing">
+          </String>
+          <String Value="2007. ISBN 978-1-900-650-95-3">
+          </String>
+        </Facet>
+        <Facet Name="License">
+          <String Value="Permission given by author">
+          </String>
+        </Facet>
+      </Facets>
+    </Item>
+    <Item Id="38" Name="Llurba copyright " Img="../video/245_Llurba_copyright/245_Llurba_copyright_thumb.jpg" Href="http://studio.clipflair.net?video=245_Llurba_copyright">
+      <Description>
+      </Description>
+      <Facets>
+        <Facet Name="Filename">
+          <String Value="245_Llurba_copyright">
+          </String>
+        </Facet>
+        <Facet Name="Author / Source">
+          <String Value="Audiovisual Translation: Subtitling (Translation Practices Explained">
+          </String>
+          <String Value="Vol. 11). Jorge Díaz Cintas and Aline Remael. Manchester: St. Jerome Publishing">
+          </String>
+          <String Value="2007. ISBN 978-1-900-650-95-3">
+          </String>
+        </Facet>
+        <Facet Name="License">
+          <String Value="Permission given by author">
+          </String>
+        </Facet>
+      </Facets>
+    </Item>
+    <Item Id="39" Name="Lijmen French " Img="../video/312a_Lijmen_French/312a_Lijmen_French_thumb.jpg" Href="http://studio.clipflair.net?video=312a_Lijmen_French">
+      <Description>
+      </Description>
+      <Facets>
+        <Facet Name="Filename">
+          <String Value="312a_Lijmen_French">
+          </String>
+        </Facet>
+        <Facet Name="Author / Source">
+          <String Value="Audiovisual Translation: Subtitling (Translation Practices Explained">
+          </String>
+          <String Value="Vol. 11). Jorge Díaz Cintas and Aline Remael. Manchester: St. Jerome Publishing">
+          </String>
+          <String Value="2007. ISBN 978-1-900-650-95-3">
+          </String>
+        </Facet>
+        <Facet Name="License">
+          <String Value="Permission given by author">
+          </String>
+        </Facet>
+      </Facets>
+    </Item>
+    <Item Id="40" Name="Lijmen Dutch " Img="../video/312b_Lijmen_Dutch/312b_Lijmen_Dutch_thumb.jpg" Href="http://studio.clipflair.net?video=312b_Lijmen_Dutch">
+      <Description>
+      </Description>
+      <Facets>
+        <Facet Name="Filename">
+          <String Value="312b_Lijmen_Dutch">
+          </String>
+        </Facet>
+        <Facet Name="Author / Source">
+          <String Value="Audiovisual Translation: Subtitling (Translation Practices Explained">
+          </String>
+          <String Value="Vol. 11). Jorge Díaz Cintas and Aline Remael. Manchester: St. Jerome Publishing">
+          </String>
+          <String Value="2007. ISBN 978-1-900-650-95-3">
+          </String>
+        </Facet>
+        <Facet Name="License">
+          <String Value="Permission given by author">
+          </String>
+        </Facet>
+      </Facets>
+    </Item>
+    <Item Id="41" Name="GoldenArm City " Img="../video/314_GoldenArm_City/314_GoldenArm_City_thumb.jpg" Href="http://studio.clipflair.net?video=314_GoldenArm_City">
+      <Description>
+      </Description>
+      <Facets>
+        <Facet Name="Filename">
+          <String Value="314_GoldenArm_City">
+          </String>
+        </Facet>
+        <Facet Name="Author / Source">
+          <String Value="Audiovisual Translation: Subtitling (Translation Practices Explained">
+          </String>
+          <String Value="Vol. 11). Jorge Díaz Cintas and Aline Remael. Manchester: St. Jerome Publishing">
+          </String>
+          <String Value="2007. ISBN 978-1-900-650-95-3">
+          </String>
+        </Facet>
+        <Facet Name="License">
+          <String Value="Permission given by author">
+          </String>
+        </Facet>
+      </Facets>
+    </Item>
+    <Item Id="42" Name="Kilimanjaro beginning " Img="../video/361_Kilimanjaro_beginning/361_Kilimanjaro_beginning_thumb.jpg" Href="http://studio.clipflair.net?video=361_Kilimanjaro_beginning">
+      <Description>
+      </Description>
+      <Facets>
+        <Facet Name="Filename">
+          <String Value="361_Kilimanjaro_beginning">
+          </String>
+        </Facet>
+        <Facet Name="Author / Source">
+          <String Value="Audiovisual Translation: Subtitling (Translation Practices Explained">
+          </String>
+          <String Value="Vol. 11). Jorge Díaz Cintas and Aline Remael. Manchester: St. Jerome Publishing">
+          </String>
+          <String Value="2007. ISBN 978-1-900-650-95-3">
+          </String>
+        </Facet>
+        <Facet Name="License">
+          <String Value="Permission given by author">
+          </String>
+        </Facet>
+      </Facets>
+    </Item>
+    <Item Id="43" Name="Devlin " Img="../video/362_Devlin/362_Devlin_thumb.jpg" Href="http://studio.clipflair.net?video=362_Devlin">
+      <Description>
+      </Description>
+      <Facets>
+        <Facet Name="Filename">
+          <String Value="362_Devlin">
+          </String>
+        </Facet>
+        <Facet Name="Author / Source">
+          <String Value="Audiovisual Translation: Subtitling (Translation Practices Explained">
+          </String>
+          <String Value="Vol. 11). Jorge Díaz Cintas and Aline Remael. Manchester: St. Jerome Publishing">
+          </String>
+          <String Value="2007. ISBN 978-1-900-650-95-3">
+          </String>
+        </Facet>
+        <Facet Name="License">
+          <String Value="Permission given by author">
+          </String>
+        </Facet>
+      </Facets>
+    </Item>
+    <Item Id="44" Name="Brawl " Img="../video/363_Brawl/363_Brawl_thumb.jpg" Href="http://studio.clipflair.net?video=363_Brawl">
+      <Description>
+      </Description>
+      <Facets>
+        <Facet Name="Filename">
+          <String Value="363_Brawl">
+          </String>
+        </Facet>
+        <Facet Name="Author / Source">
+          <String Value="Audiovisual Translation: Subtitling (Translation Practices Explained">
+          </String>
+          <String Value="Vol. 11). Jorge Díaz Cintas and Aline Remael. Manchester: St. Jerome Publishing">
+          </String>
+          <String Value="2007. ISBN 978-1-900-650-95-3">
+          </String>
+        </Facet>
+        <Facet Name="License">
+          <String Value="Permission given by author">
+          </String>
+        </Facet>
+      </Facets>
+    </Item>
+    <Item Id="45" Name="Charade Stamps " Img="../video/364_Charade_Stamps/364_Charade_Stamps_thumb.jpg" Href="http://studio.clipflair.net?video=364_Charade_Stamps">
+      <Description>
+      </Description>
+      <Facets>
+        <Facet Name="Filename">
+          <String Value="364_Charade_Stamps">
+          </String>
+        </Facet>
+        <Facet Name="Author / Source">
+          <String Value="Audiovisual Translation: Subtitling (Translation Practices Explained">
+          </String>
+          <String Value="Vol. 11). Jorge Díaz Cintas and Aline Remael. Manchester: St. Jerome Publishing">
+          </String>
+          <String Value="2007. ISBN 978-1-900-650-95-3">
+          </String>
+        </Facet>
+        <Facet Name="License">
+          <String Value="Permission given by author">
+          </String>
+        </Facet>
+      </Facets>
+    </Item>
+    <Item Id="46" Name="Stranger Arrival En " Img="../video/367_Stranger_Arrival_En/367_Stranger_Arrival_En_thumb.jpg" Href="http://studio.clipflair.net?video=367_Stranger_Arrival_En">
+      <Description>
+      </Description>
+      <Facets>
+        <Facet Name="Filename">
+          <String Value="367_Stranger_Arrival_En">
+          </String>
+        </Facet>
+        <Facet Name="Author / Source">
+          <String Value="Audiovisual Translation: Subtitling (Translation Practices Explained">
+          </String>
+          <String Value="Vol. 11). Jorge Díaz Cintas and Aline Remael. Manchester: St. Jerome Publishing">
+          </String>
+          <String Value="2007. ISBN 978-1-900-650-95-3">
+          </String>
+        </Facet>
+        <Facet Name="License">
+          <String Value="Permission given by author">
+          </String>
+        </Facet>
+      </Facets>
+    </Item>
+    <Item Id="47" Name="Stranger Arrival Es1 " Img="../video/367_Stranger_Arrival_Es1/367_Stranger_Arrival_Es1_thumb.jpg" Href="http://studio.clipflair.net?video=367_Stranger_Arrival_Es1">
+      <Description>
+      </Description>
+      <Facets>
+        <Facet Name="Filename">
+          <String Value="367_Stranger_Arrival_Es1">
+          </String>
+        </Facet>
+        <Facet Name="Author / Source">
+          <String Value="Audiovisual Translation: Subtitling (Translation Practices Explained">
+          </String>
+          <String Value="Vol. 11). Jorge Díaz Cintas and Aline Remael. Manchester: St. Jerome Publishing">
+          </String>
+          <String Value="2007. ISBN 978-1-900-650-95-3">
+          </String>
+        </Facet>
+        <Facet Name="License">
+          <String Value="Permission given by author">
+          </String>
+        </Facet>
+      </Facets>
+    </Item>
+    <Item Id="48" Name="Stranger Arrival Es2 " Img="../video/367_Stranger_Arrival_Es2/367_Stranger_Arrival_Es2_thumb.jpg" Href="http://studio.clipflair.net?video=367_Stranger_Arrival_Es2">
+      <Description>
+      </Description>
+      <Facets>
+        <Facet Name="Filename">
+          <String Value="367_Stranger_Arrival_Es2">
+          </String>
+        </Facet>
+        <Facet Name="Author / Source">
+          <String Value="Audiovisual Translation: Subtitling (Translation Practices Explained">
+          </String>
+          <String Value="Vol. 11). Jorge Díaz Cintas and Aline Remael. Manchester: St. Jerome Publishing">
+          </String>
+          <String Value="2007. ISBN 978-1-900-650-95-3">
+          </String>
+        </Facet>
+        <Facet Name="License">
+          <String Value="Permission given by author">
+          </String>
+        </Facet>
+      </Facets>
+    </Item>
+    <Item Id="49" Name="Kilimanjaro ShootingEn " Img="../video/369_Kilimanjaro_Shooting_En/369_Kilimanjaro_Shooting_En_thumb.jpg" Href="http://studio.clipflair.net?video=369_Kilimanjaro_Shooting_En">
+      <Description>
+      </Description>
+      <Facets>
+        <Facet Name="Filename">
+          <String Value="369_Kilimanjaro_Shooting_En">
+          </String>
+        </Facet>
+        <Facet Name="Author / Source">
+          <String Value="Audiovisual Translation: Subtitling (Translation Practices Explained">
+          </String>
+          <String Value="Vol. 11). Jorge Díaz Cintas and Aline Remael. Manchester: St. Jerome Publishing">
+          </String>
+          <String Value="2007. ISBN 978-1-900-650-95-3">
+          </String>
+        </Facet>
+        <Facet Name="License">
+          <String Value="Permission given by author">
+          </String>
+        </Facet>
+      </Facets>
+    </Item>
+    <Item Id="50" Name="Kilimanjaro Shooting Es " Img="../video/369_Kilimanjaro_Shooting_Es/369_Kilimanjaro_Shooting_Es_thumb.jpg" Href="http://studio.clipflair.net?video=369_Kilimanjaro_Shooting_Es">
+      <Description>
+      </Description>
+      <Facets>
+        <Facet Name="Filename">
+          <String Value="369_Kilimanjaro_Shooting_Es">
+          </String>
+        </Facet>
+        <Facet Name="Author / Source">
+          <String Value="Audiovisual Translation: Subtitling (Translation Practices Explained">
+          </String>
+          <String Value="Vol. 11). Jorge Díaz Cintas and Aline Remael. Manchester: St. Jerome Publishing">
+          </String>
+          <String Value="2007. ISBN 978-1-900-650-95-3">
+          </String>
+        </Facet>
+        <Facet Name="License">
+          <String Value="Permission given by author">
+          </String>
+        </Facet>
+      </Facets>
+    </Item>
+    <Item Id="51" Name="Cemetery " Img="../video/667_Cemetery/667_Cemetery_thumb.jpg" Href="http://studio.clipflair.net?video=667_Cemetery">
+      <Description>
+      </Description>
+      <Facets>
+        <Facet Name="Filename">
+          <String Value="667_Cemetery">
+          </String>
+        </Facet>
+        <Facet Name="Author / Source">
+          <String Value="Audiovisual Translation: Subtitling (Translation Practices Explained">
+          </String>
+          <String Value="Vol. 11). Jorge Díaz Cintas and Aline Remael. Manchester: St. Jerome Publishing">
+          </String>
+          <String Value="2007. ISBN 978-1-900-650-95-3">
+          </String>
+        </Facet>
+        <Facet Name="License">
+          <String Value="Permission given by author">
+          </String>
+        </Facet>
+      </Facets>
+    </Item>
+    <Item Id="52" Name="LastTimeParis Publishing" Img="../video/7912_LastTimeParis_Publishing.avi/7912_LastTimeParis_Publishing.avi_thumb.jpg" Href="http://studio.clipflair.net?video=7912_LastTimeParis_Publishing.avi">
+      <Description>
+      </Description>
+      <Facets>
+        <Facet Name="Filename">
+          <String Value="7912_LastTimeParis_Publishing.avi">
+          </String>
+        </Facet>
+        <Facet Name="Author / Source">
+          <String Value="Audiovisual Translation: Subtitling (Translation Practices Explained">
+          </String>
+          <String Value="Vol. 11). Jorge Díaz Cintas and Aline Remael. Manchester: St. Jerome Publishing">
+          </String>
+          <String Value="2007. ISBN 978-1-900-650-95-3">
+          </String>
+        </Facet>
+        <Facet Name="License">
+          <String Value="Permission given by author">
+          </String>
+        </Facet>
+      </Facets>
+    </Item>
+    <Item Id="53" Name="StruggleFreedom Poem " Img="../video/792_StruggleFreedom_Poem/792_StruggleFreedom_Poem_thumb.jpg" Href="http://studio.clipflair.net?video=792_StruggleFreedom_Poem">
+      <Description>
+      </Description>
+      <Facets>
+        <Facet Name="Filename">
+          <String Value="792_StruggleFreedom_Poem">
+          </String>
+        </Facet>
+        <Facet Name="Author / Source">
+          <String Value="Audiovisual Translation: Subtitling (Translation Practices Explained">
+          </String>
+          <String Value="Vol. 11). Jorge Díaz Cintas and Aline Remael. Manchester: St. Jerome Publishing">
+          </String>
+          <String Value="2007. ISBN 978-1-900-650-95-3">
+          </String>
+        </Facet>
+        <Facet Name="License">
+          <String Value="Permission given by author">
+          </String>
+        </Facet>
+      </Facets>
+    </Item>
+    <Item Id="54" Name="Prayer " Img="../video/793_Prayer/793_Prayer_thumb.jpg" Href="http://studio.clipflair.net?video=793_Prayer">
+      <Description>
+      </Description>
+      <Facets>
+        <Facet Name="Filename">
+          <String Value="793_Prayer">
+          </String>
+        </Facet>
+        <Facet Name="Author / Source">
+          <String Value="Audiovisual Translation: Subtitling (Translation Practices Explained">
+          </String>
+          <String Value="Vol. 11). Jorge Díaz Cintas and Aline Remael. Manchester: St. Jerome Publishing">
+          </String>
+          <String Value="2007. ISBN 978-1-900-650-95-3">
+          </String>
+        </Facet>
+        <Facet Name="License">
+          <String Value="Permission given by author">
+          </String>
+        </Facet>
+      </Facets>
+    </Item>
+    <Item Id="55" Name="Kilimanjaro Will " Img="../video/794_Kilimanjaro_Will/794_Kilimanjaro_Will_thumb.jpg" Href="http://studio.clipflair.net?video=794_Kilimanjaro_Will">
+      <Description>
+      </Description>
+      <Facets>
+        <Facet Name="Filename">
+          <String Value="794_Kilimanjaro_Will">
+          </String>
+        </Facet>
+        <Facet Name="Author / Source">
+          <String Value="Audiovisual Translation: Subtitling (Translation Practices Explained">
+          </String>
+          <String Value="Vol. 11). Jorge Díaz Cintas and Aline Remael. Manchester: St. Jerome Publishing">
+          </String>
+          <String Value="2007. ISBN 978-1-900-650-95-3">
+          </String>
+        </Facet>
+        <Facet Name="License">
+          <String Value="Permission given by author">
+          </String>
+        </Facet>
+      </Facets>
+    </Item>
+    <Item Id="56" Name="LivindDead Tombstone " Img="../video/8110_LivindDead_Tombstone/8110_LivindDead_Tombstone_thumb.jpg" Href="http://studio.clipflair.net?video=8110_LivindDead_Tombstone">
+      <Description>
+      </Description>
+      <Facets>
+        <Facet Name="Filename">
+          <String Value="8110_LivindDead_Tombstone">
+          </String>
+        </Facet>
+        <Facet Name="Author / Source">
+          <String Value="Audiovisual Translation: Subtitling (Translation Practices Explained">
+          </String>
+          <String Value="Vol. 11). Jorge Díaz Cintas and Aline Remael. Manchester: St. Jerome Publishing">
+          </String>
+          <String Value="2007. ISBN 978-1-900-650-95-3">
+          </String>
+        </Facet>
+        <Facet Name="License">
+          <String Value="Permission given by author">
+          </String>
+        </Facet>
+      </Facets>
+    </Item>
+    <Item Id="57" Name="EPBCResources " Img="../video/818_EPBCResources/818_EPBCResources_thumb.jpg" Href="http://studio.clipflair.net?video=818_EPBCResources">
+      <Description>
+      </Description>
+      <Facets>
+        <Facet Name="Filename">
+          <String Value="818_EPBCResources">
+          </String>
+        </Facet>
+        <Facet Name="Author / Source">
+          <String Value="Audiovisual Translation: Subtitling (Translation Practices Explained">
+          </String>
+          <String Value="Vol. 11). Jorge Díaz Cintas and Aline Remael. Manchester: St. Jerome Publishing">
+          </String>
+          <String Value="2007. ISBN 978-1-900-650-95-3">
+          </String>
+        </Facet>
+        <Facet Name="License">
+          <String Value="Permission given by author">
+          </String>
+        </Facet>
+      </Facets>
+    </Item>
+    <Item Id="58" Name="McLintock Room " Img="../video/819_McLintock_Room/819_McLintock_Room_thumb.jpg" Href="http://studio.clipflair.net?video=819_McLintock_Room">
+      <Description>
+      </Description>
+      <Facets>
+        <Facet Name="Filename">
+          <String Value="819_McLintock_Room">
+          </String>
+        </Facet>
+        <Facet Name="Author / Source">
+          <String Value="Audiovisual Translation: Subtitling (Translation Practices Explained">
+          </String>
+          <String Value="Vol. 11). Jorge Díaz Cintas and Aline Remael. Manchester: St. Jerome Publishing">
+          </String>
+          <String Value="2007. ISBN 978-1-900-650-95-3">
+          </String>
+        </Facet>
+        <Facet Name="License">
+          <String Value="Permission given by author">
+          </String>
+        </Facet>
+      </Facets>
+    </Item>
+    <Item Id="59" Name="Balloons " Img="../video/82212_Balloons/82212_Balloons_thumb.jpg" Href="http://studio.clipflair.net?video=82212_Balloons">
+      <Description>
+      </Description>
+      <Facets>
+        <Facet Name="Filename">
+          <String Value="82212_Balloons">
+          </String>
+        </Facet>
+        <Facet Name="Author / Source">
+          <String Value="Audiovisual Translation: Subtitling (Translation Practices Explained">
+          </String>
+          <String Value="Vol. 11). Jorge Díaz Cintas and Aline Remael. Manchester: St. Jerome Publishing">
+          </String>
+          <String Value="2007. ISBN 978-1-900-650-95-3">
+          </String>
+        </Facet>
+        <Facet Name="License">
+          <String Value="Permission given by author">
+          </String>
+        </Facet>
+      </Facets>
+    </Item>
+    <Item Id="60" Name="Peppers " Img="../video/82213_Peppers/82213_Peppers_thumb.jpg" Href="http://studio.clipflair.net?video=82213_Peppers">
+      <Description>
+      </Description>
+      <Facets>
+        <Facet Name="Filename">
+          <String Value="82213_Peppers">
+          </String>
+        </Facet>
+        <Facet Name="Author / Source">
+          <String Value="Audiovisual Translation: Subtitling (Translation Practices Explained">
+          </String>
+          <String Value="Vol. 11). Jorge Díaz Cintas and Aline Remael. Manchester: St. Jerome Publishing">
+          </String>
+          <String Value="2007. ISBN 978-1-900-650-95-3">
+          </String>
+        </Facet>
+        <Facet Name="License">
+          <String Value="Permission given by author">
+          </String>
+        </Facet>
+      </Facets>
+    </Item>
+    <Item Id="61" Name="Rocket " Img="../video/82214_Rocket/82214_Rocket_thumb.jpg" Href="http://studio.clipflair.net?video=82214_Rocket">
+      <Description>
+      </Description>
+      <Facets>
+        <Facet Name="Filename">
+          <String Value="82214_Rocket">
+          </String>
+        </Facet>
+        <Facet Name="Author / Source">
+          <String Value="Audiovisual Translation: Subtitling (Translation Practices Explained">
+          </String>
+          <String Value="Vol. 11). Jorge Díaz Cintas and Aline Remael. Manchester: St. Jerome Publishing">
+          </String>
+          <String Value="2007. ISBN 978-1-900-650-95-3">
+          </String>
+        </Facet>
+        <Facet Name="License">
+          <String Value="Permission given by author">
+          </String>
+        </Facet>
+      </Facets>
+    </Item>
+    <Item Id="62" Name="Roulette " Img="../video/82215_Roulette/82215_Roulette_thumb.jpg" Href="http://studio.clipflair.net?video=82215_Roulette">
+      <Description>
+      </Description>
+      <Facets>
+        <Facet Name="Filename">
+          <String Value="82215_Roulette">
+          </String>
+        </Facet>
+        <Facet Name="Author / Source">
+          <String Value="Audiovisual Translation: Subtitling (Translation Practices Explained">
+          </String>
+          <String Value="Vol. 11). Jorge Díaz Cintas and Aline Remael. Manchester: St. Jerome Publishing">
+          </String>
+          <String Value="2007. ISBN 978-1-900-650-95-3">
+          </String>
+        </Facet>
+        <Facet Name="License">
+          <String Value="Permission given by author">
+          </String>
+        </Facet>
+      </Facets>
+    </Item>
+    <Item Id="63" Name="Singing " Img="../video/82216_Singing/82216_Singing_thumb.jpg" Href="http://studio.clipflair.net?video=82216_Singing">
+      <Description>
+      </Description>
+      <Facets>
+        <Facet Name="Filename">
+          <String Value="82216_Singing">
+          </String>
+        </Facet>
+        <Facet Name="Author / Source">
+          <String Value="Audiovisual Translation: Subtitling (Translation Practices Explained">
+          </String>
+          <String Value="Vol. 11). Jorge Díaz Cintas and Aline Remael. Manchester: St. Jerome Publishing">
+          </String>
+          <String Value="2007. ISBN 978-1-900-650-95-3">
+          </String>
+        </Facet>
+        <Facet Name="License">
+          <String Value="Permission given by author">
+          </String>
+        </Facet>
+      </Facets>
+    </Item>
+    <Item Id="64" Name="Sister " Img="../video/82217_Sister/82217_Sister_thumb.jpg" Href="http://studio.clipflair.net?video=82217_Sister">
+      <Description>
+      </Description>
+      <Facets>
+        <Facet Name="Filename">
+          <String Value="82217_Sister">
+          </String>
+        </Facet>
+        <Facet Name="Author / Source">
+          <String Value="Audiovisual Translation: Subtitling (Translation Practices Explained">
+          </String>
+          <String Value="Vol. 11). Jorge Díaz Cintas and Aline Remael. Manchester: St. Jerome Publishing">
+          </String>
+          <String Value="2007. ISBN 978-1-900-650-95-3">
+          </String>
+        </Facet>
+        <Facet Name="License">
+          <String Value="Permission given by author">
+          </String>
+        </Facet>
+      </Facets>
+    </Item>
+    <Item Id="65" Name="War " Img="../video/82218_War/82218_War_thumb.jpg" Href="http://studio.clipflair.net?video=82218_War">
+      <Description>
+      </Description>
+      <Facets>
+        <Facet Name="Filename">
+          <String Value="82218_War">
+          </String>
+        </Facet>
+        <Facet Name="Author / Source">
+          <String Value="Audiovisual Translation: Subtitling (Translation Practices Explained">
+          </String>
+          <String Value="Vol. 11). Jorge Díaz Cintas and Aline Remael. Manchester: St. Jerome Publishing">
+          </String>
+          <String Value="2007. ISBN 978-1-900-650-95-3">
+          </String>
+        </Facet>
+        <Facet Name="License">
+          <String Value="Permission given by author">
+          </String>
+        </Facet>
+      </Facets>
+    </Item>
+    <Item Id="66" Name="Stranger Supper " Img="../video/8228_Stranger_Supper/8228_Stranger_Supper_thumb.jpg" Href="http://studio.clipflair.net?video=8228_Stranger_Supper">
+      <Description>
+      </Description>
+      <Facets>
+        <Facet Name="Filename">
+          <String Value="8228_Stranger_Supper">
+          </String>
+        </Facet>
+        <Facet Name="Author / Source">
+          <String Value="Audiovisual Translation: Subtitling (Translation Practices Explained">
+          </String>
+          <String Value="Vol. 11). Jorge Díaz Cintas and Aline Remael. Manchester: St. Jerome Publishing">
+          </String>
+          <String Value="2007. ISBN 978-1-900-650-95-3">
+          </String>
+        </Facet>
+        <Facet Name="License">
+          <String Value="Permission given by author">
+          </String>
+        </Facet>
+      </Facets>
+    </Item>
+    <Item Id="67" Name="Kutsadura_pollution_contaminacion" Img="../video/kutsadura/kutsadura_thumb.jpg" Href="http://studio.clipflair.net?video=kutsadura">
+      <Description>
+      </Description>
+      <Facets>
+        <Facet Name="Filename">
+          <String Value="kutsadura">
+          </String>
+        </Facet>
+        <Facet Name="Audio language">
+          <String Value="Basque">
+          </String>
+        </Facet>
+        <Facet Name="Captions language (on the clip)">
+          <String Value="Spanish">
+          </String>
+        </Facet>
+        <Facet Name="Genre">
+          <String Value="News">
+          </String>
+        </Facet>
+        <Facet Name="Age restricted (18+)">
+          <String Value="No">
+          </String>
+        </Facet>
+        <Facet Name="Duration (hh:mm:ss)">
+          <String Value="'00:01:19">
+          </String>
+        </Facet>
+        <Facet Name="Audiovisual richness">
+          <String Value="Visual - Semiotic" />
+          <String Value="Lexis - Grammar" />
+          <String Value="Narrative - Plot" />
+          <String Value="Action - Camera" />
+        </Facet>
+        <Facet Name="Pedagogical adaptability">
+          <String Value="Yes">
+          </String>
+        </Facet>
+        <Facet Name="License">
+          <String Value="cc-by-sa">
+          </String>
+        </Facet>
+      </Facets>
+    </Item>
+    <Item Id="68" Name="Video_TIM_Garibaldi" Img="../video/Video_TIM_Garibaldi/Video_TIM_Garibaldi_thumb.jpg" Href="http://studio.clipflair.net?video=Video_TIM_Garibaldi">
+      <Description>
+      </Description>
+      <Facets>
+        <Facet Name="Filename">
+          <String Value="Video_TIM_Garibaldi">
+          </String>
+        </Facet>
+        <Facet Name="Audio language">
+          <String Value="Italian">
+          </String>
+        </Facet>
+        <Facet Name="Genre">
+          <String Value="Fiction" />
+          <String Value="Comedy">
+          </String>
+        </Facet>
+        <Facet Name="Age restricted (18+)">
+          <String Value="No">
+          </String>
+        </Facet>
+        <Facet Name="Duration (hh:mm:ss)">
+          <String Value="'00:00:29">
+          </String>
+        </Facet>
+        <Facet Name="Audiovisual richness">
+          <String Value="Lexis - Grammar" />
+          <String Value="Verbal - Pragmatic" />
+          <String Value="Characters" />
+        </Facet>
+        <Facet Name="Pedagogical adaptability">
+          <String Value="Yes">
+          </String>
+        </Facet>
+        <Facet Name="Author / Source">
+          <String Value="http://www.youtube.com/watch?v=YQ1BwjkHiSU">
+          </String>
+        </Facet>
+        <Facet Name="License">
+          <String Value="&quot;Educational excemption Berne Convention,art.9(2), TRIPS agreement, art.13. (applied to short clips under three minutes)&quot;">
+          </String>
+        </Facet>
+      </Facets>
+    </Item>
+    <Item Id="69" Name="Before Sunrise (train scene)" Img="../video/beforesunrisetrain3/beforesunrisetrain3_thumb.jpg" Href="http://studio.clipflair.net?video=beforesunrisetrain3">
+      <Description>
+      </Description>
+      <Facets>
+        <Facet Name="Filename">
+          <String Value="beforesunrisetrain3">
+          </String>
+        </Facet>
+        <Facet Name="Audio language">
+          <String Value="English">
+          </String>
+        </Facet>
+        <Facet Name="Genre">
+          <String Value="Fiction" />
+          <String Value="Romance,Drama">
+          </String>
+        </Facet>
+        <Facet Name="Age restricted (18+)">
+          <String Value="No">
+          </String>
+        </Facet>
+        <Facet Name="Duration (hh:mm:ss)">
+          <String Value="'00:02:22">
+          </String>
+        </Facet>
+        <Facet Name="Audiovisual richness">
+          <String Value="Visual - Semiotic" />
+          <String Value="Lexis - Grammar" />
+          <String Value="Narrative - Plot" />
+          <String Value="Action - Camera" />
+          <String Value="Verbal - Pragmatic" />
+        </Facet>
+        <Facet Name="Pedagogical adaptability">
+          <String Value="Yes">
+          </String>
+        </Facet>
+        <Facet Name="Author / Source">
+          <String Value="Noa Talaván/film Before Sunrise">
+          </String>
+        </Facet>
+        <Facet Name="License">
+          <String Value="Educational exemption Berne Convention art.9(2)...">
+          </String>
+        </Facet>
+      </Facets>
+    </Item>
+    <Item Id="70" Name="Before Sunrise (bridge scene)" Img="../video/beforesunrisebridge/beforesunrisebridge_thumb.jpg" Href="http://studio.clipflair.net?video=beforesunrisebridge">
+      <Description>
+      </Description>
+      <Facets>
+        <Facet Name="Filename">
+          <String Value="beforesunrisebridge">
+          </String>
+        </Facet>
+        <Facet Name="Audio language">
+          <String Value="English">
+          </String>
+        </Facet>
+        <Facet Name="Genre">
+          <String Value="Fiction" />
+          <String Value="Romance,Drama">
+          </String>
+        </Facet>
+        <Facet Name="Age restricted (18+)">
+          <String Value="No">
+          </String>
+        </Facet>
+        <Facet Name="Duration (hh:mm:ss)">
+          <String Value="'00:02:15">
+          </String>
+        </Facet>
+        <Facet Name="Audiovisual richness">
+          <String Value="Visual - Semiotic" />
+          <String Value="Lexis - Grammar" />
+          <String Value="Narrative - Plot" />
+          <String Value="Action - Camera" />
+          <String Value="Verbal - Pragmatic" />
+          <String Value="Characters" />
+        </Facet>
+        <Facet Name="Pedagogical adaptability">
+          <String Value="Yes">
+          </String>
+        </Facet>
+        <Facet Name="Author / Source">
+          <String Value="Noa Talaván/film Before Sunrise">
+          </String>
+        </Facet>
+        <Facet Name="License">
+          <String Value="Educational exemption Berne Convention art.9(2)...">
+          </String>
+        </Facet>
+      </Facets>
+    </Item>
+    <Item Id="71" Name="TIM - Camicia bianca di Garibaldi" Img="../video/Video_TIM_CamiciaBiancaDiGaribaldi/Video_TIM_CamiciaBiancaDiGaribaldi_thumb.jpg" Href="http://studio.clipflair.net?video=Video_TIM_CamiciaBiancaDiGaribaldi">
+      <Description>
+      </Description>
+      <Facets>
+        <Facet Name="Filename">
+          <String Value="Video_TIM_CamiciaBiancaDiGaribaldi">
+          </String>
+        </Facet>
+        <Facet Name="Audio language">
+          <String Value="Italian">
+          </String>
+        </Facet>
+        <Facet Name="Genre">
+          <String Value="Fiction" />
+          <String Value="Comedy">
+          </String>
+        </Facet>
+        <Facet Name="Age restricted (18+)">
+          <String Value="No">
+          </String>
+        </Facet>
+        <Facet Name="Duration (hh:mm:ss)">
+          <String Value="'00:00:43">
+          </String>
+        </Facet>
+        <Facet Name="Audiovisual richness">
+          <String Value="Visual - Semiotic" />
+          <String Value="Lexis - Grammar" />
+          <String Value="Verbal - Pragmatic" />
+          <String Value="Characters" />
+        </Facet>
+        <Facet Name="Pedagogical adaptability">
+          <String Value="Yes">
+          </String>
+        </Facet>
+        <Facet Name="Author / Source">
+          <String Value="TIIM">
+          </String>
+        </Facet>
+        <Facet Name="License">
+          <String Value="Education exemption Berne Convention ">
+          </String>
+        </Facet>
+      </Facets>
+    </Item>
+    <Item Id="72" Name="Bioptron Light Therapy Systems" Img="../video/Bioptron/Bioptron_thumb.jpg" Href="http://studio.clipflair.net?video=Bioptron">
+      <Description>
+      </Description>
+      <Facets>
+        <Facet Name="Filename">
+          <String Value="Bioptron">
+          </String>
+        </Facet>
+        <Facet Name="Audio language">
+          <String Value="English">
+          </String>
+        </Facet>
+        <Facet Name="Captions language (on the clip)">
+          <String Value="English">
+          </String>
+        </Facet>
+        <Facet Name="Genre">
+          <String Value="Animation" />
+          <String Value="Advertisement,Information">
+          </String>
+        </Facet>
+        <Facet Name="Age restricted (18+)">
+          <String Value="No">
+          </String>
+        </Facet>
+        <Facet Name="Duration (hh:mm:ss)">
+          <String Value="'00:00:40">
+          </String>
+        </Facet>
+        <Facet Name="Audiovisual richness">
+          <String Value="Visual - Semiotic" />
+          <String Value="Lexis - Grammar" />
+          <String Value="Narrative - Plot" />
+          <String Value="Action - Camera" />
+        </Facet>
+        <Facet Name="Pedagogical adaptability">
+          <String Value="Yes">
+          </String>
+        </Facet>
+        <Facet Name="Author / Source">
+          <String Value="http://www.youtube.com/watch?v=Uu91uioY0co">
+          </String>
+        </Facet>
+        <Facet Name="License">
+          <String Value="Licencia de YouTube estándar">
+          </String>
+        </Facet>
+      </Facets>
+    </Item>
+    <Item Id="73" Name="Before Sunrise (dining car scene)" Img="../video/train_beforesunrise/train_beforesunrise_thumb.jpg" Href="http://studio.clipflair.net?video=train_beforesunrise">
+      <Description>
+      </Description>
+      <Facets>
+        <Facet Name="Filename">
+          <String Value="train_beforesunrise">
+          </String>
+        </Facet>
+        <Facet Name="Audio language">
+          <String Value="English">
+          </String>
+        </Facet>
+        <Facet Name="Genre">
+          <String Value="Fiction" />
+          <String Value="Romance,Drama">
+          </String>
+        </Facet>
+        <Facet Name="Age restricted (18+)">
+          <String Value="No">
+          </String>
+        </Facet>
+        <Facet Name="Duration (hh:mm:ss)">
+          <String Value="'00:03:31">
+          </String>
+        </Facet>
+        <Facet Name="Audiovisual richness">
+          <String Value="Visual - Semiotic" />
+          <String Value="Lexis - Grammar" />
+          <String Value="Narrative - Plot" />
+          <String Value="Action - Camera" />
+          <String Value="Verbal - Pragmatic" />
+        </Facet>
+        <Facet Name="Pedagogical adaptability">
+          <String Value="Yes">
+          </String>
+        </Facet>
+        <Facet Name="Author / Source">
+          <String Value="Noa Talaván/film Before Sunrise">
+          </String>
+        </Facet>
+        <Facet Name="License">
+          <String Value="Educational excemption Berne Convention,art.9(2), TRIPS agreement, art.13. (applied to short clips)">
+          </String>
+        </Facet>
+      </Facets>
+    </Item>
+    <Item Id="74" Name="Gender pay gap" Img="../video/GenderPayGap/GenderPayGap_thumb.jpg" Href="http://studio.clipflair.net?video=GenderPayGap">
+      <Description>
+      </Description>
+      <Facets>
+        <Facet Name="Filename">
+          <String Value="GenderPayGap">
+          </String>
+        </Facet>
+        <Facet Name="Audio language">
+          <String Value="English">
+          </String>
+        </Facet>
+        <Facet Name="Genre">
+          <String Value="Documentary">
+          </String>
+        </Facet>
+        <Facet Name="Age restricted (18+)">
+          <String Value="No">
+          </String>
+        </Facet>
+        <Facet Name="Duration (hh:mm:ss)">
+          <String Value="'00:03:26">
+          </String>
+        </Facet>
+        <Facet Name="Audiovisual richness">
+          <String Value="Visual - Semiotic" />
+          <String Value="Lexis - Grammar" />
+          <String Value="Action - Camera" />
+          <String Value="Verbal - Pragmatic" />
+          <String Value="Characters" />
+        </Facet>
+        <Facet Name="Pedagogical adaptability">
+          <String Value="Yes">
+          </String>
+        </Facet>
+        <Facet Name="Author / Source">
+          <String Value="EU Audiovisual services">
+          </String>
+          <String Value="http://ec.europa.eu/avservices/video/player.cfm?sitelang=en&amp;ref=I060755">
+          </String>
+        </Facet>
+        <Facet Name="License">
+          <String Value="cc-by-sa">
+          </String>
+        </Facet>
+      </Facets>
+    </Item>
+    <Item Id="75" Name="Interview (in Japanese)" Img="../video/Interview in Japanese.mp4/Interview in Japanese.mp4_thumb.jpg" Href="http://studio.clipflair.net?video=Interview in Japanese.mp4">
+      <Description>
+      </Description>
+      <Facets>
+        <Facet Name="Filename">
+          <String Value="Interview in Japanese.mp4">
+          </String>
+        </Facet>
+        <Facet Name="Audio language">
+          <String Value="Japanese">
+          </String>
+        </Facet>
+        <Facet Name="Captions language (on the clip)">
+          <String Value="Japanese">
+          </String>
+        </Facet>
+        <Facet Name="Genre">
+          <String Value="Fiction" />
+        </Facet>
+        <Facet Name="Age restricted (18+)">
+          <String Value="No">
+          </String>
+        </Facet>
+        <Facet Name="Duration (hh:mm:ss)">
+          <String Value="'00:03:02">
+          </String>
+        </Facet>
+        <Facet Name="Audiovisual richness">
+          <String Value="Lexis - Grammar" />
+          <String Value="Narrative - Plot" />
+          <String Value="Verbal - Pragmatic" />
+          <String Value="Characters" />
+        </Facet>
+        <Facet Name="Pedagogical adaptability">
+          <String Value="Yes">
+          </String>
+        </Facet>
+      </Facets>
+    </Item>
+    <Item Id="76" Name="Don't do it!" Img="../video/Negative_Request/Negative_Request_thumb.jpg" Href="http://studio.clipflair.net?video=Negative_Request">
+      <Description>
+      </Description>
+      <Facets>
+        <Facet Name="Filename">
+          <String Value="Negative_Request">
+          </String>
+        </Facet>
+        <Facet Name="Audio language">
+          <String Value="Japanese">
+          </String>
+        </Facet>
+        <Facet Name="Captions language (on the clip)">
+          <String Value="Japanese">
+          </String>
+        </Facet>
+        <Facet Name="Genre">
+          <String Value="Fiction" />
+        </Facet>
+        <Facet Name="Age restricted (18+)">
+          <String Value="No">
+          </String>
+        </Facet>
+        <Facet Name="Duration (hh:mm:ss)">
+          <String Value="'00:03:05">
+          </String>
+        </Facet>
+        <Facet Name="Audiovisual richness">
+          <String Value="Visual - Semiotic" />
+          <String Value="Lexis - Grammar" />
+          <String Value="Narrative - Plot" />
+          <String Value="Action - Camera" />
+          <String Value="Verbal - Pragmatic" />
+          <String Value="Characters" />
+        </Facet>
+        <Facet Name="Pedagogical adaptability">
+          <String Value="Yes">
+          </String>
+        </Facet>
+      </Facets>
+    </Item>
+    <Item Id="77" Name="Say what you see" Img="../video/Norimaki/Norimaki_thumb.jpg" Href="http://studio.clipflair.net?video=Norimaki">
+      <Description>
+      </Description>
+      <Facets>
+        <Facet Name="Filename">
+          <String Value="Norimaki">
+          </String>
+        </Facet>
+        <Facet Name="Audio language">
+          <String Value="Silent clip (no audio language)">
+          </String>
+        </Facet>
+        <Facet Name="Genre">
+          <String Value="Gastronomy">
+          </String>
+        </Facet>
+        <Facet Name="Age restricted (18+)">
+          <String Value="No">
+          </String>
+        </Facet>
+        <Facet Name="Duration (hh:mm:ss)">
+          <String Value="'00:04:21">
+          </String>
+        </Facet>
+        <Facet Name="Audiovisual richness">
+          <String Value="Visual - Semiotic" />
+          <String Value="Narrative - Plot" />
+          <String Value="Action - Camera" />
+        </Facet>
+        <Facet Name="Pedagogical adaptability">
+          <String Value="Yes">
+          </String>
+        </Facet>
+      </Facets>
+    </Item>
+    <Item Id="78" Name="Making sushi" Img="../video/Sushi/Sushi_thumb.jpg" Href="http://studio.clipflair.net?video=Sushi">
+      <Description>
+      </Description>
+      <Facets>
+        <Facet Name="Filename">
+          <String Value="Sushi">
+          </String>
+        </Facet>
+        <Facet Name="Audio language">
+          <String Value="Japanese">
+          </String>
+        </Facet>
+        <Facet Name="Captions language (on the clip)">
+          <String Value="Japanese">
+          </String>
+        </Facet>
+        <Facet Name="Genre">
+          <String Value="Gastronomy">
+          </String>
+        </Facet>
+        <Facet Name="Age restricted (18+)">
+          <String Value="No">
+          </String>
+        </Facet>
+        <Facet Name="Duration (hh:mm:ss)">
+          <String Value="'00:04:09">
+          </String>
+        </Facet>
+        <Facet Name="Audiovisual richness">
+          <String Value="Visual - Semiotic" />
+          <String Value="Lexis - Grammar" />
+          <String Value="Narrative - Plot" />
+          <String Value="Action - Camera" />
+        </Facet>
+        <Facet Name="Pedagogical adaptability">
+          <String Value="Yes">
+          </String>
+        </Facet>
+      </Facets>
+    </Item>
+    <Item Id="79" Name="Do it!" Img="../video/Request/Request_thumb.jpg" Href="http://studio.clipflair.net?video=Request">
+      <Description>
+      </Description>
+      <Facets>
+        <Facet Name="Filename">
+          <String Value="Request">
+          </String>
+        </Facet>
+        <Facet Name="Audio language">
+          <String Value="Japanese">
+          </String>
+        </Facet>
+        <Facet Name="Captions language (on the clip)">
+          <String Value="Japanese">
+          </String>
+        </Facet>
+        <Facet Name="Genre">
+          <String Value="Fiction" />
+        </Facet>
+        <Facet Name="Age restricted (18+)">
+          <String Value="No">
+          </String>
+        </Facet>
+        <Facet Name="Duration (hh:mm:ss)">
+          <String Value="'00:02:43">
+          </String>
+        </Facet>
+        <Facet Name="Audiovisual richness">
+          <String Value="Visual - Semiotic" />
+          <String Value="Lexis - Grammar" />
+          <String Value="Narrative - Plot" />
+          <String Value="Action - Camera" />
+          <String Value="Verbal - Pragmatic" />
+          <String Value="Characters" />
+        </Facet>
+        <Facet Name="Pedagogical adaptability">
+          <String Value="Yes">
+          </String>
+        </Facet>
+      </Facets>
+    </Item>
+    <Item Id="80" Name="Polite Conversation" Img="../video/Polite_Conversation/Polite_Conversation_thumb.jpg" Href="http://studio.clipflair.net?video=Polite_Conversation">
+      <Description>
+      </Description>
+      <Facets>
+        <Facet Name="Filename">
+          <String Value="Polite_Conversation">
+          </String>
+        </Facet>
+        <Facet Name="Audio language">
+          <String Value="Japanese">
+          </String>
+        </Facet>
+        <Facet Name="Captions language (on the clip)">
+          <String Value="Japanese">
+          </String>
+        </Facet>
+        <Facet Name="Genre">
+          <String Value="Fiction" />
+        </Facet>
+        <Facet Name="Age restricted (18+)">
+          <String Value="No">
+          </String>
+        </Facet>
+        <Facet Name="Duration (hh:mm:ss)">
+          <String Value="'00:02:51">
+          </String>
+        </Facet>
+        <Facet Name="Audiovisual richness">
+          <String Value="Lexis - Grammar" />
+          <String Value="Narrative - Plot" />
+          <String Value="Verbal - Pragmatic" />
+          <String Value="Characters" />
+        </Facet>
+        <Facet Name="Pedagogical adaptability">
+          <String Value="Yes">
+          </String>
+        </Facet>
+      </Facets>
+    </Item>
+    <Item Id="81" Name="King Kababa and the Knight" Img="../video/King_Kababa/King_Kababa_thumb.jpg" Href="http://studio.clipflair.net?video=King_Kababa">
+      <Description>
+      </Description>
+      <Facets>
+        <Facet Name="Filename">
+          <String Value="King_Kababa">
+          </String>
+        </Facet>
+        <Facet Name="Audio language">
+          <String Value="English">
+          </String>
+        </Facet>
+        <Facet Name="Genre">
+          <String Value="Animation" />
+          <String Value="Cartoon">
+          </String>
+        </Facet>
+        <Facet Name="Age restricted (18+)">
+          <String Value="No">
+          </String>
+        </Facet>
+        <Facet Name="Duration (hh:mm:ss)">
+          <String Value="'00:03:58">
+          </String>
+        </Facet>
+        <Facet Name="Audiovisual richness">
+          <String Value="Visual - Semiotic" />
+          <String Value="Lexis - Grammar" />
+          <String Value="Narrative - Plot" />
+          <String Value="Verbal - Pragmatic" />
+          <String Value="Characters" />
+        </Facet>
+        <Facet Name="Pedagogical adaptability">
+          <String Value="Yes">
+          </String>
+        </Facet>
+        <Facet Name="Author / Source">
+          <String Value="Laura McLoughlin/www.vimeo.com">
+          </String>
+        </Facet>
+        <Facet Name="License">
+          <String Value="cc-by">
+          </String>
+        </Facet>
+      </Facets>
+    </Item>
+    <Item Id="82" Name="European Street Football Festival" Img="../video/European_Street_Football_Festival/European_Street_Football_Festival_thumb.jpg" Href="http://studio.clipflair.net?video=European_Street_Football_Festival">
+      <Description>
+      </Description>
+      <Facets>
+        <Facet Name="Filename">
+          <String Value="European_Street_Football_Festival">
+          </String>
+        </Facet>
+        <Facet Name="Audio language">
+          <String Value="English">
+          </String>
+        </Facet>
+        <Facet Name="Genre">
+          <String Value="Documentary">
+          </String>
+        </Facet>
+        <Facet Name="Age restricted (18+)">
+          <String Value="No">
+          </String>
+        </Facet>
+        <Facet Name="Duration (hh:mm:ss)">
+          <String Value="'00:03:18">
+          </String>
+        </Facet>
+        <Facet Name="Audiovisual richness">
+          <String Value="Visual - Semiotic" />
+          <String Value="Lexis - Grammar" />
+          <String Value="Action - Camera" />
+          <String Value="Verbal - Pragmatic" />
+          <String Value="Characters" />
+        </Facet>
+        <Facet Name="Pedagogical adaptability">
+          <String Value="Yes">
+          </String>
+        </Facet>
+        <Facet Name="Author / Source">
+          <String Value="Laura McLoughlin/www.ec.europa.eu">
+          </String>
+        </Facet>
+        <Facet Name="License">
+          <String Value="cc-sharealike">
+          </String>
+        </Facet>
+      </Facets>
+    </Item>
+    <Item Id="83" Name="Poppy cake" Img="../video/KwestiaSmaku_Makowiec.mp4/KwestiaSmaku_Makowiec.mp4_thumb.jpg" Href="http://studio.clipflair.net?video=KwestiaSmaku_Makowiec.mp4">
+      <Description>
+      </Description>
+      <Facets>
+        <Facet Name="Filename">
+          <String Value="KwestiaSmaku_Makowiec.mp4">
+          </String>
+        </Facet>
+        <Facet Name="Audio language">
+          <String Value="Silent clip (no audio language)">
+          </String>
+        </Facet>
+        <Facet Name="Captions language (on the clip)">
+          <String Value="Polish">
+          </String>
+        </Facet>
+        <Facet Name="Genre">
+          <String Value="Gastronomy">
+          </String>
+        </Facet>
+        <Facet Name="Age restricted (18+)">
+          <String Value="No">
+          </String>
+        </Facet>
+        <Facet Name="Duration (hh:mm:ss)">
+          <String Value="'1:39">
+          </String>
+        </Facet>
+        <Facet Name="Audiovisual richness">
+          <String Value="Visual - Semiotic" />
+        </Facet>
+        <Facet Name="Pedagogical adaptability">
+          <String Value="Yes">
+          </String>
+        </Facet>
+        <Facet Name="Author / Source">
+          <String Value="http://www.kwestiasmaku.com&amp;usd=2&amp;usg=ALhdy29y4SfvzE2DQxQk0B9VSZXcU13ncQ">
+          </String>
+        </Facet>
+        <Facet Name="License">
+          <String Value="consent from the author">
+          </String>
+        </Facet>
+      </Facets>
+    </Item>
+    <Item Id="84" Name="Polish doughnuts" Img="../video/KwestiaSmaku_Polishdoughnuts.mp4/KwestiaSmaku_Polishdoughnuts.mp4_thumb.jpg" Href="http://studio.clipflair.net?video=KwestiaSmaku_Polishdoughnuts.mp4">
+      <Description>
+      </Description>
+      <Facets>
+        <Facet Name="Filename">
+          <String Value="KwestiaSmaku_Polishdoughnuts.mp4">
+          </String>
+        </Facet>
+        <Facet Name="Audio language">
+          <String Value="Silent clip (no audio language)">
+          </String>
+        </Facet>
+        <Facet Name="Genre">
+          <String Value="Gastronomy">
+          </String>
+        </Facet>
+        <Facet Name="Age restricted (18+)">
+          <String Value="No">
+          </String>
+        </Facet>
+        <Facet Name="Duration (hh:mm:ss)">
+          <String Value="'00:02:29">
+          </String>
+        </Facet>
+        <Facet Name="Audiovisual richness">
+          <String Value="Visual - Semiotic" />
+          <String Value="Lexis - Grammar" />
+        </Facet>
+        <Facet Name="Pedagogical adaptability">
+          <String Value="Yes">
+          </String>
+        </Facet>
+        <Facet Name="Author / Source">
+          <String Value="http://www.kwestiasmaku.com&amp;usd=2&amp;usg=ALhdy29y4SfvzE2DQxQk0B9VSZXcU13ncQ">
+          </String>
+        </Facet>
+        <Facet Name="License">
+          <String Value="consent from the author">
+          </String>
+        </Facet>
+      </Facets>
+    </Item>
+  </Items>
+</Collection>

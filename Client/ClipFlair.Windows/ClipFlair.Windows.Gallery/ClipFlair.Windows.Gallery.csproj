@@ -75,6 +75,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IGalleryProperties.cs" />
     <Compile Include="GalleryWindowFactory.cs" />
     <Compile Include="IGallery.cs" />
     <Compile Include="GalleryDefaults.cs" />
@@ -91,6 +92,10 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Utils\Utils.Silverlight\Utils.Silverlight.csproj">
+      <Project>{E784B6A1-A300-4571-A881-B15240EEE377}</Project>
+      <Name>Utils.Silverlight</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\ZUI\FloatingWindow\FloatingWindow.Silverlight\FloatingWindow.Silverlight.csproj">
       <Project>{3F3D3C8C-9724-4531-A04D-B92049F64686}</Project>
       <Name>FloatingWindow.Silverlight</Name>

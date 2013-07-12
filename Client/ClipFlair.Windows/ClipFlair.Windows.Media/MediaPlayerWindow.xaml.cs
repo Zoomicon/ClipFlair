@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: MediaPlayerWindow.xaml.cs
-//Version: 20130419
+//Version: 20130703
 
 using ClipFlair.Windows.Views;
 
@@ -37,7 +37,7 @@ namespace ClipFlair.Windows
   
     #endregion
 
-    #region Methods
+    #region --- Methods ---
 
     public override void LoadOptions(ZipFile zip, string zipFolder = "")
     {
@@ -50,15 +50,39 @@ namespace ClipFlair.Windows
           player.VolumeLevel = 0.9;
       player.VolumeLevel = MediaPlayerView.Volume; //try to set again the volume (patch for SMF bug: keeps the volume widget at wrong position)
     }
+
+    public void LoadOfflinePlaylist()
+    {
+      player.Source = new Uri(""); //this will also do Playlist.Clear()
+      try
+      {
+        foreach (PlaylistItem p in player.OpenOfflinePlaylist("ClipFlairPlaylist")) //TODO: allow to define offline filename and maybe allow to delete old ones? (or show offline size and allow clear)
+          player.Playlist.Add(p);
+        MessageBox.Show("Offline playlist restored"); //TODO: find parent window and pass here
+        player.GoToPlaylistItem(0); //after playlist is restored go to the 1st playlist item
+      }
+      catch (Exception ex)
+      {
+        MessageBox.Show("Error: " + ex.Message); //TODO: find parent window and pass here
+      }
+    }
+
+    public void SaveOfflinePlaylist() //TODO: need Smooth Streaming ISO Cache plugin for SMF from Media Experiences project at codeplex since this now works only for ProgressiveDownload media
+    {
+      try
+      {
+        player.StorePlaylistContentOffline("ClipFlairPlaylist"); //TODO: allow to define offline filename and maybe allow to delete old ones? (or show offline size and allow clear)
+        MessageBox.Show("Playlist stored offline"); //TODO: find parent window and pass here
+      }
+      catch (Exception ex)
+      {
+        MessageBox.Show("Error: " + ex.Message); //(only Progressive Download media is supported currently, can give empty source to clear playlist, then load some non smooth streaming remote URL)
+      }
+    }
  
     #endregion
 
-    #region Events
-
-    private void btnLoadMedia_Click(object sender, RoutedEventArgs e)
-    {
-      player.PlayLocalFile();
-    }
+    #region --- Events ---
 
     private void player_MediaOpened(object sender, EventArgs e)
     {
@@ -74,41 +98,6 @@ namespace ClipFlair.Windows
     private void player_TimelineMarkerLeft(object sender, Microsoft.SilverlightMediaFramework.Core.CustomEventArgs<TimelineMediaMarker> e)
     {
       player.ReplayOffset = defaultReplayOffset; //only used when not in a timeline marker range
-    }
-
-    #endregion
-
-    #region Offline
-    //TODO: need Smooth Streaming ISO Cache plugin for SMF from Media Experiences project at codeplex since this now works only for ProgressiveDownload media
-
-    private void btnSaveOffline_Click(object sender, RoutedEventArgs e) //TODO: doesn't seem to work, maybe needs offline cache plugin or respective SMF assemblies
-    {
-      try
-      {
-        player.StorePlaylistContentOffline("ClipFlairPlaylist"); //TODO: allow to define offline filename and maybe allow to delete old ones? (or show offline size and allow clear)
-        MessageBox.Show("Playlist stored offline"); //TODO: find parent window and pass here
-      }
-      catch (Exception ex)
-      {
-        MessageBox.Show("Error: " + ex.Message); //(only Progressive Download media is supported currently, can give empty source to clear playlist, then load some non smooth streaming remote URL)
-        //TODO: find parent window and pass here
-      }
-    }
-
-    private void btnLoadOffline_Click(object sender, RoutedEventArgs e) //TODO: doesn't seem to work, maybe needs offline cache plugin or respective SMF assemblies
-    {
-      player.Source = new Uri(""); //this will also do Playlist.Clear()
-      try
-      {
-        foreach (PlaylistItem p in player.OpenOfflinePlaylist("ClipFlairPlaylist")) //TODO: allow to define offline filename and maybe allow to delete old ones? (or show offline size and allow clear)
-          player.Playlist.Add(p);
-        MessageBox.Show("Offline playlist restored"); //TODO: find parent window and pass here
-        player.GoToPlaylistItem(0); //after playlist is restored go to the 1st playlist item
-      }
-      catch (Exception ex)
-      {
-        MessageBox.Show("Error: " + ex.Message); //TODO: find parent window and pass here
-      }
     }
 
     #endregion

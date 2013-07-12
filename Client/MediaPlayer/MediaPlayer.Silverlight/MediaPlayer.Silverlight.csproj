@@ -91,7 +91,7 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Utils\Utils.Silverlight.csproj">
+    <ProjectReference Include="..\..\Utils\Utils.Silverlight\Utils.Silverlight.csproj">
       <Project>{E784B6A1-A300-4571-A881-B15240EEE377}</Project>
       <Name>Utils.Silverlight</Name>
     </ProjectReference>

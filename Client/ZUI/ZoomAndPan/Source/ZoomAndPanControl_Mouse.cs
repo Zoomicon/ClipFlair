@@ -1,5 +1,5 @@
 ﻿//Filename: ZoomAndPanControl_Mouse.cs
-//Version: 20130405
+//Version: 20130703
 //Editor: George Birbilis (http://zoomicon.com)
 
 using System;
@@ -103,18 +103,18 @@ namespace ZoomAndPan
       
       protected override void OnMouseLeftButtonDown(MouseButtonEventArgs e)
       {
-        base.OnMouseLeftButtonDown(e);
+        //base.OnMouseLeftButtonDown(e);
         if (!isDefaultMouseHandling) return;
-        if (e.Handled) return;
+        //if (e.Handled) return;
         
         OnMouseDown(e, MouseButton.Left);
       }
 
       protected override void OnMouseRightButtonDown(MouseButtonEventArgs e)
       {
-        base.OnMouseRightButtonDown(e);
+        //base.OnMouseRightButtonDown(e);
         if (!isDefaultMouseHandling) return;
-        if (e.Handled) return;
+        //if (e.Handled) return;
         
         OnMouseDown(e, MouseButton.Right);
       }
@@ -156,9 +156,9 @@ namespace ZoomAndPan
 
       protected override void OnMouseLeftButtonUp(MouseButtonEventArgs e)
       {
-        base.OnMouseLeftButtonUp(e);
+        //base.OnMouseLeftButtonUp(e);
         if (!isDefaultMouseHandling) return;
-        if (e.Handled) return;
+        //if (e.Handled) return;
 
 #if SILVERLIGHT
         if (e.ClickCount == 2) { OnMouseDoubleClick(e); return; }

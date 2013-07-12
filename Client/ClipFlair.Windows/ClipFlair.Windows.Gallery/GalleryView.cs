@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: GalleryView.cs
-//Version: 20130613
+//Version: 20130701
 
 using System;
 using System.ComponentModel;
@@ -15,6 +15,7 @@ namespace ClipFlair.Windows.Views
   [DataContract(Namespace = "http://clipflair.net/Contracts/View")]
   public class GalleryView: BaseView, IGallery
   {
+
     public GalleryView()
     {
     }
@@ -23,6 +24,7 @@ namespace ClipFlair.Windows.Views
 
     //fields are initialized via respective properties at "SetDefaults" method
     private Uri source;
+    private string filter;
 
     #endregion
 
@@ -39,6 +41,21 @@ namespace ClipFlair.Windows.Views
         {
           source = value;
           RaisePropertyChanged(IGalleryProperties.PropertySource);
+        }
+      }
+    }
+
+    [DataMember]
+    [DefaultValue(GalleryDefaults.DefaultFilter)]
+    public string Filter
+    {
+      get { return filter; }
+      set
+      {
+        if (value != filter)
+        {
+          filter = value;
+          RaisePropertyChanged(IGalleryProperties.PropertyFilter);
         }
       }
     }

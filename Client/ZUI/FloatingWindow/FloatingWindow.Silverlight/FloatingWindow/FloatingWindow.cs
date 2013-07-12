@@ -1,5 +1,5 @@
 //Filename: FloatingWindow.cs
-//Version: 20130508
+//Version: 201306703
 
 using System;
 using System.IO;
@@ -669,10 +669,10 @@ namespace SilverFlow.Controls
           if (window != null)
           {
             window.RenderTransformOrigin = new Point(0.5, 0.5); //scale arround the window center
-            window.RenderTransform = new ScaleTransform().SetScale((double)e.NewValue);
+            window.RenderTransform = new ScaleTransform().SetScale((double)e.NewValue); //TODO: this may cause the window top-left to get out of container bounds, maybe should coerce scale then, or autoexpand the container (when that is implemented)
 
-            //this will work if GPU acceleration has been turned on (at HTML/ASPX page or at OOB settings for OOB apps)
-            if (window.CacheMode != null)
+            /* //NOTE: causes issue with video acceleration
+            if (window.CacheMode != null) //this will work if GPU acceleration has been turned on (at HTML/ASPX page or at OOB settings for OOB apps), assuming we've set CacheMode already
             {
               BitmapCache bitmapCache = window.CacheMode as BitmapCache; //will return null if other type
               if (bitmapCache != null)
@@ -681,6 +681,7 @@ namespace SilverFlow.Controls
                 window.CacheMode = bitmapCache;
               }
             }
+            */
 
           }
         }
