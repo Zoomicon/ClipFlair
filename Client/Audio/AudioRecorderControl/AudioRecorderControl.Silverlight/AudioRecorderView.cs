@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: AudioRecorderView.cs
-//Version: 20130508
+//Version: 20130704
 
 using AudioLib;
 
@@ -240,7 +240,7 @@ namespace ClipFlair.AudioRecorder
 
     public void StopRecording()
     {
-      if (_captureSource.State != CaptureState.Started)
+      if ((_captureSource == null) || (_captureSource.State != CaptureState.Started))
       {
         Busy = false;
         return;
