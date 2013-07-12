@@ -1,11 +1,13 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: CaptionsGrid.xaml.cs
-//Version: 20130606
+//Version: 20130701
 
 using ClipFlair.AudioRecorder;
 using ClipFlair.CaptionsLib.Utils;
 using ClipFlair.CaptionsLib.Models;
 using ClipFlair.CaptionsGrid.Resources;
+
+using Utils.Extensions;
 
 using System;
 using System.IO;
@@ -13,6 +15,8 @@ using System.Linq;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
 using System.Collections.Generic;
 
 using Microsoft.SilverlightMediaFramework.Core.Accessibility.Captions;
@@ -576,6 +580,11 @@ namespace ClipFlair.CaptionsGrid
     protected virtual void OnRTLChanged(bool oldRTL, bool newRTL)
     {
       UpdateCaptionsRTL();
+
+      //Set the button image based on the state of the toggle button. 
+      btnRTL.Content = new Uri(newRTL ? "/CaptionsGrid;component/Images/RTL.png" : "/CaptionsGrid;component/Images/LTR.png", UriKind.RelativeOrAbsolute).CreateImage();
+
+      ReturnFocus();
     }
 
     #endregion
@@ -583,6 +592,12 @@ namespace ClipFlair.CaptionsGrid
     #endregion
 
     #region --- Methods ---
+
+    private void ReturnFocus()
+    {
+      if (gridCaptions != null)
+        gridCaptions.Focus();
+    }
 
     private void UpdateCaptionsRTL()
     {

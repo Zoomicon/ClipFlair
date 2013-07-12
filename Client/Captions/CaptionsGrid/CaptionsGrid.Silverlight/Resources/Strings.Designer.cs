@@ -149,5 +149,14 @@ namespace ClipFlair.CaptionsGrid.Resources {
                 return ResourceManager.GetString("tooltip_merged_audio_save", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Text Direction.
+        /// </summary>
+        public static string tooltip_TextDirection {
+            get {
+                return ResourceManager.GetString("tooltip_TextDirection", resourceCulture);
+            }
+        }
     }
 }

@@ -1,7 +1,7 @@
 ﻿<!--
 Project: ClipFlair (http://ClipFlair.codeplex.com)
 Filename: CaptionsGrid.xaml
-Version: 20130411
+Version: 20130704
 -->
 
 <UserControl x:Class="ClipFlair.CaptionsGrid.CaptionsGrid"
@@ -83,7 +83,23 @@ Version: 20130411
           />
 
       </StackPanel>
+      
+      <StackPanel Orientation="Horizontal" Margin="15,0">
 
+        <btn:ImageToggleButton
+          x:Name="btnRTL"
+          IsChecked="{Binding RTL, Mode=TwoWay}"
+          ToolTipService.ToolTip="{Binding tooltip_TextDirection, Source={StaticResource localizedStrings}}"
+          Image="Images/LTR.png"
+          ImageHover="Images/LTR_hover.png"
+          ImageChecked="Images/RTL.png"
+          ImageCheckedHover="Images/RTL_hover.png"
+          />
+        
+        <!-- TODO: add button here to swap punctuation marks from start to end of string [shown only when btnRTL is toggled on] -->
+
+      </StackPanel>
+      
       <StackPanel Orientation="Horizontal">
 
         <btn:ImageButton
@@ -119,6 +135,7 @@ Version: 20130411
                   Grid.Row="1"
                   Background="#F3F3F3"
                   AutoGenerateColumns="False"
+                  HeadersVisibility="All"
                   RowBackground="#F3F3F3"
                   ColumnHeaderStyle="{StaticResource ColumnHeaderStyle}"
                   AlternatingRowBackground="#FFFFFF"
