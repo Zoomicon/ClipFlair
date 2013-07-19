@@ -3,11 +3,11 @@
 <!--
 Project: ClipFlair (http://ClipFlair.codeplex.com)
 Filename: LanguageCombination.xml
-Version: 20130704
+Version: 20130714
 -->
 
 <Facet Name="Language Combination">
   <String Value="Intralingual" />
   <String Value="Interlingual" />
-  <!-- ??? -->
+  <String Value="Multilingual" />
 </Facet>

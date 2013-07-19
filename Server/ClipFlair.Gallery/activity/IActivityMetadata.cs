@@ -1,14 +1,18 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: IActivityMetadata.cs
-//Version: 20130711
+//Version: 20130718
 
 using System;
+using System.Xml.Linq;
 
 namespace ClipFlair.Gallery
 {
 
-  public interface IActivityMetadata
+  public interface IActivityMetadata : IMetadata
   {
+
+    #region --- Properties ---
+
     string Title { get; set; }
     string Image { get; set; }
     Uri Url { get; set; }
@@ -31,6 +35,9 @@ namespace ClipFlair.Gallery
     string[] LearnerType { get; set; }
     string[] AgeGroup { get; set; }
     string[] FeedbackModeToLearner { get; set; }
+
+    #endregion
+  
   }
 
 }
