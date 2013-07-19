@@ -1,7 +1,7 @@
 ﻿<!--
 Project: ClipFlair (http://ClipFlair.codeplex.com)
 Filename: MediaPlayerWindow.xaml
-Version: 20130703
+Version: 20130719
 -->
 
 <clipflair:BaseWindow x:Class="ClipFlair.Windows.MediaPlayerWindow"
@@ -10,7 +10,7 @@ Version: 20130703
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk"  
-    xmlns:clipflair="clr-namespace:ClipFlair.Windows;assembly=ClipFlair.Windows.Base"    
+    xmlns:clipflair="clr-namespace:ClipFlair.Windows;assembly=ClipFlair.Windows.Base"
     xmlns:options="clr-namespace:ClipFlair.Windows.Options"
     xmlns:media="clr-namespace:ClipFlair.MediaPlayer;assembly=MediaPlayer"
     mc:Ignorable="d" d:DesignHeight="100" d:DesignWidth="690"
@@ -71,10 +71,7 @@ Version: 20130703
 
   <clipflair:BaseWindow.PropertyItems>
 
-    <options:MediaPlayerOptions
-      x:Name="options"
-      DataContext="{Binding}"
-      />
+    <options:MediaPlayerOptions x:Name="options" />
     
     <StackPanel Orientation="Vertical">
 
