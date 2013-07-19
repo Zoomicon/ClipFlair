@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: list.aspx.cs
-//Version: 20130718
+//Version: 20130719
 
 using System;
 using System.Collections.Generic;
@@ -29,10 +29,7 @@ namespace ClipFlair.Gallery
         else if (Request.QueryString["merge"] != null)
           Merge();
 
-        if (Request.QueryString["item"] != null)
-          UpdateSelection(Request.QueryString["item"]);
-        else
-          UpdateSelection();
+        UpdateSelection();
       }
     }
 

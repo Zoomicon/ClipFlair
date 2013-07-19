@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: list.aspx.cs
-//Version: 20130718
+//Version: 20130719
 
 using System;
 using System.Linq;
@@ -26,6 +26,9 @@ namespace ClipFlair.Gallery
           Directory.GetFiles(path, "*.clipflair")
             .Select(f => new { Filename = Path.GetFileName(f) });
         listItems.DataBind(); //must call this
+
+        if (Request.QueryString["item"] != null)
+          listItems.SelectedValue = Request.QueryString["item"]; //must do after listItems.DataBind
       }
     }
 
@@ -57,8 +60,7 @@ namespace ClipFlair.Gallery
 
     public override void DisplayMetadata(string key)
     {
-      IActivityMetadata metadata = (IActivityMetadata)new ActivityMetadata().Load(key, GetMetadataFilepath(key), GetFallbackMetadataFilePath());
-      DisplayMetadata(key, metadata);
+      DisplayMetadata(key, (IActivityMetadata)new ActivityMetadata().Load(key, GetMetadataFilepath(key), GetFallbackMetadataFilePath()));
     }
 
     public void DisplayMetadata(string key, IActivityMetadata metadata)
