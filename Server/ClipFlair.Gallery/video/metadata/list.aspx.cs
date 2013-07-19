@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: list.aspx.cs
-//Version: 20130718
+//Version: 20130719
 
 using System;
 using System.IO;
@@ -29,6 +29,9 @@ namespace ClipFlair.Gallery
         //use Path.GetFileName instead to extract the name of the directory
 
         listItems.DataBind(); //must call this
+
+        if (Request.QueryString["item"] != null)
+          listItems.SelectedValue = Request.QueryString["item"]; //must do after listItems.DataBind
       }
     }
   
