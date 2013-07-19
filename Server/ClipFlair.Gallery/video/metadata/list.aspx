@@ -5,7 +5,7 @@
 <!--
 Project: ClipFlair (http://ClipFlair.codeplex.com)
 Filename: list.aspx
-Version: 20130711
+Version: 20130715
 -->
 
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -43,7 +43,6 @@ Version: 20130711
   </head>
 
   <body>
-    <asp:XmlDataSource ID="xmlItems" runat="server" DataFile="~/video/all_files.xml" XPath="items/item" />
     <asp:XmlDataSource ID="xmlLanguage" runat="server" DataFile="~/video/metadata/Language.xml" XPath="Facet/String" />
     <asp:XmlDataSource ID="xmlGenre" runat="server" DataFile="~/video/metadata/Genre.xml" XPath="Facet/String" />
     <asp:XmlDataSource ID="XmlAudiovisualRichness" runat="server" DataFile="~/video/metadata/AudiovisualRichness.xml" XPath="Facet/String" />
@@ -59,7 +58,7 @@ Version: 20130711
       <div class="bar">
         <div class="label">Video stream</div> 
         <asp:DropDownList ID="listItems" runat="server" AutoPostBack="True" 
-          DataSourceID="xmlItems" DataTextField="filename" DataValueField="filename" 
+          DataTextField="Foldername" DataValueField="Foldername" 
           OnSelectedIndexChanged="listItems_SelectedIndexChanged"
           />
       </div>

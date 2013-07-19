@@ -51,7 +51,6 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="activity\all_files.xml" />
     <Content Include="activity\metadata\AgeGroup.xml">
       <SubType>Designer</SubType>
     </Content>
@@ -81,7 +80,6 @@
     </Content>
     <Content Include="activity\metadata\Language.xml" />
     <Content Include="activity\metadata\list.aspx" />
-    <Content Include="video\all_files.xml" />
     <Content Include="video\metadata\Genre.xml">
       <SubType>Designer</SubType>
     </Content>
@@ -97,7 +95,7 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="activity\metadata\IActivityMetadata.cs" />
+    <Compile Include="activity\IActivityMetadata.cs" />
     <Compile Include="activity\metadata\list.aspx.cs">
       <DependentUpon>list.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -105,13 +103,18 @@
     <Compile Include="activity\metadata\list.aspx.designer.cs">
       <DependentUpon>list.aspx</DependentUpon>
     </Compile>
-    <Compile Include="activity\metadata\ActivityMetadata.cs" />
-    <Compile Include="activity\metadata\ActivityMetadataFacets.cs" />
+    <Compile Include="activity\ActivityMetadata.cs" />
+    <Compile Include="activity\ActivityMetadataFacets.cs" />
+    <Compile Include="BaseMetadataPage.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="IMetadata.cs" />
     <Compile Include="UI.cs" />
-    <Compile Include="video\metadata\VideoMetadataFacets.cs" />
-    <Compile Include="video\metadata\VideoMetadata.cs" />
+    <Compile Include="BaseMetadata.cs" />
+    <Compile Include="video\VideoMetadataFacets.cs" />
+    <Compile Include="video\VideoMetadata.cs" />
     <Compile Include="CXML.cs" />
-    <Compile Include="video\metadata\IVideoMetadata.cs" />
+    <Compile Include="video\IVideoMetadata.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="video\metadata\list.aspx.cs">
       <DependentUpon>list.aspx</DependentUpon>
@@ -120,10 +123,6 @@
     <Compile Include="video\metadata\list.aspx.designer.cs">
       <DependentUpon>list.aspx</DependentUpon>
     </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="activity\metadata\old_activities.cxml" />
-    <Content Include="video\metadata\old_video.cxml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="video\metadata\Web.config" />
@@ -151,6 +150,7 @@
       <DependentUpon>Web.config</DependentUpon>
     </Content>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
   <ProjectExtensions>

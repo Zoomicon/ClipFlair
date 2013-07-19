@@ -3,10 +3,11 @@
 <!--
 Project: ClipFlair (http://ClipFlair.codeplex.com)
 Filename: Language.xml
-Version: 20130703
+Version: 20130718
 -->
 
 <Facet Name="Language">
+  <String Value="None" />
   <String Value="Basque" />
   <String Value="Catalan" />
   <String Value="Chinese" />
@@ -14,10 +15,13 @@ Version: 20130703
   <String Value="Estonian" />
   <String Value="Greek" />
   <String Value="Irish" />
-  <String Value="Irish Gaeilge" />
   <String Value="Italian" />
+  <String Value="Japanese" />
   <String Value="Polish" />
+  <String Value="Portuguese" />
   <String Value="Romanian" />
-  <String Value="Spanish" /> 
-  <!-- TODO -->
+  <String Value="Russian" />
+  <String Value="Spanish" />
+  <String Value="Ukrainian" />
+  <!-- TODO -->  
 </Facet>

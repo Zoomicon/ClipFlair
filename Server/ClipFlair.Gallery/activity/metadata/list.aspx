@@ -5,7 +5,7 @@
 <!--
 Project: ClipFlair (http://ClipFlair.codeplex.com)
 Filename: list.aspx
-Version: 20130711
+Version: 20130715
 -->
 
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -43,7 +43,9 @@ Version: 20130711
   </head>
 
   <body>
-    <asp:XmlDataSource ID="xmlItems" runat="server" DataFile="~/activity/all_files.xml" XPath="items/item" />
+    
+    <form id="form1" runat="server">
+     
     <asp:XmlDataSource ID="xmlLanguage" runat="server" DataFile="~/activity/metadata/Language.xml" XPath="Facet/String" />
     <asp:XmlDataSource ID="XmlLanguageCombination" runat="server" DataFile="~/activity/metadata/LanguageCombination.xml" XPath="Facet/String" />
     <asp:XmlDataSource ID="XmlLevel" runat="server" DataFile="~/activity/metadata/Level.xml" XPath="Facet/String" />
@@ -56,8 +58,6 @@ Version: 20130711
     <asp:XmlDataSource ID="xmlLearnerType" runat="server" DataFile="~/activity/metadata/LearnerType.xml" XPath="Facet/String" />
     <asp:XmlDataSource ID="xmlAgeGroup" runat="server" DataFile="~/activity/metadata/AgeGroup.xml" XPath="Facet/String" />
     
-    <form id="form1" runat="server">
-     
       <div class="instructions">
       Please fill in the following information for the activity of your choice. Select the activity from the dropdown list.<br />
       Try to fill the metadata as fully and accurately as possible, as they will be used for searching and filtering activities.<br />
@@ -67,7 +67,7 @@ Version: 20130711
       <div class="bar">
         <div class="label">Activity file</div> 
         <asp:DropDownList ID="listItems" runat="server" AutoPostBack="True" 
-          DataSourceID="xmlItems" DataTextField="filename" DataValueField="filename" 
+          DataTextField="Filename" DataValueField="Filename"
           OnSelectedIndexChanged="listItems_SelectedIndexChanged"
           />
       </div>

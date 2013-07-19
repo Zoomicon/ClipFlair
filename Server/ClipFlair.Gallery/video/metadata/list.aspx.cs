@@ -1,82 +1,66 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: list.aspx.cs
-//Version: 20130711
+//Version: 20130718
 
 using System;
 using System.IO;
+using System.Linq;
 using System.Web;
 using System.Web.UI.WebControls;
 
 namespace ClipFlair.Gallery
 {
-  public partial class VideoMetadataPage : System.Web.UI.Page
+  public partial class VideoMetadataPage : BaseMetadataPage
   {
+
+    private string path = HttpContext.Current.Server.MapPath("~/video");
 
     protected void Page_Load(object sender, EventArgs e)
     {
-    }
-
-    protected void Page_PreRenderComplete(object sender, EventArgs e)
-    {
+      _listItems = listItems; 
+      
       if (!IsPostBack)
       {
-        if (Request.QueryString["Generate"] != null)
-          GenerateAll();
+        listItems.DataSource =
+          Directory.GetDirectories(path)
+            .Where(f => (Directory.GetFiles(f, Path.GetFileName(f) + ".ism").Length != 0))
+            .Select(f => new { Foldername = Path.GetFileName(f) });
+        //when having a full path to a directory don't use Path.GetDirectoryName (gives parent directory),
+        //use Path.GetFileName instead to extract the name of the directory
 
-        UpdateSelection();
+        listItems.DataBind(); //must call this
       }
     }
-
-    protected void GenerateAll()
-    {
-      foreach (ListItem l in listItems.Items)
-      {
-        string value = l.Text;
-        if (!File.Exists(GetMetadataFilepath(value))) //to not lose newer data, only saving file from old data if it doesn't already exist
-        {
-          UpdateSelection(value); //must pass value here
-          SaveMetadata(value); //must pass value here
-        }
-      }
-
-    }
-    
-    protected void UpdateSelection()
-    {
-      UpdateSelection(listItems.SelectedValue);
-    }
-
+  
     protected void listItems_SelectedIndexChanged(object sender, EventArgs e)
     {
       UpdateSelection();
     }
 
-    protected string GetMetadataFilepath(string value)
+    #region --- Paths --- 
+
+    public override string GetMetadataFilepath(string value)
     {
-      return HttpContext.Current.Server.MapPath("~/video/metadata/" + value + ".cxml");
+      return Path.Combine(path, "metadata/" + value + ".cxml");
     }
 
-    protected string GetFallbackMetadataFilePath()
+    public override string GetFallbackMetadataFilePath()
     {
-      return HttpContext.Current.Server.MapPath("~/video/metadata/old_video.cxml");
+      return Path.Combine(path, "metadata/old_video.cxml");
     }
 
-    public void UpdateSelection(string value)
+    public override string GetMergeMetadataFilePath()
     {
-      DisplayMetadata(value);
+      return Path.Combine(path, "video.cxml");
     }
 
-    protected void btnSave_Click(object sender, EventArgs e)
-    {
-      SaveMetadata();
-    }
+    #endregion
 
-    #region Load
+    #region --- Load ---
 
-    public void DisplayMetadata(string key)
+    public override void DisplayMetadata(string key)
     {
-      IVideoMetadata metadata = VideoMetadata.LoadMetadata(key, GetMetadataFilepath(key), GetFallbackMetadataFilePath());
-      DisplayMetadata(key, metadata);
+      DisplayMetadata(key, (IVideoMetadata)new VideoMetadata().Load(key, GetMetadataFilepath(key), GetFallbackMetadataFilePath()));
     }
 
     public void DisplayMetadata(string key, IVideoMetadata metadata)
@@ -97,9 +81,9 @@ namespace ClipFlair.Gallery
 
     #endregion
 
-    #region Save
+    #region --- Save ---
 
-    protected IVideoMetadata ExtractMetadata(string key)
+    public override IMetadata ExtractMetadata(string key)
     {
       IVideoMetadata metadata = new VideoMetadata();
 
@@ -120,14 +104,9 @@ namespace ClipFlair.Gallery
       return metadata;
     }
 
-    protected void SaveMetadata()
+    protected void btnSave_Click(object sender, EventArgs e)
     {
-      SaveMetadata(listItems.SelectedValue);
-    }
-
-    protected void SaveMetadata(string key)
-    {
-      VideoMetadata.SaveMetadata(ExtractMetadata(key), GetMetadataFilepath(key));
+      SaveMetadata();
     }
 
     #endregion

@@ -1,8 +1,9 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: list.aspx.cs
-//Version: 20130711
+//Version: 20130718
 
 using System;
+using System.Linq;
 using System.ComponentModel;
 using System.IO;
 using System.Web;
@@ -10,40 +11,22 @@ using System.Web.UI.WebControls;
 
 namespace ClipFlair.Gallery
 {
-  public partial class ActivityMetadataPage : System.Web.UI.Page
+  public partial class ActivityMetadataPage : BaseMetadataPage
   {
+
+    private string path = HttpContext.Current.Server.MapPath("~/activity");
+
     protected void Page_Load(object sender, EventArgs e)
     {
-    }
-
-    protected void Page_PreRenderComplete(object sender, EventArgs e)
-    {
+      _listItems = listItems;
+      
       if (!IsPostBack)
       {
-        if (Request.QueryString["Generate"] != null)
-          GenerateAll();
-
-        UpdateSelection();
+        listItems.DataSource = 
+          Directory.GetFiles(path, "*.clipflair")
+            .Select(f => new { Filename = Path.GetFileName(f) });
+        listItems.DataBind(); //must call this
       }
-    }
-
-    protected void GenerateAll()
-    {
-      foreach (ListItem l in listItems.Items)
-      {
-        string value = l.Text;
-        if (!File.Exists(GetMetadataFilepath(value))) //to not lose newer data, only saving file from old data if it doesn't already exist
-        {
-          UpdateSelection(value); //must pass value here
-          SaveMetadata(value); //must pass value here
-        }
-      }
-
-    }
-
-    protected void UpdateSelection()
-    {
-      UpdateSelection(listItems.SelectedValue);
     }
 
     protected void listItems_SelectedIndexChanged(object sender, EventArgs e)
@@ -51,31 +34,30 @@ namespace ClipFlair.Gallery
       UpdateSelection();
     }
 
-    protected string GetMetadataFilepath(string value)
+    #region --- Paths ---
+
+    public override string GetMetadataFilepath(string value)
     {
-      return HttpContext.Current.Server.MapPath("~/activity/metadata/" + value + ".cxml");
+      return Path.Combine(path, "metadata/" + value + ".cxml");
     }
 
-    protected string GetFallbackMetadataFilePath()
+    public override string GetFallbackMetadataFilePath()
     {
-      return HttpContext.Current.Server.MapPath("~/activity/metadata/old_activities.cxml");
+      return Path.Combine(path, "metadata/old_activities.cxml");
     }
 
-    public void UpdateSelection(string value)
+    public override string GetMergeMetadataFilePath()
     {
-      DisplayMetadata(value);
+      return Path.Combine(path, "activities.cxml");
     }
 
-    protected void btnSave_Click(object sender, EventArgs e)
-    {
-      SaveMetadata();
-    }
+    #endregion
 
     #region Load
 
-    public void DisplayMetadata(string key)
+    public override void DisplayMetadata(string key)
     {
-      IActivityMetadata metadata = ActivityMetadata.LoadMetadata(key, GetMetadataFilepath(key), GetFallbackMetadataFilePath());
+      IActivityMetadata metadata = (IActivityMetadata)new ActivityMetadata().Load(key, GetMetadataFilepath(key), GetFallbackMetadataFilePath());
       DisplayMetadata(key, metadata);
     }
 
@@ -107,7 +89,7 @@ namespace ClipFlair.Gallery
 
     #region Save
 
-    protected IActivityMetadata ExtractMetadata(string key)
+    public override IMetadata ExtractMetadata(string key)
     {
       IActivityMetadata metadata = new ActivityMetadata();
 
@@ -136,14 +118,9 @@ namespace ClipFlair.Gallery
       return metadata;
     }
 
-    protected void SaveMetadata()
+    protected void btnSave_Click(object sender, EventArgs e)
     {
-      SaveMetadata(listItems.SelectedValue);
-    }
-
-    protected void SaveMetadata(string key)
-    {
-      ActivityMetadata.SaveMetadata(ExtractMetadata(key), GetMetadataFilepath(key));
+      SaveMetadata();
     }
 
     #endregion

@@ -1,0 +1,1 @@
+from article http://www.eggheadcafe.com/articles/20060603.asp
