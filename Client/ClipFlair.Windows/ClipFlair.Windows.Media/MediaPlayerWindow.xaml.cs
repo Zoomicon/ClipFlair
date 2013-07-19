@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: MediaPlayerWindow.xaml.cs
-//Version: 20130703
+//Version: 20130719
 
 using ClipFlair.Windows.Views;
 
@@ -23,6 +23,7 @@ namespace ClipFlair.Windows
     {
       View = new MediaPlayerView(); //must set the view first
       InitializeComponent();
+      options.MediaPlayerWindow = this;
 
       defaultReplayOffset = player.ReplayOffset; //can set ReplayOffset in XAML
     }
