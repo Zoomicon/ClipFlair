@@ -1,8 +1,9 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: list.aspx.cs
-//Version: 20130719
+//Version: 20130720
 
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.ComponentModel;
 using System.IO;
@@ -123,6 +124,11 @@ namespace ClipFlair.Gallery
     protected void btnSave_Click(object sender, EventArgs e)
     {
       SaveMetadata();
+    }
+
+    public override void Merge()
+    {
+      Merge("ClipFlair Gallery Activities", ActivityMetadata.MakeCXMLFacetCategories());
     }
 
     #endregion
