@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: list.aspx.cs
-//Version: 20130719
+//Version: 20130720
 
 using System;
 using System.Collections.Generic;
@@ -8,7 +8,7 @@ using System.Linq;
 using System.IO;
 using System.Web;
 using System.Web.UI.WebControls;
-
+using System.Xml.Linq;
 
 namespace ClipFlair.Gallery
 {
@@ -33,29 +33,19 @@ namespace ClipFlair.Gallery
       }
     }
 
-    #region --- Commands ---
-
-    protected void Merge()
-    {
-      //TODO
-    }
-
     protected void Generate()
     {
       foreach (ListItem l in _listItems.Items)
       {
         string key = l.Text;
-        if (!File.Exists(GetMetadataFilepath(key))) //to not lose newer data, only saving file from old data if it doesn't already exist
-        {
+        //if (!File.Exists(GetMetadataFilepath(key)))
+        { //not using the above line anymore so that we can save existing files again after any format change
           UpdateSelection(key); //must pass value here
           SaveMetadata(key); //must pass value here
         }
       }
-
     }
-
-    #endregion
-     
+    
     #region --- Select ---
 
     public void UpdateSelection(string key)
@@ -82,16 +72,31 @@ namespace ClipFlair.Gallery
       ExtractMetadata(key).Save(GetMetadataFilepath(key));
     }
 
+    protected void Merge(string collectionTitle, IEnumerable<XElement> facetCategories)
+    {
+      IList<IMetadata> metadataItems = new List<IMetadata>();
+
+      foreach (ListItem l in _listItems.Items)
+      {
+        string key = l.Text;
+        UpdateSelection(key); //must pass value here
+        metadataItems.Add(ExtractMetadata(key));
+      }
+
+      BaseMetadata.Save(GetMergeMetadataFilePath(), collectionTitle, facetCategories, metadataItems.ToArray());
+    }
+
     #endregion
 
     #region --- Abstract methods ---
 
-    public abstract string GetMetadataFilepath(String key);
+    public abstract string GetMetadataFilepath(string key);
     public abstract string GetFallbackMetadataFilePath();
     public abstract string GetMergeMetadataFilePath();
-    
-    public abstract void DisplayMetadata(String key);
-    public abstract IMetadata ExtractMetadata(String key);
+
+    public abstract void Merge();
+    public abstract void DisplayMetadata(string key);
+    public abstract IMetadata ExtractMetadata(string key);
 
     #endregion
 

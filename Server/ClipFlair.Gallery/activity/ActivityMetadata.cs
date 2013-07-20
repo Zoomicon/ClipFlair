@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: ActivityMetadata.cs
-//Version: 20130719
+//Version: 20130720
 
 using System;
 using System.Collections.Generic;
@@ -16,11 +16,6 @@ namespace ClipFlair.Gallery
 
     #region --- Properties ---
 
-    public string Title { get; set; }
-    public string Image { get; set; }
-    public Uri Url { get; set; }
-    public string Description { get; set; }
-    public string Filename { get; set; }
     public string[] ForLearners { get; set; }
     public string[] ForSpeakers { get; set; }
     public string[] LanguageCombination { get; set; }
@@ -78,6 +73,7 @@ namespace ClipFlair.Gallery
       {
         XElement item = doc.Root.Elements(CXML.NODE_ITEMS).Elements(CXML.NODE_ITEM).CXMLFirstItemWithStringValue(ActivityMetadataFacets.FACET_FILENAME, key);
 
+        Id = item.Attribute(CXML.ATTRIB_ID).Value;
         Title = item.Attribute(CXML.ATTRIB_NAME).Value;
         Image = item.Attribute(CXML.ATTRIB_IMG).Value;
         Url = new Uri(item.Attribute(CXML.ATTRIB_HREF).Value);
@@ -113,69 +109,28 @@ namespace ClipFlair.Gallery
       return this;
     }
 
-    public override void Save(string cxmlFilename)
+    public static IEnumerable<XElement> MakeCXMLFacetCategories()
     {
-      Directory.CreateDirectory(Path.GetDirectoryName(cxmlFilename)); //create any parent directories needed
-
-      new XElement(CXML.NODE_COLLECTION,
-        new XAttribute("SchemaVersion", "1.0"),
-        new XAttribute("Name", "ClipFlair Activity clip"),
-        new XAttribute(XNamespace.Xmlns + "xsi", CXML.xsi),
-        new XAttribute(XNamespace.Xmlns + "xsd", CXML.xsd),
-        new XAttribute(XNamespace.Xmlns + "p", CXML.p),
-
-        new XElement(CXML.NODE_FACET_CATEGORIES,
-          CXML.MakeFacetCategory(ActivityMetadataFacets.FACET_FILENAME, CXML.VALUE_STRING, isFilterVisible:false, isMetadataVisible:false, isWordWheelVisible:false),
-          CXML.MakeFacetCategory(ActivityMetadataFacets.FACET_FOR_LEARNERS, CXML.VALUE_STRING, isFilterVisible:true, isMetadataVisible:true, isWordWheelVisible:true),
-          CXML.MakeFacetCategory(ActivityMetadataFacets.FACET_FOR_SPEAKERS, CXML.VALUE_STRING, isFilterVisible:true, isMetadataVisible:true, isWordWheelVisible:true),
-          CXML.MakeFacetCategory(ActivityMetadataFacets.FACET_LANGUAGE_COMBINATION, CXML.VALUE_STRING, isFilterVisible:true, isMetadataVisible:true, isWordWheelVisible:true),
-          CXML.MakeFacetCategory(ActivityMetadataFacets.FACET_LEVEL, CXML.VALUE_STRING, isFilterVisible:true, isMetadataVisible:true, isWordWheelVisible:true),
-          CXML.MakeFacetCategory(ActivityMetadataFacets.FACET_KEYWORDS, CXML.VALUE_STRING, isFilterVisible:true, isMetadataVisible:true, isWordWheelVisible:true),
-          CXML.MakeFacetCategory(ActivityMetadataFacets.FACET_ESTIMATED_TIME, CXML.VALUE_STRING, isFilterVisible:true, isMetadataVisible:true, isWordWheelVisible:true),
-          CXML.MakeFacetCategory(ActivityMetadataFacets.FACET_AUTHORS, CXML.VALUE_STRING, isFilterVisible:true, isMetadataVisible:true, isWordWheelVisible:true),
-          CXML.MakeFacetCategory(ActivityMetadataFacets.FACET_LICENSE, CXML.VALUE_STRING, isFilterVisible:true, isMetadataVisible:true, isWordWheelVisible:true),
-          CXML.MakeFacetCategory(ActivityMetadataFacets.FACET_FROM_SKILLS, CXML.VALUE_STRING, isFilterVisible:true, isMetadataVisible:true, isWordWheelVisible:true),
-          CXML.MakeFacetCategory(ActivityMetadataFacets.FACET_TO_SKILLS, CXML.VALUE_STRING, isFilterVisible:true, isMetadataVisible:true, isWordWheelVisible:true),
-          CXML.MakeFacetCategory(ActivityMetadataFacets.FACET_AV_SKILLS, CXML.VALUE_STRING, isFilterVisible:true, isMetadataVisible:true, isWordWheelVisible:true),
-          CXML.MakeFacetCategory(ActivityMetadataFacets.FACET_RESPONSES, CXML.VALUE_STRING, isFilterVisible:true, isMetadataVisible:true, isWordWheelVisible:true),
-          CXML.MakeFacetCategory(ActivityMetadataFacets.FACET_TASKS_REVOICING, CXML.VALUE_STRING, isFilterVisible:true, isMetadataVisible:true, isWordWheelVisible:true),
-          CXML.MakeFacetCategory(ActivityMetadataFacets.FACET_TASKS_CAPTIONING, CXML.VALUE_STRING, isFilterVisible:true, isMetadataVisible:true, isWordWheelVisible:true),
-          CXML.MakeFacetCategory(ActivityMetadataFacets.FACET_LEARNER_TYPE, CXML.VALUE_STRING, isFilterVisible:true, isMetadataVisible:true, isWordWheelVisible:true),
-          MakeAgeGroupFacetCategory(),
-          CXML.MakeFacetCategory(ActivityMetadataFacets.FACET_FEEDBACK_MODE_TO_LEARNER, CXML.VALUE_STRING, isFilterVisible:true, isMetadataVisible:true, isWordWheelVisible:true)
-        ),
-
-        new XElement(CXML.NODE_ITEMS,
-          new XElement(CXML.NODE_ITEM,
-            new XAttribute(CXML.ATTRIB_NAME, Title),
-            new XAttribute(CXML.ATTRIB_IMG, Image),
-            new XAttribute(CXML.ATTRIB_HREF, (Url != null) ? Url.ToString() : ""),
-
-            new XElement(CXML.NODE_DESCRIPTION, Description),
-
-            new XElement(CXML.NODE_FACETS,
-              CXML.MakeStringFacet(ActivityMetadataFacets.FACET_FILENAME, Filename),
-              CXML.MakeStringFacet(ActivityMetadataFacets.FACET_FOR_LEARNERS, ForLearners),
-              CXML.MakeStringFacet(ActivityMetadataFacets.FACET_FOR_SPEAKERS, ForSpeakers),
-              CXML.MakeStringFacet(ActivityMetadataFacets.FACET_LANGUAGE_COMBINATION, LanguageCombination),
-              CXML.MakeStringFacet(ActivityMetadataFacets.FACET_LEVEL, Level),
-              CXML.MakeStringFacet(ActivityMetadataFacets.FACET_KEYWORDS, Keywords),
-              CXML.MakeStringFacet(ActivityMetadataFacets.FACET_ESTIMATED_TIME, EstimatedTimeMinutes),
-              CXML.MakeStringFacet(ActivityMetadataFacets.FACET_AUTHORS, Authors),
-              CXML.MakeStringFacet(ActivityMetadataFacets.FACET_LICENSE, License),
-              CXML.MakeStringFacet(ActivityMetadataFacets.FACET_FROM_SKILLS, FromSkills),
-              CXML.MakeStringFacet(ActivityMetadataFacets.FACET_TO_SKILLS, ToSkills),
-              CXML.MakeStringFacet(ActivityMetadataFacets.FACET_AV_SKILLS, AVSkills),
-              CXML.MakeStringFacet(ActivityMetadataFacets.FACET_RESPONSES, Responses),
-              CXML.MakeStringFacet(ActivityMetadataFacets.FACET_TASKS_REVOICING, TasksRevoicing),
-              CXML.MakeStringFacet(ActivityMetadataFacets.FACET_TASKS_CAPTIONING, TasksCaptioning),
-              CXML.MakeStringFacet(ActivityMetadataFacets.FACET_LEARNER_TYPE, LearnerType),
-              CXML.MakeStringFacet(ActivityMetadataFacets.FACET_AGE_GROUP, AgeGroup),
-              CXML.MakeStringFacet(ActivityMetadataFacets.FACET_FEEDBACK_MODE_TO_LEARNER, FeedbackModeToLearner)
-            )
-          )
-        )
-      ).Save(cxmlFilename);
+      IList<XElement> result = new List<XElement>();
+      result.Add(CXML.MakeFacetCategory(ActivityMetadataFacets.FACET_FILENAME, CXML.VALUE_STRING, isFilterVisible: false, isMetadataVisible: false, isWordWheelVisible: false));
+      result.Add(CXML.MakeFacetCategory(ActivityMetadataFacets.FACET_FOR_LEARNERS, CXML.VALUE_STRING, isFilterVisible: true, isMetadataVisible: true, isWordWheelVisible: true));
+      result.Add(CXML.MakeFacetCategory(ActivityMetadataFacets.FACET_FOR_SPEAKERS, CXML.VALUE_STRING, isFilterVisible: true, isMetadataVisible: true, isWordWheelVisible: true));
+      result.Add(CXML.MakeFacetCategory(ActivityMetadataFacets.FACET_LANGUAGE_COMBINATION, CXML.VALUE_STRING, isFilterVisible: true, isMetadataVisible: true, isWordWheelVisible: true));
+      result.Add(CXML.MakeFacetCategory(ActivityMetadataFacets.FACET_LEVEL, CXML.VALUE_STRING, isFilterVisible: true, isMetadataVisible: true, isWordWheelVisible: true));
+      result.Add(CXML.MakeFacetCategory(ActivityMetadataFacets.FACET_KEYWORDS, CXML.VALUE_STRING, isFilterVisible: true, isMetadataVisible: true, isWordWheelVisible: true));
+      result.Add(CXML.MakeFacetCategory(ActivityMetadataFacets.FACET_ESTIMATED_TIME, CXML.VALUE_STRING, isFilterVisible: true, isMetadataVisible: true, isWordWheelVisible: true));
+      result.Add(CXML.MakeFacetCategory(ActivityMetadataFacets.FACET_AUTHORS, CXML.VALUE_STRING, isFilterVisible: true, isMetadataVisible: true, isWordWheelVisible: true));
+      result.Add(CXML.MakeFacetCategory(ActivityMetadataFacets.FACET_LICENSE, CXML.VALUE_STRING, isFilterVisible: true, isMetadataVisible: true, isWordWheelVisible: true));
+      result.Add(CXML.MakeFacetCategory(ActivityMetadataFacets.FACET_FROM_SKILLS, CXML.VALUE_STRING, isFilterVisible: true, isMetadataVisible: true, isWordWheelVisible: true));
+      result.Add(CXML.MakeFacetCategory(ActivityMetadataFacets.FACET_TO_SKILLS, CXML.VALUE_STRING, isFilterVisible: true, isMetadataVisible: true, isWordWheelVisible: true));
+      result.Add(CXML.MakeFacetCategory(ActivityMetadataFacets.FACET_AV_SKILLS, CXML.VALUE_STRING, isFilterVisible: true, isMetadataVisible: true, isWordWheelVisible: true));
+      result.Add(CXML.MakeFacetCategory(ActivityMetadataFacets.FACET_RESPONSES, CXML.VALUE_STRING, isFilterVisible: true, isMetadataVisible: true, isWordWheelVisible: true));
+      result.Add(CXML.MakeFacetCategory(ActivityMetadataFacets.FACET_TASKS_REVOICING, CXML.VALUE_STRING, isFilterVisible: true, isMetadataVisible: true, isWordWheelVisible: true));
+      result.Add(CXML.MakeFacetCategory(ActivityMetadataFacets.FACET_TASKS_CAPTIONING, CXML.VALUE_STRING, isFilterVisible: true, isMetadataVisible: true, isWordWheelVisible: true));
+      result.Add(CXML.MakeFacetCategory(ActivityMetadataFacets.FACET_LEARNER_TYPE, CXML.VALUE_STRING, isFilterVisible: true, isMetadataVisible: true, isWordWheelVisible: true));
+      result.Add(MakeAgeGroupFacetCategory());
+      result.Add(CXML.MakeFacetCategory(ActivityMetadataFacets.FACET_FEEDBACK_MODE_TO_LEARNER, CXML.VALUE_STRING, isFilterVisible: true, isMetadataVisible: true, isWordWheelVisible: true));
+      return result;
     }
 
     public static XElement MakeAgeGroupFacetCategory()
@@ -191,20 +146,51 @@ namespace ClipFlair.Gallery
           new XElement(CXML.NODE_EXTENSION,
             new XElement(CXML.NODE_SORT_ORDER,
               new XAttribute(CXML.ATTRIB_NAME, ActivityMetadataFacets.FACET_AGE_GROUP),
-              
+
               new XElement(CXML.NODE_SORT_VALUE,
                 new XAttribute(CXML.ATTRIB_VALUE, "All ages")),
               new XElement(CXML.NODE_SORT_VALUE,
-                new XAttribute(CXML.ATTRIB_VALUE, "&lt; 13 years old")),
+                new XAttribute(CXML.ATTRIB_VALUE, "< 13 years old")),
               new XElement(CXML.NODE_SORT_VALUE,
                 new XAttribute(CXML.ATTRIB_VALUE, "13 - 18 years old")),
               new XElement(CXML.NODE_SORT_VALUE,
                 new XAttribute(CXML.ATTRIB_VALUE, "18 - 35 years old")),
               new XElement(CXML.NODE_SORT_VALUE,
-                new XAttribute(CXML.ATTRIB_VALUE, "&gt; 35 years old"))
+                new XAttribute(CXML.ATTRIB_VALUE, "> 35 years old"))
             )
           )
         );
+    }
+
+    public override IEnumerable<XElement> GetCXMLFacets()
+    {
+      IList<XElement> facets = new List<XElement>();
+
+      AddNonNullToList(facets, CXML.MakeStringFacet(ActivityMetadataFacets.FACET_FILENAME, Filename));
+      AddNonNullToList(facets, CXML.MakeStringFacet(ActivityMetadataFacets.FACET_FOR_LEARNERS, ForLearners));
+      AddNonNullToList(facets, CXML.MakeStringFacet(ActivityMetadataFacets.FACET_FOR_SPEAKERS, ForSpeakers));
+      AddNonNullToList(facets, CXML.MakeStringFacet(ActivityMetadataFacets.FACET_LANGUAGE_COMBINATION, LanguageCombination));
+      AddNonNullToList(facets, CXML.MakeStringFacet(ActivityMetadataFacets.FACET_LEVEL, Level));
+      AddNonNullToList(facets, CXML.MakeStringFacet(ActivityMetadataFacets.FACET_KEYWORDS, Keywords));
+      AddNonNullToList(facets, CXML.MakeStringFacet(ActivityMetadataFacets.FACET_ESTIMATED_TIME, EstimatedTimeMinutes));
+      AddNonNullToList(facets, CXML.MakeStringFacet(ActivityMetadataFacets.FACET_AUTHORS, Authors));
+      AddNonNullToList(facets, CXML.MakeStringFacet(ActivityMetadataFacets.FACET_LICENSE, License));
+      AddNonNullToList(facets, CXML.MakeStringFacet(ActivityMetadataFacets.FACET_FROM_SKILLS, FromSkills));
+      AddNonNullToList(facets, CXML.MakeStringFacet(ActivityMetadataFacets.FACET_TO_SKILLS, ToSkills));
+      AddNonNullToList(facets, CXML.MakeStringFacet(ActivityMetadataFacets.FACET_AV_SKILLS, AVSkills));
+      AddNonNullToList(facets, CXML.MakeStringFacet(ActivityMetadataFacets.FACET_RESPONSES, Responses));
+      AddNonNullToList(facets, CXML.MakeStringFacet(ActivityMetadataFacets.FACET_TASKS_REVOICING, TasksRevoicing));
+      AddNonNullToList(facets, CXML.MakeStringFacet(ActivityMetadataFacets.FACET_TASKS_CAPTIONING, TasksCaptioning));
+      AddNonNullToList(facets, CXML.MakeStringFacet(ActivityMetadataFacets.FACET_LEARNER_TYPE, LearnerType));
+      AddNonNullToList(facets, CXML.MakeStringFacet(ActivityMetadataFacets.FACET_AGE_GROUP, AgeGroup));
+      AddNonNullToList(facets, CXML.MakeStringFacet(ActivityMetadataFacets.FACET_FEEDBACK_MODE_TO_LEARNER, FeedbackModeToLearner));
+
+      return facets;
+    }
+
+    public override void Save(string cxmlFilename)
+    {
+      Save(cxmlFilename, "Collection for activity " + Filename, MakeCXMLFacetCategories(), new IMetadata[] { this });
     }
 
     #endregion

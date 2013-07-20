@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: Controls.cs
-//Version: 20130711
+//Version: 20130720
 
 using System.Collections.Generic;
 using System.Linq;
@@ -34,14 +34,14 @@ namespace ClipFlair.Gallery
 
     public static string[] GetCommaSeparated(TextBox txt)
     {
-      return txt.Text.Split(new char[] { ',' });
+      return (string.IsNullOrWhiteSpace(txt.Text))? null : txt.Text.Split(new char[] { ',' });
     }
 
     public static string[] GetSelected(CheckBoxList clist)
     {
       List<string> result = new List<string>();
       foreach (ListItem item in clist.Items)
-        if (item.Selected)
+        if (item.Selected && !string.IsNullOrWhiteSpace(item.Text))
           result.Add(item.Text);
       return result.ToArray();
     }

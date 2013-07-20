@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: CXML.cs
-//Version: 20130718
+//Version: 20130720
 
 using System;
 using System.Collections.Generic;
@@ -22,9 +22,9 @@ namespace ClipFlair.Gallery
     public static readonly XName NODE_COLLECTION = CXML.meta + "Collection";
 
     public static readonly XName NODE_FACET_CATEGORIES = CXML.meta + "FacetCategories";
-    public static readonly XName NODE_FACET_CATEGORY = "FacetCategory";
+    public static readonly XName NODE_FACET_CATEGORY = CXML.meta + "FacetCategory";
     
-    public static readonly XName NODE_EXTENSION = CXML.meta + "Extension";
+    public static readonly XName NODE_EXTENSION = "Extension";
     public static readonly XName NODE_SORT_ORDER = CXML.p + "SortOrder";
     public static readonly XName NODE_SORT_VALUE = CXML.p + "SortValue";
 
@@ -38,6 +38,7 @@ namespace ClipFlair.Gallery
 
     public static readonly XName NODE_STRING = "String";
 
+    public static readonly XName ATTRIB_ID = "Id";
     public static readonly XName ATTRIB_NAME = "Name";
     public static readonly XName ATTRIB_IMG = "Img";
     public static readonly XName ATTRIB_HREF = "Href";
@@ -129,17 +130,21 @@ namespace ClipFlair.Gallery
 
     public static XElement MakeStringFacet(string name, string value)
     {
-       return
-         new XElement(NODE_FACET,
-           new XAttribute(ATTRIB_NAME, name),
-           new XElement(NODE_STRING, 
-             new XAttribute(ATTRIB_VALUE, value)
-           )
-         );
+      if (value == null || string.IsNullOrWhiteSpace(value)) return null; //not saving empty values (note that tools like PAuthor don't support empty facets, so returning null node)
+
+      return
+        new XElement(NODE_FACET,
+          new XAttribute(ATTRIB_NAME, name),
+          new XElement(NODE_STRING,
+            new XAttribute(ATTRIB_VALUE, value)
+          )
+        );
     }
 
     public static XElement MakeStringFacet(string name, string[] values)
     {
+      if (values == null || values.Length == 0) return null; //tools like PAuthor don't support empty facets, so returning null node
+
       return
         new XElement(NODE_FACET,
           new XAttribute(ATTRIB_NAME, name),
@@ -148,6 +153,25 @@ namespace ClipFlair.Gallery
               new XAttribute(ATTRIB_VALUE, v))
           )
         );
+    }
+
+    public static XElement MakeCollection(string collectionTitle, IEnumerable<XElement> cxmlFacetCategories, IEnumerable<XElement> cxmlItems){
+      return
+      new XElement(CXML.NODE_COLLECTION,
+        new XAttribute("SchemaVersion", "1.0"),
+        new XAttribute("Name", collectionTitle),
+        new XAttribute(XNamespace.Xmlns + "xsi", CXML.xsi),
+        new XAttribute(XNamespace.Xmlns + "xsd", CXML.xsd),
+        new XAttribute(XNamespace.Xmlns + "p", CXML.p),
+
+        new XElement(CXML.NODE_FACET_CATEGORIES,
+          cxmlFacetCategories
+        ),
+
+        new XElement(CXML.NODE_ITEMS,
+          cxmlItems
+        )
+      );
     }
 
     #endregion

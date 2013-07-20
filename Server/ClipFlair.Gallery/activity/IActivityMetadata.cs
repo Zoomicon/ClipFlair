@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: IActivityMetadata.cs
-//Version: 20130718
+//Version: 20130720
 
 using System;
 using System.Xml.Linq;
@@ -13,11 +13,6 @@ namespace ClipFlair.Gallery
 
     #region --- Properties ---
 
-    string Title { get; set; }
-    string Image { get; set; }
-    Uri Url { get; set; }
-    string Description { get; set; }
-    string Filename { get; set; }
     string[] ForLearners { get; set; }
     string[] ForSpeakers { get; set; }
     string[] LanguageCombination { get; set; }
