@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: App.xaml.cs
-//Version: 20130711
+//Version: 20130726
 
 using ClipFlair.UI.Dialogs;
 using ClipFlair.Windows;
@@ -13,6 +13,7 @@ using System.Collections.Generic;
 using System.Threading;
 using System.Windows;
 using System.Windows.Browser;
+using System.Windows.Interop;
 using System.Windows.Threading;
 
 namespace ClipFlair
@@ -35,6 +36,7 @@ namespace ClipFlair
     private const string SMOOTH_STREAM_EXTENSION = ".ism/Manifest";
     private const string GALLERY_EXTENSION = ".cxml";
 
+    public const string PARAMETER_NOTOOLBAR = "notoolbar";
     public const string PARAMETER_ACTIVITY = "activity";
     public const string PARAMETER_COMPONENT = "component";
     public const string PARAMETER_MEDIA = "media";
@@ -46,6 +48,15 @@ namespace ClipFlair
     public const string PARAMETER_GALLERY = "gallery";
     public const string PARAMETER_COLLECTION = "collection";
 
+    #endregion
+
+    #region --- Fields ---
+
+    SilverlightHost silverlightHost; //The Host object, which represents the host Silverlight plug-in.
+    Settings settings; //The Settings object, which represents Web browser settings
+    Content content; // The Content object, which represents the plug-in display area.
+    IDictionary<string, string> queryString;
+ 
     #endregion
 
     public App()
@@ -62,7 +73,27 @@ namespace ClipFlair
     private void Application_Startup(object sender, StartupEventArgs e)
     {
       UpdateOOB(); //TODO: run this from background thread, seems to take some time //CALLING THIS FIRST, SINCE THE REST OF THE CODE COULD THROW AN EXCEPTION WHICH WOULD BLOCK UPDATES (AND ALSO TO MAKE USE OF THE TIME TO SET UP THE APP, SINCE UPDATING OCCURS IN THE BACKGROUND)
-    
+
+      silverlightHost = Application.Current.Host;
+      settings = silverlightHost.Settings;
+      content = silverlightHost.Content;
+
+      if (!IsRunningOutOfBrowser)
+        queryString = HtmlPage.Document.QueryString;
+
+      //// Read/write properties of the Settings object.
+      //settings.EnableFrameRateCounter = true;
+      //settings.EnableRedrawRegions = true;
+      //settings.MaxFrameRate = 60;
+
+      //// Read-only properties of the Settings object.
+      //bool windowless = settings.Windowless;
+      //bool htmlAccessEnabled = settings.EnableHTMLAccess;
+
+      //// The read/write IsFullScreen property of the Content object.
+      //// See also the Content.FullScreenChanged event.
+      //bool isFullScreen = content.IsFullScreen;
+
       FloatingWindowHost host = new FloatingWindowHost(); //don't use FloatingWindowHostZUI here
       ActivityWindow activityWindow = CreateActivityWindow(host);
 
@@ -79,21 +110,28 @@ namespace ClipFlair
 
 
       host.Rendered += (s, ev) =>
+      //content.Resized += (s, ev) => //if we use this, should use as a method so that we can remove it after 1st call
       {
         host.IsBottomBarVisible = false; //hide outer container's bottom bar, only want to show the one of the ActivityContainer that the ActivityWindow hosts
         activityWindow.Width = host.ActualWidth;
         activityWindow.Height = host.ActualHeight;
 
         if (!IsRunningOutOfBrowser)
+        {
           HtmlPage.RegisterScriptableObject("activityWindow", activityWindow); //NOTE: must do this only after setting RootVisual (obviously for Rendered to be called this will have occured)
-        
+
+          if (queryString.ContainsKey(PARAMETER_NOTOOLBAR))
+            activityWindow.ActivityView.ToolbarVisible = false;
+        }
+
         if (!ParseUrlParameters(activityWindow)) //ParseUrlParameters returns false if IsRunningOutOfBrowser is true
         {
           GalleryWindow w = activityWindow.Container.AddGallery();
           w.Width = activityWindow.Width;
-          w.Height = activityWindow.Height - 80;
+          w.Height = activityWindow.Height - (activityWindow.ActivityView.ToolbarVisible?80:0); //TODO: should change this if/when activity toolbar is made vertical (have option to get ActualWidth/ActualHeight of activity toolbar)
           activityWindow.ShowLoadURLDialog();
         }
+
       };
 
       RootVisual = host;
@@ -122,7 +160,6 @@ namespace ClipFlair
       if (IsRunningOutOfBrowser)
         return false;
 
-      IDictionary<string, string> queryString = HtmlPage.Document.QueryString;
       bool foundParam = false;
 
       if (queryString.ContainsKey(PARAMETER_ACTIVITY))
@@ -135,8 +172,8 @@ namespace ClipFlair
       {
         WaitTillNotBusy(activityWindow); //TODO: doesn't work (should wait for any activity to load first)
         MediaPlayerWindow w = new MediaPlayerWindow();
-        w.Width = 800;
-        w.Height = 600;
+        w.Width = activityWindow.Width;
+        w.Height = activityWindow.Height - (activityWindow.ActivityView.ToolbarVisible ? 80 : 0); //TODO: should change this if/when activity toolbar is made vertical (have option to get ActualWidth/ActualHeight of activity toolbar)
         activityWindow.Container.AddWindowInViewCenter(w);
         w.MediaPlayerView.Source = makeClipUri(CLIPFLAIR_GALLERY_VIDEO, queryString[PARAMETER_MEDIA]);
         foundParam = true;
@@ -146,8 +183,8 @@ namespace ClipFlair
       {
         WaitTillNotBusy(activityWindow); //TODO: doesn't work (should wait for any activity to load first)
         MediaPlayerWindow w = new MediaPlayerWindow();
-        w.Width = 800;
-        w.Height = 600;
+        w.Width = activityWindow.Width;
+        w.Height = activityWindow.Height - (activityWindow.ActivityView.ToolbarVisible ? 80 : 0); //TODO: should change this if/when activity toolbar is made vertical (have option to get ActualWidth/ActualHeight of activity toolbar)
         activityWindow.Container.AddWindowInViewCenter(w);
         w.MediaPlayerView.Source = makeClipUri(CLIPFLAIR_GALLERY_VIDEO, queryString[PARAMETER_VIDEO]);
         foundParam = true;
@@ -169,8 +206,8 @@ namespace ClipFlair
       {
         WaitTillNotBusy(activityWindow); //TODO: doesn't work (should wait for any activity to load first)
         ImageWindow w = new ImageWindow();
-        w.Width = 800;
-        w.Height = 600; 
+        w.Width = activityWindow.Width;
+        w.Height = activityWindow.Height - (activityWindow.ActivityView.ToolbarVisible ? 80 : 0); //TODO: should change this if/when activity toolbar is made vertical (have option to get ActualWidth/ActualHeight of activity toolbar)
         activityWindow.Container.AddWindowInViewCenter(w);
         w.ImageView.Source = new Uri(new Uri(CLIPFLAIR_GALLERY_IMAGE), queryString[PARAMETER_IMAGE]);
         foundParam = true;
@@ -180,8 +217,8 @@ namespace ClipFlair
       {
         WaitTillNotBusy(activityWindow); //TODO: doesn't work (should wait for any activity to load first)
         GalleryWindow w = new GalleryWindow();
-        w.Width = 800;
-        w.Height = 600;
+        w.Width = activityWindow.Width;
+        w.Height = activityWindow.Height - (activityWindow.ActivityView.ToolbarVisible ? 80 : 0); //TODO: should change this if/when activity toolbar is made vertical (have option to get ActualWidth/ActualHeight of activity toolbar)
         activityWindow.Container.AddWindowInViewCenter(w);
         w.GalleryView.Source = makeGalleryUri(queryString[PARAMETER_GALLERY]);
         foundParam = true;
@@ -191,8 +228,8 @@ namespace ClipFlair
       {
         WaitTillNotBusy(activityWindow); //TODO: doesn't work (should wait for any activity to load first)
         GalleryWindow w = new GalleryWindow();
-        w.Width = 800;
-        w.Height = 600;
+        w.Width = activityWindow.Width;
+        w.Height = activityWindow.Height - (activityWindow.ActivityView.ToolbarVisible ? 80 : 0); //TODO: should change this if/when activity toolbar is made vertical (have option to get ActualWidth/ActualHeight of activity toolbar)
         activityWindow.Container.AddWindowInViewCenter(w);
         w.GalleryView.Source = makeGalleryUri(queryString[PARAMETER_COLLECTION]);
         foundParam = true;
