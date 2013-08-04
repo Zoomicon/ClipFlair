@@ -1,4 +1,4 @@
-﻿//Version: 20120704
+﻿//Version: 20130804
 
 using System;
 using System.Collections.ObjectModel;
@@ -23,6 +23,9 @@ namespace SilverFlow.Controls
     /// </summary>
     [TemplatePart(Name = PART_Chrome, Type = typeof(FrameworkElement))]
     [TemplatePart(Name = PART_TitleContent, Type = typeof(ContentControl))]
+    [TemplatePart(Name = PART_ScreenshotButton, Type = typeof(ButtonBase))]
+    [TemplatePart(Name = PART_HelpButton, Type = typeof(ButtonBase))]
+    [TemplatePart(Name = PART_OptionsButton, Type = typeof(ButtonBase))]
     [TemplatePart(Name = PART_CloseButton, Type = typeof(ButtonBase))]
     [TemplatePart(Name = PART_ContentPresenter, Type = typeof(FrameworkElement))]
     [TemplatePart(Name = PART_ContentRoot, Type = typeof(FrameworkElement))]
@@ -34,17 +37,24 @@ namespace SilverFlow.Controls
     [TemplateVisualState(Name = VSMSTATE_StateRestored, GroupName = VSMGROUP_Window)]
     [TemplateVisualState(Name = VSMSTATE_StateNormal, GroupName = VSMGROUP_Button)]
     [StyleTypedProperty(Property = PROPERTY_TitleStyle, StyleTargetType = typeof(ContentControl))]
+    [StyleTypedProperty(Property = PROPERTY_ScreenshotButtonStyle, StyleTargetType = typeof(Button))]
+    [StyleTypedProperty(Property = PROPERTY_HelpButtonStyle, StyleTargetType = typeof(Button))]
+    [StyleTypedProperty(Property = PROPERTY_OptionsButtonStyle, StyleTargetType = typeof(Button))]
     [StyleTypedProperty(Property = PROPERTY_CloseButtonStyle, StyleTargetType = typeof(Button))]
     [StyleTypedProperty(Property = PROPERTY_MinimizeButtonStyle, StyleTargetType = typeof(Button))]
     [StyleTypedProperty(Property = PROPERTY_MaximizeButtonStyle, StyleTargetType = typeof(Button))]
     [StyleTypedProperty(Property = PROPERTY_RestoreButtonStyle, StyleTargetType = typeof(Button))]
     public class FloatingWindow : ContentControl, IResizableElement, IDisposable
     {
+
         #region Constants
 
         // Template parts
         private const string PART_Chrome = "Chrome";
         private const string PART_TitleContent = "TitleContent";
+        private const string PART_ScreenshotButton = "ScreenshotButton";
+        private const string PART_HelpButton = "HelpButton";
+        private const string PART_OptionsButton = "OptionsButton";
         private const string PART_CloseButton = "CloseButton";
         private const string PART_MaximizeButton = "MaximizeButton";
         private const string PART_RestoreButton = "RestoreButton";
@@ -67,6 +77,9 @@ namespace SilverFlow.Controls
 
         // Style typed properties
         private const string PROPERTY_TitleStyle = "TitleStyle";
+        private const string PROPERTY_ScreenshotButtonStyle = "ScreenshotButtonStyle";
+        private const string PROPERTY_HelpButtonStyle = "HelpButtonStyle";
+        private const string PROPERTY_OptionsButtonStyle = "OptionsButtonStyle";
         private const string PROPERTY_CloseButtonStyle = "CloseButtonStyle";
         private const string PROPERTY_MinimizeButtonStyle = "MinimizeButtonStyle";
         private const string PROPERTY_MaximizeButtonStyle = "MaximizeButtonStyle";
@@ -82,6 +95,127 @@ namespace SilverFlow.Controls
 
         #endregion
 
+      
+        #region public bool ShowScreenshotButton
+
+        /// <summary>
+        /// Gets or sets a value indicating whether to show Screenshot button.
+        /// </summary>
+        /// <value><c>true</c> if to show Screenshot button; otherwise, <c>false</c>.</value>
+        public bool ShowScreenshotButton
+        {
+          get { return (bool)GetValue(ShowScreenshotButtonProperty); }
+          set { SetValue(ShowScreenshotButtonProperty, value); }
+        }
+
+        /// <summary>
+        /// Identifies the <see cref="FloatingWindow.ShowScreenshotButton" /> dependency property.
+        /// </summary>
+        /// <value>
+        /// The identifier for the <see cref="FloatingWindow.ShowScreenshotButton" /> dependency property.
+        /// </value>
+        public static readonly DependencyProperty ShowScreenshotButtonProperty =
+            DependencyProperty.Register(
+            "ShowScreenshotButton",
+            typeof(bool),
+            typeof(FloatingWindow),
+            new PropertyMetadata(true, OnShowScreenshotButtonPropertyChanged));
+
+        /// <summary>
+        /// ShowScreenshotButtonProperty PropertyChangedCallback call back static function.
+        /// </summary>
+        /// <param name="d">FloatingWindow object whose ShowScreenshotButton property is changed.</param>
+        /// <param name="e">DependencyPropertyChangedEventArgs which contains the old and new values.</param>
+        private static void OnShowScreenshotButtonPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+          FloatingWindow window = (FloatingWindow)d;
+
+          if (window.screenshotButton != null)
+            window.screenshotButton.SetVisible((bool)e.NewValue);
+        }
+
+        #endregion
+
+        #region public bool ShowHelpButton
+
+        /// <summary>
+        /// Gets or sets a value indicating whether to show Help button.
+        /// </summary>
+        /// <value><c>true</c> if to show Help button; otherwise, <c>false</c>.</value>
+        public bool ShowHelpButton
+        {
+          get { return (bool)GetValue(ShowHelpButtonProperty); }
+          set { SetValue(ShowHelpButtonProperty, value); }
+        }
+
+        /// <summary>
+        /// Identifies the <see cref="FloatingWindow.ShowHelpButton" /> dependency property.
+        /// </summary>
+        /// <value>
+        /// The identifier for the <see cref="FloatingWindow.ShowHelpButton" /> dependency property.
+        /// </value>
+        public static readonly DependencyProperty ShowHelpButtonProperty =
+            DependencyProperty.Register(
+            "ShowHelpButton",
+            typeof(bool),
+            typeof(FloatingWindow),
+            new PropertyMetadata(true, OnShowHelpButtonPropertyChanged));
+
+        /// <summary>
+        /// ShowHelpButtonProperty PropertyChangedCallback call back static function.
+        /// </summary>
+        /// <param name="d">FloatingWindow object whose ShowHelpButton property is changed.</param>
+        /// <param name="e">DependencyPropertyChangedEventArgs which contains the old and new values.</param>
+        private static void OnShowHelpButtonPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+          FloatingWindow window = (FloatingWindow)d;
+
+          if (window.helpButton != null)
+            window.helpButton.SetVisible((bool)e.NewValue);
+        }
+
+        #endregion
+
+        #region public bool ShowOptionsButton
+
+        /// <summary>
+        /// Gets or sets a value indicating whether to show Options button.
+        /// </summary>
+        /// <value><c>true</c> if to show Options button; otherwise, <c>false</c>.</value>
+        public bool ShowOptionsButton
+        {
+          get { return (bool)GetValue(ShowOptionsButtonProperty); }
+          set { SetValue(ShowOptionsButtonProperty, value); }
+        }
+
+        /// <summary>
+        /// Identifies the <see cref="FloatingWindow.ShowOptionsButton" /> dependency property.
+        /// </summary>
+        /// <value>
+        /// The identifier for the <see cref="FloatingWindow.ShowOptionsButton" /> dependency property.
+        /// </value>
+        public static readonly DependencyProperty ShowOptionsButtonProperty =
+            DependencyProperty.Register(
+            "ShowOptionsButton",
+            typeof(bool),
+            typeof(FloatingWindow),
+            new PropertyMetadata(true, OnShowOptionsButtonPropertyChanged));
+
+        /// <summary>
+        /// ShowOptionsButtonProperty PropertyChangedCallback call back static function.
+        /// </summary>
+        /// <param name="d">FloatingWindow object whose ShowOptionsButton property is changed.</param>
+        /// <param name="e">DependencyPropertyChangedEventArgs which contains the old and new values.</param>
+        private static void OnShowOptionsButtonPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+          FloatingWindow window = (FloatingWindow)d;
+
+          if (window.optionsButton != null)
+            window.optionsButton.SetVisible((bool)e.NewValue);
+        }
+
+        #endregion
+      
         #region public bool ShowCloseButton
 
         /// <summary>
@@ -562,6 +696,129 @@ namespace SilverFlow.Controls
 
         #endregion
 
+        #region public Style ScreenshotButtonStyle
+
+        /// <summary>
+        /// Gets or sets the style of the Screenshot button.
+        /// </summary>
+        public Style ScreenshotButtonStyle
+        {
+          get { return GetValue(ScreenshotButtonStyleProperty) as Style; }
+          set { SetValue(ScreenshotButtonStyleProperty, value); }
+        }
+
+        /// <summary>
+        /// Identifies the <see cref="FloatingWindow.ScreenshotButtonStyleProperty" /> dependency property.
+        /// </summary>
+        public static readonly DependencyProperty ScreenshotButtonStyleProperty =
+            DependencyProperty.Register(
+                "ScreenshotButtonStyle",
+                typeof(Style),
+                typeof(FloatingWindow),
+                new PropertyMetadata(OnScreenshotButtonStylePropertyChanged));
+
+        /// <summary>
+        /// ScreenshotButtonStyle PropertyChangedCallback call back static function.
+        /// </summary>
+        /// <param name="d">FloatingWindow object whose ScreenshotButtonStyle property is changed.</param>
+        /// <param name="e">The <see cref="System.Windows.DependencyPropertyChangedEventArgs"/> instance containing the event data.</param>
+        private static void OnScreenshotButtonStylePropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+          var window = (FloatingWindow)d;
+          if (window != null)
+          {
+            Style style = e.NewValue as Style;
+            window.ScreenshotButtonStyle = style;
+
+            if (window.screenshotButton != null)
+              window.screenshotButton.Style = style;
+          }
+        }
+
+        #endregion
+
+        #region public Style HelpButtonStyle
+
+        /// <summary>
+        /// Gets or sets the style of the Help button.
+        /// </summary>
+        public Style HelpButtonStyle
+        {
+          get { return GetValue(HelpButtonStyleProperty) as Style; }
+          set { SetValue(HelpButtonStyleProperty, value); }
+        }
+
+        /// <summary>
+        /// Identifies the <see cref="FloatingWindow.HelpButtonStyleProperty" /> dependency property.
+        /// </summary>
+        public static readonly DependencyProperty HelpButtonStyleProperty =
+            DependencyProperty.Register(
+                "HelpButtonStyle",
+                typeof(Style),
+                typeof(FloatingWindow),
+                new PropertyMetadata(OnHelpButtonStylePropertyChanged));
+
+        /// <summary>
+        /// HelpButtonStyle PropertyChangedCallback call back static function.
+        /// </summary>
+        /// <param name="d">FloatingWindow object whose HelpButtonStyle property is changed.</param>
+        /// <param name="e">The <see cref="System.Windows.DependencyPropertyChangedEventArgs"/> instance containing the event data.</param>
+        private static void OnHelpButtonStylePropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+          var window = (FloatingWindow)d;
+          if (window != null)
+          {
+            Style style = e.NewValue as Style;
+            window.HelpButtonStyle = style;
+
+            if (window.helpButton != null)
+              window.helpButton.Style = style;
+          }
+        }
+
+        #endregion
+
+        #region public Style OptionsButtonStyle
+
+        /// <summary>
+        /// Gets or sets the style of the Options button.
+        /// </summary>
+        public Style OptionsButtonStyle
+        {
+          get { return GetValue(OptionsButtonStyleProperty) as Style; }
+          set { SetValue(OptionsButtonStyleProperty, value); }
+        }
+
+        /// <summary>
+        /// Identifies the <see cref="FloatingWindow.OptionsButtonStyleProperty" /> dependency property.
+        /// </summary>
+        public static readonly DependencyProperty OptionsButtonStyleProperty =
+            DependencyProperty.Register(
+                "OptionsButtonStyle",
+                typeof(Style),
+                typeof(FloatingWindow),
+                new PropertyMetadata(OnOptionsButtonStylePropertyChanged));
+
+        /// <summary>
+        /// OptionsButtonStyle PropertyChangedCallback call back static function.
+        /// </summary>
+        /// <param name="d">FloatingWindow object whose OptionsButtonStyle property is changed.</param>
+        /// <param name="e">The <see cref="System.Windows.DependencyPropertyChangedEventArgs"/> instance containing the event data.</param>
+        private static void OnOptionsButtonStylePropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+          var window = (FloatingWindow)d;
+          if (window != null)
+          {
+            Style style = e.NewValue as Style;
+            window.OptionsButtonStyle = style;
+
+            if (window.optionsButton != null)
+              window.optionsButton.Style = style;
+          }
+        }
+
+        #endregion
+
         #region public Style CloseButtonStyle
 
         /// <summary>
@@ -768,6 +1025,9 @@ namespace SilverFlow.Controls
         private ContentControl titleContent;
         private Border contentBorder;
 
+        private ButtonBase screenshotButton;
+        private ButtonBase helpButton;
+        private ButtonBase optionsButton;
         private ButtonBase closeButton;
         private ButtonBase maximizeButton;
         private ButtonBase restoreButton;
@@ -1302,6 +1562,9 @@ namespace SilverFlow.Controls
             chrome = GetTemplateChild(PART_Chrome) as FrameworkElement;
             titleContent = GetTemplateChild(PART_TitleContent) as ContentControl;
             contentPresenter = GetTemplateChild(PART_ContentPresenter) as FrameworkElement;
+            screenshotButton = GetTemplateChild(PART_ScreenshotButton) as ButtonBase;
+            helpButton = GetTemplateChild(PART_HelpButton) as ButtonBase;
+            optionsButton = GetTemplateChild(PART_OptionsButton) as ButtonBase;
             closeButton = GetTemplateChild(PART_CloseButton) as ButtonBase;
             maximizeButton = GetTemplateChild(PART_MaximizeButton) as ButtonBase;
             minimizeButton = GetTemplateChild(PART_MinimizeButton) as ButtonBase;
