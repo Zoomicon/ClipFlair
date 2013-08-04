@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: IMetadata.cs
-//Version: 20130720
+//Version: 20130725
 
 using System;
 using System.Xml.Linq;
@@ -18,7 +18,11 @@ namespace ClipFlair.Gallery
     string Image { get; set; }
     Uri Url { get; set; }
     string Description { get; set; }
+
+    //Facets//
     string Filename { get; set; }
+    string[] Keywords { get; set; }
+    string License { get; set; }
 
     #endregion
 

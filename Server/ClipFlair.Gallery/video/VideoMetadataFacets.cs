@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: VideoMetadataFacets.cs
-//Version: 20130711
+//Version: 20130725
 
 using System;
 
@@ -9,7 +9,6 @@ namespace ClipFlair.Gallery
 
   public static class VideoMetadataFacets
   {
-    public const string FACET_FILENAME = "Filename";
     public const string FACET_AUDIO_LANGUAGE = "Audio language";
     public const string FACET_CAPTIONS_LANGUAGE = "Captions language (on the clip)";
     public const string FACET_GENRE = "Genre";
@@ -18,7 +17,6 @@ namespace ClipFlair.Gallery
     public const string FACET_AUDIOVISUAL_RICHNESS = "Audiovisual richness";
     public const string FACET_PEDAGOGICAL_ADAPTABILITY = "Pedagogical adaptability";
     public const string FACET_AUTHOR_SOURCE = "Author / Source";
-    public const string FACET_LICENSE = "License";
   }
 
 }
