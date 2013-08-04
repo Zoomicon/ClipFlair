@@ -1,12 +1,9 @@
-﻿using System;
-using System.Net;
+﻿//Version: 20130804
+
+using System;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Documents;
-using System.Windows.Ink;
-using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 using System.Windows.Media.Effects;
 using System.Windows.Media.Imaging;
@@ -15,7 +12,7 @@ namespace SilverTextEditor
 {
     //Derives from the abstract class ContextMenu that provides the boilerplate code for displaying a popup window. 
 
-    public class RTBContextMenu : ContextMenu
+    public class RTBContextMenu : ContextMenu //TODO: replace this with more standard Silverlight popup control?
     {
         RichTextBox rtb;
 
