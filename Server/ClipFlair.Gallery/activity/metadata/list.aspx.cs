@@ -1,14 +1,11 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: list.aspx.cs
-//Version: 20130720
+//Version: 20130727
 
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.ComponentModel;
 using System.IO;
 using System.Web;
-using System.Web.UI.WebControls;
 
 namespace ClipFlair.Gallery
 {
@@ -67,16 +64,18 @@ namespace ClipFlair.Gallery
     public void DisplayMetadata(string key, IActivityMetadata metadata)
     {
       UI.LoadTextBox(txtTitle, metadata.Title);
-      UI.LoadTextBox(txtUrl, (metadata.Url != null) ? metadata.Url.ToString() : "http://studio.clipflair.net/?activity=" + key);
+      UI.LoadHyperlink(linkUrl, new Uri("http://studio.clipflair.net/?activity=" + key));
       UI.LoadTextBox(txtDescription, metadata.Description);
+
+      UI.LoadTextBox(txtKeywords, metadata.Keywords);
+      UI.LoadTextBox(txtLicense, metadata.License);
+
       UI.LoadCheckBoxList(clistForLearners, metadata.ForLearners);
       UI.LoadCheckBoxList(clistForSpeakers, metadata.ForSpeakers);
       UI.LoadCheckBoxList(clistLanguageCombination, metadata.LanguageCombination);
       UI.LoadCheckBoxList(clistLevel, metadata.Level);
-      UI.LoadTextBox(txtKeywords, metadata.Keywords);
       UI.LoadTextBox(txtEstimatedTime, metadata.EstimatedTimeMinutes);
       UI.LoadTextBox(txtAuthors, metadata.Authors);
-      UI.LoadTextBox(txtLicense, metadata.License);
       UI.LoadCheckBoxList(clistFromSkills, metadata.FromSkills);
       UI.LoadCheckBoxList(clistToSkills, metadata.ToSkills);
       UI.LoadCheckBoxList(clistAVSkills, metadata.AVSkills);
@@ -98,17 +97,18 @@ namespace ClipFlair.Gallery
 
       metadata.Title = txtTitle.Text;
       metadata.Image = "../activity/image/" + key + ".png";
-      metadata.Url = new Uri(txtUrl.Text);
+      metadata.Url = new Uri("http://studio.clipflair.net/?activity=" + key);
       metadata.Description = txtDescription.Text;
       metadata.Filename = key;
+      metadata.Keywords = UI.GetCommaSeparated(txtKeywords);
+      metadata.License = txtLicense.Text;
+      
       metadata.ForLearners = UI.GetSelected(clistForLearners);
       metadata.ForSpeakers = UI.GetSelected(clistForSpeakers);
       metadata.LanguageCombination = UI.GetSelected(clistLanguageCombination);
       metadata.Level = UI.GetSelected(clistLevel);
-      metadata.Keywords = UI.GetCommaSeparated(txtKeywords);
       metadata.EstimatedTimeMinutes = txtEstimatedTime.Text;
       metadata.Authors = UI.GetCommaSeparated(txtAuthors);
-      metadata.License = txtLicense.Text;
       metadata.FromSkills = UI.GetSelected(clistFromSkills);
       metadata.ToSkills = UI.GetSelected(clistToSkills);
       metadata.AVSkills = UI.GetSelected(clistAVSkills);
@@ -123,7 +123,7 @@ namespace ClipFlair.Gallery
 
     protected void btnSave_Click(object sender, EventArgs e)
     {
-      SaveMetadata();
+      DoSave();
     }
 
     public override void Merge()

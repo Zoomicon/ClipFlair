@@ -5,7 +5,7 @@
 <!--
 Project: ClipFlair (http://ClipFlair.codeplex.com)
 Filename: list.aspx
-Version: 20130715
+Version: 20130727
 -->
 
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -61,6 +61,9 @@ Version: 20130715
           DataTextField="Foldername" DataValueField="Foldername" 
           OnSelectedIndexChanged="listItems_SelectedIndexChanged"
           />
+
+        <div class="label">Url</div>
+        <asp:HyperLink ID="linkUrl" runat="server" Target="_blank"/>
       </div>
 
       <div>
@@ -69,16 +72,9 @@ Version: 20130715
       </div>
 
       <div>
-        <div class="label">Url</div>
-        <asp:TextBox ID="txtUrl" runat="server" Columns="150" ReadOnly="True"></asp:TextBox>
-      </div>
-      
-      <div>
         <div class="label">Description</div>
         <asp:TextBox ID="txtDescription" runat="server" TextMode="MultiLine" Rows="5" Columns="110" />
       </div>
-
-      <hr />
 
       <div>
         <div class="label">Audio language</div>
@@ -92,8 +88,6 @@ Version: 20130715
          </asp:Panel>
       </div>
 
-      <hr />
-
       <div>
         <div class="label">Captions language (on the clip)</div>
         <asp:Panel runat="server" 
@@ -104,8 +98,6 @@ Version: 20130715
             DataSourceID="xmlLanguage" DataTextField="Value" DataValueField="Value" />
          </asp:Panel>
       </div>
-
-      <hr />
 
       <div>
         <div class="label">Genre</div>
@@ -118,20 +110,14 @@ Version: 20130715
          </asp:Panel>
       </div>
 
-      <hr />
-      
       <div class="label">
         <asp:CheckBox ID="cbAgeRestricted" runat="server" Text="Age Restricted (18+)" />
       </div>
       
-      <hr />
-
       <div>
         <div class="label">Duration (hh:mm:ss)</div>
         <asp:TextBox ID="txtDuration" runat="server"></asp:TextBox>
       </div>
-
-      <hr />
 
       <div>
         <div class="label">Audiovisual richness</div>
@@ -144,27 +130,24 @@ Version: 20130715
          </asp:Panel>
       </div>
 
-      <hr />
-      
       <div class="label">
         <asp:CheckBox ID="cbPedagogicalAdaptability" runat="server" Text="Pedagogical Adaptability" />
       </div>
-
-      <hr />
 
       <div>
         <div class="label">Author / Source</div>
         <asp:TextBox ID="txtAuthorSource" runat="server" Columns="150"></asp:TextBox>
       </div>
 
-      <hr />
-
+      <div>
+        <div class="label">Keywords (comma-separated)</div>
+        <asp:TextBox ID="txtKeywords" runat="server" Columns="150"></asp:TextBox>
+      </div>
+      
       <div>
         <div class="label">License</div>
         <asp:TextBox ID="txtLicense" runat="server" Columns="150"></asp:TextBox>
       </div>
-
-      <hr />
 
       <div>
         <asp:Button ID="btnSave" runat="server"

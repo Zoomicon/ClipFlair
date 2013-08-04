@@ -51,6 +51,7 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="activity\Default.aspx" />
     <Content Include="activity\metadata\AgeGroup.xml">
       <SubType>Designer</SubType>
     </Content>
@@ -80,6 +81,7 @@
     </Content>
     <Content Include="activity\metadata\Language.xml" />
     <Content Include="activity\metadata\list.aspx" />
+    <Content Include="video\Default.aspx" />
     <Content Include="video\metadata\Genre.xml">
       <SubType>Designer</SubType>
     </Content>
@@ -111,6 +113,7 @@
     <Compile Include="IMetadata.cs" />
     <Compile Include="UI.cs" />
     <Compile Include="BaseMetadata.cs" />
+    <Compile Include="MetadataFacets.cs" />
     <Compile Include="video\VideoMetadataFacets.cs" />
     <Compile Include="video\VideoMetadata.cs" />
     <Compile Include="CXML.cs" />

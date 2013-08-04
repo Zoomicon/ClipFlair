@@ -1,7 +1,8 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: Controls.cs
-//Version: 20130720
+//Version: 20130727
 
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.UI.WebControls;
@@ -25,6 +26,13 @@ namespace ClipFlair.Gallery
     public static void LoadTextBox(TextBox textbox, string value)
     {
       textbox.Text = value;
+    }
+
+    public static void LoadHyperlink(HyperLink hyperlink, Uri url)
+    {
+      string s = url.ToString();
+      hyperlink.Text = s;
+      hyperlink.NavigateUrl = s;
     }
 
     public static void LoadTextBox(TextBox textbox, string[] values)

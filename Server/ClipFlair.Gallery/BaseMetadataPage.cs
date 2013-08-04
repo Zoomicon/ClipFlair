@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: list.aspx.cs
-//Version: 20130720
+//Version: 20130727
 
 using System;
 using System.Collections.Generic;
@@ -61,6 +61,14 @@ namespace ClipFlair.Gallery
     #endregion
 
     #region --- Save ---
+
+    protected void DoSave()
+    {
+      SaveMetadata();
+      /**/
+      Merge();
+      UpdateSelection(); //must do after merge (else will show metadata of last item on page controls), but anyway should do to check that the metadata was saved OK
+    }
 
     protected void SaveMetadata()
     {

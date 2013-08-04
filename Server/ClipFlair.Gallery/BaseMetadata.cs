@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: BaseMetadtata.cs
-//Version: 20130720
+//Version: 20130725
 
 using System;
 using System.Collections.Generic;
@@ -21,7 +21,11 @@ namespace ClipFlair.Gallery
     public string Image { get; set; }
     public Uri Url { get; set; }
     public string Description { get; set; }
+    
+    //Facets//
     public string Filename { get; set; }
+    public string[] Keywords { get; set; }
+    public string License { get; set; }
 
     #endregion
 
@@ -90,8 +94,19 @@ namespace ClipFlair.Gallery
           )
         );
     }
-    
-    public abstract void Clear();
+
+    public virtual void Clear()
+    {
+      Title = "";
+      Image = "";
+      Url = null;
+      Description = "";
+      //
+      Filename = "";
+      Keywords = new string[] { };
+      License = "";
+    }
+
     public abstract IMetadata Load(string key, XDocument doc);
     public abstract IEnumerable<XElement> GetCXMLFacets();
     public abstract void Save(string cxmlFilename);

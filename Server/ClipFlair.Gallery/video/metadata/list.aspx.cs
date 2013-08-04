@@ -1,13 +1,11 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: list.aspx.cs
-//Version: 20130720
+//Version: 20130727
 
 using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Web;
-using System.Web.UI.WebControls;
 
 namespace ClipFlair.Gallery
 {
@@ -70,8 +68,12 @@ namespace ClipFlair.Gallery
     public void DisplayMetadata(string key, IVideoMetadata metadata)
     {
       UI.LoadTextBox(txtTitle, metadata.Title);
-      UI.LoadTextBox(txtUrl, (metadata.Url != null)? metadata.Url.ToString() : "http://studio.clipflair.net/?video=" + key);
+      UI.LoadHyperlink(linkUrl, new Uri("http://studio.clipflair.net/?video=" + key));
       UI.LoadTextBox(txtDescription, metadata.Description);
+
+      UI.LoadTextBox(txtKeywords, metadata.Keywords);
+      UI.LoadTextBox(txtLicense, metadata.License);
+
       UI.LoadCheckBoxList(clistAudioLanguage, metadata.AudioLanguage);
       UI.LoadCheckBoxList(clistCaptionsLanguage, metadata.CaptionsLanguage);
       UI.LoadCheckBoxList(clistGenre, metadata.Genre);
@@ -80,7 +82,6 @@ namespace ClipFlair.Gallery
       UI.LoadCheckBoxList(clistAudiovisualRichness, metadata.AudiovisualRichness);
       UI.LoadCheckBox(cbPedagogicalAdaptability, metadata.PedagogicalAdaptability);
       UI.LoadTextBox(txtAuthorSource, metadata.AuthorSource);
-      UI.LoadTextBox(txtLicense, metadata.License);
     }
 
     #endregion
@@ -93,9 +94,12 @@ namespace ClipFlair.Gallery
 
       metadata.Title = txtTitle.Text;
       metadata.Image = "../video/" + key + "/" + key + "_thumb.jpg";
-      metadata.Url = new Uri(txtUrl.Text);
+      metadata.Url = new Uri("http://studio.clipflair.net/?video=" + key);
       metadata.Description = txtDescription.Text;
       metadata.Filename = key;
+
+      metadata.License = txtLicense.Text;
+
       metadata.AudioLanguage = UI.GetSelected(clistAudioLanguage);
       metadata.CaptionsLanguage = UI.GetSelected(clistCaptionsLanguage);
       metadata.Genre = UI.GetSelected(clistGenre);
@@ -104,13 +108,12 @@ namespace ClipFlair.Gallery
       metadata.AudiovisualRichness = UI.GetSelected(clistAudiovisualRichness);
       metadata.PedagogicalAdaptability = cbPedagogicalAdaptability.Checked;
       metadata.AuthorSource = txtAuthorSource.Text;
-      metadata.License = txtLicense.Text;
       return metadata;
     }
 
     protected void btnSave_Click(object sender, EventArgs e)
     {
-      SaveMetadata();
+      DoSave();
     }
 
     public override void Merge()

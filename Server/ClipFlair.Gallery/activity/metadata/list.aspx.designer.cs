@@ -130,6 +130,15 @@ namespace ClipFlair.Gallery {
         protected global::System.Web.UI.WebControls.DropDownList listItems;
         
         /// <summary>
+        /// linkUrl control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink linkUrl;
+        
+        /// <summary>
         /// txtTitle control.
         /// </summary>
         /// <remarks>
@@ -137,15 +146,6 @@ namespace ClipFlair.Gallery {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtTitle;
-        
-        /// <summary>
-        /// txtUrl control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtUrl;
         
         /// <summary>
         /// txtDescription control.
@@ -193,15 +193,6 @@ namespace ClipFlair.Gallery {
         protected global::System.Web.UI.WebControls.CheckBoxList clistLevel;
         
         /// <summary>
-        /// txtKeywords control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtKeywords;
-        
-        /// <summary>
         /// txtEstimatedTime control.
         /// </summary>
         /// <remarks>
@@ -218,15 +209,6 @@ namespace ClipFlair.Gallery {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtAuthors;
-        
-        /// <summary>
-        /// txtLicense control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtLicense;
         
         /// <summary>
         /// clistFromSkills control.
@@ -308,6 +290,24 @@ namespace ClipFlair.Gallery {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtFeedbackModeToLearner;
+        
+        /// <summary>
+        /// txtKeywords control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtKeywords;
+        
+        /// <summary>
+        /// txtLicense control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtLicense;
         
         /// <summary>
         /// btnSave control.

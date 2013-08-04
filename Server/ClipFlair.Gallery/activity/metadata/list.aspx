@@ -5,7 +5,7 @@
 <!--
 Project: ClipFlair (http://ClipFlair.codeplex.com)
 Filename: list.aspx
-Version: 20130715
+Version: 20130727
 -->
 
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -70,6 +70,11 @@ Version: 20130715
           DataTextField="Filename" DataValueField="Filename"
           OnSelectedIndexChanged="listItems_SelectedIndexChanged"
           />
+
+        <br />
+
+        <div class="label">Url</div>
+        <asp:HyperLink ID="linkUrl" runat="server" Target="_blank"/>
       </div>
 
       <div>
@@ -78,25 +83,9 @@ Version: 20130715
       </div>
 
       <div>
-        <div class="label">Url</div>
-        <asp:TextBox ID="txtUrl" runat="server" Columns="150" ReadOnly="True"></asp:TextBox>
+        <div class="label">Description (What, How, Why)</div>
+        <asp:TextBox ID="txtDescription" runat="server" TextMode="MultiLine" Rows="5" Columns="100"/>
       </div>
-
-      <div>
-        <div class="label">Description</div>
-        <asp:TextBox ID="txtDescription" runat="server" TextMode="MultiLine" Rows="5" Columns="100">
-        What:
-        ...
-
-        Why:
-        ...
-
-        How:
-        ...
-        </asp:TextBox>
-      </div>
-
-      <hr />
 
       <div>
         <div class="label">For learners of</div>
@@ -110,8 +99,6 @@ Version: 20130715
          </asp:Panel>
       </div>
 
-      <hr />
-
       <div>
         <div class="label">For speakers of</div>
         <asp:Panel runat="server" 
@@ -123,8 +110,6 @@ Version: 20130715
          </asp:Panel>
       </div>
 
-      <hr />
-
       <div>
         <div class="label">Language combination</div>
         <asp:Panel runat="server" 
@@ -135,8 +120,6 @@ Version: 20130715
             DataSourceID="xmlLanguageCombination" DataTextField="Value" DataValueField="Value" />
          </asp:Panel>
       </div>
-
-      <hr />
 
       <div>
         <div class="label">Level</div>
@@ -150,38 +133,17 @@ Version: 20130715
             />
          </asp:Panel>
       </div>
-      
-      <hr />
-      
-      <div>
-        <div class="label">Keywords (comma-separated)</div>
-        <asp:TextBox ID="txtKeywords" runat="server" Columns="150"></asp:TextBox>
-      </div>
-      
-      <hr />
-
+     
       <div>
         <div class="label">Estimated time (minutes)</div>
         <asp:TextBox ID="txtEstimatedTime" runat="server"></asp:TextBox>
       </div> <!-- TODO: add validator for integer -->
 
-      <hr />
-
       <div>
         <div class="label">Authors (comma-separated)</div>
         <asp:TextBox ID="txtAuthors" runat="server" Columns="150"></asp:TextBox>
       </div>
-
-      <hr />
-      
-
-      <div>
-        <div class="label">License</div>
-        <asp:TextBox ID="txtLicense" runat="server" Columns="150" Text="CC BY-SA 3.0"></asp:TextBox>
-      </div>
-
-      <hr />
-
+     
       <div>
         <div class="label">From skills</div>
         <asp:Panel runat="server" 
@@ -192,8 +154,6 @@ Version: 20130715
             DataSourceID="xmlFromSkills" DataTextField="Value" DataValueField="Value" />
          </asp:Panel>
       </div>
-
-      <hr />
 
       <div>
         <div class="label">To skills</div>
@@ -206,8 +166,6 @@ Version: 20130715
          </asp:Panel>
       </div>
 
-      <hr />
-
       <div>
         <div class="label">AV skills</div>
         <asp:Panel runat="server" 
@@ -218,9 +176,7 @@ Version: 20130715
             DataSourceID="xmlAVSkills" DataTextField="Value" DataValueField="Value" />
          </asp:Panel>
       </div>
-
-      <hr />
-      
+     
       <div>
         <div class="label">Responses</div>
         <asp:Panel runat="server" 
@@ -231,9 +187,7 @@ Version: 20130715
             DataSourceID="xmlResponses" DataTextField="Value" DataValueField="Value" />
          </asp:Panel>
       </div>
-
-      <hr />
-      
+    
       <div>
         <div class="label">Tasks - Revoicing</div>
         <asp:Panel runat="server" 
@@ -244,9 +198,7 @@ Version: 20130715
             DataSourceID="xmlTasksRevoicing" DataTextField="Value" DataValueField="Value" />
          </asp:Panel>
       </div>
-      
-      <hr />
-      
+     
       <div>
         <div class="label">Tasks - Captioning</div>
         <asp:Panel runat="server" 
@@ -257,9 +209,7 @@ Version: 20130715
             DataSourceID="xmlTasksCaptioning" DataTextField="Value" DataValueField="Value" />
          </asp:Panel>
       </div>
-      
-      <hr />
-      
+     
       <div>
         <div class="label">Learner type</div>
         <asp:Panel runat="server" 
@@ -270,9 +220,7 @@ Version: 20130715
             DataSourceID="xmlLearnerType" DataTextField="Value" DataValueField="Value" />
          </asp:Panel>
       </div>
-      
-      <hr />
-      
+
       <div>
         <div class="label">Age group</div>
         <asp:Panel runat="server" 
@@ -284,14 +232,20 @@ Version: 20130715
          </asp:Panel>
       </div>
       
-      <hr />
-      
       <div>
         <div class="label">Feedback mode to learner</div>
         <asp:TextBox ID="txtFeedbackModeToLearner" runat="server" Columns="150"></asp:TextBox>
       </div>
       
-      <hr /> 
+      <div>
+        <div class="label">Keywords (comma-separated)</div>
+        <asp:TextBox ID="txtKeywords" runat="server" Columns="150"></asp:TextBox>
+      </div>
+
+      <div>
+        <div class="label">License</div>
+        <asp:TextBox ID="txtLicense" runat="server" Columns="150" Text="CC BY-SA 3.0"></asp:TextBox>
+      </div>
            
       <div>
         <asp:Button ID="btnSave" runat="server"

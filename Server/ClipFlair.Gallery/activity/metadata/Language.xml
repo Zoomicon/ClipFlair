@@ -3,11 +3,12 @@
 <!--
 Project: ClipFlair (http://ClipFlair.codeplex.com)
 Filename: Language.xml
-Version: 20130718
+Version: 20130722
 -->
 
 <Facet Name="Language">
   <String Value="Any language" />
+  <String Value="Arabic" />
   <String Value="Basque" />
   <String Value="Catalan" />
   <String Value="Chinese" />

@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: IVideoMetadata.cs
-//Version: 20130720
+//Version: 20130725
 
 using System;
 using System.Xml.Linq;
@@ -21,7 +21,6 @@ namespace ClipFlair.Gallery
     string[] AudiovisualRichness { get; set; }
     bool PedagogicalAdaptability { get; set; }
     string AuthorSource { get; set; }
-    string License { get; set; }
 
     #endregion
 
