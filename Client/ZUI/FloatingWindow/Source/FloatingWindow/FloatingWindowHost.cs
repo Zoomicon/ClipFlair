@@ -1,5 +1,5 @@
 ﻿//Filename: FloatingWindowHost.cs
-//Version: 20130508
+//Version: 20130804
 
 using System;
 using System.Collections.Generic;
@@ -14,6 +14,10 @@ using System.Collections.Specialized;
 using System.Windows.Markup;
 
 using SilverFlow.Controls.Extensions;
+
+#if SILVERLIGHT
+using ExitEventArgs = System.EventArgs;
+#endif
 
 namespace SilverFlow.Controls
 {
@@ -1105,8 +1109,8 @@ namespace SilverFlow.Controls
         /// </summary>
         private void SubscribeToEvents()
         {
-            if (Application.Current != null)
-              Application.Current.Exit += new EventHandler(Application_Exit);
+          if (Application.Current != null)
+            Application.Current.Exit += Application_Exit;
 
             this.AddHandler(MouseLeftButtonDownEvent, new MouseButtonEventHandler(FloatingWindowHost_MouseLeftButtonDown), true); //also grab handled events (to hide the window bar)
             this.LayoutUpdated += new EventHandler(FloatingWindowHost_LayoutUpdated);
@@ -1215,7 +1219,14 @@ namespace SilverFlow.Controls
         /// <param name="window">The window.</param>
         private void SetFocusToActiveWindow(FloatingWindow window)
         {
-          if (window != null && !window.TopMost && !window.IsVisualAncestorOf((DependencyObject)FocusManager.GetFocusedElement())) //checking if child control has the focus and not steal it from it
+          if (window != null && !window.TopMost 
+              && !window.IsVisualAncestorOf(
+#if SILVERLIGHT
+                (DependencyObject)FocusManager.GetFocusedElement()
+#else
+                (DependencyObject)Keyboard.FocusedElement
+#endif
+              )) //checking if child control has the focus and not steal it from it
                 window.Focus();
         }
 
@@ -1320,7 +1331,7 @@ namespace SilverFlow.Controls
         /// </summary>
         /// <param name="sender">The sender.</param>
         /// <param name="e">Event args.</param>
-        private void Application_Exit(object sender, EventArgs e)
+        private void Application_Exit(object sender, ExitEventArgs e)
         {
           CloseAllWindows(); //FloatingWindows expect FloatingWindowHost to close them at App exit
         }

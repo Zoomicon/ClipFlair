@@ -1,5 +1,5 @@
 ﻿//Filename: BitmapHelper.cs
-//Version: 20130508
+//Version: 20130804
 
 using System;
 using System.Globalization;
@@ -14,7 +14,9 @@ using SilverFlow.Controls.Extensions;
 
 using WPFCompatibility;
 
+#if SILVERLIGHT
 using FluxJpeg.Core;
+#endif
 
 namespace SilverFlow.Controls.Helpers
 {
@@ -110,7 +112,9 @@ namespace SilverFlow.Controls.Helpers
             return bitmap;
         }
 
-        public void SaveToJPEG(WriteableBitmap bitmap, Stream stream)
+#if SILVERLIGHT
+
+        private FluxJpeg.Core.Image WriteableBitmapToFJCoreImage(WriteableBitmap bitmap)
         {
           int width = bitmap.PixelWidth;
           int height = bitmap.PixelHeight;
@@ -132,22 +136,21 @@ namespace SilverFlow.Controls.Helpers
             }
 
           ColorModel model = new ColorModel { colorspace = ColorSpace.RGB };
-          FluxJpeg.Core.Image img = new FluxJpeg.Core.Image(model, raster);
+          return new FluxJpeg.Core.Image(model, raster);
+        }     
 
-          //Encode the Image as a JPEG
-          //MemoryStream stream = new MemoryStream();
-          FluxJpeg.Core.Encoder.JpegEncoder encoder = new FluxJpeg.Core.Encoder.JpegEncoder(img, 100, stream);
+#endif
+
+        public void SaveToJPEG(WriteableBitmap bitmap, Stream stream)
+        {
+#if SILVERLIGHT
+          FluxJpeg.Core.Encoder.JpegEncoder encoder = new FluxJpeg.Core.Encoder.JpegEncoder(WriteableBitmapToFJCoreImage(bitmap), 100, stream);
           encoder.Encode();
-
-          /*
-          //Back to the start
-          stream.Seek(0, SeekOrigin.Begin);
-
-          //Get the Bytes and write them to the stream
-          byte[] binaryData = new Byte[stream.Length];
-          long bytesRead = stream.Read(binaryData, 0, (int)stream.Length);
-          fs.Write(binaryData, 0, binaryData.Length);
-          */
+#else
+          JpegBitmapEncoder encoder = new JpegBitmapEncoder();
+          encoder.Frames.Add(BitmapFrame.Create(bitmap));
+          encoder.Save(stream);
+#endif
         }
         
     }

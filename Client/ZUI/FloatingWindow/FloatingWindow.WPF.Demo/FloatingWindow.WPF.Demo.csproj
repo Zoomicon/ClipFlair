@@ -179,12 +179,6 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\FloatingWindow.WPF\FloatingWindow.WPF.csproj">
-      <Project>{7C67AC53-E3BC-4482-8DFB-4CBAA644D280}</Project>
-      <Name>FloatingWindow.WPF</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.0,Profile=Client">
       <Visible>False</Visible>
       <ProductName>Microsoft .NET Framework 4 Client Profile %28x86 and x64%29</ProductName>
@@ -205,6 +199,12 @@
       <ProductName>Windows Installer 3.1</ProductName>
       <Install>true</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\FloatingWindow.WPF\FloatingWindow.WPF.csproj">
+      <Project>{7C67AC53-E3BC-4482-8DFB-4CBAA644D280}</Project>
+      <Name>FloatingWindow.WPF</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

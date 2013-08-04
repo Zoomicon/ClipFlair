@@ -1,5 +1,5 @@
 ﻿//Filename: ControlExtensions.cs
-//Version: 20121130
+//Version: 20130804
 
 using System;
 using System.Linq;
@@ -7,6 +7,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Media3D;
 
 using System.Collections.Generic;
 
@@ -260,6 +261,9 @@ namespace SilverFlow.Controls.Extensions
     public static bool IsVisualDescendentOf(this DependencyObject element, DependencyObject ancestor)
     {
       if (element == null) return false;
+#if !SILVERLIGHT
+      if (!(element is Visual) && !(element is Visual3D)) return false;
+#endif
       DependencyObject parent = VisualTreeHelper.GetParent(element);
       return (parent == ancestor) || IsVisualDescendentOf(parent, ancestor);
     }
@@ -271,7 +275,11 @@ namespace SilverFlow.Controls.Extensions
 
     public static bool IsFocused(this DependencyObject control)
     {
-      return FocusManager.GetFocusedElement() == control;
+#if SILVERLIGHT
+      return FocusManager.GetFocusedElement() == control; //In Silverlight 5, passing an element parameter value that is not of type Window will result in a returned value of null according to http://msdn.microsoft.com/en-us/library/ms604088(v=vs.95).aspx
+#else
+      return Keyboard.FocusedElement == control;
+#endif
     }
 
   }

@@ -1,6 +1,6 @@
 ﻿<!--
   Filename: generic.xaml 
-  Version: 20130701
+  Version: 20130804
 -->
 
 <ResourceDictionary
@@ -510,8 +510,10 @@
             <Grid.RenderTransform>
               <CompositeTransform/>
             </Grid.RenderTransform>
+            
             <VisualStateManager.VisualStateGroups>
               <VisualStateGroup x:Name="WindowStates">
+                
                 <VisualState x:Name="Open">
                   <Storyboard>
                     <DoubleAnimationUsingKeyFrames BeginTime="0" Storyboard.TargetName="ContentRoot" Storyboard.TargetProperty="Opacity">
@@ -527,6 +529,7 @@
                     </ObjectAnimationUsingKeyFrames>
                   </Storyboard>
                 </VisualState>
+                
                 <VisualState x:Name="Closed">
                   <Storyboard>
                     <DoubleAnimationUsingKeyFrames BeginTime="0" Storyboard.TargetName="ContentRoot" Storyboard.TargetProperty="Opacity">
@@ -535,6 +538,7 @@
                     </DoubleAnimationUsingKeyFrames>
                   </Storyboard>
                 </VisualState>
+                
                 <VisualState x:Name="Minimized">
                   <Storyboard>
                     <PointAnimation Duration="0" To="0,1" Storyboard.TargetProperty="(UIElement.RenderTransformOrigin)" Storyboard.TargetName="ContentRoot" />
@@ -559,6 +563,7 @@
                     </ObjectAnimationUsingKeyFrames>
                   </Storyboard>
                 </VisualState>
+            
                 <VisualState x:Name="Restored">
                   <Storyboard>
                     <PointAnimation Duration="0" To="0,1" Storyboard.TargetProperty="(UIElement.RenderTransformOrigin)" Storyboard.TargetName="ContentRoot" />
@@ -585,11 +590,17 @@
                 </VisualState>
               </VisualStateGroup>
             </VisualStateManager.VisualStateGroups>
+            
             <Grid x:Name="ContentRoot" HorizontalAlignment="{TemplateBinding HorizontalAlignment}" VerticalAlignment="{TemplateBinding VerticalAlignment}" 
                 RenderTransformOrigin="0,0" Height="{TemplateBinding Height}" Width="{TemplateBinding Width}">
+  
+        <!-- Removed: this causes all Grid content to be non h/w accelerated. See workarround at:
+             http://www.pitorque.de/MisterGoodcat/post/Silverlight-Fixing-the-BookShelf-Sample.aspx
+             
               <Grid.Effect>
                 <DropShadowEffect ShadowDepth="0.5" Opacity="0.35" BlurRadius="12" />
               </Grid.Effect>
+         -->
               <Grid.RenderTransform>
                 <TransformGroup>
                   <ScaleTransform />
