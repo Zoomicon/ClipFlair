@@ -1,6 +1,6 @@
 ﻿<!--
 Filename: SilverTextEditor.xaml
-Version: 20130701
+Version: 20130804
 -->
 
 <UserControl x:Class="SilverTextEditor.SilverTextEditor"
@@ -357,15 +357,14 @@ Version: 20130701
         </toolkit:WrapPanel>
 
         <Grid Name="RTBGrid" Grid.Row="1">
-          <!--
+
+          <!-- //Note: this is the correct way to cast a shadow, to use a Grid and overlapping controls, not use a Border arround the control with effect, since the content in it won't be h/w accelerated then (can use a Border or Rectangle etc. under the h/w accelerated control instead)
           <Rectangle Fill="White" Margin="0,1,1,0">
             <Rectangle.Effect>
               <DropShadowEffect ShadowDepth="1" Direction="371" BlurRadius="7" Opacity="0.345"/>
             </Rectangle.Effect>
           </Rectangle>
- -->
-
-          <!-- TODO: see http://stackoverflow.com/questions/8930841/change-togglebtn:ImageButton-image-when-clicked-silverlight on how to use two images in XAML for toggle btn:ImageButtons or make custom toggle btn:ImageButton that accepts two images -->
+          -->
 
           <RichTextBox x:Name="rtb" 
                        AllowDrop="True" 
