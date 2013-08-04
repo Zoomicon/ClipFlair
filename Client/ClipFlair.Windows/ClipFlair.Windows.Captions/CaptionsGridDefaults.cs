@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: CaptionsGridDefaults.cs
-//Version: 20130606
+//Version: 20130725
 
 using Microsoft.SilverlightMediaFramework.Core.Accessibility.Captions;
 
@@ -19,7 +19,7 @@ namespace ClipFlair.Windows.Views
     public const double DefaultWidth = 600;
     public const double DefaultHeight = 400;
 
-    public const double DefaultWidth_Revoicing = 300;
+    public const double DefaultWidth_Revoicing = 330;
     
     #endregion
 

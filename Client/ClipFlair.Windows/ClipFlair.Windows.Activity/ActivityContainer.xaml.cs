@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: ActivityContainer.xaml.cs
-//Version: 20130621
+//Version: 20130725
 
 //TODO: add ContentPartsCloseable property
 //TODO: add ContentPartsZoomable property
