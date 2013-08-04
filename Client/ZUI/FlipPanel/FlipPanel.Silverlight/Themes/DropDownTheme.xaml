@@ -1,6 +1,6 @@
 ﻿<!-- 
 Filename: DropDownTheme.xaml
-Version: 20130704
+Version: 20130804
 -->
 
 <ResourceDictionary
@@ -25,10 +25,10 @@ Version: 20130704
             <Storyboard>
               <DoubleAnimation Storyboard.TargetName="BackContentTransform"
                        Storyboard.TargetProperty="ScaleY" To="0" Duration="0:0:0"></DoubleAnimation>
-
+<!--
               <DoubleAnimation Storyboard.TargetName="BackContentEffect" 
                        Storyboard.TargetProperty="Radius" To="30" Duration="0:0:0"></DoubleAnimation>
-
+-->
             </Storyboard>
           </VisualState>
 
@@ -36,10 +36,10 @@ Version: 20130704
             <Storyboard>
               <DoubleAnimation Storyboard.TargetName="FrontContentTransform"
                        Storyboard.TargetProperty="ScaleY" To="0" Duration="0:0:0"></DoubleAnimation>
-
+<!--
               <DoubleAnimation Storyboard.TargetName="FrontContentEffect" 
                        Storyboard.TargetProperty="Radius" To="30" Duration="0:0:0"></DoubleAnimation>
-
+-->
             </Storyboard>
           </VisualState>
         </VisualStateGroup>
@@ -60,11 +60,12 @@ Version: 20130704
         <Border.RenderTransform>
           <ScaleTransform x:Name="FrontContentTransform"></ScaleTransform>
         </Border.RenderTransform>
-
+        
+<!-- //Note: removed, causes content to not be h/w accelerated
         <Border.Effect>
           <BlurEffect x:Name="FrontContentEffect" Radius="0"></BlurEffect>
         </Border.Effect>
-
+-->
         <ContentPresenter Content="{TemplateBinding FrontContent}" 
                           HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                           VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
@@ -84,10 +85,11 @@ Version: 20130704
           <ScaleTransform x:Name="BackContentTransform"></ScaleTransform>
         </Border.RenderTransform>
 
+<!-- //Note: removed, causes content to not be h/w accelerated
         <Border.Effect>
           <BlurEffect x:Name="BackContentEffect" Radius="0"></BlurEffect>
         </Border.Effect>
-
+-->
         <ContentPresenter Content="{TemplateBinding BackContent}"
                           HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                           VerticalAlignment="{TemplateBinding VerticalContentAlignment}"                          
