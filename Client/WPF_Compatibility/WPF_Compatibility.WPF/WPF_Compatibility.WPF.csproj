@@ -91,6 +91,7 @@
     <Compile Include="..\Source\WPF_DesignerProperties.cs">
       <Link>WPF_DesignerProperties.cs</Link>
     </Compile>
+    <Compile Include="..\Source\WPF_ExitEventArgs.cs" />
     <Compile Include="..\Source\WPF_Rect.cs">
       <Link>WPF_Rect.cs</Link>
     </Compile>
