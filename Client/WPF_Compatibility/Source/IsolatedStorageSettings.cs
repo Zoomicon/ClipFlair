@@ -64,7 +64,11 @@ namespace System.IO.IsolatedStorage {
 
       using (IsolatedStorageFileStream fs = isf.OpenFile (LocalSettings, FileMode.Open)) {
         using (StreamReader sr = new StreamReader (fs)) {
-          DataContractSerializer reader = new DataContractSerializer (typeof (Dictionary<string, object>));
+          DataContractSerializer reader = new DataContractSerializer(typeof(Dictionary<string, object>)
+            #if !SILVERLIGHT
+            , new Type[]{typeof(System.Windows.Point), typeof(System.Windows.Size)}
+            #endif
+            );
           try {
             settings = (Dictionary<string, object>) reader.ReadObject (fs);
           } catch (Xml.XmlException) {
@@ -160,8 +164,12 @@ namespace System.IO.IsolatedStorage {
     public void Save()
     {
       using (IsolatedStorageFileStream fs = container.CreateFile (LocalSettings)) {
-        DataContractSerializer ser = new DataContractSerializer (settings.GetType());
-        ser.WriteObject (fs, settings);
+        DataContractSerializer ser = new DataContractSerializer (settings.GetType()
+          #if !SILVERLIGHT
+          , new Type[]{typeof(System.Windows.Point), typeof(System.Windows.Size)}
+          #endif
+          );
+        ser.WriteObject(fs, settings);
       }
     }
 
