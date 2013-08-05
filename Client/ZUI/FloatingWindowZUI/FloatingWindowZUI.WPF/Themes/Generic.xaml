@@ -1,0 +1,150 @@
+﻿<!-- 
+Filename: Generic.xaml
+Version: 20130805
+-->
+  
+<ResourceDictionary
+  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+  xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk" 
+  xmlns:controls="clr-namespace:SilverFlow.Controls;assembly=SilverFlow.Controls"    
+  xmlns:helpers="clr-namespace:SilverFlow.Controls.Helpers;assembly=SilverFlow.Controls"    
+  xmlns:zoom="clr-namespace:ZoomAndPan;assembly=ZoomAndPan"
+  xmlns:zui="clr-namespace:FloatingWindowZUI"
+  xmlns:utils="clr-namespace:System.Windows.Controls;assembly=PresentationFramework"
+  xmlns:btn="clr-namespace:ImageButtons;assembly=ImageButtons"
+  >
+
+  <ResourceDictionary.MergedDictionaries>
+    <ResourceDictionary Source="/SilverFlow.Controls;component/Themes/Generic.xaml"/>
+  </ResourceDictionary.MergedDictionaries>
+
+  <utils:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+
+  <!-- <helpers:BitmapHelper x:Key="BitmapHelper" Width="100" Height="100"/> -->
+
+  <ControlTemplate x:Key="FloatingWindowHostZUI_DefaultTemplate" TargetType="zui:FloatingWindowHostZUI">
+    <Grid x:Name="PART_Root" 
+          Background="{TemplateBinding Background}" 
+          Width="{TemplateBinding Width}" Height="{TemplateBinding Height}">
+
+      <VisualStateManager.VisualStateGroups>
+        <VisualStateGroup x:Name="OverlayStates">
+          <VisualState x:Name="VisibleOverlay">
+            <Storyboard>
+              <DoubleAnimationUsingKeyFrames BeginTime="0" Storyboard.TargetName="PART_Overlay" Storyboard.TargetProperty="Opacity">
+                <SplineDoubleKeyFrame KeyTime="0:0:0.3" Value="1"/>
+              </DoubleAnimationUsingKeyFrames>
+              <ObjectAnimationUsingKeyFrames Duration="0" Storyboard.TargetName="PART_Overlay" Storyboard.TargetProperty="Visibility">
+                <DiscreteObjectKeyFrame KeyTime="0">
+                  <DiscreteObjectKeyFrame.Value>
+                    <Visibility>Visible</Visibility>
+                  </DiscreteObjectKeyFrame.Value>
+                </DiscreteObjectKeyFrame>
+              </ObjectAnimationUsingKeyFrames>
+            </Storyboard>
+          </VisualState>
+          <VisualState x:Name="HiddenOverlay">
+            <Storyboard>
+              <DoubleAnimationUsingKeyFrames BeginTime="0" Storyboard.TargetName="PART_Overlay" Storyboard.TargetProperty="Opacity">
+                <SplineDoubleKeyFrame KeyTime="0:0:0.3" Value="0"/>
+              </DoubleAnimationUsingKeyFrames>
+              <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Overlay" Storyboard.TargetProperty="Visibility">
+                <DiscreteObjectKeyFrame KeyTime="0:0:0.3">
+                  <DiscreteObjectKeyFrame.Value>
+                    <Visibility>Collapsed</Visibility>
+                  </DiscreteObjectKeyFrame.Value>
+                </DiscreteObjectKeyFrame>
+              </ObjectAnimationUsingKeyFrames>
+            </Storyboard>
+          </VisualState>
+        </VisualStateGroup>
+      </VisualStateManager.VisualStateGroups>
+
+      <Grid x:Name="PART_ContentRoot">
+        <Grid.RowDefinitions>
+          <RowDefinition Height="*" />
+          <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <ScrollViewer Grid.Row="0" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" >
+          <zoom:ZoomAndPanControl Name="PART_ZoomHost" 
+            ContentScalable="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=ContentScalable, Mode=TwoWay}" 
+            ContentScale="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=ContentScale, Mode=TwoWay}" 
+            MinContentScale="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=MinContentScale, Mode=TwoWay}" 
+            MaxContentScale="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=MaxContentScale, Mode=TwoWay}"
+            >
+            <Canvas Width="5000" Height="5000" x:Name="PART_HostCanvas" /> <!-- TODO: ViewMaxWidth and ViewMaxHeight should be configurable using a TemplateBinding and respective FloatingWindowHostZUI properties -->
+          </zoom:ZoomAndPanControl>
+        </ScrollViewer>
+
+        <!-- <Image Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="100" Height="100" Source="{Binding ElementName=PART_HostCanvas, Converter={StaticResource BitmapHelper}, Mode=OneWay}"/> -->
+
+        <Grid x:Name="PART_IconBarContainer" VerticalAlignment="Bottom">
+          <zui:IconBarZUI x:Name="PART_IconBar"/>
+        </Grid>
+
+        <Border x:Name="PART_BottomBar" Grid.Row="1" Style="{StaticResource BottomBarStyle}">
+          <Grid>
+            <Grid.ColumnDefinitions>
+              <ColumnDefinition Width="Auto" />
+              <ColumnDefinition Width="Auto" />
+              <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <controls:BootstrapButton Grid.Column="0" Visibility="Collapsed" x:Name="PART_BootstrapButton" Style="{StaticResource BootstrapButtonStyle}"
+                    Margin="10,-4,10,0" IsOpen="{Binding IsOpen, ElementName=PART_IconBar}" />
+
+            <StackPanel
+              Grid.Column="1"
+              Orientation="Horizontal"
+              Visibility="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=ContentScalable, Converter={StaticResource BooleanToVisibilityConverter}}">
+             
+              <btn:ImageButton x:Name="PART_ZoomToFitButton"
+                 ToolTipService.ToolTip="Zoom to Fit"
+                 Image="/FloatingWindowZUI;component/Images/ZoomToFit.png"
+                 ImageHover="/FloatingWindowZUI;component/Images/ZoomToFit_hover.png"
+                 Margin="4,0,2,0"
+                 />
+              
+              <Slider x:Name="PART_ZoomSlider"
+                      Cursor="Hand"
+                      Minimum="{TemplateBinding MinContentScale}" Maximum="{TemplateBinding MaxContentScale}"
+                      SmallChange="0.1" LargeChange="0.5"
+                      Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=ContentScale, Mode=TwoWay}"
+                      Width="150"
+                      ToolTipService.ToolTip="Zoom"
+                      />
+              
+            </StackPanel>
+
+            <Border Grid.Column="2">
+              <ContentControl x:Name="PART_BarContent" Content="{TemplateBinding Bar}" 
+                                                        VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch" />
+            </Border>
+          </Grid>
+        </Border>
+      </Grid>
+
+      <Grid x:Name="PART_Overlay" Background="{TemplateBinding OverlayBrush}" Opacity="0" Visibility="Collapsed" />
+      
+      <Canvas x:Name="PART_ModalCanvas" />
+      
+    </Grid>
+  </ControlTemplate>
+
+  <Style TargetType="zui:FloatingWindowHostZUI">
+    <Setter Property="Width" Value="Auto" />
+    <Setter Property="Height" Value="Auto" />
+    <Setter Property="SnapinEnabled" Value="True" />
+    <Setter Property="SnapinDistance" Value="5" />
+    <Setter Property="SnapinMargin" Value="0" />
+    <Setter Property="ShowMinimizedOnlyInIconbar" Value="False" />
+    <Setter Property="HorizontalAlignment" Value="Stretch" />
+    <Setter Property="VerticalAlignment" Value="Stretch" />
+    <Setter Property="OverlayBrush" Value="#90202030" />
+    <Setter Property="Background" Value="#FF7ED2E9" />
+    <Setter Property="Template" Value="{StaticResource FloatingWindowHostZUI_DefaultTemplate}" />
+  </Style>
+
+</ResourceDictionary>

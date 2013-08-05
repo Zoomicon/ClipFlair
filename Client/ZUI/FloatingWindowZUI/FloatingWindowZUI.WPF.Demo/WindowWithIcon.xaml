@@ -3,12 +3,11 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:my="clr-namespace:SilverFlow.Controls;assembly=SilverFlow.Controls"
-             IconText="Window's Icon"
-             Title="Window with Icon"
-             Width="250" Height="200"
-             >
+             xmlns:my1="clr-namespace:FloatingWindowWPF"
+             IconText="Window's Icon" Title="Window with Icon"
+    Width="250" Height="200">
 
-    <my:FloatingWindow.Icon>
+    <my:FloatingWindow.Icon >
         <Image Source="Images/computer.png" Width="48" Height="48"></Image>
     </my:FloatingWindow.Icon>
 

@@ -1,4 +1,6 @@
-﻿using System;
+﻿//Version: 20130805
+
+using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Globalization;
@@ -414,7 +416,7 @@ namespace SilverFlow.Controls
         /// </summary>
         /// <param name="sender">The source of the event.</param>
         /// <param name="e">The <see cref="System.Windows.RoutedEventArgs"/> instance containing the event data.</param>
-        private void Icon_Click(object sender, RoutedEventArgs e)
+        protected virtual void Icon_Click(object sender, RoutedEventArgs e)
         {
             WindowIcon icon = sender as WindowIcon;
 

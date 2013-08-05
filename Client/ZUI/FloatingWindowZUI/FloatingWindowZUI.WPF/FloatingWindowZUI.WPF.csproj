@@ -3,21 +3,17 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.30729</ProductVersion>
+    <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{468ADEDE-6F5E-40C0-99C9-C6DAC4FAC934}</ProjectGuid>
+    <ProjectGuid>{B467CD19-5D56-46FF-B3CA-10FE778F36E9}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ZoomAndPan</RootNamespace>
-    <AssemblyName>ZoomAndPan</AssemblyName>
+    <RootNamespace>FloatingWindowZUI</RootNamespace>
+    <AssemblyName>FloatingWindowZUI</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <FileUpgradeFlags>
-    </FileUpgradeFlags>
-    <OldToolsVersion>3.5</OldToolsVersion>
-    <UpgradeBackupLocation />
+    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
     <IsWebBootstrapper>false</IsWebBootstrapper>
-    <TargetFrameworkProfile />
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -41,7 +37,6 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -50,48 +45,31 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="PresentationCore">
-      <RequiredTargetFramework>3.0</RequiredTargetFramework>
-    </Reference>
-    <Reference Include="PresentationFramework">
-      <RequiredTargetFramework>3.0</RequiredTargetFramework>
-    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
     <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Xaml" />
-    <Reference Include="WindowsBase">
-      <RequiredTargetFramework>3.0</RequiredTargetFramework>
-    </Reference>
+    <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\Source\AnimationHelper.cs">
-      <Link>AnimationHelper.cs</Link>
+    <Compile Include="..\Source\FloatingWindowHostZUI.cs">
+      <Link>FloatingWindowHostZUI.cs</Link>
     </Compile>
-    <Compile Include="..\Source\MouseHandlingMode.cs">
-      <Link>MouseHandlingMode.cs</Link>
-    </Compile>
-    <Compile Include="..\Source\ZoomAndPanControl.cs">
-      <Link>ZoomAndPanControl.cs</Link>
-    </Compile>
-    <Compile Include="..\Source\ZoomAndPanControl_IScrollInfo.cs">
-      <Link>ZoomAndPanControl_IScrollInfo.cs</Link>
-    </Compile>
-    <Compile Include="..\Source\ZoomAndPanControl_Mouse.cs">
-      <Link>ZoomAndPanControl_Mouse.cs</Link>
+    <Compile Include="..\Source\IconBarZUI.cs">
+      <Link>IconBarZUI.cs</Link>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Page Include="Themes\Generic.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-  </ItemGroup>
-  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.0,Profile=Client">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4 Client Profile %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
       <Visible>False</Visible>
       <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
@@ -100,7 +78,7 @@
     <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
       <Visible>False</Visible>
       <ProductName>.NET Framework 3.5 SP1</ProductName>
-      <Install>true</Install>
+      <Install>false</Install>
     </BootstrapperPackage>
     <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
       <Visible>False</Visible>
@@ -109,9 +87,38 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="..\Images\ZoomToFit.png">
+      <Link>Images\ZoomToFit.png</Link>
+    </Resource>
+    <Resource Include="..\Images\ZoomToFit_hover.png">
+      <Link>Images\ZoomToFit_hover.png</Link>
+    </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="FloatingWindowZUI.cd" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="Themes\Generic.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\..\..\WPF_Compatibility\WPF_Compatibility.WPF\WPF_Compatibility.WPF.csproj">
       <Project>{DC154E89-74E8-4ADC-95B5-0772CA254F71}</Project>
       <Name>WPF_Compatibility.WPF</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\FloatingWindow\FloatingWindow.WPF\FloatingWindow.WPF.csproj">
+      <Project>{7C67AC53-E3BC-4482-8DFB-4CBAA644D280}</Project>
+      <Name>FloatingWindow.WPF</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\ImageButtons\ImageButtons.WPF\ImageButtons.WPF.csproj">
+      <Project>{5BB0F96D-2B5F-409C-9782-434B12E06600}</Project>
+      <Name>ImageButtons.WPF</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\ZoomAndPan\ZoomAndPan.WPF\ZoomAndPan.WPF.csproj">
+      <Project>{468ADEDE-6F5E-40C0-99C9-C6DAC4FAC934}</Project>
+      <Name>ZoomAndPan.WPF</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

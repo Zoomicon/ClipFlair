@@ -4,12 +4,12 @@ Version: 20121004
 -->
   
 <UserControl x:Class="FloatingWindowZUI.Demo.MainPage"
-	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d" 
+  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d" 
   xmlns:d="http://schemas.microsoft.com/expression/blend/2008" d:DesignHeight="495" d:DesignWidth="631"             
-	xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk"
-	xmlns:my="clr-namespace:SilverFlow.Controls;assembly=SilverFlow.Controls"               
+  xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk"
+  xmlns:my="clr-namespace:SilverFlow.Controls;assembly=SilverFlow.Controls"               
   xmlns:zui="clr-namespace:FloatingWindowZUI;assembly=FloatingWindowZUI" 
   xmlns:zoom="clr-namespace:ZoomAndPan;assembly=ZoomAndPan"
   xmlns:local="clr-namespace:FloatingWindowZUI.Demo"
@@ -44,16 +44,16 @@ Version: 20121004
         </LinearGradientBrush>
       </Border.Background>
       <TextBlock Margin="12,0,0,0" Text="FloatingWindowZUI" FontSize="12" 
-				VerticalAlignment="Center" HorizontalAlignment="Left" FontWeight="Bold">
-				<TextBlock.Effect>
-					<DropShadowEffect Color="White" BlurRadius="1" ShadowDepth="1"/>
-				</TextBlock.Effect>
-				<TextBlock.Foreground>
-					<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-						<GradientStop Color="#FFB292DA"/>
-						<GradientStop Color="#FF292929" Offset="1"/>
-					</LinearGradientBrush>
-				</TextBlock.Foreground>
+        VerticalAlignment="Center" HorizontalAlignment="Left" FontWeight="Bold">
+        <TextBlock.Effect>
+          <DropShadowEffect Color="White" BlurRadius="1" ShadowDepth="1"/>
+        </TextBlock.Effect>
+        <TextBlock.Foreground>
+          <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+            <GradientStop Color="#FFB292DA"/>
+            <GradientStop Color="#FF292929" Offset="1"/>
+          </LinearGradientBrush>
+        </TextBlock.Foreground>
       </TextBlock>
     </Border>
     <Grid x:Name="MainPageLayoutRoot" Grid.Row="1">
@@ -91,7 +91,7 @@ Version: 20121004
                 <HyperlinkButton Content="Hide IconBar" Click="HideIconbar_Click" Style="{StaticResource LinkStyle}" />
                 <HyperlinkButton Content="Close all windows" Click="CloseWindows_Click" Style="{StaticResource LinkStyle}" />
                 <HyperlinkButton Content="Download source code" Foreground="#FFFFD0D0" Margin="0,10,0,0" IsTabStop="False" FontStyle="Italic" 
-	                                     NavigateUri="http://clipflair.codeplex.com/SourceControl/list/changesets" />
+                                       NavigateUri="http://clipflair.codeplex.com/SourceControl/list/changesets" />
               </StackPanel>
             </Border>
             <TextBlock Text="Settings" Foreground="White" Margin="0,20,0,0" FontWeight="Bold" />
@@ -113,13 +113,10 @@ Version: 20121004
 
               <TextBlock VerticalAlignment="Center" Grid.Row="1" Grid.Column="0" Margin="2,0,10,0" Foreground="#FFD0D0D0">Snapin Margin</TextBlock>
               <TextBox Name="txtSnapinMargin" Grid.Row="1" Grid.Column="1" Width="25" MaxLength="2" Text="0" Background="WhiteSmoke" Margin="1" Height="22" />
-
-              <TextBlock VerticalAlignment="Center" Grid.Row="2" Grid.Column="0" Margin="2,0,10,0" Foreground="#FFD0D0D0">Zoom</TextBlock>
-              <Slider Name="sldZoom" Grid.Row="2" Grid.Column="1" Width="100" Margin="1" Height="22" Value="2" Minimum="0.1" Maximum="3" SmallChange="1" LargeChange="1" ValueChanged="sldZoom_ValueChanged"/>
             </Grid>
           </StackPanel>
           <HyperlinkButton VerticalAlignment="Bottom" Grid.Row="1" Content="ClipFlair.codeplex.com" Foreground="#FFFFD0D0" Margin="0,0,0,10" IsTabStop="False" FontStyle="Italic" 
-	                                 NavigateUri="http://clipflair.codeplex.com/" TargetName="_blank">
+                                   NavigateUri="http://clipflair.codeplex.com/" TargetName="_blank">
             <HyperlinkButton.Effect>
               <DropShadowEffect Opacity="0.4" ShadowDepth="3" BlurRadius="4"/>
             </HyperlinkButton.Effect>
@@ -128,10 +125,10 @@ Version: 20121004
       </Border>
 
       <zui:FloatingWindowHostZUI x:Name="host" Grid.Column="2" MinWidth="100"
-	                               SnapinEnabled="{Binding ElementName=cbxEnableSnapin, Path=IsChecked}"
-	                               SnapinDistance="{Binding ElementName=txtSnapinDistance, Path=Text}"
-	                               SnapinMargin="{Binding ElementName=txtSnapinMargin, Path=Text}"
-	                               ShowMinimizedOnlyInIconbar="{Binding ElementName=cbxShowMinimized, Path=IsChecked}"
+                                 SnapinEnabled="{Binding ElementName=cbxEnableSnapin, Path=IsChecked}"
+                                 SnapinDistance="{Binding ElementName=txtSnapinDistance, Path=Text}"
+                                 SnapinMargin="{Binding ElementName=txtSnapinMargin, Path=Text}"
+                                 ShowMinimizedOnlyInIconbar="{Binding ElementName=cbxShowMinimized, Path=IsChecked}"
                                  ContentScale="{Binding ElementName=sldScale, Path=Value}"
                                  MinContentScale="{Binding ElementName=sldScale, Path=Minimum}"
                                  MaxContentScale="{Binding ElementName=sldScale, Path=Maximum}"                                 

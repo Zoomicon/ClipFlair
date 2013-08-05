@@ -1,5 +1,5 @@
 //Filename: FloatingWindow.cs
-//Version: 201306703
+//Version: 20130805
 
 using System;
 using System.IO;
@@ -52,6 +52,7 @@ namespace SilverFlow.Controls
     [StyleTypedProperty(Property = PROPERTY_RestoreButtonStyle, StyleTargetType = typeof(Button))]
     public class FloatingWindow : ContentControl, IResizableElement, IDisposable
     {
+
         #region Constants
 
         // Template parts
@@ -741,9 +742,9 @@ namespace SilverFlow.Controls
             new PropertyMetadata(true));
 
         #endregion
-   
-/* //COMMENTED OUT (think new Silverlight versions have Flow property anyway)
-        #region public FlowDirection
+
+/*
+        #region FlowDirection
 
         /// <summary>
         /// Gets or sets the direction that title text flows within window's icon.
@@ -1126,6 +1127,9 @@ namespace SilverFlow.Controls
 
         private Storyboard openingStoryboard;
         private Storyboard closingStoryboard;
+        private Storyboard maximizingStoryboard;
+        private Storyboard restoringStoryboard;
+        private Storyboard restoreMaximizedStoryboard;
         private Storyboard inertialMotionStoryboard;
 
         private FrameworkElement root;
@@ -1382,8 +1386,11 @@ namespace SilverFlow.Controls
         {
             get
             {
-                return new Point((HostPanel.ActualWidth - ActualWidth.ValueOrZero()) / 2, (HostPanel.ActualHeight - ActualHeight.ValueOrZero()) / 2); //Birbilis: using ActualWidth/ActualHeight to cater for any applied ScaleTransform
-            }
+ //             return new Point((HostPanel.ActualWidth - ActualWidth.ValueOrZero()) / 2, (HostPanel.ActualHeight - ActualHeight.ValueOrZero()) / 2); //using ActualWidth/ActualHeight to cater for any applied ScaleTransform
+ //             return new Point((HostPanel.ActualWidth - Width * Scale) / 2, (HostPanel.ActualHeight - Height * Scale) / 2); //using ActualWidth/ActualHeight to cater for any applied ScaleTransform
+                Point parentCenter = this.FloatingWindowHost.ViewCenter;
+                return new Point(parentCenter.X - Width / 2 * Scale, parentCenter.Y - Height / 2 * Scale);
+            } //TODO: need to have some flag on whether Window is allowed to be placed out of container bounds and if not use Max(...,0) to make negative values to 0
         }
 
         #endregion Properties
@@ -1443,7 +1450,7 @@ namespace SilverFlow.Controls
             CheckHost();
             Action<Point> action = new Action<Point>(ShowWindow);
             this.FloatingWindowHost.ShowWindow(action, (centered)? new Point(point.X - Width/2 * Scale, point.Y - Height/2 * Scale) : point); 
-        }
+         }
 
         /// <summary>
         /// Shows a <see cref="FloatingWindow"/> at maximal size taking into account
@@ -1500,8 +1507,8 @@ namespace SilverFlow.Controls
             }
             else
             {
-              MoveWindow(point);
-              this.SetVisible(true);
+                MoveWindow(point);
+                this.SetVisible(true);
             }
         }
 
@@ -1588,7 +1595,8 @@ namespace SilverFlow.Controls
         /// <param name="e">Event args.</param>
         private void Application_Exit(object sender, EventArgs e)
         {
-          isAppExit = true; //expecting FloatingWindowHost to close its hosted FloatingWindows, do not call Close here expliclity, since then Close handlers of FloatingWindows may get called at any order by the App which will cause problems if the FloatingWindowHost is also hosted in a FloatingWindow (nesting)
+          isAppExit = true; //expecting FloatingWindowHost to close its hosted FloatingWindows
+          //Do not call Close here expliclity, since then Close handlers of FloatingWindows may get called at any order by the App which will cause problems if the FloatingWindowHost is also hosted in a FloatingWindow (nesting)
         }
 
         /// <summary>
@@ -1844,6 +1852,12 @@ namespace SilverFlow.Controls
 
                 if (inertialMotionStoryboard == null)
                     inertialMotionStoryboard = new Storyboard();
+
+                if (maximizingStoryboard == null)
+                    maximizingStoryboard = new Storyboard();
+
+                if (restoreMaximizedStoryboard == null)
+                    restoreMaximizedStoryboard = new Storyboard();
             }
         }
 
@@ -1982,7 +1996,7 @@ namespace SilverFlow.Controls
 
             Dispose();
         }
-      
+
         /// <summary>
         /// Raises the <see cref="FloatingWindow.Closing" /> event.
         /// </summary>
@@ -2032,6 +2046,7 @@ namespace SilverFlow.Controls
         /// </summary>
         protected virtual void OnOpened()
         {
+#if SILVERLIGHT
             if (!Focus())
             {
                 // If the Focus() fails it means there is no focusable element in the window.
@@ -2039,6 +2054,13 @@ namespace SilverFlow.Controls
                 IsTabStop = true;
                 Focus();
             }
+#else
+            Focus();
+
+            // Set focus to the first focusable element in the window
+            TraversalRequest request = new TraversalRequest(FocusNavigationDirection.First);
+            this.MoveFocus(request);
+#endif
         }
 
         /// <summary>
@@ -2062,7 +2084,7 @@ namespace SilverFlow.Controls
         private void SubscribeToEvents()
         {
             if (Application.Current != null)
-                Application.Current.Exit += new EventHandler(Application_Exit);
+                Application.Current.Exit += Application_Exit;
 
             if (this.FloatingWindowHost != null)
             {
@@ -2082,7 +2104,12 @@ namespace SilverFlow.Controls
         private void FloatingWindow_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             // Gets the element with keyboard focus
-            Control elementWithFocus = FocusManager.GetFocusedElement() as Control;
+            Control elementWithFocus =
+                #if SILVERLIGHT
+                FocusManager.GetFocusedElement() as Control;
+                #else
+                Keyboard.FocusedElement as Control;
+                #endif
 
             // Brings current window to the front
             SetTopmost(); //TODO: add property AutoBringToFront (default true) to select whether we want it to be brought to front automatically
@@ -2136,7 +2163,7 @@ namespace SilverFlow.Controls
         private void UnSubscribeFromEvents()
         {
             if (Application.Current != null)
-                Application.Current.Exit -= new EventHandler(Application_Exit);
+                Application.Current.Exit -= Application_Exit;
 
             if (this.FloatingWindowHost != null)
             {
