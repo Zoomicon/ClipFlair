@@ -1,5 +1,5 @@
 ﻿//Filename: FloatingWindowHostZUI.cs
-//Version: 20130204
+//Version: 20130805
 
 using SilverFlow.Controls;
 using SilverFlow.Controls.Extensions;
@@ -312,6 +312,15 @@ namespace FloatingWindowZUI
     #endregion
 
     //---------------------------------------------------------------------//
+
+    /// <summary>
+    /// Gets the current view center
+    /// </summary>
+    /// <returns>The view center</returns>
+    public override Point ViewCenter
+    {
+      get { return new Point(ZoomHost.ContentOffsetX + ZoomHost.ContentViewportWidth / 2, ZoomHost.ContentOffsetY + ZoomHost.ContentViewportHeight / 2); }
+    }
 
     public override Rect MaximizedWindowBounds
     {

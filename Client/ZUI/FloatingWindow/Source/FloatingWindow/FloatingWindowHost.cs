@@ -1,5 +1,5 @@
 ﻿//Filename: FloatingWindowHost.cs
-//Version: 20130804
+//Version: 20130805
 
 using System;
 using System.Collections.Generic;
@@ -789,6 +789,15 @@ namespace SilverFlow.Controls
         #endregion Events
 
         /// <summary>
+        /// Gets the current view center
+        /// </summary>
+        /// <returns>The view center</returns>
+        public virtual Point ViewCenter
+        {
+          get { return new Point(HostPanel.ActualWidth / 2, HostPanel.ActualHeight / 2); }
+        }
+      
+        /// <summary>
         /// Adds the specified floating window to the collection of child elements of the host.
         /// </summary>
         /// <param name="window">The floating window.</param>
@@ -1221,11 +1230,11 @@ namespace SilverFlow.Controls
         {
           if (window != null && !window.TopMost 
               && !window.IsVisualAncestorOf(
-#if SILVERLIGHT
+                #if SILVERLIGHT
                 (DependencyObject)FocusManager.GetFocusedElement()
-#else
+                #else
                 (DependencyObject)Keyboard.FocusedElement
-#endif
+                #endif
               )) //checking if child control has the focus and not steal it from it
                 window.Focus();
         }
@@ -1367,5 +1376,6 @@ namespace SilverFlow.Controls
 
             return part;
         }
+
     }
 }

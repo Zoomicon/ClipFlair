@@ -1,6 +1,7 @@
-﻿//Version: 20130804
+﻿//Version: 20130805
 
 using System;
+using System.IO;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
@@ -10,10 +11,18 @@ using System.Windows.Controls.Primitives;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
+using System.Windows.Media.Imaging;
+
 using SilverFlow.Controls.Controllers;
 using SilverFlow.Controls.Enums;
 using SilverFlow.Controls.Extensions;
 using SilverFlow.Controls.Helpers;
+
+#if !Silverlight
+using Microsoft.Win32; //for SaveFileDialog
+#endif
+
+using WPFCompatibility;
 
 namespace SilverFlow.Controls
 {
@@ -95,7 +104,6 @@ namespace SilverFlow.Controls
 
         #endregion
 
-      
         #region public bool ShowScreenshotButton
 
         /// <summary>
@@ -215,7 +223,7 @@ namespace SilverFlow.Controls
         }
 
         #endregion
-      
+
         #region public bool ShowCloseButton
 
         /// <summary>
@@ -490,7 +498,34 @@ namespace SilverFlow.Controls
             "TitleBackground",
             typeof(Brush),
             typeof(FloatingWindow),
-            new PropertyMetadata(new SolidColorBrush(Colors.Transparent), null));
+            new PropertyMetadata(new SolidColorBrush(Colors.Transparent)));
+
+        #endregion
+
+        #region public bool MoveEnabled
+
+        /// <summary>
+        /// Gets or sets a value indicating whether moving is enabled.
+        /// </summary>
+        /// <value><c>true</c> if moving is enabled; otherwise, <c>false</c>.</value>
+        public bool MoveEnabled
+        {
+          get { return (bool)GetValue(MoveEnabledProperty); }
+          set { SetValue(MoveEnabledProperty, value); }
+        }
+
+        /// <summary>
+        /// Identifies the <see cref="FloatingWindow.MoveEnabled" /> dependency property.
+        /// </summary>
+        /// <value>
+        /// The identifier for the <see cref="FloatingWindow.MoveEnabled" /> dependency property.
+        /// </value>
+        public static readonly DependencyProperty MoveEnabledProperty =
+            DependencyProperty.Register(
+            "MoveEnabled",
+            typeof(bool),
+            typeof(FloatingWindow),
+            new PropertyMetadata(true));
 
         #endregion
 
@@ -517,7 +552,7 @@ namespace SilverFlow.Controls
             "ResizeEnabled",
             typeof(bool),
             typeof(FloatingWindow),
-            new PropertyMetadata(true, null));
+            new PropertyMetadata(true));
 
         #endregion
 
@@ -595,10 +630,92 @@ namespace SilverFlow.Controls
 
             if (window != null)
             {
-                if (window.FloatingWindowHost.IsLayoutUpdated)
+                if (window.FloatingWindowHost!=null && window.FloatingWindowHost.IsLayoutUpdated)
                     window.MoveWindow((Point)e.NewValue);
             }
         }
+
+        #endregion
+
+        #region public double Scale
+  
+        /// <summary>
+        /// Gets or sets current window scale.
+        /// </summary>
+        /// <value>Current scale.</value>
+        public double Scale
+        {
+          get { return (double)GetValue(ScaleProperty); }
+          set { SetValue(ScaleProperty, value); }
+        }         
+
+        /// <summary>
+        /// Identifies the <see cref="FloatingWindow.Scale" /> dependency property.
+        /// </summary>
+        /// <value>
+        /// The identifier for the <see cref="FloatingWindow.Scale" /> dependency property.
+        /// </value>
+        public static readonly DependencyProperty ScaleProperty =
+            DependencyProperty.Register(
+            "Scale",
+            typeof(double),
+            typeof(FloatingWindow),
+            new PropertyMetadata(1d, OnScalePropertyChanged)); //Must use 1d here, not 1 (else will get XAMLParseException at runtime)
+
+        /// <summary>
+        /// ScaleProperty PropertyChangedCallback call back static function.
+        /// </summary>
+        /// <param name="d">FloatingWindow object whose Scale property is changed.</param>
+        /// <param name="e">DependencyPropertyChangedEventArgs which contains the old and new values.</param>
+        private static void OnScalePropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+          FloatingWindow window = (FloatingWindow)d;
+          if (window != null)
+          {
+            window.RenderTransformOrigin = new Point(0.5, 0.5); //scale arround the window center
+            window.RenderTransform = new ScaleTransform().SetScale((double)e.NewValue); //TODO: this may cause the window top-left to get out of container bounds, maybe should coerce scale then, or autoexpand the container (when that is implemented)
+
+            /* //NOTE: causes issue with video acceleration
+            if (window.CacheMode != null) //this will work if GPU acceleration has been turned on (at HTML/ASPX page or at OOB settings for OOB apps), assuming we've set CacheMode already
+            {
+              BitmapCache bitmapCache = window.CacheMode as BitmapCache; //will return null if other type
+              if (bitmapCache != null)
+              {
+                bitmapCache.RenderAtScale = 1; //window.Scale; //TODO: should change this to take in mind the container's scale (need to add ContentScale property to FloatingWindowHost and override at FloatingWindowHostZUI to set ContentScale of nested ZoomHost)
+                window.CacheMode = bitmapCache;
+              }
+            }
+            */
+
+          }
+        }
+
+        #endregion
+
+        #region public bool ScaleEnabled
+
+        /// <summary>
+        /// Gets or sets a value indicating whether to allow the user to scale the window.
+        /// </summary>
+        /// <value><c>true</c> to allow the user to scale the window; otherwise, <c>false</c>.</value>
+        public bool ScaleEnabled
+        {
+          get { return (bool)GetValue(ScaleEnabledProperty); }
+          set { SetValue(ScaleEnabledProperty, value); }
+        }
+
+        /// <summary>
+        /// Identifies the <see cref="FloatingWindow.ScaleEnabled" /> dependency property.
+        /// </summary>
+        /// <value>
+        /// The identifier for the <see cref="FloatingWindow.ScaleEnabled" /> dependency property.
+        /// </value>
+        public static readonly DependencyProperty ScaleEnabledProperty =
+            DependencyProperty.Register(
+            "ScaleEnabled",
+            typeof(bool),
+            typeof(FloatingWindow),
+            new PropertyMetadata(true));
 
         #endregion
 
@@ -625,12 +742,12 @@ namespace SilverFlow.Controls
             "ShowInIconbar",
             typeof(bool),
             typeof(FloatingWindow),
-            new PropertyMetadata(true, null));
+            new PropertyMetadata(true));
 
         #endregion
 
 /*
-      #region public FlowDirection FlowDirection
+        #region FlowDirection
 
         /// <summary>
         /// Gets or sets the direction that title text flows within window's icon.
@@ -653,7 +770,7 @@ namespace SilverFlow.Controls
             "FlowDirection",
             typeof(FlowDirection),
             typeof(FloatingWindow),
-            new PropertyMetadata(FlowDirection.LeftToRight, null));
+            new PropertyMetadata(FlowDirection.LeftToRight));
 
         #endregion
 */
@@ -882,7 +999,7 @@ namespace SilverFlow.Controls
                 new PropertyMetadata(OnMinimizeButtonStylePropertyChanged));
 
         /// <summary>
-        /// CloseButtonStyle PropertyChangedCallback call back static function.
+        /// MinimizeButtonStyle PropertyChangedCallback call back static function.
         /// </summary>
         /// <param name="d">FloatingWindow object whose MinimizeButtonStyle property is changed.</param>
         /// <param name="e">The <see cref="System.Windows.DependencyPropertyChangedEventArgs"/> instance containing the event data.</param>
@@ -892,7 +1009,7 @@ namespace SilverFlow.Controls
             if (window != null)
             {
                 Style style = e.NewValue as Style;
-                window.CloseButtonStyle = style;
+                window.MinimizeButtonStyle = style;
 
                 if (window.minimizeButton != null)
                     window.minimizeButton.Style = style;
@@ -933,7 +1050,7 @@ namespace SilverFlow.Controls
             if (window != null)
             {
                 Style style = e.NewValue as Style;
-                window.CloseButtonStyle = style;
+                window.MaximizeButtonStyle = style;
 
                 if (window.maximizeButton != null)
                     window.maximizeButton.Style = style;
@@ -974,7 +1091,7 @@ namespace SilverFlow.Controls
             if (window != null)
             {
                 Style style = e.NewValue as Style;
-                window.CloseButtonStyle = style;
+                window.RestoreButtonStyle = style;
 
                 if (window.restoreButton != null)
                     window.restoreButton.Style = style;
@@ -1053,6 +1170,9 @@ namespace SilverFlow.Controls
 
         #endregion Member Fields
 
+
+        #region Constructor
+
         /// <summary>
         /// Initializes a new instance of the <see cref="FloatingWindow" /> class.
         /// </summary>
@@ -1070,6 +1190,8 @@ namespace SilverFlow.Controls
             this.SetVisible(false);
         }
 
+        #endregion
+
         #region Events
 
         /// <summary>
@@ -1082,6 +1204,21 @@ namespace SilverFlow.Controls
         /// Occurs when the <see cref="FloatingWindow" /> is deactivated.
         /// </summary>
         public event EventHandler Deactivated;
+
+        /// <summary>
+        /// Occurs when screenshot is requested.
+        /// </summary>
+        public event EventHandler ScreenshotRequested;
+
+        /// <summary>
+        /// Occurs when help is requested.
+        /// </summary>
+        public event EventHandler HelpRequested;
+
+        /// <summary>
+        /// Occurs when options are requested.
+        /// </summary>
+        public event EventHandler OptionsRequested;
 
         /// <summary>
         /// Occurs when the <see cref="FloatingWindow" /> is closed.
@@ -1252,8 +1389,11 @@ namespace SilverFlow.Controls
         {
             get
             {
-                return new Point((HostPanel.ActualWidth - Width.ValueOrZero()) / 2, (HostPanel.ActualHeight - Height.ValueOrZero()) / 2);
-            }
+ //              return new Point((HostPanel.ActualWidth - ActualWidth.ValueOrZero()) / 2, (HostPanel.ActualHeight - ActualHeight.ValueOrZero()) / 2); //using ActualWidth/ActualHeight to cater for any applied ScaleTransform
+ //              return new Point((HostPanel.ActualWidth - Width * Scale) / 2, (HostPanel.ActualHeight - Height * Scale) / 2); //using ActualWidth/ActualHeight to cater for any applied ScaleTransform
+                Point parentCenter = this.FloatingWindowHost.ViewCenter;
+                return new Point(parentCenter.X - Width / 2 * Scale, parentCenter.Y - Height / 2 * Scale);
+            } //TODO: need to have some flag on whether Window is allowed to be placed out of container bounds and if not use Max(...,0) to make negative values to 0
         }
 
         #endregion Properties
@@ -1285,9 +1425,10 @@ namespace SilverFlow.Controls
         /// </summary>
         /// <param name="x">X-coordinate.</param>
         /// <param name="y">Y-coordinate.</param>
-        public void Show(double x, double y)
+        /// <param name="centered">Center arround point</param>
+        public void Show(double x, double y, bool centered = false)
         {
-            Show(new Point(x, y));
+            Show(new Point(x, y), centered);
         }
 
         /// <summary>
@@ -1306,11 +1447,12 @@ namespace SilverFlow.Controls
         /// Shows the window in the specified coordinates, relative to the window's Host.
         /// </summary>
         /// <param name="point">Coordinates of the upper-left corner of the window.</param>
-        public void Show(Point point)
+        /// <param name="centered">Center arround point</param>
+        public void Show(Point point, bool centered = false)
         {
             CheckHost();
             Action<Point> action = new Action<Point>(ShowWindow);
-            this.FloatingWindowHost.ShowWindow(action, point);
+            this.FloatingWindowHost.ShowWindow(action, (centered)? new Point(point.X - Width/2 * Scale, point.Y - Height/2 * Scale) : point); 
         }
 
         /// <summary>
@@ -1402,8 +1544,10 @@ namespace SilverFlow.Controls
                         Height = HostPanel.ActualHeight;
                     }
 
+                    SetTopmost();
                     windowState = previousWindowState;
                     VisualStateManager.GoToState(this, VSMSTATE_StateRestored, true);
+                    OnRestored(EventArgs.Empty);
                     break;
 
                 case WindowState.Normal:
@@ -1415,6 +1559,8 @@ namespace SilverFlow.Controls
                     SetTopmost();
                     break;
             }
+
+            Focus();
         }
 
         /// <summary>
@@ -1452,18 +1598,8 @@ namespace SilverFlow.Controls
         /// <param name="e">Event args.</param>
         private void Application_Exit(object sender, EventArgs e)
         {
-            if (IsOpen)
-            {
-                isAppExit = true;
-                try
-                {
-                    Close();
-                }
-                finally
-                {
-                    isAppExit = false;
-                }
-            }
+          isAppExit = true; //expecting FloatingWindowHost to close its hosted FloatingWindows
+          //Do not call Close here expliclity, since then Close handlers of FloatingWindows may get called at any order by the App which will cause problems if the FloatingWindowHost is also hosted in a FloatingWindow (nesting)
         }
 
         /// <summary>
@@ -1519,6 +1655,60 @@ namespace SilverFlow.Controls
                     Height = size.Height == 0 ? double.NaN : size.Height;
                 }
             }
+        }
+
+        /// <summary>
+        /// Performs Screeshot action.
+        /// </summary>
+        public virtual void Screenshot()
+        {
+          OnScreenshot(EventArgs.Empty);
+        }
+
+        /// <summary>
+        /// Performs Help action.
+        /// </summary>
+        public virtual void Help()
+        {
+          OnHelp(EventArgs.Empty);
+        }
+
+        /// <summary>
+        /// Performs Options action.
+        /// </summary>
+        public virtual void Options()
+        {
+          OnOptions(EventArgs.Empty);
+        }
+
+        /// <summary>
+        /// Executed when the Screenshot button is clicked.
+        /// </summary>
+        /// <param name="sender">Sender object.</param>
+        /// <param name="e">Routed event args.</param>
+        private void ScreenshotButton_Click(object sender, RoutedEventArgs e)
+        {
+          Screenshot();
+        }
+      
+        /// <summary>
+        /// Executed when the Help button is clicked.
+        /// </summary>
+        /// <param name="sender">Sender object.</param>
+        /// <param name="e">Routed event args.</param>
+        private void HelpButton_Click(object sender, RoutedEventArgs e)
+        {
+            Help();
+        }
+
+        /// <summary>
+        /// Executed when the Options button is clicked.
+        /// </summary>
+        /// <param name="sender">Sender object.</param>
+        /// <param name="e">Routed event args.</param>
+        private void OptionsButton_Click(object sender, RoutedEventArgs e)
+        {
+            Options();
         }
 
         /// <summary>
@@ -1584,6 +1774,15 @@ namespace SilverFlow.Controls
             SetInitialRootPosition();
             InitializeContentRootTransformGroup();
 
+            if (screenshotButton != null)
+              screenshotButton.SetVisible(ShowScreenshotButton);
+
+            if (helpButton != null)
+              helpButton.SetVisible(ShowHelpButton);
+
+            if (optionsButton != null)
+              optionsButton.SetVisible(ShowOptionsButton);
+
             if (closeButton != null)
                 closeButton.SetVisible(ShowCloseButton);
 
@@ -1616,6 +1815,16 @@ namespace SilverFlow.Controls
 
             if (closeButton != null && this.CloseButtonStyle != null)
                 closeButton.Style = this.CloseButtonStyle;
+
+            if (screenshotButton != null && this.ScreenshotButtonStyle != null)
+              screenshotButton.Style = this.ScreenshotButtonStyle;
+
+            if (helpButton != null && this.HelpButtonStyle != null)
+              helpButton.Style = this.HelpButtonStyle;
+
+            if (optionsButton != null && this.OptionsButtonStyle != null)
+              optionsButton.Style = this.OptionsButtonStyle;
+
         }
 
         /// <summary>
@@ -1723,9 +1932,7 @@ namespace SilverFlow.Controls
         {
             EventHandler handler = Activated;
             if (handler != null)
-            {
                 handler(this, e);
-            }
         }
 
         /// <summary>
@@ -1736,9 +1943,50 @@ namespace SilverFlow.Controls
         {
             EventHandler handler = Deactivated;
             if (handler != null)
-            {
                 handler(this, e);
-            }
+        }
+
+        /// <summary>
+        /// Raises the <see cref="FloatingWindow.ScreenshotRequested" /> event.
+        /// </summary>
+        /// <param name="e">The event data.</param>
+        protected virtual void OnScreenshot(EventArgs e)
+        {
+          EventHandler handler = ScreenshotRequested;
+          if (handler != null)
+            handler(this, e);
+
+          SaveFileDialog dlg = new SaveFileDialog()
+          {
+            //DefaultFileName = ( (Title == null) || String.IsNullOrWhiteSpace(Title.ToString()) )? "" : Title + ".jpg", //not using this, because Silverlight would ask "Do you want to save..."
+            Filter="JPEG image (*.jpg)|*.jpg"
+          };
+
+          if (dlg.ShowDialog() == true)
+            using (Stream stream = dlg.OpenFile())
+              bitmapHelper.SaveToJPEG((WriteableBitmap)GetImage(), stream);
+        }
+
+        /// <summary>
+        /// Raises the <see cref="FloatingWindow.HelpRequested" /> event.
+        /// </summary>
+        /// <param name="e">The event data.</param>
+        protected virtual void OnHelp(EventArgs e)
+        {
+          EventHandler handler = HelpRequested;
+          if (handler != null)
+            handler(this, e);
+        }
+
+        /// <summary>
+        /// Raises the <see cref="FloatingWindow.OptionsRequested" /> event.
+        /// </summary>
+        /// <param name="e">The event data.</param>
+        protected virtual void OnOptions(EventArgs e)
+        {
+          EventHandler handler = OptionsRequested;
+          if (handler != null)
+            handler(this, e);
         }
 
         /// <summary>
@@ -1753,9 +2001,7 @@ namespace SilverFlow.Controls
 
             EventHandler handler = Closed;
             if (handler != null)
-            {
                 handler(this, e);
-            }
 
             Dispose();
         }
@@ -1768,9 +2014,7 @@ namespace SilverFlow.Controls
         {
             EventHandler<CancelEventArgs> handler = Closing;
             if (handler != null)
-            {
                 handler(this, e);
-            }
         }
 
         /// <summary>
@@ -1781,9 +2025,7 @@ namespace SilverFlow.Controls
         {
             EventHandler handler = Maximized;
             if (handler != null)
-            {
                 handler(this, e);
-            }
         }
 
         /// <summary>
@@ -1794,9 +2036,7 @@ namespace SilverFlow.Controls
         {
             EventHandler handler = Minimized;
             if (handler != null)
-            {
                 handler(this, e);
-            }
         }
 
         /// <summary>
@@ -1807,9 +2047,7 @@ namespace SilverFlow.Controls
         {
             EventHandler handler = Restored;
             if (handler != null)
-            {
                 handler(this, e);
-            }
         }
 
         /// <summary>
@@ -1817,11 +2055,21 @@ namespace SilverFlow.Controls
         /// </summary>
         protected virtual void OnOpened()
         {
+#if SILVERLIGHT
+            if (!Focus())
+            {
+                // If the Focus() fails it means there is no focusable element in the window.
+                // In this case we set IsTabStop to true to have the keyboard functionality
+                IsTabStop = true;
+                Focus();
+            }
+#else
             Focus();
 
             // Set focus to the first focusable element in the window
             TraversalRequest request = new TraversalRequest(FocusNavigationDirection.First);
             this.MoveFocus(request);
+#endif
         }
 
         /// <summary>
@@ -1845,7 +2093,7 @@ namespace SilverFlow.Controls
         private void SubscribeToEvents()
         {
             if (Application.Current != null)
-                Application.Current.Exit += new ExitEventHandler(Application_Exit);
+                Application.Current.Exit += Application_Exit;
 
             if (this.FloatingWindowHost != null)
             {
@@ -1864,8 +2112,30 @@ namespace SilverFlow.Controls
         /// <param name="e">The <see cref="System.Windows.Input.MouseButtonEventArgs"/> instance containing the event data.</param>
         private void FloatingWindow_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
+            // Gets the element with keyboard focus
+            Control elementWithFocus =
+                #if SILVERLIGHT
+                FocusManager.GetFocusedElement() as Control;
+                #else
+                 Keyboard.FocusedElement as Control;
+                #endif
+
+            // Brings current window to the front
             SetTopmost(); //TODO: add property AutoBringToFront (default true) to select whether we want it to be brought to front automatically
- 
+
+            if (elementWithFocus != null)
+            {
+                if ((this as DependencyObject).IsVisualAncestorOf(elementWithFocus))
+                {
+                    elementWithFocus.Focus();
+                }
+                else
+                {
+                    // Try to set focus on the window
+                    Focus();
+                }
+            }
+
             // Stop any inertial motion
             StopInertialMotion();
         }
@@ -1876,7 +2146,7 @@ namespace SilverFlow.Controls
         private void UnSubscribeFromEvents()
         {
             if (Application.Current != null)
-                Application.Current.Exit -= new ExitEventHandler(Application_Exit);
+                Application.Current.Exit -= Application_Exit;
 
             if (this.FloatingWindowHost != null)
             {
@@ -1940,6 +2210,15 @@ namespace SilverFlow.Controls
         /// </summary>
         private void SubscribeToTemplatePartEvents()
         {
+            if (screenshotButton != null)
+                screenshotButton.Click += new RoutedEventHandler(ScreenshotButton_Click);
+
+            if (helpButton != null)
+                helpButton.Click += new RoutedEventHandler(HelpButton_Click);
+
+            if (optionsButton != null)
+                optionsButton.Click += new RoutedEventHandler(OptionsButton_Click);
+        
             if (closeButton != null)
                 closeButton.Click += new RoutedEventHandler(CloseButton_Click);
 
@@ -1958,6 +2237,15 @@ namespace SilverFlow.Controls
         /// </summary>
         private void UnsubscribeFromTemplatePartEvents()
         {
+            if (screenshotButton != null)
+                screenshotButton.Click -= new RoutedEventHandler(ScreenshotButton_Click);
+          
+            if (helpButton != null)
+                helpButton.Click -= new RoutedEventHandler(HelpButton_Click);
+
+            if (optionsButton != null)
+                optionsButton.Click -= new RoutedEventHandler(OptionsButton_Click);
+ 
             if (closeButton != null)
                 closeButton.Click -= new RoutedEventHandler(CloseButton_Click);
 
@@ -2061,6 +2349,11 @@ namespace SilverFlow.Controls
             ImageSource bitmap = bitmapHelper.RenderVisual(contentRoot, FloatingWindowHost.IconWidth, FloatingWindowHost.IconHeight);
 
             return bitmap;
+        }
+
+        public ImageSource GetImage()
+        {
+          return bitmapHelper.RenderVisual(contentRoot, contentRoot.Width, contentRoot.Height);
         }
 
         /// <summary>
@@ -2282,7 +2575,7 @@ namespace SilverFlow.Controls
                     // If the mouse was clicked on the chrome - start dragging the window
                     Point point = e.GetPosition(chrome);
 
-                    if (chrome.ContainsPoint(point))
+                    if (MoveEnabled && chrome.ContainsPoint(point))
                     {
                         snapinController.SnapinBounds = this.FloatingWindowHost.GetSnapinBounds(this);
                         CaptureMouseCursor();
@@ -2300,6 +2593,8 @@ namespace SilverFlow.Controls
         protected override void OnMouseLeftButtonUp(MouseButtonEventArgs e)
         {
             base.OnMouseLeftButtonUp(e);
+
+            e.Handled = true; //always handle events so that container doesn't get confused (e.g. when dragging the window title bar we don't want container to pan)
 
             if (windowAction == WindowAction.Move)
             {

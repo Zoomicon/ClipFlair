@@ -1,5 +1,5 @@
 ﻿//Filename MainPage.xaml.cs
-//Version: 20130406
+//Version: 20130805
 
 using System.Diagnostics;
 using System.Windows;
@@ -59,8 +59,10 @@ namespace FloatingWindowZUI.Demo
         MessageBox.Show("Options...");
       };
 
-      Point startPoint = new Point(host.ZoomHost.ContentOffsetX + host.ZoomHost.ContentViewportWidth / 2, host.ZoomHost.ContentOffsetY + host.ZoomHost.ContentViewportHeight / 2); //Center at current view
-      window.Show(startPoint, true);
+      //Point startPoint = new Point(host.ZoomHost.ContentOffsetX + host.ZoomHost.ContentViewportWidth / 2, host.ZoomHost.ContentOffsetY + host.ZoomHost.ContentViewportHeight / 2); //Center at current view
+      //window.Show(startPoint, true);
+
+      window.Show(); //show centered
     }
 
     private void ShowNewWindow_Click(object sender, RoutedEventArgs e)
@@ -88,11 +90,5 @@ namespace FloatingWindowZUI.Demo
       host.CloseAllWindows();
     }
 
-    private void sldZoom_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
-    {
-      if (host != null)
-        //host.ContentScale = ((Slider)sender).Value; //why is sldZoom null here??? //TODO: fix with PropertyChangeEvent that is missing
-        host.ZoomHost.ContentScale = ((Slider)sender).Value; //why is sldZoom null here???
-    }
   }
 }
