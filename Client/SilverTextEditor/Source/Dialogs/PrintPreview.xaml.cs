@@ -1,19 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
+﻿//Filename: PrintPreview.xaml.cs
+//Version: 20130811
+
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Animation;
-using System.Windows.Shapes;
 using System.Windows.Media.Imaging;
 
 namespace SilverTextEditor
 {
-    public partial class PrintPreview : ChildWindow
+    public partial class PrintPreview : ChildWindowExt
     {
         public PrintPreview()
         {
@@ -21,9 +15,13 @@ namespace SilverTextEditor
         }
 
         public void ShowPreview(RichTextBox rtb)
-        {            
+        {   
+#if SILVERLIGHT
             WriteableBitmap image = new WriteableBitmap(rtb, null);
             previewImage.Source = image;            
+#else
+          //TODO (see FloatingWindow control extensions on how to get image of control on WPF)
+#endif
         }
 
         private void OKButton_Click(object sender, RoutedEventArgs e)
