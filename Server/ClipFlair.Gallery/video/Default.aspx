@@ -2,11 +2,27 @@
          AutoEventWireup="true"
          Title="ClipFlair Video Clips Gallery"
 
-%><html>
+%>
+
+<%--
+Project: ClipFlair (http://ClipFlair.codeplex.com)
+Filename: video/Default.aspx
+Version: 20130812
+--%>
+
+<html>
 
 <head>
 
+<title>ClipFlair Video Clips Gallery</title>
+
 <style type="text/css">
+body
+{
+  margin:0px;
+  padding:0px;
+}
+
 iframe 
 {
   width:100%;
@@ -19,6 +35,10 @@ iframe
 
 </head>
 
-<body><iframe src="http://studio.clipflair.net/?gallery=video&notoolbar">
-  <a href="http://studio.clipflair.net/?gallery=video&notoolbar">ClipFlair Video Clip Gallery</a>
-</iframe></body>
+<body>
+<iframe src="http://studio.clipflair.net/?gallery=video&notoolbar">
+<a href="http://studio.clipflair.net/?gallery=video&notoolbar">ClipFlair Video Clip Gallery</a>
+</iframe>
+</body>
+
+</html>

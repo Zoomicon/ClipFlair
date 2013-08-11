@@ -1,11 +1,11 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="list.aspx.cs" Inherits="ClipFlair.Gallery.VideoMetadataPage" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="VideoMetadataPage.aspx.cs" Inherits="ClipFlair.Gallery.VideoMetadataPage" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <!--
 Project: ClipFlair (http://ClipFlair.codeplex.com)
-Filename: list.aspx
-Version: 20130727
+Filename: VideoMetadataPage.aspx
+Version: 20130805
 -->
 
 <html xmlns="http://www.w3.org/1999/xhtml">

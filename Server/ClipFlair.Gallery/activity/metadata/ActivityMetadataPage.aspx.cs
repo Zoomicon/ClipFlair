@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
-//Filename: list.aspx.cs
-//Version: 20130727
+//Filename: ActivityMetadataPage.aspx.cs
+//Version: 20130806
 
 using System;
 using System.Linq;
@@ -118,6 +118,7 @@ namespace ClipFlair.Gallery
       metadata.LearnerType = UI.GetSelected(clistLearnerType);
       metadata.AgeGroup = UI.GetSelected(clistAgeGroup);
       metadata.FeedbackModeToLearner = UI.GetCommaSeparated(txtFeedbackModeToLearner);
+
       return metadata;
     }
 
