@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
-//Filename: list.aspx.cs
-//Version: 20130727
+//Filename: VideoMetadataPage.aspx.cs
+//Version: 20130806
 
 using System;
 using System.IO;
@@ -97,7 +97,7 @@ namespace ClipFlair.Gallery
       metadata.Url = new Uri("http://studio.clipflair.net/?video=" + key);
       metadata.Description = txtDescription.Text;
       metadata.Filename = key;
-
+      metadata.Keywords = UI.GetCommaSeparated(txtKeywords);
       metadata.License = txtLicense.Text;
 
       metadata.AudioLanguage = UI.GetSelected(clistAudioLanguage);
@@ -108,6 +108,7 @@ namespace ClipFlair.Gallery
       metadata.AudiovisualRichness = UI.GetSelected(clistAudiovisualRichness);
       metadata.PedagogicalAdaptability = cbPedagogicalAdaptability.Checked;
       metadata.AuthorSource = txtAuthorSource.Text;
+
       return metadata;
     }
 

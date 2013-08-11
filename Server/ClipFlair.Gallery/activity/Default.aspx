@@ -2,11 +2,27 @@
          AutoEventWireup="true"
          Title="ClipFlair Activity Gallery"
 
-%><html>
+%>
+
+<%--
+Project: ClipFlair (http://ClipFlair.codeplex.com)
+Filename: actvity/Default.aspx
+Version: 20130812
+--%>
+
+<html>
 
 <head>
 
+<title>ClipFlair Activity Gallery</title>
+
 <style type="text/css">
+body
+{
+  margin:0px;
+  padding:0px;
+}
+
 iframe 
 {
   width:100%;
@@ -19,8 +35,10 @@ iframe
 
 </head>
 
-<body><iframe src="http://studio.clipflair.net/?gallery=activities&notoolbar">
-  <a href="http://studio.clipflair.net/?gallery=activities&notoolbar">ClipFlair Activity Gallery</a>
-</iframe></body>
+<body>
+<iframe src="http://studio.clipflair.net/?gallery=activities&notoolbar">
+<a href="http://studio.clipflair.net/?gallery=activities&notoolbar">ClipFlair Activity Gallery</a>
+</iframe>
+</body>
 
 </html>

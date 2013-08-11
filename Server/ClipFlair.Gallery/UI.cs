@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: Controls.cs
-//Version: 20130727
+//Version: 20130806
 
 using System;
 using System.Collections.Generic;
@@ -42,7 +42,7 @@ namespace ClipFlair.Gallery
 
     public static string[] GetCommaSeparated(TextBox txt)
     {
-      return (string.IsNullOrWhiteSpace(txt.Text))? null : txt.Text.Split(new char[] { ',' });
+      return (string.IsNullOrWhiteSpace(txt.Text))? null : txt.Text.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
     }
 
     public static string[] GetSelected(CheckBoxList clist)
