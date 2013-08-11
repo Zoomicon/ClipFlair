@@ -64,6 +64,7 @@
   <ItemGroup>
     <Reference Include="mscorlib" />
     <Reference Include="System.Windows" />
+    <Reference Include="System.Windows.Controls, Version=5.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="..\Source\ApplicationException.cs">
@@ -71,6 +72,9 @@
     </Compile>
     <Compile Include="..\Source\BooleanToVisibilityConverter.cs">
       <Link>BooleanToVisibilityConverter.cs</Link>
+    </Compile>
+    <Compile Include="..\Source\ChildWindowExt.cs">
+      <Link>ChildWindowExt.cs</Link>
     </Compile>
     <Compile Include="..\Source\CoerceValueCallback.cs">
       <Link>CoerceValueCallback.cs</Link>

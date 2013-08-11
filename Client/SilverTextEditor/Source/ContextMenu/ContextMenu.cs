@@ -1,4 +1,6 @@
-﻿using System;
+﻿//Version: 20130806
+
+using System;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
@@ -94,8 +96,13 @@ namespace SilverTextEditor
 
         private void UpdateSize()
         {
+#if SILVERLIGHT
             _grid.Width = Application.Current.Host.Content.ActualWidth;
             _grid.Height = Application.Current.Host.Content.ActualHeight;
+#else
+            _grid.Width = (Application.Current.MainWindow.Content as FrameworkElement).ActualWidth;
+            _grid.Height = (Application.Current.MainWindow.Content as FrameworkElement).Height;
+#endif
 
             if (_canvas != null)
             {
