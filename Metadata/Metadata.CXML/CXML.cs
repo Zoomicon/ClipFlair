@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Xml.Linq;
 
-namespace ClipFlair.Gallery
+namespace Metadata.CXML
 {
   public static class CXML
   {

@@ -1,12 +1,22 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: MediaPlayer.cs
-//Version: 20130703
+//Version: 20130823
 
 using Utils.Extensions;
 
 using System;
 using System.IO;
 using System.Linq;
+using System.Net;
+using System.Text.RegularExpressions;
+using System.Threading;
+
+#if SILVERLIGHT
+using System.Windows.Browser;
+#else
+using System.Web;
+#endif
+
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
@@ -44,7 +54,7 @@ namespace ClipFlair.MediaPlayer
 
     public MediaPlayer()
     {
-      if (Application.Current.Host.Settings.EnableGPUAcceleration) //GPU acceleration can been turned on at HTML/ASPX page or at OOB settings for OOB apps
+      if (Application.Current.Host.Settings.EnableGPUAcceleration) //GPU acceleration can be turned on at HTML/ASPX page or at OOB settings for OOB apps
         CacheMode = new BitmapCache(); //TEST    
 
       AddEventHandlers();
@@ -83,6 +93,117 @@ namespace ClipFlair.MediaPlayer
     }
 
     /// <summary>
+    /// HTTPS not supported for now, changing to HTTP, assuming server supports both with same URL format.
+    /// </summary>
+    /// <param name="url">the url</param>
+    /// <returns>the fixed url</returns>
+    private string FixURL_HTTPS(string url)
+    {
+      return url.ReplacePrefix("https://", "http://", StringComparison.OrdinalIgnoreCase); //TODO: add support for https:// (now trying to fallback to http://)
+    }
+
+    /// <summary>
+    /// When people share videos via Dropbox, they can get different URLs depending on whether
+    /// they share from their public foler or not and whether they use the OS file context menu's
+    /// Dropbox/Share link option or use the dropbox website to create a link to the file.
+    /// Need to remove https and use to dl.dropbox.com server to point to the download file.
+    /// </summary>
+    /// <param name="url">the url</param>
+    /// <returns>the fixed url (note: also changing HTTPS to HTTP)</returns>
+    private string FixURL_Dropbox(string url)
+    {
+      return url.ReplacePrefix(
+        new String[] { "https://dl.dropbox.com/s/", "https://www.dropbox.com/s/", "http://www.dropbox.com/s/" },
+        "http://dl.dropbox.com/s/", StringComparison.OrdinalIgnoreCase);
+    }
+
+    /// <summary>
+    /// Append "/manifest" to URIs ending in ".ism" (Smooth Streaming)
+    /// </summary>
+    /// <param name="url">the url</param>
+    /// <returns>the fixed url</returns>
+    private string FixURL_ISM(string url)
+    {
+      return url.ReplaceSuffix(".ism", ".ism/manifest", StringComparison.OrdinalIgnoreCase);
+    }
+
+/* //THE FOLLOWING WOULD ONLY WORK IF WE COULD GET ANY WEBPAGE CONTENT - NEED TO USE JQUERY VIA JAVASCRIPT BRIDGE TO DO IT
+    /// <summary>
+    /// Fix YouTube URL
+    /// </summary>
+    /// <param name="url">the url ( of the form http://www.youtube.com/watch?v=vV0tjWx9YQ8 )</param>
+    /// <param name="millisecondsTimeout">milliseconds before timing out (default 30000, use -1 for infinite wait)</param>
+    /// <returns>the fixed url</returns>
+    private string FixURL_YouTube(string url, int millisecondsTimeout = 30000)
+    {
+      url = url.ReplacePrefix(
+        new String[]{"http://youtube.com", "https://youtube.com", "https://www.youtube.com"},
+        "http://www.youtube.com"
+        );
+      
+      if (!url.StartsWith("http://www.youtube.com"))
+        return url;
+
+      string result = "";
+      ManualResetEvent completionEvent = new ManualResetEvent(false);
+      WebClient client = new WebClient();
+      client.DownloadStringCompleted += (s, e) =>
+      {
+        result = ExtractYouTubeURL(e);
+        completionEvent.Set();
+      };
+      client.DownloadStringAsync(new Uri(url, UriKind.Absolute));
+      completionEvent.WaitOne(millisecondsTimeout); 
+      return result;
+    }
+
+    private string ExtractYouTubeURL(DownloadStringCompletedEventArgs e)
+    {
+      if (e.Cancelled || e.Error != null)
+        return "";
+
+      string textString = (string)e.Result; //the page content
+
+      Regex rx = new Regex("(?<=url_encoded_fmt_stream_map=)([^(\\\\)]*)(?=\\\\)", RegexOptions.IgnoreCase);
+      MatchCollection match = rx.Matches(textString);
+
+      string video_format = match[0].ToString();
+
+      string sep1 = "%2C";
+      string sep2 = "%26";
+      string sep3 = "%3D";
+      string[] videoFormatsGroup = Regex.Split(video_format, sep1);
+
+      for (var i = 0; i < videoFormatsGroup.Length; i++)
+      {
+        string[] videoFormatsElem = Regex.Split(videoFormatsGroup[i], sep2);
+        if (videoFormatsElem.Length < 5) continue;
+        string[] partialResult1 = Regex.Split(videoFormatsElem[0], sep3);
+        if (partialResult1.Length < 2) continue;
+        string url = partialResult1[1];
+        url = HttpUtility.UrlDecode(HttpUtility.UrlDecode(url));
+        string[] partialResult2 = Regex.Split(videoFormatsElem[4], sep3);
+        if (partialResult2.Length < 2) continue;
+        int itag = Convert.ToInt32(partialResult2[1]);
+        if (itag == 18) //MP4 360p
+          return url;
+      }
+
+      return null;
+    }
+*/
+
+    /// <summary>
+    /// Fix Media URL
+    /// </summary>
+    /// <param name="url">the media url</param>
+    /// <returns>the fixed url</returns>
+    private string FixURL(string url)
+    {
+      return /*FixURL_YouTube*/(FixURL_ISM(FixURL_HTTPS(FixURL_Dropbox(url)))); //Fix methods will get called from inside to outside
+    }
+
+    /// <summary>
     /// Provides derived classes an opportunity to handle changes to the Source property.
     /// </summary>
     protected virtual void OnSourceChanged(Uri oldSource, Uri newSource)
@@ -97,15 +218,9 @@ namespace ClipFlair.MediaPlayer
 
       //playlistItem.StartPosition = ... //TODO: see newSource.Fragment and accept Media URIs here to jump directly to time position? (Stop action should maybe also then go there, plus ignore Time value at state load)
 
-      string newSourceStr = newSource.AbsoluteUri;
+      //Set URL//
 
-      //When people share videos via Dropbox, they can get different URLs depending on whether they share from their public foler or not and whether they use the OS file context menu's Dropbox/Share link option or use the dropbox website to create a link to the file. Need to remove https and use to dl.dropbox.com server to point to the download file
-      newSourceStr = newSourceStr.ReplacePrefix(new String[]{"https://dl.dropbox.com/s/", "https://www.dropbox.com/s/", "http://www.dropbox.com/s/"}, "http://dl.dropbox.com/s/", StringComparison.OrdinalIgnoreCase);
-
-      newSourceStr = newSourceStr.ReplacePrefix("https://", "http://"); //TODO: add support for https:// (now trying to fallback to http://)
-
-      if (newSourceStr.EndsWith(".ism", StringComparison.OrdinalIgnoreCase))
-        newSourceStr = newSourceStr + "/manifest"; //append "/manifest" to URIs ending in ".ism" (Smooth Streaming)
+      string newSourceStr = FixURL(newSource.AbsoluteUri);
 
       playlistItem.MediaSource = new Uri(newSourceStr);
 
@@ -122,9 +237,11 @@ namespace ClipFlair.MediaPlayer
         s = newSourceStr.Substring(0, newSourceStr.Length - ss.Length - 1); //-1 to remove the dot too
       }
 
+      //Set title//
       playlistItem.Title = new Uri(s).GetComponents(UriComponents.Path, UriFormat.Unescaped).Split('/').Last();
 
-      playlistItem.ThumbSource = new Uri(s + "_Thumb.jpg");
+      //Set thumbnail//
+      playlistItem.ThumbSource = new Uri(s + "_Thumb.jpg"); //TODO: YouTube uses URL of the form "http://img.youtube.com/vi/vV0tjWx9YQ8/0.jpg" (and 1.jpg for smaller thumb)
 
       /*
             List<MarkerResource> markerResources = new List<MarkerResource>();

@@ -1,11 +1,15 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: VideoMetadataPage.aspx.cs
-//Version: 20130806
+//Version: 20130823
+
+using Metadata.CXML;
+using ClipFlair.Metadata;
 
 using System;
 using System.IO;
 using System.Linq;
 using System.Web;
+using System.Xml;
 
 namespace ClipFlair.Gallery
 {
@@ -62,7 +66,9 @@ namespace ClipFlair.Gallery
 
     public override void DisplayMetadata(string key)
     {
-      DisplayMetadata(key, (IVideoMetadata)new VideoMetadata().Load(key, GetMetadataFilepath(key), GetFallbackMetadataFilePath()));
+      using (XmlReader cxmlFallback = XmlReader.Create(GetFallbackMetadataFilePath()))
+        using (XmlReader cxml = XmlReader.Create(GetMetadataFilepath(key))) 
+          DisplayMetadata(key, (IVideoMetadata)new VideoMetadata().Load(key, cxml, cxmlFallback));
     }
 
     public void DisplayMetadata(string key, IVideoMetadata metadata)
@@ -88,7 +94,7 @@ namespace ClipFlair.Gallery
 
     #region --- Save ---
 
-    public override IMetadata ExtractMetadata(string key)
+    public override ICXMLMetadata ExtractMetadata(string key)
     {
       IVideoMetadata metadata = new VideoMetadata();
 
@@ -119,7 +125,7 @@ namespace ClipFlair.Gallery
 
     public override void Merge()
     {
-      Merge("ClipFlair Gallery Clips", VideoMetadata.MakeCXMLFacetCategories());
+      Merge("ClipFlair Gallery Clips", VideoMetadata.MakeVideoFacetCategories());
     }
 
     #endregion

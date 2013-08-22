@@ -1,14 +1,16 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
-//Filename: IMetadata.cs
-//Version: 20130725
+//Filename: ICXMLMetadata.cs
+//Version: 20130822
 
 using System;
+using System.Collections.Generic;
+using System.Xml;
 using System.Xml.Linq;
 
-namespace ClipFlair.Gallery
+namespace Metadata.CXML
 {
 
-  public interface IMetadata
+  public interface ICXMLMetadata
   {
 
     #region --- Properties ---
@@ -19,20 +21,17 @@ namespace ClipFlair.Gallery
     Uri Url { get; set; }
     string Description { get; set; }
 
-    //Facets//
-    string Filename { get; set; }
-    string[] Keywords { get; set; }
-    string License { get; set; }
-
     #endregion
 
     #region --- Methods ---
 
     XElement GetCXMLItem();
+    IEnumerable<XElement> GetCXMLFacetCategories();
+    IEnumerable<XElement> GetCXMLFacets();
     void Clear();
-    IMetadata Load(string key, XDocument doc);
-    IMetadata Load(string key, string cxmlFilename, string cxmlFallbackFilename);
-    void Save(string cxmlFilename);
+    ICXMLMetadata Load(string key, XDocument doc);
+    ICXMLMetadata Load(string key, XmlReader cxml, XmlReader cxmlFallback);
+    void Save(XmlWriter cxml);
 
     #endregion
 
