@@ -1,15 +1,18 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: ActivityMetadata.cs
-//Version: 20130726
+//Version: 20130823
+
+using Metadata.CXML;
 
 using System;
 using System.Collections.Generic;
+using System.Xml;
 using System.Xml.Linq;
 
-namespace ClipFlair.Gallery
+namespace ClipFlair.Metadata
 {
 
-  public class ActivityMetadata : BaseMetadata, IActivityMetadata
+  public class ActivityMetadata : ClipFlairMetadata, IActivityMetadata
   {
 
     #region --- Properties ---
@@ -56,12 +59,12 @@ namespace ClipFlair.Gallery
       FeedbackModeToLearner = new string[] { };
     }
 
-    public override IMetadata Load(string key, XDocument doc)
+    public override ICXMLMetadata Load(string key, XDocument doc)
     {
       IEnumerable<XElement> facets = null;
       try
       {
-        XElement item = doc.Root.Elements(CXML.NODE_ITEMS).Elements(CXML.NODE_ITEM).CXMLFirstItemWithStringValue(MetadataFacets.FACET_FILENAME, key);
+        XElement item = doc.Root.Elements(CXML.NODE_ITEMS).Elements(CXML.NODE_ITEM).CXMLFirstItemWithStringValue(ClipFlairMetadataFacets.FACET_FILENAME, key);
 
         Id = item.Attribute(CXML.ATTRIB_ID).Value;
         Title = item.Attribute(CXML.ATTRIB_NAME).Value;
@@ -72,7 +75,7 @@ namespace ClipFlair.Gallery
 
         facets = item.Elements(CXML.NODE_FACETS).Elements(CXML.NODE_FACET);
 
-        Filename = facets.CXMLFacetStringValue(MetadataFacets.FACET_FILENAME);
+        Filename = facets.CXMLFacetStringValue(ClipFlairMetadataFacets.FACET_FILENAME);
         
         ForLearners = facets.CXMLFacetStringValues(ActivityMetadataFacets.FACET_FOR_LEARNERS);
         ForSpeakers = facets.CXMLFacetStringValues(ActivityMetadataFacets.FACET_FOR_SPEAKERS);
@@ -90,8 +93,8 @@ namespace ClipFlair.Gallery
         AgeGroup = facets.CXMLFacetStringValues(ActivityMetadataFacets.FACET_AGE_GROUP);
         FeedbackModeToLearner = facets.CXMLFacetStringValues(ActivityMetadataFacets.FACET_FEEDBACK_MODE_TO_LEARNER);
 
-        Keywords = facets.CXMLFacetStringValues(MetadataFacets.FACET_KEYWORDS);
-        License = facets.CXMLFacetStringValue(MetadataFacets.FACET_LICENSE);
+        Keywords = facets.CXMLFacetStringValues(ClipFlairMetadataFacets.FACET_KEYWORDS);
+        License = facets.CXMLFacetStringValue(ClipFlairMetadataFacets.FACET_LICENSE);
       }
       catch
       {
@@ -101,10 +104,47 @@ namespace ClipFlair.Gallery
       return this;
     }
 
-    public static IEnumerable<XElement> MakeCXMLFacetCategories() //the following also defines the order in which filters appear in PivotViewer's filter pane
+    public override IEnumerable<XElement> GetCXMLFacetCategories() //the following also defines the order in which facets appear in PivotViewer's filters pane
+    {
+      return MakeActivityFacetCategories();
+    }
+
+    public override IEnumerable<XElement> GetCXMLFacets() //the following also defines the order in which facet values appear in PivotViewer's details pane
+    {
+      IList<XElement> facets = new List<XElement>();
+
+      AddNonNullToList(facets, CXML.MakeStringFacet(ClipFlairMetadataFacets.FACET_FILENAME, Filename));
+
+      AddNonNullToList(facets, CXML.MakeStringFacet(ActivityMetadataFacets.FACET_FOR_LEARNERS, ForLearners));
+      AddNonNullToList(facets, CXML.MakeStringFacet(ActivityMetadataFacets.FACET_FOR_SPEAKERS, ForSpeakers));
+      AddNonNullToList(facets, CXML.MakeStringFacet(ActivityMetadataFacets.FACET_LANGUAGE_COMBINATION, LanguageCombination));
+      AddNonNullToList(facets, CXML.MakeStringFacet(ActivityMetadataFacets.FACET_LEVEL, Level));
+      AddNonNullToList(facets, CXML.MakeStringFacet(ActivityMetadataFacets.FACET_ESTIMATED_TIME, EstimatedTimeMinutes));
+      AddNonNullToList(facets, CXML.MakeStringFacet(ActivityMetadataFacets.FACET_AUTHORS, Authors));
+      AddNonNullToList(facets, CXML.MakeStringFacet(ActivityMetadataFacets.FACET_FROM_SKILLS, FromSkills));
+      AddNonNullToList(facets, CXML.MakeStringFacet(ActivityMetadataFacets.FACET_TO_SKILLS, ToSkills));
+      AddNonNullToList(facets, CXML.MakeStringFacet(ActivityMetadataFacets.FACET_AV_SKILLS, AVSkills));
+      AddNonNullToList(facets, CXML.MakeStringFacet(ActivityMetadataFacets.FACET_RESPONSES, Responses));
+      AddNonNullToList(facets, CXML.MakeStringFacet(ActivityMetadataFacets.FACET_TASKS_REVOICING, TasksRevoicing));
+      AddNonNullToList(facets, CXML.MakeStringFacet(ActivityMetadataFacets.FACET_TASKS_CAPTIONING, TasksCaptioning));
+      AddNonNullToList(facets, CXML.MakeStringFacet(ActivityMetadataFacets.FACET_LEARNER_TYPE, LearnerType));
+      AddNonNullToList(facets, CXML.MakeStringFacet(ActivityMetadataFacets.FACET_AGE_GROUP, AgeGroup));
+      AddNonNullToList(facets, CXML.MakeStringFacet(ActivityMetadataFacets.FACET_FEEDBACK_MODE_TO_LEARNER, FeedbackModeToLearner));
+
+      AddNonNullToList(facets, CXML.MakeStringFacet(ClipFlairMetadataFacets.FACET_KEYWORDS, Keywords));
+      AddNonNullToList(facets, CXML.MakeStringFacet(ClipFlairMetadataFacets.FACET_LICENSE, License));
+
+      return facets;
+    }
+
+    #endregion
+
+    #region --- Helpers ---
+
+    public static IEnumerable<XElement> MakeActivityFacetCategories() //the following also defines the order in which facets appear in PivotViewer's filters pane
     {
       IList<XElement> result = new List<XElement>();
-      result.Add(CXML.MakeFacetCategory(MetadataFacets.FACET_FILENAME, CXML.VALUE_STRING, isFilterVisible: false, isMetadataVisible: false, isWordWheelVisible: false));
+      result.Add(CXML.MakeFacetCategory(ClipFlairMetadataFacets.FACET_FILENAME, CXML.VALUE_STRING, isFilterVisible: false, isMetadataVisible: false, isWordWheelVisible: false));
 
       result.Add(CXML.MakeFacetCategory(ActivityMetadataFacets.FACET_FOR_LEARNERS, CXML.VALUE_STRING, isFilterVisible: true, isMetadataVisible: true, isWordWheelVisible: true));
       result.Add(CXML.MakeFacetCategory(ActivityMetadataFacets.FACET_FOR_SPEAKERS, CXML.VALUE_STRING, isFilterVisible: true, isMetadataVisible: true, isWordWheelVisible: true));
@@ -122,9 +162,9 @@ namespace ClipFlair.Gallery
       result.Add(MakeAgeGroupFacetCategory());
       result.Add(CXML.MakeFacetCategory(ActivityMetadataFacets.FACET_FEEDBACK_MODE_TO_LEARNER, CXML.VALUE_STRING, isFilterVisible: true, isMetadataVisible: true, isWordWheelVisible: true));
 
-      result.Add(CXML.MakeFacetCategory(MetadataFacets.FACET_KEYWORDS, CXML.VALUE_STRING, isFilterVisible: true, isMetadataVisible: true, isWordWheelVisible: true));
-      result.Add(CXML.MakeFacetCategory(MetadataFacets.FACET_LICENSE, CXML.VALUE_STRING, isFilterVisible: true, isMetadataVisible: true, isWordWheelVisible: true));
-      
+      result.Add(CXML.MakeFacetCategory(ClipFlairMetadataFacets.FACET_KEYWORDS, CXML.VALUE_STRING, isFilterVisible: true, isMetadataVisible: true, isWordWheelVisible: true));
+      result.Add(CXML.MakeFacetCategory(ClipFlairMetadataFacets.FACET_LICENSE, CXML.VALUE_STRING, isFilterVisible: true, isMetadataVisible: true, isWordWheelVisible: true));
+
       return result;
     }
 
@@ -157,41 +197,7 @@ namespace ClipFlair.Gallery
         );
     }
 
-    public override IEnumerable<XElement> GetCXMLFacets() //the following also defines the order in which facet values appear in PivotViewer's details pane
-    {
-      IList<XElement> facets = new List<XElement>();
-
-      AddNonNullToList(facets, CXML.MakeStringFacet(MetadataFacets.FACET_FILENAME, Filename));
-
-      AddNonNullToList(facets, CXML.MakeStringFacet(ActivityMetadataFacets.FACET_FOR_LEARNERS, ForLearners));
-      AddNonNullToList(facets, CXML.MakeStringFacet(ActivityMetadataFacets.FACET_FOR_SPEAKERS, ForSpeakers));
-      AddNonNullToList(facets, CXML.MakeStringFacet(ActivityMetadataFacets.FACET_LANGUAGE_COMBINATION, LanguageCombination));
-      AddNonNullToList(facets, CXML.MakeStringFacet(ActivityMetadataFacets.FACET_LEVEL, Level));
-      AddNonNullToList(facets, CXML.MakeStringFacet(ActivityMetadataFacets.FACET_ESTIMATED_TIME, EstimatedTimeMinutes));
-      AddNonNullToList(facets, CXML.MakeStringFacet(ActivityMetadataFacets.FACET_AUTHORS, Authors));
-      AddNonNullToList(facets, CXML.MakeStringFacet(ActivityMetadataFacets.FACET_FROM_SKILLS, FromSkills));
-      AddNonNullToList(facets, CXML.MakeStringFacet(ActivityMetadataFacets.FACET_TO_SKILLS, ToSkills));
-      AddNonNullToList(facets, CXML.MakeStringFacet(ActivityMetadataFacets.FACET_AV_SKILLS, AVSkills));
-      AddNonNullToList(facets, CXML.MakeStringFacet(ActivityMetadataFacets.FACET_RESPONSES, Responses));
-      AddNonNullToList(facets, CXML.MakeStringFacet(ActivityMetadataFacets.FACET_TASKS_REVOICING, TasksRevoicing));
-      AddNonNullToList(facets, CXML.MakeStringFacet(ActivityMetadataFacets.FACET_TASKS_CAPTIONING, TasksCaptioning));
-      AddNonNullToList(facets, CXML.MakeStringFacet(ActivityMetadataFacets.FACET_LEARNER_TYPE, LearnerType));
-      AddNonNullToList(facets, CXML.MakeStringFacet(ActivityMetadataFacets.FACET_AGE_GROUP, AgeGroup));
-      AddNonNullToList(facets, CXML.MakeStringFacet(ActivityMetadataFacets.FACET_FEEDBACK_MODE_TO_LEARNER, FeedbackModeToLearner));
-
-      AddNonNullToList(facets, CXML.MakeStringFacet(MetadataFacets.FACET_KEYWORDS, Keywords));
-      AddNonNullToList(facets, CXML.MakeStringFacet(MetadataFacets.FACET_LICENSE, License));
-
-      return facets;
-    }
-
-    public override void Save(string cxmlFilename)
-    {
-      Save(cxmlFilename, "Collection for activity " + Filename, MakeCXMLFacetCategories(), new IMetadata[] { this });
-    }
-
     #endregion
-
   }
 
 }

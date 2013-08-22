@@ -1,13 +1,15 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
-//Filename: list.aspx.cs
-//Version: 20130727
+//Filename: BaseMetadataPage.cs
+//Version: 20130823
+
+using Metadata.CXML;
 
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.IO;
-using System.Web;
+using System.Linq;
 using System.Web.UI.WebControls;
+using System.Xml;
 using System.Xml.Linq;
 
 namespace ClipFlair.Gallery
@@ -77,12 +79,15 @@ namespace ClipFlair.Gallery
 
     protected void SaveMetadata(string key)
     {
-      ExtractMetadata(key).Save(GetMetadataFilepath(key));
+      string cxmlFilename = GetMetadataFilepath(key);
+      Directory.CreateDirectory(Path.GetDirectoryName(cxmlFilename)); //create any parent directories needed
+      using (XmlWriter cxml = XmlWriter.Create(cxmlFilename))
+        ExtractMetadata(key).Save(cxml);
     }
 
     protected void Merge(string collectionTitle, IEnumerable<XElement> facetCategories)
     {
-      IList<IMetadata> metadataItems = new List<IMetadata>();
+      IList<ICXMLMetadata> metadataItems = new List<ICXMLMetadata>();
 
       foreach (ListItem l in _listItems.Items)
       {
@@ -91,7 +96,10 @@ namespace ClipFlair.Gallery
         metadataItems.Add(ExtractMetadata(key));
       }
 
-      BaseMetadata.Save(GetMergeMetadataFilePath(), collectionTitle, facetCategories, metadataItems.ToArray());
+      string cxmlFilename = GetMergeMetadataFilePath();
+      Directory.CreateDirectory(Path.GetDirectoryName(cxmlFilename)); //create any parent directories needed
+      using (XmlWriter cxml = XmlWriter.Create(cxmlFilename))
+        CXMLMetadata.Save(cxml, collectionTitle, facetCategories, metadataItems.ToArray());
     }
 
     #endregion
@@ -104,7 +112,7 @@ namespace ClipFlair.Gallery
 
     public abstract void Merge();
     public abstract void DisplayMetadata(string key);
-    public abstract IMetadata ExtractMetadata(string key);
+    public abstract ICXMLMetadata ExtractMetadata(string key);
 
     #endregion
 

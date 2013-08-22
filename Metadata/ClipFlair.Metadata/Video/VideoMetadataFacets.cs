@@ -1,10 +1,10 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: VideoMetadataFacets.cs
-//Version: 20130725
+//Version: 20130823
 
 using System;
 
-namespace ClipFlair.Gallery
+namespace ClipFlair.Metadata
 {
 
   public static class VideoMetadataFacets

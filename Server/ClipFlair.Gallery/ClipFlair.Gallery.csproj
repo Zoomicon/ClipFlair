@@ -12,8 +12,9 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>ClipFlair.Gallery</RootNamespace>
     <AssemblyName>ClipFlair.Gallery</AssemblyName>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.0.3</TargetFrameworkVersion>
     <UseIISExpress>false</UseIISExpress>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -34,21 +35,20 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Web.Extensions" />
-    <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Web" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Web.Services" />
     <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="activity\Default.aspx" />
@@ -97,7 +97,6 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="activity\IActivityMetadata.cs" />
     <Compile Include="activity\metadata\ActivityMetadataPage.aspx.cs">
       <DependentUpon>ActivityMetadataPage.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -105,19 +104,10 @@
     <Compile Include="activity\metadata\ActivityMetadataPage.aspx.designer.cs">
       <DependentUpon>ActivityMetadataPage.aspx</DependentUpon>
     </Compile>
-    <Compile Include="activity\ActivityMetadata.cs" />
-    <Compile Include="activity\ActivityMetadataFacets.cs" />
     <Compile Include="BaseMetadataPage.cs">
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="IMetadata.cs" />
     <Compile Include="UI.cs" />
-    <Compile Include="BaseMetadata.cs" />
-    <Compile Include="MetadataFacets.cs" />
-    <Compile Include="video\VideoMetadataFacets.cs" />
-    <Compile Include="video\VideoMetadata.cs" />
-    <Compile Include="CXML.cs" />
-    <Compile Include="video\IVideoMetadata.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="video\metadata\VideoMetadataPage.aspx.cs">
       <DependentUpon>VideoMetadataPage.aspx</DependentUpon>
@@ -153,7 +143,16 @@
       <DependentUpon>Web.config</DependentUpon>
     </Content>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\..\Metadata\ClipFlair.Metadata\ClipFlair.Metadata.csproj">
+      <Project>{A84716D5-5523-421C-AEB6-9EBAA0C77F93}</Project>
+      <Name>ClipFlair.Metadata</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Metadata\Metadata.CXML\Metadata.CXML.csproj">
+      <Project>{5A35D600-930D-49A9-BE66-806C3A1CAF8A}</Project>
+      <Name>Metadata.CXML</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
   <ProjectExtensions>

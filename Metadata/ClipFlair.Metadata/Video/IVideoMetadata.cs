@@ -1,14 +1,14 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: IVideoMetadata.cs
-//Version: 20130725
+//Version: 20130823
 
 using System;
 using System.Xml.Linq;
 
-namespace ClipFlair.Gallery
+namespace ClipFlair.Metadata
 {
 
-  public interface IVideoMetadata : IMetadata
+  public interface IVideoMetadata : IClipFlairMetadata
   {
 
     #region --- Properties ---

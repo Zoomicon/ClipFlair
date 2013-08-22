@@ -1,13 +1,13 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
-//Filename: MetadataFacets.cs
-//Version: 20130725
+//Filename: ClipFlairMetadataFacets.cs
+//Version: 20130823
 
 using System;
 
-namespace ClipFlair.Gallery
+namespace ClipFlair.Metadata
 {
 
-  public static class MetadataFacets
+  public static class ClipFlairMetadataFacets
   {
     public const string FACET_FILENAME = "Filename";
     public const string FACET_KEYWORDS = "Keywords";

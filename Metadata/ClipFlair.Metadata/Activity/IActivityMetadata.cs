@@ -1,14 +1,14 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: IActivityMetadata.cs
-//Version: 20130725
+//Version: 20130822
 
 using System;
 using System.Xml.Linq;
 
-namespace ClipFlair.Gallery
+namespace ClipFlair.Metadata
 {
 
-  public interface IActivityMetadata : IMetadata
+  public interface IActivityMetadata : IClipFlairMetadata
   {
 
     #region --- Properties ---
