@@ -28,6 +28,7 @@
     /// </summary>
     private void InitializeComponent()
     {
+      this.components = new System.ComponentModel.Container();
       System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
       this.webBrowser = new System.Windows.Forms.WebBrowser();
       this.statusStrip = new System.Windows.Forms.StatusStrip();
@@ -37,10 +38,13 @@
       this.mnuSize1024x768 = new System.Windows.Forms.ToolStripMenuItem();
       this.mnuSize1280x1024 = new System.Windows.Forms.ToolStripMenuItem();
       this.panelToolbar = new System.Windows.Forms.Panel();
+      this.btnForward = new System.Windows.Forms.Button();
+      this.btnBack = new System.Windows.Forms.Button();
       this.btnGo = new System.Windows.Forms.Button();
       this.lblURL = new System.Windows.Forms.Label();
-      this.txtURL = new System.Windows.Forms.TextBox();
+      this.comboURL = new System.Windows.Forms.ComboBox();
       this.btnCapture = new System.Windows.Forms.Button();
+      this.timerScreenshot = new System.Windows.Forms.Timer(this.components);
       this.statusStrip.SuspendLayout();
       this.panelToolbar.SuspendLayout();
       this.SuspendLayout();
@@ -55,10 +59,11 @@
       this.webBrowser.MinimumSize = new System.Drawing.Size(20, 20);
       this.webBrowser.Name = "webBrowser";
       this.webBrowser.ScriptErrorsSuppressed = true;
-      this.webBrowser.ScrollBarsEnabled = false;
       this.webBrowser.Size = new System.Drawing.Size(827, 361);
       this.webBrowser.TabIndex = 0;
       this.webBrowser.Url = new System.Uri("", System.UriKind.Relative);
+      this.webBrowser.Navigated += new System.Windows.Forms.WebBrowserNavigatedEventHandler(this.webBrowser_Navigated);
+      this.webBrowser.NewWindow += new System.ComponentModel.CancelEventHandler(this.webBrowser_NewWindow);
       this.webBrowser.SizeChanged += new System.EventHandler(this.webBrowser_SizeChanged);
       // 
       // statusStrip
@@ -115,9 +120,11 @@
       // 
       // panelToolbar
       // 
+      this.panelToolbar.Controls.Add(this.btnForward);
+      this.panelToolbar.Controls.Add(this.btnBack);
       this.panelToolbar.Controls.Add(this.btnGo);
       this.panelToolbar.Controls.Add(this.lblURL);
-      this.panelToolbar.Controls.Add(this.txtURL);
+      this.panelToolbar.Controls.Add(this.comboURL);
       this.panelToolbar.Controls.Add(this.btnCapture);
       this.panelToolbar.Dock = System.Windows.Forms.DockStyle.Top;
       this.panelToolbar.Location = new System.Drawing.Point(0, 0);
@@ -125,48 +132,79 @@
       this.panelToolbar.Size = new System.Drawing.Size(827, 26);
       this.panelToolbar.TabIndex = 6;
       // 
+      // btnForward
+      // 
+      this.btnForward.Enabled = false;
+      this.btnForward.Location = new System.Drawing.Point(23, 2);
+      this.btnForward.Margin = new System.Windows.Forms.Padding(1);
+      this.btnForward.Name = "btnForward";
+      this.btnForward.Size = new System.Drawing.Size(17, 20);
+      this.btnForward.TabIndex = 11;
+      this.btnForward.Text = ">";
+      this.btnForward.UseVisualStyleBackColor = true;
+      this.btnForward.Click += new System.EventHandler(this.btnForward_Click);
+      // 
+      // btnBack
+      // 
+      this.btnBack.Enabled = false;
+      this.btnBack.Location = new System.Drawing.Point(4, 2);
+      this.btnBack.Margin = new System.Windows.Forms.Padding(1);
+      this.btnBack.Name = "btnBack";
+      this.btnBack.Size = new System.Drawing.Size(17, 20);
+      this.btnBack.TabIndex = 10;
+      this.btnBack.Text = "<";
+      this.btnBack.UseVisualStyleBackColor = true;
+      this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
+      // 
       // btnGo
       // 
       this.btnGo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-      this.btnGo.Location = new System.Drawing.Point(704, 1);
+      this.btnGo.Location = new System.Drawing.Point(721, 1);
+      this.btnGo.Margin = new System.Windows.Forms.Padding(1);
       this.btnGo.Name = "btnGo";
       this.btnGo.Size = new System.Drawing.Size(39, 23);
       this.btnGo.TabIndex = 9;
-      this.btnGo.Text = "Go";
+      this.btnGo.Text = "-->";
       this.btnGo.UseVisualStyleBackColor = true;
       this.btnGo.Click += new System.EventHandler(this.btnGo_Click);
       // 
       // lblURL
       // 
       this.lblURL.AutoSize = true;
-      this.lblURL.Location = new System.Drawing.Point(3, 6);
+      this.lblURL.Location = new System.Drawing.Point(44, 6);
       this.lblURL.Name = "lblURL";
       this.lblURL.Size = new System.Drawing.Size(29, 13);
       this.lblURL.TabIndex = 8;
       this.lblURL.Text = "URL";
       // 
-      // txtURL
+      // comboURL
       // 
-      this.txtURL.AllowDrop = true;
-      this.txtURL.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+      this.comboURL.AllowDrop = true;
+      this.comboURL.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-      this.txtURL.Location = new System.Drawing.Point(38, 3);
-      this.txtURL.Name = "txtURL";
-      this.txtURL.Size = new System.Drawing.Size(660, 20);
-      this.txtURL.TabIndex = 6;
-      this.txtURL.Text = "http://studio.clipflair.net/?activity=Tutorial";
-      this.txtURL.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtURL_KeyDown);
+      this.comboURL.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+      this.comboURL.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.HistoryList;
+      this.comboURL.Location = new System.Drawing.Point(79, 3);
+      this.comboURL.Name = "comboURL";
+      this.comboURL.Size = new System.Drawing.Size(638, 21);
+      this.comboURL.TabIndex = 6;
+      this.comboURL.KeyDown += new System.Windows.Forms.KeyEventHandler(this.comboURL_KeyDown);
       // 
       // btnCapture
       // 
       this.btnCapture.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-      this.btnCapture.Location = new System.Drawing.Point(749, 1);
+      this.btnCapture.Location = new System.Drawing.Point(771, 1);
+      this.btnCapture.Margin = new System.Windows.Forms.Padding(1);
       this.btnCapture.Name = "btnCapture";
-      this.btnCapture.Size = new System.Drawing.Size(75, 23);
+      this.btnCapture.Size = new System.Drawing.Size(55, 23);
       this.btnCapture.TabIndex = 5;
-      this.btnCapture.Text = "Capture";
+      this.btnCapture.Text = "&Capture";
       this.btnCapture.UseVisualStyleBackColor = true;
       this.btnCapture.Click += new System.EventHandler(this.btnCapture_Click);
+      // 
+      // timerScreenshot
+      // 
+      this.timerScreenshot.Tick += new System.EventHandler(this.timerScreenshot_Tick);
       // 
       // MainForm
       // 
@@ -179,8 +217,8 @@
       this.Name = "MainForm";
       this.StartPosition = System.Windows.Forms.FormStartPosition.WindowsDefaultBounds;
       this.Text = "WebCapture";
-      this.TopMost = true;
       this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+      this.Shown += new System.EventHandler(this.MainForm_Shown);
       this.statusStrip.ResumeLayout(false);
       this.statusStrip.PerformLayout();
       this.panelToolbar.ResumeLayout(false);
@@ -197,13 +235,16 @@
     private System.Windows.Forms.Panel panelToolbar;
     private System.Windows.Forms.Button btnGo;
     private System.Windows.Forms.Label lblURL;
-    private System.Windows.Forms.TextBox txtURL;
+    private System.Windows.Forms.ComboBox comboURL;
     private System.Windows.Forms.Button btnCapture;
     private System.Windows.Forms.ToolStripDropDownButton btnWebBrowserSize;
     private System.Windows.Forms.ToolStripMenuItem mnuSize640x480;
     private System.Windows.Forms.ToolStripMenuItem mnuSize800x600;
     private System.Windows.Forms.ToolStripMenuItem mnuSize1024x768;
     private System.Windows.Forms.ToolStripMenuItem mnuSize1280x1024;
+    private System.Windows.Forms.Button btnForward;
+    private System.Windows.Forms.Button btnBack;
+    private System.Windows.Forms.Timer timerScreenshot;
   }
 }
 

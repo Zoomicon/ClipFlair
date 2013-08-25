@@ -61,11 +61,10 @@ namespace WebCapture
       return dialog;
     }
 
-    public static void ShowSaveFileDialog(this Image image, IWin32Window owner = null)
+    public static string ShowSaveFileDialog(this Image image, IWin32Window owner = null)
     {
       using (SaveFileDialog dlg = GetImageSaveFileDialog())
-        if (dlg.ShowDialog(owner) == DialogResult.OK)
-          image.Save(dlg.FileName);
+        return (dlg.ShowDialog(owner) == DialogResult.OK) ? dlg.FileName : null;
     }
 
   }
