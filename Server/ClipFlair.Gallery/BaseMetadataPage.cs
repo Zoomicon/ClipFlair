@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: BaseMetadataPage.cs
-//Version: 20130823
+//Version: 20130825
 
 using Metadata.CXML;
 
@@ -80,7 +80,7 @@ namespace ClipFlair.Gallery
     protected void SaveMetadata(string key)
     {
       string cxmlFilename = GetMetadataFilepath(key);
-      Directory.CreateDirectory(Path.GetDirectoryName(cxmlFilename)); //create any parent directories needed
+      Directory.CreateDirectory(Path.GetDirectoryName(Path.GetFullPath(cxmlFilename))); //create any parent directories needed
       using (XmlWriter cxml = XmlWriter.Create(cxmlFilename))
         ExtractMetadata(key).Save(cxml);
     }
@@ -97,7 +97,7 @@ namespace ClipFlair.Gallery
       }
 
       string cxmlFilename = GetMergeMetadataFilePath();
-      Directory.CreateDirectory(Path.GetDirectoryName(cxmlFilename)); //create any parent directories needed
+      Directory.CreateDirectory(Path.GetDirectoryName(Path.GetFullPath(cxmlFilename))); //create any parent directories needed
       using (XmlWriter cxml = XmlWriter.Create(cxmlFilename))
         CXMLMetadata.Save(cxml, collectionTitle, facetCategories, metadataItems.ToArray());
     }
