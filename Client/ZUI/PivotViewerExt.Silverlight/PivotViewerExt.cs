@@ -1,9 +1,9 @@
 ﻿//Filename: PivotViewerExt.cs
-//Version: 20130701
+//Version: 20130827
 
 using WPFCompatibility;
 
-using Microsoft.Internal.Pivot.Views;
+//using Microsoft.Internal.Pivot.Views;
 
 using System;
 using System.Linq;

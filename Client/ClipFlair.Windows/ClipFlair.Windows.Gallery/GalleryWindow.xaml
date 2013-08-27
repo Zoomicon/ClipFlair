@@ -1,6 +1,6 @@
 ﻿<!--
 Filename: GalleryWindow.xaml
-Version: 20130702
+Version: 20130828
 -->
 
 <clipflair:BaseWindow x:Class="ClipFlair.Windows.GalleryWindow"
@@ -9,13 +9,14 @@ Version: 20130702
   xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
   xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk"
+  xmlns:pivot="clr-namespace:System.Windows.Controls.Pivot;assembly=System.Windows.Controls.Pivot"
   xmlns:pivotex="clr-namespace:PivotViewerExt;assembly=PivotViewerExt"
   xmlns:clipflair="clr-namespace:ClipFlair.Windows;assembly=ClipFlair.Windows.Base"    
   xmlns:clipflairview="clr-namespace:ClipFlair.Windows.Views"
   xmlns:utils="clr-namespace:Utils.Converters;assembly=Utils.Silverlight"
   mc:Ignorable="d"
   d:DesignWidth="800" d:DesignHeight="600"
-  > <!-- xmlns:pivot="clr-namespace:System.Windows.Controls.Pivot;assembly=System.Windows.Controls.Pivot" -->
+  >
 
   <clipflair:BaseWindow.Resources>
     <ResourceDictionary>
@@ -24,6 +25,22 @@ Version: 20130702
       </ResourceDictionary.MergedDictionaries>
 
       <utils:HtmlEncodedToDecodedStringConverter x:Key="EncodedToDecodedStringConverter" />
+
+      <Style x:Key="GalleryItemAdornerStyle" 
+             TargetType="pivot:PivotViewerItemAdorner">
+        <Setter Property="Template">
+          <Setter.Value>
+            <ControlTemplate>
+              <pivot:PivotViewerDefaultItemAdorner
+                IsTabStop="False"
+                IsItemSelected="{Binding IsItemSelected, 
+                RelativeSource={RelativeSource TemplatedParent}}"
+                CommandsRequested="GalleryItemAdorner_CommandsRequested"/>
+            </ControlTemplate>
+          </Setter.Value>
+        </Setter>
+      </Style>
+
 
     </ResourceDictionary>
   </clipflair:BaseWindow.Resources>
@@ -34,26 +51,8 @@ Version: 20130702
     HorizontalAlignment="Stretch" VerticalAlignment="Stretch" 
     Source="{Binding Source, Mode=TwoWay}"
     Filter="{Binding Filter, Mode=TwoWay}"
-    >
-
-    <!--
-    <pivotex:PivotViewerExt.ItemAdornerStyle>
-      <Style TargetType="pivot:PivotViewerItemAdorner">
-        <Setter Property="Template">
-          <Setter.Value>
-            <ControlTemplate TargetType="pivot:PivotViewerItemAdorner">
-              <pivot:PivotViewerDefaultItemAdorner
-                IsTabStop="False"
-                CommandsRequested="GetCommands"
-                IsItemSelected="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=IsItemSelected}" />
-            </ControlTemplate>
-          </Setter.Value>
-        </Setter>
-      </Style>
-    </pivotex:PivotViewerExt.ItemAdornerStyle>
-    -->
-
-  </pivotex:PivotViewerExt>
+    ItemAdornerStyle="{StaticResource GalleryItemAdornerStyle}"    
+    />
 
   <!--</clipflair:BaseWindow.FrontContent>-->
 

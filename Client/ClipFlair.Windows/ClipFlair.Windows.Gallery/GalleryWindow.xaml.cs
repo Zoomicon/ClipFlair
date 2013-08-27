@@ -1,10 +1,12 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: GalleryWindow.xaml.cs
-//Version: 20130613
+//Version: 20130828
 
 using ClipFlair.Windows.Views;
+using ClipFlair.Windows.Gallery.Commands;
 
 using System.Windows;
+using System.Windows.Controls.Pivot;
 
 namespace ClipFlair.Windows
 {
@@ -43,6 +45,17 @@ namespace ClipFlair.Windows
         pivot.Visibility = Visibility.Visible;
     }
 */
+
+    private void GalleryItemAdorner_CommandsRequested(object sender, PivotViewerCommandsRequestedEventArgs e)
+    {
+      //if (e.IsItemSelected)
+      {
+        e.Commands.Add(new InfoCommand((PivotViewerItem)e.Item));
+        //e.Commands.Add(new ShareCommand());
+        //e.Commands.Add(new DownloadCommand());
+        //e.Commands.Add(new OpenCommand());
+      }
+    }
 
     #endregion
 

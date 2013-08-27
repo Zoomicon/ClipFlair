@@ -75,6 +75,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Commands\DownloadCommand.cs" />
+    <Compile Include="Commands\OpenCommand.cs" />
+    <Compile Include="Commands\ShareCommand.cs" />
+    <Compile Include="Commands\InfoCommand.cs" />
     <Compile Include="IGalleryProperties.cs" />
     <Compile Include="GalleryWindowFactory.cs" />
     <Compile Include="IGallery.cs" />
@@ -120,6 +124,13 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Images\Download.png" />
+    <Resource Include="Images\Info.png" />
+    <Resource Include="Images\Open.png" />
+    <Resource Include="Images\Share.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Silverlight\$(SilverlightVersion)\Microsoft.Silverlight.CSharp.targets" />
   <ProjectExtensions>
