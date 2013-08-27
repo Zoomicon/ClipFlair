@@ -3,7 +3,7 @@
 	MasterPageFile="~/MonoX/MasterPages/DefaultSmallHeader.master" 
 	AutoEventWireup="true" 
 	Inherits="MonoSoftware.MonoX.Pages.Features" 
-	Title="Media Gallery" 
+	Title="Video Tutorials" 
 	Theme="Default" 
     %>
 <%@ MasterType TypeName="MonoSoftware.MonoX.BaseMasterPage" %>   
@@ -12,32 +12,23 @@
 <%@ Register TagPrefix="MonoX" TagName="FileGallery" Src="~/MonoX/ModuleGallery/SocialNetworking/FileGallery.ascx" %>
 <%@ Register Assembly="MonoX" Namespace="MonoSoftware.MonoX" TagPrefix="portal" %>
 <%@ Register Assembly="MonoX" Namespace="MonoSoftware.MonoX.Repositories" TagPrefix="MonoRepositories" %>
+<%@ Register Assembly="CustomXml" Namespace="PAB.WebControls" TagPrefix="cc2" %>
+
 <%@ Import Namespace="MonoSoftware.MonoX.Resources" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="cp" Runat="Server">
     <table cellspacing="0" cellpadding="0">
       <tr>        
         <td class="left-section">
-            <portal:PortalWebPartZoneTableless HeaderText='<%$ Code: PageResources.Zone_LeftPartZone %>' ID="leftPartZone" runat="server" Width="100%" ChromeTemplateFile="LeftColumn.htm">
-                <ZoneTemplate>
-                    <MonoX:Editor runat="server" ID="editor2" Title='<%$ Code: PageResources.Title_DescriptionOfFeatures %>' ShowRating="false">
-                    <DefaultContent>
-                    <h1>Tutorials</h1>
-                    The following tutorials are about <a href="http://clipflairsrv.cti.gr/Play" target="Playground">ClipFlair Playground</a>.
-                    <br /><br />
-                    <h3>Video Tutorials</h2>                    
-                    <ul class="list">
-                        <li>
-                            a
-					    </li>
-                        <li>
-                            b
-					    </li>
-                    </ul>
-                    </DefaultContent>
-                    </MonoX:Editor>
-                </ZoneTemplate>
-            </portal:PortalWebPartZoneTableless>
+		  <div>
+
+            <cc2:CustomXml
+             DocumentUrl="http://gallery.clipflair.net/video/tutorials.xml"
+             XslUrl="http://gallery.clipflair.net/video/video_tutorials.xsl"
+             runat="server"
+             />
+			 
+		  </div>
         </td>
       </tr>      
     </table>

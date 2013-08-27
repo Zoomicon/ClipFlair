@@ -95,13 +95,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClipFlair.Metadata", "Metad
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Metadata.CXML", "Metadata\Metadata.CXML\Metadata.CXML.csproj", "{5A35D600-930D-49A9-BE66-806C3A1CAF8A}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{B5778647-0764-452E-824E-71ACACEDC968}"
-	ProjectSection(SolutionItems) = preProject
-		.nuget\NuGet.Config = .nuget\NuGet.Config
-		.nuget\NuGet.exe = .nuget\NuGet.exe
-		.nuget\NuGet.targets = .nuget\NuGet.targets
-	EndProjectSection
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebCapture", "Tools\WebCapture\WebCapture.csproj", "{3CA82147-0BFE-4E44-9693-8457C2DACB7E}"
 EndProject
 Global
