@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: StringExtensions.cs
-//Version: 20130712
+//Version: 20130828
 
 using System;
 using System.Text.RegularExpressions;
@@ -12,7 +12,7 @@ namespace Utils.Extensions
 
     public static Uri ToUri(this string s)
     {
-      if (String.IsNullOrEmpty(s))
+      if (string.IsNullOrEmpty(s))
         return null;
       else
         return new Uri(s, UriKind.Absolute);
@@ -77,7 +77,7 @@ namespace Utils.Extensions
     public static string ReplaceInvalidFileNameChars(this string s, string replacement = "")
     {
       return Regex.Replace(s,
-        "[" + Regex.Escape(new String(System.IO.Path.GetInvalidPathChars())) + "]",
+        "[" + Regex.Escape(new string(System.IO.Path.GetInvalidPathChars())) + "]",
         replacement, //can even use a replacement string of any length
         RegexOptions.IgnoreCase);
         //not using System.IO.Path.InvalidPathChars (deprecated insecure API)

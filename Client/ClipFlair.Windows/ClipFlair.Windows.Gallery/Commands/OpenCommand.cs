@@ -2,39 +2,40 @@
 //Filename: OpenCommand.cs
 //Version: 20130828
 
+using ClipFlair.UI.Dialogs;
+using Utils.Extensions;
+
+using System;
+using System.Windows;
+using System.Windows.Threading;
 using System.Windows.Controls.Pivot;
 
 namespace ClipFlair.Windows.Gallery.Commands
 {
 
-  public class OpenCommand : IPivotViewerUICommand
+  public class OpenCommand : BaseCommand
   {
 
-    public string DisplayName
+    public OpenCommand(PivotViewerItem item) : base()
     {
-      get { return ""; }
+      DisplayName = ">";
+      Icon = null; //new System.Uri("/ClipFlair.Windows.Gallery;component/Images/Open.png";
+      string url = (string)item["Href"][0];
+      ToolTip = "Open " + url;
+      IsExecutable = !string.IsNullOrWhiteSpace(url);
     }
 
-    public System.Uri Icon
+    public override void Execute(object parameter)
     {
-      get { return new System.Uri("/ClipFlair.Windows.Gallery;component/Images/Open.png"); }
-    }
-
-    public object ToolTip
-    {
-      get { return "Open"; }
-    }
-
-    public bool CanExecute(object parameter)
-    {
-      return true;
-    }
-
-    public event System.EventHandler CanExecuteChanged;
-
-    public void Execute(object parameter)
-    {
-      //TODO
+      Uri uri = new Uri((string)((PivotViewerItem)parameter)["Href"][0]);
+      try
+      {
+        uri.NavigateTo();
+      }
+      catch
+      {
+        MessageDialog.Show("Navigation", "Please visit " + uri); //TODO: use URLDialog here with clickable URL on it
+      }
     }
 
   }

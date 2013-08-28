@@ -50,10 +50,11 @@ namespace ClipFlair.Windows
     {
       //if (e.IsItemSelected)
       {
-        e.Commands.Add(new InfoCommand((PivotViewerItem)e.Item));
-        //e.Commands.Add(new ShareCommand());
-        //e.Commands.Add(new DownloadCommand());
-        //e.Commands.Add(new OpenCommand());
+        PivotViewerItem item = (PivotViewerItem)e.Item;
+        e.Commands.Add(new InfoCommand(item));
+        //e.Commands.Add(new ShareCommand(item));
+        //e.Commands.Add(new DownloadCommand(item));
+        e.Commands.Add(new OpenCommand(item));
       }
     }
 

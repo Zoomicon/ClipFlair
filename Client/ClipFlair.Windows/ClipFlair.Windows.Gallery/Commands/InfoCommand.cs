@@ -7,40 +7,29 @@ using System.Windows.Controls.Pivot;
 namespace ClipFlair.Windows.Gallery.Commands
 {
 
-  public class InfoCommand : IPivotViewerUICommand
+  public class InfoCommand : BaseCommand
   {
-    PivotViewerItem item;
 
-    public InfoCommand(PivotViewerItem theItem)
+    public InfoCommand(PivotViewerItem item) : base()
     {
-      item = theItem;
+      DisplayName = "i";
+      Icon = null; //new System.Uri("/ClipFlair.Windows.Gallery;component/Images/Info.png";
+      ToolTip = makeTooltip(item);
+      IsExecutable = true; //needed to show the tooltip
     }
 
-    public string DisplayName
+    protected string makeTooltip(PivotViewerItem item)
     {
-      get { return "(i)"; }
+      string name = (string)item["Name"][0];
+      string description = (string)item["Description"][0];
+      return ((name != null)? name + ((description != null)? " - " : "") : "") + 
+             ((description != null)? description : "");
     }
 
-    public System.Uri Icon
+    public override void Execute(object parameter)
     {
-      get { return null; /* new System.Uri("/ClipFlair.Windows.Gallery;component/Images/Info.png"); */}
-    }
-
-    public object ToolTip
-    {
-      get { return item["Name"][0] + " - " + item["Description"][0]; }
-    }
-
-    public bool CanExecute(object parameter)
-    {
-      return true;
-    }
-
-    public event System.EventHandler CanExecuteChanged;
-
-    public void Execute(object parameter)
-    {
-      //TODO
+      base.Execute(parameter);
+      //TODO: toggle visibility of Details pane (may need to pass pivot viewer itself at constructor or a reference to the details pane)
     }
 
   }

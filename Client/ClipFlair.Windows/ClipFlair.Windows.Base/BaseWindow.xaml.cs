@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: BaseWindow.xaml.cs
-//Version: 20130628
+//Version: 20130828
 
 //TODO: unbind control at close
 
@@ -265,7 +265,7 @@ namespace ClipFlair.Windows
         }
         catch
         {
-          MessageDialog.Show("Help", "Please visit " + CLIPFLAIR_TUTORIALS);
+          MessageDialog.Show("Help", "Please visit " + CLIPFLAIR_TUTORIALS); //TODO: use URLDialog here with clickable URL on it
         }
       });
     }
