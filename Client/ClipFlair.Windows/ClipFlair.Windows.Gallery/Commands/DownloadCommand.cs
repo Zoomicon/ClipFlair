@@ -2,39 +2,45 @@
 //Filename: DownloadCommand.cs
 //Version: 20130828
 
+using ClipFlair.UI.Dialogs;
+using Utils.Extensions;
+
+using System;
+using System.Windows;
+using System.Windows.Threading;
 using System.Windows.Controls.Pivot;
 
 namespace ClipFlair.Windows.Gallery.Commands
 {
 
-  public class DownloadCommand : IPivotViewerUICommand
+  public class DownloadCommand : BaseCommand
   {
 
-    public string DisplayName
+    public DownloadCommand(PivotViewerItem item)
+      : base()
     {
-      get { return ""; }
+      DisplayName = "";
+      Icon = new System.Uri("/ClipFlair.Windows.Gallery;component/Images/Download.png", UriKind.Relative); //must specify that this is a relative Uri
+
+      bool isVideo = (((string)item["Href"][0]).Contains("?video="));
+      string filename = (string)item["Filename"][0];
+
+      string url = "http://gallery.clipflair.net/" + ((isVideo)?"video/"+filename+"/" : "activity/") + filename;
+      ToolTip = "Download " + url;
+      IsExecutable = !string.IsNullOrWhiteSpace(url) && !isVideo; 
     }
 
-    public System.Uri Icon
+    public override void Execute(object parameter)
     {
-      get { return new System.Uri("/ClipFlair.Windows.Gallery;component/Images/Download.png"); }
-    }
-
-    public object ToolTip
-    {
-      get { return "Download"; }
-    }
-
-    public bool CanExecute(object parameter)
-    {
-      return true;
-    }
-
-    public event System.EventHandler CanExecuteChanged;
-
-    public void Execute(object parameter)
-    {
-      //TODO
+      Uri uri = new Uri("http://gallery.clipflair.net/activity/" + (string)((PivotViewerItem)parameter)["Filename"][0]);
+      try
+      {
+        uri.NavigateTo();
+      }
+      catch
+      {
+        MessageDialog.Show("Navigation", "Please visit " + uri); //TODO: use URLDialog here with clickable URL on it
+      }
     }
 
   }

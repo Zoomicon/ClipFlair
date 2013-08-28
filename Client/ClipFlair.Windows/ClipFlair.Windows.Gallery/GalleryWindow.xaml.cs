@@ -52,8 +52,8 @@ namespace ClipFlair.Windows
       {
         PivotViewerItem item = (PivotViewerItem)e.Item;
         try { e.Commands.Add(new InfoCommand(item)); } catch { }
-        //try { e.Commands.Add(new ShareCommand(item)); } catch { }
-        //try { e.Commands.Add(new DownloadCommand(item)); } catch { }
+        try { e.Commands.Add(new ShareCommand(item)); } catch { }
+        try { e.Commands.Add(new DownloadCommand(item)); } catch { }
         try { e.Commands.Add(new OpenCommand(item)); } catch { }
       }
     }
