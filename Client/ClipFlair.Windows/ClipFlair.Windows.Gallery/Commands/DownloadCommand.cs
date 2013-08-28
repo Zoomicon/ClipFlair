@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: DownloadCommand.cs
-//Version: 20130828
+//Version: 20130829
 
 using ClipFlair.UI.Dialogs;
 using Utils.Extensions;
@@ -25,9 +25,12 @@ namespace ClipFlair.Windows.Gallery.Commands
       bool isVideo = (((string)item["Href"][0]).Contains("?video="));
       string filename = (string)item["Filename"][0];
 
-      string url = "http://gallery.clipflair.net/" + ((isVideo)?"video/"+filename+"/" : "activity/") + filename;
+      string url = "http://gallery.clipflair.net/" + ((isVideo)?"video/"+filename+"/" : "activity/") + filename + ((isVideo)?".mp4":"");
       ToolTip = "Download " + url;
-      IsExecutable = !string.IsNullOrWhiteSpace(url) && !isVideo; 
+      IsExecutable = !string.IsNullOrWhiteSpace(url) && !isVideo;
+
+      if (isVideo)
+        throw new NotImplementedException(); //TODO: need to add .mp4 files for each smooth stream
     }
 
     public override void Execute(object parameter)
