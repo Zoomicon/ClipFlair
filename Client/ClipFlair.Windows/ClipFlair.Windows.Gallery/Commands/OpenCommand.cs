@@ -18,8 +18,8 @@ namespace ClipFlair.Windows.Gallery.Commands
 
     public OpenCommand(PivotViewerItem item) : base()
     {
-      DisplayName = ">";
-      Icon = null; //new System.Uri("/ClipFlair.Windows.Gallery;component/Images/Open.png";
+      DisplayName = "";
+      Icon = new System.Uri("/ClipFlair.Windows.Gallery;component/Images/Open.png", UriKind.Relative); //must specify that this is a relative Uri
       string url = (string)item["Href"][0];
       ToolTip = "Open " + url;
       IsExecutable = !string.IsNullOrWhiteSpace(url);

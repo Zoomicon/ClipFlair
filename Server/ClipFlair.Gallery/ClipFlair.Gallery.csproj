@@ -81,6 +81,12 @@
     </Content>
     <Content Include="activity\metadata\Language.xml" />
     <Content Include="activity\metadata\ActivityMetadataPage.aspx" />
+    <Content Include="ClientAccessPolicy.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="crossdomain.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="video\Default.aspx" />
     <Content Include="video\metadata\Genre.xml">
       <SubType>Designer</SubType>
