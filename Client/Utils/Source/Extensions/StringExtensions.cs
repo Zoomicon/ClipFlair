@@ -10,6 +10,11 @@ namespace Utils.Extensions
   public static class StringExtensions
   {
 
+    public static bool IsEmpty(this string s)
+    {
+      return (s.Trim().Length == 0);
+    }
+
     public static Uri ToUri(this string s)
     {
       if (string.IsNullOrEmpty(s))
