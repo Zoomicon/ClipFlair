@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: BaseMetadataPage.cs
-//Version: 20130825
+//Version: 20130903
 
 using Metadata.CXML;
 
@@ -43,8 +43,27 @@ namespace ClipFlair.Gallery
         //if (!File.Exists(GetMetadataFilepath(key)))
         { //not using the above line anymore so that we can save existing files again after any format change
           UpdateSelection(key); //must pass value here
-          SaveMetadata(key); //must pass value here
+          try
+          {
+            SaveMetadata(key); //must pass value here
+          }
+          catch
+          {
+            //NOP (ignore errors - skip item)
+          }
         }
+      }
+    }
+
+    protected XmlReader CreateXmlReader(string inputUri)
+    {
+      try
+      {
+        return XmlReader.Create(inputUri);
+      }
+      catch
+      {
+        return null;
       }
     }
     

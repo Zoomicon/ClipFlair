@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: ActivityMetadataPage.aspx.cs
-//Version: 20130823
+//Version: 20130903
 
 using Metadata.CXML;
 using ClipFlair.Metadata;
@@ -62,8 +62,8 @@ namespace ClipFlair.Gallery
 
     public override void DisplayMetadata(string key)
     {
-      using (XmlReader cxmlFallback = XmlReader.Create(GetFallbackMetadataFilePath()))
-        using (XmlReader cxml = XmlReader.Create(GetMetadataFilepath(key)))
+      using (XmlReader cxmlFallback = CreateXmlReader(GetFallbackMetadataFilePath()))
+        using (XmlReader cxml = CreateXmlReader(GetMetadataFilepath(key)))
           DisplayMetadata(key, (IActivityMetadata)new ActivityMetadata().Load(key, cxml, cxmlFallback));
     }
 
