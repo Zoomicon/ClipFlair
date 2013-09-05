@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: BaseCommand.cs
-//Version: 20130828
+//Version: 20130905
 
 using System;
 using System.Windows.Controls.Pivot;
@@ -34,10 +34,7 @@ namespace ClipFlair.Windows.Gallery.Commands
       return IsExecutable; //can override at descendents to use "parameter" (else they can set it at constructor based on "item" passed there)
     }
 
-    public virtual void Execute(object parameter)
-    {
-      //NOP (override at descendents)
-    }
+    public abstract void Execute(object parameter);
 
     #endregion
     
