@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: InfoCommand.cs
-//Version: 20130828
+//Version: 20130905
 
 using Utils.Extensions;
 using System;
@@ -39,7 +39,6 @@ namespace ClipFlair.Windows.Gallery.Commands
 
     public override void Execute(object parameter)
     {
-      base.Execute(parameter);
       //TODO: toggle visibility of Details pane (may need to pass pivot viewer itself at constructor or a reference to the details pane)
     }
 
