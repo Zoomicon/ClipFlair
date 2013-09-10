@@ -1,0 +1,149 @@
+/* CSS Document */
+
+body
+{
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  background: #3c5773;
+}
+
+a:focus {
+  outline: 0;
+}
+
+#wrapper
+{
+  margin: 0 auto;
+  padding: 0;
+  width: 100%;
+}
+
+#btns{
+	width: 100%;
+	height:auto;
+	float:left;
+	padding-top:18%;
+}
+
+a.activity-gallery_btn
+{
+  float: left;
+  width: 25%;
+  margin-left: 18%;
+  position: relative;
+  height: 0;
+  padding-bottom: 24%;
+  
+}
+
+a.video-gallery_btn
+{
+  float: right;
+  display: block;
+  width: 25%;
+  position: relative;
+  height: 0;
+  padding-bottom: 24%;
+  margin-right: 18%;
+}
+
+a.video-gallery_btn:hover, a.activity-gallery_btn:hover
+{
+  -moz-box-shadow: 0px 0px 10px #444;
+  webkit-box-shadow: 0px 0px 10px #444;
+  box-shadow: 0px 0px 10px #444;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+}
+
+@media (max-width: 767px) and (min-width: 480px)
+{
+
+  a.activity-gallery_btn
+  {
+    float: left;
+    width: 30%;
+    margin-left: 15%;
+    position: relative;
+    height: 0;
+    padding-bottom: 29%;
+	
+  }
+
+  a.video-gallery_btn
+  {
+    float: right;
+    width: 30%;
+    position: relative;
+    height: 0;
+    padding-bottom: 29%;
+    margin-right: 15%;
+	
+  }
+
+}
+
+@media (max-width: 480px)
+{
+	
+  #btns{
+	width: 100%;
+	height:auto;
+	float:left;
+	padding-top:10%;
+  }
+
+  a.activity-gallery_btn
+  {
+    float: left;
+    width: 80%;
+    margin-left: 10%;
+    position: relative;
+	clear:both;
+    height: 0;
+    padding-bottom: 76%;
+	
+  }
+
+  a.video-gallery_btn
+  {
+    float: left;
+    width: 80%;
+    position: relative;
+	clear:both;
+	margin-top:10%;
+    height: 0;
+    padding-bottom: 76%;
+    margin-left: 10%;
+	
+  }
+
+}
+
+@media (min-width: 1280px)
+{
+  a.activity-gallery_btn
+  {
+    float: left;
+    width: 18%;
+    margin-left: 24%;
+    position: relative;
+    height: 0;
+    padding-bottom: 17%;
+	
+  }
+
+  a.video-gallery_btn
+  {
+    float: right;
+    width: 18%;
+    position: relative;
+    height: 0;
+    padding-bottom: 17%;
+    margin-right: 24%;
+	
+  }
+
+}
