@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: TextEditorWindow.xaml.cs
-//Version: 20130501
+//Version: 20130919
 
 using ClipFlair.Windows.Views;
 
@@ -56,22 +56,22 @@ namespace ClipFlair.Windows
       
       //load text
       ZipEntry entry = zip[zipFolder + "/document.text"];
-      //if (entry == null) entry = zip[zipFolder + "/document.txt"];
-      //if (entry == null) entry = zip[zipFolder + "/document.docx"]; //TODO: check if it's possible to also support RTF there
+      if (entry == null) entry = zip[zipFolder + "/document.txt"];
+      if (entry == null) entry = zip[zipFolder + "/document.docx"]; //TODO: check if it's possible to also support RTF there
       if (entry != null)
-        editor.Load(entry.OpenReader()); //TODO: should accept entry.FileName to check for .text (XAML Snippet), .txt, .docx and load it accordingly (similarly change its open file dialog to accept multiple formats)
+        editor.Load(entry.OpenReader(), entry.FileName);
     }
 
     public override void SaveOptions(ZipFile zip, string zipFolder = "")
     {
       base.SaveOptions(zip, zipFolder);
 
-      zip.AddEntry(zipFolder + "/document.text", SaveText); //TODO: maybe not save when no text is available
+      zip.AddEntry(zipFolder + "/document.text", SaveText); //TODO: maybe should not save when no text is available
     }
 
     public void SaveText(string entryName, Stream stream)
     {
-      editor.Save(stream);
+      editor.SaveXaml(stream);
     }
 
     #endregion
