@@ -5,7 +5,7 @@
 <!--
 Project: ClipFlair (http://ClipFlair.codeplex.com)
 Filename: VideoMetadataPage.aspx
-Version: 20130805
+Version: 20130918
 -->
 
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -47,13 +47,13 @@ Version: 20130805
     <asp:XmlDataSource ID="xmlGenre" runat="server" DataFile="~/video/metadata/Genre.xml" XPath="Facet/String" />
     <asp:XmlDataSource ID="XmlAudiovisualRichness" runat="server" DataFile="~/video/metadata/AudiovisualRichness.xml" XPath="Facet/String" />
 
-    <form id="form1" runat="server">
+    <div class="instructions">
+    Please fill in the following information for the clip of your choice. Select the clip from the dropdown list.<br />
+    Try to fill the metadata as fully and accurately as possible, as they will be used for searching and filtering clips.<br />
+    Don't forget to press the SAVE METADATA button. Thank you!
+    </div>
 
-      <div class="instructions">
-      Please fill in the following information for the clip of your choice. Select the clip from the dropdown list.<br />
-      Try to fill the metadata as fully and accurately as possible, as they will be used for searching and filtering clips.<br />
-      Don't forget to press the SAVE METADATA button. Thank you!
-      </div>
+    <form id="form1" runat="server">
 
       <div class="bar">
         <div class="label">Video stream</div> 
@@ -62,7 +62,9 @@ Version: 20130805
           OnSelectedIndexChanged="listItems_SelectedIndexChanged"
           />
 
-        <div class="label">Url</div>
+       <br />
+
+       <div class="label">Url</div>
         <asp:HyperLink ID="linkUrl" runat="server" Target="_blank"/>
       </div>
 
@@ -76,11 +78,11 @@ Version: 20130805
         <asp:TextBox ID="txtDescription" runat="server" TextMode="MultiLine" Rows="5" Columns="110" />
       </div>
 
-      <div>
+      <div style="float: left">
         <div class="label">Audio language</div>
         <asp:Panel runat="server" 
-          Height="100" Width="250"
-          ScrollBars="Vertical">
+          Height="450" Width="250"
+          ScrollBars="Auto">
 
           <asp:CheckBoxList ID="clistAudioLanguage" runat="server" 
             DataSourceID="xmlLanguage" DataTextField="Value" DataValueField="Value" 
@@ -88,29 +90,29 @@ Version: 20130805
          </asp:Panel>
       </div>
 
-      <div>
+      <div style="float: left">
         <div class="label">Captions language (on the clip)</div>
         <asp:Panel runat="server" 
-          Height="100" Width="250"
-          ScrollBars="Vertical">
+          Height="450" Width="250"
+          ScrollBars="Auto">
 
           <asp:CheckBoxList ID="clistCaptionsLanguage" runat="server" 
             DataSourceID="xmlLanguage" DataTextField="Value" DataValueField="Value" />
          </asp:Panel>
       </div>
 
-      <div>
+      <div style="float: left">
         <div class="label">Genre</div>
         <asp:Panel runat="server" 
-          Height="100" Width="250"
-          ScrollBars="Vertical">
+          Height="450" Width="250"
+          ScrollBars="Auto">
 
           <asp:CheckBoxList ID="clistGenre" runat="server" 
             DataSourceID="xmlGenre" DataTextField="Value" DataValueField="Value" />
          </asp:Panel>
       </div>
 
-      <div class="label">
+      <div class="label" style="clear: left">
         <asp:CheckBox ID="cbAgeRestricted" runat="server" Text="Age Restricted (18+)" />
       </div>
       
@@ -122,8 +124,8 @@ Version: 20130805
       <div>
         <div class="label">Audiovisual richness</div>
         <asp:Panel runat="server" 
-          Height="100" Width="250"
-          ScrollBars="Vertical">
+          Height="160" Width="250"
+          ScrollBars="Auto">
 
           <asp:CheckBoxList ID="clistAudiovisualRichness" runat="server" 
             DataSourceID="xmlAudiovisualRichness" DataTextField="Value" DataValueField="Value" />
@@ -134,7 +136,7 @@ Version: 20130805
         <asp:CheckBox ID="cbPedagogicalAdaptability" runat="server" Text="Pedagogical Adaptability" />
       </div>
 
-      <div>
+      <div style="clear: left">
         <div class="label">Author / Source</div>
         <asp:TextBox ID="txtAuthorSource" runat="server" Columns="150"></asp:TextBox>
       </div>

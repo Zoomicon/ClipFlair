@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: ActivityMetadata.cs
-//Version: 20130823
+//Version: 20130918
 
 using Metadata.CXML;
 
@@ -59,47 +59,27 @@ namespace ClipFlair.Metadata
       FeedbackModeToLearner = new string[] { };
     }
 
-    public override ICXMLMetadata Load(string key, XDocument doc)
+    public override ICXMLMetadata Load(XElement item)
     {
-      IEnumerable<XElement> facets = null;
-      try
-      {
-        XElement item = doc.Root.Elements(CXML.NODE_ITEMS).Elements(CXML.NODE_ITEM).CXMLFirstItemWithStringValue(ClipFlairMetadataFacets.FACET_FILENAME, key);
+      base.Load(item);
 
-        Id = item.Attribute(CXML.ATTRIB_ID).Value;
-        Title = item.Attribute(CXML.ATTRIB_NAME).Value;
-        Image = item.Attribute(CXML.ATTRIB_IMG).Value;
-        Url = new Uri(item.Attribute(CXML.ATTRIB_HREF).Value);
+      IEnumerable<XElement> facets = FindFacets(item);
 
-        Description = item.Element(CXML.NODE_DESCRIPTION).Value;
-
-        facets = item.Elements(CXML.NODE_FACETS).Elements(CXML.NODE_FACET);
-
-        Filename = facets.CXMLFacetStringValue(ClipFlairMetadataFacets.FACET_FILENAME);
-        
-        ForLearners = facets.CXMLFacetStringValues(ActivityMetadataFacets.FACET_FOR_LEARNERS);
-        ForSpeakers = facets.CXMLFacetStringValues(ActivityMetadataFacets.FACET_FOR_SPEAKERS);
-        LanguageCombination = facets.CXMLFacetStringValues(ActivityMetadataFacets.FACET_LANGUAGE_COMBINATION);
-        Level = facets.CXMLFacetStringValues(ActivityMetadataFacets.FACET_LEVEL);
-        EstimatedTimeMinutes = facets.CXMLFacetStringValue(ActivityMetadataFacets.FACET_ESTIMATED_TIME);
-        Authors = facets.CXMLFacetStringValues(ActivityMetadataFacets.FACET_AUTHORS);
-        FromSkills = facets.CXMLFacetStringValues(ActivityMetadataFacets.FACET_FROM_SKILLS);
-        ToSkills = facets.CXMLFacetStringValues(ActivityMetadataFacets.FACET_TO_SKILLS);
-        AVSkills = facets.CXMLFacetStringValues(ActivityMetadataFacets.FACET_AV_SKILLS);
-        Responses = facets.CXMLFacetStringValues(ActivityMetadataFacets.FACET_RESPONSES);
-        TasksRevoicing = facets.CXMLFacetStringValues(ActivityMetadataFacets.FACET_TASKS_REVOICING);
-        TasksCaptioning = facets.CXMLFacetStringValues(ActivityMetadataFacets.FACET_TASKS_CAPTIONING);
-        LearnerType = facets.CXMLFacetStringValues(ActivityMetadataFacets.FACET_LEARNER_TYPE);
-        AgeGroup = facets.CXMLFacetStringValues(ActivityMetadataFacets.FACET_AGE_GROUP);
-        FeedbackModeToLearner = facets.CXMLFacetStringValues(ActivityMetadataFacets.FACET_FEEDBACK_MODE_TO_LEARNER);
-
-        Keywords = facets.CXMLFacetStringValues(ClipFlairMetadataFacets.FACET_KEYWORDS);
-        License = facets.CXMLFacetStringValue(ClipFlairMetadataFacets.FACET_LICENSE);
-      }
-      catch
-      {
-        Clear();
-      }
+      ForLearners = facets.CXMLFacetStringValues(ActivityMetadataFacets.FACET_FOR_LEARNERS);
+      ForSpeakers = facets.CXMLFacetStringValues(ActivityMetadataFacets.FACET_FOR_SPEAKERS);
+      LanguageCombination = facets.CXMLFacetStringValues(ActivityMetadataFacets.FACET_LANGUAGE_COMBINATION);
+      Level = facets.CXMLFacetStringValues(ActivityMetadataFacets.FACET_LEVEL);
+      EstimatedTimeMinutes = facets.CXMLFacetStringValue(ActivityMetadataFacets.FACET_ESTIMATED_TIME);
+      Authors = facets.CXMLFacetStringValues(ActivityMetadataFacets.FACET_AUTHORS);
+      FromSkills = facets.CXMLFacetStringValues(ActivityMetadataFacets.FACET_FROM_SKILLS);
+      ToSkills = facets.CXMLFacetStringValues(ActivityMetadataFacets.FACET_TO_SKILLS);
+      AVSkills = facets.CXMLFacetStringValues(ActivityMetadataFacets.FACET_AV_SKILLS);
+      Responses = facets.CXMLFacetStringValues(ActivityMetadataFacets.FACET_RESPONSES);
+      TasksRevoicing = facets.CXMLFacetStringValues(ActivityMetadataFacets.FACET_TASKS_REVOICING);
+      TasksCaptioning = facets.CXMLFacetStringValues(ActivityMetadataFacets.FACET_TASKS_CAPTIONING);
+      LearnerType = facets.CXMLFacetStringValues(ActivityMetadataFacets.FACET_LEARNER_TYPE);
+      AgeGroup = facets.CXMLFacetStringValues(ActivityMetadataFacets.FACET_AGE_GROUP);
+      FeedbackModeToLearner = facets.CXMLFacetStringValues(ActivityMetadataFacets.FACET_FEEDBACK_MODE_TO_LEARNER);
 
       return this;
     }

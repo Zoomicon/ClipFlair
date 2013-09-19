@@ -1,10 +1,9 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: CXMLMetadata.cs
-//Version: 20130822
+//Version: 20130918
 
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Xml;
 using System.Xml.Linq;
@@ -55,7 +54,19 @@ namespace Metadata.CXML
       Description = "";
     }
 
-    public abstract ICXMLMetadata Load(string key, XDocument doc);
+    public virtual ICXMLMetadata Load(XElement item)
+    {
+      Id = item.Attribute(CXML.ATTRIB_ID).Value;
+      Title = item.Attribute(CXML.ATTRIB_NAME).Value;
+      Image = item.Attribute(CXML.ATTRIB_IMG).Value;
+      Url = new Uri(item.Attribute(CXML.ATTRIB_HREF).Value);
+
+      Description = item.Element(CXML.NODE_DESCRIPTION).Value;
+
+      return this;
+    }
+
+    public abstract ICXMLMetadata Load(string key, XDocument doc); //expecting this to call "Fix" method before returning
 
     public virtual ICXMLMetadata Load(string key, XmlReader cxml, XmlReader cxmlFallback)
     {
@@ -78,7 +89,9 @@ namespace Metadata.CXML
 
       return Load(key, doc); //Load should return default metadata when doc==null
     }
-    
+
+    public abstract ICXMLMetadata Fix();
+
     public virtual void Save(XmlWriter cxml)
     {
       Save(cxml, Title, GetCXMLFacetCategories(), new ICXMLMetadata[] { this });
@@ -87,6 +100,11 @@ namespace Metadata.CXML
    #endregion
     
     #region --- Helpers ---
+
+    public static IEnumerable<XElement> FindFacets(XElement item)
+    {
+      return item.Elements(CXML.NODE_FACETS).Elements(CXML.NODE_FACET);
+    }
 
     public static void AddNonNullToList(IList<XElement> list, XElement item)
     {
@@ -106,7 +124,7 @@ namespace Metadata.CXML
       CXML.MakeCollection(
         collectionTitle,
         facetCategories,
-        metadataItems.Select(m => ReplaceId(m, i++.ToString()).GetCXMLItem())
+        metadataItems.Select(m => ReplaceId(m, i++.ToString()).Fix().GetCXMLItem()) //fix metadata before saving
       )
       .Save(cxml);
     }
