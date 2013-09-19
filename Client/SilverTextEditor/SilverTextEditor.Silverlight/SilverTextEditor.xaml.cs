@@ -1,8 +1,8 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: SilverTextEditor.xaml.cs
-//Version: 20130701
+//Version: 20130919
 
-//Originated from Microsoft sample (MSPL license)
+//Originated from Microsoft Silverlight sample (MSPL license)
 
 //Note: localization could use "PublicResxFileCodeGeneratorEx" custom build tool for the "Strings.resx" file
 //      from http://resxfilecodegenex.codeplex.com/ if that is fixed to generate public constuctor instead of protected (see issue tracker there)
@@ -25,7 +25,6 @@ using System.Windows.Controls;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
 using System.Windows.Printing;
 using System.Windows.Resources;
 using System.Windows.Shapes;
@@ -42,7 +41,7 @@ namespace SilverTextEditor
 
       //Note: Do not use "Loaded" event handler to load any default text file, it gets called after some caller has instantiated the component and overrides any text that may have been set to it already by the caller
       //Instead can load a previously saved file from a resource at this point, like below:
-      //LoadResource("/SilverTextEditor;component/ActivityDescription.text"); //Initialize the RichTextBox. The intial text is stored as XAML at a .text file.
+      //LoadXamlResource("/SilverTextEditor;component/ActivityDescription.text"); //Initialize the RichTextBox. The intial text is stored as XAML at a .text file.
     }
 
     #region ToolbarVisible
@@ -173,12 +172,11 @@ namespace SilverTextEditor
     private void btnBold_Click(object sender, RoutedEventArgs e)
     {
       if (rtb != null && rtb.Selection.Text.Length > 0)
-      {
         if (rtb.Selection.GetPropertyValue(Run.FontWeightProperty) is FontWeight && ((FontWeight)rtb.Selection.GetPropertyValue(Run.FontWeightProperty)) == FontWeights.Normal)
           rtb.Selection.ApplyPropertyValue(Run.FontWeightProperty, FontWeights.Bold);
         else
           rtb.Selection.ApplyPropertyValue(Run.FontWeightProperty, FontWeights.Normal);
-      }
+
       ReturnFocus();
     }
 
@@ -186,12 +184,11 @@ namespace SilverTextEditor
     private void btnItalic_Click(object sender, RoutedEventArgs e)
     {
       if (rtb != null && rtb.Selection.Text.Length > 0)
-      {
         if (rtb.Selection.GetPropertyValue(Run.FontStyleProperty) is FontStyle && ((FontStyle)rtb.Selection.GetPropertyValue(Run.FontStyleProperty)) == FontStyles.Normal)
           rtb.Selection.ApplyPropertyValue(Run.FontStyleProperty, FontStyles.Italic);
         else
           rtb.Selection.ApplyPropertyValue(Run.FontStyleProperty, FontStyles.Normal);
-      }
+
       ReturnFocus();
     }
 
@@ -199,15 +196,14 @@ namespace SilverTextEditor
     private void btnUnderline_Click(object sender, RoutedEventArgs e)
     {
       if (rtb != null && rtb.Selection.Text.Length > 0)
-      {
         if (rtb.Selection.GetPropertyValue(Run.TextDecorationsProperty) == null)
           rtb.Selection.ApplyPropertyValue(Run.TextDecorationsProperty, TextDecorations.Underline);
         else
           rtb.Selection.ApplyPropertyValue(Run.TextDecorationsProperty, null);
-      }
-      ReturnFocus();
 
+      ReturnFocus();
     }
+
     #endregion
 
     #region Font Type, Color & size
@@ -216,9 +212,8 @@ namespace SilverTextEditor
     private void cmbFonts_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
       if (rtb != null && rtb.Selection.Text.Length > 0)
-      {
         rtb.Selection.ApplyPropertyValue(Run.FontFamilyProperty, new FontFamily((cmbFonts.SelectedItem as ComboBoxItem).Tag.ToString()));
-      }
+
       ReturnFocus();
     }
 
@@ -226,9 +221,8 @@ namespace SilverTextEditor
     private void cmbFontSizes_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
       if (rtb != null && rtb.Selection.Text.Length > 0)
-      {
         rtb.Selection.ApplyPropertyValue(Run.FontSizeProperty, double.Parse((cmbFontSizes.SelectedItem as ComboBoxItem).Tag.ToString()));
-      }
+
       ReturnFocus();
     }
 
@@ -462,43 +456,34 @@ namespace SilverTextEditor
           tp = nextTp;
           tpRect = nextRect;
         }
+        
         if (lineRect != Rect.Empty)
-        {
           if (m_selectionRect.Count < lineCount)
             m_selectionRect.Add(lineRect);
           else
             m_selectionRect[lineCount - 1] = lineRect;
-        }
+
         while (m_selectionRect.Count > lineCount)
-        {
           m_selectionRect.RemoveAt(m_selectionRect.Count - 1);
-        }
       }
+
       else
-      {
         if (highlightRect != null)
-        {
           highlightRect.Visibility = System.Windows.Visibility.Collapsed;
-        }
-      }
 
     }
 
     Rectangle highlightRect;
     MouseEventArgs lastRTBMouseMove;
+
     private void rtb_MouseMove(object sender, MouseEventArgs e)
     {
       lastRTBMouseMove = e;
       if (btnHighlight.IsChecked.Value)
-      {
         foreach (Rect r in m_selectionRect)
-        {
           if (r.Contains(e.GetPosition(highlightCanvas)))
-          {
             if (highlightRect == null)
-            {
               highlightRect = CreateHighlightRectangle(r);
-            }
             else
             {
               highlightRect.Visibility = System.Windows.Visibility.Visible;
@@ -507,9 +492,6 @@ namespace SilverTextEditor
               Canvas.SetLeft(highlightRect, r.Left);
               Canvas.SetTop(highlightRect, r.Top);
             }
-          }
-        }
-      }
     }
 
     private Rectangle CreateHighlightRectangle(Rect bounds)
@@ -526,201 +508,11 @@ namespace SilverTextEditor
       highlightCanvas.Children.Add(r);
 
       return r;
-
-    }
-    #endregion
-
-    #region DragAndDrop
-
-    private void rtb_Drop(object sender, System.Windows.DragEventArgs e)
-    {
-      VisualStateManager.GoToState(this, "Normal", true);
-
-      //the Drop event passes in an array of FileInfo objects for the list of files that were selected and drag-dropped onto the RichTextBox.
-      if (e.Data == null)
-      {
-        ReturnFocus();
-        return;
-      }
-
-      //This checks if the dropped objects are files and if not, return. 
-      IDataObject f = e.Data as IDataObject;
-
-      if (f == null)
-      {
-        ReturnFocus();
-        return;
-      }
-
-      object data = f.GetData(DataFormats.FileDrop);
-      FileInfo[] files = data as FileInfo[];
-
-      if (files == null)
-      {
-        ReturnFocus();
-        return;
-      }
-
-      //Walk through the list of FileInfo objects of the selected and drag-dropped files and parse the .txt and .docx files 
-      //and insert their content in the RichTextBox.
-      foreach (FileInfo file in files)
-      {
-        if (file == null)
-        {
-          continue;
-        }
-
-        if (file.Extension.Equals(".txt"))
-        {
-          ParseTextFile(file);
-        }
-        else if (file.Extension.Equals(".docx"))
-        {
-          ParseDocxFile(file);
-        }
-      }
-      ReturnFocus();
-    }
-
-    //Create a StreamReader on the text file and read as a string. 
-    private void ParseTextFile(FileInfo file)
-    {
-      Stream sr = file.OpenRead();
-      string contents;
-      using (StreamReader reader = new StreamReader(sr))
-      {
-        contents = reader.ReadToEnd();
-      }
-
-      rtb.Selection.Text = contents;
-      sr.Close();
-    }
-
-    private void ParseDocxFile(FileInfo file)
-    {
-      Stream sr = file.OpenRead();
-      string contents;
-
-      StreamResourceInfo zipInfo = new StreamResourceInfo(sr, null);
-      StreamResourceInfo wordInfo = Application.GetResourceStream(zipInfo, new Uri("word/document.xml", UriKind.Relative));
-
-      using (StreamReader reader = new StreamReader(wordInfo.Stream))
-      {
-        contents = reader.ReadToEnd();
-      }
-
-      XDocument xmlFile = XDocument.Parse(contents);
-      XNamespace w = "http://schemas.openxmlformats.org/wordprocessingml/2006/main";
-
-      var query = from xp in xmlFile.Descendants(w + "p")
-                  select xp;
-      Paragraph p = null;
-      Run r = null;
-      foreach (XElement xp in query)
-      {
-        p = new Paragraph();
-        var query2 = from xr in xp.Descendants(w + "r")
-                     select xr;
-        foreach (XElement xr in query2)
-        {
-          r = new Run();
-          var query3 = from xt in xr.Descendants()
-                       select xt;
-          foreach (XElement xt in query3)
-          {
-            if (xt.Name == (w + "t"))
-              r.Text = xt.Value.ToString();
-            else if (xt.Name == (w + "br"))
-              p.Inlines.Add(new LineBreak());
-          }
-          p.Inlines.Add(r);
-        }
-        p.Inlines.Add(new LineBreak());
-        rtb.Blocks.Add(p);
-      }
-    }
-
-    private void rtb_DragEnter(object sender, System.Windows.DragEventArgs e)
-    {
-      VisualStateManager.GoToState(this, "DragOver", true);
-    }
-
-    private void rtb_DragLeave(object sender, System.Windows.DragEventArgs e)
-    {
-      VisualStateManager.GoToState(this, "Normal", true);
     }
 
     #endregion
-
-    #region FileOperations
-
-    //Clears all content
-    private void btnClear_Click(object sender, RoutedEventArgs e)
-    {
-      if (MessageBox.Show("Clear contents?", "Confirmation", MessageBoxButton.OKCancel) == MessageBoxResult.OK) //TODO: find parent window //TODO: localize
-        Xaml = "";
-    }
-
-    //Opens an existing file
-    private void btnOpen_Click(object sender, RoutedEventArgs e)
-    {
-      try
-      {
-        OpenFileDialog ofd = new OpenFileDialog()
-        {
-          //Multiselect = false, //this is false by default so no need to set it
-          Filter = "ClipFlair Saved Text Files (*.text)|*.text|All Files|*.*"
-        };
-
-        if (ofd.ShowDialog().Value)
-          using (Stream stream = ofd.File.OpenRead())
-            Load(stream);
-      }
-      catch (Exception ex)
-      {
-        MessageBox.Show("Text load failed: " + ex.Message); //TODO: should find parent window //TODO: localize
-      }
-    }
-
-    //Saves the existing file
-    private void btnSave_Click(object sender, RoutedEventArgs e)
-    {
-      try
-      {
-        SaveFileDialog sfd = new SaveFileDialog()
-        {
-          Filter = "ClipFlair Saved Text Files|*.text|All Files|*.*",
-          FilterIndex = 1, //1-based index, not 0-based //do not set this if DefaultExt is used
-          //DefaultFileName = "Text", //Silverlight will prompt "Do you want to save Text?" if we set this, but the prompt can go under the main window, so avoid it
-          DefaultExt = ".text" //don't set FilterIndex if this is set
-        };
-
-        if (sfd.ShowDialog().Value)
-          using (Stream stream = sfd.OpenFile())
-            Save(stream);
-      }
-      catch (Exception ex)
-      {
-        MessageBox.Show("Text save failed: " + ex.Message); //TODO: should find parent window //TODO: localize
-      }
-    }
-
-    #endregion
-
-    #region Load-Save
-
-    public string Xaml
-    {
-      get { return rtb.Xaml; }
-      set { 
-        if (value != null && value.Trim() != "") {
-          rtb.Xaml = value;
-          ScrollToStart();
-        }
-        else
-          rtb.Blocks.Clear();
-      } //allows to set null or blank value to clear the RichTextBox
-    }
+        
+    #region --- Scrolling ---
 
     public void ScrollToStart()
     {
@@ -732,24 +524,23 @@ namespace SilverTextEditor
       rtb.Selection.Select(rtb.ContentEnd, rtb.ContentEnd);
     }
 
-    public void LoadResource(string resourcePath) //doesn't close stream
-    {
-      Load(Application.GetResourceStream(new Uri(resourcePath, UriKind.Relative)).Stream);
-    }
+    #endregion
 
-    public void Load(Stream stream) //doesn't close stream
-    {
-      Xaml = new StreamReader(stream).ReadToEnd();
-    }
+    #region --- Properties ---
 
-    public void Save(Stream stream) //doesn't close stream
+    public string Xaml
     {
-      if (!IsStorable) //If the file contains any UIElements, it will not be saved
-        throw new Exception("Saving documents with UIElements is not supported");
-
-      TextWriter writer = new StreamWriter(stream, Encoding.UTF8);
-      writer.Write(rtb.Xaml);
-      writer.Flush();
+      get { return rtb.Xaml; }
+      set
+      {
+        if (value != null && value.Trim() != "")
+        {
+          rtb.Xaml = value;
+          ScrollToStart();
+        }
+        else
+          Clear();
+      } //allows to set null or blank value to clear the RichTextBox
     }
 
     private bool IsStorable
@@ -768,13 +559,246 @@ namespace SilverTextEditor
 
     #endregion
 
-    #region helper functions
+    #region --- Methods ---
+
+    public void SelectAllIfNone()
+    {
+      if (rtb.Selection.Text.Length == 0) //if no selection then select all
+        rtb.SelectAll();
+    }
+
+    public void Clear()
+    {
+      rtb.Blocks.Clear();
+    }
+
+    public void LoadXamlResource(string resourcePath) //doesn't close stream
+    {
+      LoadXaml(Application.GetResourceStream(new Uri(resourcePath, UriKind.Relative)).Stream);
+    }
+
+    public void Load(FileInfo file, bool clearFirst = true)
+    {
+      if (file == null) return;
+
+      string ext = file.Extension;
+
+      using (Stream stream = file.OpenRead())
+        Load(stream, ext, clearFirst);
+     }
+
+    public void Load(Stream stream, string filename, bool clearFirst = true)
+    {
+        if (filename.EndsWith(".text", StringComparison.OrdinalIgnoreCase))
+          LoadXaml(stream, clearFirst);
+
+        else if (filename.EndsWith(".txt", StringComparison.OrdinalIgnoreCase))
+          LoadTxt(stream, clearFirst);
+
+        else if (filename.EndsWith(".docx", StringComparison.OrdinalIgnoreCase))
+          LoadDocx(stream, clearFirst);
+
+        else
+          LoadTxt(stream, clearFirst);
+    }
+
+    public void LoadXaml(Stream stream, bool clearFirst = true) //doesn't close stream
+    {
+      using (StreamReader reader = new StreamReader(stream))
+      {
+        if (clearFirst) rtb.SelectAll();
+        rtb.Selection.Xaml = reader.ReadToEnd();
+      }
+    }
+
+    public void LoadTxt(Stream stream, bool clearFirst = true)
+    {
+      using (StreamReader reader = new StreamReader(stream))
+      {
+        if (clearFirst) rtb.SelectAll();
+        rtb.Selection.Text = reader.ReadToEnd();
+      }
+    }
+
+    public void LoadDocx(Stream stream, bool clearFirst = true)
+    {
+      StreamResourceInfo zipInfo = new StreamResourceInfo(stream, null);
+      StreamResourceInfo wordInfo = Application.GetResourceStream(zipInfo, new Uri("word/document.xml", UriKind.Relative));
+
+      string contents = "";
+      using (StreamReader reader = new StreamReader(wordInfo.Stream))
+        contents = reader.ReadToEnd();
+
+      XDocument xmlFile = XDocument.Parse(contents);
+      XNamespace w = "http://schemas.openxmlformats.org/wordprocessingml/2006/main";
+
+      var query = from xp in xmlFile.Descendants(w + "p")
+                  select xp;
+
+      if (clearFirst) Clear();
+
+      foreach (XElement xp in query)
+      {
+        Paragraph p = new Paragraph();
+        var query2 = from xr in xp.Descendants(w + "r")
+                     select xr;
+        foreach (XElement xr in query2)
+        {
+          Run r = new Run();
+          var query3 = from xt in xr.Descendants()
+                       select xt;
+          foreach (XElement xt in query3)
+            if (xt.Name == (w + "t"))
+              r.Text = xt.Value.ToString();
+            else if (xt.Name == (w + "br"))
+              p.Inlines.Add(new LineBreak());
+
+          p.Inlines.Add(r);
+        }
+
+        p.Inlines.Add(new LineBreak());
+        rtb.Blocks.Add(p);
+      }
+    }
+
+    public void Save(Stream stream, string filename)
+    {
+      if (filename.EndsWith(".text", StringComparison.OrdinalIgnoreCase))
+        SaveXaml(stream);
+
+      else if (filename.EndsWith(".txt", StringComparison.OrdinalIgnoreCase))
+        SaveTxt(stream);
+      
+      else
+        SaveTxt(stream);
+    }
+
+    public void SaveXaml(Stream stream) //doesn't close stream (expecting to be called via "using" or to close explicitly)
+    {
+      if (!IsStorable) //If the file contains any UIElements, it will not be saved
+        throw new Exception("Saving documents with UIElements is not supported");
+
+      SelectAllIfNone(); //if no selection then select all
+
+      TextWriter writer = new StreamWriter(stream, Encoding.UTF8);
+      writer.Write(rtb.Selection.Xaml); //saves current selection
+      writer.Flush();
+    }
+
+    public void SaveTxt(Stream stream) //doesn't close stream (expecting to be called via "using" or to close explicitly)
+    {
+      SelectAllIfNone(); //if no selection then select all
+
+      TextWriter writer = new StreamWriter(stream, Encoding.UTF8);
+      writer.Write(rtb.Selection.Xaml); //saves current selection
+      writer.Flush();
+    }
+
+    #endregion
+
+    #region --- Helpers ---
 
     private void ReturnFocus()
     {
       if (rtb != null)
         rtb.Focus();
     }
+
+    #endregion
+
+    #region --- Events ---
+
+    //Clears all content
+    private void btnClear_Click(object sender, RoutedEventArgs e)
+    {
+      if (MessageBox.Show("Clear contents?", "Confirmation", MessageBoxButton.OKCancel) == MessageBoxResult.OK) //TODO: find parent window //TODO: localize
+        Clear();
+    }
+
+    //Opens an existing file
+    private void btnOpen_Click(object sender, RoutedEventArgs e)
+    {
+      try
+      {
+        OpenFileDialog ofd = new OpenFileDialog()
+        {
+          //Multiselect = false, //this is false by default so no need to set it
+          Filter = "All Text Files (*.text;*.docx;*.txt)|*.text;*.docx;*.txt|ClipFlair Text Files (*.text)|*.text|Office OpenXML Files (*.docx)|*.docx|Unicode Text Files (*.txt)|*.txt|All Files|*.*"
+        };
+
+        if (ofd.ShowDialog().Value)
+          Load(ofd.File);
+      }
+      catch (Exception ex)
+      {
+        MessageBox.Show("Text load failed: " + ex.Message); //TODO: should find parent window //TODO: localize
+      }
+    }
+
+    //Saves the existing file
+    private void btnSave_Click(object sender, RoutedEventArgs e)
+    {
+      try
+      {
+        SaveFileDialog sfd = new SaveFileDialog()
+        {
+          Filter = "ClipFlair Text Files (*.text)|*.text|Unicode Text Files (*.txt)|*.txt|All Files|*.*",
+          FilterIndex = 1, //1-based index, not 0-based //do not set this if DefaultExt is used
+          //DefaultFileName = "Text", //Silverlight will prompt "Do you want to save Text?" if we set this, but the prompt can go under the main window, so avoid it
+          DefaultExt = ".text" //don't set FilterIndex if this is set
+        };
+
+        if (sfd.ShowDialog().Value)
+          using (Stream stream = sfd.OpenFile())
+            Save(stream, sfd.SafeFileName);
+      }
+      catch (Exception ex)
+      {
+        MessageBox.Show("Text save failed: " + ex.Message); //TODO: should find parent window //TODO: localize
+      }
+    }
+
+    #region DragAndDrop
+
+    private void rtb_Drop(object sender, System.Windows.DragEventArgs e)
+    {
+      VisualStateManager.GoToState(this, "Normal", true);
+
+      //the Drop event passes in an array of FileInfo objects for the list of files that were selected and drag-dropped onto the RichTextBox.
+      if (e.Data == null)
+      {
+        ReturnFocus();
+        return;
+      }
+
+      IDataObject f = e.Data as IDataObject;
+      if (f != null) //checks if the dropped objects are files
+      {
+        object data = f.GetData(DataFormats.FileDrop);
+        FileInfo[] files = data as FileInfo[];
+
+        if (files != null)
+
+          //Walk through the list of FileInfo objects of the selected and drag-dropped files and parse the .txt and .docx files 
+          //and insert their content in the RichTextBox.
+          foreach (FileInfo file in files)
+            Load(file, false);
+      }
+
+      ReturnFocus();
+    }
+
+    private void rtb_DragEnter(object sender, System.Windows.DragEventArgs e)
+    {
+      VisualStateManager.GoToState(this, "DragOver", true);
+    }
+
+    private void rtb_DragLeave(object sender, System.Windows.DragEventArgs e)
+    {
+      VisualStateManager.GoToState(this, "Normal", true);
+    }
+
+    #endregion
 
     #endregion
 
