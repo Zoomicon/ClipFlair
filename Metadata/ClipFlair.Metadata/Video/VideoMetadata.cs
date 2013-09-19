@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: VideoMetadata.cs
-//Version: 20130823
+//Version: 20130918
 
 using Metadata.CXML;
 
@@ -46,39 +46,20 @@ namespace ClipFlair.Metadata
       AuthorSource = "";
     }
 
-    public override ICXMLMetadata Load(string key, XDocument doc)
+    public override ICXMLMetadata Load(XElement item)
     {
-      IEnumerable<XElement> facets = null;
-      try
-      {
-        XElement item = doc.Root.Elements(CXML.NODE_ITEMS).Elements(CXML.NODE_ITEM).CXMLFirstItemWithStringValue(ClipFlairMetadataFacets.FACET_FILENAME, key);
+      base.Load(item);
 
-        Id = item.Attribute(CXML.ATTRIB_ID).Value;
-        Title = item.Attribute(CXML.ATTRIB_NAME).Value;
-        Image = item.Attribute(CXML.ATTRIB_IMG).Value;
-        Url = new Uri(item.Attribute(CXML.ATTRIB_HREF).Value);
+      IEnumerable<XElement> facets = FindFacets(item);
 
-        Description = item.Element(CXML.NODE_DESCRIPTION).Value;
-
-        facets = item.Elements(CXML.NODE_FACETS).Elements(CXML.NODE_FACET);
-
-        Filename = facets.CXMLFacetStringValue(ClipFlairMetadataFacets.FACET_FILENAME);
-        Keywords = facets.CXMLFacetStringValues(ClipFlairMetadataFacets.FACET_KEYWORDS);
-        License = facets.CXMLFacetStringValue(ClipFlairMetadataFacets.FACET_LICENSE);
-
-        AudioLanguage = facets.CXMLFacetStringValues(VideoMetadataFacets.FACET_AUDIO_LANGUAGE);
-        CaptionsLanguage = facets.CXMLFacetStringValues(VideoMetadataFacets.FACET_CAPTIONS_LANGUAGE);
-        Genre = facets.CXMLFacetStringValues(VideoMetadataFacets.FACET_GENRE);
-        AgeRestricted = facets.CXMLFacetBoolValue(VideoMetadataFacets.FACET_AGE_RESTRICTED);
-        Duration = facets.CXMLFacetStringValue(VideoMetadataFacets.FACET_DURATION);
-        AudiovisualRichness = facets.CXMLFacetStringValues(VideoMetadataFacets.FACET_AUDIOVISUAL_RICHNESS);
-        PedagogicalAdaptability = facets.CXMLFacetBoolValue(VideoMetadataFacets.FACET_PEDAGOGICAL_ADAPTABILITY);
-        AuthorSource = facets.CXMLFacetStringValue(VideoMetadataFacets.FACET_AUTHOR_SOURCE);
-      }
-      catch
-      {
-        Clear();
-      }
+      AudioLanguage = facets.CXMLFacetStringValues(VideoMetadataFacets.FACET_AUDIO_LANGUAGE);
+      CaptionsLanguage = facets.CXMLFacetStringValues(VideoMetadataFacets.FACET_CAPTIONS_LANGUAGE);
+      Genre = facets.CXMLFacetStringValues(VideoMetadataFacets.FACET_GENRE);
+      AgeRestricted = facets.CXMLFacetBoolValue(VideoMetadataFacets.FACET_AGE_RESTRICTED);
+      Duration = facets.CXMLFacetStringValue(VideoMetadataFacets.FACET_DURATION);
+      AudiovisualRichness = facets.CXMLFacetStringValues(VideoMetadataFacets.FACET_AUDIOVISUAL_RICHNESS);
+      PedagogicalAdaptability = facets.CXMLFacetBoolValue(VideoMetadataFacets.FACET_PEDAGOGICAL_ADAPTABILITY);
+      AuthorSource = facets.CXMLFacetStringValue(VideoMetadataFacets.FACET_AUTHOR_SOURCE);
 
       return this;
     }

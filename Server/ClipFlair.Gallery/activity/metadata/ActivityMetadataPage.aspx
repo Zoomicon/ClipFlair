@@ -5,7 +5,7 @@
 <!--
 Project: ClipFlair (http://ClipFlair.codeplex.com)
 Filename: ActivityMetadataPage.aspx
-Version: 20130806
+Version: 20130918
 -->
 
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -43,9 +43,7 @@ Version: 20130806
   </head>
 
   <body>
-    
-    <form id="form1" runat="server">
-     
+        
     <asp:XmlDataSource ID="xmlLanguage" runat="server" DataFile="~/activity/metadata/Language.xml" XPath="Facet/String" />
     <asp:XmlDataSource ID="XmlLanguageCombination" runat="server" DataFile="~/activity/metadata/LanguageCombination.xml" XPath="Facet/String" />
     <asp:XmlDataSource ID="XmlLevel" runat="server" DataFile="~/activity/metadata/Level.xml" XPath="Facet/String" />
@@ -58,11 +56,13 @@ Version: 20130806
     <asp:XmlDataSource ID="xmlLearnerType" runat="server" DataFile="~/activity/metadata/LearnerType.xml" XPath="Facet/String" />
     <asp:XmlDataSource ID="xmlAgeGroup" runat="server" DataFile="~/activity/metadata/AgeGroup.xml" XPath="Facet/String" />
     
-      <div class="instructions">
-      Please fill in the following information for the activity of your choice. Select the activity from the dropdown list.<br />
-      Try to fill the metadata as fully and accurately as possible, as they will be used for searching and filtering activities.<br />
-      Don't forget to press the SAVE METADATA button. Thank you!
-      </div>
+    <div class="instructions">
+    Please fill in the following information for the activity of your choice. Select the activity from the dropdown list.<br />
+    Try to fill the metadata as fully and accurately as possible, as they will be used for searching and filtering activities.<br />
+    Don't forget to press the SAVE METADATA button. Thank you!
+    </div>
+
+    <form id="form1" runat="server">
 
       <div class="bar">
         <div class="label">Activity file</div> 
@@ -84,14 +84,14 @@ Version: 20130806
 
       <div>
         <div class="label">Description (What, How, Why)</div>
-        <asp:TextBox ID="txtDescription" runat="server" TextMode="MultiLine" Rows="5" Columns="100"/>
+        <asp:TextBox ID="txtDescription" runat="server" TextMode="MultiLine" Rows="5" Columns="110"/>
       </div>
 
-      <div>
+      <div style="float: left">
         <div class="label">For learners of</div>
         <asp:Panel runat="server" 
-          Height="100" Width="250"
-          ScrollBars="Vertical">
+          Height="450" Width="250"
+          ScrollBars="Auto">
 
           <asp:CheckBoxList ID="clistForLearners" runat="server" 
             DataSourceID="xmlLanguage" DataTextField="Value" DataValueField="Value"
@@ -99,33 +99,33 @@ Version: 20130806
          </asp:Panel>
       </div>
 
-      <div>
+      <div style="float: left">
         <div class="label">For speakers of</div>
         <asp:Panel runat="server" 
-          Height="100" Width="250"
-          ScrollBars="Vertical">
+          Height="450" Width="250"
+          ScrollBars="Auto">
 
           <asp:CheckBoxList ID="clistForSpeakers" runat="server" 
             DataSourceID="xmlLanguage" DataTextField="Value" DataValueField="Value" />
          </asp:Panel>
       </div>
 
-      <div>
+      <div style="float: left">
         <div class="label">Language combination</div>
         <asp:Panel runat="server" 
           Height="100" Width="250"
-          ScrollBars="Vertical">
+          ScrollBars="Auto">
 
           <asp:CheckBoxList ID="clistLanguageCombination" runat="server" 
             DataSourceID="xmlLanguageCombination" DataTextField="Value" DataValueField="Value" />
          </asp:Panel>
       </div>
 
-      <div>
+      <div style="clear: left">
         <div class="label">Level</div>
         <asp:Panel runat="server" 
-          Height="100" Width="250"
-          ScrollBars="Vertical">
+          Height="50" Width="250"
+          ScrollBars="Auto">
 
           <asp:CheckBoxList ID="clistLevel" runat="server" 
             DataSourceID="xmlLevel" DataTextField="Value" DataValueField="Value"
@@ -134,7 +134,7 @@ Version: 20130806
          </asp:Panel>
       </div>
      
-      <div>
+      <div style="clear: left">
         <div class="label">Estimated time (minutes)</div>
         <asp:TextBox ID="txtEstimatedTime" runat="server"></asp:TextBox>
       </div> <!-- TODO: add validator for integer -->
@@ -144,95 +144,99 @@ Version: 20130806
         <asp:TextBox ID="txtAuthors" runat="server" Columns="150"></asp:TextBox>
       </div>
      
-      <div>
+      <div style="float: left">
         <div class="label">From skills</div>
         <asp:Panel runat="server" 
           Height="100" Width="250"
-          ScrollBars="Vertical">
+          ScrollBars="Auto">
 
           <asp:CheckBoxList ID="clistFromSkills" runat="server" 
             DataSourceID="xmlFromSkills" DataTextField="Value" DataValueField="Value" />
          </asp:Panel>
       </div>
 
-      <div>
+      <div style="float: left">
         <div class="label">To skills</div>
         <asp:Panel runat="server" 
           Height="100" Width="250"
-          ScrollBars="Vertical">
+          ScrollBars="Auto">
 
           <asp:CheckBoxList ID="clistToSkills" runat="server" 
             DataSourceID="xmlToSkills" DataTextField="Value" DataValueField="Value" />
          </asp:Panel>
       </div>
 
-      <div>
+      <div style="float: left">
         <div class="label">AV skills</div>
         <asp:Panel runat="server" 
-          Height="100" Width="250"
-          ScrollBars="Vertical">
+          Height="150" Width="250"
+          ScrollBars="Auto">
 
           <asp:CheckBoxList ID="clistAVSkills" runat="server" 
             DataSourceID="xmlAVSkills" DataTextField="Value" DataValueField="Value" />
          </asp:Panel>
       </div>
-     
-      <div>
+
+      <div style="clear:left; height:0"></div>
+
+      <div style="float: left">
         <div class="label">Responses</div>
         <asp:Panel runat="server" 
           Height="100" Width="250"
-          ScrollBars="Vertical">
+          ScrollBars="Auto">
 
           <asp:CheckBoxList ID="clistResponses" runat="server" 
             DataSourceID="xmlResponses" DataTextField="Value" DataValueField="Value" />
          </asp:Panel>
       </div>
     
-      <div>
+      <div style="float: left">
         <div class="label">Tasks - Revoicing</div>
         <asp:Panel runat="server" 
-          Height="100" Width="250"
-          ScrollBars="Vertical">
+          Height="130" Width="250"
+          ScrollBars="Auto">
 
           <asp:CheckBoxList ID="clistTasksRevoicing" runat="server" 
             DataSourceID="xmlTasksRevoicing" DataTextField="Value" DataValueField="Value" />
          </asp:Panel>
       </div>
      
-      <div>
+      <div style="float: left">
         <div class="label">Tasks - Captioning</div>
         <asp:Panel runat="server" 
           Height="100" Width="250"
-          ScrollBars="Vertical">
+          ScrollBars="Auto">
 
           <asp:CheckBoxList ID="clistTasksCaptioning" runat="server" 
             DataSourceID="xmlTasksCaptioning" DataTextField="Value" DataValueField="Value" />
          </asp:Panel>
       </div>
+
+      <div style="clear: left; height: 0" />
      
-      <div>
+      <div style="float: left">
         <div class="label">Learner type</div>
         <asp:Panel runat="server" 
           Height="100" Width="250"
-          ScrollBars="Vertical">
+          ScrollBars="Auto">
 
           <asp:CheckBoxList ID="clistLearnerType" runat="server" 
             DataSourceID="xmlLearnerType" DataTextField="Value" DataValueField="Value" />
          </asp:Panel>
       </div>
 
-      <div>
+      <div style="float: left">
         <div class="label">Age group</div>
         <asp:Panel runat="server" 
-          Height="100" Width="250"
-          ScrollBars="Vertical">
+          Height="130" Width="250"
+          ScrollBars="Auto">
 
           <asp:CheckBoxList ID="clistAgeGroup" runat="server" 
             DataSourceID="xmlAgeGroup" DataTextField="Value" DataValueField="Value" />
          </asp:Panel>
       </div>
       
-      <div>
+      <div style="clear: left">
         <div class="label">Feedback mode to learner</div>
         <asp:TextBox ID="txtFeedbackModeToLearner" runat="server" Columns="150"></asp:TextBox>
       </div>

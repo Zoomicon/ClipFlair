@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: ICXMLMetadata.cs
-//Version: 20130822
+//Version: 20130918
 
 using System;
 using System.Collections.Generic;
@@ -28,9 +28,15 @@ namespace Metadata.CXML
     XElement GetCXMLItem();
     IEnumerable<XElement> GetCXMLFacetCategories();
     IEnumerable<XElement> GetCXMLFacets();
+
     void Clear();
+
+    ICXMLMetadata Load(XElement item);
     ICXMLMetadata Load(string key, XDocument doc);
     ICXMLMetadata Load(string key, XmlReader cxml, XmlReader cxmlFallback);
+
+    ICXMLMetadata Fix();
+    
     void Save(XmlWriter cxml);
 
     #endregion
