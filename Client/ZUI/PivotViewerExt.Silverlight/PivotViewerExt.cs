@@ -25,6 +25,16 @@ namespace PivotViewerExt
         if (!String.IsNullOrEmpty(f))
           filter = f;
       };
+
+ /*
+      Loaded += (s, e) =>
+      {
+        Filter = filter; //re-apply filter
+        InvalidateMeasure();
+        InvalidateArrange();
+        UpdateLayout();
+      };
+*/
     }
 
     #region Fields
