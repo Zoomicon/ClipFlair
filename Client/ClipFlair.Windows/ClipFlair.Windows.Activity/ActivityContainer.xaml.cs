@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: ActivityContainer.xaml.cs
-//Version: 20130725
+//Version: 20130930
 
 //TODO: add ContentPartsCloseable property
 //TODO: add ContentPartsZoomable property
@@ -196,8 +196,11 @@ namespace ClipFlair.Windows
       get { return zuiContainer.Windows; }
     }
 
-    public void RemoveWindows()
+    public void RemoveWindows(bool ignoreChildrenWarnOnClosing = false)
     {
+      if (ignoreChildrenWarnOnClosing)
+        DisableChildrenWarnOnClosing();
+
       //TODO: should unbind windows here
       //Windows.RemoveAll(); //TODO: do not use "Clear", doesn't work
       zuiContainer.CloseAllWindows(); //do not use remove, not sure if that closes the window or just removes it from the list (which might keep it alive)

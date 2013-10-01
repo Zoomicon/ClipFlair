@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: BaseWindow.xaml.cs
-//Version: 20130828
+//Version: 20131001
 
 //TODO: unbind control at close
 
@@ -286,6 +286,11 @@ namespace ClipFlair.Windows
 
     #region ---------------- Load ----------------
 
+    protected virtual Type ResolveType(string typeName)
+    {
+      return GetType().Assembly.GetType(typeName, true); //don't use Type.GetType(), want GetType to execute at the context of the assembly of the descendent class
+    }
+
     public virtual void LoadOptions(ZipFile zip, string zipFolder = "") //THIS IS THE CORE LOADING LOGIC
     {
       if (LoadingOptions != null) LoadingOptions(this, null); //notify any listeners
@@ -299,7 +304,7 @@ namespace ClipFlair.Windows
           //of saved state, e.g. both ClipFlair.Windows.Views.TextEditorView [that one had a data contract namespace typo] and
           //ClipFlair.Windows.Views.TextEditorView2 [replacing the older view] implement ITextEditor interface and can be set as TextEditorView to TextEditorWindow)
 
-          DataContractSerializer serializer = new DataContractSerializer(GetType().Assembly.GetType(options.FileName.ReplaceSuffix(".options.xml", ""), true)); //assuming the view exists in the same assembly as the component
+          DataContractSerializer serializer = new DataContractSerializer(ResolveType(options.FileName.ReplaceSuffix(".options.xml", ""))); //assuming the view exists in the same assembly as the component
 
           using (Stream stream = options.OpenReader())
             View = (IView)serializer.ReadObject(stream); //this will set a new View that defaults to Busy=false
@@ -384,40 +389,46 @@ namespace ClipFlair.Windows
         if (offset != 0) offset += 1; //add +1 for the "/" path separator, only if a folder path has been given
         string typeName = options.FileName.Substring(offset, options.FileName.Length - offset - ".options.xml".Length);
 
-        IWindowFactory windowFactory;
-        switch (typeName)
-        {
-          case "ClipFlair.Windows.Views.MediaPlayerView":
-            windowFactory = MediaPlayerWindowFactory;
-            break;
-          case "ClipFlair.Windows.Views.CaptionsGridView":
-            windowFactory = CaptionsGridWindowFactory;
-            break;
-          case "ClipFlair.Windows.Views.TextEditorView":
-          case "ClipFlair.Windows.Views.TextEditorView2":
-            windowFactory = TextEditorWindowFactory;
-            break;
-          case "ClipFlair.Windows.Views.ImageView":
-            windowFactory = ImageWindowFactory;
-            break;
-          case "ClipFlair.Windows.Views.MapView":
-            windowFactory = MapWindowFactory;
-            break;
-          case "ClipFlair.Windows.Views.GalleryView":
-            windowFactory = GalleryWindowFactory;
-            break;
-          case "ClipFlair.Windows.Views.ActivityView":
-            windowFactory = ActivityWindowFactory;
-            break;
-          default:
-            throw new Exception("Unknown view type");
-        }
-
-        BaseWindow window = windowFactory.CreateWindow();
+        BaseWindow window = GetWindowFactory(typeName).CreateWindow();
         window.LoadOptions(zip, zipFolder);
         return window;
       }
       return null;
+    }
+
+    public static BaseWindow LoadWindow(ZipEntry childZip) //load window from nested archive
+    {
+      using (Stream stream = childZip.OpenReader())
+      using (MemoryStream memStream = new MemoryStream()) //TODO: see why this is needed - can't use activity.Windows.Add(LoadWindow(stream), seems DotNetZip fails to open a .zip from a stream inside another .zip
+      {
+        stream.CopyTo(memStream);
+        memStream.Position = 0;
+        return LoadWindow(memStream);
+      }
+    }
+
+    public static IWindowFactory GetWindowFactory(string typeName)
+    {
+      switch (typeName)
+      {
+        case "ClipFlair.Windows.Views.MediaPlayerView":
+          return MediaPlayerWindowFactory;
+        case "ClipFlair.Windows.Views.CaptionsGridView":
+          return CaptionsGridWindowFactory;
+        case "ClipFlair.Windows.Views.TextEditorView":
+        case "ClipFlair.Windows.Views.TextEditorView2":
+          return TextEditorWindowFactory;
+        case "ClipFlair.Windows.Views.ImageView":
+          return ImageWindowFactory;
+        case "ClipFlair.Windows.Views.MapView":
+          return MapWindowFactory;
+        case "ClipFlair.Windows.Views.GalleryView":
+          return GalleryWindowFactory;
+        case "ClipFlair.Windows.Views.ActivityView":
+          return ActivityWindowFactory;
+        default:
+          throw new Exception("Unknown view type");
+      }
     }
 
     #endregion
@@ -464,6 +475,15 @@ namespace ClipFlair.Windows
         zip.Save(stream);
         stream.Flush(); //flush all buffers
       }
+    }
+
+    public static void SaveWindow(BaseWindow window, ZipFile zip, string zipFolder = "") //save window to nested archive
+    {
+      string title = ((string)window.Title).TrimStart(); //using TrimStart() to not have filenames start with space chars in case it's an issue with ZIP spec
+      if (title == "") title = window.GetType().Name;
+      zip.AddEntry(
+        zipFolder + "/" + title.ReplaceInvalidFileNameChars() + " - " + window.View.ID + BaseWindow.CLIPFLAIR_ZIP_EXTENSION, //using .clipflair.zip extension for nested components' state to ease examining with ZIP archivers
+        new WriteDelegate((entryName, stream) => { window.SaveOptions(stream); })); //save ZIP file for child window 
     }
 
     #endregion
