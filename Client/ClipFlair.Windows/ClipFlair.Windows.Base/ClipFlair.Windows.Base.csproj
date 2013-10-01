@@ -83,6 +83,7 @@
     <Compile Include="BaseWindow.xaml.cs">
       <DependentUpon>BaseWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="IViewFactory.cs" />
     <Compile Include="IViewProperties.cs" />
     <Compile Include="IWindowFactory.cs" />
     <Compile Include="IView.cs" />

@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: ActivityWindow.xaml.cs
-//Version: 20130712
+//Version: 20131001
 
 using Utils.Extensions;
 using Utils.Bindings;
@@ -14,6 +14,17 @@ using System.IO;
 using System.Windows;
 using System.Windows.Browser;
 using System.Windows.Media;
+
+using System.Runtime.CompilerServices;
+
+[assembly: TypeForwardedToAttribute(typeof(MediaPlayerView))]
+[assembly: TypeForwardedToAttribute(typeof(CaptionsGridView))]
+[assembly: TypeForwardedToAttribute(typeof(TextEditorView))]
+[assembly: TypeForwardedToAttribute(typeof(TextEditorView2))]
+[assembly: TypeForwardedToAttribute(typeof(ImageView))]
+[assembly: TypeForwardedToAttribute(typeof(MapView))]
+[assembly: TypeForwardedToAttribute(typeof(GalleryView))]
+//[assembly: TypeForwardedToAttribute(typeof(ActivityView))] //not needed
 
 namespace ClipFlair.Windows
 {
@@ -56,13 +67,21 @@ namespace ClipFlair.Windows
 
     #region View
 
+    protected bool loadingChildWindow = false; //loading a child window instead of an activity saved state
+
     public override IView View
     {
       get { return (IActivity)base.View; } //delegating to parent property
       set
       {
-        base.View = value;
-        activity.View = (IActivity)value; //set the view of the activity control too
+        IActivity activityView = value as IActivity;
+
+        loadingChildWindow = (activityView == null);
+        if (loadingChildWindow) //special handling to allow activity to load a single component's state, by clearing the activity and then adding it as a child (see LoadOptions too)
+          activityView = new ActivityView();
+ 
+        base.View = activityView;
+        activity.View = activityView; //set the view of the activity control too
       }
     }
 
@@ -89,18 +108,25 @@ namespace ClipFlair.Windows
     public override void LoadOptions(ZipFile zip, string zipFolder = "")
     {
       base.LoadOptions(zip, zipFolder); //this will set the View of the ActivityWindow, which will set the view of the ActivityContainer control too
-      View.Busy = true; //set busy flag again since the above command will set it to false after loading
 
-      activity.DisableChildrenWarnOnClosing();
-      activity.RemoveWindows(); //don't call Windows.Clear(), won't work //TODO (remove this note when fixed): don't call Windows.RemoveAll(), won't do bindings currently
-
+      View.Busy = true; //set busy flag again since base.LoadOptions call will set it to false after loading state
       try
       {
-        foreach (ZipEntry childZip in zip.SelectEntries("*" + BaseWindow.CLIPFLAIR_ZIP_EXTENSION, zipFolder))
-          LoadWindow(childZip);
+        activity.RemoveWindows(ignoreChildrenWarnOnClosing:true); //don't call Windows.Clear(), won't work //TODO: remove this note when fixed: don't call Windows.RemoveAll(), won't do bindings currently
 
-        foreach (ZipEntry childZip in zip.SelectEntries("*" + BaseWindow.CLIPFLAIR_EXTENSION, zipFolder)) //in case somebody has placed .clipflair files inside a ClipFlair archive (when saving those contain .clipflair.zip files for each component)
-          LoadWindow(childZip);
+        if (loadingChildWindow) //check if this is not a saved activity state (as marked by View property's set accessor)...
+        {
+          loadingChildWindow = false; //restore to default value
+          activity.AddWindow(LoadWindow(zip, zipFolder)); //...loading as a child window saved state instead //TODO: remove THIS NOTE when fixed: don't call Windows.Add, won't do bindings currently
+        }
+        else
+        { //TODO: maybe can use ";" to pass multiple search items instead of using two "foreach" loops
+          foreach (ZipEntry childZip in zip.SelectEntries("*" + BaseWindow.CLIPFLAIR_ZIP_EXTENSION, zipFolder))
+            activity.AddWindow(LoadWindow(childZip)); //TODO: remove THIS NOTE when fixed: don't call Windows.Add, won't do bindings currently
+
+          foreach (ZipEntry childZip in zip.SelectEntries("*" + BaseWindow.CLIPFLAIR_EXTENSION, zipFolder)) //in case somebody has placed .clipflair files inside a ClipFlair archive (when saving those contain .clipflair.zip files for each component)
+            activity.AddWindow(LoadWindow(childZip)); //TODO: remove THIS NOTE when fixed: don't call Windows.Add, won't do bindings currently
+        }
       }
       finally
       {
@@ -130,33 +156,11 @@ namespace ClipFlair.Windows
       CheckZoomToFit();
     }
 
-    public void LoadWindow(ZipEntry childZip)
-    {
-      using (Stream stream = childZip.OpenReader())
-      using (MemoryStream memStream = new MemoryStream()) //TODO: see why this is needed - can't use activity.Windows.Add(LoadWindow(stream), seems DotNetZip fails to open a .zip from a stream inside another .zip
-      {
-        stream.CopyTo(memStream);
-        memStream.Position = 0;
-        BaseWindow w = LoadWindow(memStream);
-        if (w == null) return;
-        activity.AddWindow(w); //TODO (remove this note when fixed): don't call Windows.Add, won't do bindings currently
-      }
-    }
-
     public override void SaveOptions(ZipFile zip, string zipFolder = "")
     {
       base.SaveOptions(zip, zipFolder);
       foreach (BaseWindow window in activity.Windows)
         SaveWindow(window, zip, zipFolder);
-    }
-
-    private static void SaveWindow(BaseWindow window, ZipFile zip, string zipFolder = "")
-    {
-      string title = ((string)window.Title).TrimStart(); //using TrimStart() to not have filenames start with space chars in case it's an issue with ZIP spec
-      if (title == "") title = window.GetType().Name;
-      zip.AddEntry(
-        zipFolder + "/" + title.ReplaceInvalidFileNameChars() + " - " + window.View.ID + BaseWindow.CLIPFLAIR_ZIP_EXTENSION, //using .clipflair.zip extension for nested components' state to ease examining with ZIP archivers
-        new WriteDelegate((entryName, stream) => { window.SaveOptions(stream); })); //save ZIP file for child window 
     }
 
     #endregion
