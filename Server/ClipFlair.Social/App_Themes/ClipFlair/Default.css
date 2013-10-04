@@ -1,7 +1,7 @@
 /*
 Project: ClipFlair (http://ClipFlair.codeplex.com)
 Filename: App_Themes/ClipFlair/Default.css
-Version: 20130221
+Version: 20131004
 */
 
 body, table, td, th, p, ul, li, ol, h1, h2, h3
@@ -8061,7 +8061,7 @@ box-shadow: 0px 1px 2px #90936D;
 
 .EU-logo {
     float:left;
-    width:174px;
+    width:189px;
     height:72px;
     background-image:url(img/eu-logo.png);
     background-repeat:no-repeat;
@@ -8448,3 +8448,5 @@ ul.material-list li .material-list-container p.info span.tag{
 /* ---- GALLERY END ---- */
 
 a img { border: none; } /* hide image border shown for image links in IE */
+
+#ctl00_ctl00_ctl01_ctl00_cp_cp_toolbox_content { height: auto !important; } /* fix gray panel shown under admin bar */
