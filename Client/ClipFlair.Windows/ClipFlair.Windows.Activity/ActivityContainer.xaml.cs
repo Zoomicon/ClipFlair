@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: ActivityContainer.xaml.cs
-//Version: 20130930
+//Version: 20131002
 
 //TODO: add ContentPartsCloseable property
 //TODO: add ContentPartsZoomable property
@@ -288,6 +288,10 @@ namespace ClipFlair.Windows
     {
       zuiContainer.Add(window).Show();
       BindWindow(window);
+
+      //GalleryWindow gw = window as GalleryWindow; //TODO: try to remove this patch (needed to be able to load activities with saved gallery that has a filter set to it)
+      //if (gw != null) gw.RefreshFilter();
+
       return window;
     }
 
