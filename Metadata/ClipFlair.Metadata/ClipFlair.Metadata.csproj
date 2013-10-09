@@ -54,6 +54,9 @@
     <Compile Include="ClipFlairMetadata.cs" />
     <Compile Include="ClipFlairMetadataFacets.cs" />
     <Compile Include="IClipFlairMetadata.cs" />
+    <Compile Include="Image\IImageMetadata.cs" />
+    <Compile Include="Image\ImageMetadata.cs" />
+    <Compile Include="Image\ImageMetadataFacets.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Video\IVideoMetadata.cs" />
     <Compile Include="Video\VideoMetadata.cs" />

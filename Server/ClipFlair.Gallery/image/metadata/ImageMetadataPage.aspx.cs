@@ -1,5 +1,5 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
-//Filename: VideoMetadataPage.aspx.cs
+//Filename: ImageMetadataPage.aspx.cs
 //Version: 20131009
 
 using Metadata.CXML;
@@ -13,10 +13,11 @@ using System.Xml;
 
 namespace ClipFlair.Gallery
 {
-  public partial class VideoMetadataPage : BaseMetadataPage
+  public partial class ImageMetadataPage : BaseMetadataPage
   {
 
-    private string path = HttpContext.Current.Server.MapPath("~/video");
+    private string path = HttpContext.Current.Server.MapPath("~/image");
+    private string filter = "*.png|*.jpg";
 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -25,11 +26,10 @@ namespace ClipFlair.Gallery
       if (!IsPostBack)
       {
         listItems.DataSource =
-          Directory.GetDirectories(path)
-            .Where(f => (Directory.EnumerateFiles(f, Path.GetFileName(f) + ".ism").Count() != 0)) //Available in .NET4, more efficient than GetFiles
-            .Select(f => new { Foldername = Path.GetFileName(f) });
-        //when having a full path to a directory don't use Path.GetDirectoryName (gives parent directory),
-        //use Path.GetFileName instead to extract the name of the directory
+          filter.Split('|').SelectMany(
+            oneFilter => Directory.EnumerateFiles(path, oneFilter) //Available in .NET4, more efficient than GetFiles
+                         .Select(f => new { Filename = Path.GetFileName(f) })
+          );
 
         listItems.DataBind(); //must call this
 
@@ -52,12 +52,12 @@ namespace ClipFlair.Gallery
 
     public override string GetFallbackMetadataFilePath()
     {
-      return Path.Combine(path, "metadata/old_video.cxml");
+      return Path.Combine(path, "metadata/old_images.cxml");
     }
 
     public override string GetMergeMetadataFilePath()
     {
-      return Path.Combine(path, "video.cxml");
+      return Path.Combine(path, "images.cxml");
     }
 
     #endregion
@@ -68,25 +68,21 @@ namespace ClipFlair.Gallery
     {
       using (XmlReader cxmlFallback = CreateXmlReader(GetFallbackMetadataFilePath()))
         using (XmlReader cxml = CreateXmlReader(GetMetadataFilepath(key))) 
-          DisplayMetadata(key, (IVideoMetadata)new VideoMetadata().Load(key, cxml, cxmlFallback));
+          DisplayMetadata(key, (IImageMetadata)new ImageMetadata().Load(key, cxml, cxmlFallback));
     }
 
-    public void DisplayMetadata(string key, IVideoMetadata metadata)
+    public void DisplayMetadata(string key, IImageMetadata metadata)
     {
       UI.LoadTextBox(txtTitle, metadata.Title);
-      UI.LoadHyperlink(linkUrl, new Uri("http://studio.clipflair.net/?video=" + key));
+      UI.LoadHyperlink(linkUrl, new Uri("http://studio.clipflair.net/?image=" + key));
       UI.LoadTextBox(txtDescription, metadata.Description);
 
       UI.LoadTextBox(txtKeywords, metadata.Keywords);
       UI.LoadTextBox(txtLicense, metadata.License);
 
-      UI.LoadCheckBoxList(clistAudioLanguage, metadata.AudioLanguage);
       UI.LoadCheckBoxList(clistCaptionsLanguage, metadata.CaptionsLanguage);
-      UI.LoadCheckBoxList(clistGenre, metadata.Genre);
-      UI.LoadCheckBox(cbAgeRestricted, metadata.AgeRestricted);
-      UI.LoadTextBox(txtDuration, metadata.Duration);
-      UI.LoadCheckBoxList(clistAudiovisualRichness, metadata.AudiovisualRichness);
-      UI.LoadCheckBox(cbPedagogicalAdaptability, metadata.PedagogicalAdaptability);
+      //UI.LoadCheckBoxList(clistGenre, metadata.Genre);
+      //UI.LoadCheckBox(cbAgeRestricted, metadata.AgeRestricted);
       UI.LoadTextBox(txtAuthorSource, metadata.AuthorSource);
     }
 
@@ -96,23 +92,19 @@ namespace ClipFlair.Gallery
 
     public override ICXMLMetadata ExtractMetadata(string key)
     {
-      IVideoMetadata metadata = new VideoMetadata();
+      IImageMetadata metadata = new ImageMetadata();
 
       metadata.Title = txtTitle.Text;
-      metadata.Image = "../video/" + key + "/" + key + "_thumb.jpg";
-      metadata.Url = new Uri("http://studio.clipflair.net/?video=" + key);
+      metadata.Image = "../image/" + key;
+      metadata.Url = new Uri("http://studio.clipflair.net/?image=" + key);
       metadata.Description = txtDescription.Text;
       metadata.Filename = key;
       metadata.Keywords = UI.GetCommaSeparated(txtKeywords);
       metadata.License = txtLicense.Text;
 
-      metadata.AudioLanguage = UI.GetSelected(clistAudioLanguage);
       metadata.CaptionsLanguage = UI.GetSelected(clistCaptionsLanguage);
-      metadata.Genre = UI.GetSelected(clistGenre);
-      metadata.AgeRestricted = cbAgeRestricted.Checked;
-      metadata.Duration = txtDuration.Text;
-      metadata.AudiovisualRichness = UI.GetSelected(clistAudiovisualRichness);
-      metadata.PedagogicalAdaptability = cbPedagogicalAdaptability.Checked;
+      //metadata.Genre = UI.GetSelected(clistGenre); //TODO: Could have image type (Comics, Map, Historical, Religious etc.)
+      //metadata.AgeRestricted = cbAgeRestricted.Checked;
       metadata.AuthorSource = txtAuthorSource.Text;
 
       return metadata;
@@ -125,7 +117,7 @@ namespace ClipFlair.Gallery
 
     public override void Merge()
     {
-      Merge("ClipFlair Gallery Clips", VideoMetadata.MakeVideoFacetCategories());
+      Merge("ClipFlair Gallery Clips", ImageMetadata.MakeImageFacetCategories());
     }
 
     #endregion

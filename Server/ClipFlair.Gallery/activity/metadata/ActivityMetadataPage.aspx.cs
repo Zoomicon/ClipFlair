@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: ActivityMetadataPage.aspx.cs
-//Version: 20130903
+//Version: 20131009
 
 using Metadata.CXML;
 using ClipFlair.Metadata;
@@ -24,9 +24,10 @@ namespace ClipFlair.Gallery
       
       if (!IsPostBack)
       {
-        listItems.DataSource = 
-          Directory.GetFiles(path, "*.clipflair")
+        listItems.DataSource =
+          Directory.EnumerateFiles(path, "*.clipflair") //Available in .NET4, more efficient than GetFiles
             .Select(f => new { Filename = Path.GetFileName(f) });
+
         listItems.DataBind(); //must call this
 
         if (Request.QueryString["item"] != null)
