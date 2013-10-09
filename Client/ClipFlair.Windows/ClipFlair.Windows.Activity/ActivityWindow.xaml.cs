@@ -11,11 +11,10 @@ using Ionic.Zip;
 using System;
 using System.ComponentModel;
 using System.IO;
+using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Browser;
 using System.Windows.Media;
-
-using System.Runtime.CompilerServices;
 
 [assembly: TypeForwardedToAttribute(typeof(MediaPlayerView))]
 [assembly: TypeForwardedToAttribute(typeof(CaptionsGridView))]
@@ -24,7 +23,7 @@ using System.Runtime.CompilerServices;
 [assembly: TypeForwardedToAttribute(typeof(ImageView))]
 [assembly: TypeForwardedToAttribute(typeof(MapView))]
 [assembly: TypeForwardedToAttribute(typeof(GalleryView))]
-//[assembly: TypeForwardedToAttribute(typeof(ActivityView))] //not needed
+//[assembly: TypeForwardedToAttribute(typeof(ActivityView))] //can't forward to a type from this assembly (don't need to anyway)
 
 namespace ClipFlair.Windows
 {
@@ -40,11 +39,13 @@ namespace ClipFlair.Windows
 
     #endregion
 
+    #region Constructor
+
     public ActivityWindow()
     {
       InitializeComponent();
 
-      OptionsLoadSave.LoadURLTooltip = "Load activity from URL";
+      OptionsLoadSave.LoadURLTooltip = "Load activity from URL"; //TODO: localize
       OptionsLoadSave.LoadTooltip = "Load activity from file";
       OptionsLoadSave.SaveTooltip = "Save activity to file";
       
@@ -64,6 +65,8 @@ namespace ClipFlair.Windows
       BindingUtils.RegisterForNotification("Width", this, (d, e) => { CheckZoomToFit(); });
       BindingUtils.RegisterForNotification("Height", this, (d, e) => { CheckZoomToFit(); });
     }
+
+    #endregion
 
     #region View
 
@@ -98,13 +101,13 @@ namespace ClipFlair.Windows
 
     #endregion
 
-    public void CheckZoomToFit()
-    {
-      activity.CheckZoomToFit();
-    }
-
     #region Load / Save Options
 
+    public override void ShowLoadURLDialog(string loadItemTitle = "ClipFlair Activity")
+    {
+      base.ShowLoadURLDialog(loadItemTitle);
+    }
+    
     public override void LoadOptions(ZipFile zip, string zipFolder = "")
     {
       base.LoadOptions(zip, zipFolder); //this will set the View of the ActivityWindow, which will set the view of the ActivityContainer control too
@@ -167,14 +170,34 @@ namespace ClipFlair.Windows
 
     #region Methods
 
-    public override void ShowLoadURLDialog(string loadItemTitle = "ClipFlair Activity")
+    public void CheckZoomToFit()
     {
-      base.ShowLoadURLDialog(loadItemTitle);
+      activity.CheckZoomToFit();
+    }
+
+    public void SendFeedback()
+    {
+      Dispatcher.BeginInvoke(delegate
+      {
+        try
+        {
+          new Uri(CLIPFLAIR_FEEDBACK).NavigateTo();
+        }
+        catch
+        {
+          MessageBox.Show("For feedback visit " + CLIPFLAIR_FEEDBACK);
+        }
+      });
     }
 
     #endregion
 
     #region Events
+
+    private void lblBeta_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+    {
+      SendFeedback();
+    }
 
     protected override void OnClosing(CancelEventArgs e)
     {
@@ -206,26 +229,6 @@ namespace ClipFlair.Windows
     }
 
     #endregion
-
-    private void lblBeta_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
-    {
-      GetFeedback();
-    }
-
-    public void GetFeedback()
-    {
-      Dispatcher.BeginInvoke(delegate
-      {
-        try
-        {
-          new Uri(CLIPFLAIR_FEEDBACK).NavigateTo();
-        }
-        catch
-        {
-          MessageBox.Show("For feedback visit " + CLIPFLAIR_FEEDBACK);
-        }
-      });
-    }
 
   }
 
