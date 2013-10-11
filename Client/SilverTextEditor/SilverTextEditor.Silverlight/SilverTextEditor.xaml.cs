@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: SilverTextEditor.xaml.cs
-//Version: 20130919
+//Version: 20131009
 
 //Originated from Microsoft Silverlight sample (MSPL license)
 
@@ -533,7 +533,7 @@ namespace SilverTextEditor
       get { return rtb.Xaml; }
       set
       {
-        if (value != null && value.Trim() != "")
+        if (!String.IsNullOrWhiteSpace(value))
         {
           rtb.Xaml = value;
           ScrollToStart();
@@ -604,20 +604,31 @@ namespace SilverTextEditor
 
     public void LoadXaml(Stream stream, bool clearFirst = true) //doesn't close stream
     {
+      string xamlText = "";
       using (StreamReader reader = new StreamReader(stream))
-      {
-        if (clearFirst) rtb.SelectAll();
-        rtb.Selection.Xaml = reader.ReadToEnd();
-      }
+      xamlText = reader.ReadToEnd();
+      
+      if (clearFirst) rtb.SelectAll(); //need to use this instead of Clear() since we set "rtb.Selection.Xaml" below
+
+      if (!String.IsNullOrWhiteSpace(xamlText))
+        rtb.Selection.Xaml = xamlText;
+      else
+        rtb.Selection.Text = ""; //Xaml property of Selection object doesn't accept empty string (need to set this in order to clear current selection if using clearFirst=false)
+
+      if (clearFirst) ScrollToStart();
     }
 
     public void LoadTxt(Stream stream, bool clearFirst = true)
     {
+      string txt = "";
       using (StreamReader reader = new StreamReader(stream))
-      {
-        if (clearFirst) rtb.SelectAll();
-        rtb.Selection.Text = reader.ReadToEnd();
-      }
+        txt = reader.ReadToEnd();
+
+      if (clearFirst) rtb.SelectAll(); //need to use this instead of Clear() since we set "rtb.Selection.Text" below
+
+      rtb.Selection.Text = txt;
+
+      if (clearFirst) ScrollToStart();
     }
 
     public void LoadDocx(Stream stream, bool clearFirst = true)
@@ -659,6 +670,8 @@ namespace SilverTextEditor
         p.Inlines.Add(new LineBreak());
         rtb.Blocks.Add(p);
       }
+
+      if (clearFirst) ScrollToStart();
     }
 
     public void Save(Stream stream, string filename)
@@ -726,7 +739,7 @@ namespace SilverTextEditor
           Filter = "All Text Files (*.text;*.docx;*.txt)|*.text;*.docx;*.txt|ClipFlair Text Files (*.text)|*.text|Office OpenXML Files (*.docx)|*.docx|Unicode Text Files (*.txt)|*.txt|All Files|*.*"
         };
 
-        if (ofd.ShowDialog().Value)
+        if (ofd.ShowDialog() == true)
           Load(ofd.File);
       }
       catch (Exception ex)
@@ -748,7 +761,7 @@ namespace SilverTextEditor
           DefaultExt = ".text" //don't set FilterIndex if this is set
         };
 
-        if (sfd.ShowDialog().Value)
+        if (sfd.ShowDialog() == true)
           using (Stream stream = sfd.OpenFile())
             Save(stream, sfd.SafeFileName);
       }
