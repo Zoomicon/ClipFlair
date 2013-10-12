@@ -87,18 +87,56 @@
     <Content Include="crossdomain.xml">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="fancybox\lib\jquery-1.10.1.min.js" />
+    <Content Include="fancybox\lib\jquery-1.9.0.min.js" />
+    <Content Include="fancybox\lib\jquery.mousewheel-3.0.6.pack.js" />
+    <Content Include="fancybox\source\blank.gif" />
+    <Content Include="fancybox\source\fancybox_loading%402x.gif" />
+    <Content Include="fancybox\source\fancybox_loading.gif" />
+    <Content Include="fancybox\source\fancybox_overlay.png" />
+    <Content Include="fancybox\source\fancybox_sprite%402x.png" />
+    <Content Include="fancybox\source\fancybox_sprite.png" />
+    <Content Include="fancybox\source\helpers\fancybox_buttons.png" />
+    <Content Include="fancybox\source\helpers\jquery.fancybox-buttons.css" />
+    <Content Include="fancybox\source\helpers\jquery.fancybox-buttons.js" />
+    <Content Include="fancybox\source\helpers\jquery.fancybox-media.js" />
+    <Content Include="fancybox\source\helpers\jquery.fancybox-thumbs.css" />
+    <Content Include="fancybox\source\helpers\jquery.fancybox-thumbs.js" />
+    <Content Include="fancybox\source\jquery.fancybox.css" />
+    <Content Include="fancybox\source\jquery.fancybox.js" />
+    <Content Include="fancybox\source\jquery.fancybox.pack.js" />
     <Content Include="favicon.ico" />
-    <Content Include="images\activity-gallery_btn.png" />
-    <Content Include="images\activity-gallery_btn_o.png" />
-    <Content Include="images\activity-gallery_btn_o2.png" />
-    <Content Include="images\video-gallery_btn.png" />
-    <Content Include="images\video-gallery_btn_o.png" />
-    <Content Include="images\video-gallery_btn_o2.png" />
+    <Content Include="icons\activity_gallery.jpg" />
+    <Content Include="icons\activity_gallery.png" />
+    <Content Include="icons\activity_gallery.svg" />
+    <Content Include="icons\globe.gif" />
+    <Content Include="icons\globe.jpg" />
+    <Content Include="icons\globe.png" />
+    <Content Include="icons\globe.svg" />
+    <Content Include="icons\image_gallery.jpg" />
+    <Content Include="icons\image_gallery.png" />
+    <Content Include="icons\image_gallery.svg" />
+    <Content Include="icons\llp-logo.png" />
+    <Content Include="icons\logo.jpg" />
+    <Content Include="icons\logo.png" />
+    <Content Include="icons\logo.svg" />
+    <Content Include="icons\share-btn.gif" />
+    <Content Include="icons\share-btn.jpg" />
+    <Content Include="icons\share-btn.png" />
+    <Content Include="icons\share-btn.svg" />
+    <Content Include="icons\video_gallery.jpg" />
+    <Content Include="icons\video_gallery.png" />
+    <Content Include="icons\video_gallery.svg" />
     <Content Include="image\Default.aspx" />
     <Content Include="image\metadata\ImageMetadataPage.aspx" />
     <Content Include="image\metadata\Language.xml" />
     <Content Include="index.html" />
-    <Content Include="rollover.js" />
+    <Content Include="js\icu.js" />
+    <Content Include="js\jquery.fittext.js" />
+    <Content Include="js\jquery.hoverIntent.minified.js" />
+    <Content Include="js\modernizr.custom.07231.js" />
+    <Content Include="js\rollover.js" />
+    <Content Include="js\translate.js" />
     <Content Include="style.css" />
     <Content Include="video\Default.aspx" />
     <Content Include="video\metadata\Genre.xml">
@@ -179,7 +217,9 @@
       <Name>Metadata.CXML</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="el_EL.json" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="image\metadata\Web.config" />
   </ItemGroup>
