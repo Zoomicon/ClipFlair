@@ -7,14 +7,16 @@
 <%--
 Project: ClipFlair (http://ClipFlair.codeplex.com)
 Filename: video/Default.aspx
-Version: 20130812
+Version: 20131012
 --%>
 
 <html>
 
 <head>
 
-<title>ClipFlair Video Clips Gallery</title>
+<title>ClipFlair Video Gallery | Foreign Language Learning through Interactive Revoicing and Captioning of Clips</title>
+<link rel="shortcut icon" type="image/ico" href='favicon.ico' />
+
 
 <style type="text/css">
 body
