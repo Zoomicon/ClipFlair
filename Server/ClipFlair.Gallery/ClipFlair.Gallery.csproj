@@ -52,6 +52,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="activity\Default.aspx" />
+    <Content Include="activity\favicon.ico" />
     <Content Include="activity\metadata\AgeGroup.xml">
       <SubType>Designer</SubType>
     </Content>
@@ -128,6 +129,7 @@
     <Content Include="icons\video_gallery.png" />
     <Content Include="icons\video_gallery.svg" />
     <Content Include="image\Default.aspx" />
+    <Content Include="image\favicon.ico" />
     <Content Include="image\metadata\ImageMetadataPage.aspx" />
     <Content Include="image\metadata\Language.xml" />
     <Content Include="index.html" />
@@ -139,6 +141,7 @@
     <Content Include="js\translate.js" />
     <Content Include="style.css" />
     <Content Include="video\Default.aspx" />
+    <Content Include="video\favicon.ico" />
     <Content Include="video\metadata\Genre.xml">
       <SubType>Designer</SubType>
     </Content>
@@ -218,9 +221,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="el_EL.json" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="image\metadata\Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -232,6 +232,9 @@
     <Content Include="image\metadata\Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="lang\el_EL.json" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
