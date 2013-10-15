@@ -1,5 +1,5 @@
 //Filename: FloatingWindow.cs
-//Version: 20130805
+//Version: 20131015
 
 using System;
 using System.IO;
@@ -1633,28 +1633,6 @@ namespace SilverFlow.Controls
         }
 
         /// <summary>
-        /// Restores the size and position stored in the IsolatedStorage on closing.
-        /// </summary>
-        public void RestoreSizeAndPosition()
-        {
-            if (IsWindowTagSet)
-            {
-                string positionKey = GetAppSettingsKey("Position");
-                string sizeKey = GetAppSettingsKey("Size");
-
-                if (localStorage.Contains(positionKey))
-                    Position = (Point)localStorage[positionKey];
-
-                if (localStorage.Contains(sizeKey))
-                {
-                    Size size = (Size)localStorage[sizeKey];
-                    Width = size.Width == 0 ? double.NaN : size.Width;
-                    Height = size.Height == 0 ? double.NaN : size.Height;
-                }
-            }
-        }
-
-        /// <summary>
         /// Performs Screeshot action.
         /// </summary>
         public virtual void Screenshot()
@@ -2730,22 +2708,66 @@ namespace SilverFlow.Controls
             }
         }
 
+        #region Isolated Storage
+
+        /// <summary>
+        /// Restores the size and position stored in the IsolatedStorage on closing.
+        /// </summary>
+        public bool RestoreSizeAndPosition()
+        {
+          if (!IsWindowTagSet)
+            return false;
+          else
+            try
+            {
+              string positionKey = GetAppSettingsKey("Position");
+              string sizeKey = GetAppSettingsKey("Size");
+
+              bool loadPosition = localStorage.Contains(positionKey);
+              if (loadPosition)
+                Position = (Point)localStorage[positionKey];
+
+              bool loadSize = localStorage.Contains(sizeKey);
+              if (loadSize)
+              {
+                Size size = (Size)localStorage[sizeKey];
+                Width = size.Width == 0 ? double.NaN : size.Width;
+                Height = size.Height == 0 ? double.NaN : size.Height;
+              }
+
+              return (loadPosition || loadSize);
+            }
+            catch
+            {
+              return false;
+            }
+        }
+
         /// <summary>
         /// Saves current size and position of the window in the IsolatedStorage.
         /// The key of the settings is the Tag of the window (if not null).
         /// </summary>
-        private void SaveSizeAndPosition()
+        public bool SaveSizeAndPosition()
         {
-            if (IsWindowTagSet)
+          if (!IsWindowTagSet)
+            return false;
+          else
+            try
             {
-                string positionKey = GetAppSettingsKey("Position");
-                string sizeKey = GetAppSettingsKey("Size");
+              string positionKey = GetAppSettingsKey("Position");
+              string sizeKey = GetAppSettingsKey("Size");
 
-                Point point = windowState == WindowState.Normal ? Position : previousPosition;
-                localStorage[positionKey] = point;
+              Point point = windowState == WindowState.Normal ? Position : previousPosition;
+              localStorage[positionKey] = point;
 
-                Size size = windowState == WindowState.Normal ? new Size(ActualWidth, ActualHeight) : previousSize;
-                localStorage[sizeKey] = size;
+              Size size = windowState == WindowState.Normal ? new Size(ActualWidth, ActualHeight) : previousSize;
+              localStorage[sizeKey] = size;
+
+              return true;
+            }
+            catch
+            {
+              return false;
             }
         }
 
@@ -2759,6 +2781,8 @@ namespace SilverFlow.Controls
             string tag = this.Tag as string;
             return tag + ":" + key;
         }
+
+        #endregion
 
         /// <summary>
         /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.

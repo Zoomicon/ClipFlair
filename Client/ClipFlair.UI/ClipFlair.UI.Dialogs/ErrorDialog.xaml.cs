@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: ErrorDialog.xaml.cs
-//Version: 20130501
+//Version: 20131015
 
 using System;
 using System.Windows;
@@ -19,7 +19,7 @@ namespace ClipFlair.UI.Dialogs
     public ErrorDialog(Exception e) : this()
     {
       Message = e.Message;
-      Details = e.StackTrace;
+      Details = e.Message + e.StackTrace; //have the message too in the details to be able to select and copy it
       Exception inner = e.InnerException;
       if (inner != null)
         Details = Details + "\n\n" + inner.Message + inner.StackTrace; 
