@@ -107,31 +107,31 @@
     <Content Include="fancybox\source\jquery.fancybox.js" />
     <Content Include="fancybox\source\jquery.fancybox.pack.js" />
     <Content Include="favicon.ico" />
-    <Content Include="icons\activity_gallery.jpg" />
-    <Content Include="icons\activity_gallery.png" />
-    <Content Include="icons\activity_gallery.svg" />
-    <Content Include="icons\globe.gif" />
-    <Content Include="icons\globe.jpg" />
-    <Content Include="icons\globe.png" />
-    <Content Include="icons\globe.svg" />
-    <Content Include="icons\image_gallery.jpg" />
-    <Content Include="icons\image_gallery.png" />
-    <Content Include="icons\image_gallery.svg" />
-    <Content Include="icons\llp-logo.png" />
-    <Content Include="icons\logo.jpg" />
-    <Content Include="icons\logo.png" />
-    <Content Include="icons\logo.svg" />
-    <Content Include="icons\share-btn.gif" />
-    <Content Include="icons\share-btn.jpg" />
-    <Content Include="icons\share-btn.png" />
-    <Content Include="icons\share-btn.svg" />
-    <Content Include="icons\video_gallery.jpg" />
-    <Content Include="icons\video_gallery.png" />
-    <Content Include="icons\video_gallery.svg" />
     <Content Include="image\Default.aspx" />
     <Content Include="image\favicon.ico" />
     <Content Include="image\metadata\ImageMetadataPage.aspx" />
     <Content Include="image\metadata\Language.xml" />
+    <Content Include="img\activity_gallery.jpg" />
+    <Content Include="img\activity_gallery.png" />
+    <Content Include="img\activity_gallery.svg" />
+    <Content Include="img\globe.gif" />
+    <Content Include="img\globe.jpg" />
+    <Content Include="img\globe.png" />
+    <Content Include="img\globe.svg" />
+    <Content Include="img\image_gallery.jpg" />
+    <Content Include="img\image_gallery.png" />
+    <Content Include="img\image_gallery.svg" />
+    <Content Include="img\llp-logo.png" />
+    <Content Include="img\logo.jpg" />
+    <Content Include="img\logo.png" />
+    <Content Include="img\logo.svg" />
+    <Content Include="img\share-btn.gif" />
+    <Content Include="img\share-btn.jpg" />
+    <Content Include="img\share-btn.png" />
+    <Content Include="img\share-btn.svg" />
+    <Content Include="img\video_gallery.jpg" />
+    <Content Include="img\video_gallery.png" />
+    <Content Include="img\video_gallery.svg" />
     <Content Include="index.html" />
     <Content Include="js\icu.js" />
     <Content Include="js\jquery.fittext.js" />
@@ -232,9 +232,6 @@
     <Content Include="image\metadata\Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="lang\el_EL.json" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

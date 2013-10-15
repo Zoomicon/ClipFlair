@@ -84,9 +84,9 @@ var filename = langfix+'_'+langfix.toUpperCase()+'.json';
 _.setTranslation(getAjax(filename));
 
 // actual translate:
-$("#activity_gallery").find('p').text(_('Browse ClipFlair Activity Gallery'));
-$("#video_gallery").find('p').text(_('Browse ClipFlair Video Gallery'));
-$("#image_gallery").find('p').text(_('Browse ClipFlair Image Gallery'));
+$("#activity_gallery").find('p').text(_('Browse language learning activities'));
+$("#video_gallery").find('p').text(_('Pick a clip for a new activity'));
+$("#image_gallery").find('p').text(_('Pick an image for a new activity'));
 $("#subfootercontent").find('p').text(_('Foreign Language Learning through Interactive Revoicing & Captioning of Clips'));
 $("#content_wrapper").find('p').text(_('This project has been funded with support from the European Commission. This publication reflects the views only of the author, and the Commission cannot be held responsible for any use which may be made of the information contained therein.'));
 // ...
@@ -204,7 +204,7 @@ $(document ).ready(function() {
     	<div id="maincontentcontainer">
         	<div id="language-select-wrapper">
                 <label class="custom-select"> 
-                	<img src="icons/globe.svg" width="18" height="18" align="middle" style="padding-bottom:10px;" />
+                	<img src="img/globe.svg" width="18" height="18" align="middle" style="padding-bottom:10px;" />
 					<select id="langsel" onChange="mytranslate()">
                         <option value="en">english</option>
                         <option value="eu">euskera</option>
@@ -223,21 +223,21 @@ $(document ).ready(function() {
             	<div class="section group">
                     <a class="col span_1_of_2  smaller-text" id="logo" href="http://clipflair.net" target="_top" title="">
                    		<div class="roll-over"><p class="text" style="background:#fff"> <span style="line-height:1.15em; color:#a5ac2c; font-weight:600; font-size:larger">Foreign<br /> Language<br /> Learning</span> <br /> <span style="line-height:1.25em; color:#2e1c17; font-weight:lighter">through Interactive Revoicing & Captioning of Clips</span></p></div>
-                        <img src="icons/logo.svg" border="none" width="100%" />
+                        <img src="img/logo.svg" border="none" width="100%" />
                     </a>
                     <a class="col span_1_of_2" id="activity_gallery" href="http://gallery.clipflair.net/activity">
-                   		<div class="roll-over"><p class="text" style="background:#f67f00">Browse ClipFlair Activity Gallery</p></div>
-                    	<img src="icons/activity_gallery.svg" border="none" width="100%" class="" />
+                   		<div class="roll-over"><p class="text" style="background:#f67f00">Browse language learning activities</p></div>
+                    	<img src="img/activity_gallery.svg" border="none" width="100%" class="" />
                     </a>
 				</div> 
                 <div class="section group">
                     <a class="col span_1_of_2" id="video_gallery"  href="http://gallery.clipflair.net/video">
-                    	<div class="roll-over"><p class="text" style="background:#977014">Browse ClipFlair Video Gallery</p></div>
-               	    	<img src="icons/video_gallery.svg" border="none" width="100%" class="" />
+                    	<div class="roll-over"><p class="text" style="background:#977014">Pick a clip for a new activity</p></div>
+               	    	<img src="img/video_gallery.svg" border="none" width="100%" class="" />
                     </a>
                     <a class="col span_1_of_2" id="image_gallery" href="http://gallery.clipflair.net/image">
-   						<div class="roll-over"><p class="text" style="background:#e0b000">Browse ClipFlair Image Gallery</p></div>
-                    	<img src="icons/image_gallery.svg" border="none" width="100%" class="" />
+   						<div class="roll-over"><p class="text" style="background:#e0b000">Pick an image for a new activity</p></div>
+                    	<img src="img/image_gallery.svg" border="none" width="100%" class="" />
                     </a>                   
 				</div>
                                      
@@ -250,9 +250,9 @@ $(document ).ready(function() {
             <div id="footer">
             	<div id="footercontent">
                 	<div class="content_wrapper">
-                        <div class="llp_logo"><img src="icons/llp-logo.png" width="148" height="50" /></div>
+                        <div class="llp_logo"><img src="img/llp-logo.png" width="148" height="50" /></div>
                       <p>This project has been funded with support from the European Commission. This publication reflects the views only of the author, and the Commission cannot be held responsible for any use which may be made of the information contained therein.</p>
-                        <a href="http://www.addthis.com/bookmark.php?url=http://clipflair.net&title=ClipFlair%20-%20Foreign%20Language%20Learning%20through%20Interactive%20Revoicing%20%26%20Captioning%20of%20Clips" target="_blank" class="share"><img src="icons/share-btn.svg" width="82" height="25" /></a>
+                        <a href="http://www.addthis.com/bookmark.php?url=http://gallery.clipflair.net&title=ClipFlair Gallery%20-%20Foreign%20Language%20Learning%20through%20Interactive%20Revoicing%20%26%20Captioning%20of%20Clips" target="_blank" class="share"><img src="img/share-btn.svg" width="82" height="25" /></a>
                     </div>
                 </div>
             </div>
