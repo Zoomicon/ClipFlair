@@ -410,8 +410,8 @@ label.custom-select:before {
 /*CSS3 % SVG DETECTIONS FOR BROWSERS THAT DONT SUPPORT*/
 .lt-ie9 #logo,
 .no-svg #logo {
-    background: url("icons/logo.png");
-    _background-image: url("icons/logo.jpg");
+    background: url("img/logo.png");
+    _background-image: url("img/logo.jpg");
 }
 .lt-ie9 #logo img,
 .no-svg #logo img {
@@ -421,8 +421,8 @@ label.custom-select:before {
 
 .lt-ie9 #studio,
 .no-svg #studio {
-    background: url("icons/studio.png");
-    _background-image: url("icons/studio.jpg");
+    background: url("img/studio.png");
+    _background-image: url("img/studio.jpg");
 }
 .lt-ie9 #studio img,
 .no-svg #studio img {
@@ -432,8 +432,8 @@ label.custom-select:before {
 
 .lt-ie9 #gallery,
 .no-svg #gallery {
-    background: url("icons/gallery.png");
-    _background-image: url("icons/gallery.jpg");
+    background: url("img/gallery.png");
+    _background-image: url("img/gallery.jpg");
 }
 .lt-ie9 #gallery img,
 .no-svg #gallery img {
@@ -443,8 +443,8 @@ label.custom-select:before {
 
 .lt-ie9 #social,
 .no-svg #social {
-    background: url("icons/social.png");
-    _background-image: url("icons/social.jpg");
+    background: url("img/social.png");
+    _background-image: url("img/social.jpg");
 }
 .lt-ie9 #social img,
 .no-svg #social img {
@@ -454,8 +454,8 @@ label.custom-select:before {
 
 .lt-ie9 #video1,
 .no-svg #video1 {
-    background: url("icons/video1.png");
-    _background-image: url("icons/video1.jpg");
+    background: url("img/video1.png");
+    _background-image: url("img/video1.jpg");
 }
 .lt-ie9 #video1 img,
 .no-svg #video1 img {
@@ -465,8 +465,8 @@ label.custom-select:before {
 
 .lt-ie9 #video2,
 .no-svg #video2 {
-    background: url("icons/video2.png");
-    _background-image: url("icons/video2.jpg");
+    background: url("img/video2.png");
+    _background-image: url("img/video2.jpg");
 }
 .lt-ie9 #video2 img,
 .no-svg #video2 img {
@@ -476,8 +476,8 @@ label.custom-select:before {
 
 .lt-ie9 #info,
 .no-svg #info {
-    background: url("icons/info.png");
-    _background-image: url("icons/info.jpg");
+    background: url("img/info.png");
+    _background-image: url("img/info.jpg");
 }
 .lt-ie9 #info img,
 .no-svg #info img {
@@ -487,8 +487,8 @@ label.custom-select:before {
 
 .lt-ie9 #contact,
 .no-svg #contact {
-    background: url("icons/contact.png");
-    _background-image: url("icons/contact.jpg");
+    background: url("img/contact.png");
+    _background-image: url("img/contact.jpg");
 }
 .lt-ie9 #contact img,
 .no-svg #contact img {
@@ -498,8 +498,8 @@ label.custom-select:before {
 
 .lt-ie9 #help,
 .no-svg #help {
-    background: url("icons/help.png");
-    _background-image: url("icons/help.jpg");
+    background: url("img/help.png");
+    _background-image: url("img/help.jpg");
 }
 .lt-ie9 #help img,
 .no-svg #help img {
@@ -509,8 +509,8 @@ label.custom-select:before {
 
 .lt-ie9 .share,
 .no-svg .share {
-    background: url("icons/share-btn.png");
-    _background-image: url("icons/share-btn.gif");
+    background: url("img/share-btn.png");
+    _background-image: url("img/share-btn.gif");
 }
 .lt-ie9 .share img,
 .no-svg .share img {
@@ -520,8 +520,8 @@ label.custom-select:before {
 
 .lt-ie9 #language-select-wrapper,
 .no-svg #language-select-wrapper {
-    background: url("icons/globe.png");
-    _background-image: url("icons/globe.gif");
+    background: url("img/globe.png");
+    _background-image: url("img/globe.gif");
 }
 .lt-ie9 #language-select-wrapper img,
 .no-svg #language-select-wrapper img {
@@ -531,7 +531,7 @@ label.custom-select:before {
 
 .lt-ie9 #activity_gallery,
 .no-svg #activity_gallery {
-    background: url("icons/activity_gallery.png");
+    background: url("img/activity_gallery.png");
     _background-image: url("img/activity_gallery.jpg");
 }
 .lt-ie9 #activity_gallery img,
@@ -541,8 +541,8 @@ label.custom-select:before {
 }
 .lt-ie9 #video_gallery,
 .no-svg #video_gallery {
-    background: url("icons/video_gallery.png");
-    _background-image: url("icons/video_gallery.jpg");
+    background: url("img/video_gallery.png");
+    _background-image: url("img/video_gallery.jpg");
 }
 .lt-ie9 #video_gallery img,
 .no-svg #video_gallery img {
@@ -551,8 +551,8 @@ label.custom-select:before {
 }
 .lt-ie9 #image_gallery,
 .no-svg #image_gallery {
-    background: url("icons/image_gallery.png");
-    _background-image: url("icons/image_gallery.jpg");
+    background: url("img/image_gallery.png");
+    _background-image: url("img/image_gallery.jpg");
 }
 .lt-ie9 #image_gallery img,
 .no-svg #image_gallery img {
