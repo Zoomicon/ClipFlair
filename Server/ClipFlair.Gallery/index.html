@@ -32,6 +32,9 @@
 
 <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
 <link href="style.css" rel="stylesheet" type="text/css" />
+<!--[if lt IE 9]>
+	<link href="style-ie.css" rel="stylesheet" type="text/css" />
+<![endif]-->
 
 <script src="js/icu.js"></script>
 <script src="js/translate.js"></script>
@@ -202,7 +205,7 @@ $(document ).ready(function() {
 </script>
 	<div ID="wrapper">
     	<div id="maincontentcontainer">
-        	<div id="language-select-wrapper">
+        	<div id="language-select-wrapper" style="visibility:hidden;">
                 <label class="custom-select"> 
                 	<img src="img/globe.svg" width="18" height="18" align="middle" style="padding-bottom:10px;" />
 					<select id="langsel" onChange="mytranslate()">
@@ -222,7 +225,7 @@ $(document ).ready(function() {
         	<div id="maincontent">
             	<div class="section group">
                     <a class="col span_1_of_2  smaller-text" id="logo" href="http://clipflair.net" target="_top" title="">
-                   		<div class="roll-over"><p class="text" style="background:#fff"> <span style="line-height:1.15em; color:#a5ac2c; font-weight:600; font-size:larger">Foreign<br /> Language<br /> Learning</span> <br /> <span style="line-height:1.25em; color:#2e1c17; font-weight:lighter">through Interactive Revoicing & Captioning of Clips</span></p></div>
+                   		<div class="roll-over"><p class="text" style="background:#fff"> <span style="line-height:1em; color:#a5ac2c; font-weight:600; font-size:larger">Foreign<br /> Language<br /> Learning</span> <br /> <span style="line-height:1.25em; color:#2e1c17; font-weight:lighter">through Interactive Revoicing & Captioning of Clips</span></p></div>
                         <img src="img/logo.svg" border="none" width="100%" />
                     </a>
                     <a class="col span_1_of_2" id="activity_gallery" href="http://gallery.clipflair.net/activity">
