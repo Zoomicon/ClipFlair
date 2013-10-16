@@ -1,5 +1,5 @@
 ﻿//Filename: FloatingWindowHost.cs
-//Version: 20130805
+//Version: 20131016
 
 using System;
 using System.Collections.Generic;
@@ -1218,7 +1218,7 @@ namespace SilverFlow.Controls
             if (element == null)
                 throw new ArgumentNullException("element");
 
-            zIndex++;
+            zIndex++; //TODO: should set the max of all zIndexes +1 (via LINQ)
             Canvas.SetZIndex(element, zIndex);
         }
 
@@ -1228,15 +1228,22 @@ namespace SilverFlow.Controls
         /// <param name="window">The window.</param>
         private void SetFocusToActiveWindow(FloatingWindow window)
         {
-          if (window != null && !window.TopMost 
-              && !window.IsVisualAncestorOf(
-                #if SILVERLIGHT
-                (DependencyObject)FocusManager.GetFocusedElement()
-                #else
-                (DependencyObject)Keyboard.FocusedElement
-                #endif
-              )) //checking if child control has the focus and not steal it from it
-                window.Focus();
+          try
+          {
+            if (window != null && !window.TopMost
+                && !window.IsVisualAncestorOf(
+                   #if SILVERLIGHT
+                   (DependencyObject)FocusManager.GetFocusedElement()
+                   #else
+                   (DependencyObject)Keyboard.FocusedElement
+                   #endif
+                )) //checking if child control has the focus and not steal it from it
+              window.Focus();
+          }
+          catch
+          {
+            //NOP ("IsVisualAncestorOf" can throw exception "Reference is not a valid visual Dependency Object" (e.g. if a link in a RichText control hosted at a non-focused FloatingWindow is clicked), it is safe to ignore it here
+          }
         }
 
         /// <summary>

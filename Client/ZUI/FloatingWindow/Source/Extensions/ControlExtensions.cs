@@ -1,5 +1,5 @@
 ﻿//Filename: ControlExtensions.cs
-//Version: 20130804
+//Version: 20131016
 
 using System;
 using System.Linq;
@@ -258,7 +258,7 @@ namespace SilverFlow.Controls.Extensions
 
 #endif
 
-    public static bool IsVisualDescendentOf(this DependencyObject element, DependencyObject ancestor)
+    public static bool IsVisualDescendentOf(this DependencyObject element, DependencyObject ancestor) //this can throw exception "Reference is not a valid visual Dependency Object"
     {
       if (element == null) return false;
 #if !SILVERLIGHT
@@ -268,7 +268,7 @@ namespace SilverFlow.Controls.Extensions
       return (parent == ancestor) || IsVisualDescendentOf(parent, ancestor);
     }
 
-    public static bool IsVisualAncestorOf(this DependencyObject element, DependencyObject descendent)
+    public static bool IsVisualAncestorOf(this DependencyObject element, DependencyObject descendent) //this can throw exception "Reference is not a valid visual Dependency Object"
     {
       return (descendent != null) && descendent.IsVisualDescendentOf(element);
     }
