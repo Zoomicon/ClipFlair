@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: SilverTextEditor.xaml.cs
-//Version: 20131009
+//Version: 20131016
 
 //Originated from Microsoft Silverlight sample (MSPL license)
 
@@ -17,6 +17,7 @@ using Utils.Extensions;
 
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -43,6 +44,8 @@ namespace SilverTextEditor
       //Instead can load a previously saved file from a resource at this point, like below:
       //LoadXamlResource("/SilverTextEditor;component/ActivityDescription.text"); //Initialize the RichTextBox. The intial text is stored as XAML at a .text file.
     }
+
+    #region --- Properties ---
 
     #region ToolbarVisible
 
@@ -206,6 +209,8 @@ namespace SilverTextEditor
 
     #endregion
 
+    #endregion
+
     #region Font Type, Color & size
 
     //Set font type to selected content
@@ -234,15 +239,17 @@ namespace SilverTextEditor
         string color = (cmbFontColors.SelectedItem as ComboBoxItem).Tag.ToString();
 
         SolidColorBrush brush = new SolidColorBrush(Color.FromArgb(
-          byte.Parse(color.Substring(0, 2), System.Globalization.NumberStyles.HexNumber),
-          byte.Parse(color.Substring(2, 2), System.Globalization.NumberStyles.HexNumber),
-          byte.Parse(color.Substring(4, 2), System.Globalization.NumberStyles.HexNumber),
-          byte.Parse(color.Substring(6, 2), System.Globalization.NumberStyles.HexNumber)));
+          byte.Parse(color.Substring(0, 2), NumberStyles.HexNumber),
+          byte.Parse(color.Substring(2, 2), NumberStyles.HexNumber),
+          byte.Parse(color.Substring(4, 2), NumberStyles.HexNumber),
+          byte.Parse(color.Substring(6, 2), NumberStyles.HexNumber)));
 
         rtb.Selection.ApplyPropertyValue(Run.ForegroundProperty, brush);
       }
+
       ReturnFocus();
     }
+
     #endregion
 
     #region Insert UIElements
@@ -561,20 +568,61 @@ namespace SilverTextEditor
 
     #region --- Methods ---
 
-    public void SelectAllIfNone()
+    #region Selection
+
+    public void SelectNone()
     {
-      if (rtb.Selection.Text.Length == 0) //if no selection then select all
-        rtb.SelectAll();
+      rtb.Selection.Select(rtb.Selection.Start, rtb.Selection.Start);
     }
 
-    public void Clear()
+    public void SelectAll()
     {
-      rtb.Blocks.Clear();
+      rtb.SelectAll();
     }
+
+    public bool SelectAllIfNone()
+    {
+      if (rtb.Selection.Text.Length == 0)
+      { //if no selection then select all
+        rtb.SelectAll();
+        return true; //there was no selection, selected all
+      }
+      else
+        return false; //there was some selection
+    }
+
+    #endregion
+
+    public void Clear(bool confirm=false)
+    {
+      if (!confirm || MessageBox.Show("Clear contents?", "Confirmation", MessageBoxButton.OKCancel) == MessageBoxResult.OK) //TODO: find parent window //TODO: localize
+        rtb.Blocks.Clear();
+    }
+
+    #region Load
 
     public void LoadXamlResource(string resourcePath) //doesn't close stream
     {
       LoadXaml(Application.GetResourceStream(new Uri(resourcePath, UriKind.Relative)).Stream);
+    }
+
+    public void LoadFile()
+    {
+      try
+      {
+        OpenFileDialog ofd = new OpenFileDialog()
+        {
+          //Multiselect = false, //this is false by default so no need to set it
+          Filter = "All Text Files (*.text;*.docx;*.txt)|*.text;*.docx;*.txt|ClipFlair Text Files (*.text)|*.text|Office OpenXML Files (*.docx)|*.docx|Unicode Text Files (*.txt)|*.txt|All Files|*.*"
+        };
+
+        if (ofd.ShowDialog() == true)
+          Load(ofd.File);
+      }
+      catch (Exception ex)
+      {
+        MessageBox.Show("Text load failed: " + ex.Message); //TODO: should find parent window //TODO: localize
+      }
     }
 
     public void Load(FileInfo file, bool clearFirst = true)
@@ -674,82 +722,11 @@ namespace SilverTextEditor
       if (clearFirst) ScrollToStart();
     }
 
-    public void Save(Stream stream, string filename)
-    {
-      if (filename.EndsWith(".text", StringComparison.OrdinalIgnoreCase))
-        SaveXaml(stream);
-
-      else if (filename.EndsWith(".txt", StringComparison.OrdinalIgnoreCase))
-        SaveTxt(stream);
-      
-      else
-        SaveTxt(stream);
-    }
-
-    public void SaveXaml(Stream stream) //doesn't close stream (expecting to be called via "using" or to close explicitly)
-    {
-      if (!IsStorable) //If the file contains any UIElements, it will not be saved
-        throw new Exception("Saving documents with UIElements is not supported");
-
-      SelectAllIfNone(); //if no selection then select all
-
-      TextWriter writer = new StreamWriter(stream, Encoding.UTF8);
-      writer.Write(rtb.Selection.Xaml); //saves current selection
-      writer.Flush();
-    }
-
-    public void SaveTxt(Stream stream) //doesn't close stream (expecting to be called via "using" or to close explicitly)
-    {
-      SelectAllIfNone(); //if no selection then select all
-
-      TextWriter writer = new StreamWriter(stream, Encoding.UTF8);
-      writer.Write(rtb.Selection.Xaml); //saves current selection
-      writer.Flush();
-    }
-
     #endregion
 
-    #region --- Helpers ---
+    #region Save
 
-    private void ReturnFocus()
-    {
-      if (rtb != null)
-        rtb.Focus();
-    }
-
-    #endregion
-
-    #region --- Events ---
-
-    //Clears all content
-    private void btnClear_Click(object sender, RoutedEventArgs e)
-    {
-      if (MessageBox.Show("Clear contents?", "Confirmation", MessageBoxButton.OKCancel) == MessageBoxResult.OK) //TODO: find parent window //TODO: localize
-        Clear();
-    }
-
-    //Opens an existing file
-    private void btnOpen_Click(object sender, RoutedEventArgs e)
-    {
-      try
-      {
-        OpenFileDialog ofd = new OpenFileDialog()
-        {
-          //Multiselect = false, //this is false by default so no need to set it
-          Filter = "All Text Files (*.text;*.docx;*.txt)|*.text;*.docx;*.txt|ClipFlair Text Files (*.text)|*.text|Office OpenXML Files (*.docx)|*.docx|Unicode Text Files (*.txt)|*.txt|All Files|*.*"
-        };
-
-        if (ofd.ShowDialog() == true)
-          Load(ofd.File);
-      }
-      catch (Exception ex)
-      {
-        MessageBox.Show("Text load failed: " + ex.Message); //TODO: should find parent window //TODO: localize
-      }
-    }
-
-    //Saves the existing file
-    private void btnSave_Click(object sender, RoutedEventArgs e)
+    public void SaveFile()
     {
       try
       {
@@ -769,6 +746,77 @@ namespace SilverTextEditor
       {
         MessageBox.Show("Text save failed: " + ex.Message); //TODO: should find parent window //TODO: localize
       }
+    }
+
+    public void Save(Stream stream, string filename)
+    {
+      if (filename.EndsWith(".text", StringComparison.OrdinalIgnoreCase))
+        SaveXaml(stream);
+
+      else if (filename.EndsWith(".txt", StringComparison.OrdinalIgnoreCase))
+        SaveTxt(stream);
+      
+      else
+        SaveTxt(stream);
+    }
+
+    public void SaveXaml(Stream stream) //doesn't close stream (expecting to be called via "using" or to close explicitly)
+    {
+      if (!IsStorable) //If the file contains any UIElements, it will not be saved
+        throw new Exception("Saving documents with UIElements is not supported");
+
+      bool didSelectAll = SelectAllIfNone(); //if no selection then select all...
+
+      TextWriter writer = new StreamWriter(stream, Encoding.UTF8);
+      writer.Write(rtb.Selection.Xaml); //saves current selection
+      writer.Flush();
+
+      if (didSelectAll) SelectNone(); //...deselect all if there was no selection before
+    }
+
+    public void SaveTxt(Stream stream) //doesn't close stream (expecting to be called via "using" or to close explicitly)
+    {
+      bool didSelectAll = SelectAllIfNone(); //if no selection then select all...
+
+      TextWriter writer = new StreamWriter(stream, Encoding.UTF8);
+      writer.Write(rtb.Selection.Xaml); //saves current selection
+      writer.Flush();
+
+      if (didSelectAll) SelectNone(); //...deselect all if there was no selection before
+    }
+
+    #endregion
+
+    #region Focus
+
+    private void ReturnFocus()
+    {
+      if (rtb != null)
+        rtb.Focus();
+      }
+
+    #endregion
+
+    #endregion
+
+    #region --- Events ---
+
+    //Clears all content
+    private void btnClear_Click(object sender, RoutedEventArgs e)
+    {
+      Clear(confirm: true);
+    }
+
+    //Opens an existing file
+    private void btnOpen_Click(object sender, RoutedEventArgs e)
+    {
+      LoadFile();
+    }
+
+    //Saves the existing file
+    private void btnSave_Click(object sender, RoutedEventArgs e)
+    {
+      SaveFile();
     }
 
     #region DragAndDrop

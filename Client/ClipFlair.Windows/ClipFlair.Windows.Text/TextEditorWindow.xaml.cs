@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: TextEditorWindow.xaml.cs
-//Version: 20130919
+//Version: 20131016
 
 using ClipFlair.Windows.Views;
 
@@ -60,17 +60,20 @@ namespace ClipFlair.Windows
       if (entry == null) entry = zip[zipFolder + "/document.docx"]; //TODO: check if it's possible to also support RTF there
       if (entry != null)
         editor.Load(entry.OpenReader(), entry.FileName);
+      else
+        editor.Clear(confirm: false);
     }
 
     public override void SaveOptions(ZipFile zip, string zipFolder = "")
     {
       base.SaveOptions(zip, zipFolder);
 
-      zip.AddEntry(zipFolder + "/document.text", SaveText); //TODO: maybe should not save when no text is available
+      zip.AddEntry(zipFolder + "/document.text", SaveText); //when there is no text, saving an empty file
     }
 
-    public void SaveText(string entryName, Stream stream)
+    public void SaveText(string entryName, Stream stream) //callback
     {
+      editor.SelectNone(); //must clear selection first, else it will save only that in the saved state
       editor.SaveXaml(stream);
     }
 
