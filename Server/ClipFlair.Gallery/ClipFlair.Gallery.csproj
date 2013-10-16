@@ -139,6 +139,7 @@
     <Content Include="js\modernizr.custom.07231.js" />
     <Content Include="js\rollover.js" />
     <Content Include="js\translate.js" />
+    <Content Include="style-ie.css" />
     <Content Include="style.css" />
     <Content Include="video\Default.aspx" />
     <Content Include="video\favicon.ico" />
