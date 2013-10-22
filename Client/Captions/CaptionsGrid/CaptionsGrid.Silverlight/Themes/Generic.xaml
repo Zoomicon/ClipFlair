@@ -1,7 +1,7 @@
 ﻿<!-- 
 Project: ClipFlair (http://ClipFlair.codeplex.com)
 Filename: Generic.xaml
-Version: 20130606
+Version: 20131022
 -->
   
 <ResourceDictionary
@@ -109,6 +109,12 @@ Version: 20130606
       />
   </DataTemplate>
 
+  <!-- CPS -->
+
+  <DataTemplate x:Key="CPSCellTemplate">
+    <TextBlock Margin="4" Text="{Binding CPS, StringFormat='F2'}" />
+  </DataTemplate>
+  
   <!-- WPM -->
 
   <DataTemplate x:Key="WPMCellTemplate">

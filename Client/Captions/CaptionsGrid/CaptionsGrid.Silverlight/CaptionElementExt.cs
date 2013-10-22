@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: CaptionElementExt.cs
-//Version: 20130606
+//Version: 20131022
 
 using Utils.Extensions;
 
@@ -23,6 +23,7 @@ namespace ClipFlair.CaptionsGrid
     public const string PROPERTY_ROLESEPARATOR = "RoleSeparator";
     public const string PROPERTY_ROLE = "Role";
     public const string PROPERTY_CAPTION = "Caption";
+    public const string PROPERTY_CPS = "CPS";
     public const string PROPERTY_WPM = "WPM";
     public const string PROPERTY_AUDIO = "Audio";
     public const string PROPERTY_COMMENTS = "Comments";
@@ -39,7 +40,14 @@ namespace ClipFlair.CaptionsGrid
 
     public CaptionElementExt()
     {
-      PropertyChanged += (s, e) => { if (e.PropertyName == PROPERTY_DURATION) NotifyPropertyChanged(PROPERTY_WPM); }; //if duration changed also notify that WPM changed
+      PropertyChanged += (s, e) =>
+      {
+        if (e.PropertyName == PROPERTY_DURATION)
+        {
+          NotifyPropertyChanged(PROPERTY_CPS);
+          NotifyPropertyChanged(PROPERTY_WPM);
+        } //if duration changed also notify that CPS and WPM changed
+      };
     }
 
     /// <summary>
@@ -113,8 +121,9 @@ namespace ClipFlair.CaptionsGrid
         {
           _caption = value;
           UpdateContent();
-          NotifyPropertyChanged(PROPERTY_CAPTION);
-          NotifyPropertyChanged(PROPERTY_WPM); //also notify that WPM changed
+          NotifyPropertyChanged(PROPERTY_CAPTION); //notify that caption changed...
+          NotifyPropertyChanged(PROPERTY_CPS); //...also notify that CPS changed
+          NotifyPropertyChanged(PROPERTY_WPM); //...also notify that WPM changed
         }
       }
     }
@@ -165,15 +174,26 @@ namespace ClipFlair.CaptionsGrid
 
       if (_caption != newCaption)
       {
-        _caption = newCaption;
-        NotifyPropertyChanged(PROPERTY_CAPTION);
-        NotifyPropertyChanged(PROPERTY_WPM); //also notify that WPM changed
+        _caption = newCaption; //since we set _caption and not Caption (must do so), we need to raise NotifyPropertyChanged ourselves here
+        NotifyPropertyChanged(PROPERTY_CAPTION); //notify that caption changed...
+        NotifyPropertyChanged(PROPERTY_CPS); //...also notify that CPS changed
+        NotifyPropertyChanged(PROPERTY_WPM); //...also notify that WPM changed
       }
 
     }
 
     /// <summary>
-    /// Gets or sets the word count for this marker item.
+    /// Gets the character count for this marker item.
+    /// </summary>
+    [ScriptableMember]
+    public int CharCount
+    {
+      get
+      { return (_caption != null) ? _caption.Length : 0; }
+    }
+    
+    /// <summary>
+    /// Gets the word count for this marker item.
     /// </summary>
     [ScriptableMember]
     public int WordCount
@@ -183,7 +203,20 @@ namespace ClipFlair.CaptionsGrid
     }
 
     /// <summary>
-    /// Gets or sets the words-per-minute (WPM) number for this marker item.
+    /// Gets the characters-per-second (CPS) number for this marker item.
+    /// </summary>
+    [ScriptableMember]
+    public double CPS
+    {
+      get
+      {
+        double seconds = Duration.TotalSeconds;
+        return (seconds != 0) ? CharCount / seconds : 0;
+      }
+    }
+    
+    /// <summary>
+    /// Gets the words-per-minute (WPM) number for this marker item.
     /// </summary>
     [ScriptableMember]
     public double WPM

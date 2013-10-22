@@ -1,7 +1,7 @@
 ﻿<!--
 Project: ClipFlair (http://ClipFlair.codeplex.com)
 Filename: CaptionsGridWindow.xaml
-Version: 20130606
+Version: 20131022
 -->
   
 <clipflair:BaseWindow x:Class="ClipFlair.Windows.CaptionsGridWindow"
@@ -37,6 +37,7 @@ Version: 20130606
                          DurationVisible="{Binding DurationVisible, Mode=TwoWay}"
                          RoleVisible="{Binding RoleVisible, Mode=TwoWay}"
                          CaptionVisible="{Binding CaptionVisible, Mode=TwoWay}"
+                         CPSVisible="{Binding CPSVisible, Mode=TwoWay}"
                          WPMVisible="{Binding WPMVisible, Mode=TwoWay}"
                          AudioVisible="{Binding AudioVisible, Mode=TwoWay}"
                          CommentsVisible="{Binding CommentsVisible, Mode=TwoWay}"
@@ -87,6 +88,11 @@ Version: 20130606
     <StackPanel Orientation="Horizontal">
       <CheckBox Name="cbCaptionVisible" IsChecked="{Binding CaptionVisible, Mode=TwoWay}" />
       <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Caption visible" Target="{Binding ElementName=cbCaptionVisible}"/>
+    </StackPanel>
+
+    <StackPanel Orientation="Horizontal">
+      <CheckBox Name="cbCPSVisible" IsChecked="{Binding CPSVisible, Mode=TwoWay}" />
+      <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="CPS (Characters-per-second) visible" Target="{Binding ElementName=cbCPSVisible}"/>
     </StackPanel>
 
     <StackPanel Orientation="Horizontal">
