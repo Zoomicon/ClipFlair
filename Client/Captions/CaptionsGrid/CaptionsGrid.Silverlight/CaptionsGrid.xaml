@@ -1,7 +1,7 @@
 ﻿<!--
 Project: ClipFlair (http://ClipFlair.codeplex.com)
 Filename: CaptionsGrid.xaml
-Version: 20130704
+Version: 20131022
 -->
 
 <UserControl x:Class="ClipFlair.CaptionsGrid.CaptionsGrid"
@@ -148,6 +148,7 @@ Version: 20130704
         <sdk:DataGridTemplateColumn Header="DURATION" CellTemplate="{StaticResource DurationCellTemplate}" CellEditingTemplate="{StaticResource DurationCellEditTemplate}" />
         <sdk:DataGridTemplateColumn Header="ROLE" CellTemplate="{StaticResource RoleCellTemplate}" CellEditingTemplate="{StaticResource RoleCellEditTemplate}" />
         <sdk:DataGridTemplateColumn Header="CAPTION" Width="*" CellTemplate="{StaticResource CaptionCellTemplate}" CellEditingTemplate="{StaticResource CaptionCellEditTemplate}" />
+        <sdk:DataGridTemplateColumn Header="CPS" Width="50" CellTemplate="{StaticResource CPSCellTemplate}" IsReadOnly="True" />
         <sdk:DataGridTemplateColumn Header="WPM" Width="50" CellTemplate="{StaticResource WPMCellTemplate}" IsReadOnly="True" />
         <sdk:DataGridTemplateColumn Header="AUDIO" Width="115" CellTemplate="{StaticResource AudioCellTemplate}" IsReadOnly="True" />
         <sdk:DataGridTemplateColumn Header="COMMENTS" Width="100" CellTemplate="{StaticResource CommentsCellTemplate}" CellEditingTemplate="{StaticResource CommentsCellEditTemplate}" />

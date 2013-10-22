@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: CaptionsGrid.xaml.cs
-//Version: 20130701
+//Version: 20131022
 
 using ClipFlair.AudioRecorder;
 using ClipFlair.CaptionsLib.Utils;
@@ -46,9 +46,10 @@ namespace ClipFlair.CaptionsGrid
       ColumnDuration = gridCaptions.Columns[2];
       ColumnRole = gridCaptions.Columns[3];
       ColumnCaption = gridCaptions.Columns[4];
-      ColumnWPM = gridCaptions.Columns[5];
-      ColumnAudio = gridCaptions.Columns[6];
-      ColumnComments = gridCaptions.Columns[7];
+      ColumnCPS = gridCaptions.Columns[5];
+      ColumnWPM = gridCaptions.Columns[6];
+      ColumnAudio = gridCaptions.Columns[7];
+      ColumnComments = gridCaptions.Columns[8];
 
       gridCaptions.ClipboardCopyMode = DataGridClipboardCopyMode.IncludeHeader;
       gridCaptions.SelectionMode = DataGridSelectionMode.Single;
@@ -90,6 +91,7 @@ namespace ClipFlair.CaptionsGrid
     public DataGridColumn ColumnEndTime { get; private set; }
     public DataGridColumn ColumnDuration { get; private set; }
     public DataGridColumn ColumnCaption { get; private set; }
+    public DataGridColumn ColumnCPS { get; private set; }
     public DataGridColumn ColumnWPM { get; private set; }
     public DataGridColumn ColumnAudio { get; private set; }
     public DataGridColumn ColumnComments { get; private set; }
@@ -417,6 +419,43 @@ namespace ClipFlair.CaptionsGrid
     protected virtual void OnCaptionVisibleChanged(bool oldValue, bool newValue)
     {
       ColumnCaption.Visibility = (newValue) ? Visibility.Visible : Visibility.Collapsed;
+    }
+
+    #endregion
+
+    #region CPSVisible
+
+    /// <summary>
+    /// CPSVisible Dependency Property
+    /// </summary>
+    public static readonly DependencyProperty CPSVisibleProperty =
+        DependencyProperty.Register("CPSVisible", typeof(bool), typeof(CaptionsGrid),
+            new FrameworkPropertyMetadata(true, new PropertyChangedCallback(OnCPSVisibleChanged)));
+
+    /// <summary>
+    /// Gets or sets the CPSVisible property. 
+    /// </summary>
+    public bool CPSVisible
+    {
+      get { return (bool)GetValue(CPSVisibleProperty); }
+      set { SetValue(CPSVisibleProperty, value); }
+    }
+
+    /// <summary>
+    /// Handles changes to the CPSVisible property.
+    /// </summary>
+    private static void OnCPSVisibleChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    {
+      CaptionsGrid target = (CaptionsGrid)d;
+      target.OnCPSVisibleChanged((bool)e.OldValue, target.CPSVisible);
+    }
+
+    /// <summary>
+    /// Provides derived classes an opportunity to handle changes to the CPSVisible property.
+    /// </summary>
+    protected virtual void OnCPSVisibleChanged(bool oldValue, bool newValue)
+    {
+      ColumnCPS.Visibility = (newValue) ? Visibility.Visible : Visibility.Collapsed;
     }
 
     #endregion
