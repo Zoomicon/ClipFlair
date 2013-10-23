@@ -1,6 +1,8 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: App.xaml.cs
-//Version: 20130726
+//Version: 20131023
+
+//#define GALLERY_IN_BACKGROUND
 
 using ClipFlair.UI.Dialogs;
 using ClipFlair.Windows;
@@ -126,9 +128,12 @@ namespace ClipFlair
 
         if (!ParseUrlParameters(activityWindow)) //ParseUrlParameters returns false if IsRunningOutOfBrowser is true
         {
+          #if GALLERY_IN_BACKGROUND
           GalleryWindow w = activityWindow.Container.AddGallery();
           w.Width = activityWindow.Width;
           w.Height = activityWindow.Height - (activityWindow.ActivityView.ToolbarVisible?80:0); //TODO: should change this if/when activity toolbar is made vertical (have option to get ActualWidth/ActualHeight of activity toolbar)
+          #endif
+
           activityWindow.ShowLoadURLDialog();
         }
 
