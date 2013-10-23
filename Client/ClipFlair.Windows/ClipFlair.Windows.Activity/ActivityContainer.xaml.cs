@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: ActivityContainer.xaml.cs
-//Version: 20131002
+//Version: 20131023
 
 //TODO: add ContentPartsCloseable property
 //TODO: add ContentPartsZoomable property
@@ -304,6 +304,7 @@ namespace ClipFlair.Windows
       if (window is MediaPlayerWindow) BindMediaPlayerWindow((MediaPlayerWindow)window);
       else if (window is CaptionsGridWindow) BindCaptionsGridWindow((CaptionsGridWindow)window);
       else if (window is TextEditorWindow) BindTextEditorWindow((TextEditorWindow)window);
+      else if (window is MapWindow) BindMapWindow((MapWindow)window);
     }
 
     private void BindMediaPlayerWindow(MediaPlayerWindow window)
@@ -345,7 +346,21 @@ namespace ClipFlair.Windows
       if (window.View != null && View != null)
         try
         {
-          BindingUtils.BindProperties(window.View, ICaptionsGridProperties.PropertyTime,
+          BindingUtils.BindProperties(window.View, ITextEditorProperties.PropertyTime,
+                                      View, IActivityProperties.PropertyTime); //TODO: should rebind after changing view if the window is inside a BaseWindow (get its View and bind to it)
+        }
+        catch (Exception ex)
+        {
+          ErrorDialog.Show("Failed to bind component", ex);
+        }
+    }
+    
+    private void BindMapWindow(MapWindow window)
+    {
+      if (window.View != null && View != null)
+        try
+        {
+          BindingUtils.BindProperties(window.View, IMapViewerProperties.PropertyTime,
                                       View, IActivityProperties.PropertyTime); //TODO: should rebind after changing view if the window is inside a BaseWindow (get its View and bind to it)
         }
         catch (Exception ex)

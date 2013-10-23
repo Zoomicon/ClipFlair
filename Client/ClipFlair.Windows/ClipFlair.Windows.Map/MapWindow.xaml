@@ -1,6 +1,6 @@
 ﻿<!--
 Filename: MapWindow.xaml
-Version: 20130115
+Version: 20131023
 -->
 
 <clipflair:BaseWindow x:Class="ClipFlair.Windows.MapWindow"
@@ -108,6 +108,11 @@ Version: 20130115
       <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Map Zoom:" Target="{Binding ElementName=sldMapZoom}" />
       <!-- <TextBox Name="edMapZoom" Text="{Binding MapZoom, Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=true}" /> -->
       <Slider Name="sldMapZoom" Value="{Binding MapZoom, Mode=TwoWay}" Minimum="1.0" Maximum="13.0" SmallChange="0.5" LargeChange="1.0" Orientation="Horizontal" />
+    </StackPanel>
+
+    <StackPanel Orientation="Vertical">
+      <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Time:" Target="{Binding ElementName=edTime}" />
+      <TextBox Name="edTime" Text="{Binding Time, Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=true}" />
     </StackPanel>
 
   </clipflair:BaseWindow.PropertyItems>
