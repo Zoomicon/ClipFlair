@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: MapViewerDefaults.cs
-//Version: 20130118
+//Version: 20131023
 
 using Microsoft.Maps.MapControl;
 using Microsoft.Maps.MapControl.Core;
@@ -33,7 +33,8 @@ namespace ClipFlair.Windows.Views
     public const double DefaultAltitude = 0;
     public static Location DefaultMapCenter = new Location(DefaultLatitude, DefaultLongitude, DefaultAltitude);
     public const double DefaultMapZoom = 1.0;
-
+    public static readonly TimeSpan DefaultTime = TimeSpan.Zero;
+ 
     #region Methods
 
     public static void SetDefaults(IMapViewer map)
@@ -54,6 +55,7 @@ namespace ClipFlair.Windows.Views
       map.LabelsFading = DefaultLabelsFading;
       map.MapCenter = DefaultMapCenter;
       map.MapZoom = DefaultMapZoom;
+      map.Time = DefaultTime;
     }
 
     #endregion
