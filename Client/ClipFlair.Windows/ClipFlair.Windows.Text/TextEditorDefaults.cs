@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: TextEditorDefaults.cs
-//Version: 20130118
+//Version: 20131023
 
 using System;
 using System.Windows;
@@ -36,6 +36,7 @@ namespace ClipFlair.Windows.Views
 
       //ITextEditor defaults
       editor.Source = DefaultSource;
+      editor.Time = DefaultTime;
       editor.ToolbarVisible = DefaultToolbarVisible;
       editor.Editable = DefaultEditable;
       editor.RTL = DefaultRTL;
