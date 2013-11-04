@@ -5,7 +5,7 @@
 <!--
 Project: ClipFlair (http://ClipFlair.codeplex.com)
 Filename: ImageMetadataPage.aspx
-Version: 20131009
+Version: 20131104
 -->
 
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -44,6 +44,7 @@ Version: 20131009
 
   <body>
     <asp:XmlDataSource ID="xmlLanguage" runat="server" DataFile="~/video/metadata/Language.xml" XPath="Facet/String" />
+    <asp:XmlDataSource ID="xmlAgeGroup" runat="server" DataFile="~/activity/metadata/AgeGroup.xml" XPath="Facet/String" />
 
     <div class="instructions">
     Please fill in the following information for the image of your choice. Select the image from the dropdown list.<br />
@@ -54,16 +55,25 @@ Version: 20131009
     <form id="form1" runat="server">
 
       <div class="bar">
+
         <div class="label">Image file</div> 
         <asp:DropDownList ID="listItems" runat="server" AutoPostBack="True" 
           DataTextField="Filename" DataValueField="Filename" 
           OnSelectedIndexChanged="listItems_SelectedIndexChanged"
           />
 
-       <br />
+        <br />
 
-       <div class="label">Url</div>
+        <div class="label">Url</div>
         <asp:HyperLink ID="linkUrl" runat="server" Target="_blank"/>
+
+        <div>
+          <span class="label">First published: </span>
+          <asp:Label ID="lblFirstPublished" runat="server" />
+          <span class="label"> - Last updated: </span>
+          <asp:Label ID="lblLastUpdated" runat="server" />
+        </div>
+
       </div>
 
       <div>
@@ -76,7 +86,7 @@ Version: 20131009
         <asp:TextBox ID="txtDescription" runat="server" TextMode="MultiLine" Rows="5" Columns="110" />
       </div>
 
-      <div style="float: left">
+      <div>
         <div class="label">Captions language (on image)</div>
         <asp:Panel runat="server" 
           Height="450" Width="250"
@@ -87,19 +97,30 @@ Version: 20131009
          </asp:Panel>
       </div>
 
-      <div style="clear: left">
-        <div class="label">Author / Source</div>
-        <asp:TextBox ID="txtAuthorSource" runat="server" Columns="150"></asp:TextBox>
-      </div>
+      <div>
+        <div class="label">Age group</div>
+        <asp:Panel ID="Panel1" runat="server" 
+          Height="130" Width="250"
+          ScrollBars="Auto">
 
+          <asp:CheckBoxList ID="clistAgeGroup" runat="server" 
+            DataSourceID="xmlAgeGroup" DataTextField="Value" DataValueField="Value" />
+         </asp:Panel>
+      </div>     
+     
       <div>
         <div class="label">Keywords (comma-separated)</div>
         <asp:TextBox ID="txtKeywords" runat="server" Columns="150"></asp:TextBox>
       </div>
-      
+
+      <div>
+        <div class="label">Authors / Source (comma-separated)</div>
+        <asp:TextBox ID="txtAuthorSource" runat="server" Columns="150"></asp:TextBox>
+      </div>
+
       <div>
         <div class="label">License</div>
-        <asp:TextBox ID="txtLicense" runat="server" Columns="150"></asp:TextBox>
+        <asp:TextBox ID="txtLicense" runat="server" Columns="150" Text="CC BY-SA 3.0"></asp:TextBox>
       </div>
 
       <div>

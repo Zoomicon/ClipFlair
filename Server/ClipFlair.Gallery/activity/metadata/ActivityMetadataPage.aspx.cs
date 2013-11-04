@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: ActivityMetadataPage.aspx.cs
-//Version: 20131009
+//Version: 20131104
 
 using Metadata.CXML;
 using ClipFlair.Metadata;
@@ -74,15 +74,15 @@ namespace ClipFlair.Gallery
       UI.LoadHyperlink(linkUrl, new Uri("http://studio.clipflair.net/?activity=" + key));
       UI.LoadTextBox(txtDescription, metadata.Description);
 
-      UI.LoadTextBox(txtKeywords, metadata.Keywords);
-      UI.LoadTextBox(txtLicense, metadata.License);
+      //no need to show metadata.Filename since we calculate and show the URL, plus the filename is used as the key and shown at the dropdown list
+      UI.LoadLabel(lblFirstPublished, metadata.FirstPublished.ToString(CXML.DEFAULT_DATETIME_FORMAT));
+      UI.LoadLabel(lblLastUpdated, metadata.LastUpdated.ToString(CXML.DEFAULT_DATETIME_FORMAT));
 
       UI.LoadCheckBoxList(clistForLearners, metadata.ForLearners);
       UI.LoadCheckBoxList(clistForSpeakers, metadata.ForSpeakers);
       UI.LoadCheckBoxList(clistLanguageCombination, metadata.LanguageCombination);
       UI.LoadCheckBoxList(clistLevel, metadata.Level);
       UI.LoadTextBox(txtEstimatedTime, metadata.EstimatedTimeMinutes);
-      UI.LoadTextBox(txtAuthors, metadata.Authors);
       UI.LoadCheckBoxList(clistFromSkills, metadata.FromSkills);
       UI.LoadCheckBoxList(clistToSkills, metadata.ToSkills);
       UI.LoadCheckBoxList(clistAVSkills, metadata.AVSkills);
@@ -90,8 +90,12 @@ namespace ClipFlair.Gallery
       UI.LoadCheckBoxList(clistTasksRevoicing, metadata.TasksRevoicing);
       UI.LoadCheckBoxList(clistTasksCaptioning, metadata.TasksCaptioning);
       UI.LoadCheckBoxList(clistLearnerType, metadata.LearnerType);
-      UI.LoadCheckBoxList(clistAgeGroup, metadata.AgeGroup);
       UI.LoadTextBox(txtFeedbackModeToLearner, metadata.FeedbackModeToLearner);
+
+      UI.LoadCheckBoxList(clistAgeGroup, metadata.AgeGroup);
+      UI.LoadTextBox(txtKeywords, metadata.Keywords);
+      UI.LoadTextBox(txtAuthorSource, metadata.AuthorSource);
+      UI.LoadTextBox(txtLicense, metadata.License);
     }
 
     #endregion
@@ -106,8 +110,15 @@ namespace ClipFlair.Gallery
       metadata.Image = "../activity/image/" + key + ".png";
       metadata.Url = new Uri("http://studio.clipflair.net/?activity=" + key);
       metadata.Description = txtDescription.Text;
+
       metadata.Filename = key;
+      string filePath = Path.Combine(path, key);
+      metadata.FirstPublished = File.GetCreationTimeUtc(filePath);
+      metadata.LastUpdated = File.GetLastWriteTimeUtc(filePath);
+
+      metadata.AgeGroup = UI.GetSelected(clistAgeGroup);
       metadata.Keywords = UI.GetCommaSeparated(txtKeywords);
+      metadata.AuthorSource = UI.GetCommaSeparated(txtAuthorSource);
       metadata.License = txtLicense.Text;
       
       metadata.ForLearners = UI.GetSelected(clistForLearners);
@@ -115,7 +126,6 @@ namespace ClipFlair.Gallery
       metadata.LanguageCombination = UI.GetSelected(clistLanguageCombination);
       metadata.Level = UI.GetSelected(clistLevel);
       metadata.EstimatedTimeMinutes = txtEstimatedTime.Text;
-      metadata.Authors = UI.GetCommaSeparated(txtAuthors);
       metadata.FromSkills = UI.GetSelected(clistFromSkills);
       metadata.ToSkills = UI.GetSelected(clistToSkills);
       metadata.AVSkills = UI.GetSelected(clistAVSkills);
@@ -123,7 +133,6 @@ namespace ClipFlair.Gallery
       metadata.TasksRevoicing = UI.GetSelected(clistTasksRevoicing);
       metadata.TasksCaptioning = UI.GetSelected(clistTasksCaptioning);
       metadata.LearnerType = UI.GetSelected(clistLearnerType);
-      metadata.AgeGroup = UI.GetSelected(clistAgeGroup);
       metadata.FeedbackModeToLearner = UI.GetCommaSeparated(txtFeedbackModeToLearner);
 
       return metadata;

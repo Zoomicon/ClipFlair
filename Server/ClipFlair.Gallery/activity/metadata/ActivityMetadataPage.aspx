@@ -5,7 +5,7 @@
 <!--
 Project: ClipFlair (http://ClipFlair.codeplex.com)
 Filename: ActivityMetadataPage.aspx
-Version: 20130918
+Version: 20131104
 -->
 
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -65,6 +65,7 @@ Version: 20130918
     <form id="form1" runat="server">
 
       <div class="bar">
+
         <div class="label">Activity file</div> 
         <asp:DropDownList ID="listItems" runat="server" AutoPostBack="True" 
           DataTextField="Filename" DataValueField="Filename"
@@ -75,6 +76,14 @@ Version: 20130918
 
         <div class="label">Url</div>
         <asp:HyperLink ID="linkUrl" runat="server" Target="_blank"/>
+
+        <div>
+          <span class="label">First published: </span>
+          <asp:Label ID="lblFirstPublished" runat="server" />
+          <span class="label"> - Last updated: </span>
+          <asp:Label ID="lblLastUpdated" runat="server" />
+        </div>
+
       </div>
 
       <div>
@@ -86,7 +95,7 @@ Version: 20130918
         <div class="label">Description (What, How, Why)</div>
         <asp:TextBox ID="txtDescription" runat="server" TextMode="MultiLine" Rows="5" Columns="110"/>
       </div>
-
+     
       <div style="float: left">
         <div class="label">For learners of</div>
         <asp:Panel runat="server" 
@@ -121,7 +130,7 @@ Version: 20130918
          </asp:Panel>
       </div>
 
-      <div style="clear: left">
+      <div style="float: left">
         <div class="label">Level</div>
         <asp:Panel runat="server" 
           Height="50" Width="250"
@@ -138,12 +147,7 @@ Version: 20130918
         <div class="label">Estimated time (minutes)</div>
         <asp:TextBox ID="txtEstimatedTime" runat="server"></asp:TextBox>
       </div> <!-- TODO: add validator for integer -->
-
-      <div>
-        <div class="label">Authors (comma-separated)</div>
-        <asp:TextBox ID="txtAuthors" runat="server" Columns="150"></asp:TextBox>
-      </div>
-     
+   
       <div style="float: left">
         <div class="label">From skills</div>
         <asp:Panel runat="server" 
@@ -225,7 +229,12 @@ Version: 20130918
          </asp:Panel>
       </div>
 
-      <div style="float: left">
+      <div style="clear: left">
+        <div class="label">Feedback mode to learner</div>
+        <asp:TextBox ID="txtFeedbackModeToLearner" runat="server" Columns="150"></asp:TextBox>
+      </div>
+
+      <div>
         <div class="label">Age group</div>
         <asp:Panel runat="server" 
           Height="130" Width="250"
@@ -234,16 +243,16 @@ Version: 20130918
           <asp:CheckBoxList ID="clistAgeGroup" runat="server" 
             DataSourceID="xmlAgeGroup" DataTextField="Value" DataValueField="Value" />
          </asp:Panel>
-      </div>
-      
-      <div style="clear: left">
-        <div class="label">Feedback mode to learner</div>
-        <asp:TextBox ID="txtFeedbackModeToLearner" runat="server" Columns="150"></asp:TextBox>
-      </div>
-      
+      </div>     
+     
       <div>
         <div class="label">Keywords (comma-separated)</div>
         <asp:TextBox ID="txtKeywords" runat="server" Columns="150"></asp:TextBox>
+      </div>
+
+      <div>
+        <div class="label">Authors / Source (comma-separated)</div>
+        <asp:TextBox ID="txtAuthorSource" runat="server" Columns="150"></asp:TextBox>
       </div>
 
       <div>

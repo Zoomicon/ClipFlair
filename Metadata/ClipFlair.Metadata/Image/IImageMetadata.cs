@@ -1,9 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: IImageMetadata.cs
-//Version: 20131009
-
-using System;
-using System.Xml.Linq;
+//Version: 20131101
 
 namespace ClipFlair.Metadata
 {
@@ -15,8 +12,6 @@ namespace ClipFlair.Metadata
 
     string[] CaptionsLanguage { get; set; }
     //string[] Genre { get; set; }
-    //bool AgeRestricted { get; set; }
-    string AuthorSource { get; set; }
 
     #endregion
 

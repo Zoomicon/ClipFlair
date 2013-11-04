@@ -109,6 +109,9 @@
     <Content Include="favicon.ico" />
     <Content Include="image\Default.aspx" />
     <Content Include="image\favicon.ico" />
+    <Content Include="image\metadata\AgeGroup.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="image\metadata\ImageMetadataPage.aspx" />
     <Content Include="image\metadata\Language.xml" />
     <Content Include="img\activity_gallery.jpg" />
@@ -143,6 +146,9 @@
     <Content Include="style.css" />
     <Content Include="video\Default.aspx" />
     <Content Include="video\favicon.ico" />
+    <Content Include="video\metadata\AgeGroup.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="video\metadata\Genre.xml">
       <SubType>Designer</SubType>
     </Content>

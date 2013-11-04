@@ -1,9 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: IActivityMetadata.cs
-//Version: 20130822
-
-using System;
-using System.Xml.Linq;
+//Version: 20131101
 
 namespace ClipFlair.Metadata
 {
@@ -18,7 +15,6 @@ namespace ClipFlair.Metadata
     string[] LanguageCombination { get; set; }
     string[] Level { get; set; }
     string EstimatedTimeMinutes { get; set; }
-    string[] Authors { get; set; }
     string[] FromSkills { get; set; }
     string[] ToSkills { get; set; }
     string[] AVSkills { get; set; }
@@ -26,7 +22,6 @@ namespace ClipFlair.Metadata
     string[] TasksRevoicing { get; set; }
     string[] TasksCaptioning { get; set; }
     string[] LearnerType { get; set; }
-    string[] AgeGroup { get; set; }
     string[] FeedbackModeToLearner { get; set; }
 
     #endregion

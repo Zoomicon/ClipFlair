@@ -22,6 +22,15 @@ namespace ClipFlair.Gallery {
         protected global::System.Web.UI.WebControls.XmlDataSource xmlLanguage;
         
         /// <summary>
+        /// xmlAgeGroup control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.XmlDataSource xmlAgeGroup;
+        
+        /// <summary>
         /// form1 control.
         /// </summary>
         /// <remarks>
@@ -47,6 +56,24 @@ namespace ClipFlair.Gallery {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HyperLink linkUrl;
+        
+        /// <summary>
+        /// lblFirstPublished control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblFirstPublished;
+        
+        /// <summary>
+        /// lblLastUpdated control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblLastUpdated;
         
         /// <summary>
         /// txtTitle control.
@@ -76,13 +103,22 @@ namespace ClipFlair.Gallery {
         protected global::System.Web.UI.WebControls.CheckBoxList clistCaptionsLanguage;
         
         /// <summary>
-        /// txtAuthorSource control.
+        /// Panel1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtAuthorSource;
+        protected global::System.Web.UI.WebControls.Panel Panel1;
+        
+        /// <summary>
+        /// clistAgeGroup control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBoxList clistAgeGroup;
         
         /// <summary>
         /// txtKeywords control.
@@ -92,6 +128,15 @@ namespace ClipFlair.Gallery {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtKeywords;
+        
+        /// <summary>
+        /// txtAuthorSource control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtAuthorSource;
         
         /// <summary>
         /// txtLicense control.

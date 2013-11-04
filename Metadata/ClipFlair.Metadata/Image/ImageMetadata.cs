@@ -1,14 +1,10 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: ImageMetadata.cs
-//Version: 20131009
+//Version: 20131101
 
 using Metadata.CXML;
 
-using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Xml;
 using System.Xml.Linq;
 
 namespace ClipFlair.Metadata
@@ -21,8 +17,6 @@ namespace ClipFlair.Metadata
 
     public string[] CaptionsLanguage { get; set; }
     //public string[] Genre { get; set; }
-    //public bool AgeRestricted { get; set; }
-    public string AuthorSource { get; set; }
 
     #endregion
 
@@ -35,7 +29,7 @@ namespace ClipFlair.Metadata
       CaptionsLanguage = new string[] { };
       //Genre = new string[] { };
       //AgeRestricted = false;
-      AuthorSource = "";
+      AuthorSource = new string[] {};
     }
 
     public override ICXMLMetadata Load(XElement item)
@@ -46,9 +40,7 @@ namespace ClipFlair.Metadata
 
       CaptionsLanguage = facets.CXMLFacetStringValues(ImageMetadataFacets.FACET_CAPTIONS_LANGUAGE);
       //Genre = facets.CXMLFacetStringValues(ImageMetadataFacets.FACET_GENRE);
-      //AgeRestricted = facets.CXMLFacetBoolValue(ImageMetadataFacets.FACET_AGE_RESTRICTED);
-      AuthorSource = facets.CXMLFacetStringValue(ImageMetadataFacets.FACET_AUTHOR_SOURCE);
-
+ 
       return this;
     }
 
@@ -57,7 +49,7 @@ namespace ClipFlair.Metadata
       return MakeImageFacetCategories();
     }
 
-    public override IEnumerable<XElement> GetCXMLFacets() //the following also defines the order in which facet values appear in PivotViewer's details pane
+    public override IEnumerable<XElement> GetCXMLFacets()
     {
       IList<XElement> facets = new List<XElement>();
 
@@ -65,11 +57,14 @@ namespace ClipFlair.Metadata
 
       AddNonNullToList(facets, CXML.MakeStringFacet(ImageMetadataFacets.FACET_CAPTIONS_LANGUAGE, CaptionsLanguage));
       //AddNonNullToList(facets, CXML.MakeStringFacet(ImageMetadataFacets.FACET_GENRE, Genre));
-      //AddNonNullToList(facets, CXML.MakeStringFacet(ImageMetadataFacets.FACET_AGE_RESTRICTED, AgeRestricted.ToString())); //this will give True/False (not Yes/No)
-      AddNonNullToList(facets, CXML.MakeStringFacet(ImageMetadataFacets.FACET_AUTHOR_SOURCE, AuthorSource));
 
+      AddNonNullToList(facets, CXML.MakeStringFacet(ClipFlairMetadataFacets.FACET_AGE_GROUP, AgeGroup));
       AddNonNullToList(facets, CXML.MakeStringFacet(ClipFlairMetadataFacets.FACET_KEYWORDS, Keywords));
+      AddNonNullToList(facets, CXML.MakeStringFacet(ClipFlairMetadataFacets.FACET_AUTHORS_SOURCE, AuthorSource));
       AddNonNullToList(facets, CXML.MakeStringFacet(ClipFlairMetadataFacets.FACET_LICENSE, License));
+
+      AddNonNullToList(facets, CXML.MakeDateTimeFacet(ClipFlairMetadataFacets.FACET_FIRST_PUBLISHED, FirstPublished));
+      AddNonNullToList(facets, CXML.MakeDateTimeFacet(ClipFlairMetadataFacets.FACET_LAST_UPDATED, LastUpdated));
 
       return facets;
     }
@@ -81,15 +76,18 @@ namespace ClipFlair.Metadata
     public static IEnumerable<XElement> MakeImageFacetCategories() //the following also defines the order in which filters appear in PivotViewer's filter pane
     {
       IList<XElement> result = new List<XElement>();
-      result.Add(CXML.MakeFacetCategory(ClipFlairMetadataFacets.FACET_FILENAME, CXML.VALUE_STRING, isFilterVisible: false, isMetadataVisible: false, isWordWheelVisible: false));
+      result.Add(CXML.MakeFacetCategory(ClipFlairMetadataFacets.FACET_FILENAME, CXML.VALUE_STRING, null, isFilterVisible: false, isMetadataVisible: false, isWordWheelVisible: false));
 
-      result.Add(CXML.MakeFacetCategory(ImageMetadataFacets.FACET_CAPTIONS_LANGUAGE, CXML.VALUE_STRING, isFilterVisible: true, isMetadataVisible: true, isWordWheelVisible: true));
-      //result.Add(CXML.MakeFacetCategory(ImageMetadataFacets.FACET_GENRE, CXML.VALUE_STRING, isFilterVisible: true, isMetadataVisible: true, isWordWheelVisible: true));
-      //result.Add(CXML.MakeFacetCategory(ImageMetadataFacets.FACET_AGE_RESTRICTED, CXML.VALUE_STRING, isFilterVisible: true, isMetadataVisible: true, isWordWheelVisible: true));
-      result.Add(CXML.MakeFacetCategory(ImageMetadataFacets.FACET_AUTHOR_SOURCE, CXML.VALUE_STRING, isFilterVisible: true, isMetadataVisible: true, isWordWheelVisible: true));
+      result.Add(CXML.MakeFacetCategory(ImageMetadataFacets.FACET_CAPTIONS_LANGUAGE, CXML.VALUE_STRING, null, isFilterVisible: true, isMetadataVisible: true, isWordWheelVisible: true));
+      //result.Add(CXML.MakeFacetCategory(ImageMetadataFacets.FACET_GENRE, CXML.VALUE_STRING, null, isFilterVisible: true, isMetadataVisible: true, isWordWheelVisible: true));
 
-      result.Add(CXML.MakeFacetCategory(ClipFlairMetadataFacets.FACET_KEYWORDS, CXML.VALUE_STRING, isFilterVisible: true, isMetadataVisible: true, isWordWheelVisible: true));
-      result.Add(CXML.MakeFacetCategory(ClipFlairMetadataFacets.FACET_LICENSE, CXML.VALUE_STRING, isFilterVisible: true, isMetadataVisible: true, isWordWheelVisible: true));
+      result.Add(MakeAgeGroupFacetCategory());
+      result.Add(CXML.MakeFacetCategory(ClipFlairMetadataFacets.FACET_KEYWORDS, CXML.VALUE_STRING, null, isFilterVisible: true, isMetadataVisible: true, isWordWheelVisible: true));
+      result.Add(CXML.MakeFacetCategory(ClipFlairMetadataFacets.FACET_AUTHORS_SOURCE, CXML.VALUE_STRING, null, isFilterVisible: true, isMetadataVisible: true, isWordWheelVisible: true));
+      result.Add(CXML.MakeFacetCategory(ClipFlairMetadataFacets.FACET_LICENSE, CXML.VALUE_STRING, null, isFilterVisible: true, isMetadataVisible: true, isWordWheelVisible: true));
+
+      result.Add(CXML.MakeFacetCategory(ClipFlairMetadataFacets.FACET_FIRST_PUBLISHED, CXML.VALUE_DATETIME, CXML.DEFAULT_DATETIME_FORMAT, isFilterVisible: false, isMetadataVisible: true, isWordWheelVisible: false));
+      result.Add(CXML.MakeFacetCategory(ClipFlairMetadataFacets.FACET_LAST_UPDATED, CXML.VALUE_DATETIME, CXML.DEFAULT_DATETIME_FORMAT, isFilterVisible: true, isMetadataVisible: true, isWordWheelVisible: false));
 
       return result;
     }
