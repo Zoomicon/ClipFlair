@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: ImageMetadataPage.aspx.cs
-//Version: 20131009
+//Version: 20131104
 
 using Metadata.CXML;
 using ClipFlair.Metadata;
@@ -77,13 +77,17 @@ namespace ClipFlair.Gallery
       UI.LoadHyperlink(linkUrl, new Uri("http://studio.clipflair.net/?image=" + key));
       UI.LoadTextBox(txtDescription, metadata.Description);
 
-      UI.LoadTextBox(txtKeywords, metadata.Keywords);
-      UI.LoadTextBox(txtLicense, metadata.License);
-
+      //no need to show metadata.Filename since we calculate and show the URL, plus the filename is used as the key and shown at the dropdown list
+      UI.LoadLabel(lblFirstPublished, metadata.FirstPublished.ToString(CXML.DEFAULT_DATETIME_FORMAT));
+      UI.LoadLabel(lblLastUpdated, metadata.LastUpdated.ToString(CXML.DEFAULT_DATETIME_FORMAT));
+      
       UI.LoadCheckBoxList(clistCaptionsLanguage, metadata.CaptionsLanguage);
       //UI.LoadCheckBoxList(clistGenre, metadata.Genre);
-      //UI.LoadCheckBox(cbAgeRestricted, metadata.AgeRestricted);
+
+      UI.LoadCheckBoxList(clistAgeGroup, metadata.AgeGroup);
+      UI.LoadTextBox(txtKeywords, metadata.Keywords);
       UI.LoadTextBox(txtAuthorSource, metadata.AuthorSource);
+      UI.LoadTextBox(txtLicense, metadata.License);
     }
 
     #endregion
@@ -98,14 +102,19 @@ namespace ClipFlair.Gallery
       metadata.Image = "../image/" + key;
       metadata.Url = new Uri("http://studio.clipflair.net/?image=" + key);
       metadata.Description = txtDescription.Text;
+
       metadata.Filename = key;
+      string filePath = Path.Combine(path, key);
+      metadata.FirstPublished = File.GetCreationTimeUtc(filePath);
+      metadata.LastUpdated = File.GetLastWriteTimeUtc(filePath);
+
+      metadata.AgeGroup = UI.GetSelected(clistAgeGroup);
       metadata.Keywords = UI.GetCommaSeparated(txtKeywords);
+      metadata.AuthorSource = UI.GetCommaSeparated(txtAuthorSource);
       metadata.License = txtLicense.Text;
 
       metadata.CaptionsLanguage = UI.GetSelected(clistCaptionsLanguage);
       //metadata.Genre = UI.GetSelected(clistGenre); //TODO: Could have image type (Comics, Map, Historical, Religious etc.)
-      //metadata.AgeRestricted = cbAgeRestricted.Checked;
-      metadata.AuthorSource = txtAuthorSource.Text;
 
       return metadata;
     }

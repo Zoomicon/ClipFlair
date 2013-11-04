@@ -1,8 +1,10 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: IClipFlairMetadata.cs
-//Version: 20130823
+//Version: 20131101
 
 using Metadata.CXML;
+
+using System;
 
 namespace ClipFlair.Metadata
 {
@@ -14,7 +16,12 @@ namespace ClipFlair.Metadata
 
     //Facets//
     string Filename { get; set; }
+    DateTime FirstPublished { get; set; }
+    DateTime LastUpdated { get; set; }
+
+    string[] AgeGroup { get; set; }
     string[] Keywords { get; set; }
+    string[] AuthorSource { get; set; }
     string License { get; set; }
 
     #endregion

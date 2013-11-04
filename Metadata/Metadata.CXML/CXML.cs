@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: CXML.cs
-//Version: 20130720
+//Version: 20131101
 
 using System;
 using System.Collections.Generic;
@@ -37,6 +37,7 @@ namespace Metadata.CXML
     public static readonly XName NODE_FACET = "Facet";
 
     public static readonly XName NODE_STRING = "String";
+    public static readonly XName NODE_DATETIME = "DateTime";
 
     public static readonly XName ATTRIB_ID = "Id";
     public static readonly XName ATTRIB_NAME = "Name";
@@ -44,6 +45,7 @@ namespace Metadata.CXML
     public static readonly XName ATTRIB_HREF = "Href";
 
     public static readonly XName ATTRIB_TYPE = "Type";
+    public static readonly XName ATTRIB_FORMAT = "Format";
     public static readonly XName ATTRIB_IS_FILTER_VISIBLE = CXML.p + "IsFilterVisible";
     public static readonly XName ATTRIB_IS_METADATA_VISIBLE = CXML.p + "IsMetadataVisible";
     public static readonly XName ATTRIB_IS_WORD_WHEEL_VISIBLE = CXML.p + "IsWordWheelVisible";
@@ -51,8 +53,12 @@ namespace Metadata.CXML
     public static readonly XName ATTRIB_VALUE = "Value";
 
     public const string VALUE_STRING = "String";
+    public const string VALUE_DATETIME = "DateTime";
+
     public const string VALUE_TRUE = "True";
     public const string VALUE_FALSE = "False";
+
+    public const string DEFAULT_DATETIME_FORMAT = "yyyy-MM-ddThh:mm:ss"; //this format is also used at MSDN Magazine Collection (http://pivot.blob.core.windows.net/msdn-magazine/msdnmagazine.cxml)
 
     #endregion
 
@@ -90,6 +96,16 @@ namespace Metadata.CXML
       return facets.CXMLFacet(facetName).CXMLFacetStringValue();
     }
 
+    public static DateTime CXMLFacetDateTimeValue(this XElement facet)
+    {
+      return (facet != null) ? DateTime.ParseExact(facet.Element(NODE_DATETIME).Attribute(ATTRIB_VALUE).Value, DEFAULT_DATETIME_FORMAT, null) : DateTime.Now;
+    }
+
+    public static DateTime CXMLFacetDateTimeValue(this IEnumerable<XElement> facets, string facetName)
+    {
+      return facets.CXMLFacet(facetName).CXMLFacetDateTimeValue();
+    }
+
     public static bool CXMLFacetBoolValue(this XElement facet)
     {
       string value =  facet.CXMLFacetStringValue();
@@ -116,16 +132,16 @@ namespace Metadata.CXML
 
     #region --- Make ---
 
-    public static XElement MakeFacetCategory(string name, string type, bool isFilterVisible, bool isMetadataVisible, bool isWordWheelVisible)
+    public static XElement MakeFacetCategory(string name, string type, string format, bool isFilterVisible, bool isMetadataVisible, bool isWordWheelVisible)
     {
-      return
-        new XElement(CXML.NODE_FACET_CATEGORY,
-          new XAttribute(CXML.ATTRIB_NAME, name),
-          new XAttribute(CXML.ATTRIB_TYPE, type),
-          new XAttribute(CXML.ATTRIB_IS_FILTER_VISIBLE, isFilterVisible.ToString()),
-          new XAttribute(CXML.ATTRIB_IS_METADATA_VISIBLE, isMetadataVisible.ToString()),
-          new XAttribute(CXML.ATTRIB_IS_WORD_WHEEL_VISIBLE, isWordWheelVisible.ToString())
-        );
+      XElement facetCategory = new XElement(CXML.NODE_FACET_CATEGORY);
+      facetCategory.SetAttributeValue(CXML.ATTRIB_NAME, name);
+      facetCategory.SetAttributeValue(CXML.ATTRIB_TYPE, type);
+      if (format != null) facetCategory.SetAttributeValue(CXML.ATTRIB_FORMAT, format);
+      facetCategory.SetAttributeValue(CXML.ATTRIB_IS_FILTER_VISIBLE, isFilterVisible.ToString());
+      facetCategory.SetAttributeValue(CXML.ATTRIB_IS_METADATA_VISIBLE, isMetadataVisible.ToString());
+      facetCategory.SetAttributeValue(CXML.ATTRIB_IS_WORD_WHEEL_VISIBLE, isWordWheelVisible.ToString());
+      return facetCategory;
     }
 
     public static XElement MakeStringFacet(string name, string value)
@@ -141,6 +157,7 @@ namespace Metadata.CXML
         );
     }
 
+    
     public static XElement MakeStringFacet(string name, string[] values)
     {
       if (values == null || values.Length == 0) return null; //tools like PAuthor don't support empty facets, so returning null node
@@ -155,7 +172,19 @@ namespace Metadata.CXML
         );
     }
 
-    public static XElement MakeCollection(string collectionTitle, IEnumerable<XElement> cxmlFacetCategories, IEnumerable<XElement> cxmlItems){
+    public static XElement MakeDateTimeFacet(string name, DateTime value, string format = DEFAULT_DATETIME_FORMAT)
+    {
+      return
+        new XElement(NODE_FACET,
+          new XAttribute(ATTRIB_NAME, name),
+          new XElement(NODE_DATETIME,
+            new XAttribute(ATTRIB_VALUE, value.ToString(format))
+          )
+        );
+    }
+
+    public static XElement MakeCollection(string collectionTitle, IEnumerable<XElement> cxmlFacetCategories, IEnumerable<XElement> cxmlItems)
+    {
       return
       new XElement(CXML.NODE_COLLECTION,
         new XAttribute("SchemaVersion", "1.0"),

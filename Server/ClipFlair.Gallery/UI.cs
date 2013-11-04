@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: Controls.cs
-//Version: 20130806
+//Version: 20131104
 
 using System;
 using System.Collections.Generic;
@@ -21,6 +21,11 @@ namespace ClipFlair.Gallery
     public static void LoadCheckBox(CheckBox checkbox, bool value)
     {
       checkbox.Checked = value;
+    }
+    
+    public static void LoadLabel(Label label, string value)
+    {
+      label.Text = value;
     }
 
     public static void LoadTextBox(TextBox textbox, string value)

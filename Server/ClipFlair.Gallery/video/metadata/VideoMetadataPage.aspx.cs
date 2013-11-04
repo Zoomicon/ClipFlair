@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: VideoMetadataPage.aspx.cs
-//Version: 20131009
+//Version: 20131104
 
 using Metadata.CXML;
 using ClipFlair.Metadata;
@@ -77,17 +77,21 @@ namespace ClipFlair.Gallery
       UI.LoadHyperlink(linkUrl, new Uri("http://studio.clipflair.net/?video=" + key));
       UI.LoadTextBox(txtDescription, metadata.Description);
 
-      UI.LoadTextBox(txtKeywords, metadata.Keywords);
-      UI.LoadTextBox(txtLicense, metadata.License);
+      //no need to show metadata.Filename since we calculate and show the URL, plus the filename is used as the key and shown at the dropdown list
+      UI.LoadLabel(lblFirstPublished, metadata.FirstPublished.ToString(CXML.DEFAULT_DATETIME_FORMAT));
+      UI.LoadLabel(lblLastUpdated, metadata.LastUpdated.ToString(CXML.DEFAULT_DATETIME_FORMAT));
 
       UI.LoadCheckBoxList(clistAudioLanguage, metadata.AudioLanguage);
       UI.LoadCheckBoxList(clistCaptionsLanguage, metadata.CaptionsLanguage);
       UI.LoadCheckBoxList(clistGenre, metadata.Genre);
-      UI.LoadCheckBox(cbAgeRestricted, metadata.AgeRestricted);
       UI.LoadTextBox(txtDuration, metadata.Duration);
       UI.LoadCheckBoxList(clistAudiovisualRichness, metadata.AudiovisualRichness);
       UI.LoadCheckBox(cbPedagogicalAdaptability, metadata.PedagogicalAdaptability);
+
+      UI.LoadCheckBoxList(clistAgeGroup, metadata.AgeGroup);
+      UI.LoadTextBox(txtKeywords, metadata.Keywords);
       UI.LoadTextBox(txtAuthorSource, metadata.AuthorSource);
+      UI.LoadTextBox(txtLicense, metadata.License);
     }
 
     #endregion
@@ -102,18 +106,23 @@ namespace ClipFlair.Gallery
       metadata.Image = "../video/" + key + "/" + key + "_thumb.jpg";
       metadata.Url = new Uri("http://studio.clipflair.net/?video=" + key);
       metadata.Description = txtDescription.Text;
+
       metadata.Filename = key;
+      string folderPath = Path.Combine(path, key);
+      metadata.FirstPublished = Directory.GetCreationTimeUtc(folderPath);
+      metadata.LastUpdated = Directory.GetLastWriteTimeUtc(folderPath); //not sure if folders do keep such field
+
+      metadata.AgeGroup = UI.GetSelected(clistAgeGroup);
       metadata.Keywords = UI.GetCommaSeparated(txtKeywords);
+      metadata.AuthorSource = UI.GetCommaSeparated(txtAuthorSource);
       metadata.License = txtLicense.Text;
 
       metadata.AudioLanguage = UI.GetSelected(clistAudioLanguage);
       metadata.CaptionsLanguage = UI.GetSelected(clistCaptionsLanguage);
       metadata.Genre = UI.GetSelected(clistGenre);
-      metadata.AgeRestricted = cbAgeRestricted.Checked;
       metadata.Duration = txtDuration.Text;
       metadata.AudiovisualRichness = UI.GetSelected(clistAudiovisualRichness);
       metadata.PedagogicalAdaptability = cbPedagogicalAdaptability.Checked;
-      metadata.AuthorSource = txtAuthorSource.Text;
 
       return metadata;
     }

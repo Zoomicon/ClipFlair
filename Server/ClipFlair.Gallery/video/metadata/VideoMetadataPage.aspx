@@ -5,7 +5,7 @@
 <!--
 Project: ClipFlair (http://ClipFlair.codeplex.com)
 Filename: VideoMetadataPage.aspx
-Version: 20130918
+Version: 20131104
 -->
 
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -46,6 +46,7 @@ Version: 20130918
     <asp:XmlDataSource ID="xmlLanguage" runat="server" DataFile="~/video/metadata/Language.xml" XPath="Facet/String" />
     <asp:XmlDataSource ID="xmlGenre" runat="server" DataFile="~/video/metadata/Genre.xml" XPath="Facet/String" />
     <asp:XmlDataSource ID="XmlAudiovisualRichness" runat="server" DataFile="~/video/metadata/AudiovisualRichness.xml" XPath="Facet/String" />
+    <asp:XmlDataSource ID="xmlAgeGroup" runat="server" DataFile="~/activity/metadata/AgeGroup.xml" XPath="Facet/String" />
 
     <div class="instructions">
     Please fill in the following information for the clip of your choice. Select the clip from the dropdown list.<br />
@@ -56,16 +57,25 @@ Version: 20130918
     <form id="form1" runat="server">
 
       <div class="bar">
+
         <div class="label">Video stream</div> 
         <asp:DropDownList ID="listItems" runat="server" AutoPostBack="True" 
           DataTextField="Foldername" DataValueField="Foldername" 
           OnSelectedIndexChanged="listItems_SelectedIndexChanged"
           />
 
-       <br />
+        <br />
 
-       <div class="label">Url</div>
+        <div class="label">Url</div>
         <asp:HyperLink ID="linkUrl" runat="server" Target="_blank"/>
+    
+        <div>
+          <span class="label">First published: </span>
+          <asp:Label ID="lblFirstPublished" runat="server" />
+          <span class="label"> - Last updated: </span>
+          <asp:Label ID="lblLastUpdated" runat="server" />
+        </div>
+
       </div>
 
       <div>
@@ -111,12 +121,8 @@ Version: 20130918
             DataSourceID="xmlGenre" DataTextField="Value" DataValueField="Value" />
          </asp:Panel>
       </div>
-
-      <div class="label" style="clear: left">
-        <asp:CheckBox ID="cbAgeRestricted" runat="server" Text="Age Restricted (18+)" />
-      </div>
-      
-      <div>
+     
+      <div style="clear: left">
         <div class="label">Duration (hh:mm:ss)</div>
         <asp:TextBox ID="txtDuration" runat="server"></asp:TextBox>
       </div>
@@ -136,19 +142,30 @@ Version: 20130918
         <asp:CheckBox ID="cbPedagogicalAdaptability" runat="server" Text="Pedagogical Adaptability" />
       </div>
 
-      <div style="clear: left">
-        <div class="label">Author / Source</div>
-        <asp:TextBox ID="txtAuthorSource" runat="server" Columns="150"></asp:TextBox>
-      </div>
+      <div>
+        <div class="label">Age group</div>
+        <asp:Panel ID="Panel1" runat="server" 
+          Height="130" Width="250"
+          ScrollBars="Auto">
 
+          <asp:CheckBoxList ID="clistAgeGroup" runat="server" 
+            DataSourceID="xmlAgeGroup" DataTextField="Value" DataValueField="Value" />
+         </asp:Panel>
+      </div>     
+     
       <div>
         <div class="label">Keywords (comma-separated)</div>
         <asp:TextBox ID="txtKeywords" runat="server" Columns="150"></asp:TextBox>
       </div>
-      
+
+      <div>
+        <div class="label">Authors / Source (comma-separated)</div>
+        <asp:TextBox ID="txtAuthorSource" runat="server" Columns="150"></asp:TextBox>
+      </div>
+
       <div>
         <div class="label">License</div>
-        <asp:TextBox ID="txtLicense" runat="server" Columns="150"></asp:TextBox>
+        <asp:TextBox ID="txtLicense" runat="server" Columns="150" Text="CC BY-SA 3.0"></asp:TextBox>
       </div>
 
       <div>
