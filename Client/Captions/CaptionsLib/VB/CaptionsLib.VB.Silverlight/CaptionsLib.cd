@@ -4,7 +4,7 @@
     <Position X="1.75" Y="3.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAABAAAAAAAAAAAAAAAAACAAAAAAABAAAAAAAAAAA=</HashCode>
-      <FileName>C:\Dropbox\ClipFlairDev\ClipFlair_Source\Client\Captions\CaptionsLib\source\BaseCaptionReader.cs</FileName>
+      <FileName>C:\Dropbox\ClipFlairDev\ClipFlair_Source\Client\Captions\CaptionsLib\source\BaseCaptionReader.vb</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
@@ -12,7 +12,7 @@
     <Position X="4" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAQAAAAAAAAIAAAAAgAAAAAgA=</HashCode>
-      <FileName>C:\Dropbox\ClipFlairDev\ClipFlair_Source\Client\Captions\CaptionsLib\source\BaseCaptionWriter.cs</FileName>
+      <FileName>C:\Dropbox\ClipFlairDev\ClipFlair_Source\Client\Captions\CaptionsLib\source\BaseCaptionWriter.vb</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
@@ -20,105 +20,105 @@
     <Position X="13.5" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAACAAAAAAAAAAAAAAAQAAABAQAAAAAAAAA=</HashCode>
-      <FileName>C:\Dropbox\ClipFlairDev\ClipFlair_Source\Client\Captions\CaptionsLib\source\encore\EncoreUtils.cs</FileName>
+      <FileName>C:\Dropbox\ClipFlairDev\ClipFlair_Source\Client\Captions\CaptionsLib\source\encore\EncoreUtils.vb</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="ClipFlair.CaptionsLib.Encore.EncoreWriter" Collapsed="true">
     <Position X="5.25" Y="1.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgA=</HashCode>
-      <FileName>C:\Dropbox\ClipFlairDev\ClipFlair_Source\Client\Captions\CaptionsLib\source\encore\EncoreWriter.cs</FileName>
+      <FileName>C:\Dropbox\ClipFlairDev\ClipFlair_Source\Client\Captions\CaptionsLib\source\encore\EncoreWriter.vb</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="ClipFlair.CaptionsLib.FAB.FABUtils" Collapsed="true">
     <Position X="10" Y="1.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAIAAAAAAAAAAAAAAAIAAAAAAAAAAAQBAQAAAAAAAAA=</HashCode>
-      <FileName>C:\Dropbox\ClipFlairDev\ClipFlair_Source\Client\Captions\CaptionsLib\source\fab\FABUtils.cs</FileName>
+      <FileName>C:\Dropbox\ClipFlairDev\ClipFlair_Source\Client\Captions\CaptionsLib\source\fab\FABUtils.vb</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="ClipFlair.CaptionsLib.FAB.FABWriter" Collapsed="true">
     <Position X="0.75" Y="1.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgA=</HashCode>
-      <FileName>C:\Dropbox\ClipFlairDev\ClipFlair_Source\Client\Captions\CaptionsLib\source\fab\FABWriter.cs</FileName>
+      <FileName>C:\Dropbox\ClipFlairDev\ClipFlair_Source\Client\Captions\CaptionsLib\source\fab\FABWriter.vb</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="ClipFlair.CaptionsLib.SRT.SRTReader" Collapsed="true">
     <Position X="2.75" Y="4.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>C:\Dropbox\ClipFlairDev\ClipFlair_Source\Client\Captions\CaptionsLib\source\srt\SRTReader.cs</FileName>
+      <FileName>C:\Dropbox\ClipFlairDev\ClipFlair_Source\Client\Captions\CaptionsLib\source\srt\SRTReader.vb</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="ClipFlair.CaptionsLib.SRT.SRTUtils" Collapsed="true">
     <Position X="13.5" Y="1.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>ACAAAAAEAAAAAAAAAAEAAAAAAIAAIAABAQAAAAAAAAA=</HashCode>
-      <FileName>C:\Dropbox\ClipFlairDev\ClipFlair_Source\Client\Captions\CaptionsLib\source\srt\SRTUtils.cs</FileName>
+      <FileName>C:\Dropbox\ClipFlairDev\ClipFlair_Source\Client\Captions\CaptionsLib\source\srt\SRTUtils.vb</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="ClipFlair.CaptionsLib.SRT.SRTWriter" Collapsed="true">
     <Position X="3" Y="1.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAEAAgAAAAAgA=</HashCode>
-      <FileName>C:\Dropbox\ClipFlairDev\ClipFlair_Source\Client\Captions\CaptionsLib\source\srt\SRTWriter.cs</FileName>
+      <FileName>C:\Dropbox\ClipFlairDev\ClipFlair_Source\Client\Captions\CaptionsLib\source\srt\SRTWriter.vb</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="ClipFlair.CaptionsLib.TTS.TTSReader" Collapsed="true">
     <Position X="0.5" Y="4.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>C:\Dropbox\ClipFlairDev\ClipFlair_Source\Client\Captions\CaptionsLib\source\tts\TTSReader.cs</FileName>
+      <FileName>C:\Dropbox\ClipFlairDev\ClipFlair_Source\Client\Captions\CaptionsLib\source\tts\TTSReader.vb</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="ClipFlair.CaptionsLib.TTS.TTSUtils" Collapsed="true">
     <Position X="10" Y="2.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAACAAEAAAAAAAAAAAAAAAAAAAQAABAQAACAAAAEA=</HashCode>
-      <FileName>C:\Dropbox\ClipFlairDev\ClipFlair_Source\Client\Captions\CaptionsLib\source\tts\TTSUtils.cs</FileName>
+      <FileName>C:\Dropbox\ClipFlairDev\ClipFlair_Source\Client\Captions\CaptionsLib\source\tts\TTSUtils.vb</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="ClipFlair.CaptionsLib.TTS.TTSWriter" Collapsed="true">
     <Position X="7.5" Y="1.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgA=</HashCode>
-      <FileName>C:\Dropbox\ClipFlairDev\ClipFlair_Source\Client\Captions\CaptionsLib\source\tts\TTSWriter.cs</FileName>
+      <FileName>C:\Dropbox\ClipFlairDev\ClipFlair_Source\Client\Captions\CaptionsLib\source\tts\TTSWriter.vb</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="ClipFlair.CaptionsLib.Utils.CaptionUtils" Collapsed="true">
     <Position X="10" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAggABABAAAACAAQQCBCAAAIAQAAAAAAAAAAAAA=</HashCode>
-      <FileName>C:\Dropbox\ClipFlairDev\ClipFlair_Source\Client\Captions\CaptionsLib\source\utils\CaptionUtils.cs</FileName>
+      <FileName>C:\Dropbox\ClipFlairDev\ClipFlair_Source\Client\Captions\CaptionsLib\source\utils\CaptionUtils.vb</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="ClipFlair.CaptionsLib.Utils.DateTimeUtils" Collapsed="true">
     <Position X="11.75" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAQCAACAAAAAAQAAAAAACAgAAAAAAgAAAAAAAAAAAAA=</HashCode>
-      <FileName>C:\Dropbox\ClipFlairDev\ClipFlair_Source\Client\Captions\CaptionsLib\source\utils\DateTimeUtils.cs</FileName>
+      <FileName>C:\Dropbox\ClipFlairDev\ClipFlair_Source\Client\Captions\CaptionsLib\source\utils\DateTimeUtils.vb</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="ClipFlair.CaptionsLib.Utils.FileUtils" Collapsed="true">
     <Position X="11.75" Y="1.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAI=</HashCode>
-      <FileName>C:\Dropbox\ClipFlairDev\ClipFlair_Source\Client\Captions\CaptionsLib\source\utils\FileUtils.cs</FileName>
+      <FileName>C:\Dropbox\ClipFlairDev\ClipFlair_Source\Client\Captions\CaptionsLib\source\utils\FileUtils.vb</FileName>
     </TypeIdentifier>
   </Class>
   <Interface Name="ClipFlair.CaptionsLib.Models.ICaptionsReader" Collapsed="true">
     <Position X="10" Y="3.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAABAAAAAAAAAAAAAAAAACAAAAAAABAAAAAAAAAAA=</HashCode>
-      <FileName>C:\Dropbox\ClipFlairDev\ClipFlair_Source\Client\Captions\CaptionsLib\source\models\ICaptionsReader.cs</FileName>
+      <FileName>C:\Dropbox\ClipFlairDev\ClipFlair_Source\Client\Captions\CaptionsLib\source\models\ICaptionsReader.vb</FileName>
     </TypeIdentifier>
   </Interface>
   <Interface Name="ClipFlair.CaptionsLib.Models.ICaptionsWriter" Collapsed="true">
     <Position X="11.75" Y="3.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAQAAAAAAAAIAAAAAgAAAAAgA=</HashCode>
-      <FileName>C:\Dropbox\ClipFlairDev\ClipFlair_Source\Client\Captions\CaptionsLib\source\models\ICaptionsWriter.cs</FileName>
+      <FileName>C:\Dropbox\ClipFlairDev\ClipFlair_Source\Client\Captions\CaptionsLib\source\models\ICaptionsWriter.vb</FileName>
     </TypeIdentifier>
   </Interface>
   <Font Name="Tahoma" Size="8.25" />

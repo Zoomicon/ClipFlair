@@ -137,8 +137,8 @@
       <Project>{127105AF-C0F4-40F8-87C5-D6C391552936}</Project>
       <Name>ImageButtons.Silverlight</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\CaptionsLib\CaptionsLib.Silverlight\CaptionsLib.Silverlight.vbproj">
-      <Project>{782E0F64-CDCE-41AA-9B7E-80714B1EE663}</Project>
+    <ProjectReference Include="..\..\CaptionsLib\CaptionsLib.Silverlight\CaptionsLib.Silverlight.csproj">
+      <Project>{388EFA39-6BC0-4836-B095-4491E9A68798}</Project>
       <Name>CaptionsLib.Silverlight</Name>
     </ProjectReference>
   </ItemGroup>

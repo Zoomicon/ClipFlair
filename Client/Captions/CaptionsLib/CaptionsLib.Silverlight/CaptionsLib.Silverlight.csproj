@@ -5,19 +5,18 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.50727</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{38818955-5894-441C-9B80-69C38BEC9A76}</ProjectGuid>
+    <ProjectGuid>{388EFA39-6BC0-4836-B095-4491E9A68798}</ProjectGuid>
     <ProjectTypeGuids>{A1591282-1198-4647-A2B1-27E5FF5F6F3B};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ClipFlair.Windows.Captions</RootNamespace>
-    <AssemblyName>ClipFlair.Windows.Captions</AssemblyName>
+    <RootNamespace>ClipFlair.CaptionsLib</RootNamespace>
+    <AssemblyName>CaptionsLib</AssemblyName>
     <TargetFrameworkIdentifier>Silverlight</TargetFrameworkIdentifier>
     <TargetFrameworkVersion>v5.0</TargetFrameworkVersion>
     <SilverlightVersion>$(TargetFrameworkVersion)</SilverlightVersion>
     <SilverlightApplication>false</SilverlightApplication>
     <ValidateXaml>true</ValidateXaml>
     <ThrowErrorsInValidation>true</ThrowErrorsInValidation>
-    <IsWebBootstrapper>false</IsWebBootstrapper>
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -30,6 +29,7 @@
     <MapFileExtensions>true</MapFileExtensions>
     <ApplicationRevision>0</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
@@ -61,64 +61,74 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Ionic.Zip">
-      <HintPath>..\..\Lib\Ionic.Zip.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.SilverlightMediaFramework.Core, Version=2.2012.605.0, Culture=neutral, PublicKeyToken=6687ff884a90c6a6, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.SilverlightMediaFramework.Plugins, Version=2.2012.605.0, Culture=neutral, PublicKeyToken=3dd5df9571bfd1e7, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.SilverlightMediaFramework.Utilities, Version=2.2012.605.0, Culture=neutral, PublicKeyToken=2018901a52f7a62c, processorArchitecture=MSIL" />
     <Reference Include="mscorlib" />
-    <Reference Include="System.ComponentModel.Composition, Version=5.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
-    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Windows" />
     <Reference Include="system" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Windows.Browser" />
-    <Reference Include="System.Windows.Controls.Data.Input, Version=5.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Xml" />
     <Reference Include="System.Net" />
-    <Reference Include="System.Windows.Controls.Input, Version=5.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
-    <Reference Include="System.Windows.Controls.Layout.Toolkit, Version=5.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Windows.Browser" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CaptionsGridWindowFactory.cs" />
-    <Compile Include="CaptionsGridView.cs" />
-    <Compile Include="CaptionsGridWindow.xaml.cs">
-      <DependentUpon>CaptionsGridWindow.xaml</DependentUpon>
+    <Compile Include="..\source\BaseCaptionReader.cs">
+      <Link>BaseCaptionReader.cs</Link>
     </Compile>
-    <Compile Include="CaptionsGridDefaults.cs" />
-    <Compile Include="ICaptionsGrid.cs">
-      <SubType>Code</SubType>
+    <Compile Include="..\source\BaseCaptionWriter.cs">
+      <Link>BaseCaptionWriter.cs</Link>
     </Compile>
-    <Compile Include="ICaptionsGridProperties.cs" />
+    <Compile Include="..\source\encore\EncoreUtils.cs">
+      <Link>encore\EncoreUtils.cs</Link>
+    </Compile>
+    <Compile Include="..\source\encore\EncoreWriter.cs">
+      <Link>encore\EncoreWriter.cs</Link>
+    </Compile>
+    <Compile Include="..\source\fab\FABUtils.cs">
+      <Link>fab\FABUtils.cs</Link>
+    </Compile>
+    <Compile Include="..\source\fab\FABWriter.cs">
+      <Link>fab\FABWriter.cs</Link>
+    </Compile>
+    <Compile Include="..\source\models\ICaptionsReader.cs">
+      <Link>models\ICaptionsReader.cs</Link>
+    </Compile>
+    <Compile Include="..\source\models\ICaptionsWriter.cs">
+      <Link>models\ICaptionsWriter.cs</Link>
+    </Compile>
+    <Compile Include="..\source\srt\SRTReader.cs">
+      <Link>srt\SRTReader.cs</Link>
+    </Compile>
+    <Compile Include="..\source\srt\SRTUtils.cs">
+      <Link>srt\SRTUtils.cs</Link>
+    </Compile>
+    <Compile Include="..\source\srt\SRTWriter.cs">
+      <Link>srt\SRTWriter.cs</Link>
+    </Compile>
+    <Compile Include="..\source\tts\TTSReader.cs">
+      <Link>tts\TTSReader.cs</Link>
+    </Compile>
+    <Compile Include="..\source\tts\TTSUtils.cs">
+      <Link>tts\TTSUtils.cs</Link>
+    </Compile>
+    <Compile Include="..\source\tts\TTSWriter.cs">
+      <Link>tts\TTSWriter.cs</Link>
+    </Compile>
+    <Compile Include="..\source\utils\CaptionUtils.cs">
+      <Link>utils\CaptionUtils.cs</Link>
+    </Compile>
+    <Compile Include="..\source\utils\DateTimeUtils.cs">
+      <Link>utils\DateTimeUtils.cs</Link>
+    </Compile>
+    <Compile Include="..\source\utils\FileUtils.cs">
+      <Link>utils\FileUtils.cs</Link>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="utils\StringUtils.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Page Include="CaptionsGridWindow.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\Audio\AudioRecorderControl\AudioRecorderControl.Silverlight\AudioRecorderControl.Silverlight.csproj">
-      <Project>{BF52BDBA-830F-4CD4-AA9C-F653B6448184}</Project>
-      <Name>AudioRecorderControl.Silverlight</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Captions\CaptionsGrid\CaptionsGrid.Silverlight\CaptionsGrid.Silverlight.csproj">
-      <Project>{D2C64A3F-BD21-427C-A68A-69223088967C}</Project>
-      <Name>CaptionsGrid.Silverlight</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\ZUI\FloatingWindow\FloatingWindow.Silverlight\FloatingWindow.Silverlight.csproj">
-      <Project>{3F3D3C8C-9724-4531-A04D-B92049F64686}</Project>
-      <Name>FloatingWindow.Silverlight</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\WPF_Compatibility\WPF_Compatibility.Silverlight\WPF_Compatibility.Silverlight.csproj">
-      <Project>{7DC832CC-2D97-4DBC-B963-3F77C1F20730}</Project>
-      <Name>WPF_Compatibility.Silverlight</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\ClipFlair.Windows.Base\ClipFlair.Windows.Base.csproj">
-      <Project>{4CE71FC4-B8D9-4305-AE15-2F0501CA58B3}</Project>
-      <Name>ClipFlair.Windows.Base</Name>
-    </ProjectReference>
+    <None Include="CaptionsLib.cd" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">

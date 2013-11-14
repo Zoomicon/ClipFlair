@@ -1,11 +1,11 @@
 ﻿'Filename: FileUtils.vb
-'Version: 20121016
+'Version: 20131105
 
 Namespace ClipFlair.CaptionsLib.Utils
 
   Public NotInheritable Class FileUtils
 
-#Region "Methods"
+#Region "--- Methods ---"
 
     Public Overloads Shared Function CheckExtension(ByVal filename As String, ByVal extension As String) As String
       If (filename IsNot Nothing) AndAlso filename.EndsWith(extension, StringComparison.InvariantCultureIgnoreCase) Then Return extension Else Return Nothing

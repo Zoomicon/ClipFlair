@@ -1,22 +1,20 @@
 ﻿'Filename: DateTimeUtils.vb
-'Version: 20121016
+'Version: 20131105
 
 Namespace ClipFlair.CaptionsLib.Utils
 
   Public NotInheritable Class DateTimeUtils
 
-#Region "Constants"
+#Region "--- Constants ---"
 
     Public Shared ReadOnly DATETIMEZERO As New DateTime(1, 1, 1, 0, 0, 0, DateTimeKind.Local) '01/01/0001, 0:0:0.00 (dates must be from year 01 and above) '??? trying bigger year to avoid accuracy errors but it causes hichkups at the timebar
 
 #End Region
 
-#Region "Methods"
+#Region "--- Methods ---"
 
     Public Shared Function FixDateTime(ByVal datetime As DateTime) As DateTime
-      With DATETIMEZERO
-        Return New DateTime(.Year, .Month, .Day, datetime.Hour, datetime.Minute, datetime.Second, datetime.Millisecond)
-      End With
+      Return New DateTime(DATETIMEZERO.Year, DATETIMEZERO.Month, DATETIMEZERO.Day, datetime.Hour, datetime.Minute, datetime.Second, datetime.Millisecond)
     End Function
 
     Public Shared Function DateTimeToSeconds(ByVal theDateTime As DateTime, ByVal baseDateTime As DateTime, ByVal digits As Integer) As Double

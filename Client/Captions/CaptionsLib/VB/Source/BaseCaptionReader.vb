@@ -1,8 +1,8 @@
 ﻿'Project: ClipFlair (http://ClipFlair.codeplex.com)
 'Filename: BaseCaptionReader.vb
-'Version: 20121123
+'Version: 20131105
 
-Imports ClipFlair.CaptionsLib.models
+Imports ClipFlair.CaptionsLib.Models
 
 Imports System.IO
 Imports System.Text
@@ -13,7 +13,7 @@ Namespace ClipFlair.CaptionsLib
   Public MustInherit Class BaseCaptionReader
     Implements ICaptionsReader
 
-#Region "Methods"
+#Region "--- Methods ---"
 
     Public Overloads Sub ReadCaptions(Of T As {CaptionElement, New})(ByVal captions As CaptionRegion, ByVal path As String, ByVal theEncoding As Encoding) Implements ICaptionsReader.ReadCaptions
       'not clearing any existing captions, just appending to the end (the CaptionRegion object can choose whether it will sort the Captions by start time or not after the appending)

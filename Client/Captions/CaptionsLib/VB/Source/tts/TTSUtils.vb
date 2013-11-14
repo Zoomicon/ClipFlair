@@ -1,5 +1,5 @@
 ﻿'Filename: TTSUtils.vb
-'Version: 20121016
+'Version: 20131113
 
 Imports ClipFlair.CaptionsLib.Utils.DateTimeUtils
 
@@ -23,23 +23,19 @@ Namespace ClipFlair.CaptionsLib.TTS
       Return TimeStrToSeconds(ttsTime, BaseTime, TTStimeFormat, SignificantDigits)
     End Function
 
-    Public Shared Function CaptionToTTSString(ByVal Caption As CaptionElement) As String
-      With Caption
-        Return SecondsToTTStime(.Begin.TotalSeconds) + "," + SecondsToTTStime(.End.TotalSeconds) + TTS_TIME_END + .Content.Replace(vbCrLf, "|")
-      End With
+    Public Shared Function CaptionToTTSString(ByVal caption As CaptionElement) As String
+      Return SecondsToTTStime(caption.Begin.TotalSeconds) + "," + SecondsToTTStime(caption.End.TotalSeconds) + TTS_TIME_END + CStr(caption.Content).Replace(vbCrLf, "|")
     End Function
 
-    Public Shared Sub TTSStringToCaption(ByVal ttsString As String, ByVal Caption As CaptionElement)
+    Public Shared Sub TTSStringToCaption(ByVal ttsString As String, ByVal caption As CaptionElement)
       Try
-        With Caption
-          Dim TimesAndCaptions() As String = Split(ttsString, TTS_TIME_END)
+        Dim TimesAndCaptions() As String = Split(ttsString, TTS_TIME_END)
 
-          Dim TimesOnly() As String = Split(TimesAndCaptions(0), ",")
-          .Begin = TimeSpan.FromSeconds(TTStimeToSeconds(TimesOnly(0)))
-          .End = TimeSpan.FromSeconds(TTStimeToSeconds(TimesOnly(1)))
+        Dim TimesOnly() As String = Split(TimesAndCaptions(0), ",")
+        caption.Begin = TimeSpan.FromSeconds(TTStimeToSeconds(TimesOnly(0)))
+        caption.End = TimeSpan.FromSeconds(TTStimeToSeconds(TimesOnly(1)))
 
-          .Content = TimesAndCaptions(1).Replace("|", vbCrLf)
-        End With
+        caption.Content = TimesAndCaptions(1).Replace("|", vbCrLf)
       Catch
         Throw New Exception("Invalid TTS") 'TODO: localize
       End Try

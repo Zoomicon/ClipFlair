@@ -1,6 +1,6 @@
 ﻿'Project: ClipFlair (http://ClipFlair.codeplex.com)
 'Filename: BaseCaptionWriter.vb
-'Version: 20130606
+'Version: 20131105
 
 Imports ClipFlair.CaptionsLib.Models
 
@@ -13,7 +13,7 @@ Namespace ClipFlair.CaptionsLib
   Public MustInherit Class BaseCaptionWriter
     Implements ICaptionsWriter
 
-#Region "Methods"
+#Region "--- Methods ---"
 
     Public Overloads Sub WriteCaptions(ByVal captions As CaptionRegion, ByVal path As String, ByVal theEncoding As Encoding) Implements ICaptionsWriter.WriteCaptions
       Using writer As New StreamWriter(path, False, theEncoding) 'the Using statement will close the file created when finished
@@ -40,7 +40,7 @@ Namespace ClipFlair.CaptionsLib
       'can override at descendents
     End Sub
 
-    Public MustOverride Sub WriteCaption(ByVal Caption As CaptionElement, ByVal writer As TextWriter) Implements ICaptionsWriter.WriteCaption
+    Public MustOverride Sub WriteCaption(ByVal caption As CaptionElement, ByVal writer As TextWriter) Implements ICaptionsWriter.WriteCaption
 
     Public Overridable Sub WriteFooter(ByVal writer As TextWriter) Implements ICaptionsWriter.WriteFooter
       'can override at descendents
