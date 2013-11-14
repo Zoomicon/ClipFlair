@@ -12,7 +12,7 @@
     <OutputType>Library</OutputType>
     <RootNamespace>
     </RootNamespace>
-    <AssemblyName>CaptionsLib.Silverlight</AssemblyName>
+    <AssemblyName>CaptionsLib.VB.Silverlight</AssemblyName>
     <TargetFrameworkIdentifier>Silverlight</TargetFrameworkIdentifier>
     <TargetFrameworkVersion>v5.0</TargetFrameworkVersion>
     <SilverlightVersion>$(TargetFrameworkVersion)</SilverlightVersion>
@@ -50,7 +50,7 @@
     <NoConfig>true</NoConfig>
     <MyType>Empty</MyType>
     <OutputPath>Bin\Debug</OutputPath>
-    <DocumentationFile>CaptionsLib.Silverlight.xml</DocumentationFile>
+    <DocumentationFile>CaptionsLib.VB.Silverlight.xml</DocumentationFile>
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
     <DefineConstants>SILVERLIGHT=1</DefineConstants>
   </PropertyGroup>
@@ -62,7 +62,7 @@
     <NoConfig>true</NoConfig>
     <Optimize>true</Optimize>
     <OutputPath>Bin\Release</OutputPath>
-    <DocumentationFile>CaptionsLib.Silverlight.xml</DocumentationFile>
+    <DocumentationFile>CaptionsLib.VB.Silverlight.xml</DocumentationFile>
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
     <DefineConstants>SILVERLIGHT=1</DefineConstants>
   </PropertyGroup>

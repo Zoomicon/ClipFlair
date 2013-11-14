@@ -1,10 +1,9 @@
 ﻿'Description: SRTReader class
-'Version: 20130606
+'Version: 20131114
 
 Imports ClipFlair.CaptionsLib.SRT.SRTUtils
 
 Imports System.IO
-Imports System.Text
 Imports Microsoft.SilverlightMediaFramework.Core.Accessibility.Captions
 
 Namespace ClipFlair.CaptionsLib.SRT
@@ -12,13 +11,13 @@ Namespace ClipFlair.CaptionsLib.SRT
   Public Class SRTReader
     Inherits BaseCaptionReader
 
-#Region "Fields"
+#Region "--- Fields ---"
 
     Protected fLineNumber As Integer
 
 #End Region
 
-#Region "Properties"
+#Region "--- Properties ---"
 
     Public ReadOnly Property LineNumber() As Integer
       Get
@@ -28,7 +27,7 @@ Namespace ClipFlair.CaptionsLib.SRT
 
 #End Region
 
-#Region "Methods"
+#Region "--- Methods ---"
 
     Public Overrides Sub ReadHeader(reader As System.IO.TextReader)
       fLineNumber = 0 'assuming we're reading a "file" from start, so resetting counter

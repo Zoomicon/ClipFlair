@@ -1,10 +1,9 @@
 ﻿'Filename: TTSReader.vb
-'Version: 20121016
+'Version: 20131105
 
 Imports ClipFlair.CaptionsLib.TTS.TTSUtils
 
 Imports System.IO
-Imports System.Text
 Imports Microsoft.SilverlightMediaFramework.Core.Accessibility.Captions
 
 Namespace ClipFlair.CaptionsLib.TTS

@@ -1,5 +1,5 @@
 ﻿'Filename: SRTWriter.vb
-'Version: 20130606
+'Version: 20131114
 
 Imports ClipFlair.CaptionsLib.SRT.SRTUtils
 
@@ -11,13 +11,13 @@ Namespace ClipFlair.CaptionsLib.SRT
   Public Class SRTWriter
     Inherits BaseCaptionWriter
 
-#Region "Fields"
+#Region "--- Fields ---"
 
     Protected fLineNumber As Integer
 
 #End Region
 
-#Region "Properties"
+#Region "--- Properties ---"
 
     Public ReadOnly Property LineNumber() As Integer
       Get
@@ -27,20 +27,18 @@ Namespace ClipFlair.CaptionsLib.SRT
 
 #End Region
 
-#Region "Methods"
+#Region "--- Methods ---"
 
     Public Overrides Sub WriteHeader(ByVal writer As TextWriter)
       fLineNumber = 0 'assuming we're writing a new "file", so resetting counter
     End Sub
 
-    Public Overrides Sub WriteCaption(ByVal Caption As CaptionElement, ByVal writer As TextWriter)
+    Public Overrides Sub WriteCaption(ByVal caption As CaptionElement, ByVal writer As TextWriter)
       fLineNumber += 1
       writer.WriteLine(LineNumber) 'assuming NewLine property of writer has been set to vbCrLf
-      With Caption
-        writer.WriteLine(SecondsToSRTtime(.Begin.TotalSeconds) + SRT_TIME_SEPARATOR + SecondsToSRTtime(.End.TotalSeconds))
-        If (.Content <> "") Then writer.WriteLine(CStr(.Content).Replace(vbNewLine + vbNewLine, vbCrLf + " " + vbCrLf)) 'never write an empty line (since the parser can treat it as a caption end)
-        writer.WriteLine()  'SRT format has an empty line AFTER each Caption, resuling to the file ending up at two empty lines (maybe done so that more Captions can be easily appended later on to the file)
-      End With
+      writer.WriteLine(SecondsToSRTtime(caption.Begin.TotalSeconds) + SRT_TIME_SEPARATOR + SecondsToSRTtime(caption.End.TotalSeconds))
+      If (caption.Content <> "") Then writer.WriteLine(CStr(caption.Content).Replace(vbCrLf + vbCrLf, vbCrLf + " " + vbCrLf)) 'never write an empty line (since the parser can treat it as a caption end)
+      writer.WriteLine()  'SRT format has an empty line AFTER each Caption, resuling to the file ending up at two empty lines (maybe done so that more Captions can be easily appended later on to the file)
     End Sub
 
 #End Region

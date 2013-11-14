@@ -1,5 +1,5 @@
 ﻿'Filenam: SRTUtils.vb
-'Version: 20121016
+'Version: 20121114
 
 Imports ClipFlair.CaptionsLib.Utils.DateTimeUtils
 
@@ -23,22 +23,20 @@ Namespace ClipFlair.CaptionsLib.SRT
       Return TimeStrToSeconds(srtTime, BaseTime, SRTtimeFormat, SignificantDigits)
     End Function
 
-    Public Shared Sub SRTStringToCaption(ByVal srtString As String, ByVal Caption As CaptionElement)
+    Public Shared Sub SRTStringToCaption(ByVal srtString As String, ByVal caption As CaptionElement)
       Try
         If srtString IsNot Nothing Then
-          With Caption
-            Dim TimesAndCaptions() As String = Split(srtString, vbCrLf)
+          Dim TimesAndCaptions() As String = Split(srtString, vbCrLf)
 
-            Dim TimesOnly() As String = Split(TimesAndCaptions(1), SRT_TIME_SEPARATOR)
-            .Begin = TimeSpan.FromSeconds(SRTtimeToSeconds(TimesOnly(0)))
-            .End = TimeSpan.FromSeconds(SRTtimeToSeconds(TimesOnly(1)))
+          Dim TimesOnly() As String = Split(TimesAndCaptions(1), SRT_TIME_SEPARATOR)
+          caption.Begin = TimeSpan.FromSeconds(SRTtimeToSeconds(TimesOnly(0)))
+          caption.End = TimeSpan.FromSeconds(SRTtimeToSeconds(TimesOnly(1)))
 
-            .Content = ""
-            For i As Integer = 2 To TimesAndCaptions.Length - 1
-              If (.Content <> "") Then .Content += vbCrLf
-              .Content += TimesAndCaptions(i)
-            Next
-          End With
+          caption.Content = ""
+          For i As Integer = 2 To TimesAndCaptions.Length - 1
+            If (caption.Content <> "") Then caption.Content += vbCrLf
+            caption.Content += TimesAndCaptions(i)
+          Next
         End If
       Catch
         Throw New Exception("Invalid SRT") 'TODO: localize
