@@ -5,7 +5,7 @@
 <!--
 Project: ClipFlair (http://ClipFlair.codeplex.com)
 Filename: VideoMetadataPage.aspx
-Version: 20131104
+Version: 20131119
 -->
 
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -13,33 +13,7 @@ Version: 20131104
   <head runat="server">
     <title>ClipFlair Gallery - Video Metadata</title>
 
-    <style type="text/css">
-    div 
-    {
-      margin-top: 15px;
-      margin-bottom: 5px;
-    }
-
-    .instructions
-    {
-      border-style:dotted;
-      background-color:Yellow;
-      padding: 5px;
-    }
-
-    .bar
-    {
-      background-color: ButtonFace;
-      padding-left: 5px;
-      padding-top: 0px;
-      padding-bottom: 15px;
-    }
-
-    .label  
-    {
-      font-weight: bold;
-    }
-    </style>
+    <link href="../../css/metadata.css" rel="stylesheet" type="text/css" />
   </head>
 
   <body>
@@ -47,6 +21,14 @@ Version: 20131104
     <asp:XmlDataSource ID="xmlGenre" runat="server" DataFile="~/video/metadata/Genre.xml" XPath="Facet/String" />
     <asp:XmlDataSource ID="XmlAudiovisualRichness" runat="server" DataFile="~/video/metadata/AudiovisualRichness.xml" XPath="Facet/String" />
     <asp:XmlDataSource ID="xmlAgeGroup" runat="server" DataFile="~/activity/metadata/AgeGroup.xml" XPath="Facet/String" />
+
+    <div class="navigation">
+       <a href="../../activity/metadata/">Activity Metadata</a>
+       &nbsp;&nbsp;-&nbsp;&nbsp;
+       <a class="selected" href="../../video/metadata/">Video Metadata</a>
+       &nbsp;&nbsp;-&nbsp;&nbsp;
+       <a href="../../image/metadata/">Image Metadata</a>
+    </div>
 
     <div class="instructions">
     Please fill in the following information for the clip of your choice. Select the clip from the dropdown list.<br />

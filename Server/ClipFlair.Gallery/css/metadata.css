@@ -1,0 +1,57 @@
+﻿/*
+Project: ClipFlair (http://ClipFlair.codeplex.com)
+Filename: metadata.cs
+Version: 20131119
+*/
+
+div
+{
+  margin-top: 15px;
+  margin-bottom: 5px;
+}
+
+.navigation a:link
+{
+  color: black;
+}
+
+.navigation a:visited
+{
+  color: black;
+}
+
+.navigation a:hover
+{
+  color: gray;
+}
+
+.navigation a:active
+{
+  color: silver;
+}
+
+.navigation a.selected
+{
+  color: Red;
+  text-decoration: underline overline;
+}
+
+.instructions
+{
+  border-style: dotted;
+  background-color: Yellow;
+  padding: 5px;
+}
+
+.bar
+{
+  background-color: ButtonFace;
+  padding-left: 5px;
+  padding-top: 0px;
+  padding-bottom: 15px;
+}
+
+.label
+{
+  font-weight: bold;
+}
