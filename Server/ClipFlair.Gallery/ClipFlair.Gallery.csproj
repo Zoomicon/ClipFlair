@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
@@ -15,6 +16,11 @@
     <TargetFrameworkVersion>v4.0.3</TargetFrameworkVersion>
     <UseIISExpress>false</UseIISExpress>
     <TargetFrameworkProfile />
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>4.0</OldToolsVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -88,32 +94,8 @@
     <Content Include="crossdomain.xml">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="fancybox\lib\jquery-1.10.1.min.js" />
-    <Content Include="fancybox\lib\jquery-1.9.0.min.js" />
-    <Content Include="fancybox\lib\jquery.mousewheel-3.0.6.pack.js" />
-    <Content Include="fancybox\source\blank.gif" />
-    <Content Include="fancybox\source\fancybox_loading%402x.gif" />
-    <Content Include="fancybox\source\fancybox_loading.gif" />
-    <Content Include="fancybox\source\fancybox_overlay.png" />
-    <Content Include="fancybox\source\fancybox_sprite%402x.png" />
-    <Content Include="fancybox\source\fancybox_sprite.png" />
-    <Content Include="fancybox\source\helpers\fancybox_buttons.png" />
-    <Content Include="fancybox\source\helpers\jquery.fancybox-buttons.css" />
-    <Content Include="fancybox\source\helpers\jquery.fancybox-buttons.js" />
-    <Content Include="fancybox\source\helpers\jquery.fancybox-media.js" />
-    <Content Include="fancybox\source\helpers\jquery.fancybox-thumbs.css" />
-    <Content Include="fancybox\source\helpers\jquery.fancybox-thumbs.js" />
-    <Content Include="fancybox\source\jquery.fancybox.css" />
-    <Content Include="fancybox\source\jquery.fancybox.js" />
-    <Content Include="fancybox\source\jquery.fancybox.pack.js" />
-    <Content Include="favicon.ico" />
-    <Content Include="image\Default.aspx" />
-    <Content Include="image\favicon.ico" />
-    <Content Include="image\metadata\AgeGroup.xml">
-      <SubType>Designer</SubType>
-    </Content>
-    <Content Include="image\metadata\ImageMetadataPage.aspx" />
-    <Content Include="image\metadata\Language.xml" />
+    <Content Include="css\metadata.css" />
+    <Content Include="css\style-ie7.css" />
     <Content Include="img\activity_gallery.jpg" />
     <Content Include="img\activity_gallery.png" />
     <Content Include="img\activity_gallery.svg" />
@@ -124,6 +106,7 @@
     <Content Include="img\image_gallery.jpg" />
     <Content Include="img\image_gallery.png" />
     <Content Include="img\image_gallery.svg" />
+    <Content Include="img\llp-logo.jpg" />
     <Content Include="img\llp-logo.png" />
     <Content Include="img\logo.jpg" />
     <Content Include="img\logo.png" />
@@ -135,15 +118,43 @@
     <Content Include="img\video_gallery.jpg" />
     <Content Include="img\video_gallery.png" />
     <Content Include="img\video_gallery.svg" />
+    <Content Include="index-ie7.html" />
+    <Content Include="favicon.ico" />
+    <Content Include="image\Default.aspx" />
+    <Content Include="image\favicon.ico" />
+    <Content Include="image\metadata\AgeGroup.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="image\metadata\ImageMetadataPage.aspx" />
+    <Content Include="image\metadata\Language.xml" />
     <Content Include="index.html" />
+    <Content Include="css\style-ie.css" />
+    <Content Include="css\style.css" />
+    <Content Include="js\css3-mediaqueries.js" />
+    <Content Include="js\fancybox\lib\jquery-1.10.1.min.js" />
+    <Content Include="js\fancybox\lib\jquery-1.9.0.min.js" />
+    <Content Include="js\fancybox\lib\jquery.mousewheel-3.0.6.pack.js" />
+    <Content Include="js\fancybox\source\blank.gif" />
+    <Content Include="js\fancybox\source\fancybox_loading%402x.gif" />
+    <Content Include="js\fancybox\source\fancybox_loading.gif" />
+    <Content Include="js\fancybox\source\fancybox_overlay.png" />
+    <Content Include="js\fancybox\source\fancybox_sprite%402x.png" />
+    <Content Include="js\fancybox\source\fancybox_sprite.png" />
+    <Content Include="js\fancybox\source\helpers\fancybox_buttons.png" />
+    <Content Include="js\fancybox\source\helpers\jquery.fancybox-buttons.css" />
+    <Content Include="js\fancybox\source\helpers\jquery.fancybox-buttons.js" />
+    <Content Include="js\fancybox\source\helpers\jquery.fancybox-media.js" />
+    <Content Include="js\fancybox\source\helpers\jquery.fancybox-thumbs.css" />
+    <Content Include="js\fancybox\source\helpers\jquery.fancybox-thumbs.js" />
+    <Content Include="js\fancybox\source\jquery.fancybox.css" />
+    <Content Include="js\fancybox\source\jquery.fancybox.js" />
+    <Content Include="js\fancybox\source\jquery.fancybox.pack.js" />
     <Content Include="js\icu.js" />
     <Content Include="js\jquery.fittext.js" />
     <Content Include="js\jquery.hoverIntent.minified.js" />
     <Content Include="js\modernizr.custom.07231.js" />
     <Content Include="js\rollover.js" />
     <Content Include="js\translate.js" />
-    <Content Include="style-ie.css" />
-    <Content Include="style.css" />
     <Content Include="video\Default.aspx" />
     <Content Include="video\favicon.ico" />
     <Content Include="video\metadata\AgeGroup.xml">
@@ -240,8 +251,13 @@
       <DependentUpon>Web.config</DependentUpon>
     </Content>
   </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
-  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
   <ProjectExtensions>
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
