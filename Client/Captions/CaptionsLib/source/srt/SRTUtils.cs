@@ -1,5 +1,5 @@
 ﻿//Filenam: SRTUtils.cs
-//Version: 20131114
+//Version: 20131120
 
 using ClipFlair.CaptionsLib.Utils;
 
@@ -13,8 +13,7 @@ namespace ClipFlair.CaptionsLib.SRT
   {
 
     public const string SRTtimeFormat = "HH:mm:ss,fff";
-      //Must use 2 instead of 3 as done at all the ClipFlair.CaptionsLib controls
-    public const int SignificantDigits = 2;
+    public const int SignificantDigits = 2; //Must use 2 instead of 3 as done at all the ClipFlair.CaptionsLib controls
 
     public const string SRT_TIME_SEPARATOR = " --> ";
 
@@ -44,8 +43,9 @@ namespace ClipFlair.CaptionsLib.SRT
           caption.Content = "";
           for (int i = 2; i <= TimesAndCaptions.Length - 1; i++)
           {
-            if ((caption.Content != ""))
+            if (!string.IsNullOrEmpty((string)caption.Content))
               caption.Content += StringUtils.vbCrLf;
+
             caption.Content += TimesAndCaptions[i];
           }
         }

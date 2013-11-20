@@ -1,5 +1,5 @@
 ﻿//Filename: SRTWriter.cs
-//Version: 20131114
+//Version: 20131120
 
 using ClipFlair.CaptionsLib.Utils;
 
@@ -30,8 +30,7 @@ namespace ClipFlair.CaptionsLib.SRT
 
     public override void WriteHeader(TextWriter writer)
     {
-      fLineNumber = 0;
-      //assuming we're writing a new "file", so resetting counter
+      fLineNumber = 0; //assuming we're writing a new "file", so resetting counter
     }
 
     public override void WriteCaption(CaptionElement caption, TextWriter writer)
@@ -39,7 +38,8 @@ namespace ClipFlair.CaptionsLib.SRT
       fLineNumber += 1;
       writer.WriteLine(LineNumber); //assuming NewLine property of writer has been set to  StringUtils.vbCrLf
       writer.WriteLine(SRTUtils.SecondsToSRTtime(caption.Begin.TotalSeconds) + SRTUtils.SRT_TIME_SEPARATOR + SRTUtils.SecondsToSRTtime(caption.End.TotalSeconds));
-      if (caption.Content != "") writer.WriteLine(((string)caption.Content).Replace(StringUtils.vbCrLf + StringUtils.vbCrLf, StringUtils.vbCrLf + " " + StringUtils.vbCrLf)); //never write an empty line (since the parser can treat it as a caption end)
+      if (!string.IsNullOrEmpty((string)caption.Content))
+        writer.WriteLine(((string)caption.Content).Replace(StringUtils.vbCrLf + StringUtils.vbCrLf, StringUtils.vbCrLf + " " + StringUtils.vbCrLf)); //never write an empty line (since the parser can treat it as a caption end)
       writer.WriteLine();  //SRT format has an empty line AFTER each Caption, resuling to the file ending up at two empty lines (maybe done so that more Captions can be easily appended later on to the file)
     }
 
