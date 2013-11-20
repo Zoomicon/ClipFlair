@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: BaseWindow.xaml.cs
-//Version: 20131001
+//Version: 20131120
 
 //TODO: unbind control at close
 
@@ -155,7 +155,9 @@ namespace ClipFlair.Windows
         isTopLevel = value;
 
         Visibility visibility = value ? Visibility.Collapsed : Visibility.Visible; //hide backpanel properties not relevant when not being a child window
-        propPosition.Visibility = visibility;
+        //propPosition.Visibility = visiblity;
+        propX.Visibility = visibility;
+        propY.Visibility = visibility;
         propWidth.Visibility = visibility;
         propHeight.Visibility = visibility;
         propZoom.Visibility = visibility;

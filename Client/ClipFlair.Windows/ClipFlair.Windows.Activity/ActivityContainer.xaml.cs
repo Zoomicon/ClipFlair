@@ -304,6 +304,7 @@ namespace ClipFlair.Windows
       if (window is MediaPlayerWindow) BindMediaPlayerWindow((MediaPlayerWindow)window);
       else if (window is CaptionsGridWindow) BindCaptionsGridWindow((CaptionsGridWindow)window);
       else if (window is TextEditorWindow) BindTextEditorWindow((TextEditorWindow)window);
+      else if (window is ImageWindow) BindImageWindow((ImageWindow)window);
       else if (window is MapWindow) BindMapWindow((MapWindow)window);
     }
 
@@ -320,7 +321,7 @@ namespace ClipFlair.Windows
         }
         catch (Exception ex)
         {
-          ErrorDialog.Show("Failed to bind component", ex);
+          ErrorDialog.Show("Failed to bind Clip component", ex);
         }
     } //TODO: check why it won't sync smoothly (see what was doing in LvS, maybe ignore time events that are very close to current time) //most probably need to ignore small time differences at sync
 
@@ -337,7 +338,7 @@ namespace ClipFlair.Windows
         }
         catch (Exception ex)
         {
-          ErrorDialog.Show("Failed to bind component", ex);
+          ErrorDialog.Show("Failed to bind Captions component", ex);
         }
     }
 
@@ -351,7 +352,21 @@ namespace ClipFlair.Windows
         }
         catch (Exception ex)
         {
-          ErrorDialog.Show("Failed to bind component", ex);
+          ErrorDialog.Show("Failed to bind Text component", ex);
+        }
+    }
+
+    private void BindImageWindow(ImageWindow window)
+    {
+      if (window.View != null && View != null)
+        try
+        {
+          BindingUtils.BindProperties(window.View, IImageViewerProperties.PropertyTime,
+                                      View, IActivityProperties.PropertyTime); //TODO: should rebind after changing view if the window is inside a BaseWindow (get its View and bind to it)
+        }
+        catch (Exception ex)
+        {
+          ErrorDialog.Show("Failed to bind Image component", ex);
         }
     }
     
@@ -365,7 +380,7 @@ namespace ClipFlair.Windows
         }
         catch (Exception ex)
         {
-          ErrorDialog.Show("Failed to bind component", ex);
+          ErrorDialog.Show("Failed to bind Map component", ex);
         }
     }
     
