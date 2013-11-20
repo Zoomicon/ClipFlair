@@ -1,8 +1,14 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: ImageWindow.xaml.cs
-//Version: 20130204
+//Version: 20131120
 
+using Utils.Extensions;
+using ClipFlair.UI.Dialogs;
 using ClipFlair.Windows.Views;
+
+using System;
+using System.Windows;
+using System.Windows.Input;
 
 namespace ClipFlair.Windows
 {
@@ -13,6 +19,7 @@ namespace ClipFlair.Windows
     {
       View = new ImageView(); //must set the view first
       InitializeComponent();
+      imgContent.AddHandler(UIElement.MouseLeftButtonDownEvent, new MouseButtonEventHandler(imgContent_MouseLeftButtonDown), true); //must pass "true" to handle events marked as already "handled"
     }
 
     #region View
@@ -24,6 +31,25 @@ namespace ClipFlair.Windows
     }
 
     #endregion
+
+    private void imgContent_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+    {
+      if (ImageView.ActionURL != null)
+        Dispatcher.BeginInvoke(delegate
+        {
+          try
+          {
+            ImageView.ActionURL.NavigateTo();
+          }
+          catch
+          {
+            MessageDialog.Show("Action", "Please visit " + ImageView.ActionURL.ToString()); //TODO: use URLDialog here with clickable URL on it
+          }
+        });
+      
+      if (ImageView.ActionTime != null)
+        ImageView.Time = (TimeSpan)ImageView.ActionTime;
+    }
 
   }
 }

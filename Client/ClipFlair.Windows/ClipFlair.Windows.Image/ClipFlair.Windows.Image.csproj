@@ -69,6 +69,7 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Net" />
     <Reference Include="System.Windows.Browser" />
+    <Reference Include="System.Windows.Controls, Version=5.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Windows.Controls.Data.Input, Version=5.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
   </ItemGroup>
   <ItemGroup>
@@ -89,6 +90,14 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\ClipFlair.UI\ClipFlair.UI.Dialogs\ClipFlair.UI.Dialogs.Silverlight.csproj">
+      <Project>{c6900312-0545-4e5e-9fe0-2aef75674e29}</Project>
+      <Name>ClipFlair.UI.Dialogs.Silverlight</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Utils\Utils.Silverlight\Utils.Silverlight.csproj">
+      <Project>{e784b6a1-a300-4571-a881-b15240eee377}</Project>
+      <Name>Utils.Silverlight</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\ZUI\FloatingWindow\FloatingWindow.Silverlight\FloatingWindow.Silverlight.csproj">
       <Project>{3F3D3C8C-9724-4531-A04D-B92049F64686}</Project>
       <Name>FloatingWindow.Silverlight</Name>

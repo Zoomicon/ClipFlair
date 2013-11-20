@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: ImageViewerDefaults.cs
-//Version: 20130406
+//Version: 20131120
 
 using System;
 using System.Windows;
@@ -21,6 +21,9 @@ namespace ClipFlair.Windows.Views
 
     public const Uri DefaultSource = null;
     public const bool DefaultContentZoomToFit = true;
+    public const Uri DefaultActionURL = null;
+    public static readonly TimeSpan? DefaultActionTime = null;
+    public static readonly TimeSpan DefaultTime = TimeSpan.Zero;
 
     #region Methods
 
@@ -35,6 +38,9 @@ namespace ClipFlair.Windows.Views
       //IImageViewer defaults
       image.Source = DefaultSource;
       image.ContentZoomToFit = DefaultContentZoomToFit;
+      image.ActionURL = DefaultActionURL;
+      image.ActionTime = DefaultActionTime;
+      image.Time = DefaultTime;
     }
 
     #endregion
