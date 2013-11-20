@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: BaseView.cs
-//Version: 20130501
+//Version: 20131020
 
 using System.ComponentModel;
 using System;
@@ -29,7 +29,7 @@ namespace ClipFlair.Windows.Views
       OptionsSource = view.OptionsSource;
       ID = view.ID;
       Title = view.Title;
-      Position = view.Position;
+      Position = view.Position; //no need to set X and Y, they're X and Y field accessors for Position property
       Width = view.Width;
       Height = view.Height;
       Zoom = view.Zoom;
@@ -38,8 +38,10 @@ namespace ClipFlair.Windows.Views
       Resizable = view.Resizable;
       Zoomable = view.Zoomable;
       WarnOnClosing = view.WarnOnClosing;
+      //
+      Dirty = false; //must be last - any overriden versions should also set this
     }
-
+    
     #region INotifyPropertyChanged
 
     public event PropertyChangedEventHandler PropertyChanged;
@@ -54,6 +56,7 @@ namespace ClipFlair.Windows.Views
 
     #region Fields
 
+    private bool dirty;
     private bool busy;
     private Uri optionsSource;
     private string id;
@@ -72,7 +75,22 @@ namespace ClipFlair.Windows.Views
 
     #region Properties
 
-    //Not storable
+    //not stored
+    [DefaultValue(ViewDefaults.DefaultDirty)]
+    public bool Dirty
+    {
+      get { return dirty; }
+      set
+      {
+        if (value != dirty)
+        {
+          dirty = value;
+          RaisePropertyChanged(IViewProperties.PropertyDirty);
+        }
+      }
+    }
+
+    //not stored
     [DefaultValue(ViewDefaults.DefaultBusy)]
     public bool Busy
     {
@@ -128,12 +146,13 @@ namespace ClipFlair.Windows.Views
         {
           title = value;
           RaisePropertyChanged(IViewProperties.PropertyTitle);
+          Dirty = true;
         }
       }
     }    
 
     [DataMember]
-    //[DefaultValue(ViewDefaults.DefaultPosition)]
+    //[DefaultValue(ViewDefaults.DefaultPosition)] //doesn't support Point for DefaultValue
     public Point Position
     {
       get { return position; }
@@ -143,6 +162,43 @@ namespace ClipFlair.Windows.Views
         {
           position = value;
           RaisePropertyChanged(IViewProperties.PropertyPosition);
+          RaisePropertyChanged(IViewProperties.PropertyX);
+          RaisePropertyChanged(IViewProperties.PropertyY);
+          Dirty = true;
+        }
+      }
+    }
+
+    //not stored, just a wrapper for Position.X
+    [DefaultValue(ViewDefaults.DefaultX)]
+    public double X
+    {
+      get { return position.X; }
+      set
+      {
+        if (value != position.X)
+        {
+          position.X = value;
+          RaisePropertyChanged(IViewProperties.PropertyX);
+          RaisePropertyChanged(IViewProperties.PropertyPosition);
+          Dirty = true;
+        }
+      }
+    }
+
+    //not stored, just a wrapper for Position.Y
+    [DefaultValue(ViewDefaults.DefaultY)]
+    public double Y
+    {
+      get { return position.Y; }
+      set
+      {
+        if (value != position.Y)
+        {
+          position.Y = value;
+          RaisePropertyChanged(IViewProperties.PropertyY);
+          RaisePropertyChanged(IViewProperties.PropertyPosition);
+          Dirty = true;
         }
       }
     }
@@ -158,6 +214,7 @@ namespace ClipFlair.Windows.Views
         {
           width = value;
           RaisePropertyChanged(IViewProperties.PropertyWidth);
+          Dirty = true;
         }
       }
     }
@@ -173,6 +230,7 @@ namespace ClipFlair.Windows.Views
         {
           height = value;
           RaisePropertyChanged(IViewProperties.PropertyHeight);
+          Dirty = true;
         }
       }
     }
@@ -188,6 +246,7 @@ namespace ClipFlair.Windows.Views
         {
           zoom = value;
           RaisePropertyChanged(IViewProperties.PropertyZoom);
+          Dirty = true;
         }
       }
     }
@@ -203,6 +262,7 @@ namespace ClipFlair.Windows.Views
         {
           opacity = value;
           RaisePropertyChanged(IViewProperties.PropertyOpacity);
+          Dirty = true;
         }
       }
     }
@@ -218,6 +278,7 @@ namespace ClipFlair.Windows.Views
         {
           moveable = value;
           RaisePropertyChanged(IViewProperties.PropertyMoveable);
+          Dirty = true;
         }
       }
     }
@@ -233,6 +294,7 @@ namespace ClipFlair.Windows.Views
         {
           resizable = value;
           RaisePropertyChanged(IViewProperties.PropertyResizable);
+          Dirty = true;
         }
       }
     }
@@ -248,6 +310,7 @@ namespace ClipFlair.Windows.Views
         {
           zoomable = value;
           RaisePropertyChanged(IViewProperties.PropertyZoomable);
+          Dirty = true;
         }
       }
     }
@@ -263,6 +326,7 @@ namespace ClipFlair.Windows.Views
         {
           warnOnClosing = value;
           RaisePropertyChanged(IViewProperties.PropertyWarnOnClosing);
+          Dirty = true;
         }
       }
     }
