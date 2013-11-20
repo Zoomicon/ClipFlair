@@ -21,6 +21,10 @@
     <UpgradeBackupLocation>
     </UpgradeBackupLocation>
     <OldToolsVersion>4.0</OldToolsVersion>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -155,6 +159,7 @@
     <Content Include="js\modernizr.custom.07231.js" />
     <Content Include="js\rollover.js" />
     <Content Include="js\translate.js" />
+    <Content Include="metadata\Default.aspx" />
     <Content Include="video\Default.aspx" />
     <Content Include="video\favicon.ico" />
     <Content Include="video\metadata\AgeGroup.xml">
@@ -250,6 +255,9 @@
     <Content Include="image\metadata\Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\PublishProfiles\Gallery.pubxml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
