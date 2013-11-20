@@ -1,5 +1,5 @@
 //Filename: FloatingWindow.cs
-//Version: 20131015
+//Version: 20131114
 
 using System;
 using System.IO;
@@ -549,8 +549,22 @@ namespace SilverFlow.Controls
             "ResizeEnabled",
             typeof(bool),
             typeof(FloatingWindow),
-            new PropertyMetadata(true));
+            new PropertyMetadata(true, OnResizeEnabledChanged));
 
+        /// <summary>
+        /// ResizeEnabled PropertyChangedCallback call back static function.
+        /// </summary>
+        /// <param name="d">FloatingWindow object whose ResizeEnabled property is changed.</param>
+        /// <param name="e">DependencyPropertyChangedEventArgs which contains the old and new values.</param>
+        private static void OnResizeEnabledChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+          FloatingWindow window = (FloatingWindow)d;
+          if ((bool)e.NewValue)
+            window.RestoreBorder();
+          else
+            window.HideBorder();
+        }
+      
         #endregion
 
         #region public double ResizingAreaThickness
@@ -2350,21 +2364,7 @@ namespace SilverFlow.Controls
                     previousPosition = Position;
                     previousSize = new Size(ActualWidth, ActualHeight);
 
-                    // Hide the outer border
-                    if (contentBorder != null)
-                    {
-                        contentBorderThickness = contentBorder.BorderThickness;
-                        contentBorderCornerRadius = contentBorder.CornerRadius;
-                        contentBorder.BorderThickness = new Thickness(0);
-                        contentBorder.CornerRadius = new CornerRadius(0);
-                    }
-
-                    Border border = chrome as Border;
-                    if (border != null)
-                    {
-                        chromeBorderCornerRadius = border.CornerRadius;
-                        border.CornerRadius = new CornerRadius(0);
-                    }
+                    HideBorder();
 
                     StartMaximizingAnimation();
                 }
@@ -2372,6 +2372,47 @@ namespace SilverFlow.Controls
                 previousWindowState = windowState;
                 windowState = WindowState.Maximized;
             }
+        }
+
+        void HideBorder()
+        {
+          // Guarantee that the visual tree of an element is complete
+          ApplyTemplate();
+          
+          // Hide the outer border
+          if (contentBorder != null)
+          {
+            contentBorderThickness = contentBorder.BorderThickness;
+            contentBorderCornerRadius = contentBorder.CornerRadius;
+            contentBorder.BorderThickness = new Thickness(0);
+            contentBorder.CornerRadius = new CornerRadius(0);
+          }
+
+          Border border = chrome as Border;
+          if (border != null)
+          {
+            chromeBorderCornerRadius = border.CornerRadius;
+            border.CornerRadius = new CornerRadius(0);
+          }
+        }
+
+        void RestoreBorder()
+        {
+          if (!ResizeEnabled) return; //keep border hidden if window is not resizable
+
+          // Guarantee that the visual tree of an element is complete
+          ApplyTemplate();
+          
+          // Restore the outer border
+          if (contentBorder != null)
+          {
+            contentBorder.BorderThickness = contentBorderThickness;
+            contentBorder.CornerRadius = contentBorderCornerRadius;
+          }
+
+          Border border = chrome as Border;
+          if (border != null)
+            border.CornerRadius = chromeBorderCornerRadius;
         }
 
         /// <summary>
@@ -2434,17 +2475,7 @@ namespace SilverFlow.Controls
                     VisualStateManager.GoToState(maximizeButton, VSMSTATE_StateNormal, true);
                 }
 
-                // Restore the outer border
-                if (contentBorder != null)
-                {
-                    contentBorder.BorderThickness = contentBorderThickness;
-                    contentBorder.CornerRadius = contentBorderCornerRadius;
-                }
-
-                Border border = chrome as Border;
-
-                if (border != null)
-                    border.CornerRadius = chromeBorderCornerRadius;
+                RestoreBorder();
 
                 StartRestoringAnimation();
                 windowState = WindowState.Normal;
