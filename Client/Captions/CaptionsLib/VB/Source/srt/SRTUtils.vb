@@ -1,5 +1,5 @@
 ﻿'Filenam: SRTUtils.vb
-'Version: 20121114
+'Version: 20121119
 
 Imports ClipFlair.CaptionsLib.Utils.DateTimeUtils
 
@@ -34,7 +34,7 @@ Namespace ClipFlair.CaptionsLib.SRT
 
           caption.Content = ""
           For i As Integer = 2 To TimesAndCaptions.Length - 1
-            If (caption.Content <> "") Then caption.Content += vbCrLf
+            If (CStr(caption.Content) <> "") Then caption.Content += vbCrLf
             caption.Content += TimesAndCaptions(i)
           Next
         End If
