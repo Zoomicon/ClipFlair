@@ -6,12 +6,12 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("ClipFlair Studio")]
-[assembly: AssemblyDescription("Foreign Language Learning through Interactive Revoicing and Captioning of Clips")]
+[assembly: AssemblyDescription("ClipFlair - Foreign Language Learning through Interactive Revoicing and Captioning of Clips")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("ClipFlair (http://ClipFlair.net)")]
-[assembly: AssemblyProduct("ClipFlair")]
+[assembly: AssemblyProduct("ClipFlair Studio")]
 [assembly: AssemblyCopyright("Copyright ©  2012-2013")]
-[assembly: AssemblyTrademark("")]
+[assembly: AssemblyTrademark("ClipFlair")]
 [assembly: AssemblyCulture("")]
 
 // Setting ComVisible to false makes the types in this assembly not visible 
