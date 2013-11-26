@@ -22,7 +22,7 @@
   <div class="wrapper">
 	<div class="header-wrapper">
    	    <div class="header">
-       	    <a href='<%= MonoSoftware.Web.UrlFormatter.ResolveServerUrl(MonoSoftware.MonoX.Utilities.LocalizationUtility.RewriteLink("~/Default.aspx")) %>' class="logo"><img runat="server" src="<%$ Code: MonoSoftware.MonoX.Paths.App_Themes.img.logo_png %>" alt="MonoX" /></a>             
+       	    <a href="http://clipflair.net" class="logo"><img runat="server" src="<%$ Code: MonoSoftware.MonoX.Paths.App_Themes.img.logo_png %>" alt="MonoX" /></a>             
             <asp:ContentPlaceHolder ID="cp" runat="server">
             </asp:ContentPlaceHolder>
         </div>
