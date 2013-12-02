@@ -37,6 +37,7 @@
       this.mnuSize800x600 = new System.Windows.Forms.ToolStripMenuItem();
       this.mnuSize1024x768 = new System.Windows.Forms.ToolStripMenuItem();
       this.mnuSize1280x1024 = new System.Windows.Forms.ToolStripMenuItem();
+      this.mnuSize1920x1010 = new System.Windows.Forms.ToolStripMenuItem();
       this.panelToolbar = new System.Windows.Forms.Panel();
       this.btnForward = new System.Windows.Forms.Button();
       this.btnBack = new System.Windows.Forms.Button();
@@ -83,7 +84,8 @@
             this.mnuSize640x480,
             this.mnuSize800x600,
             this.mnuSize1024x768,
-            this.mnuSize1280x1024});
+            this.mnuSize1280x1024,
+            this.mnuSize1920x1010});
       this.btnWebBrowserSize.Image = ((System.Drawing.Image)(resources.GetObject("btnWebBrowserSize.Image")));
       this.btnWebBrowserSize.ImageTransparentColor = System.Drawing.Color.Magenta;
       this.btnWebBrowserSize.Name = "btnWebBrowserSize";
@@ -93,30 +95,37 @@
       // mnuSize640x480
       // 
       this.mnuSize640x480.Name = "mnuSize640x480";
-      this.mnuSize640x480.Size = new System.Drawing.Size(128, 22);
+      this.mnuSize640x480.Size = new System.Drawing.Size(152, 22);
       this.mnuSize640x480.Text = "640x480";
       this.mnuSize640x480.Click += new System.EventHandler(this.mnuSize640x480_Click);
       // 
       // mnuSize800x600
       // 
       this.mnuSize800x600.Name = "mnuSize800x600";
-      this.mnuSize800x600.Size = new System.Drawing.Size(128, 22);
+      this.mnuSize800x600.Size = new System.Drawing.Size(152, 22);
       this.mnuSize800x600.Text = "800x600";
       this.mnuSize800x600.Click += new System.EventHandler(this.mnuSize800x600_Click);
       // 
       // mnuSize1024x768
       // 
       this.mnuSize1024x768.Name = "mnuSize1024x768";
-      this.mnuSize1024x768.Size = new System.Drawing.Size(128, 22);
+      this.mnuSize1024x768.Size = new System.Drawing.Size(152, 22);
       this.mnuSize1024x768.Text = "1024x768";
       this.mnuSize1024x768.Click += new System.EventHandler(this.mnuSize1024x768_Click);
       // 
       // mnuSize1280x1024
       // 
       this.mnuSize1280x1024.Name = "mnuSize1280x1024";
-      this.mnuSize1280x1024.Size = new System.Drawing.Size(128, 22);
+      this.mnuSize1280x1024.Size = new System.Drawing.Size(152, 22);
       this.mnuSize1280x1024.Text = "1280x1024";
       this.mnuSize1280x1024.Click += new System.EventHandler(this.mnuSize1280x1024_Click);
+      // 
+      // mnuSize1920x1010
+      // 
+      this.mnuSize1920x1010.Name = "mnuSize1920x1010";
+      this.mnuSize1920x1010.Size = new System.Drawing.Size(152, 22);
+      this.mnuSize1920x1010.Text = "1920x1010";
+      this.mnuSize1920x1010.Click += new System.EventHandler(this.mnuSize1920x1010_Click);
       // 
       // panelToolbar
       // 
@@ -245,6 +254,7 @@
     private System.Windows.Forms.Button btnForward;
     private System.Windows.Forms.Button btnBack;
     private System.Windows.Forms.Timer timerScreenshot;
+    private System.Windows.Forms.ToolStripMenuItem mnuSize1920x1010;
   }
 }
 

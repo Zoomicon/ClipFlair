@@ -1,16 +1,14 @@
 ﻿//Project: WebCapture
 //Filename: MainForm.cs
 //Author: George Birbilis (http://zoomicon.com)
-//Version: 20130825
+//Version: 20131202
 
 using System;
 using System.Deployment.Application;
 using System.Drawing;
 using System.IO;
 using System.Reflection;
-using System.Threading;
 using System.Windows.Forms;
-using System.Windows.Threading;
 
 namespace WebCapture
 {
@@ -23,6 +21,7 @@ namespace WebCapture
     public static readonly Size SIZE_800x600 = new Size(800, 600);
     public static readonly Size SIZE_1024x768 = new Size(1024, 768);
     public static readonly Size SIZE_1280x1024 = new Size(1280, 1024);
+    public static readonly Size SIZE_1920x1010 = new Size(1920, 1010);
 
     public const string MSG_ERROR_WRONG_URL = "Wrong URL";
     public const string MSG_ERROR_WRONG_NUMBER = "Wrong number";
@@ -247,6 +246,11 @@ namespace WebCapture
       BrowserSize = SIZE_1280x1024;
     }
 
+    private void mnuSize1920x1010_Click(object sender, EventArgs e)
+    {
+      BrowserSize = SIZE_1920x1010;
+    }
+        
     private void timerScreenshot_Tick(object sender, EventArgs e)
     {
       timerScreenshot.Enabled = false; //must do first
