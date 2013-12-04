@@ -1,5 +1,5 @@
 //Filename: FloatingWindow.cs
-//Version: 20131124
+//Version: 20131204
 
 using System;
 using System.IO;
@@ -159,6 +159,8 @@ namespace SilverFlow.Controls
 
     // Bitmap containing thumbnail image
     private ImageSource minimizedWindowThumbnail;
+
+    private bool templateIsApplied; //=false
 
     #endregion Member Fields
 
@@ -1863,44 +1865,43 @@ namespace SilverFlow.Controls
     /// <exception cref="System.InvalidOperationException">"The FloatingWindow was not added to the host.</exception>
     private void ShowWindow(Point point)
     {
-      if (!IsOpen)
-      {
-        if (IsModal)
-          this.FloatingWindowHost.ShowWindowAsModal(this);
-
-        SubscribeToEvents();
-        SubscribeToTemplatePartEvents();
-        SubscribeToStoryBoardEvents();
-
-        // Guarantee that the visual tree of an element is complete
-        ApplyTemplate();
-
-        // Brings current window to the front
-        SetTopmost();
-
-        Point position = point;
-
-        if (point.IsNotSet())
-          position = CenteredWindowPosition;
-
-        MoveWindow(position);
-        this.SetVisible(true);
-
-        if (!IsWindowSizeSet && point.IsNotSet())
-        {
-          // If window size is not set explicitly we should wait
-          // when the window layout is updated and update its position
-          contentRoot.SizeChanged += new SizeChangedEventHandler(ContentRoot_SizeChanged);
-        }
-
-        VisualStateManager.GoToState(this, VSMSTATE_StateOpen, true);
-        IsOpen = true;
-      }
-      else
+      if (IsOpen)
       {
         MoveWindow(point);
         this.SetVisible(true);
+        return;
       }
+
+      if (IsModal)
+        this.FloatingWindowHost.ShowWindowAsModal(this);
+
+      SubscribeToEvents();
+
+      //SubscribeToTemplatePartEvents(); //this is done at "ApplyTemplate", called below (and may have been done already if templateIsApplied)
+      //SubscribeToStoryBoardEvents();   //this is done at "ApplyTemplate", called below (and may have been done already if templateIsApplied)
+
+      // Guarantee that the visual tree of an element is complete
+      if (!templateIsApplied)
+        ApplyTemplate();
+
+      // Brings current window to the front
+      SetTopmost();
+
+      Point position = point;
+
+      if (point.IsNotSet())
+        position = CenteredWindowPosition;
+
+      MoveWindow(position);
+      this.SetVisible(true);
+
+      // If window size is not set explicitly we should wait
+      // when the window layout is updated and update its position
+      if (!IsWindowSizeSet && point.IsNotSet())
+        contentRoot.SizeChanged += new SizeChangedEventHandler(ContentRoot_SizeChanged);
+
+      VisualStateManager.GoToState(this, VSMSTATE_StateOpen, true);
+      IsOpen = true;
     }
 
     /// <summary>
@@ -2213,11 +2214,11 @@ namespace SilverFlow.Controls
     {
       // Gets the element with keyboard focus
       Control elementWithFocus =
-        #if SILVERLIGHT
-        FocusManager.GetFocusedElement() as Control;
-        #else
+#if SILVERLIGHT
+ FocusManager.GetFocusedElement() as Control;
+#else
         Keyboard.FocusedElement as Control;
-        #endif
+#endif
 
       // Brings current window to the front
       SetTopmost(); //TODO: add property AutoBringToFront (default true) to select whether we want it to be brought to front automatically
@@ -2302,6 +2303,8 @@ namespace SilverFlow.Controls
 
       SubscribeToTemplatePartEvents();
       SubscribeToStoryBoardEvents();
+
+      templateIsApplied = true;
     }
 
     /// <summary>
@@ -2540,7 +2543,8 @@ namespace SilverFlow.Controls
     void HideBorder()
     {
       // Guarantee that the visual tree of an element is complete
-      ApplyTemplate();
+      if (!templateIsApplied)
+        ApplyTemplate();
 
       // Hide the outer border
       if (contentBorder != null)
@@ -2564,7 +2568,8 @@ namespace SilverFlow.Controls
       if (!ResizeEnabled) return; //keep border hidden if window is not resizable
 
       // Guarantee that the visual tree of an element is complete
-      ApplyTemplate();
+      if (!templateIsApplied)
+        ApplyTemplate();
 
       // Restore the outer border
       if (contentBorder != null)
