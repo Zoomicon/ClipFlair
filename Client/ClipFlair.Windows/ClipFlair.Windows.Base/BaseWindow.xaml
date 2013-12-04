@@ -1,7 +1,7 @@
 ﻿<!--
 Project: ClipFlair (http://ClipFlair.codeplex.com)
 Filename: BaseWindow.xaml
-Version: 20131120
+Version: 20131204
 -->
 
 <float:FloatingWindow x:Class="ClipFlair.Windows.BaseWindow"
@@ -111,7 +111,7 @@ Version: 20131120
 
             <toolkit:Accordion Grid.Row="1" SelectionMode="ZeroOrOne" SelectionSequence="Simultaneous" ExpandDirection="Down" HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch">
 
-              <toolkit:AccordionItem Header="View Options" IsSelected="False" Background="Transparent" HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch">
+              <toolkit:AccordionItem Header="Window Options" IsSelected="False" Background="Transparent" HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch">
                 <toolkit:AccordionItem.Content>
 
                   <StackPanel Name="PropertiesPanelBase" Orientation="Vertical" Margin="10,10,10,10" HorizontalAlignment="Stretch">

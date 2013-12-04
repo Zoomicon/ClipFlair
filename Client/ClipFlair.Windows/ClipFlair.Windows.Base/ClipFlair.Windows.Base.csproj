@@ -80,15 +80,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BaseView.cs" />
+    <Compile Include="View\BaseView.cs" />
     <Compile Include="BaseWindow.xaml.cs">
       <DependentUpon>BaseWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="IViewFactory.cs" />
-    <Compile Include="IViewProperties.cs" />
+    <Compile Include="View\IViewFactory.cs" />
+    <Compile Include="View\IViewProperties.cs" />
     <Compile Include="IWindowFactory.cs" />
-    <Compile Include="IView.cs" />
-    <Compile Include="ViewDefaults.cs" />
+    <Compile Include="View\IView.cs" />
+    <Compile Include="View\ViewDefaults.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

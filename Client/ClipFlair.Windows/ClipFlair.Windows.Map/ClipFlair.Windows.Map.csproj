@@ -80,11 +80,11 @@
     <Reference Include="System.Windows.Controls.Data.Input, Version=5.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IMapViewerProperties.cs" />
+    <Compile Include="View\IMapViewerProperties.cs" />
     <Compile Include="MapWindowFactory.cs" />
-    <Compile Include="IMapViewer.cs" />
-    <Compile Include="MapViewerDefaults.cs" />
-    <Compile Include="MapView.cs" />
+    <Compile Include="View\IMapViewer.cs" />
+    <Compile Include="View\MapViewerDefaults.cs" />
+    <Compile Include="View\MapView.cs" />
     <Compile Include="MapWindow.xaml.cs">
       <DependentUpon>MapWindow.xaml</DependentUpon>
     </Compile>
