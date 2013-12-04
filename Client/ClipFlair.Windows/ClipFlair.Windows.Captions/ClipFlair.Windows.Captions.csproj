@@ -82,15 +82,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CaptionsGridWindowFactory.cs" />
-    <Compile Include="CaptionsGridView.cs" />
+    <Compile Include="View\CaptionsGridView.cs" />
     <Compile Include="CaptionsGridWindow.xaml.cs">
       <DependentUpon>CaptionsGridWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="CaptionsGridDefaults.cs" />
-    <Compile Include="ICaptionsGrid.cs">
+    <Compile Include="View\CaptionsGridDefaults.cs" />
+    <Compile Include="View\ICaptionsGrid.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="ICaptionsGridProperties.cs" />
+    <Compile Include="View\ICaptionsGridProperties.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

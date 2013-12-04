@@ -73,11 +73,11 @@
     <Reference Include="System.Windows.Controls.Data.Input, Version=5.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IImageViewerProperties.cs" />
+    <Compile Include="View\IImageViewerProperties.cs" />
     <Compile Include="ImageWindowFactory.cs" />
-    <Compile Include="IImageViewer.cs" />
-    <Compile Include="ImageViewerDefaults.cs" />
-    <Compile Include="ImageView.cs" />
+    <Compile Include="View\IImageViewer.cs" />
+    <Compile Include="View\ImageViewerDefaults.cs" />
+    <Compile Include="View\ImageView.cs" />
     <Compile Include="ImageWindow.xaml.cs">
       <DependentUpon>ImageWindow.xaml</DependentUpon>
     </Compile>
