@@ -24,11 +24,9 @@ namespace ClipFlair.Windows.Views
 
     //fields are initialized via respective properties at "SetDefaults" method
     private Uri source;
-    private TimeSpan time;
     private bool toolbarVisible;
     private bool editable;
-    private bool rtl;
-
+  
     #endregion
 
     #region Properties
@@ -44,21 +42,6 @@ namespace ClipFlair.Windows.Views
         {
           source = value;
           RaisePropertyChanged(ITextEditorProperties.PropertySource);
-        }
-      }
-    }
-
-    [DataMember(Order = 0)] //Order=0 means this gets deserialized after other fields (that don't have order set)
-    //[DefaultValue(TextEditorDefaults.DefaultTime)] //can't use static fields here (and we're forced to use one for TimeSpan unfortunately, doesn't work with const)
-    public virtual TimeSpan Time
-    {
-      get { return time; }
-      set
-      {
-        if (value != time)
-        {
-          time = value;
-          RaisePropertyChanged(ITextEditorProperties.PropertyTime);
         }
       }
     }
@@ -89,21 +72,6 @@ namespace ClipFlair.Windows.Views
         {
           editable = value;
           RaisePropertyChanged(ITextEditorProperties.PropertyEditable);
-        }
-      }
-    }
-
-    [DataMember]
-    [DefaultValue(TextEditorDefaults.DefaultRTL)]
-    public bool RTL
-    {
-      get { return rtl; }
-      set
-      {
-        if (value != rtl)
-        {
-          rtl = value;
-          RaisePropertyChanged(ITextEditorProperties.PropertyRTL);
         }
       }
     }

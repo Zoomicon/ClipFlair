@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: IMediaPlayer.cs
-//Version: 20130710
+//Version: 20131205
 
 using Microsoft.SilverlightMediaFramework.Core.Accessibility.Captions;
 
@@ -12,7 +12,6 @@ namespace ClipFlair.Windows.Views
  public interface IMediaPlayer: IView
   {
     Uri Source { get; set; }
-    TimeSpan Time { get; set; }
     TimeSpan ReplayOffset { get; set; }
     CaptionRegion Captions { get; set; }
     double Speed { get; set; }

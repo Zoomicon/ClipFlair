@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: ActivityDefaults.cs
-//Version: 20130204
+//Version: 20131205
 
 using Microsoft.SilverlightMediaFramework.Core.Accessibility.Captions;
 
@@ -22,7 +22,6 @@ namespace ClipFlair.Windows.Views
     #endregion
     
     public const Uri DefaultSource = null;
-    public static readonly TimeSpan DefaultTime = TimeSpan.Zero;
     public const CaptionRegion DefaultCaptions = null; //don't make this "static readonly", it's an object reference, not a struct (better check for "null" in the view and create default instance if needed)
     public static readonly Point DefaultViewPosition = new Point(0, 0);
     public const double DefaultViewWidth = 1000;
@@ -35,26 +34,28 @@ namespace ClipFlair.Windows.Views
 
     #region Methods
 
-    public static void SetDefaults(IActivity activity)
+    public static void SetDefaults(IActivity view)
     {
       //IView defaults and overrides
-      ViewDefaults.SetDefaults(activity);
-      activity.Title = DefaultTitle;
-      activity.Width = DefaultWidth;
-      activity.Height = DefaultHeight;
+      ViewDefaults.SetDefaults(view);
+      view.Title = DefaultTitle;
+      view.Width = DefaultWidth;
+      view.Height = DefaultHeight;
 
       //IActivity defaults
-      activity.Source = DefaultSource;
-      activity.Time = DefaultTime;
-      activity.Captions = DefaultCaptions;
-      activity.ViewPosition = DefaultViewPosition;
-      activity.ViewWidth = DefaultViewWidth;
-      activity.ViewHeight = DefaultViewHeight;
-      activity.ContentZoom = DefaultContentZoom;
-      activity.ContentZoomable = DefaultContentZoomable;
-      activity.ContentZoomToFit = DefaultContentZoomToFit;
-      activity.ContentPartsConfigurable = DefaultContentPartsConfigurable;
-      activity.ToolbarVisible = DefaultToolbarVisible;
+      view.Source = DefaultSource;
+      view.Captions = DefaultCaptions;
+      view.ViewPosition = DefaultViewPosition;
+      view.ViewWidth = DefaultViewWidth;
+      view.ViewHeight = DefaultViewHeight;
+      view.ContentZoom = DefaultContentZoom;
+      view.ContentZoomable = DefaultContentZoomable;
+      view.ContentZoomToFit = DefaultContentZoomToFit;
+      view.ContentPartsConfigurable = DefaultContentPartsConfigurable;
+      view.ToolbarVisible = DefaultToolbarVisible;
+
+      //Dirty flag
+      view.Dirty = ViewDefaults.DefaultDirty; //must do last - this should be set again at the end of any SetDefaults method (at descendents)
     }
 
     #endregion

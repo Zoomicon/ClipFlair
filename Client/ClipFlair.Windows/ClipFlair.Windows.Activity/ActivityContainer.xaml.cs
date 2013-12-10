@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: ActivityContainer.xaml.cs
-//Version: 20131023
+//Version: 20131205
 
 //TODO: add ContentPartsCloseable property
 //TODO: add ContentPartsZoomable property
@@ -13,7 +13,7 @@
 #define PART_IMAGE
 #define PART_MAP
 #define PART_GALLERY
-//#define PART_NESTED_ACTIVITY
+#define PART_NESTED_ACTIVITY
 
 //TODO: maybe use MEF Deployment Catalog and put components in separate XAPs (each one a Silverlight app, set to reuse the same Web PRoject) and imported here with CopyLocal=False
 
@@ -284,9 +284,9 @@ namespace ClipFlair.Windows
       return window;
     }
 
-    public BaseWindow AddWindow(BaseWindow window)
+    public BaseWindow AddWindow(BaseWindow window, bool bringToFront = true)
     {
-      zuiContainer.Add(window).Show();
+      zuiContainer.Add(window).Show(bringToFront);
       BindWindow(window);
 
       //GalleryWindow gw = window as GalleryWindow; //TODO: try to remove this patch (needed to be able to load activities with saved gallery that has a filter set to it)
@@ -306,6 +306,7 @@ namespace ClipFlair.Windows
       else if (window is TextEditorWindow) BindTextEditorWindow((TextEditorWindow)window);
       else if (window is ImageWindow) BindImageWindow((ImageWindow)window);
       else if (window is MapWindow) BindMapWindow((MapWindow)window);
+      else if (window is GalleryWindow) BindGalleryWindow((GalleryWindow)window);
     }
 
     private void BindMediaPlayerWindow(MediaPlayerWindow window)
@@ -313,8 +314,8 @@ namespace ClipFlair.Windows
       if (window.View != null && View != null)
         try
         {
-          BindingUtils.BindProperties(window.View, IMediaPlayerProperties.PropertyTime,
-                                      View, IActivityProperties.PropertyTime); //TODO: should rebind after changing view if the window is inside a BaseWindow (get its View and bind to it)
+          BindingUtils.BindProperties(window.View, IViewProperties.PropertyTime,
+                                      View, IViewProperties.PropertyTime); //TODO: should rebind after changing view if the window is inside a BaseWindow (get its View and bind to it)
 
           BindingUtils.BindProperties(window.View, IMediaPlayerProperties.PropertyCaptions,
                                       View, IActivityProperties.PropertyCaptions); //TODO: should rebind after changing view if the window is inside a BaseWindow (get its View and bind to it)
@@ -330,8 +331,8 @@ namespace ClipFlair.Windows
       if (window.View != null && View != null)
         try
         {
-          BindingUtils.BindProperties(window.View, ICaptionsGridProperties.PropertyTime,
-                                      View, IActivityProperties.PropertyTime); //TODO: should rebind after changing view if the window is inside a BaseWindow (get its View and bind to it)
+          BindingUtils.BindProperties(window.View, IViewProperties.PropertyTime,
+                                      View, IViewProperties.PropertyTime); //TODO: should rebind after changing view if the window is inside a BaseWindow (get its View and bind to it)
 
           BindingUtils.BindProperties(window.View, ICaptionsGridProperties.PropertyCaptions,
                                       View, IActivityProperties.PropertyCaptions); //TODO: should rebind after changing view if the window is inside a BaseWindow (get its View and bind to it)
@@ -347,8 +348,8 @@ namespace ClipFlair.Windows
       if (window.View != null && View != null)
         try
         {
-          BindingUtils.BindProperties(window.View, ITextEditorProperties.PropertyTime,
-                                      View, IActivityProperties.PropertyTime); //TODO: should rebind after changing view if the window is inside a BaseWindow (get its View and bind to it)
+          BindingUtils.BindProperties(window.View, IViewProperties.PropertyTime,
+                                      View, IViewProperties.PropertyTime); //TODO: should rebind after changing view if the window is inside a BaseWindow (get its View and bind to it)
         }
         catch (Exception ex)
         {
@@ -361,8 +362,8 @@ namespace ClipFlair.Windows
       if (window.View != null && View != null)
         try
         {
-          BindingUtils.BindProperties(window.View, IImageViewerProperties.PropertyTime,
-                                      View, IActivityProperties.PropertyTime); //TODO: should rebind after changing view if the window is inside a BaseWindow (get its View and bind to it)
+          BindingUtils.BindProperties(window.View, IViewProperties.PropertyTime,
+                                      View, IViewProperties.PropertyTime); //TODO: should rebind after changing view if the window is inside a BaseWindow (get its View and bind to it)
         }
         catch (Exception ex)
         {
@@ -375,12 +376,26 @@ namespace ClipFlair.Windows
       if (window.View != null && View != null)
         try
         {
-          BindingUtils.BindProperties(window.View, IMapViewerProperties.PropertyTime,
-                                      View, IActivityProperties.PropertyTime); //TODO: should rebind after changing view if the window is inside a BaseWindow (get its View and bind to it)
+          BindingUtils.BindProperties(window.View, IViewProperties.PropertyTime,
+                                      View, IViewProperties.PropertyTime); //TODO: should rebind after changing view if the window is inside a BaseWindow (get its View and bind to it)
         }
         catch (Exception ex)
         {
           ErrorDialog.Show("Failed to bind Map component", ex);
+        }
+    }
+
+    private void BindGalleryWindow(GalleryWindow window)
+    {
+      if (window.View != null && View != null)
+        try
+        {
+          BindingUtils.BindProperties(window.View, IViewProperties.PropertyTime,
+                                      View, IViewProperties.PropertyTime); //TODO: should rebind after changing view if the window is inside a BaseWindow (get its View and bind to it)
+        }
+        catch (Exception ex)
+        {
+          ErrorDialog.Show("Failed to bind Gallery component", ex);
         }
     }
     

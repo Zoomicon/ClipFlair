@@ -87,11 +87,11 @@
     <Compile Include="ActivityWindow.xaml.cs">
       <DependentUpon>ActivityWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ActivityView.cs" />
+    <Compile Include="View\ActivityView.cs" />
     <Compile Include="ActivityWindowFactory.cs" />
-    <Compile Include="IActivityProperties.cs" />
-    <Compile Include="IActivity.cs" />
-    <Compile Include="ActivityDefaults.cs" />
+    <Compile Include="View\IActivityProperties.cs" />
+    <Compile Include="View\IActivity.cs" />
+    <Compile Include="View\ActivityDefaults.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -199,6 +199,10 @@
   <ItemGroup>
     <Resource Include="Images\AddGallery.png" />
     <Resource Include="Images\AddGallery_hover.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\AddActivity.png" />
+    <Resource Include="Images\AddActivity_hover.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Silverlight\$(SilverlightVersion)\Microsoft.Silverlight.CSharp.targets" />
   <ProjectExtensions>

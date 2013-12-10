@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: TextEditorView2.cs
-//Version: 20130501
+//Version: 20131205
 
 using System;
 using System.ComponentModel;
@@ -25,17 +25,17 @@ namespace ClipFlair.Windows.Views
       Source = view.Source;
       ToolbarVisible = view.ToolbarVisible;
       Editable = view.Editable;
-      RTL = view.RTL;      
+
+      //Dirty flag
+      Dirty = view.Dirty; //must be last - any overriden versions should also set this
     }
 
     #region Fields
 
     //fields are initialized via respective properties at "SetDefaults" method
     private Uri source;
-    private TimeSpan time;
     private bool toolbarVisible;
     private bool editable;
-    private bool rtl;
 
     #endregion
 
@@ -52,21 +52,6 @@ namespace ClipFlair.Windows.Views
         {
           source = value;
           RaisePropertyChanged(ITextEditorProperties.PropertySource);
-        }
-      }
-    }
-
-    [DataMember(Order = 0)] //Order=0 means this gets deserialized after other fields (that don't have order set)
-    //[DefaultValue(TextEditorDefaults.DefaultTime)] //can't use static fields here (and we're forced to use one for TimeSpan unfortunately, doesn't work with const)
-    public virtual TimeSpan Time
-    {
-      get { return time; }
-      set
-      {
-        if (value != time)
-        {
-          time = value;
-          RaisePropertyChanged(ITextEditorProperties.PropertyTime);
         }
       }
     }
@@ -97,21 +82,6 @@ namespace ClipFlair.Windows.Views
         {
           editable = value;
           RaisePropertyChanged(ITextEditorProperties.PropertyEditable);
-        }
-      }
-    }
-
-    [DataMember]
-    [DefaultValue(TextEditorDefaults.DefaultRTL)]
-    public bool RTL
-    {
-      get { return rtl; }
-      set
-      {
-        if (value != rtl)
-        {
-          rtl = value;
-          RaisePropertyChanged(ITextEditorProperties.PropertyRTL);
         }
       }
     }

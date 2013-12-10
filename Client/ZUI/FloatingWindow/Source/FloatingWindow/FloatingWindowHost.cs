@@ -1,5 +1,5 @@
 ﻿//Filename: FloatingWindowHost.cs
-//Version: 20131016
+//Version: 20131206
 
 using System;
 using System.Collections.Generic;
@@ -75,14 +75,9 @@ namespace SilverFlow.Controls
         private const double DefaultIconWidth = 120;
         private const double DefaultIconHeight = 70;
 
-        #endregion
+        #endregion Constants
 
         #region Member Fields
-
-        /// <summary>
-        /// Current ZIndex of a child element
-        /// </summary>
-        private static int zIndex = 1;
 
         private Grid root;
         private FrameworkElement contentRoot;
@@ -104,6 +99,17 @@ namespace SilverFlow.Controls
           get
           {
             return new Rect(0, 0, HostPanel.ActualWidth, HostPanel.ActualHeight);
+          }
+        }
+        public int MaxZIndex
+        {
+          get
+          {
+            return FloatingWindows.Aggregate(-1, (maxZIndex, window) =>
+            {
+              int w = Canvas.GetZIndex(window);
+              return (w > maxZIndex) ? w : maxZIndex;
+            });
           }
         }
 
@@ -1042,15 +1048,15 @@ namespace SilverFlow.Controls
         /// </summary>
         /// <param name="action">A method that displays a window in the specified coordinates.</param>
         /// <param name="point">Coordinates of the upper-left corner of the window.</param>
-        internal void ShowWindow(Action<Point> action, Point point)
+        internal void ShowWindow(Action<Point, bool> action, Point point, bool bringToFront = true)
         {
             if (IsLayoutUpdated)
             {
-                action(point);
+                action(point, bringToFront);
             }
             else
             {
-                this.Rendered += (s, e) => { action(point); };
+              this.Rendered += (s, e) => { action(point, bringToFront); };
             }
         }
 
@@ -1218,8 +1224,7 @@ namespace SilverFlow.Controls
             if (element == null)
                 throw new ArgumentNullException("element");
 
-            zIndex++; //TODO: should set the max of all zIndexes +1 (via LINQ)
-            Canvas.SetZIndex(element, zIndex);
+            Canvas.SetZIndex(element, MaxZIndex + 1);
         }
 
         /// <summary>

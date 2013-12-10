@@ -1,12 +1,13 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: IViewProperties.cs
-//Version: 20131120
+//Version: 20131206
 
 namespace ClipFlair.Windows.Views
 {
 
   public static class IViewProperties
   {
+    public const string PropertyTime = "Time";
     public const string PropertyDirty = "Dirty";
     public const string PropertyBusy = "Busy";
     public const string PropertyOptionsSource = "OptionsSource";
@@ -18,11 +19,13 @@ namespace ClipFlair.Windows.Views
     public const string PropertyWidth = "Width";
     public const string PropertyHeight = "Height";
     public const string PropertyZoom = "Zoom";
+    public const string PropertyZIndex = "ZIndex";
     public const string PropertyOpacity = "Opacity";
     public const string PropertyMoveable = "Moveable";
     public const string PropertyResizable = "Resizable";
     public const string PropertyZoomable = "Zoomable";
     public const string PropertyWarnOnClosing = "WarnOnClosing";
+    public const string PropertyRTL = "RTL";
   }
 
 }

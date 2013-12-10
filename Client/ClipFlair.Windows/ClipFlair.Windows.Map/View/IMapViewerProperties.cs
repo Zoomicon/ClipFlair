@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: IMapViewerProperties.cs
-//Version: 20131023
+//Version: 20131205
 
 namespace ClipFlair.Windows.Views
 {
@@ -19,7 +19,6 @@ namespace ClipFlair.Windows.Views
     public const string PropertyAltitude = "Altitude";
     public const string PropertyMapCenter = "MapCenter";
     public const string PropertyMapZoom = "MapZoom";
-    public const string PropertyTime = "Time";
   }
 
 }

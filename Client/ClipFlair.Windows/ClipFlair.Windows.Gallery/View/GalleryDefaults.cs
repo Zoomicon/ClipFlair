@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: GalleryDefaults.cs
-//Version: 20130701
+//Version: 20131205
 
 using System;
 using System.Windows;
@@ -24,17 +24,20 @@ namespace ClipFlair.Windows.Views
 
     #region Methods
 
-    public static void SetDefaults(IGallery gallery)
+    public static void SetDefaults(IGallery view)
     {
       //IView defaults and overrides
-      ViewDefaults.SetDefaults(gallery);
-      gallery.Title = DefaultTitle;
-      gallery.Width = DefaultWidth;
-      gallery.Height = DefaultHeight;
+      ViewDefaults.SetDefaults(view);
+      view.Title = DefaultTitle;
+      view.Width = DefaultWidth;
+      view.Height = DefaultHeight;
 
       //IGalleryViewer defaults
-      gallery.Source = DefaultSource;
-      gallery.Filter = DefaultFilter;
+      view.Source = DefaultSource;
+      view.Filter = DefaultFilter;
+
+      //Dirty flag
+      view.Dirty = ViewDefaults.DefaultDirty; //must do last - this should be set again at the end of any SetDefaults method (at descendents)
     }
 
     #endregion

@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: CaptionsGridDefaults.cs
-//Version: 20131022
+//Version: 20131205
 
 using Microsoft.SilverlightMediaFramework.Core.Accessibility.Captions;
 
@@ -24,7 +24,6 @@ namespace ClipFlair.Windows.Views
     #endregion
 
     public const Uri DefaultSource = null;
-    public static readonly TimeSpan DefaultTime = TimeSpan.Zero;
     public const CaptionRegion DefaultCaptions = null; //don't make this "static readonly", it's an object reference, not a struct (better check for "null" in the view and create default instance if needed)
     public const bool DefaultToolbarVisible = true;
     public const bool DefaultStartTimeVisible = true;
@@ -36,33 +35,33 @@ namespace ClipFlair.Windows.Views
     public const bool DefaultWPMVisible = false;
     public const bool DefaultAudioVisible = false;
     public const bool DefaultCommentsVisible = false;
-    public const bool DefaultRTL = false;
 
     #region Methods
 
-    public static void SetDefaults(ICaptionsGrid captions)
+    public static void SetDefaults(ICaptionsGrid view)
     {
       //IView defaults and overrides
-      ViewDefaults.SetDefaults(captions);
-      captions.Title = DefaultTitle;
-      captions.Width = DefaultWidth;
-      captions.Height = DefaultHeight;
+      ViewDefaults.SetDefaults(view);
+      view.Title = DefaultTitle;
+      view.Width = DefaultWidth;
+      view.Height = DefaultHeight;
 
       //ICaptionsGrid defaults
-      captions.Source = DefaultSource;
-      captions.Time = DefaultTime;
-      captions.Captions = DefaultCaptions;
-      captions.ToolbarVisible = DefaultToolbarVisible;
-      captions.StartTimeVisible = DefaultStartTimeVisible;
-      captions.EndTimeVisible = DefaultEndTimeVisible;
-      captions.DurationVisible = DefaultDurationVisible;
-      captions.RoleVisible = DefaultRoleVisible;
-      captions.CaptionVisible = DefaultCaptionVisible;
-      captions.CPSVisible = DefaultCPSVisible;
-      captions.WPMVisible = DefaultWPMVisible;
-      captions.AudioVisible = DefaultAudioVisible;
-      captions.CommentsVisible = DefaultCommentsVisible;
-      captions.RTL = DefaultRTL;
+      view.Source = DefaultSource;
+      view.Captions = DefaultCaptions;
+      view.ToolbarVisible = DefaultToolbarVisible;
+      view.StartTimeVisible = DefaultStartTimeVisible;
+      view.EndTimeVisible = DefaultEndTimeVisible;
+      view.DurationVisible = DefaultDurationVisible;
+      view.RoleVisible = DefaultRoleVisible;
+      view.CaptionVisible = DefaultCaptionVisible;
+      view.CPSVisible = DefaultCPSVisible;
+      view.WPMVisible = DefaultWPMVisible;
+      view.AudioVisible = DefaultAudioVisible;
+      view.CommentsVisible = DefaultCommentsVisible;
+
+      //Dirty flag
+      view.Dirty = ViewDefaults.DefaultDirty; //must do last - this should be set again at the end of any SetDefaults method (at descendents)
     }
 
     #endregion

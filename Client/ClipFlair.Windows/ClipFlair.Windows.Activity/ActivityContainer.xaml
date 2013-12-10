@@ -1,7 +1,7 @@
 ﻿<!--
 Project: ClipFlair (http://ClipFlair.codeplex.com)
 Filename: ActivityContainer.xaml
-Version: 20130508
+Version: 20131205
 -->
 
 <UserControl x:Class="ClipFlair.Windows.ActivityContainer" 
@@ -136,11 +136,13 @@ Version: 20130508
               ImageHover="Images/AddGallery_hover.png"
               />
 
-            <Button
+            <btn:ImageButton
               Name="btnAddNestedActivity" Visibility="Collapsed"
-              Content="+Activity"
-              VerticalAlignment="Center" Margin="0,0,5,0"
-              ToolTipService.ToolTip="Add nested Activity" />
+              VerticalAlignment="Center" Margin="0,0,5,0"              
+              ToolTipService.ToolTip="Add nested Activity"
+              Image="Images/AddActivity.png"
+              ImageHover="Images/AddActivity_hover.png"
+              />
 
           </StackPanel>
 

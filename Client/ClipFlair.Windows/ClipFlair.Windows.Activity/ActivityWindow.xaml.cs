@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: ActivityWindow.xaml.cs
-//Version: 20131001
+//Version: 20131206
 
 using Utils.Extensions;
 using Utils.Bindings;
@@ -125,10 +125,10 @@ namespace ClipFlair.Windows
         else
         { //TODO: maybe can use ";" to pass multiple search items instead of using two "foreach" loops
           foreach (ZipEntry childZip in zip.SelectEntries("*" + BaseWindow.CLIPFLAIR_ZIP_EXTENSION, zipFolder))
-            activity.AddWindow(LoadWindow(childZip)); //TODO: remove THIS NOTE when fixed: don't call Windows.Add, won't do bindings currently
+            activity.AddWindow(LoadWindow(childZip), bringToFront:false); //TODO: remove THIS NOTE when fixed: don't call Windows.Add, won't do bindings currently
 
           foreach (ZipEntry childZip in zip.SelectEntries("*" + BaseWindow.CLIPFLAIR_EXTENSION, zipFolder)) //in case somebody has placed .clipflair files inside a ClipFlair archive (when saving those contain .clipflair.zip files for each component)
-            activity.AddWindow(LoadWindow(childZip)); //TODO: remove THIS NOTE when fixed: don't call Windows.Add, won't do bindings currently
+            activity.AddWindow(LoadWindow(childZip), bringToFront: false); //TODO: remove THIS NOTE when fixed: don't call Windows.Add, won't do bindings currently
         }
       }
       finally
@@ -138,7 +138,7 @@ namespace ClipFlair.Windows
 
       if (IsTopLevel) //if this activity window is the outer container
       {
-        MoveEnabled = false;
+        MoveEnabled = false; //reapply TopLevel settings after load since default values will have been set to them
         ResizeEnabled = false;
         ScaleEnabled = false;
 

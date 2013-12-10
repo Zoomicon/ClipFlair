@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: CaptionsGridView.cs
-//Version: 20131022
+//Version: 20131205
 
 using Microsoft.SilverlightMediaFramework.Core.Accessibility.Captions;
 
@@ -24,7 +24,6 @@ namespace ClipFlair.Windows.Views
 
     //fields are initialized via respective properties at "SetDefaults" method
     private Uri source;
-    private TimeSpan time;
     private CaptionRegion captions;
     private bool toolbarVisible;
     private bool roleVisible;
@@ -36,7 +35,6 @@ namespace ClipFlair.Windows.Views
     private bool wpmVisible;
     private bool audioVisible;
     private bool commentsVisible;
-    private bool rtl;
 
     #endregion
 
@@ -53,21 +51,6 @@ namespace ClipFlair.Windows.Views
         {
           source = value;
           RaisePropertyChanged(ICaptionsGridProperties.PropertySource);
-        }
-      }
-    }
-
-    [DataMember]
-    //[DefaultValue(CaptionsGridDefaults.DefaultTime)] //can't use static fields here (we're forced to use static instead of const since we set a non-null default value)
-    public TimeSpan Time
-    {
-      get { return time; }
-      set
-      {
-        if (value != time)
-        {
-          time = value;
-          RaisePropertyChanged(ICaptionsGridProperties.PropertyTime);
         }
       }
     }
@@ -219,21 +202,6 @@ namespace ClipFlair.Windows.Views
       {
         commentsVisible = value;
         RaisePropertyChanged(ICaptionsGridProperties.PropertyCommentsVisible);
-      }
-    }
-
-    [DataMember]
-    [DefaultValue(CaptionsGridDefaults.DefaultRTL)]
-    public bool RTL
-    {
-      get { return rtl; }
-      set
-      {
-        if (value != rtl)
-        {
-          rtl = value;
-          RaisePropertyChanged(ICaptionsGridProperties.PropertyRTL);
-        }
       }
     }
 

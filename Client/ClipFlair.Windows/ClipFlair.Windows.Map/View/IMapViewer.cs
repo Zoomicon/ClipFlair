@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: IMapViewer.cs
-//Version: 20131023
+//Version: 20131205
 
 using Microsoft.Maps.MapControl;
 using Microsoft.Maps.MapControl.Core;
@@ -24,7 +24,6 @@ namespace ClipFlair.Windows.Views
     double Longitude { get; set; }
     Location MapCenter { get; set; }
     double MapZoom { get; set; }
-    TimeSpan Time { get; set; } //20131023
   }
 
 }
