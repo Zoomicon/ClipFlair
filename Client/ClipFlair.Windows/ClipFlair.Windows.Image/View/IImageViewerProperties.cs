@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: IImageViewerProperties.cs
-//Version: 20131120
+//Version: 20131205
 
 namespace ClipFlair.Windows.Views
 {
@@ -11,7 +11,6 @@ namespace ClipFlair.Windows.Views
     public const string PropertyContentZoomToFit = "ContentZoomToFit";
     public const string PropertyActionURL = "ActionURL";
     public const string PropertyActionTime = "ActionTime";
-    public const string PropertyTime = "Time";
   }
 
 }

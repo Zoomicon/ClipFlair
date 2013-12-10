@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: IMediaPlayerProperties.cs
-//Version: 20130710
+//Version: 20131205
 
 using Microsoft.SilverlightMediaFramework.Core.Accessibility.Captions;
 
@@ -12,7 +12,6 @@ namespace ClipFlair.Windows.Views
   public static class IMediaPlayerProperties
   {
     public const string PropertySource = "Source";
-    public const string PropertyTime = "Time";
     public const string PropertyReplayOffset = "ReplayOffset";
     public const string PropertyCaptions = "Captions";
     public const string PropertySpeed = "Speed";

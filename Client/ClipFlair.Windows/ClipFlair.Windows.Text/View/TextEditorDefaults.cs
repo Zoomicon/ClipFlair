@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: TextEditorDefaults.cs
-//Version: 20131023
+//Version: 20131205
 
 using System;
 using System.Windows;
@@ -19,10 +19,8 @@ namespace ClipFlair.Windows.Views
     #endregion
 
     public const Uri DefaultSource = null;
-    public static readonly TimeSpan DefaultTime = TimeSpan.Zero;    
     public const bool DefaultToolbarVisible = true;
     public const bool DefaultEditable = true;
-    public const bool DefaultRTL = false;
 
     #region Methods
 
@@ -33,13 +31,15 @@ namespace ClipFlair.Windows.Views
       editor.Title = DefaultTitle;
       editor.Width = DefaultWidth;
       editor.Height = DefaultHeight;
+      //editor.Color = DefaultColor;
 
       //ITextEditor defaults
       editor.Source = DefaultSource;
-      editor.Time = DefaultTime;
       editor.ToolbarVisible = DefaultToolbarVisible;
       editor.Editable = DefaultEditable;
-      editor.RTL = DefaultRTL;
+
+      //Dirty flag
+      editor.Dirty = ViewDefaults.DefaultDirty; //must do last - this should be set again at the end of any overriden SetDefaults versions (at descendents)
     }
 
     #endregion

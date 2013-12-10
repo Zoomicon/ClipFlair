@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: MapView.cs
-//Version: 20131120
+//Version: 20131205
 
 using Microsoft.Maps.MapControl;
 using Microsoft.Maps.MapControl.Core;
@@ -33,7 +33,6 @@ namespace ClipFlair.Windows.Views
     private bool labelsFading;
     private Location mapCenter;
     private double mapZoom;
-    private TimeSpan time;
 
     #endregion
 
@@ -241,21 +240,6 @@ namespace ClipFlair.Windows.Views
         {
           mapZoom = value;
           RaisePropertyChanged(IMapViewerProperties.PropertyMapZoom);
-        }
-      }
-    }
-
-    [DataMember(Order = 0)] //Order=0 means this gets deserialized after other fields (that don't have order set)
-    //[DefaultValue(MapViewerDefaults.DefaultTime)] //can't use static fields here (and we're forced to use one for TimeSpan unfortunately, doesn't work with const)
-    public virtual TimeSpan Time
-    {
-      get { return time; }
-      set
-      {
-        if (value != time)
-        {
-          time = value;
-          RaisePropertyChanged(IMapViewerProperties.PropertyTime);
         }
       }
     }

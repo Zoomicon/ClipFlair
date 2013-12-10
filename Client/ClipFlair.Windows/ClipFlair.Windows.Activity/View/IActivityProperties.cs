@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: IActivityProperties.cs
-//Version: 20130710
+//Version: 20131205
 
 namespace ClipFlair.Windows.Views
 {
@@ -8,7 +8,6 @@ namespace ClipFlair.Windows.Views
   public static class IActivityProperties
   {
     public const string PropertySource = "Source";
-    public const string PropertyTime = "Time";
     public const string PropertyCaptions = "Captions";
     public const string PropertyViewPosition = "ViewPosition";
     public const string PropertyViewWidth = "ViewWidth";

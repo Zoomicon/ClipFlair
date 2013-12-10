@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: BaseView.cs
-//Version: 20131020
+//Version: 20131206
 
 using System.ComponentModel;
 using System;
@@ -26,6 +26,8 @@ namespace ClipFlair.Windows.Views
       if (view == null) return;
 
       Busy = view.Busy;
+      //
+      Time = view.Time;
       OptionsSource = view.OptionsSource;
       ID = view.ID;
       Title = view.Title;
@@ -33,13 +35,16 @@ namespace ClipFlair.Windows.Views
       Width = view.Width;
       Height = view.Height;
       Zoom = view.Zoom;
+      ZIndex = view.ZIndex;
       Opacity = view.Opacity;
       Moveable = view.Moveable;
       Resizable = view.Resizable;
       Zoomable = view.Zoomable;
       WarnOnClosing = view.WarnOnClosing;
-      //
-      Dirty = false; //must be last - any overriden versions should also set this
+      RTL = view.RTL;
+      
+      //Dirty flag
+      Dirty = view.Dirty; //must be last - any overriden versions should also set this
     }
     
     #region INotifyPropertyChanged
@@ -56,6 +61,7 @@ namespace ClipFlair.Windows.Views
 
     #region Fields
 
+    private TimeSpan time;
     private bool dirty;
     private bool busy;
     private Uri optionsSource;
@@ -65,15 +71,32 @@ namespace ClipFlair.Windows.Views
     private double width;
     private double height;
     private double zoom;
+    private int zIndex;
     private double opacity;
     private bool moveable;
     private bool resizable;
     private bool zoomable;
     private bool warnOnClosing;
+    private bool rtl;
 
     #endregion
 
     #region Properties
+
+    [DataMember(Order = 0)] //Order=0 means this gets deserialized after other fields (that don't have order set)
+    //[DefaultValue(ViewDefaults.DefaultTime)] //can't use static fields here (and we're forced to use one for TimeSpan unfortunately, doesn't work with const)
+    public virtual TimeSpan Time
+    {
+      get { return time; }
+      set
+      {
+        if (value != time)
+        {
+          time = value;
+          RaisePropertyChanged(IViewProperties.PropertyTime);
+        }
+      }
+    }
 
     //not stored
     [DefaultValue(ViewDefaults.DefaultDirty)]
@@ -252,6 +275,22 @@ namespace ClipFlair.Windows.Views
     }
 
     [DataMember]
+    [DefaultValue(ViewDefaults.DefaultZIndex)]
+    public int ZIndex
+    {
+      get { return zIndex; }
+      set
+      {
+        if (value != zIndex)
+        {
+          zIndex = value;
+          RaisePropertyChanged(IViewProperties.PropertyZIndex);
+          Dirty = true;
+        }
+      }
+    }
+
+    [DataMember]
     [DefaultValue(ViewDefaults.DefaultOpacity)]
     public double Opacity
     {
@@ -330,7 +369,22 @@ namespace ClipFlair.Windows.Views
         }
       }
     }
-    
+
+    [DataMember]
+    [DefaultValue(ViewDefaults.DefaultRTL)]
+    public bool RTL
+    {
+      get { return rtl; }
+      set
+      {
+        if (value != rtl)
+        {
+          rtl = value;
+          RaisePropertyChanged(IViewProperties.PropertyRTL);
+        }
+      }
+    }
+
     #endregion
 
     #region Methods

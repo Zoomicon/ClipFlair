@@ -1,5 +1,5 @@
 //Filename: FloatingWindow.cs
-//Version: 20131204
+//Version: 20131206
 
 using System;
 using System.IO;
@@ -1019,34 +1019,42 @@ namespace SilverFlow.Controls
 
     #endregion
 
-    /*
-        #region FlowDirection
+    #region RTL
 
-        /// <summary>
-        /// Gets or sets the direction that title text flows within window's icon.
-        /// </summary>
-        /// <value>A constant name from the FlowDirection enumeration, either LeftToRight or RightToLeft.</value>
-        public FlowDirection FlowDirection
-        {
-            get { return (FlowDirection)GetValue(FlowDirectionProperty); }
-            set { SetValue(FlowDirectionProperty, value); }
-        }
+    /// <summary>
+    /// RTL Dependency Property
+    /// </summary>
+    public static readonly DependencyProperty RTLProperty =
+        DependencyProperty.Register("RTL", typeof(bool), typeof(FloatingWindow),
+            new FrameworkPropertyMetadata(false, new PropertyChangedCallback(OnRTLChanged)));
 
-        /// <summary>
-        /// Identifies the <see cref="FloatingWindow.FlowDirection" /> dependency property.
-        /// </summary>
-        /// <value>
-        /// The identifier for the <see cref="FloatingWindow.FlowDirection" /> dependency property.
-        /// </value>
-        public static readonly DependencyProperty FlowDirectionProperty =
-            DependencyProperty.Register(
-            "FlowDirection",
-            typeof(FlowDirection),
-            typeof(FloatingWindow),
-            new PropertyMetadata(FlowDirection.LeftToRight));
+    /// <summary>
+    /// Gets or sets the RTL property.
+    /// </summary>
+    public bool RTL
+    {
+      get { return (bool)GetValue(RTLProperty); }
+      set { SetValue(RTLProperty, value); }
+    }
 
-        #endregion
-*/
+    /// <summary>
+    /// Handles changes to the RTL property.
+    /// </summary>
+    private static void OnRTLChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    {
+      FloatingWindow target = (FloatingWindow)d;
+      target.OnRTLChanged((bool)e.OldValue, target.RTL);
+    }
+
+    /// <summary>
+    /// Provides derived classes an opportunity to handle changes to the IsAvailable property.
+    /// </summary>
+    protected virtual void OnRTLChanged(bool oldRTL, bool newRTL)
+    {
+      FlowDirection = (newRTL) ? System.Windows.FlowDirection.RightToLeft : System.Windows.FlowDirection.LeftToRight; //this will also flip titlebar and toolbar direction, scrollpanes etc.
+    }
+
+    #endregion
 
     #region public Style TitleStyle
 
@@ -1692,7 +1700,8 @@ namespace SilverFlow.Controls
 
       if (windowAction == WindowAction.Move)
       {
-        Point point = clickWindowPosition.Add(dx, dy);
+        double flow = (RTL) ? -1 : 1;
+        Point point = clickWindowPosition.Add(flow * dx, dy); //RTL only affects horizontal flow
         Rect rect = new Rect(point.X, point.Y, ActualWidth, ActualHeight);
 
         point = snapinController.SnapRectangle(rect);
@@ -1805,9 +1814,9 @@ namespace SilverFlow.Controls
     /// Opens the <see cref="FloatingWindow" /> in previously saved position or
     /// in the center of the <see cref="FloatingWindowHost" />.
     /// </summary>
-    public void Show()
+    public void Show(bool bringToFront = true)
     {
-      Show(Position);
+      Show(Position, centered:false, bringToFront:bringToFront);
     }
 
     /// <summary>
@@ -1838,11 +1847,11 @@ namespace SilverFlow.Controls
     /// </summary>
     /// <param name="point">Coordinates of the upper-left corner of the window.</param>
     /// <param name="centered">Center arround point</param>
-    public void Show(Point point, bool centered = false)
+    public void Show(Point point, bool centered = false, bool bringToFront = true)
     {
       CheckHost();
-      Action<Point> action = new Action<Point>(ShowWindow);
-      this.FloatingWindowHost.ShowWindow(action, (centered) ? new Point(point.X - Width / 2 * Scale, point.Y - Height / 2 * Scale) : point);
+      Action<Point, bool> action = new Action<Point, bool>(ShowWindow);
+      this.FloatingWindowHost.ShowWindow(action, (centered) ? new Point(point.X - Width / 2 * Scale, point.Y - Height / 2 * Scale) : point, bringToFront);
     }
 
     /// <summary>
@@ -1863,7 +1872,7 @@ namespace SilverFlow.Controls
     /// </summary>
     /// <param name="point">Coordinates of the upper-left corner of the window.</param>
     /// <exception cref="System.InvalidOperationException">"The FloatingWindow was not added to the host.</exception>
-    private void ShowWindow(Point point)
+    private void ShowWindow(Point point, bool bringToFront = true)
     {
       if (IsOpen)
       {
@@ -1885,7 +1894,8 @@ namespace SilverFlow.Controls
         ApplyTemplate();
 
       // Brings current window to the front
-      SetTopmost();
+      if (bringToFront)
+        SetTopmost();
 
       Point position = point;
 

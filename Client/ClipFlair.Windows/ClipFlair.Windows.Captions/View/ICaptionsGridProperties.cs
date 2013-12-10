@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: ICaptionsGrid.cs
-//Version: 20131022
+//Version: 20131205
 
 namespace ClipFlair.Windows.Views
 {
@@ -8,7 +8,6 @@ namespace ClipFlair.Windows.Views
   public static class ICaptionsGridProperties
   {
     public const string PropertySource = "Source";
-    public const string PropertyTime = "Time";
     public const string PropertyCaptions = "Captions";
     public const string PropertyToolbarVisible = "ToolbarVisible";
     public const string PropertyStartTimeVisible = "StartTimeVisible";
@@ -20,7 +19,6 @@ namespace ClipFlair.Windows.Views
     public const string PropertyWPMVisible = "WPMVisible";
     public const string PropertyAudioVisible = "AudioVisible";
     public const string PropertyCommentsVisible = "CommentsVisible";
-    public const string PropertyRTL = "RTL"; //20130606
   }
 
 }

@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: MediaPlayerDefaults.cs
-//Version: 20130419
+//Version: 20131205
 
 using Microsoft.SilverlightMediaFramework.Core.Accessibility.Captions;
 
@@ -21,7 +21,6 @@ namespace ClipFlair.Windows.Views
     #endregion
 
     public const Uri DefaultSource = null;
-    public static readonly TimeSpan DefaultTime = TimeSpan.Zero;
     public static readonly TimeSpan DefaultReplayOffset = TimeSpan.Zero;
     public const CaptionRegion DefaultCaptions = null;
     public const double DefaultSpeed = 1.0;
@@ -35,27 +34,29 @@ namespace ClipFlair.Windows.Views
     
     #region Methods
 
-    public static void SetDefaults(IMediaPlayer player)
+    public static void SetDefaults(IMediaPlayer view)
     {
       //IView defaults and overrides
-      ViewDefaults.SetDefaults(player);
-      player.Title = DefaultTitle;
-      player.Width = DefaultWidth;
-      player.Height = DefaultHeight;
+      ViewDefaults.SetDefaults(view);
+      view.Title = DefaultTitle;
+      view.Width = DefaultWidth;
+      view.Height = DefaultHeight;
 
       //IMediaPlayer defaults
-      player.Source = DefaultSource;
-      player.Time = DefaultTime;
-      player.ReplayOffset = DefaultReplayOffset;
-      player.Captions = DefaultCaptions;
-      player.Speed = DefaultSpeed;
-      player.Volume = DefaultVolume;
-      player.Balance = DefaultBalance;
-      player.AutoPlay = DefaultAutoPlay;
-      player.Looping = DefaultLooping;
-      player.VideoVisible = DefaultVideoVisible;
-      player.ControllerVisible = DefaultControllerVisible;
-      player.CaptionsVisible = DefaultCaptionsVisible;
+      view.Source = DefaultSource;
+      view.ReplayOffset = DefaultReplayOffset;
+      view.Captions = DefaultCaptions;
+      view.Speed = DefaultSpeed;
+      view.Volume = DefaultVolume;
+      view.Balance = DefaultBalance;
+      view.AutoPlay = DefaultAutoPlay;
+      view.Looping = DefaultLooping;
+      view.VideoVisible = DefaultVideoVisible;
+      view.ControllerVisible = DefaultControllerVisible;
+      view.CaptionsVisible = DefaultCaptionsVisible;
+
+      //Dirty flag
+      view.Dirty = ViewDefaults.DefaultDirty; //must do last - this should be set again at the end of any SetDefaults method (at descendents)
     }
 
     #endregion

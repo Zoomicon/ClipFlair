@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: MapViewerDefaults.cs
-//Version: 20131023
+//Version: 20131205
 
 using Microsoft.Maps.MapControl;
 using Microsoft.Maps.MapControl.Core;
@@ -33,29 +33,30 @@ namespace ClipFlair.Windows.Views
     public const double DefaultAltitude = 0;
     public static Location DefaultMapCenter = new Location(DefaultLatitude, DefaultLongitude, DefaultAltitude);
     public const double DefaultMapZoom = 1.0;
-    public static readonly TimeSpan DefaultTime = TimeSpan.Zero;
  
     #region Methods
 
-    public static void SetDefaults(IMapViewer map)
+    public static void SetDefaults(IMapViewer view)
     {
       //IView defaults and overrides
-      ViewDefaults.SetDefaults(map);
-      map.Title = DefaultTitle;
-      map.Width = DefaultWidth;
-      map.Height = DefaultHeight;
+      ViewDefaults.SetDefaults(view);
+      view.Title = DefaultTitle;
+      view.Width = DefaultWidth;
+      view.Height = DefaultHeight;
 
       //IMapViewer defaults
-      map.Inertia = DefaultInertia;
-      map.NavigationVisible = DefaultNavigationVisible;
-      map.ScaleVisible = DefaultScaleVisible;
-      map.Culture = DefaultCulture;
-      map.Mode = DefaultMode;
-      map.LabelsVisible = DefaultLabelsVisible;
-      map.LabelsFading = DefaultLabelsFading;
-      map.MapCenter = DefaultMapCenter;
-      map.MapZoom = DefaultMapZoom;
-      map.Time = DefaultTime;
+      view.Inertia = DefaultInertia;
+      view.NavigationVisible = DefaultNavigationVisible;
+      view.ScaleVisible = DefaultScaleVisible;
+      view.Culture = DefaultCulture;
+      view.Mode = DefaultMode;
+      view.LabelsVisible = DefaultLabelsVisible;
+      view.LabelsFading = DefaultLabelsFading;
+      view.MapCenter = DefaultMapCenter;
+      view.MapZoom = DefaultMapZoom;
+
+      //Dirty flag
+      view.Dirty = ViewDefaults.DefaultDirty; //must do last - this should be set again at the end of any SetDefaults method (at descendents)
     }
 
     #endregion

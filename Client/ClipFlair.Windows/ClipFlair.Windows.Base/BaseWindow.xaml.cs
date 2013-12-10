@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: BaseWindow.xaml.cs
-//Version: 20131120
+//Version: 20131206
 
 //TODO: unbind control at close
 
@@ -504,7 +504,10 @@ namespace ClipFlair.Windows
         e.Cancel = (MessageBox.Show("Are you sure you want to close this window?", "Confirmation", MessageBoxButton.OKCancel) != MessageBoxResult.OK);
 
       if (!e.Cancel)
+      {
+        //TODO: 
         base.OnClosing(e); //this will fire "Closing" event handler
+      }
     }
 
     protected override void OnClosed(EventArgs e)

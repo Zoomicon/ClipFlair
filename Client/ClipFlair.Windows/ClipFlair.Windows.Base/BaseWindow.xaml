@@ -1,7 +1,7 @@
 ﻿<!--
 Project: ClipFlair (http://ClipFlair.codeplex.com)
 Filename: BaseWindow.xaml
-Version: 20131204
+Version: 20131206
 -->
 
 <float:FloatingWindow x:Class="ClipFlair.Windows.BaseWindow"
@@ -24,11 +24,15 @@ Version: 20131204
     Tag="{Binding ID, Mode=TwoWay}"
     Title="{Binding Title, Mode=TwoWay}"
     IconText="{Binding Title, Mode=TwoWay}"
+                      
     Position="{Binding Position, Mode=TwoWay}"
     Width="{Binding Width, Mode=TwoWay}"
     Height="{Binding Height, Mode=TwoWay}"
     Scale="{Binding Zoom, Mode=TwoWay}"
+    Canvas.ZIndex="{Binding ZIndex, Mode=TwoWay}"
+                      
     Opacity="{Binding Opacity, Mode=TwoWay}"
+                                           
     MoveEnabled="{Binding Moveable, Mode=TwoWay}"
     ResizeEnabled="{Binding Resizable, Mode=TwoWay}"        
     ScaleEnabled="{Binding Zoomable, Mode=TwoWay}"
@@ -37,7 +41,9 @@ Version: 20131204
     ShowMaximizeButton="False"
                       
     ShowScreenshotButton="False"
-    > <!-- hiding screenshot button due to Silverlight security issue: not rendering cross-domain content to WriteableBitmap -->
+    > 
+  <!-- hiding screenshot button due to Silverlight security issue: not rendering cross-domain content to WriteableBitmap -->
+  <!-- not using  since it would also reverse UI like scrollpanes etc. -->
 
   <float:FloatingWindow.Resources>
     <ResourceDictionary>
@@ -180,6 +186,11 @@ Version: 20131204
                       <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Zoom:" Target="{Binding ElementName=edZoom}" />
                       <TextBox Name="edZoom" Text="{Binding Zoom, Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=true}" />
                       <!-- can't use a slider here, since the grabbed slider thumb would move away from the mouse while zooming in/out -->
+                    </StackPanel>
+
+                    <StackPanel Orientation="Vertical" Name="propZIndex">
+                      <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Z-order layer index:" Target="{Binding ElementName=edZIndex}" />
+                      <TextBox Name="edZIndex" Text="{Binding ZIndex, Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=true}" />
                     </StackPanel>
 
                     <StackPanel Orientation="Vertical" Name="propOpacity">

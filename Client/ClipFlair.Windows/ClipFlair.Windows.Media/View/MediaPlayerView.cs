@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: MediaPlayerView.cs
-//Version: 20130419
+//Version: 20131205
 
 using Microsoft.SilverlightMediaFramework.Core.Accessibility.Captions;
 
@@ -24,7 +24,6 @@ namespace ClipFlair.Windows.Views
 
     //fields are initialized via respective properties at "SetDefaults" method
     private Uri source;
-    private TimeSpan time;
     private TimeSpan replayOffset;
     private CaptionRegion captions;
     private double speed;
@@ -51,21 +50,6 @@ namespace ClipFlair.Windows.Views
         {
           source = value;
           RaisePropertyChanged(IMediaPlayerProperties.PropertySource);
-        }
-      }
-    }
-
-    [DataMember(Order=0)] //TODO: see why it stops loading state if we use Order=1 here and Order=0 at Source property //TODO: maybe make source respect current Time? (when setting source from backpanel could erase Time with an event handler)
-    //[DefaultValue(MediaPlayerDefaults.DefaultTime)] //can't use static fields here (and we're forced to use one for TimeSpan unfortunately, doesn't work with const)
-    public TimeSpan Time
-    {
-      get { return time; }
-      set
-      {
-        if (value != time)
-        {
-          time = value;
-          RaisePropertyChanged(IMediaPlayerProperties.PropertyTime);
         }
       }
     }

@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: ActivityView.cs
-//Version: 20130204
+//Version: 20131205
 
 //TODO: add "Inertia" property
 
@@ -27,7 +27,6 @@ namespace ClipFlair.Windows.Views
 
     //fields are initialized via respective properties at "SetDefaults" method
     private Uri source;
-    private TimeSpan time;
     private CaptionRegion captions;
     private Point viewPosition;
     private double viewWidth;
@@ -56,22 +55,7 @@ namespace ClipFlair.Windows.Views
         }
       }
     }
-
-    [DataMember]
-    //[DefaultValue(ActivityDefaults.DefaultTime)]
-    public TimeSpan Time
-    {
-      get { return time; }
-      set
-      {
-        if (value != time)
-        {
-          time = value;
-          RaisePropertyChanged(IActivityProperties.PropertyTime);
-        }
-      }
-    }
-
+    
     //don't make this a DataMember (not storing in Activity)
     [DefaultValue(ActivityDefaults.DefaultCaptions)]
     public CaptionRegion Captions

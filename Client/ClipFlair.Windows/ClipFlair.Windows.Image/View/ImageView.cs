@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: ImageView.cs
-//Version: 20131120
+//Version: 20131205
 
 //TODO: maybe allow to load (scaled) local image and store it in options file (show image from memorystream)
 
@@ -28,7 +28,6 @@ namespace ClipFlair.Windows.Views
     private bool contentZoomToFit;
     private Uri actionURL;
     private TimeSpan? actionTime;
-    private TimeSpan time;
 
     #endregion
 
@@ -90,21 +89,6 @@ namespace ClipFlair.Windows.Views
         {
           actionTime = value;
           RaisePropertyChanged(IImageViewerProperties.PropertyActionTime);
-        }
-      }
-    }
-
-    [DataMember(Order = 0)] //Order=0 means this gets deserialized after other fields (that don't have order set)
-    //[DefaultValue(ImageViewerDefaults.DefaultTime)] //can't use static fields here (and we're forced to use one for TimeSpan unfortunately, doesn't work with const)
-    public virtual TimeSpan Time
-    {
-      get { return time; }
-      set
-      {
-        if (value != time)
-        {
-          time = value;
-          RaisePropertyChanged(IImageViewerProperties.PropertyTime);
         }
       }
     }
