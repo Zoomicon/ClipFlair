@@ -2,7 +2,6 @@
 //Filename: ClipFlairMetadataFacets.cs
 //Version: 20131101
 
-using System;
 
 namespace ClipFlair.Metadata
 {
