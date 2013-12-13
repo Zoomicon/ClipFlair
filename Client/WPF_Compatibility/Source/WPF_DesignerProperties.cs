@@ -3,7 +3,6 @@
 //Author: George Birbilis <birbilis@kagi.com>
 
 using System.ComponentModel;
-using System.Windows;
 
 namespace WPFCompatibility
 {

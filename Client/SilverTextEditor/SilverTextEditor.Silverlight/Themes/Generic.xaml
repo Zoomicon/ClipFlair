@@ -1,6 +1,6 @@
 ﻿<!--
 Filename: Generic.xaml
-Version: 20130315
+Version: 20131213
 -->
 
 <ResourceDictionary
@@ -16,10 +16,8 @@ Version: 20130315
   <res:Strings x:Key="localizedStrings"/>
 
   <!-- Toolbar -->
-  <LinearGradientBrush x:Key="ToolbarBackground" StartPoint="0,0" EndPoint="0,1">
-    <GradientStop Color="#7EBDE6" Offset="0" />
-    <GradientStop Color="#90CFF8" Offset="1" />
-  </LinearGradientBrush>
+  
+  <SolidColorBrush x:Key="ToolbarBackground" Color="#84BEE7" />
 
   <!-- =============================================================== -->
 

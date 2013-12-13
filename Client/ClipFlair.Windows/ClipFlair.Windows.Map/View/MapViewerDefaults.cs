@@ -1,12 +1,10 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: MapViewerDefaults.cs
-//Version: 20131205
+//Version: 20131213
 
 using Microsoft.Maps.MapControl;
-using Microsoft.Maps.MapControl.Core;
 
-using System;
-using System.Windows;
+using System.Windows.Media;
 
 namespace ClipFlair.Windows.Views
 {
@@ -18,6 +16,7 @@ namespace ClipFlair.Windows.Views
     public const string DefaultTitle = "Map";
     public const double DefaultWidth = 490;
     public const double DefaultHeight = 375;
+    public static readonly Color DefaultBorderColor = Color.FromArgb(0xFF, 0xB5, 0xBE, 0x21); //#B5BE21
 
     #endregion
 
@@ -43,6 +42,7 @@ namespace ClipFlair.Windows.Views
       view.Title = DefaultTitle;
       view.Width = DefaultWidth;
       view.Height = DefaultHeight;
+      view.BorderColor = DefaultBorderColor;
 
       //IMapViewer defaults
       view.Inertia = DefaultInertia;

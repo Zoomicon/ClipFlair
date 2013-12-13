@@ -1,7 +1,7 @@
 ﻿<!--
 Project: ClipFlair (http://ClipFlair.codeplex.com)
 Filename: BaseWindow.xaml
-Version: 20131206
+Version: 20131213
 -->
 
 <float:FloatingWindow x:Class="ClipFlair.Windows.BaseWindow"
@@ -32,25 +32,37 @@ Version: 20131206
     Canvas.ZIndex="{Binding ZIndex, Mode=TwoWay}"
                       
     Opacity="{Binding Opacity, Mode=TwoWay}"
+                   
+    CornerRadius="{Binding CornerRadius, Mode=TwoWay}"
+    BorderThickness="{Binding BorderThickness, Mode=TwoWay}"                      
                                            
     MoveEnabled="{Binding Moveable, Mode=TwoWay}"
     ResizeEnabled="{Binding Resizable, Mode=TwoWay}"        
     ScaleEnabled="{Binding Zoomable, Mode=TwoWay}"
-    
-    ShowMinimizeButton="False"
-    ShowMaximizeButton="False"
                       
+    ShowCloseButton="True"
+    ShowMinimizeButton="True"
+    ShowMaximizeButton="False"                  
     ShowScreenshotButton="False"
+    ShowHelpButton="False"
     > 
-  <!-- hiding screenshot button due to Silverlight security issue: not rendering cross-domain content to WriteableBitmap -->
-  <!-- not using  since it would also reverse UI like scrollpanes etc. -->
-
+  <!-- hiding screenshot button due to Silverlight security issue: not rendering cross-domain content to WriteableBitmap, enable only at components that don't load Internet content -->
+  <!-- not using RTL here since it would also reverse UI like scrollpanes etc. -->
+  
+  <float:FloatingWindow.BorderBrush>
+    <SolidColorBrush Color="{Binding BorderColor}" />
+  </float:FloatingWindow.BorderBrush>
+  
+  <float:FloatingWindow.TitleBackground>
+    <SolidColorBrush Color="{Binding BorderColor}" />
+  </float:FloatingWindow.TitleBackground>
+  
   <float:FloatingWindow.Resources>
     <ResourceDictionary>
       <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="/SilverFlow.Controls;component/Themes/generic.xaml"/>
         <ResourceDictionary Source="/FlipPanel;component/Themes/DropDownTheme.xaml" />
-        <ResourceDictionary Source="/ClipFlair.Windows.Base;component/Themes/Default.xaml" />
+        <ResourceDictionary Source="/ClipFlair.Windows.Base;component/Themes/Generic.xaml" />
       </ResourceDictionary.MergedDictionaries>
     </ResourceDictionary>
   </float:FloatingWindow.Resources>
@@ -58,13 +70,12 @@ Version: 20131206
   <float:FloatingWindow.Style>
     <Style TargetType="float:FloatingWindow" BasedOn="{StaticResource FloatingWindowStyle}">
       <Setter Property="Background" Value="#F3F3F3" />
-      <Setter Property="BorderBrush" Value="#2171D2" />
-      <Setter Property="BorderThickness" Value="3" />
       <Setter Property="TitleStyle" Value="{StaticResource ClipFlairTitleStyle}" />
-      <Setter Property="TitleBackground" Value="{StaticResource ClipFlairTitleBackground}" />
       <Setter Property="ScreenshotButtonStyle"  Value="{StaticResource ClipFlairScreenshotButtonStyle}" />
       <Setter Property="HelpButtonStyle"  Value="{StaticResource ClipFlairHelpButtonStyle}" />
       <Setter Property="OptionsButtonStyle" Value="{StaticResource ClipFlairOptionsButtonStyle}" />
+      <Setter Property="MinimizeButtonStyle" Value="{StaticResource ClipFlairMinimizeButtonStyle}" />
+      <Setter Property="MaximizeButtonStyle" Value="{StaticResource ClipFlairMaximizeButtonStyle}" />
       <Setter Property="CloseButtonStyle" Value="{StaticResource ClipFlairCloseButtonStyle}" />
     </Style>
 
@@ -105,7 +116,7 @@ Version: 20131206
               LoadURLTooltip="Load component from URL"
               LoadTooltip="Load component from file"
               SaveTooltip="Save component to file"
-              Background="{StaticResource ToolbarBackground}"
+              Background="{StaticResource ClipFlairActivityToolbarBackground}"
               />
 
             <!--
@@ -199,6 +210,21 @@ Version: 20131206
                       <Slider Name="sldOpacity" Value="{Binding Opacity, Mode=TwoWay}" Minimum="0.1" Maximum="1" SmallChange="0.05" LargeChange="0.1" Orientation="Horizontal" />
                     </StackPanel>
 
+                    <StackPanel Orientation="Vertical" Name="propBorderColor">
+                      <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Border Color:" Target="{Binding ElementName=edBorderColor}" />
+                      <TextBox Name="edBorderColor" Text="{Binding BorderColor, Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=true}" />
+                    </StackPanel>
+                    
+                    <StackPanel Orientation="Vertical" Name="propBorderThickness">
+                      <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Border Thickness:" Target="{Binding ElementName=edBorderThickness}" />
+                      <TextBox Name="edBorderThickness" Text="{Binding BorderThickness, Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=true}" />
+                    </StackPanel>
+
+                    <StackPanel Orientation="Vertical" Name="propCornerRadius">
+                      <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Corner Radius:" Target="{Binding ElementName=edCornerRadius}" />
+                      <TextBox Name="edCornerRadius" Text="{Binding CornerRadius, Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=true}" />
+                    </StackPanel>
+                    
                     <StackPanel Orientation="Horizontal" Name="propMoveable">
                       <CheckBox Name="cbMoveable" IsChecked="{Binding Moveable, Mode=TwoWay}" />
                       <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Moveable" Target="{Binding ElementName=cbMoveable}"/>

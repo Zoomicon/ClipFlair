@@ -2,12 +2,11 @@
 //Filename: BaseCaptionWriter.cs
 //Version: 20131113
 
-using ClipFlair.CaptionsLib.Utils;
 using ClipFlair.CaptionsLib.Models;
-
+using ClipFlair.CaptionsLib.Utils;
+using Microsoft.SilverlightMediaFramework.Core.Accessibility.Captions;
 using System.IO;
 using System.Text;
-using Microsoft.SilverlightMediaFramework.Core.Accessibility.Captions;
 
 namespace ClipFlair.CaptionsLib
 {

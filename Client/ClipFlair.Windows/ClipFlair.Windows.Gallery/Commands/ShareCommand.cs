@@ -3,13 +3,10 @@
 //Version: 20130828
 
 using ClipFlair.UI.Dialogs;
-using Utils.Extensions;
-
 using System;
 using System.Collections;
-using System.Windows;
-using System.Windows.Threading;
 using System.Windows.Controls.Pivot;
+using Utils.Extensions;
 
 namespace ClipFlair.Windows.Gallery.Commands
 {

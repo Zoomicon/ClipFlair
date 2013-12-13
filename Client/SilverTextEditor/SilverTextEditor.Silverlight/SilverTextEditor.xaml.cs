@@ -11,8 +11,6 @@
 //TODO: allow to add checkbox controls and remember their state (checked/unchecked) in the text
 //TODO: allow adding images (from URL) and remember them at reload (could add as special text and then parse it?)
 
-using Utils.Extensions;
-
 //using SilverTextEditor.Resources;
 
 using System;
@@ -30,6 +28,7 @@ using System.Windows.Printing;
 using System.Windows.Resources;
 using System.Windows.Shapes;
 using System.Xml.Linq;
+using Utils.Extensions;
 
 namespace SilverTextEditor
 {

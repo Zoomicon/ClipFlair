@@ -4,9 +4,7 @@
 
 //TODO: fix so that when ToggleCommand is unchecked the respective toggle button listens for respective event and unchecks too
 
-using WPFCompatibility;
 
-using System;
 using System.ComponentModel;
 using System.IO;
 using System.Windows;

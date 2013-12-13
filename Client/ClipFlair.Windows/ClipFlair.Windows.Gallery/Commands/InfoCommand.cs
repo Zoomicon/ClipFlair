@@ -2,10 +2,10 @@
 //Filename: InfoCommand.cs
 //Version: 20130905
 
-using Utils.Extensions;
 using System;
 using System.Collections;
 using System.Windows.Controls.Pivot;
+using Utils.Extensions;
 
 namespace ClipFlair.Windows.Gallery.Commands
 {

@@ -5,7 +5,6 @@
 using Microsoft.Maps.MapControl;
 using Microsoft.Maps.MapControl.Core;
 
-using System;
 
 namespace ClipFlair.Windows.Views
 {

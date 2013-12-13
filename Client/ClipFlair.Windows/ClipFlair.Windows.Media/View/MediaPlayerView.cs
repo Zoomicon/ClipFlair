@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: MediaPlayerView.cs
-//Version: 20131205
+//Version: 20131213
 
 using Microsoft.SilverlightMediaFramework.Core.Accessibility.Captions;
 
@@ -50,6 +50,7 @@ namespace ClipFlair.Windows.Views
         {
           source = value;
           RaisePropertyChanged(IMediaPlayerProperties.PropertySource);
+          Dirty = true;
         }
       }
     }
@@ -65,6 +66,7 @@ namespace ClipFlair.Windows.Views
         {
           replayOffset = value;
           RaisePropertyChanged(IMediaPlayerProperties.PropertyReplayOffset);
+          Dirty = true;
         }
       }
     }
@@ -98,6 +100,7 @@ namespace ClipFlair.Windows.Views
         {
           speed = value;
           RaisePropertyChanged(IMediaPlayerProperties.PropertySpeed);
+          Dirty = true;
         }
       }
     }
@@ -113,6 +116,7 @@ namespace ClipFlair.Windows.Views
         {
           volume = value;
           RaisePropertyChanged(IMediaPlayerProperties.PropertyVolume);
+          Dirty = true;
         }
       }
     }
@@ -129,6 +133,7 @@ namespace ClipFlair.Windows.Views
         {
           balance = value;
           RaisePropertyChanged(IMediaPlayerProperties.PropertyBalance);
+          Dirty = true;
         }
       }
     }
@@ -144,6 +149,7 @@ namespace ClipFlair.Windows.Views
         {
           autoPlay = value;
           RaisePropertyChanged(IMediaPlayerProperties.PropertyAutoPlay);
+          Dirty = true;
         }
       }
     }
@@ -159,6 +165,7 @@ namespace ClipFlair.Windows.Views
         {
           looping = value;
           RaisePropertyChanged(IMediaPlayerProperties.PropertyLooping);
+          Dirty = true;
         }
       }
     }
@@ -174,6 +181,7 @@ namespace ClipFlair.Windows.Views
         {
           videoVisible = value;
           RaisePropertyChanged(IMediaPlayerProperties.PropertyVideoVisible);
+          Dirty = true;
         }
       }
     }
@@ -189,6 +197,7 @@ namespace ClipFlair.Windows.Views
         {
           controllerVisible = value;
           RaisePropertyChanged(IMediaPlayerProperties.PropertyControllerVisible);
+          Dirty = true;
         }
       }
     }
@@ -204,6 +213,7 @@ namespace ClipFlair.Windows.Views
         {
           captionsVisible = value;
           RaisePropertyChanged(IMediaPlayerProperties.PropertyCaptionsVisible);
+          Dirty = true;
         }
       }
     }

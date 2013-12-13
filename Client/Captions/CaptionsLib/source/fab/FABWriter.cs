@@ -1,8 +1,8 @@
 ﻿//Filename: FABWriter.cs
 //Version: 20131114
 
-using System.IO;
 using Microsoft.SilverlightMediaFramework.Core.Accessibility.Captions;
+using System.IO;
 
 namespace ClipFlair.CaptionsLib.FAB
 {

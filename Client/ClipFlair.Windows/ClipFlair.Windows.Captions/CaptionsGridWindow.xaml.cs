@@ -4,14 +4,11 @@
 
 //TODO: add Source property to CaptionsGrid control and use data-binding to bind it to CaptionsGridView's Source property
 
-using ClipFlair.Windows.Views;
 using ClipFlair.CaptionsGrid;
-
+using ClipFlair.Windows.Views;
 using Ionic.Zip;
-
-using System.IO;
-
 using Microsoft.SilverlightMediaFramework.Core.Accessibility.Captions;
+using System.IO;
 
 namespace ClipFlair.Windows
 {

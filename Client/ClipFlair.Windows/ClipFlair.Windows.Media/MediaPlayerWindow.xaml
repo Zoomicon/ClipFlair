@@ -1,7 +1,7 @@
 ﻿<!--
 Project: ClipFlair (http://ClipFlair.codeplex.com)
 Filename: MediaPlayerWindow.xaml
-Version: 20130719
+Version: 20131213
 -->
 
 <clipflair:BaseWindow x:Class="ClipFlair.Windows.MediaPlayerWindow"
@@ -19,7 +19,7 @@ Version: 20130719
   <clipflair:BaseWindow.Resources>
     <ResourceDictionary>
       <ResourceDictionary.MergedDictionaries>
-        <ResourceDictionary Source="/ClipFlair.Windows.Base;component/Themes/Default.xaml" />
+        <ResourceDictionary Source="/ClipFlair.Windows.Base;component/Themes/Generic.xaml" />
       </ResourceDictionary.MergedDictionaries>
     </ResourceDictionary>
   </clipflair:BaseWindow.Resources>

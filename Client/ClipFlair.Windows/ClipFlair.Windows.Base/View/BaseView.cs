@@ -1,12 +1,13 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: BaseView.cs
-//Version: 20131206
+//Version: 20131213
 
-using System.ComponentModel;
 using System;
+using System.ComponentModel;
 using System.Runtime.Serialization;
 using System.Windows;
 using System.Windows.Browser;
+using System.Windows.Media;
 
 namespace ClipFlair.Windows.Views
 {
@@ -37,6 +38,9 @@ namespace ClipFlair.Windows.Views
       Zoom = view.Zoom;
       ZIndex = view.ZIndex;
       Opacity = view.Opacity;
+      BorderColor = view.BorderColor;
+      BorderThickness = view.BorderThickness;
+      CornerRadius = view.CornerRadius;
       Moveable = view.Moveable;
       Resizable = view.Resizable;
       Zoomable = view.Zoomable;
@@ -73,6 +77,9 @@ namespace ClipFlair.Windows.Views
     private double zoom;
     private int zIndex;
     private double opacity;
+    private Color borderColor;
+    private Thickness borderThickness;
+    private CornerRadius cornerRadius;
     private bool moveable;
     private bool resizable;
     private bool zoomable;
@@ -82,21 +89,6 @@ namespace ClipFlair.Windows.Views
     #endregion
 
     #region Properties
-
-    [DataMember(Order = 0)] //Order=0 means this gets deserialized after other fields (that don't have order set)
-    //[DefaultValue(ViewDefaults.DefaultTime)] //can't use static fields here (and we're forced to use one for TimeSpan unfortunately, doesn't work with const)
-    public virtual TimeSpan Time
-    {
-      get { return time; }
-      set
-      {
-        if (value != time)
-        {
-          time = value;
-          RaisePropertyChanged(IViewProperties.PropertyTime);
-        }
-      }
-    }
 
     //not stored
     [DefaultValue(ViewDefaults.DefaultDirty)]
@@ -138,7 +130,7 @@ namespace ClipFlair.Windows.Views
         if (value != optionsSource)
         {
           optionsSource = value;
-          RaisePropertyChanged(IViewProperties.PropertyOptionsSource);
+          Dirty = true;
         }
       }
     }
@@ -154,6 +146,7 @@ namespace ClipFlair.Windows.Views
         {
           id = value;
           RaisePropertyChanged(IViewProperties.PropertyID);
+          Dirty = true;
         }
       }
     }    
@@ -307,6 +300,54 @@ namespace ClipFlair.Windows.Views
     }
 
     [DataMember]
+    //[DefaultValue(ViewDefaults.DefaultBorderColor)] //can't use static fields here (and we're forced to use one for Color, doesn't work with const)
+    public Color BorderColor
+    {
+      get { return borderColor; }
+      set
+      {
+        if (value != borderColor)
+        {
+          borderColor = value;
+          RaisePropertyChanged(IViewProperties.PropertyBorderColor);
+          Dirty = true;
+        }
+      }
+    }
+
+    [DataMember]
+    //[DefaultValue(ViewDefaults.DefaultBorderThickness)] //can't use static fields here (and we're forced to use one for Thickness, doesn't work with const)
+    public Thickness BorderThickness
+    {
+      get { return borderThickness; }
+      set
+      {
+        if (value != borderThickness)
+        {
+          borderThickness = value;
+          RaisePropertyChanged(IViewProperties.PropertyBorderThickness);
+          Dirty = true;
+        }
+      }
+    }
+
+    [DataMember]
+    //[DefaultValue(ViewDefaults.DefaultCornerRadius)] //can't use static fields here (and we're forced to use one for CornerRadius, doesn't work with const)
+    public CornerRadius CornerRadius
+    {
+      get { return cornerRadius; }
+      set
+      {
+        if (value != cornerRadius)
+        {
+          cornerRadius = value;
+          RaisePropertyChanged(IViewProperties.PropertyCornerRadius);
+          Dirty = true;
+        }
+      }
+    }
+    
+    [DataMember]
     [DefaultValue(ViewDefaults.DefaultMoveable)]
     public bool Moveable
     {
@@ -370,6 +411,22 @@ namespace ClipFlair.Windows.Views
       }
     }
 
+    [DataMember(Order = 0)] //Order=0 means this gets deserialized after other fields (that don't have order set)
+    //[DefaultValue(ViewDefaults.DefaultTime)] //can't use static fields here (and we're forced to use one for TimeSpan unfortunately, doesn't work with const)
+    public virtual TimeSpan Time
+    {
+      get { return time; }
+      set
+      {
+        if (value != time)
+        {
+          time = value;
+          RaisePropertyChanged(IViewProperties.PropertyTime);
+          //Dirty = true; //not considering playing to be an editing action
+        }
+      }
+    }
+
     [DataMember]
     [DefaultValue(ViewDefaults.DefaultRTL)]
     public bool RTL
@@ -381,6 +438,7 @@ namespace ClipFlair.Windows.Views
         {
           rtl = value;
           RaisePropertyChanged(IViewProperties.PropertyRTL);
+          Dirty = true;
         }
       }
     }

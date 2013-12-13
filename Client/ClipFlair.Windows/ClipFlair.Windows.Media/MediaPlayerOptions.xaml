@@ -1,7 +1,7 @@
 ﻿<!--
 Project: ClipFlair (http://ClipFlair.codeplex.com)
 Filename: MediaPlayerOptions.xaml
-Version: 20130703
+Version: 20131213
 -->
 
 <UserControl x:Class="ClipFlair.Windows.Options.MediaPlayerOptions"
@@ -16,7 +16,7 @@ Version: 20130703
   <UserControl.Resources>
     <ResourceDictionary>
       <ResourceDictionary.MergedDictionaries>
-        <ResourceDictionary Source="/ClipFlair.Windows.Base;component/Themes/Default.xaml" />
+        <ResourceDictionary Source="/ClipFlair.Windows.Base;component/Themes/Generic.xaml" />
       </ResourceDictionary.MergedDictionaries>
     </ResourceDictionary>
   </UserControl.Resources>

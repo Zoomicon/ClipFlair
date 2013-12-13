@@ -3,8 +3,8 @@
 //Editor: George Birbilis (http://zoomicon.com)
 
 using System;
-using System.Windows.Media;
 using System.IO;
+using System.Windows.Media;
 
 namespace AudioLib
 {

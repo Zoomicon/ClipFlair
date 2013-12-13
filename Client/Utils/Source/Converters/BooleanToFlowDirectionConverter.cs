@@ -6,7 +6,6 @@ using System;
 using System.Windows;
 using System.Windows.Data;
 
-using Utils.Extensions;
 
 namespace Utils.Converters
 {

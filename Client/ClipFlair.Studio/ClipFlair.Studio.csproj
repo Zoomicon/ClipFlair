@@ -115,7 +115,7 @@
       <Name>ClipFlair.UI.Dialogs.Silverlight</Name>
     </ProjectReference>
     <ProjectReference Include="..\ClipFlair.Windows\ClipFlair.Windows.Activity\ClipFlair.Windows.Activity.csproj">
-      <Project>{5C611A60-153B-4781-801D-6F9C1653AE32}</Project>
+      <Project>{5c611a60-153b-4781-801d-6f9c1653ae32}</Project>
       <Name>ClipFlair.Windows.Activity</Name>
     </ProjectReference>
     <ProjectReference Include="..\ClipFlair.Windows\ClipFlair.Windows.Base\ClipFlair.Windows.Base.csproj">
@@ -137,6 +137,10 @@
     <ProjectReference Include="..\Utils\Utils.Silverlight\Utils.Silverlight.csproj">
       <Project>{E784B6A1-A300-4571-A881-B15240EEE377}</Project>
       <Name>Utils.Silverlight</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ZUI\FloatingWindowZUI\FloatingWindowZUI.Silverlight\FloatingWindowZUI.Silverlight.csproj">
+      <Project>{d7d67f52-7b9b-4de5-9b72-534664f296b7}</Project>
+      <Name>FloatingWindowZUI.Silverlight</Name>
     </ProjectReference>
     <ProjectReference Include="..\ZUI\FloatingWindow\FloatingWindow.Silverlight\FloatingWindow.Silverlight.csproj">
       <Project>{3F3D3C8C-9724-4531-A04D-B92049F64686}</Project>

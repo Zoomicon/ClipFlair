@@ -1,7 +1,7 @@
 ﻿<!-- 
 Project: ClipFlair (http://ClipFlair.codeplex.com)
 Filename: Generic.xaml
-Version: 20131022
+Version: 20131213
 -->
   
 <ResourceDictionary
@@ -21,10 +21,7 @@ Version: 20131022
  
   <!-- Toolbar -->
 
-  <LinearGradientBrush x:Key="ToolbarBackground" StartPoint="0,0" EndPoint="0,1">
-    <GradientStop Color="#7EBDE6" Offset="0" />
-    <GradientStop Color="#90CFF8" Offset="1" />
-  </LinearGradientBrush>
+  <SolidColorBrush x:Key="ToolbarBackground" Color="#84BEE7" />
 
   <!-- StartTime -->
   

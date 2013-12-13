@@ -2,7 +2,6 @@
 //Filename: UrlEncodedToDecodedStringConverter.cs
 //Version: 20130704
 
-using WPFCompatibility;
 
 using System;
 using System.Windows.Data;

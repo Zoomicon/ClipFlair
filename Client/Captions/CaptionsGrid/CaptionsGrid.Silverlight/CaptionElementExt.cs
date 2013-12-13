@@ -2,13 +2,11 @@
 //Filename: CaptionElementExt.cs
 //Version: 20131022
 
-using Utils.Extensions;
-
 using Microsoft.SilverlightMediaFramework.Core.Accessibility.Captions;
-
 using System;
 using System.IO;
 using System.Windows.Browser;
+using Utils.Extensions;
 
 namespace ClipFlair.CaptionsGrid
 {

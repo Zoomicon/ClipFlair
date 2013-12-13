@@ -2,15 +2,13 @@
 //Filename: CaptionUtils.cs
 //Version: 20131113
 
-using ClipFlair.CaptionsLib.Models;
-using ClipFlair.CaptionsLib.TTS;
-using ClipFlair.CaptionsLib.SRT;
-using ClipFlair.CaptionsLib.FAB;
 using ClipFlair.CaptionsLib.Encore;
-using ClipFlair.CaptionsLib.Utils;
-
-using System.Text;
+using ClipFlair.CaptionsLib.FAB;
+using ClipFlair.CaptionsLib.Models;
+using ClipFlair.CaptionsLib.SRT;
+using ClipFlair.CaptionsLib.TTS;
 using Microsoft.SilverlightMediaFramework.Core.Accessibility.Captions;
+using System.Text;
 
 namespace ClipFlair.CaptionsLib.Utils
 {

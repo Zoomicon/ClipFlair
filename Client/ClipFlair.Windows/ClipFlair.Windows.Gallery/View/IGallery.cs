@@ -3,7 +3,6 @@
 //Version: 20130701
 
 using System;
-using System.Windows.Media;
 
 namespace ClipFlair.Windows.Views
 {

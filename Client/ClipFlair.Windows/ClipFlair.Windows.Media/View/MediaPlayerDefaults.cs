@@ -1,11 +1,11 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: MediaPlayerDefaults.cs
-//Version: 20131205
+//Version: 20131213
 
 using Microsoft.SilverlightMediaFramework.Core.Accessibility.Captions;
 
 using System;
-using System.Windows;
+using System.Windows.Media;
 
 namespace ClipFlair.Windows.Views
 {
@@ -17,6 +17,9 @@ namespace ClipFlair.Windows.Views
     public const string DefaultTitle = "Clip";
     public const double DefaultWidth = 600;
     public const double DefaultHeight = 400;
+    public static readonly Color DefaultBorderColor = Color.FromArgb(0xFF, 0x42, 0x49, 0x4A); //#42494A
+      //Color.FromArgb(0xFF, 0x94, 0x71, 0x10); //#947110
+      //Color.FromArgb(0xFF, 0x00, 0xAA, 0xF0); //#00AAF0
 
     #endregion
 
@@ -41,6 +44,7 @@ namespace ClipFlair.Windows.Views
       view.Title = DefaultTitle;
       view.Width = DefaultWidth;
       view.Height = DefaultHeight;
+      view.BorderColor = DefaultBorderColor;
 
       //IMediaPlayer defaults
       view.Source = DefaultSource;

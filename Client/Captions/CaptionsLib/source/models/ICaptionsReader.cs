@@ -2,9 +2,9 @@
 //Filename: ICaptionsReader.cs
 //Version: 20131105
 
+using Microsoft.SilverlightMediaFramework.Core.Accessibility.Captions;
 using System.IO;
 using System.Text;
-using Microsoft.SilverlightMediaFramework.Core.Accessibility.Captions;
 
 namespace ClipFlair.CaptionsLib.Models
 {

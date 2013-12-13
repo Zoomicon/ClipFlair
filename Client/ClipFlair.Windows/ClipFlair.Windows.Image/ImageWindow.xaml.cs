@@ -2,13 +2,12 @@
 //Filename: ImageWindow.xaml.cs
 //Version: 20131120
 
-using Utils.Extensions;
 using ClipFlair.UI.Dialogs;
 using ClipFlair.Windows.Views;
-
 using System;
 using System.Windows;
 using System.Windows.Input;
+using Utils.Extensions;
 
 namespace ClipFlair.Windows
 {

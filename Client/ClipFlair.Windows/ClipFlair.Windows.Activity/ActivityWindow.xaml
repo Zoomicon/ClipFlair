@@ -1,7 +1,7 @@
 ﻿<!--
 Project: ClipFlair (http://ClipFlair.codeplex.com)
 Filename: ActivityWindow.xaml
-Version: 20130725
+Version: 20131213
 -->
 
 <clipflair:BaseWindow x:Class="ClipFlair.Windows.ActivityWindow"
@@ -11,30 +11,25 @@ Version: 20130725
   xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
   xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk"
   xmlns:clipflair="clr-namespace:ClipFlair.Windows;assembly=ClipFlair.Windows.Base"
+  xmlns:utils="clr-namespace:System.Windows.Controls;assembly=WPF_Compatibility" 
   xmlns:local="clr-namespace:ClipFlair.Windows"
   mc:Ignorable="d"
-                      
-  BorderBrush="#503933"
-  BorderThickness="3"
-                      
-  ShowScreenshotButton="False"                     
+                    
+  ShowScreenshotButton="False"
+  ShowHelpButton="{Binding IsTopLevel, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=clipflair:BaseWindow}}"                      
                       
   d:DesignWidth="1000" d:DesignHeight="700"
   > <!-- hiding screenshot button due to Silverlight security issue: not rendering cross-domain content to WriteableBitmap -->
-
-
-  <clipflair:BaseWindow.TitleBackground>
-    <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
-      <GradientStop Color="#503933" Offset="0" />
-      <GradientStop Color="#321F19" Offset="1" />
-    </LinearGradientBrush>  
-  </clipflair:BaseWindow.TitleBackground>
   
   <clipflair:BaseWindow.Resources>
     <ResourceDictionary>
+      
       <ResourceDictionary.MergedDictionaries>
-        <ResourceDictionary Source="/ClipFlair.Windows.Base;component/Themes/Default.xaml" />
+        <ResourceDictionary Source="/ClipFlair.Windows.Base;component/Themes/Generic.xaml" />
       </ResourceDictionary.MergedDictionaries>
+
+      <utils:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+      
     </ResourceDictionary>
   </clipflair:BaseWindow.Resources>
 
@@ -67,6 +62,7 @@ Version: 20130725
                Cursor="Hand"
                MouseLeftButtonDown="lblBeta_MouseLeftButtonDown"
                ToolTipService.ToolTip="Send feedback"
+               Visibility="{Binding IsTopLevel, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=clipflair:BaseWindow}, Converter={StaticResource BooleanToVisibilityConverter}}"
                />
 
   </Grid>

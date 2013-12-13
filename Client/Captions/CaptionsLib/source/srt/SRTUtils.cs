@@ -2,9 +2,8 @@
 //Version: 20131120
 
 using ClipFlair.CaptionsLib.Utils;
-
-using System;
 using Microsoft.SilverlightMediaFramework.Core.Accessibility.Captions;
+using System;
 
 namespace ClipFlair.CaptionsLib.SRT
 {

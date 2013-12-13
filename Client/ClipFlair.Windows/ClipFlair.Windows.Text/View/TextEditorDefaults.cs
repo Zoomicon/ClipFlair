@@ -1,9 +1,9 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: TextEditorDefaults.cs
-//Version: 20131205
+//Version: 20131213
 
 using System;
-using System.Windows;
+using System.Windows.Media;
 
 namespace ClipFlair.Windows.Views
 {
@@ -15,7 +15,8 @@ namespace ClipFlair.Windows.Views
     public const string DefaultTitle = "Text";
     public const double DefaultWidth = 650;
     public const double DefaultHeight = 630;
-    
+    public static readonly Color DefaultBorderColor = Color.FromArgb(0xFF, 0x02, 0xAB, 0xBE); //#02ABBE
+
     #endregion
 
     public const Uri DefaultSource = null;
@@ -31,12 +32,13 @@ namespace ClipFlair.Windows.Views
       editor.Title = DefaultTitle;
       editor.Width = DefaultWidth;
       editor.Height = DefaultHeight;
-      //editor.Color = DefaultColor;
+      editor.BorderColor = DefaultBorderColor;
 
       //ITextEditor defaults
       editor.Source = DefaultSource;
       editor.ToolbarVisible = DefaultToolbarVisible;
       editor.Editable = DefaultEditable;
+      //editor.Color = DefaultColor;
 
       //Dirty flag
       editor.Dirty = ViewDefaults.DefaultDirty; //must do last - this should be set again at the end of any overriden SetDefaults versions (at descendents)

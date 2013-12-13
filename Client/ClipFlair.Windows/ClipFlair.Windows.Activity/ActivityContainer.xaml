@@ -1,7 +1,7 @@
 ﻿<!--
 Project: ClipFlair (http://ClipFlair.codeplex.com)
 Filename: ActivityContainer.xaml
-Version: 20131205
+Version: 20131213
 -->
 
 <UserControl x:Class="ClipFlair.Windows.ActivityContainer" 
@@ -26,13 +26,10 @@ Version: 20131205
     <ResourceDictionary>
 
       <ResourceDictionary.MergedDictionaries>
-        <ResourceDictionary Source="/ClipFlair.Windows.Base;component/Themes/Default.xaml" />
+        <ResourceDictionary Source="/SilverFlow.Controls;component/Themes/generic.xaml"/>
+        <!-- <ResourceDictionary Source="/FloatingWindowZUI;component/Themes/Generic.xaml"/> *** MUST NOT USE THIS, ELSE THE ADD BUTTONS DON'T SHOW UP *** -->
+        <ResourceDictionary Source="/ClipFlair.Windows.Base;component/Themes/Generic.xaml" />
       </ResourceDictionary.MergedDictionaries>
-
-      <LinearGradientBrush x:Key="ClipFlairActivityToolbarBackground" StartPoint="0,0" EndPoint="0,1">
-        <GradientStop Color="#3A2721" Offset="0" />
-        <GradientStop Color="#2E1B15" Offset="1" />
-      </LinearGradientBrush>
 
     </ResourceDictionary>
   </UserControl.Resources>
@@ -87,49 +84,49 @@ Version: 20131205
           <StackPanel Name="panelAddComponents" Orientation="Horizontal">
 
             <btn:ImageButton
-              Name="btnAddClip" Visibility="Collapsed"
+              Name="btnAddClip"
               VerticalAlignment="Center" Margin="0,0,5,0"
               ToolTipService.ToolTip="Add Clip"
               Image="Images/AddClip.png"
               ImageHover="Images/AddClip_hover.png" />
 
             <btn:ImageButton
-              Name="btnAddCaptions" Visibility="Collapsed"
+              Name="btnAddCaptions"
               VerticalAlignment="Center" Margin="0,0,5,0"
               ToolTipService.ToolTip="Add Captions"
               Image="Images/AddCaptions.png"
               ImageHover="Images/AddCaptions_hover.png" />
 
             <btn:ImageButton
-              Name="btnAddRevoicing" Visibility="Collapsed"
+              Name="btnAddRevoicing"
               VerticalAlignment="Center" Margin="0,0,5,0"
               ToolTipService.ToolTip="Add Revoicing"
               Image="Images/AddRevoicing.png"
               ImageHover="Images/AddRevoicing_hover.png" />
 
             <btn:ImageButton
-              Name="btnAddText" Visibility="Collapsed"
+              Name="btnAddText"
               VerticalAlignment="Center" Margin="0,0,5,0"
               ToolTipService.ToolTip="Add Text"
               Image="Images/AddText.png"
               ImageHover="Images/AddText_hover.png" />
 
             <btn:ImageButton
-              Name="btnAddImage" Visibility="Collapsed"
+              Name="btnAddImage"
               VerticalAlignment="Center" Margin="0,0,5,0"
               ToolTipService.ToolTip="Add Image"
               Image="Images/AddImage.png"
               ImageHover="Images/AddImage_hover.png" />
 
             <btn:ImageButton
-              Name="btnAddMap" Visibility="Collapsed"
+              Name="btnAddMap"
               VerticalAlignment="Center" Margin="0,0,5,0"
               ToolTipService.ToolTip="Add Map"
               Image="Images/AddMap.png"
               ImageHover="Images/AddMap_hover.png" />
 
             <btn:ImageButton
-              Name="btnAddGallery" Visibility="Collapsed"
+              Name="btnAddGallery"
               VerticalAlignment="Center" Margin="0,0,5,0"              
               ToolTipService.ToolTip="Add Gallery"
               Image="Images/AddGallery.png"
@@ -137,7 +134,7 @@ Version: 20131205
               />
 
             <btn:ImageButton
-              Name="btnAddNestedActivity" Visibility="Collapsed"
+              Name="btnAddNestedActivity"
               VerticalAlignment="Center" Margin="0,0,5,0"              
               ToolTipService.ToolTip="Add nested Activity"
               Image="Images/AddActivity.png"
@@ -151,10 +148,7 @@ Version: 20131205
       </zui:FloatingWindowHostZUI.Bar>
 
       <zui:FloatingWindowHostZUI.Background>
-        <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
-          <GradientStop Color="#7BB2EB" Offset="0" />
-          <GradientStop Color="#6AA2DB" Offset="1" />
-        </LinearGradientBrush>
+        <SolidColorBrush Color="#185780" />
       </zui:FloatingWindowHostZUI.Background>
 
       <!--<zui:FloatingWindowHostZUI.Windows>-->

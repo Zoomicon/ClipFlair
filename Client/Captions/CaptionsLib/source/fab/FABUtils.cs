@@ -1,8 +1,8 @@
 ﻿//Filename: FABUtils.cs
 //Version: 20131105
 
-using System;
 using ClipFlair.CaptionsLib.Utils;
+using System;
 
 namespace ClipFlair.CaptionsLib.FAB
 {

@@ -1,7 +1,7 @@
 ﻿<!--
 Project: ClipFlair (http://ClipFlair.codeplex.com)
 Filename: App.xaml
-Version: 20130203
+Version: 20131213
 -->
   
 <Application xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
@@ -10,7 +10,13 @@ Version: 20130203
              >
   
   <Application.Resources>
-
+    <ResourceDictionary>
+      <ResourceDictionary.MergedDictionaries>
+        <!-- <ResourceDictionary Source="/SilverFlow.Controls;component/Themes/generic.xaml"/> -->
+        <ResourceDictionary Source="/FloatingWindowZUI;component/Themes/Generic.xaml"/> <!-- This is neccessery for thumbnails at IconBarZUI to show up -->
+        <!-- <ResourceDictionary Source="/ClipFlair.Windows.Base;component/Themes/Generic.xaml" /> -->
+    </ResourceDictionary.MergedDictionaries>
+      </ResourceDictionary>
   </Application.Resources>
       
 </Application>

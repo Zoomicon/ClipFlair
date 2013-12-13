@@ -1,12 +1,11 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: GalleryView.cs
-//Version: 20130701
+//Version: 20131213
 
 using System;
 using System.ComponentModel;
 using System.Runtime.Serialization;
 using System.Windows.Browser;
-using System.Windows.Media;
 
 namespace ClipFlair.Windows.Views
 {
@@ -41,6 +40,7 @@ namespace ClipFlair.Windows.Views
         {
           source = value;
           RaisePropertyChanged(IGalleryProperties.PropertySource);
+          Dirty = true;
         }
       }
     }
@@ -56,6 +56,7 @@ namespace ClipFlair.Windows.Views
         {
           filter = value;
           RaisePropertyChanged(IGalleryProperties.PropertyFilter);
+          Dirty = true;
         }
       }
     }

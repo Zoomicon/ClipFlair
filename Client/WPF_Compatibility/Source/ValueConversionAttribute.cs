@@ -4,7 +4,6 @@
 
 #if SILVERLIGHT
 
-using System;
 
 namespace System.Windows.Data
 {

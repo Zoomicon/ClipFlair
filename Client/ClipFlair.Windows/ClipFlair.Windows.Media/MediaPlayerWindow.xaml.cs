@@ -3,13 +3,10 @@
 //Version: 20130811
 
 using ClipFlair.Windows.Views;
-
 using Ionic.Zip;
-
+using Microsoft.SilverlightMediaFramework.Core.Media;
 using System;
 using System.Windows;
-
-using Microsoft.SilverlightMediaFramework.Core.Media;
 
 namespace ClipFlair.Windows
 {

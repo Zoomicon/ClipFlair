@@ -2,19 +2,16 @@
 //Filename: ActivityWindow.xaml.cs
 //Version: 20131206
 
-using Utils.Extensions;
-using Utils.Bindings;
 using ClipFlair.Windows.Views;
-
 using Ionic.Zip;
-
 using System;
 using System.ComponentModel;
-using System.IO;
 using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Browser;
 using System.Windows.Media;
+using Utils.Bindings;
+using Utils.Extensions;
 
 [assembly: TypeForwardedToAttribute(typeof(MediaPlayerView))]
 [assembly: TypeForwardedToAttribute(typeof(CaptionsGridView))]

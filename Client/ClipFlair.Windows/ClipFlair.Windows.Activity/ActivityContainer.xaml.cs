@@ -1,38 +1,27 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: ActivityContainer.xaml.cs
-//Version: 20131205
+//Version: 20131213
 
 //TODO: add ContentPartsCloseable property
 //TODO: add ContentPartsZoomable property
 //TODO: must clear bindings when child window closes (now seem to stay as zombies hearing revoicing entries play at given time)
 
-#define PART_CLIP
-#define PART_CAPTIONS
-#define PART_REVOICING
-#define PART_TEXT
-#define PART_IMAGE
-#define PART_MAP
-#define PART_GALLERY
-#define PART_NESTED_ACTIVITY
-
 //TODO: maybe use MEF Deployment Catalog and put components in separate XAPs (each one a Silverlight app, set to reuse the same Web PRoject) and imported here with CopyLocal=False
 
 using ClipFlair.UI.Dialogs;
 using ClipFlair.Windows.Views;
-
-using Utils.Bindings;
-
-using ZoomAndPan;
 using SilverFlow.Controls;
-
+using FloatingWindowZUI;
 using System;
-using System.Windows;
-using System.Windows.Markup;
 using System.ComponentModel;
 using System.ComponentModel.Composition;
 using System.ComponentModel.Composition.Hosting;
 using System.Reflection;
+using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Markup;
+using Utils.Bindings;
+using ZoomAndPan;
 
 namespace ClipFlair.Windows
 {
@@ -68,45 +57,14 @@ namespace ClipFlair.Windows
       partsCatalog.Catalogs.Add(new AssemblyCatalog(typeof(GalleryWindow).Assembly));
       partsCatalog.Catalogs.Add(new AssemblyCatalog(Assembly.GetExecutingAssembly())); //typeof(ActivityWindow).Assembly
 
-      #if PART_CLIP
-      btnAddClip.Visibility = Visibility.Visible;
       btnAddClip.Click += new RoutedEventHandler(btnAddClip_Click);
-      #endif
-
-      #if PART_CAPTIONS
-      btnAddCaptions.Visibility = Visibility.Visible;
       btnAddCaptions.Click += new RoutedEventHandler(btnAddCaptions_Click);
-      #endif
-
-      #if PART_REVOICING
-      btnAddRevoicing.Visibility = Visibility.Visible;
       btnAddRevoicing.Click += new RoutedEventHandler(btnAddRevoicing_Click);
-      #endif
-
-      #if PART_TEXT
-      btnAddText.Visibility = Visibility.Visible;
       btnAddText.Click += new RoutedEventHandler(btnAddText_Click);
-      #endif
-
-      #if PART_IMAGE
-      btnAddImage.Visibility = Visibility.Visible;
       btnAddImage.Click += new RoutedEventHandler(btnAddImage_Click);
-      #endif
-
-      #if PART_MAP
-      btnAddMap.Visibility = Visibility.Visible;
       btnAddMap.Click += new RoutedEventHandler(btnAddMap_Click);
-      #endif
-
-      #if PART_GALLERY
-      btnAddGallery.Visibility = Visibility.Visible;
       btnAddGallery.Click += new RoutedEventHandler(btnAddGallery_Click);
-      #endif
-
-      #if PART_NESTED_ACTIVITY
-      btnAddNestedActivity.Visibility = Visibility.Visible;
       btnAddNestedActivity.Click += new RoutedEventHandler(btnAddNestedActivity_Click);
-      #endif
 
       CompositionContainer container = new CompositionContainer(partsCatalog);
       container.SatisfyImportsOnce(this);
@@ -455,77 +413,49 @@ namespace ClipFlair.Windows
       AddWindow(ActivityWindowFactory, newInstance: true);
     }
 
-    #if PART_CLIP
+    #region Add Button events
 
     private void btnAddClip_Click(object sender, RoutedEventArgs e)
     {
       AddClip();
     }
 
-    #endif
-
-    #if PART_CAPTIONS
-
     private void btnAddCaptions_Click(object sender, RoutedEventArgs e)
     {
       AddCaptions();
     }
-
-    #endif
-
-    #if PART_REVOICING
 
     private void btnAddRevoicing_Click(object sender, RoutedEventArgs e)
     {
       AddRevoicing();
     }
 
-    #endif
- 
-    #if PART_TEXT
-
     private void btnAddText_Click(object sender, RoutedEventArgs e)
     {
       AddText();
     }
-
-    #endif
-
-    #if PART_IMAGE
 
     private void btnAddImage_Click(object sender, RoutedEventArgs e)
     {
       AddImage();
     }
 
-    #endif
-
-    #if PART_MAP
-
     private void btnAddMap_Click(object sender, RoutedEventArgs e)
     {
       AddMap();
     }
-
-    #endif
-
-    #if PART_GALLERY
 
     private void btnAddGallery_Click(object sender, RoutedEventArgs e)
     {
       AddGallery();
     }
 
-    #endif
-
-    #if PART_NESTED_ACTIVITY
-
     private void btnAddNestedActivity_Click(object sender, RoutedEventArgs e)
     {
       AddNestedActivity();
     }
 
-    #endif
+    #endregion
 
     #region Load-Save
 

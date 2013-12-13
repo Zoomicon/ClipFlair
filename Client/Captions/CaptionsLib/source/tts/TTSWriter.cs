@@ -1,8 +1,8 @@
 ﻿//Filename: TTSWriter.cs
 //Version: 20131105
 
-using System.IO;
 using Microsoft.SilverlightMediaFramework.Core.Accessibility.Captions;
+using System.IO;
 
 namespace ClipFlair.CaptionsLib.TTS
 {
