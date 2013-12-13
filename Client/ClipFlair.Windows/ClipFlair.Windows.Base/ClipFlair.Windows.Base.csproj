@@ -96,7 +96,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Themes\Default.xaml">
+    <Page Include="Themes\Generic.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -150,6 +150,18 @@
   <ItemGroup>
     <Resource Include="Images\Screenshot.png" />
     <Resource Include="Images\Screenshot_hover.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Minimize.png" />
+    <Resource Include="Images\Minimize_hover.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Maximize.png" />
+    <Resource Include="Images\Maximize_hover.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Restore.png" />
+    <Resource Include="Images\Restore_hover.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Silverlight\$(SilverlightVersion)\Microsoft.Silverlight.CSharp.targets" />
   <ProjectExtensions>

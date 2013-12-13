@@ -2,10 +2,8 @@
 //Filename: GalleryWindow.xaml.cs
 //Version: 20131002
 
-using ClipFlair.Windows.Views;
 using ClipFlair.Windows.Gallery.Commands;
-
-using System.Windows;
+using ClipFlair.Windows.Views;
 using System.Windows.Controls.Pivot;
 
 namespace ClipFlair.Windows

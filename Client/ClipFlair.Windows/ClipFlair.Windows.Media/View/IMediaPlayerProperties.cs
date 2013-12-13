@@ -2,9 +2,7 @@
 //Filename: IMediaPlayerProperties.cs
 //Version: 20131205
 
-using Microsoft.SilverlightMediaFramework.Core.Accessibility.Captions;
 
-using System;
 
 namespace ClipFlair.Windows.Views
 {

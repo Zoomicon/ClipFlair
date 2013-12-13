@@ -1,9 +1,8 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: ImageViewerDefaults.cs
-//Version: 20131205
+//Version: 20131213
 
 using System;
-using System.Windows;
 using System.Windows.Media;
 
 namespace ClipFlair.Windows.Views
@@ -16,6 +15,8 @@ namespace ClipFlair.Windows.Views
     public const string DefaultTitle = "Image";
     public const double DefaultWidth = 400;
     public const double DefaultHeight = 400;
+    public static readonly Color DefaultBorderColor = Color.FromArgb(0xFF, 0xE7, 0xB6, 0x00); //#E7B600
+      //Color.FromArgb(0xFF, 0xEC, 0x46, 0x14); //#EC4614
         
     #endregion
 
@@ -33,6 +34,7 @@ namespace ClipFlair.Windows.Views
       view.Title = DefaultTitle;
       view.Width = DefaultWidth;
       view.Height = DefaultHeight;
+      view.BorderColor = DefaultBorderColor;
 
       //IImageViewer defaults
       view.Source = DefaultSource;

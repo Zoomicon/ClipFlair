@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: CaptionsGridView.cs
-//Version: 20131205
+//Version: 20131213
 
 using Microsoft.SilverlightMediaFramework.Core.Accessibility.Captions;
 
@@ -51,6 +51,7 @@ namespace ClipFlair.Windows.Views
         {
           source = value;
           RaisePropertyChanged(ICaptionsGridProperties.PropertySource);
+          Dirty = true;
         }
       }
     }
@@ -84,6 +85,7 @@ namespace ClipFlair.Windows.Views
         {
           toolbarVisible = value;
           RaisePropertyChanged(ICaptionsGridProperties.PropertyToolbarVisible);
+          Dirty = true;
         }
       }
     }
@@ -99,6 +101,7 @@ namespace ClipFlair.Windows.Views
         {
           startTimeVisible = value;
           RaisePropertyChanged(ICaptionsGridProperties.PropertyStartTimeVisible);
+          Dirty = true;
         }
       }
     }
@@ -113,6 +116,7 @@ namespace ClipFlair.Windows.Views
         {
           endTimeVisible = value;
           RaisePropertyChanged(ICaptionsGridProperties.PropertyEndTimeVisible);
+          Dirty = true;
         }
       }
     }
@@ -127,6 +131,7 @@ namespace ClipFlair.Windows.Views
       {
         durationVisible = value;
         RaisePropertyChanged(ICaptionsGridProperties.PropertyDurationVisible);
+        Dirty = true;
       }
     }
 
@@ -141,6 +146,7 @@ namespace ClipFlair.Windows.Views
         {
           roleVisible = value;
           RaisePropertyChanged(ICaptionsGridProperties.PropertyRoleVisible);
+          Dirty = true;
         }
       }
     }
@@ -154,6 +160,7 @@ namespace ClipFlair.Windows.Views
       {
         captionVisible = value;
         RaisePropertyChanged(ICaptionsGridProperties.PropertyCaptionVisible);
+        Dirty = true;
       }
     }
 
@@ -166,6 +173,7 @@ namespace ClipFlair.Windows.Views
       {
         cpsVisible = value;
         RaisePropertyChanged(ICaptionsGridProperties.PropertyCPSVisible);
+        Dirty = true;
       }
     }
 
@@ -178,6 +186,7 @@ namespace ClipFlair.Windows.Views
       {
         wpmVisible = value;
         RaisePropertyChanged(ICaptionsGridProperties.PropertyWPMVisible);
+        Dirty = true;
       }
     }
 
@@ -190,6 +199,7 @@ namespace ClipFlair.Windows.Views
       {
         audioVisible = value;
         RaisePropertyChanged(ICaptionsGridProperties.PropertyAudioVisible);
+        Dirty = true;
       }
     }
 
@@ -202,6 +212,7 @@ namespace ClipFlair.Windows.Views
       {
         commentsVisible = value;
         RaisePropertyChanged(ICaptionsGridProperties.PropertyCommentsVisible);
+        Dirty = true;
       }
     }
 

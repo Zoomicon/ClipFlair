@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: ActivityView.cs
-//Version: 20131205
+//Version: 20131213
 
 //TODO: add "Inertia" property
 
@@ -52,6 +52,7 @@ namespace ClipFlair.Windows.Views
         {
           source = value;
           RaisePropertyChanged(IActivityProperties.PropertySource);
+          Dirty = true;
         }
       }
     }
@@ -85,6 +86,7 @@ namespace ClipFlair.Windows.Views
         {
           viewPosition = value;
           RaisePropertyChanged(IActivityProperties.PropertyViewPosition);
+          //Dirty = true; //not considering panning arround to be an editing action
         }
       }
     }
@@ -100,6 +102,7 @@ namespace ClipFlair.Windows.Views
         {
           viewWidth = value;
           RaisePropertyChanged(IActivityProperties.PropertyViewWidth);
+          //Dirty = true; //not considering zooming in-out to be an editing action\
         }
       }
     }
@@ -115,6 +118,7 @@ namespace ClipFlair.Windows.Views
         {
           viewHeight = value;
           RaisePropertyChanged(IActivityProperties.PropertyViewHeight);
+          //Dirty = true; //not considering zooming in-out to be an editing action\
         }
       }
     }
@@ -130,6 +134,7 @@ namespace ClipFlair.Windows.Views
         {
           contentZoom = value;
           RaisePropertyChanged(IActivityProperties.PropertyContentZoom);
+          //Dirty = true; //not considering zooming in-out to be an editing action\
         }
       }
     }
@@ -145,6 +150,7 @@ namespace ClipFlair.Windows.Views
         {
           contentZoomable = value;
           RaisePropertyChanged(IActivityProperties.PropertyContentZoomable);
+          Dirty = true;
         }
       }
     }
@@ -160,6 +166,7 @@ namespace ClipFlair.Windows.Views
         {
           contentZoomToFit = value;
           RaisePropertyChanged(IActivityProperties.PropertyContentZoomToFit);
+          Dirty = true;
         }
       }
     }
@@ -175,6 +182,7 @@ namespace ClipFlair.Windows.Views
         {
           contentPartsConfigurable = value;
           RaisePropertyChanged(IActivityProperties.PropertyContentPartsConfigurable);
+          Dirty = true;
         }
       }
     }
@@ -190,6 +198,7 @@ namespace ClipFlair.Windows.Views
         {
           toolbarVisible = value;
           RaisePropertyChanged(IActivityProperties.PropertyToolbarVisible);
+          Dirty = true;
         }
       }
     }

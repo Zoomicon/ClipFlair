@@ -3,9 +3,9 @@
 //Version: 20130501
 
 using System;
+using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
-using System.ComponentModel;
 
 namespace ClipFlair.UI.Dialogs
 {

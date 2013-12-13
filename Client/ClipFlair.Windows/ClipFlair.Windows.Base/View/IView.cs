@@ -1,10 +1,11 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: IView.cs
-//Version: 20131206
+//Version: 20131213
 
 using System;
 using System.ComponentModel;
 using System.Windows;
+using System.Windows.Media;
 
 namespace ClipFlair.Windows.Views
 {
@@ -25,6 +26,9 @@ namespace ClipFlair.Windows.Views
     double Zoom { get; set; }
     int ZIndex { get; set; } //20131206
     double Opacity { get; set; }
+    Color BorderColor { get; set; } //20131213
+    Thickness BorderThickness { get; set; } //20131213
+    CornerRadius CornerRadius { get; set; } //20131213
     bool Moveable { get; set; }
     bool Resizable { get; set; }
     bool Zoomable { get; set; }

@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: IViewProperties.cs
-//Version: 20131206
+//Version: 20131213
 
 namespace ClipFlair.Windows.Views
 {
@@ -21,6 +21,9 @@ namespace ClipFlair.Windows.Views
     public const string PropertyZoom = "Zoom";
     public const string PropertyZIndex = "ZIndex";
     public const string PropertyOpacity = "Opacity";
+    public const string PropertyBorderColor = "BorderColor";
+    public const string PropertyBorderThickness = "BorderThickness";
+    public const string PropertyCornerRadius = "CornerRadius";
     public const string PropertyMoveable = "Moveable";
     public const string PropertyResizable = "Resizable";
     public const string PropertyZoomable = "Zoomable";

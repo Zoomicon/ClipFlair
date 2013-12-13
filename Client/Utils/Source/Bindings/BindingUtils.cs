@@ -2,15 +2,14 @@
 //Filename: BindingUtils.cs
 //Version: 20121205
 
-using Utils.Bindings;
 
 using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Reflection;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
-using System.Collections.Generic;
 
 namespace Utils.Bindings
 {

@@ -1,13 +1,13 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: TextEditorView.cs
-//Version: 20130501
+//Version: 20131213
 
 //NOTE: Do not add any more properties to this view, kept for backwards compatibility. Use TextEditorView2 instead.
 
 using System;
 using System.ComponentModel;
-using System.Windows.Browser;
 using System.Runtime.Serialization;
+using System.Windows.Browser;
 
 namespace ClipFlair.Windows.Views
 {
@@ -42,6 +42,7 @@ namespace ClipFlair.Windows.Views
         {
           source = value;
           RaisePropertyChanged(ITextEditorProperties.PropertySource);
+          Dirty = true;
         }
       }
     }
@@ -57,6 +58,7 @@ namespace ClipFlair.Windows.Views
         {
           toolbarVisible = value;
           RaisePropertyChanged(ITextEditorProperties.PropertyToolbarVisible);
+          Dirty = true;
         }
       }
     }
@@ -72,6 +74,7 @@ namespace ClipFlair.Windows.Views
         {
           editable = value;
           RaisePropertyChanged(ITextEditorProperties.PropertyEditable);
+          Dirty = true;
         }
       }
     }

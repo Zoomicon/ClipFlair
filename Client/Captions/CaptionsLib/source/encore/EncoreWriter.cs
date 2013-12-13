@@ -1,8 +1,8 @@
 ﻿//Filename: EncoreWriter.cs
 //Version: 20131113
 
-using System.IO;
 using Microsoft.SilverlightMediaFramework.Core.Accessibility.Captions;
+using System.IO;
 
 namespace ClipFlair.CaptionsLib.Encore
 {

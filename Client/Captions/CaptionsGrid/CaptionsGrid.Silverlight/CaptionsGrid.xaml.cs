@@ -3,23 +3,18 @@
 //Version: 20131022
 
 using ClipFlair.AudioRecorder;
-using ClipFlair.CaptionsLib.Utils;
-using ClipFlair.CaptionsLib.Models;
 using ClipFlair.CaptionsGrid.Resources;
-
-using Utils.Extensions;
-
+using ClipFlair.CaptionsLib.Models;
+using ClipFlair.CaptionsLib.Utils;
+using Microsoft.SilverlightMediaFramework.Core.Accessibility.Captions;
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Collections.Generic;
-
-using Microsoft.SilverlightMediaFramework.Core.Accessibility.Captions;
+using Utils.Extensions;
 
 //TODO: upon end of content cell edit, need to jump to some other previous time (for 0 jump to next time, say 0.02) to update player view, or throw some event that captions changed?
 

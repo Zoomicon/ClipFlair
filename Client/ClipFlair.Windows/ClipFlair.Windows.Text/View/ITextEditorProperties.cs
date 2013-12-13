@@ -2,7 +2,6 @@
 //Filename: ITextEditorProperties.cs
 //Version: 20131205
 
-using System;
 
 namespace ClipFlair.Windows.Views
 {

@@ -1,11 +1,10 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: MapView.cs
-//Version: 20131205
+//Version: 20131213
 
 using Microsoft.Maps.MapControl;
 using Microsoft.Maps.MapControl.Core;
 
-using System;
 using System.ComponentModel;
 using System.Runtime.Serialization;
 using System.Windows.Browser;
@@ -49,6 +48,7 @@ namespace ClipFlair.Windows.Views
         {
           inertia = value;
           RaisePropertyChanged(IMapViewerProperties.PropertyInertia);
+          Dirty = true;
         }
       }
     }
@@ -64,6 +64,7 @@ namespace ClipFlair.Windows.Views
         {
           navigationVisible = value;
           RaisePropertyChanged(IMapViewerProperties.PropertyNavigationVisible);
+          Dirty = true;
         }
       }
     }
@@ -79,6 +80,7 @@ namespace ClipFlair.Windows.Views
         {
           scaleVisible = value;
           RaisePropertyChanged(IMapViewerProperties.PropertyScaleVisible);
+          Dirty = true;
         }
       }
     }
@@ -94,6 +96,7 @@ namespace ClipFlair.Windows.Views
         {
           culture = value;
           RaisePropertyChanged(IMapViewerProperties.PropertyCulture);
+          Dirty = true;
         }
       }
     }
@@ -140,6 +143,7 @@ namespace ClipFlair.Windows.Views
         {
           mode = value;
           RaisePropertyChanged(IMapViewerProperties.PropertyMode);
+          Dirty = true;
         }
       }
     }
@@ -155,6 +159,7 @@ namespace ClipFlair.Windows.Views
         {
           labelsVisible = value;
           RaisePropertyChanged(IMapViewerProperties.PropertyLabelsVisible);
+          Dirty = true;
         }
       }
     }
@@ -170,6 +175,7 @@ namespace ClipFlair.Windows.Views
         {
           labelsFading = value;
           RaisePropertyChanged(IMapViewerProperties.PropertyLabelsFading);
+          Dirty = true;
         }
       }
     }
@@ -225,6 +231,8 @@ namespace ClipFlair.Windows.Views
           if (latitudeChanged) RaisePropertyChanged(IMapViewerProperties.PropertyLatitude);
           if (longitudeChanged) RaisePropertyChanged(IMapViewerProperties.PropertyLongitude);
           if (altitudeChanged) RaisePropertyChanged(IMapViewerProperties.PropertyAltitude);
+
+          Dirty = true;
         }
       }
     }
@@ -240,6 +248,7 @@ namespace ClipFlair.Windows.Views
         {
           mapZoom = value;
           RaisePropertyChanged(IMapViewerProperties.PropertyMapZoom);
+          Dirty = true;
         }
       }
     }

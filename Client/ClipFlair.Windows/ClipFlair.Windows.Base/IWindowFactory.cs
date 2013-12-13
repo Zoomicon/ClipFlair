@@ -2,8 +2,6 @@
 //Filename: IWindowFactory.cs
 //Version: 20121201
 
-using System.ComponentModel;
-using System.Windows;
 
 namespace ClipFlair.Windows
 {

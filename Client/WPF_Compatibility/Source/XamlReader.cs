@@ -2,7 +2,6 @@
 //Version: 20130705
 //Author: George Birbilis <birbilis@kagi.com>
 
-using System.Windows.Markup;
 
 namespace WPFCompatibility
 {

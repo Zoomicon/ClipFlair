@@ -2,9 +2,8 @@
 //Filename: VideoMetadataPage.aspx.cs
 //Version: 20131104
 
-using Metadata.CXML;
 using ClipFlair.Metadata;
-
+using Metadata.CXML;
 using System;
 using System.IO;
 using System.Linq;

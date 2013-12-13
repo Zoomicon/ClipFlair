@@ -6,10 +6,7 @@
 
 using ClipFlair.UI.Dialogs;
 using ClipFlair.Windows;
-
 using SilverFlow.Controls;
-using Utils.Extensions;
-
 using System;
 using System.Collections.Generic;
 using System.Threading;
@@ -17,6 +14,7 @@ using System.Windows;
 using System.Windows.Browser;
 using System.Windows.Interop;
 using System.Windows.Threading;
+using Utils.Extensions;
 
 namespace ClipFlair
 {

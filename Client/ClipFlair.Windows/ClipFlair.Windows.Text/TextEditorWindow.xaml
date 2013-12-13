@@ -1,7 +1,7 @@
 ﻿<!-- 
 Project: ClipFlair (http://ClipFlair.codeplex.com)
-Filename: TextEditorWindow.xaml.cs
-Version: 20130222
+Filename: TextEditorWindow.xaml
+Version: 20131213
 -->
   
 <clipflair:BaseWindow x:Class="ClipFlair.Windows.TextEditorWindow"
@@ -14,12 +14,14 @@ Version: 20130222
   xmlns:text="clr-namespace:SilverTextEditor;assembly=SilverTextEditor"
   mc:Ignorable="d"                      
   d:DesignWidth="650" d:DesignHeight="630"
+                      
+  ShowScreenshotButton="True"                      
   >
 
   <clipflair:BaseWindow.Resources>
     <ResourceDictionary>
       <ResourceDictionary.MergedDictionaries>
-        <ResourceDictionary Source="/ClipFlair.Windows.Base;component/Themes/Default.xaml" />
+        <ResourceDictionary Source="/ClipFlair.Windows.Base;component/Themes/Generic.xaml" />
       </ResourceDictionary.MergedDictionaries>
     </ResourceDictionary>
   </clipflair:BaseWindow.Resources>

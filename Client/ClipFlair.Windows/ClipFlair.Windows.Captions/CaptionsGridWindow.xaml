@@ -1,7 +1,7 @@
 ﻿<!--
 Project: ClipFlair (http://ClipFlair.codeplex.com)
 Filename: CaptionsGridWindow.xaml
-Version: 20131022
+Version: 20131213
 -->
   
 <clipflair:BaseWindow x:Class="ClipFlair.Windows.CaptionsGridWindow"
@@ -13,13 +13,14 @@ Version: 20131022
   xmlns:clipflair="clr-namespace:ClipFlair.Windows;assembly=ClipFlair.Windows.Base"    
   xmlns:captions="clr-namespace:ClipFlair.CaptionsGrid;assembly=CaptionsGrid"
   mc:Ignorable="d"                      
-  d:DesignWidth="600" d:DesignHeight="420"                
+  d:DesignWidth="600" d:DesignHeight="420" 
+  ShowScreenshotButton="True"
   >
 
   <clipflair:BaseWindow.Resources>
     <ResourceDictionary>
       <ResourceDictionary.MergedDictionaries>
-        <ResourceDictionary Source="/ClipFlair.Windows.Base;component/Themes/Default.xaml" />
+        <ResourceDictionary Source="/ClipFlair.Windows.Base;component/Themes/Generic.xaml" />
       </ResourceDictionary.MergedDictionaries>
     </ResourceDictionary>
   </clipflair:BaseWindow.Resources>

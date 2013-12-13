@@ -4,8 +4,8 @@
 
 using System;
 using System.ComponentModel;
-using System.Windows.Browser;
 using System.Runtime.Serialization;
+using System.Windows.Browser;
 
 namespace ClipFlair.Windows.Views
 {

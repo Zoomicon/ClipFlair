@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: ImageView.cs
-//Version: 20131205
+//Version: 20131213
 
 //TODO: maybe allow to load (scaled) local image and store it in options file (show image from memorystream)
 
@@ -8,7 +8,6 @@ using System;
 using System.ComponentModel;
 using System.Runtime.Serialization;
 using System.Windows.Browser;
-using System.Windows.Media;
 
 namespace ClipFlair.Windows.Views
 {
@@ -44,6 +43,7 @@ namespace ClipFlair.Windows.Views
         {
           source = value;
           RaisePropertyChanged(IImageViewerProperties.PropertySource);
+          Dirty = true;
         }
       }
     }
@@ -59,6 +59,7 @@ namespace ClipFlair.Windows.Views
         {
           contentZoomToFit = value;
           RaisePropertyChanged(IImageViewerProperties.PropertyContentZoomToFit);
+          Dirty = true;
         }
       }
     }
@@ -74,6 +75,7 @@ namespace ClipFlair.Windows.Views
         {
           actionURL = value;
           RaisePropertyChanged(IImageViewerProperties.PropertyActionURL);
+          Dirty = true;
         }
       }
     }
@@ -89,6 +91,7 @@ namespace ClipFlair.Windows.Views
         {
           actionTime = value;
           RaisePropertyChanged(IImageViewerProperties.PropertyActionTime);
+          Dirty = true;
         }
       }
     }

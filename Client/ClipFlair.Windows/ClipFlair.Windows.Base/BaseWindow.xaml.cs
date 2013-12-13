@@ -7,28 +7,23 @@
 #define PROPERTY_CHANGE_SUPPORT
 #define WRITE_FORMATTED_XML
 
-using Utils.Extensions;
 using ClipFlair.UI.Dialogs;
 using ClipFlair.UI.Widgets;
 using ClipFlair.Windows.Views;
-
-using WPFCompatibility;
-
-using SilverFlow.Controls;
 using Ionic.Zip;
-
+using SilverFlow.Controls;
 using System;
 using System.ComponentModel;
 using System.IO;
-using System.Runtime.Serialization;
 using System.Net;
+using System.Runtime.Serialization;
 using System.Text;
 using System.Windows;
 using System.Windows.Browser;
 using System.Windows.Controls;
 using System.Windows.Markup;
-using System.Windows.Media;
 using System.Xml;
+using Utils.Extensions;
 
 namespace ClipFlair.Windows
 {
