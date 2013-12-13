@@ -2,9 +2,9 @@
 //Version: 20130406
 //Editor: George Birbilis (http://zoomicon.com)
 
+using SilverFlow.Geometry;
 using System;
 using System.Windows;
-using SilverFlow.Geometry;
 
 namespace SilverFlow.Controls.Extensions
 {

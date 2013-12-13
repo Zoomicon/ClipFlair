@@ -593,7 +593,7 @@ namespace SilverFlow.Controls
         /// <value>The control displayed in the BottomBar. The default is null.</value>
         public object Bar
         {
-            get { return (double)GetValue(BarProperty); }
+            get { return GetValue(BarProperty); }
             set { SetValue(BarProperty, value); }
         }
 

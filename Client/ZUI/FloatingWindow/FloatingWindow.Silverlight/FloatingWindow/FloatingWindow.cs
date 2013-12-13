@@ -1,5 +1,7 @@
 //Filename: FloatingWindow.cs
-//Version: 20131206
+//Version: 20131213
+
+//#define BORDER_ONLY_AT_RESIZABLE //using BorderThickness instead to allow user to define when they want the border to be visible themselves
 
 using System;
 using System.IO;
@@ -761,6 +763,33 @@ namespace SilverFlow.Controls
 
     #endregion
 
+    #region public CornerRadius CornerRadius
+
+    /// <summary>
+    /// Gets or sets the corner radius.
+    /// </summary>
+    /// <value>The corner radius.</value>
+    public CornerRadius CornerRadius
+    {
+      get { return (CornerRadius)GetValue(CornerRadiusProperty); }
+      set { SetValue(CornerRadiusProperty, value); }
+    }
+
+    /// <summary>
+    /// Identifies the <see cref="FloatingWindow.CornerRadius" /> dependency property.
+    /// </summary>
+    /// <value>
+    /// The identifier for the <see cref="FloatingWindow.CornerRadius" /> dependency property.
+    /// </value>
+    public static readonly DependencyProperty CornerRadiusProperty =
+        DependencyProperty.Register(
+        "CornerRadius",
+        typeof(CornerRadius),
+        typeof(FloatingWindow),
+        new PropertyMetadata(new CornerRadius(3)));
+
+    #endregion
+
     #region public bool MoveEnabled
 
     /// <summary>
@@ -820,11 +849,13 @@ namespace SilverFlow.Controls
     /// <param name="e">DependencyPropertyChangedEventArgs which contains the old and new values.</param>
     private static void OnResizeEnabledChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
+      #if BORDER_ONLY_AT_RESIZABLE
       FloatingWindow window = (FloatingWindow)d;
       if ((bool)e.NewValue)
         window.RestoreBorder();
       else
         window.HideBorder();
+      #endif
     }
 
     #endregion
@@ -1625,18 +1656,36 @@ namespace SilverFlow.Controls
           CaptureMouseCursor();
           windowAction = WindowAction.Resize;
         }
-        else if (chrome != null)
+        else
         {
-          // If the mouse was clicked on the chrome - start dragging the window
-          Point point = e.GetPosition(chrome);
-
-          if (MoveEnabled && chrome.ContainsPoint(point))
+          if (chrome != null)
           {
-            snapinController.SnapinBounds = this.FloatingWindowHost.GetSnapinBounds(this);
-            CaptureMouseCursor();
-            windowAction = WindowAction.Move;
-            inertiaController.StartMotion(Position);
+            // If the mouse was clicked on the chrome - start dragging the window
+            Point point = e.GetPosition(chrome);
+
+            if (MoveEnabled && chrome.ContainsPoint(point))
+            {
+              snapinController.SnapinBounds = this.FloatingWindowHost.GetSnapinBounds(this);
+              CaptureMouseCursor();
+              windowAction = WindowAction.Move;
+              inertiaController.StartMotion(Position); //TODO: take in mind component's zoom to avoid jumpy motion
+            }
           }
+
+          if (contentBorder != null)
+          {
+            // If the mouse was clicked on the contentBorder - start dragging the window
+            Point point = e.GetPosition(contentBorder);
+
+            if (MoveEnabled && contentBorder.ContainsPoint(point))
+            {
+              snapinController.SnapinBounds = this.FloatingWindowHost.GetSnapinBounds(this);
+              CaptureMouseCursor();
+              windowAction = WindowAction.Move;
+              inertiaController.StartMotion(Position); //TODO: take in mind component's zoom to avoid jumpy motion
+            }
+          }
+
         }
       }
     }
@@ -2575,7 +2624,9 @@ namespace SilverFlow.Controls
 
     void RestoreBorder()
     {
+      #if BORDER_ONLY_AT_RESIZABLE
       if (!ResizeEnabled) return; //keep border hidden if window is not resizable
+      #endif
 
       // Guarantee that the visual tree of an element is complete
       if (!templateIsApplied)

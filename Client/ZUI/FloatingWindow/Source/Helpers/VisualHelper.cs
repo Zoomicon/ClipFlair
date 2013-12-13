@@ -1,11 +1,9 @@
 ﻿//Filename: VisualHelper.cs
 //Version: 20120810
 
+using SilverFlow.Controls.Extensions;
 using System.Collections.Generic;
 using System.Windows;
-using System.Windows.Media;
-
-using SilverFlow.Controls.Extensions;
 
 namespace SilverFlow.Controls.Helpers
 {

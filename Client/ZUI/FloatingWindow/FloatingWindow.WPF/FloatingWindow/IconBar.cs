@@ -1,4 +1,4 @@
-﻿//Version: 20130805
+﻿//Version: 20131213
 
 using System;
 using System.Collections.ObjectModel;
@@ -22,26 +22,26 @@ namespace SilverFlow.Controls
     [TemplatePart(Name = PART_Carousel, Type = typeof(StackPanel))]
     [TemplateVisualState(Name = VSMSTATE_StateOpen, GroupName = VSMGROUP_States)]
     [TemplateVisualState(Name = VSMSTATE_StateClosed, GroupName = VSMGROUP_States)]
-    [StyleTypedProperty(Property = PROPERTY_TitleStyle, StyleTargetType = typeof(Border))]
+    [StyleTypedProperty(Property = PROPERTY_IconBarStyle, StyleTargetType = typeof(Border))]
     [StyleTypedProperty(Property = PROPERTY_WindowIconStyle, StyleTargetType = typeof(WindowIcon))]
     public class IconBar : ContentControl, INotifyPropertyChanged
     {
         // Template parts
-        private const string PART_LayoutRoot = "PART_LayoutRoot";
-        private const string PART_FixedBar = "PART_FixedBar";
-        private const string PART_SlidingBar = "PART_SlidingBar";
-        private const string PART_Carousel = "PART_Carousel";
+        public const string PART_LayoutRoot = "PART_LayoutRoot";
+        public const string PART_FixedBar = "PART_FixedBar";
+        public const string PART_SlidingBar = "PART_SlidingBar";
+        public const string PART_Carousel = "PART_Carousel";
 
         // VSM groups
-        private const string VSMGROUP_States = "VisualStateGroup";
+        public const string VSMGROUP_States = "VisualStateGroup";
 
         // VSM states
-        private const string VSMSTATE_StateOpen = "Open";
-        private const string VSMSTATE_StateClosed = "Closed";
+        public const string VSMSTATE_StateOpen = "Open";
+        public const string VSMSTATE_StateClosed = "Closed";
 
         // Style typed properties
-        private const string PROPERTY_TitleStyle = "IconBarStyle";
-        private const string PROPERTY_WindowIconStyle = "WindowIconStyle";
+        public const string PROPERTY_IconBarStyle = "IconBarStyle";
+        public const string PROPERTY_WindowIconStyle = "WindowIconStyle";
 
         // Animation duration in milliseconds
         private const double SlidingDurationInMilliseconds = 200;

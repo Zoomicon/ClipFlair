@@ -5,7 +5,6 @@ using System.Globalization;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
-using SilverFlow.Controls.Extensions;
 
 namespace SilverFlow.Controls
 {

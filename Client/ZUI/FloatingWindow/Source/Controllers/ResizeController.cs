@@ -1,11 +1,11 @@
 ﻿//Filename: ResizeController.cs
 //Version: 20121104
 
+using SilverFlow.Controls.Enums;
+using SilverFlow.Controls.Extensions;
 using System;
 using System.Windows;
 using System.Windows.Input;
-using SilverFlow.Controls.Enums;
-using SilverFlow.Controls.Extensions;
 
 namespace SilverFlow.Controls.Controllers
 {

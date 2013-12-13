@@ -1,6 +1,6 @@
 ﻿<!-- 
 Filename: Generic.xaml
-Version: 20130315
+Version: 20131213
 -->
   
 <ResourceDictionary
@@ -92,8 +92,8 @@ Version: 20130315
               <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
 
-            <controls:BootstrapButton Grid.Column="0" Visibility="Collapsed" x:Name="PART_BootstrapButton" Style="{StaticResource BootstrapButtonStyle}"
-                    Margin="10,-4,10,0" IsOpen="{Binding IsOpen, ElementName=PART_IconBar}" />
+            <controls:BootstrapButton Grid.Column="0" x:Name="PART_BootstrapButton" Style="{StaticResource BootstrapButtonStyle}"
+                    Margin="5,5,5,5" IsOpen="{Binding IsOpen, ElementName=PART_IconBar}" />
 
             <StackPanel
               Grid.Column="1"
@@ -120,7 +120,7 @@ Version: 20130315
 
             <Border Grid.Column="2">
               <ContentControl x:Name="PART_BarContent" Content="{TemplateBinding Bar}" 
-                                                        VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch" />
+                                                       VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch" />
             </Border>
           </Grid>
         </Border>
@@ -145,6 +145,70 @@ Version: 20130315
     <Setter Property="OverlayBrush" Value="#90202030" />
     <Setter Property="Background" Value="#FF7ED2E9" />
     <Setter Property="Template" Value="{StaticResource FloatingWindowHostZUI_DefaultTemplate}" />
+  </Style>
+  
+  <!-- IconBarZUI -->
+
+  <ControlTemplate x:Key="IconBarZUI_DefaultTemplate" TargetType="zui:IconBarZUI">
+    <Grid x:Name="PART_LayoutRoot">
+      <VisualStateManager.VisualStateGroups>
+        <VisualStateGroup x:Name="VisualStateGroup">
+          <VisualState x:Name="Open">
+            <Storyboard>
+              <DoubleAnimation Duration="0:0:0.2" To="0" Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)" Storyboard.TargetName="PART_FixedBar">
+                <DoubleAnimation.EasingFunction>
+                  <CubicEase EasingMode="EaseOut"/>
+                </DoubleAnimation.EasingFunction>
+              </DoubleAnimation>
+              <ObjectAnimationUsingKeyFrames Duration="0" Storyboard.TargetProperty="Visibility" Storyboard.TargetName="PART_FixedBar">
+                <DiscreteObjectKeyFrame KeyTime="0">
+                  <DiscreteObjectKeyFrame.Value>
+                    <Visibility>Visible</Visibility>
+                  </DiscreteObjectKeyFrame.Value>
+                </DiscreteObjectKeyFrame>
+              </ObjectAnimationUsingKeyFrames>
+            </Storyboard>
+          </VisualState>
+          <VisualState x:Name="Closed">
+            <Storyboard>
+              <DoubleAnimation Duration="0:0:0.2" To="104" Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)" Storyboard.TargetName="PART_FixedBar">
+                <DoubleAnimation.EasingFunction>
+                  <CubicEase EasingMode="EaseOut"/>
+                </DoubleAnimation.EasingFunction>
+              </DoubleAnimation>
+              <ObjectAnimationUsingKeyFrames Duration="0:0:0.2" Storyboard.TargetProperty="Visibility" Storyboard.TargetName="PART_FixedBar">
+                <DiscreteObjectKeyFrame KeyTime="0:0:0.2">
+                  <DiscreteObjectKeyFrame.Value>
+                    <Visibility>Collapsed</Visibility>
+                  </DiscreteObjectKeyFrame.Value>
+                </DiscreteObjectKeyFrame>
+              </ObjectAnimationUsingKeyFrames>
+            </Storyboard>
+          </VisualState>
+        </VisualStateGroup>
+      </VisualStateManager.VisualStateGroups>
+
+      <Border x:Name="PART_FixedBar" RenderTransformOrigin="0.5,1" Style="{StaticResource IconBarStyle}">
+        <Border.RenderTransform>
+          <!-- Hide the IconBar -->
+          <CompositeTransform TranslateY="104" />
+        </Border.RenderTransform>
+
+        <Canvas>
+          <Border x:Name="PART_SlidingBar" Canvas.Left="0" VerticalAlignment="Bottom">
+            <StackPanel x:Name="PART_Carousel" RenderTransformOrigin="0.5,1" Orientation="Horizontal" 
+                                                  HorizontalAlignment="Left" VerticalAlignment="Bottom"/>
+          </Border>
+        </Canvas>
+      </Border>
+    </Grid>
+  </ControlTemplate>
+
+  <Style TargetType="zui:IconBarZUI">
+    <Setter Property="IsTabStop" Value="false"/>
+    <Setter Property="HorizontalAlignment" Value="Stretch"/>
+    <Setter Property="VerticalAlignment" Value="Bottom"/>
+    <Setter Property="Template" Value="{StaticResource IconBarZUI_DefaultTemplate}" />
   </Style>
 
 </ResourceDictionary>

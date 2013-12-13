@@ -206,7 +206,7 @@
       <Name>WPF_Compatibility.WPF</Name>
     </ProjectReference>
     <ProjectReference Include="..\FloatingWindow.WPF\FloatingWindow.WPF.csproj">
-      <Project>{7C67AC53-E3BC-4482-8DFB-4CBAA644D280}</Project>
+      <Project>{7c67ac53-e3bc-4482-8dfb-4cbaa644d280}</Project>
       <Name>FloatingWindow.WPF</Name>
     </ProjectReference>
   </ItemGroup>
