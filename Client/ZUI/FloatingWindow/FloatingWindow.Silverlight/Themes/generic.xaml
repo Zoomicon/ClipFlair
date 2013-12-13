@@ -1,6 +1,6 @@
 ﻿<!--
   Filename: generic.xaml 
-  Version: 20130805
+  Version: 20131213
 -->
 
 <ResourceDictionary
@@ -608,14 +608,15 @@
               </Grid.RenderTransform>
 
               <Border x:Name="ContentBorder" Background="{TemplateBinding Background}" BorderThickness="{TemplateBinding BorderThickness}" 
-                BorderBrush="{TemplateBinding BorderBrush}" CornerRadius="3">
+                      BorderBrush="{TemplateBinding BorderBrush}" CornerRadius="{TemplateBinding CornerRadius}" Padding="0">
                 <Grid>
                   <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition/>
                   </Grid.RowDefinitions>
 
-                  <Border x:Name="Chrome" Width="Auto" Background="{TemplateBinding TitleBackground}" UseLayoutRounding="True" CornerRadius="2,2,0,0"> <!-- Note: changed to UseLayoutRounding="True" to help with GPU acceleration -->
+                  <Border x:Name="Chrome" Width="Auto" Background="{TemplateBinding TitleBackground}" UseLayoutRounding="True" 
+                          BorderThickness="0" CornerRadius="0" Margin="-1,-1,-1,0"> <!-- Note: changed to UseLayoutRounding="True" to help with GPU acceleration -->
                     <Grid Height="Auto" Width="Auto">
                       <Grid.ColumnDefinitions>
                         <ColumnDefinition/>
@@ -627,7 +628,7 @@
                         <ColumnDefinition Width="6"/>
                       </Grid.ColumnDefinitions>
 
-                      <ContentControl x:Name="TitleContent" Content="{TemplateBinding Title}" Style="{StaticResource FloatingWindowTitleStyle}" />
+                      <ContentControl x:Name="TitleContent" Content="{TemplateBinding Title}" Style="{StaticResource FloatingWindowTitleStyle}" /> <!-- TODO: add control here in content that enters edit mode when double-clicked, to edit title with two-way binding -->
 
                       <Button x:Name="ScreenshotButton" Style="{StaticResource ScreenshotButtonStyle}" Grid.Column="1">
                         <ToolTipService.ToolTip>

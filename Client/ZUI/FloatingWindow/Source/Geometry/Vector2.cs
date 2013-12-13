@@ -1,6 +1,6 @@
-﻿using System;
+﻿using SilverFlow.Controls.Extensions;
+using System;
 using System.Windows;
-using SilverFlow.Controls.Extensions;
 
 namespace SilverFlow.Geometry
 {

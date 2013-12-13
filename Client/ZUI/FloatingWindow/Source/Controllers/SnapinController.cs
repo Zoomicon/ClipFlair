@@ -1,7 +1,7 @@
-﻿using System.Collections.Generic;
-using System.Windows;
-using SilverFlow.Controls.Extensions;
+﻿using SilverFlow.Controls.Extensions;
 using SilverFlow.Geometry;
+using System.Collections.Generic;
+using System.Windows;
 
 namespace SilverFlow.Controls.Controllers
 {

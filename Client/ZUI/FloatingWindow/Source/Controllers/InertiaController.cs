@@ -1,9 +1,9 @@
-﻿using System;
+﻿using SilverFlow.Controls.Extensions;
+using SilverFlow.Geometry;
+using System;
 using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Media.Animation;
-using SilverFlow.Controls.Extensions;
-using SilverFlow.Geometry;
 
 namespace SilverFlow.Controls.Controllers
 {

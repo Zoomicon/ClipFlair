@@ -5,14 +5,13 @@ using System;
 using System.Globalization;
 using System.IO;
 using System.Windows;
-using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 
 using SilverFlow.Controls.Extensions;
 
-using WPFCompatibility;
+
 
 #if SILVERLIGHT
 using FluxJpeg.Core;

@@ -1,16 +1,13 @@
 ﻿//Filename: PivotViewerExt.cs
 //Version: 20130827
 
-using WPFCompatibility;
 
 //using Microsoft.Internal.Pivot.Views;
 
 using System;
 using System.Linq;
 using System.Windows;
-using System.Windows.Controls;
 using System.Windows.Controls.Pivot;
-using System.Collections.Generic;
 
 namespace PivotViewerExt
 {

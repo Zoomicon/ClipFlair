@@ -1,8 +1,8 @@
 ﻿//Filename: FloatingWindowCollection.cs
-//Version: 20130508
+//Version: 20131213
 
-using System.Windows;
 using System.Collections.ObjectModel;
+using System.Windows;
 
 namespace SilverFlow.Controls
 {
@@ -44,19 +44,17 @@ namespace SilverFlow.Controls
       foreach (FloatingWindow w in c) Remove(w);
     }
 
-    public Rect BoundingRectangle
+    public Rect GetBoundingRectangle(bool notMinimized = true)
     {
-      get
-      {
         if (Count > 0)
         {
           Rect result = Items[0].BoundingRectangle;
           for (int i = 1; i < Count; i++)
-            result.Union(Items[i].BoundingRectangle);
+            if (!notMinimized || Items[i].WindowState != WindowState.Minimized)
+              result.Union(Items[i].BoundingRectangle);
           return result;
         }
         return Rect.Empty;
-      }
     }
     
   }

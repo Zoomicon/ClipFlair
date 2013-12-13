@@ -26,10 +26,10 @@
                 </LinearGradientBrush>
             </Border.Background>
             <TextBlock Margin="12,0,0,0" Text="FloatingWindow for WPF v1.0" FontSize="12" 
-				VerticalAlignment="Center" HorizontalAlignment="Left" FontWeight="Bold" Foreground="#FF4E4E76">
-				<TextBlock.Effect>
-					<DropShadowEffect Color="White" BlurRadius="1" ShadowDepth="1"/>
-				</TextBlock.Effect>
+        VerticalAlignment="Center" HorizontalAlignment="Left" FontWeight="Bold" Foreground="#FF4E4E76">
+        <TextBlock.Effect>
+          <DropShadowEffect Color="White" BlurRadius="1" ShadowDepth="1"/>
+        </TextBlock.Effect>
             </TextBlock>
         </Border>
         <Grid x:Name="MainPageLayoutRoot" Grid.Row="1">
@@ -93,10 +93,10 @@
                 </Grid>
             </Border>
             <my:FloatingWindowHost x:Name="host" Grid.Column="2" MinWidth="100"
-	                               SnapinEnabled="{Binding ElementName=cbxEnableSnapin, Path=IsChecked}"
-	                               SnapinDistance="{Binding ElementName=txtSnapinDistance, Path=Text}"
-	                               SnapinMargin="{Binding ElementName=txtSnapinMargin, Path=Text}"
-	                               ShowMinimizedOnlyInIconbar="{Binding ElementName=cbxShowMinimized, Path=IsChecked}">
+                                 SnapinEnabled="{Binding ElementName=cbxEnableSnapin, Path=IsChecked}"
+                                 SnapinDistance="{Binding ElementName=txtSnapinDistance, Path=Text}"
+                                 SnapinMargin="{Binding ElementName=txtSnapinMargin, Path=Text}"
+                                 ShowMinimizedOnlyInIconbar="{Binding ElementName=cbxShowMinimized, Path=IsChecked}">
                 <my:FloatingWindowHost.Bar>
                     <TextBlock Text="This Bar is acting as a container for any controls" VerticalAlignment="Center" />
                 </my:FloatingWindowHost.Bar>

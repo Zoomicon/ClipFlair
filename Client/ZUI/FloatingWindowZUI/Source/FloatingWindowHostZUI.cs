@@ -1,18 +1,14 @@
 ﻿//Filename: FloatingWindowHostZUI.cs
-//Version: 20130805
+//Version: 20131213
 
 using SilverFlow.Controls;
-using SilverFlow.Controls.Extensions;
-using ZoomAndPan;
-using WPFCompatibility;
-
+using System.Collections.Specialized;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
 using System.Windows.Input;
-
-using System.Collections.Specialized;
 using System.Windows.Markup;
+using WPFCompatibility;
+using ZoomAndPan;
 
 namespace FloatingWindowZUI
 {
@@ -49,8 +45,7 @@ namespace FloatingWindowZUI
     protected const string PART_ZoomSlider = "PART_ZoomSlider";
 
     #endregion
-
-
+    
     #region ZoomHost
 
     protected ZoomAndPanControl _zoomHost;
@@ -106,7 +101,7 @@ namespace FloatingWindowZUI
     }
 
     #endregion
-    
+
     public FloatingWindowHostZUI()
     {
       ApplyStyle();
@@ -141,7 +136,7 @@ namespace FloatingWindowZUI
 
     public void ZoomToFit()
     {
-      ZoomHost.ZoomTo(Windows.BoundingRectangle);
+      ZoomHost.ZoomTo(Windows.GetBoundingRectangle(notMinimized:true));
     }
 
     #region ContentScalable

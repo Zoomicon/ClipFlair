@@ -1,5 +1,5 @@
 ﻿//Filename: IconBar.cs
-//Version: 20121223
+//Version: 20131213
 
 using System;
 using System.Collections.ObjectModel;
@@ -24,39 +24,62 @@ namespace SilverFlow.Controls
     [TemplatePart(Name = PART_Carousel, Type = typeof(StackPanel))]
     [TemplateVisualState(Name = VSMSTATE_StateOpen, GroupName = VSMGROUP_States)]
     [TemplateVisualState(Name = VSMSTATE_StateClosed, GroupName = VSMGROUP_States)]
-    [StyleTypedProperty(Property = PROPERTY_TitleStyle, StyleTargetType = typeof(Border))]
+    [StyleTypedProperty(Property = PROPERTY_IconBarStyle, StyleTargetType = typeof(Border))]
     [StyleTypedProperty(Property = PROPERTY_WindowIconStyle, StyleTargetType = typeof(WindowIcon))]
     public class IconBar : ContentControl, INotifyPropertyChanged
     {
         // Template parts
-        private const string PART_LayoutRoot = "PART_LayoutRoot";
-        private const string PART_FixedBar = "PART_FixedBar";
-        private const string PART_SlidingBar = "PART_SlidingBar";
-        private const string PART_Carousel = "PART_Carousel";
+        public const string PART_LayoutRoot = "PART_LayoutRoot";
+        public const string PART_FixedBar = "PART_FixedBar";
+        public const string PART_SlidingBar = "PART_SlidingBar";
+        public const string PART_Carousel = "PART_Carousel";
 
         // VSM groups
-        private const string VSMGROUP_States = "VisualStateGroup";
+        public const string VSMGROUP_States = "VisualStateGroup";
 
         // VSM states
-        private const string VSMSTATE_StateOpen = "Open";
-        private const string VSMSTATE_StateClosed = "Closed";
+        public const string VSMSTATE_StateOpen = "Open";
+        public const string VSMSTATE_StateClosed = "Closed";
 
         // Style typed properties
-        private const string PROPERTY_TitleStyle = "IconBarStyle";
-        private const string PROPERTY_WindowIconStyle = "WindowIconStyle";
+        public const string PROPERTY_IconBarStyle = "IconBarStyle"; //renamed, was PROPERTY_TitleStyle
+        public const string PROPERTY_WindowIconStyle = "WindowIconStyle";
 
         // Animation duration in milliseconds
         private const double SlidingDurationInMilliseconds = 200;
 
-        #region public Style IconBarStyle
+        #region Fields
+
+        private FrameworkElement layoutRoot;
+        private Border fixedBar;
+        private Border slidingBar;
+        private StackPanel carousel;
+        private Storyboard closingStoryboard;
+        private Storyboard openingStoryboard;
+        private bool isOpen;
+        private double slidingBarPosition;
+
+        #endregion
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="IconBar"/> class.
+        /// </summary>
+        public IconBar()
+        {
+            DefaultStyleKey = typeof(IconBar);
+        }
+
+        #region --- Properties ---
+
+        #region IconBarStyle
 
         /// <summary>
         /// Gets or sets the style of the IconBar.
         /// </summary>
         public Style IconBarStyle
         {
-            get { return GetValue(IconBarStyleProperty) as Style; }
-            set { SetValue(IconBarStyleProperty, value); }
+          get { return GetValue(IconBarStyleProperty) as Style; }
+          set { SetValue(IconBarStyleProperty, value); }
         }
 
         /// <summary>
@@ -76,24 +99,24 @@ namespace SilverFlow.Controls
         /// <param name="e">The <see cref="System.Windows.DependencyPropertyChangedEventArgs"/> instance containing the event data.</param>
         private static void IconBarStylePropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            IconBar iconBar = (IconBar)d;
-            if (iconBar != null && iconBar.fixedBar != null)
-            {
-                iconBar.fixedBar.Style = e.NewValue as Style;
-            }
+          IconBar iconBar = (IconBar)d;
+          if (iconBar != null && iconBar.fixedBar != null)
+          {
+            iconBar.fixedBar.Style = e.NewValue as Style;
+          }
         }
 
         #endregion
 
-        #region public Style WindowIconStyle
+        #region WindowIconStyle
 
         /// <summary>
         /// Gets or sets the style of the WindowIcon.
         /// </summary>
         public Style WindowIconStyle
         {
-            get { return GetValue(WindowIconStyleProperty) as Style; }
-            set { SetValue(WindowIconStyleProperty, value); }
+          get { return GetValue(WindowIconStyleProperty) as Style; }
+          set { SetValue(WindowIconStyleProperty, value); }
         }
 
         /// <summary>
@@ -106,18 +129,10 @@ namespace SilverFlow.Controls
                 typeof(IconBar),
                 null);
 
-        #endregion
+        #endregion        /// <summary>
 
-        private FrameworkElement layoutRoot;
-        private Border fixedBar;
-        private Border slidingBar;
-        private StackPanel carousel;
-        private Storyboard closingStoryboard;
-        private Storyboard openingStoryboard;
-        private bool isOpen;
-        private double slidingBarPosition;
+        #region IsOpen
 
-        /// <summary>
         /// Gets or sets a value indicating whether the IconBar is open.
         /// </summary>
         /// <value><c>true</c> if the IconBar is open; otherwise, <c>false</c>.</value>
@@ -134,19 +149,189 @@ namespace SilverFlow.Controls
             }
         }
 
+        #endregion
+
         /// <summary>
         /// Gets or sets the FloatingWindowHost containing the IconBar.
         /// </summary>
         /// <value>FloatingWindowHost containing the IconBar.</value>
         public FloatingWindowHost FloatingWindowHost { get; set; }
 
+        #endregion
+
+        #region --- Methods ---
+
         /// <summary>
-        /// Initializes a new instance of the <see cref="IconBar"/> class.
+        /// Shows the IconBar.
         /// </summary>
-        public IconBar()
+        public void Show()
         {
-            DefaultStyleKey = typeof(IconBar);
+          if (!IsOpen)
+          {
+            if (carousel == null) ApplyTemplate();
+
+            FillCarousel();
+            SetSlidingBarPosition(0);
+            VisualStateManager.GoToState(this, VSMSTATE_StateOpen, true);
+          }
         }
+
+        /// <summary>
+        /// Hides the IconBar.
+        /// </summary>
+        public void Hide()
+        {
+          if (IsOpen)
+          {
+            VisualStateManager.GoToState(this, VSMSTATE_StateClosed, true);
+          }
+        }
+
+        /// <summary>
+        /// Updates the IconBar if it is open.
+        /// </summary>
+        public void Update()
+        {
+          if (IsOpen)
+          {
+            FillCarousel();
+          }
+        }
+
+        /// <summary>
+        /// Removes the specified window from the IconBar.
+        /// </summary>
+        /// <param name="window">The window to remove from the IconBar.</param>
+        public void Remove(FloatingWindow window)
+        {
+          if (window != null && carousel != null)
+          {
+            var icon = (from windowIcon in carousel.Children.OfType<WindowIcon>()
+                        where windowIcon.Window == window
+                        select windowIcon).FirstOrDefault();
+
+            if (icon != null)
+            {
+              icon.Click -= new RoutedEventHandler(Icon_Click);
+              carousel.Children.Remove(icon);
+            }
+          }
+        }
+
+        /// <summary>
+        /// Gets the storyboards defined in the <see cref="IconBar" /> style.
+        /// </summary>
+        private void GetStoryboards()
+        {
+          var groups = VisualStateManager.GetVisualStateGroups(layoutRoot) as Collection<VisualStateGroup>;
+          if (groups != null)
+          {
+            var states = (from stategroup in groups
+                          where stategroup.Name == IconBar.VSMGROUP_States
+                          select stategroup.States).FirstOrDefault() as Collection<VisualState>;
+
+            if (states != null)
+            {
+              openingStoryboard = (from state in states
+                                   where state.Name == IconBar.VSMSTATE_StateOpen
+                                   select state.Storyboard).FirstOrDefault();
+
+              closingStoryboard = (from state in states
+                                   where state.Name == IconBar.VSMSTATE_StateClosed
+                                   select state.Storyboard).FirstOrDefault();
+            }
+          }
+        }
+
+        /// <summary>
+        /// Subscribes to the events after new template is applied. 
+        /// </summary>
+        private void SubscribeToEvents()
+        {
+          if (closingStoryboard != null)
+            closingStoryboard.Completed += new EventHandler(Closing_Completed);
+
+          if (openingStoryboard != null)
+            openingStoryboard.Completed += new EventHandler(Opening_Completed);
+
+          if (fixedBar != null)
+          {
+            fixedBar.MouseMove += new MouseEventHandler(FixedBar_MouseMove);
+            fixedBar.SizeChanged += new SizeChangedEventHandler(FixedBar_SizeChanged);
+          }
+        }
+
+        /// <summary>
+        /// Unsubscribe from events. 
+        /// </summary>
+        private void UnsubscribeFromEvents()
+        {
+          if (closingStoryboard != null)
+            closingStoryboard.Completed -= new EventHandler(Closing_Completed);
+
+          if (openingStoryboard != null)
+            openingStoryboard.Completed -= new EventHandler(Opening_Completed);
+
+          if (fixedBar != null)
+          {
+            fixedBar.MouseMove += new MouseEventHandler(FixedBar_MouseMove);
+            fixedBar.SizeChanged -= new SizeChangedEventHandler(FixedBar_SizeChanged);
+          }
+        }
+
+        /// <summary>
+        /// Sets styles that are applied for different template parts.
+        /// </summary>
+        private void SetStyles()
+        {
+          if (fixedBar != null && this.IconBarStyle != null)
+            fixedBar.Style = this.IconBarStyle;
+        }
+
+        /// <summary>
+        /// Add windows icons to the carousel.
+        /// </summary>
+        private void FillCarousel()
+        {
+          ClearCarousel();
+
+          Style style = this.WindowIconStyle ?? Application.Current.Resources["WindowIconStyle"] as Style;
+          foreach (var window in this.FloatingWindowHost.WindowsInIconBar)
+          {
+            WindowIcon icon = new WindowIcon()
+            {
+              Style = style,
+              Title = window.IconText,
+              Thumbnail = window.WindowThumbnail,
+              FlowDirection = window.FlowDirection,
+              Window = window,
+              IconWidth = this.FloatingWindowHost.IconWidth,
+              IconHeight = this.FloatingWindowHost.IconHeight
+            };
+
+            icon.Click += new RoutedEventHandler(Icon_Click);
+            carousel.Children.Add(icon);
+          }
+        }
+
+        /// <summary>
+        /// Remove Icon Click event handlers and clear the carousel.
+        /// </summary>
+        private void ClearCarousel()
+        {
+          if (carousel == null) return;
+
+          foreach (var icon in carousel.Children.OfType<WindowIcon>())
+          {
+            icon.Click -= new RoutedEventHandler(Icon_Click);
+          }
+
+          carousel.Children.Clear();
+        }
+
+        #endregion
+
+        #region --- Events ---
 
         /// <summary>
         /// Occurs when the <see cref="IconBar" /> is opened.
@@ -195,132 +380,7 @@ namespace SilverFlow.Controls
             SubscribeToEvents();
         }
 
-        /// <summary>
-        /// Shows the IconBar.
-        /// </summary>
-        public void Show()
-        {
-            if (!IsOpen)
-            {
-                //ApplyTemplate(); //!!!
-
-                FillCarousel();
-                SetSlidingBarPosition(0);
-                VisualStateManager.GoToState(this, VSMSTATE_StateOpen, true);
-            }
-        }
-
-        /// <summary>
-        /// Hides the IconBar.
-        /// </summary>
-        public void Hide()
-        {
-            if (IsOpen)
-            {
-                VisualStateManager.GoToState(this, VSMSTATE_StateClosed, true);
-            }
-        }
-
-        /// <summary>
-        /// Updates the IconBar if it is open.
-        /// </summary>
-        public void Update()
-        {
-            if (IsOpen)
-            {
-                FillCarousel();
-            }
-        }
-
-        /// <summary>
-        /// Removes the specified window from the IconBar.
-        /// </summary>
-        /// <param name="window">The window to remove from the IconBar.</param>
-        public void Remove(FloatingWindow window)
-        {
-            if (window != null && carousel != null)
-            {
-                var icon = (from windowIcon in carousel.Children.OfType<WindowIcon>()
-                            where windowIcon.Window == window
-                            select windowIcon).FirstOrDefault();
-
-                if (icon != null)
-                {
-                    icon.Click -= new RoutedEventHandler(Icon_Click);
-                    carousel.Children.Remove(icon);
-                }
-            }
-        }
-
-        /// <summary>
-        /// Gets the storyboards defined in the <see cref="IconBar" /> style.
-        /// </summary>
-        private void GetStoryboards()
-        {
-            var groups = VisualStateManager.GetVisualStateGroups(layoutRoot) as Collection<VisualStateGroup>;
-            if (groups != null)
-            {
-                var states = (from stategroup in groups
-                              where stategroup.Name == IconBar.VSMGROUP_States
-                              select stategroup.States).FirstOrDefault() as Collection<VisualState>;
-
-                if (states != null)
-                {
-                    openingStoryboard = (from state in states
-                                         where state.Name == IconBar.VSMSTATE_StateOpen
-                                         select state.Storyboard).FirstOrDefault();
-
-                    closingStoryboard = (from state in states
-                                         where state.Name == IconBar.VSMSTATE_StateClosed
-                                         select state.Storyboard).FirstOrDefault();
-                }
-            }
-        }
-
-        /// <summary>
-        /// Subscribes to the events after new template is applied. 
-        /// </summary>
-        private void SubscribeToEvents()
-        {
-            if (closingStoryboard != null)
-                closingStoryboard.Completed += new EventHandler(Closing_Completed);
-
-            if (openingStoryboard != null)
-                openingStoryboard.Completed += new EventHandler(Opening_Completed);
-
-            if (fixedBar != null)
-            {
-              fixedBar.MouseMove += new MouseEventHandler(FixedBar_MouseMove);
-              fixedBar.SizeChanged += new SizeChangedEventHandler(FixedBar_SizeChanged);
-            }
-        }
-
-        /// <summary>
-        /// Unsubscribe from events. 
-        /// </summary>
-        private void UnsubscribeFromEvents()
-        {
-            if (closingStoryboard != null)
-                closingStoryboard.Completed -= new EventHandler(Closing_Completed);
-
-            if (openingStoryboard != null)
-                openingStoryboard.Completed -= new EventHandler(Opening_Completed);
-
-            if (fixedBar != null)
-            {
-              fixedBar.MouseMove += new MouseEventHandler(FixedBar_MouseMove);
-              fixedBar.SizeChanged -= new SizeChangedEventHandler(FixedBar_SizeChanged);
-            }
-        }
-
-        /// <summary>
-        /// Sets styles that are applied for different template parts.
-        /// </summary>
-        private void SetStyles()
-        {
-            if (fixedBar != null && this.IconBarStyle != null)
-                fixedBar.Style = this.IconBarStyle;
-        }
+        #region Animation
 
         /// <summary>
         /// Executed when the Closing storyboard ends.
@@ -329,9 +389,9 @@ namespace SilverFlow.Controls
         /// <param name="e">Event args.</param>
         private void Closing_Completed(object sender, EventArgs e)
         {
-            IsOpen = false;
-            ClearCarousel();
-            OnClosed(EventArgs.Empty);
+          IsOpen = false;
+          ClearCarousel();
+          OnClosed(EventArgs.Empty);
         }
 
         /// <summary>
@@ -341,8 +401,8 @@ namespace SilverFlow.Controls
         /// <param name="e">Event args.</param>
         private void Opening_Completed(object sender, EventArgs e)
         {
-            IsOpen = true;
-            OnOpened(EventArgs.Empty);
+          IsOpen = true;
+          OnOpened(EventArgs.Empty);
         }
 
         /// <summary>
@@ -351,10 +411,10 @@ namespace SilverFlow.Controls
         /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
         protected virtual void OnOpened(EventArgs e)
         {
-            EventHandler handler = Opened;
+          EventHandler handler = Opened;
 
-            if (handler != null)
-                handler(this, e);
+          if (handler != null)
+            handler(this, e);
         }
 
         /// <summary>
@@ -363,50 +423,15 @@ namespace SilverFlow.Controls
         /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
         protected virtual void OnClosed(EventArgs e)
         {
-            EventHandler handler = Closed;
+          EventHandler handler = Closed;
 
-            if (handler != null)
-                handler(this, e);
+          if (handler != null)
+            handler(this, e);
         }
 
-        /// <summary>
-        /// Add windows icons to the carousel.
-        /// </summary>
-        private void FillCarousel()
-        {
-            ClearCarousel();
+        #endregion
 
-            Style style = this.WindowIconStyle ?? Application.Current.Resources["WindowIconStyle"] as Style;
-            foreach (var window in this.FloatingWindowHost.WindowsInIconBar)
-            {
-                WindowIcon icon = new WindowIcon()
-                {
-                    Style = style,
-                    Title = window.IconText,
-                    Thumbnail = window.WindowThumbnail,
-                    FlowDirection = window.FlowDirection,
-                    Window = window,
-                    IconWidth = this.FloatingWindowHost.IconWidth,
-                    IconHeight = this.FloatingWindowHost.IconHeight
-                };
-
-                icon.Click += new RoutedEventHandler(Icon_Click);
-                carousel.Children.Add(icon);
-            }
-        }
-
-        /// <summary>
-        /// Remove Icon Click event handlers and clear the carousel.
-        /// </summary>
-        private void ClearCarousel()
-        {
-            foreach (var icon in carousel.Children.OfType<WindowIcon>())
-            {
-                icon.Click -= new RoutedEventHandler(Icon_Click);
-            }
-
-            carousel.Children.Clear();
-        }
+        #endregion
 
         /// <summary>
         /// Handles the Click event of the Icon control.
@@ -507,7 +532,8 @@ namespace SilverFlow.Controls
         private void SetSlidingBarPosition(double x)
         {
             slidingBarPosition = x;
-            Canvas.SetLeft(slidingBar, slidingBarPosition);
+            if (slidingBar != null)
+              Canvas.SetLeft(slidingBar, slidingBarPosition);
         }
 
         /// <summary>

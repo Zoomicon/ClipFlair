@@ -6,15 +6,14 @@
 //TODO: add ZoomButtonsAlwaysVisible or maybe Zoomable property
 //TODO: add way to select the mode programmatically since some URIs may not provide a file extension (or if it has no extension try first to open as image and if it fails its the XML content for DeepZoom which shouldn't take long to reload into MultiScaleImage used as fallback)
 
-using Utils.Bindings;
-using Utils.Extensions;
-
 using System;
 using System.Windows;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using Utils.Bindings;
+using Utils.Extensions;
 
 namespace ZoomImage
 {
