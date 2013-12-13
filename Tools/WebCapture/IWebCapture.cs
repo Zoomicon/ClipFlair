@@ -4,7 +4,6 @@
 //Version: 20130825
 
 using System;
-using System.Drawing;
 
 namespace WebCapture
 {
