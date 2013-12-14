@@ -1,7 +1,7 @@
 ﻿<!--
 Project: ClipFlair (http://ClipFlair.codeplex.com)
 Filename: Generic.xaml
-Version: 20131213
+Version: 20131214
 -->
 
 <ResourceDictionary
@@ -221,7 +221,7 @@ Version: 20131213
     </Setter>
   </Style>
 
-  <Style x:Key="ClipFlairMaximizeButtonStyle" TargetType="Button"> <!-- THIS MAY BE WRONG, SEE ORIGINAL STYLE, HOW DO WE SHOW RESTORE IMAGES? -->
+  <Style x:Key="ClipFlairMaximizeButtonStyle" TargetType="Button">
     <Setter Property="Cursor" Value="Hand"/>
     <Setter Property="IsTabStop" Value="False"/>
     <Setter Property="VerticalAlignment" Value="Center"/>
@@ -252,6 +252,43 @@ Version: 20131213
             </VisualStateManager.VisualStateGroups>
             <Image x:Name="Image" Source="/ClipFlair.Windows.Base;component/Images/Maximize.png" Stretch="None" />
             <Image x:Name="ImageHover" Source="/ClipFlair.Windows.Base;component/Images/Maximize_hover.png" Stretch="None" Opacity="0" />
+          </Grid>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+
+  <Style x:Key="ClipFlairRestoreButtonStyle" TargetType="Button">
+    <Setter Property="Cursor" Value="Hand"/>
+    <Setter Property="IsTabStop" Value="False"/>
+    <Setter Property="VerticalAlignment" Value="Center"/>
+    <Setter Property="VerticalContentAlignment" Value="Center"/>
+    <Setter Property="Margin" Value="1,1" />
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="Button">
+          <Grid Margin="{TemplateBinding Margin}">
+            <VisualStateManager.VisualStateGroups>
+              <VisualStateGroup x:Name="CommonStates">
+                <VisualStateGroup.Transitions>
+                  <VisualTransition GeneratedDuration="0:0:0.1">
+                    <VisualTransition.GeneratedEasingFunction>
+                      <CubicEase EasingMode="EaseOut"/>
+                    </VisualTransition.GeneratedEasingFunction>
+                  </VisualTransition>
+                </VisualStateGroup.Transitions>
+                <VisualState x:Name="Normal"/>
+                <VisualState x:Name="MouseOver">
+                  <Storyboard>
+                    <DoubleAnimation To="1" Duration="0" Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="ImageHover" d:IsOptimized="True"/>
+                  </Storyboard>
+                </VisualState>
+                <VisualState x:Name="Pressed"/>
+                <VisualState x:Name="Disabled"/>
+              </VisualStateGroup>
+            </VisualStateManager.VisualStateGroups>
+            <Image x:Name="Image" Source="/ClipFlair.Windows.Base;component/Images/Restore.png" Stretch="None" />
+            <Image x:Name="ImageHover" Source="/ClipFlair.Windows.Base;component/Images/Restore_hover.png" Stretch="None" Opacity="0" />
           </Grid>
         </ControlTemplate>
       </Setter.Value>
