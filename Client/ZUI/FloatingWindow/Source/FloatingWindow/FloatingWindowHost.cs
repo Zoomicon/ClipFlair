@@ -1,5 +1,5 @@
 ﻿//Filename: FloatingWindowHost.cs
-//Version: 20131206
+//Version: 20131214
 
 using System;
 using System.Collections.Generic;
@@ -101,6 +101,7 @@ namespace SilverFlow.Controls
             return new Rect(0, 0, HostPanel.ActualWidth, HostPanel.ActualHeight);
           }
         }
+
         public int MaxZIndex
         {
           get

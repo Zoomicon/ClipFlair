@@ -1,5 +1,5 @@
 ﻿//Filename: FloatingWindowHostZUI.cs
-//Version: 20131213
+//Version: 20131214
 
 using SilverFlow.Controls;
 using System.Collections.Specialized;
@@ -321,13 +321,7 @@ namespace FloatingWindowZUI
     {
       get
       {
-        ScrollViewer scroller = (ZoomHost != null) ? (ZoomHost.Parent as ScrollViewer) : null; //will return null if parent is not a ScrollViewer            
-        if (scroller != null) //if the parent is a ScrollViewer maximize to fit the current viewport (needed in ZUI interfaces where the FloatingWindowHost size may be very big)
-        {
-          double scale = ZoomHost.ContentScale;
-          return new Rect(scroller.HorizontalOffset / scale, scroller.VerticalOffset / scale, scroller.ViewportWidth / scale, scroller.ViewportHeight / scale); //TODO: see why this doesn't work correctly (try at different scrollbar offsets and zoom levels)
-        }
-        else return base.MaximizedWindowBounds;
+        return ZoomHost.ContentViewportBounds;
       }
     }
 
