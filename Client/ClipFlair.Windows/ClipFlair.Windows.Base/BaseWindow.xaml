@@ -1,7 +1,7 @@
 ﻿<!--
 Project: ClipFlair (http://ClipFlair.codeplex.com)
 Filename: BaseWindow.xaml
-Version: 20131213
+Version: 20131214
 -->
 
 <float:FloatingWindow x:Class="ClipFlair.Windows.BaseWindow"
@@ -40,9 +40,12 @@ Version: 20131213
     ResizeEnabled="{Binding Resizable, Mode=TwoWay}"        
     ScaleEnabled="{Binding Zoomable, Mode=TwoWay}"
                       
+    MoveMaximizedEnabled="True"
+    ResizeMaximizedEnabled="True"
+                      
     ShowCloseButton="True"
     ShowMinimizeButton="True"
-    ShowMaximizeButton="False"                  
+    ShowMaximizeButton="True"                  
     ShowScreenshotButton="False"
     ShowHelpButton="False"
     > 
@@ -76,6 +79,7 @@ Version: 20131213
       <Setter Property="OptionsButtonStyle" Value="{StaticResource ClipFlairOptionsButtonStyle}" />
       <Setter Property="MinimizeButtonStyle" Value="{StaticResource ClipFlairMinimizeButtonStyle}" />
       <Setter Property="MaximizeButtonStyle" Value="{StaticResource ClipFlairMaximizeButtonStyle}" />
+      <Setter Property="RestoreButtonStyle" Value="{StaticResource ClipFlairRestoreButtonStyle}" />
       <Setter Property="CloseButtonStyle" Value="{StaticResource ClipFlairCloseButtonStyle}" />
     </Style>
 
