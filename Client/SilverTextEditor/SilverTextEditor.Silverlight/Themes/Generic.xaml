@@ -1,6 +1,6 @@
 ﻿<!--
 Filename: Generic.xaml
-Version: 20131213
+Version: 20131216
 -->
 
 <ResourceDictionary
@@ -17,7 +17,7 @@ Version: 20131213
 
   <!-- Toolbar -->
   
-  <SolidColorBrush x:Key="ToolbarBackground" Color="#84BEE7" />
+  <SolidColorBrush x:Key="ToolbarBackground" Color="#E3DAC9" />
 
   <!-- =============================================================== -->
 
