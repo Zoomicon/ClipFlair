@@ -187,7 +187,7 @@
     <Compile Include="activity\metadata\ActivityMetadataPage.aspx.designer.cs">
       <DependentUpon>ActivityMetadataPage.aspx</DependentUpon>
     </Compile>
-    <Compile Include="BaseMetadataPage.cs">
+    <Compile Include="metadata\BaseMetadataPage.cs">
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="image\metadata\ImageMetadataPage.aspx.cs">
@@ -197,7 +197,7 @@
     <Compile Include="image\metadata\ImageMetadataPage.aspx.designer.cs">
       <DependentUpon>ImageMetadataPage.aspx</DependentUpon>
     </Compile>
-    <Compile Include="UI.cs" />
+    <Compile Include="metadata\UI.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="video\metadata\VideoMetadataPage.aspx.cs">
       <DependentUpon>VideoMetadataPage.aspx</DependentUpon>
