@@ -1,6 +1,7 @@
 ﻿<!--
+Project: ClipFlair (http://ClipFlair.codeplex.com)
 Filename: GalleryWindow.xaml
-Version: 20131213
+Version: 20131216
 -->
 
 <clipflair:BaseWindow x:Class="ClipFlair.Windows.GalleryWindow"
@@ -46,9 +47,13 @@ Version: 20131213
   </clipflair:BaseWindow.Resources>
   
   <!--<clipflair:BaseWindow.FrontContent>-->
-
+  
   <pivotex:PivotViewerExt Name="pivot"
-    HorizontalAlignment="Stretch" VerticalAlignment="Stretch" 
+    HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+
+    Background="Transparent"
+    ControlBackground="Transparent"       
+
     Source="{Binding Source, Mode=TwoWay}"
     Filter="{Binding Filter, Mode=TwoWay}"
     ItemAdornerStyle="{StaticResource GalleryItemAdornerStyle}"    

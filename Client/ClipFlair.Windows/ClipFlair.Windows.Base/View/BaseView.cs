@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: BaseView.cs
-//Version: 20131213
+//Version: 20131216
 
 using System;
 using System.ComponentModel;
@@ -38,6 +38,7 @@ namespace ClipFlair.Windows.Views
       Zoom = view.Zoom;
       ZIndex = view.ZIndex;
       Opacity = view.Opacity;
+      BackgroundColor = view.BackgroundColor;
       BorderColor = view.BorderColor;
       BorderThickness = view.BorderThickness;
       CornerRadius = view.CornerRadius;
@@ -77,6 +78,7 @@ namespace ClipFlair.Windows.Views
     private double zoom;
     private int zIndex;
     private double opacity;
+    private Color backgroundColor;
     private Color borderColor;
     private Thickness borderThickness;
     private CornerRadius cornerRadius;
@@ -299,6 +301,22 @@ namespace ClipFlair.Windows.Views
       }
     }
 
+    [DataMember]
+    //[DefaultValue(ViewDefaults.DefaultBackgroundColor)] //can't use static fields here (and we're forced to use one for Color, doesn't work with const)
+    public Color BackgroundColor
+    {
+      get { return backgroundColor; }
+      set
+      {
+        if (value != backgroundColor)
+        {
+          backgroundColor = value;
+          RaisePropertyChanged(IViewProperties.PropertyBackgroundColor);
+          Dirty = true;
+        }
+      }
+    }
+    
     [DataMember]
     //[DefaultValue(ViewDefaults.DefaultBorderColor)] //can't use static fields here (and we're forced to use one for Color, doesn't work with const)
     public Color BorderColor

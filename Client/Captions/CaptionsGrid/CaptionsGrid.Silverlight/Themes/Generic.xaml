@@ -1,7 +1,7 @@
 ﻿<!-- 
 Project: ClipFlair (http://ClipFlair.codeplex.com)
 Filename: Generic.xaml
-Version: 20131213
+Version: 20131216
 -->
   
 <ResourceDictionary
@@ -21,7 +21,7 @@ Version: 20131213
  
   <!-- Toolbar -->
 
-  <SolidColorBrush x:Key="ToolbarBackground" Color="#84BEE7" />
+  <SolidColorBrush x:Key="ToolbarBackground" Color="#E3DAC9" />
 
   <!-- StartTime -->
   
@@ -35,8 +35,8 @@ Version: 20131213
   </DataTemplate>
 
   <DataTemplate x:Key="StartTimeCellEditTemplate">
-    <TextBox Text="{Binding Begin, StringFormat='hh\\:mm\\:ss\\.FFF', Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=true}" />
-    <!--<input:TimeUpDown Format="hh:mm:ss" Value="{Binding Begin, Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=true}" />-->
+    <TextBox Text="{Binding Begin, StringFormat='hh\\:mm\\:ss\\.FFF', Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=True}" />
+    <!--<input:TimeUpDown Format="hh:mm:ss" Value="{Binding Begin, Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=True}" />-->
   </DataTemplate>
 
   <!-- EndTime -->
@@ -50,8 +50,8 @@ Version: 20131213
   </DataTemplate>
 
   <DataTemplate x:Key="EndTimeCellEditTemplate">
-    <TextBox Text="{Binding End, StringFormat='hh\\:mm\\:ss\\.FFF', Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=true}" />
-    <!--<input:TimeUpDown Format="hh:mm:ss" Minimum="{Binding Begin}" Value="{Binding End, Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=true}" />-->
+    <TextBox Text="{Binding End, StringFormat='hh\\:mm\\:ss\\.FFF', Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=True}" />
+    <!--<input:TimeUpDown Format="hh:mm:ss" Minimum="{Binding Begin}" Value="{Binding End, Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=True}" />-->
   </DataTemplate>
 
   <!-- Duration -->
@@ -65,8 +65,8 @@ Version: 20131213
   </DataTemplate>
 
   <DataTemplate x:Key="DurationCellEditTemplate">
-    <TextBox Text="{Binding Duration, StringFormat='hh\\:mm\\:ss\\.FFF', Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=true}" />
-    <!--<input:TimeUpDown Format="hh:mm:ss" Value="{Binding Duration, Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=true}" />-->
+    <TextBox Text="{Binding Duration, StringFormat='hh\\:mm\\:ss\\.FFF', Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=True}" />
+    <!--<input:TimeUpDown Format="hh:mm:ss" Value="{Binding Duration, Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=True}" />-->
   </DataTemplate>
 
   <!-- Role -->
@@ -76,8 +76,8 @@ Version: 20131213
   </DataTemplate>
 
   <DataTemplate x:Key="RoleCellEditTemplate">
-    <!-- <TextBox Text="{Binding Role, Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=true}" /> -->
-    <controls:AutoCompleteBox Text="{Binding Role, Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=true}" 
+    <!-- <TextBox Text="{Binding Role, Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=True}" /> -->
+    <controls:AutoCompleteBox Text="{Binding Role, Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=True}" 
                               ItemsSource="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:CaptionsGrid}, Path=Roles}" 
                               IsTextCompletionEnabled="True"
                               MinimumPrefixLength="0" 
@@ -101,7 +101,7 @@ Version: 20131213
   <DataTemplate x:Key="CaptionCellEditTemplate">
     <TextBox
       AcceptsReturn="True"
-      Text="{Binding Caption, Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=true}"
+      Text="{Binding Caption, Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=True}"
       FlowDirection="{Binding RTL, Converter={StaticResource BooleanToFlowDirectionConverter}}"
       />
   </DataTemplate>
@@ -131,7 +131,7 @@ Version: 20131213
   </DataTemplate>
 
   <DataTemplate x:Key="CommentsCellEditTemplate">
-    <TextBox AcceptsReturn="True" Text="{Binding Comments, Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=true}" />
+    <TextBox AcceptsReturn="True" Text="{Binding Comments, Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=True}" />
   </DataTemplate>
   
   <!-- Column Header -->

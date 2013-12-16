@@ -1,7 +1,7 @@
 ﻿<!--
 Project: ClipFlair (http://ClipFlair.codeplex.com)
 Filename: ActivityContainer.xaml
-Version: 20131213
+Version: 20131216
 -->
 
 <UserControl x:Class="ClipFlair.Windows.ActivityContainer" 
@@ -148,7 +148,7 @@ Version: 20131213
       </zui:FloatingWindowHostZUI.Bar>
 
       <zui:FloatingWindowHostZUI.Background>
-        <SolidColorBrush Color="#185780" />
+        <SolidColorBrush Color="Transparent" />
       </zui:FloatingWindowHostZUI.Background>
 
       <!--<zui:FloatingWindowHostZUI.Windows>-->

@@ -1,7 +1,7 @@
 ﻿<!--
 Project: ClipFlair (http://ClipFlair.codeplex.com)
 Filename: BaseWindow.xaml
-Version: 20131214
+Version: 20131216
 -->
 
 <float:FloatingWindow x:Class="ClipFlair.Windows.BaseWindow"
@@ -60,6 +60,10 @@ Version: 20131214
     <SolidColorBrush Color="{Binding BorderColor}" />
   </float:FloatingWindow.TitleBackground>
   
+  <float:FloatingWindow.Background>
+    <SolidColorBrush Color="{Binding BackgroundColor}" />
+  </float:FloatingWindow.Background>
+  
   <float:FloatingWindow.Resources>
     <ResourceDictionary>
       <ResourceDictionary.MergedDictionaries>
@@ -72,7 +76,6 @@ Version: 20131214
 
   <float:FloatingWindow.Style>
     <Style TargetType="float:FloatingWindow" BasedOn="{StaticResource FloatingWindowStyle}">
-      <Setter Property="Background" Value="#F3F3F3" />
       <Setter Property="TitleStyle" Value="{StaticResource ClipFlairTitleStyle}" />
       <Setter Property="ScreenshotButtonStyle"  Value="{StaticResource ClipFlairScreenshotButtonStyle}" />
       <Setter Property="HelpButtonStyle"  Value="{StaticResource ClipFlairHelpButtonStyle}" />
@@ -108,7 +111,9 @@ Version: 20131214
       <flip:FlipPanel.BackContent>
         <!-- descendents should define children of BaseWindow.PropertyItems in the XAML (defining children of FlipPanel.BackContent will make them show below the scroller and accordion) -->
 
-        <ScrollViewer HorizontalAlignment="Stretch" VerticalAlignment="Stretch" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
+        <ScrollViewer Background="#E3DAC9" 
+                      HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+                      HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
           <Grid>
             <Grid.RowDefinitions>
               <RowDefinition Height="29" />
@@ -130,12 +135,28 @@ Version: 20131214
             </StackPanel>
             -->
 
-            <toolkit:Accordion Grid.Row="1" SelectionMode="ZeroOrOne" SelectionSequence="Simultaneous" ExpandDirection="Down" HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch">
+            <toolkit:Accordion
+              Grid.Row="1"
+              SelectionMode="ZeroOrOne"
+              SelectionSequence="Simultaneous"
+              ExpandDirection="Down"
+              HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch"
+              >
 
-              <toolkit:AccordionItem Header="Window Options" IsSelected="False" Background="Transparent" HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch">
+              <toolkit:AccordionItem
+                Header="Window Options"
+                IsSelected="False"
+                Background="Transparent"
+                HorizontalAlignment="Stretch"
+                HorizontalContentAlignment="Stretch"
+                >
                 <toolkit:AccordionItem.Content>
 
-                  <StackPanel Name="PropertiesPanelBase" Orientation="Vertical" Margin="10,10,10,10" HorizontalAlignment="Stretch">
+                  <StackPanel
+                    Name="PropertiesPanelBase"
+                    Orientation="Vertical"
+                    Margin="10,10,10,10"
+                    HorizontalAlignment="Stretch">
 
                     <StackPanel.Resources>
                       <Style TargetType="StackPanel" BasedOn="{StaticResource PropertyStackPanelStyle}" />
@@ -151,13 +172,13 @@ Version: 20131214
                     
                     <StackPanel Orientation="Vertical" Name="propTitle">
                       <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Title:" Target="{Binding ElementName=edTitle}" />
-                      <TextBox Name="edTitle" Text="{Binding Title, Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=true}" />
+                      <TextBox Name="edTitle" Text="{Binding Title, Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=True}" />
                     </StackPanel>
 
                     <!--
                     <StackPanel Orientation="Vertical" Name="propPosition">
                       <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Position:" Target="{Binding ElementName=edPosition}" />
-                      <TextBox Name="edPosition" Text="{Binding Position, Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=true}" />
+                      <TextBox Name="edPosition" Text="{Binding Position, Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=True}" />
                     </StackPanel>
                     -->
 
@@ -169,12 +190,12 @@ Version: 20131214
 
                       <StackPanel Grid.Column="0" Orientation="Vertical" Name="propX" Margin="0,0,5,0">
                         <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="X:" Target="{Binding ElementName=edX}" />
-                        <TextBox Name="edX" Text="{Binding X, Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=true}" />
+                        <TextBox Name="edX" Text="{Binding X, Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=True}" />
                       </StackPanel>
 
                       <StackPanel Grid.Column="1" Orientation="Vertical" Name="propY" Margin="5,0,0,0">
                         <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Y:" Target="{Binding ElementName=edY}" />
-                        <TextBox Name="edY" Text="{Binding Y, Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=true}" />
+                        <TextBox Name="edY" Text="{Binding Y, Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=True}" />
                       </StackPanel>
 
                     </Grid>
@@ -187,46 +208,51 @@ Version: 20131214
                       
                       <StackPanel Grid.Column="0" Orientation="Vertical" Name="propWidth" Margin="0,0,5,0">
                         <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Width:" Target="{Binding ElementName=edWidth}" />
-                        <TextBox Name="edWidth" Text="{Binding Width, Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=true}" />
+                        <TextBox Name="edWidth" Text="{Binding Width, Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=True}" />
                       </StackPanel>
 
                       <StackPanel Grid.Column="1" Orientation="Vertical" Name="propHeight" Margin="5,0,0,0">
                         <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Height:" Target="{Binding ElementName=edHeight}" />
-                        <TextBox Name="edHeight" Text="{Binding Height, Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=true}" />
+                        <TextBox Name="edHeight" Text="{Binding Height, Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=True}" />
                       </StackPanel>
 
                     </Grid>
 
                     <StackPanel Orientation="Vertical" Name="propZoom">
                       <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Zoom:" Target="{Binding ElementName=edZoom}" />
-                      <TextBox Name="edZoom" Text="{Binding Zoom, Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=true}" />
+                      <TextBox Name="edZoom" Text="{Binding Zoom, Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=True}" />
                       <!-- can't use a slider here, since the grabbed slider thumb would move away from the mouse while zooming in/out -->
                     </StackPanel>
 
                     <StackPanel Orientation="Vertical" Name="propZIndex">
                       <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Z-order layer index:" Target="{Binding ElementName=edZIndex}" />
-                      <TextBox Name="edZIndex" Text="{Binding ZIndex, Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=true}" />
+                      <TextBox Name="edZIndex" Text="{Binding ZIndex, Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=True}" />
                     </StackPanel>
 
                     <StackPanel Orientation="Vertical" Name="propOpacity">
                       <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Opacity:" Target="{Binding ElementName=sldOpacity}" />
-                      <!-- <TextBox Name="edOpacity" Text="{Binding Opacity, Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=true}" /> -->
+                      <!-- <TextBox Name="edOpacity" Text="{Binding Opacity, Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=True}" /> -->
                       <Slider Name="sldOpacity" Value="{Binding Opacity, Mode=TwoWay}" Minimum="0.1" Maximum="1" SmallChange="0.05" LargeChange="0.1" Orientation="Horizontal" />
                     </StackPanel>
 
+                    <StackPanel Orientation="Vertical" Name="propBackgroundColor">
+                      <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Background Color:" Target="{Binding ElementName=edBackgroundColor}" />
+                      <TextBox Name="edBackgroundColor" Text="{Binding BackgroundColor, Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=True}" />
+                    </StackPanel>
+                    
                     <StackPanel Orientation="Vertical" Name="propBorderColor">
                       <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Border Color:" Target="{Binding ElementName=edBorderColor}" />
-                      <TextBox Name="edBorderColor" Text="{Binding BorderColor, Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=true}" />
+                      <TextBox Name="edBorderColor" Text="{Binding BorderColor, Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=True}" />
                     </StackPanel>
                     
                     <StackPanel Orientation="Vertical" Name="propBorderThickness">
                       <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Border Thickness:" Target="{Binding ElementName=edBorderThickness}" />
-                      <TextBox Name="edBorderThickness" Text="{Binding BorderThickness, Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=true}" />
+                      <TextBox Name="edBorderThickness" Text="{Binding BorderThickness, Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=True}" />
                     </StackPanel>
 
                     <StackPanel Orientation="Vertical" Name="propCornerRadius">
                       <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Corner Radius:" Target="{Binding ElementName=edCornerRadius}" />
-                      <TextBox Name="edCornerRadius" Text="{Binding CornerRadius, Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=true}" />
+                      <TextBox Name="edCornerRadius" Text="{Binding CornerRadius, Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=True}" />
                     </StackPanel>
                     
                     <StackPanel Orientation="Horizontal" Name="propMoveable">

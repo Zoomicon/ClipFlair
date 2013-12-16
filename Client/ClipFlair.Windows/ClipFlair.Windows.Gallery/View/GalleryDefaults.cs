@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: GalleryDefaults.cs
-//Version: 20131213
+//Version: 20131216
 
 using System;
 using System.Windows.Media;
@@ -15,7 +15,8 @@ namespace ClipFlair.Windows.Views
     public const string DefaultTitle = "Gallery";
     public const double DefaultWidth = 800;
     public const double DefaultHeight = 600;
-    public static readonly Color DefaultBorderColor = Color.FromArgb(0xFF, 0xF7, 0x79, 0x00); //#F77900
+    public static readonly Color DefaultBorderColor = Color.FromArgb(0xFF, 0xEC, 0x8B, 0x2D); //#EC8B2D
+      //Color.FromArgb(0xFF, 0xF7, 0x79, 0x00); //#F77900
         
     #endregion
 

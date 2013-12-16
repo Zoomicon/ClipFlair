@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: ActivityDefaults.cs
-//Version: 20131213
+//Version: 20131216
 
 using Microsoft.SilverlightMediaFramework.Core.Accessibility.Captions;
 
@@ -19,6 +19,7 @@ namespace ClipFlair.Windows.Views
     public const string DefaultTitle = "Activity";
     public const double DefaultWidth = 650;
     public const double DefaultHeight = 400;
+    public static readonly Color DefaultBackgroundColor = Color.FromArgb(0xFF, 0x27, 0x63, 0x88); //#276388
     public static readonly Color DefaultBorderColor = Color.FromArgb(0xFF, 0x08, 0x1A, 0x26); //#081A26
     
     #endregion
@@ -43,6 +44,7 @@ namespace ClipFlair.Windows.Views
       view.Title = DefaultTitle;
       view.Width = DefaultWidth;
       view.Height = DefaultHeight;
+      view.BackgroundColor = DefaultBackgroundColor;
       view.BorderColor = DefaultBorderColor;
 
       //IActivity defaults

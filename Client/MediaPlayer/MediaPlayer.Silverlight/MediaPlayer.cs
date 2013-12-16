@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: MediaPlayer.cs
-//Version: 20130823
+//Version: 20131216
 
 using Utils.Extensions;
 
@@ -8,10 +8,7 @@ using System;
 using System.IO;
 using System.Linq;
 
-
-#if SILVERLIGHT
-
-#else
+#if !SILVERLIGHT
 using System.Web;
 #endif
 

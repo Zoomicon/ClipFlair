@@ -1,6 +1,6 @@
 ﻿<!--
   Filename: Generic.xaml
-  Version: 20120802
+  Version: 20131216
 -->
   
   <ResourceDictionary 
@@ -25,8 +25,8 @@
         <ControlTemplate TargetType="zoom:ZoomAndPanControl">
           <!-- must set a background brush, even a Transaparent one in order to receive mouse events at the top-level container -->
           <Border Background="Transparent" 
-                            BorderBrush="{TemplateBinding BorderBrush}"
-                            BorderThickness="{TemplateBinding BorderThickness}">
+                  BorderBrush="{TemplateBinding BorderBrush}"
+                  BorderThickness="{TemplateBinding BorderThickness}">
 
             <!-- setting any background defined for the ZoomAndPanControl to the Grid that is inside the toplevel Border -->
             <Grid Background="{TemplateBinding Background}">

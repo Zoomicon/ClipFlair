@@ -1,7 +1,7 @@
 ﻿<!-- 
 Project: ClipFlair (http://ClipFlair.codeplex.com)
 Filename: TextEditorWindow.xaml
-Version: 20131213
+Version: 20131216
 -->
   
 <clipflair:BaseWindow x:Class="ClipFlair.Windows.TextEditorWindow"
@@ -29,7 +29,10 @@ Version: 20131213
   <!--<clipflair:BaseWindow.FrontContent>-->
   
   <text:SilverTextEditor Name="editor"
-                         HorizontalAlignment="Stretch" VerticalAlignment="Stretch" 
+                         HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+                         
+                         Background="{x:Null}"
+                         
                          ToolbarVisible="{Binding ToolbarVisible, Mode=TwoWay}"
                          Editable="{Binding Editable, Mode=TwoWay}"
                          RTL="{Binding RTL, Mode=TwoWay}"
@@ -61,7 +64,7 @@ Version: 20131213
 
     <StackPanel Orientation="Vertical">
       <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Time:" Target="{Binding ElementName=edTime}" />
-      <TextBox Name="edTime" Text="{Binding Time, Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=true}" />
+      <TextBox Name="edTime" Text="{Binding Time, Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=True}" />
     </StackPanel>
 
   </clipflair:BaseWindow.PropertyItems>
