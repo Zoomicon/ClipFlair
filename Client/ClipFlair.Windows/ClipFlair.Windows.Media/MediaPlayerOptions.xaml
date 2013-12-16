@@ -1,7 +1,7 @@
 ﻿<!--
 Project: ClipFlair (http://ClipFlair.codeplex.com)
 Filename: MediaPlayerOptions.xaml
-Version: 20131213
+Version: 20131216
 -->
 
 <UserControl x:Class="ClipFlair.Windows.Options.MediaPlayerOptions"
@@ -35,7 +35,7 @@ Version: 20131213
        
         <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="URL:" Target="{Binding ElementName=edMediaURL}" Margin="5,0" Grid.Column="0" />
         <TextBox Name="edMediaURL"
-                 Text="{Binding Source, Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=true}"
+                 Text="{Binding Source, Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=True}"
                  HorizontalScrollBarVisibility="Hidden"
                  AcceptsReturn="False"
                  Grid.Column="1"
@@ -59,12 +59,12 @@ Version: 20131213
 
     <StackPanel Orientation="Vertical">
       <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Time:" Target="{Binding ElementName=edTime}" />
-      <TextBox Name="edTime" Text="{Binding Time, Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=true}" />
+      <TextBox Name="edTime" Text="{Binding Time, Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=True}" />
     </StackPanel>
 
     <StackPanel Orientation="Vertical">
       <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="ReplayOffset:" Target="{Binding ElementName=edReplayOffset}" />
-      <TextBox Name="edReplayOffset" Text="{Binding ReplayOffset, Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=true}" />
+      <TextBox Name="edReplayOffset" Text="{Binding ReplayOffset, Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=True}" />
     </StackPanel>
 
     <StackPanel Orientation="Horizontal">
@@ -79,13 +79,13 @@ Version: 20131213
 
     <StackPanel Orientation="Vertical" Name="propVolume">
       <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Volume:" Target="{Binding ElementName=sldVolume}" />
-      <!-- <TextBox Name="edVolume" Text="{Binding Volume, Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=true}" /> -->
+      <!-- <TextBox Name="edVolume" Text="{Binding Volume, Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=True}" /> -->
       <Slider Name="sldVolume" Value="{Binding Volume, Mode=TwoWay}" Minimum="0" Maximum="1" SmallChange="0.05" LargeChange="0.1" Orientation="Horizontal" />
     </StackPanel>
 
     <StackPanel Orientation="Vertical" Name="propBalance">
       <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Balance:" Target="{Binding ElementName=sldBalance}" />
-      <!-- <TextBox Name="edBalance" Text="{Binding Balance, Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=true}" /> -->
+      <!-- <TextBox Name="edBalance" Text="{Binding Balance, Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=True}" /> -->
       <Slider Name="sldBalance" Value="{Binding Balance, Mode=TwoWay}" Minimum="-1" Maximum="1" SmallChange="0.05" LargeChange="0.1" Orientation="Horizontal" />
     </StackPanel>
 

@@ -1,7 +1,7 @@
 ﻿<!--
 Project: ClipFlair (http://ClipFlair.codeplex.com)
 Filename: CaptionsGridWindow.xaml
-Version: 20131213
+Version: 20131216
 -->
   
 <clipflair:BaseWindow x:Class="ClipFlair.Windows.CaptionsGridWindow"
@@ -29,6 +29,8 @@ Version: 20131213
 
   <captions:CaptionsGrid Name="gridCaptions"
                          HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+                         
+                         Background="{x:Null}"
 
                          Time="{Binding Time, Mode=TwoWay}"
                          Captions="{Binding Captions, Mode=TwoWay}"
@@ -58,7 +60,7 @@ Version: 20131213
 
     <StackPanel Orientation="Vertical">
       <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Time:" Target="{Binding ElementName=edTime}" />
-      <TextBox Name="edTime" Text="{Binding Time, Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=true}" /> 
+      <TextBox Name="edTime" Text="{Binding Time, Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=True}" /> 
     </StackPanel>
 
     <StackPanel Orientation="Horizontal">

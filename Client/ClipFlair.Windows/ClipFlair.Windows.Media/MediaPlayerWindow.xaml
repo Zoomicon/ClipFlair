@@ -1,7 +1,7 @@
 ﻿<!--
 Project: ClipFlair (http://ClipFlair.codeplex.com)
 Filename: MediaPlayerWindow.xaml
-Version: 20131213
+Version: 20131216
 -->
 
 <clipflair:BaseWindow x:Class="ClipFlair.Windows.MediaPlayerWindow"
@@ -25,9 +25,13 @@ Version: 20131213
   </clipflair:BaseWindow.Resources>
   
   <!--<clipflair:BaseWindow.FrontContent>-->
+  
+  <!-- Background property doesn't seem to change the MediaPlayer background, always shows Black (neither x:Null, nor Transparent works) -->
 
   <media:MediaPlayer Name="player" 
      HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+                     
+     Background="{x:Null}"
                      
      EnableCachedComposition="True"
                                      

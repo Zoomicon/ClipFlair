@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: ViewDefaults.cs
-//Version: 20131213
+//Version: 20131216
 
 using System;
 using System.Windows;
@@ -25,6 +25,7 @@ namespace ClipFlair.Windows.Views
     public const double DefaultZoom = 1.0; //100% scale (zoom)
     public const int DefaultZIndex = 0;
     public const double DefaultOpacity = 1.0; //opaque
+    public static readonly Color DefaultBackgroundColor = Color.FromArgb(0xFF, 0xF3, 0xF3, 0xF3); //#F3F3F3
     public static readonly Color DefaultBorderColor = Color.FromArgb(0xFF, 0x21, 0x71, 0xD2); //#2171D2
     public static readonly Thickness DefaultBorderThickness = new Thickness(3);
     public static readonly CornerRadius DefaultCornerRadius = new CornerRadius(0);
@@ -53,6 +54,7 @@ namespace ClipFlair.Windows.Views
       view.Zoom = DefaultZoom;
       view.ZIndex = DefaultZIndex;
       view.Opacity = DefaultOpacity;
+      view.BackgroundColor = DefaultBackgroundColor;
       view.BorderColor = DefaultBorderColor;
       view.BorderThickness = DefaultBorderThickness;
       view.CornerRadius = DefaultCornerRadius;

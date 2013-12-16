@@ -1,6 +1,7 @@
 ﻿<!--
+Project: ClipFlair (http://ClipFlair.codeplex.com)
 Filename: MapWindow.xaml
-Version: 20131213
+Version: 20131216
 -->
 
 <clipflair:BaseWindow x:Class="ClipFlair.Windows.MapWindow"
@@ -65,12 +66,12 @@ Version: 20131213
     
     <StackPanel Orientation="Vertical">
       <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Language-Culture:" Target="{Binding ElementName=edCulture}" />
-      <TextBox Name="edCulture" Text="{Binding Culture, Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=true}" />
+      <TextBox Name="edCulture" Text="{Binding Culture, Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=True}" />
     </StackPanel>
 
     <StackPanel Orientation="Vertical">
       <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Mode" Target="{Binding ElementName=edMode}"/>
-      <!-- <TextBox Name="edMode" Text="{Binding Mode, Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=true}" /> -->
+      <!-- <TextBox Name="edMode" Text="{Binding Mode, Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=True}" /> -->
       <ComboBox Name="comboMode" SelectedValue="{Binding Mode, Mode=TwoWay}" DisplayMemberPath="Content" SelectedValuePath="Tag">
         <ComboBoxItem Content="Road" Tag="Road" />
         <ComboBoxItem Content="Aerial" Tag="Aerial" />
@@ -89,30 +90,30 @@ Version: 20131213
 
     <StackPanel Orientation="Vertical">
       <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Latitude:" Target="{Binding ElementName=edLatitude}" />
-      <TextBox Name="edLatitude" Text="{Binding Latitude, Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=true}" />
+      <TextBox Name="edLatitude" Text="{Binding Latitude, Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=True}" />
     </StackPanel>
 
     <StackPanel Orientation="Vertical">
       <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Longitude:" Target="{Binding ElementName=edLongitude}" />
-      <TextBox Name="edLongitude" Text="{Binding Longitude, Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=true}" />
+      <TextBox Name="edLongitude" Text="{Binding Longitude, Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=True}" />
     </StackPanel>
     
 <!--
     <StackPanel Orientation="Vertical">
       <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Altitude:" Target="{Binding ElementName=edAltitude}" />
-      <TextBox Name="edAltitude" Text="{Binding Altitude, Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=true}" />
+      <TextBox Name="edAltitude" Text="{Binding Altitude, Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=True}" />
     </StackPanel>
 -->
     
     <StackPanel Orientation="Vertical">
       <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Map Zoom:" Target="{Binding ElementName=sldMapZoom}" />
-      <!-- <TextBox Name="edMapZoom" Text="{Binding MapZoom, Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=true}" /> -->
+      <!-- <TextBox Name="edMapZoom" Text="{Binding MapZoom, Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=True}" /> -->
       <Slider Name="sldMapZoom" Value="{Binding MapZoom, Mode=TwoWay}" Minimum="1.0" Maximum="13.0" SmallChange="0.5" LargeChange="1.0" Orientation="Horizontal" />
     </StackPanel>
 
     <StackPanel Orientation="Vertical">
       <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Time:" Target="{Binding ElementName=edTime}" />
-      <TextBox Name="edTime" Text="{Binding Time, Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=true}" />
+      <TextBox Name="edTime" Text="{Binding Time, Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=True}" />
     </StackPanel>
 
   </clipflair:BaseWindow.PropertyItems>

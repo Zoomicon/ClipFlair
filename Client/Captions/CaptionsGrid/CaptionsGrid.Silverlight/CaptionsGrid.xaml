@@ -1,7 +1,7 @@
 ﻿<!--
 Project: ClipFlair (http://ClipFlair.codeplex.com)
 Filename: CaptionsGrid.xaml
-Version: 20131022
+Version: 2013216
 -->
 
 <UserControl x:Class="ClipFlair.CaptionsGrid.CaptionsGrid"
@@ -133,12 +133,12 @@ Version: 20131022
 
     <sdk:DataGrid Name="gridCaptions"
                   Grid.Row="1"
-                  Background="#F3F3F3"
+                  Background="{Binding Background, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=UserControl}}"
+                  RowBackground="#F3F3F3"
+                  AlternatingRowBackground="#FFFFFF"
                   AutoGenerateColumns="False"
                   HeadersVisibility="All"
-                  RowBackground="#F3F3F3"
                   ColumnHeaderStyle="{StaticResource ColumnHeaderStyle}"
-                  AlternatingRowBackground="#FFFFFF"
                   ItemsSource="{Binding Path=Captions.Children, RelativeSource={RelativeSource AncestorType=captions:CaptionsGrid}}"
                   >
       
