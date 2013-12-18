@@ -1,0 +1,7 @@
+At original code:
+http://www.codeproject.com/Articles/14237/Using-the-G711-standard
+author says in a reply to a reader question:
+"I don't really know much about the different licensing, but I have no issues with it being used. In fact, I would be glad to have someone use it. "
+
+This PCL (Portable Class Library) version is based on a Silverlight 4 port of the above code, found at:
+https://github.com/dittodhole/g711sharp
