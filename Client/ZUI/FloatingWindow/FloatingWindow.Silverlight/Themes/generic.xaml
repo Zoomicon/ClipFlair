@@ -620,7 +620,7 @@
                 CornerRadius="{TemplateBinding CornerRadius}"
                 Padding="0"
                 >
-                <Grid>
+                <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0">
                   <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition/>
@@ -630,11 +630,12 @@
                     x:Name="Chrome"
                     Width="Auto"
                     Background="{TemplateBinding TitleBackground}"
-                    UseLayoutRounding="True" 
+                    UseLayoutRounding="True"
                     BorderThickness="0"
                     CornerRadius="0"
                     Margin="-1,-1,-1,0"
->
+                    Padding="0"
+                    >
                     <!-- Note: changed to UseLayoutRounding="True" to help with GPU acceleration -->
                     <Grid Height="Auto" Width="Auto">
                       <Grid.ColumnDefinitions>
@@ -702,6 +703,8 @@
                   <Border
                     Grid.Row="1"
                     BorderThickness="0"
+                    Margin="0"
+                    Padding="0"
                     >
                     <ContentPresenter
                       x:Name="ContentPresenter"
