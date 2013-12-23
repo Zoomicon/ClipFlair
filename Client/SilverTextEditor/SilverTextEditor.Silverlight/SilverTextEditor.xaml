@@ -1,6 +1,6 @@
 ﻿<!--
 Filename: SilverTextEditor.xaml
-Version: 20131216
+Version: 20131223
 -->
 
 <UserControl x:Class="SilverTextEditor.SilverTextEditor"
@@ -12,6 +12,7 @@ Version: 20131216
     xmlns:utils="clr-namespace:System.Windows.Controls;assembly=WPF_Compatibility"             
     xmlns:btn="clr-namespace:ImageButtons;assembly=ImageButtons"
     FontFamily="Calibri"
+    BorderThickness="0"         
     >
 
   <UserControl.Resources>
@@ -47,60 +48,55 @@ Version: 20131216
       </VisualStateGroup>
     </VisualStateManager.VisualStateGroups>
 
-    <Border x:Name="ApplicationBorder"
-      HorizontalAlignment="Stretch"
-      VerticalAlignment="Stretch"
-      Margin="0,0,0,0"
-      BorderThickness="1"
-      BorderBrush="#FF646464"> <!-- TODO: add ContentZoom option to work like Word? -->
+    <!-- TODO: add ContentZoom option to work like Word? -->
 
-      <Grid Name="MainGrid">
+    <Grid Name="MainGrid">
 
-        <Grid.RowDefinitions>
-          <RowDefinition Height="Auto" />
-          <RowDefinition Height="*" />
-        </Grid.RowDefinitions>
+      <Grid.RowDefinitions>
+        <RowDefinition Height="Auto" />
+        <RowDefinition Height="*" />
+      </Grid.RowDefinitions>
 
-        <!-- Toolbar -->
-        <toolkit:WrapPanel x:Name="Toolbar"
+      <!-- Toolbar -->
+      <toolkit:WrapPanel x:Name="Toolbar"
                     Orientation="Horizontal" 
                     Grid.Row="0"
                     Background="{StaticResource ToolbarBackground}"
                     >
-          <toolkit:WrapPanel.Resources>
-            <Style TargetType="StackPanel">
-              <Setter Property="Margin" Value="2,0" />
-            </Style>
-            <Style TargetType="ComboBox">
-              <Setter Property="Margin" Value="1,5" />
-            </Style>
-            <Style TargetType="btn:ImageButton">
-              <Setter Property="Margin" Value="1,5" />
-            </Style>
-            <Style TargetType="btn:ImageToggleButton">
-              <Setter Property="Margin" Value="1,5" />
-            </Style>
-          </toolkit:WrapPanel.Resources>
-        
-          <!-- File Toolbar -->
-          <StackPanel Orientation="Horizontal">
+        <toolkit:WrapPanel.Resources>
+          <Style TargetType="StackPanel">
+            <Setter Property="Margin" Value="2,0" />
+          </Style>
+          <Style TargetType="ComboBox">
+            <Setter Property="Margin" Value="1,5" />
+          </Style>
+          <Style TargetType="btn:ImageButton">
+            <Setter Property="Margin" Value="1,5" />
+          </Style>
+          <Style TargetType="btn:ImageToggleButton">
+            <Setter Property="Margin" Value="1,5" />
+          </Style>
+        </toolkit:WrapPanel.Resources>
 
-            <btn:ImageButton
+        <!-- File Toolbar -->
+        <StackPanel Orientation="Horizontal">
+
+          <btn:ImageButton
               x:Name="btnOpen" Click="btnOpen_Click" 
               ToolTipService.ToolTip="{Binding tooltip_Open, Source={StaticResource localizedStrings}}"
               Visibility="{Binding Editable, Converter={StaticResource BooleanToVisibilityConverter}}"
               Image="Images/Import.png"
               ImageHover="Images/Import_hover.png"
               />
-             
-            <btn:ImageButton
+
+          <btn:ImageButton
               x:Name="btnSave" Click="btnSave_Click"
               ToolTipService.ToolTip="{Binding tooltip_Save, Source={StaticResource localizedStrings}}"
               Image="Images/Export.png"
               ImageHover="Images/Export_hover.png"
               />
 
-            <btn:ImageButton
+          <btn:ImageButton
               x:Name="btnClear" Click="btnClear_Click" 
               ToolTipService.ToolTip="{Binding tooltip_Clear, Source={StaticResource localizedStrings}}"
               Visibility="{Binding Editable, Converter={StaticResource BooleanToVisibilityConverter}}"
@@ -108,7 +104,7 @@ Version: 20131216
               ImageHover="Images/Clear_hover.png"
               />
 
-            <btn:ImageButton
+          <btn:ImageButton
               x:Name="btnPrint"
               Click="btnPrint_Click"
               ToolTipService.ToolTip="{Binding tooltip_Print, Source={StaticResource localizedStrings}}"
@@ -116,12 +112,12 @@ Version: 20131216
               ImageHover="Images/Print_hover.png"
               />
 
-          </StackPanel>
+        </StackPanel>
 
-          <!--Clipboard Toolbar -->
-          <StackPanel Orientation="Horizontal">
+        <!--Clipboard Toolbar -->
+        <StackPanel Orientation="Horizontal">
 
-            <btn:ImageButton
+          <btn:ImageButton
               x:Name="btnPaste" Click="btnPaste_Click" 
               ToolTipService.ToolTip="{Binding tooltip_Paste, Source={StaticResource localizedStrings}}"
               Visibility="{Binding Editable, Converter={StaticResource BooleanToVisibilityConverter}}"
@@ -129,7 +125,7 @@ Version: 20131216
               ImageHover="Images/Paste_hover.png"
               />
 
-            <btn:ImageButton
+          <btn:ImageButton
               x:Name="btnCut" Click="btnCut_Click"
               ToolTipService.ToolTip="{Binding tooltip_Cut, Source={StaticResource localizedStrings}}"
               Visibility="{Binding Editable, Converter={StaticResource BooleanToVisibilityConverter}}"
@@ -137,117 +133,117 @@ Version: 20131216
               ImageHover="Images/Cut_hover.png"
               />
 
-            <btn:ImageButton
+          <btn:ImageButton
               x:Name="btnCopy" Click="btnCopy_Click"
               ToolTipService.ToolTip="{Binding tooltip_Copy, Source={StaticResource localizedStrings}}"
               Image="Images/Copy.png"
               ImageHover="Images/Copy_hover.png"
               />
 
-          </StackPanel>
+        </StackPanel>
 
-          <!--Fonts Toolbar-->
-          <StackPanel Orientation="Horizontal">
+        <!--Fonts Toolbar-->
+        <StackPanel Orientation="Horizontal">
 
-            <ComboBox x:Name="cmbFonts" 
+          <ComboBox x:Name="cmbFonts" 
                       Visibility="{Binding Editable, Converter={StaticResource BooleanToVisibilityConverter}}"
                       FontFamily="{Binding SelectedItem.FontFamily, RelativeSource={RelativeSource Self}}" 
                       FontSize="{Binding SelectedItem.FontSize, RelativeSource={RelativeSource Self}}" 
                       SelectionChanged="cmbFonts_SelectionChanged" 
                       IsDropDownOpen="False"                      
                       >
-              <ComboBoxItem Content="Arial" Tag="Arial" FontFamily="Arial" FontSize="12"/>
-              <ComboBoxItem Content="Arial Black" Tag="Arial Black" FontFamily="Arial Black" FontSize="12"/>
-              <ComboBoxItem Content="Calibri" Tag="Calibri" FontFamily="Calibri" IsSelected="True" FontSize="14"/>
-              <ComboBoxItem Content="Comic Sans MS" Tag="Comic Sans MS" FontFamily="Comic Sans MS" FontSize="12"/>
-              <ComboBoxItem Content="Courier New" Tag="Courier New" FontFamily="Courier New" FontSize="12"/>
-              <ComboBoxItem Content="Georgia" Tag="Georgia" FontFamily="Georgia" FontSize="12"/>
-              <ComboBoxItem Content="Lucida Sans Unicode" Tag="Lucida Sans Unicode" FontFamily="Lucida Sans Unicode" FontSize="12"/>
-              <ComboBoxItem Content="Portable User Interface" Tag="{x:Null}" FontFamily="Portable User Interface" FontSize="12"/>
-              <ComboBoxItem Content="Times New Roman" Tag="Times New Roman" FontFamily="Times New Roman" FontSize="12"/>
-              <ComboBoxItem Content="Trebuchet MS" Tag="Trebuchet MS" FontFamily="Trebuchet MS" FontSize="12"/>
-              <ComboBoxItem Content="Verdana" Tag="Verdana" FontFamily="Verdana" FontSize="12"/>
-              <ComboBoxItem Content="Webdings" Tag="Webdings" FontSize="12"/>
-            </ComboBox>
+            <ComboBoxItem Content="Arial" Tag="Arial" FontFamily="Arial" FontSize="12"/>
+            <ComboBoxItem Content="Arial Black" Tag="Arial Black" FontFamily="Arial Black" FontSize="12"/>
+            <ComboBoxItem Content="Calibri" Tag="Calibri" FontFamily="Calibri" IsSelected="True" FontSize="14"/>
+            <ComboBoxItem Content="Comic Sans MS" Tag="Comic Sans MS" FontFamily="Comic Sans MS" FontSize="12"/>
+            <ComboBoxItem Content="Courier New" Tag="Courier New" FontFamily="Courier New" FontSize="12"/>
+            <ComboBoxItem Content="Georgia" Tag="Georgia" FontFamily="Georgia" FontSize="12"/>
+            <ComboBoxItem Content="Lucida Sans Unicode" Tag="Lucida Sans Unicode" FontFamily="Lucida Sans Unicode" FontSize="12"/>
+            <ComboBoxItem Content="Portable User Interface" Tag="{x:Null}" FontFamily="Portable User Interface" FontSize="12"/>
+            <ComboBoxItem Content="Times New Roman" Tag="Times New Roman" FontFamily="Times New Roman" FontSize="12"/>
+            <ComboBoxItem Content="Trebuchet MS" Tag="Trebuchet MS" FontFamily="Trebuchet MS" FontSize="12"/>
+            <ComboBoxItem Content="Verdana" Tag="Verdana" FontFamily="Verdana" FontSize="12"/>
+            <ComboBoxItem Content="Webdings" Tag="Webdings" FontSize="12"/>
+          </ComboBox>
 
-            <ComboBox x:Name="cmbFontSizes" 
+          <ComboBox x:Name="cmbFontSizes" 
                       Visibility="{Binding Editable, Converter={StaticResource BooleanToVisibilityConverter}}"
                       FontSize="14" 
                       SelectionChanged="cmbFontSizes_SelectionChanged" 
                       IsDropDownOpen="False"                      
                       >
-              <ComboBoxItem Content="8" Tag="8"/>
-              <ComboBoxItem Content="9" Tag="9"/>
-              <ComboBoxItem Content="10" Tag="10"/>
-              <ComboBoxItem Content="11" Tag="11"/>
-              <ComboBoxItem Content="12" Tag="12"/>
-              <ComboBoxItem Content="14" Tag="14"/>
-              <ComboBoxItem Content="16" Tag="16" IsSelected="True"/>
-              <ComboBoxItem Content="18" Tag="18"/>
-              <ComboBoxItem Content="20" Tag="20"/>
-              <ComboBoxItem Content="22" Tag="22"/>
-              <ComboBoxItem Content="24" Tag="24"/>
-              <ComboBoxItem Content="26" Tag="26"/>
-              <ComboBoxItem Content="28" Tag="28"/>
-              <ComboBoxItem Content="36" Tag="36"/>
-              <ComboBoxItem Content="48" Tag="48"/>
-              <ComboBoxItem Content="72" Tag="72"/>
-            </ComboBox>
+            <ComboBoxItem Content="8" Tag="8"/>
+            <ComboBoxItem Content="9" Tag="9"/>
+            <ComboBoxItem Content="10" Tag="10"/>
+            <ComboBoxItem Content="11" Tag="11"/>
+            <ComboBoxItem Content="12" Tag="12"/>
+            <ComboBoxItem Content="14" Tag="14"/>
+            <ComboBoxItem Content="16" Tag="16" IsSelected="True"/>
+            <ComboBoxItem Content="18" Tag="18"/>
+            <ComboBoxItem Content="20" Tag="20"/>
+            <ComboBoxItem Content="22" Tag="22"/>
+            <ComboBoxItem Content="24" Tag="24"/>
+            <ComboBoxItem Content="26" Tag="26"/>
+            <ComboBoxItem Content="28" Tag="28"/>
+            <ComboBoxItem Content="36" Tag="36"/>
+            <ComboBoxItem Content="48" Tag="48"/>
+            <ComboBoxItem Content="72" Tag="72"/>
+          </ComboBox>
 
-            <ComboBox x:Name="cmbFontColors" 
+          <ComboBox x:Name="cmbFontColors" 
                       Visibility="{Binding Editable, Converter={StaticResource BooleanToVisibilityConverter}}"
                       SelectionChanged="cmbFontColors_SelectionChanged" 
                       SelectedIndex="0"
                       IsDropDownOpen="False"
                       >
-              <ComboBoxItem Tag="FF0A0200" IsSelected="True">
-                <Rectangle Width="22" Height="14" Fill="#0A0200" />
-              </ComboBoxItem>
-              <ComboBoxItem Tag="FFADADAD">
-                <Rectangle Width="22" Height="14" Fill="#ADADAD" />
-              </ComboBoxItem>
-              <ComboBoxItem Tag="FFE32F21">
-                <Rectangle Width="22" Height="14" Fill="#E32F21" />
-              </ComboBoxItem>
-              <ComboBoxItem Tag="FFEA8934">
-                <Rectangle Width="22" Height="14" Fill="#EA8934" />
-              </ComboBoxItem>
-              <ComboBoxItem Tag="FF67847D">
-                <Rectangle Width="22" Height="14" Fill="#67847D" />
-              </ComboBoxItem>
-              <ComboBoxItem Tag="FF0057AE">
-                <Rectangle Width="22" Height="14" Fill="#0057AE" />
-              </ComboBoxItem>
-              <ComboBoxItem Tag="FF0F75E3">
-                <Rectangle Width="22" Height="14" Fill="#0F75E3" />
-              </ComboBoxItem>
-              <ComboBoxItem Tag="FFB0B535">
-                <Rectangle Width="22" Height="14" Fill="#B0B535" />
-              </ComboBoxItem>
-              <ComboBoxItem Tag="FF582770">
-                <Rectangle Width="22" Height="14" Fill="#582770" />
-              </ComboBoxItem>
-              <ComboBoxItem Tag="FFC11F3E">
-                <Rectangle Width="22" Height="14" Fill="#C11F3E" />
-              </ComboBoxItem>
-              <ComboBoxItem Tag="FFFC9D9A">
-                <Rectangle Width="22" Height="14" Fill="#FC9D9A" />
-              </ComboBoxItem>
-              <ComboBoxItem Tag="FFFFFFFF">
-                <Rectangle Width="22" Height="14" Fill="#FFFFFF" Stroke="Black" StrokeThickness="1" />
-              </ComboBoxItem>
-              <ComboBoxItem Tag="FF0D4161">
-                <Rectangle Width="22" Height="14" Fill="#0D4161" />
-              </ComboBoxItem>
-              <ComboBoxItem Tag="FFF9D423">
-                <Rectangle Width="22" Height="14" Fill="#F9D423" />
-              </ComboBoxItem>
-              <ComboBoxItem Tag="FF3FB8AF">
-                <Rectangle Width="22" Height="14" Fill="#3FB8AF" />
-              </ComboBoxItem>
-            </ComboBox>
+            <ComboBoxItem Tag="FF0A0200" IsSelected="True">
+              <Rectangle Width="22" Height="14" Fill="#0A0200" />
+            </ComboBoxItem>
+            <ComboBoxItem Tag="FFADADAD">
+              <Rectangle Width="22" Height="14" Fill="#ADADAD" />
+            </ComboBoxItem>
+            <ComboBoxItem Tag="FFE32F21">
+              <Rectangle Width="22" Height="14" Fill="#E32F21" />
+            </ComboBoxItem>
+            <ComboBoxItem Tag="FFEA8934">
+              <Rectangle Width="22" Height="14" Fill="#EA8934" />
+            </ComboBoxItem>
+            <ComboBoxItem Tag="FF67847D">
+              <Rectangle Width="22" Height="14" Fill="#67847D" />
+            </ComboBoxItem>
+            <ComboBoxItem Tag="FF0057AE">
+              <Rectangle Width="22" Height="14" Fill="#0057AE" />
+            </ComboBoxItem>
+            <ComboBoxItem Tag="FF0F75E3">
+              <Rectangle Width="22" Height="14" Fill="#0F75E3" />
+            </ComboBoxItem>
+            <ComboBoxItem Tag="FFB0B535">
+              <Rectangle Width="22" Height="14" Fill="#B0B535" />
+            </ComboBoxItem>
+            <ComboBoxItem Tag="FF582770">
+              <Rectangle Width="22" Height="14" Fill="#582770" />
+            </ComboBoxItem>
+            <ComboBoxItem Tag="FFC11F3E">
+              <Rectangle Width="22" Height="14" Fill="#C11F3E" />
+            </ComboBoxItem>
+            <ComboBoxItem Tag="FFFC9D9A">
+              <Rectangle Width="22" Height="14" Fill="#FC9D9A" />
+            </ComboBoxItem>
+            <ComboBoxItem Tag="FFFFFFFF">
+              <Rectangle Width="22" Height="14" Fill="#FFFFFF" Stroke="Black" StrokeThickness="1" />
+            </ComboBoxItem>
+            <ComboBoxItem Tag="FF0D4161">
+              <Rectangle Width="22" Height="14" Fill="#0D4161" />
+            </ComboBoxItem>
+            <ComboBoxItem Tag="FFF9D423">
+              <Rectangle Width="22" Height="14" Fill="#F9D423" />
+            </ComboBoxItem>
+            <ComboBoxItem Tag="FF3FB8AF">
+              <Rectangle Width="22" Height="14" Fill="#3FB8AF" />
+            </ComboBoxItem>
+          </ComboBox>
 
-            <btn:ImageButton
+          <btn:ImageButton
               x:Name="btnBold"
               Click="btnBold_Click" 
               ToolTipService.ToolTip="{Binding tooltip_Bold, Source={StaticResource localizedStrings}}"
@@ -256,7 +252,7 @@ Version: 20131216
               ImageHover="Images/Bold_hover.png"
               />
 
-            <btn:ImageButton
+          <btn:ImageButton
               x:Name="btnItalic" Click="btnItalic_Click" 
               ToolTipService.ToolTip="{Binding tooltip_Italic, Source={StaticResource localizedStrings}}"
               Visibility="{Binding Editable, Converter={StaticResource BooleanToVisibilityConverter}}"
@@ -264,7 +260,7 @@ Version: 20131216
               ImageHover="Images/Italic_hover.png"
               />
 
-            <btn:ImageButton
+          <btn:ImageButton
               x:Name="btnUnderline" Click="btnUnderline_Click" 
               ToolTipService.ToolTip="{Binding tooltip_Underline, Source={StaticResource localizedStrings}}"
               Visibility="{Binding Editable, Converter={StaticResource BooleanToVisibilityConverter}}"
@@ -272,12 +268,12 @@ Version: 20131216
               ImageHover="Images/Underline_hover.png"
             />
 
-          </StackPanel>
+        </StackPanel>
 
-          <!-- Insert Toolbar -->
-          <StackPanel Orientation="Horizontal">
+        <!-- Insert Toolbar -->
+        <StackPanel Orientation="Horizontal">
 
-            <!--
+          <!--
             <btn:ImageButton
               x:Name="btnImage" Click="btnImage_Click"
               ToolTipService.ToolTip="{Binding tooltip_Image, Source={StaticResource localizedStrings}}"
@@ -287,7 +283,7 @@ Version: 20131216
             />
             -->
 
-            <btn:ImageButton
+          <btn:ImageButton
               x:Name="btnHyperlink" Click="btnHyperlink_Click" 
               ToolTipService.ToolTip="{Binding tooltip_Hyperlink, Source={StaticResource localizedStrings}}"
               Visibility="{Binding Editable, Converter={StaticResource BooleanToVisibilityConverter}}"
@@ -295,20 +291,21 @@ Version: 20131216
               ImageHover="Images/Hyperlink_hover.png"
               />
 
-            <btn:ImageButton
+          <btn:ImageButton
               x:Name="btnTimestamp" Click="btnTimestamp_Click" 
               ToolTipService.ToolTip="{Binding tooltip_Timestamp, Source={StaticResource localizedStrings}}"
               Visibility="Collapsed"
               Image="Images/InsertTime.png"
               ImageHover="Images/InsertTime_hover.png"
-              /> <!-- Visibility="{Binding Editable, Converter={StaticResource BooleanToVisibilityConverter}}" -->
+              />
+          <!-- Visibility="{Binding Editable, Converter={StaticResource BooleanToVisibilityConverter}}" -->
 
-          </StackPanel>
+        </StackPanel>
 
-          <!-- Display Toolbar -->
-          <StackPanel Orientation="Horizontal">
+        <!-- Display Toolbar -->
+        <StackPanel Orientation="Horizontal">
 
-            <btn:ImageToggleButton
+          <btn:ImageToggleButton
               x:Name="btnRTL"
               IsChecked="{Binding RTL, Mode=TwoWay}"
               ToolTipService.ToolTip="{Binding tooltip_TextDirection, Source={StaticResource localizedStrings}}"
@@ -318,7 +315,7 @@ Version: 20131216
               ImageCheckedHover="Images/RTL_hover.png"
               />
 
-            <btn:ImageToggleButton
+          <btn:ImageToggleButton
               x:Name="btnHighlight"
               Visibility="Collapsed"
               Checked="btnHighlight_Checked"
@@ -329,7 +326,7 @@ Version: 20131216
               ImageCheckedHover="Images/Highlight_hover.png"
               />
 
-            <btn:ImageToggleButtonSideBySide
+          <btn:ImageToggleButtonSideBySide
               x:Name="btnEditable"
               IsChecked="{Binding Editable, Mode=TwoWay}"
               ToolTipService.ToolTip="{Binding tooltip_EditViewMode, Source={StaticResource localizedStrings}}"
@@ -350,14 +347,14 @@ Version: 20131216
             <TextBlock FontSize="25" Text="&lt;&lt;>>"/>
           </ToggleButton>
           -->
-            
-          </StackPanel>
 
-        </toolkit:WrapPanel>
+        </StackPanel>
 
-        <Grid Name="RTBGrid" Grid.Row="1">
+      </toolkit:WrapPanel>
 
-          <!-- //Note: this is the correct way to cast a shadow, to use a Grid and overlapping controls, not use a Border arround the control with effect, since the content in it won't be h/w accelerated then (can use a Border or Rectangle etc. under the h/w accelerated control instead)
+      <Grid Name="RTBGrid" Grid.Row="1">
+
+        <!-- //Note: this is the correct way to cast a shadow, to use a Grid and overlapping controls, not use a Border arround the control with effect, since the content in it won't be h/w accelerated then (can use a Border or Rectangle etc. under the h/w accelerated control instead)
           <Rectangle Fill="White" Margin="0,1,1,0">
             <Rectangle.Effect>
               <DropShadowEffect ShadowDepth="1" Direction="371" BlurRadius="7" Opacity="0.345"/>
@@ -365,10 +362,10 @@ Version: 20131216
           </Rectangle>
           -->
 
-          <RichTextBox x:Name="rtb"
+        <RichTextBox x:Name="rtb"
                        Background="{Binding Background, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=UserControl}}"
                        AllowDrop="True" 
-                       BorderBrush="{x:Null}" 
+                       BorderThickness="0"
                        TextWrapping="Wrap" 
                        Style="{StaticResource RichTextBoxStyle1}"
                        HorizontalScrollBarVisibility="Auto"
@@ -380,11 +377,11 @@ Version: 20131216
                        Drop="rtb_Drop" 
                        DragEnter="rtb_DragEnter" DragLeave="rtb_DragLeave" 
                        >
-            <!-- Margin="8,10,8,10" -->
+          <!-- Margin="8,10,8,10" -->
 
-            <!-- ****************** -->
-            <!-- TODO: following block is designer data only (can comment out) - SilverTextEditor_Loaded method that handles Loaded event loads in ActivityDescription.sav XAML file -->
-            <!--
+          <!-- ****************** -->
+          <!-- TODO: following block is designer data only (can comment out) - SilverTextEditor_Loaded method that handles Loaded event loads in ActivityDescription.sav XAML file -->
+          <!--
               <Paragraph FontSize="20" FontFamily="Portable User Interface" Foreground="#FF000000" FontWeight="Normal" FontStyle="Normal" FontStretch="Normal" TextAlignment="Left">
                 <Run FontSize="24" FontFamily="Portable User Interface" Foreground="#FF008000" FontWeight="Bold" FontStyle="Italic" FontStretch="Normal" Text="Lorem ipsum" />
                 <Run FontSize="20" FontFamily="Portable User Interface" Foreground="#FF000000" FontWeight="Normal" FontStyle="Normal" FontStretch="Normal" Text=" dolor sit amet, consectetur adipiscing elit. Integer mattis ligula in neque semper bibendum. " />
@@ -406,14 +403,14 @@ Version: 20131216
                 <Run FontSize="20" FontFamily="Portable User Interface" Foreground="#FF000000" FontWeight="Normal" FontStyle="Normal" FontStretch="Normal" Text=" in lectus vehicula euismod." />
               </Paragraph>
             -->
-            <!-- ****************** -->
+          <!-- ****************** -->
 
-          </RichTextBox>
+        </RichTextBox>
 
-          <Canvas x:Name="highlightCanvas" IsHitTestVisible="False" />
-          <!-- Margin="8,10,8,10" -->
+        <Canvas x:Name="highlightCanvas" IsHitTestVisible="False" />
+        <!-- Margin="8,10,8,10" -->
 
-          <TextBox x:Name="xamlTb"
+        <TextBox x:Name="xamlTb"
                    Background="{Binding Background, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=UserControl}}"
                    IsTabStop="False" 
                    FontSize="20" 
@@ -423,11 +420,9 @@ Version: 20131216
                    VerticalScrollBarVisibility="Auto" 
                    Visibility="Collapsed"
                    />
-        </Grid>
-
       </Grid>
 
-    </Border>
+    </Grid>
 
   </Grid>
 

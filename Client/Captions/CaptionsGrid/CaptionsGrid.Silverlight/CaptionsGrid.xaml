@@ -1,18 +1,20 @@
 ﻿<!--
 Project: ClipFlair (http://ClipFlair.codeplex.com)
 Filename: CaptionsGrid.xaml
-Version: 2013216
+Version: 20131223
 -->
 
 <UserControl x:Class="ClipFlair.CaptionsGrid.CaptionsGrid"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d"
-    xmlns:d="http://schemas.microsoft.com/expression/blend/2008" d:DesignHeight="167" d:DesignWidth="856"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk"
     xmlns:toolkit="http://schemas.microsoft.com/winfx/2006/xaml/presentation/toolkit"
     xmlns:btn="clr-namespace:ImageButtons;assembly=ImageButtons"
     xmlns:captions="clr-namespace:ClipFlair.CaptionsGrid"
+    d:DesignHeight="167" d:DesignWidth="856"
+    BorderThickness="0"
    >
 
   <UserControl.Resources>
@@ -133,6 +135,7 @@ Version: 2013216
 
     <sdk:DataGrid Name="gridCaptions"
                   Grid.Row="1"
+                  BorderThickness="0"
                   Background="{Binding Background, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=UserControl}}"
                   RowBackground="#F3F3F3"
                   AlternatingRowBackground="#FFFFFF"
