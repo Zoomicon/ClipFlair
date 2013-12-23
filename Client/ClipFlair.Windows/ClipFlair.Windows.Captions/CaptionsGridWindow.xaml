@@ -1,7 +1,7 @@
 ﻿<!--
 Project: ClipFlair (http://ClipFlair.codeplex.com)
 Filename: CaptionsGridWindow.xaml
-Version: 20131216
+Version: 20131223
 -->
   
 <clipflair:BaseWindow x:Class="ClipFlair.Windows.CaptionsGridWindow"
@@ -30,7 +30,7 @@ Version: 20131216
   <captions:CaptionsGrid Name="gridCaptions"
                          HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
                          
-                         Background="{x:Null}"
+                         Background="Transparent"
 
                          Time="{Binding Time, Mode=TwoWay}"
                          Captions="{Binding Captions, Mode=TwoWay}"

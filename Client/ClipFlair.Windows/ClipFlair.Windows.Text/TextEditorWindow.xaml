@@ -1,7 +1,7 @@
 ﻿<!-- 
 Project: ClipFlair (http://ClipFlair.codeplex.com)
 Filename: TextEditorWindow.xaml
-Version: 20131216
+Version: 20131223
 -->
   
 <clipflair:BaseWindow x:Class="ClipFlair.Windows.TextEditorWindow"
@@ -31,7 +31,7 @@ Version: 20131216
   <text:SilverTextEditor Name="editor"
                          HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
                          
-                         Background="{x:Null}"
+                         Background="Transparent"
                          
                          ToolbarVisible="{Binding ToolbarVisible, Mode=TwoWay}"
                          Editable="{Binding Editable, Mode=TwoWay}"

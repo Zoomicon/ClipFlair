@@ -1,7 +1,7 @@
 ﻿<!--
 Project: ClipFlair (http://ClipFlair.codeplex.com)
 Filename: MediaPlayerWindow.xaml
-Version: 20131216
+Version: 20131223
 -->
 
 <clipflair:BaseWindow x:Class="ClipFlair.Windows.MediaPlayerWindow"
@@ -31,7 +31,7 @@ Version: 20131216
   <media:MediaPlayer Name="player" 
      HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
                      
-     Background="{x:Null}"
+     Background="Transparent"
                      
      EnableCachedComposition="True"
                                      

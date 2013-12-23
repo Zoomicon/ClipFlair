@@ -1,7 +1,7 @@
 ﻿<!--
 Project: ClipFlair (http://ClipFlair.codeplex.com)
 Filename: ImageWindow.xaml
-Version: 20131216
+Version: 20131223
 -->
 
 <clipflair:BaseWindow x:Class="ClipFlair.Windows.ImageWindow"
@@ -31,7 +31,7 @@ Version: 20131216
     Name="imgContent"
     HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
     
-    Background="{x:Null}"
+    Background="Transparent"
     
     Source="{Binding Source, Mode=Oneway}"
     ContentZoomToFit="{Binding ContentZoomToFit, Mode=TwoWay}"
