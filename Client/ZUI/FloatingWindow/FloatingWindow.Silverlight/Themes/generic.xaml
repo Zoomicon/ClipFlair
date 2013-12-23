@@ -507,10 +507,10 @@
             <Grid.RenderTransform>
               <CompositeTransform/>
             </Grid.RenderTransform>
-            
+
             <VisualStateManager.VisualStateGroups>
               <VisualStateGroup x:Name="WindowStates">
-                
+
                 <VisualState x:Name="Open">
                   <Storyboard>
                     <DoubleAnimationUsingKeyFrames BeginTime="0" Storyboard.TargetName="ContentRoot" Storyboard.TargetProperty="Opacity">
@@ -526,7 +526,7 @@
                     </ObjectAnimationUsingKeyFrames>
                   </Storyboard>
                 </VisualState>
-                
+
                 <VisualState x:Name="Closed">
                   <Storyboard>
                     <DoubleAnimationUsingKeyFrames BeginTime="0" Storyboard.TargetName="ContentRoot" Storyboard.TargetProperty="Opacity">
@@ -535,7 +535,7 @@
                     </DoubleAnimationUsingKeyFrames>
                   </Storyboard>
                 </VisualState>
-                
+
                 <VisualState x:Name="Minimized">
                   <Storyboard>
                     <PointAnimation Duration="0" To="0,1" Storyboard.TargetProperty="(UIElement.RenderTransformOrigin)" Storyboard.TargetName="ContentRoot" />
@@ -560,7 +560,7 @@
                     </ObjectAnimationUsingKeyFrames>
                   </Storyboard>
                 </VisualState>
-            
+
                 <VisualState x:Name="Restored">
                   <Storyboard>
                     <PointAnimation Duration="0" To="0,1" Storyboard.TargetProperty="(UIElement.RenderTransformOrigin)" Storyboard.TargetName="ContentRoot" />
@@ -587,11 +587,16 @@
                 </VisualState>
               </VisualStateGroup>
             </VisualStateManager.VisualStateGroups>
-            
-            <Grid x:Name="ContentRoot" HorizontalAlignment="{TemplateBinding HorizontalAlignment}" VerticalAlignment="{TemplateBinding VerticalAlignment}" 
-                RenderTransformOrigin="0,0" Height="{TemplateBinding Height}" Width="{TemplateBinding Width}">
-  
-        <!-- Removed: this causes all Grid content to be non h/w accelerated. See workarround at:
+
+            <Grid
+              x:Name="ContentRoot"
+              HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
+              VerticalAlignment="{TemplateBinding VerticalAlignment}" 
+              RenderTransformOrigin="0,0"
+              Height="{TemplateBinding Height}"
+              Width="{TemplateBinding Width}">
+
+              <!-- Removed: this causes all Grid content to be non h/w accelerated. See workarround at:
              http://www.pitorque.de/MisterGoodcat/post/Silverlight-Fixing-the-BookShelf-Sample.aspx
              
               <Grid.Effect>
@@ -607,16 +612,30 @@
                 </TransformGroup>
               </Grid.RenderTransform>
 
-              <Border x:Name="ContentBorder" Background="{TemplateBinding Background}" BorderThickness="{TemplateBinding BorderThickness}" 
-                      BorderBrush="{TemplateBinding BorderBrush}" CornerRadius="{TemplateBinding CornerRadius}" Padding="0">
+              <Border
+                x:Name="ContentBorder"
+                Background="{TemplateBinding Background}"
+                BorderThickness="{TemplateBinding BorderThickness}" 
+                BorderBrush="{TemplateBinding BorderBrush}"
+                CornerRadius="{TemplateBinding CornerRadius}"
+                Padding="0"
+                >
                 <Grid>
                   <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition/>
                   </Grid.RowDefinitions>
 
-                  <Border x:Name="Chrome" Width="Auto" Background="{TemplateBinding TitleBackground}" UseLayoutRounding="True" 
-                          BorderThickness="0" CornerRadius="0" Margin="-1,-1,-1,0"> <!-- Note: changed to UseLayoutRounding="True" to help with GPU acceleration -->
+                  <Border
+                    x:Name="Chrome"
+                    Width="Auto"
+                    Background="{TemplateBinding TitleBackground}"
+                    UseLayoutRounding="True" 
+                    BorderThickness="0"
+                    CornerRadius="0"
+                    Margin="-1,-1,-1,0"
+>
+                    <!-- Note: changed to UseLayoutRounding="True" to help with GPU acceleration -->
                     <Grid Height="Auto" Width="Auto">
                       <Grid.ColumnDefinitions>
                         <ColumnDefinition/>
@@ -628,7 +647,12 @@
                         <ColumnDefinition Width="6"/>
                       </Grid.ColumnDefinitions>
 
-                      <ContentControl x:Name="TitleContent" Content="{TemplateBinding Title}" Style="{StaticResource FloatingWindowTitleStyle}" /> <!-- TODO: add control here in content that enters edit mode when double-clicked, to edit title with two-way binding -->
+                      <ContentControl 
+                        x:Name="TitleContent"
+                        Content="{TemplateBinding Title}"
+                        Style="{StaticResource FloatingWindowTitleStyle}"
+                        />
+                      <!-- TODO: add control here in content that enters edit mode when double-clicked, to edit title with two-way binding (when title is a string object) -->
 
                       <Button x:Name="ScreenshotButton" Style="{StaticResource ScreenshotButtonStyle}" Grid.Column="1">
                         <ToolTipService.ToolTip>
@@ -675,11 +699,16 @@
                     </Grid>
                   </Border>
 
-                  <Border Grid.Row="1">
-                    <ContentPresenter x:Name="ContentPresenter" Content="{TemplateBinding Content}"
-                        ContentTemplate="{TemplateBinding ContentTemplate}"
-                        HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                        VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                  <Border
+                    Grid.Row="1"
+                    BorderThickness="0"
+                    >
+                    <ContentPresenter
+                      x:Name="ContentPresenter"
+                      Content="{TemplateBinding Content}"
+                      ContentTemplate="{TemplateBinding ContentTemplate}"
+                      HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                      VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
                   </Border>
 
                 </Grid>
@@ -692,7 +721,7 @@
   </Style>
 
   <Style TargetType="controls:FloatingWindow" BasedOn="{StaticResource FloatingWindowStyle}" />
-  
+
   <Style x:Key="BootstrapButtonStyle" TargetType="controls:BootstrapButton">
     <Setter Property="Width" Value="24"/>
     <Setter Property="Height" Value="24"/>
@@ -863,9 +892,9 @@
             </Grid>
 
             <Grid x:Name="PART_Overlay" Background="{TemplateBinding OverlayBrush}" Opacity="0" Visibility="Collapsed" />
-            
+
             <Canvas x:Name="PART_ModalCanvas" />
-            
+
           </Grid>
         </ControlTemplate>
       </Setter.Value>
