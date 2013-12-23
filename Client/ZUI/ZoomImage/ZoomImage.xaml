@@ -1,6 +1,6 @@
 ﻿<!--
 Filename: ZoomImage.xaml
-Version: 20130507
+Version: 20131223
 Author: George Birbilis (http://zoomicon.com)  
 -->
 
@@ -13,6 +13,7 @@ Author: George Birbilis (http://zoomicon.com)
     xmlns:btn="clr-namespace:ImageButtons;assembly=ImageButtons"  
     mc:Ignorable="d"
     d:DesignHeight="300" d:DesignWidth="300"
+    BorderThickness="0"
     MouseEnter="UserControl_MouseEnter"
     MouseLeave="UserControl_MouseLeave"
     >
@@ -36,14 +37,16 @@ Author: George Birbilis (http://zoomicon.com)
 
     <ScrollViewer
       Name="scrollPlainZoom"
+      Grid.Row="0"
       HorizontalScrollBarVisibility="Auto"
       VerticalScrollBarVisibility="Auto"
-      Grid.Row="0"
+      BorderThickness="0"
       Visibility="Collapsed"
       >
 
       <zoom:ZoomAndPanControl
         Name="imgPlainZoom"
+        BorderThickness="0"
         MouseLeftButtonUp="control_MouseLeftButtonUp"
         MouseRightButtonDown="control_MouseRightButtonDown"
         IsDefaultMouseHandling="True"
