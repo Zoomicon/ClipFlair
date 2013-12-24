@@ -116,11 +116,6 @@ namespace SilverTextEditor
     protected virtual void OnEditableChanged(bool oldEditable, bool newEditable)
     {
       rtb.IsReadOnly = !newEditable;
-      
-      //Set the button image based on the state of the toggle button.
-      //btnEditable.Content = new Uri(newEditable ? "/SilverTextEditor;component/Images/EditMode.png" : "/SilverTextEditor;component/Images/ReadingMode.png", UriKind.RelativeOrAbsolute).CreateImage();
-      //NOT USED (since we use ImageToggleButtonSideBySide)
-
       ReturnFocus();
     }
 

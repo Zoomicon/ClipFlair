@@ -12,7 +12,7 @@ Version: 20131223
     xmlns:utils="clr-namespace:System.Windows.Controls;assembly=WPF_Compatibility"             
     xmlns:btn="clr-namespace:ImageButtons;assembly=ImageButtons"
     FontFamily="Calibri"
-    BorderThickness="0"         
+    BorderThickness="0"
     >
 
   <UserControl.Resources>
@@ -27,7 +27,10 @@ Version: 20131223
     </ResourceDictionary>
   </UserControl.Resources>
 
-  <Grid x:Name="LayoutRoot">
+  <Grid
+    x:Name="LayoutRoot"
+    DataContext="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=UserControl}}"
+    >
     <VisualStateManager.VisualStateGroups>
       <VisualStateGroup x:Name="DragStates">
         <VisualStateGroup.Transitions>
