@@ -1,5 +1,5 @@
 ﻿//Filename: IconBar.cs
-//Version: 20131213
+//Version: 20131224
 
 using System;
 using System.Collections.ObjectModel;
@@ -12,6 +12,7 @@ using System.Windows.Input;
 using System.Windows.Media.Animation;
 using SilverFlow.Controls.Extensions;
 using SilverFlow.Controls.Helpers;
+using WPFCompatibility;
 
 namespace SilverFlow.Controls
 {

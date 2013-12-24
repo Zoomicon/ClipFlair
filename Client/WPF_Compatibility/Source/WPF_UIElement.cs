@@ -1,5 +1,5 @@
 ﻿//Filename: WPF_UIElement
-//Version: 20120830
+//Version: 20131224
 //Author: George Birbilis <birbilis@kagi.com>
 
 using System.Collections.Generic;
@@ -42,6 +42,7 @@ namespace WPFCompatibility
             return false;
         }
 
+    /// <summary>
     /// Retrieves a set of objects that are located within a specified point of an object's coordinate space.
     /// </summary>
     /// <param name="subtree">The object to search within.</param>

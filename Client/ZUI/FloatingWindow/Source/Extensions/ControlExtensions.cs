@@ -1,5 +1,5 @@
 ﻿//Filename: ControlExtensions.cs
-//Version: 20131016
+//Version: 20131224
 
 using System;
 using System.Linq;
@@ -240,7 +240,8 @@ namespace SilverFlow.Controls.Extensions
     }
 
 #if SILVERLIGHT
-
+/*  //Note: commented out, WPF_Compatibility library already defines this externsion method
+ 
     /// <summary>
     /// Retrieves a set of objects that are located within a specified point of an object's coordinate space.
     /// </summary>
@@ -255,7 +256,7 @@ namespace SilverFlow.Controls.Extensions
     {
       return VisualTreeHelper.FindElementsInHostCoordinates(intersectingPoint, subtree);
     }
-
+*/
 #endif
 
     public static bool IsVisualDescendentOf(this DependencyObject element, DependencyObject ancestor) //this can throw exception "Reference is not a valid visual Dependency Object"
