@@ -1,5 +1,5 @@
 //Filename: FloatingWindow.cs
-//Version: 20131224
+//Version: 20131230
 
 //#define BORDER_ONLY_AT_RESIZABLE //using BorderThickness instead to allow user to define when they want the border to be visible themselves
 
@@ -297,6 +297,19 @@ namespace SilverFlow.Controls
       }
     }
 
+    /// <summary>
+    /// Gets the bounds of the maximized window.
+    /// </summary>
+    /// <value>Bounding rectangle of maximized window.</value>
+    public Rect BoundingRectangleMaximized
+    {
+      get {
+        Rect bounds = FloatingWindowHost.MaximizedWindowBounds; 
+        return bounds.Scaled(1/Scale); //TODO: this doesn't work very well when Scale isn't 1, seems to do wrong positioning
+      }
+    }
+
+    
     /// <summary>
     /// Gets a bounding rectangle of the window.
     /// </summary>
@@ -2586,7 +2599,7 @@ namespace SilverFlow.Controls
     {
       SaveActualSize();
 
-      this.MoveAndResize(FloatingWindowHost.MaximizedWindowBounds, MaximizingDurationInMilliseconds, Maximizing_Completed);
+      this.MoveAndResize(BoundingRectangleMaximized, MaximizingDurationInMilliseconds, Maximizing_Completed); //NOTE: MaximizedBounds takes in mind window's scale when resizing
     }
 
     /// <summary>
