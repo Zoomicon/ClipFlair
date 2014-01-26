@@ -95,35 +95,35 @@
       // mnuSize640x480
       // 
       this.mnuSize640x480.Name = "mnuSize640x480";
-      this.mnuSize640x480.Size = new System.Drawing.Size(152, 22);
+      this.mnuSize640x480.Size = new System.Drawing.Size(128, 22);
       this.mnuSize640x480.Text = "640x480";
       this.mnuSize640x480.Click += new System.EventHandler(this.mnuSize640x480_Click);
       // 
       // mnuSize800x600
       // 
       this.mnuSize800x600.Name = "mnuSize800x600";
-      this.mnuSize800x600.Size = new System.Drawing.Size(152, 22);
+      this.mnuSize800x600.Size = new System.Drawing.Size(128, 22);
       this.mnuSize800x600.Text = "800x600";
       this.mnuSize800x600.Click += new System.EventHandler(this.mnuSize800x600_Click);
       // 
       // mnuSize1024x768
       // 
       this.mnuSize1024x768.Name = "mnuSize1024x768";
-      this.mnuSize1024x768.Size = new System.Drawing.Size(152, 22);
+      this.mnuSize1024x768.Size = new System.Drawing.Size(128, 22);
       this.mnuSize1024x768.Text = "1024x768";
       this.mnuSize1024x768.Click += new System.EventHandler(this.mnuSize1024x768_Click);
       // 
       // mnuSize1280x1024
       // 
       this.mnuSize1280x1024.Name = "mnuSize1280x1024";
-      this.mnuSize1280x1024.Size = new System.Drawing.Size(152, 22);
+      this.mnuSize1280x1024.Size = new System.Drawing.Size(128, 22);
       this.mnuSize1280x1024.Text = "1280x1024";
       this.mnuSize1280x1024.Click += new System.EventHandler(this.mnuSize1280x1024_Click);
       // 
       // mnuSize1920x1010
       // 
       this.mnuSize1920x1010.Name = "mnuSize1920x1010";
-      this.mnuSize1920x1010.Size = new System.Drawing.Size(152, 22);
+      this.mnuSize1920x1010.Size = new System.Drawing.Size(128, 22);
       this.mnuSize1920x1010.Text = "1920x1010";
       this.mnuSize1920x1010.Click += new System.EventHandler(this.mnuSize1920x1010_Click);
       // 
@@ -143,6 +143,7 @@
       // 
       // btnForward
       // 
+      this.btnForward.Cursor = System.Windows.Forms.Cursors.Hand;
       this.btnForward.Enabled = false;
       this.btnForward.Location = new System.Drawing.Point(23, 2);
       this.btnForward.Margin = new System.Windows.Forms.Padding(1);
@@ -155,6 +156,7 @@
       // 
       // btnBack
       // 
+      this.btnBack.Cursor = System.Windows.Forms.Cursors.Hand;
       this.btnBack.Enabled = false;
       this.btnBack.Location = new System.Drawing.Point(4, 2);
       this.btnBack.Margin = new System.Windows.Forms.Padding(1);
@@ -168,6 +170,7 @@
       // btnGo
       // 
       this.btnGo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+      this.btnGo.Cursor = System.Windows.Forms.Cursors.Hand;
       this.btnGo.Location = new System.Drawing.Point(721, 1);
       this.btnGo.Margin = new System.Windows.Forms.Padding(1);
       this.btnGo.Name = "btnGo";
@@ -202,6 +205,7 @@
       // btnCapture
       // 
       this.btnCapture.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+      this.btnCapture.Cursor = System.Windows.Forms.Cursors.Hand;
       this.btnCapture.Location = new System.Drawing.Point(771, 1);
       this.btnCapture.Margin = new System.Windows.Forms.Padding(1);
       this.btnCapture.Name = "btnCapture";
@@ -226,6 +230,7 @@
       this.Name = "MainForm";
       this.StartPosition = System.Windows.Forms.FormStartPosition.WindowsDefaultBounds;
       this.Text = "WebCapture";
+      this.TopMost = true;
       this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
       this.Shown += new System.EventHandler(this.MainForm_Shown);
       this.statusStrip.ResumeLayout(false);
