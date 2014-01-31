@@ -1,19 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<useCaseModelRoot xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm4="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm5="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/ModelStore" xmlns:dm9="http://schemas.microsoft.com/dsltools/SimpleShapesModel" dslVersion="1.0.0.0" Id="ce4b5454-5fca-4a88-a5c0-7506c701bc72" name="Captioning" linkedPackageId="dc9ddb8d-ffa0-473e-a490-9e8f2c40e346" xmlns="http://schemas.microsoft.com/dsltools/UseCaseModel">
-  <profileInstances>
-    <packageHasProfileInstances Id="a6124799-976f-46dd-ba19-eeb7929e45ed">
-      <profileInstance Id="38ab65a2-7fa5-42fa-ab75-72c902a5aeb2" name="StandardProfileL2">
-        <elementDefinition Id="e34d544e-0fea-4ed6-ac5e-1b74119ac791" />
-      </profileInstance>
-      <elementDefinition Id="0caec977-1f8c-4ba3-a7db-8cc9ad9cc73b" />
-    </packageHasProfileInstances>
-    <packageHasProfileInstances Id="c3578515-e55c-4546-9326-6d4d2850392a">
-      <profileInstance Id="5e17c3ed-2d5e-47f5-b0a8-11079596532c" name="StandardProfileL3">
-        <elementDefinition Id="532ea607-fb19-44b8-8502-3351b05452be" />
-      </profileInstance>
-      <elementDefinition Id="29349502-908c-4fda-9054-c48619c59ed0" />
-    </packageHasProfileInstances>
-  </profileInstances>
+<useCaseModelRoot xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm4="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/ModelStore" xmlns:dm9="http://schemas.microsoft.com/dsltools/SimpleShapesModel" dslVersion="1.0.0.0" Id="ce4b5454-5fca-4a88-a5c0-7506c701bc72" name="Captioning" linkedPackageId="dc9ddb8d-ffa0-473e-a490-9e8f2c40e346" xmlns="http://schemas.microsoft.com/dsltools/UseCaseModel">
   <packagedElements>
     <useCaseModelRootHasTypes>
       <useCase Id="f63503ca-7e6f-4901-92d0-0362a209e7b8" name="Captioning" isAbstract="false" isLeaf="false">
@@ -151,5 +137,19 @@
   </packagedElements>
   <package Id="dc9ddb8d-ffa0-473e-a490-9e8f2c40e346" name="ClipFlair">
     <elementDefinition Id="932621b2-5f91-42d5-909b-e824a279f791" />
+    <profileInstances>
+      <packageHasProfileInstances Id="a6124799-976f-46dd-ba19-eeb7929e45ed">
+        <profileInstance Id="38ab65a2-7fa5-42fa-ab75-72c902a5aeb2" name="StandardProfileL2">
+          <elementDefinition Id="e34d544e-0fea-4ed6-ac5e-1b74119ac791" />
+        </profileInstance>
+        <elementDefinition Id="0caec977-1f8c-4ba3-a7db-8cc9ad9cc73b" />
+      </packageHasProfileInstances>
+      <packageHasProfileInstances Id="c3578515-e55c-4546-9326-6d4d2850392a">
+        <profileInstance Id="5e17c3ed-2d5e-47f5-b0a8-11079596532c" name="StandardProfileL3">
+          <elementDefinition Id="532ea607-fb19-44b8-8502-3351b05452be" />
+        </profileInstance>
+        <elementDefinition Id="29349502-908c-4fda-9054-c48619c59ed0" />
+      </packageHasProfileInstances>
+    </profileInstances>
   </package>
 </useCaseModelRoot>

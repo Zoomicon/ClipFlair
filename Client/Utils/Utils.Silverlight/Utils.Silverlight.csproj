@@ -80,6 +80,9 @@
     <Compile Include="..\Source\Converters\BooleanToTextWrappingConverter.cs">
       <Link>Converters\BooleanToTextWrappingConverter.cs</Link>
     </Compile>
+    <Compile Include="..\Source\Converters\NullToVisibilityConverter.cs">
+      <Link>Converters\NullToVisibilityConverter.cs</Link>
+    </Compile>
     <Compile Include="..\Source\Converters\UrllDecodedToEncodedStringConverter.cs">
       <Link>Converters\UrllDecodedToEncodedStringConverter.cs</Link>
     </Compile>

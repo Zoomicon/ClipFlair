@@ -51,13 +51,6 @@
       <SubType>Content</SubType>
       <DependentUpon>Use Cases\Revoicing.usecasediagram</DependentUpon>
     </Content>
-    <Content Include="Use Cases\Subtitling.usecasediagram">
-      <SubType>Content</SubType>
-    </Content>
-    <Content Include="Use Cases\Subtitling.usecasediagram.layout">
-      <SubType>Content</SubType>
-      <DependentUpon>Use Cases\Subtitling.usecasediagram</DependentUpon>
-    </Content>
     <Content Include="Use Cases\Users.usecasediagram">
       <SubType>Content</SubType>
     </Content>
