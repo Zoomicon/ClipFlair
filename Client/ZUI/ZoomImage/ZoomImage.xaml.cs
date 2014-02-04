@@ -1,9 +1,10 @@
 ﻿//Filename: ZoomImage.xaml.cs
-//Version: 20130507
+//Version: 20140204
 //Author: George Birbilis (http://zoomicon.com)
+
 //Based on http://samples.msdn.microsoft.com/Silverlight/SampleBrowser DeepZoom samples
 
-//TODO: add ZoomButtonsAlwaysVisible or maybe Zoomable property
+//TODO: add ContentZoomable property
 //TODO: add way to select the mode programmatically since some URIs may not provide a file extension (or if it has no extension try first to open as image and if it fails its the XML content for DeepZoom which shouldn't take long to reload into MultiScaleImage used as fallback)
 
 using System;
@@ -22,6 +23,7 @@ namespace ZoomImage
 
     #region Constants
 
+    public const bool DEFAULT_ZOOM_CONTROLS_AVAILABLE = true;
     public const double DEFAULT_ZOOM_STEP = 0.2;
 
     #endregion
@@ -48,7 +50,27 @@ namespace ZoomImage
     {
       get { return (imgDeepZoom.Visibility == Visibility.Visible); }
     }
-    
+
+    #region ZoomControlsAvailable
+
+    /// <summary>
+    /// ZoomControlsAvailable Dependency Property
+    /// </summary>
+    public static readonly DependencyProperty ZoomControlsAvailableProperty =
+        DependencyProperty.Register("ZoomControlsAvailable", typeof(bool), typeof(ZoomImage),
+            new FrameworkPropertyMetadata(DEFAULT_ZOOM_CONTROLS_AVAILABLE));
+
+    /// <summary>
+    /// Gets or sets the ZoomControlsAvailable property
+    /// </summary>
+    public bool ZoomControlsAvailable
+    {
+      get { return (bool)GetValue(ZoomControlsAvailableProperty); }
+      set { SetValue(ZoomControlsAvailableProperty, value); }
+    }
+
+    #endregion
+
     #region ZoomStep
 
     /// <summary>
@@ -250,12 +272,12 @@ namespace ZoomImage
 
     private void UserControl_MouseEnter(object sender, MouseEventArgs e)
     {
-      zoomControls.Visibility = Visibility.Visible;
+      zoomControls.Visibility = (ZoomControlsAvailable)? Visibility.Visible : Visibility.Collapsed; //show zoom controls at mouse enter if ZoomControlsAvailable is true
     }
 
     private void UserControl_MouseLeave(object sender, MouseEventArgs e)
     {
-      zoomControls.Visibility = Visibility.Collapsed;
+      zoomControls.Visibility = Visibility.Collapsed; //hide zoom controls at mouse leave
     }
 
     private void btnZoomIn_Click(object sender, RoutedEventArgs e)
@@ -288,7 +310,7 @@ namespace ZoomImage
       #if SILVERLIGHT
       if (e.ClickCount == 2)
       {
-        control_MouseLeftDoubleClick(sender, e);
+        control_MouseLeftDoubleClick(sender, e); //called function will handle the event
         return;
       }
       #endif
@@ -300,10 +322,13 @@ namespace ZoomImage
         }
         else
         {
-          if (!DeepZoomMode) return;
+          duringDrag = true;
+
+          if (!DeepZoomMode) return; //TODO: check if drag to pan works OK at non-DeepZoom mode when zoomed in
+          
+          e.Handled = true;
           lastMouseLogicalPos = e.GetPosition(imgDeepZoom);
           lastMouseViewPort = imgDeepZoom.ViewportOrigin;
-          duringDrag = true;
         }
     }
 
@@ -319,7 +344,12 @@ namespace ZoomImage
         e.Handled = true;
 
       duringDrag = false;
-      if (DeepZoomMode) imgDeepZoom.UseSprings = true;
+
+      if (DeepZoomMode) //TODO: check if drag to pan works OK at non-DeepZoom mode when zoomed in
+      {
+        e.Handled = true;
+        imgDeepZoom.UseSprings = true; //???
+      }
     }
 
     private void control_MouseRightButtonDown(object sender, MouseButtonEventArgs e)

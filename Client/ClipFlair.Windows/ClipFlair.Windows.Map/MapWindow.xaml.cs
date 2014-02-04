@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: MapWindow.xaml.cs
-//Version: 20130204
+//Version: 20140204
 
 using ClipFlair.Windows.Views;
 
@@ -17,7 +17,7 @@ namespace ClipFlair.Windows
     {
       View = new MapView(); //must initialize the view first
       InitializeComponent();
-      map.Mode = MapView.ModeValue; //this Map property doesn't support data-binding
+      updateMapMode(); //this Map property doesn't support data-binding
     }
 
     #region View
@@ -32,28 +32,27 @@ namespace ClipFlair.Windows
     {
       base.View_PropertyChanged(sender, e);
 
-      if (map == null) return;
+      if (map == null)
+        return;
  
-      if (e.PropertyName == null) //multiple (not specified) properties have changed, consider all as changed
+      switch (e.PropertyName)
       {
-        map.Mode = MapView.ModeValue;
-        //...
-      }
-      else switch (e.PropertyName)
-      {
+        case null: //BaseWindow's "View" property's setter calls View_PropertyChanged with PropertyName=null to signify multiple properties have changed (initialized with default values that is)
         case IMapViewerProperties.PropertyMode:
         case IMapViewerProperties.PropertyLabelsVisible:
         case IMapViewerProperties.PropertyLabelsFading:
-          map.Mode = MapView.ModeValue;
+          updateMapMode();
           break;
-        //...
-        default:
-         //NOP
-         break;
       }
     }
 
     #endregion
+
+    private void updateMapMode()
+    {
+      if (map != null)
+        map.Mode = MapView.ModeValue;
+    }
 
     #region Events
 

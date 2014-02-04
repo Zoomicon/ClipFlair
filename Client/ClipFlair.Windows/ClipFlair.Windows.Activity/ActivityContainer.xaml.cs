@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: ActivityContainer.xaml.cs
-//Version: 20131213
+//Version: 20140204
 
 //TODO: add ContentPartsCloseable property
 //TODO: add ContentPartsZoomable property
@@ -107,31 +107,29 @@ namespace ClipFlair.Windows
     //TODO: try to replace these with bindings, as long as they're unbound/rebound when view changes
     protected void View_PropertyChanged(object sender, PropertyChangedEventArgs e) //note: for View.ContentPartsConfigurable using data binding in XAML (binds to zuiContainer.WindowsConfigurable)
     {
-      if (e.PropertyName == null) //multiple (not specified) properties have changed, consider all as changed
+      switch (e.PropertyName) //string equality check in .NET uses ordinal (binary) comparison semantics by default
       {
-        zuiContainer.ZoomHost.ContentOffsetX = View.ViewPosition.X;
-        zuiContainer.ZoomHost.ContentOffsetY = View.ViewPosition.Y;
-        zuiContainer.ZoomHost.ContentViewportWidth = View.ViewWidth;
-        zuiContainer.ZoomHost.ContentViewportHeight = View.ViewHeight;
-        //...
+        case null: //multiple (not specified) properties have changed, consider all as changed
+          zuiContainer.ZoomHost.ContentOffsetX = View.ViewPosition.X;
+          zuiContainer.ZoomHost.ContentOffsetY = View.ViewPosition.Y;
+          zuiContainer.ZoomHost.ContentViewportWidth = View.ViewWidth;
+          zuiContainer.ZoomHost.ContentViewportHeight = View.ViewHeight;
+          CheckZoomToFit();
+          break;
+        case IActivityProperties.PropertyViewPosition:
+          zuiContainer.ZoomHost.ContentOffsetX = View.ViewPosition.X;
+          zuiContainer.ZoomHost.ContentOffsetY = View.ViewPosition.Y;
+          break;
+        case IActivityProperties.PropertyViewWidth:
+          zuiContainer.ZoomHost.ContentViewportWidth = View.ViewWidth;
+          break;
+        case IActivityProperties.PropertyViewHeight:
+          zuiContainer.ZoomHost.ContentViewportHeight = View.ViewHeight;
+          break;
+        case IActivityProperties.PropertyContentZoomToFit:
+          CheckZoomToFit();
+          break;
       }
-      else switch (e.PropertyName) //string equality check in .NET uses ordinal (binary) comparison semantics by default
-        {
-          case IActivityProperties.PropertyViewPosition:
-            zuiContainer.ZoomHost.ContentOffsetX = View.ViewPosition.X;
-            zuiContainer.ZoomHost.ContentOffsetY = View.ViewPosition.Y;
-            break;
-          case IActivityProperties.PropertyViewWidth:
-            zuiContainer.ZoomHost.ContentViewportWidth = View.ViewWidth;
-            break;
-          case IActivityProperties.PropertyViewHeight:
-            zuiContainer.ZoomHost.ContentViewportHeight = View.ViewHeight;
-            break;
-          case IActivityProperties.PropertyContentZoomToFit: //doesn't seem to get called
-            CheckZoomToFit();
-            break;
-          //...
-        }
     }
 
     #endregion

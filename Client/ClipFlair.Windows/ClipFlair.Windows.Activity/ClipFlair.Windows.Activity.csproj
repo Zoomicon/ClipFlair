@@ -204,6 +204,10 @@
     <Resource Include="Images\AddActivity.png" />
     <Resource Include="Images\AddActivity_hover.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\AddVision.png" />
+    <Resource Include="Images\AddVision_hover.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Silverlight\$(SilverlightVersion)\Microsoft.Silverlight.CSharp.targets" />
   <ProjectExtensions>
     <VisualStudio>
