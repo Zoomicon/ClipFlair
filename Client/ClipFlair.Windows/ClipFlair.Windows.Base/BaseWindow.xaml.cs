@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: BaseWindow.xaml.cs
-//Version: 20131206
+//Version: 20140204
 
 //TODO: unbind control at close
 
@@ -102,18 +102,19 @@ namespace ClipFlair.Windows
 #if PROPERTY_CHANGE_SUPPORT
         //remove property changed handler from old view
         if (DataContext != null)
-          View.PropertyChanged -= new PropertyChangedEventHandler(View_PropertyChanged); //IView inherits from INotifyPropertyChanged
+          View.PropertyChanged -= View_PropertyChanged; //IView inherits from INotifyPropertyChanged
 
         //add property changed handler to new view
         if (value != null)
-          value.PropertyChanged += new PropertyChangedEventHandler(View_PropertyChanged);
+          value.PropertyChanged += View_PropertyChanged; //don't use "new PropertyChangedEventHandler(View_PropertyChanged)", else it won't call overriden event handler at descendent classes
 #endif
 
         //set the new view (must do after setting property change event handler)
         DataContext = value;
 
 #if PROPERTY_CHANGE_SUPPORT
-        if (value != null) View_PropertyChanged(View, new PropertyChangedEventArgs(null)); //notify property change listeners that all properties of the view changed
+        if (value != null)
+          View_PropertyChanged(View, new PropertyChangedEventArgs(null)); //notify property change listeners that all properties of the view changed
 #endif
 
         OnViewChanged(); //make sure ViewChangedEventHandler is fired
@@ -522,22 +523,21 @@ namespace ClipFlair.Windows
     protected virtual void View_PropertyChanged(object sender, PropertyChangedEventArgs e)
     {
       /*
-        if (e.PropertyName == null) //multiple (not specified) properties have changed, consider all as changed
-        {
+      switch (e.PropertyName)
+      {
+        case null: //multiple (not specified) properties have changed, consider all as changed
           //Title = View.Title; //not used, using data binding in XAML instead
           //...
-        }
-        else switch (e.PropertyName)
-          {
-            //case IViewProperties.PropertyTitle: //not used, using data binding in XAML instead
-            //  Title = View.Title;
-            //  IconText = View.Title; //IconText should match the Title
-            //  break; 
-            //...
-            default:
-              //NOP
-              break;
-          }
+          break;
+        //case IViewProperties.PropertyTitle: //not used, using data binding in XAML instead
+        //  Title = View.Title;
+        //  IconText = View.Title; //IconText should match the Title
+        //  break; 
+        //...
+        default:
+          //NOP
+          break;
+      }
       */
     }
 #endif

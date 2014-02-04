@@ -57,21 +57,13 @@ namespace ClipFlair.AudioRecorder
 
     protected virtual void View_PropertyChanged(object sender, PropertyChangedEventArgs e)
     {
-      if (e.PropertyName == null) //multiple (not specified) properties have changed, consider all as changed
+      switch (e.PropertyName)
       {
-        Audio = View.Audio;
-        //...
+        case null: //multiple (not specified) properties have changed, consider all as changed
+        case AudioRecorderView.PROPERTY_AUDIO:
+          Audio = View.Audio;
+          break; 
       }
-      else switch (e.PropertyName)
-        {
-          case AudioRecorderView.PROPERTY_AUDIO:
-            Audio = View.Audio;
-            break; 
-          default:
-            //NOP
-            break;
-          //...
-        }
     }
 
     #endregion
