@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: SilverTextEditor.xaml.cs
-//Version: 20131016
+//Version: 20140205
 
 //Originated from Microsoft Silverlight sample (MSPL license)
 
@@ -163,83 +163,100 @@ namespace SilverTextEditor
 
     #endregion
 
+    #endregion
+
     #region Bold, Italics & Underline
 
-    //Set Bold formatting to the selected content 
+    //Toggle Bold formatting at the selected content if any, else at the text under the cursor (the current "Run")
     private void btnBold_Click(object sender, RoutedEventArgs e)
     {
-      if (rtb != null && rtb.Selection.Text.Length > 0)
-        if (rtb.Selection.GetPropertyValue(Run.FontWeightProperty) is FontWeight && ((FontWeight)rtb.Selection.GetPropertyValue(Run.FontWeightProperty)) == FontWeights.Normal)
-          rtb.Selection.ApplyPropertyValue(Run.FontWeightProperty, FontWeights.Bold);
-        else
-          rtb.Selection.ApplyPropertyValue(Run.FontWeightProperty, FontWeights.Normal);
+      if (rtb == null) return;
+
+      if (HasSelection)
+        ToggleSelectionProperty(Run.FontWeightProperty, FontWeights.Bold, FontWeights.Normal);
+      else
+        CurrentRun.FontWeight = (CurrentRun.FontWeight != FontWeights.Bold) ? FontWeights.Bold : FontWeights.Normal;
 
       ReturnFocus();
     }
 
-    //Set Italic formatting to the selected content 
+    //Toggle Italic formatting at the selected content if any, else at the text under the cursor (the current "Run")
     private void btnItalic_Click(object sender, RoutedEventArgs e)
     {
-      if (rtb != null && rtb.Selection.Text.Length > 0)
-        if (rtb.Selection.GetPropertyValue(Run.FontStyleProperty) is FontStyle && ((FontStyle)rtb.Selection.GetPropertyValue(Run.FontStyleProperty)) == FontStyles.Normal)
-          rtb.Selection.ApplyPropertyValue(Run.FontStyleProperty, FontStyles.Italic);
-        else
-          rtb.Selection.ApplyPropertyValue(Run.FontStyleProperty, FontStyles.Normal);
+      if (rtb == null) return;
+
+      if (HasSelection)
+        ToggleSelectionProperty(Run.FontStyleProperty, FontStyles.Italic, FontStyles.Normal);
+      else
+        CurrentRun.FontStyle = (CurrentRun.FontStyle != FontStyles.Italic) ? FontStyles.Italic : FontStyles.Normal;
 
       ReturnFocus();
     }
 
-    //Set Underline formatting to the selected content 
+    //Toggle Underline formatting at the selected content if any, else at the text under the cursor (the current "Run")
     private void btnUnderline_Click(object sender, RoutedEventArgs e)
     {
-      if (rtb != null && rtb.Selection.Text.Length > 0)
-        if (rtb.Selection.GetPropertyValue(Run.TextDecorationsProperty) == null)
-          rtb.Selection.ApplyPropertyValue(Run.TextDecorationsProperty, TextDecorations.Underline);
-        else
-          rtb.Selection.ApplyPropertyValue(Run.TextDecorationsProperty, null);
+      if (rtb == null) return;
+
+      if (HasSelection)
+        ToggleSelectionProperty(Run.TextDecorationsProperty, TextDecorations.Underline, null);
+      else
+        CurrentRun.TextDecorations = (CurrentRun.TextDecorations != TextDecorations.Underline) ? TextDecorations.Underline : null;
 
       ReturnFocus();
     }
-
-    #endregion
 
     #endregion
 
     #region Font Type, Color & size
 
-    //Set font type to selected content
+    //Set font type at the selected content if any, else at the text under the cursor (the current "Run")
     private void cmbFonts_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
-      if (rtb != null && rtb.Selection.Text.Length > 0)
-        rtb.Selection.ApplyPropertyValue(Run.FontFamilyProperty, new FontFamily((cmbFonts.SelectedItem as ComboBoxItem).Tag.ToString()));
+      if (rtb == null) return;
+
+      FontFamily fontFamily = new FontFamily((((ComboBox)sender).SelectedItem as ComboBoxItem).Tag.ToString()); //don't use cmbFonts here, event handler is called at object initialization, before that field is assigned
+      
+      if (HasSelection)
+        ChangeSelectionProperty(Run.FontFamilyProperty, fontFamily);
+      else
+        CurrentRun.FontFamily = fontFamily;
 
       ReturnFocus();
     }
 
-    //Set font size to selected content
+    //Set font size to selected content if any, else at the text under the cursor (the current "Run")
     private void cmbFontSizes_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
-      if (rtb != null && rtb.Selection.Text.Length > 0)
-        rtb.Selection.ApplyPropertyValue(Run.FontSizeProperty, double.Parse((cmbFontSizes.SelectedItem as ComboBoxItem).Tag.ToString()));
+      if (rtb == null) return;
+
+      double fontSize = double.Parse((((ComboBox)sender).SelectedItem as ComboBoxItem).Tag.ToString()); //don't use cmbFontSizes here, event handler is called at object initialization, before that field is assigned
+
+      if (HasSelection)
+        ChangeSelectionProperty(Run.FontSizeProperty, fontSize);
+      else
+        CurrentRun.FontSize = fontSize;
 
       ReturnFocus();
     }
 
-    //Set font color to selected content
+    //Set font color to selected content if any, else at the text under the cursor (the current "Run")
     private void cmbFontColors_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
-      if (rtb != null && rtb.Selection.Text.Length > 0)
-      {
-        string color = (cmbFontColors.SelectedItem as ComboBoxItem).Tag.ToString();
+      if (rtb == null) return;
 
-        SolidColorBrush brush = new SolidColorBrush(Color.FromArgb(
-          byte.Parse(color.Substring(0, 2), NumberStyles.HexNumber),
-          byte.Parse(color.Substring(2, 2), NumberStyles.HexNumber),
-          byte.Parse(color.Substring(4, 2), NumberStyles.HexNumber),
-          byte.Parse(color.Substring(6, 2), NumberStyles.HexNumber)));
+      string color = (((ComboBox)sender).SelectedItem as ComboBoxItem).Tag.ToString(); //don't use cmbFontColors here, event handler is called at object initialization, before that field is assigned
 
-        rtb.Selection.ApplyPropertyValue(Run.ForegroundProperty, brush);
-      }
+      SolidColorBrush brush = new SolidColorBrush(Color.FromArgb(
+        byte.Parse(color.Substring(0, 2), NumberStyles.HexNumber),
+        byte.Parse(color.Substring(2, 2), NumberStyles.HexNumber),
+        byte.Parse(color.Substring(4, 2), NumberStyles.HexNumber),
+        byte.Parse(color.Substring(6, 2), NumberStyles.HexNumber))); 
+      
+      if (HasSelection)
+        ChangeSelectionProperty(Run.ForegroundProperty, brush);
+      else
+        CurrentRun.Foreground = brush;
 
       ReturnFocus();
     }
@@ -255,7 +272,7 @@ namespace SilverTextEditor
           InlineUIContainer container = new InlineUIContainer();
           container.Child = new Uri("/SilverTextEditor;component/Images/Desert.jpg", UriKind.RelativeOrAbsolute).CreateImage(); //should show filedialog to select image here
 
-          rtb.Selection.Insert(container);
+          Selection.Insert(container);
   
           ReturnFocus();
         }
@@ -264,7 +281,7 @@ namespace SilverTextEditor
     //Insert timestamp into the RichTextBox
     private void btnTimestamp_Click(object sender, RoutedEventArgs e)
     {
-      rtb.Selection.Text = "[" + DateTime.UtcNow.ToString() + " UTC" + "]"; //TODO: change this to call a callback function if any is registered to get the "time"
+      Selection.Text = "[" + DateTime.UtcNow.ToString() + " UTC" + "]"; //TODO: change this to call a callback function if any is registered to get the "time"
       ReturnFocus();
     }
 
@@ -275,7 +292,7 @@ namespace SilverTextEditor
     //Insert a hyperlink
     private void btnHyperlink_Click(object sender, RoutedEventArgs e)
     {
-      InsertURL cw = new InsertURL(rtb.Selection.Text);
+      InsertURL cw = new InsertURL(Selection.Text);
       cw.HasCloseButton = false;
 
       //Hook up an event handler to the Closed event on the ChildWindows cw. 
@@ -292,7 +309,7 @@ namespace SilverTextEditor
           else
             hyperlink.Inlines.Add(cw.txtURL.Text);
 
-          rtb.Selection.Insert(hyperlink);
+          Selection.Insert(hyperlink);
           ReturnFocus();
         }
       };
@@ -305,22 +322,22 @@ namespace SilverTextEditor
     //Cut the selected text
     private void btnCut_Click(object sender, RoutedEventArgs e)
     {
-      Clipboard.SetText(rtb.Selection.Text);
-      rtb.Selection.Text = "";
+      Clipboard.SetText(Selection.Text);
+      Selection.Text = "";
       ReturnFocus();
     }
 
     //Copy the selected text
     private void btnCopy_Click(object sender, RoutedEventArgs e)
     {
-      Clipboard.SetText(rtb.Selection.Text);
+      Clipboard.SetText(Selection.Text);
       ReturnFocus();
     }
 
     //paste the text
     private void btnPaste_Click(object sender, RoutedEventArgs e)
     {
-      rtb.Selection.Text = Clipboard.GetText();
+      Selection.Text = Clipboard.GetText();
       ReturnFocus();
     }
     #endregion
@@ -517,12 +534,12 @@ namespace SilverTextEditor
 
     public void ScrollToStart()
     {
-      rtb.Selection.Select(rtb.ContentStart, rtb.ContentStart);
+      Selection.Select(rtb.ContentStart, rtb.ContentStart);
     }
 
     public void ScrollToEnd()
     {
-      rtb.Selection.Select(rtb.ContentEnd, rtb.ContentEnd);
+      Selection.Select(rtb.ContentEnd, rtb.ContentEnd);
     }
 
     #endregion
@@ -564,9 +581,16 @@ namespace SilverTextEditor
 
     #region Selection
 
-    public void SelectNone()
+    public TextSelection Selection
     {
-      rtb.Selection.Select(rtb.Selection.Start, rtb.Selection.Start);
+      get { return (rtb != null)? rtb.Selection : null; }
+    }
+
+    public bool HasSelection {
+      get {
+        TextSelection selection = Selection;
+        return (selection != null)? (selection.Text.Length > 0) : false;
+      }
     }
 
     public void SelectAll()
@@ -574,17 +598,54 @@ namespace SilverTextEditor
       rtb.SelectAll();
     }
 
+    private Run CurrentRun
+    {
+      get
+      {
+        TextSelection selection = Selection;
+        if (selection == null)
+          return null;
+
+        TextPointer startpos = selection.Start;
+        if (startpos == null)
+          return null;
+
+        return (Run)startpos.Parent;
+      }
+    }
+
+    public void SelectNone()
+    {
+      Selection.Select(Selection.Start, Selection.Start);
+    }
+
     public bool SelectAllIfNone()
     {
-      if (rtb.Selection.Text.Length == 0)
+      if (Selection.Text.Length == 0)
       { //if no selection then select all
-        rtb.SelectAll();
+        SelectAll();
         return true; //there was no selection, selected all
       }
       else
         return false; //there was some selection
     }
 
+    private object GetSelectionProperty(DependencyProperty prop)
+    {
+      return Selection.GetPropertyValue(prop);
+    }
+
+    private void ChangeSelectionProperty(DependencyProperty prop, object value)
+    {
+      Selection.ApplyPropertyValue(prop, value);
+    }
+
+    private void ToggleSelectionProperty(DependencyProperty prop, object newValue, object toggleValue) 
+    {
+      object value = GetSelectionProperty(prop);
+      ChangeSelectionProperty(prop, ((value != null) && value.Equals(newValue)) ? toggleValue : newValue); //if current property value (of the whole selection) equals new value will set the toggleValue
+    }
+    
     #endregion
 
     public void Clear(bool confirm=false)
@@ -650,12 +711,12 @@ namespace SilverTextEditor
       using (StreamReader reader = new StreamReader(stream))
       xamlText = reader.ReadToEnd();
       
-      if (clearFirst) rtb.SelectAll(); //need to use this instead of Clear() since we set "rtb.Selection.Xaml" below
+      if (clearFirst) SelectAll(); //need to use this instead of Clear() since we set "Selection.Xaml" below
 
       if (!String.IsNullOrWhiteSpace(xamlText))
-        rtb.Selection.Xaml = xamlText;
+        Selection.Xaml = xamlText;
       else
-        rtb.Selection.Text = ""; //Xaml property of Selection object doesn't accept empty string (need to set this in order to clear current selection if using clearFirst=false)
+        Selection.Text = ""; //Xaml property of Selection object doesn't accept empty string (need to set this in order to clear current selection if using clearFirst=false)
 
       if (clearFirst) ScrollToStart();
     }
@@ -666,9 +727,9 @@ namespace SilverTextEditor
       using (StreamReader reader = new StreamReader(stream))
         txt = reader.ReadToEnd();
 
-      if (clearFirst) rtb.SelectAll(); //need to use this instead of Clear() since we set "rtb.Selection.Text" below
+      if (clearFirst) SelectAll(); //need to use this instead of Clear() since we set "Selection.Text" below
 
-      rtb.Selection.Text = txt;
+      Selection.Text = txt;
 
       if (clearFirst) ScrollToStart();
     }
@@ -762,7 +823,7 @@ namespace SilverTextEditor
       bool didSelectAll = SelectAllIfNone(); //if no selection then select all...
 
       TextWriter writer = new StreamWriter(stream, Encoding.UTF8);
-      writer.Write(rtb.Selection.Xaml); //saves current selection
+      writer.Write(Selection.Xaml); //saves current selection
       writer.Flush();
 
       if (didSelectAll) SelectNone(); //...deselect all if there was no selection before
@@ -773,7 +834,7 @@ namespace SilverTextEditor
       bool didSelectAll = SelectAllIfNone(); //if no selection then select all...
 
       TextWriter writer = new StreamWriter(stream, Encoding.UTF8);
-      writer.Write(rtb.Selection.Xaml); //saves current selection
+      writer.Write(Selection.Xaml); //saves current selection
       writer.Flush();
 
       if (didSelectAll) SelectNone(); //...deselect all if there was no selection before
