@@ -2,27 +2,48 @@
 
 <!--
 Project: ClipFlair (http://ClipFlair.codeplex.com)
-Filename: Language.xml
-Version: 20130722
+Filename: ClipFlair.Gallery/activity/metadata/Language.xml
+Version: 20140206
 -->
 
 <Facet Name="Language">
   <String Value="Any language" />
+  <String Value="Albanian" />
   <String Value="Arabic" />
   <String Value="Basque" />
+  <String Value="Bulgarian" />
   <String Value="Catalan" />
+  <String Value="Croatian" />
+  <String Value="Czech" />
   <String Value="Chinese" />
+  <String Value="Danish" />
+  <String Value="Dutch" />
   <String Value="English" />
   <String Value="Estonian" />
+  <String Value="Finnish" />  
+  <String Value="French" />
+  <String Value="Galician" />
+  <String Value="German" />
   <String Value="Greek" />
+  <String Value="Hungarian" />
   <String Value="Irish" />
   <String Value="Italian" />
   <String Value="Japanese" />
+  <String Value="Latin" />
+  <String Value="Latvian" />
+  <String Value="Lithuanian" />
+  <String Value="Luxembourgish" />
+  <String Value="Maltese" />
   <String Value="Polish" />
   <String Value="Portuguese" />
   <String Value="Romanian" />
   <String Value="Russian" />
+  <String Value="Serbian" />
+  <String Value="Slovak" />
+  <String Value="Slovene" />
   <String Value="Spanish" />
+  <String Value="Swedish" />  
+  <String Value="Turkish" />
   <String Value="Ukrainian" />
   <!-- TODO -->
 </Facet>
