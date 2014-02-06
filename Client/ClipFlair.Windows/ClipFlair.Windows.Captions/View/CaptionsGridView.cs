@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: CaptionsGridView.cs
-//Version: 20131213
+//Version: 20140206
 
 using Microsoft.SilverlightMediaFramework.Core.Accessibility.Captions;
 
@@ -35,6 +35,7 @@ namespace ClipFlair.Windows.Views
     private bool wpmVisible;
     private bool audioVisible;
     private bool commentsVisible;
+    private bool saveInvisibleAudio;
 
     #endregion
 
@@ -129,9 +130,12 @@ namespace ClipFlair.Windows.Views
       get { return durationVisible; }
       set
       {
-        durationVisible = value;
-        RaisePropertyChanged(ICaptionsGridProperties.PropertyDurationVisible);
-        Dirty = true;
+        if (value != durationVisible)
+        {
+          durationVisible = value;
+          RaisePropertyChanged(ICaptionsGridProperties.PropertyDurationVisible);
+          Dirty = true;
+        }
       }
     }
 
@@ -158,9 +162,12 @@ namespace ClipFlair.Windows.Views
       get { return captionVisible; }
       set
       {
-        captionVisible = value;
-        RaisePropertyChanged(ICaptionsGridProperties.PropertyCaptionVisible);
-        Dirty = true;
+        if (value != captionVisible)
+        {
+          captionVisible = value;
+          RaisePropertyChanged(ICaptionsGridProperties.PropertyCaptionVisible);
+          Dirty = true;
+        }
       }
     }
 
@@ -171,9 +178,12 @@ namespace ClipFlair.Windows.Views
       get { return cpsVisible; }
       set
       {
-        cpsVisible = value;
-        RaisePropertyChanged(ICaptionsGridProperties.PropertyCPSVisible);
-        Dirty = true;
+        if (value != cpsVisible)
+        {
+          cpsVisible = value;
+          RaisePropertyChanged(ICaptionsGridProperties.PropertyCPSVisible);
+          Dirty = true;
+        }
       }
     }
 
@@ -184,9 +194,12 @@ namespace ClipFlair.Windows.Views
       get { return wpmVisible; }
       set
       {
-        wpmVisible = value;
-        RaisePropertyChanged(ICaptionsGridProperties.PropertyWPMVisible);
-        Dirty = true;
+        if (value != wpmVisible)
+        {
+          wpmVisible = value;
+          RaisePropertyChanged(ICaptionsGridProperties.PropertyWPMVisible);
+          Dirty = true;
+        }
       }
     }
 
@@ -197,9 +210,12 @@ namespace ClipFlair.Windows.Views
       get { return audioVisible; }
       set
       {
-        audioVisible = value;
-        RaisePropertyChanged(ICaptionsGridProperties.PropertyAudioVisible);
-        Dirty = true;
+        if (value != audioVisible)
+        {
+          audioVisible = value;
+          RaisePropertyChanged(ICaptionsGridProperties.PropertyAudioVisible);
+          Dirty = true;
+        }
       }
     }
 
@@ -210,9 +226,28 @@ namespace ClipFlair.Windows.Views
       get { return commentsVisible; }
       set
       {
-        commentsVisible = value;
-        RaisePropertyChanged(ICaptionsGridProperties.PropertyCommentsVisible);
-        Dirty = true;
+        if (value != commentsVisible)
+        {
+          commentsVisible = value;
+          RaisePropertyChanged(ICaptionsGridProperties.PropertyCommentsVisible);
+          Dirty = true;
+        }
+      }
+    }
+    
+    [DataMember]
+    [DefaultValue(CaptionsGridDefaults.DefaultSaveInvisibleAudio)]
+    public bool SaveInvisibleAudio
+    {
+      get { return saveInvisibleAudio; }
+      set
+      {
+        if (value != saveInvisibleAudio)
+        {
+          saveInvisibleAudio = value;
+          RaisePropertyChanged(ICaptionsGridProperties.PropertySaveInvisibleAudio);
+          Dirty = true;
+        }
       }
     }
 

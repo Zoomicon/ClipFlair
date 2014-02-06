@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: CaptionsGridWindow.xaml.cs
-//Version: 20130606
+//Version: 20140207
 
 //TODO: add Source property to CaptionsGrid control and use data-binding to bind it to CaptionsGridView's Source property
 
@@ -69,13 +69,19 @@ namespace ClipFlair.Windows
 
       zip.AddEntry(zipFolder + "/" + DEFAULT_CAPTIONS, SaveCaptions); //save captions //saving even when no captions are available as a placeholder for user to edit manually
 
-      foreach (CaptionElement caption in CaptionsGridView.Captions.Children) //save any audio associated to each caption
-        SaveAudio(caption, zip, zipFolder);
+      if (CaptionsGridView.AudioVisible || CaptionsGridView.SaveInvisibleAudio)
+        SaveAudio(CaptionsGridView.Captions, zip, zipFolder);
     }
 
     public void SaveCaptions(string entryName, Stream stream)
     {
       gridCaptions.SaveCaptions(stream, entryName);
+    }
+
+    public void SaveAudio(CaptionRegion captions, ZipFile zip, string zipFolder = "")
+    {
+      foreach (CaptionElement caption in captions.Children) //save any audio associated to each caption
+        SaveAudio(caption, zip, zipFolder);
     }
 
     public void SaveAudio(CaptionElement caption, ZipFile zip, string zipFolder = "")
