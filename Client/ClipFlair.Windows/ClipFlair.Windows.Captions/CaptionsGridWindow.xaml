@@ -1,7 +1,7 @@
 ﻿<!--
 Project: ClipFlair (http://ClipFlair.codeplex.com)
 Filename: CaptionsGridWindow.xaml
-Version: 20140206
+Version: 20140207
 -->
   
 <clipflair:BaseWindow x:Class="ClipFlair.Windows.CaptionsGridWindow"
@@ -118,10 +118,12 @@ Version: 20140206
       <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Right to Left (RTL) Text Direction" Target="{Binding ElementName=cbRTL}"/>
     </StackPanel>
 
+<!-- //TODO: need to see how this can be implemented correctly
     <StackPanel Orientation="Horizontal">
       <CheckBox Name="cbSaveInvisibleAudio" IsChecked="{Binding SaveInvisibleAudio, Mode=TwoWay}" />
       <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Save invisible audio" Target="{Binding ElementName=cbSaveInvisibleAudio}"/>
     </StackPanel>
+-->
 
   </clipflair:BaseWindow.PropertyItems>
 
