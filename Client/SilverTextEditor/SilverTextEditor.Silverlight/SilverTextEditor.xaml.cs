@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: SilverTextEditor.xaml.cs
-//Version: 20140205
+//Version: 20140207
 
 //Originated from Microsoft Silverlight sample (MSPL license)
 
@@ -175,8 +175,13 @@ namespace SilverTextEditor
       if (HasSelection)
         ToggleSelectionProperty(Run.FontWeightProperty, FontWeights.Bold, FontWeights.Normal);
       else
-        CurrentRun.FontWeight = (CurrentRun.FontWeight != FontWeights.Bold) ? FontWeights.Bold : FontWeights.Normal;
-
+      {
+        Run currentRun = CurrentRun;
+        if (currentRun != null)
+          currentRun.FontWeight = (currentRun.FontWeight != FontWeights.Bold) ? FontWeights.Bold : FontWeights.Normal;
+        else
+          rtb.FontWeight = (rtb.FontWeight != FontWeights.Bold) ? FontWeights.Bold : FontWeights.Normal;
+      }
       ReturnFocus();
     }
 
@@ -188,8 +193,13 @@ namespace SilverTextEditor
       if (HasSelection)
         ToggleSelectionProperty(Run.FontStyleProperty, FontStyles.Italic, FontStyles.Normal);
       else
-        CurrentRun.FontStyle = (CurrentRun.FontStyle != FontStyles.Italic) ? FontStyles.Italic : FontStyles.Normal;
-
+      {
+        Run currentRun = CurrentRun;
+        if (currentRun != null)
+          currentRun.FontStyle = (currentRun.FontStyle != FontStyles.Italic) ? FontStyles.Italic : FontStyles.Normal;
+        else
+          rtb.FontStyle = (rtb.FontStyle != FontStyles.Italic) ? FontStyles.Italic : FontStyles.Normal;
+      }
       ReturnFocus();
     }
 
@@ -201,8 +211,13 @@ namespace SilverTextEditor
       if (HasSelection)
         ToggleSelectionProperty(Run.TextDecorationsProperty, TextDecorations.Underline, null);
       else
-        CurrentRun.TextDecorations = (CurrentRun.TextDecorations != TextDecorations.Underline) ? TextDecorations.Underline : null;
-
+      {
+        Run currentRun = CurrentRun;
+        if (currentRun != null)
+          currentRun.TextDecorations = (currentRun.TextDecorations != TextDecorations.Underline) ? TextDecorations.Underline : null;
+        //else
+        //  rtb.TextDecorations = (rtb.TextDecorations != TextDecorations.Underline) ? TextDecorations.Underline : null; //TODO: check why such a property doesn't exist
+      }
       ReturnFocus();
     }
 
@@ -216,12 +231,17 @@ namespace SilverTextEditor
       if (rtb == null) return;
 
       FontFamily fontFamily = new FontFamily((((ComboBox)sender).SelectedItem as ComboBoxItem).Tag.ToString()); //don't use cmbFonts here, event handler is called at object initialization, before that field is assigned
-      
+
       if (HasSelection)
         ChangeSelectionProperty(Run.FontFamilyProperty, fontFamily);
       else
-        CurrentRun.FontFamily = fontFamily;
-
+      {
+        Run currentRun = CurrentRun;
+        if (currentRun != null)
+          currentRun.FontFamily = fontFamily;
+        else
+          rtb.FontFamily = fontFamily;
+      }
       ReturnFocus();
     }
 
@@ -235,8 +255,13 @@ namespace SilverTextEditor
       if (HasSelection)
         ChangeSelectionProperty(Run.FontSizeProperty, fontSize);
       else
-        CurrentRun.FontSize = fontSize;
-
+      {
+        Run currentRun = CurrentRun;
+        if (currentRun != null)
+          currentRun.FontSize = fontSize;
+        else
+          rtb.FontSize = fontSize;
+      }
       ReturnFocus();
     }
 
@@ -251,13 +276,18 @@ namespace SilverTextEditor
         byte.Parse(color.Substring(0, 2), NumberStyles.HexNumber),
         byte.Parse(color.Substring(2, 2), NumberStyles.HexNumber),
         byte.Parse(color.Substring(4, 2), NumberStyles.HexNumber),
-        byte.Parse(color.Substring(6, 2), NumberStyles.HexNumber))); 
-      
+        byte.Parse(color.Substring(6, 2), NumberStyles.HexNumber)));
+
       if (HasSelection)
         ChangeSelectionProperty(Run.ForegroundProperty, brush);
       else
-        CurrentRun.Foreground = brush;
-
+      {
+        Run currentRun = CurrentRun;
+        if (currentRun != null)
+          currentRun.Foreground = brush;
+        else
+          rtb.Foreground = brush;
+      }
       ReturnFocus();
     }
 
@@ -610,7 +640,7 @@ namespace SilverTextEditor
         if (startpos == null)
           return null;
 
-        return (Run)startpos.Parent;
+        return startpos.Parent as Run; //if text is empty this will return null (since the Parent is the RichTextBox in that case, which can't be cast to Run)
       }
     }
 
