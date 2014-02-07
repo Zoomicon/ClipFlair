@@ -51,8 +51,14 @@ namespace ClipFlair.Windows
       } else 
         CaptionsGridView.Captions = new CaptionRegion();
 
+      //load revoicing audio
+      LoadAudio(CaptionsGridView.Captions, zip, zipFolder);
+    }
+
+    public void LoadAudio(CaptionRegion captions, ZipFile zip, string zipFolder = "")
+    {
       //load any audio associated to each caption
-      foreach (CaptionElement caption in CaptionsGridView.Captions.Children)
+      foreach (CaptionElement caption in captions.Children)
         LoadAudio(caption, zip, zipFolder);
     }
 
@@ -67,10 +73,12 @@ namespace ClipFlair.Windows
     {
       base.SaveOptions(zip, zipFolder);
 
+      //save captions
       zip.AddEntry(zipFolder + "/" + DEFAULT_CAPTIONS, SaveCaptions); //save captions //saving even when no captions are available as a placeholder for user to edit manually
 
-      if (CaptionsGridView.AudioVisible || CaptionsGridView.SaveInvisibleAudio)
-        SaveAudio(CaptionsGridView.Captions, zip, zipFolder);
+      //save revoicing audio
+      //if (CaptionsGridView.AudioVisible || CaptionsGridView.SaveInvisibleAudio) //TODO: removed, need to fix this (maybe with separate Audio property or something?), since currently Captions is synced between components and if only some save the audio, it may be lost at load, depending on the load order of those components by their parent (activity)
+      SaveAudio(CaptionsGridView.Captions, zip, zipFolder); //...maybe if captions property is bound to a parent (activity), save the captions/audio there once
     }
 
     public void SaveCaptions(string entryName, Stream stream)
