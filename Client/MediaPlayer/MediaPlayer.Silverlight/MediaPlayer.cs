@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: MediaPlayer.cs
-//Version: 20131216
+//Version: 20140220
 
 using Utils.Extensions;
 
@@ -416,8 +416,11 @@ namespace ClipFlair.MediaPlayer
     /// </summary>
     protected virtual void OnVideoVisibleChanged(bool oldVideoVisible, bool newVideoVisible)
     {
-      MediaPresenterElement.MaxWidth = (newVideoVisible) ? double.PositiveInfinity : 0;
-      MediaPresenterElement.MaxHeight = (newVideoVisible) ? double.PositiveInfinity : 0;
+      if (MediaPresenterElement != null) //this can be null if media url can't be resolved
+      {
+        MediaPresenterElement.MaxWidth = (newVideoVisible) ? double.PositiveInfinity : 0;
+        MediaPresenterElement.MaxHeight = (newVideoVisible) ? double.PositiveInfinity : 0;
+      }
     }
 
     #endregion
@@ -507,7 +510,9 @@ namespace ClipFlair.MediaPlayer
     protected virtual void OnGraphVisibleChanged(bool oldGraphVisible, bool newGraphVisible)
     {
       PlayerGraphVisibility = (newGraphVisible) ? FeatureVisibility.Visible : FeatureVisibility.Disabled;
-      GraphToggleElement.Visibility = (newGraphVisible) ? Visibility.Visible : Visibility.Collapsed;
+
+      if (GraphToggleElement != null)
+        GraphToggleElement.Visibility = (newGraphVisible) ? Visibility.Visible : Visibility.Collapsed;
     }
 
     #endregion
@@ -547,7 +552,8 @@ namespace ClipFlair.MediaPlayer
     /// </summary>
     protected virtual void OnBitrateVisibleChanged(bool oldBitrateVisible, bool newBitrateVisible)
     {
-      BitrateMonitorElement.Visibility = (newBitrateVisible) ? Visibility.Visible : Visibility.Collapsed;
+      if (BitrateMonitorElement != null)
+        BitrateMonitorElement.Visibility = (newBitrateVisible) ? Visibility.Visible : Visibility.Collapsed;
     }
 
     #endregion
@@ -934,7 +940,8 @@ namespace ClipFlair.MediaPlayer
 
     protected void ApplyTemplateOverrides()
     {
-      ShowPlaylistElement.Content = "..."; //don't show "Playlist" text but show "..." instead to avoid localizing it and because it can distract viewers from the captions' text //TODO: should maybe show an Image here or expose this as a property?
+      if (ShowPlaylistElement != null)
+        ShowPlaylistElement.Content = "..."; //don't show "Playlist" text but show "..." instead to avoid localizing it and because it can distract viewers from the captions' text //TODO: should maybe show an Image here or expose this as a property?
 
       //apply UI template overrides
       OnFullScreenButtonVisibleChanged(!FullScreenButtonVisible, FullScreenButtonVisible);
@@ -954,7 +961,8 @@ namespace ClipFlair.MediaPlayer
     protected void UpdateVolumeElement()
     {
       //patch for SMF to update VolumeElement UI with any already set VolumeLevel
-      VolumeElement.VolumeLevel = VolumeLevel;
+      if (VolumeElement != null) //check this in case some SMF skin doesn't have a volume element
+        VolumeElement.VolumeLevel = VolumeLevel;
     }
 
     #endregion

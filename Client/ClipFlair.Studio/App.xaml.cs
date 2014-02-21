@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: App.xaml.cs
-//Version: 20131023
+//Version: 20140221
 
 //#define GALLERY_IN_BACKGROUND
 
@@ -197,11 +197,11 @@ namespace ClipFlair
       {
         WaitTillNotBusy(activityWindow); //TODO: doesn't work (should wait for any activity to load first)
         MediaPlayerWindow w = new MediaPlayerWindow();
-        //w.Width = 800;
-        //w.Height = 600;
+        w.Width = activityWindow.Width;
+        w.Height = 69; //Using small height since there's only audio //NOTE: if SMF skin changes this may not look ok
         activityWindow.Container.AddWindowInViewCenter(w);
         w.MediaPlayerView.VideoVisible = false;
-        w.MediaPlayerView.Source = makeClipUri(CLIPFLAIR_GALLERY_AUDIO, queryString[PARAMETER_AUDIO]);
+        w.MediaPlayerView.Source = new Uri(new Uri(CLIPFLAIR_GALLERY_AUDIO), queryString[PARAMETER_AUDIO]);
         foundParam = true;
       }
 
