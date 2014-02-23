@@ -1,7 +1,7 @@
 ﻿<!--
 Project: ClipFlair (http://ClipFlair.codeplex.com)
-Filename: PivotStyles.xaml
-Version: 20140131
+Filename: PivotViewerExt/Themes/Generic.xaml
+Version: 20140223
 -->
 
 <ResourceDictionary
@@ -13,7 +13,8 @@ Version: 20140131
   xmlns:con="clr-namespace:Microsoft.Internal.Pivot.Controls;assembly=System.Windows.Controls.Pivot"  
   xmlns:utils="clr-namespace:Utils.Converters;assembly=Utils.Silverlight"
   mc:Ignorable="d"
-  >
+  >  
+  
   <!-- using sdk instead of pivot prefix to avoid doing changes to style copied from PivotViewer (downloaded from http://visuallylocated.com/post/2012/01/23/Basic-styling-of-the-Silverlight-5-PivotViewer.aspx) -->
 
   <utils:NullToVisibilityConverter x:Key="NullToVisibilityConverter" />
