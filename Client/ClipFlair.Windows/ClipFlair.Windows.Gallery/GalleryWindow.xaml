@@ -1,7 +1,7 @@
 ﻿<!--
 Project: ClipFlair (http://ClipFlair.codeplex.com)
 Filename: GalleryWindow.xaml
-Version: 20140131
+Version: 20140223
 -->
 
 <clipflair:BaseWindow x:Class="ClipFlair.Windows.GalleryWindow"
@@ -14,20 +14,20 @@ Version: 20140131
   xmlns:pivotex="clr-namespace:PivotViewerExt;assembly=PivotViewerExt"
   xmlns:clipflair="clr-namespace:ClipFlair.Windows;assembly=ClipFlair.Windows.Base"    
   xmlns:clipflairview="clr-namespace:ClipFlair.Windows.Views"
-  xmlns:utils="clr-namespace:Utils.Converters;assembly=Utils.Silverlight"
   xmlns:con="clr-namespace:Microsoft.Internal.Pivot.Controls;assembly=System.Windows.Controls.Pivot"                       
   mc:Ignorable="d"
   d:DesignWidth="800" d:DesignHeight="600"
   >
+  <!-- xmlns:utils="clr-namespace:Utils.Converters;assembly=Utils.Silverlight" -->
 
   <clipflair:BaseWindow.Resources>
     <ResourceDictionary>
       <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="/ClipFlair.Windows.Base;component/Themes/Generic.xaml" />
-        <ResourceDictionary Source="/ClipFlair.Windows.Gallery;component/Themes/PivotStyles.xaml" />
+        <ResourceDictionary Source="/PivotViewerExt;component/Themes/Generic.xaml" />
       </ResourceDictionary.MergedDictionaries>
 
-      <utils:HtmlEncodedToDecodedStringConverter x:Key="EncodedToDecodedStringConverter" />
+     <!-- <utils:HtmlEncodedToDecodedStringConverter x:Key="EncodedToDecodedStringConverter" /> -->
 
       <Style x:Key="GalleryItemAdornerStyle" TargetType="pivot:PivotViewerItemAdorner">
         <Setter Property="Template">

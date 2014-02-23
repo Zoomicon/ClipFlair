@@ -1,6 +1,5 @@
 ﻿//Filename: PivotViewerExt.cs
-//Version: 20130827
-
+//Version: 20140223
 
 //using Microsoft.Internal.Pivot.Views;
 
@@ -17,6 +16,8 @@ namespace PivotViewerExt
 
     public PivotViewerExt()
     {
+      //DefaultStyleKey = typeof(PivotViewerExt);
+
       FilterChanged += (s, e) => {
         string f = Filter;
         if (!String.IsNullOrEmpty(f))
