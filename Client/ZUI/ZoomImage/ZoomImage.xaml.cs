@@ -1,5 +1,5 @@
 ﻿//Filename: ZoomImage.xaml.cs
-//Version: 20140204
+//Version: 20140223
 //Author: George Birbilis (http://zoomicon.com)
 
 //Based on http://samples.msdn.microsoft.com/Silverlight/SampleBrowser DeepZoom samples
@@ -239,12 +239,9 @@ namespace ZoomImage
     private void Zoom(double zoomStep, Point elementFocusPoint)
     {
       if (PlainZoomMode) 
-        imgPlainZoom.ZoomAboutPoint(imgPlainZoom.ContentScale + zoomStep, imgPlainZoom.ElementToLogicalPoint(elementFocusPoint));
+        imgPlainZoom.ZoomAboutPoint(imgPlainZoom.ContentScale + zoomStep, imgPlainZoom.ElementToLogicalPoint(elementFocusPoint)); //NOTE: this expects to get the new zoom, not a delta
       else if (DeepZoomMode)
-      {
-        Point logicalPoint = imgDeepZoom.ElementToLogicalPoint(elementFocusPoint);
-        imgDeepZoom.ZoomAboutLogicalPoint(1 + zoomStep, logicalPoint.X, logicalPoint.Y); //could add an extension method for MultiScaleImage to take a Point instead of X & Y
-      }
+        imgDeepZoom.ZoomAboutLogicalPoint(1 + zoomStep, imgDeepZoom.ElementToLogicalPoint(elementFocusPoint)); //NOTE: this expects a delta?
     }
 
     #region Uri filters
