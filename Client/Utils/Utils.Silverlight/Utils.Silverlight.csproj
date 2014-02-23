@@ -98,6 +98,9 @@
     <Compile Include="..\Source\Converters\FlowDirectionToBooleanConverter.cs">
       <Link>Converters\FlowDirectionToBooleanConverter.cs</Link>
     </Compile>
+    <Compile Include="..\Source\Extensions\MultiScaleImageExtensions.cs">
+      <Link>Extensions\MultiScaleImageExtensions.cs</Link>
+    </Compile>
     <Compile Include="..\Source\Extensions\UriExtensions.cs">
       <Link>Extensions\UriExtensions.cs</Link>
     </Compile>
