@@ -49,11 +49,6 @@ namespace Utils.Extensions
 
         public static Image CreateImage(this Uri uri, double? width = null, double? height = null)
         {
-          return _CreateImage(uri, width, height);
-        }
-
-        public static Image _CreateImage(Uri uri, double? width = null, double? height = null)
-        {
           Image img = new Image(); //image control
           img.Stretch = Stretch.Uniform;
           if (width != null) img.Width = (double)width;
