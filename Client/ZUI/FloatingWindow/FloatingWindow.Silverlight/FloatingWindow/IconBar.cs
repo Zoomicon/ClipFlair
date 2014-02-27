@@ -1,5 +1,5 @@
 ﻿//Filename: IconBar.cs
-//Version: 20131224
+//Version: 20140225
 
 using System;
 using System.Collections.ObjectModel;
@@ -296,7 +296,7 @@ namespace SilverFlow.Controls
         {
           ClearCarousel();
 
-          Style style = this.WindowIconStyle ?? Application.Current.Resources["WindowIconStyle"] as Style;
+          Style style = this.WindowIconStyle; //not trying to load resource from Application.Current.Resources anymore (shouldn't do that from reusable library code)
           foreach (var window in this.FloatingWindowHost.WindowsInIconBar)
           {
             WindowIcon icon = new WindowIcon()

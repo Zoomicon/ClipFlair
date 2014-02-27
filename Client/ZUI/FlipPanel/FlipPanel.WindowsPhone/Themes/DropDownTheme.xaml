@@ -61,10 +61,12 @@ Version: 20121004
           <ScaleTransform x:Name="FrontContentTransform"></ScaleTransform>
         </Border.RenderTransform>
 
+        <!-- *** NOT AVAILABLE AT WINDOWS PHONE 8, REMOVED ***
         <Border.Effect>
           <BlurEffect x:Name="FrontContentEffect" Radius="0"></BlurEffect>
         </Border.Effect>
-
+        -->
+        
         <ContentPresenter Content="{TemplateBinding FrontContent}" 
                           HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                           VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
@@ -84,10 +86,12 @@ Version: 20121004
           <ScaleTransform x:Name="BackContentTransform"></ScaleTransform>
         </Border.RenderTransform>
 
+        <!-- *** NOT AVAILABLE AT WINDOWS PHONE 8, REMOVED ***
         <Border.Effect>
           <BlurEffect x:Name="BackContentEffect" Radius="0"></BlurEffect>
         </Border.Effect>
-
+        -->
+        
         <ContentPresenter Content="{TemplateBinding BackContent}"
                           HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                           VerticalAlignment="{TemplateBinding VerticalContentAlignment}"                          
