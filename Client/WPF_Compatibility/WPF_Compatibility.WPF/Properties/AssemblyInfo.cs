@@ -1,6 +1,10 @@
-﻿using System.Reflection;
-using System.Runtime.CompilerServices;
+﻿//Version: 20140226
+
+using System.Reflection;
 using System.Runtime.InteropServices;
+using System.Windows.Markup;
+
+[assembly: XmlnsDefinition("http://schemas.microsoft.com/winfx/2006/xaml/presentation", "System.Windows.Controls")]
 
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information

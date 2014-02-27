@@ -61,9 +61,11 @@ Version: 20121004
           <ScaleTransform x:Name="FrontContentTransform"></ScaleTransform>
         </Border.RenderTransform>
 
+        <!-- *** NOT AVAILABLE AT WINDOWS PHONE 8, REMOVED ***        
         <Border.Effect>
           <BlurEffect x:Name="FrontContentEffect" Radius="0"></BlurEffect>
         </Border.Effect>
+        -->
 
         <Grid>
           <Grid.RowDefinitions>
@@ -97,9 +99,11 @@ Version: 20121004
           <ScaleTransform x:Name="BackContentTransform"></ScaleTransform>
         </Border.RenderTransform>
 
+        <!-- *** NOT AVAILABLE AT WINDOWS PHONE 8, REMOVED ***
         <Border.Effect>
           <BlurEffect x:Name="BackContentEffect" Radius="0"></BlurEffect>
         </Border.Effect>
+        -->
         
         <Grid>
           <Grid.RowDefinitions>
