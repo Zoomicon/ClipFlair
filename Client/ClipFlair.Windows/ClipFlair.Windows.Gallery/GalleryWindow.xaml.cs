@@ -1,9 +1,10 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: GalleryWindow.xaml.cs
-//Version: 20131002
+//Version: 20140226
 
 using ClipFlair.Windows.Gallery.Commands;
 using ClipFlair.Windows.Views;
+using System;
 using System.Windows.Controls.Pivot;
 
 namespace ClipFlair.Windows
@@ -25,21 +26,6 @@ namespace ClipFlair.Windows
     {
       get { return (IGallery)View; }
       set { View = value; }
-    }
-
-    #endregion
-
-    #region Methods
-
-    public void RefreshFilter()
-    {
-      string f = pivot.Filter;
-      pivot.Filter = "";
-      pivot.Filter = f;
-
-      InvalidateMeasure();
-      InvalidateArrange();
-      UpdateLayout();
     }
 
     #endregion
