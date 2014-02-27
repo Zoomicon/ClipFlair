@@ -24,7 +24,7 @@ namespace SilverTextEditor
       this.rtb = rtb;
 
       ResourceDictionary res = new ResourceDictionary();
-      System.Windows.Application.LoadComponent(res, new System.Uri("/SilverTextEditor;component/Themes/Generic.xaml", System.UriKind.Relative));
+      Application.LoadComponent(res, new Uri("/SilverTextEditor;component/Themes/Generic.xaml", UriKind.Relative));
       buttonStyle = res["ContextMenuButton"] as Style;
     }
 

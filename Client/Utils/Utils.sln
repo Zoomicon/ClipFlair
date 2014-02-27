@@ -1,11 +1,11 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Utils.Silverlight", "Utils.Silverlight\Utils.Silverlight.csproj", "{E784B6A1-A300-4571-A881-B15240EEE377}"
-EndProject
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.30110.0
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPF_Compatibility.Silverlight", "..\WPF_Compatibility\WPF_Compatibility.Silverlight\WPF_Compatibility.Silverlight.csproj", "{7DC832CC-2D97-4DBC-B963-3F77C1F20730}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Utils.WPF", "Utils.WPF\Utils.WPF.csproj", "{06804718-E604-42D2-B425-154BE11F3FA5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Utils.WPF", "Utils.WPF\Utils.WPF.csproj", "{A1100DA3-93DD-49B5-BA91-CF868051CA16}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Silverlight", "Silverlight", "{29C79A10-840C-4C5D-9A84-6ABF97137822}"
 EndProject
@@ -13,36 +13,38 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WPF", "WPF", "{0FB9F889-247
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPF_Compatibility.WPF", "..\WPF_Compatibility\WPF_Compatibility.WPF\WPF_Compatibility.WPF.csproj", "{DC154E89-74E8-4ADC-95B5-0772CA254F71}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Utils.Silverlight", "Utils.Silverlight\Utils.Silverlight.csproj", "{E784B6A1-A300-4571-A881-B15240EEE377}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{E784B6A1-A300-4571-A881-B15240EEE377}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E784B6A1-A300-4571-A881-B15240EEE377}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E784B6A1-A300-4571-A881-B15240EEE377}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E784B6A1-A300-4571-A881-B15240EEE377}.Release|Any CPU.Build.0 = Release|Any CPU
 		{7DC832CC-2D97-4DBC-B963-3F77C1F20730}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{7DC832CC-2D97-4DBC-B963-3F77C1F20730}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7DC832CC-2D97-4DBC-B963-3F77C1F20730}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7DC832CC-2D97-4DBC-B963-3F77C1F20730}.Release|Any CPU.Build.0 = Release|Any CPU
-		{06804718-E604-42D2-B425-154BE11F3FA5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{06804718-E604-42D2-B425-154BE11F3FA5}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{06804718-E604-42D2-B425-154BE11F3FA5}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{06804718-E604-42D2-B425-154BE11F3FA5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A1100DA3-93DD-49B5-BA91-CF868051CA16}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A1100DA3-93DD-49B5-BA91-CF868051CA16}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A1100DA3-93DD-49B5-BA91-CF868051CA16}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A1100DA3-93DD-49B5-BA91-CF868051CA16}.Release|Any CPU.Build.0 = Release|Any CPU
 		{DC154E89-74E8-4ADC-95B5-0772CA254F71}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{DC154E89-74E8-4ADC-95B5-0772CA254F71}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DC154E89-74E8-4ADC-95B5-0772CA254F71}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DC154E89-74E8-4ADC-95B5-0772CA254F71}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E784B6A1-A300-4571-A881-B15240EEE377}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E784B6A1-A300-4571-A881-B15240EEE377}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E784B6A1-A300-4571-A881-B15240EEE377}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E784B6A1-A300-4571-A881-B15240EEE377}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{E784B6A1-A300-4571-A881-B15240EEE377} = {29C79A10-840C-4C5D-9A84-6ABF97137822}
 		{7DC832CC-2D97-4DBC-B963-3F77C1F20730} = {29C79A10-840C-4C5D-9A84-6ABF97137822}
-		{06804718-E604-42D2-B425-154BE11F3FA5} = {0FB9F889-2476-4E4B-9002-8FDAAC4FA4EF}
+		{E784B6A1-A300-4571-A881-B15240EEE377} = {29C79A10-840C-4C5D-9A84-6ABF97137822}
+		{A1100DA3-93DD-49B5-BA91-CF868051CA16} = {0FB9F889-2476-4E4B-9002-8FDAAC4FA4EF}
 		{DC154E89-74E8-4ADC-95B5-0772CA254F71} = {0FB9F889-2476-4E4B-9002-8FDAAC4FA4EF}
 	EndGlobalSection
 EndGlobal

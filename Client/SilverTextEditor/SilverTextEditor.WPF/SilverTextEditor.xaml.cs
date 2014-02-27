@@ -13,6 +13,7 @@
 
 //using SilverTextEditor.Resources;
 
+using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -24,7 +25,7 @@ using System.Windows.Controls;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Printing;
+//using System.Windows.Printing;
 using System.Windows.Resources;
 using System.Windows.Shapes;
 using System.Xaml;
@@ -46,9 +47,9 @@ namespace SilverTextEditor
       //LoadXamlResource("/SilverTextEditor;component/ActivityDescription.text"); //Initialize the RichTextBox. The intial text is stored as XAML at a .text file.
     }
 
-    public RichTextBox Document
+    public FlowDocument Document
     {
-      get { return rtb; }
+      get { return rtb.Document; }
     }
 
     #region Bold, Italics & Underline
@@ -188,7 +189,7 @@ namespace SilverTextEditor
       InlineUIContainer container = new InlineUIContainer();
       container.Child = new Uri("http://gallery.clipflair.net/image/SocialSignup.jpg", UriKind.RelativeOrAbsolute).CreateImage(); //TODO: should show URL dialog here (remove comment about editmode and clickable hyperlinks dynamically) to enter image URL
 
-      Selection.Insert(container);
+      //Selection.Insert(container); //TODO
   
       ReturnFocus();
     }
@@ -212,7 +213,7 @@ namespace SilverTextEditor
     private void btnHyperlink_Click(object sender, RoutedEventArgs e)
     {
       InsertURL cw = new InsertURL(Selection.Text);
-      cw.HasCloseButton = false;
+      //cw.HasCloseButton = false;
 
       //Hook up an event handler to the Closed event on the ChildWindows cw. 
       cw.Closed += (s, args) =>
@@ -228,10 +229,11 @@ namespace SilverTextEditor
           else
             hyperlink.Inlines.Add(cw.txtURL.Text);
 
-          Selection.Insert(hyperlink);
+          //Selection.Insert(hyperlink); //TODO
           ReturnFocus();
         }
       };
+
       cw.Show();
     }
     #endregion
@@ -266,9 +268,10 @@ namespace SilverTextEditor
     //Print the document
     private void btnPrint_Click(object sender, RoutedEventArgs e)
     {
+      /* //TODO: see how Printing is done in WPF
       PrintPreview cw = new PrintPreview();
       cw.ShowPreview(rtb);
-      cw.HasCloseButton = false;
+      //cw.HasCloseButton = false;
 
       //Hook up a handler to the Closed event before we display the PrintPreview window by calling the Show() method.
       cw.Closed += (t, a) =>
@@ -292,6 +295,7 @@ namespace SilverTextEditor
         }
       };
       cw.Show();
+      */
     }
 
     #endregion
@@ -466,14 +470,17 @@ namespace SilverTextEditor
 
     public string Xaml
     {
-      get { return rtb.Xaml; }
+      get
+      { 
+        return ""; // return rtb.Xaml; //TODO
+      }
       set
       {
         if (!String.IsNullOrWhiteSpace(value))
         {
           try
           {
-            rtb.Xaml = value;
+            //rtb.Xaml = value; //TODO
           }
           catch (Exception e)
           {
@@ -751,7 +758,7 @@ namespace SilverTextEditor
         };
 
         if (ofd.ShowDialog() == true)
-          Load(ofd.File);
+          Load(new FileInfo(ofd.FileName));
       }
       catch (Exception ex)
       {
@@ -793,7 +800,7 @@ namespace SilverTextEditor
       if (clearFirst) SelectAll(); //need to use this instead of Clear() since we set "Selection.Xaml" below
 
       if (!String.IsNullOrWhiteSpace(xamlText))
-        Selection.Xaml = xamlText;
+        ; //Selection.Xaml = xamlText; //TODO
       else
         Selection.Text = ""; //Xaml property of Selection object doesn't accept empty string (need to set this in order to clear current selection if using clearFirst=false)
 
@@ -815,8 +822,11 @@ namespace SilverTextEditor
 
     public void LoadDocx(Stream stream, bool clearFirst = true)
     {
+      throw new NotImplementedException(); //TODO
+
+      /* 
       StreamResourceInfo zipInfo = new StreamResourceInfo(stream, null);
-      StreamResourceInfo wordInfo = Application.GetResourceStream(zipInfo, new Uri("word/document.xml", UriKind.Relative));
+      ISSUE HERE -->  StreamResourceInfo wordInfo = Application.GetResourceStream(zipInfo, new Uri("word/document.xml", UriKind.Relative));
 
       string contents = "";
       using (StreamReader reader = new StreamReader(wordInfo.Stream))
@@ -854,6 +864,7 @@ namespace SilverTextEditor
       }
 
       if (clearFirst) ScrollToStart();
+      */
     }
 
     #endregion
@@ -901,9 +912,8 @@ namespace SilverTextEditor
 
       bool didSelectAll = SelectAllIfNone(); //if no selection then select all...
 
-      TextWriter writer = new StreamWriter(stream, Encoding.UTF8);
-      writer.Write(Selection.Xaml); //saves current selection
-      writer.Flush();
+      Selection.Save(stream, System.Windows.DataFormats.Xaml); //saves current selection
+      stream.Flush();
 
       if (didSelectAll) SelectNone(); //...deselect all if there was no selection before
     }
@@ -913,7 +923,7 @@ namespace SilverTextEditor
       bool didSelectAll = SelectAllIfNone(); //if no selection then select all...
 
       TextWriter writer = new StreamWriter(stream, Encoding.UTF8);
-      writer.Write(Selection.Xaml); //saves current selection
+      writer.Write(Selection.Text); //saves current selection
       writer.Flush();
 
       if (didSelectAll) SelectNone(); //...deselect all if there was no selection before
