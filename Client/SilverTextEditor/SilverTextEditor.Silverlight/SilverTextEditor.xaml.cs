@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: SilverTextEditor.xaml.cs
-//Version: 20140225
+//Version: 20140227
 
 //Originated from Microsoft Silverlight sample (MSPL license)
 
@@ -913,7 +913,7 @@ namespace SilverTextEditor
       bool didSelectAll = SelectAllIfNone(); //if no selection then select all...
 
       TextWriter writer = new StreamWriter(stream, Encoding.UTF8);
-      writer.Write(Selection.Xaml); //saves current selection
+      writer.Write(Selection.Text); //saves current selection
       writer.Flush();
 
       if (didSelectAll) SelectNone(); //...deselect all if there was no selection before
