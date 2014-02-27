@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: HtmlEncodedToDecodedStringConverter.cs
-//Version: 20130704
+//Version: 20140227
 
 using System;
 using System.Windows.Data;
@@ -8,7 +8,7 @@ using System.Windows.Data;
 #if SILVERLIGHT
 using System.Windows.Browser;
 #else
-using System.Web;
+using System.Net;
 #endif
 
 namespace Utils.Converters
@@ -19,8 +19,12 @@ namespace Utils.Converters
     {
         public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
-           if (value is string)
-             return HttpUtility.HtmlDecode((string)value);
+          if (value is string)
+            #if SILVERLIGHT
+            return HttpUtility.HtmlDecode((string)value);
+            #else
+            return WebUtility.HtmlDecode((string)value); //at .NET 4 Client Profile you have to use System.Net.WebUtility.HtmlDecode, System.Web.HttpUtility is only at full .NET 4
+            #endif
            else
              return"";
         }
@@ -28,7 +32,11 @@ namespace Utils.Converters
         public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
           if (value is string)
+            #if SILVERLIGHT
             return HttpUtility.HtmlEncode((string)value);
+            #else
+            return WebUtility.HtmlEncode((string)value); //at .NET 4 Client Profile you have to use System.Net.WebUtility.HtmlEncode, System.Web.HttpUtility is only at full .NET 4
+            #endif
           else
             return "";
         }

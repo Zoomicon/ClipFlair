@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.21005.1
+VisualStudioVersion = 12.0.30110.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Silverlight", "Silverlight", "{5064E297-034D-485E-93C4-412389981AE8}"
 EndProject
@@ -21,9 +21,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImageButtons.WPF", "..\ZUI\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SilverTextEditor.WPF", "SilverTextEditor.WPF\SilverTextEditor.WPF.csproj", "{B6A8E771-F3D5-4C60-A9F4-E3D9F0071226}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Utils.Silverlight", "..\Utils\Utils.Silverlight\Utils.Silverlight.csproj", "{E784B6A1-A300-4571-A881-B15240EEE377}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Utils.WPF", "..\Utils\Utils.WPF\Utils.WPF.csproj", "{A1100DA3-93DD-49B5-BA91-CF868051CA16}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Utils.WPF", "..\Utils\Utils.WPF\Utils.WPF.csproj", "{06804718-E604-42D2-B425-154BE11F3FA5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Utils.Silverlight", "..\Utils\Utils.Silverlight\Utils.Silverlight.csproj", "{E784B6A1-A300-4571-A881-B15240EEE377}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -59,14 +59,14 @@ Global
 		{B6A8E771-F3D5-4C60-A9F4-E3D9F0071226}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B6A8E771-F3D5-4C60-A9F4-E3D9F0071226}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B6A8E771-F3D5-4C60-A9F4-E3D9F0071226}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A1100DA3-93DD-49B5-BA91-CF868051CA16}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A1100DA3-93DD-49B5-BA91-CF868051CA16}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A1100DA3-93DD-49B5-BA91-CF868051CA16}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A1100DA3-93DD-49B5-BA91-CF868051CA16}.Release|Any CPU.Build.0 = Release|Any CPU
 		{E784B6A1-A300-4571-A881-B15240EEE377}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{E784B6A1-A300-4571-A881-B15240EEE377}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E784B6A1-A300-4571-A881-B15240EEE377}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E784B6A1-A300-4571-A881-B15240EEE377}.Release|Any CPU.Build.0 = Release|Any CPU
-		{06804718-E604-42D2-B425-154BE11F3FA5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{06804718-E604-42D2-B425-154BE11F3FA5}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{06804718-E604-42D2-B425-154BE11F3FA5}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{06804718-E604-42D2-B425-154BE11F3FA5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -80,6 +80,6 @@ Global
 		{DC154E89-74E8-4ADC-95B5-0772CA254F71} = {4A959C66-E4C5-4D5B-94D2-836CF9AA82E3}
 		{5BB0F96D-2B5F-409C-9782-434B12E06600} = {4A959C66-E4C5-4D5B-94D2-836CF9AA82E3}
 		{B6A8E771-F3D5-4C60-A9F4-E3D9F0071226} = {4A959C66-E4C5-4D5B-94D2-836CF9AA82E3}
-		{06804718-E604-42D2-B425-154BE11F3FA5} = {4A959C66-E4C5-4D5B-94D2-836CF9AA82E3}
+		{A1100DA3-93DD-49B5-BA91-CF868051CA16} = {4A959C66-E4C5-4D5B-94D2-836CF9AA82E3}
 	EndGlobalSection
 EndGlobal
