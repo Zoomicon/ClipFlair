@@ -14,11 +14,12 @@ Version: 20140223
   xmlns:pivotex="clr-namespace:PivotViewerExt;assembly=PivotViewerExt"
   xmlns:clipflair="clr-namespace:ClipFlair.Windows;assembly=ClipFlair.Windows.Base"    
   xmlns:clipflairview="clr-namespace:ClipFlair.Windows.Views"
-  xmlns:con="clr-namespace:Microsoft.Internal.Pivot.Controls;assembly=System.Windows.Controls.Pivot"                       
+  xmlns:con="clr-namespace:Microsoft.Internal.Pivot.Controls;assembly=System.Windows.Controls.Pivot"
+  xmlns:toolkit="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Toolkit"
   mc:Ignorable="d"
   d:DesignWidth="800" d:DesignHeight="600"
   >
-  <!-- xmlns:utils="clr-namespace:Utils.Converters;assembly=Utils.Silverlight" -->
+  <!-- xmlns:utils="clr-namespace:Utils.Converters;assembly=Zoomicon.Utils.Silverlight" -->
 
   <clipflair:BaseWindow.Resources>
     <ResourceDictionary>
@@ -50,16 +51,20 @@ Version: 20140223
 
   <!--<clipflair:BaseWindow.FrontContent>-->
 
-  <pivotex:PivotViewerExt Name="pivot"
-    HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+  <toolkit:BusyIndicator BusyContent="Loading..." IsBusy="{Binding RelativeSource={RelativeSource Self}, Path=Content.IsLoading}">
 
-    Background="Transparent"
-    ControlBackground="Transparent"       
+    <pivotex:PivotViewerExt Name="pivot"
+      HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
 
-    Source="{Binding Source, Mode=TwoWay}"
-    Filter="{Binding Filter, Mode=TwoWay}"
-    ItemAdornerStyle="{StaticResource GalleryItemAdornerStyle}"              
-    />
+      Background="Transparent"
+      ControlBackground="Transparent"       
+
+      Source="{Binding Source, Mode=TwoWay}"
+      Filter="{Binding Filter, Mode=TwoWay}"
+      ItemAdornerStyle="{StaticResource GalleryItemAdornerStyle}"              
+      />
+
+  </toolkit:BusyIndicator>
 
   <!--</clipflair:BaseWindow.FrontContent>-->
 

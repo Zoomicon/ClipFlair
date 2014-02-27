@@ -67,6 +67,7 @@
     <Reference Include="System.Windows.Controls.Pivot, Version=5.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="MetroPivotViewer.cs" />
     <Compile Include="PivotViewerExt.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

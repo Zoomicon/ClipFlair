@@ -1,38 +1,28 @@
 ﻿//Filename: PivotViewerExt.cs
-//Version: 20140223
+//Version: 20140225
 
 //using Microsoft.Internal.Pivot.Views;
-
 using System;
 using System.Linq;
 using System.Windows;
+//using System.Windows.Controls;
 using System.Windows.Controls.Pivot;
 
 namespace PivotViewerExt
 {
 
-  public class PivotViewerExt : PivotViewer
+  public class PivotViewerExt : MetroPivotViewer
   {
 
     public PivotViewerExt()
     {
       //DefaultStyleKey = typeof(PivotViewerExt);
 
-      FilterChanged += (s, e) => {
-        string f = Filter;
-        if (!String.IsNullOrEmpty(f))
-          filter = f;
+      FilterChanged += (s, e) =>
+      {
+        filter = Filter ?? ""; //if Filter is null, keep as "" instead
       };
 
- /*
-      Loaded += (s, e) =>
-      {
-        Filter = filter; //re-apply filter
-        InvalidateMeasure();
-        InvalidateArrange();
-        UpdateLayout();
-      };
-*/
     }
 
     #region Fields
@@ -84,6 +74,8 @@ namespace PivotViewerExt
 
       if (newSource != null)
       {
+        IsLoading = true;
+
         cxml = new CxmlCollectionSource();
         cxml.StateChanged += OnCollectionStateChanged; //must first set this, then "UriSource" just in case of a collection that is cached and comes up very fast
         cxml.UriSource = newSource;
@@ -104,6 +96,8 @@ namespace PivotViewerExt
         cxml = null;
       }
 
+      IsLoading = false;
+
       filter = ""; //must clear this separately
       Filter = "";
       PivotProperties = null;
@@ -111,18 +105,33 @@ namespace PivotViewerExt
       ItemsSource = null;
     }
 
+    public void RefreshFilter()
+    {
+      try
+      {
+        string f = Filter;
+        Filter = "";
+        Filter = f;
+      }
+      catch
+      {
+        //NOP
+      }
+    }
+
     #endregion
- 
+
     #region Events
 
     /*
-    CollectionViewerView cvv;
+    //CollectionViewerView cvv;
 
     public override void OnApplyTemplate()
     {
       base.OnApplyTemplate();
-      Grid partContainer = (Grid)this.GetTemplateChild("PART_Container");
-      cvv = (CollectionViewerView)partContainer.Children[2];
+      
+      //Grid partContainer = (Grid)this.GetTemplateChild("PART_Container");
+      //cvv = (CollectionViewerView)partContainer.Children[2];
     }
     */
 
@@ -141,7 +150,7 @@ namespace PivotViewerExt
 
           Filter = filter; //re-apply filter
           //SortPivotProperty = (PivotViewerProperty)PivotProperties.GetEnumerator().Current; //doesn't work
- 
+
           //View = GraphView; //need to refresh the view to show the images from the filter (could try to set the same view [GridView] or switch to other for a moment maybe). //TODO: add some event that CXML was loaded or make this overridable (?)
           //base.SetViewerState(base.SerializeViewerState()); //REFRESH
 
@@ -154,6 +163,8 @@ namespace PivotViewerExt
     }
 
     #endregion
+
+    //////////////////////////////////////////////////////////////////////////////////////////////
 
   }
 
