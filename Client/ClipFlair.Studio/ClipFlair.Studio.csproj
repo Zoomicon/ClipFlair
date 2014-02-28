@@ -143,7 +143,7 @@
       <Name>FloatingWindowZUI.Silverlight</Name>
     </ProjectReference>
     <ProjectReference Include="..\ZUI\FloatingWindow\FloatingWindow.Silverlight\FloatingWindow.Silverlight.csproj">
-      <Project>{3F3D3C8C-9724-4531-A04D-B92049F64686}</Project>
+      <Project>{3f3d3c8c-9724-4531-a04d-b92049f64686}</Project>
       <Name>FloatingWindow.Silverlight</Name>
     </ProjectReference>
   </ItemGroup>

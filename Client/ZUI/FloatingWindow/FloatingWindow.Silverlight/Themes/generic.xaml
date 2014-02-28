@@ -1,6 +1,6 @@
 ﻿<!--
   Filename: generic.xaml 
-  Version: 20131213
+  Version: 20140228
 -->
 
 <ResourceDictionary
@@ -968,7 +968,7 @@
     </Setter>
   </Style>
 
-  <Style x:Key="WindowIconStyle" TargetType="controls:WindowIcon">
+  <Style TargetType="controls:WindowIcon">
     <Setter Property="IsTabStop" Value="false"/>
     <Setter Property="Template">
       <Setter.Value>

@@ -1,4 +1,4 @@
-﻿//Version: 20120630
+﻿//Version: 20140228
 
 using System;
 using System.Globalization;
@@ -29,10 +29,9 @@ namespace SilverFlow.Controls
         // Style typed properties
         private const string PROPERTY_IconBorderStyle = "IconBorderStyle";
 
-
         public WindowIcon()
         {
-            DefaultStyleKey = typeof(WindowIcon); //This is required, else GetTemplatePart will fail to get PART_Border etc. for the WindowIcon
+          DefaultStyleKey = typeof(WindowIcon); //This is required, else GetTemplatePart will fail to get PART_Border etc. for the WindowIcon //Make sure the respective XAML style doesn't have an x:Key attribute, but only a TargetType="controls:WindowIcon" 
         }
         
         #region public Style IconBorderStyle

@@ -1,9 +1,12 @@
-﻿using System;
+﻿//Version: 20140228
+
+using SilverFlow.Controls.Extensions;
+
+using System;
 using System.Globalization;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
-using SilverFlow.Controls.Extensions;
 
 namespace SilverFlow.Controls
 {
@@ -32,6 +35,11 @@ namespace SilverFlow.Controls
         // Style typed properties
         private const string PROPERTY_IconBorderStyle = "IconBorderStyle";
 
+        public WindowIcon()
+        {
+          DefaultStyleKey = typeof(WindowIcon); //This is required, else GetTemplatePart will fail to get PART_Border etc. for the WindowIcon //Make sure the respective XAML style doesn't have an x:Key attribute, but only a TargetType="controls:WindowIcon" 
+        }
+        
         #region public Style IconBorderStyle
 
         /// <summary>
@@ -182,6 +190,7 @@ namespace SilverFlow.Controls
         private Border border;
         private TextBlock title;
         private Image thumbnail;
+        private bool selected;
         private Border iconContainer;
         private Border overlay;
 
@@ -196,6 +205,26 @@ namespace SilverFlow.Controls
         /// </summary>
         /// <value>Floating window.</value>
         public FloatingWindow Window { get; set; }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether this <see cref="WindowIcon"/> is selected.
+        /// </summary>
+        /// <value><c>true</c> if selected; otherwise, <c>false</c>.</value>
+        public bool Selected
+        {
+            get { return selected; }
+            set
+            {
+                if (value != selected)
+                {
+                    selected = value;
+                    VisualStateManager.GoToState(
+                        this,
+                        value ? VSMSTATE_StateMouseOver : VSMSTATE_StateNormal,
+                        true);
+                }
+            }
+        }
 
         /// <summary>
         /// Builds the visual tree for the <see cref="WindowIcon" /> control 
