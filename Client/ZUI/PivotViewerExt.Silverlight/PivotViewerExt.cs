@@ -1,5 +1,5 @@
 ﻿//Filename: PivotViewerExt.cs
-//Version: 20140225
+//Version: 20140228
 
 //using Microsoft.Internal.Pivot.Views;
 using System;
@@ -11,7 +11,7 @@ using System.Windows.Controls.Pivot;
 namespace PivotViewerExt
 {
 
-  public class PivotViewerExt : MetroPivotViewer
+  public class PivotViewerExt : PivotViewer //MetroPivotViewer //!!! (search for !!! below)
   {
 
     public PivotViewerExt()
@@ -74,7 +74,7 @@ namespace PivotViewerExt
 
       if (newSource != null)
       {
-        IsLoading = true;
+        //IsLoading = true; //!!!
 
         cxml = new CxmlCollectionSource();
         cxml.StateChanged += OnCollectionStateChanged; //must first set this, then "UriSource" just in case of a collection that is cached and comes up very fast
@@ -96,7 +96,7 @@ namespace PivotViewerExt
         cxml = null;
       }
 
-      IsLoading = false;
+      //IsLoading = false; //!!!
 
       filter = ""; //must clear this separately
       Filter = "";
