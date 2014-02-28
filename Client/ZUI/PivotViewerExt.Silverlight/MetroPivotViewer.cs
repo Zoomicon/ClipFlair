@@ -1,5 +1,5 @@
 ﻿//Filename: MetroPivotViewer.cs
-//Version: 20140225
+//Version: 20140228
 
 //article: http://stevenhollidge.blogspot.gr/2012/12/pivotviewer-itemsloaded-event.html
 //demo:    http://stevenhollidge.com/blog-source-code/pivotviewerwithitemsloadedevent
@@ -12,7 +12,7 @@ using System.Windows.Threading;
 
 namespace PivotViewerExt
 {
-  public class MetroPivotViewer: PivotViewer, INotifyPropertyChanged
+  public class MetroPivotViewer: PivotViewer, INotifyPropertyChanged //TODO: for now PivotViewerExt descends again from PivotViewer since this seems to have recurring COM exception when Gallery component is flipped in ClipFlair Studio and other issues when you change collection
   {
 
     #region --- Fields ---
