@@ -1,5 +1,5 @@
 ﻿//Filename: ZoomImage.xaml.cs
-//Version: 20140223
+//Version: 20140302
 //Author: George Birbilis (http://zoomicon.com)
 
 //Based on http://samples.msdn.microsoft.com/Silverlight/SampleBrowser DeepZoom samples
@@ -228,7 +228,7 @@ namespace ZoomImage
       public void ZoomToFit()
     {
       if (PlainZoomMode) 
-        imgPlainZoom.ScaleToFit();
+        imgPlainZoom.ZoomToFit();
       else if (DeepZoomMode)
       {
         imgDeepZoom.ViewportOrigin = new Point(0, 0);

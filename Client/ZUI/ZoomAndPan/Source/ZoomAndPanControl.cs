@@ -1,5 +1,5 @@
 ﻿//Filename: ZoomAndPanControl.cs
-//Version: 20131214
+//Version: 20140302
 //Editor: George Birbilis <birbilis@kagi.com>
 
 //Based on:
@@ -494,7 +494,7 @@ namespace ZoomAndPan
     /// <summary>
     /// Do animation that scales the content so that it fits completely in the control.
     /// </summary>
-    public void AnimatedScaleToFit()
+    public void AnimatedZoomToFit()
     {
       if (content == null)
       {
@@ -507,7 +507,7 @@ namespace ZoomAndPan
     /// <summary>
     /// Instantly scale the content so that it fits completely in the control.
     /// </summary>
-    public void ScaleToFit()
+    public void ZoomToFit()
     {
       if (content == null)
       {
@@ -569,6 +569,12 @@ namespace ZoomAndPan
 
     #region Internal Methods
 
+    public void UpdateScrollOffsets()
+    {
+      // Notify the owning ScrollViewer that the scrollbar offsets should be updated.
+      if (!disableScrollOffsetSync && scrollOwner != null)
+        scrollOwner.InvalidateScrollInfo();
+    }
 
     //#if SILVERLIGHT
     /// <summary>
@@ -602,26 +608,20 @@ namespace ZoomAndPan
 
       if (content != null)
       {
-        //
         // Setup the transform on the content so that we can scale it by 'ContentScale'.
-        //
         this.contentScaleTransform = new ScaleTransform()
         {
           ScaleX = this.ContentScale,
           ScaleY = this.ContentScale
         };
 
-        //
         // Setup the transform on the content so that we can translate it by 'ContentOffsetX' and 'ContentOffsetY'.
-        //
         this.contentOffsetTransform = new TranslateTransform();
         UpdateTranslationX();
         UpdateTranslationY();
 
-        //
         // Setup a transform group to contain the translation and scale transforms, and then
         // assign this to the content's 'RenderTransform'.
-        //
         TransformGroup transformGroup = new TransformGroup();
         transformGroup.Children.Add(this.contentOffsetTransform);
         transformGroup.Children.Add(this.contentScaleTransform);
@@ -679,6 +679,8 @@ namespace ZoomAndPan
       this.ContentOffsetY = contentZoomFocus.Y - (ContentViewportHeight / 2);
     }
 
+    #region ContentScale
+
     /// <summary>
     /// Event raised when the 'ContentScale' property has changed value.
     /// </summary>
@@ -686,36 +688,28 @@ namespace ZoomAndPan
     {
       ZoomAndPanControl c = (ZoomAndPanControl)o;
 
+      // Update the content scale transform whenever 'ContentScale' changes.
       if (c.contentScaleTransform != null)
       {
-        //
-        // Update the content scale transform whenever 'ContentScale' changes.
-        //
         c.contentScaleTransform.ScaleX = c.ContentScale;
         c.contentScaleTransform.ScaleY = c.ContentScale;
       }
 
-      //
       // Update the size of the viewport in content coordinates.
-      //
       c.UpdateContentViewportSize();
 
       if (c.enableContentOffsetUpdateFromScale)
       {
         try
         {
-          // 
           // Disable content focus syncronization.  We are about to update content offset whilst zooming
           // to ensure that the viewport is focused on our desired content focus point.  Setting this
           // to 'true' stops the automatic update of the content focus when content offset changes.
-          //
           c.disableContentFocusSync = true;
 
-          //
           // Whilst zooming in or out keep the content offset up-to-date so that the viewport is always
           // focused on the content focus point (and also so that the content focus is locked to the 
           // viewport focus point - this is how the google maps style zooming works).
-          //
           double viewportOffsetX = c.ViewportZoomFocusX - (c.ViewportWidth / 2);
           double viewportOffsetY = c.ViewportZoomFocusY - (c.ViewportHeight / 2);
           double contentOffsetX = viewportOffsetX / c.ContentScale;
@@ -730,14 +724,10 @@ namespace ZoomAndPan
       }
 
       if (c.ContentScaleChanged != null)
-      {
         c.ContentScaleChanged(c, EventArgs.Empty);
-      }
 
       if (c.scrollOwner != null)
-      {
         c.scrollOwner.InvalidateScrollInfo();
-      }
     }
 
     /// <summary>
@@ -751,6 +741,8 @@ namespace ZoomAndPan
       return value;
     }
 
+    #endregion
+
     /// <summary>
     /// Event raised 'MinContentScale' or 'MaxContentScale' has changed.
     /// </summary>
@@ -759,6 +751,8 @@ namespace ZoomAndPan
       ZoomAndPanControl c = (ZoomAndPanControl)o;
       c.ContentScale = Math.Min(Math.Max(c.ContentScale, c.MinContentScale), c.MaxContentScale);
     }
+
+    #region ContentOffsetX
 
     /// <summary>
     /// Event raised when the 'ContentOffsetX' property has changed value.
@@ -769,30 +763,17 @@ namespace ZoomAndPan
 
       c.UpdateTranslationX();
 
+      // Normally want to automatically update content focus when content offset changes.
+      // Although this is disabled using 'disableContentFocusSync' when content offset changes due to in-progress zooming.
       if (!c.disableContentFocusSync)
-      {
-        //
-        // Normally want to automatically update content focus when content offset changes.
-        // Although this is disabled using 'disableContentFocusSync' when content offset changes due to in-progress zooming.
-        //
         c.UpdateContentZoomFocusX();
-      }
 
+      // Raise an event to let users of the control know that the content offset has changed.
       if (c.ContentOffsetXChanged != null)
-      {
-        //
-        // Raise an event to let users of the control know that the content offset has changed.
-        //
         c.ContentOffsetXChanged(c, EventArgs.Empty);
-      }
 
-      if (!c.disableScrollOffsetSync && c.scrollOwner != null)
-      {
-        //
-        // Notify the owning ScrollViewer that the scrollbar offsets should be updated.
-        //
-        c.scrollOwner.InvalidateScrollInfo();
-      }
+      // Notify the owning ScrollViewer that the scrollbar offsets should be updated.
+      c.UpdateScrollOffsets();
     }
 
     /// <summary>
@@ -808,6 +789,10 @@ namespace ZoomAndPan
       return value;
     }
 
+#endregion
+
+    #region ContentOffsetY
+
     /// <summary>
     /// Event raised when the 'ContentOffsetY' property has changed value.
     /// </summary>
@@ -817,31 +802,17 @@ namespace ZoomAndPan
 
       c.UpdateTranslationY();
 
+      // Normally want to automatically update content focus when content offset changes.
+      // Although this is disabled using 'disableContentFocusSync' when content offset changes due to in-progress zooming.
       if (!c.disableContentFocusSync)
-      {
-        //
-        // Normally want to automatically update content focus when content offset changes.
-        // Although this is disabled using 'disableContentFocusSync' when content offset changes due to in-progress zooming.
-        //
         c.UpdateContentZoomFocusY();
-      }
 
+      // Raise an event to let users of the control know that the content offset has changed.
       if (c.ContentOffsetYChanged != null)
-      {
-        //
-        // Raise an event to let users of the control know that the content offset has changed.
-        //
         c.ContentOffsetYChanged(c, EventArgs.Empty);
-      }
 
-      if (!c.disableScrollOffsetSync && c.scrollOwner != null)
-      {
-        //
-        // Notify the owning ScrollViewer that the scrollbar offsets should be updated.
-        //
-        c.scrollOwner.InvalidateScrollInfo();
-      }
-
+      // Notify the owning ScrollViewer that the scrollbar offsets should be updated.
+      c.UpdateScrollOffsets();
     }
 
     /// <summary>
@@ -857,6 +828,8 @@ namespace ZoomAndPan
       return value;
     }
 
+    #endregion
+
     /// <summary>
     /// Reset the viewport zoom focus to the center of the viewport.
     /// </summary>
@@ -871,47 +844,30 @@ namespace ZoomAndPan
     /// </summary>
     private void UpdateViewportSize(Size newSize)
     {
+      // Check if the viewport is already the specified size.
       if (viewport == newSize)
-      {
-        //
-        // The viewport is already the specified size.
-        //
         return;
-      }
 
       viewport = newSize;
 
-      //
       // Update the viewport size in content coordiates.
-      //
       UpdateContentViewportSize();
 
-      //
       // Initialise the content zoom focus point.
-      //
       UpdateContentZoomFocusX();
       UpdateContentZoomFocusY();
 
-      //
       // Reset the viewport zoom focus to the center of the viewport.
-      //
       ResetViewportZoomFocus();
 
-      //
       // Update content offset from itself when the size of the viewport changes.
       // This ensures that the content offset remains properly clamped to its valid range.
-      //
       this.ContentOffsetX = this.ContentOffsetX;
       this.ContentOffsetY = this.ContentOffsetY;
 
-
+      // Tell owning ScrollViewer that scrollbar data has changed.
       if (scrollOwner != null)
-      {
-        //
-        // Tell that owning ScrollViewer that scrollbar data has changed.
-        //
         scrollOwner.InvalidateScrollInfo();
-      }
     }
 
     /// <summary>
@@ -1000,40 +956,26 @@ namespace ZoomAndPan
 
       if (childSize != unScaledExtent)
       {
-        //
         // Use the size of the child as the un-scaled extent content.
-        //
         unScaledExtent = childSize;
 
         if (scrollOwner != null)
-        {
           scrollOwner.InvalidateScrollInfo();
-        }
       }
 
-      //
       // Update the size of the viewport onto the content based on the passed in 'constraint'.
-      //
       UpdateViewportSize(constraint);
 
       double width = constraint.Width;
       double height = constraint.Height;
 
+      // Make sure we don't return infinity!
       if (double.IsInfinity(width))
-      {
-        //
-        // Make sure we don't return infinity!
-        //
         width = childSize.Width;
-      }
 
+      // Make sure we don't return infinity!
       if (double.IsInfinity(height))
-      {
-        //
-        // Make sure we don't return infinity!
-        //
         height = childSize.Height;
-      }
 
       UpdateTranslationX();
       UpdateTranslationY();
@@ -1050,15 +992,11 @@ namespace ZoomAndPan
 
       if (content.DesiredSize != unScaledExtent)
       {
-        //
         // Use the size of the child as the un-scaled extent content.
-        //
         unScaledExtent = content.DesiredSize;
 
         if (scrollOwner != null)
-        {
           scrollOwner.InvalidateScrollInfo();
-        }
       }
 
       //
