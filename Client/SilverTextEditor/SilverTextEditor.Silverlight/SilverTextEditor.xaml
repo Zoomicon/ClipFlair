@@ -1,6 +1,6 @@
 ﻿<!--
 Filename: SilverTextEditor.xaml
-Version: 20140225
+Version: 20140302
 -->
 
 <UserControl x:Class="SilverTextEditor.SilverTextEditor"
@@ -66,7 +66,7 @@ Version: 20140225
                     Background="{StaticResource ToolbarBackground}"
                     >
         <toolkit:WrapPanel.Resources>
-          <Style TargetType="StackPanel">
+          <Style TargetType="toolkit:WrapPanel">
             <Setter Property="Margin" Value="2,0" />
           </Style>
           <Style TargetType="ComboBox">
@@ -87,7 +87,7 @@ Version: 20140225
         </toolkit:WrapPanel.Resources>
 
         <!-- File Toolbar -->
-        <StackPanel Orientation="Horizontal">
+        <toolkit:WrapPanel Orientation="Horizontal">
 
           <btn:ImageButton
               x:Name="btnOpen" Click="btnOpen_Click" 
@@ -120,10 +120,10 @@ Version: 20140225
               ImageHover="Images/Print_hover.png"
               />
 
-        </StackPanel>
+        </toolkit:WrapPanel>
 
         <!--Clipboard Toolbar -->
-        <StackPanel Orientation="Horizontal">
+        <toolkit:WrapPanel Orientation="Horizontal">
 
           <btn:ImageButton
               x:Name="btnPaste" Click="btnPaste_Click" 
@@ -148,10 +148,10 @@ Version: 20140225
               ImageHover="Images/Copy_hover.png"
               />
 
-        </StackPanel>
+        </toolkit:WrapPanel>
 
         <!--Fonts Toolbar-->
-        <StackPanel Orientation="Horizontal">
+        <toolkit:WrapPanel Orientation="Horizontal">
 
           <ComboBox x:Name="cmbFonts" 
                       Visibility="{Binding Editable, Converter={StaticResource BooleanToVisibilityConverter}}"
@@ -276,10 +276,10 @@ Version: 20140225
               ImageHover="Images/Underline_hover.png"
             />
 
-        </StackPanel>
+        </toolkit:WrapPanel>
 
         <!-- Insert Toolbar -->
-        <StackPanel Orientation="Horizontal">
+        <toolkit:WrapPanel Orientation="Horizontal">
 
           <!--
             <btn:ImageButton
@@ -308,10 +308,10 @@ Version: 20140225
               />
           <!-- Visibility="{Binding Editable, Converter={StaticResource BooleanToVisibilityConverter}}" -->
 
-        </StackPanel>
+        </toolkit:WrapPanel>
 
         <!-- Display Toolbar -->
-        <StackPanel Orientation="Horizontal">
+        <toolkit:WrapPanel Orientation="Horizontal">
 
           <btn:ImageToggleButton
               x:Name="btnRTL"
@@ -357,7 +357,7 @@ Version: 20140225
           </ToggleButton>
           <!-- Visibility="{Binding Editable, Converter={StaticResource BooleanToVisibilityConverter}}" -->
 
-        </StackPanel>
+        </toolkit:WrapPanel>
 
       </toolkit:WrapPanel>
 
