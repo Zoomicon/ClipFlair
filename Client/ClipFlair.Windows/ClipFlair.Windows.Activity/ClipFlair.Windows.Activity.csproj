@@ -81,27 +81,27 @@
     <Reference Include="System.Net" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ActivityContainer.xaml.cs">
+    <Compile Include="View\ActivityContainer.xaml.cs">
       <DependentUpon>ActivityContainer.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ActivityWindow.xaml.cs">
+    <Compile Include="View\ActivityWindow.xaml.cs">
       <DependentUpon>ActivityWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\ActivityView.cs" />
+    <Compile Include="ViewModel\ActivityView.cs" />
     <Compile Include="ActivityWindowFactory.cs" />
-    <Compile Include="View\IActivityProperties.cs" />
-    <Compile Include="View\IActivity.cs" />
-    <Compile Include="View\ActivityDefaults.cs" />
+    <Compile Include="ViewModel\IActivityProperties.cs" />
+    <Compile Include="ViewModel\IActivity.cs" />
+    <Compile Include="ViewModel\ActivityDefaults.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Page Include="ActivityContainer.xaml">
+    <Page Include="View\ActivityContainer.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Page Include="ActivityWindow.xaml">
+    <Page Include="View\ActivityWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

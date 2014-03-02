@@ -80,19 +80,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="View\BaseView.cs" />
-    <Compile Include="BaseWindow.xaml.cs">
+    <Compile Include="ViewModel\BaseView.cs" />
+    <Compile Include="View\BaseWindow.xaml.cs">
       <DependentUpon>BaseWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\IViewFactory.cs" />
-    <Compile Include="View\IViewProperties.cs" />
+    <Compile Include="ViewModel\IViewFactory.cs" />
+    <Compile Include="ViewModel\IViewProperties.cs" />
     <Compile Include="IWindowFactory.cs" />
-    <Compile Include="View\IView.cs" />
-    <Compile Include="View\ViewDefaults.cs" />
+    <Compile Include="ViewModel\IView.cs" />
+    <Compile Include="ViewModel\ViewDefaults.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Page Include="BaseWindow.xaml">
+    <Page Include="View\BaseWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

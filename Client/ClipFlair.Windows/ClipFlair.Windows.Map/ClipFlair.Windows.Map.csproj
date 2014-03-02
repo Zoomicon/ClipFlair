@@ -80,18 +80,18 @@
     <Reference Include="System.Windows.Controls.Data.Input, Version=5.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="View\IMapViewerProperties.cs" />
+    <Compile Include="ViewModel\IMapViewerProperties.cs" />
     <Compile Include="MapWindowFactory.cs" />
-    <Compile Include="View\IMapViewer.cs" />
-    <Compile Include="View\MapViewerDefaults.cs" />
-    <Compile Include="View\MapView.cs" />
-    <Compile Include="MapWindow.xaml.cs">
+    <Compile Include="ViewModel\IMapViewer.cs" />
+    <Compile Include="ViewModel\MapViewerDefaults.cs" />
+    <Compile Include="ViewModel\MapView.cs" />
+    <Compile Include="View\MapWindow.xaml.cs">
       <DependentUpon>MapWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Page Include="MapWindow.xaml">
+    <Page Include="View\MapWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
