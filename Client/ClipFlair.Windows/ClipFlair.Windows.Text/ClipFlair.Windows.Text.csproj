@@ -78,15 +78,15 @@
     <Reference Include="System.Windows.Browser" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="View\ITextEditorProperties.cs" />
-    <Compile Include="View\ITextEditor2.cs" />
-    <Compile Include="View\TextEditorView2.cs" />
-    <Compile Include="View\ITextEditor.cs" />
-    <Compile Include="View\TextEditorDefaults.cs" />
+    <Compile Include="ViewModel\ITextEditorProperties.cs" />
+    <Compile Include="ViewModel\ITextEditor2.cs" />
+    <Compile Include="ViewModel\TextEditorView2.cs" />
+    <Compile Include="ViewModel\ITextEditor.cs" />
+    <Compile Include="ViewModel\TextEditorDefaults.cs" />
     <Compile Include="TextWindowFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="View\TextEditorView.cs" />
-    <Compile Include="TextEditorWindow.xaml.cs">
+    <Compile Include="ViewModel\TextEditorView.cs" />
+    <Compile Include="View\TextEditorWindow.xaml.cs">
       <DependentUpon>TextEditorWindow.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
@@ -109,7 +109,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Page Include="TextEditorWindow.xaml">
+    <Page Include="View\TextEditorWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
