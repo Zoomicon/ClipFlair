@@ -1,7 +1,7 @@
 ﻿<!--
 Project: ClipFlair (http://ClipFlair.codeplex.com)
 Filename: ActivityContainer.xaml
-Version: 20131216
+Version: 20140302
 -->
 
 <UserControl x:Class="ClipFlair.Windows.ActivityContainer" 
@@ -87,58 +87,64 @@ Version: 20131216
               Name="btnAddClip"
               VerticalAlignment="Center" Margin="0,0,5,0"
               ToolTipService.ToolTip="Add Clip"
-              Image="Images/AddClip.png"
-              ImageHover="Images/AddClip_hover.png" />
+              Image="/ClipFlair.Windows.Activity;component/Images/AddClip.png"
+              ImageHover="/ClipFlair.Windows.Activity;component/Images/AddClip_hover.png"
+              />
 
             <btn:ImageButton
               Name="btnAddCaptions"
               VerticalAlignment="Center" Margin="0,0,5,0"
               ToolTipService.ToolTip="Add Captions"
-              Image="Images/AddCaptions.png"
-              ImageHover="Images/AddCaptions_hover.png" />
+              Image="/ClipFlair.Windows.Activity;component/Images/AddCaptions.png"
+              ImageHover="/ClipFlair.Windows.Activity;component/Images/AddCaptions_hover.png"
+              />
 
             <btn:ImageButton
               Name="btnAddRevoicing"
               VerticalAlignment="Center" Margin="0,0,5,0"
               ToolTipService.ToolTip="Add Revoicing"
-              Image="Images/AddRevoicing.png"
-              ImageHover="Images/AddRevoicing_hover.png" />
+              Image="/ClipFlair.Windows.Activity;component/Images/AddRevoicing.png"
+              ImageHover="/ClipFlair.Windows.Activity;component/Images/AddRevoicing_hover.png"
+              />
 
             <btn:ImageButton
               Name="btnAddText"
               VerticalAlignment="Center" Margin="0,0,5,0"
               ToolTipService.ToolTip="Add Text"
-              Image="Images/AddText.png"
-              ImageHover="Images/AddText_hover.png" />
+              Image="/ClipFlair.Windows.Activity;component/Images/AddText.png"
+              ImageHover="/ClipFlair.Windows.Activity;component/Images/AddText_hover.png"
+              />
 
             <btn:ImageButton
               Name="btnAddImage"
               VerticalAlignment="Center" Margin="0,0,5,0"
               ToolTipService.ToolTip="Add Image"
-              Image="Images/AddImage.png"
-              ImageHover="Images/AddImage_hover.png" />
+              Image="/ClipFlair.Windows.Activity;component/Images/AddImage.png"
+              ImageHover="/ClipFlair.Windows.Activity;component/Images/AddImage_hover.png"
+              />
 
             <btn:ImageButton
               Name="btnAddMap"
               VerticalAlignment="Center" Margin="0,0,5,0"
               ToolTipService.ToolTip="Add Map"
-              Image="Images/AddMap.png"
-              ImageHover="Images/AddMap_hover.png" />
+              Image="/ClipFlair.Windows.Activity;component/Images/AddMap.png"
+              ImageHover="/ClipFlair.Windows.Activity;component/Images/AddMap_hover.png"
+              />
 
             <btn:ImageButton
               Name="btnAddGallery"
               VerticalAlignment="Center" Margin="0,0,5,0"              
               ToolTipService.ToolTip="Add Gallery"
-              Image="Images/AddGallery.png"
-              ImageHover="Images/AddGallery_hover.png"
+              Image="/ClipFlair.Windows.Activity;component/Images/AddGallery.png"
+              ImageHover="/ClipFlair.Windows.Activity;component/Images/AddGallery_hover.png"
               />
 
             <btn:ImageButton
               Name="btnAddNestedActivity"
               VerticalAlignment="Center" Margin="0,0,5,0"              
               ToolTipService.ToolTip="Add nested Activity"
-              Image="Images/AddActivity.png"
-              ImageHover="Images/AddActivity_hover.png"
+              Image="/ClipFlair.Windows.Activity;component/Images/AddActivity.png"
+              ImageHover="/ClipFlair.Windows.Activity;component/Images/AddActivity_hover.png"
               />
 
           </StackPanel>
