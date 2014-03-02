@@ -1,7 +1,7 @@
 ﻿<!--
 Project: ClipFlair (http://ClipFlair.codeplex.com)
 Filename: CaptionsGrid.xaml
-Version: 20131223
+Version: 20140302
 -->
 
 <UserControl x:Class="ClipFlair.CaptionsGrid.CaptionsGrid"
@@ -35,22 +35,21 @@ Version: 20131223
     <toolkit:WrapPanel Name="Toolbar"
                 Grid.Row="0"
                 Orientation="Horizontal"
-                MaxHeight="39"
                 Background="{StaticResource ToolbarBackground}"
                 >
       <toolkit:WrapPanel.Resources>
-        <Style TargetType="StackPanel">
+        <Style TargetType="toolkit:WrapPanel">
           <Setter Property="Margin" Value="4,0" />
         </Style>
         <Style TargetType="btn:ImageButton">
           <Setter Property="Margin" Value="1,5" />
         </Style>
         <Style TargetType="btn:ImageToggleButton">
-          <Setter Property="Margin" Value="1,5" />
+          <Setter Property="Margin" Value="1,7" />
         </Style>
       </toolkit:WrapPanel.Resources>
 
-      <StackPanel Orientation="Horizontal">
+      <toolkit:WrapPanel Orientation="Horizontal">
 
         <btn:ImageButton
           Name="btnAdd" Click="btnAdd_Click"
@@ -66,9 +65,9 @@ Version: 20131223
           ImageHover="Images/DeleteCaption_hover.png"
           />
 
-      </StackPanel>
+      </toolkit:WrapPanel>
 
-      <StackPanel Orientation="Horizontal">
+      <toolkit:WrapPanel Orientation="Horizontal" Margin="4,2"> <!-- TODO: need to remove this Margin and fix all toolbar icons to have same height and bottomline -->
 
         <btn:ImageButton
           Name="btnStart" Click="btnStart_Click"
@@ -84,9 +83,9 @@ Version: 20131223
           ImageHover="Images/SetEndTime_hover.png"
           />
 
-      </StackPanel>
-      
-      <StackPanel Orientation="Horizontal" Margin="15,0">
+      </toolkit:WrapPanel>
+
+      <toolkit:WrapPanel Orientation="Horizontal" Margin="4,2"> <!-- TODO: need to remove this Margin and fix all toolbar icons to have same height and bottomline -->
 
         <btn:ImageToggleButton
           x:Name="btnRTL"
@@ -100,9 +99,9 @@ Version: 20131223
         
         <!-- TODO: add button here to swap punctuation marks from start to end of string [shown only when btnRTL is toggled on] -->
 
-      </StackPanel>
-      
-      <StackPanel Orientation="Horizontal">
+      </toolkit:WrapPanel>
+
+      <toolkit:WrapPanel Orientation="Horizontal">
 
         <btn:ImageButton
           Name="btnImport" Click="btnImport_Click"
@@ -118,9 +117,9 @@ Version: 20131223
           ImageHover="Images/ExportTimingCaptions_hover.png"
           />
 
-      </StackPanel>
+      </toolkit:WrapPanel>
 
-      <StackPanel Orientation="Horizontal">
+      <toolkit:WrapPanel Orientation="Horizontal">
 
         <btn:ImageButton
           Name="btnSaveMergedAudio" Click="btnSaveMergedAudio_Click"
@@ -129,7 +128,7 @@ Version: 20131223
           ImageHover="Images/SaveMergedAudio_hover.png"
           />
 
-      </StackPanel>
+      </toolkit:WrapPanel>
 
     </toolkit:WrapPanel>
 
