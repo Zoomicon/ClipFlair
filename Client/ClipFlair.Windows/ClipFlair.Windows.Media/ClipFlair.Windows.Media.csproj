@@ -95,7 +95,7 @@
     <Compile Include="ViewModel\MediaPlayerDefaults.cs" />
     <Compile Include="MediaWindowFactory.cs" />
     <Compile Include="ViewModel\MediaPlayerView.cs" />
-    <Compile Include="MediaPlayerWindow.xaml.cs">
+    <Compile Include="View\MediaPlayerWindow.xaml.cs">
       <DependentUpon>MediaPlayerWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
@@ -140,7 +140,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="MediaPlayerWindow.xaml">
+    <Page Include="View\MediaPlayerWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
