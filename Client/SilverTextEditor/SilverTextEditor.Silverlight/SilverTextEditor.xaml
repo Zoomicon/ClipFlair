@@ -1,6 +1,6 @@
 ﻿<!--
 Filename: SilverTextEditor.xaml
-Version: 20140302
+Version: 20140303
 -->
 
 <UserControl x:Class="SilverTextEditor.SilverTextEditor"
@@ -42,7 +42,7 @@ Version: 20140302
         <VisualState x:Name="Normal"/>
         <VisualState x:Name="DragOver">
           <Storyboard>
-            <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Control.Background).(SolidColorBrush.Color)" Storyboard.TargetName="rtb">
+            <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Control.Background).(SolidColorBrush.Color)" Storyboard.TargetName="rtb"> <!-- doesn't seem to do something -->
               <EasingColorKeyFrame KeyTime="0" Value="#FFFFF7D1"/>
             </ColorAnimationUsingKeyFrames>
           </Storyboard>
@@ -384,7 +384,9 @@ Version: 20140302
                        MouseRightButtonDown="rtb_MouseRightButtonDown" MouseRightButtonUp="rtb_MouseRightButtonUp" 
                        MouseMove="rtb_MouseMove" 
                        Drop="rtb_Drop" 
-                       DragEnter="rtb_DragEnter" DragLeave="rtb_DragLeave" 
+                       DragEnter="rtb_DragEnter"
+                       DragOver="rtb_DragOver"
+                       DragLeave="rtb_DragLeave" 
                        >
           <!-- Margin="8,10,8,10" -->
 
