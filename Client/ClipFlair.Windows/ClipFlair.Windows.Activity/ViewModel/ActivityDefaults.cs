@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: ActivityDefaults.cs
-//Version: 20131216
+//Version: 20140303
 
 using Microsoft.SilverlightMediaFramework.Core.Accessibility.Captions;
 
@@ -17,7 +17,7 @@ namespace ClipFlair.Windows.Views
     #region IView defaults - overrides
     
     public const string DefaultTitle = "Activity";
-    public const double DefaultWidth = 650;
+    public const double DefaultWidth = 660;
     public const double DefaultHeight = 400;
     public static readonly Color DefaultBackgroundColor = Color.FromArgb(0xFF, 0x27, 0x63, 0x88); //#276388
     public static readonly Color DefaultBorderColor = Color.FromArgb(0xFF, 0x08, 0x1A, 0x26); //#081A26
@@ -27,8 +27,8 @@ namespace ClipFlair.Windows.Views
     public const Uri DefaultSource = null;
     public const CaptionRegion DefaultCaptions = null; //don't make this "static readonly", it's an object reference, not a struct (better check for "null" in the view and create default instance if needed)
     public static readonly Point DefaultViewPosition = new Point(0, 0);
-    public const double DefaultViewWidth = 1000;
-    public const double DefaultViewHeight = 700;
+    public const double DefaultViewWidth = 1000; //do not confuse with DefaultWidth (see above)
+    public const double DefaultViewHeight = 700; //do not confuse with DefaultHeight (see above)
     public const double DefaultContentZoom = 1.0;
     public const bool DefaultContentZoomable = true;
     public const bool DefaultContentZoomToFit = true;
