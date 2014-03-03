@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: ActivityWindow.xaml.cs
-//Version: 20131206
+//Version: 20130303
 
 using ClipFlair.Windows.Views;
 using Ionic.Zip;
@@ -9,6 +9,7 @@ using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Browser;
+using System.Windows.Input;
 using System.Windows.Media;
 using Utils.Bindings;
 using Utils.Extensions;
@@ -29,14 +30,20 @@ namespace ClipFlair.Windows
   public partial class ActivityWindow : BaseWindow
   {
 
-    #region Constants
+    #region --- Constants ---
 
     private const string DEFAULT_ACTIVITY = "http://gallery.clipflair.net/activity/Tutorial.clipflair"; //TODO: change this with a list of entries loaded from the web (and have a cached one in app config for offline scenaria or fetched/cached during oob install) //MAYBE COULD HAVE A DEFAULT SMALL ONE IN THE XAP
     private const string CLIPFLAIR_FEEDBACK = "http://bit.ly/YGBPbD"; //http://social.clipflair.net/MonoX/Pages/SocialNetworking/Discussion/dboard/O6PslGovYUqUraEHARCOVw/
 
     #endregion
 
-    #region Constructor
+    #region --- Fields ---
+
+    protected bool loadingChildWindow = false; //loading a child window instead of an activity saved state
+
+    #endregion
+
+    #region --- Constructor ---
 
     public ActivityWindow()
     {
@@ -65,9 +72,7 @@ namespace ClipFlair.Windows
 
     #endregion
 
-    #region View
-
-    protected bool loadingChildWindow = false; //loading a child window instead of an activity saved state
+    #region --- View ---
 
     public override IView View
     {
@@ -79,7 +84,7 @@ namespace ClipFlair.Windows
         loadingChildWindow = (activityView == null);
         if (loadingChildWindow) //special handling to allow activity to load a single component's state, by clearing the activity and then adding it as a child (see LoadOptions too)
           activityView = new ActivityView();
- 
+                
         base.View = activityView;
         activity.View = activityView; //set the view of the activity control too
       }
@@ -98,28 +103,31 @@ namespace ClipFlair.Windows
 
     #endregion
 
-    #region Load / Save Options
+    #region --- Load / Save Options ---
 
     public override void ShowLoadURLDialog(string loadItemTitle = "ClipFlair Activity")
     {
       base.ShowLoadURLDialog(loadItemTitle);
     }
-    
+   
     public override void LoadOptions(ZipFile zip, string zipFolder = "")
     {
-      base.LoadOptions(zip, zipFolder); //this will set the View of the ActivityWindow, which will set the view of the ActivityContainer control too
+      bool insertingChildWindow = ((loadModifiers & ModifierKeys.Control) > 0); //if CTRL was pressed at start of loading action, then insert content instead without removing current state & content
+     
+      if (!insertingChildWindow)
+        base.LoadOptions(zip, zipFolder); //this will set the View of the ActivityWindow, which will set the view of the ActivityContainer control too
 
       View.Busy = true; //set busy flag again since base.LoadOptions call will set it to false after loading state
       try
       {
-        activity.RemoveWindows(ignoreChildrenWarnOnClosing:true); //don't call Windows.Clear(), won't work //TODO: remove this note when fixed: don't call Windows.RemoveAll(), won't do bindings currently
+        if (!insertingChildWindow) //inserting as child window, don't erase current content
+          activity.RemoveWindows(ignoreChildrenWarnOnClosing:true); //don't call Windows.Clear(), won't work //TODO: remove this note when fixed: don't call Windows.RemoveAll(), won't do bindings currently
+        else
+          loadingChildWindow = ((loadModifiers & ModifierKeys.Shift) == 0); //if CTRL+SHIFT is pressed when trying to load a saved activity state, it will insert the children of that activity instead of a loading as a nested (child) activity
 
         if (loadingChildWindow) //check if this is not a saved activity state (as marked by View property's set accessor)...
-        {
-          loadingChildWindow = false; //restore to default value
           activity.AddWindow(LoadWindow(zip, zipFolder)); //...loading as a child window saved state instead //TODO: remove THIS NOTE when fixed: don't call Windows.Add, won't do bindings currently
-        }
-        else
+        else //load inner archives as child windows
         { //TODO: maybe can use ";" to pass multiple search items instead of using two "foreach" loops
           foreach (ZipEntry childZip in zip.SelectEntries("*" + BaseWindow.CLIPFLAIR_ZIP_EXTENSION, zipFolder))
             activity.AddWindow(LoadWindow(childZip), bringToFront:false); //TODO: remove THIS NOTE when fixed: don't call Windows.Add, won't do bindings currently
@@ -130,6 +138,7 @@ namespace ClipFlair.Windows
       }
       finally
       {
+        loadingChildWindow = false; //make sure we always reset this
         View.Busy = false;
       }
 
@@ -152,6 +161,12 @@ namespace ClipFlair.Windows
         ActivityView.ViewHeight = Height;
         */ 
       } //TODO: most probably needed cause Width/Height View settings of ActivityContainer (when top window) aren't set correctly (App.xaml has event that resizes window to get container size, but may occur without view finding out?)
+      else
+      {
+        MoveEnabled = true; //reapply activity default settings after load since saved values will have been set to them (we usually save toplevel activities so they will have those values set to false)
+        ResizeEnabled = true;
+        ScaleEnabled = true;
+      }
 
       CheckZoomToFit();
     }
@@ -165,7 +180,7 @@ namespace ClipFlair.Windows
 
     #endregion
 
-    #region Methods
+    #region --- Methods ---
 
     public void CheckZoomToFit()
     {
@@ -189,7 +204,7 @@ namespace ClipFlair.Windows
 
     #endregion
 
-    #region Events
+    #region --- Events ---
 
     private void lblBeta_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
     {

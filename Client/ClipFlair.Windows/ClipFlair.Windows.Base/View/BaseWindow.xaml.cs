@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: BaseWindow.xaml.cs
-//Version: 20140204
+//Version: 20140303
 
 //TODO: unbind control at close
 
@@ -21,6 +21,7 @@ using System.Text;
 using System.Windows;
 using System.Windows.Browser;
 using System.Windows.Controls;
+using System.Windows.Input;
 using System.Windows.Markup;
 using System.Xml;
 using Utils.Extensions;
@@ -33,7 +34,7 @@ namespace ClipFlair.Windows
   public partial class BaseWindow : FloatingWindow
   {
 
-    #region Constants
+    #region --- Constants ---
 
     public const string CLIPFLAIR_EXTENSION = ".clipflair";
     public const string CLIPFLAIR_ZIP_EXTENSION = ".clipflair.zip";
@@ -47,24 +48,29 @@ namespace ClipFlair.Windows
 
     #endregion
 
-    #region Child Window Factories
+    #region --- Child Window Factories ---
 
     public static IWindowFactory MediaPlayerWindowFactory { get; protected set; }
     public static IWindowFactory CaptionsGridWindowFactory { get; protected set; }
     public static IWindowFactory TextEditorWindowFactory { get; protected set; }
     public static IWindowFactory ImageWindowFactory { get; protected set; }
+    //public static IWindowFactory CameraWindowFactory { get; protected set; }
     public static IWindowFactory MapWindowFactory { get; protected set; }
     public static IWindowFactory GalleryWindowFactory { get; protected set; }
     public static IWindowFactory ActivityWindowFactory { get; protected set; }
 
     #endregion
 
-    #region Fields
+    #region --- Fields ---
 
-    private bool isTopLevel;
+    protected bool isTopLevel;
     protected OptionsLoadSaveControl OptionsLoadSave;
+    protected string defaultLoadURL = "";
+    protected ModifierKeys loadModifiers = ModifierKeys.None;
 
     #endregion
+
+    #region --- Constructor ---
 
     public BaseWindow()
     {
@@ -86,7 +92,9 @@ namespace ClipFlair.Windows
       ctrlOptionsLoadSave.SaveClick += new RoutedEventHandler(btnSave_Click);
     }
 
-    #region Properties
+    #endregion
+
+    #region --- Properties ---
 
     [ScriptableMember]
     public BaseView GetView() //NOTE: need to return BaseView and not IView since the HTMLBridge doesn't seem to support interface types
@@ -251,7 +259,85 @@ namespace ClipFlair.Windows
 
     #endregion
 
-    #region Methods
+    #region --- Methods ---
+
+    public virtual void ShowLoadURLDialog(string loadItemTitle = "ClipFlair Component Template")
+    {
+      try
+      {
+        InputDialog.Show("Load " + loadItemTitle, "URL:", defaultLoadURL,
+        (s, ex) =>
+        {
+          string input = ((InputDialog)s).Input;
+          if (input != null && input.Trim() != "")
+          { //ignoring empty URLs
+            loadModifiers = Keyboard.Modifiers;
+            LoadOptions(new Uri(input, UriKind.Absolute)); //since that is an asynchronous operation we expect from it to flip the view back to front after succesful loading
+          }
+        },
+        (s2, ex2) => ShowHelp());
+      }
+      catch (NullReferenceException ex)
+      {
+        ErrorDialog.Show("Loading failed - Saved options may be for other window", ex);
+      }
+      catch (Exception ex)
+      {
+        ErrorDialog.Show("Loading failed", ex);
+      }
+    }
+
+    public void ShowLoadDialog() //this has to be called by user-initiated event handler
+    {
+      try
+      {
+        OpenFileDialog dlg = new OpenFileDialog()
+        {
+          Filter = CLIPFLAIR_LOAD_FILTER,
+          FilterIndex = 1, //note: this index is 1-based, not 0-based
+          //DefaultExt = CLIPFLAIR_EXTENSION //OpenFileDialog doesn't seem to have a DefaultExt like SaveFileDialog
+        };
+
+        if (dlg.ShowDialog() == true) //TODO: find the parent window
+        {
+          loadModifiers = Keyboard.Modifiers;
+          LoadOptions(dlg.File);
+          Flipped = false; //flip the view back to front after succesful options loading
+        }
+      }
+      catch (NullReferenceException ex)
+      {
+        ErrorDialog.Show("Loading failed - Saved options may be for other window", ex);
+      }
+      catch (Exception ex)
+      {
+        ErrorDialog.Show("Loading failed", ex);
+      }
+    }
+
+    public void ShowSaveDialog() //this has to be called by user-initiated event handler
+    {
+      if (View == null) return;
+
+      try
+      {
+        SaveFileDialog dlg = new SaveFileDialog()
+        {
+          Filter = CLIPFLAIR_SAVE_FILTER,
+          FilterIndex = 1, //note: this index is 1-based, not 0-based //do not set if DefaultExt is supplied
+          //DefaultFileName = View.Title + CLIPFLAIR_EXTENSION, //Silverlight will prompt "Do you want to save X?" (where X is the DefaultFileName value). If we set this, but the prompt can go under the main window, so avoid it
+          //DefaultExt = CLIPFLAIR_EXTENSION //this doesn't seem to be used, it uses the selected index of the filter anyway (even if you don't set FilterIndex)
+        };
+
+        if (dlg.ShowDialog() == true) //TODO: find the parent window
+          using (Stream stream = dlg.OpenFile()) //will close the stream when done
+            SaveOptions(stream);
+      }
+      catch (Exception ex)
+      {
+        ErrorDialog.Show("Saving failed", ex);
+      }
+    }
 
     public void ShowHelp()
     {
@@ -365,6 +451,12 @@ namespace ClipFlair.Windows
         View.Busy = false;
         ErrorDialog.Show("Loading failed", ex);
       }
+    }
+
+    public void LoadOptions(FileInfo f)
+    {
+      using (Stream stream = f.OpenRead()) //will close the stream when done
+        LoadOptions(stream);
     }
 
     public void LoadOptions(Stream stream, string zipFolder = "") //doesn't close stream
@@ -488,10 +580,67 @@ namespace ClipFlair.Windows
 
     #endregion
 
-    #region Events
+    #region --- Events ---
+
+    public event EventHandler LoadingOptions;
+    public event EventHandler LoadedOptions;
+    public event EventHandler SavingOptions;
+    public event EventHandler SavedOptions;
 
     public delegate void ViewChangedEventHandler(object sender, IView newView);
     public event ViewChangedEventHandler ViewChanged;
+
+    #region Drag & Drop
+
+    protected override void OnDragEnter(DragEventArgs e)
+    {
+      base.OnDragEnter(e);
+      e.Handled = true; //must do this
+      VisualStateManager.GoToState(this, "DragOver", true);
+    }
+
+    protected override void OnDragOver(DragEventArgs e)
+    {
+      base.OnDragOver(e);
+      e.Handled = true; //must do this
+      //NOP
+    }
+
+    protected override void OnDragLeave(DragEventArgs e)
+    {
+      base.OnDragLeave(e);
+      e.Handled = true; //must do this
+      VisualStateManager.GoToState(this, "Normal", true);
+    }
+
+    protected override void OnDrop(DragEventArgs e)
+    {
+      base.OnDrop(e);
+      e.Handled = true; //must do this
+
+      VisualStateManager.GoToState(this, "Normal", true);
+
+      //we receive an array of FileInfo objects for the list of files that were selected and drag-dropped onto this control.
+      if (e.Data == null)
+        return;
+
+      IDataObject f = e.Data as IDataObject;
+      if (f == null) //checks if the dropped objects are files
+        return;
+
+      object data = f.GetData(DataFormats.FileDrop);
+      FileInfo[] files = data as FileInfo[];
+
+      if (files != null && files.Length > 0) //Use only 1st item from array of FileInfo objects
+      {
+        loadModifiers = Keyboard.Modifiers;
+        LoadOptions(files[0]); //TODO: make LoadOptions of activity (override) clever to handle various file extensions apart from .clipflair/.clipflair.zip (no extension will be assumed to be .clipflair) and add to LoadOptions file dialog more file types, like videos, images etc. and create respective components to load and wrap that content (need an array property to be able to define the extra extensions allowed per component). Do similar at each component's LoadOptions for the extra data types they know how to handle (override BaseWindow.LoadOptions and do the check before calling base.LoadOptions)
+      }
+    }
+
+    #endregion
+
+    #region Closing
 
     protected override void OnClosing(CancelEventArgs e)
     {
@@ -513,13 +662,15 @@ namespace ClipFlair.Windows
       View = null; //clearing the view to release property change event handler //must not do this at class destructor, else may get cross-thread-access exceptions
     }
 
+    #endregion
+
     protected virtual void OnViewChanged()
     {
       if (ViewChanged != null)
         ViewChanged(this, View); //fire ViewChanged event handler
     }
 
-#if PROPERTY_CHANGE_SUPPORT
+    #if PROPERTY_CHANGE_SUPPORT
     protected virtual void View_PropertyChanged(object sender, PropertyChangedEventArgs e)
     {
       /*
@@ -540,84 +691,8 @@ namespace ClipFlair.Windows
       }
       */
     }
-#endif
 
-    protected string defaultLoadURL = "";
-
-    public virtual void ShowLoadURLDialog(string loadItemTitle = "ClipFlair Component Template")
-    {
-      try
-      {
-        InputDialog.Show("Load " + loadItemTitle, "URL:", defaultLoadURL, 
-        (s, ex) =>
-        {
-          string input = ((InputDialog)s).Input;
-          if (input != null && input.Trim() != "") //ignoring empty URLs
-            LoadOptions(new Uri(input, UriKind.Absolute)); //since that is an asynchronous operation we expect from it to flip the view back to front after succesful loading
-        },
-        (s2, ex2) => ShowHelp());
-      }
-      catch (NullReferenceException ex)
-      {
-        ErrorDialog.Show("Loading failed - Saved options may be for other window", ex);
-      }
-      catch (Exception ex)
-      {
-        ErrorDialog.Show("Loading failed", ex);
-      }
-    }
-
-    public void ShowLoadDialog() //this has to be called by user-initiated event handler
-    {
-      try
-      {
-        OpenFileDialog dlg = new OpenFileDialog()
-        {
-          Filter = CLIPFLAIR_LOAD_FILTER,
-          FilterIndex = 1, //note: this index is 1-based, not 0-based
-          //DefaultExt = CLIPFLAIR_EXTENSION //OpenFileDialog doesn't seem to have a DefaultExt like SaveFileDialog
-        };
-
-        if (dlg.ShowDialog() == true) //TODO: find the parent window
-          using (Stream stream = dlg.File.OpenRead()) //will close the stream when done
-          {
-            LoadOptions(stream);
-            Flipped = false; //flip the view back to front after succesful options loading
-          }
-      }
-      catch (NullReferenceException ex)
-      {
-        ErrorDialog.Show("Loading failed - Saved options may be for other window", ex);
-      }
-      catch (Exception ex)
-      {
-        ErrorDialog.Show("Loading failed", ex);
-      }
-    }
-
-    public void ShowSaveDialog() //this has to be called by user-initiated event handler
-    {
-      if (View == null) return;
-
-      try
-      {
-        SaveFileDialog dlg = new SaveFileDialog()
-        {
-          Filter = CLIPFLAIR_SAVE_FILTER,
-          FilterIndex = 1, //note: this index is 1-based, not 0-based //do not set if DefaultExt is supplied
-          //DefaultFileName = View.Title + CLIPFLAIR_EXTENSION, //Silverlight will prompt "Do you want to save X?" (where X is the DefaultFileName value). If we set this, but the prompt can go under the main window, so avoid it
-          //DefaultExt = CLIPFLAIR_EXTENSION //this doesn't seem to be used, it uses the selected index of the filter anyway (even if you don't set FilterIndex)
-        };
-
-        if (dlg.ShowDialog() == true) //TODO: find the parent window
-          using (Stream stream = dlg.OpenFile()) //will close the stream when done
-            SaveOptions(stream);
-      }
-      catch (Exception ex)
-      {
-        ErrorDialog.Show("Saving failed", ex);
-      }
-    }
+    #endif
 
     private void btnLoadURL_Click(object sender, RoutedEventArgs e)
     {
@@ -636,14 +711,6 @@ namespace ClipFlair.Windows
 
     #endregion
 
-    #region Events
-
-    public event EventHandler LoadingOptions;
-    public event EventHandler LoadedOptions;
-    public event EventHandler SavingOptions;
-    public event EventHandler SavedOptions;
-
-    #endregion
   }
 
 }
