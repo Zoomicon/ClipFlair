@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: SilverTextEditor.xaml.cs
-//Version: 20140227
+//Version: 20140303
 
 //Originated from Microsoft Silverlight sample (MSPL license)
 
@@ -955,7 +955,7 @@ namespace SilverTextEditor
 
     #region DragAndDrop
 
-    private void rtb_Drop(object sender, System.Windows.DragEventArgs e)
+    private void rtb_Drop(object sender, DragEventArgs e)
     {
       VisualStateManager.GoToState(this, "Normal", true);
 
@@ -972,24 +972,40 @@ namespace SilverTextEditor
         object data = f.GetData(DataFormats.FileDrop);
         FileInfo[] files = data as FileInfo[];
 
-        if (files != null)
+        if (files != null && files.Length > 0)
+        {
+          //TODO: instead of hardcoding which file extensions to ignore, should have this as property of the control (a ; separated string or an array)
+          string ext = files[0].Extension;
+          if (ext.Equals(".clipflair", StringComparison.OrdinalIgnoreCase) || ext.Equals(".clipflair.zip", StringComparison.OrdinalIgnoreCase))
+            return;
 
-          //Walk through the list of FileInfo objects of the selected and drag-dropped files and parse the .txt and .docx files 
+          e.Handled = true;
+
+          //Walk through the array of FileInfo objects of the selected and drag-dropped files and parse the .txt and .docx files 
           //and insert their content in the RichTextBox.
           foreach (FileInfo file in files)
             Load(file, false);
+        }
       }
 
       ReturnFocus();
     }
 
-    private void rtb_DragEnter(object sender, System.Windows.DragEventArgs e)
+    private void rtb_DragEnter(object sender, DragEventArgs e)
     {
+      e.Handled = true;
       VisualStateManager.GoToState(this, "DragOver", true);
     }
-
-    private void rtb_DragLeave(object sender, System.Windows.DragEventArgs e)
+    
+    private void rtb_DragOver(object sender, System.Windows.DragEventArgs e)
     {
+      e.Handled = true;
+      //NOP
+    }
+
+    private void rtb_DragLeave(object sender, DragEventArgs e)
+    {
+      e.Handled = true;
       VisualStateManager.GoToState(this, "Normal", true);
     }
 
