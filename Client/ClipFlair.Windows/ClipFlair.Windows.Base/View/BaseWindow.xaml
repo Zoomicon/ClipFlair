@@ -1,7 +1,7 @@
 ﻿<!--
 Project: ClipFlair (http://ClipFlair.codeplex.com)
 Filename: BaseWindow.xaml
-Version: 20131216
+Version: 20140303
 -->
 
 <float:FloatingWindow x:Class="ClipFlair.Windows.BaseWindow"
@@ -35,7 +35,9 @@ Version: 20131216
                    
     CornerRadius="{Binding CornerRadius, Mode=TwoWay}"
     BorderThickness="{Binding BorderThickness, Mode=TwoWay}"                      
-                                           
+    
+    AllowDrop="True"
+                      
     MoveEnabled="{Binding Moveable, Mode=TwoWay}"
     ResizeEnabled="{Binding Resizable, Mode=TwoWay}"        
     ScaleEnabled="{Binding Zoomable, Mode=TwoWay}"
@@ -48,7 +50,28 @@ Version: 20131216
     ShowMaximizeButton="True"                  
     ShowScreenshotButton="False"
     ShowHelpButton="False"
-    > 
+    >
+
+  <VisualStateManager.VisualStateGroups>
+    <VisualStateGroup x:Name="DragStates">
+      <VisualStateGroup.Transitions>
+        <VisualTransition GeneratedDuration="0:0:0.3">
+          <VisualTransition.GeneratedEasingFunction>
+            <CircleEase EasingMode="EaseIn"/>
+          </VisualTransition.GeneratedEasingFunction>
+        </VisualTransition>
+      </VisualStateGroup.Transitions>
+      <VisualState x:Name="Normal"/>
+      <VisualState x:Name="DragOver">
+        <Storyboard>
+          <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Control.Background).(SolidColorBrush.Color)" Storyboard.TargetName="ContentBorder"> <!-- doesn't seem to do something -->
+            <EasingColorKeyFrame KeyTime="0" Value="#FFFFF7D1"/>
+          </ColorAnimationUsingKeyFrames>
+        </Storyboard>
+      </VisualState>
+    </VisualStateGroup>
+  </VisualStateManager.VisualStateGroups>
+  
   <!-- hiding screenshot button due to Silverlight security issue: not rendering cross-domain content to WriteableBitmap, enable only at components that don't load Internet content -->
   <!-- not using RTL here since it would also reverse UI like scrollpanes etc. -->
   
