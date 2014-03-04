@@ -1,6 +1,6 @@
 ﻿<!--
 Filename: SilverTextEditor.xaml
-Version: 20140303
+Version: 20140304
 -->
 
 <UserControl x:Class="SilverTextEditor.SilverTextEditor"
@@ -373,7 +373,6 @@ Version: 20140303
 
         <RichTextBox x:Name="rtb"
                        Background="{Binding Background, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=UserControl}}"
-                       AllowDrop="True" 
                        BorderThickness="0"
                        TextWrapping="Wrap" 
                        Style="{StaticResource RichTextBoxStyle1}"
@@ -383,6 +382,8 @@ Version: 20140303
                        
                        MouseRightButtonDown="rtb_MouseRightButtonDown" MouseRightButtonUp="rtb_MouseRightButtonUp" 
                        MouseMove="rtb_MouseMove" 
+
+                       AllowDrop="True" 
                        Drop="rtb_Drop" 
                        DragEnter="rtb_DragEnter"
                        DragOver="rtb_DragOver"
