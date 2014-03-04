@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: SilverTextEditor.xaml.cs
-//Version: 20140303
+//Version: 20140304
 
 //Originated from Microsoft Silverlight sample (MSPL license)
 
@@ -953,43 +953,7 @@ namespace SilverTextEditor
       SaveFile();
     }
 
-    #region DragAndDrop
-
-    private void rtb_Drop(object sender, DragEventArgs e)
-    {
-      VisualStateManager.GoToState(this, "Normal", true);
-
-      //the Drop event passes in an array of FileInfo objects for the list of files that were selected and drag-dropped onto the RichTextBox.
-      if (e.Data == null)
-      {
-        ReturnFocus();
-        return;
-      }
-
-      IDataObject f = e.Data as IDataObject;
-      if (f != null) //checks if the dropped objects are files
-      {
-        object data = f.GetData(DataFormats.FileDrop);
-        FileInfo[] files = data as FileInfo[];
-
-        if (files != null && files.Length > 0)
-        {
-          //TODO: instead of hardcoding which file extensions to ignore, should have this as property of the control (a ; separated string or an array)
-          string ext = files[0].Extension;
-          if (ext.Equals(".clipflair", StringComparison.OrdinalIgnoreCase) || ext.Equals(".clipflair.zip", StringComparison.OrdinalIgnoreCase))
-            return;
-
-          e.Handled = true;
-
-          //Walk through the array of FileInfo objects of the selected and drag-dropped files and parse the .txt and .docx files 
-          //and insert their content in the RichTextBox.
-          foreach (FileInfo file in files)
-            Load(file, false);
-        }
-      }
-
-      ReturnFocus();
-    }
+    #region Drag & Drop
 
     private void rtb_DragEnter(object sender, DragEventArgs e)
     {
@@ -1007,6 +971,41 @@ namespace SilverTextEditor
     {
       e.Handled = true;
       VisualStateManager.GoToState(this, "Normal", true);
+    }
+
+    private void rtb_Drop(object sender, DragEventArgs e)
+    {
+      VisualStateManager.GoToState(this, "Normal", true);
+
+      //the Drop event passes in an array of FileInfo objects for the list of files that were selected and drag-dropped onto the RichTextBox.
+      if (e.Data == null)
+      {
+        ReturnFocus();
+        return;
+      }
+
+      IDataObject f = e.Data as IDataObject;
+      if (f != null) //checks if the dropped objects are files
+      {
+        object data = f.GetData(DataFormats.FileDrop); //Silverlight 5 only supports FileDrop - GetData returns null if format is not supported
+        FileInfo[] files = data as FileInfo[];
+
+        if (files != null && files.Length > 0)
+        {
+          //TODO: instead of hardcoding which file extensions to ignore, should have this as property of the control (a ; separated string or an array)
+          if (files[0].Name.EndsWith(new String[] { ".clipflair", ".clipflair.zip" }, StringComparison.OrdinalIgnoreCase))
+            return; 
+
+          e.Handled = true;
+
+          //Walk through the array of FileInfo objects of the selected and drag-dropped files and parse the .txt and .docx files 
+          //and insert their content in the RichTextBox.
+          foreach (FileInfo file in files)
+            Load(file, false);
+        }
+      }
+
+      ReturnFocus();
     }
 
     #endregion
