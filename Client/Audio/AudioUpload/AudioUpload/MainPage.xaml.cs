@@ -1,21 +1,13 @@
 ﻿//Filename: MainPage.xaml.cs
-//Version: 20120912
+//Version: 20140304
 
+using AudioLib;
+using HSS.Interlink;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
+using System.IO;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Animation;
-using System.Windows.Shapes;
-using System.IO;
-
-using Zoomicon.AudioLib;
-using HSS.Interlink;
 
 namespace AudioUpload
 {
@@ -97,7 +89,7 @@ namespace AudioUpload
       try
       {
         theMemStream = new MemoryStream();
-        WavManager.SavePcmToWav(storage.BackingStream, theMemStream, storage.CurrentFormat);
+        WavManager.SavePcmToWav(storage.BackingStream, theMemStream, new AudioFormatEx(storage.CurrentFormat));
 
         StatusText = "Uploading...";
         string filename = Guid.NewGuid().ToString()+".wav";
@@ -152,7 +144,7 @@ namespace AudioUpload
 
       Stream stream = saveFileDialog.OpenFile();
 
-      WavManager.SavePcmToWav(storage.BackingStream, stream, storage.CurrentFormat);
+      WavManager.SavePcmToWav(storage.BackingStream, stream, new AudioFormatEx(storage.CurrentFormat));
 
       stream.Close();
 
