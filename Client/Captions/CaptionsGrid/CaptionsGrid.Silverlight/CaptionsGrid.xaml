@@ -1,7 +1,7 @@
 ﻿<!--
 Project: ClipFlair (http://ClipFlair.codeplex.com)
 Filename: CaptionsGrid.xaml
-Version: 20140302
+Version: 20140304
 -->
 
 <UserControl x:Class="ClipFlair.CaptionsGrid.CaptionsGrid"
@@ -26,7 +26,27 @@ Version: 20140302
   </UserControl.Resources>
 
   <Grid x:Name="LayoutRoot">
-    
+
+    <VisualStateManager.VisualStateGroups>
+      <VisualStateGroup x:Name="DragStates">
+        <VisualStateGroup.Transitions>
+          <VisualTransition GeneratedDuration="0:0:0.3">
+            <VisualTransition.GeneratedEasingFunction>
+              <CircleEase EasingMode="EaseIn"/>
+            </VisualTransition.GeneratedEasingFunction>
+          </VisualTransition>
+        </VisualStateGroup.Transitions>
+        <VisualState x:Name="Normal"/>
+        <VisualState x:Name="DragOver">
+          <Storyboard>
+            <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Control.Background).(SolidColorBrush.Color)" Storyboard.TargetName="gridCaptions">
+              <EasingColorKeyFrame KeyTime="0" Value="#FFFFF7D1"/>
+            </ColorAnimationUsingKeyFrames>
+          </Storyboard>
+        </VisualState>
+      </VisualStateGroup>
+    </VisualStateManager.VisualStateGroups>
+
     <Grid.RowDefinitions>
       <RowDefinition Height="Auto" />
       <RowDefinition Height="*" />
@@ -132,17 +152,24 @@ Version: 20140302
 
     </toolkit:WrapPanel>
 
-    <sdk:DataGrid Name="gridCaptions"
-                  Grid.Row="1"
-                  BorderThickness="0"
-                  Background="{Binding Background, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=UserControl}}"
-                  RowBackground="#F3F3F3"
-                  AlternatingRowBackground="#FFFFFF"
-                  AutoGenerateColumns="False"
-                  HeadersVisibility="All"
-                  ColumnHeaderStyle="{StaticResource ColumnHeaderStyle}"
-                  ItemsSource="{Binding Path=Captions.Children, RelativeSource={RelativeSource AncestorType=captions:CaptionsGrid}}"
-                  >
+    <sdk:DataGrid
+      Name="gridCaptions"
+      Grid.Row="1"
+      BorderThickness="0"
+      Background="{Binding Background, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=UserControl}}"
+      RowBackground="#F3F3F3"
+      AlternatingRowBackground="#FFFFFF"
+      AutoGenerateColumns="False"
+      HeadersVisibility="All"
+      ColumnHeaderStyle="{StaticResource ColumnHeaderStyle}"
+      ItemsSource="{Binding Path=Captions.Children, RelativeSource={RelativeSource AncestorType=captions:CaptionsGrid}}"
+
+      AllowDrop="True" 
+      Drop="gridCaptions_Drop"
+      DragEnter="gridCaptions_DragEnter"
+      DragOver="gridCaptions_DragOver"
+      DragLeave="gridCaptions_DragLeave" 
+      >
       
       <sdk:DataGrid.Columns>
         <sdk:DataGridTemplateColumn Header="START" CellTemplate="{StaticResource StartTimeCellTemplate}" CellEditingTemplate="{StaticResource StartTimeCellEditTemplate}" />

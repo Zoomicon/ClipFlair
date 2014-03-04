@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: CaptionsGrid.xaml.cs
-//Version: 20131022
+//Version: 20140304
 
 using ClipFlair.AudioRecorder;
 using ClipFlair.CaptionsGrid.Resources;
@@ -708,6 +708,55 @@ namespace ClipFlair.CaptionsGrid
 
     #endregion
 
+    #region Drag & Drop
+
+     private void gridCaptions_DragEnter(object sender, DragEventArgs e)
+    {
+      VisualStateManager.GoToState(this, "DragOver", true);
+      e.Handled = true;
+    }
+
+    private void gridCaptions_DragOver(object sender, DragEventArgs e)
+    {
+      e.Handled = true;
+      //NOP
+    }
+
+    private void gridCaptions_DragLeave(object sender, DragEventArgs e)
+    {
+      VisualStateManager.GoToState(this, "Normal", true);
+      e.Handled = true;
+    }
+
+    private void gridCaptions_Drop(object sender, DragEventArgs e)
+    {
+      VisualStateManager.GoToState(this, "Normal", true);
+
+      //we receive an array of FileInfo objects for the list of files that were selected and drag-dropped onto this control.
+      if (e.Data == null)
+        return;
+
+      IDataObject f = e.Data as IDataObject;
+      if (f == null) //checks if the dropped objects are files
+        return;
+
+      object data = f.GetData(DataFormats.FileDrop); //Silverlight 5 only supports FileDrop - GetData returns null if format is not supported
+      FileInfo[] files = data as FileInfo[];
+
+      if (files != null && files.Length > 0) //Use only 1st item from array of FileInfo objects
+      {
+        //TODO: instead of hardcoding which file extensions to ignore, should have this as property of the control (a ; separated string or an array)
+        if (files[0].Name.EndsWith(new String[] { ".clipflair", ".clipflair.zip" }, StringComparison.OrdinalIgnoreCase))
+          return;
+
+        e.Handled = true; //must do this
+        
+        LoadCaptions(files[0]);
+      }
+    }
+    
+    #endregion
+
     #region Load-Save
 
     private void btnImport_Click(object sender, RoutedEventArgs e)
@@ -719,10 +768,9 @@ namespace ClipFlair.CaptionsGrid
           Filter = "Subtitle files (*.srt, *.tts)|*.srt;*.tts|SRT files (*.srt)|*.srt|TTS files (*.tts)|*.tts",
           FilterIndex = 1 //note: this index is 1-based, not 0-based
         };
-        
+
         if (dlg.ShowDialog() == true) //TODO: find the parent window
-         using (Stream stream = dlg.File.OpenRead()) //closes stream when finished
-            LoadCaptions(stream, dlg.File.Name);
+          LoadCaptions(dlg.File);
       }
       catch (Exception ex)
       {
@@ -754,6 +802,12 @@ namespace ClipFlair.CaptionsGrid
       {
         MessageBox.Show("Captions export failed: " + ex.Message); //TODO: find the parent window
       }
+    }
+
+    public void LoadCaptions(FileInfo file)
+    {
+      using (Stream stream = file.OpenRead()) //closes stream when finished
+        LoadCaptions(stream, file.Name);
     }
 
     public void LoadCaptions(Stream stream, string filename) //doesn't close stream

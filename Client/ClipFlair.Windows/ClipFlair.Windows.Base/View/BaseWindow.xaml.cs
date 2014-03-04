@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: BaseWindow.xaml.cs
-//Version: 20140303
+//Version: 20140304
 
 //TODO: unbind control at close
 
@@ -628,7 +628,7 @@ namespace ClipFlair.Windows
       if (f == null) //checks if the dropped objects are files
         return;
 
-      object data = f.GetData(DataFormats.FileDrop);
+      object data = f.GetData(DataFormats.FileDrop); //Silverlight 5 only supports FileDrop - GetData returns null if format is not supported
       FileInfo[] files = data as FileInfo[];
 
       if (files != null && files.Length > 0) //Use only 1st item from array of FileInfo objects
