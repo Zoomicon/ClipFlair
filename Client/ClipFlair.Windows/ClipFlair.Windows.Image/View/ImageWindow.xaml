@@ -1,7 +1,7 @@
 ﻿<!--
 Project: ClipFlair (http://ClipFlair.codeplex.com)
 Filename: ImageWindow.xaml
-Version: 20131223
+Version: 20140306
 -->
 
 <clipflair:BaseWindow x:Class="ClipFlair.Windows.ImageWindow"
@@ -9,10 +9,9 @@ Version: 20131223
   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
   xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-  xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk"  
   xmlns:clipflair="clr-namespace:ClipFlair.Windows;assembly=ClipFlair.Windows.Base"    
-  xmlns:clipflairview="clr-namespace:ClipFlair.Windows.Views"
   xmlns:zoom="clr-namespace:ZoomImage;assembly=ZoomImage" 
+  xmlns:options="clr-namespace:ClipFlair.Windows.Options"
   mc:Ignorable="d"
   d:DesignWidth="400" d:DesignHeight="400"
   >
@@ -41,30 +40,7 @@ Version: 20131223
 
   <clipflair:BaseWindow.PropertyItems>
 
-    <StackPanel Orientation="Vertical">
-      <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Image Source URL:" Target="{Binding ElementName=edImageURL}"/>
-      <TextBox Name="edImageURL" Text="{Binding Source, Mode=TwoWay}" HorizontalAlignment="Stretch" />
-    </StackPanel>
-
-    <StackPanel Orientation="Horizontal">
-      <CheckBox Name="cbContentZoomToFit" IsChecked="{Binding ContentZoomToFit, Mode=TwoWay}" />
-      <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Content Zoom to Fit" Target="{Binding ElementName=cbContentZoomToFit}"/>
-    </StackPanel>
-
-    <StackPanel Orientation="Vertical">
-      <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Action URL:" Target="{Binding ElementName=edActionURL}"/>
-      <TextBox Name="edActionURL" Text="{Binding ActionURL, Mode=TwoWay}" HorizontalAlignment="Stretch" />
-    </StackPanel>
-
-    <StackPanel Orientation="Vertical">
-      <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Action Time:" Target="{Binding ElementName=edActionTime}" />
-      <TextBox Name="edActionTime" Text="{Binding ActionTime, Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=True}" />
-    </StackPanel>
-
-    <StackPanel Orientation="Vertical">
-      <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Time:" Target="{Binding ElementName=edTime}" />
-      <TextBox Name="edTime" Text="{Binding Time, Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=True}" />
-    </StackPanel>
+    <options:ImageOptions /> <!-- uses our DataContext (the View) -->
 
   </clipflair:BaseWindow.PropertyItems>
 

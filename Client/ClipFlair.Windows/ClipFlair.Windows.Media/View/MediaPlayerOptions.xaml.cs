@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: MediaPlayerOptions.xaml.cs
-//Version: 20130703
+//Version: 20140306
 
 using System.Windows;
 using System.Windows.Controls;
@@ -16,20 +16,13 @@ namespace ClipFlair.Windows.Options
       InitializeComponent();
     }
 
-    #region --- Fields ---
-
-    protected MediaPlayerWindow mediaPlayerWindow;
-
-    #endregion
-
     #region --- Properties ---
 
     public MediaPlayerWindow MediaPlayerWindow
     {
-      get { return mediaPlayerWindow; }
-      set {
-        mediaPlayerWindow = value;
-        DataContext = mediaPlayerWindow.View;
+      get
+      {
+        return DataContext as MediaPlayerWindow;
       }
     }
 
@@ -39,17 +32,17 @@ namespace ClipFlair.Windows.Options
 
     private void btnLoadMedia_Click(object sender, RoutedEventArgs e)
     {
-      mediaPlayerWindow.player.OpenLocalFile();
+      MediaPlayerWindow.player.OpenLocalFile();
     }
 
     private void btnLoadOffline_Click(object sender, RoutedEventArgs e) //TODO: doesn't seem to work, maybe needs offline cache plugin or respective SMF assemblies
     {
-      mediaPlayerWindow.LoadOfflinePlaylist();
+      MediaPlayerWindow.LoadOfflinePlaylist();
     }
 
     private void btnSaveOffline_Click(object sender, RoutedEventArgs e) //TODO: doesn't seem to work, maybe needs offline cache plugin or respective SMF assemblies
     {
-      mediaPlayerWindow.SaveOfflinePlaylist();
+      MediaPlayerWindow.SaveOfflinePlaylist();
     }
 
     #endregion
