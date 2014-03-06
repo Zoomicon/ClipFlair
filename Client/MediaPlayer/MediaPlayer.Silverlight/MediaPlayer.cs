@@ -1028,9 +1028,22 @@ namespace ClipFlair.MediaPlayer
     /// <returns>the fixed url</returns>
     private static string FixURL_ClipFlairStudio(string url)
     {
-      url = url.ReplacePrefix(new String[] { "http://studio.clipflair.net?video=", "http://studio.clipflair.net?clip=", "http://studio.clipflair.net/?video=", "http://studio.clipflair.net/?clip=" }, "");
-      if (!url.StartsWith("http", StringComparison.OrdinalIgnoreCase))
-        url = "http://gallery.clipflair.net/video/" + url + "/" + url + ".ism/Manifest";
+      String[] videoPrefixes = new String[] { "http://studio.clipflair.net?video=", "http://studio.clipflair.net?clip=", "http://studio.clipflair.net/?video=", "http://studio.clipflair.net/?clip=" };
+      String[] audioPrefixes = new String[] { "http://studio.clipflair.net?audio=", "http://studio.clipflair.net/?audio=" };
+
+      if (url.StartsWith(videoPrefixes))
+      {
+        url = url.ReplacePrefix(videoPrefixes, "");
+        if (!url.StartsWith("http", StringComparison.OrdinalIgnoreCase))
+          url = "http://gallery.clipflair.net/video/" + url + "/" + url + ".ism/Manifest";
+      }
+      else if (url.StartsWith(audioPrefixes))
+      {
+        url = url.ReplacePrefix(audioPrefixes, "");
+        if (!url.StartsWith("http", StringComparison.OrdinalIgnoreCase))
+          url = "http://gallery.clipflair.net/audio/" + url;
+      }
+      
       return url;
     }
 
