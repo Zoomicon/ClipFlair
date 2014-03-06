@@ -1,5 +1,5 @@
 ﻿//Filename: ZoomAndPanControl.cs
-//Version: 20140302
+//Version: 20140306
 //Editor: George Birbilis <birbilis@kagi.com>
 
 //Based on:
@@ -445,7 +445,6 @@ namespace ZoomAndPan
           delegate(object sender, EventArgs e)
           {
             enableContentOffsetUpdateFromScale = false;
-
             ResetViewportZoomFocus();
           });
     }
@@ -497,9 +496,7 @@ namespace ZoomAndPan
     public void AnimatedZoomToFit()
     {
       if (content == null)
-      {
         throw new ApplicationException("PART_Content was not found in the ZoomAndPanControl visual template!");
-      }
 
       AnimatedZoomTo(new Rect(0, 0, content.ActualWidth, content.ActualHeight));
     }
@@ -510,9 +507,7 @@ namespace ZoomAndPan
     public void ZoomToFit()
     {
       if (content == null)
-      {
         throw new ApplicationException("PART_Content was not found in the ZoomAndPanControl visual template!");
-      }
 
       ZoomTo(new Rect(0, 0, content.ActualWidth, content.ActualHeight));
     }
@@ -606,27 +601,27 @@ namespace ZoomAndPan
       this.dragZoomCanvas = this.GetTemplateChild("PART_DragZoomCanvas") as Canvas;
       this.dragZoomBorder = this.GetTemplateChild("PART_DragZoomBorder") as Border;
 
-      if (content != null)
+      if (content == null)
+        return;
+
+      // Setup the transform on the content so that we can scale it by 'ContentScale'.
+      this.contentScaleTransform = new ScaleTransform()
       {
-        // Setup the transform on the content so that we can scale it by 'ContentScale'.
-        this.contentScaleTransform = new ScaleTransform()
-        {
-          ScaleX = this.ContentScale,
-          ScaleY = this.ContentScale
-        };
+        ScaleX = this.ContentScale,
+        ScaleY = this.ContentScale
+      };
 
-        // Setup the transform on the content so that we can translate it by 'ContentOffsetX' and 'ContentOffsetY'.
-        this.contentOffsetTransform = new TranslateTransform();
-        UpdateTranslationX();
-        UpdateTranslationY();
+      // Setup the transform on the content so that we can translate it by 'ContentOffsetX' and 'ContentOffsetY'.
+      this.contentOffsetTransform = new TranslateTransform();
+      UpdateTranslationX();
+      UpdateTranslationY();
 
-        // Setup a transform group to contain the translation and scale transforms, and then
-        // assign this to the content's 'RenderTransform'.
-        TransformGroup transformGroup = new TransformGroup();
-        transformGroup.Children.Add(this.contentOffsetTransform);
-        transformGroup.Children.Add(this.contentScaleTransform);
-        content.RenderTransform = transformGroup;
-      }
+      // Setup a transform group to contain the translation and scale transforms, and then
+      // assign this to the content's 'RenderTransform'.
+      TransformGroup transformGroup = new TransformGroup();
+      transformGroup.Children.Add(this.contentOffsetTransform);
+      transformGroup.Children.Add(this.contentScaleTransform);
+      content.RenderTransform = transformGroup;
     }
 
     /// <summary>
@@ -655,9 +650,7 @@ namespace ZoomAndPan
             enableContentOffsetUpdateFromScale = false;
 
             if (callback != null)
-            {
               callback(this, EventArgs.Empty);
-            }
           });
 
       AnimationHelper.StartAnimation(this, ViewportZoomFocusXProperty, ViewportWidth / 2, AnimationDuration);
@@ -890,20 +883,14 @@ namespace ZoomAndPan
     /// </summary>
     private void UpdateTranslationX()
     {
-      if (this.contentOffsetTransform != null)
+      if (contentOffsetTransform != null)
       {
-        double scaledContentWidth = this.unScaledExtent.Width * this.ContentScale;
-        if (scaledContentWidth < this.ViewportWidth && !double.IsPositiveInfinity(this.ContentViewportWidth)) //!!! checking for infinity
-        {
-          //
+        double scaledContentWidth = unScaledExtent.Width * ContentScale;
+        if (scaledContentWidth < ViewportWidth && !double.IsPositiveInfinity(ContentViewportWidth)) //!!! checking for infinity
           // When the content can fit entirely within the viewport, center it.
-          //
-          this.contentOffsetTransform.X = (this.ContentViewportWidth - this.unScaledExtent.Width) / 2;
-        }
+          contentOffsetTransform.X = (ContentViewportWidth - unScaledExtent.Width) / 2;
         else
-        {
-          this.contentOffsetTransform.X = -this.ContentOffsetX;
-        }
+          contentOffsetTransform.X = -ContentOffsetX;
       }
     }
 
@@ -912,21 +899,14 @@ namespace ZoomAndPan
     /// </summary>
     private void UpdateTranslationY()
     {
-      if (this.contentOffsetTransform != null)
+      if (contentOffsetTransform != null)
       {
-        double scaledContentHeight = this.unScaledExtent.Height * this.ContentScale;
-        if (scaledContentHeight < this.ViewportHeight && !double.IsPositiveInfinity(this.ContentViewportHeight)) //!!! checking for infinity
-        {
-
-          //
+        double scaledContentHeight = unScaledExtent.Height * ContentScale;
+        if (scaledContentHeight < ViewportHeight && !double.IsPositiveInfinity(ContentViewportHeight)) //!!! checking for infinity
           // When the content can fit entirely within the viewport, center it.
-          //
-          this.contentOffsetTransform.Y = (this.ContentViewportHeight - this.unScaledExtent.Height) / 2;
-        }
-        else
-        {
-          this.contentOffsetTransform.Y = -this.ContentOffsetY;
-        }
+          contentOffsetTransform.Y = (ContentViewportHeight - unScaledExtent.Height) / 2;
+          else
+          contentOffsetTransform.Y = -ContentOffsetY;
       }
     }
 
