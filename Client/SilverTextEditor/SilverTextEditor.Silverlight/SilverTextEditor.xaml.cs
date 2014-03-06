@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: SilverTextEditor.xaml.cs
-//Version: 20140304
+//Version: 20140306
 
 //Originated from Microsoft Silverlight sample (MSPL license)
 
@@ -755,7 +755,8 @@ namespace SilverTextEditor
       }
       catch (Exception ex)
       {
-        MessageBox.Show("Text load failed: " + ex.Message); //TODO: should find parent window //TODO: localize
+        MessageBox.Show("Loading failed: " + ex.Message); //TODO: should find parent window //TODO: localize
+        //TODO: maybe should wrap the original exception as inner exception and throw a new one
       }
     }
 
@@ -1000,8 +1001,16 @@ namespace SilverTextEditor
 
           //Walk through the array of FileInfo objects of the selected and drag-dropped files and parse the .txt and .docx files 
           //and insert their content in the RichTextBox.
-          foreach (FileInfo file in files)
-            Load(file, false);
+          try
+          {
+            foreach (FileInfo file in files)
+              Load(file, false);
+          }
+          catch (Exception ex)
+          {
+            MessageBox.Show("Loading failed: " + ex.Message); //TODO: find the parent window
+            //TODO: maybe should wrap the original exception as inner exception and throw a new one
+          }
         }
       }
 
