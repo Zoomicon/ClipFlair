@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: MediaPlayerWindow.xaml.cs
-//Version: 20130811
+//Version: 20140306
 
 using ClipFlair.Windows.Views;
 using Ionic.Zip;
@@ -21,9 +21,6 @@ namespace ClipFlair.Windows
       View = new MediaPlayerView(); //must set the view first
       InitializeComponent();
 
-      if (options != null)
-        options.MediaPlayerWindow = this;
-
       defaultReplayOffset = player.ReplayOffset; //can set ReplayOffset in XAML
     }
 
@@ -33,20 +30,6 @@ namespace ClipFlair.Windows
     {
       get {return (IMediaPlayer)View; }
       set { View = value; }
-    }
-
-    public override IView View
-    {
-      get
-      {
-        return base.View;
-      }
-      set
-      {
-        base.View = value;
-        if (options != null) 
-          options.MediaPlayerWindow = this;
-      }
     }
 
     #endregion
