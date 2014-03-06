@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: BaseWindow.xaml.cs
-//Version: 20140304
+//Version: 20140306
 
 //TODO: unbind control at close
 
@@ -398,10 +398,6 @@ namespace ClipFlair.Windows
           break; //expecting only one .options.xml file
         }
       }
-      catch (Exception e)
-      {
-        ErrorDialog.Show("Loading failed", e);
-      }
       finally
       {
         View.Busy = false; //in any case (error or not) clear the Busy flag
@@ -431,10 +427,6 @@ namespace ClipFlair.Windows
             Flipped = false; //flip the view back to front after succesful options loading //since this is an asynchronous operation we have to flip here
           }
         }
-        catch (Exception ex)
-        {
-          ErrorDialog.Show("Loading failed", ex);
-        }
         finally
         {
           View.Busy = false;
@@ -446,10 +438,9 @@ namespace ClipFlair.Windows
         View.Busy = true; //the busy flag will be reset back to false either at OpenReadComplete event handler (on success) or at the exception handler below (on failure)
         webClient.OpenReadAsync(uri); //open the stream asynchronously
       }
-      catch (Exception ex)
+      finally
       {
         View.Busy = false;
-        ErrorDialog.Show("Loading failed", ex);
       }
     }
 
@@ -634,7 +625,19 @@ namespace ClipFlair.Windows
       if (files != null && files.Length > 0) //Use only 1st item from array of FileInfo objects
       {
         loadModifiers = Keyboard.Modifiers;
-        LoadOptions(files[0]); //TODO: make LoadOptions of activity (override) clever to handle various file extensions apart from .clipflair/.clipflair.zip (no extension will be assumed to be .clipflair) and add to LoadOptions file dialog more file types, like videos, images etc. and create respective components to load and wrap that content (need an array property to be able to define the extra extensions allowed per component). Do similar at each component's LoadOptions for the extra data types they know how to handle (override BaseWindow.LoadOptions and do the check before calling base.LoadOptions)
+
+        try
+        {
+          LoadOptions(files[0]); //TODO: make LoadOptions of activity (override) clever to handle various file extensions apart from .clipflair/.clipflair.zip (no extension will be assumed to be .clipflair) and add to LoadOptions file dialog more file types, like videos, images etc. and create respective components to load and wrap that content (need an array property to be able to define the extra extensions allowed per component). Do similar at each component's LoadOptions for the extra data types they know how to handle (override BaseWindow.LoadOptions and do the check before calling base.LoadOptions)
+        }
+        catch (NullReferenceException ex)
+        {
+          ErrorDialog.Show("Loading failed - Saved options may be for other window", ex);
+        }
+        catch (Exception ex)
+        {
+          ErrorDialog.Show("Loading failed", ex);
+        }
       }
     }
 
