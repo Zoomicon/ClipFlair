@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: StringExtensions.cs
-//Version: 20130828
+//Version: 20140306
 
 using System;
 using System.Text.RegularExpressions;
@@ -37,10 +37,10 @@ namespace Utils.Extensions
       return count;
     }
 
-    public static bool StartsWith(this string s, string[] suffixes, StringComparison comparisonType = StringComparison.CurrentCulture)
+    public static bool StartsWith(this string s, string[] prefixes, StringComparison comparisonType = StringComparison.CurrentCulture)
     {
-      foreach (string suffix in suffixes)
-        if (s.StartsWith(suffix, comparisonType))
+      foreach (string prefix in prefixes)
+        if (s.StartsWith(prefix, comparisonType))
           return true;
       return false;
     }
