@@ -1,6 +1,6 @@
 ﻿<!--
 Filename: SilverTextEditor.xaml
-Version: 20140304
+Version: 20140307
 -->
 
 <UserControl x:Class="SilverTextEditor.SilverTextEditor"
@@ -41,11 +41,13 @@ Version: 20140304
         </VisualStateGroup.Transitions>
         <VisualState x:Name="Normal"/>
         <VisualState x:Name="DragOver">
+<!--
           <Storyboard>
-            <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Control.Background).(SolidColorBrush.Color)" Storyboard.TargetName="rtb"> <!-- doesn't seem to do something -->
+            <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Control.Background).(SolidColorBrush.Color)" Storyboard.TargetName="rtb">
               <EasingColorKeyFrame KeyTime="0" Value="#FFFFF7D1"/>
             </ColorAnimationUsingKeyFrames>
           </Storyboard>
+-->
         </VisualState>
       </VisualStateGroup>
     </VisualStateManager.VisualStateGroups>
@@ -372,7 +374,7 @@ Version: 20140304
           -->
 
         <RichTextBox x:Name="rtb"
-                       Background="{Binding Background, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=UserControl}}"
+                       Background="Transparent"
                        BorderThickness="0"
                        TextWrapping="Wrap" 
                        Style="{StaticResource RichTextBoxStyle1}"
