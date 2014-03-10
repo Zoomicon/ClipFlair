@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: ImageWindow.xaml.cs
-//Version: 20140204
+//Version: 20140310
 
 using System;
 using System.ComponentModel;
@@ -20,6 +20,10 @@ namespace ClipFlair.Windows
     {
       View = new ImageView(); //must set the view first
       InitializeComponent();
+
+      if (options != null)
+        options.ImageWindow = this;
+
       imgContent.AddHandler(UIElement.MouseLeftButtonDownEvent, new MouseButtonEventHandler(imgContent_MouseLeftButtonDown), true); //must pass "true" to handle events marked as already "handled"
       UpdateZoomControlsVisible();
     }
@@ -32,6 +36,20 @@ namespace ClipFlair.Windows
       set { View = value; }
     }
 
+    public override IView View
+    {
+      get
+      {
+        return base.View;
+      }
+      set
+      {
+        base.View = value;
+        if (options != null)
+          options.ImageWindow = this;
+      }
+    }
+    
     protected override void View_PropertyChanged(object sender, PropertyChangedEventArgs e)
     {
       base.View_PropertyChanged(sender, e);

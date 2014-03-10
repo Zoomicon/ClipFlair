@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: ImageOptions.xaml.cs
-//Version: 20140306
+//Version: 20140310
 
 using System.Windows;
 using System.Windows.Controls;
@@ -16,19 +16,27 @@ namespace ClipFlair.Windows.Options
       InitializeComponent();
     }
 
-  /*
+    #region --- Fields ---
+
+    protected ImageWindow imageWindow;
+
+    #endregion
+
     #region --- Properties ---
 
     public ImageWindow ImageWindow
     {
-      get
+      get { return imageWindow; }
+      set
       {
-        return DataContext as ImageWindow;
+        imageWindow = value;
+        DataContext = (value != null) ? value.View : null;
       }
     }
 
     #endregion
 
+/*
     #region --- Events ---
 
     private void btnLoadImage_Click(object sender, RoutedEventArgs e)
