@@ -1,10 +1,9 @@
-﻿//Version: 20120620
+﻿//Version: 20140309
 
 using System;
 using System.Windows;
 
-
-namespace SilverTextEditor
+namespace SilverNews
 {
     public partial class App : Application
     {
@@ -26,7 +25,7 @@ namespace SilverTextEditor
             Thread.CurrentThread.CurrentUICulture = c;
             */
 
-            this.RootVisual = new SilverTextEditor();
+            this.RootVisual = new SilverNews();
         }
 
         private void Application_Exit(object sender, EventArgs e)
@@ -56,7 +55,7 @@ namespace SilverTextEditor
                 string errorMsg = e.ExceptionObject.Message + e.ExceptionObject.StackTrace;
                 errorMsg = errorMsg.Replace('"', '\'').Replace("\r\n", @"\n");
 
-                System.Windows.Browser.HtmlPage.Window.Eval("throw new Error(\"Unhandled Error in Silverlight 2 Application " + errorMsg + "\");");
+                System.Windows.Browser.HtmlPage.Window.Eval("throw new Error(\"Unhandled Error in Silverlight Application " + errorMsg + "\");");
             }
             catch (Exception)
             {

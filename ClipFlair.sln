@@ -39,7 +39,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZoomAndPan.Silverlight", "C
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FloatingWindow.Silverlight", "Client\ZUI\FloatingWindow\FloatingWindow.Silverlight\FloatingWindow.Silverlight.csproj", "{3F3D3C8C-9724-4531-A04D-B92049F64686}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SilverTextEditor.Silverlight", "Client\SilverTextEditor\SilverTextEditor.Silverlight\SilverTextEditor.Silverlight.csproj", "{52F76969-E7CD-414F-8E98-4FF90EE48B05}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SilverTextEditor.Silverlight", "Client\Text\SilverTextEditor\SilverTextEditor.Silverlight\SilverTextEditor.Silverlight.csproj", "{52F76969-E7CD-414F-8E98-4FF90EE48B05}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FloatingWindowZUI.Silverlight", "Client\ZUI\FloatingWindowZUI\FloatingWindowZUI.Silverlight\FloatingWindowZUI.Silverlight.csproj", "{D7D67F52-7B9B-4DE5-9B72-534664F296B7}"
 EndProject
@@ -100,6 +100,8 @@ EndProject
 Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "CaptionsLib.VB.Silverlight", "Client\Captions\CaptionsLib\VB\CaptionsLib.VB.Silverlight\CaptionsLib.VB.Silverlight.vbproj", "{782E0F64-CDCE-41AA-9B7E-80714B1EE663}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CaptionsLib.Silverlight", "Client\Captions\CaptionsLib\CaptionsLib.Silverlight\CaptionsLib.Silverlight.csproj", "{388EFA39-6BC0-4836-B095-4491E9A68798}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SilverNews.Silverlight", "Client\Text\SilverNews\SilverNews.Silverlight\SilverNews.Silverlight.csproj", "{EDAC9709-C2CD-4673-AB04-D044F40DD681}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -461,6 +463,16 @@ Global
 		{388EFA39-6BC0-4836-B095-4491E9A68798}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{388EFA39-6BC0-4836-B095-4491E9A68798}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{388EFA39-6BC0-4836-B095-4491E9A68798}.Release|x86.ActiveCfg = Release|Any CPU
+		{EDAC9709-C2CD-4673-AB04-D044F40DD681}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EDAC9709-C2CD-4673-AB04-D044F40DD681}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EDAC9709-C2CD-4673-AB04-D044F40DD681}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{EDAC9709-C2CD-4673-AB04-D044F40DD681}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{EDAC9709-C2CD-4673-AB04-D044F40DD681}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{EDAC9709-C2CD-4673-AB04-D044F40DD681}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EDAC9709-C2CD-4673-AB04-D044F40DD681}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EDAC9709-C2CD-4673-AB04-D044F40DD681}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{EDAC9709-C2CD-4673-AB04-D044F40DD681}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{EDAC9709-C2CD-4673-AB04-D044F40DD681}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -494,6 +506,7 @@ Global
 		{C6900312-0545-4E5E-9FE0-2AEF75674E29} = {29574CA4-9687-42BB-AAE0-31C3BD52A803}
 		{0771A5EA-F8F5-4BB4-A29E-2FD3CF9A5088} = {29574CA4-9687-42BB-AAE0-31C3BD52A803}
 		{52F76969-E7CD-414F-8E98-4FF90EE48B05} = {2214B910-0DEA-4202-A9BA-280ACBCF839B}
+		{EDAC9709-C2CD-4673-AB04-D044F40DD681} = {2214B910-0DEA-4202-A9BA-280ACBCF839B}
 		{08AAAA06-E454-46D2-B13F-96AFB43B9D13} = {21F02D58-D544-4AD9-BEE9-F80718A6AE08}
 		{5DA25550-CBA7-4005-ACB8-1E4CF70B6E9B} = {21F02D58-D544-4AD9-BEE9-F80718A6AE08}
 		{89C48FD1-FFDC-4373-8F14-0D289B9F1B52} = {92274FC3-2D35-4924-B4F9-F8265BAB3DE2}
