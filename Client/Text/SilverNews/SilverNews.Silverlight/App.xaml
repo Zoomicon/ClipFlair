@@ -1,7 +1,15 @@
-﻿<Application xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+﻿<!--
+Project: ClipFlair (http://ClipFlair.codeplex.com)
+Filename: App.xaml
+Version: 20140311
+-->
+
+<Application xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
              x:Class="SilverNews.App"
              >
-    <Application.Resources>
-    </Application.Resources>
+
+  <Application.Resources>
+  </Application.Resources>
+
 </Application>

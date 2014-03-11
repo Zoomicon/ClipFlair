@@ -71,6 +71,7 @@
     <Reference Include="System.ComponentModel.Composition, Version=5.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.ComponentModel.Composition.Initialization, Version=5.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel.Syndication, Version=5.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Windows" />
     <Reference Include="system" />
     <Reference Include="System.Core" />
@@ -163,6 +164,10 @@
       <Project>{A14AC96C-D998-4C35-B1C0-415535D1378B}</Project>
       <Name>ClipFlair.Windows.Media</Name>
     </ProjectReference>
+    <ProjectReference Include="..\ClipFlair.Windows.News\ClipFlair.Windows.News.csproj">
+      <Project>{7bd74aa7-4ab8-4d85-aab0-99a0f8236e7e}</Project>
+      <Name>ClipFlair.Windows.News</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ClipFlair.Windows.Text\ClipFlair.Windows.Text.csproj">
       <Project>{396DD176-BC1D-45CF-900E-4FC85B7398FC}</Project>
       <Name>ClipFlair.Windows.Text</Name>
@@ -207,6 +212,10 @@
   <ItemGroup>
     <Resource Include="Images\AddVision.png" />
     <Resource Include="Images\AddVision_hover.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\AddNews.png" />
+    <Resource Include="Images\AddNews_hover.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Silverlight\$(SilverlightVersion)\Microsoft.Silverlight.CSharp.targets" />
   <ProjectExtensions>

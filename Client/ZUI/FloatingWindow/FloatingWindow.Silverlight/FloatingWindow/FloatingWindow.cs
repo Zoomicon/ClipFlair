@@ -1,5 +1,5 @@
 //Filename: FloatingWindow.cs
-//Version: 20131230
+//Version: 20140311
 
 //#define BORDER_ONLY_AT_RESIZABLE //using BorderThickness instead to allow user to define when they want the border to be visible themselves
 
@@ -1701,6 +1701,8 @@ namespace SilverFlow.Controls
     {
       base.OnMouseLeftButtonDown(e);
 
+      //if (e.Handled) return;
+
       e.Handled = true; //always handle events so that container doesn't get confused (e.g. when dragging the window title bar we don't want container to pan)
 
       windowAction = WindowAction.None;
@@ -1743,7 +1745,7 @@ namespace SilverFlow.Controls
           Point point = e.GetPosition(contentBorder);
 
           if (MoveEnabled && contentBorder.ContainsPoint(point) &&
-              !this.FindElementsInCoordinates(e.GetPosition(this)).Any(x => x is RichTextBox || x is RichTextBlock || x is RichTextBlockOverflow) ) //Note: must check this, else hyperlinks in RichText controls won't be clickable, even at readonly mode of RichTextBox
+              !this.FindElementsInCoordinates(e.GetPosition(this)).Any(x => x is RichTextBox || x is RichTextBlock || x is RichTextBlockOverflow || x is HyperlinkButton) ) //Note: must check this, else hyperlinks in RichText controls won't be clickable, even at readonly mode of RichTextBox
           {
             snapinController.SnapinBounds = this.FloatingWindowHost.GetSnapinBounds(this);
             CaptureMouseCursor();

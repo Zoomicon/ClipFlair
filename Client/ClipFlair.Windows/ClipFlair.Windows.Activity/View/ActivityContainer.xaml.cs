@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: ActivityContainer.xaml.cs
-//Version: 20140204
+//Version: 20140311
 
 //TODO: add ContentPartsCloseable property
 //TODO: add ContentPartsZoomable property
@@ -54,6 +54,7 @@ namespace ClipFlair.Windows
       partsCatalog.Catalogs.Add(new AssemblyCatalog(typeof(TextEditorWindow).Assembly));
       partsCatalog.Catalogs.Add(new AssemblyCatalog(typeof(ImageWindow).Assembly));
       partsCatalog.Catalogs.Add(new AssemblyCatalog(typeof(MapWindow).Assembly));
+      partsCatalog.Catalogs.Add(new AssemblyCatalog(typeof(NewsWindow).Assembly));
       partsCatalog.Catalogs.Add(new AssemblyCatalog(typeof(GalleryWindow).Assembly));
       partsCatalog.Catalogs.Add(new AssemblyCatalog(Assembly.GetExecutingAssembly())); //typeof(ActivityWindow).Assembly
 
@@ -63,6 +64,7 @@ namespace ClipFlair.Windows
       btnAddText.Click += new RoutedEventHandler(btnAddText_Click);
       btnAddImage.Click += new RoutedEventHandler(btnAddImage_Click);
       btnAddMap.Click += new RoutedEventHandler(btnAddMap_Click);
+      btnAddNews.Click += new RoutedEventHandler(btnAddNews_Click);
       btnAddGallery.Click += new RoutedEventHandler(btnAddGallery_Click);
       btnAddNestedActivity.Click += new RoutedEventHandler(btnAddNestedActivity_Click);
 
@@ -183,6 +185,9 @@ namespace ClipFlair.Windows
     [Import("ClipFlair.Windows.Views.MapView", typeof(IWindowFactory), RequiredCreationPolicy = CreationPolicy.Shared)]
     public IWindowFactory MapWindowFactory { get; set; }
 
+    [Import("ClipFlair.Windows.Views.NewsView", typeof(IWindowFactory), RequiredCreationPolicy = CreationPolicy.Shared)]
+    public IWindowFactory NewsWindowFactory { get; set; }
+    
     [Import("ClipFlair.Windows.Views.GalleryView", typeof(IWindowFactory), RequiredCreationPolicy = CreationPolicy.Shared)]
     public IWindowFactory GalleryWindowFactory { get; set; }
 
@@ -262,6 +267,7 @@ namespace ClipFlair.Windows
       else if (window is TextEditorWindow) BindTextEditorWindow((TextEditorWindow)window);
       else if (window is ImageWindow) BindImageWindow((ImageWindow)window);
       else if (window is MapWindow) BindMapWindow((MapWindow)window);
+      else if (window is NewsWindow) BindNewsWindow((NewsWindow)window);
       else if (window is GalleryWindow) BindGalleryWindow((GalleryWindow)window);
     }
 
@@ -341,6 +347,20 @@ namespace ClipFlair.Windows
         }
     }
 
+    private void BindNewsWindow(NewsWindow window)
+    {
+      if (window.View != null && View != null)
+        try
+        {
+          //BindingUtils.BindProperties(window.View, IViewProperties.PropertyTime,
+          //                            View, IViewProperties.PropertyTime); //TODO: should rebind after changing view if the window is inside a BaseWindow (get its View and bind to it)
+        }
+        catch (Exception ex)
+        {
+          ErrorDialog.Show("Failed to bind News component", ex);
+        }
+    }
+    
     private void BindGalleryWindow(GalleryWindow window)
     {
       if (window.View != null && View != null)
@@ -399,6 +419,13 @@ namespace ClipFlair.Windows
       return w;
     }
 
+    public NewsWindow AddNews()
+    {
+      NewsWindow w = (NewsWindow)AddWindow(NewsWindowFactory, newInstance: true);
+      w.NewsView.Source = new Uri("http://social.clipflair.net/Blog.aspx?MonoXRssFeed=ClipFlair-All-blog-posts", UriKind.Absolute);
+      return w;
+    }
+
     public GalleryWindow AddGallery()
     {
       GalleryWindow w = (GalleryWindow)AddWindow(GalleryWindowFactory, newInstance: true);
@@ -441,6 +468,11 @@ namespace ClipFlair.Windows
     private void btnAddMap_Click(object sender, RoutedEventArgs e)
     {
       AddMap();
+    }
+
+    private void btnAddNews_Click(object sender, RoutedEventArgs e)
+    {
+      AddNews();
     }
 
     private void btnAddGallery_Click(object sender, RoutedEventArgs e)

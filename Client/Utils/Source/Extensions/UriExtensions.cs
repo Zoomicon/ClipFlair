@@ -2,7 +2,6 @@
 //Filename: StringExtensions.cs
 //Version: 20130704
 
-
 using System;
 using System.Windows.Controls;
 using System.Windows.Media;

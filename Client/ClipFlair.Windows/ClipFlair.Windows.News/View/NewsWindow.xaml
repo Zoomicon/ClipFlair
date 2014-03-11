@@ -1,16 +1,16 @@
 ﻿<!--
 Project: ClipFlair (http://ClipFlair.codeplex.com)
-Filename: ImageWindow.xaml
+Filename: NewsWindow.xaml
 Version: 20140311
 -->
 
-<clipflair:BaseWindow x:Class="ClipFlair.Windows.ImageWindow"
+<clipflair:BaseWindow x:Class="ClipFlair.Windows.NewsWindow"
   xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
   xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
   xmlns:clipflair="clr-namespace:ClipFlair.Windows;assembly=ClipFlair.Windows.Base"    
-  xmlns:zoom="clr-namespace:ZoomImage;assembly=ZoomImage" 
+  xmlns:news="clr-namespace:SilverNews;assembly=SilverNews" 
   xmlns:options="clr-namespace:ClipFlair.Windows.Options"
   mc:Ignorable="d"
   d:DesignWidth="400" d:DesignHeight="400"
@@ -26,20 +26,19 @@ Version: 20140311
   
   <!--<clipflair:BaseWindow.FrontContent>-->
 
-  <zoom:ZoomImage 
-    Name="imgContent"
+  <news:SilverNews 
+    Name="News"
     HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
     Background="Transparent"
     
-    Source="{Binding Source, Mode=Oneway}"
-    ContentZoomToFit="{Binding ContentZoomToFit, Mode=TwoWay}"
+    Source="{Binding Path=Source, Mode=Oneway}"
     />
   
   <!--</clipflair:BaseWindow.FrontContent>-->
 
   <clipflair:BaseWindow.PropertyItems>
 
-    <options:ImageOptions Name="options" /> <!-- uses our DataContext (the View) -->
+    <options:NewsOptions Name="options" /> <!-- uses our DataContext (the View) -->
 
   </clipflair:BaseWindow.PropertyItems>
 

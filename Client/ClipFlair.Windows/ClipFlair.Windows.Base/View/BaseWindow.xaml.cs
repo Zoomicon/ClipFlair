@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: BaseWindow.xaml.cs
-//Version: 20140306
+//Version: 20140311
 
 //TODO: unbind control at close
 
@@ -56,6 +56,7 @@ namespace ClipFlair.Windows
     public static IWindowFactory ImageWindowFactory { get; protected set; }
     //public static IWindowFactory CameraWindowFactory { get; protected set; }
     public static IWindowFactory MapWindowFactory { get; protected set; }
+    public static IWindowFactory NewsWindowFactory { get; protected set; }
     public static IWindowFactory GalleryWindowFactory { get; protected set; }
     public static IWindowFactory ActivityWindowFactory { get; protected set; }
 

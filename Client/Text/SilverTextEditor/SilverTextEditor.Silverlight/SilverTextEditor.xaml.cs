@@ -51,7 +51,7 @@ namespace SilverTextEditor
       get { return rtb; }
     }
 
-    #region Bold, Italics & Underline
+    #region --- Bold, Italics & Underline ---
 
     //Toggle Bold formatting at the selected content if any, else at the text under the cursor (the current "Run")
     private void btnBold_Click(object sender, RoutedEventArgs e)
@@ -109,7 +109,7 @@ namespace SilverTextEditor
 
     #endregion
 
-    #region Font Type, Color & size
+    #region --- Font Type, Color & size ---
 
     //Set font type at the selected content if any, else at the text under the cursor (the current "Run")
     private void cmbFonts_SelectionChanged(object sender, SelectionChangedEventArgs e)
