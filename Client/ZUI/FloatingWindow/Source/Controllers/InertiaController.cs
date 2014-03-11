@@ -12,7 +12,7 @@ namespace SilverFlow.Controls.Controllers
     /// </summary>
     public class InertiaController
     {
-        private const double SCREEN_DPI = 96;
+        private const double SCREEN_DPI = 96; //THIS SHOULDN'T BE HARDCODED
         private const double INCH = 0.0254;
         private const double GRAVITATIONAL_ACCELERATION = 9.81;
         private const double COEFFICIENT_OF_SLIDING_FRICTION = 0.015;

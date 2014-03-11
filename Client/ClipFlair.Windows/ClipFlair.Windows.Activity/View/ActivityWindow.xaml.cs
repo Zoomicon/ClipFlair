@@ -20,6 +20,7 @@ using Utils.Extensions;
 [assembly: TypeForwardedToAttribute(typeof(TextEditorView2))]
 [assembly: TypeForwardedToAttribute(typeof(ImageView))]
 [assembly: TypeForwardedToAttribute(typeof(MapView))]
+[assembly: TypeForwardedToAttribute(typeof(NewsView))]
 [assembly: TypeForwardedToAttribute(typeof(GalleryView))]
 //[assembly: TypeForwardedToAttribute(typeof(ActivityView))] //can't forward to a type from this assembly (don't need to anyway)
 
@@ -61,6 +62,7 @@ namespace ClipFlair.Windows
       TextEditorWindowFactory = activity.TextEditorWindowFactory;
       ImageWindowFactory = activity.ImageWindowFactory;
       MapWindowFactory = activity.MapWindowFactory;
+      NewsWindowFactory = activity.NewsWindowFactory;
       GalleryWindowFactory = activity.GalleryWindowFactory;
       ActivityWindowFactory = activity.ActivityWindowFactory;
 

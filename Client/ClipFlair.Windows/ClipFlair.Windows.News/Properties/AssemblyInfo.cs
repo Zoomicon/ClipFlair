@@ -4,13 +4,13 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("ClipFlair Studio")]
-[assembly: AssemblyDescription("ClipFlair - Foreign Language Learning through Interactive Revoicing and Captioning of Clips")]
+[assembly: AssemblyTitle("ClipFlair.Windows.News")]
+[assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("ClipFlair (http://ClipFlair.net)")]
-[assembly: AssemblyProduct("ClipFlair Studio")]
+[assembly: AssemblyCompany("")]
+[assembly: AssemblyProduct("ClipFlair")]
 [assembly: AssemblyCopyright("Copyright ©  2012-2014")]
-[assembly: AssemblyTrademark("ClipFlair")]
+[assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
 // Setting ComVisible to false makes the types in this assembly not visible 
@@ -19,7 +19,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("ac4b085b-e3b9-449a-bb3f-3f93458e61f4")]
+[assembly: Guid("6c4328f2-9c1c-4de4-9d4a-7cc3805a14ed")]
 
 // Version information for an assembly consists of the following four values:
 //
@@ -31,3 +31,4 @@ using System.Runtime.InteropServices;
 // You can specify all the values or you can default the Revision and Build Numbers 
 // by using the '*' as shown below:
 [assembly: AssemblyVersion("1.0.*")]
+
