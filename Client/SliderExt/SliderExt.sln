@@ -1,0 +1,50 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.30110.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Silverlight", "Silverlight", "{05563E80-B4FB-410A-8195-B3E2212EB91D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WPF", "WPF", "{0E57F5D7-0D94-43DE-BAE2-90DDF5EE2F20}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SliderExt.Silverlight", "Silverlight\SliderExt.Silverlight\SliderExt.Silverlight.csproj", "{F07C9C6F-F516-4410-8C35-304FCF3ECAD0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SliderExt.Demo.Silverlight", "Silverlight\SliderExt.Demo.Silverlight\SliderExt.Demo.Silverlight\SliderExt.Demo.Silverlight.csproj", "{B375F735-F0A9-4581-9E87-4301F343A3B3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SliderExt.WPF", "WPF\SliderExt.WPF\SliderExt.WPF.csproj", "{14993E97-3C4D-4AF4-AD28-4A518BA301F7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SliderExt.Demo.WPF", "WPF\SliderExt.Demo.WPF\SliderExt.Demo.WPF.csproj", "{AACA0931-4B59-489F-AF0F-FD5BB69151B7}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F07C9C6F-F516-4410-8C35-304FCF3ECAD0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F07C9C6F-F516-4410-8C35-304FCF3ECAD0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F07C9C6F-F516-4410-8C35-304FCF3ECAD0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F07C9C6F-F516-4410-8C35-304FCF3ECAD0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B375F735-F0A9-4581-9E87-4301F343A3B3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B375F735-F0A9-4581-9E87-4301F343A3B3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B375F735-F0A9-4581-9E87-4301F343A3B3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B375F735-F0A9-4581-9E87-4301F343A3B3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{14993E97-3C4D-4AF4-AD28-4A518BA301F7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{14993E97-3C4D-4AF4-AD28-4A518BA301F7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{14993E97-3C4D-4AF4-AD28-4A518BA301F7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{14993E97-3C4D-4AF4-AD28-4A518BA301F7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AACA0931-4B59-489F-AF0F-FD5BB69151B7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AACA0931-4B59-489F-AF0F-FD5BB69151B7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AACA0931-4B59-489F-AF0F-FD5BB69151B7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AACA0931-4B59-489F-AF0F-FD5BB69151B7}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{F07C9C6F-F516-4410-8C35-304FCF3ECAD0} = {05563E80-B4FB-410A-8195-B3E2212EB91D}
+		{B375F735-F0A9-4581-9E87-4301F343A3B3} = {05563E80-B4FB-410A-8195-B3E2212EB91D}
+		{14993E97-3C4D-4AF4-AD28-4A518BA301F7} = {0E57F5D7-0D94-43DE-BAE2-90DDF5EE2F20}
+		{AACA0931-4B59-489F-AF0F-FD5BB69151B7} = {0E57F5D7-0D94-43DE-BAE2-90DDF5EE2F20}
+	EndGlobalSection
+EndGlobal

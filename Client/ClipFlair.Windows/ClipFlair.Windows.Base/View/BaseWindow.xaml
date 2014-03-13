@@ -1,7 +1,7 @@
 ﻿<!--
 Project: ClipFlair (http://ClipFlair.codeplex.com)
 Filename: BaseWindow.xaml
-Version: 20140303
+Version: 20140311
 -->
 
 <float:FloatingWindow x:Class="ClipFlair.Windows.BaseWindow"
@@ -14,6 +14,7 @@ Version: 20140303
     xmlns:flip="clr-namespace:FlipPanel;assembly=FlipPanel"
     xmlns:float="clr-namespace:SilverFlow.Controls;assembly=SilverFlow.Controls"                      
     xmlns:widgets="clr-namespace:ClipFlair.UI.Widgets;assembly=ClipFlair.UI.Widgets.Silverlight"
+    xmlns:color="clr-namespace:ColorPickerLib;assembly=ColorPicker"
     xmlns:local="clr-namespace:ClipFlair.Windows;assembly=ClipFlair.Windows.Base"
     mc:Ignorable="d"
     d:DesignHeight="400" d:DesignWidth="400"
@@ -260,12 +261,14 @@ Version: 20140303
 
                     <StackPanel Orientation="Vertical" Name="propBackgroundColor">
                       <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Background Color:" Target="{Binding ElementName=edBackgroundColor}" />
-                      <TextBox Name="edBackgroundColor" Text="{Binding BackgroundColor, Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=True}" />
+                      <color:ColorPicker Color="{Binding BackgroundColor, Mode=TwoWay}" />
+                      <!-- <TextBox Name="edBackgroundColor" Text="{Binding BackgroundColor, Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=True}" /> -->
                     </StackPanel>
                     
                     <StackPanel Orientation="Vertical" Name="propBorderColor">
                       <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Border Color:" Target="{Binding ElementName=edBorderColor}" />
-                      <TextBox Name="edBorderColor" Text="{Binding BorderColor, Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=True}" />
+                      <color:ColorPicker Color="{Binding BorderColor, Mode=TwoWay}" />
+                      <!-- <TextBox Name="edBorderColor" Text="{Binding BorderColor, Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=True}" /> -->
                     </StackPanel>
                     
                     <StackPanel Orientation="Vertical" Name="propBorderThickness">

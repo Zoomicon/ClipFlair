@@ -1,0 +1,35 @@
+﻿<UserControl x:Class="ColorPicker_Demo.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:color="clr-namespace:ColorPickerLib;assembly=ColorPicker"
+    mc:Ignorable="d"
+    d:DesignHeight="400" d:DesignWidth="600" xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk">
+  
+  <Grid x:Name="LayoutRoot" Background="White">
+    <color:ColorPicker Height="23" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="50,50" x:Name="colorPicker1" Width="150" Color="Red" ColorChanged="colorPicker1_ColorChanged" />
+
+    <Grid Height="200" HorizontalAlignment="Left" Margin="50,100,0,0" x:Name="canvas1" VerticalAlignment="Top" Width="200" Visibility="Collapsed">
+            <Ellipse Height="200" Width="200" x:Name="ellipse00" Fill="Red" />
+            <Ellipse Height="180" Width="200" x:Name="ellipse01" Fill="White" Opacity="0.1" VerticalAlignment="Center" HorizontalAlignment="Center" />
+            <Ellipse Height="160" Width="200" x:Name="ellipse02" Fill="White" Opacity="0.1" VerticalAlignment="Center" HorizontalAlignment="Center" />
+            <Ellipse Height="140" Width="200" x:Name="ellipse03" Fill="White" Opacity="0.1" VerticalAlignment="Center" HorizontalAlignment="Center" />
+            <Ellipse Height="120" Width="200" x:Name="ellipse04" Fill="White" Opacity="0.1" VerticalAlignment="Center" HorizontalAlignment="Center" />
+            <Ellipse Height="100" Width="200" x:Name="ellipse05" Fill="White" Opacity="0.1" VerticalAlignment="Center" HorizontalAlignment="Center" />
+            <Ellipse Height="80"  Width="200" x:Name="ellipse06" Fill="White" Opacity="0.1" VerticalAlignment="Center" HorizontalAlignment="Center" />
+            <Ellipse Height="60"  Width="200" x:Name="ellipse07" Fill="White" Opacity="0.1" VerticalAlignment="Center" HorizontalAlignment="Center" />
+            <Ellipse Height="40"  Width="200" x:Name="ellipse08" Fill="White" Opacity="0.1" VerticalAlignment="Center" HorizontalAlignment="Center" />
+            <Ellipse Height="20"  Width="200" x:Name="ellipse09" Fill="White" Opacity="0.1" VerticalAlignment="Center" HorizontalAlignment="Center" />
+            <Ellipse Height="200" Width="180" x:Name="ellipse10" Fill="White" Opacity="0.1" VerticalAlignment="Center" HorizontalAlignment="Center" />
+            <Ellipse Height="200" Width="160" x:Name="ellipse20" Fill="White" Opacity="0.1" VerticalAlignment="Center" HorizontalAlignment="Center" />
+            <Ellipse Height="200" Width="140" x:Name="ellipse30" Fill="White" Opacity="0.1" VerticalAlignment="Center" HorizontalAlignment="Center" />
+            <Ellipse Height="200" Width="120" x:Name="ellipse40" Fill="White" Opacity="0.1" VerticalAlignment="Center" HorizontalAlignment="Center" />
+            <Ellipse Height="200" Width="100" x:Name="ellipse50" Fill="White" Opacity="0.1" VerticalAlignment="Center" HorizontalAlignment="Center" />
+            <Ellipse Height="200" Width="80"  x:Name="ellipse60" Fill="White" Opacity="0.1" VerticalAlignment="Center" HorizontalAlignment="Center" />
+            <Ellipse Height="200" Width="60"  x:Name="ellipse70" Fill="White" Opacity="0.1" VerticalAlignment="Center" HorizontalAlignment="Center" />
+            <Ellipse Height="200" Width="40"  x:Name="ellipse80" Fill="White" Opacity="0.1" VerticalAlignment="Center" HorizontalAlignment="Center" />
+            <Ellipse Height="200" Width="20"  x:Name="ellipse90" Fill="White" Opacity="0.1" VerticalAlignment="Center" HorizontalAlignment="Center" />
+        </Grid>
+    </Grid>
+</UserControl>

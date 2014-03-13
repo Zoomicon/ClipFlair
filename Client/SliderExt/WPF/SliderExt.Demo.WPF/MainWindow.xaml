@@ -1,0 +1,13 @@
+﻿<Window x:Class="SliderExt_Demo.WPF.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:slider="clr-namespace:SliderExt_Demo"
+        Title="MainWindow"
+        Height="350" Width="525"
+        >
+    <Grid>
+
+      <slider:Page />
+        
+    </Grid>
+</Window>
