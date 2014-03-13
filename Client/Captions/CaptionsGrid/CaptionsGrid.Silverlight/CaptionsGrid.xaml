@@ -1,7 +1,7 @@
 ﻿<!--
 Project: ClipFlair (http://ClipFlair.codeplex.com)
 Filename: CaptionsGrid.xaml
-Version: 20140307
+Version: 20140311
 -->
 
 <UserControl x:Class="ClipFlair.CaptionsGrid.CaptionsGrid"
@@ -58,6 +58,7 @@ Version: 20140307
                 Grid.Row="0"
                 Orientation="Horizontal"
                 Background="{StaticResource ToolbarBackground}"
+                Margin="0"
                 >
       <toolkit:WrapPanel.Resources>
         <Style TargetType="toolkit:WrapPanel">
@@ -158,9 +159,12 @@ Version: 20140307
       Name="gridCaptions"
       Grid.Row="1"
       BorderThickness="0"
+
       Background="Transparent"
-      RowBackground="#F3F3F3"
+      RowBackground="Transparent"
       AlternatingRowBackground="#FFFFFF"
+
+      ClipboardCopyMode="IncludeHeader"
       AutoGenerateColumns="False"
       HeadersVisibility="All"
       ColumnHeaderStyle="{StaticResource ColumnHeaderStyle}"

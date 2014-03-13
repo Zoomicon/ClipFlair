@@ -1,6 +1,6 @@
 ﻿<!--
 Filename: SilverTextEditor.xaml
-Version: 20140309
+Version: 20140311
 -->
 
 <UserControl x:Class="SilverTextEditor.SilverTextEditor"
@@ -64,6 +64,7 @@ Version: 20140309
                     Orientation="Horizontal" 
                     Grid.Row="0"
                     Background="{StaticResource ToolbarBackground}"
+                    Margin="0"
                     >
         <toolkit:WrapPanel.Resources>
           <Style TargetType="toolkit:WrapPanel">

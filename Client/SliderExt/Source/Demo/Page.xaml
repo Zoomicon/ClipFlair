@@ -1,0 +1,22 @@
+﻿<UserControl
+  x:Class="SliderExt_Demo.Page"
+  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+  xmlns:slider="clr-namespace:SliderExtLib;assembly=SliderExt"
+  >
+  
+  <Grid x:Name="LayoutRoot" Background="White" Height="150" Width="500" >
+    <slider:SliderExt
+      Cursor="Hand"
+      HorizontalAlignment="Stretch" 
+      VerticalAlignment="Stretch" 
+      LargeChange="10"
+      Maximum="100"
+      SmallChange="1"
+      Value="20"
+      IsMoveToPointEnabled="True"
+      x:Name="MySlider"
+      />
+  </Grid>
+  
+</UserControl>
