@@ -1,6 +1,6 @@
 <!-- 
   Filename: Themes/Generic.xaml
-  Version: 20140313
+  Version: 20140314
 -->
   
   <ResourceDictionary
@@ -210,8 +210,8 @@
                 <ContentPresenter x:Name="ContentPresenter" Margin="{TemplateBinding Padding}"  HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
                   <ContentPresenter.Content>
                     <StackPanel Orientation="Horizontal">
-                      <Rectangle x:Name="RectangleColor" Margin="0,0,5,0" Height="11" Width="22" StrokeThickness="1" Stroke="{StaticResource BorderBrush}" Fill="Transparent" />
-                      <TextBlock x:Name="TextBlockColor" Foreground="{TemplateBinding Foreground}" VerticalAlignment="Center" />
+                      <Rectangle x:Name="RectangleColor" Margin="0,0,5,0" Height="11" Width="22" StrokeThickness="1" Stroke="{StaticResource BorderBrush}" Fill="Transparent" IsHitTestVisible="False" />
+                      <TextBlock x:Name="TextBlockColor" Foreground="{TemplateBinding Foreground}" VerticalAlignment="Center" IsHitTestVisible="False" />
                     </StackPanel>
                   </ContentPresenter.Content>
                 </ContentPresenter>
@@ -232,8 +232,8 @@
       <Setter.Value>
         <ControlTemplate TargetType="color:PredefinedColorItem">
           <StackPanel Orientation="Horizontal">
-            <Rectangle x:Name="RectangleColor" Height="11" Width="22" StrokeThickness="1" Stroke="{StaticResource BorderBrush}" Fill="Transparent" />
-            <TextBlock x:Name="TextBlockColor" Foreground="{TemplateBinding Foreground}" Margin="5,0" Text="{TemplateBinding Text}"></TextBlock>
+            <Rectangle x:Name="RectangleColor" Height="11" Width="22" StrokeThickness="1" Stroke="{StaticResource BorderBrush}" Fill="Transparent" IsHitTestVisible="false" />
+            <TextBlock x:Name="TextBlockColor" Foreground="{TemplateBinding Foreground}" Margin="5,0" Text="{TemplateBinding Text}" IsHitTestVisible="false" />
           </StackPanel>
         </ControlTemplate>
       </Setter.Value>
