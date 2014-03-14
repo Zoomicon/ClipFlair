@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: SilverNews.xaml.cs
-//Version: 20140311
+//Version: 20140314
 
 using System;
 using System.IO;
@@ -52,8 +52,15 @@ namespace SilverNews
       client.DownloadStringCompleted += (s, e) =>
       {
         if (!e.Cancelled) //note sure if this also handles download error cases
-          using (XmlReader reader = XmlReader.Create(new StringReader(e.Result))) //Silverlight's XmlReader can only read content from inside the .xap distribution file if you pass a Uri to it
-            RSSList.ItemsSource = SyndicationFeed.Load(reader).Items;
+          try
+          {
+            using (XmlReader reader = XmlReader.Create(new StringReader(e.Result))) //Silverlight's XmlReader can only read content from inside the .xap distribution file if you pass a Uri to it
+              RSSList.ItemsSource = SyndicationFeed.Load(reader).Items;
+          }
+          catch
+          {
+            RSSList.ItemsSource = null;
+          }
         else
           RSSList.ItemsSource = null;
       };
