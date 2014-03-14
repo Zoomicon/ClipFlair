@@ -1,4 +1,4 @@
-﻿//Version: 20140313
+﻿//Version: 20140314
 
 using SliderExtLib;
 using System.Collections.Generic;
@@ -61,7 +61,7 @@ namespace ColorPickerLib
       rectangleHSV.MouseLeftButtonDown += new MouseButtonEventHandler(HSV_MouseLeftButtonDown);
       rectangleHSV.MouseMove += new MouseEventHandler(HSV_MouseMove);
       rectangleHSV.MouseLeftButtonUp += new MouseButtonEventHandler(HSV_MouseLeftButtonUp);
-      rectangleHSV.MouseLeave += new MouseEventHandler(HSV_MouseLeave);
+      rectangleHSV.LostMouseCapture += new MouseEventHandler(HSV_LostMouseCapture);
 
       SliderExtHSV.ValueChanged += new RoutedPropertyChangedEventHandler<double>(SliderExtHSV_ValueChanged);
 
@@ -197,7 +197,8 @@ namespace ColorPickerLib
 
     private void HSV_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
     {
-      trackingHSV = rectangleHSV.CaptureMouse();
+      rectangleHSV.CaptureMouse(); //there is always a chance this returns false, so ignore its result
+      trackingHSV = true; //set this after CaptureMouse since on WPF it seems to always fire LostMouseCapture
 
       Point point = e.GetPosition(rectangleHSV);
 
@@ -215,7 +216,8 @@ namespace ColorPickerLib
 
     private void HSV_MouseMove(object sender, MouseEventArgs e)
     {
-      if (trackingHSV)
+      if (trackingHSV && 
+          new Rect(0, 0, rectangleHSV.ActualWidth, rectangleHSV.ActualHeight).Contains(e.GetPosition(rectangleHSV)))
       {
         Point point = e.GetPosition(rectangleHSV);
         Size size = ellipseHSV.RenderSize;
@@ -232,15 +234,15 @@ namespace ColorPickerLib
     }
     private void HSV_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
     {
-      trackingHSV = false;
       rectangleHSV.ReleaseMouseCapture();
-    }
-    private void HSV_MouseLeave(object sender, MouseEventArgs e)
-    {
-      trackingHSV = false;
-      rectangleHSV.ReleaseMouseCapture();
+      trackingHSV = false; //always clear, since we might have not gotten mouse capture in the first place
     }
 
+    private void HSV_LostMouseCapture(object sender, MouseEventArgs e)
+    {
+      trackingHSV = false;
+    }
+    
     private void SliderExtHSV_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
     {
       if (Updating) return;
