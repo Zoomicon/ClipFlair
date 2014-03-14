@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: BaseWindow.xaml.cs
-//Version: 20140311
+//Version: 20140314
 
 //TODO: unbind control at close
 
@@ -491,7 +491,7 @@ namespace ClipFlair.Windows
 
     public static IWindowFactory GetWindowFactory(string typeName)
     {
-      switch (typeName)
+      switch (typeName) //TODO: shouldn't do this with a switch, should be able to query for exported MEF Parts that have this key and return as IWindowFactory if they do implement the interface
       {
         case "ClipFlair.Windows.Views.MediaPlayerView":
           return MediaPlayerWindowFactory;
@@ -504,12 +504,14 @@ namespace ClipFlair.Windows
           return ImageWindowFactory;
         case "ClipFlair.Windows.Views.MapView":
           return MapWindowFactory;
+        case "ClipFlair.Windows.Views.NewsView":
+          return NewsWindowFactory;
         case "ClipFlair.Windows.Views.GalleryView":
           return GalleryWindowFactory;
         case "ClipFlair.Windows.Views.ActivityView":
           return ActivityWindowFactory;
         default:
-          throw new Exception("Unknown view type");
+          throw new Exception("Unknown view type: " + typeName);
       }
     }
 
