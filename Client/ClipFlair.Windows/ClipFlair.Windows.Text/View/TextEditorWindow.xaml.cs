@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: TextEditorWindow.xaml.cs
-//Version: 20131016
+//Version: 20140315
 
 using ClipFlair.Windows.Views;
 
@@ -48,7 +48,12 @@ namespace ClipFlair.Windows
 
     #endregion
 
-    #region Load / Save Options
+    #region Load / Save
+
+    public void Load(Stream stream, string filename, bool clearFirst = true)
+    {
+      editor.Load(stream, filename, clearFirst);
+    }
 
     public override void LoadOptions(ZipFile zip, string zipFolder = "")
     {

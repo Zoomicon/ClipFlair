@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: CaptionsGrid.xaml.cs
-//Version: 20140304
+//Version: 20140315
 
 using ClipFlair.AudioRecorder;
 using ClipFlair.CaptionsGrid.Resources;
@@ -22,11 +22,14 @@ namespace ClipFlair.CaptionsGrid
 {
   public partial class CaptionsGrid : UserControl
   {
-    #region Constants
+
+    #region --- Constants ---
 
     private TimeSpan CaptionDefaultDuration = new TimeSpan(0, 0, 2); //TODO: see LVS for the best value there
 
     #endregion
+
+    #region --- Initialization ---
 
     public CaptionsGrid()
     {
@@ -59,21 +62,8 @@ namespace ClipFlair.CaptionsGrid
 
     }
 
-    protected void DataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
-    {
-      CaptionElement selectedCaption = (CaptionElement)gridCaptions.SelectedItem;
-      if (selectedCaption != null)
-      {
-        DataGridColumn scrollToColumn = gridCaptions.CurrentColumn;
-        if (scrollToColumn == null) scrollToColumn = gridCaptions.Columns[0]; //if no column selected scroll to show 1st one
-        gridCaptions.ScrollIntoView(selectedCaption, scrollToColumn); //scroll vertically to show selected caption's row
-        //cells that are scrolled out of view aren't created yet and won't give us their content //TODO: blog this workarround (needed if the row is out of view or not rendered yet)
-          
-        Time = selectedCaption.Begin;
-        ((AudioRecorderControl)ColumnAudio.GetCellContent(selectedCaption)).View.Play(); //assuming the audio column is inside the current view
-      }
-    }
-
+    #endregion
+        
     #region --- Properties ---
 
     public bool Editing { get; private set; }
@@ -704,6 +694,21 @@ namespace ClipFlair.CaptionsGrid
         selectedCaption.End = Time;
       else
         AddCaption().End = Time; //also sets the begin time, no need to do AddCaption().Begin = Time;
+    }
+
+    protected void DataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+    {
+      CaptionElement selectedCaption = (CaptionElement)gridCaptions.SelectedItem;
+      if (selectedCaption != null)
+      {
+        DataGridColumn scrollToColumn = gridCaptions.CurrentColumn;
+        if (scrollToColumn == null) scrollToColumn = gridCaptions.Columns[0]; //if no column selected scroll to show 1st one
+        gridCaptions.ScrollIntoView(selectedCaption, scrollToColumn); //scroll vertically to show selected caption's row
+        //cells that are scrolled out of view aren't created yet and won't give us their content //TODO: blog this workarround (needed if the row is out of view or not rendered yet)
+
+        Time = selectedCaption.Begin;
+        ((AudioRecorderControl)ColumnAudio.GetCellContent(selectedCaption)).View.Play(); //assuming the audio column is inside the current view
+      }
     }
 
     #endregion

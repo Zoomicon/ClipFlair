@@ -1,11 +1,12 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: MediaPlayerWindow.xaml.cs
-//Version: 20140310
+//Version: 20140315
 
 using ClipFlair.Windows.Views;
 using Ionic.Zip;
 using Microsoft.SilverlightMediaFramework.Core.Media;
 using System;
+using System.IO;
 using System.Windows;
 
 namespace ClipFlair.Windows
@@ -92,6 +93,16 @@ namespace ClipFlair.Windows
       {
         MessageBox.Show("Error: " + ex.Message); //(only Progressive Download media is supported currently, can give empty source to clear playlist, then load some non smooth streaming remote URL)
       }
+    }
+
+    public void Open(Stream stream, string title = "") //doesn't close stream
+    {
+      player.Open(stream, title);
+    }
+
+    public void OpenLocalFile()
+    {
+      player.OpenLocalFile();
     }
  
     #endregion
