@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: MediaPlayerOptions.xaml.cs
-//Version: 20140310
+//Version: 20140315
 
 using System.Windows;
 using System.Windows.Controls;
@@ -40,7 +40,7 @@ namespace ClipFlair.Windows.Options
 
     private void btnLoadMedia_Click(object sender, RoutedEventArgs e)
     {
-      MediaPlayerWindow.player.OpenLocalFile();
+      MediaPlayerWindow.OpenLocalFile();
     }
 
     private void btnLoadOffline_Click(object sender, RoutedEventArgs e) //TODO: doesn't seem to work, maybe needs offline cache plugin or respective SMF assemblies

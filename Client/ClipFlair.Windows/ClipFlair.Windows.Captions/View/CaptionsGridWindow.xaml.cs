@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: CaptionsGridWindow.xaml.cs
-//Version: 20140207
+//Version: 20140315
 
 //TODO: add Source property to CaptionsGrid control and use data-binding to bind it to CaptionsGridView's Source property
 
@@ -35,7 +35,7 @@ namespace ClipFlair.Windows
     
     #endregion
 
-    #region Load / Save Options
+    #region Load / Save
 
     public override void LoadOptions(ZipFile zip, string zipFolder = "")
     {
@@ -105,6 +105,11 @@ namespace ClipFlair.Windows
       string startTime = caption.BeginText ?? "00:00:00"; //if null using "00:00:00"
       string endTime = caption.EndText ?? "00:00:00"; //if null using "00:00:00"
       return "/Audio/" + startTime  + "-" + endTime + ".wav";
+    }
+
+    public void LoadCaptions(Stream stream, string filename) //doesn't close stream
+    {
+      gridCaptions.LoadCaptions(stream, filename);
     }
 
     #endregion

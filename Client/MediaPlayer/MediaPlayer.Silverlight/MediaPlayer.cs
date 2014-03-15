@@ -764,7 +764,7 @@ namespace ClipFlair.MediaPlayer
       Open(file.OpenRead(), file.Name); //TODO: when playlist is cleared should close the stream (not sure if can listen for playlistitem lifetime events)
     }
 
-    public void Open(Stream stream, string title = "") //TODO: add support for opening .url (and maybe pinned site shortcuts too if one can pin media files)
+    public void Open(Stream stream, string title = "") //TODO: add support for opening .url (and maybe pinned site shortcuts too if one can pin media files) //doesn't close stream
     {
       Source = null; //clear source URL since we're loading directly from a Stream
 
