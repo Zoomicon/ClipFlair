@@ -1,4 +1,9 @@
-﻿<UserControl x:Class="ColorPicker_Demo.MainPage"
+﻿<!--
+Filename: MainPage.xaml
+Version: 20140317  
+-->
+  
+<UserControl x:Class="ColorPicker_Demo.MainPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -8,7 +13,7 @@
     d:DesignHeight="400" d:DesignWidth="600" xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk">
   
   <Grid x:Name="LayoutRoot" Background="White">
-    <color:ColorPicker Height="23" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="50,50" x:Name="colorPicker1" Width="150" Color="Red" ColorChanged="colorPicker1_ColorChanged" />
+    <color:ColorPicker Height="23" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="50,50" x:Name="colorPicker1" Width="150" Color="Red" ColorChanged="colorPicker1_ColorChanged" IsDirectlyUpdating="False" />
 
     <Grid Height="200" HorizontalAlignment="Left" Margin="50,100,0,0" x:Name="canvas1" VerticalAlignment="Top" Width="200" Visibility="Collapsed">
             <Ellipse Height="200" Width="200" x:Name="ellipse00" Fill="Red" />
