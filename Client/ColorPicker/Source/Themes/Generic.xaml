@@ -1,6 +1,6 @@
 <!-- 
   Filename: Themes/Generic.xaml
-  Version: 20140314
+  Version: 20140317
 -->
   
   <ResourceDictionary
@@ -528,7 +528,7 @@
                   <Canvas Height="20" Width="150" Margin="8,0" VerticalAlignment="Center">
                     <ComboBox x:Name="ComboBoxColor" Height="20" Width="150" VerticalAlignment="Center"/>
                     <StackPanel Orientation="Horizontal" Margin="6,0,0,0">
-                      <Rectangle x:Name="RectangleColor" Width="22" Height="11" Stroke="{StaticResource BorderBrush}" StrokeThickness="1">
+                      <Rectangle x:Name="RectangleColor" Width="22" Height="11" Stroke="{StaticResource BorderBrush}" StrokeThickness="1" IsHitTestVisible="False">
                         <Rectangle.Fill>
                           <SolidColorBrush x:Name="BrushColor" Color="White"/>
                         </Rectangle.Fill>

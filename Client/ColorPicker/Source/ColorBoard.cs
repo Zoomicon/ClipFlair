@@ -1,4 +1,4 @@
-﻿//Version: 20140314
+﻿//Version: 20140317
 
 using SliderExtLib;
 using System.Collections.Generic;
@@ -167,7 +167,9 @@ namespace ColorPickerLib
       set { SetValue(ColorProperty, value); }
     }
     
-    public static readonly DependencyProperty ColorProperty = DependencyProperty.RegisterAttached("Color", typeof(Color), typeof(ColorBoard), new PropertyMetadata(Colors.Transparent, new PropertyChangedCallback(ColorBoard.OnColorPropertyChanged)));
+    public static readonly DependencyProperty ColorProperty = 
+      DependencyProperty.RegisterAttached("Color", typeof(Color), typeof(ColorBoard), 
+                                          new PropertyMetadata(Colors.Transparent, new PropertyChangedCallback(OnColorPropertyChanged)));
     
     private static void OnColorPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
@@ -183,12 +185,40 @@ namespace ColorPickerLib
 
     #endregion
 
+    #region IsDirectlyUpdating
+
+    public bool IsDirectlyUpdating
+    {
+      get { return (bool)GetValue(IsDirectlyUpdatingProperty); }
+      set { SetValue(IsDirectlyUpdatingProperty, value); }
+    }
+
+    public static readonly DependencyProperty IsDirectlyUpdatingProperty = 
+      DependencyProperty.RegisterAttached("IsDirectlyUpdating", typeof(bool), typeof(ColorBoard),
+                         new PropertyMetadata(true, new PropertyChangedCallback(OnIsDirectlyUpdatingPropertyChanged)));
+
+    private static void OnIsDirectlyUpdatingPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    {
+      ColorBoard control = d as ColorBoard;
+      if (control != null && (bool)e.NewValue)
+        control.OnColorChanged();
+    }
+
+    #endregion
+
     #endregion
 
     #region --- Events ---
 
+    public event RoutedEventHandler ColorChanged;
     public event RoutedEventHandler DoneClicked;
 
+    private void OnColorChanged()
+    {
+      if (ColorChanged != null)
+        ColorChanged(this, new RoutedEventArgs());
+    }
+    
     private void OnDoneClicked()
     {
       if (DoneClicked != null)
@@ -495,6 +525,9 @@ namespace ColorPickerLib
       {
         EndUpdate();
       }
+
+      if (IsDirectlyUpdating)
+        OnColorChanged();
     }
 
     private bool Updating

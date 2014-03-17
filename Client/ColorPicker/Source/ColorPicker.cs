@@ -1,4 +1,4 @@
-﻿//Version: 20140313
+﻿//Version: 20140317
 
 using System;
 using System.ComponentModel;
@@ -34,6 +34,7 @@ namespace ColorPickerLib
       colorBoard.MouseLeftButtonDown += new MouseButtonEventHandler(ColorBoard_MouseLeftButtonDown);
       colorBoard.KeyDown += new KeyEventHandler(ColorBoard_KeyDown);
       colorBoard.SizeChanged += new SizeChangedEventHandler(ColorBoard_SizeChanged);
+      colorBoard.ColorChanged += new RoutedEventHandler(ColorBoard_ColorChanged);
       colorBoard.DoneClicked += new RoutedEventHandler(ColorBoard_DoneClicked);
     }
 
@@ -84,11 +85,13 @@ namespace ColorPickerLib
     private Popup popupDropDown;
     private Canvas canvasOutside;
     private Canvas canvasOutsidePopup;
-    private ColorBoard colorBoard;
+    ColorBoard colorBoard; //field only accessible by code in this file
 
     #endregion
 
     #region --- Properties ---
+
+    #region Color
 
     public Color Color
     {
@@ -96,7 +99,7 @@ namespace ColorPickerLib
       set { SetValue(ColorProperty, value); }
     }
 
-    public static readonly DependencyProperty ColorProperty = DependencyProperty.RegisterAttached("Color", typeof(Color), typeof(ColorPicker), new PropertyMetadata(Colors.Transparent, new PropertyChangedCallback(ColorPicker.OnColorPropertyChanged)));
+    public static readonly DependencyProperty ColorProperty = DependencyProperty.RegisterAttached("Color", typeof(Color), typeof(ColorPicker), new PropertyMetadata(Colors.Transparent, new PropertyChangedCallback(OnColorPropertyChanged)));
 
     private static void OnColorPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
@@ -110,16 +113,45 @@ namespace ColorPickerLib
 
     #endregion
 
+    #region IsDirectlyUpdating
+
+    public bool IsDirectlyUpdating
+    {
+      get { return (bool)GetValue(IsDirectlyUpdatingProperty); }
+      set { SetValue(IsDirectlyUpdatingProperty, value); }
+    }
+
+    public static readonly DependencyProperty IsDirectlyUpdatingProperty = 
+      DependencyProperty.RegisterAttached("IsDirectlyUpdating", typeof(bool), typeof(ColorPicker),
+                                          new PropertyMetadata(true, new PropertyChangedCallback(OnIsDirectlyUpdatingPropertyChanged)));
+
+    private static void OnIsDirectlyUpdatingPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    {
+      ColorPicker control = d as ColorPicker;
+      if (control != null)
+        control.colorBoard.IsDirectlyUpdating = (bool)e.NewValue;
+    }
+
+    #endregion
+
+    #endregion
+
     #region --- Events ---
 
-    public event EventHandler<PropertyChangedEventArgs> ColorChanged;
+    public event RoutedEventHandler ColorChanged;
 
     private void OnColorChanged()
     {
       if (ColorChanged != null)
       {
-        ColorChanged(this, new PropertyChangedEventArgs("Color"));
+        ColorChanged(this, new RoutedEventArgs());
       }
+    }
+
+    private void ColorBoard_ColorChanged(object sender, RoutedEventArgs e)
+    {
+      if (IsDirectlyUpdating) //ColorBoard should not be sending ColorChanged event when its IsDirectlyUpdating is set to fale, so this is just an extra safety check
+        Color = colorBoard.Color;
     }
 
     private void ColorBoard_DoneClicked(object sender, RoutedEventArgs e)
@@ -127,16 +159,20 @@ namespace ColorPickerLib
       Color = colorBoard.Color;
       popupDropDown.IsOpen = false;
     }
+
     private void ColorBoard_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
     {
     }
+
     private void ColorBoard_KeyDown(object sender, KeyEventArgs e)
     {
     }
+
     private void ColorBoard_SizeChanged(object sender, SizeChangedEventArgs e)
     {
       SetPopupPosition();
     }
+
     private void SetPopupPosition()
     {
       if (colorBoard != null && Application.Current != null

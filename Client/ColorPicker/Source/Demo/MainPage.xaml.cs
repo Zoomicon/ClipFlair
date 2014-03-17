@@ -13,7 +13,7 @@ namespace ColorPicker_Demo
       OnColorChanged();
     }
 
-    private void colorPicker1_ColorChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+    private void colorPicker1_ColorChanged(object sender, RoutedEventArgs e)
     {
       if (colorPicker1 != null)
       {
