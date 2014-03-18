@@ -19,7 +19,7 @@ namespace ClipFlair.CaptionsLib.Utils
       if (s == null)
         return null;
 
-      return s.Split(new String[] {separator}, options);
+      return s.Split(new string[] {separator}, options);
     }
 
   }

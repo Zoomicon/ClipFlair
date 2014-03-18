@@ -1,13 +1,15 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: MediaPlayerWindow.xaml.cs
-//Version: 20140315
+//Version: 20140318
 
+using ClipFlair.Windows.Media;
 using ClipFlair.Windows.Views;
 using Ionic.Zip;
 using Microsoft.SilverlightMediaFramework.Core.Media;
 using System;
 using System.IO;
 using System.Windows;
+using Utils.Extensions;
 
 namespace ClipFlair.Windows
 {
@@ -53,6 +55,22 @@ namespace ClipFlair.Windows
     #endregion
 
     #region --- Methods ---
+
+    public override string LoadFilter
+    {
+      get
+      {
+        return base.LoadFilter +"|" + MediaPlayerWindowFactory.LOAD_FILTER;
+      } 
+    }
+
+    public override void LoadOptions(FileInfo f)
+    {
+      if (!f.Name.EndsWith(new string[] { CLIPFLAIR_EXTENSION, CLIPFLAIR_ZIP_EXTENSION }))
+        player.Open(f);
+      else
+        base.LoadOptions(f);
+    }
 
     public override void LoadOptions(ZipFile zip, string zipFolder = "")
     {

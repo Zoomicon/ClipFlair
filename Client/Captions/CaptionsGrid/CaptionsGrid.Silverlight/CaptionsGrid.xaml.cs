@@ -754,7 +754,7 @@ namespace ClipFlair.CaptionsGrid
       if (files != null && files.Length > 0) //Use only 1st item from array of FileInfo objects
       {
         //TODO: instead of hardcoding which file extensions to ignore, should have this as property of the control (a ; separated string or an array)
-        if (files[0].Name.EndsWith(new String[] { ".clipflair", ".clipflair.zip" }, StringComparison.OrdinalIgnoreCase))
+        if (files[0].Name.EndsWith(new string[] { ".clipflair", ".clipflair.zip" }, StringComparison.OrdinalIgnoreCase))
           return;
 
         e.Handled = true; //must do this

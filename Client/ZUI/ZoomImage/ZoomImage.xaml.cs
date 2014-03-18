@@ -176,7 +176,7 @@ namespace ZoomImage
       }
 
       Uri uri = PreprocessUri(newSource);
-      if (uri.ToString().EndsWith(new String[]{".dzi",".dzc",".xml"}, StringComparison.OrdinalIgnoreCase)) //.DZI or .XML for DeepZoom Image and .DZC or .XML for DeepZoom Image Collection (there's also .DZIZ for zipped package with assets, but should be only for authoring/editing tools use)
+      if (uri.ToString().EndsWith(new string[]{".dzi",".dzc",".xml"}, StringComparison.OrdinalIgnoreCase)) //.DZI or .XML for DeepZoom Image and .DZC or .XML for DeepZoom Image Collection (there's also .DZIZ for zipped package with assets, but should be only for authoring/editing tools use)
       {
         scrollPlainZoom.Visibility = Visibility.Collapsed; //hide the ScrollViewer parent of ZoomAndPan control that hosts the classic Image control
         imgPlain.Source = null;

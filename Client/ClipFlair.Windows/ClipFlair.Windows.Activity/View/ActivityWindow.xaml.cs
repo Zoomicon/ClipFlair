@@ -2,6 +2,7 @@
 //Filename: ActivityWindow.xaml.cs
 //Version: 20140318
 
+using ClipFlair.UI.Dialogs;
 using ClipFlair.Windows.Captions;
 using ClipFlair.Windows.Media;
 using ClipFlair.Windows.Text;
@@ -134,11 +135,13 @@ namespace ClipFlair.Windows
     }
 
     public override void LoadOptions(FileInfo f){
-      if (!f.Name.EndsWith(new String[]{ CLIPFLAIR_EXTENSION, CLIPFLAIR_ZIP_EXTENSION }))
+      if (!f.Name.EndsWith(new string[]{ CLIPFLAIR_EXTENSION, CLIPFLAIR_ZIP_EXTENSION }))
       {
         IFileWindowFactory win = GetFileWindowFactory(f.Extension.ToUpper());
-        //using (Stream stream = f.OpenRead()) //will close the stream when done
+        if (win != null)
           activity.AddWindow(win.CreateWindow(f.Name, /*stream*/f.OpenRead())); //not closing the stream (components like MediaPlayerWindow require it open) //TODO: make sure those components close the streams when not using them anymore
+        else
+          MessageDialog.Show("Error", "Unsuppored file extension");
       } //TODO: see why the above doesn't work with CaptionsGridWindow (load .srt/.tts - loads them but must be losing them when AddWindow binds the window)
       else
         base.LoadOptions(f);
