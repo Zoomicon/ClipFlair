@@ -135,9 +135,9 @@
       <Project>{396DD176-BC1D-45CF-900E-4FC85B7398FC}</Project>
       <Name>ClipFlair.Windows.Text</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Client\ClipFlair.Studio\ClipFlair.Studio.csproj">
+    <ProjectReference Include="..\..\Client\ClipFlair.Studio\ClipFlair.Studio.Silverlight.csproj">
       <Project>{31498ABB-31AA-4FFA-BB32-98FCA11BB52A}</Project>
-      <Name>ClipFlair.Studio</Name>
+      <Name>ClipFlair.Studio.Silverlight</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

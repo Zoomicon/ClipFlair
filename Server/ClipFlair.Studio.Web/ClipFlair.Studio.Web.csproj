@@ -15,7 +15,7 @@
     <AssemblyName>ClipFlair.Web</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <UseIISExpress>false</UseIISExpress>
-    <SilverlightApplicationList>{31498ABB-31AA-4FFA-BB32-98FCA11BB52A}|..\..\Client\ClipFlair\ClipFlair.csproj|ClientBin|False</SilverlightApplicationList>
+    <SilverlightApplicationList>{31498ABB-31AA-4FFA-BB32-98FCA11BB52A}|..\..\Client\ClipFlair.Studio\ClipFlair.Studio.Silverlight.csproj|ClientBin|False</SilverlightApplicationList>
     <FileUpgradeFlags>
     </FileUpgradeFlags>
     <UpgradeBackupLocation>
@@ -78,6 +78,7 @@
   <ItemGroup>
     <None Include="Properties\PublishProfiles\ClipFlair_Studio.pubxml" />
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

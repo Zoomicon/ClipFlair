@@ -253,15 +253,15 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Utils\Utils.WPF\Utils.WPF.csproj">
+    <ProjectReference Include="..\..\..\Utils\Utils.WPF\Utils.WPF.csproj">
       <Project>{a1100da3-93dd-49b5-ba91-cf868051ca16}</Project>
       <Name>Utils.WPF</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\WPF_Compatibility\WPF_Compatibility.WPF\WPF_Compatibility.WPF.csproj">
+    <ProjectReference Include="..\..\..\WPF_Compatibility\WPF_Compatibility.WPF\WPF_Compatibility.WPF.csproj">
       <Project>{DC154E89-74E8-4ADC-95B5-0772CA254F71}</Project>
       <Name>WPF_Compatibility.WPF</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\ZUI\ImageButtons\ImageButtons.WPF\ImageButtons.WPF.csproj">
+    <ProjectReference Include="..\..\..\ZUI\ImageButtons\ImageButtons.WPF\ImageButtons.WPF.csproj">
       <Project>{5bb0f96d-2b5f-409c-9782-434b12e06600}</Project>
       <Name>ImageButtons.WPF</Name>
     </ProjectReference>
