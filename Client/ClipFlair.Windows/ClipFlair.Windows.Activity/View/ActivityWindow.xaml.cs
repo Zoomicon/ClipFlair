@@ -1,11 +1,15 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: ActivityWindow.xaml.cs
-//Version: 20130303
+//Version: 20140318
 
+using ClipFlair.Windows.Captions;
+using ClipFlair.Windows.Media;
+using ClipFlair.Windows.Text;
 using ClipFlair.Windows.Views;
 using Ionic.Zip;
 using System;
 using System.ComponentModel;
+using System.IO;
 using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Browser;
@@ -14,15 +18,15 @@ using System.Windows.Media;
 using Utils.Bindings;
 using Utils.Extensions;
 
-[assembly: TypeForwardedToAttribute(typeof(MediaPlayerView))]
-[assembly: TypeForwardedToAttribute(typeof(CaptionsGridView))]
-[assembly: TypeForwardedToAttribute(typeof(TextEditorView))]
-[assembly: TypeForwardedToAttribute(typeof(TextEditorView2))]
-[assembly: TypeForwardedToAttribute(typeof(ImageView))]
-[assembly: TypeForwardedToAttribute(typeof(MapView))]
-[assembly: TypeForwardedToAttribute(typeof(NewsView))]
-[assembly: TypeForwardedToAttribute(typeof(GalleryView))]
-//[assembly: TypeForwardedToAttribute(typeof(ActivityView))] //can't forward to a type from this assembly (don't need to anyway)
+[assembly: TypeForwardedTo(typeof(MediaPlayerView))]
+[assembly: TypeForwardedTo(typeof(CaptionsGridView))]
+[assembly: TypeForwardedTo(typeof(TextEditorView))]
+[assembly: TypeForwardedTo(typeof(TextEditorView2))]
+[assembly: TypeForwardedTo(typeof(ImageView))]
+[assembly: TypeForwardedTo(typeof(MapView))]
+[assembly: TypeForwardedTo(typeof(NewsView))]
+[assembly: TypeForwardedTo(typeof(GalleryView))]
+//[assembly: TypeForwardedTo(typeof(ActivityView))] //can't forward to a type from this assembly (don't need to anyway)
 
 namespace ClipFlair.Windows
 {
@@ -50,12 +54,15 @@ namespace ClipFlair.Windows
     {
       InitializeComponent();
 
+      mefContainer = activity.mefContainer;
+
       OptionsLoadSave.LoadURLTooltip = "Load activity from URL"; //TODO: localize
       OptionsLoadSave.LoadTooltip = "Load activity from file";
       OptionsLoadSave.SaveTooltip = "Save activity to file";
       
       View = activity.View; //set window's View to be the same as the nested activity's View
 
+   /*
       //copy Window Factory objects (initialized in activity using MEF) to static fields so that code in BaseWindow can use them
       MediaPlayerWindowFactory = activity.MediaPlayerWindowFactory;
       CaptionsGridWindowFactory = activity.CaptionsGridWindowFactory;
@@ -65,6 +72,7 @@ namespace ClipFlair.Windows
       NewsWindowFactory = activity.NewsWindowFactory;
       GalleryWindowFactory = activity.GalleryWindowFactory;
       ActivityWindowFactory = activity.ActivityWindowFactory;
+*/
 
       defaultLoadURL = DEFAULT_ACTIVITY;
 
@@ -111,7 +119,31 @@ namespace ClipFlair.Windows
     {
       base.ShowLoadURLDialog(loadItemTitle);
     }
-   
+
+    public override string LoadFilter
+    {
+      get
+      { 
+        return base.LoadFilter + 
+               "|" + MediaPlayerWindowFactory.LOAD_FILTER + 
+               "|" + CaptionsGridWindowFactory.LOAD_FILTER +
+               "|" + TextEditorWindowFactory.LOAD_FILTER
+               //"|" + ImageViewerWindowFactory.LOAD_FILTER
+               ;
+      }
+    }
+
+    public override void LoadOptions(FileInfo f){
+      if (!f.Name.EndsWith(new String[]{ CLIPFLAIR_EXTENSION, CLIPFLAIR_ZIP_EXTENSION }))
+      {
+        IFileWindowFactory win = GetFileWindowFactory(f.Extension.ToUpper());
+        //using (Stream stream = f.OpenRead()) //will close the stream when done
+          activity.AddWindow(win.CreateWindow(f.Name, /*stream*/f.OpenRead())); //not closing the stream (components like MediaPlayerWindow require it open) //TODO: make sure those components close the streams when not using them anymore
+      } //TODO: see why the above doesn't work with CaptionsGridWindow (load .srt/.tts - loads them but must be losing them when AddWindow binds the window)
+      else
+        base.LoadOptions(f);
+    }
+
     public override void LoadOptions(ZipFile zip, string zipFolder = "")
     {
       bool insertingChildWindow = ((loadModifiers & ModifierKeys.Control) > 0); //if CTRL was pressed at start of loading action, then insert content instead without removing current state & content

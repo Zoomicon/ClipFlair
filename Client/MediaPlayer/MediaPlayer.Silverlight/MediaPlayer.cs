@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: MediaPlayer.cs
-//Version: 20140306
+//Version: 20140318
 
 using Utils.Extensions;
 
@@ -30,6 +30,8 @@ namespace ClipFlair.MediaPlayer
   {
 
     #region Constants
+
+    public const string MEDIA_LOAD_FILTER = "Media files (*.wmv, *.mp4, *.wma, *.mp3)|*.wmv;*.mp4;*.wma;*.mp3";
 
     internal const string PART_BitrateMonitorElement = "BitrateMonitorElement";
 
@@ -746,7 +748,7 @@ namespace ClipFlair.MediaPlayer
       {
         OpenFileDialog dlg = new OpenFileDialog()
         {
-          Filter = "Media files (*.wmv, *.mp4, *.wma, *.mp3)|*.wmv;*.mp4;*.wma;*.mp3",
+          Filter = MEDIA_LOAD_FILTER,
           FilterIndex = 1 //note: this index is 1-based, not 0-based //OpenFileDialog doesn't seem to have a DefaultExt like SaveFileDialog
         };
 

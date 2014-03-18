@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: CaptionsGrid.xaml.cs
-//Version: 20140315
+//Version: 20140318
 
 using ClipFlair.AudioRecorder;
 using ClipFlair.CaptionsGrid.Resources;
@@ -24,6 +24,9 @@ namespace ClipFlair.CaptionsGrid
   {
 
     #region --- Constants ---
+
+    public const string IMPORT_FILTER = "Subtitle files (*.srt, *.tts)|*.srt;*.tts|SRT files (*.srt)|*.srt|TTS files (*.tts)|*.tts";
+    public const string EXPORT_FILTER = "Subtitle files (SRT, TTS, FAB, ENC)|*.srt;*.tts;*.fab;*.enc|SRT files|*.srt|FAB files|*.fab|Adobe Encore files|*.enc|TTS files|*.tts";
 
     private TimeSpan CaptionDefaultDuration = new TimeSpan(0, 0, 2); //TODO: see LVS for the best value there
 
@@ -770,7 +773,7 @@ namespace ClipFlair.CaptionsGrid
       {
         OpenFileDialog dlg = new OpenFileDialog()
         {
-          Filter = "Subtitle files (*.srt, *.tts)|*.srt;*.tts|SRT files (*.srt)|*.srt|TTS files (*.tts)|*.tts",
+          Filter = IMPORT_FILTER,
           FilterIndex = 1 //note: this index is 1-based, not 0-based
         };
 
@@ -793,7 +796,7 @@ namespace ClipFlair.CaptionsGrid
       {
         SaveFileDialog dlg = new SaveFileDialog()
         {
-          Filter = "Subtitle files (SRT, TTS, FAB, ENC)|*.srt;*.tts;*.fab;*.enc|SRT files|*.srt|FAB files|*.fab|Adobe Encore files|*.enc|TTS files|*.tts",
+          Filter = EXPORT_FILTER,
           //FilterIndex = 1, //note: this index is 1-based, not 0-based //not needed if we set DefaultExt
           //DefaultFileName = "Captions", //Silverlight will prompt "Do you want to save Captions?" if we set this, but the prompt can go under the main window, so avoid it
           DefaultExt = ".srt" //this doesn't seem to be used if you set FilterIndex

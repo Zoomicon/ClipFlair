@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: BaseWindow.xaml.cs
-//Version: 20140314
+//Version: 20140318
 
 //TODO: unbind control at close
 
@@ -14,9 +14,11 @@ using Ionic.Zip;
 using SilverFlow.Controls;
 using System;
 using System.ComponentModel;
+using System.ComponentModel.Composition.Hosting;
 using System.IO;
 using System.Net;
 using System.Runtime.Serialization;
+using System.Linq;
 using System.Text;
 using System.Windows;
 using System.Windows.Browser;
@@ -25,6 +27,7 @@ using System.Windows.Input;
 using System.Windows.Markup;
 using System.Xml;
 using Utils.Extensions;
+using System.ComponentModel.Composition.Primitives;
 
 namespace ClipFlair.Windows
 {
@@ -48,8 +51,11 @@ namespace ClipFlair.Windows
 
     #endregion
 
-    #region --- Child Window Factories ---
+    #region --- MEF ---
 
+    protected static CompositionContainer mefContainer; //assigned by ActivityWindow descendent
+
+    /*
     public static IWindowFactory MediaPlayerWindowFactory { get; protected set; }
     public static IWindowFactory CaptionsGridWindowFactory { get; protected set; }
     public static IWindowFactory TextEditorWindowFactory { get; protected set; }
@@ -59,6 +65,7 @@ namespace ClipFlair.Windows
     public static IWindowFactory NewsWindowFactory { get; protected set; }
     public static IWindowFactory GalleryWindowFactory { get; protected set; }
     public static IWindowFactory ActivityWindowFactory { get; protected set; }
+    */
 
     #endregion
 
@@ -288,13 +295,18 @@ namespace ClipFlair.Windows
       }
     }
 
+    public virtual string LoadFilter
+    {
+      get { return CLIPFLAIR_LOAD_FILTER;  }
+    }
+
     public void ShowLoadDialog() //this has to be called by user-initiated event handler
     {
       try
       {
         OpenFileDialog dlg = new OpenFileDialog()
         {
-          Filter = CLIPFLAIR_LOAD_FILTER,
+          Filter = LoadFilter,
           FilterIndex = 1, //note: this index is 1-based, not 0-based
           //DefaultExt = CLIPFLAIR_EXTENSION //OpenFileDialog doesn't seem to have a DefaultExt like SaveFileDialog
         };
@@ -445,7 +457,7 @@ namespace ClipFlair.Windows
       }
     }
 
-    public void LoadOptions(FileInfo f)
+    public virtual void LoadOptions(FileInfo f)
     {
       using (Stream stream = f.OpenRead()) //will close the stream when done
         LoadOptions(stream);
@@ -488,33 +500,24 @@ namespace ClipFlair.Windows
         return LoadWindow(memStream);
       }
     }
-
-    public static IWindowFactory GetWindowFactory(string typeName)
+    protected static IWindowFactory GetWindowFactory(string contract)
     {
-      switch (typeName) //TODO: shouldn't do this with a switch, should be able to query for exported MEF Parts that have this key and return as IWindowFactory if they do implement the interface
-      {
-        case "ClipFlair.Windows.Views.MediaPlayerView":
-          return MediaPlayerWindowFactory;
-        case "ClipFlair.Windows.Views.CaptionsGridView":
-          return CaptionsGridWindowFactory;
-        case "ClipFlair.Windows.Views.TextEditorView":
-        case "ClipFlair.Windows.Views.TextEditorView2":
-          return TextEditorWindowFactory;
-        case "ClipFlair.Windows.Views.ImageView":
-          return ImageWindowFactory;
-        case "ClipFlair.Windows.Views.MapView":
-          return MapWindowFactory;
-        case "ClipFlair.Windows.Views.NewsView":
-          return NewsWindowFactory;
-        case "ClipFlair.Windows.Views.GalleryView":
-          return GalleryWindowFactory;
-        case "ClipFlair.Windows.Views.ActivityView":
-          return ActivityWindowFactory;
-        default:
-          throw new Exception("Unknown view type: " + typeName);
-      }
+      Lazy<IWindowFactory> win = mefContainer.GetExports<IWindowFactory>(contract).FirstOrDefault();
+      if (win == null)
+        throw new Exception("Unknown view type: " + contract);
+      else
+        return win.Value;
     }
 
+    protected static IFileWindowFactory GetFileWindowFactory(string contract)
+    {
+      Lazy<IFileWindowFactory> win = mefContainer.GetExports<IFileWindowFactory>(contract).FirstOrDefault();
+      if (win != null)
+        return win.Value;
+      else
+        return null;
+    }
+    
     #endregion
 
     #region  ---------------- Save ----------------

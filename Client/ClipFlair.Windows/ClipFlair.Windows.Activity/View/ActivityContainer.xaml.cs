@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: ActivityContainer.xaml.cs
-//Version: 20140311
+//Version: 20140318
 
 //TODO: add ContentPartsCloseable property
 //TODO: add ContentPartsZoomable property
@@ -30,6 +30,8 @@ namespace ClipFlair.Windows
   public partial class ActivityContainer : UserControl
   {
 
+    #region --- Initialization ---
+
     public ActivityContainer()
     {
       View = new ActivityView(); //must set the view first
@@ -45,42 +47,9 @@ namespace ClipFlair.Windows
       LoadParts();
     }
 
-    private void LoadParts()
-    {
-      AggregateCatalog partsCatalog = new AggregateCatalog();
-      //don't put the following in conditional compilation block, all are needed for loading of saved options
-      partsCatalog.Catalogs.Add(new AssemblyCatalog(typeof(MediaPlayerWindow).Assembly));
-      partsCatalog.Catalogs.Add(new AssemblyCatalog(typeof(CaptionsGridWindow).Assembly));
-      partsCatalog.Catalogs.Add(new AssemblyCatalog(typeof(TextEditorWindow).Assembly));
-      partsCatalog.Catalogs.Add(new AssemblyCatalog(typeof(ImageWindow).Assembly));
-      partsCatalog.Catalogs.Add(new AssemblyCatalog(typeof(MapWindow).Assembly));
-      partsCatalog.Catalogs.Add(new AssemblyCatalog(typeof(NewsWindow).Assembly));
-      partsCatalog.Catalogs.Add(new AssemblyCatalog(typeof(GalleryWindow).Assembly));
-      partsCatalog.Catalogs.Add(new AssemblyCatalog(Assembly.GetExecutingAssembly())); //typeof(ActivityWindow).Assembly
+    #endregion
 
-      btnAddClip.Click += new RoutedEventHandler(btnAddClip_Click);
-      btnAddCaptions.Click += new RoutedEventHandler(btnAddCaptions_Click);
-      btnAddRevoicing.Click += new RoutedEventHandler(btnAddRevoicing_Click);
-      btnAddText.Click += new RoutedEventHandler(btnAddText_Click);
-      btnAddImage.Click += new RoutedEventHandler(btnAddImage_Click);
-      btnAddMap.Click += new RoutedEventHandler(btnAddMap_Click);
-      btnAddNews.Click += new RoutedEventHandler(btnAddNews_Click);
-      btnAddGallery.Click += new RoutedEventHandler(btnAddGallery_Click);
-      btnAddNestedActivity.Click += new RoutedEventHandler(btnAddNestedActivity_Click);
-
-      CompositionContainer container = new CompositionContainer(partsCatalog);
-      container.SatisfyImportsOnce(this);
-      //CompositionInitializer.SatisfyImports(this);
-    }
-
-    public BaseWindow FindWindow(string tag) //need this since floating windows are not added in the XAML visual tree by the FloatingWindowHostZUI.Windows property (maybe should have FloatingWindowHostZUI inherit 
-    {
-      foreach (BaseWindow w in zuiContainer.Windows)
-        if (tag == (string)w.Tag) return w; //must cast to string to compare (else we compare object references, since Tag property is of type object, not string)
-      return null;
-    }
-
-    #region View
+    #region --- View ---
 
     protected virtual void InitializeView()
     {
@@ -136,8 +105,15 @@ namespace ClipFlair.Windows
 
     #endregion
 
-    #region Windows
-
+    #region --- Windows ---
+    
+    public BaseWindow FindWindow(string tag) //need this since floating windows are not added in the XAML visual tree by the FloatingWindowHostZUI.Windows property (maybe should have FloatingWindowHostZUI inherit 
+    {
+      foreach (BaseWindow w in zuiContainer.Windows)
+        if (tag == (string)w.Tag) return w; //must cast to string to compare (else we compare object references, since Tag property is of type object, not string)
+      return null;
+    }
+    
     public void ZoomToFit()
     {
       Dispatcher.BeginInvoke(() => { zuiContainer.ZoomToFit(); }); //make sure we invoke this on the UI thread, else it won't always work correctly
@@ -169,30 +145,6 @@ namespace ClipFlair.Windows
       foreach (BaseWindow window in Windows)
         window.View.WarnOnClosing = false;
     }
-
-    [Import("ClipFlair.Windows.Views.MediaPlayerView", typeof(IWindowFactory), RequiredCreationPolicy = CreationPolicy.Shared)]
-    public IWindowFactory MediaPlayerWindowFactory { get; set; }
-
-    [Import("ClipFlair.Windows.Views.CaptionsGridView", typeof(IWindowFactory), RequiredCreationPolicy = CreationPolicy.Shared)]
-    public IWindowFactory CaptionsGridWindowFactory { get; set; }
-
-    [Import("ClipFlair.Windows.Views.TextEditorView", typeof(IWindowFactory), RequiredCreationPolicy = CreationPolicy.Shared)]
-    public IWindowFactory TextEditorWindowFactory { get; set; }
-
-    [Import("ClipFlair.Windows.Views.ImageView", typeof(IWindowFactory), RequiredCreationPolicy = CreationPolicy.Shared)]
-    public IWindowFactory ImageWindowFactory { get; set; }
-
-    [Import("ClipFlair.Windows.Views.MapView", typeof(IWindowFactory), RequiredCreationPolicy = CreationPolicy.Shared)]
-    public IWindowFactory MapWindowFactory { get; set; }
-
-    [Import("ClipFlair.Windows.Views.NewsView", typeof(IWindowFactory), RequiredCreationPolicy = CreationPolicy.Shared)]
-    public IWindowFactory NewsWindowFactory { get; set; }
-    
-    [Import("ClipFlair.Windows.Views.GalleryView", typeof(IWindowFactory), RequiredCreationPolicy = CreationPolicy.Shared)]
-    public IWindowFactory GalleryWindowFactory { get; set; }
-
-    [Import("ClipFlair.Windows.Views.ActivityView", typeof(IWindowFactory), RequiredCreationPolicy = CreationPolicy.Shared)]
-    public IWindowFactory ActivityWindowFactory { get; set; }
 
     public BaseWindow AddWindow(IWindowFactory windowFactory, bool newInstance = false)
     {
@@ -512,6 +464,69 @@ namespace ClipFlair.Windows
     }
 
     #endregion
+
+    #endregion
+
+    #region --- MEF ---
+
+    public CompositionContainer mefContainer;
+
+    [Import("ClipFlair.Windows.Views.MediaPlayerView", typeof(IWindowFactory), RequiredCreationPolicy = CreationPolicy.Shared)]
+    public IWindowFactory MediaPlayerWindowFactory { get; set; }
+
+    [Import("ClipFlair.Windows.Views.CaptionsGridView", typeof(IWindowFactory), RequiredCreationPolicy = CreationPolicy.Shared)]
+    public IWindowFactory CaptionsGridWindowFactory { get; set; }
+
+    [Import("ClipFlair.Windows.Views.TextEditorView", typeof(IWindowFactory), RequiredCreationPolicy = CreationPolicy.Shared)]
+    public IWindowFactory TextEditorWindowFactory { get; set; }
+
+    [Import("ClipFlair.Windows.Views.ImageView", typeof(IWindowFactory), RequiredCreationPolicy = CreationPolicy.Shared)]
+    public IWindowFactory ImageWindowFactory { get; set; }
+
+    [Import("ClipFlair.Windows.Views.MapView", typeof(IWindowFactory), RequiredCreationPolicy = CreationPolicy.Shared)]
+    public IWindowFactory MapWindowFactory { get; set; }
+
+    [Import("ClipFlair.Windows.Views.NewsView", typeof(IWindowFactory), RequiredCreationPolicy = CreationPolicy.Shared)]
+    public IWindowFactory NewsWindowFactory { get; set; }
+
+    [Import("ClipFlair.Windows.Views.GalleryView", typeof(IWindowFactory), RequiredCreationPolicy = CreationPolicy.Shared)]
+    public IWindowFactory GalleryWindowFactory { get; set; }
+
+    [Import("ClipFlair.Windows.Views.ActivityView", typeof(IWindowFactory), RequiredCreationPolicy = CreationPolicy.Shared)]
+    public IWindowFactory ActivityWindowFactory { get; set; }
+
+    private void LoadParts()
+    {
+      AggregateCatalog partsCatalog = new AggregateCatalog();
+      //don't put the following in conditional compilation block, all are needed for loading of saved options
+      partsCatalog.Catalogs.Add(new AssemblyCatalog(typeof(MediaPlayerWindow).Assembly));
+      partsCatalog.Catalogs.Add(new AssemblyCatalog(typeof(CaptionsGridWindow).Assembly));
+      partsCatalog.Catalogs.Add(new AssemblyCatalog(typeof(TextEditorWindow).Assembly));
+      partsCatalog.Catalogs.Add(new AssemblyCatalog(typeof(ImageWindow).Assembly));
+      partsCatalog.Catalogs.Add(new AssemblyCatalog(typeof(MapWindow).Assembly));
+      partsCatalog.Catalogs.Add(new AssemblyCatalog(typeof(NewsWindow).Assembly));
+      partsCatalog.Catalogs.Add(new AssemblyCatalog(typeof(GalleryWindow).Assembly));
+      partsCatalog.Catalogs.Add(new AssemblyCatalog(Assembly.GetExecutingAssembly())); //typeof(ActivityWindow).Assembly
+
+      InitPartButtons();
+
+      mefContainer = new CompositionContainer(partsCatalog);
+      mefContainer.SatisfyImportsOnce(this);
+      //CompositionInitializer.SatisfyImports(this);
+    }
+
+    private void InitPartButtons()
+    {
+      btnAddClip.Click += new RoutedEventHandler(btnAddClip_Click);
+      btnAddCaptions.Click += new RoutedEventHandler(btnAddCaptions_Click);
+      btnAddRevoicing.Click += new RoutedEventHandler(btnAddRevoicing_Click);
+      btnAddText.Click += new RoutedEventHandler(btnAddText_Click);
+      btnAddImage.Click += new RoutedEventHandler(btnAddImage_Click);
+      btnAddMap.Click += new RoutedEventHandler(btnAddMap_Click);
+      btnAddNews.Click += new RoutedEventHandler(btnAddNews_Click);
+      btnAddGallery.Click += new RoutedEventHandler(btnAddGallery_Click);
+      btnAddNestedActivity.Click += new RoutedEventHandler(btnAddNestedActivity_Click);
+    }
 
     #endregion
 
