@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: SilverTextEditor.xaml.cs
-//Version: 20140306
+//Version: 20140318
 
 //Originated from Microsoft Silverlight sample (MSPL license)
 
@@ -36,6 +36,14 @@ namespace SilverTextEditor
 {
   public partial class SilverTextEditor : UserControl
   {
+
+    #region --- Constants ---
+
+    public const string LOAD_FILTER = "All Text Files (*.text;*.docx;*.txt)|*.text;*.docx;*.txt|ClipFlair Text Files (*.text)|*.text|Office OpenXML Files (*.docx)|*.docx|Unicode Text Files (*.txt)|*.txt|All Files|*.*";
+    public const string SAVE_FILTER = "ClipFlair Text Files (*.text)|*.text|Unicode Text Files (*.txt)|*.txt|All Files|*.*";
+
+    #endregion
+
     public SilverTextEditor()
     {
       InitializeComponent();
@@ -747,7 +755,7 @@ namespace SilverTextEditor
         OpenFileDialog ofd = new OpenFileDialog()
         {
           //Multiselect = false, //this is false by default so no need to set it
-          Filter = "All Text Files (*.text;*.docx;*.txt)|*.text;*.docx;*.txt|ClipFlair Text Files (*.text)|*.text|Office OpenXML Files (*.docx)|*.docx|Unicode Text Files (*.txt)|*.txt|All Files|*.*"
+          Filter = LOAD_FILTER
         };
 
         if (ofd.ShowDialog() == true)
@@ -867,7 +875,7 @@ namespace SilverTextEditor
       {
         SaveFileDialog sfd = new SaveFileDialog()
         {
-          Filter = "ClipFlair Text Files (*.text)|*.text|Unicode Text Files (*.txt)|*.txt|All Files|*.*",
+          Filter = SAVE_FILTER,
           FilterIndex = 1, //1-based index, not 0-based //do not set this if DefaultExt is used
           //DefaultFileName = "Text", //Silverlight will prompt "Do you want to save Text?" if we set this, but the prompt can go under the main window, so avoid it
           DefaultExt = ".text" //don't set FilterIndex if this is set

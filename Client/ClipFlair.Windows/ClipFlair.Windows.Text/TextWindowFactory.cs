@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: TextWindowFactory.cs
-//Version: 20140315
+//Version: 20140318
 
 using System.ComponentModel.Composition;
 using System.IO;
@@ -9,9 +9,9 @@ namespace ClipFlair.Windows.Text
 {
 
   //Supported file extensions
-  [Export("TEXT", typeof(IWindowFactory))]
-  [Export("DOCX", typeof(IWindowFactory))]
-  [Export("TXT", typeof(IWindowFactory))]
+  [Export(".TEXT", typeof(IFileWindowFactory))]
+  [Export(".DOCX", typeof(IFileWindowFactory))]
+  [Export(".TXT", typeof(IFileWindowFactory))]
   //Supported views
   [Export("ClipFlair.Windows.Views.TextEditorView", typeof(IWindowFactory))]
   [Export("ClipFlair.Windows.Views.TextEditorView2", typeof(IWindowFactory))]
@@ -19,7 +19,9 @@ namespace ClipFlair.Windows.Text
   [PartCreationPolicy(CreationPolicy.Shared)]
   public class TextEditorWindowFactory : IFileWindowFactory
   {
-    private static string[] SUPPORTED_FILE_EXTENSIONS = new string[] { "TEXT", "DOCX", "TXT" };
+    public const string LOAD_FILTER = "All Text Files (*.text;*.docx;*.txt)|*.text;*.docx;*.txt|ClipFlair Text Files (*.text)|*.text|Office OpenXML Files (*.docx)|*.docx|Unicode Text Files (*.txt)|*.txt|All Files|*.*";
+   
+    private static string[] SUPPORTED_FILE_EXTENSIONS = new string[] { ".TEXT", ".DOCX", ".TXT" };
 
     public string[] SupportedFileExtensions()
     {
@@ -34,7 +36,7 @@ namespace ClipFlair.Windows.Text
     public BaseWindow CreateWindow(string filename, Stream stream)
     {
       TextEditorWindow window = new TextEditorWindow();
-      window.Load(stream, filename); //passing filename as title
+      window.Load(stream, filename);
       return window;
     }
 
