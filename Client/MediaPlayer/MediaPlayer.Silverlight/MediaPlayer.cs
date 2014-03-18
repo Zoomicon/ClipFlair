@@ -965,7 +965,7 @@ namespace ClipFlair.MediaPlayer
       if (files != null && files.Length > 0) //Use only 1st item from array of FileInfo objects
       {
         //TODO: instead of hardcoding which file extensions to ignore, should have this as property of the control (a ; separated string or an array)
-        if (files[0].Name.EndsWith(new String[] { ".clipflair", ".clipflair.zip" }, StringComparison.OrdinalIgnoreCase))
+        if (files[0].Name.EndsWith(new string[] { ".clipflair", ".clipflair.zip" }, StringComparison.OrdinalIgnoreCase))
           return;
 
         e.Handled = true; //must do this
@@ -1009,7 +1009,7 @@ namespace ClipFlair.MediaPlayer
     private static string FixURL_Dropbox(string url)
     {
       return url.ReplacePrefix(
-        new String[] { "https://dl.dropbox.com/s/", "https://www.dropbox.com/s/", "http://www.dropbox.com/s/" },
+        new string[] { "https://dl.dropbox.com/s/", "https://www.dropbox.com/s/", "http://www.dropbox.com/s/" },
         "http://dl.dropbox.com/s/", StringComparison.OrdinalIgnoreCase);
     }
 
@@ -1030,8 +1030,8 @@ namespace ClipFlair.MediaPlayer
     /// <returns>the fixed url</returns>
     private static string FixURL_ClipFlairStudio(string url)
     {
-      String[] videoPrefixes = new String[] { "http://studio.clipflair.net?video=", "http://studio.clipflair.net?clip=", "http://studio.clipflair.net/?video=", "http://studio.clipflair.net/?clip=" };
-      String[] audioPrefixes = new String[] { "http://studio.clipflair.net?audio=", "http://studio.clipflair.net/?audio=" };
+      String[] videoPrefixes = new string[] { "http://studio.clipflair.net?video=", "http://studio.clipflair.net?clip=", "http://studio.clipflair.net/?video=", "http://studio.clipflair.net/?clip=" };
+      String[] audioPrefixes = new string[] { "http://studio.clipflair.net?audio=", "http://studio.clipflair.net/?audio=" };
 
       if (url.StartsWith(videoPrefixes))
       {
@@ -1059,7 +1059,7 @@ namespace ClipFlair.MediaPlayer
         private static string FixURL_YouTube(string url, int millisecondsTimeout = 30000)
         {
           url = url.ReplacePrefix(
-            new String[]{"http://youtube.com", "https://youtube.com", "https://www.youtube.com"},
+            new string[]{"http://youtube.com", "https://youtube.com", "https://www.youtube.com"},
             "http://www.youtube.com"
             );
       

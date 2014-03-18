@@ -1,14 +1,16 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: CaptionsGridWindow.xaml.cs
-//Version: 20140315
+//Version: 20140318
 
 //TODO: add Source property to CaptionsGrid control and use data-binding to bind it to CaptionsGridView's Source property
 
 using ClipFlair.CaptionsGrid;
+using ClipFlair.Windows.Captions;
 using ClipFlair.Windows.Views;
 using Ionic.Zip;
 using Microsoft.SilverlightMediaFramework.Core.Accessibility.Captions;
 using System.IO;
+using Utils.Extensions;
 
 namespace ClipFlair.Windows
 {
@@ -36,6 +38,22 @@ namespace ClipFlair.Windows
     #endregion
 
     #region Load / Save
+
+    public override string LoadFilter
+    {
+      get
+      {
+        return base.LoadFilter + "|" + CaptionsGridWindowFactory.LOAD_FILTER;
+      }
+    }
+
+    public override void LoadOptions(FileInfo f)
+    {
+      if (!f.Name.EndsWith(new string[] { CLIPFLAIR_EXTENSION, CLIPFLAIR_ZIP_EXTENSION }))
+        gridCaptions.LoadCaptions(f);
+      else
+        base.LoadOptions(f);
+    }
 
     public override void LoadOptions(ZipFile zip, string zipFolder = "")
     {

@@ -1,12 +1,12 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: TextEditorWindow.xaml.cs
-//Version: 20140315
+//Version: 20140318
 
+using ClipFlair.Windows.Text;
 using ClipFlair.Windows.Views;
-
 using Ionic.Zip;
-
 using System.IO;
+using Utils.Extensions;
 
 namespace ClipFlair.Windows
 {
@@ -49,6 +49,22 @@ namespace ClipFlair.Windows
     #endregion
 
     #region Load / Save
+
+    public override string LoadFilter
+    {
+      get
+      {
+        return base.LoadFilter + "|" + TextEditorWindowFactory.LOAD_FILTER;
+      }
+    }
+
+    public override void LoadOptions(FileInfo f)
+    {
+      if (!f.Name.EndsWith(new string[] { CLIPFLAIR_EXTENSION, CLIPFLAIR_ZIP_EXTENSION }))
+        editor.Load(f);
+      else
+        base.LoadOptions(f);
+    }
 
     public void Load(Stream stream, string filename, bool clearFirst = true)
     {
