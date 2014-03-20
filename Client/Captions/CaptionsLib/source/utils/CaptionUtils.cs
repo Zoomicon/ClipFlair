@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: CaptionUtils.cs
-//Version: 20131113
+//Version: 20140319
 
 using ClipFlair.CaptionsLib.Encore;
 using ClipFlair.CaptionsLib.FAB;
@@ -18,46 +18,34 @@ namespace ClipFlair.CaptionsLib.Utils
 
     public const string EXTENSION_TTS = ".TTS";
     public const string EXTENSION_SRT = ".SRT";
-      //Note: Adobe ENCORE uses .TXT file extension for this
-    public const string EXTENSION_FAB = ".FAB";
-      //Note: Adobe ENCORE uses .TXT file extension for this
-    public const string EXTENSION_ENCORE = ".ENC";
+    public const string EXTENSION_FAB = ".FAB";    //Note: Adobe ENCORE uses .TXT file extension for this
+    public const string EXTENSION_ENCORE = ".ENC"; //Note: Adobe ENCORE uses .TXT file extension for this
 
     public static readonly string[] EXTENSIONS_TTS = { EXTENSION_TTS };
     public static readonly string[] EXTENSIONS_SRT = { EXTENSION_SRT };
     public static readonly string[] EXTENSIONS_FAB = { EXTENSION_FAB };
-
     public static readonly string[] EXTENSIONS_ENCORE = { EXTENSION_ENCORE };
+
     public static ICaptionsReader GetCaptionsReader(string path)
     {
-      if (FileUtils.CheckExtension(path, EXTENSIONS_TTS) != null) {
+      if (FileUtils.CheckExtension(path, EXTENSIONS_TTS) != null)
         return new TTSReader();
-      }
       else if (FileUtils.CheckExtension(path, EXTENSIONS_SRT) != null)
-      {
         return new SRTReader();
-      }
       return null;
     }
 
     public static ICaptionsWriter GetCaptionsWriter(string path)
     {
       if (FileUtils.CheckExtension(path, EXTENSIONS_TTS) != null)
-      {
         return new TTSWriter();
-      }
       else if (FileUtils.CheckExtension(path, EXTENSIONS_SRT) != null)
-      {
         return new SRTWriter();
-      }
       else if (FileUtils.CheckExtension(path, EXTENSIONS_FAB) != null)
-      {
         return new FABWriter();
-      }
       else if (FileUtils.CheckExtension(path, EXTENSIONS_ENCORE) != null)
-      {
         return new EncoreWriter();
-      }
+      else
       return null;
     }
 

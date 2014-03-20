@@ -134,11 +134,11 @@
       <Project>{A14AC96C-D998-4C35-B1C0-415535D1378B}</Project>
       <Name>ClipFlair.Windows.Media</Name>
     </ProjectReference>
-    <ProjectReference Include="..\ColorPicker\Silverlight\ColorPicker.Silverlight\ColorPicker.Silverlight.csproj">
+    <ProjectReference Include="..\ZUI\ColorPicker\Silverlight\ColorPicker.Silverlight\ColorPicker.Silverlight.csproj">
       <Project>{48c88177-760b-41ad-b0e1-68e164fae747}</Project>
       <Name>ColorPicker.Silverlight</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Utils\Utils.Silverlight\Utils.Silverlight.csproj">
+    <ProjectReference Include="..\Helpers\Utils\Utils.Silverlight\Utils.Silverlight.csproj">
       <Project>{E784B6A1-A300-4571-A881-B15240EEE377}</Project>
       <Name>Utils.Silverlight</Name>
     </ProjectReference>

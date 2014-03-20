@@ -69,6 +69,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
+    <DefineConstants>WINDOWS_PHONE; SILVERLIGHT</DefineConstants>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
     <PlatformTarget />
@@ -89,11 +90,6 @@
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
   </PropertyGroup>
-  <ItemGroup>
-    <Reference Include="WPF_Compatibility">
-      <HintPath>..\..\WPF_Compatibility\WPF_Compatibility.WindowsPhone\Bin\Debug\WPF_Compatibility.dll</HintPath>
-    </Reference>
-  </ItemGroup>
   <ItemGroup>
     <Compile Include="..\Source\FlipPanel.cs">
       <Link>FlipPanel.cs</Link>
@@ -164,6 +160,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Themes\NOTE.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Helpers\WPF_Compatibility\WPF_Compatibility.WindowsPhone\WPF_Compatibility.WindowsPhone.csproj">
+      <Project>{280683A7-E949-4E5F-87A3-D445C68A270F}</Project>
+      <Name>WPF_Compatibility.WindowsPhone</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\$(TargetFrameworkIdentifier)\$(TargetFrameworkVersion)\Microsoft.$(TargetFrameworkIdentifier).$(TargetFrameworkVersion).Overrides.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\$(TargetFrameworkIdentifier)\$(TargetFrameworkVersion)\Microsoft.$(TargetFrameworkIdentifier).CSharp.targets" />

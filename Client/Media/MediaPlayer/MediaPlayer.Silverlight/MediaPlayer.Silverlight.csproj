@@ -5,12 +5,12 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.50727</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{BF52BDBA-830F-4CD4-AA9C-F653B6448184}</ProjectGuid>
+    <ProjectGuid>{DD195CFE-B418-4C76-8F51-EEE8E28FAA41}</ProjectGuid>
     <ProjectTypeGuids>{A1591282-1198-4647-A2B1-27E5FF5F6F3B};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ClipFlair.AudioRecorder</RootNamespace>
-    <AssemblyName>AudioRecorder</AssemblyName>
+    <RootNamespace>ClipFlair.MediaPlayer</RootNamespace>
+    <AssemblyName>MediaPlayer</AssemblyName>
     <TargetFrameworkIdentifier>Silverlight</TargetFrameworkIdentifier>
     <TargetFrameworkVersion>v5.0</TargetFrameworkVersion>
     <SilverlightVersion>$(TargetFrameworkVersion)</SilverlightVersion>
@@ -61,24 +61,24 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.SilverlightMediaFramework.Core, Version=2.2012.605.0, Culture=neutral, PublicKeyToken=6687ff884a90c6a6, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.SilverlightMediaFramework.Plugins, Version=2.2012.605.0, Culture=neutral, PublicKeyToken=3dd5df9571bfd1e7, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.SilverlightMediaFramework.Plugins.Heuristics, Version=2.2012.605.0, Culture=neutral, PublicKeyToken=24473241fae5094b, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.SilverlightMediaFramework.Plugins.Progressive, Version=2.2012.605.0, Culture=neutral, PublicKeyToken=f5b35820df7ecf58, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.SilverlightMediaFramework.Plugins.SmoothStreaming, Version=2.2012.605.0, Culture=neutral, PublicKeyToken=17913f4360e6936c, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.SilverlightMediaFramework.Utilities, Version=2.2012.605.0, Culture=neutral, PublicKeyToken=2018901a52f7a62c, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.Web.Media.SmoothStreaming, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="mscorlib" />
-    <Reference Include="system" />
+    <Reference Include="System.Net" />
     <Reference Include="System.Windows" />
+    <Reference Include="system" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Windows.Browser" />
+    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ToggleCommand.cs" />
-    <Compile Include="Command.cs" />
+    <Compile Include="MediaPlayer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="AudioRecorderControl.xaml.cs">
-      <DependentUpon>AudioRecorderControl.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="AudioRecorderView.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <Page Include="AudioRecorderControl.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
@@ -93,34 +93,17 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="CREDITS.txt" />
-    <Resource Include="Images\LoadAudio.png" />
-    <Resource Include="Images\LoadAudio_hover.png" />
-    <Resource Include="Images\Play.png" />
-    <Resource Include="Images\Play_hover.png" />
-    <Resource Include="Images\Record.png" />
-    <Resource Include="Images\Record_hover.png" />
-    <Resource Include="Images\SaveAudio.png" />
-    <Resource Include="Images\SaveAudio_hover.png" />
-    <Resource Include="Images\Stop.png" />
-    <Resource Include="Images\Stop_hover.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\..\WPF_Compatibility\WPF_Compatibility.Silverlight\WPF_Compatibility.Silverlight.csproj">
+    <ProjectReference Include="..\..\..\Helpers\Utils\Utils.Silverlight\Utils.Silverlight.csproj">
+      <Project>{E784B6A1-A300-4571-A881-B15240EEE377}</Project>
+      <Name>Utils.Silverlight</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Helpers\WPF_Compatibility\WPF_Compatibility.Silverlight\WPF_Compatibility.Silverlight.csproj">
       <Project>{7DC832CC-2D97-4DBC-B963-3F77C1F20730}</Project>
       <Name>WPF_Compatibility.Silverlight</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\ZUI\ImageButtons\ImageButtons.Silverlight\ImageButtons.Silverlight.csproj">
-      <Project>{127105AF-C0F4-40F8-87C5-D6C391552936}</Project>
-      <Name>ImageButtons.Silverlight</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\AudioLib\AudioLib.Silverlight\AudioLib.Silverlight.csproj">
-      <Project>{A5E8BFFB-DA12-4EE4-9CA4-667412D98614}</Project>
-      <Name>AudioLib.Silverlight</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="AudioRecorderControl.cd" />
+    <None Include="MediaPlayer.cd" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Silverlight\$(SilverlightVersion)\Microsoft.Silverlight.CSharp.targets" />
   <ProjectExtensions>

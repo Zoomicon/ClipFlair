@@ -716,7 +716,7 @@ namespace ClipFlair.CaptionsGrid
 
     #endregion
 
-    #region Drag & Drop
+    #region --- Drag & Drop ---
 
      private void gridCaptions_DragEnter(object sender, DragEventArgs e)
     {
@@ -765,7 +765,7 @@ namespace ClipFlair.CaptionsGrid
     
     #endregion
 
-    #region Load-Save
+    #region --- Load-Save ---
 
     private void btnImport_Click(object sender, RoutedEventArgs e)
     {
