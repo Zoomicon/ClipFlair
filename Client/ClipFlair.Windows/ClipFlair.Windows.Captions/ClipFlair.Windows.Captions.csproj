@@ -100,7 +100,7 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Audio\AudioRecorderControl\AudioRecorderControl.Silverlight\AudioRecorderControl.Silverlight.csproj">
+    <ProjectReference Include="..\..\Media\Audio\AudioRecorderControl\AudioRecorderControl.Silverlight\AudioRecorderControl.Silverlight.csproj">
       <Project>{BF52BDBA-830F-4CD4-AA9C-F653B6448184}</Project>
       <Name>AudioRecorderControl.Silverlight</Name>
     </ProjectReference>
@@ -108,7 +108,7 @@
       <Project>{D2C64A3F-BD21-427C-A68A-69223088967C}</Project>
       <Name>CaptionsGrid.Silverlight</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Utils\Utils.Silverlight\Utils.Silverlight.csproj">
+    <ProjectReference Include="..\..\Helpers\Utils\Utils.Silverlight\Utils.Silverlight.csproj">
       <Project>{e784b6a1-a300-4571-a881-b15240eee377}</Project>
       <Name>Utils.Silverlight</Name>
     </ProjectReference>
@@ -116,7 +116,7 @@
       <Project>{3F3D3C8C-9724-4531-A04D-B92049F64686}</Project>
       <Name>FloatingWindow.Silverlight</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\WPF_Compatibility\WPF_Compatibility.Silverlight\WPF_Compatibility.Silverlight.csproj">
+    <ProjectReference Include="..\..\Helpers\WPF_Compatibility\WPF_Compatibility.Silverlight\WPF_Compatibility.Silverlight.csproj">
       <Project>{7DC832CC-2D97-4DBC-B963-3F77C1F20730}</Project>
       <Name>WPF_Compatibility.Silverlight</Name>
     </ProjectReference>

@@ -101,7 +101,7 @@
       <Project>{edac9709-c2cd-4673-ab04-d044f40dd681}</Project>
       <Name>SilverNews.Silverlight</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Utils\Utils.Silverlight\Utils.Silverlight.csproj">
+    <ProjectReference Include="..\..\Helpers\Utils\Utils.Silverlight\Utils.Silverlight.csproj">
       <Project>{e784b6a1-a300-4571-a881-b15240eee377}</Project>
       <Name>Utils.Silverlight</Name>
     </ProjectReference>

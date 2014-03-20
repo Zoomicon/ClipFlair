@@ -1,5 +1,5 @@
 ﻿//Filenam: SRTUtils.cs
-//Version: 20131120
+//Version: 20140319
 
 using ClipFlair.CaptionsLib.Utils;
 using Microsoft.SilverlightMediaFramework.Core.Accessibility.Captions;
@@ -17,6 +17,7 @@ namespace ClipFlair.CaptionsLib.SRT
     public const string SRT_TIME_SEPARATOR = " --> ";
 
     public static DateTime BaseTime = DateTimeUtils.DATETIMEZERO;
+
     public static string SecondsToSRTtime(double seconds)
     {
       return DateTimeUtils.SecondsToDateTimeStr(seconds, BaseTime, SRTtimeFormat, SignificantDigits);
