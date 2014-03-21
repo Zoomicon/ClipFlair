@@ -158,6 +158,9 @@
     <Compile Include="..\source\utils\FileUtils.vb">
       <Link>utils\FileUtils.vb</Link>
     </Compile>
+    <Compile Include="..\Source\utils\StringUtils.vb">
+      <Link>utils\StringUtils.vb</Link>
+    </Compile>
     <Compile Include="My Project\AssemblyInfo.vb" />
   </ItemGroup>
   <ItemGroup>

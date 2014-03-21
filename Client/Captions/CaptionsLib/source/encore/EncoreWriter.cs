@@ -1,6 +1,7 @@
 ﻿//Filename: EncoreWriter.cs
-//Version: 20131113
+//Version: 20140322
 
+using ClipFlair.CaptionsLib.Utils;
 using Microsoft.SilverlightMediaFramework.Core.Accessibility.Captions;
 using System.IO;
 
@@ -14,7 +15,7 @@ namespace ClipFlair.CaptionsLib.Encore
 
     public override void WriteCaption(CaptionElement caption, TextWriter writer)
     {
-      writer.WriteLine(EncoreUtils.SecondsToEncoreTime(caption.Begin.TotalSeconds) + " " + EncoreUtils.SecondsToEncoreTime(caption.End.TotalSeconds) + " " + caption.Content); //TODO: assuming Caption alredy contains CRLF between rows (not at ending row) - may should first convert LFs to CRLFs, then also trip CRLF's at end
+      writer.WriteLine(EncoreUtils.SecondsToEncoreTime(caption.Begin.TotalSeconds) + " " + EncoreUtils.SecondsToEncoreTime(caption.End.TotalSeconds) + " " + ((string)caption.Content).CrToCrLf());
     }
 
     #endregion

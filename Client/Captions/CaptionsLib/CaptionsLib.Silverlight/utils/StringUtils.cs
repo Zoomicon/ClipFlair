@@ -22,6 +22,16 @@ namespace ClipFlair.CaptionsLib.Utils
       return s.Split(new string[] {separator}, options);
     }
 
+    public static string CrToCrLf(this string s)
+    {
+      return s.Replace(vbCrLf, vbCr).Replace(vbCr, vbCrLf); //doing CrLf->Cr, Cr->CrLf to make sure that mixed Cr, CrLF strings ae converted to CrLf ok
+    }
+
+    public static string PrefixEmptyLines(this string s, string prefix)
+    {
+      return s.Replace(vbCrLf + vbCrLf, vbCrLf + prefix + vbCrLf);
+    }
+
   }
 
 }

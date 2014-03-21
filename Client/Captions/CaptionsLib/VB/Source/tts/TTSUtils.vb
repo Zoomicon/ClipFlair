@@ -1,6 +1,7 @@
 ﻿'Filename: TTSUtils.vb
-'Version: 20131113
+'Version: 20140322
 
+Imports ClipFlair.CaptionsLib.Utils.StringUtils
 Imports ClipFlair.CaptionsLib.Utils.DateTimeUtils
 
 Imports Microsoft.SilverlightMediaFramework.Core.Accessibility.Captions
@@ -24,7 +25,7 @@ Namespace ClipFlair.CaptionsLib.TTS
     End Function
 
     Public Shared Function CaptionToTTSString(ByVal caption As CaptionElement) As String
-      Return SecondsToTTStime(caption.Begin.TotalSeconds) + "," + SecondsToTTStime(caption.End.TotalSeconds) + TTS_TIME_END + CStr(caption.Content).Replace(vbCrLf, "|")
+      Return SecondsToTTStime(caption.Begin.TotalSeconds) + "," + SecondsToTTStime(caption.End.TotalSeconds) + TTS_TIME_END + CStr(caption.Content).CrToCrLf().Replace(vbCrLf, "|")
     End Function
 
     Public Shared Sub TTSStringToCaption(ByVal ttsString As String, ByVal caption As CaptionElement)

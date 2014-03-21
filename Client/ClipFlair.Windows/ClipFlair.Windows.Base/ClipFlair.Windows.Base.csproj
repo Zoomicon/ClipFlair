@@ -132,6 +132,10 @@
       <Project>{7DC832CC-2D97-4DBC-B963-3F77C1F20730}</Project>
       <Name>WPF_Compatibility.Silverlight</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\ZUI\SliderExt\Silverlight\SliderExt.Silverlight\SliderExt.Silverlight.csproj">
+      <Project>{f07c9c6f-f516-4410-8c35-304fcf3ecad0}</Project>
+      <Name>SliderExt.Silverlight</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
