@@ -443,8 +443,10 @@
                                 </TransformGroup>
                             </Grid.RenderTransform>
 
-                            <Border x:Name="ContentBorder" Background="{TemplateBinding Background}" BorderThickness="{TemplateBinding BorderThickness}" 
-                BorderBrush="{TemplateBinding BorderBrush}" CornerRadius="3">
+                            <Border x:Name="ContentBorder" 
+                                    BorderThickness="{TemplateBinding BorderThickness}" 
+                                    BorderBrush="{TemplateBinding BorderBrush}"
+                                    CornerRadius="3">
                                 <Grid>
                                     <Grid.RowDefinitions>
                                         <RowDefinition Height="Auto"/>
@@ -486,7 +488,10 @@
                                             </Button>
                                         </Grid>
                                     </Border>
-                                    <Border Grid.Row="1">
+                                    <Border Grid.Row="1"
+                                            Background="{TemplateBinding Background}">
+                                            <!-- not setting the background at the outer border, sice we want to be able to have titlebar color with transparency -->
+           
                                         <ContentPresenter x:Name="ContentPresenter" Content="{TemplateBinding Content}"
                         ContentTemplate="{TemplateBinding ContentTemplate}"
                         HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"

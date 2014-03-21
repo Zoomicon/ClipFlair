@@ -1,6 +1,6 @@
 ﻿<!--
   Filename: generic.xaml 
-  Version: 20140228
+  Version: 20140321
 -->
 
 <ResourceDictionary
@@ -614,7 +614,6 @@
 
               <Border
                 x:Name="ContentBorder"
-                Background="{TemplateBinding Background}"
                 BorderThickness="{TemplateBinding BorderThickness}" 
                 BorderBrush="{TemplateBinding BorderBrush}"
                 CornerRadius="{TemplateBinding CornerRadius}"
@@ -633,7 +632,7 @@
                     UseLayoutRounding="True"
                     BorderThickness="0"
                     CornerRadius="0"
-                    Margin="-1,-1,-1,0"
+                    Margin="0"
                     Padding="0"
                     >
                     <!-- Note: changed to UseLayoutRounding="True" to help with GPU acceleration -->
@@ -705,7 +704,8 @@
                     BorderThickness="0"
                     Margin="0"
                     Padding="0"
-                    >
+                    Background="{TemplateBinding Background}"
+                    > <!-- not setting the background at the outer border, sice we want to be able to have titlebar color with transparency -->
                     <ContentPresenter
                       x:Name="ContentPresenter"
                       Content="{TemplateBinding Content}"
