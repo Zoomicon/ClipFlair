@@ -178,10 +178,6 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\WPF_Compatibility\WPF_Compatibility.WPF\WPF_Compatibility.WPF.csproj">
-      <Project>{DC154E89-74E8-4ADC-95B5-0772CA254F71}</Project>
-      <Name>WPF_Compatibility.WPF</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\ZoomAndPan.WPF\ZoomAndPan.WPF.csproj">
       <Project>{468ADEDE-6F5E-40C0-99C9-C6DAC4FAC934}</Project>
       <Name>ZoomAndPan.WPF</Name>

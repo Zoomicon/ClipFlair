@@ -32,7 +32,7 @@ namespace ZoomAndPanSample
             //
             // Update the scale so that the entire content fits in the window.
             //
-            overview.ScaleToFit();
+            overview.ZoomToFit();
         }
 
         /// <summary>
