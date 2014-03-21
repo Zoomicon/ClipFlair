@@ -1,11 +1,11 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: HtmlEncodedToDecodedStringConverter.cs
-//Version: 20140227
+//Version: 20140321
 
 using System;
 using System.Windows.Data;
 
-#if SILVERLIGHT
+#if SILVERLIGHT && !WINDOWS_PHONE
 using System.Windows.Browser;
 #else
 using System.Net;

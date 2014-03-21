@@ -1,9 +1,9 @@
-﻿//Version: 20120712
+﻿//Version: 20140321
 
 //Based on: http://reflector.webtropy.com/default.aspx/DotNET/DotNET/8@0/untmp/WIN_WINDOWS/lh_tools_devdiv_wpf/Windows/wcp/Framework/System/Windows/Data/ValueConversionAttribute@cs/1/ValueConversionAttribute@cs
+//a simpler implementation (though at other namespace) can be found at: https://github.com/rhwilburn/MVVM-for-Mono/blob/master/MVVM.Common/Binding/Converter/ValueConversionAttribute.cs
 
 #if SILVERLIGHT
-
 
 namespace System.Windows.Data
 {

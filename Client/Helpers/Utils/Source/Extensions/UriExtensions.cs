@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: StringExtensions.cs
-//Version: 20130704
+//Version: 20140321
 
 using System;
 using System.Windows.Controls;
@@ -26,7 +26,7 @@ namespace Utils.Extensions
         /**/
         public static void NavigateTo(this Uri link)
         { //source: http://social.msdn.microsoft.com/Forums/en-US/lightswitchgeneral/thread/5871c39a-a5fe-4d0c-a157-151442f6ee8d
-          #if SILVERLIGHT
+          #if SILVERLIGHT && !WINDOWS_PHONE
                       if (AutomationFactory.IsAvailable) //needs elevated rights
                       {
                         dynamic shell = AutomationFactory.CreateObject("Shell.Application");

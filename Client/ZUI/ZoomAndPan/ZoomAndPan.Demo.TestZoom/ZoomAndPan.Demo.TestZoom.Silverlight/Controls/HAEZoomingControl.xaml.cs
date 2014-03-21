@@ -243,7 +243,7 @@ namespace TestZoom.Controls
         {
             SavePrevZoomRect();
 
-            zoomAndPanControl.AnimatedScaleToFit();
+            zoomAndPanControl.AnimatedZoomToFit();
         }
 
         private void btn100_Click(object sender, RoutedEventArgs e)
@@ -417,7 +417,7 @@ namespace TestZoom.Controls
 
         private void overview_SizeChanged(object sender, SizeChangedEventArgs e)
         {
-          overview.ScaleToFit();
+          overview.ZoomToFit();
         }
 
         private void MyPOP_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)

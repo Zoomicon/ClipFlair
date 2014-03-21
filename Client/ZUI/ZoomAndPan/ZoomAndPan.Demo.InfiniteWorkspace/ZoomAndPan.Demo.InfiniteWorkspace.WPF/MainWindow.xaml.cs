@@ -300,7 +300,7 @@ namespace ZoomAndPanSample
         {
             SavePrevZoomRect();
 
-            zoomAndPanControl.AnimatedScaleToFit();
+            zoomAndPanControl.AnimatedZoomToFit();
         }
 
         /// <summary>
