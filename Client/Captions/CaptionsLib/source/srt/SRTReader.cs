@@ -1,5 +1,5 @@
 ﻿//Description: SRTReader class
-//Version: 20131113
+//Version: 20140321
 
 using ClipFlair.CaptionsLib.Utils;
 using Microsoft.SilverlightMediaFramework.Core.Accessibility.Captions;
@@ -13,7 +13,8 @@ namespace ClipFlair.CaptionsLib.SRT
 
     #region --- Fields ---
     
-    protected int fLineNumber;
+    protected int fLineNumber; //=0
+    protected string fLine; //=null
     
     #endregion
 
@@ -30,6 +31,7 @@ namespace ClipFlair.CaptionsLib.SRT
     public override void ReadHeader(System.IO.TextReader reader)
     {
       fLineNumber = 0;
+      fLine = "";
       //assuming we're reading a "file" from start, so resetting counter
     }
 
@@ -37,17 +39,28 @@ namespace ClipFlair.CaptionsLib.SRT
     {
       fLineNumber += 1;
 
-      string line = reader.ReadLine();
+      if (string.IsNullOrEmpty(fLine)) //do not use IsNullOrWhitespace here since we use a single space char for empty caption rows
+        fLine = reader.ReadLine();
+
       string c = "";
-      //TODO: must change this to detect a blank line (treated as separator) before the end of the file or just before a line with the next number
-      while ((line != null) && (line != "")) {
-        if ((c != ""))
-          c +=  StringUtils.vbCrLf;
-        c += line;
-        line = reader.ReadLine();
+      while (!string.IsNullOrEmpty(fLine)) //do not use IsNullOrWhitespace here since we use a single space char for empty caption rows
+      {
+        if (c != "")
+          c += StringUtils.vbCrLf;
+        c += fLine;
+        fLine = reader.ReadLine();
       }
-      if ((c != ""))
+
+      while ((fLine != null) && (fLine == "")) //skip any empty lines between captions
+        fLine = reader.ReadLine();
+
+      if (c != "")
         SRTUtils.SRTStringToCaption(c, Caption);
+    }
+
+    public override void ReadFooter(System.IO.TextReader reader)
+    {
+      fLine = null;
     }
 
     #endregion

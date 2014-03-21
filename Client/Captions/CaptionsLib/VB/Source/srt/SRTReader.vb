@@ -1,5 +1,5 @@
 ﻿'Description: SRTReader class
-'Version: 20131114
+'Version: 20140322
 
 Imports ClipFlair.CaptionsLib.SRT.SRTUtils
 
@@ -14,6 +14,7 @@ Namespace ClipFlair.CaptionsLib.SRT
 #Region "--- Fields ---"
 
     Protected fLineNumber As Integer
+    Protected fLine As String
 
 #End Region
 
@@ -36,13 +37,19 @@ Namespace ClipFlair.CaptionsLib.SRT
     Public Overrides Sub ReadCaption(ByVal Caption As CaptionElement, ByVal reader As TextReader)
       fLineNumber += 1
 
-      Dim line As String = reader.ReadLine()
+      If (String.IsNullOrEmpty(fLine)) Then fLine = reader.ReadLine() 'do not use IsNullOrWhitespace here since we use a single space char for empty caption rows
+
       Dim c As String = ""
-      While (line IsNot Nothing) AndAlso (line <> "") 'TODO: must change this to detect a blank line (treated as separator) before the end of the file or just before a line with the next number
+      While Not String.IsNullOrEmpty(fLine) 'TODO: must change this to detect a blank fLine (treated as separator) before the end of the file or just before a fLine with the next number
         If (c <> "") Then c += vbCrLf
-        c += line
-        line = reader.ReadLine()
+        c += fLine
+        fLine = reader.ReadLine()
       End While
+
+      While (fLine IsNot Nothing) AndAlso (fLine = "") 'skip any empty lines between captions
+        fLine = reader.ReadLine()
+      End While
+
       If (c <> "") Then SRTStringToCaption(c, Caption)
     End Sub
 

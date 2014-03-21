@@ -1,5 +1,5 @@
 ﻿//Filename: TTSUtils.cs
-//Version: 20131113
+//Version: 20140322
 
 using ClipFlair.CaptionsLib.Utils;
 using Microsoft.SilverlightMediaFramework.Core.Accessibility.Captions;
@@ -29,7 +29,7 @@ namespace ClipFlair.CaptionsLib.TTS
 
     public static string CaptionToTTSString(CaptionElement caption)
     {
-      return SecondsToTTStime(caption.Begin.TotalSeconds) + "," + SecondsToTTStime(caption.End.TotalSeconds) + TTS_TIME_END + ((string)caption.Content).Replace( StringUtils.vbCrLf, "|");
+      return SecondsToTTStime(caption.Begin.TotalSeconds) + "," + SecondsToTTStime(caption.End.TotalSeconds) + TTS_TIME_END + ((string)caption.Content).CrToCrLf().Replace(StringUtils.vbCrLf, "|");
     }
 
     public static void TTSStringToCaption(string ttsString, CaptionElement caption)

@@ -1,6 +1,7 @@
 ﻿'Filename: FABWriter.vb
-'Version: 20131114
+'Version: 20140322
 
+Imports ClipFlair.CaptionsLib.Utils.StringUtils
 Imports ClipFlair.CaptionsLib.FAB.FABUtils
 
 Imports System.IO
@@ -15,7 +16,7 @@ Namespace ClipFlair.CaptionsLib.FAB
 
     Public Overrides Sub WriteCaption(ByVal caption As CaptionElement, ByVal writer As TextWriter)
       writer.WriteLine(SecondsToFABtime(caption.Begin.TotalSeconds) + "  " + SecondsToFABtime(caption.End.TotalSeconds))  'separator is double space
-      writer.WriteLine(caption.Content) 'TODO: assuming Caption alredy contains CRLF between rows (not at ending row) - may should first convert LFs to CRLFs, then also trip CRLF's at end
+      writer.WriteLine(CStr(caption.Content).CrToCrLf().PrefixEmptyLines(" "))
       writer.WriteLine()  'FAB format has an empty line AFTER each Caption, resuling to the file ending up at two empty lines (maybe done so that more Captions can be easily appended later on to the file)
     End Sub
 

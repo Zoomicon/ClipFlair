@@ -1,6 +1,7 @@
 ﻿'Filename: EncoreWriter.vb
-'Version: 20131114
+'Version: 20140322
 
+Imports ClipFlair.CaptionsLib.Utils.StringUtils
 Imports ClipFlair.CaptionsLib.Encore.EncoreUtils
 
 Imports System.IO
@@ -14,7 +15,7 @@ Namespace ClipFlair.CaptionsLib.Encore
 #Region "--- Methods ---"
 
     Public Overrides Sub WriteCaption(ByVal caption As CaptionElement, ByVal writer As TextWriter)
-      writer.WriteLine(SecondsToEncoreTime(caption.Begin.TotalSeconds) + " " + SecondsToEncoreTime(caption.End.TotalSeconds) + " " + caption.Content) 'TODO: assuming Caption alredy contains CRLF between rows (not at ending row) - may should first convert LFs to CRLFs, then also trip CRLF's at end
+      writer.WriteLine(SecondsToEncoreTime(caption.Begin.TotalSeconds) + " " + SecondsToEncoreTime(caption.End.TotalSeconds) + " " + CStr(caption.Content).CrToCrLf())
     End Sub
 
 #End Region
