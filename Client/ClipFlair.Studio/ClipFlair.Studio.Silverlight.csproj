@@ -82,6 +82,7 @@
     <Reference Include="Microsoft.SilverlightMediaFramework.Plugins.Heuristics, Version=2.2012.605.0, Culture=neutral, PublicKeyToken=24473241fae5094b, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.SilverlightMediaFramework.Plugins.Progressive, Version=2.2012.605.0, Culture=neutral, PublicKeyToken=f5b35820df7ecf58, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.SilverlightMediaFramework.Plugins.SmoothStreaming, Version=2.2012.605.0, Culture=neutral, PublicKeyToken=17913f4360e6936c, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.Web.Media.SmoothStreaming, Version=2.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="mscorlib" />
     <Reference Include="system" />
     <Reference Include="System.Core" />

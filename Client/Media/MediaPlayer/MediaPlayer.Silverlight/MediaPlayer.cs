@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: MediaPlayer.cs
-//Version: 20140318
+//Version: 20140323
 
 using Utils.Extensions;
 
@@ -113,10 +113,20 @@ namespace ClipFlair.MediaPlayer
       playlistItem.MediaSource = new Uri(newSourceStr);
 
       string s;
-      if (newSourceStr.EndsWith(".ism/manifest", StringComparison.OrdinalIgnoreCase))
+      if (newSourceStr.EndsWith(".ism/manifest", StringComparison.OrdinalIgnoreCase)) //Smooth stream
       {
         playlistItem.DeliveryMethod = DeliveryMethods.AdaptiveStreaming;
         s = newSourceStr.Substring(0, newSourceStr.Length - 13); //".ism/manifest" suffix is 13 chars long (not using Replace method since it doesn't take StringComparison parameter)
+      }
+      else if (newSourceStr.EndsWith(".ism/manifest(format=mpd-time-csf)", StringComparison.OrdinalIgnoreCase)) //MPEG-DASH (this works)
+      {
+        playlistItem.DeliveryMethod = DeliveryMethods.AdaptiveStreaming;
+        s = newSourceStr.Substring(0, newSourceStr.Length - 34); //".ism/manifest(format=mpd-time-csf)" suffix is 34 chars long (not using Replace method since it doesn't take StringComparison parameter)
+      }
+      else if (newSourceStr.EndsWith(".mpd", StringComparison.OrdinalIgnoreCase)) //MPEG-DASH (this doesn't seem to work) //TODO: check if server needs to have some MIME type to serve this or client access policy file
+      {
+        playlistItem.DeliveryMethod = DeliveryMethods.AdaptiveStreaming;
+        s = newSourceStr.Substring(0, newSourceStr.Length - 4); //".mpd" suffix is 4 chars long (not using Replace method since it doesn't take StringComparison parameter)
       }
       else
       {
