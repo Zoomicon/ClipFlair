@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: TextEditorDefaults.cs
-//Version: 20131216
+//Version: 20140324
 
 using System;
 using System.Windows.Media;
@@ -26,23 +26,22 @@ namespace ClipFlair.Windows.Views
 
     #region Methods
 
-    public static void SetDefaults(ITextEditor editor)
+    public static void SetDefaults(ITextEditor view)
     {
       //IView defaults and overrides
-      ViewDefaults.SetDefaults(editor);
-      editor.Title = DefaultTitle;
-      editor.Width = DefaultWidth;
-      editor.Height = DefaultHeight;
-      editor.BorderColor = DefaultBorderColor;
+      ViewDefaults.SetDefaults(view);
+      view.Title = DefaultTitle;
+      view.Width = DefaultWidth;
+      view.Height = DefaultHeight;
+      view.BorderColor = DefaultBorderColor;
 
-      //ITextEditor defaults
-      editor.Source = DefaultSource;
-      editor.ToolbarVisible = DefaultToolbarVisible;
-      editor.Editable = DefaultEditable;
-      //editor.Color = DefaultColor;
+      //ITextview defaults
+      view.Source = DefaultSource;
+      view.ToolbarVisible = DefaultToolbarVisible;
+      view.Editable = DefaultEditable;
 
       //Dirty flag
-      editor.Dirty = ViewDefaults.DefaultDirty; //must do last - this should be set again at the end of any overriden SetDefaults versions (at descendents)
+      view.Dirty = ViewDefaults.DefaultDirty; //must do last - this should be set again at the end of any overriden SetDefaults versions (at descendents)
     }
 
     #endregion
