@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: BaseView.cs
-//Version: 20131216
+//Version: 20140324
 
 using System;
 using System.ComponentModel;
@@ -17,12 +17,15 @@ namespace ClipFlair.Windows.Views
   public class BaseView: IView
   {
 
+    #region --- Initialization ---
+
     public BaseView()
     {
       SetDefaults(); //ancestors don't need to call "SetDefaults" at their constructors since this constructor is always called
+      TitleColor = BorderColor; //set to same value as BorderColor (for compatibility with older save data that didn't have TitleColor info) //at SetDefaults using DefaultTitleColor special value that is detected at OnDeserialized and replaced with BorderColor
     }
 
-    public BaseView(IView view)
+    public BaseView(IView view) //only used if some descendent view needs to have a constructor that accepts IView (there it calls this base constructor)
     {
       if (view == null) return;
 
@@ -38,10 +41,11 @@ namespace ClipFlair.Windows.Views
       Zoom = view.Zoom;
       ZIndex = view.ZIndex;
       Opacity = view.Opacity;
-      BackgroundColor = view.BackgroundColor;
-      BorderColor = view.BorderColor;
-      BorderThickness = view.BorderThickness;
       CornerRadius = view.CornerRadius;
+      BorderThickness = view.BorderThickness;
+      BorderColor = view.BorderColor;
+      TitleColor = view.TitleColor;
+      BackgroundColor = view.BackgroundColor;
       Moveable = view.Moveable;
       Resizable = view.Resizable;
       Zoomable = view.Zoomable;
@@ -50,16 +54,6 @@ namespace ClipFlair.Windows.Views
       
       //Dirty flag
       Dirty = view.Dirty; //must be last - any overriden versions should also set this
-    }
-    
-    #region INotifyPropertyChanged
-
-    public event PropertyChangedEventHandler PropertyChanged;
-
-    public void RaisePropertyChanged(string PropertyName)
-    {
-      if (PropertyChanged != null)
-        PropertyChanged(this, new PropertyChangedEventArgs(PropertyName));
     }
 
     #endregion
@@ -78,8 +72,9 @@ namespace ClipFlair.Windows.Views
     private double zoom;
     private int zIndex;
     private double opacity;
-    private Color backgroundColor;
     private Color borderColor;
+    private Color titleColor;
+    private Color backgroundColor;
     private Thickness borderThickness;
     private CornerRadius cornerRadius;
     private bool moveable;
@@ -302,32 +297,16 @@ namespace ClipFlair.Windows.Views
     }
 
     [DataMember]
-    //[DefaultValue(ViewDefaults.DefaultBackgroundColor)] //can't use static fields here (and we're forced to use one for Color, doesn't work with const)
-    public Color BackgroundColor
+    //[DefaultValue(ViewDefaults.DefaultCornerRadius)] //can't use static fields here (and we're forced to use one for CornerRadius, doesn't work with const)
+    public CornerRadius CornerRadius
     {
-      get { return backgroundColor; }
+      get { return cornerRadius; }
       set
       {
-        if (value != backgroundColor)
+        if (value != cornerRadius)
         {
-          backgroundColor = value;
-          RaisePropertyChanged(IViewProperties.PropertyBackgroundColor);
-          Dirty = true;
-        }
-      }
-    }
-    
-    [DataMember]
-    //[DefaultValue(ViewDefaults.DefaultBorderColor)] //can't use static fields here (and we're forced to use one for Color, doesn't work with const)
-    public Color BorderColor
-    {
-      get { return borderColor; }
-      set
-      {
-        if (value != borderColor)
-        {
-          borderColor = value;
-          RaisePropertyChanged(IViewProperties.PropertyBorderColor);
+          cornerRadius = value;
+          RaisePropertyChanged(IViewProperties.PropertyCornerRadius);
           Dirty = true;
         }
       }
@@ -350,16 +329,48 @@ namespace ClipFlair.Windows.Views
     }
 
     [DataMember]
-    //[DefaultValue(ViewDefaults.DefaultCornerRadius)] //can't use static fields here (and we're forced to use one for CornerRadius, doesn't work with const)
-    public CornerRadius CornerRadius
+    //[DefaultValue(ViewDefaults.DefaultBorderColor)] //can't use static fields here (and we're forced to use one for Color, doesn't work with const)
+    public Color BorderColor
     {
-      get { return cornerRadius; }
+      get { return borderColor; }
       set
       {
-        if (value != cornerRadius)
+        if (value != borderColor)
         {
-          cornerRadius = value;
-          RaisePropertyChanged(IViewProperties.PropertyCornerRadius);
+          borderColor = value;
+          RaisePropertyChanged(IViewProperties.PropertyBorderColor);
+          Dirty = true;
+        }
+      }
+    }
+
+    [DataMember]
+    //[DefaultValue(ViewDefaults.DefaultTitleColor)] //DefaultTitleColor is null, so that is becomes same as border color for compatibility with older saved data that didn't have title color (see "OnDeserialized" method)
+    public Color TitleColor
+    {
+      get { return titleColor; }
+      set
+      {
+        if (value != titleColor)
+        {
+          titleColor = value;
+          RaisePropertyChanged(IViewProperties.PropertyTitleColor);
+          Dirty = true;
+        }
+      }
+    }
+
+    [DataMember]
+    //[DefaultValue(ViewDefaults.DefaultBackgroundColor)] //can't use static fields here (and we're forced to use one for Color, doesn't work with const)
+    public Color BackgroundColor
+    {
+      get { return backgroundColor; }
+      set
+      {
+        if (value != backgroundColor)
+        {
+          backgroundColor = value;
+          RaisePropertyChanged(IViewProperties.PropertyBackgroundColor);
           Dirty = true;
         }
       }
@@ -429,7 +440,7 @@ namespace ClipFlair.Windows.Views
       }
     }
 
-    [DataMember(Order = 0)] //Order=0 means this gets deserialized after other fields (that don't have order set)
+    [DataMember(Order = 0)] //using maximum order so that this gets deserialized after other fields (that don't have order set)
     //[DefaultValue(ViewDefaults.DefaultTime)] //can't use static fields here (and we're forced to use one for TimeSpan unfortunately, doesn't work with const)
     public virtual TimeSpan Time
     {
@@ -474,6 +485,27 @@ namespace ClipFlair.Windows.Views
     public void OnDeserializing(StreamingContext context) //Note that this cannot be a virtual method
     {
       SetDefaults(); //this one is a virtual method overriden by descendents (they should call "base.SetDefaults()" first there, then override any BaseView default values and then set defaults for their own properties)
+    }
+
+    [OnDeserialized()]
+    public void OnDeserialized(StreamingContext context)
+    {
+      if (titleColor == ViewDefaults.DefaultTitleColor)
+        titleColor = borderColor;
+    }
+
+    #endregion
+
+    #region --- Events ---
+
+    //INotifyPropertyChanged//
+
+    public event PropertyChangedEventHandler PropertyChanged;
+
+    public void RaisePropertyChanged(string PropertyName)
+    {
+      if (PropertyChanged != null)
+        PropertyChanged(this, new PropertyChangedEventArgs(PropertyName));
     }
 
     #endregion

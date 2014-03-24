@@ -1,7 +1,7 @@
 ﻿<!--
 Project: ClipFlair (http://ClipFlair.codeplex.com)
 Filename: MediaPlayerWindow.xaml
-Version: 20140310
+Version: 20140324
 -->
 
 <clipflair:BaseWindow x:Class="ClipFlair.Windows.MediaPlayerWindow"
@@ -31,9 +31,7 @@ Version: 20140310
 
   <media:MediaPlayer Name="player" 
      HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
-                     
-     Background="Transparent"
-                     
+                    
      EnableCachedComposition="True"
                                      
      Source="{Binding Source, Mode=TwoWay}"
@@ -70,7 +68,7 @@ Version: 20140310
      TimelineMarkerLeft="player_TimelineMarkerLeft"
      >
     <!-- EnableSync="True" (TODO: read SMF documentation on PiP) -->
-  </media:MediaPlayer>
+  </media:MediaPlayer> <!-- not using {x:null} nor Transparent for Background, with the later some videos were blending with the background color of the MediaPlayerWindow -->
 
   <!--</clipflair:BaseWindow.FrontContent>-->
 

@@ -1,7 +1,7 @@
 ﻿<!--
 Project: ClipFlair (http://ClipFlair.codeplex.com)
 Filename: BaseWindow.xaml
-Version: 20140311
+Version: 20140324
 -->
 
 <float:FloatingWindow x:Class="ClipFlair.Windows.BaseWindow"
@@ -81,7 +81,7 @@ Version: 20140311
   </float:FloatingWindow.BorderBrush>
   
   <float:FloatingWindow.TitleBackground>
-    <SolidColorBrush Color="{Binding BorderColor}" />
+    <SolidColorBrush Color="{Binding TitleColor}" />
   </float:FloatingWindow.TitleBackground>
   
   <float:FloatingWindow.Background>
@@ -259,18 +259,24 @@ Version: 20140311
                       <Slider Name="sldOpacity" Value="{Binding Opacity, Mode=TwoWay}" Minimum="0.1" Maximum="1" SmallChange="0.05" LargeChange="0.1" Orientation="Horizontal" />
                     </StackPanel>
 
+                    <StackPanel Orientation="Vertical" Name="propTitleColor">
+                      <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Title Color:" Target="{Binding ElementName=edTitleColor}" />
+                      <color:ColorPicker Color="{Binding TitleColor, Mode=TwoWay}" />
+                      <!-- <TextBox Name="edTitleColor" Text="{Binding TitleColor, Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=True}" /> -->
+                    </StackPanel>
+
                     <StackPanel Orientation="Vertical" Name="propBackgroundColor">
                       <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Background Color:" Target="{Binding ElementName=edBackgroundColor}" />
                       <color:ColorPicker Color="{Binding BackgroundColor, Mode=TwoWay}" />
                       <!-- <TextBox Name="edBackgroundColor" Text="{Binding BackgroundColor, Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=True}" /> -->
                     </StackPanel>
-                    
+
                     <StackPanel Orientation="Vertical" Name="propBorderColor">
                       <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Border Color:" Target="{Binding ElementName=edBorderColor}" />
                       <color:ColorPicker Color="{Binding BorderColor, Mode=TwoWay}" />
                       <!-- <TextBox Name="edBorderColor" Text="{Binding BorderColor, Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=True}" /> -->
                     </StackPanel>
-                    
+
                     <StackPanel Orientation="Vertical" Name="propBorderThickness">
                       <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Border Thickness:" Target="{Binding ElementName=edBorderThickness}" />
                       <TextBox Name="edBorderThickness" Text="{Binding BorderThickness, Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=True}" />
@@ -280,7 +286,7 @@ Version: 20140311
                       <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Corner Radius:" Target="{Binding ElementName=edCornerRadius}" />
                       <TextBox Name="edCornerRadius" Text="{Binding CornerRadius, Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=True}" />
                     </StackPanel>
-                    
+
                     <StackPanel Orientation="Horizontal" Name="propMoveable">
                       <CheckBox Name="cbMoveable" IsChecked="{Binding Moveable, Mode=TwoWay}" />
                       <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Moveable" Target="{Binding ElementName=cbMoveable}"/>

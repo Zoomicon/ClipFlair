@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: IView.cs
-//Version: 20131216
+//Version: 20140324
 
 using System;
 using System.ComponentModel;
@@ -26,6 +26,7 @@ namespace ClipFlair.Windows.Views
     double Zoom { get; set; }
     int ZIndex { get; set; } //20131206
     double Opacity { get; set; }
+    Color TitleColor { get; set; } //20140324
     Color BackgroundColor { get; set; } //20131216
     Color BorderColor { get; set; } //20131213
     Thickness BorderThickness { get; set; } //20131213

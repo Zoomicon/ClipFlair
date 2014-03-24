@@ -69,13 +69,14 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <DefineConstants>WINDOWS_PHONE; SILVERLIGHT</DefineConstants>
+    <DefineConstants>TRACE;DEBUG;WINDOWS_PHONE; SILVERLIGHT</DefineConstants>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
     <PlatformTarget />
     <OutputPath>Bin\x86\Release</OutputPath>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
+    <DefineConstants>WINDOWS_PHONE; SILVERLIGHT</DefineConstants>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|ARM'">
     <PlatformTarget />
