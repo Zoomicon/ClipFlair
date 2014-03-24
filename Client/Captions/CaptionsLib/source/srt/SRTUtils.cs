@@ -1,5 +1,5 @@
 ﻿//Filenam: SRTUtils.cs
-//Version: 20140319
+//Version: 20140324
 
 using ClipFlair.CaptionsLib.Utils;
 using Microsoft.SilverlightMediaFramework.Core.Accessibility.Captions;
@@ -20,12 +20,12 @@ namespace ClipFlair.CaptionsLib.SRT
 
     public static string SecondsToSRTtime(double seconds)
     {
-      return DateTimeUtils.SecondsToDateTimeStr(seconds, BaseTime, SRTtimeFormat, SignificantDigits);
+      return DateTimeUtils.SecondsToDateTimeStr(seconds, BaseTime, SRTtimeFormat, SignificantDigits).Replace('.', ':'); //fix: issue has been reported where resulting SRTs contained . instead of :
     }
 
     public static double SRTtimeToSeconds(string srtTime)
     {
-      return DateTimeUtils.TimeStrToSeconds(srtTime, BaseTime, SRTtimeFormat, SignificantDigits);
+      return DateTimeUtils.TimeStrToSeconds(srtTime.Replace('.', ':'), BaseTime, SRTtimeFormat, SignificantDigits); //fix: issue has been reported where resulting SRTs contained . instead of :
     }
 
     public static void SRTStringToCaption(string srtString, CaptionElement caption)

@@ -1,5 +1,5 @@
 ﻿'Filenam: SRTUtils.vb
-'Version: 20121119
+'Version: 20140324
 
 Imports ClipFlair.CaptionsLib.Utils.DateTimeUtils
 
@@ -16,11 +16,11 @@ Namespace ClipFlair.CaptionsLib.SRT
     Public Shared BaseTime As DateTime = DATETIMEZERO
 
     Public Shared Function SecondsToSRTtime(ByVal seconds As Double) As String
-      Return SecondsToDateTimeStr(seconds, BaseTime, SRTtimeFormat, SignificantDigits)
+      Return SecondsToDateTimeStr(seconds, BaseTime, SRTtimeFormat, SignificantDigits).Replace(".", ":") 'fix: issue has been reported where resulting SRTs contained . instead of :
     End Function
 
     Public Shared Function SRTtimeToSeconds(ByVal srtTime As String) As Double
-      Return TimeStrToSeconds(srtTime, BaseTime, SRTtimeFormat, SignificantDigits)
+      Return TimeStrToSeconds(srtTime.Replace(".", ":"), BaseTime, SRTtimeFormat, SignificantDigits) 'fix: issue has been reported where resulting SRTs contained . instead of :
     End Function
 
     Public Shared Sub SRTStringToCaption(ByVal srtString As String, ByVal caption As CaptionElement)
