@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: ViewDefaults.cs
-//Version: 20140324
+//Version: 20140326
 
 using System;
 using System.Windows;
@@ -25,10 +25,10 @@ namespace ClipFlair.Windows.Views
     public const double DefaultZoom = 1.0; //100% scale (zoom)
     public const int DefaultZIndex = 0;
     public const double DefaultOpacity = 1.0; //opaque
-    //not using a DefaultTitleColor for backwards compatibility reasons, it becomes same as BorderColor
     public static readonly Color DefaultBackgroundColor = Color.FromArgb(0xFF, 0xF3, 0xF3, 0xF3); //#F3F3F3
     public static readonly Color DefaultBorderColor = Color.FromArgb(0xFF, 0x21, 0x71, 0xD2); //#2171D2
-    public static readonly Color DefaultTitleColor = Colors.White; //Note: special color that will be replaced by border color after loading
+    public static readonly Color DefaultTitleForegroundColor = Color.FromArgb(0xFF, 0xE6, 0xE5, 0xEA); //#E6E5EA
+    public static readonly Color? DefaultTitleBackgroundColor = null; //Note: special value that will be replaced by border color after loading (for compatibility reasons with older saved data)
     public static readonly Thickness DefaultBorderThickness = new Thickness(3);
     public static readonly CornerRadius DefaultCornerRadius = new CornerRadius(0);
     public const bool DefaultMoveable = true;
@@ -56,7 +56,8 @@ namespace ClipFlair.Windows.Views
       view.Zoom = DefaultZoom;
       view.ZIndex = DefaultZIndex;
       view.Opacity = DefaultOpacity;
-      view.TitleColor = DefaultTitleColor;
+      view.TitleForegroundColor = DefaultTitleForegroundColor;
+      view.TitleBackgroundColor = DefaultTitleBackgroundColor;
       view.BackgroundColor = DefaultBackgroundColor;
       view.BorderColor = DefaultBorderColor;
       view.BorderThickness = DefaultBorderThickness;

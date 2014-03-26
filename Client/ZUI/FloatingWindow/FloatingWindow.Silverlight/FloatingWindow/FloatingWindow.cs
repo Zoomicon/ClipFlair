@@ -1,5 +1,5 @@
 //Filename: FloatingWindow.cs
-//Version: 20140311
+//Version: 20140316
 
 //#define BORDER_ONLY_AT_RESIZABLE //using BorderThickness instead to allow user to define when they want the border to be visible themselves
 
@@ -746,6 +746,33 @@ namespace SilverFlow.Controls
         typeof(string),
         typeof(FloatingWindow),
         null);
+
+    #endregion
+
+    #region public Brush TitleForeground
+
+    /// <summary>
+    /// Gets or sets the title Foreground.
+    /// </summary>
+    /// <value>The title Foreground.</value>
+    public Brush TitleForeground
+    {
+      get { return (Brush)GetValue(TitleForegroundProperty); }
+      set { SetValue(TitleForegroundProperty, value); }
+    }
+
+    /// <summary>
+    /// Identifies the <see cref="FloatingWindow.TitleForeground" /> dependency property.
+    /// </summary>
+    /// <value>
+    /// The identifier for the <see cref="FloatingWindow.TitleForeground" /> dependency property.
+    /// </value>
+    public static readonly DependencyProperty TitleForegroundProperty =
+        DependencyProperty.Register(
+        "TitleForeground",
+        typeof(Brush),
+        typeof(FloatingWindow),
+        new PropertyMetadata(new SolidColorBrush(Colors.Transparent)));
 
     #endregion
 

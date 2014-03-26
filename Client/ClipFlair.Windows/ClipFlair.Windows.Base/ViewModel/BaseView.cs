@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: BaseView.cs
-//Version: 20140324
+//Version: 20140326
 
 using System;
 using System.ComponentModel;
@@ -22,7 +22,7 @@ namespace ClipFlair.Windows.Views
     public BaseView()
     {
       SetDefaults(); //ancestors don't need to call "SetDefaults" at their constructors since this constructor is always called
-      TitleColor = BorderColor; //set to same value as BorderColor (for compatibility with older save data that didn't have TitleColor info) //at SetDefaults using DefaultTitleColor special value that is detected at OnDeserialized and replaced with BorderColor
+      TitleBackgroundColor = BorderColor; //set to same value as BorderColor (for compatibility with older save data that didn't have TitleBackgroundColor info) //at SetDefaults using DefaultTitleBackgroundColor special value that is detected at OnDeserialized and replaced with BorderColor
     }
 
     public BaseView(IView view) //only used if some descendent view needs to have a constructor that accepts IView (there it calls this base constructor)
@@ -44,7 +44,8 @@ namespace ClipFlair.Windows.Views
       CornerRadius = view.CornerRadius;
       BorderThickness = view.BorderThickness;
       BorderColor = view.BorderColor;
-      TitleColor = view.TitleColor;
+      TitleForegroundColor = view.TitleForegroundColor;
+      TitleBackgroundColor = view.TitleBackgroundColor;
       BackgroundColor = view.BackgroundColor;
       Moveable = view.Moveable;
       Resizable = view.Resizable;
@@ -73,7 +74,8 @@ namespace ClipFlair.Windows.Views
     private int zIndex;
     private double opacity;
     private Color borderColor;
-    private Color titleColor;
+    private Color titleForegroundColor;
+    private Color? titleBackgroundColor;
     private Color backgroundColor;
     private Thickness borderThickness;
     private CornerRadius cornerRadius;
@@ -345,16 +347,32 @@ namespace ClipFlair.Windows.Views
     }
 
     [DataMember]
-    //[DefaultValue(ViewDefaults.DefaultTitleColor)] //DefaultTitleColor is null, so that is becomes same as border color for compatibility with older saved data that didn't have title color (see "OnDeserialized" method)
-    public Color TitleColor
+    //[DefaultValue(ViewDefaults.DefaultTitleForegroundColor)]
+    public Color TitleForegroundColor
     {
-      get { return titleColor; }
+      get { return titleForegroundColor; }
       set
       {
-        if (value != titleColor)
+        if (value != titleForegroundColor)
         {
-          titleColor = value;
-          RaisePropertyChanged(IViewProperties.PropertyTitleColor);
+          titleForegroundColor = value;
+          RaisePropertyChanged(IViewProperties.PropertyTitleForegroundColor);
+          Dirty = true;
+        }
+      }
+    }
+    
+    [DataMember]
+    //[DefaultValue(ViewDefaults.DefaultTitleBackgroundColor)] //DefaultTitleBackgroundColor is null, so that is becomes same as border color for compatibility with older saved data that didn't have title color (see "OnDeserialized" method)
+    public Color? TitleBackgroundColor
+    {
+      get { return titleBackgroundColor; }
+      set
+      {
+        if (value != titleBackgroundColor)
+        {
+          titleBackgroundColor = value;
+          RaisePropertyChanged(IViewProperties.PropertyTitleBackgroundColor);
           Dirty = true;
         }
       }
@@ -490,8 +508,8 @@ namespace ClipFlair.Windows.Views
     [OnDeserialized()]
     public void OnDeserialized(StreamingContext context)
     {
-      if (titleColor == ViewDefaults.DefaultTitleColor)
-        titleColor = borderColor;
+      if (titleBackgroundColor == ViewDefaults.DefaultTitleBackgroundColor)
+        titleBackgroundColor = borderColor;
     }
 
     #endregion
