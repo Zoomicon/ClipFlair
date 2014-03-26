@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: MediaPlayer.cs
-//Version: 20140323
+//Version: 20140326
 
 using Utils.Extensions;
 
@@ -180,7 +180,7 @@ namespace ClipFlair.MediaPlayer
     {
       MediaPlayer target = (MediaPlayer)d;
       TimeSpan oldTime = (TimeSpan)e.OldValue;
-      TimeSpan newTime = target.Time;
+      TimeSpan newTime = (TimeSpan)e.NewValue; //target.Time; //Note: changed this in case it helps keep sync when two videos are playing and trying to sync their times two-ways
       target.OnTimeChanged(oldTime, newTime);
     }
 
