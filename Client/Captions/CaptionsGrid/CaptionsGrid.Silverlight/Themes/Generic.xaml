@@ -1,7 +1,7 @@
 ﻿<!-- 
 Project: ClipFlair (http://ClipFlair.codeplex.com)
 Filename: Generic.xaml
-Version: 20131216
+Version: 20140326
 -->
   
 <ResourceDictionary
@@ -10,14 +10,15 @@ Version: 20131216
  xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk"
  xmlns:controls="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Input"
  xmlns:audio="clr-namespace:ClipFlair.AudioRecorder;assembly=AudioRecorder"
- xmlns:flow="clr-namespace:Utils.Converters;assembly=Utils.Silverlight"
+ xmlns:conv="clr-namespace:Utils.Converters;assembly=Utils.Silverlight"
  xmlns:res="clr-namespace:ClipFlair.CaptionsGrid.Resources"
  xmlns:local="clr-namespace:ClipFlair.CaptionsGrid"
  > <!--  xmlns:input="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Input.Toolkit" -->
 
   <res:Strings x:Key="localizedStrings"/>
   
-  <flow:BooleanToFlowDirectionConverter x:Key="BooleanToFlowDirectionConverter"/>
+  <conv:BooleanToFlowDirectionConverter x:Key="BooleanToFlowDirectionConverter" />
+  <conv:ArrayToStringConverter x:Key="ArrayToStringConverter" />
  
   <!-- Toolbar -->
 
@@ -106,6 +107,18 @@ Version: 20131216
       />
   </DataTemplate>
 
+  <!-- RTL -->
+
+  <DataTemplate x:Key="RTLCellTemplate">
+    <CheckBox Margin="4" IsChecked= "{Binding RTL, Mode=TwoWay}" />
+  </DataTemplate>
+
+  <!-- CPL -->
+
+  <DataTemplate x:Key="CPLCellTemplate">
+    <TextBlock Margin="4" Text="{Binding CPL, Converter={StaticResource ArrayToStringConverter}}" />
+  </DataTemplate>
+  
   <!-- CPS -->
 
   <DataTemplate x:Key="CPSCellTemplate">

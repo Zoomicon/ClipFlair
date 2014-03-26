@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: ICaptionsGrid.cs
-//Version: 20140206
+//Version: 20140326
 
 using Microsoft.SilverlightMediaFramework.Core.Accessibility.Captions;
 
@@ -19,6 +19,8 @@ namespace ClipFlair.Windows.Views
     bool DurationVisible { get; set; }
     bool RoleVisible { get; set; }
     bool CaptionVisible { get; set; }
+    bool RTLVisible { get; set; } //20140326
+    bool CPLVisible { get; set; } //20140326
     bool CPSVisible { get; set; } //20131022
     bool WPMVisible { get; set; }
     bool AudioVisible { get; set; }

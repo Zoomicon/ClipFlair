@@ -1,5 +1,5 @@
 ﻿'Description: SRTReader class
-'Version: 20140322
+'Version: 20140327
 
 Imports ClipFlair.CaptionsLib.SRT.SRTUtils
 
@@ -40,9 +40,9 @@ Namespace ClipFlair.CaptionsLib.SRT
       If (String.IsNullOrEmpty(fLine)) Then fLine = reader.ReadLine() 'do not use IsNullOrWhitespace here since we use a single space char for empty caption rows
 
       Dim c As String = ""
-      While Not String.IsNullOrEmpty(fLine) 'TODO: must change this to detect a blank fLine (treated as separator) before the end of the file or just before a fLine with the next number
+      While Not String.IsNullOrEmpty(fLine) 'do not use IsNullOrWhitespace here since we use a single space char for empty caption row
         If (c <> "") Then c += vbCrLf
-        c += fLine
+        If (fLine <> " ") Then c += fLine Else c += "" 'treating saved single space lines as empty lines
         fLine = reader.ReadLine()
       End While
 

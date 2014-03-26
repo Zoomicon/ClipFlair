@@ -1,7 +1,7 @@
 ﻿<!--
 Project: ClipFlair (http://ClipFlair.codeplex.com)
 Filename: Generic.xaml
-Version: 20140130
+Version: 20140326
 -->
 
 <ResourceDictionary
@@ -69,7 +69,6 @@ Version: 20140130
     <Setter Property="Margin" Value="6,3,6,3"/>
     <Setter Property="UseLayoutRounding" Value="True"/>
     <Setter Property="FontWeight" Value="Bold"/>
-    <Setter Property="Foreground" Value="#E6E5EA"/>
     <Setter Property="FontSize" Value="10"/>
   </Style>
 
