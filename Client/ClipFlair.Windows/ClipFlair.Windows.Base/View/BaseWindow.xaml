@@ -1,7 +1,7 @@
 ﻿<!--
 Project: ClipFlair (http://ClipFlair.codeplex.com)
 Filename: BaseWindow.xaml
-Version: 20140324
+Version: 20140326
 -->
 
 <float:FloatingWindow x:Class="ClipFlair.Windows.BaseWindow"
@@ -80,8 +80,12 @@ Version: 20140324
     <SolidColorBrush Color="{Binding BorderColor}" />
   </float:FloatingWindow.BorderBrush>
   
+  <float:FloatingWindow.TitleForeground>
+    <SolidColorBrush Color="{Binding TitleForegroundColor}" />    
+  </float:FloatingWindow.TitleForeground>
+  
   <float:FloatingWindow.TitleBackground>
-    <SolidColorBrush Color="{Binding TitleColor}" />
+    <SolidColorBrush Color="{Binding TitleBackgroundColor}" />
   </float:FloatingWindow.TitleBackground>
   
   <float:FloatingWindow.Background>
@@ -259,10 +263,16 @@ Version: 20140324
                       <Slider Name="sldOpacity" Value="{Binding Opacity, Mode=TwoWay}" Minimum="0.1" Maximum="1" SmallChange="0.05" LargeChange="0.1" Orientation="Horizontal" />
                     </StackPanel>
 
-                    <StackPanel Orientation="Vertical" Name="propTitleColor">
-                      <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Title Color:" Target="{Binding ElementName=edTitleColor}" />
-                      <color:ColorPicker Color="{Binding TitleColor, Mode=TwoWay}" />
-                      <!-- <TextBox Name="edTitleColor" Text="{Binding TitleColor, Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=True}" /> -->
+                    <StackPanel Orientation="Vertical" Name="propTitleForegroundColor">
+                      <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Title Foreground Color:" Target="{Binding ElementName=edTitleForegroundColor}" />
+                      <color:ColorPicker Color="{Binding TitleForegroundColor, Mode=TwoWay}" />
+                      <!-- <TextBox Name="edTitleForegroundColor" Text="{Binding TitleForegroundColor, Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=True}" /> -->
+                    </StackPanel>
+
+                    <StackPanel Orientation="Vertical" Name="propTitleBackgroundColor">
+                      <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Title Background Color:" Target="{Binding ElementName=edTitleBackgroundColor}" />
+                      <color:ColorPicker Color="{Binding TitleBackgroundColor, Mode=TwoWay}" />
+                      <!-- <TextBox Name="edTitleBackgroundColor" Text="{Binding TitleBackgroundColor, Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=True}" /> -->
                     </StackPanel>
 
                     <StackPanel Orientation="Vertical" Name="propBackgroundColor">
