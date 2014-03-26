@@ -1,5 +1,5 @@
 ﻿//Description: SRTReader class
-//Version: 20140321
+//Version: 20140327
 
 using ClipFlair.CaptionsLib.Utils;
 using Microsoft.SilverlightMediaFramework.Core.Accessibility.Captions;
@@ -47,7 +47,7 @@ namespace ClipFlair.CaptionsLib.SRT
       {
         if (c != "")
           c += StringUtils.vbCrLf;
-        c += fLine;
+        c += (fLine != " ")? fLine : ""; //treating saved single space lines as empty lines
         fLine = reader.ReadLine();
       }
 

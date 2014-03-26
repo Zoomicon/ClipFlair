@@ -1,7 +1,7 @@
 ﻿<!--
 Project: ClipFlair (http://ClipFlair.codeplex.com)
 Filename: CaptionsGridWindow.xaml
-Version: 20140207
+Version: 20140326
 -->
   
 <clipflair:BaseWindow x:Class="ClipFlair.Windows.CaptionsGridWindow"
@@ -40,6 +40,8 @@ Version: 20140207
                          DurationVisible="{Binding DurationVisible, Mode=TwoWay}"
                          RoleVisible="{Binding RoleVisible, Mode=TwoWay}"
                          CaptionVisible="{Binding CaptionVisible, Mode=TwoWay}"
+                         RTLVisible="{Binding RTLVisible, Mode=TwoWay}"
+                         CPLVisible="{Binding CPLVisible, Mode=TwoWay}"
                          CPSVisible="{Binding CPSVisible, Mode=TwoWay}"
                          WPMVisible="{Binding WPMVisible, Mode=TwoWay}"
                          AudioVisible="{Binding AudioVisible, Mode=TwoWay}"
@@ -94,13 +96,23 @@ Version: 20140207
     </StackPanel>
 
     <StackPanel Orientation="Horizontal">
+      <CheckBox Name="cbRTLVisible" IsChecked="{Binding RTLVisible, Mode=TwoWay}" />
+      <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="RTL (Right to Left) visible" Target="{Binding ElementName=cbRTLVisible}"/>
+    </StackPanel>
+
+    <StackPanel Orientation="Horizontal">
+      <CheckBox Name="cbCPLVisible" IsChecked="{Binding CPLVisible, Mode=TwoWay}" />
+      <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="CPL (Characters per Line) visible" Target="{Binding ElementName=cbCPLVisible}"/>
+    </StackPanel>   
+    
+    <StackPanel Orientation="Horizontal">
       <CheckBox Name="cbCPSVisible" IsChecked="{Binding CPSVisible, Mode=TwoWay}" />
-      <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="CPS (Characters-per-second) visible" Target="{Binding ElementName=cbCPSVisible}"/>
+      <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="CPS (Characters per Second) visible" Target="{Binding ElementName=cbCPSVisible}"/>
     </StackPanel>
 
     <StackPanel Orientation="Horizontal">
       <CheckBox Name="cbWPMVisible" IsChecked="{Binding WPMVisible, Mode=TwoWay}" />
-      <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="WPM (Words-per-minute) visible" Target="{Binding ElementName=cbWPMVisible}"/>
+      <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="WPM (Words per Minute) visible" Target="{Binding ElementName=cbWPMVisible}"/>
     </StackPanel>
     
     <StackPanel Orientation="Horizontal">

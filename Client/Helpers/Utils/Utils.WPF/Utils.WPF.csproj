@@ -66,8 +66,14 @@
     <Compile Include="..\source\bindings\ReflectionUtils.cs">
       <Link>Bindings\ReflectionUtils.cs</Link>
     </Compile>
+    <Compile Include="..\Source\Converters\ArrayToStringConverter.cs">
+      <Link>Converters\ArrayToStringConverter.cs</Link>
+    </Compile>
     <Compile Include="..\source\converters\BooleanToFlowDirectionConverter.cs">
       <Link>Converters\BooleanToFlowDirectionConverter.cs</Link>
+    </Compile>
+    <Compile Include="..\Source\Converters\BooleanToTextWrappingConverter.cs">
+      <Link>Converters\BooleanToTextWrappingConverter.cs</Link>
     </Compile>
     <Compile Include="..\source\converters\FlowDirectionToBooleanConverter.cs">
       <Link>Converters\FlowDirectionToBooleanConverter.cs</Link>
@@ -77,6 +83,9 @@
     </Compile>
     <Compile Include="..\source\converters\HtmlEncodedToDecodedStringConverter.cs">
       <Link>Converters\HtmlEncodedToDecodedStringConverter.cs</Link>
+    </Compile>
+    <Compile Include="..\Source\Converters\NullToVisibilityConverter.cs">
+      <Link>Converters\NullToVisibilityConverter.cs</Link>
     </Compile>
     <Compile Include="..\source\converters\ReverseConverter.cs">
       <Link>Converters\ReverseConverter.cs</Link>
@@ -92,6 +101,9 @@
     </Compile>
     <Compile Include="..\source\converters\VisibilityToBooleanConverter.cs">
       <Link>Converters\VisibilityToBooleanConverter.cs</Link>
+    </Compile>
+    <Compile Include="..\Source\Extensions\ArrayExtensions.cs">
+      <Link>Extensions\ArrayExtensions.cs</Link>
     </Compile>
     <Compile Include="..\source\extensions\StringExtensions.cs">
       <Link>Extensions\StringExtensions.cs</Link>

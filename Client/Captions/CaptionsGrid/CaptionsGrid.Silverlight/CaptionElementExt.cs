@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: CaptionElementExt.cs
-//Version: 20131022
+//Version: 20140327
 
 using Microsoft.SilverlightMediaFramework.Core.Accessibility.Captions;
 using System;
@@ -17,10 +17,13 @@ namespace ClipFlair.CaptionsGrid
   public class CaptionElementExt : CaptionElement
   {
 
+    #region --- Constants ---
+
     public const string PROPERTY_DURATION = "Duration";
     public const string PROPERTY_ROLESEPARATOR = "RoleSeparator";
     public const string PROPERTY_ROLE = "Role";
     public const string PROPERTY_CAPTION = "Caption";
+    public const string PROPERTY_CPL = "CPL";
     public const string PROPERTY_CPS = "CPS";
     public const string PROPERTY_WPM = "WPM";
     public const string PROPERTY_AUDIO = "Audio";
@@ -28,6 +31,11 @@ namespace ClipFlair.CaptionsGrid
     public const string PROPERTY_RTL = "RTL";
 
     public const string DEFAULT_ROLE_SEPARATOR = ": "; //note: has a space at the end
+    private static readonly string[] LineSeparators = new string[] { "\r\n", "\r", "\n"};
+
+    #endregion
+
+    #region --- Fields ---
 
     private string _roleSeparator = DEFAULT_ROLE_SEPARATOR;
     private string _role; //=null
@@ -36,17 +44,22 @@ namespace ClipFlair.CaptionsGrid
     private string _comments; //=null
     private bool _rtl; //=false
 
+    #endregion
+
+    #region --- Initialization ---
+
     public CaptionElementExt()
     {
       PropertyChanged += (s, e) =>
       {
         if (e.PropertyName == PROPERTY_DURATION)
-        {
-          NotifyPropertyChanged(PROPERTY_CPS);
-          NotifyPropertyChanged(PROPERTY_WPM);
-        } //if duration changed also notify that CPS and WPM changed
+          HandleDurationChanged(); //if duration changed also notify that CPS and WPM changed
       };
     }
+
+    #endregion
+
+    #region --- Properties ---
 
     /// <summary>
     /// Gets or sets the duration of this marker (calculated from start time to end time).
@@ -119,11 +132,19 @@ namespace ClipFlair.CaptionsGrid
         {
           _caption = value;
           UpdateContent();
-          NotifyPropertyChanged(PROPERTY_CAPTION); //notify that caption changed...
-          NotifyPropertyChanged(PROPERTY_CPS); //...also notify that CPS changed
-          NotifyPropertyChanged(PROPERTY_WPM); //...also notify that WPM changed
+          OnCaptionChanged();
         }
       }
+    }
+
+    /// <summary>
+    /// Gets the caption lines.
+    /// </summary>
+    [ScriptableMember]
+    public string[] CaptionLines
+    {
+      get { return (_caption != null)? _caption.Split(LineSeparators, StringSplitOptions.None) : new string[]{}; }
+      set { Caption = value.Concatenate(); }
     }
 
     /// <summary>
@@ -173,11 +194,18 @@ namespace ClipFlair.CaptionsGrid
       if (_caption != newCaption)
       {
         _caption = newCaption; //since we set _caption and not Caption (must do so), we need to raise NotifyPropertyChanged ourselves here
-        NotifyPropertyChanged(PROPERTY_CAPTION); //notify that caption changed...
-        NotifyPropertyChanged(PROPERTY_CPS); //...also notify that CPS changed
-        NotifyPropertyChanged(PROPERTY_WPM); //...also notify that WPM changed
+        OnCaptionChanged();
       }
 
+    }
+
+    /// <summary>
+    /// Gets the line count for this marker item.
+    /// </summary>
+    [ScriptableMember]
+    public int LineCount
+    {
+      get { return CaptionLines.Length; }
     }
 
     /// <summary>
@@ -186,8 +214,7 @@ namespace ClipFlair.CaptionsGrid
     [ScriptableMember]
     public int CharCount
     {
-      get
-      { return (_caption != null) ? _caption.Length : 0; }
+      get { return (_caption != null) ? _caption.Length : 0; }
     }
     
     /// <summary>
@@ -196,12 +223,29 @@ namespace ClipFlair.CaptionsGrid
     [ScriptableMember]
     public int WordCount
     {
-      get
-      { return (_caption != null)? _caption.WordCount() : 0; }
+      get { return (_caption != null)? _caption.WordCount() : 0; }
     }
 
     /// <summary>
-    /// Gets the characters-per-second (CPS) number for this marker item.
+    /// Gets the characters-per-line (CPL) metric for this marker item.
+    /// </summary>
+    [ScriptableMember]
+    public int[] CPL
+    {
+      get
+      {
+        string[] lines = CaptionLines;
+        int lineCount = lines.Length;
+        int[] result = new int[lineCount];
+        for (int i = 0; i < lineCount; i++)
+          result[i] = lines[i].Trim().Length; //not counting whitespace at start or end of caption
+
+        return result;
+      }
+    }
+
+    /// <summary>
+    /// Gets the characters-per-second (CPS) metric for this marker item.
     /// </summary>
     [ScriptableMember]
     public double CPS
@@ -214,7 +258,7 @@ namespace ClipFlair.CaptionsGrid
     }
     
     /// <summary>
-    /// Gets the words-per-minute (WPM) number for this marker item.
+    /// Gets the words-per-minute (WPM) metric for this marker item.
     /// </summary>
     [ScriptableMember]
     public double WPM
@@ -276,6 +320,27 @@ namespace ClipFlair.CaptionsGrid
         }
       }
     }
+
+    #endregion
+
+    #region --- Events ---
+
+    protected void HandleDurationChanged()
+    {
+      //if duration changed also notify that CPS and WPM changed
+      NotifyPropertyChanged(PROPERTY_CPS);
+      NotifyPropertyChanged(PROPERTY_WPM);
+    }
+
+    protected void OnCaptionChanged()
+    {
+      NotifyPropertyChanged(PROPERTY_CAPTION); //notify that caption changed...
+      NotifyPropertyChanged(PROPERTY_CPL); //...also notify that CPL changed
+      NotifyPropertyChanged(PROPERTY_CPS); //...also notify that CPS changed
+      NotifyPropertyChanged(PROPERTY_WPM); //...also notify that WPM changed
+    }
+
+    #endregion
 
   }
 }

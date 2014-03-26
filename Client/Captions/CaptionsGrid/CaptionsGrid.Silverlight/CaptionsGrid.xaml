@@ -1,7 +1,7 @@
 ﻿<!--
 Project: ClipFlair (http://ClipFlair.codeplex.com)
 Filename: CaptionsGrid.xaml
-Version: 20140311
+Version: 20140326
 -->
 
 <UserControl x:Class="ClipFlair.CaptionsGrid.CaptionsGrid"
@@ -15,6 +15,8 @@ Version: 20140311
     xmlns:captions="clr-namespace:ClipFlair.CaptionsGrid"
     d:DesignHeight="167" d:DesignWidth="856"
     BorderThickness="0"
+             
+    MouseLeftButtonDown="UserControl_MouseLeftButtonDown"
    >
 
   <UserControl.Resources>
@@ -174,7 +176,7 @@ Version: 20140311
       Drop="gridCaptions_Drop"
       DragEnter="gridCaptions_DragEnter"
       DragOver="gridCaptions_DragOver"
-      DragLeave="gridCaptions_DragLeave" 
+      DragLeave="gridCaptions_DragLeave"
       >
       
       <sdk:DataGrid.Columns>
@@ -183,6 +185,8 @@ Version: 20140311
         <sdk:DataGridTemplateColumn Header="DURATION" CellTemplate="{StaticResource DurationCellTemplate}" CellEditingTemplate="{StaticResource DurationCellEditTemplate}" />
         <sdk:DataGridTemplateColumn Header="ROLE" CellTemplate="{StaticResource RoleCellTemplate}" CellEditingTemplate="{StaticResource RoleCellEditTemplate}" />
         <sdk:DataGridTemplateColumn Header="CAPTION" Width="*" CellTemplate="{StaticResource CaptionCellTemplate}" CellEditingTemplate="{StaticResource CaptionCellEditTemplate}" />
+        <sdk:DataGridTemplateColumn Header="RTL" Width="30" CellTemplate="{StaticResource RTLCellTemplate}" IsReadOnly="True" />
+        <sdk:DataGridTemplateColumn Header="CPL" Width="30" CellTemplate="{StaticResource CPLCellTemplate}" IsReadOnly="True" />
         <sdk:DataGridTemplateColumn Header="CPS" Width="50" CellTemplate="{StaticResource CPSCellTemplate}" IsReadOnly="True" />
         <sdk:DataGridTemplateColumn Header="WPM" Width="50" CellTemplate="{StaticResource WPMCellTemplate}" IsReadOnly="True" />
         <sdk:DataGridTemplateColumn Header="AUDIO" Width="115" CellTemplate="{StaticResource AudioCellTemplate}" IsReadOnly="True" />

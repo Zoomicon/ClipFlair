@@ -74,6 +74,9 @@
     <Compile Include="..\Source\Bindings\ReflectionUtils.cs">
       <Link>Bindings\ReflectionUtils.cs</Link>
     </Compile>
+    <Compile Include="..\Source\Converters\ArrayToStringConverter.cs">
+      <Link>Converters\ArrayToStringConverter.cs</Link>
+    </Compile>
     <Compile Include="..\Source\Converters\BooleanToFlowDirectionConverter.cs">
       <Link>Converters\BooleanToFlowDirectionConverter.cs</Link>
     </Compile>
@@ -97,6 +100,9 @@
     </Compile>
     <Compile Include="..\Source\Converters\FlowDirectionToBooleanConverter.cs">
       <Link>Converters\FlowDirectionToBooleanConverter.cs</Link>
+    </Compile>
+    <Compile Include="..\Source\Extensions\ArrayExtensions.cs">
+      <Link>Extensions\ArrayExtensions.cs</Link>
     </Compile>
     <Compile Include="..\Source\Extensions\MultiScaleImageExtensions.cs">
       <Link>Extensions\MultiScaleImageExtensions.cs</Link>

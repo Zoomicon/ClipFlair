@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: CaptionsGridView.cs
-//Version: 20140206
+//Version: 20140326
 
 using Microsoft.SilverlightMediaFramework.Core.Accessibility.Captions;
 
@@ -20,7 +20,7 @@ namespace ClipFlair.Windows.Views
     {
     }
 
-    #region Fields
+    #region --- Fields ---
 
     //fields are initialized via respective properties at "SetDefaults" method
     private Uri source;
@@ -31,6 +31,8 @@ namespace ClipFlair.Windows.Views
     private bool endTimeVisible;
     private bool durationVisible;
     private bool captionVisible;
+    private bool rtlVisible;
+    private bool cplVisible;
     private bool cpsVisible;
     private bool wpmVisible;
     private bool audioVisible;
@@ -39,7 +41,7 @@ namespace ClipFlair.Windows.Views
 
     #endregion
 
-    #region Properties
+    #region --- Properties ---
 
     [DataMember]
     [DefaultValue(CaptionsGridDefaults.DefaultSource)]
@@ -171,6 +173,40 @@ namespace ClipFlair.Windows.Views
       }
     }
 
+
+    [DataMember]
+    [DefaultValue(CaptionsGridDefaults.DefaultRTLVisible)]
+    public bool RTLVisible
+    {
+      get { return rtlVisible; }
+      set
+      {
+        if (value != rtlVisible)
+        {
+          rtlVisible = value;
+          RaisePropertyChanged(ICaptionsGridProperties.PropertyRTLVisible);
+          Dirty = true;
+        }
+      }
+    }
+
+
+    [DataMember]
+    [DefaultValue(CaptionsGridDefaults.DefaultCPLVisible)]
+    public bool CPLVisible
+    {
+      get { return cplVisible; }
+      set
+      {
+        if (value != cplVisible)
+        {
+          cplVisible = value;
+          RaisePropertyChanged(ICaptionsGridProperties.PropertyCPLVisible);
+          Dirty = true;
+        }
+      }
+    }
+    
     [DataMember]
     [DefaultValue(CaptionsGridDefaults.DefaultCPSVisible)]
     public bool CPSVisible
@@ -253,7 +289,7 @@ namespace ClipFlair.Windows.Views
 
     #endregion
 
-    #region Methods
+    #region --- Methods ---
 
     public override void SetDefaults() //do not call at constructor, BaseView does it already
     {

@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: CaptionsGridDefaults.cs
-//Version: 20140206
+//Version: 20140326
 
 using Microsoft.SilverlightMediaFramework.Core.Accessibility.Captions;
 
@@ -32,6 +32,8 @@ namespace ClipFlair.Windows.Views
     public const bool DefaultDurationVisible = false;
     public const bool DefaultRoleVisible = true;
     public const bool DefaultCaptionVisible = true;
+    public const bool DefaultRTLVisible = false;
+    public const bool DefaultCPLVisible = false;
     public const bool DefaultCPSVisible = false;
     public const bool DefaultWPMVisible = false;
     public const bool DefaultAudioVisible = false;
@@ -58,6 +60,8 @@ namespace ClipFlair.Windows.Views
       view.DurationVisible = DefaultDurationVisible;
       view.RoleVisible = DefaultRoleVisible;
       view.CaptionVisible = DefaultCaptionVisible;
+      view.RTLVisible = DefaultRTLVisible;
+      view.CPLVisible = DefaultCPLVisible;
       view.CPSVisible = DefaultCPSVisible;
       view.WPMVisible = DefaultWPMVisible;
       view.AudioVisible = DefaultAudioVisible;

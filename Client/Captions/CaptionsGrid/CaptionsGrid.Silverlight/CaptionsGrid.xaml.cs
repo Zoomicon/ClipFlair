@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: CaptionsGrid.xaml.cs
-//Version: 20140318
+//Version: 20140326
 
 using ClipFlair.AudioRecorder;
 using ClipFlair.CaptionsGrid.Resources;
@@ -38,19 +38,30 @@ namespace ClipFlair.CaptionsGrid
     {
       InitializeComponent();
       InitializeDataGrid();
+
+      /*
+      btnRTL.Click += (s, e) =>
+      {
+        if (btnRTL.IsChecked == true) //when one manually (from the toolar) toggles RTL to true, the RTLVisible column appears to adjust RTL per-caption (remains visible till hidden from component settings)
+          RTLVisible = true;
+      };
+      */  //not using this, since we don't save RTL per-caption at this point //TODO
     }
 
     protected void InitializeDataGrid()
     {
+      //Note: Columns below must be in same order as in XAML
       ColumnStartTime = gridCaptions.Columns[0];
       ColumnEndTime = gridCaptions.Columns[1];
       ColumnDuration = gridCaptions.Columns[2];
       ColumnRole = gridCaptions.Columns[3];
       ColumnCaption = gridCaptions.Columns[4];
-      ColumnCPS = gridCaptions.Columns[5];
-      ColumnWPM = gridCaptions.Columns[6];
-      ColumnAudio = gridCaptions.Columns[7];
-      ColumnComments = gridCaptions.Columns[8];
+      ColumnRTL = gridCaptions.Columns[5];
+      ColumnCPL = gridCaptions.Columns[6];
+      ColumnCPS = gridCaptions.Columns[7];
+      ColumnWPM = gridCaptions.Columns[8];
+      ColumnAudio = gridCaptions.Columns[9];
+      ColumnComments = gridCaptions.Columns[10];
 
       gridCaptions.ClipboardCopyMode = DataGridClipboardCopyMode.IncludeHeader;
       gridCaptions.SelectionMode = DataGridSelectionMode.Single;
@@ -79,6 +90,8 @@ namespace ClipFlair.CaptionsGrid
     public DataGridColumn ColumnEndTime { get; private set; }
     public DataGridColumn ColumnDuration { get; private set; }
     public DataGridColumn ColumnCaption { get; private set; }
+    public DataGridColumn ColumnRTL { get; private set; }
+    public DataGridColumn ColumnCPL { get; private set; }
     public DataGridColumn ColumnCPS { get; private set; }
     public DataGridColumn ColumnWPM { get; private set; }
     public DataGridColumn ColumnAudio { get; private set; }
@@ -411,6 +424,82 @@ namespace ClipFlair.CaptionsGrid
 
     #endregion
 
+    #region RTLVisible
+
+    /// <summary>
+    /// RTLVisible Dependency Property
+    /// </summary>
+    public static readonly DependencyProperty RTLVisibleProperty =
+        DependencyProperty.Register("RTLVisible", typeof(bool), typeof(CaptionsGrid),
+            new FrameworkPropertyMetadata(true, new PropertyChangedCallback(OnRTLVisibleChanged)));
+
+    /// <summary>
+    /// Gets or sets the RTLVisible property. 
+    /// </summary>
+    public bool RTLVisible
+    {
+      get { return (bool)GetValue(RTLVisibleProperty); }
+      set { SetValue(RTLVisibleProperty, value); }
+    }
+
+    /// <summary>
+    /// Handles changes to the RTLVisible property.
+    /// </summary>
+    private static void OnRTLVisibleChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    {
+      CaptionsGrid target = (CaptionsGrid)d;
+      target.OnRTLVisibleChanged((bool)e.OldValue, target.RTLVisible);
+    }
+
+    /// <summary>
+    /// Provides derived classes an opportunity to handle changes to the RTLVisible property.
+    /// </summary>
+    protected virtual void OnRTLVisibleChanged(bool oldValue, bool newValue)
+    {
+      Visibility visibility = (newValue) ? Visibility.Visible : Visibility.Collapsed;
+      //btnRTL.Visibility = visibility; //this is always visible
+      ColumnRTL.Visibility = visibility;
+    }
+
+    #endregion
+
+    #region CPLVisible
+
+    /// <summary>
+    /// CPLVisible Dependency Property
+    /// </summary>
+    public static readonly DependencyProperty CPLVisibleProperty =
+        DependencyProperty.Register("CPLVisible", typeof(bool), typeof(CaptionsGrid),
+            new FrameworkPropertyMetadata(true, new PropertyChangedCallback(OnCPLVisibleChanged)));
+
+    /// <summary>
+    /// Gets or sets the CPLVisible property. 
+    /// </summary>
+    public bool CPLVisible
+    {
+      get { return (bool)GetValue(CPLVisibleProperty); }
+      set { SetValue(CPLVisibleProperty, value); }
+    }
+
+    /// <summary>
+    /// Handles changes to the CPLVisible property.
+    /// </summary>
+    private static void OnCPLVisibleChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    {
+      CaptionsGrid target = (CaptionsGrid)d;
+      target.OnCPLVisibleChanged((bool)e.OldValue, target.CPLVisible);
+    }
+
+    /// <summary>
+    /// Provides derived classes an opportunity to handle changes to the CPLVisible property.
+    /// </summary>
+    protected virtual void OnCPLVisibleChanged(bool oldValue, bool newValue)
+    {
+      ColumnCPL.Visibility = (newValue) ? Visibility.Visible : Visibility.Collapsed;
+    }
+
+    #endregion
+
     #region CPSVisible
 
     /// <summary>
@@ -660,6 +749,11 @@ namespace ClipFlair.CaptionsGrid
 
     #region --- Events ---
 
+    private void UserControl_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+    {
+      e.Handled = true; //do not allow events to propagate to parent, since DataGrid's column dragging code doesn't consume mouse events as it should
+    }
+
     private void btnAdd_Click(object sender, RoutedEventArgs e)
     {
       AddCaption();
@@ -786,32 +880,6 @@ namespace ClipFlair.CaptionsGrid
       }
     }
 
-    //TODO: blog about 1-based index gotcha and the DefaultFileName issue, also make sure one doesn't use OpenFile (says its MethodGroup type) instead of OpenFile() and that SafeFileName, DefaultFileName etc. have N caps in filename and that DefaultExt (point to doc too) isn't used if a filter is supplied. Show how to have a filter with multiple extensions and multiple filters, note that 1st extension of filterindx is used as default
-
-    private void btnExport_Click(object sender, RoutedEventArgs e)
-    {
-      if (Captions == null) return;
-
-      try
-      {
-        SaveFileDialog dlg = new SaveFileDialog()
-        {
-          Filter = EXPORT_FILTER,
-          //FilterIndex = 1, //note: this index is 1-based, not 0-based //not needed if we set DefaultExt
-          //DefaultFileName = "Captions", //Silverlight will prompt "Do you want to save Captions?" if we set this, but the prompt can go under the main window, so avoid it
-          DefaultExt = ".srt" //this doesn't seem to be used if you set FilterIndex
-        };
-
-        if (dlg.ShowDialog() == true) //TODO: find the parent window
-          using (Stream stream = dlg.OpenFile()) //closes stream when finished
-            SaveCaptions(stream, dlg.SafeFileName);
-      }
-      catch (Exception ex)
-      {
-        MessageBox.Show("Captions export failed: " + ex.Message); //TODO: find the parent window
-      }
-    }
-
     public void LoadCaptions(FileInfo file)
     {
       using (Stream stream = file.OpenRead()) //closes stream when finished
@@ -824,6 +892,32 @@ namespace ClipFlair.CaptionsGrid
       CaptionRegion newCaptions = new CaptionRegion();
       reader.ReadCaptions<CaptionElementExt>(newCaptions, stream, Encoding.UTF8);
       Captions = newCaptions;
+    }
+
+     //TODO: blog about 1-based index gotcha and the DefaultFileName issue, also make sure one doesn't use OpenFile (says its MethodGroup type) instead of OpenFile() and that SafeFileName, DefaultFileName etc. have N caps in filename and that DefaultExt (point to doc too) isn't used if a filter is supplied. Show how to have a filter with multiple extensions and multiple filters, note that 1st extension of filterindx is used as default
+
+    private void btnExport_Click(object sender, RoutedEventArgs e)
+    {
+      if (Captions == null) return;
+
+      try
+      {
+        SaveFileDialog dlg = new SaveFileDialog()
+        {
+          Filter = EXPORT_FILTER,
+          //FilterIndex = 1, //note: this index is 1based, not 0based //not needed if we set DefaultExt
+          //DefaultFileName = "Captions", //Silverlight will prompt "Do you want to save Captions?" if we set this, but the prompt can go under the main window, so avoid it
+          DefaultExt = ".srt" //this doesn't seem to be used if you set FilterIndex
+        };
+
+        if (dlg.ShowDialog() == true) //TODO: find the parent window
+          using (Stream stream = dlg.OpenFile()) //closes stream when finished
+            SaveCaptions(stream, dlg.SafeFileName);
+      }
+      catch (Exception ex)
+      {
+        MessageBox.Show("Captions export failed: " + ex.Message); //TODO: find the parent window
+      }
     }
 
     public void SaveCaptions(Stream stream, string filename) //doesn't close stream
@@ -851,14 +945,15 @@ namespace ClipFlair.CaptionsGrid
       AudioRecorderView.SaveAudio(stream, captionExt.Audio); //keep save logic encapsulated so that we can add encoding/compression there
     }
 
-    public static void SaveAudio(CaptionRegion captions, Stream stream)
+    public static void SaveAudio(CaptionRegion captions, Stream stream) //does not flush and close stream
     {
       CaptionAudioHelper.SaveAudio(captions, stream);
     }
 
     private void btnSaveMergedAudio_Click(object sender, RoutedEventArgs e)
     {
-      SaveFileDialog saveFileDialog = new SaveFileDialog() {
+      SaveFileDialog saveFileDialog = new SaveFileDialog()
+      {
         Filter = Strings.filter_wav
       };
 
