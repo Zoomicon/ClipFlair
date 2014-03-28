@@ -1,7 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: CaptionElementExt.cs
-//Version: 20130403
-
+//Version: 20140328
 
 using AudioLib;
 
