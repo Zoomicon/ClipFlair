@@ -1,7 +1,7 @@
 ﻿<!-- 
 Project: ClipFlair (http://ClipFlair.codeplex.com)
 Filename: Generic.xaml
-Version: 20140326
+Version: 20140328
 -->
   
 <ResourceDictionary
@@ -102,9 +102,12 @@ Version: 20140326
   <DataTemplate x:Key="CaptionCellEditTemplate">
     <TextBox
       AcceptsReturn="True"
-      Text="{Binding Caption, Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=True}"
+      Text="{Binding Caption, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnExceptions=True, NotifyOnValidationError=True}"
       FlowDirection="{Binding RTL, Converter={StaticResource BooleanToFlowDirectionConverter}}"
+      local:ImmediateSourceUpdate.IsEnabled="True"
+      local:ImmediateSourceUpdate.Source="{Binding Caption, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnExceptions=True, NotifyOnValidationError=True}"
       />
+      <!-- ImmediateSourceUpdate is used because of http://social.msdn.microsoft.com/Forums/silverlight/en-US/951bde54-1bd1-4fdc-8148-86d5a5183de8/updatesourcetriggerpropertychanged-is-ignored?forum=silverlightgen&prof=required -->
   </DataTemplate>
 
   <!-- RTL -->
