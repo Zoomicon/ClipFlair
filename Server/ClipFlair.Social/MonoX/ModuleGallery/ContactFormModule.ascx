@@ -58,17 +58,16 @@
         </td>
     </tr>
     <tr>
-	    <td></td>
-        <td>
-            <div class="my-contact-form">
-                <monox:CaptchaModule ID="captchaModule" runat="server" CssClass="padding1-captcha" />
-            </div>
-        </td>
+      <td>
+          <div class="my-contact-form">
+              <monox:CaptchaModule ID="captchaModule" runat="server" CssClass="padding1-captcha" />
+          </div>
+      </td>
     </tr>    
     <tr>
-        <td>
-            <strong><asp:Label ID="lblInfo" runat="server" ></asp:Label></strong>
-        </td>
+      <td>
+          <strong><asp:Label ID="lblInfo" runat="server" ></asp:Label></strong>
+      </td>
     </tr>
 </table>
  <div class="dummy-padding"></div>
