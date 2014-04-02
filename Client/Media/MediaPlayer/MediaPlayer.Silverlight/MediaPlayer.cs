@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: MediaPlayer.cs
-//Version: 20140326
+//Version: 20140403
 
 using Utils.Extensions;
 
@@ -880,19 +880,20 @@ namespace ClipFlair.MediaPlayer
     protected virtual void AddEventHandlers()
     {
       //listen for changed to PlaybackPosition and sync with Time
-      PlaybackPositionChanged += new EventHandler<CustomEventArgs<TimeSpan>>(Player_PlaybackPositionChanged);
+      PlaybackPositionChanged += Player_PlaybackPositionChanged;
 
       //listen for changes to CaptionsVisibility and sync with CaptionsVisible
-      CaptionsVisibilityChanged += new EventHandler(Player_CaptionsVisibilityChanged);
+      CaptionsVisibilityChanged += Player_CaptionsVisibilityChanged;
 
       //listen to MediaPlugin registration and keep reference to use for getting Balance property which is not exposed by SMFPlayer 2.7
-      MediaPluginRegistered += new EventHandler<CustomEventArgs<IMediaPlugin>>(MediaPlayer_MediaPluginRegistered);
+      MediaPluginRegistered += MediaPlayer_MediaPluginRegistered;
     }
 
     protected virtual void RemoveEventHandlers()
     {
-      PlaybackPositionChanged -= new EventHandler<CustomEventArgs<TimeSpan>>(Player_PlaybackPositionChanged);
-      CaptionsVisibilityChanged -= new EventHandler(Player_CaptionsVisibilityChanged);
+      PlaybackPositionChanged -= Player_PlaybackPositionChanged;
+      CaptionsVisibilityChanged -= Player_CaptionsVisibilityChanged;
+      MediaPluginRegistered -= MediaPlayer_MediaPluginRegistered;
     }
 
     public override void OnApplyTemplate()
