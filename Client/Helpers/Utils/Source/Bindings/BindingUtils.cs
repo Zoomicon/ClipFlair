@@ -31,15 +31,16 @@ namespace Utils.Bindings
       BindingOperations.SetBinding(element, prop, b);
     }
 
-    /*
     /// <summary>
     /// Bind two objects implementing INotifyPropertyChanged over given properties
     /// </summary>
     /// <param name="source">source object</param>
-    /// <param name="sourcePropertyPath">source property name</param>
+    /// <param name="sourcePropertyName">source property name</param>
     /// <param name="target">target object</param>
-    /// <param name="targetProperty">target property name</param>
+    /// <param name="targetPropertyName">target property name</param>
     /// <param name="bindmode">e.g. BindingMode.TwoWay</param>
+
+    /*
     public static DependencyObject BindProperties(INotifyPropertyChanged source, string sourcePropertyName, INotifyPropertyChanged target, string targetPropertyName)
     {
       DependencyObject binder = new UserControl();
