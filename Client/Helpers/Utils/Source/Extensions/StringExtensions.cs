@@ -1,8 +1,9 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: StringExtensions.cs
-//Version: 20140306
+//Version: 20140404
 
 using System;
+using System.IO;
 using System.Text.RegularExpressions;
 
 namespace Utils.Extensions
@@ -82,7 +83,24 @@ namespace Utils.Extensions
     public static string ReplaceInvalidFileNameChars(this string s, string replacement = "")
     {
       return Regex.Replace(s,
-        "[" + Regex.Escape(new string(System.IO.Path.GetInvalidPathChars())) + "]",
+        "[" + Regex.Escape(
+          Path.VolumeSeparatorChar + //slash ("/") on UNIX, and a backslash ("\") on the Windows and Macintosh operating systems
+          Path.DirectorySeparatorChar + //slash ("/") on UNIX, and a backslash ("\") on the Windows and Macintosh operating systems
+          Path.AltDirectorySeparatorChar + //backslash ('\') on UNIX, and a slash ('/') on Windows and Macintosh operating systems
+          ":" + //added to cover Windows & Mac in case code is run on UNIX
+          "\\" + //added for future platforms that use totally different separator chars (those would still have problem if we used such chars when running on Win/Mac/Unix)
+          "/" + //same as previous one
+          "<" +
+          ">" +
+          "|" +
+          "\b" +
+          "\0" +
+          "\t" + //based on characters not allowed on Windows mentioned at http://msdn.microsoft.com/en-us/library/system.io.path.getinvalidpathchars(v=vs.110).aspx
+          new string(Path.GetInvalidPathChars()) + //this seems to miss *, ? and " in Silverlight 5.1 (The array returned from this method is not guaranteed to contain the complete set of characters that are invalid in file and directory names)
+          "*" +
+          "?" +
+          "\""
+          ) + "]",
         replacement, //can even use a replacement string of any length
         RegexOptions.IgnoreCase);
         //not using System.IO.Path.InvalidPathChars (deprecated insecure API)
