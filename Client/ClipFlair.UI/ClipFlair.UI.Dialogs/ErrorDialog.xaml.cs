@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: ErrorDialog.xaml.cs
-//Version: 20131015
+//Version: 20140403
 
 using System;
 using System.ComponentModel;
@@ -54,17 +54,27 @@ namespace ClipFlair.UI.Dialogs
       prompt.Show();
     }
 
-    #endregion
-
-    #region Events
-
-    private void OKButton_Click(object sender, RoutedEventArgs e)
+    public void CopyDetails()
     {
-      this.DialogResult = true;
+      Clipboard.SetText(Details);
     }
 
     #endregion
 
+    #region Events
+
+    private void btnOK_Click(object sender, RoutedEventArgs e)
+    {
+      this.DialogResult = true;
+    }
+
+    private void btnCopy_Click(object sender, RoutedEventArgs e)
+    {
+      CopyDetails();
+    }
+ 
+    #endregion
+       
   }
 }
 
