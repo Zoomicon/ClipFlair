@@ -257,6 +257,7 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="ClipFlair.Gallery.cd" />
     <None Include="Properties\PublishProfiles\Gallery.pubxml" />
   </ItemGroup>
   <PropertyGroup>

@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: ActivityMetadataPage.aspx.cs
-//Version: 20131104
+//Version: 20140410
 
 using Metadata.CXML;
 using ClipFlair.Metadata;
@@ -20,7 +20,7 @@ namespace ClipFlair.Gallery
 
     protected void Page_Load(object sender, EventArgs e)
     {
-      _listItems = listItems;
+      _listItems = listItems; //allow the ancestor class to access our listItems UI object
       
       if (!IsPostBack)
       {
