@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: ClipFlairMetadtata.cs
-//Version: 20131101
+//Version: 20140410
 
 using Metadata.CXML;
 
@@ -71,9 +71,12 @@ namespace ClipFlair.Metadata
 
     public override ICXMLMetadata Fix()
     {
+      if (string.IsNullOrWhiteSpace(Id)) //also checks for empty string
+        Id = Filename;
+      
       if (string.IsNullOrWhiteSpace(Title)) //also checks for empty string
         Title = Filename;
-
+      
       return this;
     }
 
