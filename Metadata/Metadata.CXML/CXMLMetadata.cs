@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: CXMLMetadata.cs
-//Version: 20130918
+//Version: 20140410
 
 using System;
 using System.Collections.Generic;
@@ -118,13 +118,16 @@ namespace Metadata.CXML
       return metadata;
     }
 
-    public static void Save(XmlWriter cxml, string collectionTitle, IEnumerable<XElement> facetCategories, ICXMLMetadata[] metadataItems)
+    public static void Save(XmlWriter cxml, string collectionTitle, IEnumerable<XElement> facetCategories, ICXMLMetadata[] metadataItems, bool autoIds = false)
     {
       int i = 0;
       CXML.MakeCollection(
         collectionTitle,
         facetCategories,
-        metadataItems.Select(m => ReplaceId(m, i++.ToString()).Fix().GetCXMLItem()) //fix metadata before saving
+        (autoIds)? 
+          metadataItems.Select(m => ReplaceId(m, i++.ToString()).Fix().GetCXMLItem()) //fix metadata before saving
+          :
+          metadataItems.Select(m=> m.Fix().GetCXMLItem()) //fix metadata before saving
       )
       .Save(cxml);
     }
