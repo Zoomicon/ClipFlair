@@ -1,6 +1,6 @@
 ﻿<!-- 
 Filename: Generic.xaml
-Version: 20131213
+Version: 20140413
 -->
   
 <ResourceDictionary
@@ -92,8 +92,13 @@ Version: 20131213
               <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
 
-            <controls:BootstrapButton Grid.Column="0" x:Name="PART_BootstrapButton" Style="{StaticResource BootstrapButtonStyle}"
-                    Margin="5,5,5,5" IsOpen="{Binding IsOpen, ElementName=PART_IconBar}" />
+            <controls:BootstrapButton
+              Grid.Column="0"
+              x:Name="PART_BootstrapButton"
+              Style="{StaticResource BootstrapButtonStyle}"
+              Margin="5,5,5,5"
+              IsOpen="{Binding IsOpen, ElementName=PART_IconBar}"
+              />
 
             <StackPanel
               Grid.Column="1"
@@ -119,8 +124,12 @@ Version: 20131213
             </StackPanel>
 
             <Border Grid.Column="2">
-              <ContentControl x:Name="PART_BarContent" Content="{TemplateBinding Bar}" 
-                                                       VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch" />
+              <ContentControl
+                x:Name="PART_BarContent"
+                Content="{TemplateBinding Bar}" 
+                VerticalContentAlignment="Stretch"
+                HorizontalContentAlignment="Stretch"
+                />
             </Border>
           </Grid>
         </Border>

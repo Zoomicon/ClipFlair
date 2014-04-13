@@ -1,6 +1,6 @@
 ﻿<!--
   Filename: generic.xaml 
-  Version: 20140326
+  Version: 20140413
 -->
 
 <ResourceDictionary
@@ -735,7 +735,8 @@
     <Setter Property="BorderBrush" Value="#FFA2ADB8"/>
     <Setter Property="Background" Value="#FF4E4E4E"/>
     <Setter Property="VerticalAlignment" Value="Top"/>
-    <Setter Property="IsTabStop" Value="false"/>
+    <Setter Property="IsTabStop" Value="true"/>
+    <Setter Property="ToolTipService.ToolTip" Value="Windows"/>
     <Setter Property="Template">
       <Setter.Value>
         <ControlTemplate TargetType="controls:BootstrapButton">
@@ -887,12 +888,20 @@
                     <ColumnDefinition Width="*" />
                   </Grid.ColumnDefinitions>
 
-                  <controls:BootstrapButton x:Name="PART_BootstrapButton" Style="{StaticResource BootstrapButtonStyle}"
-                    Margin="10,-4,10,0" IsOpen="{Binding IsOpen, ElementName=PART_IconBar}" />
+                  <controls:BootstrapButton
+                    x:Name="PART_BootstrapButton"
+                    Style="{StaticResource BootstrapButtonStyle}"
+                    Margin="10,-4,10,0"
+                    IsOpen="{Binding IsOpen, ElementName=PART_IconBar}"
+                    />
 
                   <Border Grid.Column="1">
-                    <ContentControl x:Name="PART_BarContent" Content="{TemplateBinding Bar}" 
-                                                        VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch" />
+                    <ContentControl
+                      x:Name="PART_BarContent"
+                      Content="{TemplateBinding Bar}" 
+                      VerticalContentAlignment="Stretch"
+                      HorizontalContentAlignment="Stretch"
+                      />
                   </Border>
                 </Grid>
               </Border>
