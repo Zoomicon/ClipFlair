@@ -9,6 +9,7 @@ using System.Windows.Media.Imaging;
 
 #if SILVERLIGHT
 using System.Runtime.InteropServices.Automation;
+using System.Windows;
 #endif
 
 namespace Utils.Extensions
@@ -38,7 +39,7 @@ namespace Utils.Extensions
                       }
                       else
                       {
-                        throw new InvalidOperationException();
+                        MessageBox.Show("Please visit: " + link); //TODO: implement for OOP with WebBrowser control shown in dialog
                       }
           #else
           //TODO: implement for WPF (see http://social.msdn.microsoft.com/Forums/vstudio/en-US/61fd208c-140e-4cf0-8876-a34731da5d20/converting-silverlight-4-automation-factory-to-net40-wpf)

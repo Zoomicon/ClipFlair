@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: ActivityContainer.xaml.cs
-//Version: 20140323
+//Version: 20140413
 
 //TODO: add ContentPartsCloseable property
 //TODO: add ContentPartsZoomable property
@@ -22,13 +22,24 @@ using System.Windows.Controls;
 using System.Windows.Markup;
 using Utils.Bindings;
 using ZoomAndPan;
+using Utils.Extensions;
 
 namespace ClipFlair.Windows
 {
 
   [ContentProperty("Windows")]
-  public partial class ActivityContainer : UserControl
+  public partial class ActivityContainer : UserControl, IClipFlairStartActions
   {
+
+    #region --- Constants ---
+
+    public const string URL_HELP_TUTORIALS = "http://social.clipflair.net/Pages/Tutorials.aspx";
+    public const string URL_HELP_FAQ = "http://social.clipflair.net/help/faq.aspx";
+    public const string URL_HELP_CONTACT = "http://social.clipflair.net/MonoX/Pages/Contact.aspx";
+    public const string URL_SOCIAL = "http://social.clipflair.net";
+
+
+    #endregion
 
     #region --- Initialization ---
 
@@ -332,6 +343,7 @@ namespace ClipFlair.Windows
     public MediaPlayerWindow AddClip()
     {
       MediaPlayerWindow w = (MediaPlayerWindow)AddWindow(MediaPlayerWindowFactory, newInstance: true);
+      w.MediaPlayerView.AutoPlay = false;
       w.MediaPlayerView.Source = new Uri("http://video3.smoothhd.com.edgesuite.net/ondemand/Big%20Buck%20Bunny%20Adaptive.ism/Manifest", UriKind.Absolute);
       return w;
     } //MPEG-DASH sample: http://wams.edgesuite.net/media/MPTExpressionData02/BigBuckBunny_1080p24_IYUV_2ch.ism/manifest(format=mpd-time-csf)
@@ -378,10 +390,10 @@ namespace ClipFlair.Windows
       return w;
     }
 
-    public GalleryWindow AddGallery()
+    public GalleryWindow AddGallery(string source = "activities")
     {
       GalleryWindow w = (GalleryWindow)AddWindow(GalleryWindowFactory, newInstance: true);
-      w.GalleryView.Source = new Uri("http://gallery.clipflair.net/collection/activities.cxml");
+      w.GalleryView.Source = new Uri("http://gallery.clipflair.net/collection/" + source + ".cxml"); //TODO: move logic from Studio's App.xaml.cs into GalleryWindow's Source proprty to translate partial URIs into ClipFlair gallery URIs
       return w;
     }
 
@@ -526,6 +538,120 @@ namespace ClipFlair.Windows
       btnAddNews.Click += new RoutedEventHandler(btnAddNews_Click);
       btnAddGallery.Click += new RoutedEventHandler(btnAddGallery_Click);
       btnAddNestedActivity.Click += new RoutedEventHandler(btnAddNestedActivity_Click);
+    }
+
+    #endregion
+
+    #region --- IClipFlairStartActions ---
+
+    //NewActivity/
+
+    public bool NewActivity()
+    {
+      RemoveWindows(ignoreChildrenWarnOnClosing: true);
+      View = new ActivityView(); //must set the view first
+      return true;
+    }
+    
+    //OpenActivity//
+
+    public bool OpenActivityFile()
+    {
+      LoadClick(this, new RoutedEventArgs());
+      return true; //TODO: return false if user cancelled
+    }
+
+    public bool OpenActivityURL()
+    {
+      LoadURLClick(this, new RoutedEventArgs());
+      return true; //TODO: return false if user cancelled
+    }
+
+    public bool OpenActivityGallery()
+    {
+      AddGallery("activities"); //TODO: use PivotDialog instead, then load activity
+      return true; //TODO: return false if user cancelled PivotDialog
+    }
+
+    //OpenVideo//
+
+    public bool OpenVideoFile()
+    {
+      MediaPlayerWindow win = AddClip();
+      win.OpenLocalFile(); //TODO: doesn't work, maybe AddClip takes too much time? Check why LoadClick above works fine
+      return true; //TODO: return false if user cancelled
+    }
+
+    public bool OpenVideoURL()
+    {
+      MediaPlayerWindow win = AddClip();
+      win.Flipped = true; //flip for user to fill-in Media URL field
+      return true;
+    }
+
+    public bool OpenVideoGallery()
+    {
+      AddGallery("video"); //TODO: use PivotDialog instead, invoked by talking to newly added video component
+      return true; //TODO: return false if user cancelled PivotDialog
+    }
+
+    //OpenImage//
+
+    public bool OpenImageFile() 
+    {
+      ImageWindow win = AddImage();
+      //win.OpenLocalFile(); //TODO
+      return true; //TODO: return false if user cancelled
+    }
+
+    public bool OpenImageURL()
+    {
+      ImageWindow win = AddImage();
+      win.Flipped = true; //flip for user to fill-in Image URL field
+      return true;
+    }
+
+    public bool OpenImageGallery()
+    {
+      AddGallery("images"); //TODO: use PivotDialog instead to get URL, invoked by talking to newly added image component
+      return true; //TODO: return false if user cancelled PivotDialog
+    }
+
+    //Help//
+
+    public bool HelpTutorials()
+    {
+      return NavigateTo(URL_HELP_TUTORIALS);
+    }
+
+    public bool HelpFAQ()
+    {
+      return NavigateTo(URL_HELP_FAQ);
+    }
+
+    public bool HelpContact()
+    {
+      return NavigateTo(URL_HELP_CONTACT);
+    }
+
+    //Social//
+
+    public bool Social()
+    {
+      return NavigateTo(URL_SOCIAL);
+    }
+
+    private bool NavigateTo(string uri)
+    {
+      try
+      {
+        new Uri(uri).NavigateTo(); //TODO: add WebBrowserWindow and WebBrowserDialog for OOP version and use that to show URLs
+        return true;
+      }
+      catch
+      {
+        return false;
+      }  
     }
 
     #endregion
