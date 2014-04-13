@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: ActivityWindow.xaml.cs
-//Version: 20140318
+//Version: 20140413
 
 using ClipFlair.UI.Dialogs;
 using ClipFlair.Windows.Captions;
@@ -110,6 +110,15 @@ namespace ClipFlair.Windows
     public ActivityContainer Container
     {
       get { return activity; }
+    }
+
+    #endregion
+
+    #region --- StartDialog ---
+
+    public void ShowStartDialog()
+    {
+      StartDialog.Show("", Container);
     }
 
     #endregion

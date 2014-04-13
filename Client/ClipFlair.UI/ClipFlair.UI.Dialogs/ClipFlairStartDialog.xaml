@@ -1,0 +1,89 @@
+﻿<!--
+Project: ClipFlair (http://ClipFlair.codeplex.com)
+Filename: StartDialog.xaml
+Version: 20140413
+-->
+
+<controls:ChildWindow 
+  x:Class="ClipFlair.UI.Dialogs.StartDialog"
+  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+  xmlns:controls="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls"
+  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+  mc:Ignorable="d" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+  d:DesignWidth="800" d:DesignHeight="600" 
+  Title="Welcome"
+  Background="#3C5774"
+  >
+
+  <controls:ChildWindow.Resources>
+    <ResourceDictionary>
+
+      <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="/ClipFlair.UI.Dialogs;component/StartItems/Items.xaml" />
+      </ResourceDictionary.MergedDictionaries>
+
+      <Style TargetType="Button">
+        <Setter Property="Cursor" Value="Hand"/>
+      </Style>
+
+    </ResourceDictionary>
+  </controls:ChildWindow.Resources>
+
+  <Grid Margin="20">
+    <Grid.RowDefinitions>
+      <RowDefinition Height="1.5*"/>
+      <RowDefinition />
+      <RowDefinition />
+      <RowDefinition Height="1.5*"/>
+    </Grid.RowDefinitions>
+
+    <Grid.ColumnDefinitions>
+      <ColumnDefinition Width="0.5*" />
+      <ColumnDefinition />
+      <ColumnDefinition />
+      <ColumnDefinition />
+      <ColumnDefinition />
+      <ColumnDefinition />
+      <ColumnDefinition />
+      <ColumnDefinition Width="0.5*" />
+    </Grid.ColumnDefinitions>
+
+    <Grid.Resources>
+      <Style TargetType="Button">
+        <Setter Property="Cursor" Value="Hand" />
+        <Setter Property="Margin" Value="10" />
+      </Style>
+    </Grid.Resources>
+
+    <!-- Start buttons -->
+    <Button Grid.Row="1" Grid.Column="1" Template="{StaticResource NewActivity.xaml}" Name="btnNewActivity" Click="btnNewActivity_Click" />
+    <Button Grid.Row="1" Grid.Column="2" Template="{StaticResource OpenActivity.xaml}" Name="btnOpenActivity" Click="btnOpenActivity_Click" />
+    <Button Grid.Row="1" Grid.Column="3" Template="{StaticResource OpenVideo.xaml}" Name="btnOpenVideo" Click="btnOpenVideo_Click" />
+    <Button Grid.Row="1" Grid.Column="4" Template="{StaticResource OpenImage.xaml}" Name="btnOpenImage" Click="btnOpenImage_Click" />
+    <Button Grid.Row="1" Grid.Column="5" Template="{StaticResource Help.xaml}" Name="btnHelp" Click="btnHelp_Click" />
+    <Button Grid.Row="1" Grid.Column="6" Template="{StaticResource Social.xaml}" Name="btnSocial" Click="btnSocial_Click" />
+
+    <!-- OpenActivity -->
+    <Button Grid.Row="2" Grid.Column="1" Template="{StaticResource OpenActivityFile.xaml}" Name="btnOpenActivityFile" Click="btnOpenActivityFile_Click" />
+    <Button Grid.Row="2" Grid.Column="2" Template="{StaticResource OpenActivityURL.xaml}" Name="btnOpenActivityURL" Click="btnOpenActivityURL_Click" />
+    <Button Grid.Row="2" Grid.Column="3" Template="{StaticResource OpenActivityGallery.xaml}" Name="btnOpenActivityGallery" Click="btnOpenActivityGallery_Click" />
+
+    <!-- OpenVideo -->
+    <Button Grid.Row="2" Grid.Column="2" Template="{StaticResource OpenVideoFile.xaml}" Name="btnOpenVideoFile" Click="btnOpenVideoFile_Click" />
+    <Button Grid.Row="2" Grid.Column="3" Template="{StaticResource OpenVideoURL.xaml}" Name="btnOpenVideoURL" Click="btnOpenVideoURL_Click" />
+    <Button Grid.Row="2" Grid.Column="4" Template="{StaticResource OpenVideoGallery.xaml}" Name="btnOpenVideoGallery" Click="btnOpenVideoGallery_Click" />
+
+    <!-- OpenImage -->
+    <Button Grid.Row="2" Grid.Column="3" Template="{StaticResource OpenImageFile.xaml}" Name="btnOpenImageFile" Click="btnOpenImageFile_Click" />
+    <Button Grid.Row="2" Grid.Column="4" Template="{StaticResource OpenImageURL.xaml}" Name="btnOpenImageURL" Click="btnOpenImageURL_Click" />
+    <Button Grid.Row="2" Grid.Column="5" Template="{StaticResource OpenImageGallery.xaml}" Name="btnOpenImageGallery" Click="btnOpenImageGallery_Click" />
+
+    <!-- Help -->
+    <Button Grid.Row="2" Grid.Column="4" Template="{StaticResource HelpTutorials.xaml}" Name="btnHelpTutorials" Click="btnHelpTutorials_Click" />
+    <Button Grid.Row="2" Grid.Column="5" Template="{StaticResource HelpFAQ.xaml}" Name="btnHelpFAQ" Click="btnHelpFAQ_Click" />
+    <Button Grid.Row="2" Grid.Column="6" Template="{StaticResource HelpContact.xaml}" Name="btnHelpContact" Click="btnHelpContact_Click" />
+
+  </Grid>
+
+</controls:ChildWindow>

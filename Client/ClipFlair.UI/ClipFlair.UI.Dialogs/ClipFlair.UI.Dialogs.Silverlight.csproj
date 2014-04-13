@@ -78,8 +78,9 @@
     <Compile Include="ErrorDialog.xaml.cs">
       <DependentUpon>ErrorDialog.xaml</DependentUpon>
     </Compile>
-    <Compile Include="StartDialog.xaml.cs">
-      <DependentUpon>StartDialog.xaml</DependentUpon>
+    <Compile Include="IClipFlairStartActions.cs" />
+    <Compile Include="ClipFlairStartDialog.xaml.cs">
+      <DependentUpon>ClipFlairStartDialog.xaml</DependentUpon>
     </Compile>
     <Compile Include="PivotDialog.xaml.cs">
       <DependentUpon>PivotDialog.xaml</DependentUpon>
@@ -101,7 +102,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="StartDialog.xaml">
+    <Page Include="ClipFlairStartDialog.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

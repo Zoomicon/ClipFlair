@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: App.xaml.cs
-//Version: 20140403
+//Version: 20140413
 
 //#define GALLERY_IN_BACKGROUND
 
@@ -130,7 +130,7 @@ namespace ClipFlair
           w.Height = activityWindow.Height - (activityWindow.ActivityView.ToolbarVisible?80:0); //TODO: should change this if/when activity toolbar is made vertical (have option to get ActualWidth/ActualHeight of activity toolbar)
           #endif
 
-          activityWindow.ShowLoadURLDialog();
+          activityWindow.ShowStartDialog();
         }
 
       };
