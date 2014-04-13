@@ -145,10 +145,12 @@ Version: 20140326
           <Grid>
             <Grid.RowDefinitions>
               <RowDefinition Height="29" />
+              <RowDefinition Height="40"/>
               <RowDefinition Height="*" />
             </Grid.RowDefinitions>
 
             <widgets:OptionsLoadSaveControl HorizontalAlignment="Stretch"
+              Grid.Row="0"
               Name="ctrlOptionsLoadSave"
               LoadURLTooltip="Load component from URL"
               LoadTooltip="Load component from file"
@@ -163,8 +165,17 @@ Version: 20140326
             </StackPanel>
             -->
 
-            <toolkit:Accordion
+            <StackPanel
               Grid.Row="1"
+              Name="propTitle"
+              Orientation="Vertical"
+              >
+              <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Title:" Target="{Binding ElementName=edTitle}" />
+              <TextBox Name="edTitle" Text="{Binding Title, Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=True}" />
+            </StackPanel>
+
+            <toolkit:Accordion
+              Grid.Row="2"
               SelectionMode="ZeroOrOne"
               SelectionSequence="Simultaneous"
               ExpandDirection="Down"
@@ -198,18 +209,6 @@ Version: 20140326
                     </StackPanel>
                     -->
                     
-                    <StackPanel Orientation="Vertical" Name="propTitle">
-                      <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Title:" Target="{Binding ElementName=edTitle}" />
-                      <TextBox Name="edTitle" Text="{Binding Title, Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=True}" />
-                    </StackPanel>
-
-                    <!--
-                    <StackPanel Orientation="Vertical" Name="propPosition">
-                      <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Position:" Target="{Binding ElementName=edPosition}" />
-                      <TextBox Name="edPosition" Text="{Binding Position, Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=True}" />
-                    </StackPanel>
-                    -->
-
                     <Grid>
                       <Grid.ColumnDefinitions>
                         <ColumnDefinition/>
