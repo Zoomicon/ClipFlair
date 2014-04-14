@@ -1,7 +1,7 @@
 ﻿<!--
 Project: ClipFlair (http://ClipFlair.codeplex.com)
 Filename: StartDialog.xaml
-Version: 20140413
+Version: 20140414
 -->
 
 <controls:ChildWindow 
@@ -46,6 +46,7 @@ Version: 20140413
       <ColumnDefinition />
       <ColumnDefinition />
       <ColumnDefinition />
+      <ColumnDefinition />
       <ColumnDefinition Width="0.5*" />
     </Grid.ColumnDefinitions>
 
@@ -57,32 +58,33 @@ Version: 20140413
     </Grid.Resources>
 
     <!-- Start buttons -->
-    <Button Grid.Row="1" Grid.Column="1" Template="{StaticResource NewActivity.xaml}" Name="btnNewActivity" Click="btnNewActivity_Click" />
-    <Button Grid.Row="1" Grid.Column="2" Template="{StaticResource OpenActivity.xaml}" Name="btnOpenActivity" Click="btnOpenActivity_Click" />
-    <Button Grid.Row="1" Grid.Column="3" Template="{StaticResource OpenVideo.xaml}" Name="btnOpenVideo" Click="btnOpenVideo_Click" />
-    <Button Grid.Row="1" Grid.Column="4" Template="{StaticResource OpenImage.xaml}" Name="btnOpenImage" Click="btnOpenImage_Click" />
-    <Button Grid.Row="1" Grid.Column="5" Template="{StaticResource Help.xaml}" Name="btnHelp" Click="btnHelp_Click" />
-    <Button Grid.Row="1" Grid.Column="6" Template="{StaticResource Social.xaml}" Name="btnSocial" Click="btnSocial_Click" />
+    <Button Grid.Row="1" Grid.Column="1" Template="{StaticResource Logo.xaml}" Name="btnProjectHome" Click="btnProjectHome_Click" />
+    <Button Grid.Row="1" Grid.Column="2" Template="{StaticResource NewActivity.xaml}" Name="btnNewActivity" Click="btnNewActivity_Click" />
+    <Button Grid.Row="1" Grid.Column="3" Template="{StaticResource OpenActivity.xaml}" Name="btnOpenActivity" Click="btnOpenActivity_Click" />
+    <Button Grid.Row="1" Grid.Column="4" Template="{StaticResource OpenVideo.xaml}" Name="btnOpenVideo" Click="btnOpenVideo_Click" />
+    <Button Grid.Row="1" Grid.Column="5" Template="{StaticResource OpenImage.xaml}" Name="btnOpenImage" Click="btnOpenImage_Click" />
+    <Button Grid.Row="1" Grid.Column="6" Template="{StaticResource Help.xaml}" Name="btnHelp" Click="btnHelp_Click" />
+    <Button Grid.Row="1" Grid.Column="7" Template="{StaticResource Social.xaml}" Name="btnSocial" Click="btnSocial_Click" />
 
     <!-- OpenActivity -->
-    <Button Grid.Row="2" Grid.Column="1" Template="{StaticResource OpenActivityFile.xaml}" Name="btnOpenActivityFile" Click="btnOpenActivityFile_Click" />
-    <Button Grid.Row="2" Grid.Column="2" Template="{StaticResource OpenActivityURL.xaml}" Name="btnOpenActivityURL" Click="btnOpenActivityURL_Click" />
-    <Button Grid.Row="2" Grid.Column="3" Template="{StaticResource OpenActivityGallery.xaml}" Name="btnOpenActivityGallery" Click="btnOpenActivityGallery_Click" />
+    <Button Grid.Row="2" Grid.Column="2" Template="{StaticResource OpenActivityFile.xaml}" Name="btnOpenActivityFile" Click="btnOpenActivityFile_Click" />
+    <Button Grid.Row="2" Grid.Column="3" Template="{StaticResource OpenActivityURL.xaml}" Name="btnOpenActivityURL" Click="btnOpenActivityURL_Click" />
+    <Button Grid.Row="2" Grid.Column="4" Template="{StaticResource OpenActivityGallery.xaml}" Name="btnOpenActivityGallery" Click="btnOpenActivityGallery_Click" />
 
     <!-- OpenVideo -->
-    <Button Grid.Row="2" Grid.Column="2" Template="{StaticResource OpenVideoFile.xaml}" Name="btnOpenVideoFile" Click="btnOpenVideoFile_Click" />
-    <Button Grid.Row="2" Grid.Column="3" Template="{StaticResource OpenVideoURL.xaml}" Name="btnOpenVideoURL" Click="btnOpenVideoURL_Click" />
-    <Button Grid.Row="2" Grid.Column="4" Template="{StaticResource OpenVideoGallery.xaml}" Name="btnOpenVideoGallery" Click="btnOpenVideoGallery_Click" />
+    <Button Grid.Row="2" Grid.Column="3" Template="{StaticResource OpenVideoFile.xaml}" Name="btnOpenVideoFile" Click="btnOpenVideoFile_Click" />
+    <Button Grid.Row="2" Grid.Column="4" Template="{StaticResource OpenVideoURL.xaml}" Name="btnOpenVideoURL" Click="btnOpenVideoURL_Click" />
+    <Button Grid.Row="2" Grid.Column="5" Template="{StaticResource OpenVideoGallery.xaml}" Name="btnOpenVideoGallery" Click="btnOpenVideoGallery_Click" />
 
     <!-- OpenImage -->
-    <Button Grid.Row="2" Grid.Column="3" Template="{StaticResource OpenImageFile.xaml}" Name="btnOpenImageFile" Click="btnOpenImageFile_Click" />
-    <Button Grid.Row="2" Grid.Column="4" Template="{StaticResource OpenImageURL.xaml}" Name="btnOpenImageURL" Click="btnOpenImageURL_Click" />
-    <Button Grid.Row="2" Grid.Column="5" Template="{StaticResource OpenImageGallery.xaml}" Name="btnOpenImageGallery" Click="btnOpenImageGallery_Click" />
+    <Button Grid.Row="2" Grid.Column="4" Template="{StaticResource OpenImageFile.xaml}" Name="btnOpenImageFile" Click="btnOpenImageFile_Click" />
+    <Button Grid.Row="2" Grid.Column="5" Template="{StaticResource OpenImageURL.xaml}" Name="btnOpenImageURL" Click="btnOpenImageURL_Click" />
+    <Button Grid.Row="2" Grid.Column="6" Template="{StaticResource OpenImageGallery.xaml}" Name="btnOpenImageGallery" Click="btnOpenImageGallery_Click" />
 
     <!-- Help -->
-    <Button Grid.Row="2" Grid.Column="4" Template="{StaticResource HelpTutorials.xaml}" Name="btnHelpTutorials" Click="btnHelpTutorials_Click" />
-    <Button Grid.Row="2" Grid.Column="5" Template="{StaticResource HelpFAQ.xaml}" Name="btnHelpFAQ" Click="btnHelpFAQ_Click" />
-    <Button Grid.Row="2" Grid.Column="6" Template="{StaticResource HelpContact.xaml}" Name="btnHelpContact" Click="btnHelpContact_Click" />
+    <Button Grid.Row="2" Grid.Column="5" Template="{StaticResource HelpTutorials.xaml}" Name="btnHelpTutorials" Click="btnHelpTutorials_Click" />
+    <Button Grid.Row="2" Grid.Column="6" Template="{StaticResource HelpFAQ.xaml}" Name="btnHelpFAQ" Click="btnHelpFAQ_Click" />
+    <Button Grid.Row="2" Grid.Column="7" Template="{StaticResource HelpContact.xaml}" Name="btnHelpContact" Click="btnHelpContact_Click" />
 
   </Grid>
 

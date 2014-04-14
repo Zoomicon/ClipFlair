@@ -217,6 +217,13 @@
     <Resource Include="Images\AddNews.png" />
     <Resource Include="Images\AddNews_hover.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Home.png" />
+    <Resource Include="Images\Home_hover.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Activity.cd" />
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Silverlight\$(SilverlightVersion)\Microsoft.Silverlight.CSharp.targets" />
   <ProjectExtensions>
     <VisualStudio>

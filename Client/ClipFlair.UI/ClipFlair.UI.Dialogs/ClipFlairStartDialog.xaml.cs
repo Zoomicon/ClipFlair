@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: StartDialog.xaml.cs
-//Version: 20140413
+//Version: 20140414
 
 using System;
 using System.ComponentModel;
@@ -64,6 +64,18 @@ namespace ClipFlair.UI.Dialogs
     #endregion
 
     #region --- Events ---
+
+    //Project Home//
+
+    private void btnProjectHome_Click(object sender, RoutedEventArgs e)
+    {
+      Hide2ndLevelButtons();
+
+      if (Actions != null)
+        Actions.ProjectHome();
+
+      //Close();
+    }
 
     //NewActivity//
 

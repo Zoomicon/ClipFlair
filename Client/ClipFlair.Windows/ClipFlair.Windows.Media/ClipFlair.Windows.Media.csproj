@@ -153,6 +153,9 @@
     <Resource Include="Images\LoadMedia.png" />
     <Resource Include="Images\LoadMedia_hover.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Media.cd" />
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Silverlight\$(SilverlightVersion)\Microsoft.Silverlight.CSharp.targets" />
   <ProjectExtensions>
     <VisualStudio>

@@ -82,14 +82,6 @@
     <None Include="NamespaceDependencies.dgml">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Windows\Activity.cd" />
-    <None Include="Windows\Base.cd" />
-    <None Include="Windows\Captions.cd" />
-    <None Include="Windows\Gallery.cd" />
-    <None Include="Windows\Image.cd" />
-    <None Include="Windows\Map.cd" />
-    <None Include="Windows\Media.cd" />
-    <None Include="Windows\Text.cd" />
     <None Include="Windows\Windows.cd" />
     <None Include="Windows\Windows.Views.Interfaces.cd" />
     <None Include="Windows\Windows.Views.ViewModels.cd" />
@@ -130,6 +122,10 @@
     <ProjectReference Include="..\..\Client\ClipFlair.Windows\ClipFlair.Windows.Media\ClipFlair.Windows.Media.csproj">
       <Project>{A14AC96C-D998-4C35-B1C0-415535D1378B}</Project>
       <Name>ClipFlair.Windows.Media</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Client\ClipFlair.Windows\ClipFlair.Windows.News\ClipFlair.Windows.News.csproj">
+      <Project>{7bd74aa7-4ab8-4d85-aab0-99a0f8236e7e}</Project>
+      <Name>ClipFlair.Windows.News</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Client\ClipFlair.Windows\ClipFlair.Windows.Text\ClipFlair.Windows.Text.csproj">
       <Project>{396DD176-BC1D-45CF-900E-4FC85B7398FC}</Project>
