@@ -1,11 +1,13 @@
 ﻿//Prroject: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: IClipFlairStartActions.cs
-//Version: 20140413
+//Version: 20140414
 
 namespace ClipFlair.UI.Dialogs
 {
   public interface IClipFlairStartActions
   {
+    //Project Home//
+    bool ProjectHome();
 
     //NewActivity//
     bool NewActivity();

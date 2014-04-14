@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: ActivityContainer.xaml.cs
-//Version: 20140413
+//Version: 20140414
 
 //TODO: add ContentPartsCloseable property
 //TODO: add ContentPartsZoomable property
@@ -33,6 +33,7 @@ namespace ClipFlair.Windows
 
     #region --- Constants ---
 
+    public const string URL_PROJECT_HOME = "http://ClipFlair.net";
     public const string URL_HELP_TUTORIALS = "http://social.clipflair.net/Pages/Tutorials.aspx";
     public const string URL_HELP_FAQ = "http://social.clipflair.net/help/faq.aspx";
     public const string URL_HELP_CONTACT = "http://social.clipflair.net/MonoX/Pages/Contact.aspx";
@@ -542,9 +543,30 @@ namespace ClipFlair.Windows
 
     #endregion
 
+    #region --- Start Dialog ---
+
+    public void ShowStartDialog()
+    {
+      StartDialog.Show("", this);
+    }
+
+    private void btnProjectHome_Click(object sender, RoutedEventArgs e)
+    {
+      ShowStartDialog();
+    }
+
+    #endregion
+
     #region --- IClipFlairStartActions ---
 
-    //NewActivity/
+    //Project Home//
+
+    public bool ProjectHome()
+    {
+      return NavigateTo(URL_PROJECT_HOME);
+    }
+
+    //NewActivity//
 
     public bool NewActivity()
     {

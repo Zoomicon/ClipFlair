@@ -1,7 +1,7 @@
 ﻿<!--
 Project: ClipFlair (http://ClipFlair.codeplex.com)
 Filename: ActivityContainer.xaml
-Version: 20140311
+Version: 20140414
 -->
 
 <UserControl x:Class="ClipFlair.Windows.ActivityContainer" 
@@ -71,6 +71,15 @@ Version: 20140311
           Background="{StaticResource ClipFlairActivityToolbarBackground}"          
           >
 
+          <btn:ImageButton
+            Name="btnProjectHome"
+            VerticalAlignment="Center" Margin="20,0,0,0"              
+            ToolTipService.ToolTip="Show start dialog"
+            Image="/ClipFlair.Windows.Activity;component/Images/Home.png"
+            ImageHover="/ClipFlair.Windows.Activity;component/Images/Home_hover.png"
+            Click="btnProjectHome_Click"  
+            />
+          
           <widgets:OptionsLoadSaveControl
             LoadURLTooltip="Load activity from URL"
             LoadTooltip="Load activity from file"

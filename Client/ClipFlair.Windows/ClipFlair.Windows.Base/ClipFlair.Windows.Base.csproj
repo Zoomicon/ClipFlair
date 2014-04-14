@@ -173,6 +173,9 @@
     <Resource Include="Images\Restore.png" />
     <Resource Include="Images\Restore_hover.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Base.cd" />
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Silverlight\$(SilverlightVersion)\Microsoft.Silverlight.CSharp.targets" />
   <ProjectExtensions>
     <VisualStudio>

@@ -131,7 +131,9 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="Gallery.cd" />
+  </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\Download.png" />
     <Resource Include="Images\Info.png" />
