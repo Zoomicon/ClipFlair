@@ -1,29 +1,29 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="NameAndType">
   <Class Name="ClipFlair.Windows.Views.IViewProperties">
-    <Position X="0.5" Y="0.5" Width="2.25" />
+    <Position X="7.75" Y="0.5" Width="2.5" />
     <TypeIdentifier>
-      <HashCode>EAEAAAAAJEAAAAQCAAAAAAARAAABAAAAAAQAACABAAA=</HashCode>
-      <FileName>IView.cs</FileName>
+      <HashCode>VAkQCAAApEAAAAQCAAAAAQARAAABAAQAAAQACSABQAA=</HashCode>
+      <FileName>ViewModel\IViewProperties.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="ClipFlair.Windows.Views.ViewDefaults">
-    <Position X="3" Y="0.5" Width="2" />
+    <Position X="7.75" Y="6" Width="2.5" />
     <TypeIdentifier>
-      <HashCode>AAAIAAAAQEAiQAAAAAAAAAoAAAACAAAAAAAhgAAIAAA=</HashCode>
-      <FileName>ViewDefaults.cs</FileName>
+      <HashCode>AAAIgAAAaUAiQAEAAAAAAAoBAAgCAAAAICAhgIgIAAA=</HashCode>
+      <FileName>ViewModel\ViewDefaults.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="ClipFlair.Windows.Views.BaseView" BaseTypeListCollapsed="true">
-    <Position X="5.5" Y="0.5" Width="3.25" />
+    <Position X="4" Y="6" Width="3.25" />
     <TypeIdentifier>
-      <HashCode>gAAGEBAGRAQQhEQgUAAAIFAAgAAAAAAAgAAAAIAAAhA=</HashCode>
-      <FileName>BaseView.cs</FileName>
+      <HashCode>gAAHEBEGRAQQxERgUBIAYFASiAEAABgHgAAABIAAcxA=</HashCode>
+      <FileName>ViewModel\BaseView.cs</FileName>
     </TypeIdentifier>
-    <Lollipop Position="0.2" Collapsed="true" />
+    <Lollipop Position="0.2" />
   </Class>
   <Class Name="ClipFlair.Windows.BaseWindow">
-    <Position X="9.25" Y="1.75" Width="3" />
+    <Position X="0.5" Y="3.25" Width="3" />
     <Compartments>
       <Compartment Name="Nested Types" Collapsed="false" />
     </Compartments>
@@ -35,22 +35,35 @@
       </Delegate>
     </NestedTypes>
     <TypeIdentifier>
-      <HashCode>AAwHAEBgQADWaBAABAECwAgAAEABBBIyAJAiABAAAAA=</HashCode>
-      <FileName>BaseWindow.xaml.cs</FileName>
+      <HashCode>AIwHAEBhQBDWeFBABAEyxAwBACABCBACBIA7CBAAEEA=</HashCode>
+      <FileName>View\BaseWindow.xaml.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Interface Name="ClipFlair.Windows.Views.IView">
-    <Position X="0.5" Y="3.75" Width="2" />
+    <Position X="4" Y="0.5" Width="2.25" />
     <TypeIdentifier>
-      <HashCode>gAAAEAAABAAQhEAgEAAAAEAAAAAAAAAAAAAAAIAAAgA=</HashCode>
-      <FileName>IView.cs</FileName>
+      <HashCode>gAAAEAAABAAQxEBgEBAAAEACCAAAAAABAAAABIAAcwA=</HashCode>
+      <FileName>ViewModel\IView.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Interface Name="ClipFlair.Windows.IWindowFactory">
-    <Position X="9.25" Y="0.5" Width="2.25" />
+    <Position X="0.5" Y="0.5" Width="2.25" />
     <TypeIdentifier>
       <HashCode>AAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>IWindowFactory.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="ClipFlair.Windows.IFileWindowFactory">
+    <Position X="0.5" Y="1.75" Width="2.5" />
+    <InheritanceLine Type="ClipFlair.Windows.IWindowFactory" FixedToPoint="true">
+      <Path>
+        <Point X="1.625" Y="1.481" />
+        <Point X="1.625" Y="1.75" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AAAIAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>IFileWindowFactory.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Font Name="Tahoma" Size="8.25" />

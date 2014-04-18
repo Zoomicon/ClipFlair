@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: App_Update.cs
-//Version: 20140403
+//Version: 20140418
 
 using System.Windows;
 
@@ -18,7 +18,7 @@ namespace ClipFlair
     {
       if (!IsRunningOutOfBrowser) return;
 
-      CheckAndDownloadUpdateCompleted += new CheckAndDownloadUpdateCompletedEventHandler(OnCheckAndDownloadUpdateCompleted); //attach event handler
+      CheckAndDownloadUpdateCompleted += OnCheckAndDownloadUpdateCompleted; //attach event handler
       try
       {
         CheckAndDownloadUpdateAsync();
@@ -33,7 +33,7 @@ namespace ClipFlair
 
     private void OnCheckAndDownloadUpdateCompleted(object sender, CheckAndDownloadUpdateCompletedEventArgs e)
     {
-      CheckAndDownloadUpdateCompleted -= new CheckAndDownloadUpdateCompletedEventHandler(OnCheckAndDownloadUpdateCompleted); //detach event handler
+      CheckAndDownloadUpdateCompleted -= OnCheckAndDownloadUpdateCompleted; //detach event handler
 
       if (e.UpdateAvailable) //update was found and downloaded
         MessageDialog.Show("", "Update downloaded, will use at next launch");

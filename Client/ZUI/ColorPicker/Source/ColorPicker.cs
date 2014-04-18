@@ -1,4 +1,4 @@
-﻿//Version: 20140317
+﻿//Version: 20140417
 
 using System;
 using System.ComponentModel;
@@ -85,7 +85,7 @@ namespace ColorPickerLib
     private Popup popupDropDown;
     private Canvas canvasOutside;
     private Canvas canvasOutsidePopup;
-    ColorBoard colorBoard; //field only accessible by code in this file
+    private ColorBoard colorBoard; //field only accessible by code in this file
 
     #endregion
 

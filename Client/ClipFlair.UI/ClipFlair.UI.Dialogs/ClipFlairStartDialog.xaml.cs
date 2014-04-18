@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: StartDialog.xaml.cs
-//Version: 20140414
+//Version: 20140415
 
 using System;
 using System.ComponentModel;
@@ -25,10 +25,10 @@ namespace ClipFlair.UI.Dialogs
     
     #region --- Methods ---
 
-    public static void Show(string title, IClipFlairStartActions actions, EventHandler<CancelEventArgs> closingHandler = null)
+    public static void Show(IClipFlairStartActions actions, EventHandler<CancelEventArgs> closingHandler = null)
     {
       StartDialog prompt = new StartDialog();
-      prompt.Title = title;
+      prompt.Title = "";
       prompt.Actions = actions;
       if (closingHandler != null) 
         prompt.Closing += closingHandler;

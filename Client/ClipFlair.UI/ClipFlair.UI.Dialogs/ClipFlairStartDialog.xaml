@@ -1,7 +1,7 @@
 ﻿<!--
 Project: ClipFlair (http://ClipFlair.codeplex.com)
 Filename: StartDialog.xaml
-Version: 20140414
+Version: 20140415
 -->
 
 <controls:ChildWindow 
@@ -12,7 +12,7 @@ Version: 20140414
   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
   mc:Ignorable="d" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
   d:DesignWidth="800" d:DesignHeight="600" 
-  Title="Welcome"
+  Title=""
   Background="#3C5774"
   >
 

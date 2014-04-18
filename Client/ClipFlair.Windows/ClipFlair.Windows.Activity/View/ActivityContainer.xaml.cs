@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: ActivityContainer.xaml.cs
-//Version: 20140414
+//Version: 20140415
 
 //TODO: add ContentPartsCloseable property
 //TODO: add ContentPartsZoomable property
@@ -38,8 +38,12 @@ namespace ClipFlair.Windows
     public const string URL_HELP_FAQ = "http://social.clipflair.net/help/faq.aspx";
     public const string URL_HELP_CONTACT = "http://social.clipflair.net/MonoX/Pages/Contact.aspx";
     public const string URL_SOCIAL = "http://social.clipflair.net";
+    public const string URL_NEWS = "http://social.clipflair.net/Blog.aspx?MonoXRssFeed=ClipFlair-All-blog-posts";
 
-
+    public const string URL_DEFAULT_VIDEO = "http://video3.smoothhd.com.edgesuite.net/ondemand/Big%20Buck%20Bunny%20Adaptive.ism/Manifest"; //MPEG-DASH sample: http://wams.edgesuite.net/media/MPTExpressionData02/BigBuckBunny_1080p24_IYUV_2ch.ism/manifest(format=mpd-time-csf)
+    public const string URL_DEFAULT_IMAGE = "http://gallery.clipflair.net/image/clipflair-logo.jpg";
+    public const string URL_GALLERY_PREFIX = "http://gallery.clipflair.net/collection/";
+    
     #endregion
 
     #region --- Initialization ---
@@ -232,6 +236,7 @@ namespace ClipFlair.Windows
       else if (window is ImageWindow) BindImageWindow((ImageWindow)window);
       else if (window is MapWindow) BindMapWindow((MapWindow)window);
       else if (window is NewsWindow) BindNewsWindow((NewsWindow)window);
+      else if (window is BrowserWindow) BindBrowserWindow((BrowserWindow)window);
       else if (window is GalleryWindow) BindGalleryWindow((GalleryWindow)window);
     }
 
@@ -324,6 +329,20 @@ namespace ClipFlair.Windows
           ErrorDialog.Show("Failed to bind News component", ex);
         }
     }
+
+    private void BindBrowserWindow(BrowserWindow window)
+    {
+      if (window.View != null && View != null)
+        try
+        {
+          //BindingUtils.BindProperties(window.View, IViewProperties.PropertyTime,
+          //                            View, IViewProperties.PropertyTime); //TODO: should rebind after changing view if the window is inside a BaseWindow (get its View and bind to it)
+        }
+        catch (Exception ex)
+        {
+          ErrorDialog.Show("Failed to bind Browser component", ex);
+        }
+    }
     
     private void BindGalleryWindow(GalleryWindow window)
     {
@@ -345,9 +364,9 @@ namespace ClipFlair.Windows
     {
       MediaPlayerWindow w = (MediaPlayerWindow)AddWindow(MediaPlayerWindowFactory, newInstance: true);
       w.MediaPlayerView.AutoPlay = false;
-      w.MediaPlayerView.Source = new Uri("http://video3.smoothhd.com.edgesuite.net/ondemand/Big%20Buck%20Bunny%20Adaptive.ism/Manifest", UriKind.Absolute);
+      w.MediaPlayerView.Source = new Uri(URL_DEFAULT_VIDEO, UriKind.Absolute);
       return w;
-    } //MPEG-DASH sample: http://wams.edgesuite.net/media/MPTExpressionData02/BigBuckBunny_1080p24_IYUV_2ch.ism/manifest(format=mpd-time-csf)
+    }
 
     public CaptionsGridWindow AddCaptions()
     {
@@ -374,7 +393,7 @@ namespace ClipFlair.Windows
     public ImageWindow AddImage()
     {
       ImageWindow w = (ImageWindow)AddWindow(ImageWindowFactory, newInstance: true);
-      w.ImageView.Source = new Uri("http://gallery.clipflair.net/image/clipflair-logo.jpg", UriKind.Absolute);
+      w.ImageView.Source = new Uri(URL_DEFAULT_IMAGE, UriKind.Absolute);
       return w;
     }
 
@@ -387,14 +406,21 @@ namespace ClipFlair.Windows
     public NewsWindow AddNews()
     {
       NewsWindow w = (NewsWindow)AddWindow(NewsWindowFactory, newInstance: true);
-      w.NewsView.Source = new Uri("http://social.clipflair.net/Blog.aspx?MonoXRssFeed=ClipFlair-All-blog-posts", UriKind.Absolute);
+      w.NewsView.Source = new Uri(URL_NEWS, UriKind.Absolute);
+      return w;
+    }
+
+    public BrowserWindow AddBrowser()
+    {
+      BrowserWindow w = (BrowserWindow)AddWindow(BrowserWindowFactory, newInstance: true);
+      w.BrowserView.Source = new Uri(URL_PROJECT_HOME, UriKind.Absolute);
       return w;
     }
 
     public GalleryWindow AddGallery(string source = "activities")
     {
       GalleryWindow w = (GalleryWindow)AddWindow(GalleryWindowFactory, newInstance: true);
-      w.GalleryView.Source = new Uri("http://gallery.clipflair.net/collection/" + source + ".cxml"); //TODO: move logic from Studio's App.xaml.cs into GalleryWindow's Source proprty to translate partial URIs into ClipFlair gallery URIs
+      w.GalleryView.Source = new Uri(URL_GALLERY_PREFIX + source + ".cxml"); //TODO: move logic from Studio's App.xaml.cs into GalleryWindow's Source proprty to translate partial URIs into ClipFlair gallery URIs
       return w;
     }
 
@@ -438,6 +464,11 @@ namespace ClipFlair.Windows
     private void btnAddNews_Click(object sender, RoutedEventArgs e)
     {
       AddNews();
+    }
+
+    private void btnAddBrowser_Click(object sender, RoutedEventArgs e)
+    {
+      AddBrowser();
     }
 
     private void btnAddGallery_Click(object sender, RoutedEventArgs e)
@@ -502,6 +533,9 @@ namespace ClipFlair.Windows
     [Import("ClipFlair.Windows.Views.NewsView", typeof(IWindowFactory), RequiredCreationPolicy = CreationPolicy.Shared)]
     public IWindowFactory NewsWindowFactory { get; set; }
 
+    [Import("ClipFlair.Windows.Views.BrowserView", typeof(IWindowFactory), RequiredCreationPolicy = CreationPolicy.Shared)]
+    public IWindowFactory BrowserWindowFactory { get; set; }
+
     [Import("ClipFlair.Windows.Views.GalleryView", typeof(IWindowFactory), RequiredCreationPolicy = CreationPolicy.Shared)]
     public IWindowFactory GalleryWindowFactory { get; set; }
 
@@ -518,6 +552,7 @@ namespace ClipFlair.Windows
       partsCatalog.Catalogs.Add(new AssemblyCatalog(typeof(ImageWindow).Assembly));
       partsCatalog.Catalogs.Add(new AssemblyCatalog(typeof(MapWindow).Assembly));
       partsCatalog.Catalogs.Add(new AssemblyCatalog(typeof(NewsWindow).Assembly));
+      partsCatalog.Catalogs.Add(new AssemblyCatalog(typeof(BrowserWindow).Assembly));
       partsCatalog.Catalogs.Add(new AssemblyCatalog(typeof(GalleryWindow).Assembly));
       partsCatalog.Catalogs.Add(new AssemblyCatalog(Assembly.GetExecutingAssembly())); //typeof(ActivityWindow).Assembly
 
@@ -530,15 +565,23 @@ namespace ClipFlair.Windows
 
     private void InitPartButtons()
     {
-      btnAddClip.Click += new RoutedEventHandler(btnAddClip_Click);
-      btnAddCaptions.Click += new RoutedEventHandler(btnAddCaptions_Click);
-      btnAddRevoicing.Click += new RoutedEventHandler(btnAddRevoicing_Click);
-      btnAddText.Click += new RoutedEventHandler(btnAddText_Click);
-      btnAddImage.Click += new RoutedEventHandler(btnAddImage_Click);
-      btnAddMap.Click += new RoutedEventHandler(btnAddMap_Click);
-      btnAddNews.Click += new RoutedEventHandler(btnAddNews_Click);
-      btnAddGallery.Click += new RoutedEventHandler(btnAddGallery_Click);
-      btnAddNestedActivity.Click += new RoutedEventHandler(btnAddNestedActivity_Click);
+      btnAddClip.Click += btnAddClip_Click;
+      btnAddCaptions.Click += btnAddCaptions_Click;
+      btnAddRevoicing.Click += btnAddRevoicing_Click;
+      btnAddText.Click += btnAddText_Click;
+      btnAddImage.Click += btnAddImage_Click;
+      btnAddMap.Click += btnAddMap_Click;
+      btnAddNews.Click += btnAddNews_Click;
+      btnAddBrowser.Click += btnAddBrowser_Click;
+      btnAddGallery.Click += btnAddGallery_Click;
+      btnAddNestedActivity.Click += btnAddNestedActivity_Click;
+
+      #if SILVERLIGHT
+      #if !WINDOWS_PHONE
+      if (!Application.Current.IsRunningOutOfBrowser)
+      #endif
+        btnAddBrowser.Visibility = Visibility.Collapsed; //TODO: try to find some C# WebBrowser (still would have issue with remote sites not using ClientAccessPolicy.xml)
+      #endif
     }
 
     #endregion
@@ -547,7 +590,7 @@ namespace ClipFlair.Windows
 
     public void ShowStartDialog()
     {
-      StartDialog.Show("", this);
+      StartDialog.Show(this);
     }
 
     private void btnProjectHome_Click(object sender, RoutedEventArgs e)
