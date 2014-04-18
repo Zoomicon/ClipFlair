@@ -116,6 +116,10 @@
       <Project>{0771A5EA-F8F5-4BB4-A29E-2FD3CF9A5088}</Project>
       <Name>ClipFlair.UI.Widgets.Silverlight</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Media\Browser\Browser.Silverlight\Browser.Silverlight.csproj">
+      <Project>{c44eabe3-1be9-4689-a5f5-0f36fd8059de}</Project>
+      <Name>Browser.Silverlight</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\ZUI\FloatingWindowZUI\FloatingWindowZUI.Silverlight\FloatingWindowZUI.Silverlight.csproj">
       <Project>{D7D67F52-7B9B-4DE5-9B72-534664F296B7}</Project>
       <Name>FloatingWindowZUI.Silverlight</Name>
