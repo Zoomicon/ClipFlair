@@ -137,6 +137,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SliderExt.WindowsPhone", "C
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ColorPicker.WindowsPhone", "Client\ZUI\ColorPicker\Windows Phone\ColorPicker.WindowsPhone\ColorPicker.WindowsPhone.csproj", "{D82EF1F1-AB3D-41B0-8B67-76461B592492}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClipFlair.Windows.Browser", "Client\ClipFlair.Windows\ClipFlair.Windows.Browser\ClipFlair.Windows.Browser.csproj", "{692622CB-E02A-40E3-AF57-91B2793C9975}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Browser.Silverlight", "Client\Media\Browser\Browser.Silverlight\Browser.Silverlight.csproj", "{C44EABE3-1BE9-4689-A5F5-0F36FD8059DE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -773,6 +777,30 @@ Global
 		{D82EF1F1-AB3D-41B0-8B67-76461B592492}.Release|Mixed Platforms.Build.0 = Release|x86
 		{D82EF1F1-AB3D-41B0-8B67-76461B592492}.Release|x86.ActiveCfg = Release|x86
 		{D82EF1F1-AB3D-41B0-8B67-76461B592492}.Release|x86.Build.0 = Release|x86
+		{692622CB-E02A-40E3-AF57-91B2793C9975}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{692622CB-E02A-40E3-AF57-91B2793C9975}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{692622CB-E02A-40E3-AF57-91B2793C9975}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{692622CB-E02A-40E3-AF57-91B2793C9975}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{692622CB-E02A-40E3-AF57-91B2793C9975}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{692622CB-E02A-40E3-AF57-91B2793C9975}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{692622CB-E02A-40E3-AF57-91B2793C9975}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{692622CB-E02A-40E3-AF57-91B2793C9975}.Release|Any CPU.Build.0 = Release|Any CPU
+		{692622CB-E02A-40E3-AF57-91B2793C9975}.Release|ARM.ActiveCfg = Release|Any CPU
+		{692622CB-E02A-40E3-AF57-91B2793C9975}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{692622CB-E02A-40E3-AF57-91B2793C9975}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{692622CB-E02A-40E3-AF57-91B2793C9975}.Release|x86.ActiveCfg = Release|Any CPU
+		{C44EABE3-1BE9-4689-A5F5-0F36FD8059DE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C44EABE3-1BE9-4689-A5F5-0F36FD8059DE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C44EABE3-1BE9-4689-A5F5-0F36FD8059DE}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{C44EABE3-1BE9-4689-A5F5-0F36FD8059DE}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{C44EABE3-1BE9-4689-A5F5-0F36FD8059DE}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{C44EABE3-1BE9-4689-A5F5-0F36FD8059DE}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{C44EABE3-1BE9-4689-A5F5-0F36FD8059DE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C44EABE3-1BE9-4689-A5F5-0F36FD8059DE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C44EABE3-1BE9-4689-A5F5-0F36FD8059DE}.Release|ARM.ActiveCfg = Release|Any CPU
+		{C44EABE3-1BE9-4689-A5F5-0F36FD8059DE}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{C44EABE3-1BE9-4689-A5F5-0F36FD8059DE}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{C44EABE3-1BE9-4689-A5F5-0F36FD8059DE}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -841,5 +869,7 @@ Global
 		{F804B57F-6A6D-4A4E-99F7-D99AE4512CCA} = {1F2F3DA5-5A02-4C7B-BAEC-70DA57BC8D33}
 		{03C3AFFE-7CD1-4072-B014-925A3E295B6E} = {AB30659E-B558-4A8B-BB13-C77F13CC9746}
 		{D82EF1F1-AB3D-41B0-8B67-76461B592492} = {AB30659E-B558-4A8B-BB13-C77F13CC9746}
+		{692622CB-E02A-40E3-AF57-91B2793C9975} = {159C8690-CD53-49FE-9B9E-67960BA0DA67}
+		{C44EABE3-1BE9-4689-A5F5-0F36FD8059DE} = {AB8CB11F-F724-4E42-BEED-74A778A61FC9}
 	EndGlobalSection
 EndGlobal

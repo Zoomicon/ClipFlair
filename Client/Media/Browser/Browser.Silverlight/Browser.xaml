@@ -1,0 +1,64 @@
+﻿<!--
+Project: ClipFlair (http://ClipFlair.codeplex.com)
+Filename: Browser.xaml
+Version: 20140418
+-->
+  
+<UserControl x:Class="ClipFlair.Browser.Browser"
+  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+  xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk"
+  xmlns:toolkit="http://schemas.microsoft.com/winfx/2006/xaml/presentation/toolkit"
+  xmlns:local="clr-namespace:ClipFlair.Browser"
+  mc:Ignorable="d"
+  d:DesignHeight="300" d:DesignWidth="400"
+  IsTabStop="True"
+  >
+
+  <toolkit:DockPanel
+    x:Name="LayoutRoot"
+    LastChildFill="True"
+    >
+
+    <!-- TOOLBAR -->
+
+    <toolkit:DockPanel
+      toolkit:DockPanel.Dock="Top"
+      LastChildFill="True"
+      >
+      <Button x:Name="btnBack" Content="&lt;" Click="btnBack_Click" Visibility="Collapsed" />
+      <Button x:Name="btnForward" Content="&gt;" Click="btnForward_Click" Visibility="Collapsed" />
+      <sdk:Label Content="Address: " Target="{Binding ElementName=edAddress}" />
+      <TextBox
+        x:Name="edAddress"
+        HorizontalAlignment="Stretch"
+        Text="{Binding Path=Source, RelativeSource={RelativeSource AncestorType=local:Browser}, Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=True}"
+        />
+    </toolkit:DockPanel>
+
+    <!-- BROWSER -->
+
+    <Grid toolkit:DockPanel.Dock="Top">
+
+      <Button x:Name="btn"/> <!-- obscured by the following controls, only used for OnGotFocus of the UserControl to fire -->
+          
+      <WebBrowser
+        x:Name="web"
+        Source="{Binding Path=Source, RelativeSource={RelativeSource AncestorType=local:Browser}, Mode=TwoWay}"
+        ScrollViewer.HorizontalScrollBarVisibility="Auto" 
+        ScrollViewer.VerticalScrollBarVisibility="Auto"
+        LoadCompleted="web_LoadCompleted"
+        />
+
+      <Rectangle x:Name="webOverlay" IsHitTestVisible="False"> <!-- letting pointer events get grabbed by WebBrowser or Button above -->
+        <Rectangle.Fill>
+          <WebBrowserBrush x:Name="webBrush" SourceName="web" />
+        </Rectangle.Fill>
+      </Rectangle>
+      
+    </Grid>
+
+  </toolkit:DockPanel>
+</UserControl>

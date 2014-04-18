@@ -1,5 +1,5 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
-//Filename: NewsReaderDefaults.cs
+//Filename: BrowserDefaults.cs
 //Version: 20140418
 
 using System;
@@ -8,22 +8,22 @@ using System.Windows.Media;
 namespace ClipFlair.Windows.Views
 {
 
-  public static class NewsReaderDefaults
+  public static class BrowserDefaults
   {
     #region IView defaults - overrides
     
-    public const string DefaultTitle = "News";
-    public const double DefaultWidth = 400;
-    public const double DefaultHeight = 400;
-    public static readonly Color DefaultBorderColor = Color.FromArgb(0xFF, 0xEC, 0x46, 0x14); //#EC4614
-        
+    public const string DefaultTitle = "Browser";
+    public const double DefaultWidth = 800;
+    public const double DefaultHeight = 600;
+    public static readonly Color DefaultBorderColor = Color.FromArgb(0xFF, 0x4F, 0x60, 0xFF); //#4F60FF
+          
     #endregion
 
     public const Uri DefaultSource = null;
 
     #region Methods
 
-    public static void SetDefaults(INewsReader view)
+    public static void SetDefaults(IBrowser view)
     {
       //IView defaults and overrides
       ViewDefaults.SetDefaults(view);
@@ -32,7 +32,7 @@ namespace ClipFlair.Windows.Views
       view.Height = DefaultHeight;
       view.BorderColor = DefaultBorderColor;
 
-      //INewsReader defaults
+      //IBrowser defaults
       view.Source = DefaultSource;
 
       //Dirty flag

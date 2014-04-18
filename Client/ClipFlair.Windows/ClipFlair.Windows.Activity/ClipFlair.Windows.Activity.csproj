@@ -144,6 +144,10 @@
       <Project>{4CE71FC4-B8D9-4305-AE15-2F0501CA58B3}</Project>
       <Name>ClipFlair.Windows.Base</Name>
     </ProjectReference>
+    <ProjectReference Include="..\ClipFlair.Windows.Browser\ClipFlair.Windows.Browser.csproj">
+      <Project>{692622cb-e02a-40e3-af57-91b2793c9975}</Project>
+      <Name>ClipFlair.Windows.Browser</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ClipFlair.Windows.Captions\ClipFlair.Windows.Captions.csproj">
       <Project>{38818955-5894-441C-9B80-69C38BEC9A76}</Project>
       <Name>ClipFlair.Windows.Captions</Name>
@@ -223,6 +227,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Activity.cd" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\AddBrowser.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\AddBrowser_hover.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Silverlight\$(SilverlightVersion)\Microsoft.Silverlight.CSharp.targets" />
   <ProjectExtensions>
