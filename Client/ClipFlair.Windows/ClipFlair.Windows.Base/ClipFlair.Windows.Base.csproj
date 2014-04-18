@@ -77,7 +77,6 @@
     <Reference Include="System.Net" />
     <Reference Include="System.Windows.Controls.Layout.Toolkit, Version=5.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Windows.Controls.Toolkit, Version=5.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" />
-    <Reference Include="System.Windows.Controls.Toolkit.Internals, Version=4.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
@@ -110,6 +109,10 @@
     <ProjectReference Include="..\..\ClipFlair.UI\ClipFlair.UI.Widgets\ClipFlair.UI.Widgets.Silverlight.csproj">
       <Project>{0771A5EA-F8F5-4BB4-A29E-2FD3CF9A5088}</Project>
       <Name>ClipFlair.UI.Widgets.Silverlight</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Media\Browser\Browser.Silverlight\Browser.Silverlight.csproj">
+      <Project>{c44eabe3-1be9-4689-a5f5-0f36fd8059de}</Project>
+      <Name>Browser.Silverlight</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\ZUI\ColorPicker\Silverlight\ColorPicker.Silverlight\ColorPicker.Silverlight.csproj">
       <Project>{48c88177-760b-41ad-b0e1-68e164fae747}</Project>

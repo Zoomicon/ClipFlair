@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: BaseWindow.xaml.cs
-//Version: 20140318
+//Version: 20140418
 
 //TODO: unbind control at close
 
@@ -282,8 +282,7 @@ namespace ClipFlair.Windows
             loadModifiers = Keyboard.Modifiers;
             LoadOptions(new Uri(input, UriKind.Absolute)); //since that is an asynchronous operation we expect from it to flip the view back to front after succesful loading
           }
-        },
-        (s2, ex2) => ShowHelp());
+        });
       }
       catch (NullReferenceException ex)
       {
@@ -354,17 +353,7 @@ namespace ClipFlair.Windows
 
     public void ShowHelp()
     {
-      Dispatcher.BeginInvoke(delegate
-      {
-        try
-        {
-          new Uri(CLIPFLAIR_TUTORIALS).NavigateTo();
-        }
-        catch
-        {
-          MessageDialog.Show("Help", "Please visit " + CLIPFLAIR_TUTORIALS); //TODO: use URLDialog here with clickable URL on it
-        }
-      });
+      BrowserDialog.Show(new Uri(CLIPFLAIR_TUTORIALS));
     }
 
     public virtual void ShowOptions()

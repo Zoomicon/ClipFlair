@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: ActivityContainer.xaml.cs
-//Version: 20140415
+//Version: 20140418
 
 //TODO: add ContentPartsCloseable property
 //TODO: add ContentPartsZoomable property
@@ -598,8 +598,6 @@ namespace ClipFlair.Windows
       ShowStartDialog();
     }
 
-    #endregion
-
     #region --- IClipFlairStartActions ---
 
     //Project Home//
@@ -617,7 +615,7 @@ namespace ClipFlair.Windows
       View = new ActivityView(); //must set the view first
       return true;
     }
-    
+
     //OpenActivity//
 
     public bool OpenActivityFile()
@@ -662,7 +660,7 @@ namespace ClipFlair.Windows
 
     //OpenImage//
 
-    public bool OpenImageFile() 
+    public bool OpenImageFile()
     {
       ImageWindow win = AddImage();
       //win.OpenLocalFile(); //TODO
@@ -710,14 +708,16 @@ namespace ClipFlair.Windows
     {
       try
       {
-        new Uri(uri).NavigateTo(); //TODO: add WebBrowserWindow and WebBrowserDialog for OOP version and use that to show URLs
+        BrowserDialog.Show(new Uri(uri)); //TODO: add WebBrowserWindow and WebBrowserDialog for OOP version and use that to show URLs
         return true;
       }
       catch
       {
         return false;
-      }  
+      }
     }
+
+    #endregion
 
     #endregion
 
