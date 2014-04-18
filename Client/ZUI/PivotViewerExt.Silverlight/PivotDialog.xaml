@@ -1,7 +1,7 @@
 ﻿<!--
 Project: ClipFlair (http://ClipFlair.codeplex.com)
 Filename: PivotDialog.xaml
-Version: 20140128
+Version: 20140418
 -->
 
 <controls:ChildWindow 
@@ -15,12 +15,6 @@ Version: 20140128
   d:DesignHeight="409" d:DesignWidth="632"
   Title="Gallery" 
   >
-
-  <controls:ChildWindow.Resources>
-    <Style TargetType="Button">
-      <Setter Property="Cursor" Value="Hand"/>
-    </Style>
-  </controls:ChildWindow.Resources>
 
   <pivot:PivotViewerExt x:Name="pivot"
    SelectionChanged="pivot_SelectionChanged"/>

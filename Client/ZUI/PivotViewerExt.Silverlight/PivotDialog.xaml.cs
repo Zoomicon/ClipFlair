@@ -1,10 +1,9 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: PivotDialog.xaml.cs
-//Version: 20140128
+//Version: 20140418
 
 using System;
 using System.ComponentModel;
-using System.Windows;
 using System.Windows.Controls;
 
 namespace ClipFlair.UI.Dialogs
@@ -26,28 +25,15 @@ namespace ClipFlair.UI.Dialogs
       set {    } //TODO: set selected item of pivot control?
     }
 
-    public static void Show(string title, string message, string defaultInput, EventHandler<CancelEventArgs> closingHandler)
+    public static void Show(string title, string defaultInput, EventHandler<CancelEventArgs> closingHandler)
     {
-      InputDialog prompt = new InputDialog();
+      PivotDialog prompt = new PivotDialog();
       prompt.Title = title;
-      prompt.Message = message;
       prompt.Input = defaultInput;
       prompt.Closing += closingHandler;
       prompt.Show();
     }
-
-    public static void Show(string title, string message, string defaultInput, EventHandler<CancelEventArgs> closingHandler, EventHandler helpHandler)
-    {
-      InputDialog prompt = new InputDialog();
-      prompt.Title = title;
-      prompt.Message = message;
-      prompt.Input = defaultInput;
-      prompt.Closing += closingHandler;
-      prompt.Show();
-    }
-    
-    public event EventHandler HelpRequested;
-
+   
     private void pivot_SelectionChanged(object sender, EventArgs e)
     {
       
