@@ -67,9 +67,7 @@
     <Reference Include="System.Windows" />
     <Reference Include="System.Windows.Browser" />
     <Reference Include="System.Windows.Controls, Version=5.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
-    <Reference Include="System.Windows.Controls.Pivot, Version=5.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
-    <Reference Include="System.Windows.Controls.Toolkit, Version=5.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" />
-    <Reference Include="System.Windows.Controls.Toolkit.Internals, Version=4.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" />
+    <Reference Include="System.Windows.Controls.Toolkit, Version=5.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ConfirmDialog.xaml.cs">
@@ -81,9 +79,6 @@
     <Compile Include="IClipFlairStartActions.cs" />
     <Compile Include="ClipFlairStartDialog.xaml.cs">
       <DependentUpon>ClipFlairStartDialog.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="PivotDialog.xaml.cs">
-      <DependentUpon>PivotDialog.xaml</DependentUpon>
     </Compile>
     <Compile Include="MessageDialog.xaml.cs">
       <DependentUpon>MessageDialog.xaml</DependentUpon>
@@ -103,10 +98,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="ClipFlairStartDialog.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="PivotDialog.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -138,13 +129,6 @@
   <ItemGroup>
     <None Include="Dialogs.cd" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\ZUI\PivotViewerExt.Silverlight\PivotViewerExt.Silverlight.csproj">
-      <Project>{dc69a8ce-040f-405b-b26b-9338b26fcf21}</Project>
-      <Name>PivotViewerExt.Silverlight</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Silverlight\$(SilverlightVersion)\Microsoft.Silverlight.CSharp.targets" />
   <ProjectExtensions>
     <VisualStudio>
