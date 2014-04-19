@@ -1,10 +1,11 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: App_Update.cs
-//Version: 20140418
+//Version: 20140420
 
 using System.Windows;
 
 using ClipFlair.UI.Dialogs;
+using System.Net.NetworkInformation;
 
 namespace ClipFlair
 {
@@ -18,6 +19,8 @@ namespace ClipFlair
     {
       if (!IsRunningOutOfBrowser) return;
 
+      if (!NetworkInterface.GetIsNetworkAvailable()) return; //must check this, else CheckAndDownloadUploadAsync will return error at its callback when offline
+
       CheckAndDownloadUpdateCompleted += OnCheckAndDownloadUpdateCompleted; //attach event handler
       try
       {
@@ -25,7 +28,7 @@ namespace ClipFlair
       }
       catch
       {
-        //Ignore any exceptions (e.g. when offline)
+        //Ignore any exceptions
       }
     }
     
@@ -38,7 +41,7 @@ namespace ClipFlair
       if (e.UpdateAvailable) //update was found and downloaded
         MessageDialog.Show("", "Update downloaded, will use at next launch");
       else if (e.Error != null) //error during update process
-        ErrorDialog.Show("Update failed", e.Error);
+        ErrorDialog.Show("Update failed, will try again at next launch", e.Error);
     }
 
   }
