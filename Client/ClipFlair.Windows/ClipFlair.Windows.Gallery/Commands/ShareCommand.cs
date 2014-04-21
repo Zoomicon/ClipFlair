@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: ShareCommand.cs
-//Version: 20130828
+//Version: 20140421
 
 using ClipFlair.UI.Dialogs;
 using System;
@@ -36,14 +36,8 @@ namespace ClipFlair.Windows.Gallery.Commands
                 + (string)item["Href"][0]
                 + "&title=" + name
                 );
-      try
-      {
-        uri.NavigateTo();
-      }
-      catch
-      {
-        MessageDialog.Show("Navigation", "Please visit " + uri); //TODO: use URLDialog here with clickable URL on it
-      }
+
+      BrowserDialog.Show(uri);
     }
 
   }

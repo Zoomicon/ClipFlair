@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: OpenCommand.cs
-//Version: 20130828
+//Version: 20140421
 
 using ClipFlair.UI.Dialogs;
 using System;
@@ -25,14 +25,8 @@ namespace ClipFlair.Windows.Gallery.Commands
     public override void Execute(object parameter)
     {
       Uri uri = new Uri((string)((PivotViewerItem)parameter)["Href"][0]);
-      try
-      {
-        uri.NavigateTo();
-      }
-      catch
-      {
-        MessageDialog.Show("Navigation", "Please visit " + uri); //TODO: use URLDialog here with clickable URL on it
-      }
+      
+      BrowserDialog.Show(uri);
     }
 
   }

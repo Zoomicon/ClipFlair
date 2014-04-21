@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: DownloadCommand.cs
-//Version: 20130829
+//Version: 20140421
 
 using ClipFlair.UI.Dialogs;
 using System;
@@ -33,14 +33,8 @@ namespace ClipFlair.Windows.Gallery.Commands
     public override void Execute(object parameter)
     {
       Uri uri = new Uri("http://gallery.clipflair.net/activity/" + (string)((PivotViewerItem)parameter)["Filename"][0]);
-      try
-      {
-        uri.NavigateTo();
-      }
-      catch
-      {
-        MessageDialog.Show("Navigation", "Please visit " + uri); //TODO: use URLDialog here with clickable URL on it
-      }
+
+      BrowserDialog.Show(uri);
     }
 
   }
