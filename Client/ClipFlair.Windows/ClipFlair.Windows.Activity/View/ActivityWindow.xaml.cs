@@ -235,17 +235,7 @@ namespace ClipFlair.Windows
 
     public void SendFeedback()
     {
-      Dispatcher.BeginInvoke(delegate
-      {
-        try
-        {
-          new Uri(CLIPFLAIR_FEEDBACK).NavigateTo();
-        }
-        catch
-        {
-          MessageBox.Show("For feedback visit " + CLIPFLAIR_FEEDBACK);
-        }
-      });
+      BrowserDialog.Show(new Uri(CLIPFLAIR_FEEDBACK));
     }
 
     #endregion

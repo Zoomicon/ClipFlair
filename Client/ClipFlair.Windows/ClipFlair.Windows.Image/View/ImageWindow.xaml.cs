@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: ImageWindow.xaml.cs
-//Version: 20140310
+//Version: 20140421
 
 using System;
 using System.ComponentModel;
@@ -79,14 +79,8 @@ namespace ClipFlair.Windows
     {
       if (ImageView.ActionURL != null)
       {
-        try
-        {
-          ImageView.ActionURL.NavigateTo(); //don't wrap this in Dispatcher.BeginInvoke, else PopupBlocker seems to grab it
-        }
-        catch
-        {
-          MessageDialog.Show("Action", "Please visit " + ImageView.ActionURL.ToString()); //TODO: use URLDialog here with clickable URL on it
-        }
+        BrowserDialog.Show(ImageView.ActionURL);
+
         e.Handled = true; //event should already be handled by inner content, but marking it as handled anyway in case inner content hasn't
       }
 
