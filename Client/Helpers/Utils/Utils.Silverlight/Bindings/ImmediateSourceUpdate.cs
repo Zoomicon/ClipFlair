@@ -1,8 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: ImmediateSourceUpdate.cs
-//Version: 20140328
-
-//TODO: move this to Utils project
+//Version: 20140509
 
 //from: http://marcominerva.wordpress.com/2013/03/14/how-to-immediately-update-the-source-of-a-textbox-in-winrt/
 //used because of: http://social.msdn.microsoft.com/Forums/silverlight/en-US/951bde54-1bd1-4fdc-8148-86d5a5183de8/updatesourcetriggerpropertychanged-is-ignored?forum=silverlightgen&prof=required
@@ -10,7 +8,7 @@
 using System.Windows;
 using System.Windows.Controls;
 
-namespace ClipFlair.CaptionsGrid
+namespace Utils.Bindings
 {
   public class ImmediateSourceUpdate : DependencyObject
   {
