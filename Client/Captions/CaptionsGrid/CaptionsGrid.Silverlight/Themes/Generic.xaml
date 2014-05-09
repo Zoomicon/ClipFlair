@@ -1,7 +1,7 @@
 ﻿<!-- 
 Project: ClipFlair (http://ClipFlair.codeplex.com)
 Filename: Generic.xaml
-Version: 20140328
+Version: 20140509
 -->
   
 <ResourceDictionary
@@ -11,9 +11,10 @@ Version: 20140328
  xmlns:controls="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Input"
  xmlns:audio="clr-namespace:ClipFlair.AudioRecorder;assembly=AudioRecorder"
  xmlns:conv="clr-namespace:Utils.Converters;assembly=Utils.Silverlight"
+ xmlns:bind="clr-namespace:Utils.Bindings;assembly=Utils.Silverlight"
  xmlns:res="clr-namespace:ClipFlair.CaptionsGrid.Resources"
  xmlns:local="clr-namespace:ClipFlair.CaptionsGrid"
- > <!--  xmlns:input="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Input.Toolkit" -->
+ > <!-- xmlns:input="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Input.Toolkit" -->
 
   <res:Strings x:Key="localizedStrings"/>
   
@@ -104,8 +105,8 @@ Version: 20140328
       AcceptsReturn="True"
       Text="{Binding Caption, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnExceptions=True, NotifyOnValidationError=True}"
       FlowDirection="{Binding RTL, Converter={StaticResource BooleanToFlowDirectionConverter}}"
-      local:ImmediateSourceUpdate.IsEnabled="True"
-      local:ImmediateSourceUpdate.Source="{Binding Caption, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnExceptions=True, NotifyOnValidationError=True}"
+      bind:ImmediateSourceUpdate.IsEnabled="True"
+      bind:ImmediateSourceUpdate.Source="{Binding Caption, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnExceptions=True, NotifyOnValidationError=True}"
       />
       <!-- ImmediateSourceUpdate is used because of http://social.msdn.microsoft.com/Forums/silverlight/en-US/951bde54-1bd1-4fdc-8148-86d5a5183de8/updatesourcetriggerpropertychanged-is-ignored?forum=silverlightgen&prof=required -->
   </DataTemplate>
