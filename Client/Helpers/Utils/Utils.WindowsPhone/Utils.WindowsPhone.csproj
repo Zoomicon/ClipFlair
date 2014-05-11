@@ -95,6 +95,9 @@
     <Compile Include="..\Source\Bindings\BindingUtils.cs">
       <Link>Bindings\BindingUtils.cs</Link>
     </Compile>
+    <Compile Include="..\Source\Bindings\ImmediateSourceUpdate.cs">
+      <Link>Bindings\ImmediateSourceUpdate.cs</Link>
+    </Compile>
     <Compile Include="..\Source\Bindings\ReflectionUtils.cs">
       <Link>Bindings\ReflectionUtils.cs</Link>
     </Compile>
