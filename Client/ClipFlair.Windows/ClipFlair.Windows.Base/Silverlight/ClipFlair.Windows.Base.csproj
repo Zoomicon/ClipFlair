@@ -80,61 +80,76 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IFileWindowFactory.cs" />
-    <Compile Include="ViewModel\BaseView.cs" />
-    <Compile Include="View\BaseWindow.xaml.cs">
+    <Compile Include="..\Source\IFileWindowFactory.cs">
+      <Link>IFileWindowFactory.cs</Link>
+    </Compile>
+    <Compile Include="..\Source\IWindowFactory.cs">
+      <Link>IWindowFactory.cs</Link>
+    </Compile>
+    <Compile Include="..\Source\ViewModel\BaseView.cs">
+      <Link>ViewModel\BaseView.cs</Link>
+    </Compile>
+    <Compile Include="..\Source\ViewModel\IView.cs">
+      <Link>ViewModel\IView.cs</Link>
+    </Compile>
+    <Compile Include="..\Source\ViewModel\IViewProperties.cs">
+      <Link>ViewModel\IViewProperties.cs</Link>
+    </Compile>
+    <Compile Include="..\Source\ViewModel\ViewDefaults.cs">
+      <Link>ViewModel\ViewDefaults.cs</Link>
+    </Compile>
+    <Compile Include="..\Source\View\BaseWindow.xaml.cs">
+      <Link>View\BaseWindow.xaml.cs</Link>
       <DependentUpon>BaseWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ViewModel\IViewProperties.cs" />
-    <Compile Include="IWindowFactory.cs" />
-    <Compile Include="ViewModel\IView.cs" />
-    <Compile Include="ViewModel\ViewDefaults.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Page Include="View\BaseWindow.xaml">
+    <Page Include="..\Source\Themes\Generic.xaml">
+      <Link>Themes\Generic.xaml</Link>
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Themes\Generic.xaml">
+    <Page Include="..\Source\View\BaseWindow.xaml">
+      <Link>View\BaseWindow.xaml</Link>
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\ClipFlair.UI\ClipFlair.UI.Dialogs\ClipFlair.UI.Dialogs.Silverlight.csproj">
+    <ProjectReference Include="..\..\..\ClipFlair.UI\ClipFlair.UI.Dialogs\ClipFlair.UI.Dialogs.Silverlight.csproj">
       <Project>{C6900312-0545-4E5E-9FE0-2AEF75674E29}</Project>
       <Name>ClipFlair.UI.Dialogs.Silverlight</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\ClipFlair.UI\ClipFlair.UI.Widgets\ClipFlair.UI.Widgets.Silverlight.csproj">
+    <ProjectReference Include="..\..\..\ClipFlair.UI\ClipFlair.UI.Widgets\ClipFlair.UI.Widgets.Silverlight.csproj">
       <Project>{0771A5EA-F8F5-4BB4-A29E-2FD3CF9A5088}</Project>
       <Name>ClipFlair.UI.Widgets.Silverlight</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Media\Browser\Browser.Silverlight\Browser.Silverlight.csproj">
+    <ProjectReference Include="..\..\..\Media\Browser\Browser.Silverlight\Browser.Silverlight.csproj">
       <Project>{c44eabe3-1be9-4689-a5f5-0f36fd8059de}</Project>
       <Name>Browser.Silverlight</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\ZUI\ColorPicker\Silverlight\ColorPicker.Silverlight\ColorPicker.Silverlight.csproj">
+    <ProjectReference Include="..\..\..\ZUI\ColorPicker\Silverlight\ColorPicker.Silverlight\ColorPicker.Silverlight.csproj">
       <Project>{48c88177-760b-41ad-b0e1-68e164fae747}</Project>
       <Name>ColorPicker.Silverlight</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\ZUI\FlipPanel\FlipPanel.Silverlight\FlipPanel.Silverlight.csproj">
+    <ProjectReference Include="..\..\..\ZUI\FlipPanel\FlipPanel.Silverlight\FlipPanel.Silverlight.csproj">
       <Project>{245ABF59-8751-46FB-A37E-E5EE253342AD}</Project>
       <Name>FlipPanel.Silverlight</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\ZUI\FloatingWindow\FloatingWindow.Silverlight\FloatingWindow.Silverlight.csproj">
+    <ProjectReference Include="..\..\..\ZUI\FloatingWindow\FloatingWindow.Silverlight\FloatingWindow.Silverlight.csproj">
       <Project>{3F3D3C8C-9724-4531-A04D-B92049F64686}</Project>
       <Name>FloatingWindow.Silverlight</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Helpers\Utils\Utils.Silverlight\Utils.Silverlight.csproj">
+    <ProjectReference Include="..\..\..\Helpers\Utils\Utils.Silverlight\Utils.Silverlight.csproj">
       <Project>{E784B6A1-A300-4571-A881-B15240EEE377}</Project>
       <Name>Utils.Silverlight</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Helpers\WPF_Compatibility\WPF_Compatibility.Silverlight\WPF_Compatibility.Silverlight.csproj">
+    <ProjectReference Include="..\..\..\Helpers\WPF_Compatibility\WPF_Compatibility.Silverlight\WPF_Compatibility.Silverlight.csproj">
       <Project>{7DC832CC-2D97-4DBC-B963-3F77C1F20730}</Project>
       <Name>WPF_Compatibility.Silverlight</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\ZUI\SliderExt\Silverlight\SliderExt.Silverlight\SliderExt.Silverlight.csproj">
+    <ProjectReference Include="..\..\..\ZUI\SliderExt\Silverlight\SliderExt.Silverlight\SliderExt.Silverlight.csproj">
       <Project>{f07c9c6f-f516-4410-8c35-304fcf3ecad0}</Project>
       <Name>SliderExt.Silverlight</Name>
     </ProjectReference>
@@ -152,31 +167,53 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\Close.png" />
-    <Resource Include="Images\Close_hover.png" />
-    <Resource Include="Images\Help.png" />
-    <Resource Include="Images\Help_hover.png" />
-    <Resource Include="Images\Options.png" />
-    <Resource Include="Images\Options_hover.png" />
+    <Resource Include="..\Images\Close.png">
+      <Link>Images\Close.png</Link>
+    </Resource>
+    <Resource Include="..\Images\Close_hover.png">
+      <Link>Images\Close_hover.png</Link>
+    </Resource>
+    <Resource Include="..\Images\Help.png">
+      <Link>Images\Help.png</Link>
+    </Resource>
+    <Resource Include="..\Images\Help_hover.png">
+      <Link>Images\Help_hover.png</Link>
+    </Resource>
+    <Resource Include="..\Images\Maximize.png">
+      <Link>Images\Maximize.png</Link>
+    </Resource>
+    <Resource Include="..\Images\Maximize_hover.png">
+      <Link>Images\Maximize_hover.png</Link>
+    </Resource>
+    <Resource Include="..\Images\Minimize.png">
+      <Link>Images\Minimize.png</Link>
+    </Resource>
+    <Resource Include="..\Images\Minimize_hover.png">
+      <Link>Images\Minimize_hover.png</Link>
+    </Resource>
+    <Resource Include="..\Images\Options.png">
+      <Link>Images\Options.png</Link>
+    </Resource>
+    <Resource Include="..\Images\Options_hover.png">
+      <Link>Images\Options_hover.png</Link>
+    </Resource>
+    <Resource Include="..\Images\Restore.png">
+      <Link>Images\Restore.png</Link>
+    </Resource>
+    <Resource Include="..\Images\Restore_hover.png">
+      <Link>Images\Restore_hover.png</Link>
+    </Resource>
+    <Resource Include="..\Images\Screenshot.png">
+      <Link>Images\Screenshot.png</Link>
+    </Resource>
+    <Resource Include="..\Images\Screenshot_hover.png">
+      <Link>Images\Screenshot_hover.png</Link>
+    </Resource>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\Screenshot.png" />
-    <Resource Include="Images\Screenshot_hover.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\Minimize.png" />
-    <Resource Include="Images\Minimize_hover.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\Maximize.png" />
-    <Resource Include="Images\Maximize_hover.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\Restore.png" />
-    <Resource Include="Images\Restore_hover.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Base.cd" />
+    <None Include="..\Base.cd">
+      <Link>Base.cd</Link>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Silverlight\$(SilverlightVersion)\Microsoft.Silverlight.CSharp.targets" />
   <ProjectExtensions>

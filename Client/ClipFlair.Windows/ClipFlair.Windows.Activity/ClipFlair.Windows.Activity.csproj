@@ -144,8 +144,8 @@
       <Project>{8E75887A-A164-41B8-86D5-8DC37768B5A3}</Project>
       <Name>ZoomAndPan.Silverlight</Name>
     </ProjectReference>
-    <ProjectReference Include="..\ClipFlair.Windows.Base\ClipFlair.Windows.Base.csproj">
-      <Project>{4CE71FC4-B8D9-4305-AE15-2F0501CA58B3}</Project>
+    <ProjectReference Include="..\ClipFlair.Windows.Base\Silverlight\ClipFlair.Windows.Base.csproj">
+      <Project>{4ce71fc4-b8d9-4305-ae15-2f0501ca58b3}</Project>
       <Name>ClipFlair.Windows.Base</Name>
     </ProjectReference>
     <ProjectReference Include="..\ClipFlair.Windows.Browser\ClipFlair.Windows.Browser.csproj">

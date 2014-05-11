@@ -113,8 +113,8 @@
       <Project>{3F3D3C8C-9724-4531-A04D-B92049F64686}</Project>
       <Name>FloatingWindow.Silverlight</Name>
     </ProjectReference>
-    <ProjectReference Include="..\ClipFlair.Windows.Base\ClipFlair.Windows.Base.csproj">
-      <Project>{4CE71FC4-B8D9-4305-AE15-2F0501CA58B3}</Project>
+    <ProjectReference Include="..\ClipFlair.Windows.Base\Silverlight\ClipFlair.Windows.Base.csproj">
+      <Project>{4ce71fc4-b8d9-4305-ae15-2f0501ca58b3}</Project>
       <Name>ClipFlair.Windows.Base</Name>
     </ProjectReference>
   </ItemGroup>

@@ -120,8 +120,8 @@
       <Project>{7DC832CC-2D97-4DBC-B963-3F77C1F20730}</Project>
       <Name>WPF_Compatibility.Silverlight</Name>
     </ProjectReference>
-    <ProjectReference Include="..\ClipFlair.Windows.Base\ClipFlair.Windows.Base.csproj">
-      <Project>{4CE71FC4-B8D9-4305-AE15-2F0501CA58B3}</Project>
+    <ProjectReference Include="..\ClipFlair.Windows.Base\Silverlight\ClipFlair.Windows.Base.csproj">
+      <Project>{4ce71fc4-b8d9-4305-ae15-2f0501ca58b3}</Project>
       <Name>ClipFlair.Windows.Base</Name>
     </ProjectReference>
   </ItemGroup>
