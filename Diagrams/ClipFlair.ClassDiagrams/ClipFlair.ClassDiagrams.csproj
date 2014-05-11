@@ -99,10 +99,6 @@
       <Project>{5C611A60-153B-4781-801D-6F9C1653AE32}</Project>
       <Name>ClipFlair.Windows.Activity</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Client\ClipFlair.Windows\ClipFlair.Windows.Base\ClipFlair.Windows.Base.csproj">
-      <Project>{4CE71FC4-B8D9-4305-AE15-2F0501CA58B3}</Project>
-      <Name>ClipFlair.Windows.Base</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\Client\ClipFlair.Windows\ClipFlair.Windows.Captions\ClipFlair.Windows.Captions.csproj">
       <Project>{38818955-5894-441C-9B80-69C38BEC9A76}</Project>
       <Name>ClipFlair.Windows.Captions</Name>

@@ -1,0 +1,149 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{BB3B5D31-2AE2-4E89-B0B2-42F3463559AA}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ClipFlair.Windows.Base.WPF</RootNamespace>
+    <AssemblyName>ClipFlair.Windows.Base.WPF</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Ionic.Zip">
+      <HintPath>..\..\..\Lib\DotNetZip\Ionic.Zip.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\Source\IFileWindowFactory.cs">
+      <Link>IFileWindowFactory.cs</Link>
+    </Compile>
+    <Compile Include="..\Source\IWindowFactory.cs">
+      <Link>IWindowFactory.cs</Link>
+    </Compile>
+    <Compile Include="..\Source\ViewModel\BaseView.cs">
+      <Link>ViewModel\BaseView.cs</Link>
+    </Compile>
+    <Compile Include="..\Source\ViewModel\IView.cs">
+      <Link>ViewModel\IView.cs</Link>
+    </Compile>
+    <Compile Include="..\Source\ViewModel\IViewProperties.cs">
+      <Link>ViewModel\IViewProperties.cs</Link>
+    </Compile>
+    <Compile Include="..\Source\ViewModel\ViewDefaults.cs">
+      <Link>ViewModel\ViewDefaults.cs</Link>
+    </Compile>
+    <Compile Include="..\Source\View\BaseWindow.xaml.cs">
+      <Link>View\BaseWindow.xaml.cs</Link>
+      <DependentUpon>BaseWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\Base.cd">
+      <Link>Base.cd</Link>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="..\Images\Close.png">
+      <Link>Images\Close.png</Link>
+    </Content>
+    <Content Include="..\Images\Close_hover.png">
+      <Link>Images\Close_hover.png</Link>
+    </Content>
+    <Content Include="..\Images\Help.png">
+      <Link>Images\Help.png</Link>
+    </Content>
+    <Content Include="..\Images\Help_hover.png">
+      <Link>Images\Help_hover.png</Link>
+    </Content>
+    <Content Include="..\Images\Maximize.png">
+      <Link>Images\Maximize.png</Link>
+    </Content>
+    <Content Include="..\Images\Maximize_hover.png">
+      <Link>Images\Maximize_hover.png</Link>
+    </Content>
+    <Content Include="..\Images\Minimize.png">
+      <Link>Images\Minimize.png</Link>
+    </Content>
+    <Content Include="..\Images\Minimize_hover.png">
+      <Link>Images\Minimize_hover.png</Link>
+    </Content>
+    <Content Include="..\Images\Options.png">
+      <Link>Images\Options.png</Link>
+    </Content>
+    <Content Include="..\Images\Options_hover.png">
+      <Link>Images\Options_hover.png</Link>
+    </Content>
+    <Content Include="..\Images\Restore.png">
+      <Link>Images\Restore.png</Link>
+    </Content>
+    <Content Include="..\Images\Restore_hover.png">
+      <Link>Images\Restore_hover.png</Link>
+    </Content>
+    <Content Include="..\Images\Screenshot.png">
+      <Link>Images\Screenshot.png</Link>
+    </Content>
+    <Content Include="..\Images\Screenshot_hover.png">
+      <Link>Images\Screenshot_hover.png</Link>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="..\Source\Themes\Generic.xaml">
+      <Link>Themes\Generic.xaml</Link>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="..\Source\View\BaseWindow.xaml">
+      <Link>View\BaseWindow.xaml</Link>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Helpers\Utils\Utils.WPF\Utils.WPF.csproj">
+      <Project>{a1100da3-93dd-49b5-ba91-cf868051ca16}</Project>
+      <Name>Utils.WPF</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\ZUI\FloatingWindow\FloatingWindow.WPF\FloatingWindow.WPF.csproj">
+      <Project>{7c67ac53-e3bc-4482-8dfb-4cbaa644d280}</Project>
+      <Name>FloatingWindow.WPF</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
