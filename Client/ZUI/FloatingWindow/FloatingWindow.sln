@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.30110.0
+VisualStudioVersion = 12.0.30324.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Silverlight", "Silverlight", "{018EA7E8-5732-4432-986C-8BBBA723E005}"
 EndProject
@@ -21,14 +21,14 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FloatingWindow.Silverlight.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FloatingWindow.Silverlight.Demo.Simple.Web", "FloatingWindow.Silverlight.Demo.Simple\FloatingWindow.Silverlight.Demo.Simple.Web\FloatingWindow.Silverlight.Demo.Simple.Web.csproj", "{CAEA4540-2DAB-4681-B261-A11C3A3E4FD9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPF_Compatibility.WPF", "..\..\WPF_Compatibility\WPF_Compatibility.WPF\WPF_Compatibility.WPF.csproj", "{DC154E89-74E8-4ADC-95B5-0772CA254F71}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPF_Compatibility.Silverlight", "..\..\WPF_Compatibility\WPF_Compatibility.Silverlight\WPF_Compatibility.Silverlight.csproj", "{7DC832CC-2D97-4DBC-B963-3F77C1F20730}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{1F71881D-9865-4F62-8BE4-F079749EA1B5}"
 	ProjectSection(SolutionItems) = preProject
 		LICENSE.txt = LICENSE.txt
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPF_Compatibility.Silverlight", "..\..\Helpers\WPF_Compatibility\WPF_Compatibility.Silverlight\WPF_Compatibility.Silverlight.csproj", "{7DC832CC-2D97-4DBC-B963-3F77C1F20730}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPF_Compatibility.WPF", "..\..\Helpers\WPF_Compatibility\WPF_Compatibility.WPF\WPF_Compatibility.WPF.csproj", "{DC154E89-74E8-4ADC-95B5-0772CA254F71}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -110,16 +110,6 @@ Global
 		{CAEA4540-2DAB-4681-B261-A11C3A3E4FD9}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{CAEA4540-2DAB-4681-B261-A11C3A3E4FD9}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{CAEA4540-2DAB-4681-B261-A11C3A3E4FD9}.Release|x86.ActiveCfg = Release|Any CPU
-		{DC154E89-74E8-4ADC-95B5-0772CA254F71}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{DC154E89-74E8-4ADC-95B5-0772CA254F71}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{DC154E89-74E8-4ADC-95B5-0772CA254F71}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{DC154E89-74E8-4ADC-95B5-0772CA254F71}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
-		{DC154E89-74E8-4ADC-95B5-0772CA254F71}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{DC154E89-74E8-4ADC-95B5-0772CA254F71}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{DC154E89-74E8-4ADC-95B5-0772CA254F71}.Release|Any CPU.Build.0 = Release|Any CPU
-		{DC154E89-74E8-4ADC-95B5-0772CA254F71}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{DC154E89-74E8-4ADC-95B5-0772CA254F71}.Release|Mixed Platforms.Build.0 = Release|Any CPU
-		{DC154E89-74E8-4ADC-95B5-0772CA254F71}.Release|x86.ActiveCfg = Release|Any CPU
 		{7DC832CC-2D97-4DBC-B963-3F77C1F20730}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{7DC832CC-2D97-4DBC-B963-3F77C1F20730}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7DC832CC-2D97-4DBC-B963-3F77C1F20730}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
@@ -130,6 +120,16 @@ Global
 		{7DC832CC-2D97-4DBC-B963-3F77C1F20730}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{7DC832CC-2D97-4DBC-B963-3F77C1F20730}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{7DC832CC-2D97-4DBC-B963-3F77C1F20730}.Release|x86.ActiveCfg = Release|Any CPU
+		{DC154E89-74E8-4ADC-95B5-0772CA254F71}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DC154E89-74E8-4ADC-95B5-0772CA254F71}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DC154E89-74E8-4ADC-95B5-0772CA254F71}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{DC154E89-74E8-4ADC-95B5-0772CA254F71}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{DC154E89-74E8-4ADC-95B5-0772CA254F71}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{DC154E89-74E8-4ADC-95B5-0772CA254F71}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DC154E89-74E8-4ADC-95B5-0772CA254F71}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DC154E89-74E8-4ADC-95B5-0772CA254F71}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{DC154E89-74E8-4ADC-95B5-0772CA254F71}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{DC154E89-74E8-4ADC-95B5-0772CA254F71}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -138,11 +138,11 @@ Global
 		{3F3D3C8C-9724-4531-A04D-B92049F64686} = {018EA7E8-5732-4432-986C-8BBBA723E005}
 		{48FCE6B6-BFFA-48A4-B871-27A5F8640AB1} = {018EA7E8-5732-4432-986C-8BBBA723E005}
 		{70608BF1-0310-45D0-96A6-744A2F00DB83} = {018EA7E8-5732-4432-986C-8BBBA723E005}
+		{7C67AC53-E3BC-4482-8DFB-4CBAA644D280} = {93136668-290F-4399-AAF1-74BF102E1D34}
+		{33CE99A3-8F43-421C-997A-4FF17FE1BE61} = {93136668-290F-4399-AAF1-74BF102E1D34}
 		{E0C38766-30EE-4ED8-82B8-CBDD2185FE39} = {018EA7E8-5732-4432-986C-8BBBA723E005}
 		{CAEA4540-2DAB-4681-B261-A11C3A3E4FD9} = {018EA7E8-5732-4432-986C-8BBBA723E005}
 		{7DC832CC-2D97-4DBC-B963-3F77C1F20730} = {018EA7E8-5732-4432-986C-8BBBA723E005}
-		{7C67AC53-E3BC-4482-8DFB-4CBAA644D280} = {93136668-290F-4399-AAF1-74BF102E1D34}
-		{33CE99A3-8F43-421C-997A-4FF17FE1BE61} = {93136668-290F-4399-AAF1-74BF102E1D34}
 		{DC154E89-74E8-4ADC-95B5-0772CA254F71} = {93136668-290F-4399-AAF1-74BF102E1D34}
 	EndGlobalSection
 EndGlobal

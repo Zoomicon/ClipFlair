@@ -185,7 +185,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\Helpers\WPF_Compatibility\WPF_Compatibility.Silverlight\WPF_Compatibility.Silverlight.csproj">
-      <Project>{7DC832CC-2D97-4DBC-B963-3F77C1F20730}</Project>
+      <Project>{7dc832cc-2d97-4dbc-b963-3f77c1f20730}</Project>
       <Name>WPF_Compatibility.Silverlight</Name>
     </ProjectReference>
   </ItemGroup>
