@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: SilverTextEditor.xaml.cs
-//Version: 20140318
+//Version: 20140515
 
 //Originated from Microsoft Silverlight sample (MSPL license)
 
@@ -754,18 +754,27 @@ namespace SilverTextEditor
       {
         OpenFileDialog ofd = new OpenFileDialog()
         {
-          //Multiselect = false, //this is false by default so no need to set it
-          Filter = LOAD_FILTER
+          Filter = LOAD_FILTER,
+          Multiselect = true
         };
 
         if (ofd.ShowDialog() == true)
-          Load(ofd.File);
+          Load(ofd.Files);
       }
       catch (Exception ex)
       {
         MessageBox.Show("Loading failed: " + ex.Message); //TODO: should find parent window //TODO: localize
         //TODO: maybe should wrap the original exception as inner exception and throw a new one
       }
+    }
+
+    public void Load(IEnumerable<FileInfo> files, bool clearFirst = true)
+    {
+      if (clearFirst)
+        Clear();
+
+      foreach (FileInfo file in files)
+        Load(file, clearFirst:false);
     }
 
     public void Load(FileInfo file, bool clearFirst = true)
