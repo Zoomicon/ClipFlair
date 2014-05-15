@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: CaptionsGrid.xaml.cs
-//Version: 20140326
+//Version: 20140515
 
 using ClipFlair.AudioRecorder;
 using ClipFlair.CaptionsGrid.Resources;
@@ -853,7 +853,7 @@ namespace ClipFlair.CaptionsGrid
 
         e.Handled = true; //must do this
         
-        LoadCaptions(files[0]);
+        LoadCaptions(files);
       }
     }
     
@@ -868,11 +868,12 @@ namespace ClipFlair.CaptionsGrid
         OpenFileDialog dlg = new OpenFileDialog()
         {
           Filter = IMPORT_FILTER,
-          FilterIndex = 1 //note: this index is 1-based, not 0-based
+          FilterIndex = 1, //note: this index is 1-based, not 0-based
+          Multiselect = true //allow selection of multiple captions files to merge them at load
         };
 
         if (dlg.ShowDialog() == true) //TODO: find the parent window
-          LoadCaptions(dlg.File);
+          LoadCaptions(dlg.Files);
       }
       catch (Exception ex)
       {
@@ -880,16 +881,22 @@ namespace ClipFlair.CaptionsGrid
       }
     }
 
-    public void LoadCaptions(FileInfo file)
+    public void LoadCaptions(IEnumerable<FileInfo> files)
     {
-      using (Stream stream = file.OpenRead()) //closes stream when finished
-        LoadCaptions(stream, file.Name);
+      CaptionRegion newCaptions = new CaptionRegion();
+      foreach (FileInfo file in files)
+        LoadCaptions(newCaptions, file); //load all caption files into a single CaptionRegion (merge), which should take care automatically of sorting CaptionElements by start time
     }
 
-    public void LoadCaptions(Stream stream, string filename) //doesn't close stream
+    public void LoadCaptions(CaptionRegion newCaptions, FileInfo file)
+    {
+      using (Stream stream = file.OpenRead()) //closes stream when finished
+        LoadCaptions(newCaptions, stream, file.Name);
+    }
+
+    public void LoadCaptions(CaptionRegion newCaptions, Stream stream, string filename) //doesn't close stream
     {
       ICaptionsReader reader = CaptionUtils.GetCaptionsReader(filename);
-      CaptionRegion newCaptions = new CaptionRegion();
       reader.ReadCaptions<CaptionElementExt>(newCaptions, stream, Encoding.UTF8);
       Captions = newCaptions;
     }

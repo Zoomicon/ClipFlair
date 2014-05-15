@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: CaptionsGridWindow.xaml.cs
-//Version: 20140318
+//Version: 20140515
 
 //TODO: add Source property to CaptionsGrid control and use data-binding to bind it to CaptionsGridView's Source property
 
@@ -50,7 +50,7 @@ namespace ClipFlair.Windows
     public override void LoadOptions(FileInfo f)
     {
       if (!f.Name.EndsWith(new string[] { CLIPFLAIR_EXTENSION, CLIPFLAIR_ZIP_EXTENSION }))
-        gridCaptions.LoadCaptions(f);
+        gridCaptions.LoadCaptions(new CaptionRegion(), f);
       else
         base.LoadOptions(f);
     }
@@ -59,20 +59,23 @@ namespace ClipFlair.Windows
     {
       base.LoadOptions(zip, zipFolder);
 
-      //load captions
-      ZipEntry captionsEntry = zip[zipFolder + "/" + DEFAULT_CAPTIONS];
-      if (captionsEntry == null) captionsEntry = zip[zipFolder + "/" + ALTERNATIVE_CAPTIONS]; //if one of SRT/TTS not found, look for the other type
-      if (captionsEntry != null) 
-      {
-        gridCaptions.LoadCaptions(captionsEntry.OpenReader(), captionsEntry.FileName);
-        CaptionsGridView.Captions = gridCaptions.Captions; //TODO: this is temprorary till it is found out why the binding in the XAML between grid and the window doesn't work (may be cause of the findancestor in the binding - probably need to set the binding in code)
-      } else 
-        CaptionsGridView.Captions = new CaptionRegion();
+      CaptionRegion newCaptions = new CaptionRegion();
+      LoadCaptions(newCaptions, zip, zipFolder);
+      LoadAudio(newCaptions, zip, zipFolder);
 
-      //load revoicing audio
-      LoadAudio(CaptionsGridView.Captions, zip, zipFolder);
+      CaptionsGridView.Captions = newCaptions;
     }
 
+    private void LoadCaptions(CaptionRegion captions, ZipFile zip, string zipFolder = "")
+    {
+      ZipEntry captionsEntry = zip[zipFolder + "/" + DEFAULT_CAPTIONS];
+      if (captionsEntry == null)
+        captionsEntry = zip[zipFolder + "/" + ALTERNATIVE_CAPTIONS]; //if one of SRT/TTS not found, look for the other type
+
+      if (captionsEntry != null)
+        gridCaptions.LoadCaptions(captions, captionsEntry.OpenReader(), captionsEntry.FileName);
+    }
+    
     public void LoadAudio(CaptionRegion captions, ZipFile zip, string zipFolder = "")
     {
       //load any audio associated to each caption
@@ -127,7 +130,7 @@ namespace ClipFlair.Windows
 
     public void LoadCaptions(Stream stream, string filename) //doesn't close stream
     {
-      gridCaptions.LoadCaptions(stream, filename);
+      gridCaptions.LoadCaptions(new CaptionRegion(), stream, filename);
     }
 
     #endregion
