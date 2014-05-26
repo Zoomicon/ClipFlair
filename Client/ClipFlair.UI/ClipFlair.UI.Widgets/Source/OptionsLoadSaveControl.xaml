@@ -1,7 +1,7 @@
 ﻿<!--
 Project: ClipFlair (http://ClipFlair.codeplex.com
 Filename: OptionsLoadSaveControl.xaml
-Version: 20130315
+Version: 20140526
 -->
 
 <UserControl x:Class="ClipFlair.UI.Widgets.OptionsLoadSaveControl"
@@ -10,7 +10,7 @@ Version: 20130315
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:btn="clr-namespace:ImageButtons;assembly=ImageButtons"
-    mc:Ignorable="d" d:DesignHeight="20" d:DesignWidth="79">
+    mc:Ignorable="d" d:DesignHeight="20" d:DesignWidth="88">
 
   <StackPanel Name="LayoutRoot"
               Orientation="Horizontal"

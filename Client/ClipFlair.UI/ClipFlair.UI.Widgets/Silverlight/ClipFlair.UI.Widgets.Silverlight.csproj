@@ -67,16 +67,11 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="OptionsLoadSaveControl.xaml.cs">
+    <Compile Include="..\Source\OptionsLoadSaveControl.xaml.cs">
+      <Link>OptionsLoadSaveControl.xaml.cs</Link>
       <DependentUpon>OptionsLoadSaveControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <Page Include="OptionsLoadSaveControl.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
@@ -91,31 +86,48 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\Load.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\LoadURL.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\LoadURL_hover.png" />
-    <Resource Include="Images\Load_hover.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\Save.png" />
-    <Resource Include="Images\Save_hover.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Widgets.cd" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\ZUI\ImageButtons\ImageButtons.Silverlight\ImageButtons.Silverlight.csproj">
+    <ProjectReference Include="..\..\..\ZUI\ImageButtons\ImageButtons.Silverlight\ImageButtons.Silverlight.csproj">
       <Project>{127105AF-C0F4-40F8-87C5-D6C391552936}</Project>
       <Name>ImageButtons.Silverlight</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\SaveDirty.png" />
-    <Resource Include="Images\SaveDirty_hover.png" />
+    <Resource Include="..\Images\Load.png">
+      <Link>Images\Load.png</Link>
+    </Resource>
+    <Resource Include="..\Images\LoadURL.png">
+      <Link>Images\LoadURL.png</Link>
+    </Resource>
+    <Resource Include="..\Images\LoadURL_hover.png">
+      <Link>Images\LoadURL_hover.png</Link>
+    </Resource>
+    <Resource Include="..\Images\Load_hover.png">
+      <Link>Images\Load_hover.png</Link>
+    </Resource>
+    <Resource Include="..\Images\Save.png">
+      <Link>Images\Save.png</Link>
+    </Resource>
+    <Resource Include="..\Images\SaveDirty.png">
+      <Link>Images\SaveDirty.png</Link>
+    </Resource>
+    <Resource Include="..\Images\SaveDirty_hover.png">
+      <Link>Images\SaveDirty_hover.png</Link>
+    </Resource>
+    <Resource Include="..\Images\Save_hover.png">
+      <Link>Images\Save_hover.png</Link>
+    </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="..\Source\OptionsLoadSaveControl.xaml">
+      <Link>OptionsLoadSaveControl.xaml</Link>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\Widgets.cd">
+      <Link>Widgets.cd</Link>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Silverlight\$(SilverlightVersion)\Microsoft.Silverlight.CSharp.targets" />
   <ProjectExtensions>

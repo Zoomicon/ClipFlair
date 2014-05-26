@@ -1,5 +1,5 @@
 //Filename: FloatingWindow.cs
-//Version: 20140316
+//Version: 20140526
 
 //#define BORDER_ONLY_AT_RESIZABLE //using BorderThickness instead to allow user to define when they want the border to be visible themselves
 
@@ -125,7 +125,7 @@ namespace SilverFlow.Controls
     private Storyboard openingStoryboard;
     private Storyboard closingStoryboard;
     private Storyboard maximizingStoryboard;
-    private Storyboard restoringStoryboard;
+    //private Storyboard restoringStoryboard;
     private Storyboard restoreMaximizedStoryboard;
     private Storyboard inertialMotionStoryboard;
 
@@ -1729,7 +1729,6 @@ namespace SilverFlow.Controls
       base.OnMouseLeftButtonDown(e);
 
       //if (e.Handled) return;
-
       e.Handled = true; //always handle events so that container doesn't get confused (e.g. when dragging the window title bar we don't want container to pan)
 
       windowAction = WindowAction.None;
@@ -2034,8 +2033,8 @@ namespace SilverFlow.Controls
 
       SubscribeToEvents();
 
-      //SubscribeToTemplatePartEvents(); //this is done at "ApplyTemplate", called below (and may have been done already if templateIsApplied)
-      //SubscribeToStoryBoardEvents();   //this is done at "ApplyTemplate", called below (and may have been done already if templateIsApplied)
+      //SubscribeToTemplatePartEvents(); //this is done at "OnApplyTemplate", called below via ApplyTemplate (and may have been done already if templateIsApplied)
+      //SubscribeToStoryBoardEvents();   //this is done at "OnApplyTemplate", called below via ApplyTemplate (and may have been done already if templateIsApplied)
 
       // Guarantee that the visual tree of an element is complete
       if (!templateIsApplied)
@@ -2789,9 +2788,7 @@ namespace SilverFlow.Controls
         windowState = WindowState.Normal;
       }
       else
-      {
         Show(Position);
-      }
     }
 
     /// <summary>

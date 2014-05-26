@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.30324.0
+VisualStudioVersion = 12.0.30501.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ZUI", "ZUI", "{FBDD15EE-2A2C-4180-9286-123757F78949}"
 EndProject
@@ -50,8 +50,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClipFlair.Windows.Map", "Client\ClipFlair.Windows\ClipFlair.Windows.Map\ClipFlair.Windows.Map.csproj", "{40580DAE-80A5-49E4-BDD8-DAFDB9D4E088}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClipFlair.UI.Dialogs.Silverlight", "Client\ClipFlair.UI\ClipFlair.UI.Dialogs\ClipFlair.UI.Dialogs.Silverlight.csproj", "{C6900312-0545-4E5E-9FE0-2AEF75674E29}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClipFlair.UI.Widgets.Silverlight", "Client\ClipFlair.UI\ClipFlair.UI.Widgets\ClipFlair.UI.Widgets.Silverlight.csproj", "{0771A5EA-F8F5-4BB4-A29E-2FD3CF9A5088}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Utils.Silverlight", "Client\Helpers\Utils\Utils.Silverlight\Utils.Silverlight.csproj", "{E784B6A1-A300-4571-A881-B15240EEE377}"
 EndProject
@@ -146,6 +144,12 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClipFlair.Windows.Base", "Client\ClipFlair.Windows\ClipFlair.Windows.Base\Silverlight\ClipFlair.Windows.Base.csproj", "{4CE71FC4-B8D9-4305-AE15-2F0501CA58B3}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClipFlair.Windows.Base.WPF", "Client\ClipFlair.Windows\ClipFlair.Windows.Base\WPF\ClipFlair.Windows.Base.WPF.csproj", "{BB3B5D31-2AE2-4E89-B0B2-42F3463559AA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClipFlair.UI.Widgets.Silverlight", "Client\ClipFlair.UI\ClipFlair.UI.Widgets\Silverlight\ClipFlair.UI.Widgets.Silverlight.csproj", "{0771A5EA-F8F5-4BB4-A29E-2FD3CF9A5088}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ClipFlair.UI", "ClipFlair.UI", "{9513B4C0-6C0E-4878-9756-952BB90B4B9A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClipFlair.UI.Widgets.WPF", "Client\ClipFlair.UI\ClipFlair.UI.Widgets\WPF\ClipFlair.UI.Widgets.WPF.csproj", "{FCB42315-C45C-4DCC-995E-FBAEB6115B4F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -351,18 +355,6 @@ Global
 		{C6900312-0545-4E5E-9FE0-2AEF75674E29}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{C6900312-0545-4E5E-9FE0-2AEF75674E29}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{C6900312-0545-4E5E-9FE0-2AEF75674E29}.Release|x86.ActiveCfg = Release|Any CPU
-		{0771A5EA-F8F5-4BB4-A29E-2FD3CF9A5088}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0771A5EA-F8F5-4BB4-A29E-2FD3CF9A5088}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0771A5EA-F8F5-4BB4-A29E-2FD3CF9A5088}.Debug|ARM.ActiveCfg = Debug|Any CPU
-		{0771A5EA-F8F5-4BB4-A29E-2FD3CF9A5088}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{0771A5EA-F8F5-4BB4-A29E-2FD3CF9A5088}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
-		{0771A5EA-F8F5-4BB4-A29E-2FD3CF9A5088}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{0771A5EA-F8F5-4BB4-A29E-2FD3CF9A5088}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0771A5EA-F8F5-4BB4-A29E-2FD3CF9A5088}.Release|Any CPU.Build.0 = Release|Any CPU
-		{0771A5EA-F8F5-4BB4-A29E-2FD3CF9A5088}.Release|ARM.ActiveCfg = Release|Any CPU
-		{0771A5EA-F8F5-4BB4-A29E-2FD3CF9A5088}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{0771A5EA-F8F5-4BB4-A29E-2FD3CF9A5088}.Release|Mixed Platforms.Build.0 = Release|Any CPU
-		{0771A5EA-F8F5-4BB4-A29E-2FD3CF9A5088}.Release|x86.ActiveCfg = Release|Any CPU
 		{E784B6A1-A300-4571-A881-B15240EEE377}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{E784B6A1-A300-4571-A881-B15240EEE377}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E784B6A1-A300-4571-A881-B15240EEE377}.Debug|ARM.ActiveCfg = Debug|Any CPU
@@ -819,6 +811,30 @@ Global
 		{BB3B5D31-2AE2-4E89-B0B2-42F3463559AA}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{BB3B5D31-2AE2-4E89-B0B2-42F3463559AA}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{BB3B5D31-2AE2-4E89-B0B2-42F3463559AA}.Release|x86.ActiveCfg = Release|Any CPU
+		{0771A5EA-F8F5-4BB4-A29E-2FD3CF9A5088}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0771A5EA-F8F5-4BB4-A29E-2FD3CF9A5088}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0771A5EA-F8F5-4BB4-A29E-2FD3CF9A5088}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{0771A5EA-F8F5-4BB4-A29E-2FD3CF9A5088}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{0771A5EA-F8F5-4BB4-A29E-2FD3CF9A5088}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{0771A5EA-F8F5-4BB4-A29E-2FD3CF9A5088}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{0771A5EA-F8F5-4BB4-A29E-2FD3CF9A5088}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0771A5EA-F8F5-4BB4-A29E-2FD3CF9A5088}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0771A5EA-F8F5-4BB4-A29E-2FD3CF9A5088}.Release|ARM.ActiveCfg = Release|Any CPU
+		{0771A5EA-F8F5-4BB4-A29E-2FD3CF9A5088}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{0771A5EA-F8F5-4BB4-A29E-2FD3CF9A5088}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{0771A5EA-F8F5-4BB4-A29E-2FD3CF9A5088}.Release|x86.ActiveCfg = Release|Any CPU
+		{FCB42315-C45C-4DCC-995E-FBAEB6115B4F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FCB42315-C45C-4DCC-995E-FBAEB6115B4F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FCB42315-C45C-4DCC-995E-FBAEB6115B4F}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{FCB42315-C45C-4DCC-995E-FBAEB6115B4F}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{FCB42315-C45C-4DCC-995E-FBAEB6115B4F}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{FCB42315-C45C-4DCC-995E-FBAEB6115B4F}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{FCB42315-C45C-4DCC-995E-FBAEB6115B4F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FCB42315-C45C-4DCC-995E-FBAEB6115B4F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FCB42315-C45C-4DCC-995E-FBAEB6115B4F}.Release|ARM.ActiveCfg = Release|Any CPU
+		{FCB42315-C45C-4DCC-995E-FBAEB6115B4F}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{FCB42315-C45C-4DCC-995E-FBAEB6115B4F}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{FCB42315-C45C-4DCC-995E-FBAEB6115B4F}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -847,7 +863,6 @@ Global
 		{AA7B9EC6-8A08-4300-827B-65A66818BAF7} = {159C8690-CD53-49FE-9B9E-67960BA0DA67}
 		{40580DAE-80A5-49E4-BDD8-DAFDB9D4E088} = {159C8690-CD53-49FE-9B9E-67960BA0DA67}
 		{C6900312-0545-4E5E-9FE0-2AEF75674E29} = {29574CA4-9687-42BB-AAE0-31C3BD52A803}
-		{0771A5EA-F8F5-4BB4-A29E-2FD3CF9A5088} = {29574CA4-9687-42BB-AAE0-31C3BD52A803}
 		{E784B6A1-A300-4571-A881-B15240EEE377} = {CB37E211-5126-4625-9817-AD0946C5F23F}
 		{0E256C84-FBAC-4E81-BA5C-85D44E76F19E} = {159C8690-CD53-49FE-9B9E-67960BA0DA67}
 		{DC69A8CE-040F-405B-B26B-9338B26FCF21} = {FBDD15EE-2A2C-4180-9286-123757F78949}
@@ -892,5 +907,8 @@ Global
 		{65BF3DED-354F-4502-8329-BFF8299ADF8D} = {A129522C-6275-43AC-BE3D-439330EE69C7}
 		{4CE71FC4-B8D9-4305-AE15-2F0501CA58B3} = {159C8690-CD53-49FE-9B9E-67960BA0DA67}
 		{BB3B5D31-2AE2-4E89-B0B2-42F3463559AA} = {65BF3DED-354F-4502-8329-BFF8299ADF8D}
+		{0771A5EA-F8F5-4BB4-A29E-2FD3CF9A5088} = {29574CA4-9687-42BB-AAE0-31C3BD52A803}
+		{9513B4C0-6C0E-4878-9756-952BB90B4B9A} = {A129522C-6275-43AC-BE3D-439330EE69C7}
+		{FCB42315-C45C-4DCC-995E-FBAEB6115B4F} = {9513B4C0-6C0E-4878-9756-952BB90B4B9A}
 	EndGlobalSection
 EndGlobal

@@ -1,4 +1,7 @@
-﻿//Version: 20140326
+﻿//Filename: FloatingWindow.cs
+//Version: 20140526
+
+//#define BORDER_ONLY_AT_RESIZABLE //using BorderThickness instead to allow user to define when they want the border to be visible themselves
 
 using System;
 using System.IO;
@@ -101,6 +104,8 @@ namespace SilverFlow.Controls
     private const double MaximizingDurationInMilliseconds = 20;
     private const double MinimizingDurationInMilliseconds = 200;
     private const double RestoringDurationInMilliseconds = 20;
+
+    private bool templateIsApplied; //=false
 
     #endregion
 
@@ -529,6 +534,33 @@ namespace SilverFlow.Controls
 
     #endregion
 
+    #region public CornerRadius CornerRadius
+
+    /// <summary>
+    /// Gets or sets the corner radius.
+    /// </summary>
+    /// <value>The corner radius.</value>
+    public CornerRadius CornerRadius
+    {
+      get { return (CornerRadius)GetValue(CornerRadiusProperty); }
+      set { SetValue(CornerRadiusProperty, value); }
+    }
+
+    /// <summary>
+    /// Identifies the <see cref="FloatingWindow.CornerRadius" /> dependency property.
+    /// </summary>
+    /// <value>
+    /// The identifier for the <see cref="FloatingWindow.CornerRadius" /> dependency property.
+    /// </value>
+    public static readonly DependencyProperty CornerRadiusProperty =
+        DependencyProperty.Register(
+        "CornerRadius",
+        typeof(CornerRadius),
+        typeof(FloatingWindow),
+        new PropertyMetadata(new CornerRadius(3)));
+
+    #endregion
+
     #region public bool MoveEnabled
 
     /// <summary>
@@ -556,6 +588,33 @@ namespace SilverFlow.Controls
 
     #endregion
 
+    #region public bool MoveMaximizedEnabled
+
+    /// <summary>
+    /// Gets or sets a value indicating whether moving is enabled when window is maximized.
+    /// </summary>
+    /// <value><c>true</c> if moving is enabled when window is maximized; otherwise, <c>false</c>.</value>
+    public bool MoveMaximizedEnabled
+    {
+      get { return (bool)GetValue(MoveMaximizedEnabledProperty); }
+      set { SetValue(MoveMaximizedEnabledProperty, value); }
+    }
+
+    /// <summary>
+    /// Identifies the <see cref="FloatingWindow.MoveMaximizedEnabled" /> dependency property.
+    /// </summary>
+    /// <value>
+    /// The identifier for the <see cref="FloatingWindow.MoveMaximizedEnabled" /> dependency property.
+    /// </value>
+    public static readonly DependencyProperty MoveMaximizedEnabledProperty =
+        DependencyProperty.Register(
+        "MoveMaximizedEnabled",
+        typeof(bool),
+        typeof(FloatingWindow),
+        new PropertyMetadata(false));
+
+    #endregion
+
     #region public bool ResizeEnabled
 
     /// <summary>
@@ -579,7 +638,50 @@ namespace SilverFlow.Controls
         "ResizeEnabled",
         typeof(bool),
         typeof(FloatingWindow),
-        new PropertyMetadata(true));
+        new PropertyMetadata(true, OnResizeEnabledChanged));
+
+    /// <summary>
+    /// ResizeEnabled PropertyChangedCallback call back static function.
+    /// </summary>
+    /// <param name="d">FloatingWindow object whose ResizeEnabled property is changed.</param>
+    /// <param name="e">DependencyPropertyChangedEventArgs which contains the old and new values.</param>
+    private static void OnResizeEnabledChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    {
+#if BORDER_ONLY_AT_RESIZABLE
+      FloatingWindow window = (FloatingWindow)d;
+      if ((bool)e.NewValue)
+        window.RestoreBorder();
+      else
+        window.HideBorder();
+#endif
+    }
+
+    #endregion
+
+    #region public bool ResizeMaximizedEnabled
+
+    /// <summary>
+    /// Gets or sets a value indicating whether resizing is enabled when window is maximized.
+    /// </summary>
+    /// <value><c>true</c> if resizing is enabled when window is maximized; otherwise, <c>false</c>.</value>
+    public bool ResizeMaximizedEnabled
+    {
+      get { return (bool)GetValue(ResizeMaximizedEnabledProperty); }
+      set { SetValue(ResizeMaximizedEnabledProperty, value); }
+    }
+
+    /// <summary>
+    /// Identifies the <see cref="FloatingWindow.ResizeMaximizedEnabled" /> dependency property.
+    /// </summary>
+    /// <value>
+    /// The identifier for the <see cref="FloatingWindow.ResizeMaximizedEnabled" /> dependency property.
+    /// </value>
+    public static readonly DependencyProperty ResizeMaximizedEnabledProperty =
+        DependencyProperty.Register(
+        "ResizeMaximizedEnabled",
+        typeof(bool),
+        typeof(FloatingWindow),
+        new PropertyMetadata(false));
 
     #endregion
 
@@ -1508,11 +1610,13 @@ namespace SilverFlow.Controls
           this.FloatingWindowHost.ShowWindowAsModal(this);
 
         SubscribeToEvents();
-        SubscribeToTemplatePartEvents();
-        SubscribeToStoryBoardEvents();
+
+        //SubscribeToTemplatePartEvents(); //this is done at "OnApplyTemplate", called below via ApplyTemplate (and may have been done already if templateIsApplied)
+        //SubscribeToStoryBoardEvents();   //this is done at "OnApplyTemplate", called below via ApplyTemplate (and may have been done already if templateIsApplied)
 
         // Guarantee that the visual tree of an element is complete
-        ApplyTemplate();
+        if (!templateIsApplied)
+          ApplyTemplate();
 
         // Brings current window to the front
         if (bringToFront)
@@ -1822,6 +1926,8 @@ namespace SilverFlow.Controls
 
       SubscribeToTemplatePartEvents();
       SubscribeToStoryBoardEvents();
+
+      templateIsApplied = true;
     }
 
     /// <summary>
@@ -2405,21 +2511,7 @@ namespace SilverFlow.Controls
           previousPosition = Position;
           previousSize = new Size(ActualWidth, ActualHeight);
 
-          // Hide the outer border
-          if (contentBorder != null)
-          {
-            contentBorderThickness = contentBorder.BorderThickness;
-            contentBorderCornerRadius = contentBorder.CornerRadius;
-            contentBorder.BorderThickness = new Thickness(0);
-            contentBorder.CornerRadius = new CornerRadius(0);
-          }
-
-          Border border = chrome as Border;
-          if (border != null)
-          {
-            chromeBorderCornerRadius = border.CornerRadius;
-            border.CornerRadius = new CornerRadius(0);
-          }
+          HideBorder();
 
           StartMaximizingAnimation();
         }
@@ -2429,6 +2521,53 @@ namespace SilverFlow.Controls
       }
     }
 
+    #region Helpers
+
+    void HideBorder()
+    {
+      // Guarantee that the visual tree of an element is complete
+      if (!templateIsApplied)
+        ApplyTemplate();
+
+      // Hide the outer border
+      if (contentBorder != null)
+      {
+        contentBorderThickness = BorderThickness;
+        contentBorderCornerRadius = CornerRadius;
+        BorderThickness = new Thickness(0); //must not set contentBorder.BorderThickness directly, since we don't use two-way binding to TemplatedParent, but use simpler TemplateBinding instead
+        CornerRadius = new CornerRadius(0); //must not set contentBorder.CornerRadius directly
+      }
+
+      Border border = chrome as Border;
+      if (border != null)
+      {
+        chromeBorderCornerRadius = border.CornerRadius;
+        border.CornerRadius = new CornerRadius(0);
+      }
+    }
+
+    void RestoreBorder()
+    {
+      #if BORDER_ONLY_AT_RESIZABLE
+      if (!ResizeEnabled) return; //keep border hidden if window is not resizable
+      #endif
+
+      // Guarantee that the visual tree of an element is complete
+      if (!templateIsApplied)
+        ApplyTemplate();
+
+      // Restore the outer border
+      if (contentBorder != null)
+      {
+        BorderThickness = contentBorderThickness; //must not set contentBorder.BorderThickness directly, since we don't use two-way binding to TemplatedParent, but use simpler TemplateBinding instead
+        CornerRadius = contentBorderCornerRadius; //must not set contentBorder.CornerRadius directly
+      }
+
+      Border border = chrome as Border;
+      if (border != null)
+        border.CornerRadius = chromeBorderCornerRadius;
+    }
+    
     /// <summary>
     /// Checks if the floating window was added to the FloatingWindowHost.
     /// </summary>
@@ -2437,6 +2576,8 @@ namespace SilverFlow.Controls
       if (this.FloatingWindowHost == null)
         throw new InvalidOperationException("The FloatingWindow was not added to the FloatingWindowHost.");
     }
+
+    #endregion
 
     /// <summary>
     /// Starts maximizing animation.
@@ -2535,25 +2676,13 @@ namespace SilverFlow.Controls
           VisualStateManager.GoToState(maximizeButton, VSMSTATE_StateNormal, true);
         }
 
-        // Restore the outer border
-        if (contentBorder != null)
-        {
-          contentBorder.BorderThickness = contentBorderThickness;
-          contentBorder.CornerRadius = contentBorderCornerRadius;
-        }
-
-        Border border = chrome as Border;
-
-        if (border != null)
-          border.CornerRadius = chromeBorderCornerRadius;
+        RestoreBorder();
 
         StartRestoringAnimation();
         windowState = WindowState.Normal;
       }
       else
-      {
         Show(Position);
-      }
     }
 
     /// <summary>
@@ -2578,27 +2707,30 @@ namespace SilverFlow.Controls
     {
       base.OnMouseLeftButtonDown(e);
 
+      //if (e.Handled) return;
+      e.Handled = true; //always handle events so that container doesn't get confused (e.g. when dragging the window title bar we don't want container to pan)
+
       windowAction = WindowAction.None;
 
-      if (windowState == WindowState.Normal)
+      // Stop inertial motion before the mouse is captured
+      StopInertialMotion();
+
+      clickPoint = e.GetPosition(HostPanel);
+      clickWindowPosition = Position;
+      snapinController.SnapinDistance = this.FloatingWindowHost.SnapinDistance;
+      snapinController.SnapinMargin = this.FloatingWindowHost.SnapinMargin;
+      snapinController.SnapinEnabled = this.FloatingWindowHost.SnapinEnabled;
+
+      if (CheckResizable() && resizeController.CanResize)
       {
-        // Stop inertial motion before the mouse is captured
-        StopInertialMotion();
-
-        clickPoint = e.GetPosition(HostPanel);
-        clickWindowPosition = Position;
-        snapinController.SnapinDistance = this.FloatingWindowHost.SnapinDistance;
-        snapinController.SnapinMargin = this.FloatingWindowHost.SnapinMargin;
-        snapinController.SnapinEnabled = this.FloatingWindowHost.SnapinEnabled;
-
-        if (ResizeEnabled && resizeController.CanResize)
-        {
-          snapinController.SnapinBounds = this.FloatingWindowHost.GetSnapinBounds(this);
-          resizeController.StartResizing();
-          CaptureMouseCursor();
-          windowAction = WindowAction.Resize;
-        }
-        else if (chrome != null)
+        snapinController.SnapinBounds = this.FloatingWindowHost.GetSnapinBounds(this);
+        resizeController.StartResizing();
+        CaptureMouseCursor();
+        windowAction = WindowAction.Resize;
+      }
+      else if (MoveMaximizedEnabled)
+      {
+        if (chrome != null)
         {
           // If the mouse was clicked on the chrome - start dragging the window
           Point point = e.GetPosition(chrome);
@@ -2608,7 +2740,7 @@ namespace SilverFlow.Controls
             snapinController.SnapinBounds = this.FloatingWindowHost.GetSnapinBounds(this);
             CaptureMouseCursor();
             windowAction = WindowAction.Move;
-            inertiaController.StartMotion(Position);
+            inertiaController.StartMotion(Position); //TODO: take in mind component's zoom to avoid jumpy motion
           }
         }
       }
@@ -2739,6 +2871,11 @@ namespace SilverFlow.Controls
 
         inertiaController.MoveToPoint(Position);
       }
+    }
+    private bool CheckResizable()
+    {
+      return ResizeEnabled &&
+             (windowState == WindowState.Normal || (windowState == WindowState.Maximized && ResizeMaximizedEnabled));
     }
 
     /// <summary>
