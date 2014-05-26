@@ -1,7 +1,7 @@
 ﻿<!--
 Project: ClipFlair (http://ClipFlair.codeplex.com)
 Filename: Generic.xaml
-Version: 20140326
+Version: 20140526
 -->
 
 <ResourceDictionary
@@ -9,7 +9,6 @@ Version: 20140326
   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
   xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-  xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk"  
   xmlns:float="clr-namespace:SilverFlow.Controls;assembly=SilverFlow.Controls"
   xmlns:local="clr-namespace:ClipFlair.Windows"
   mc:Ignorable="d"
@@ -19,7 +18,7 @@ Version: 20140326
     <ResourceDictionary Source="/SilverFlow.Controls;component/Themes/generic.xaml" />
   </ResourceDictionary.MergedDictionaries>
 
-  <Style x:Key="PropertyLabelStyle" TargetType="sdk:Label">
+  <Style x:Key="PropertyLabelStyle" TargetType="Label">
     <Setter Property="FontWeight" Value="SemiBold" />
     <Setter Property="Margin" Value="5,0,5,0" />
   </Style>

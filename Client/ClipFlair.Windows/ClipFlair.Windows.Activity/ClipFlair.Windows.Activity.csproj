@@ -112,8 +112,8 @@
       <Project>{C6900312-0545-4E5E-9FE0-2AEF75674E29}</Project>
       <Name>ClipFlair.UI.Dialogs.Silverlight</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\ClipFlair.UI\ClipFlair.UI.Widgets\ClipFlair.UI.Widgets.Silverlight.csproj">
-      <Project>{0771A5EA-F8F5-4BB4-A29E-2FD3CF9A5088}</Project>
+    <ProjectReference Include="..\..\ClipFlair.UI\ClipFlair.UI.Widgets\Silverlight\ClipFlair.UI.Widgets.Silverlight.csproj">
+      <Project>{0771a5ea-f8f5-4bb4-a29e-2fd3cf9a5088}</Project>
       <Name>ClipFlair.UI.Widgets.Silverlight</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Media\Browser\Browser.Silverlight\Browser.Silverlight.csproj">

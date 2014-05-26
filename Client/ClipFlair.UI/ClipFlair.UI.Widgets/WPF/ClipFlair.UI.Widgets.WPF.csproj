@@ -1,0 +1,100 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{FCB42315-C45C-4DCC-995E-FBAEB6115B4F}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ClipFlair.UI.Widgets.WPF</RootNamespace>
+    <AssemblyName>ClipFlair.UI.Widgets.WPF</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xaml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\Source\OptionsLoadSaveControl.xaml.cs">
+      <Link>OptionsLoadSaveControl.xaml.cs</Link>
+      <DependentUpon>OptionsLoadSaveControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="..\Images\Load.png">
+      <Link>Images\Load.png</Link>
+    </Content>
+    <Content Include="..\Images\LoadURL.png">
+      <Link>Images\LoadURL.png</Link>
+    </Content>
+    <Content Include="..\Images\LoadURL_hover.png">
+      <Link>Images\LoadURL_hover.png</Link>
+    </Content>
+    <Content Include="..\Images\Load_hover.png">
+      <Link>Images\Load_hover.png</Link>
+    </Content>
+    <Content Include="..\Images\Save.png">
+      <Link>Images\Save.png</Link>
+    </Content>
+    <Content Include="..\Images\SaveDirty.png">
+      <Link>Images\SaveDirty.png</Link>
+    </Content>
+    <Content Include="..\Images\SaveDirty_hover.png">
+      <Link>Images\SaveDirty_hover.png</Link>
+    </Content>
+    <Content Include="..\Images\Save_hover.png">
+      <Link>Images\Save_hover.png</Link>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="..\Source\OptionsLoadSaveControl.xaml">
+      <Link>OptionsLoadSaveControl.xaml</Link>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\Widgets.cd">
+      <Link>Widgets.cd</Link>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\ZUI\ImageButtons\ImageButtons.WPF\ImageButtons.WPF.csproj">
+      <Project>{5bb0f96d-2b5f-409c-9782-434b12e06600}</Project>
+      <Name>ImageButtons.WPF</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

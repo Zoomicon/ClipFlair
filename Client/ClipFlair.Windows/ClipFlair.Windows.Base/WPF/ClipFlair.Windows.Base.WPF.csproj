@@ -20,6 +20,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <PlatformTarget>AnyCPU</PlatformTarget>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -37,6 +38,7 @@
     <Reference Include="PresentationFramework" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Windows.Controls.Layout.Toolkit, Version=3.5.40128.1, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Xml" />
@@ -129,9 +131,25 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\ClipFlair.UI\ClipFlair.UI.Widgets\WPF\ClipFlair.UI.Widgets.WPF.csproj">
+      <Project>{fcb42315-c45c-4dcc-995e-fbaeb6115b4f}</Project>
+      <Name>ClipFlair.UI.Widgets.WPF</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\Helpers\Utils\Utils.WPF\Utils.WPF.csproj">
       <Project>{a1100da3-93dd-49b5-ba91-cf868051ca16}</Project>
       <Name>Utils.WPF</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Helpers\WPF_Compatibility\WPF_Compatibility.WPF\WPF_Compatibility.WPF.csproj">
+      <Project>{dc154e89-74e8-4adc-95b5-0772ca254f71}</Project>
+      <Name>WPF_Compatibility.WPF</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\ZUI\ColorPicker\WPF\ColorPicker.WPF\ColorPicker.WPF.csproj">
+      <Project>{2d343c72-381b-4b90-8ad2-13b8b4d01cb9}</Project>
+      <Name>ColorPicker.WPF</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\ZUI\FlipPanel\FlipPanel.WPF\FlipPanel.WPF.csproj">
+      <Project>{56abe7a4-aebc-41b5-b156-ca81ec481b1f}</Project>
+      <Name>FlipPanel.WPF</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\..\ZUI\FloatingWindow\FloatingWindow.WPF\FloatingWindow.WPF.csproj">
       <Project>{7c67ac53-e3bc-4482-8dfb-4cbaa644d280}</Project>

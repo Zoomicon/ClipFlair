@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: ActivityWindow.xaml.cs
-//Version: 20140414
+//Version: 20140526
 
 using ClipFlair.UI.Dialogs;
 using ClipFlair.Windows.Captions;
@@ -62,18 +62,6 @@ namespace ClipFlair.Windows
       OptionsLoadSave.SaveTooltip = "Save activity to file";
       
       View = activity.View; //set window's View to be the same as the nested activity's View
-
-   /*
-      //copy Window Factory objects (initialized in activity using MEF) to static fields so that code in BaseWindow can use them
-      MediaPlayerWindowFactory = activity.MediaPlayerWindowFactory;
-      CaptionsGridWindowFactory = activity.CaptionsGridWindowFactory;
-      TextEditorWindowFactory = activity.TextEditorWindowFactory;
-      ImageWindowFactory = activity.ImageWindowFactory;
-      MapWindowFactory = activity.MapWindowFactory;
-      NewsWindowFactory = activity.NewsWindowFactory;
-      GalleryWindowFactory = activity.GalleryWindowFactory;
-      ActivityWindowFactory = activity.ActivityWindowFactory;
-*/
 
       defaultLoadURL = DEFAULT_ACTIVITY;
 
