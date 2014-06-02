@@ -1,6 +1,7 @@
 ﻿<%@ Page Title="" 
     Language="C#"
-    MasterPageFile="~/MonoX/MasterPages/DefaultSmallHeader.master"
+	Theme="ClipFlair"
+    MasterPageFile="~/MonoX/MasterPages/Default.master"
     AutoEventWireup="true"
     CodeBehind="Messages.aspx.cs"
     Inherits="MonoSoftware.MonoX.Pages.SocialNetworking.Messages"     

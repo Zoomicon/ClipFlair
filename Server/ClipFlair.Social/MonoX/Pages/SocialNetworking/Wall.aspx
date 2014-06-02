@@ -2,7 +2,8 @@
     AutoEventWireup="true"
     CodeBehind="Wall.aspx.cs"
     Inherits="MonoSoftware.MonoX.Pages.SocialNetworking.Wall"
-    MasterPageFile="~/MonoX/MasterPages/DefaultSmallHeader.master"
+	Theme="ClipFlair"
+    MasterPageFile="~/MonoX/MasterPages/Default.master"
     MaintainScrollPositionOnPostback="true"
     %>
 <%@ MasterType TypeName="MonoSoftware.MonoX.BaseMasterPage" %>   
