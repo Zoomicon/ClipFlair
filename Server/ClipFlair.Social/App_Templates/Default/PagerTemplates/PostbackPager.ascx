@@ -1,11 +1,10 @@
 ﻿<%@ Control 
     Language="C#" 
     AutoEventWireup="true" 
-    Inherits="MonoSoftware.MonoX.Controls.MonoXPagerTemplate" 
-    %>
+    Inherits="MonoSoftware.MonoX.Controls.MonoXPagerTemplate" %>
 
 <div class="pager">
-	<strong><asp:Literal runat="server" ID="ltlPage" Text="<%# PageText %>" ></asp:Literal></strong>
+	<%--<strong><asp:Literal runat="server" ID="ltlPage" Text="<%# PageText %>" ></asp:Literal></strong>--%>
 	<asp:LinkButton id="Linkbutton1" runat="server" Visible="<%# !(Pager.IsFirstNumericGroup) %>" Text="<<" CommandName="FirstPage">
 	</asp:LinkButton>
 	<asp:LinkButton id="Linkbutton2" runat="server" Visible="<%# !(Pager.IsFirstNumericGroup) %>" Text="..." CommandName="PreviousNumericGroup">

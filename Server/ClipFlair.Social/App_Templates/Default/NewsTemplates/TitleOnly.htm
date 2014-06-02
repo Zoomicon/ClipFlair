@@ -1,9 +1,18 @@
-<div class="news title-only">
-    <a href='<# NewsReadMoreLink #>' title='<# NewsTitle #>'><# NewsTitle #></a>    
+<div class="news">
+    <h2><a href='<# NewsReadMoreLink #>' title='<# NewsTitle #>'><# NewsTitle #></a></h2>
     #if( $UserNameVisible )    
-    <a href="<# ProfileUrl #>" title="<# NewsUsername #>" class="user-link">(<# NewsUsername #>)</a>
+    <div class="news-info">
+        <a href="<# ProfileUrl #>" title="<# NewsUsername #>" class="user-link">(<# NewsUsername #>)</a>
+    </div>
     #end   
     #if ( $EditVisible )
-        <a href="<# EditCategoriesUrl #>" title="<# EditCategoriesToolTip #>"><# EditCategoriesText #></a>&nbsp;<a href="<# EditNewsUrl #>" title="<# EditNewsToolTip #>"><# EditNewsText #></a>
+        <div class="options">
+            <a href="<# EditCategoriesUrl #>" title="<# EditCategoriesToolTip #>">
+                <# EditCategoriesText #>
+            </a>
+            <a href="<# EditNewsUrl #>" title="<# EditNewsToolTip #>">
+                <# EditNewsText #>
+            </a>
+        </div>
     #end  
 </div>

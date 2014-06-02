@@ -7,11 +7,13 @@
 <%@ Register TagPrefix="telerik" Namespace="Telerik.Web.UI" Assembly="Telerik.Web.UI" %>
 
 <asp:PlaceHolder ID="plhFilter" runat="server">
-    <div class="top-button-holder">
-        <div class="date-picker"><telerik:RadDateTimePicker ID="dateFrom" runat="server"></telerik:RadDateTimePicker></div>
-        <div class="date-picker"><telerik:RadDateTimePicker ID="dateTo" runat="server"></telerik:RadDateTimePicker></div>
-        <MonoX:StyledButton ID="btnFilter" runat="server" />
-        <MonoX:StyledButton ID="btnClearFilter" runat="server" />
+    <div class="top-button-holder input-form clearfix">
+        <div class="float-right">
+            <telerik:RadDateTimePicker ID="dateFrom" runat="server"></telerik:RadDateTimePicker>
+            <telerik:RadDateTimePicker ID="dateTo" runat="server"></telerik:RadDateTimePicker>
+        </div>
+        <MonoX:StyledButton ID="btnFilter" runat="server" CssClass="filter-btn float-left" />
+        <MonoX:StyledButton ID="btnClearFilter" runat="server" CssClass="cancel-btn float-left" />
     </div>
 </asp:PlaceHolder>
 

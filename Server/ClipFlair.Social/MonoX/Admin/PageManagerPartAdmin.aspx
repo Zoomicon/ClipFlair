@@ -8,6 +8,7 @@
 </head>
 <body>
     <form id="form1" runat="server">
+    <asp:ScriptManager ID="scriptManager" runat="server"></asp:ScriptManager>
     <div class="popupBox">
         <div class="header">
             <div class="headerContent">

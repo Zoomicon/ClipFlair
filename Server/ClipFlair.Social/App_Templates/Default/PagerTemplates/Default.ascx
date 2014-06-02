@@ -1,11 +1,11 @@
 <%@ Control Language="C#" AutoEventWireup="true" Inherits="MonoSoftware.MonoX.Controls.MonoXPagerTemplate" %>
 
 <div class="pager">
-	<strong><asp:Literal runat="server" ID="ltlPage" Text="<%# PageText %>" ></asp:Literal></strong>
+	<%--<strong><asp:Literal runat="server" ID="ltlPage" Text="<%# PageText %>" ></asp:Literal></strong>--%>
 	<a href="javascript:void(0);" title="<%# Pager.CurrentPageIndex %>" name="<%# ConstructPermalinkSufix() %>" style="padding:0px;border:0px;height:25px;"></a>
 	<asp:HyperLink id="Linkbutton1" runat="server" Visible="<%# !(Pager.IsFirstNumericGroup) %>" Text="<<" NavigateUrl='<%# ConstructPagerUrl(0) %>'>
 	</asp:HyperLink>
-	<asp:HyperLink id="Linkbutton2" runat="server" Visible="<%# !(Pager.IsFirstNumericGroup) %>" Text="..." NavigateUrl='<%# ConstructPagerUrl(Convert.ToInt32(Pager.CurrentPageIndex / Pager.NumericButtonCount) * Pager.NumericButtonCount - Pager.NumericButtonCount) %>'>
+	<asp:HyperLink id="Linkbutton2" runat="server" Visible="<%# !(Pager.IsFirstNumericGroup) %>" Text="..." NavigateUrl='<%# ConstructPagerUrl(Convert.ToInt32(Pager.CurrentPageIndex / Pager.NumericButtonCount) * Pager.NumericButtonCount - 1) %>'>
 	</asp:HyperLink>
 	<asp:Repeater id="Repeater1" runat="server" DataSource="<%# Pager.NumericButtonDataSource %>">
 		<ItemTemplate>			

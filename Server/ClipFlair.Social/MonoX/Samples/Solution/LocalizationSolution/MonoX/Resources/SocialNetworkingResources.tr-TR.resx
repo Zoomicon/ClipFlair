@@ -1221,4 +1221,7 @@ MonoX Takımı</value>
   <data name="WallNotes_NotificationSubjectNote" xml:space="preserve">
     <value>{0} duvarınıza bir not gönderdi.</value>
   </data>
+  <data name="Discussion_TopicTags" xml:space="preserve">
+    <value>Topic tags</value>
+  </data>
 </root>

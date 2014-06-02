@@ -13,7 +13,7 @@
 <%@ Register Assembly="MonoX" Namespace="MonoSoftware.MonoX" TagPrefix="portal" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="cp" runat="server">
-    <div data-role="fieldcontain">
+    <div>
     <MonoX:Login runat="server" ID="ctlLogin" Width="100%" />
     </div>
 </asp:Content>

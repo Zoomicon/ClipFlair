@@ -9,7 +9,7 @@ You can find the sample project in the "MonoX/Samples/Solution". To start using 
 
 Since version 4.0.2540 MonoX has a separate installation package for ASP.NET 4.0 and package can be found in standard MonoX download section at http://www.mono-software.com/Downloads/#MonoX.
 
-3. Translate MonoX resources to your langauge
+3. Translate MonoX resources to your language
 
 MonoX now includes a localization solution that will allow you to modify any of the MonoX resources and translate them to your language instantly. Before you start translating the resources we advise you to copy the whole localization solution to your custom location: from "MonoX/Samples/Solution/LocalizationSolution" to "YourCustomFolder/LocalizationSolution" (out of the MonoX CMS folder structure).
 

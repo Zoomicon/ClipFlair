@@ -190,12 +190,12 @@ bool IgnoreFolder(DirectoryInfo dir) {
         case "properties":
         case "app_data":
         case "app_code":
-        case "app_browsers":
-        case "app_customlocalization":
+        case "app_browsers":        
         case "app_globalresources":
         case "app_localresources":
         case "cache":        
         case "fulltextindexes":
+		case "packages":
         case "language":
         case "logs":
         case "rssstorage":

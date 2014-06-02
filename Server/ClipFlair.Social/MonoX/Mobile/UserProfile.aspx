@@ -13,7 +13,7 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="cp" runat="server">
     <div data-role="fieldcontain">
-        <MonoX:UserProfile id="ctlProfile" runat="server" IsPreviewMode="true" AutoDetectUser="false" HiddenFieldsString="FirstName,LastName" GravatarRenderType="NotSet" >
+        <MonoX:UserProfile id="ctlProfile" runat="server" IsPreviewMode="true" AutoDetectUser="false" HiddenFieldsString="FirstName,LastName" GravatarRenderType="NotSet" ShowPrivacyEditor="false" >
             <EditTemplate>                                
             </EditTemplate>
             <PreviewTemplate>

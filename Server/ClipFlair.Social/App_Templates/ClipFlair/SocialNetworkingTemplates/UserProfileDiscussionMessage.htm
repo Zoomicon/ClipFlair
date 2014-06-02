@@ -1,6 +1,9 @@
-﻿<div class="user-profile-discussion jq_snNote">
+﻿<div class="discussion-widget jq_snNote">
+<!--CLIPFLAIR-->
     #if( $PostLinkVisible )
-    <a href="<# PostUrl #>" title="<# PostToolTip #>"><span><# ClearContent #></span>&nbsp;</a>
+    <a class="title" href="<# PostUrl #>" title="<# PostToolTip #>">
+        <# ClearContent #>
+    </a>
     #end
-    <span class="date"><# Date #></span>    
+    <div class="user-profile-date date"><# Date #></div>
 </div>

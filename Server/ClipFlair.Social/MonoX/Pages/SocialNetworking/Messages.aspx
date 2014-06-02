@@ -3,8 +3,7 @@
     MasterPageFile="~/MonoX/MasterPages/DefaultSmallHeader.master"
     AutoEventWireup="true"
     CodeBehind="Messages.aspx.cs"
-    Inherits="MonoSoftware.MonoX.Pages.SocialNetworking.Messages" 
-    Theme="Default" 
+    Inherits="MonoSoftware.MonoX.Pages.SocialNetworking.Messages"     
 %>
     
 <%@ MasterType TypeName="MonoSoftware.MonoX.BaseMasterPage" %>   

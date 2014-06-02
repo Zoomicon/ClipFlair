@@ -7,8 +7,6 @@
             <asp:TextBox runat="server" ID="txtTags"></asp:TextBox>
             <div class="small-links">
                 <asp:LinkButton ID="btnYahoo" runat="server" OnClick="btnYahoo_Click" CausesValidation="false"></asp:LinkButton>
-                |
-                <asp:LinkButton ID="btnTagTheNet" runat="server" OnClick="btnTagTheNet_Click" CausesValidation="false"></asp:LinkButton>
             </div>
         </ContentTemplate>
     </asp:UpdatePanel>

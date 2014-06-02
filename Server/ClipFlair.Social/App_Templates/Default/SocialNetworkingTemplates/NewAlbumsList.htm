@@ -1,15 +1,19 @@
-﻿<td>
-    <div class="album-list">
-        <a href="<# Url #>" title="<# UrlTitle #>"><# AlbumCover #></a>
-        <span class="album-title"><# AlbumName #></span>&nbsp;<div class="author"><a href="<# AuthorUrl #>" title="<# AuthorToolTip #>"><# AuthorText #></a></div>    
-        <div class="photo-count">
-            <# PhotoCount #>        
-            <span><# DeleteButton #></span>
+﻿<div class="item">
+    <div class="inner">
+    <div class="text-ending"></div>  
+        <div class="options">
+            <a href="<# AuthorUrl #>" title="<# AuthorToolTip #>" class="float-left"><# AuthorText #></a>
+            <div class="float-right">
+                <# DeleteButton #>
+            </div>
         </div>
-        <div class="descr">
-            <# AlbumDescription #></div>
-        <div class="photo-rating">
-            <# Rating #>
+        <div class="album-wrapper clearfix">
+            <div class="photo-wrapper">
+                <a href="<# Url #>" title="<# UrlTitle #>"><# AlbumCover #></a>
+            </div>
+            <div class="photo-count"><# PhotoCount #></div>
+            <h3><# AlbumName #></h3>
+            <p><# AlbumDescription #></p>
         </div>
     </div>
-</td>
+</div>

@@ -9,6 +9,7 @@
 </head>
 <body>
     <form id="form1" runat="server">
+    <asp:ScriptManager ID="scriptManager" runat="server"></asp:ScriptManager>
     <br />
     <asp:ValidationSummary ID="valSum" runat="server" HeaderText='<%$ Code: AdminResources.PageManagerSetUrl_valSum %>' DisplayMode="BulletList" Font-Bold="true" EnableClientScript="true" /> 
     <asp:Panel style="padding:20px;" CssClass="CssForm" runat="server" ID="pnlContainer">

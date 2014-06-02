@@ -45,7 +45,7 @@
 
 </head>
 <body>
-    <form id="form1" runat="server">
+    <form id="form1" runat="server">    
     <div class="popupBox">
     <telerik:RadCodeBlock ID="radCodeBlock" runat="server"> 
     <script type="text/javascript">
@@ -76,7 +76,7 @@
         </div>
         <div class="content"> 
         <div class="tabs-admin">
-            <telerik:RadTabStrip Skin="Vista" ID="tabAdminStrip" CssClass="tabStripHeader" runat="server" MultiPageID="adminMultiPage" SelectedIndex="0" CausesValidation="false" >
+            <telerik:RadTabStrip Skin="Default" ID="tabAdminStrip" CssClass="tabStripHeader" runat="server" MultiPageID="adminMultiPage" SelectedIndex="0" CausesValidation="false" >
                 <Tabs> 
                     <telerik:RadTab ID="tabGeneral" runat="server" PageViewID="GeneralPaneView" Text='<%$ Code: AdminResources.PageAdmin_General %>'></telerik:RadTab>
                     <telerik:RadTab ID="tabCache" runat="server" PageViewID="CachePaneView" Text='<%$ Code: AdminResources.PageAdmin_Cache %>'></telerik:RadTab>

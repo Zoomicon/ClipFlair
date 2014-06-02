@@ -5,7 +5,7 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="cp" Runat="Server">
      <telerik:RadCodeBlock ID="cb1" runat="server">
-        <script language="javascript">
+        <script type="text/javascript">
         function OnFileOpen(sender, args) {
             var manager = sender.get_windowManager();
             window.setTimeout(
@@ -23,11 +23,11 @@
         </script>
     </telerik:RadCodeBlock> 
     <MonoXControls:MonoXWindowManager ID="windowDialog" runat="server" Modal="true"></MonoXControls:MonoXWindowManager>
-    <div style="width:100%;height:100%;margin-left:auto;margin-right:auto;" class="fileExplorerContainer">
-    <center>
-    <telerik:RadFileExplorer OnClientFileOpen="OnFileOpen" runat="server" ID="ctlFileExplorer" Width="99%" Height="600px" CssClass="fileExplorer">
-        <Configuration ViewPaths="~/MonoX/AmazonS3" UploadPaths="~/MonoX/AmazonS3" DeletePaths="~/MonoX/AmazonS3" />    
-    </telerik:RadFileExplorer>
-    </center>
+    <div class="fileExplorerContainer">
+        <center>
+            <telerik:RadFileExplorer OnClientFileOpen="OnFileOpen" runat="server" ID="ctlFileExplorer" Width="100%" Height="600px" CssClass="fileExplorer">
+                <Configuration ViewPaths="~/MonoX/AmazonS3" UploadPaths="~/MonoX/AmazonS3" DeletePaths="~/MonoX/AmazonS3" />    
+            </telerik:RadFileExplorer>
+        </center>
     </div>
 </asp:Content>

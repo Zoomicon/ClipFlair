@@ -948,4 +948,7 @@ Saygılarımızla,
   <data name="RelatedContent_Title" xml:space="preserve">
     <value>Bağlantılı içerik</value>
   </data>
+  <data name="GoogleMaps_DefaultLocation" xml:space="preserve">
+    <value>Turkey</value>
+  </data>
 </root>

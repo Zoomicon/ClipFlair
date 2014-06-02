@@ -8,36 +8,28 @@
 
 <asp:UpdatePanel ID="upCaptcha" runat="server" ChildrenAsTriggers="true" UpdateMode="Conditional">
     <ContentTemplate>
-        <table class="captcha">
-            <tr>
-                <td class="captcha-image">
-                    <div class="holder">
-                        <div class="image-captcha">
-                            <asp:Image ID="imgCaptcha" runat="server" />
-                        </div>
-                        <div class="refresh">
-                            <asp:ImageButton ID="btnRefresh" runat="server" OnClick="btnRefresh_Click" CausesValidation="false" />
-                        </div>
-                    </div>
-                    <div class="captcha-textbox">
-                        <asp:TextBox ID="txtCaptchaCode" runat="server" Width="200px"></asp:TextBox>
-                        <asp:RequiredFieldValidator ID="reqCaptchaCode" runat="server" ControlToValidate="txtCaptchaCode"
-                        SetFocusOnError="true" CssClass="ValidatorAdapter" Display="dynamic" Text="!"></asp:RequiredFieldValidator>
-                    </div>
-                </td>
-                <td class="captcha-description" rowspan="2">
-                    <h3><%= DefaultResources.Captcha_ImageTitle %></h3>
-                    <strong><%= DefaultResources.Captcha_ShortInfo %></strong><br />
-                    <%= DefaultResources.Captcha_LongInfo %>
-                </td>
-            </tr>            
-            <tr id="rowInvalidCaptcha" runat="server">
-                <td colspan="2">
-                    <span style="color: Red; font-size: 11px;">
-                        <asp:Label ID="labInvalidCaptcha" runat="server"></asp:Label></span>
-                </td>
-            </tr>
-        </table>
+        <dl class="captcha">
+            <!--CLIPFLAIR<h3><%= DefaultResources.Captcha_ImageTitle %></h3>-->
+            <dd class="clearfix">
+                <div class="image-captcha float-left">
+                    <asp:Image ID="imgCaptcha" runat="server" />
+                </div>
+                <!--CLIPFLAIR<div class="float-left empty-space">&nbsp;</div>-->
+                <div class="captcha-input float-right" style="width: 48%;">
+                    <asp:ImageButton ID="btnRefresh" runat="server" OnClick="btnRefresh_Click" CausesValidation="false" CssClass="refresh" />
+                    <asp:TextBox ID="txtCaptchaCode" runat="server"></asp:TextBox>
+                    <asp:RequiredFieldValidator ID="reqCaptchaCode" runat="server" ControlToValidate="txtCaptchaCode" SetFocusOnError="true" CssClass="validator ValidatorAdapter" Display="dynamic" Text="!"></asp:RequiredFieldValidator>
+                </div>
+            </dd>
+            <dd class="padding-top">
+                <label class="italic-style"><%= DefaultResources.Captcha_ShortInfo %></label>
+                <!--CLIPFLAIR<hr />--><br />
+                
+                <label class="italic-style"><%= DefaultResources.Captcha_LongInfo %></label>
+            </dd>
+            <dd id="rowInvalidCaptcha" runat="server">
+                <asp:Label ID="labInvalidCaptcha" runat="server"></asp:Label>
+            </dd>
+        </dl>
     </ContentTemplate>
 </asp:UpdatePanel>
-

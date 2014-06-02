@@ -502,6 +502,47 @@
             </summary>
             <param name="args"></param>
         </member>
+        <member name="T:MonoSoftware.Core.Mail.IMailSenderLogger">
+            <summary>
+            Mail sender logger.
+            </summary>
+        </member>
+        <member name="M:MonoSoftware.Core.Mail.IMailSenderLogger.LogMessage(System.Int32,System.String,System.Object)">
+            <summary>
+            Logs the message to underlying logger.
+            </summary>
+            <param name="eventId">Status Id.</param>
+            <param name="label">Message label.</param>
+            <param name="logObject">Log object.</param>
+            <returns>True if message was logged, false otherwise.</returns>
+        </member>
+        <member name="M:MonoSoftware.Core.Mail.IMailSenderLogger.Initialize(System.String)">
+            <summary>
+            Initialize mail sender logger.
+            </summary>
+            <param name="logName">Log name.</param>
+            <returns>True if initialized, false otherwise.</returns>
+        </member>
+        <member name="P:MonoSoftware.Core.Mail.IMailSenderLogger.LogName">
+            <summary>
+            Gets or sets a log name.
+            </summary>
+        </member>
+        <member name="P:MonoSoftware.Core.Mail.IMailSenderLogger.EventID">
+            <summary>
+            Gets or sets a event id.
+            </summary>
+        </member>
+        <member name="P:MonoSoftware.Core.Mail.IMailSenderLogger.Label">
+            <summary>
+            Gets or sets a log message label.
+            </summary>
+        </member>
+        <member name="P:MonoSoftware.Core.Mail.IMailSenderLogger.LogObject">
+            <summary>
+            Gets or sets the log object.
+            </summary>
+        </member>
         <member name="T:MonoSoftware.Core.Mail.IMSMQMailSender">
             <summary>
             Send a single message or processes a mail queue asynchronously via MSMQ.
@@ -1519,7 +1560,37 @@
             <param name="data">Encryption data</param>
             <returns>Encrypted data</returns>
         </member>
+        <member name="M:MonoSoftware.Core.Cryptography.DESExtension.Encrypt(System.String,System.String)">
+            <summary>
+            Encrypts the data using DES crypto service provider, returns a base64-encoded encrypted string.
+            </summary>
+            <param name="key">Encryption key.</param>
+            <param name="data">Encryption data.</param>
+            <returns>Encrypted data.</returns>
+        </member>
+        <member name="M:MonoSoftware.Core.Cryptography.DESExtension.Encrypt(System.String,System.Byte[])">
+            <summary>
+            Encrypts the data using DES crypto service provider, returns a base64-encoded encrypted string.
+            </summary>
+            <param name="key">Encryption key.</param>
+            <param name="data">Encryption data.</param>
+            <returns>Encrypted data.</returns>
+        </member>
         <member name="M:MonoSoftware.Core.Cryptography.DESExtension.Decrypt(System.String)">
+            <summary>
+            Decrypts the base64-encoded encrypted data using DES crypto provider service.
+            </summary>
+            <param name="data">Encrypted data</param>
+            <returns>Decrypted data</returns>
+        </member>
+        <member name="M:MonoSoftware.Core.Cryptography.DESExtension.Decrypt(System.String,System.String)">
+            <summary>
+            Decrypts the base64-encoded encrypted data using DES crypto provider service.
+            </summary>
+            <param name="data">Encrypted data</param>
+            <returns>Decrypted data</returns>
+        </member>
+        <member name="M:MonoSoftware.Core.Cryptography.DESExtension.Decrypt(System.String,System.Byte[])">
             <summary>
             Decrypts the base64-encoded encrypted data using DES crypto provider service.
             </summary>
@@ -2791,7 +2862,7 @@
             <summary>
             Creates a new instance of the SerializableMailMessage based on the original MailMessage that is passed in as a parameter.
             </summary>
-            <param name="mm"></param>
+            <param name="mm">Mail message.</param>
         </member>
         <member name="M:MonoSoftware.Core.Mail.SerializableMailMessage.GetMailMessage">
             <summary>

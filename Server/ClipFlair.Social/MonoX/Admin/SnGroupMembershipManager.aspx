@@ -50,7 +50,7 @@
                             </td>
                             <td style="width: 60%;">
                                 <div class="PeopleSearch">
-                                    <MonoX:UserSearch ID="userSearch" runat="server" Width="306px"></MonoX:UserSearch>
+                                    <MonoX:UserSearch ID="userSearch" runat="server" Width="306px" IsRequired="false"></MonoX:UserSearch>
                                 </div>
                             </td>
                             <td style="width: 20%;">&nbsp;</td>
@@ -63,7 +63,7 @@
                             <asp:Label ID="labUserInGroup" runat="server" AssociatedControlID="lstUserInGroup" Text='<%$ Code: AdminResources.SnGroupMembershipManager_labUserInGroup %>'></asp:Label>
                             <br />
                             <telerik:RadListBox ID="lstUserInGroup" runat="server" SelectionMode="Single" AllowReorder="true"
-                                AllowDelete="true" Width="470px" Height="200px" Skin="Web20" AutoPostBackOnDelete="true">
+                                AllowDelete="true" Width="470px" Height="200px" Skin="Default" AutoPostBackOnDelete="true">
                             </telerik:RadListBox><br />
                             <asp:Button ID="btnSetAsAdmin" runat="server" CausesValidation="false" Text='<%$ Code: AdminResources.SnGroupMembershipManager_btnSetAsAdmin %>'
                             CssClass="AdminLargeButton" OnClick="btnSetAsAdmin_Click" />
@@ -77,7 +77,7 @@
                             <asp:Label ID="labGroupRequests" runat="server" AssociatedControlID="lstGroupRequests" Text='<%$ Code: AdminResources.SnGroupMembershipManager_labGroupRequests %>'></asp:Label>
                             <br />
                             <telerik:RadListBox ID="lstGroupRequests" runat="server" SelectionMode="Single" AllowReorder="true"
-                                AllowDelete="true" Width="470px" Height="200px" Skin="Web20" AutoPostBackOnDelete="true">
+                                AllowDelete="true" Width="470px" Height="200px" Skin="Default" AutoPostBackOnDelete="true">
                             </telerik:RadListBox><br />
                             <asp:Button ID="btnApprove" runat="server" CausesValidation="false" Text='<%$ Code: AdminResources.SnGroupMembershipManager_btnApprove %>'
                             CssClass="AdminLargeButton" OnClick="btnApprove_Click" />

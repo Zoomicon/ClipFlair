@@ -3,84 +3,77 @@
     AutoEventWireup="True"
     CodeBehind="Dashboard.aspx.cs"
     Inherits="MonoSoftware.MonoX.Pages.SocialNetworking.Dashboard"
-    Theme="Default"
-    MasterPageFile="~/MonoX/MasterPages/DefaultSmallHeader.master"
-%>
+    MasterPageFile="~/MonoX/MasterPages/Default.master"
+    MaintainScrollPositionOnPostback="true" %>
         
 <%@ MasterType TypeName="MonoSoftware.MonoX.BaseMasterPage" %>   
 
 <%@ Import Namespace="MonoSoftware.MonoX.Resources" %>
 <%@ Register TagPrefix="MonoX" TagName="Editor" Src="~/MonoX/ModuleGallery/MonoXHtmlEditor.ascx" %>
+<%@ Register TagPrefix="MonoX" TagName="Wall" Src="~/MonoX/ModuleGallery/SocialNetworking/WallNotes.ascx" %>
 <%@ Register Assembly="MonoX" Namespace="MonoSoftware.MonoX" TagPrefix="portal" %>
-<%@ Register TagPrefix="MonoX" TagName="Search" Src="~/MonoX/ModuleGallery/MonoXSearchBox.ascx" %>
-<%@ Register Assembly="MonoX" Namespace="MonoSoftware.MonoX.SearchEngine" TagPrefix="Search" %>
-<%@ Register TagPrefix="MonoX" TagName="NewUsers" Src="~/MonoX/ModuleGallery/SocialNetworking/NewUsersList.ascx" %>
+<%@ Register TagPrefix="MonoX" TagName="Events" Src="~/MonoX/ModuleGallery/SocialNetworking/Events.ascx" %>
+<%@ Register TagPrefix="MonoX" TagName="FriendSuggestionsList" Src="~/MonoX/ModuleGallery/SocialNetworking/FriendSuggestionsList.ascx" %>
 <%@ Register TagPrefix="MonoX" TagName="BlogPostList" Src="~/MonoX/ModuleGallery/Blog/BlogPostList.ascx" %>
 <%@ Register TagPrefix="MonoX" TagName="NewGroups" Src="~/MonoX/ModuleGallery/SocialNetworking/Groups/NewGroupsList.ascx" %>
+<%@ Register TagPrefix="MonoX" TagName="DiscussionTopic" Src="~/MonoX/ModuleGallery/SocialNetworking/Discussion/DiscussionTopics.ascx" %>  
     
-<asp:Content ID="Content1" ContentPlaceHolderID="cp" runat="server">
-<table cellpadding="0" cellspacing="0" class="three-columns">
-    <tr>
-        <td colspan="3" style="padding-bottom: 20px;">
-            <portal:PortalWebPartZoneTableless HeaderText='<%$ Code: PageResources.Zone_SocialZone %>' ID="featuredProjectPartZone" runat="server" Width="100%" ChromeTemplateFile="LeftColumn.htm">
-            <ZoneTemplate>
-                <MonoX:Editor runat="server" ID="editor3" Title='<%$ Code: PageResources.Zone_SocialZone %>'>
-                <DefaultContent>
-                    <h1>Harness the Power of Social Networking in ASP.NET</h1>
-                    <img class="lets-socialize-img" src="~/App_Themes/ClipFlair/img/social-networking-icon.png" alt="Social Networking" />
-                    <p>Create vibrant online communities. Connect with your friends. Kick up your own groups and join people that share your interests. Post blog articles. Share photos and videos. Write wall notes and comment on other people's posts. Follow activity streams.</p>
-                    <p>With a touch of your own creativity and innovative spirit, there are no limits to what you can do with MonoX. And best of all - you'll get it all for free.</p>
-                </DefaultContent>
-                </MonoX:Editor>
-            </ZoneTemplate>
-            </portal:PortalWebPartZoneTableless>            
-        </td>
-    </tr>    
-	<tr>
-    	<td class="first search">
-        	<h3><a href="#"><%= PageResources.Label_Blogs %></a></h3>
-            <div class="search-box">
-            	<h2><%= PageResources.Label_BlogSearch %></h2>
-                <MonoX:Search runat="server" ID="ctlSearchBlogs" ButtonCssClass="button" ButtonText="<%$ Code:DefaultResources.Search_Go %>" SearchButtonType="LinkButton" DefaultSearchText="<%$ Code:DefaultResources.SiteSearch_DefaultText %>" >
-                    <SearchProviders>
-                        <Search:SearchProviderItem Name="BlogSearchProvider" Template="Default" />
-                    </SearchProviders>
-                </MonoX:Search>
+<asp:Content ID="Content1" ContentPlaceHolderID="cp" runat="server">   
+    
+    <div class="container-highlighter" style="background-color:#338061">
+        <div class="container">
+            <div class="row-fluid clearfix">
+                <div class="span12">
+                    <portal:PortalWebPartZoneTableless ID="HighlightBanner" runat="server" Width="100%" ChromeTemplateFile="Standard.htm" HeaderText="HighlightBanner">
+                        <ZoneTemplate>
+                            <MonoX:Editor runat="server" ID="editor01" Title='<%$ Code: PageResources.Title_TopSection %>' DefaultDocumentTitle='<%$ Code: PageResources.Title_TopSection %>'>
+                                <DefaultContent>
+                                    <p>Welcome to the ClipFlair Community</p>
+                                </DefaultContent>
+                            </MonoX:Editor>
+                        </ZoneTemplate>
+                    </portal:PortalWebPartZoneTableless>
+                </div>
             </div>
-            <div class="section">
-                <MonoX:BlogPostList ID="ctlBlogPostList" RetainBreaksInDescription="false" CacheDuration="600" RewritePageTitle="false" Template="BlogListShort" runat="server" RssEnabled="true" IsHeaderVisible="False" MaxDescriptionChars="90" PageSize="4" MaxTitleChars="40" PagingEnabled="false" /> 
+        </div>              
+    </div>
+    <div class="container">
+        <div class="row-fluid clearfix">
+            <div class="span12">
+                <portal:PortalWebPartZoneTableless ID="map" runat="server" Width="100%" ChromeTemplateFile="Standard.htm" HeaderText="Map">
+                    <ZoneTemplate>
+                        <MonoX:Editor runat="server" ID="editor05" Title='<%$ Code: PageResources.Title_TopSection %>' DefaultDocumentTitle='<%$ Code: PageResources.Title_TopSection %>'>
+                            <DefaultContent>
+                                <p>add a map</p>
+                            </DefaultContent>
+                        </MonoX:Editor>
+                    </ZoneTemplate>
+                </portal:PortalWebPartZoneTableless>
             </div>
-            
-        </td>
-        <td class="second search">
-        	<h3><a href="#"><%= PageResources.Label_Groups %></a></h3>
-            <div class="search-box">
-            	<h2><%= PageResources.Label_GroupSearch %></h2>
-                <MonoX:Search runat="server" ID="ctlSearchGroups" ButtonCssClass="button" ButtonText="<%$ Code:DefaultResources.Search_Go %>" SearchButtonType="LinkButton" DefaultSearchText="<%$ Code:DefaultResources.SiteSearch_DefaultText %>" >
-                    <SearchProviders>
-                        <Search:SearchProviderItem Name="GroupSearchProvider" Template="Default" />
-                    </SearchProviders>
-                </MonoX:Search>
+        </div>
+    </div>
+    <div class="container">            
+            <div class="row-fluid">
+                <div class="span8">
+                    <portal:PortalWebPartZoneTableless HeaderText='<%$ Code: PageResources.Zone_SocialZone %>' ID="activityPartZone" runat="server" Width="100%" ChromeTemplateFile="Standard.htm">
+                    <ZoneTemplate>
+                        <MonoX:Wall runat="server" ID="snWallNotes" UsePrettyPhoto="true" ShowRating="false" GravatarRenderType="NotSet" WallNoteListVisible="false"  />                        
+                        <MonoX:Events ID="ctlEvents" runat="server" PageSize="10" PagingEnabled="true" ></MonoX:Events>
+                    </ZoneTemplate>
+                    </portal:PortalWebPartZoneTableless>
+                </div>
+                <div class="span4">
+                    <portal:PortalWebPartZoneTableless HeaderText='<%$ Code: PageResources.Zone_SocialZone %>' ID="connectPartZone" runat="server" Width="100%" ChromeTemplateFile="RightColumn.htm" ShowChromeForNonAdmins="true">
+                    <ZoneTemplate>
+                        <MonoX:FriendSuggestionsList ID="friendSuggestionsList" runat="server" NumberOfFriendSuggestions="6" ShowSearchBox="true" SuggestionMode="Shorten"></MonoX:FriendSuggestionsList>
+                        <MonoX:DiscussionTopic runat="server" ID="ctlNewTopics" EnableInsertNewTopic="false" EnableAnswering="false" EnableOwnerDeleteOperation="false" EnablePaging="false" 
+                            TopicSorter="SortNewTopicsOnTop" ShowBackLink="false" TopicFilterType="LastActiveTopics" Template="DiscussionTopicList" PageSize="5" HeaderVisible="false" EnableDiscussionDefaultUrl="true"  />
+                        <MonoX:NewGroups runat="server" ID="ctlNewGroups" CacheDuration="600" PagingEnabled="false" MaxDescriptionChars="90" AvatarSize="32" PageSize="5"></MonoX:NewGroups>  
+                        <MonoX:BlogPostList ID="ctlBlogPostList" RetainBreaksInDescription="false" CacheDuration="600" RewritePageTitle="false" Template="BlogPostListShort" runat="server" RssEnabled="true" IsHeaderVisible="False" MaxDescriptionChars="90" PageSize="5" MaxTitleChars="40" PagingEnabled="false" />
+                    </ZoneTemplate>
+                    </portal:PortalWebPartZoneTableless>
+                </div>
             </div>
-            <div class="section">
-                <MonoX:NewGroups runat="server" ID="ctlNewGroups" CacheDuration="600" PagingEnabled="false" MaxDescriptionChars="90" AvatarSize="32" PageSize="5"></MonoX:NewGroups>  
-            </div>
-        </td>
-        <td class="third search">
-        	<h3><a href="#"><%= PageResources.Label_People %></a></h3>
-            <div class="search-box">
-            	<h2><%= PageResources.Label_PeopleSearch %></h2>
-                <MonoX:Search runat="server" ID="ctlSearchUsers" ButtonCssClass="button" ButtonText="<%$ Code:DefaultResources.Search_Go %>" SearchButtonType="LinkButton" DefaultSearchText="<%$ Code:DefaultResources.SiteSearch_DefaultText %>" >
-                    <SearchProviders>
-                         <Search:SearchProviderItem Name="UserProfileSearchProvider" Template="Default" />
-                    </SearchProviders>
-                </MonoX:Search>
-            </div>
-            <div class="people">
-                <MonoX:NewUsers runat="server" ID="ctlNewUsers" CacheDuration="600" IsPagerVisible="false" ShowValidAvatarsOnly="false" SortBy="SortRandomly" PageSize="20" PagingEnabled="false" ></MonoX:NewUsers>
-            </div>
-
-        </td>
-	</tr>
-</table>
-</asp:Content>    
+        
+    </div>
+</asp:Content>

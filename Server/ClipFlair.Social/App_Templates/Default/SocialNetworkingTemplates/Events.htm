@@ -1,11 +1,18 @@
-﻿<table cellpadding="0" cellspacing="0" class="sn-events">
-    <tr>
-        <td>
-            <img src="<# IconUrl #>" />
-        </td>
-        <td class="event-content">            
-            <# Event #>
-            <div class="date"><# Date #></div>            
-        </td>
-    </tr>
-</table>
+﻿<div class="activity-item clearfix jq_event wall-comment">
+    <div class="user-avatar">
+        <a href="<# ProfileUrl #>"><# Avatar #></a>
+        <div class="arrow"></div>
+    </div>
+    <div class="content">
+        #if ( $IconVisible )<img src="<# IconUrl #>" class="img-icon" />#end
+        <# Event #>
+        <div class="date-options">
+            <# Date #>
+		    <# CommentLink #>
+        </div>
+        <div class="<# PrivacyLevelCSS #>"></div>
+    </div>
+    #if ( $CommentsVisible )
+        <div class="comments"><# Comments #></div>
+    #end
+</div>

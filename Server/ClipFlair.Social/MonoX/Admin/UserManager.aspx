@@ -8,10 +8,10 @@
 
 <%@ Register Assembly="MonoX" Namespace="MonoSoftware.MonoX.Controls" TagPrefix="mono" %> 
 <%@ Register Assembly="MonoSoftware.Web" Namespace="MonoSoftware.Web.Controls" TagPrefix="mono" %>
-<%@ Register Src="~/MonoX/Admin/controls/DatePicker.ascx" TagPrefix="mono" TagName="DatePicker" %>
 <%@ Register TagPrefix="mono" Namespace="MonoSoftware.Web.LiteGrid" Assembly="MonoSoftware.Web.LiteGrid" %>
 <%@ Register Src="~/MonoX/Admin/controls/GridViewEditBox.ascx" TagPrefix="monox"
     TagName="GridViewEditBox" %>
+<%@ Register TagPrefix="rad" Namespace="Telerik.Web.UI" Assembly="Telerik.Web.UI" %>
 
 <%@ MasterType VirtualPath="~/MonoX/MasterPages/AdminDefault.master" %>    
     
@@ -66,6 +66,8 @@
             <mono:LiteGridBoundField DataField="IsApproved" HeaderText='<%$ Code: AdminResources.UserManager_sortIsApproved %>' SortExpression="IsApproved" />
             <mono:LiteGridBoundField DataField="IsLockedOut" HeaderText='<%$ Code: AdminResources.UserManager_sortIsLockedOut %>' SortExpression="IsLockedOut" />
             <mono:LiteGridBoundField DataField="LastActivityDate" HeaderText='<%$ Code: AdminResources.UserManager_sortLastActivityDate %>' SortExpression="LastActivityDate" />
+            <mono:LiteGridBoundField DataField="FailedPasswordAttemptCount" HeaderText='<%$ Code: AdminResources.UserManager_sortFailedPasswordAttempts %>' SortExpression="FailedPasswordAttemptCount" />
+            <mono:LiteGridBoundField DataField="FailedPasswordAnswerAttemptCount" HeaderText='<%$ Code: AdminResources.UserManager_sortFailedPasswordAnswerAttempts %>' SortExpression="FailedPasswordAnswerAttemptCount" />
         </Columns>
         <EmptyDataTemplate>
             <asp:Literal ID="labEmptyMessage" runat="server" Text='<%$ Code: AdminResources.UserManager_labEmptyMessage %>'></asp:Literal>
@@ -80,7 +82,7 @@
         </CustomActionsTemplate>
         <ContentTemplate>
             <asp:PlaceHolder ID="plhModification" runat="server">
-                <div class="AdminGridFooterContent">
+                <div class="AdminGridFooterContent input-form">
                 <table width="100%" cellpadding="0" cellspacing="6">
                     <tr>
                         <td colspan="3">
@@ -110,7 +112,7 @@
                             <asp:RequiredFieldValidator ID="requiredUserName" runat="server" CssClass="ValidatorAdapter" SetFocusOnError="true"
                                 ControlToValidate="txtUserName" ValidationGroup="Modification" Text="!" ErrorMessage='<%$ Code: AdminResources.UserManager_requiredUserName %>'></asp:RequiredFieldValidator>
                             <mono:RegExValidator ID="validateUserName" runat="server" CssClass="ValidatorAdapter" SetFocusOnError="true"
-                                ControlToValidate="txtUserName" ValidationGroup="Modification" ValidationType="alphaNumericWithSymbolsAllowedSpecialChr" Text="!" ErrorMessage='<%$ Code: AdminResources.UserManager_validateUserName %>'>
+                                ControlToValidate="txtUserName" ValidationGroup="Modification" Text="!" ErrorMessage='<%$ Code: AdminResources.UserManager_validateUserName %>'>
                             </mono:RegExValidator>
                         </td>
                     </tr>
@@ -155,8 +157,9 @@
                             <asp:Literal ID="labLastActivityDate" runat="server" Text='<%$ Code: AdminResources.UserManager_labLastActivityDate %>'></asp:Literal>
                         </td>
                         <td>
-                            <mono:DatePicker ID="txtLastActivityDate" Runat="server">
-                            </mono:DatePicker>
+                            <rad:RadDatePicker id="txtLastActivityDate" Runat="server" Calendar-Skin="Default2006">                                                    
+                                <datepopupbutton ></datepopupbutton>
+                            </rad:RadDatePicker>                            
                         </td>
                         <td>
                         </td>
@@ -245,8 +248,9 @@
                             <asp:Literal ID="labCreateDate" runat="server" Text='<%$ Code: AdminResources.UserManager_labCreateDate %>'></asp:Literal>
                         </td>
                         <td>
-                            <mono:DatePicker ID="txtCreateDate" Runat="server">
-                            </mono:DatePicker>
+                            <rad:RadDatePicker id="txtCreateDate" Runat="server" Calendar-Skin="Default2006">                                                    
+                                <datepopupbutton ></datepopupbutton>
+                            </rad:RadDatePicker>                            
                         </td>
                         <td>
                         </td>
@@ -256,8 +260,9 @@
                             <asp:Literal ID="labLastLoginDate" runat="server" Text='<%$ Code: AdminResources.UserManager_labLastLoginDate %>'></asp:Literal>
                         </td>
                         <td>
-                            <mono:DatePicker ID="txtLastLoginDate" Runat="server">
-                            </mono:DatePicker>
+                            <rad:RadDatePicker id="txtLastLoginDate" Runat="server" Calendar-Skin="Default2006">                                                    
+                                <datepopupbutton ></datepopupbutton>
+                            </rad:RadDatePicker>                            
                         </td>
                         <td>
                         </td>
@@ -267,8 +272,9 @@
                             <asp:Literal ID="labLastPasswordChangedDate" runat="server" Text='<%$ Code: AdminResources.UserManager_labLastPasswordChangedDate %>'></asp:Literal>
                         </td>
                         <td>
-                            <mono:DatePicker ID="txtLastPasswordChangedDate" Runat="server">
-                            </mono:DatePicker>
+                            <rad:RadDatePicker id="txtLastPasswordChangedDate" Runat="server" Calendar-Skin="Default2006">                                                    
+                                <datepopupbutton ></datepopupbutton>
+                            </rad:RadDatePicker>                            
                         </td>
                         <td>
                         </td>
@@ -278,8 +284,9 @@
                             <asp:Literal ID="labLastLockoutDate" runat="server" Text='<%$ Code: AdminResources.UserManager_labLastLockoutDate %>'></asp:Literal>
                         </td>
                         <td>
-                            <mono:DatePicker ID="txtLastLockoutDate" Runat="server">
-                            </mono:DatePicker>
+                            <rad:RadDatePicker id="txtLastLockoutDate" Runat="server" Calendar-Skin="Default2006">                                                    
+                                <datepopupbutton ></datepopupbutton>
+                            </rad:RadDatePicker>                            
                         </td>
                         <td>
                         </td>
@@ -305,8 +312,9 @@
                             <asp:Literal ID="labFailedPasswordAttemptWindowStart" runat="server" Text='<%$ Code: AdminResources.UserManager_labFailedPasswordAttemptWindowStart %>'></asp:Literal>
                         </td>
                         <td>
-                            <mono:DatePicker ID="txtFailedPasswordAttemptWindowStart" Runat="server">
-                            </mono:DatePicker>
+                            <rad:RadDatePicker id="txtFailedPasswordAttemptWindowStart" Runat="server" Calendar-Skin="Default2006">                                                    
+                                <datepopupbutton ></datepopupbutton>
+                            </rad:RadDatePicker>                            
                         </td>
                         <td>
                         </td>
@@ -334,8 +342,9 @@
                             <asp:Literal ID="labFailedPasswordAnswerAttemptWindowStart" runat="server" Text='<%$ Code: AdminResources.UserManager_labFailedPasswordAnswerAttemptWindowStart %>'></asp:Literal>
                         </td>
                         <td>
-                            <mono:DatePicker ID="txtFailedPasswordAnswerAttemptWindowStart" Runat="server">
-                            </mono:DatePicker>
+                            <rad:RadDatePicker id="txtFailedPasswordAnswerAttemptWindowStart" Runat="server" Calendar-Skin="Default2006">                                                    
+                                <datepopupbutton ></datepopupbutton>
+                            </rad:RadDatePicker>                            
                         </td>
                         <td>
                         </td>

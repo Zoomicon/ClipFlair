@@ -11,15 +11,14 @@
     <telerik:radeditor AutoResizeHeight="true" 
     ID="htmlEditor"
     Runat="server"
-    Width="99%"
-    Skin="Vista"
+    Width="100%"
+    Skin="Metro"
     OnClientCommandExecuting="OnClientCommandExecuting"
     ContentAreaMode="Div"
     
     EditModes="Design, Html"
     ToolsFile="~/MonoX/ModuleGallery/MonoXHtmlEditorToolsFile.xml"
-    EnableViewState="true"
-    >
+    EnableViewState="true">
     </telerik:radeditor>
     </asp:Panel>
     <asp:Literal ID="lblText" runat="server"></asp:Literal>

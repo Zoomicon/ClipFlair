@@ -18,19 +18,15 @@
 
 <div class="photos">
     <asp:UpdatePanel ID="up" runat="server">
-    <ContentTemplate>
-        <MonoX:AlbumList ID="albumList" runat="server">
-        </MonoX:AlbumList>
-        <MonoX:AlbumEditView ID="albumEditView" runat="server">
-        </MonoX:AlbumEditView>
-        <MonoX:PhotoUpload ID="photoUpload" runat="server">
-        </MonoX:PhotoUpload>
-        <MonoX:PhotoListView ID="photoListView" runat="server">
-        </MonoX:PhotoListView>
-        <MonoX:PhotoListView ID="photoPreview" runat="server" IsPhotoPreview="true">
-        </MonoX:PhotoListView>
-        <MonoX:PhotoEditView ID="photoEditView" runat="server">
-        </MonoX:PhotoEditView>
-    </ContentTemplate>
+        <ContentTemplate>
+            <MonoX:AlbumList ID="albumList" runat="server"></MonoX:AlbumList>
+            <MonoX:AlbumEditView ID="albumEditView" runat="server"></MonoX:AlbumEditView>
+            <div class="span12">
+                <MonoX:PhotoUpload ID="photoUpload" runat="server"></MonoX:PhotoUpload>
+            </div>
+            <MonoX:PhotoListView ID="photoListView" runat="server"></MonoX:PhotoListView>
+            <MonoX:PhotoListView ID="photoPreview" runat="server" IsPhotoPreview="true"></MonoX:PhotoListView>
+            <MonoX:PhotoEditView ID="photoEditView" runat="server"></MonoX:PhotoEditView>
+        </ContentTemplate>
     </asp:UpdatePanel>
 </div>

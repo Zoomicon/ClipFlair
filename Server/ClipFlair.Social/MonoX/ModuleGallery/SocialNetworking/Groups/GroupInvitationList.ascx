@@ -2,7 +2,7 @@
 <%@ Register Namespace="MonoSoftware.Web.Pager" Assembly="MonoSoftware.Web.Pager" TagPrefix="mono" %>
 <%@ Register Assembly="MonoX" Namespace="MonoSoftware.MonoX.Controls" TagPrefix="MonoXControls" %>
 
-<asp:Panel ID="pnlContainer" CssClass="FriendCenterAlign" runat="server">
+<asp:Panel ID="pnlContainer" runat="server">
 <div><asp:Literal runat="server" ID="ltlCaption"></asp:Literal></div>
 <asp:ListView ID="lvItems" runat="server">
     <LayoutTemplate>

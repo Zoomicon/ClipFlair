@@ -162,9 +162,6 @@
   <data name="Membership_Update_UnknownError" xml:space="preserve">
     <value>Došlo je do neočekivane pogreške, promjene vašeg korisničkog računa su nisu mogle spremiti. Pokušajte ponovo, ako se problem ponovi, molimo kontaktirajte nas.</value>
   </data>
-  <data name="NumberOfUsersExceeded" xml:space="preserve">
-    <value>Dosegnut je limit broja korisnika za besplatnu licencu MonoX sustava. Preporučamo kupovinu komercijalne verzije za uklanjanje navedenog ograničenja.</value>
-  </data>
   <data name="PageNotFound" xml:space="preserve">
     <value>Stranica nije pronađena.</value>
   </data>

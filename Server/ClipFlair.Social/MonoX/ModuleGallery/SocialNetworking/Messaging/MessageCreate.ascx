@@ -6,7 +6,7 @@
 <%@ Register TagPrefix="MonoX" TagName="SilverlightUpload" Src="~/MonoX/ModuleGallery/SilverlightUploadModule.ascx" %>
 <%@ Register TagPrefix="MonoX" TagName="FileGallery" Src="~/MonoX/ModuleGallery/SocialNetworking/FileGallery.ascx" %>
 
-<MonoXControls:MonoXWindowManager ID="windowDialog" runat="server" Width="800" Height="600" VisibleStatusbar="false" ReloadOnShow="true" Behaviors="Close,Move" KeepInScreenBounds="true" Modal="true"></MonoXControls:MonoXWindowManager>
+<MonoXControls:MonoXWindowManager ID="windowDialog" runat="server" Skin="Metro" Width="800" Height="600" VisibleStatusbar="false" IconUrl='<%$ Code: MonoSoftware.MonoX.Paths.App_Themes.img.popup_icon_png %>' ReloadOnShow="true" Behaviors="Close,Move" KeepInScreenBounds="true" Modal="true"></MonoXControls:MonoXWindowManager>
 <asp:Panel runat="server" ID="pnlContainer">
     <div class="input-form new-message">
     <asp:ValidationSummary ID="summary" runat="server" DisplayMode="List" ValidationGroup="MessageCreateValidation" ShowSummary="true" />
@@ -41,7 +41,7 @@
         </dd>
         </asp:PlaceHolder>
     </dl>
-    <MonoX:StyledButton id="btnSend" runat="server" CausesValidation="true" ValidationGroup="MessageCreateValidation" OnClick="btnSend_Click"  />
+    <!--CLIPFLAIR--><MonoX:StyledButton id="btnSend" runat="server" CausesValidation="true" ValidationGroup="MessageCreateValidation" OnClick="btnSend_Click" CssClass="styled-button-clipflair_green"  />
     <MonoX:StyledButton id="btnCancel" runat="server" CausesValidation="false" OnClick="btnCancel_Click"  />    
     </div>
 <asp:Label runat="server" ForeColor="Red" ID="lblWarning"></asp:Label>

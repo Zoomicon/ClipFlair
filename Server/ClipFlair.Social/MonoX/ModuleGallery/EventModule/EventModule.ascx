@@ -1,4 +1,5 @@
-﻿<%@ Control Language="C#" 
+﻿<%@ Control
+    Language="C#" 
     AutoEventWireup="true" 
     CodeBehind="EventModule.ascx.cs" 
     Inherits="MonoSoftware.MonoX.ModuleGallery.EventModule" %>
@@ -18,27 +19,23 @@
         </asp:PlaceHolder>
 
         <asp:PlaceHolder ID="plhSchedule" runat="server">
-            <table cellpadding="0" cellspacing="0" width="100%" class="event-module">
-                <tr>
-                    <td class="calendar">
-                        <asp:PlaceHolder ID="plhAddNewEvent" runat="server">
-                            <asp:LinkButton ID="btnNewEvent" runat="server" CssClass="add-new-event"></asp:LinkButton>
-                        </asp:PlaceHolder>
-                        <div style="clear:both">
-                            <telerik:RadCalendar ID="calEvent" runat="server" Skin="Default">
-                            </telerik:RadCalendar>
-                        </div>
-                    </td>
-                    <td class="scheduler">
-                        <div>
-                            <telerik:RadScheduler ID="schEvent" runat="server" Height="100%"
-                            DataKeyField="Id" DataStartField="StartTime" DataEndField="EndTime" DataSubjectField="Title" DataDescriptionField="Description"
-                            Skin="Default" CssClass="event-scheduler" SelectedView="WeekView">
-                            </telerik:RadScheduler>
-                        </div>
-                    </td>
-                </tr>
-            </table>
+            <div class="event-advanced-view clearfix">
+                <div class="calendar">
+                    <asp:PlaceHolder ID="plhAddNewEvent" runat="server">
+                        <asp:LinkButton ID="btnNewEvent" runat="server" CssClass="styled-button styled-button-blue create-new"></asp:LinkButton>
+                    </asp:PlaceHolder>
+                    <div>
+                        <telerik:RadCalendar ID="calEvent" runat="server" Skin="Sitefinity">
+                        </telerik:RadCalendar>
+                    </div>
+                </div>
+                <div class="scheduler">
+                    <telerik:RadScheduler ID="schEvent" runat="server" Height="100%"
+                    DataKeyField="Id" DataStartField="StartTime" DataEndField="EndTime" DataSubjectField="Title" DataDescriptionField="Description"
+                    Skin="Sitefinity" CssClass="event-scheduler" SelectedView="WeekView">
+                    </telerik:RadScheduler>
+                </div>
+            </div>
             
             <telerik:RadToolTip ID="rttEventDetails" runat="server" IgnoreAltAttribute="true" ShowEvent="FromCode" HideEvent="ManualClose" Position="BottomCenter" RelativeTo="Element" Width="300px">
             </telerik:RadToolTip>
@@ -49,8 +46,8 @@
         </asp:PlaceHolder>
         
         <asp:PlaceHolder ID="plhSimpleView" runat="server">
-            <div class="event-simple-view">
-                <MonoX:StyledButton ID="btnNewSimpleMode" runat="server" />
+            <div class="event-simple-view clearfix">
+                <MonoX:StyledButton ID="btnNewSimpleMode" runat="server" CssClass="create-new" />
                 <MonoX:SimpleEventView ID="ctlSimpleView" runat="server"></MonoX:SimpleEventView>
             </div>
         </asp:PlaceHolder>

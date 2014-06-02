@@ -1,18 +1,29 @@
-<div class="comment">
-    <div>
-        <div class="dummy-padding"></div>
-        <div class="dummy-padding"></div>
-        <div class="dummy-padding"></div>
-        <div class="gravatar"><# Avatar #></div>
-        <div class="content <# SpamClass #> <# UnapprovedClass #>">
-            <div class="date-author">
-                <div><# AuthorUrl #></div>
-                <# Date #>
-            </div>
-            <# Content #>
-        </div>
+<!--CLIPFLAIR--><div class="blog-comment">
+    <!--CLIPFLAIR-->
+    <div class="avatar">
+        <# Avatar #>
+        <!--<div class="arrow"></div>-->
     </div>
-    <div class="options separatedList">
-        <span class="comments"><# Delete #><# Approve #><# ReportSpam #><# ReportHam #></span>
+    <div class="content">   
+        <div class="blog-post-title">
+            <!--!!!<a href='<# BlogPostUrl #>' title='<# BlogPostTitle #>'><# BlogPostTitle #></a>
+            (<a href='<# BlogPostAuthorUrl #>' title='<# BlogPostAuthor #>'><# BlogPostAuthor #></a>)-->
+            <# BlogPostTitle #>
+        </div> 
+        <div class="<# SpamClass #> <# UnapprovedClass #>">
+            <h3><a href='<# AuthorUrl #>'><# AuthorUrl #></a></h3>
+            <p><# Content #></p>
+            <div class="options clearfix">
+                <div class="float-left">
+                    <# Delete #>
+                    <# Approve #>
+                    <# ReportSpam #>
+                    <# ReportHam #>
+                </div>
+                <div class="float-right date">
+                    <# Date #>
+                </div>
+            </div>
+        </div>
     </div>
 </div>

@@ -7,11 +7,11 @@
 <%@ Register TagPrefix="telerik" Namespace="Telerik.Web.UI" Assembly="Telerik.Web.UI" %>
     
 <div class="event-module-form input-form">
-    <h2><%= EventModuleResources.EventEditorTitle %></h2>
-    <div id="Div1" runat="server">
-        <asp:ValidationSummary ID="validationSummary" CssClass="validation-summary" runat="server" />
-    </div>
+    <h1><%= EventModuleResources.EventEditorTitle %></h1>
     <dl>
+        <dd id="Div1" runat="server">
+            <asp:ValidationSummary ID="validationSummary" CssClass="validation-summary" runat="server" />
+        </dd>
         <dd>
             <label for="<%= txtTitle.ClientID %>" class="short-label"><%= EventModuleResources.Title %></label>
             <asp:Label ID="lblTitle" runat="server"></asp:Label>
@@ -19,7 +19,7 @@
             <asp:Label ID="prevTitle" runat="server" Visible="false"></asp:Label>
             <asp:RequiredFieldValidator ID="vldRequiredSubject" runat="server" ControlToValidate="txtTitle" Text="!" SetFocusOnError="true" CssClass="validator ValidatorAdapter" Display="Dynamic" />
         </dd>
-        <dd>
+        <dd class="pick-date">
             <label for="<%= dateFrom.ClientID %>"><%= EventModuleResources.StartTime %>:</label>
             <telerik:RadDateTimePicker ID="dateFrom" runat="server"></telerik:RadDateTimePicker>
             <asp:RequiredFieldValidator ID="vldRequiredDateFrom" runat="server" ControlToValidate="dateFrom" Text="!" SetFocusOnError="true" CssClass="validator ValidatorAdapter" Display="Dynamic" />
@@ -47,8 +47,8 @@
     </dl>
     <div class="input-form">
         <div class="button-holder">
-            <MonoX:StyledButton ID="btnSave" runat="server" CssClass="CssFormButton"></MonoX:StyledButton>
-            <MonoX:StyledButton ID="btnCancel" runat="server" CausesValidation="false" CssClass="CssFormButton"></MonoX:StyledButton>
+            <MonoX:StyledButton ID="btnSave" runat="server" CssClass="CssFormButton main-button submit-btn float-left"></MonoX:StyledButton>
+            <MonoX:StyledButton ID="btnCancel" runat="server" CausesValidation="false" CssClass="CssFormButton cancel-btn float-left"></MonoX:StyledButton>
         </div>
     </div>
 </div>

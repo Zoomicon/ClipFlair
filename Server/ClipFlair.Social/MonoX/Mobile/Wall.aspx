@@ -12,8 +12,8 @@
 <%@ Register Assembly="MonoX" Namespace="MonoSoftware.MonoX" TagPrefix="portal" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="cp" runat="server">
-    <div data-role="fieldcontain">
-        <MonoX:Wall AllowFileUpload="false" ShowPrivacyEditor="false" runat="server" ID="snWallNotes" UsePrettyPhoto="false" ShowRating="false" GravatarRenderType="NotSet" >
+    <div>
+        <MonoX:Wall AllowFileUpload="false" ShowPrivacyEditor="false" runat="server" ID="snWallNotes" UsePrettyPhoto="false" ShowRating="false" GravatarRenderType="NotSet" EnableLinkify="false" >
         </MonoX:Wall>   
     </div>
 </asp:Content>

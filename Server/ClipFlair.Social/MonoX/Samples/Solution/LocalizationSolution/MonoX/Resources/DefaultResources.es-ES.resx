@@ -916,4 +916,7 @@ Su {1} equipo</value>
   <data name="DemoIndicator" xml:space="preserve">
     <value>Este es un sitio de demostración para MonoX. Por favor, visite href="http://www.mono-software.com/"&gt; &lt;a Mono Software &lt;/ a&gt; para más información.</value>
   </data>
+  <data name="GoogleMaps_DefaultLocation" xml:space="preserve">
+    <value>Spain</value>
+  </data>
 </root>

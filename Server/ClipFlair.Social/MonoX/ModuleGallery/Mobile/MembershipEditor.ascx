@@ -37,12 +37,8 @@
         </dd>
         <asp:PlaceHolder ID="plhRememberMe" runat="server">
             <dd>
-                <fieldset data-role="controlgroup">
-                    <div data-inline="true">
-                        <asp:CheckBox ID="chkRememberMe" runat="server" />
-                    </div>
-                    <label for="<%= chkRememberMe.ClientID %>"><%= DefaultResources.MembershipEditor_RememberMe %></label>                
-                </fieldset>
+                <asp:CheckBox ID="chkRememberMe" runat="server"/>
+                <label for="<%= chkRememberMe.ClientID %>"><%= DefaultResources.MembershipEditor_RememberMe %></label>                
             </dd>
         </asp:PlaceHolder>
         <dd>

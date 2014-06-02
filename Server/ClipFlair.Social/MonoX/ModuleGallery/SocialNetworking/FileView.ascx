@@ -8,33 +8,33 @@
 
 <asp:ScriptManagerProxy ID="scriptManagerProxy" runat="server"></asp:ScriptManagerProxy>
 <asp:Panel ID="pnlContainer" runat="server">
-    <div class="jq_snFileContainer input-form file-view">
+    <div class="jq_snFileContainer file-view">
         <asp:HyperLink ID="lnkFile" runat="server" Target="_blank">
-            <asp:Image runat="server" ID="imgFile" style="margin: 0px auto; border: solid 1px #ddd; padding: 2px;" />
+            <asp:Image runat="server" ID="imgFile" CssClass="image scale-with-grid" />
         </asp:HyperLink><br />
         <MonoX:VideoPlayer runat="server" ID="ctlVideoPlayer" Width="520" Height="330"></MonoX:VideoPlayer>
-        <asp:Panel runat="server" ID="pnlDescription">
-            <dl style="background: #E9F0F6; border: 1px solid #C8D7DF; padding: 10px; margin: 20px 0px;">
+        <asp:Panel runat="server" ID="pnlDescription" CssClass="input-form">
+            <dl>
                 <dd>
-                    <span><%= MonoSoftware.MonoX.Resources.GlobalText.Title %></span><br />
-                    <asp:TextBox runat="server" ID="txtName" Width="98%"></asp:TextBox>
+                    <label><%= MonoSoftware.MonoX.Resources.GlobalText.Title %></label>
+                    <asp:TextBox runat="server" ID="txtName"></asp:TextBox>
                 </dd>
                 <dd>
-                    <span><%= MonoSoftware.MonoX.Resources.GlobalText.Description %></span><br />
-                    <asp:TextBox runat="server" ID="txtDescription" CssClass="jq_expandingTextBox" TextMode="MultiLine" Width="98%"></asp:TextBox>
+                    <label><%= MonoSoftware.MonoX.Resources.GlobalText.Description %></label>
+                    <asp:TextBox runat="server" ID="txtDescription" CssClass="jq_expandingTextBox" TextMode="MultiLine"></asp:TextBox>
                 </dd>                
                 <dd>
                     <mono:TagTextBox id="tags" runat="server"></mono:TagTextBox>
                 </dd>
                 <dd>
-                    <span><%= MonoSoftware.MonoX.Resources.SocialNetworkingResources.FileView_ChangeThumbnail %>:</span><br />
+                    <label><%= MonoSoftware.MonoX.Resources.SocialNetworkingResources.FileView_ChangeThumbnail %>:</label>
                     <radU:RadUpload ID="radUpload" runat="server" InitialFileInputsCount="1" OverwriteExistingFiles="true" Skin="Default" />
                 </dd>
                 <dd>
-                    <span><%= MonoSoftware.MonoX.Resources.SocialNetworkingResources.FileView_ReplaceExistingFile %>:</span><br />
+                    <label><%= MonoSoftware.MonoX.Resources.SocialNetworkingResources.FileView_ReplaceExistingFile %>:</label>
                     <radU:RadUpload ID="radReplaceFile" runat="server" InitialFileInputsCount="1" OverwriteExistingFiles="true" Skin="Default" />
                 </dd>
-                <dd>
+                <dd class="button-holder">
                     <MonoX:StyledButton ID="btnSave" runat="server" OnClick="btnSave_Click" /> 
                     <MonoX:StyledButton runat="server" ID="lnkDelete" OnClick="lnkDelete_Click" />
                     <MonoXPrivacyManager:PrivacyEditor ID="privacyEditor" runat="server" CssClass="privacy-popup" />
@@ -62,11 +62,13 @@
         <MonoX:RelatedContent id="relatedContent" runat="server"></MonoX:RelatedContent>
         
         <asp:PlaceHolder ID="plhComments" runat="server">
-            <div class="date">
+            <div class="date-option">
                 <asp:Literal runat="server" ID="ltlDate"></asp:Literal>&nbsp;|&nbsp;
                 <asp:HyperLink ID="lnkComments" runat="server" NavigateUrl="javascript:void(0);" CssClass="jq_wallCommentAction"></asp:HyperLink>
             </div>
-            <MonoX:Comments ID="ctlComments" PagingEnabled="true" runat="server" />
+            <div class="comments">
+                <MonoX:Comments ID="ctlComments" PagingEnabled="true" runat="server" />
+            </div>
         </asp:PlaceHolder>
     </div>
 </asp:Panel>

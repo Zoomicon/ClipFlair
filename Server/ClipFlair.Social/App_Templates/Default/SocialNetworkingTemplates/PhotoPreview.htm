@@ -1,19 +1,15 @@
-﻿<td>
-    <div class="photo-preview">
+﻿<div class="item photo-item photo-preview span12">
+    <div class="photo-inner">
+        <div class="options">
+            <a href="<# AuthorUrl #>" title="<# AuthorToolTip #>" class="float-left"><# AuthorText #></a>
+            <div class="float-right">
+                <span class="edit"><# EditButton #></span>
+                <span class="delete"><# DeleteButton #></span>
+            </div>
+        </div>
         <# PhotoThumb #>
-        <table cellpadding="0" cellspacing="0" width="100%">
-            <tr>
-                <td class="photo-title">
-                    <# PhotoName #>&nbsp;<div class="author"><a href="<# AuthorUrl #>" title="<# AuthorToolTip #>"><# AuthorText #></a></div>
-                </td>
-            </tr>
-            <tr>
-                <td class="photo-links">
-                    <span><# EditButton #></span> &nbsp;
-                    <span><# DeleteButton #></span>
-                    <div><# Rating #></div>
-                </td>
-            </tr>        
-        </table>
+        <h3><# PhotoName #></h3>
+        <# Rating #>
+        <p>$Container.DataItem.Description</p>
     </div>
-</td>
+</div>

@@ -24,9 +24,8 @@
                 <li>
                     <b><asp:Literal ID="labMSNet" runat="server" Text='<%$ Code: InstallerResources.Default_labMSNet %>'></asp:Literal></b><br />
                     <asp:Label ID="labMSNetInfo" runat="server" CssClass="item_info" Text='<%$ Code: InstallerResources.Default_labMSNetInfo %>'></asp:Label><br />                    
-                    <asp:HyperLink ID="HyperLink2" runat="server" NavigateUrl="http://www.microsoft.com/downloads/details.aspx?familyid=10CC340B-F857-4A14-83F5-25634C3BF043&displaylang=en" Text='<%$ Code: InstallerResources.Default_linkMSNet3 %>' Target="_blank"></asp:HyperLink>                    
-                    <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="http://www.microsoft.com/downloads/details.aspx?familyid=AB99342F-5D1A-413D-8319-81DA479AB0D7&displaylang=en" Text='<%$ Code: InstallerResources.Default_linkMSNet31 %>' Target="_blank"></asp:HyperLink>                    
-                    <asp:HyperLink ID="linkMSNet3" runat="server" NavigateUrl="http://www.microsoft.com/downloads/details.aspx?familyid=333325FD-AE52-4E35-B531-508D977D32A6&displaylang=en" Text='<%$ Code: InstallerResources.Default_linkMSNet35 %>' Target="_blank"></asp:HyperLink>                    
+                    <asp:HyperLink ID="linkMSNet1" runat="server" NavigateUrl="http://msdn.microsoft.com/en-us/library/vstudio/w0x726c2(v=vs.100).aspx" Text='<%$ Code: InstallerResources.Default_linkMSNet40 %>' Target="_blank"></asp:HyperLink>                    
+                    <asp:HyperLink ID="linkMSNet2" runat="server" NavigateUrl="http://msdn.microsoft.com/en-us/library/vstudio/w0x726c2.aspx" Text='<%$ Code: InstallerResources.Default_linkMSNet45 %>' Target="_blank"></asp:HyperLink>                    
                 </li>
                 <li>
                     <b><asp:Literal ID="labIIS" runat="server" Text='<%$ Code: InstallerResources.Default_labIIS %>'></asp:Literal></b><br />

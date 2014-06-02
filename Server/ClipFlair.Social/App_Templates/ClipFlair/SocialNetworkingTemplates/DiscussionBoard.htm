@@ -1,36 +1,69 @@
-﻿<div class="board <# PinItemBackgroundClass #>">
-    <div class="pin-image"></div>
-    <table cellpadding="0" cellspacing="0" width="100%" class="jq_snNote">
-        <tr>
-            <td rowspan="2" class="board-content">
-                <h3 class="title"><# Name #></h3>
-                <div class="description"><# Description #></div>            
-                #if( $LastTopicAuthorVisible )
-                <div class="last-topic-name-author">
-                    <a class="last-topic" href="<# LastTopicUrl #>" title="<# LastTopicToolTip #>"><span><# LastTopicText #></span>&nbsp;<# LastTopicName #></a>&nbsp;
-                    <a href="<# LastTopicAuthorUrl #>" title="<# LastTopicAuthorToolTip #>"><span><# LastTopicAuthorText #></span>&nbsp;<# LastTopicAuthorName #>&nbsp;<# LastTopicDate #></a>
-                </div>
-                #end
-                #if( $LastPostVisible )
-                <div class="last-topic-name-author">
-                    <a class="last-topic" href="<# LastPostUrl #>" title="<# LastPostToolTip #>"><span><# LastPostText #></span>&nbsp;<# LastPostName #></a>&nbsp;
-                    <a href="<# LastPostAuthorUrl #>" title="<# LastPostAuthorToolTip #>"><span><# LastPostAuthorText #></span>&nbsp;<# LastPostAuthorName #>&nbsp;<# LastPostDate #></a>
-                </div>
-                #end
-            </td>        
-            <td rowspan="2" class="date-author">
-                <span class="edit-icon"><# Edit #></span>
-                <span class="delete-icon"><# Delete #></span>
-                #if( $PinItemVisible ) <span class="pin-icon"><# TogglePinItem #></span> #end
-                <div class="date"><# Date #></div>
-                <div class="author"><a href="<# AuthorUrl #>" title="<# AuthorToolTip #>"><# AuthorText #></a></div>
-            </td>
-            <td class="topics"><a href="<# TopicUrl #>" title="<# TopicToolTip #>"><# TopicCount #><span><# TopicText #></span></a></td>
-        </tr>
-        <tr>
-            <td class="posts">        
-                <a href="<# ReplyUrl #>" title="<# ReplyToolTip #>"><# ReplyCount #><span><# ReplyText #></span></a>
-            </td>
-        </tr>
-    </table>
+﻿<div class="discussion-item discussion-board-item jq_snNote <# PinItemBackgroundClass #>">
+    <!--CLIPFLAIR-->
+    <div class="discussion-pins">
+        <div class="pin-image-inactive">
+            <div class="pin-image"></div>
+        </div>
+        #if( $PinItemVisible ) <span class="pin-icon"><# TogglePinItem #></span> #end
+    </div>
+    <div class="discussion-content">   
+        <h3><# Name #></h3>
+        <div class="date-author">
+            <# Date #> -
+            #if( $AuthorVisible )
+                <a href="<# AuthorUrl #>" title="<# AuthorToolTip #>"><# AuthorText #></a>
+            #end
+        </div>
+        <div class="description-cont"><p><# Description #></p></div>
+        #if( $LastTopicAuthorVisible )
+        <div class="more-info">
+            <div class="last">
+                <span><# LastTopicText #></span>
+                <a href="<# LastTopicUrl #>" title="<# LastTopicToolTip #>">    
+                    <# LastTopicName #>
+                </a>
+                <span><# LastTopicAuthorText #></span>
+                <a href="<# LastTopicAuthorUrl #>" title="<# LastTopicAuthorToolTip #>">    
+                    <# LastTopicAuthorName #>
+                </a>
+                <# LastTopicDate #>               
+            </div>
+        </div>
+        #end
+        #if( $LastPostVisible )
+        <div class="last">
+            <span><# LastPostText #></span>&nbsp;<a class="last-topic" href="<# LastPostUrl #>" title="<# LastPostToolTip #>"><# LastPostName #></a>&nbsp;
+            <span><# LastPostAuthorText #></span>&nbsp;<a href="<# LastPostAuthorUrl #>" title="<# LastPostAuthorToolTip #>"><# LastPostAuthorName #></a>&nbsp;<# LastPostDate #>
+        </div>
+        #end
+        <div class="info-box">
+            <div class="counter">
+                <a href="<# TopicUrl #>" title="<# TopicToolTip #>">
+                    <# TopicCount #>
+                    <span><# TopicText #></span>
+                </a>
+                <a href="<# ReplyUrl #>" title="<# ReplyToolTip #>">
+                    <# ReplyCount #>
+                    <span><# ReplyText #></span>
+                </a>
+            </div>
+        </div>
+        <div class="options small-btn">          
+            #if( $EditVisible )
+            <a title="<# Edit-ToolTip #>" href='<# Edit-URL #>' class="styled-button main-button edit-btn-b float-left">
+                <# Edit-ToolTip #>
+            </a>
+            #end
+            #if( $DeleteVisible )
+            <a title="<# Delete-ToolTip #>" href='<# Delete-URL #>' class="styled-button delete-btn float-left" <# Delete-Attributes #>>
+                <# Delete-ToolTip #>
+            </a>
+            #end
+            #if( $TogglePinItemVisible )
+                <a title="<# TogglePinItem-ToolTip #>" href='<# TogglePinItem-URL #>' class="styled-button pin-btn float-left">
+                    <# TogglePinItem-ToolTip #>
+                </a>
+            #end
+        </div>
+    </div>
 </div>

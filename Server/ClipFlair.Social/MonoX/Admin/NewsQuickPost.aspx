@@ -50,7 +50,7 @@
                                             <br />
                                         </td>
                                     </tr>
-                                    <tr>
+                                    <tr class="input-form">
                                         <td>
                                             <asp:Label ID="labNewsTitle" runat="server"></asp:Label>
                                         </td>
@@ -67,7 +67,7 @@
                                         </td>
                                         <td>
                                             <mono:CustomRadEditor ID="radNewsContent" EditorHeight="400px" AutoResizeHeight="False"
-                                                ToolBarMode="ShowOnFocus" runat="server"></mono:CustomRadEditor>                                            
+                                                ToolBarMode="ShowOnFocus" runat="server" EnableEmbeddedSkins="true" Skin="Default" ></mono:CustomRadEditor>                                            
                                         </td>
                                     </tr>
                                 </table>

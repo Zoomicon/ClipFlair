@@ -1,38 +1,46 @@
 <%@ Page 
     Language="C#" 
-    MasterPageFile="~/MonoX/MasterPages/Login.master" 
+    MasterPageFile="~/App_MasterPages/ClipFlair/Login.master" 
     AutoEventWireup="true" 
-    Inherits="MonoSoftware.MonoX.Pages.Default" 
-    Theme="Default" 
-    Codebehind="Default.aspx.cs" %>
+    Inherits="MonoSoftware.MonoX.Pages.Login" 
+    Codebehind="Login.aspx.cs" %>
   
 <%@ Import Namespace="MonoSoftware.MonoX.Resources"%>
 <%@ MasterType TypeName="MonoSoftware.MonoX.BaseMasterPage" %>    
 <%@ Register TagPrefix="MonoX" TagName="Login" Src="~/MonoX/ModuleGallery/LoginModule.ascx" %>
-<%@ Register TagPrefix="MonoX" TagName="LoginRpx" Src="~/MonoX/ModuleGallery/LoginRpx.ascx" %>
+<%@ Register TagPrefix="MonoX" TagName="LoginSocial" Src="~/MonoX/ModuleGallery/LoginSocial.ascx" %>
+<%@ Register TagPrefix="MonoX" TagName="MembershipNavigation" Src="~/MonoX/MasterPages/MembershipNavigation.ascx" %>
 
 <asp:Content ContentPlaceHolderID="cp" Runat="Server">
-<div class="current-login"> <!-- Main Start -->
-    <asp:PlaceHolder ID="plhAuthorizationMessage" runat="server" Visible="false">
-        <table class="error-message-page" cellpadding="0" cellspacing="0">
-            <tr>
-                <td valign="top"><img src="<%= ResolveUrl(MonoSoftware.MonoX.Paths.App_Themes.img.Error_png) %>" alt="Error" /></td>
-                <td valign="middle">
-                    <div style="font-size: 18px; border-bottom: solid 1px #eee; padding-bottom: 10px; margin-bottom: 10px;">
-                        <span class="title"><%= ErrorMessages.Authorization_Login %></span>
+   
+    <div class="empty-top-section">        
+        <div class="container-fluid-small">
+            <asp:PlaceHolder ID="plhAuthorizationMessage" runat="server" Visible="false">
+                <div class="error">
+                    <div><img src="<%= ResolveUrl(MonoSoftware.MonoX.Paths.App_Themes.img.Error_png) %>" alt="Error" /></div>
+                    <%= ErrorMessages.Authorization_Login %>
+                </div>
+            </asp:PlaceHolder>
+        </div>
+    </div>
+    <div class="fancybox-container">
+        <div class="row-fluid">
+            <div class="span6 clearfix">       
+                <MonoX:MembershipNavigation runat="server" ID="ctlMemership" LoginStatusLogoutText="&nbsp;" />
+                <MonoX:Login runat="server" ID="ctlLogin" Width="100%"  />
+            </div>
+            <div class="span6 clearfix" style="position: relative;"> 
+                <div id="rowRPX" runat="server" Visible="<% $Code: MonoSoftware.MonoX.ApplicationSettings.EnableUserRegistration && !Page.User.Identity.IsAuthenticated %>">
+                    <!--CLIPFLAIR<div class="or-use">
+                        <hr />
+                        <div><%= PageResources.Login_Or %></div>
+                    </div>-->
+                    <div class="user-account login-social" >
+                        <MonoX:LoginSocial runat="server" ID="ctlLoginSocial" />
+                        <div class="italic-style"><asp:Literal ID="Literal1" runat="server" Visible="<% $Code: MonoSoftware.MonoX.ApplicationSettings.EnableUserRegistration %>" Text="<% $Code: PageResources.Login_RpxWarning %>"></asp:Literal></div>
                     </div>
-                </td>
-            </tr>
-        </table>
-    </asp:PlaceHolder>
-    <table cellpadding="0" cellspacing="0" width="100%">
-        <tr>
-            <td class="login-left-section">
-                <MonoX:Login runat="server" ID="ctlLogin" Width="100%" />
-            </td>
-        </tr>        
-    </table>                    
-</div>    
+                </div>
+            </div>
+        </div> 
+    </div>
 </asp:Content>
-
-

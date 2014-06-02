@@ -12,7 +12,7 @@
     <asp:ScriptManager ID="AjaxScriptManager" runat="server" EnablePartialRendering="true">
     </asp:ScriptManager>
 
-    <script type="text/javascript" language="javascript">
+    <script type="text/javascript" >
 
         function RequestingHandler(comboBox) {
             if (document.getElementById('<%= this.CancelButton.ClientID %>'))

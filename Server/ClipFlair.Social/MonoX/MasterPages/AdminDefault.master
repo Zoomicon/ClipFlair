@@ -11,13 +11,13 @@
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
-<html xmlns="http://www.w3.org/1999/xhtml" >
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title>MonoX administration</title>
 </head>
 <body id="body" runat="server" style="height:100%; width: 100%; overflow:visible">
     <div class="masterDiv">
-    <form id="form1" enctype="multipart/form-data" runat="server">
+    <form id="form1" enctype="multipart/form-data" runat="server" style="height:100%; width: 100%;">
         <asp:ScriptManager ID="AjaxScriptManager" EnablePageMethods="True" runat="server">
         </asp:ScriptManager>
         <monox:AjaxErrorHandler id="ajaxErrorHandler" runat="server"></monox:AjaxErrorHandler>

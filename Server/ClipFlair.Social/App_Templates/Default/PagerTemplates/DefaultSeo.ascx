@@ -5,7 +5,7 @@
 	<a href="javascript:void(0);" title="<%# Pager.CurrentPageIndex %>" name="<%# ConstructPermalinkSufix() %>" style="padding:0px;border:0px;height:25px;"></a>
 	<asp:HyperLink id="Linkbutton1" runat="server" Visible="<%# !(Pager.IsFirstNumericGroup) %>" Text="<<" NavigateUrl='<%# ConstructParameterlessPagerUrl(0) %>'>
 	</asp:HyperLink>
-	<asp:HyperLink id="Linkbutton2" runat="server" Visible="<%# !(Pager.IsFirstNumericGroup) %>" Text="..." NavigateUrl='<%# ConstructParameterlessPagerUrl(Convert.ToInt32(Pager.CurrentPageIndex / Pager.NumericButtonCount) * Pager.NumericButtonCount - Pager.NumericButtonCount) %>'>
+	<asp:HyperLink id="Linkbutton2" runat="server" Visible="<%# !(Pager.IsFirstNumericGroup) %>" Text="..." NavigateUrl='<%# ConstructParameterlessPagerUrl(Convert.ToInt32(Pager.CurrentPageIndex / Pager.NumericButtonCount) * Pager.NumericButtonCount - 1) %>'>
 	</asp:HyperLink>
 	<asp:Repeater id="Repeater1" runat="server" DataSource="<%# Pager.NumericButtonDataSource %>">
 		<ItemTemplate>			

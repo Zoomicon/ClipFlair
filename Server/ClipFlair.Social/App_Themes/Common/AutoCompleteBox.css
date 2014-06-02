@@ -34,6 +34,7 @@
 {
 	border:0;
 	width: 100%;
+	display: table !important;
 }
 .rcbInputCell,
 .rcbInputCellLeft
@@ -43,7 +44,7 @@
 }
 .rcbInput
 {
-	width: 99%;
+	width: 100%;
 	border: 1px solid #636363;	
 	background-color: transparent;
 	vertical-align: middle;
@@ -57,8 +58,9 @@
 {
 
 	vertical-align:top;
-	background: #fff;
+	/*background: #fff;*/
 	width:100%;
+    padding-left:10px;
 }
 /*
 .RadComboBox_AutoCompleteBox .rcbInputCell .rcbInput
@@ -195,7 +197,7 @@
 {
 	position:absolute;
 	background:#fff;
-	border: 1px solid #626262;
+	border: 1px solid #CBCBCB !important;
 	cursor:default;
 	font-size:11px;
 	font-family: Arial, Helvetica, sans-serif;

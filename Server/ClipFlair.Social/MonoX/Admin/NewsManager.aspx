@@ -76,7 +76,7 @@
                             <asp:Button ID="btnPublish" runat="server" CssClass="AdminLargeButton" OnClick="btnPublish_Click" Text='<%$ Code: AdminResources.NewsManager_btnPublish %>'></asp:Button>
                         </CustomActionsTemplate>
                         <ContentTemplate>
-                            <rad:RadTabStrip ID="tabStripNewsItems" runat="server" CausesValidation="false" Skin="Windows7"
+                            <rad:RadTabStrip ID="tabStripNewsItems" runat="server" CausesValidation="false" Skin="Default"
                                 MultiPageID="multiPageNewsItems" ReorderTabRows="false" Align="left">
                                 <Tabs>
                                     <rad:RadTab >
@@ -91,14 +91,14 @@
                             </rad:RadTabStrip>
                             <rad:RadMultiPage ID="multiPageNewsItems" runat="server">
                                 <rad:RadPageView ID="EditData" runat="server" CssClass="tab-float-left">
-                                    <table border="0" cellpadding="2" cellspacing="10" width="989px" class="tab-content">
+                                    <table border="0" cellpadding="2" cellspacing="10" width="989px" class="tab-content input-form">
                                         <tr>
                                             <td colspan="2" class="top-section">
                                                 <table cellpadding="0" cellspacing="0" width="100%" class="top-wrapper">
                                                     <tr>
                                                         <td style="width: 110px;">
                                                             <span id="imgCategory" runat="server" style="float: left;">
-                                                                <img src="MonoSoftware.MonoX.GetImage.axd?<%= MonoSoftware.MonoX.UrlParams.ImageType.Name %>=<%= MonoSoftware.MonoX.Utilities.GetImageType.NewsCategory.ToString() %>&amp;<%= MonoSoftware.MonoX.UrlParams.EntityId.Name %>=<%= SelectedCategoryId %>" />
+                                                                <img src="<%= MonoSoftware.MonoX.GetImage.GetImageHandlerPath %>?<%= MonoSoftware.MonoX.UrlParams.ImageType.Name %>=<%= MonoSoftware.MonoX.Utilities.GetImageType.NewsCategory.ToString() %>&amp;<%= MonoSoftware.MonoX.UrlParams.EntityId.Name %>=<%= SelectedCategoryId %>" />
                                                             </span>
                                                         </td>
                                                         <td style="vertical-align: bottom !important;">
@@ -128,7 +128,7 @@
                                                 <asp:Label ID="labNewsShortContent" runat="server" Text='<%$ Code: AdminResources.NewsManager_labNewsShortContent %>'></asp:Label>
                                             </td>
                                             <td>                                                
-                                                <mono:CustomRadEditor id="radNewsShortContent" EditorHeight="250px" AutoResizeHeight="False"
+                                                <mono:CustomRadEditor id="radNewsShortContent" EditorHeight="250px" AutoResizeHeight="False" EnableEmbeddedSkins="true" Skin="Default" 
                                                     runat="server" Width="100%">
                                                 </mono:CustomRadEditor>                                                
                                             </td>
@@ -144,7 +144,7 @@
                                             </td>
                                             <td>                                                
                                                 <mono:CustomRadEditor id="radNewsContent" EditorHeight="400px" AutoResizeHeight="False"
-                                                    runat="server" Width="100%">
+                                                    runat="server" Width="100%" EnableEmbeddedSkins="true" Skin="Default" >
                                                 </mono:CustomRadEditor>                                                
                                             </td>
                                         </tr>

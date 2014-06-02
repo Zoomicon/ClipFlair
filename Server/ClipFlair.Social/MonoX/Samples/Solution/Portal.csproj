@@ -71,9 +71,6 @@
       <SpecificVersion>False</SpecificVersion>
       <Private>False</Private>
     </Reference>
-    <Reference Include="OpenSocial, Version=3.2.2143.35, Culture=neutral, processorArchitecture=MSIL">
-      <Private>False</Private>
-    </Reference>
     <Reference Include="SmartThreadPool, Version=2.2.1.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <Private>False</Private>

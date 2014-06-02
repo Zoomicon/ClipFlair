@@ -10,8 +10,8 @@
         .monoxMobileRegister .ui-icon { background:  url(<%= MonoSoftware.Web.UrlFormatter.ResolveUrl("~/App_Themes/Mobile/img/40-inbox.png") %>) 50% 50% no-repeat;  background-size: 24px 24px; }
  </style> 
 	
-<div data-role="footer" class="nav-glyph"> 
-    <div data-role="navbar" class="nav-glyph" data-theme="b"> 
+<div data-role="footer" class="nav-glyph" data-theme="b"> 
+    <div data-role="navbar" class="nav-glyph"> 
     <ul> 
         <asp:PlaceHolder runat="server" ID="plhAnonymous">
         <li><a href='<%= MonoSoftware.Web.UrlFormatter.ResolveUrl("~/MonoX/Mobile/Login.aspx") %>' rel="external" class="monoxMobileLogin" data-icon="custom"><%= MobileResources.Login %></a></li> 

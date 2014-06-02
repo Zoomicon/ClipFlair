@@ -21,7 +21,7 @@ MasterPageFile="~/MonoX/MasterPages/AdminDefault.master" Theme="DefaultAdmin" Ti
 </asp:ScriptManagerProxy>
 
 <div class="AdminContainer">
-    <monox:GridViewEditBox ID="gridViewBox" runat="server" ShowTopActions="true">
+    <monox:GridViewEditBox ID="gridViewBox" runat="server" ShowTopActions="true" ValidationGroup="Blog">
         <CustomFilterTemplate>
             <table cellpadding="0" cellspacing="0">
                 <tr>

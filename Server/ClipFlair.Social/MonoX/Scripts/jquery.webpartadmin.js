@@ -36,9 +36,9 @@ function SetWebParts() {
         $(".web-part-menu-button").css('display', 'none');
     });
     
-    //to prevent hiding verb menus on click per above functionality
+    //to prevent hiding verb menus on click per above functionality, removed to support hiding
     $(".web-part-menu-content").click(function(event) {
-        event.stopPropagation();
+        //event.stopPropagation();
     });
 
     //toggles menu visibility

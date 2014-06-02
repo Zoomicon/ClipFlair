@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="TwitterFeedDefault.aspx.cs" Inherits="TwitterFeed.TwitterFeedDefault" Theme="Default" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="TwitterFeedDefault.aspx.cs" Inherits="TwitterFeed.TwitterFeedDefault" %>
 <%@ Register Src="~/MonoX/Samples/TwitterFeedModule/TwitterFeedModule.ascx" TagPrefix="twitter" TagName="TwitterFeedModule" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">

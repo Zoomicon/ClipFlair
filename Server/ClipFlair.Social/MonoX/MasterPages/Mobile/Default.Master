@@ -4,8 +4,8 @@
 <%@ Import Namespace="MonoSoftware.MonoX.Resources"  %>
 
 <asp:Content ContentPlaceHolderID="cp" runat="server">
-        <div data-role="page" id="home" data-theme="b">
-             <div data-role="header">
+        <div data-role="page" id="home">
+             <div data-role="header" data-theme="b">
                   <a href="~/MonoX/Mobile/Default.aspx" runat="server" data-icon="home" data-iconpos="left"><%= MobileResources.Home %></a> 
                   <h1><%= MobileResources.Title_Main %></h1>
                   <a href="~/" runat="server" data-icon="grid" data-iconpos="left"><%= MobileResources.Desktop %></a> 
@@ -19,7 +19,7 @@
                     </div>
                   </asp:PlaceHolder>
              </div>
-             <div data-role="content">   
+             <div data-role="content" data-theme="c">   
                 <asp:ContentPlaceHolder ID="cp" runat="server"></asp:ContentPlaceHolder>
              </div>
              <MonoX:Footer ID="ctlFooter" runat="server"></MonoX:Footer>

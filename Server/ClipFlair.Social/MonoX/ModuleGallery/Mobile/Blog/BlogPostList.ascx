@@ -37,7 +37,7 @@
         <ItemTemplate>
         </ItemTemplate>
     </asp:ListView>
-    <asp:Literal runat="server" ID="ltlNoData"></asp:Literal>
+    <asp:Label runat="server" ID="lblNoData" CssClass="empty-list"></asp:Label>
     <br />
     <mono:Pager runat="server" ID="pager" PageSize="10" NumericButtonCount="5" AllowCustomPaging="true" AutoPaging="false">
         <PagerTemplate>

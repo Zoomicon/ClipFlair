@@ -932,4 +932,31 @@ Vaš {1} tim</value>
   <data name="PasswordRecovery_RequestExpired" xml:space="preserve">
     <value>Zahtijev za izmjenu lozinke je istekao</value>
   </data>
+  <data name="CropImage_Cancel" xml:space="preserve">
+    <value>Otkaži</value>
+  </data>
+  <data name="CropImage_CropCaption" xml:space="preserve">
+    <value>Izreži i spremi</value>
+  </data>
+  <data name="GoogleMaps_DefaultLocation" xml:space="preserve">
+    <value>Croatia</value>
+  </data>
+  <data name="SlideShow_Next" xml:space="preserve">
+    <value>Slijedeće</value>
+  </data>
+  <data name="SlideShow_Prev" xml:space="preserve">
+    <value>Prethodno</value>
+  </data>
+  <data name="SlideShow_Title" xml:space="preserve">
+    <value>Istaknuti projekti</value>
+  </data>
+  <data name="MonoXMaster_ControlsPaneHeader_Text" xml:space="preserve">
+    <value>Ovo je popis svih modula i master stranica koje su aktivne na ovoj stranici. Molimo kliknite na datoteku koju želite urediti.</value>
+  </data>
+  <data name="MonoXMaster_ControlsPane_Text" xml:space="preserve">
+    <value>Uredi izvorni kod</value>
+  </data>
+  <data name="PasswordRecovery_SentSuccessfully" xml:space="preserve">
+    <value>E-mail poruka uspješno poslana.</value>
+  </data>
 </root>

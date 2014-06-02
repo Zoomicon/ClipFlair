@@ -112,10 +112,10 @@
     <value>2.0</value>
   </resheader>
   <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Confirmation_Title" xml:space="preserve">
     <value>Potvrda</value>
@@ -308,5 +308,23 @@
   </data>
   <data name="Groups_InvitationsReceived" xml:space="preserve">
     <value>Primljeni zahtjevi</value>
+  </data>
+  <data name="Title_BottomSection" xml:space="preserve">
+    <value>Donja sekcija</value>
+  </data>
+  <data name="Title_MiddleSection" xml:space="preserve">
+    <value>Srednja sekcija</value>
+  </data>
+  <data name="Title_TopSection" xml:space="preserve">
+    <value>Gornja sekcija</value>
+  </data>
+  <data name="Zone_BottomPartZone" xml:space="preserve">
+    <value>Donja zona</value>
+  </data>
+  <data name="Zone_MiddlePartZone" xml:space="preserve">
+    <value>Srednja zona</value>
+  </data>
+  <data name="Zone_TopPartZone" xml:space="preserve">
+    <value>Gornja zona</value>
   </data>
 </root>

@@ -2,7 +2,7 @@
 <%@ Register Namespace="MonoSoftware.Web.Pager" Assembly="MonoSoftware.Web.Pager" TagPrefix="mono" %>
 
 <div class="social-groups">
-    <asp:Panel ID="pnlContainer" CssClass="FriendCenterAlign" runat="server">
+    <asp:Panel ID="pnlContainer" runat="server">
     <asp:ListView ID="lvItems" runat="server">
     <LayoutTemplate>
         <asp:PlaceHolder runat="server" ID="itemPlaceholder"></asp:PlaceHolder>

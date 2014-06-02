@@ -22,17 +22,13 @@
                     <asp:RequiredFieldValidator ID="vldRequiredPassword" runat="server" ControlToValidate="Password" Text="!" SetFocusOnError="true" ValidationGroup="Login" CssClass="validator ValidatorAdapter" Display="Dynamic" ErrorMessage="<%# String.Format(MonoSoftware.MonoX.Resources.DefaultResources.ValidationMessage_RequiredField, MonoSoftware.MonoX.Resources.DefaultResources.Global_Password) %>" />
                 </dd>
                 <dd>
-                    <fieldset data-role="controlgroup">
-                        <div data-inline="true">
-                            <asp:CheckBox runat="server" ID="RememberMe"/>
-                        </div>
-                        <asp:Label ID="lblRememberMe" AssociatedControlID="RememberMe" runat="server" Text='<%# MonoSoftware.MonoX.Resources.DefaultResources.Login_RememberMe %>'></asp:Label>
-                    </fieldset>
+                     <asp:CheckBox runat="server" ID="RememberMe"/>
+                     <asp:Label ID="lblRememberMe" AssociatedControlID="RememberMe" runat="server" Text='<%# MonoSoftware.MonoX.Resources.DefaultResources.Login_RememberMe %>'></asp:Label>
                 </dd>
             </dl>
             <asp:Button ID="Login" CommandName="Login" runat="server" Text='<%# MonoSoftware.MonoX.Resources.DefaultResources.Login_Login %>' ValidationGroup="Login"></asp:Button>
-            <asp:HyperLink data-role="button" ID="lnkRegister" runat="server" NavigateUrl='<%# MonoSoftware.MonoX.Utilities.LocalizationUtility.RewriteLink(RegisterPageUrl) %>' CssClass="member-link"><%= MonoSoftware.MonoX.Resources.DefaultResources.Login_Register %></asp:HyperLink>
-            <asp:HyperLink data-role="button" ID="lnkForgotPassword" runat="server" NavigateUrl='<%# MonoSoftware.MonoX.Utilities.LocalizationUtility.RewriteLink(PasswordRecoveryPageUrl) %>' CssClass="member-link"><%= MonoSoftware.MonoX.Resources.DefaultResources.Login_PasswordRecoveryText%></asp:HyperLink>
+            <asp:HyperLink data-role="button" ID="lnkRegister" data-theme="b" runat="server" NavigateUrl='<%# MonoSoftware.MonoX.Utilities.LocalizationUtility.RewriteLink(RegisterPageUrl) %>' CssClass="member-link"><%= MonoSoftware.MonoX.Resources.DefaultResources.Login_Register %></asp:HyperLink>
+            <asp:HyperLink data-role="button" ID="lnkForgotPassword" data-theme="b" runat="server" NavigateUrl='<%# MonoSoftware.MonoX.Utilities.LocalizationUtility.RewriteLink(PasswordRecoveryPageUrl) %>' CssClass="member-link"><%= MonoSoftware.MonoX.Resources.DefaultResources.Login_PasswordRecoveryText%></asp:HyperLink>
         </div>
         </LayoutTemplate>
     </asp:Login>
