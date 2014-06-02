@@ -4,7 +4,7 @@
     AutoEventWireup="true" 
     CodeBehind="OpenSocialAuthorizationPage.aspx.cs" 
     Inherits="MonoSoftware.MonoX.OpenSocial.OpenSocialAuthorizationPage"
-    Theme="Default" %>
+     %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="cp" runat="server">
 

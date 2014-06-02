@@ -6,7 +6,6 @@
 <%@ MasterType TypeName="MonoSoftware.MonoX.BaseMasterPage" %>
 <%@ Register TagPrefix="rad" Namespace="Telerik.Web.UI" Assembly="Telerik.Web.UI" %>
 <%@ Register Assembly="MonoX" Namespace="MonoSoftware.MonoX.Controls" TagPrefix="mono" %>
-<%@ Register Src="~/MonoX/Admin/controls/DatePicker.ascx" TagPrefix="mono" TagName="DatePicker" %>
 <%@ Register TagPrefix="mono" Namespace="MonoSoftware.Web.LiteGrid" Assembly="MonoSoftware.Web.LiteGrid" %>
 <%@ Register Src="~/MonoX/Admin/controls/GridViewEditBox.ascx" TagPrefix="monox"
     TagName="GridViewEditBox" %>

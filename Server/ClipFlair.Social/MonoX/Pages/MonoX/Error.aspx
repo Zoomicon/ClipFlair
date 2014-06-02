@@ -1,32 +1,27 @@
 ﻿<%@ Page 
     Language="C#" 
-    MasterPageFile="~/MonoX/MasterPages/Default.master" 
+    MasterPageFile="~/MonoX/MasterPages/Empty.master" 
     AutoEventWireup="true" 
     Inherits="MonoSoftware.MonoX.Pages.Error" 
-    Theme="Default" 
     Codebehind="Error.aspx.cs" %>
+
 <%@ MasterType TypeName="MonoSoftware.MonoX.BaseMasterPage" %>
 
 <asp:Content ContentPlaceHolderID="cp" Runat="Server">
-<div class="main"> <!-- Main Start -->
-    <table class="error-message-page" cellpadding="0" cellspacing="0" style="width: 700px; margin: 0px auto;">
-        <tr>
-            <td valign="top"><img src="<%= ResolveUrl(MonoSoftware.MonoX.Paths.App_Themes.img.Error_png) %>" alt="Error" /></td>
-            <td valign="middle" style="padding: 10px;">
-                <h2><%= Title %></h2>
-            </td>
-        </tr>
-        <tr>
-            <td></td>
-            <td>
-                <span class="description"><%= Description %></span>
-                <br /><br />
-                <span>
-                    <%= MonoSoftware.MonoX.Resources.ErrorMessages.ToContinueWorkingWithApplication %><strong>
-                    <asp:HyperLink ID="lnkHome" runat="server" NavigateUrl="~/"></asp:HyperLink></strong>
-                </span>
-            </td>
-        </tr>
-    </table>
-</div>    
+    <div class="top-copyright">
+        Copyright &#169;2013
+        <a href="http://clipflair.net" title="Learn more about the Project">ClipFlair.net</a>
+    </div>
+    <div class="error-top-section">
+        <div class="container-fluid-large">
+            <h1><%= MonoSoftware.MonoX.Resources.ErrorMessages.ErrorPage_Title %></h1>
+            <p><%= MonoSoftware.MonoX.Resources.ErrorMessages.ErrorPage_SubTitle %></p>
+        </div>
+    </div>
+    <div class="error-bottom-section">
+        <div class="container-fluid-large">
+            <p><%= Description %></p>
+            <h3><%= MonoSoftware.MonoX.Resources.ErrorMessages.ToContinueWorkingWithApplication %> <asp:HyperLink ID="lnkHome" runat="server" NavigateUrl="~/"></asp:HyperLink></h3>
+        </div>
+    </div>
 </asp:Content>

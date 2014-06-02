@@ -217,10 +217,6 @@
             var dummy = o.clone().addClass('growfieldDummy').attr('name', '').attr('tabindex', -9999)
                                .css({ position: 'absolute', left: -9999, top: 0, height: '20px', resize: 'none' })
                                .insertBefore(o).show();
-
-            // if there is no initial value, we have to add some text, otherwise textarea will jitter
-            // at the first keydown
-            if (!val) dummy.val('dummy text');
             this.dummy = dummy;
             // lets set the initial height
             this.update(!jQuery.trim(val) ? 0 : this.getDummyHeight(), false);

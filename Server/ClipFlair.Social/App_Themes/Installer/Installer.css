@@ -1,4 +1,4 @@
-﻿body 
+body 
 {
 	background-color:Gray;
 }
@@ -263,6 +263,8 @@
 	color:Black;
 	padding-top:5px;
 	padding-bottom:5px;
+	max-height: 400px;
+	overflow-y: auto;
 }
 
 .installer_content .installer_sqlinfo .installer_data

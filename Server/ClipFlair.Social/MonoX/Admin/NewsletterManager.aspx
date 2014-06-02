@@ -10,6 +10,7 @@
 <%@ Register TagPrefix="mono" Namespace="MonoSoftware.Web.LiteGrid" Assembly="MonoSoftware.Web.LiteGrid" %>
 <%@ Register Src="~/MonoX/Admin/controls/GridViewEditBox.ascx" TagPrefix="monox"
     TagName="GridViewEditBox" %>
+<%@ Register Assembly="MonoSoftware.Web" Namespace="MonoSoftware.Web.Controls" TagPrefix="mono" %>
 <%@ Register Src="~/MonoX/controls/CustomRadEditor.ascx" TagPrefix="mono" TagName="CustomRadEditor" %>
 <%@ MasterType VirtualPath="~/MonoX/MasterPages/AdminDefault.master" %>    
 
@@ -91,12 +92,18 @@
                                     <asp:TextBox ID="txtMailFrom" runat="server"></asp:TextBox>
                                     <asp:RequiredFieldValidator ID="requiredMailFrom" runat="server" CssClass="ValidatorAdapter" ValidationGroup="Modification"
                                         ControlToValidate="txtMailFrom" SetFocusOnError="true" Display="Static" Text="!" ErrorMessage='<%$ Code: AdminResources.NewsletterManager_requiredMailFrom %>'></asp:RequiredFieldValidator>
+                                    <mono:RegExValidator ID="validateEmail" runat="server" SetFocusOnError="true"  CssClass="ValidatorAdapter" ControlToValidate="txtMailFrom"
+                                        ValidationGroup="Modification" ValidationType="eMail" Text="!" ErrorMessage='<%$ Code: AdminResources.UserManager_validateEmail %>'>
+                                    </mono:RegExValidator> 
                                 </p>
                                 <p>
                                     <asp:Label ID="lblTestAddress" runat="server" Text='<%$ Code: AdminResources.NewsletterManager_lblTestAddress %>' AssociatedControlID="txtTestAddress"></asp:Label>
                                     <asp:TextBox ID="txtTestAddress" runat="server"></asp:TextBox>
                                     <asp:RequiredFieldValidator ID="requiredTestAddress" runat="server" CssClass="ValidatorAdapter" ValidationGroup="Modification"
                                         ControlToValidate="txtTestAddress" SetFocusOnError="true" Display="Static" Text="!" ErrorMessage='<%$ Code: AdminResources.NewsletterManager_requiredTestAddress %>'></asp:RequiredFieldValidator>
+                                    <mono:RegExValidator ID="validateTestEmail" runat="server" SetFocusOnError="true"  CssClass="ValidatorAdapter" ControlToValidate="txtTestAddress"
+                                        ValidationGroup="Modification" ValidationType="eMail" Text="!" ErrorMessage='<%$ Code: AdminResources.UserManager_validateEmail %>'>
+                                    </mono:RegExValidator> 
                                 </p>
                                 <p>
                                     <asp:Label ID="lblRoles" AssociatedControlID="chkRoles" runat="server" Text='<%$ Code: AdminResources.NewsletterManager_lblRoles %>'></asp:Label>
@@ -119,7 +126,7 @@
                                 </p>
                                 <p>
                                     <asp:Label ID="lblContent" runat="server" Text='<%$ Code: AdminResources.NewsletterManager_lblContent %>' AssociatedControlID="radContent"></asp:Label>
-                                    <div style="float: left; width: 75%;"><mono:CustomRadEditor Width="100%" ID="radContent" ToolBarMode="ShowOnFocus" EditorHeight="500px" runat="server" ContentAreaMode="Iframe"></mono:CustomRadEditor></div>
+                                    <div style="float: left; width: 75%;"><mono:CustomRadEditor Width="100%" ID="radContent" ToolBarMode="ShowOnFocus" EditorHeight="500px" runat="server" EnableEmbeddedSkins="true" Skin="Default" ContentAreaMode="Iframe"></mono:CustomRadEditor></div>
                                 </p>
                             </asp:Panel>
                         </td>

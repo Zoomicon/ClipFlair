@@ -4,33 +4,58 @@ AutoEventWireup="true"
 CodeBehind="PageFooter.ascx.cs"
 Inherits="MonoSoftware.MonoX.MasterPages.PageFooter" %>
 <%@ Import Namespace="MonoSoftware.MonoX.Resources"  %>
-
 <%@ Register Src="~/MonoX/controls/SeoLoginStatus.ascx" TagPrefix="monox" TagName="SeoLoginStatus" %>
 
-<div class="footer-wrapper">
-	<div class="footer">
-    	<ul>
-        	
-            <li><span class="copyright"><%= PageResources.PageFooter_Copyright%> &#169;2011 <a href="#"><strong>ClipFlair</strong></a></span>&nbsp; /&nbsp;    <asp:HyperLink runat="server" ID="lnkPrivacyPolicy" NavigateUrl='<% $Code: MonoSoftware.MonoX.Utilities.LocalizationUtility.RewriteLink(MonoSoftware.MonoX.RewrittenUrlBuilder.GetContentPageUrl(MonoSoftware.MonoX.RewrittenPaths.ContentPage, "PrivacyPolicy").Url) %>'><%= PageResources.PageFooter_PrivacyPolicy %></asp:HyperLink> &nbsp; : &nbsp; <asp:HyperLink runat="server" ID="lnkTermsOfUse" NavigateUrl='<% $Code: MonoSoftware.MonoX.Utilities.LocalizationUtility.RewriteLink(MonoSoftware.MonoX.RewrittenUrlBuilder.GetContentPageUrl(MonoSoftware.MonoX.RewrittenPaths.ContentPage, "TermsOfUse").Url) %>'><%= PageResources.PageFooter_TermsOfUse %></asp:HyperLink></li>
-            <!--<li><asp:LoginName ID="loginName" runat="server" /></li>-->
-            <li class="hidden"><monox:SeoLoginStatus ID="loginStatus" runat="server" /></li>
-            <!--<asp:LoginView runat="server" ID="loginView">
-                <AnonymousTemplate>
-                    <li><asp:HyperLink runat="server" ID="lnkRegister" Text="<% $Code:DefaultResources.Login_RegisterInvitation %>" NavigateUrl='<% $Code: MonoSoftware.MonoX.Utilities.LocalizationUtility.RewriteLink("~/Membership/Register.aspx") %>'></asp:HyperLink></li>
-                </AnonymousTemplate>
-            </asp:LoginView>-->
-            <li class="align-right"><a href="https://twitter.com/ClipFlair" title="visit our twitter account" class="twitter-link"></a></li>
-            <li class="align-right"><a href="http://www.facebook.com/ClipFlair" title="visit our facebook page" class="facebook-link"></a></li>
-            
-            
-
-		</ul>
-    	
-	<div>
-		    
-</div>
-        
-        <!--<a id="A1" runat="server" href="http://monox.mono-software.com" class="logo"><img id="Img1" runat="server" src="<%$ Code: MonoSoftware.MonoX.Paths.App_Themes.img.powered_by_png %>" style="width: 90px;" alt="Powered by MonoX" /></a>-->
-
-     
-</div>
+<footer>
+    <div class="container">
+        <div class="row-fluid">
+    	    <ul class="span3">
+        	    <li><h2><%= PageResources.PageFooter_SiteMembership %></h2></li>
+                <li style='<%= HttpContext.Current.User.Identity.IsAuthenticated ? "" : "display:none;" %>'><asp:LoginName ID="loginName" runat="server" /></li>
+                <li><monox:SeoLoginStatus ID="loginStatus" runat="server" /></li>
+                <asp:LoginView runat="server" ID="loginView">
+                    <AnonymousTemplate>
+                        <li><asp:HyperLink runat="server" ID="lnkRegister" Text="<% $Code:DefaultResources.Login_RegisterInvitation %>" NavigateUrl='<% $Code: MonoSoftware.MonoX.Utilities.LocalizationUtility.RewriteLink("~/Membership/Register.aspx") %>'></asp:HyperLink></li>
+                    </AnonymousTemplate>
+                </asp:LoginView>
+                <li><a href='<% $Code: MonoSoftware.MonoX.Utilities.LocalizationUtility.RewriteLink("~/MonoX/Pages/PrivacyPolicy.aspx") %>' runat="server"><%= PageResources.PageFooter_PrivacyPolicy %></a></li>
+                <li><a href='<% $Code: MonoSoftware.MonoX.Utilities.LocalizationUtility.RewriteLink("~/MonoX/Pages/TermsOfUse.aspx") %>' runat="server"><%= PageResources.PageFooter_TermsOfUse %></a></asp:HyperLink></li>
+		    </ul>
+    	    <ul class="span3">
+        	    <li><h2><%= PageResources.PageFooter_GeneralInfo %><!--needs localozation--> & Tools</h2></li>
+                <li><a href="http://clipflair.net"><%= PageResources.PageFooter_Home %></a></li>
+                <li><a href="http://clipflair.net/overview"><%= PageResources.PageFooter_About%>&nbsp;&rsaquo;</a></li>
+                <li><a href="http://gallery.clipflair.net/activity"><!--needs localozation-->ClipFlair Gallery &rsaquo;</a></li>
+                <li><a href="http://studio.clipflair.net"><!--needs localozation-->ClipFlair Studio &rsaquo;</a></li>                 
+		    </ul>
+    	    <ul class="span3">
+        	    <li><h2><%= PageResources.PageFooter_SocialNetworking %></h2></li>
+                <li><a href='<% $Code: MonoSoftware.MonoX.Utilities.LocalizationUtility.RewriteLink("~/MonoX/Pages/SocialNetworking/Dashboard.aspx") %>' runat="server"><!--needs localozation-->Community</a></li>
+                <li><a href='<% $Code: MonoSoftware.MonoX.Utilities.LocalizationUtility.RewriteLink("~/Blog.aspx") %>' runat="server"><%= PageResources.PageFooter_SocialNetworkingBlog %></a></li>
+                <li><a href='<% $Code: MonoSoftware.MonoX.Utilities.LocalizationUtility.RewriteLink("~/MonoX/Pages/SocialNetworking/Groups/GroupList/") %>' runat="server"><%= PageResources.PageFooter_SocialNetworkingGroups %></a></li>
+                <li><a href='<% $Code: MonoSoftware.MonoX.Utilities.LocalizationUtility.RewriteLink("~/MonoX/Pages/SocialNetworking/Discussion.aspx") %>' runat="server"><!--needs localozation-->Forums</a></li>
+		    </ul>
+            <ul class="span3">
+                <li><h2><%= PageResources.PageFooter_ConnectWithUs %></h2></li>
+                <li><a href='<% $Code: MonoSoftware.MonoX.Utilities.LocalizationUtility.RewriteLink("~/MonoX/Pages/Contact.aspx") %>' runat="server">Contact</a></li>
+                <li class="facebook"><a href="https://www.facebook.com/ClipFlair"><%= PageResources.PageFooter_FacebookFan %></a></li>
+                <li class="twitter"><a href="https://twitter.com/ClipFlair"><%= PageResources.PageFooter_TwitterFollow %></a></li>
+            </ul>
+        </div>
+    </div>
+    
+    <div class="copyright">
+        <div class="container">
+            <div class="row-fluid">
+                <a id="A1" runat="server" href="http://monox.mono-software.com" class="powered-by">
+                    <img id="Img1" runat="server" src="~/App_Themes/ClipFlair/img/PoweredBy/MonoXSmallButton.png" alt="Powered by MonoX" />
+                </a>
+                <div class="logo-eu">
+                    <img id="Img3" runat="server" src="~/App_Themes/ClipFlair/img/logo-eu.jpg" alt="Lifelong Learning Programme" class="footer-logo" />
+                    <p>This project has been funded with support from the European Commission. This publication reflects the views only of the author, and the Commission cannot be held responsible for any use which may be made of the information contained therein.</p>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</footer>

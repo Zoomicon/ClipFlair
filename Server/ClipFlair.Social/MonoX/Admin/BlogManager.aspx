@@ -60,7 +60,7 @@
                 <table cellpadding="0" cellspacing="0" width="100%">
                     <tr>
                         <td>
-                            <mono:Blog runat="server" ID="ctlBlogEdit" ShowActions="false"></mono:Blog>
+                            <mono:Blog runat="server" ID="ctlBlogEdit" ShowActions="false" EnableEmbeddedSkins="true" Skin="Default"></mono:Blog>
                         </td>
                     </tr>
                 </table>

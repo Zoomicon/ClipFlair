@@ -180,7 +180,7 @@ Your {1} team</value>
     <value>There is a problem with your activation link. If you've copied and pasted it in your browser, please make sure that it is identical to the link you've got in the activation e-mail. If you clicked on it or you are sure you copied/pasted it correctly and it still doesn't work, then please contact our support.</value>
   </data>
   <data name="ErrorMessage_InvalidUserName" xml:space="preserve">
-    <value>The user with the entered user name does not exist.</value>
+    <value>User does not exist.</value>
   </data>
   <data name="ErrorMessage_Login" xml:space="preserve">
     <value>Login failed, invalid user name or password.</value>
@@ -222,7 +222,7 @@ Your {1} team</value>
     <value>Account Activation</value>
   </data>
   <data name="Message_AccountActivationEmailSent_Description" xml:space="preserve">
-    <value>To activate your account, please click on the link in the e-mail. Your account we'll be activated and you'll be automatically signed in.&lt;br /&gt;If you don't get the e-mail within 10 minutes, please contact us.</value>
+    <value>To activate your account, please click on the link in the e-mail. Your account will be activated and you'll be automatically signed in.&lt;br /&gt;If you don't get the e-mail within 10 minutes, please contact us.</value>
   </data>
   <data name="Message_AccountActivationEmailSent_Title" xml:space="preserve">
     <value>Activation e-mail has been successfully sent.</value>
@@ -495,7 +495,7 @@ Your {1} team</value>
     <value>You are logged in as: {0}</value>
   </data>
   <data name="LoginStatus_LoginText" xml:space="preserve">
-    <value>Click here to log in</value>
+    <value>Login</value>
   </data>
   <data name="LoginStatus_LogoutText" xml:space="preserve">
     <value>Log out by clicking here</value>
@@ -747,13 +747,13 @@ Your {1} team</value>
     <value>Go</value>
   </data>
   <data name="Login_RegisterInvitation" xml:space="preserve">
-    <value>No account? Register here!</value>
+    <value>Register</value>
   </data>
   <data name="Captcha_ImageTitle" xml:space="preserve">
     <value>Captcha AntiSpam Security</value>
   </data>
   <data name="Captcha_LongInfo" xml:space="preserve">
-    <value>&lt;a href="http://en.wikipedia.org/wiki/CAPTCHA" title="Click here to get more informtion on Captcha"&gt;CAPTCHAs&lt;/a&gt; are used to prevent automated software from performing actions 
+    <value>&lt;a href="http://en.wikipedia.org/wiki/CAPTCHA" title="Click here to get more information on Captcha"&gt;CAPTCHAs&lt;/a&gt; are used to prevent automated software from performing actions 
                     which degrade the quality of service of a given system, 
                     whether due to abuse or resource expenditure.</value>
   </data>
@@ -800,7 +800,7 @@ Your {1} team</value>
     <value>Refresh</value>
   </data>
   <data name="ErrorMessage_Upload" xml:space="preserve">
-    <value>All files could not be uploaded. Please ensure that all files that are being uploaded have the correct extension and size.</value>
+    <value>Could not upload all files. Please ensure that all files that are being uploaded have the correct extension and size.</value>
   </data>
   <data name="DateTimeExtension_DaysAgo" xml:space="preserve">
     <value>{0} day(s)</value>
@@ -902,7 +902,7 @@ Your {1} team</value>
     <value>Deny</value>
   </data>
   <data name="OpenSocial_RequestMessage" xml:space="preserve">
-    <value>{0} application wants to access your social data?</value>
+    <value>{0} application wants to access your social data.</value>
   </data>
   <data name="ContactForm_MissingContactEMailAddress" xml:space="preserve">
     <value>Contact e-mail address is missing. Please contact the web site administrator.</value>
@@ -952,5 +952,95 @@ Your {1} team</value>
   </data>
   <data name="DynamicPager_ViewMore" xml:space="preserve">
     <value>View more</value>
+  </data>
+  <data name="LoginSocial_Email" xml:space="preserve">
+    <value>E-mail:</value>
+  </data>
+  <data name="LoginSocial_EmailNeeded" xml:space="preserve">
+    <value>The social network you used does not disclose your e-mail address, and we need it to create a fully functional account. Please enter your e-mail in this form and check your mail account. You will receive a message containing a link that must be used to verify your identity. After that, your account will become fully functional.</value>
+  </data>
+  <data name="LoginSocial_LoginWithFacebook" xml:space="preserve">
+    <value>Facebook</value>
+  </data>
+  <data name="LoginSocial_LoginWithGoogle" xml:space="preserve">
+    <value>Google</value>
+  </data>
+  <data name="LoginSocial_LoginWithLinkedIn" xml:space="preserve">
+    <value>LinkedIn</value>
+  </data>
+  <data name="LoginSocial_LoginWithTwitter" xml:space="preserve">
+    <value>Twitter</value>
+  </data>
+  <data name="LoginSocial_Title" xml:space="preserve">
+    <value>Enter e-mail</value>
+  </data>
+  <data name="LoginSocial_VerifyEmail" xml:space="preserve">
+    <value>We've been able to locate your account on our site, however, our records indicate that you didn't verify your identity by clicking on a link in the mail message that was sent to your address. You need to do this before your account becomes fully functional. Please verify that your address is correct and click &lt;a href="{0}"&gt;here&lt;/a&gt; if you want us to re-send the activation message.</value>
+  </data>
+  <data name="LoginSocial_ErrorMessage" xml:space="preserve">
+    <value>An error has occured while opening an account using the selected social network: {0}</value>
+  </data>
+  <data name="LoginSocial_InfoMessage" xml:space="preserve">
+    <value>Thank you! Your account will be activated and ready to use as soon as you confirm your e-mail message, following the instructions that have been sent to you a few moments ago.</value>
+  </data>
+  <data name="LoginSocial_InfoTitle" xml:space="preserve">
+    <value>Thank you!</value>
+  </data>
+  <data name="CropImage_Cancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="CropImage_CropCaption" xml:space="preserve">
+    <value>Crop &amp; Save</value>
+  </data>
+  <data name="LoginSocial_AccountCreationNotAllowed" xml:space="preserve">
+    <value>We were unable to create an account because member with same credentials already exists. Please enter different e-mail in this form or chose different social network. </value>
+  </data>
+  <data name="LoginSocial_ProceedButton" xml:space="preserve">
+    <value>Proceed</value>
+  </data>
+  <data name="VideoArgumentsEditorPart_AddVideo" xml:space="preserve">
+    <value>Add Video</value>
+  </data>
+  <data name="VideoArgumentsEditorPart_VideoMimeTypeLabel" xml:space="preserve">
+    <value>Video Mime Type</value>
+  </data>
+  <data name="VideoArgumentsEditorPart_VideoURLLabel" xml:space="preserve">
+    <value>Video URL</value>
+  </data>
+  <data name="GoogleMaps_DefaultLocation" xml:space="preserve">
+    <value>United States</value>
+  </data>
+  <data name="LoginSocial_UnableToConnect" xml:space="preserve">
+    <value>Unable To Connect To Specified Social Network</value>
+  </data>
+  <data name="SlideShow_Next" xml:space="preserve">
+    <value>Next</value>
+  </data>
+  <data name="SlideShow_Prev" xml:space="preserve">
+    <value>Prev</value>
+  </data>
+  <data name="SlideShow_Title" xml:space="preserve">
+    <!--CLIPFLAIR--><value>Featured Activities</value>
+  </data>
+  <data name="LoginSocial_SubTitle" xml:space="preserve">
+    <value>Log in using your social account</value>
+  </data>
+  <data name="MonoXMaster_ControlsPaneHeader_Text" xml:space="preserve">
+    <value>This is a list of all parts and master pages that are rendered on this page. Please click on the page or part that you want to edit.</value>
+  </data>
+  <data name="MonoXMaster_ControlsPane_Text" xml:space="preserve">
+    <value>Edit source</value>
+  </data>
+  <data name="ContactForm_EmailInvalid" xml:space="preserve">
+    <value>Please enter a valid E-mail address.</value>
+  </data>
+  <data name="ContactForm_EmailRequired" xml:space="preserve">
+    <value>Please enter a value for E-mail.</value>
+  </data>
+  <data name="ContactForm_NameRequired" xml:space="preserve">
+    <value>Please enter a value for Name.</value>
+  </data>
+  <data name="ContactForm_SubjectRequired" xml:space="preserve">
+    <value>Please enter a value for Subject.</value>
   </data>
 </root>

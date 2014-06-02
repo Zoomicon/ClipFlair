@@ -21,14 +21,14 @@
                 </asp:Panel>
                 <div class="two-column">
                     <asp:Panel CssClass="status-gravatar side-bar" id="rowSideBar" runat="server" >
-                        <monox:UserAvatar ID="userAvatar" runat="server" />
+                        <monox:UserAvatar ID="userAvatar" runat="server" EnableAvatarCropping="false" />
                         <asp:PlaceHolder ID="plhSideBar" runat="server"></asp:PlaceHolder>
                     </asp:Panel>
                     <asp:Panel id="rowStatus" runat="server" CssClass="profile-status">
                         <div class="profile-status-middle">
                             <div class="profile-status-top">
                                 <h2><asp:Literal ID="labName" runat="server"></asp:Literal></h2>
-                                <p><asp:Literal ID="labMyStatus" runat="server"></asp:Literal></p>
+                                <p class="profile-status-text"><asp:Literal ID="labMyStatus" runat="server"></asp:Literal></p>
                             </div>
                         </div>
                     </asp:Panel>
@@ -36,7 +36,7 @@
                     <div id="panStatusEdit" runat="server" class="profile-status-bottom">
                         <asp:TextBox runat="server" ID="txtMyStatus" CssClass="jq_swap_value"></asp:TextBox>
                         <span class="delete-icon reset-status"><asp:LinkButton ID="lnkRemoveStatus" runat="server" CausesValidation="false"></asp:LinkButton></span>
-                        <asp:LinkButton ID="btnSetMyStatus" runat="server" CssClass="profile-submit" data-role="button"></asp:LinkButton>
+                        <asp:LinkButton ID="btnSetMyStatus" runat="server" CssClass="profile-submit" data-role="button" data-theme="b"></asp:LinkButton>
                         <MonoXPrivacyManager:PrivacyEditor id="privacyEditor" runat="server"></MonoXPrivacyManager:PrivacyEditor>
                     </div>
                     <div id="panStatusView" runat="server"  class="profile-status-bottom-end">
@@ -45,10 +45,10 @@
                     <div class="buttons">
                         <ul class="button" id="rowSwitch" runat="server">
                             <li class="<%= InEditMode ? String.Empty : "current" %>">
-                                <asp:LinkButton ID="lnkViewProfile" runat="server" CausesValidation="false" data-role="button">
+                                <asp:LinkButton ID="lnkViewProfile" runat="server" CausesValidation="false" data-role="button" data-theme="b">
                                     <span id="labViewProfile" runat="server"></span></asp:LinkButton></li>
                             <li class="<%= InEditMode ? "current" : String.Empty %>">
-                                <asp:LinkButton ID="lnkEditProfile" runat="server" CausesValidation="false" data-role="button">
+                                <asp:LinkButton ID="lnkEditProfile" runat="server" CausesValidation="false" data-role="button" data-theme="b">
                                     <span id="labEditProfile" runat="server"></span></asp:LinkButton></li>
                         </ul>
                     </div>
@@ -60,11 +60,11 @@
                             DynamicLayout="true">
                             <ProgressTemplate>
                                 <img src='<%= BaseSiteFullUrl %>/App_Themes/<%= Page.Theme %>/img/loading.gif' alt="Progress ..."
-                                    width="20px" class="progress" />
+                                    width="20" class="progress" />
                             </ProgressTemplate>
                         </asp:UpdateProgress>
                     </div>                        
-                    <monox:UserProfile ID="userProfile" runat="server" />
+                    <monox:UserProfile ID="userProfile" runat="server"/>
                     <asp:PlaceHolder ID="plhMain" runat="server"></asp:PlaceHolder>
                 </asp:Panel>
             </div>

@@ -115,7 +115,7 @@
                                 </p>
                                 <p>
                                     <asp:Label ID="lblContentCaption" runat="server" Text='<%$ Code: AdminResources.ListManager_lblContentCaption %>' AssociatedControlID="radContent"></asp:Label>
-                                    <div style="float: left; width: 75%;"><mono:CustomRadEditor Width="100%" ID="radContent" runat="server" ToolBarMode="ShowOnFocus" Content='<%# Eval("ItemContent") %>'></mono:CustomRadEditor></div>
+                                    <div style="float: left; width: 75%;"><mono:CustomRadEditor Width="100%" ID="radContent" runat="server" EnableEmbeddedSkins="true" Skin="Default" ToolBarMode="ShowOnFocus" Content='<%# Eval("ItemContent") %>'></mono:CustomRadEditor></div>
                                 </p>
                             </asp:Panel>
                         </td>

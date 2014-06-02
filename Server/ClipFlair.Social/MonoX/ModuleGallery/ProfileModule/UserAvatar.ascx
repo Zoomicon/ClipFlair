@@ -1,34 +1,29 @@
-<%@ Control Language="C#" AutoEventWireup="true" Inherits="MonoSoftware.MonoX.ModuleGallery.UserAvatar"
+<%@ Control
+    Language="C#"
+    AutoEventWireup="true"
+    Inherits="MonoSoftware.MonoX.ModuleGallery.UserAvatar"
     CodeBehind="UserAvatar.ascx.cs" %>
+
 <%@ Register Assembly="MonoX" Namespace="MonoSoftware.MonoX.Blog" TagPrefix="monox" %>
 <%@ Register TagPrefix="radU" Namespace="Telerik.Web.UI" Assembly="Telerik.Web.UI" %>
+<%@ Register TagPrefix="monox" TagName="CropImage" Src="~/MonoX/controls/CropImage/CropImage.ascx" %>
 <%@ Import Namespace="MonoSoftware.MonoX.DAL.HelperClasses" %>
+
 <asp:ScriptManagerProxy ID="proxySM" runat="server">
     <Scripts>
     </Scripts>
 </asp:ScriptManagerProxy>
-<table cellpadding="0" cellspacing="0" class="profile-gravatar-container">
-    <tr>
-        <td id="rowGravatar" runat="server">
-            <div class="profile-gravatar">
-                <asp:HyperLink runat="server" NavigateUrl="http://www.gravatar.com" Target="_blank">
-                  <MonoX:Gravatar ID="gravatar" runat="server" />
-                  <!--<MonoX:StyledButton ID="btnBrowse" runat="server" /> -->
-                </asp:HyperLink>     
-            </div>
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <div class="user-score">
-                <%= MonoSoftware.MonoX.BusinessLayer.UserProfileBLL.GetInstance().GetUserReputation(UserId) %>
-                <span><%= MonoSoftware.MonoX.Resources.UserProfileResources.UserScore %></span>
-            </div>
-        </td>
-    </tr>
-</table>
-<h3>
-    <asp:Label ID="labInvalidFile" runat="server"></asp:Label></h3>
+
+    <div id="rowGravatar" runat="server" class="user-avatar"> 
+        <MonoX:Gravatar ID="gravatar" runat="server" />
+        <MonoX:StyledButton ID="btnBrowse" runat="server" />
+    </div>
+        
+    <!--<div class="user-score">
+        <%= MonoSoftware.MonoX.BusinessLayer.UserProfileBLL.GetInstance().GetUserReputation(UserId) %>
+        <span><%= MonoSoftware.MonoX.Resources.UserProfileResources.UserScore %></span>
+    </div>-->
+    <h3><asp:Label ID="labInvalidFile" runat="server"></asp:Label></h3>
 
 <script type="text/javascript">
     function <%= GetValidatorFunctionName() %>(source, arguments) {
@@ -55,8 +50,15 @@
             </div>
         </asp:PlaceHolder>
         <asp:PlaceHolder ID="plhFooter" runat="server">
-            <MonoX:StyledButton ID="btnSaveFooter" runat="server" ValidationGroup="AvatarUpload" />
-            <MonoX:StyledButton ID="btnClearFooter" runat="server" CausesValidation="false" />
+            <div class="small-btn">
+                <MonoX:StyledButton ID="btnSaveFooter" runat="server" ValidationGroup="AvatarUpload" CssClass="main-button submit-btn float-left" />
+                <MonoX:StyledButton ID="btnClearFooter" runat="server" CausesValidation="false" CssClass="cancel-btn float-left" />
+            </div>
+        </asp:PlaceHolder>
+        <asp:PlaceHolder runat="server" ID="plhCropImage">
+            <monox:CropImage  runat="server" ID="cropImage" UseBase64ImageEncoding="true" CropMinSizeWidth="<%$ Code: AvatarSize %>" 
+            CropMinSizeHeight="<%$ Code: AvatarSize %>" DesiredImageWidth="<%$ Code: AvatarSize %>"
+            DesiredImageHeight="<%$ Code: AvatarSize %>" />
         </asp:PlaceHolder>
     </div>
 </radU:RadToolTip>

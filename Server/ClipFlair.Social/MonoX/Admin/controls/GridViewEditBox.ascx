@@ -17,6 +17,7 @@
                     <tr>
                         <td style="width: 20%">
                             <asp:Literal ID="labFind" runat="server" Text='<%$ Code: AdminResources.Label_Find %>'></asp:Literal>
+                        </td>
                         <td style="width: 60%">
                             <asp:TextBox ID="txtFilter" runat="server" CssClass="searchinput" Width="300px"></asp:TextBox>
                         </td>
@@ -78,7 +79,7 @@
         </asp:PlaceHolder>        
         <asp:PlaceHolder ID="plhTopActions" runat="server">
             <div class="AdminGridFooterHeader">
-                <asp:Button runat="server" ID="btnTopSave" OnClick="btnSave_Click" CausesValidation="true" UseSubmitBehavior="false" CssClass="AdminButton" Text='<%$ Code: AdminResources.Button_Save %>'>
+                <asp:Button runat="server" ID="btnTopSave" CausesValidation="true" UseSubmitBehavior="false" CssClass="AdminButton" Text='<%$ Code: AdminResources.Button_Save %>'>
                 </asp:Button>
                 <div style="display: none;">
                     <asp:Button runat="server" ID="btnHiddenSave" OnClick="btnSave_Click" CausesValidation="true" UseSubmitBehavior="false" CssClass="AdminButton" Text='<%$ Code: AdminResources.Button_Save %>'></asp:Button>
@@ -90,7 +91,7 @@
         <asp:PlaceHolder ID="PlaceHolderContent" runat="server"></asp:PlaceHolder>        
         <asp:PlaceHolder ID="plhActions" runat="server">
             <div class="AdminGridFooter">
-                <asp:Button runat="server" ID="btnSave" OnClick="btnSave_Click" CausesValidation="true" UseSubmitBehavior="false" CssClass="AdminButton" Text='<%$ Code: AdminResources.Button_Save %>'>
+                <asp:Button runat="server" ID="btnSave" CausesValidation="true" UseSubmitBehavior="false" CssClass="AdminButton" Text='<%$ Code: AdminResources.Button_Save %>'>
                 </asp:Button>
                 <asp:Button runat="server" ID="btnCancel" OnClick="btnCancel_Click" CssClass="AdminButton" CausesValidation="false"
                     Text='<%$ Code: AdminResources.Button_Cancel %>'></asp:Button>

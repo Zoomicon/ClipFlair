@@ -1172,4 +1172,7 @@ LykkenEr - Supporten
   <data name="Groups_DeleteMember" xml:space="preserve">
     <value>Slet {0} fra gruppen</value>
   </data>
+  <data name="Discussion_TopicTags" xml:space="preserve">
+    <value>Topic tags</value>
+  </data>
 </root>

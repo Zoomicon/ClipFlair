@@ -1,9 +1,23 @@
-﻿.ui-body-b
+﻿.ui-mobile .ui-page-active {
+    overflow: hidden !important;
+}
+.ui-body-c
 {
 	background: -moz-linear-gradient(center top , #fff, #ccc) repeat scroll 0 0 #ccc !important;
 }
+.profile-status-bottom .ui-field-contain input.ui-input-text, .ui-field-contain textarea.ui-input-text, .ui-field-contain .ui-input-search, .ui-field-contain div.ui-input-text{
+    width: 100% !important;
+}
 .ui-li-desc {
 white-space: normal !important;
+}
+
+.profile-save-button {
+    margin-top: 1em;
+}
+
+.profile-save-button .ui-submit {
+    width: 100% !important;
 }
 
 label.ui-input-text
@@ -74,9 +88,6 @@ DL DD
 }
 .status-gravatar
 {
-	width: 90px;
-	padding-right: 10px;
-	float: left;
 }
 .social-network .right-side,
 .wall-notes .right-side,
@@ -88,6 +99,14 @@ DL DD
 .profile-status
 {
 	margin-left: 100px;
+}
+.profile-status-text {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: rgba(255, 255, 255, 0.6);
+    padding: 10px;
+    width: 100%;
 }
 .profile-status H2
 {
@@ -108,8 +127,8 @@ DL DD
 }
 .status-gravatar IMG
 {
-	width: 40px;
-	height: 40px;
+	min-width: 100% !important;
+    height: auto !important;
 	border: solid 1px #ccc !important;
 	padding: 3px;
 	background: #fff;
@@ -135,6 +154,10 @@ DL DD
 .post
 {
 	margin-bottom: 25px;
+}
+.description IMG
+{
+    max-width: 100% !important;
 }
 .buttons
 {

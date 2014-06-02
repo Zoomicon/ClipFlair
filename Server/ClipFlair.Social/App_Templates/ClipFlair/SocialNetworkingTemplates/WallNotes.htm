@@ -1,18 +1,23 @@
-﻿<div class="social-network sn-comment  jq_snNote">
-    <div class="gravatar size-big"><a href="<# ProfileUrl #>"><# Avatar #></a></div>
+﻿<div class="wall-comment clearfix jq_snNote">
+    <div class="user-avatar">
+        <a href="<# ProfileUrl #>"><# Avatar #></a>
+        <!--CLIPFLAIR<div class="arrow"></div>-->
+    </div>
     <div class="content">
-        <div class="author-content">
-            <span><a href="<# ProfileUrl #>"><# Author #></a></span>
-            <# Content #>
-        </div>        
-        <div class="date-option separatedList">
-            <# Date #>&nbsp;
-            <# CommentLink #><# Delete #>
+        <a href="<# ProfileUrl #>"><# AuthorDisplayName #></a>
+        <# Content #>
+        <div class="date-options">
+            <# Date #>
+            <!--!!!CLIPFLAIR-->
+		    <span class="comment-link"><# CommentLink #></span>
+            <!--/!!!CLIPFLAIR-->
+            <span class="delete"><# Delete #></span>
         </div>
-        <div class="date-option">
+        <div class="rating">
             <# Rating #>
         </div>
-        <div class="separatedListNoSeparator"><# Files #></div>
-        <div class="comments"><# Comments #></div>
+        <!--CLIPFLAIR<div class="<# PrivacyLevelCSS #>"></div>-->
     </div>
+    <div class="separatedListNoSeparator"><# Files #></div>
+    <div class="comments"><# Comments #></div>
 </div>

@@ -26,5 +26,5 @@
             </dd>
         </dl>
     </div>
-    <MonoX:StyledButton ID="btnSaveFooter" runat="server" CausesValidation="true" EnableNativeButtonMode="true" />    
+    <div class="profile-save-button"><MonoX:StyledButton ID="btnSaveFooter" runat="server" CausesValidation="true" EnableNativeButtonMode="true" /></div>
 </asp:PlaceHolder>

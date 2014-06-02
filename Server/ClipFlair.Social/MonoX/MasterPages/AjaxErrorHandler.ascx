@@ -6,7 +6,7 @@
         
 <asp:PlaceHolder ID="errorHandlerScript" runat="server">
 
-    <script type="text/javascript" language="javascript">            
+    <script type="text/javascript">            
                 //<![CDATA[
                 Sys.WebForms.PageRequestManager.getInstance().add_endRequest(EndRequestHandler);
                 function EndRequestHandler(sender, args)

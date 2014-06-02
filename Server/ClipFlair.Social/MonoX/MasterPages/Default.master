@@ -7,37 +7,49 @@
     Codebehind="Default.master.cs" %>
 <%@ MasterType VirtualPath="~/MonoX/MasterPages/MonoX.master" %>
 <%@ Import Namespace="MonoSoftware.MonoX.Resources" %>
-<%@ Register TagPrefix="MonoX" TagName="Menu" Src="~/MonoX/ModuleGallery/MonoXMenuSimple.ascx" %>
+<%@ Register TagPrefix="MonoX" TagName="Menu" Src="~/MonoX/ModuleGallery/MonoXMenuHTML5.ascx" %>
+<%@ Register TagPrefix="MonoX" TagName="Search" Src="~/MonoX/ModuleGallery/MonoXSearchBoxWithFilter.ascx" %>
 <%@ Register TagPrefix="MonoX" TagName="PageFooter" Src="~/MonoX/MasterPages/PageFooter.ascx" %>
 <%@ Register TagPrefix="MonoX" TagName="MembershipNavigation" Src="~/MonoX/MasterPages/MembershipNavigation.ascx" %>
 <%@ Register Assembly="MonoX" Namespace="MonoSoftware.MonoX" TagPrefix="portal" %>
-
+<%@ Register Assembly="MonoX" Namespace="MonoSoftware.MonoX.SearchEngine" TagPrefix="Search" %>
 
 <asp:Content ContentPlaceHolderID="cp" runat="server">
-<asp:ScriptManagerProxy ID="scriptManagerProxy" runat="server"></asp:ScriptManagerProxy>
-<link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,400,300,600,700&subset=latin,greek-ext,greek,latin-ext' rel='stylesheet' type='text/css'>
-<div class="beta-icon"></div>
-<div class="wrapper">
-	<div class="header-wrapper">
-   	    <div class="header">
-       	    <a href='<%= MonoSoftware.Web.UrlFormatter.ResolveServerUrl(MonoSoftware.MonoX.Utilities.LocalizationUtility.RewriteLink("~/Default.aspx")) %>' class="logo"><img runat="server" src="<%$ Code: MonoSoftware.MonoX.Paths.App_Themes.img.logo_png %>" alt="MonoX" /></a>             
-            <div class="membership-holder">
-                <MonoX:MembershipNavigation runat="server" ID="ctlMemership" />
+    <asp:ScriptManagerProxy ID="scriptManagerProxy" runat="server"></asp:ScriptManagerProxy>
+	<header>
+        <div class="container top-section clearfix">
+            <div class="row-fluid">
+                <div class="span12">
+        	        <a href='<%= MonoSoftware.Web.UrlFormatter.ResolveServerUrl(MonoSoftware.MonoX.Utilities.LocalizationUtility.RewriteLink("~/")) %>' class="logo">
+                        <img id="Img1" runat="server" src="<%$ Code: MonoSoftware.MonoX.Paths.App_Themes.img.logo_png %>" alt="MonoX" />
+                    </a>
+                    <MonoX:Menu runat="server" ID="ctlMenu" UseSpanElementsInMenuItems="false" SelectedItemCssClass="selected" CacheDuration="600" ResponsiveDesignBrakeWidth="959" /> 
+                </div>
             </div>
+	    </div>
+        <div class="bottom-section">
+        	<div class="container">
+                <div class="row-fluid">
+                    <div class="span12">
+            	        <div class="membership-search">
+                	        <img runat="server" src="~/App_Themes/Default/img/membership-search.jpg" alt="Memebership bg" class="membership-bg" />
+                            <div class="membership-navigation-holder">
+                                <MonoX:MembershipNavigation runat="server" ID="ctlMemership" LoginStatusLogoutText="&nbsp;" />
+                            </div>
+                            <div class="search-holder">
+                                <MonoX:Search runat="server" ID="ctlSearch" TextBoxCssClass="mainSearchBoxInputField" ButtonCssClass="searchImage" ButtonText="Go" DefaultSearchText="<%$ Code:DefaultResources.SiteSearch_DefaultText %>">
+                                </MonoX:Search>
+                            </div>
+                        </div>
+        		        <img runat="server" src="~/App_Themes/Default/img/banner.jpg" alt="Banner" class="banner-img scale-with-grid" />
+                    </div>
+                </div>
+		    </div>
         </div>
-        <div id="navigation-wrapper-bg">
-            <div class="navigation-wrapper">
-                <MonoX:Menu runat="server" ID="ctlMenu" UseSpanElementsInMenuItems="true" SelectedItemCssClass="selected" CacheDuration="600" />
-                
-            </div>
-        </div>
-    </div>        
-    <div id="main-wrapper">
-    <div class="main"> 
-        <asp:ContentPlaceHolder ID="cp" runat="server">
-        </asp:ContentPlaceHolder>
-    </div>
-    </div>
+    </header>
+    
+    <asp:ContentPlaceHolder ID="cp" runat="server">
+    </asp:ContentPlaceHolder>
+
     <MonoX:PageFooter runat="server" ID="ctlFooter"></MonoX:PageFooter>
-</div>
 </asp:Content>

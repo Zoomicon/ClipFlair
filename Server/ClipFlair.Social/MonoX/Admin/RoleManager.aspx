@@ -50,7 +50,7 @@
         <CustomActionsTemplate>
         </CustomActionsTemplate>
         <ContentTemplate>
-        <div class="AdminGridFooterContent">
+        <div class="AdminGridFooterContent input-form">
             <table width="100%" cellpadding="0" cellspacing="6">
             <tr>
                 <td colspan="3">

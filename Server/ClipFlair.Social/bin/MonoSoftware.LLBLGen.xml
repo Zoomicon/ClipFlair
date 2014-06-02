@@ -20,106 +20,48 @@
             </summary>
             <param name="serializationMode">Serializatio mode</param>
         </member>
+        <member name="M:MonoSoftware.LLBLGen.AuditInfoCollection`1.Add(System.Guid,MonoSoftware.LLBLGen.IAuditInfoEntity)">
+            <summary>
+            Adds the audit entity to a collection.
+            </summary>
+            <param name="id">Object Id.</param>
+            <param name="auditEntity">Audit entity.</param>
+        </member>
+        <member name="M:MonoSoftware.LLBLGen.AuditInfoCollection`1.ToList">
+            <summary>
+            Gets the list of audit entities.
+            </summary>
+            <returns>List of audit entities.</returns>
+        </member>
+        <member name="M:MonoSoftware.LLBLGen.AuditInfoCollection`1.Clear">
+            <summary>
+            Clear the audit entity list.
+            </summary>
+        </member>
+        <member name="M:MonoSoftware.LLBLGen.AuditInfoCollection`1.ContainsId(System.Guid)">
+            <summary>
+            Checks if Object Id is contained in the collection.
+            </summary>
+            <param name="id">Object Id.</param>
+            <returns>True if object id is found in the collection, false otherwise.</returns>
+        </member>
+        <member name="M:MonoSoftware.LLBLGen.AuditInfoCollection`1.GetAuditInfo(System.Guid)">
+            <summary>
+            Gets the audit info.
+            </summary>
+            <param name="id">Object Id.</param>
+            <returns>Audit info entity.</returns>
+        </member>
+        <member name="M:MonoSoftware.LLBLGen.AuditInfoCollection`1.GetAt(System.Int32)">
+            <summary>
+            Gets the audit info entity at specified index.
+            </summary>
+            <param name="index">Entity index.</param>
+            <returns>Audit info entity.</returns>
+        </member>
         <member name="P:MonoSoftware.LLBLGen.AuditInfoCollection`1.SerializationMode">
             <summary>
             Audit serialization mode.
-            </summary>
-        </member>
-        <member name="T:MonoSoftware.LLBLGen.BaseAuditInfoEntity">
-            <summary>
-            Audit information entity.
-            </summary>
-        </member>
-        <member name="T:MonoSoftware.LLBLGen.IAuditInfoEntity">
-            <summary>
-            Audit information entity interface.
-            </summary>
-        </member>
-        <member name="P:MonoSoftware.LLBLGen.IAuditInfoEntity.AffectedEntityName">
-            <summary>
-            Gets or sets affected entity name.
-            </summary>
-        </member>
-        <member name="P:MonoSoftware.LLBLGen.IAuditInfoEntity.ActionDateTime">
-            <summary>
-            Gets or sets date and time of the performed action.
-            </summary>
-        </member>
-        <member name="P:MonoSoftware.LLBLGen.IAuditInfoEntity.ActionType">
-            <summary>
-            Gets or sets action type.
-            </summary>
-        </member>
-        <member name="P:MonoSoftware.LLBLGen.IAuditInfoEntity.ActionTypeName">
-            <summary>
-            Gets or sets action type name.
-            </summary>
-        </member>
-        <member name="P:MonoSoftware.LLBLGen.IAuditInfoEntity.ActionPerformedByUser">
-            <summary>
-            Gets or sets the user name or Id who performed action.
-            </summary>
-        </member>
-        <member name="P:MonoSoftware.LLBLGen.IAuditInfoEntity.ActionData">
-            <summary>
-            Gets or sets custom action data.
-            </summary>
-        </member>
-        <member name="P:MonoSoftware.LLBLGen.IAuditInfoEntity.ActionDataBinary">
-            <summary>
-            Gets or sets custom action binary data.
-            </summary>
-        </member>
-        <member name="M:MonoSoftware.LLBLGen.BaseAuditInfoEntity.OnInitializeAuditInfoEntity(System.Object)">
-            <summary>
-            Triggers initialize audit information entity event.
-            </summary>
-            <param name="auditInfoEntity">Audit information entity</param>
-        </member>
-        <member name="P:MonoSoftware.LLBLGen.BaseAuditInfoEntity.AffectedEntityName">
-            <summary>
-            Gets or sets affected entity name.
-            </summary>
-        </member>
-        <member name="P:MonoSoftware.LLBLGen.BaseAuditInfoEntity.ActionDateTime">
-            <summary>
-            Gets or sets date and time of the performed action.
-            </summary>
-        </member>
-        <member name="P:MonoSoftware.LLBLGen.BaseAuditInfoEntity.ActionType">
-            <summary>
-            Gets or sets action type.
-            </summary>
-        </member>
-        <member name="P:MonoSoftware.LLBLGen.BaseAuditInfoEntity.ActionTypeName">
-            <summary>
-            Gets or sets action type name.
-            </summary>
-        </member>
-        <member name="P:MonoSoftware.LLBLGen.BaseAuditInfoEntity.ActionPerformedByUser">
-            <summary>
-            Gets or sets the user name or Id who performed action.
-            </summary>
-        </member>
-        <member name="P:MonoSoftware.LLBLGen.BaseAuditInfoEntity.ActionData">
-            <summary>
-            Gets or sets custom action data.
-            <para>
-            Note: Action data is used only in audit log xml serialization mode.
-            </para>
-            </summary>
-        </member>
-        <member name="P:MonoSoftware.LLBLGen.BaseAuditInfoEntity.ActionDataBinary">
-            <summary>
-            Gets or sets custom action binary data.        
-            <para>
-            Note: Action data binary is used only in audit log binary serialization mode.
-            </para>
-            </summary>
-        </member>
-        <member name="E:MonoSoftware.LLBLGen.BaseAuditInfoEntity.InitializeAuditInfoEntity">
-            <summary>
-            Initialize audit information entity handler. 
             </summary>
         </member>
         <member name="T:MonoSoftware.LLBLGen.ActionData">
@@ -211,11 +153,55 @@
             Gets or sets new field value.
             </summary>
         </member>
+        <member name="T:MonoSoftware.LLBLGen.IAuditInfoEntity">
+            <summary>
+            Audit information entity interface.
+            </summary>
+        </member>
+        <member name="P:MonoSoftware.LLBLGen.IAuditInfoEntity.AffectedEntityName">
+            <summary>
+            Gets or sets affected entity name.
+            </summary>
+        </member>
+        <member name="P:MonoSoftware.LLBLGen.IAuditInfoEntity.ActionDateTime">
+            <summary>
+            Gets or sets date and time of the performed action.
+            </summary>
+        </member>
+        <member name="P:MonoSoftware.LLBLGen.IAuditInfoEntity.ActionType">
+            <summary>
+            Gets or sets action type.
+            </summary>
+        </member>
+        <member name="P:MonoSoftware.LLBLGen.IAuditInfoEntity.ActionTypeName">
+            <summary>
+            Gets or sets action type name.
+            </summary>
+        </member>
+        <member name="P:MonoSoftware.LLBLGen.IAuditInfoEntity.ActionPerformedByUser">
+            <summary>
+            Gets or sets the user name or Id who performed action.
+            </summary>
+        </member>
+        <member name="P:MonoSoftware.LLBLGen.IAuditInfoEntity.ActionData">
+            <summary>
+            Gets or sets custom action data.
+            </summary>
+        </member>
+        <member name="P:MonoSoftware.LLBLGen.IAuditInfoEntity.ActionDataBinary">
+            <summary>
+            Gets or sets custom action binary data.
+            </summary>
+        </member>
+        <member name="P:MonoSoftware.LLBLGen.IAuditInfoEntity.ActionDataLog">
+            <summary>
+            Gets or sets the action data log.
+            </summary>
+        </member>
         <member name="T:MonoSoftware.LLBLGen.InitializeAuditInfoEntityHandler">
             <summary>
             Initialize audit information entity handler.
             </summary>
-            <param name="auditInfoEntity">Audit information entity</param>
         </member>
         <member name="T:MonoSoftware.LLBLGen.AuditType">
             <summary>
@@ -336,7 +322,7 @@
             <param name="auditType">Audit type</param>
             <returns>IAuditInfoEntity</returns>
         </member>
-        <member name="M:MonoSoftware.LLBLGen.LLBLGenProGenericAuditor`1.HandleActionData(MonoSoftware.LLBLGen.BaseAuditInfoEntity,SD.LLBLGen.Pro.ORMSupportClasses.IEntityCore,System.String)">
+        <member name="M:MonoSoftware.LLBLGen.LLBLGenProGenericAuditor`1.HandleActionData(MonoSoftware.LLBLGen.IAuditInfoEntity,SD.LLBLGen.Pro.ORMSupportClasses.IEntityCore,System.String)">
             <summary>
             Handle Action Data is used to automatically store entity data into a audit info.
             </summary>
@@ -361,6 +347,22 @@
             will result in an exception. It's also recommended not to reference
             the passed in entity in any audit entity you might want to persist as the entity 
             doesn't exist anymore in the database.</remarks>
+        </member>
+        <member name="M:MonoSoftware.LLBLGen.LLBLGenProGenericAuditor`1.AuditLoadOfEntity(SD.LLBLGen.Pro.ORMSupportClasses.IEntityCore)">
+            <summary>
+            Audits the successful load of an entity from the database.
+            </summary>
+            <param name="entity">The entity which was loaded. All data of the entity which was loaded is inside
+                the entity.</param>
+            <remarks>
+            Be careful when using this auditing routine, because the audit information
+                is stored inside the auditor which is inside an entity which might not be
+                persisted/deleted later on. This means that if you use the audit data to
+                produce entities which are then returned by GetAuditEntitiesToSave are never
+                persisted if the entity this auditor is the auditor of is never persisted/deleted.
+                In that situation, to get reliable journalling, use an external service to
+                log the audit data.
+            </remarks>
         </member>
         <member name="M:MonoSoftware.LLBLGen.LLBLGenProGenericAuditor`1.AuditDereferenceOfRelatedEntity(SD.LLBLGen.Pro.ORMSupportClasses.IEntityCore,SD.LLBLGen.Pro.ORMSupportClasses.IEntityCore,System.String)">
             <summary>Audits the successful dereference of related entity from the entity passed in.</summary>
@@ -437,6 +439,11 @@
             successfully.
             </summary>
         </member>
+        <member name="M:MonoSoftware.LLBLGen.LLBLGenProGenericAuditor`1.ClearAuditLog">
+            <summary>
+            Removes all audit logs from memory.
+            </summary>
+        </member>
         <member name="M:MonoSoftware.LLBLGen.LLBLGenProGenericAuditor`1.LogCustomAction``1(SD.LLBLGen.Pro.ORMSupportClasses.IDataAccessAdapter,System.String,System.Object)">
             <summary>
             Audits a custom action.
@@ -494,6 +501,934 @@
             <summary>
             Gets or sets ignored field names.
             </summary>
+        </member>
+        <member name="P:MonoSoftware.LLBLGen.LLBLGenProGenericAuditor`1.IgnoredEntityTypes">
+            <summary>
+            Gets or sets ignored entity types.
+            </summary>
+        </member>
+        <member name="T:MonoSoftware.LLBLGen.IRepositoryExtender">
+            <summary>
+            Repository Extender interface based on the main Repository.
+            </summary>
+        </member>
+        <member name="T:MonoSoftware.LLBLGen.IRepository">
+            <summary>
+            DAL main repository interface based on the LLBLGen.
+            </summary>
+        </member>
+        <member name="M:MonoSoftware.LLBLGen.IRepository.GetAdapter">
+            <summary>
+            Gets the LLBLGen IDataAccessAdapter.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:MonoSoftware.LLBLGen.IRepository.GetSqlServerCompatibilityLevel(SD.LLBLGen.Pro.ORMSupportClasses.IDataAccessAdapter)">
+            <summary>
+            Gets the SQL Server compatibility level.
+            </summary>
+            <param name="dataAdapter">
+            Data access adapter
+            <para>
+            Note: LLBLGen Pro 3.x may contain <see cref="T:SD.LLBLGen.Pro.ORMSupportClasses.SqlServerCompatibilityLevel"/> defined at <see cref="T:SD.LLBLGen.Pro.ORMSupportClasses.IDataAccessAdapter"/> level.
+            </para>
+            </param>
+            <returns>SQL Server compatibility level</returns>
+        </member>
+        <member name="M:MonoSoftware.LLBLGen.IRepository.GetDbCount(SD.LLBLGen.Pro.ORMSupportClasses.IEntityCollection2,SD.LLBLGen.Pro.ORMSupportClasses.IRelationPredicateBucket)">
+            <summary>
+            Gets the estimated number of objects returned by a query for objects to store
+                in the entity collection passed in, using the filter and groupby clause specified.
+                The number is estimated as duplicate objects can be present in the raw query
+                results, but will be filtered out when the query result is transformed into
+                objects.
+            </summary>
+            <param name="collection">EntityCollection instance which will be fetched by the query to get the rowcount
+                for</param>
+            <param name="filter">filter to use by the query to get the rowcount for</param>
+            <returns>the number of rows the query for the fields specified, using the filter,
+                relations and groupbyClause specified.</returns>
+                <remarks>
+                This method performs a SELECT COUNT(*) FROM (actual query) and executes that
+                as a scalar query. This construct is not supported on Firebird. You can try
+                to achieve the same results by using GetScalar and AggregateFunction.CountRow,
+                though those results can differ from the result returned by GetDbCount if
+                you use a group by clause.
+                </remarks>
+        </member>
+        <member name="M:MonoSoftware.LLBLGen.IRepository.FetchEntity(SD.LLBLGen.Pro.ORMSupportClasses.IEntity2)">
+            <summary>
+            Wraps LLBLGEn.FetchEntity functionality. Fetches a single entity.
+            </summary>
+            <param name="entityToFetch">The entity object in which the fetched entity data will be stored.</param>
+            <returns>true if the Fetch was succesful, false otherwise</returns>
+        </member>
+        <member name="M:MonoSoftware.LLBLGen.IRepository.FetchEntity(SD.LLBLGen.Pro.ORMSupportClasses.IEntity2,SD.LLBLGen.Pro.ORMSupportClasses.Context)">
+            <summary>
+            Wraps LLBLGEn.FetchEntity functionality. Fetches a single entity.
+            </summary>
+            <param name="entityToFetch">The entity object in which the fetched entity data will be stored.</param>
+            <param name="context">The context to add the entity to if the fetch was succesful</param>
+            <returns>true if the Fetch was succesful, false otherwise</returns>
+        </member>
+        <member name="M:MonoSoftware.LLBLGen.IRepository.FetchEntity(SD.LLBLGen.Pro.ORMSupportClasses.IEntity2,SD.LLBLGen.Pro.ORMSupportClasses.IPrefetchPath2)">
+            <summary>
+            Wraps LLBLGEn.FetchEntity functionality. Fetches a single entity.
+            </summary>
+            <param name="entityToFetch">The entity object in which the fetched entity data will be stored.</param>
+            <param name="prefetchPath">The prefetch path to use for this fetch, which will fetch all related entities.</param>
+            <returns>true if the Fetch was succesful, false otherwise</returns>
+        </member>
+        <member name="M:MonoSoftware.LLBLGen.IRepository.FetchEntity(SD.LLBLGen.Pro.ORMSupportClasses.IEntity2,SD.LLBLGen.Pro.ORMSupportClasses.IPrefetchPath2,SD.LLBLGen.Pro.ORMSupportClasses.Context)">
+            <summary>
+            Wraps LLBLGEn.FetchEntity functionality. Fetches a single entity.
+            </summary>
+            <param name="entityToFetch">The entity object in which the fetched entity data will be stored.</param>
+            <param name="prefetchPath">The prefetch path to use for this fetch, which will fetch all related entities.</param>
+            <param name="context">The context to add the entity to if the fetch was succesful.</param>
+            <returns>true if the Fetch was succesful, false otherwise</returns>
+        </member>
+        <member name="M:MonoSoftware.LLBLGen.IRepository.FetchEntity(SD.LLBLGen.Pro.ORMSupportClasses.IEntity2,SD.LLBLGen.Pro.ORMSupportClasses.IPrefetchPath2,SD.LLBLGen.Pro.ORMSupportClasses.Context,SD.LLBLGen.Pro.ORMSupportClasses.ExcludeIncludeFieldsList)">
+            <summary>
+            Wraps LLBLGEn.FetchEntity functionality. Fetches a single entity.
+            </summary>
+            <param name="entityToFetch">The entity object in which the fetched entity data will be stored.</param>
+            <param name="prefetchPath">The prefetch path to use for this fetch, which will fetch all related entities.</param>
+            <param name="context">The context to add the entity to if the fetch was succesful.</param>
+            <param name="excludedIncludedFields">The list of IEntityField2 objects which have to be excluded or included for the fetch.</param>
+            <returns>true if the Fetch was succesful, false otherwise</returns>
+        </member>
+        <member name="M:MonoSoftware.LLBLGen.IRepository.FetchEntityCollection(SD.LLBLGen.Pro.ORMSupportClasses.IEntityCollection2,SD.LLBLGen.Pro.ORMSupportClasses.IRelationPredicateBucket)">
+            <summary>
+            Wraps LLBLGEn.FetchEntityCollection functionality. Fetches one or more entities.
+            </summary>
+            <param name="collectionToFill">EntityCollection object containing an entity factory which has to be filled</param>
+            <param name="filterBucket">Filter information for retrieving the entities</param>
+        </member>
+        <member name="M:MonoSoftware.LLBLGen.IRepository.FetchEntityCollection(SD.LLBLGen.Pro.ORMSupportClasses.IEntityCollection2,SD.LLBLGen.Pro.ORMSupportClasses.ExcludeIncludeFieldsList,SD.LLBLGen.Pro.ORMSupportClasses.IRelationPredicateBucket)">
+            <summary>
+            Wraps LLBLGEn.FetchEntityCollection functionality. Fetches one or more entities.
+            </summary>
+            <param name="collectionToFill">EntityCollection object containing an entity factory which has to be filled</param>
+            <param name="excludedIncludedFields">The list of IEntityField2 objects which have to be excluded or included for the fetch.</param>
+            <param name="filterBucket">Filter information for retrieving the entities</param>
+        </member>
+        <member name="M:MonoSoftware.LLBLGen.IRepository.FetchEntityCollection(SD.LLBLGen.Pro.ORMSupportClasses.IEntityCollection2,SD.LLBLGen.Pro.ORMSupportClasses.IRelationPredicateBucket,System.Int32)">
+            <summary>
+            Wraps LLBLGEn.FetchEntityCollection functionality. Fetches one or more entities.
+            </summary>
+            <param name="collectionToFill">EntityCollection object containing an entity factory which has to be filled</param>
+            <param name="filterBucket">Filter information for retrieving the entities</param>
+            <param name="maxNoOfItemsToReturn">The maximum amount of entities to return. If 0, all entities are returned.</param>
+        </member>
+        <member name="M:MonoSoftware.LLBLGen.IRepository.FetchEntityCollection(SD.LLBLGen.Pro.ORMSupportClasses.IEntityCollection2,SD.LLBLGen.Pro.ORMSupportClasses.IRelationPredicateBucket,SD.LLBLGen.Pro.ORMSupportClasses.IPrefetchPath2)">
+            <summary>
+            Wraps LLBLGEn.FetchEntityCollection functionality. Fetches one or more entities.
+            </summary>
+            <param name="collectionToFill">EntityCollection object containing an entity factory which has to be filled</param>
+            <param name="filterBucket">Filter information for retrieving the entities</param>
+            <param name="prefetchPath">The prefetch path to use for this fetch, which will fetch all related entities.</param>
+        </member>
+        <member name="M:MonoSoftware.LLBLGen.IRepository.FetchEntityCollection(SD.LLBLGen.Pro.ORMSupportClasses.IEntityCollection2,SD.LLBLGen.Pro.ORMSupportClasses.IRelationPredicateBucket,System.Int32,SD.LLBLGen.Pro.ORMSupportClasses.ISortExpression)">
+            <summary>
+            Wraps LLBLGEn.FetchEntityCollection functionality. Fetches one or more entities.
+            </summary>
+            <param name="collectionToFill">EntityCollection object containing an entity factory which has to be filled</param>
+            <param name="filterBucket">Filter information for retrieving the entities</param>
+            <param name="maxNumberOfItemsToReturn">The maximum amount of entities to return. If 0, all entities are returned.</param>
+            <param name="sortClauses">SortClause expression which is applied to the query executed, sorting the fetch result.</param>
+        </member>
+        <member name="M:MonoSoftware.LLBLGen.IRepository.FetchEntityCollection(SD.LLBLGen.Pro.ORMSupportClasses.IEntityCollection2,SD.LLBLGen.Pro.ORMSupportClasses.IRelationPredicateBucket,System.Int32,SD.LLBLGen.Pro.ORMSupportClasses.ISortExpression,SD.LLBLGen.Pro.ORMSupportClasses.IPrefetchPath2)">
+            <summary>
+            Wraps LLBLGEn.FetchEntityCollection functionality. Fetches one or more entities.
+            </summary>
+            <param name="collectionToFill">EntityCollection object containing an entity factory which has to be filled.</param>
+            <param name="filterBucket">Filter information for retrieving the entities.</param>
+            <param name="maxNumberOfItemsToReturn">The maximum amount of entities to return. If 0, all entities are returned.</param>
+            <param name="sortClauses">SortClause expression which is applied to the query executed, sorting the fetch result.</param>
+            <param name="prefetchPath">The prefetch path to use for this fetch, which will fetch all related entities.</param>
+        </member>
+        <member name="M:MonoSoftware.LLBLGen.IRepository.FetchEntityCollection(SD.LLBLGen.Pro.ORMSupportClasses.IEntityCollection2,SD.LLBLGen.Pro.ORMSupportClasses.IRelationPredicateBucket,System.Int32,SD.LLBLGen.Pro.ORMSupportClasses.ISortExpression,System.Int32,System.Int32)">
+            <summary>
+            Wraps LLBLGEn.FetchEntityCollection functionality. Fetches one or more entities.
+            </summary>
+            <param name="collectionToFill">EntityCollection object containing an entity factory which has to be filled.</param>
+            <param name="filterBucket">Filter information for retrieving the entities.</param>
+            <param name="maxNumberOfItemsToReturn">The maximum amount of entities to return. If 0, all entities are returned.</param>
+            <param name="sortClauses">SortClause expression which is applied to the query executed, sorting the fetch result.</param>
+            <param name="pageNumber">Page number.</param>
+            <param name="pageSize">Page size.</param>
+        </member>
+        <member name="M:MonoSoftware.LLBLGen.IRepository.FetchEntityCollection(SD.LLBLGen.Pro.ORMSupportClasses.IEntityCollection2,SD.LLBLGen.Pro.ORMSupportClasses.IRelationPredicateBucket,System.Int32,SD.LLBLGen.Pro.ORMSupportClasses.ISortExpression,SD.LLBLGen.Pro.ORMSupportClasses.IPrefetchPath2,SD.LLBLGen.Pro.ORMSupportClasses.ExcludeIncludeFieldsList)">
+            <summary>
+            Wraps LLBLGEn.FetchEntityCollection functionality. Fetches one or more entities.
+            </summary>
+            <param name="collectionToFill">EntityCollection object containing an entity factory which has to be filled.</param>
+            <param name="filterBucket">Filter information for retrieving the entities.</param>
+            <param name="maxNumberOfItemsToReturn">The maximum amount of entities to return. If 0, all entities are returned.</param>
+            <param name="sortClauses">SortClause expression which is applied to the query executed, sorting the fetch result.</param>
+            <param name="prefetchPath">The prefetch path to use for this fetch, which will fetch all related entities.</param>
+            <param name="excludedIncludedFields">The list of IEntityField2 objects which have to be excluded or included for the fetch.</param>
+        </member>
+        <member name="M:MonoSoftware.LLBLGen.IRepository.FetchEntityCollection(SD.LLBLGen.Pro.ORMSupportClasses.IEntityCollection2,SD.LLBLGen.Pro.ORMSupportClasses.IRelationPredicateBucket,System.Int32,SD.LLBLGen.Pro.ORMSupportClasses.ISortExpression,SD.LLBLGen.Pro.ORMSupportClasses.IPrefetchPath2,System.Int32,System.Int32)">
+            <summary>
+            Wraps LLBLGEn.FetchEntityCollection functionality. Fetches one or more entities.
+            </summary>
+            <param name="collectionToFill">EntityCollection object containing an entity factory which has to be filled.</param>
+            <param name="filterBucket">Filter information for retrieving the entities.</param>
+            <param name="maxNumberOfItemsToReturn">The maximum amount of entities to return. If 0, all entities are returned.</param>
+            <param name="sortClauses">SortClause expression which is applied to the query executed, sorting the fetch result.</param>
+            <param name="prefetchPath">The prefetch path to use for this fetch, which will fetch all related entities.</param>
+            <param name="pageNumber">Page number.</param>
+            <param name="pageSize">Page size.</param>
+        </member>
+        <member name="M:MonoSoftware.LLBLGen.IRepository.FetchEntityCollection(SD.LLBLGen.Pro.ORMSupportClasses.IEntityCollection2,SD.LLBLGen.Pro.ORMSupportClasses.IRelationPredicateBucket,System.Int32,SD.LLBLGen.Pro.ORMSupportClasses.ISortExpression,SD.LLBLGen.Pro.ORMSupportClasses.IPrefetchPath2,SD.LLBLGen.Pro.ORMSupportClasses.ExcludeIncludeFieldsList,System.Int32,System.Int32)">
+            <summary>
+            Wraps LLBLGEn.FetchEntityCollection functionality. Fetches one or more entities.
+            </summary>
+            <param name="collectionToFill">EntityCollection object containing an entity factory which has to be filled.</param>
+            <param name="filterBucket">Filter information for retrieving the entities.</param>
+            <param name="maxNumberOfItemsToReturn">The maximum amount of entities to return. If 0, all entities are returned.</param>
+            <param name="sortClauses">SortClause expression which is applied to the query executed, sorting the fetch result.</param>
+            <param name="prefetchPath">The prefetch path to use for this fetch, which will fetch all related entities.</param>
+            <param name="excludeIncludeFieldsList">Exclude and include field list</param>
+            <param name="pageNumber">Page number.</param>
+            <param name="pageSize">Page size.</param>
+        </member>
+        <member name="M:MonoSoftware.LLBLGen.IRepository.FetchEntityUsingUniqueConstraint(SD.LLBLGen.Pro.ORMSupportClasses.IEntity2,SD.LLBLGen.Pro.ORMSupportClasses.IPredicateExpression,SD.LLBLGen.Pro.ORMSupportClasses.IPrefetchPath2)">
+            <summary>
+            Fetches an entity from the persistent storage into the object specified using the filter specified. 
+            </summary>
+            <param name="entityToFetch">The entity object in which the fetched entity data will be stored.</param>
+            <param name="uniqueConstraintFilter">The filter which should filter on fields with a unique constraint.</param>
+            <param name="prefetchPath">The prefetch path to use for this fetch, which will fetch all related entities.</param>
+            <returns>true if the Fetch was succesful, false otherwise</returns>
+        </member>
+        <member name="M:MonoSoftware.LLBLGen.IRepository.FetchEntityUsingUniqueConstraint(SD.LLBLGen.Pro.ORMSupportClasses.IEntity2,SD.LLBLGen.Pro.ORMSupportClasses.IPredicateExpression)">
+            <summary>
+            Fetches an entity from the persistent storage into the object specified using the filter specified. 
+            </summary>
+            <param name="entityToFetch">The entity object in which the fetched entity data will be stored.</param>
+            <param name="uniqueConstraintFilter">The filter which should filter on fields with a unique constraint.</param>
+            <returns>true if the Fetch was succesful, false otherwise</returns>
+        </member>
+        <member name="M:MonoSoftware.LLBLGen.IRepository.SaveEntity(SD.LLBLGen.Pro.ORMSupportClasses.IEntity2)">
+            <summary>
+            Wraps the LLBLGen SaveEntity. Saves an entity to the database
+            </summary>
+            <param name="entityToSave">Entity to save</param>
+        </member>
+        <member name="M:MonoSoftware.LLBLGen.IRepository.SaveEntity(SD.LLBLGen.Pro.ORMSupportClasses.IEntity2,System.Boolean)">
+            <summary>
+            Wraps the LLBLGen SaveEntity. Saves an entity to the database
+            </summary>
+            <param name="entityToSave">Entity to save</param>
+            <param name="refetchAfterSave">If true, refetch the entity after save</param>
+        </member>
+        <member name="M:MonoSoftware.LLBLGen.IRepository.SaveEntity(SD.LLBLGen.Pro.ORMSupportClasses.IEntity2,System.Boolean,System.Boolean)">
+            <summary>
+            Wraps the LLBLGen SaveEntity. Saves an entity to the database
+            </summary>
+            <param name="entityToSave">Entity to save</param>
+            <param name="refetchAfterSave">If true, refetch the entity after save</param>
+            <param name="recurse">Recursively saves all child entities</param>
+        </member>
+        <member name="M:MonoSoftware.LLBLGen.IRepository.SaveEntityCollection(SD.LLBLGen.Pro.ORMSupportClasses.IEntityCollection2)">
+            <summary>
+            Saves all dirty entities in an entity collection.
+            </summary>
+            <param name="collectionToSave">Entity collection to save.</param>
+            <returns>Number of entities saved.</returns>
+        </member>
+        <member name="M:MonoSoftware.LLBLGen.IRepository.SaveEntityCollection(SD.LLBLGen.Pro.ORMSupportClasses.IEntityCollection2,System.Boolean,System.Boolean)">
+            <summary>
+            Saves all dirty entities in an entity collection. Recursively saves all child entities and refetches the collection.
+            </summary>
+            <param name="collectionToSave">Entity collection to save.</param>
+            <param name="refetchAfterSave">When set to true refetches the collection after save.</param>
+            <param name="recurse">Recursively saves all child entities.</param>
+            <returns>Number of entities saved.</returns>
+        </member>
+        <member name="M:MonoSoftware.LLBLGen.IRepository.UpdateEntitiesDirectly(SD.LLBLGen.Pro.ORMSupportClasses.IEntity2,SD.LLBLGen.Pro.ORMSupportClasses.IRelationPredicateBucket)">
+            <summary>
+            Updates entities directly in the database, according to the values set in the entityWithNewValues.
+            </summary>
+            <param name="entityWithNewValues">Entity that holds values for update.</param>
+            <param name="filter">Filter that restricts the entities to be updated.</param>
+            <returns>Number of entities updated.</returns>
+        </member>
+        <member name="M:MonoSoftware.LLBLGen.IRepository.DeleteEntitiesDirectly(System.String,SD.LLBLGen.Pro.ORMSupportClasses.IRelationPredicateBucket)">
+            <summary>
+            Directly deletes an entity (or multiple entities) in the database
+            </summary>
+            <param name="entityName">The name of the entity</param>
+            <param name="filter">Filter to use </param>
+            <returns>Number of deleted entities</returns>
+        </member>
+        <member name="M:MonoSoftware.LLBLGen.IRepository.DeleteEntitiesDirectly(System.Type,SD.LLBLGen.Pro.ORMSupportClasses.IRelationPredicateBucket)">
+            <summary>
+            Directly deletes an entity (or multiple entities) in the database
+            </summary>
+            <param name="typeOfEntity">The type of the entity</param>
+            <param name="filter">Filter to use </param>
+            <returns>Number of deleted entities</returns>
+        </member>
+        <member name="M:MonoSoftware.LLBLGen.IRepository.DeleteEntity(SD.LLBLGen.Pro.ORMSupportClasses.IEntity2)">
+            <summary>
+            Deletes an entity.
+            </summary>
+            <param name="entityToDelete">Entity to delete</param>
+            <returns>True if successful, false otherwise</returns>
+        </member>
+        <member name="M:MonoSoftware.LLBLGen.IRepository.DeleteEntity(SD.LLBLGen.Pro.ORMSupportClasses.IEntity2,SD.LLBLGen.Pro.ORMSupportClasses.IPredicateExpression)">
+            <summary>
+            Deletes an entity.
+            </summary>
+            <param name="entityToDelete">Entity to delete</param>
+            <param name="deleteRestriction">Delete restriction filter</param>
+            <returns>True if successful, false otherwise</returns>
+        </member>
+        <member name="M:MonoSoftware.LLBLGen.IRepository.DeleteEntityCollection(SD.LLBLGen.Pro.ORMSupportClasses.IEntityCollection2)">
+            <summary>
+            Deletes all dirty objects inside a collection.
+            </summary>
+            <param name="collectionToDelete">Collection to delete.</param>
+            <returns>Number of items deleted.</returns>
+        </member>
+        <member name="M:MonoSoftware.LLBLGen.IRepository.CommitUnitOfWork(SD.LLBLGen.Pro.ORMSupportClasses.UnitOfWork2)">
+            <summary>
+            Commits unit of work in a transaction
+            </summary>
+            <param name="unitOfWork">Unit of work to commit</param>
+            <returns> The total # of entities affected by all actions performed in the Commit method</returns>
+        </member>
+        <member name="M:MonoSoftware.LLBLGen.IRepository.CommitUnitOfWork(SD.LLBLGen.Pro.ORMSupportClasses.UnitOfWork2,System.Boolean)">
+            <summary>
+            Commits unit of work in a transaction and defines whether an automated transaction encapsulaption and rollback in case of error is performed.
+            </summary>
+            <param name="unitOfWork">Unit of work to commit</param>
+            <param name="autoCommit">If true, automated transaction encapsulaption and rollback in case of error is performed.</param>
+            <returns> The total # of entities affected by all actions performed in the Commit method</returns>
+        </member>
+        <member name="M:MonoSoftware.LLBLGen.IRepository.FetchTypedList(SD.LLBLGen.Pro.ORMSupportClasses.ITypedListLgp2)">
+            <summary>
+                Fetches the fields passed in fieldCollectionToFetch from the persistent storage
+                using the relations and filter information stored in the passed in typed
+                list.  For TypedView filling, use the method FetchTypedView()
+            </summary>
+            <param name="typedListToFill">Typed list to fill.</param>
+            <remarks>
+            Grabs the fields list and relations set from the typed list passed in.
+            </remarks>
+        </member>
+        <member name="M:MonoSoftware.LLBLGen.IRepository.FetchTypedList(SD.LLBLGen.Pro.ORMSupportClasses.ITypedListLgp2,SD.LLBLGen.Pro.ORMSupportClasses.IPredicateExpression)">
+            <summary>
+                Fetches the fields passed in fieldCollectionToFetch from the persistent storage
+                using the relations and filter information stored in the passed in typed
+                list.  For TypedView filling, use the method FetchTypedView()
+            </summary>
+            <param name="typedListToFill">Typed list to fill.</param>
+            <param name="additionalFilter">
+            An additional filter to use to filter the fetch of the typed list. If you
+                need a more sophisticated filter approach, please use the overload which
+                accepts an IRelationalPredicateBucket and add your filter to the bucket you
+                receive when calling typedListToFill.GetRelationInfo().
+            </param>
+            <remarks>
+            Grabs the fields list and relations set from the typed list passed in.
+            </remarks>
+        </member>
+        <member name="M:MonoSoftware.LLBLGen.IRepository.FetchTypedList(SD.LLBLGen.Pro.ORMSupportClasses.IEntityFields2,System.Data.DataTable,SD.LLBLGen.Pro.ORMSupportClasses.IRelationPredicateBucket)">
+            <summary>
+            Fetches the fields passed in fieldCollectionToFetch from the persistent storage
+                using the relations and filter information stored in filterBucket into the
+                DataTable object passed in. Use this routine to fill a typed list object.
+                Doesn't apply any sorting, doesn't limit the resultset on the amount of rows
+                to return, does allow duplicates.  For TypedView filling, use the method
+                FetchTypedView().
+            </summary>
+            <param name="fieldCollectionToFetch">IEntityField2 collection which contains the fields to fetch into the datatable.
+                The fields inside this object are used to construct the selection resultset.</param>
+            <param name="dataTableToFill">The datatable object to fill with the data for the fields in fieldCollectionToFetch.</param>
+            <param name="filterBucket">filter information (relations and predicate expressions) for retrieving the
+                data. Use the TypedList's method GetRelationInfo() to retrieve this bucket.</param>
+        </member>
+        <member name="M:MonoSoftware.LLBLGen.IRepository.FetchTypedList(SD.LLBLGen.Pro.ORMSupportClasses.IEntityFields2,System.Data.DataTable,SD.LLBLGen.Pro.ORMSupportClasses.IRelationPredicateBucket,System.Boolean)">
+            <summary>
+            Fetches the fields passed in fieldCollectionToFetch from the persistent storage
+                using the relations and filter information stored in filterBucket into the
+                DataTable object passed in. Use this routine to fill a typed list object.
+                Doesn't apply any sorting, doesn't limit the resultset on the amount of rows
+                to return.  For TypedView filling, use the method FetchTypedView().
+            </summary>
+            <param name="fieldCollectionToFetch">IEntityField2 collection which contains the fields to fetch into the datatable.
+                The fields inside this object are used to construct the selection resultset.</param>
+            <param name="dataTableToFill">The datatable object to fill with the data for the fields in fieldCollectionToFetch</param>
+            <param name="filterBucket">filter information (relations and predicate expressions) for retrieving the
+                data. Use the TypedList's method GetRelationInfo() to retrieve this bucket.</param>
+            <param name="allowDuplicates">When true, it will not filter out duplicate rows, otherwise it will DISTINCT
+                duplicate rows.</param>
+        </member>
+        <member name="M:MonoSoftware.LLBLGen.IRepository.FetchTypedList(SD.LLBLGen.Pro.ORMSupportClasses.IEntityFields2,System.Data.DataTable,SD.LLBLGen.Pro.ORMSupportClasses.IRelationPredicateBucket,System.Int32,System.Boolean)">
+            <summary>
+            Fetches the fields passed in fieldCollectionToFetch from the persistent storage
+                using the relations and filter information stored in filterBucket into the
+                DataTable object passed in. Use this routine to fill a typed list object.
+                Doesn't apply any sorting.  For TypedView filling, use the method FetchTypedView()
+            </summary>
+            <param name="fieldCollectionToFetch">IEntityField2 collection which contains the fields to fetch into the datatable.
+                The fields inside this object are used to construct the selection resultset.</param>
+            <param name="dataTableToFill">The datatable object to fill with the data for the fields in fieldCollectionToFetch</param>
+            <param name="filterBucket"> filter information (relations and predicate expressions) for retrieving the
+                data. Use the TypedList's method GetRelationInfo() to retrieve this bucket.</param>
+            <param name="maxNumberOfItemsToReturn">The maximum amount of rows to return. If 0, all rows matching the filter
+                are returned</param>
+            <param name="allowDuplicates">When true, it will not filter out duplicate rows, otherwise it will DISTINCT
+                duplicate rows.</param>
+        </member>
+        <member name="M:MonoSoftware.LLBLGen.IRepository.FetchTypedList(SD.LLBLGen.Pro.ORMSupportClasses.ITypedListLgp2,SD.LLBLGen.Pro.ORMSupportClasses.IPredicateExpression,System.Int32,SD.LLBLGen.Pro.ORMSupportClasses.ISortExpression,System.Boolean)">
+            <summary>
+            Fetches the fields passed in fieldCollectionToFetch from the persistent storage
+                using the relations and filter information stored in the passed in typed
+                list.  For TypedView filling, use the method FetchTypedView().
+            </summary>
+            <param name="typedListToFill">Typed list to fill.</param>
+            <param name="additionalFilter">An additional filter to use to filter the fetch of the typed list. If you
+                need a more sophisticated filter approach, please use the overload which
+                accepts an IRelationalPredicateBucket and add your filter to the bucket you
+                receive when calling typedListToFill.GetRelationInfo().</param>
+            <param name="maxNumberOfItemsToReturn">The maximum amount of rows to return. If 0, all rows matching the filter
+                are returned</param>
+            <param name="sortClauses">SortClause expression which is applied to the query executed, sorting the
+                fetch result.</param>
+            <param name="allowDuplicates">When true, it will not filter out duplicate rows, otherwise it will DISTINCT
+                duplicate rows.</param>
+                <remarks>
+                Grabs the fields list and relations set from the typed list passed in.
+                </remarks>
+        </member>
+        <member name="M:MonoSoftware.LLBLGen.IRepository.FetchTypedList(SD.LLBLGen.Pro.ORMSupportClasses.IEntityFields2,System.Data.DataTable,SD.LLBLGen.Pro.ORMSupportClasses.IRelationPredicateBucket,System.Int32,SD.LLBLGen.Pro.ORMSupportClasses.ISortExpression,System.Boolean)">
+            <summary>
+            Fetches the fields passed in fieldCollectionToFetch from the persistent storage
+                using the relations and filter information stored in filterBucket into the
+                DataTable object passed in. Use this routine to fill a typed list object.
+                For TypedView filling, use the method FetchTypedView().
+            </summary>
+            <param name="fieldCollectionToFetch">IEntityField2 collection which contains the fields to fetch into the datatable.
+                The fields inside this object are used to construct the selection resultset.
+                Use the typed list's method GetFieldsInfo() to retrieve this IEntityField2
+                information</param>
+            <param name="dataTableToFill">The datatable object to fill with the data for the fields in fieldCollectionToFetch</param>
+            <param name="filterBucket">filter information (relations and predicate expressions) for retrieving the
+                data. Use the TypedList's method GetRelationInfo() to retrieve this bucket.</param>
+            <param name="maxNumberOfItemsToReturn">The maximum amount of rows to return. If 0, all rows matching the filter
+                are returned</param>
+            <param name="sortClauses">SortClause expression which is applied to the query executed, sorting the
+                fetch result.</param>
+            <param name="allowDuplicates">When true, it will not filter out duplicate rows, otherwise it will DISTINCT
+                duplicate rows.</param>
+        </member>
+        <member name="M:MonoSoftware.LLBLGen.IRepository.FetchTypedList(SD.LLBLGen.Pro.ORMSupportClasses.IEntityFields2,System.Data.DataTable,SD.LLBLGen.Pro.ORMSupportClasses.IRelationPredicateBucket,System.Int32,SD.LLBLGen.Pro.ORMSupportClasses.ISortExpression,System.Boolean,SD.LLBLGen.Pro.ORMSupportClasses.IGroupByCollection)">
+            <summary>
+            Fetches the fields passed in fieldCollectionToFetch from the persistent storage
+                using the relations and filter information stored in filterBucket into the
+                DataTable object passed in. Use this routine to fill a typed list object.
+                For TypedView filling, use the method FetchTypedView()
+            </summary>
+            <param name="fieldCollectionToFetch">IEntityField2 collection which contains the fields to fetch into the datatable.
+                The fields inside this object are used to construct the selection resultset.
+                Use the typed list's method GetFieldsInfo() to retrieve this IEntityField2
+                information</param>
+            <param name="dataTableToFill">The datatable object to fill with the data for the fields in fieldCollectionToFetch</param>
+            <param name="filterBucket">filter information (relations and predicate expressions) for retrieving the
+                data. Use the TypedList's method GetRelationInfo() to retrieve this bucket.</param>
+            <param name="maxNumberOfItemsToReturn">The maximum amount of rows to return. If 0, all rows matching the filter
+                are returned</param>
+            <param name="sortClauses">SortClause expression which is applied to the query executed, sorting the
+                fetch result.</param>
+            <param name="allowDuplicates">When true, it will not filter out duplicate rows, otherwise it will DISTINCT
+                duplicate rows.</param>
+            <param name="groupByClause">GroupByCollection with fields to group by on</param>
+        </member>
+        <member name="M:MonoSoftware.LLBLGen.IRepository.FetchTypedList(SD.LLBLGen.Pro.ORMSupportClasses.ITypedListLgp2,SD.LLBLGen.Pro.ORMSupportClasses.IPredicateExpression,System.Int32,SD.LLBLGen.Pro.ORMSupportClasses.ISortExpression,System.Boolean,System.Int32,System.Int32)">
+            <summary>
+            Fetches the fields passed in fieldCollectionToFetch from the persistent storage
+                using the relations and filter information stored in the passed in typed
+                list.  For TypedView filling, use the method FetchTypedView().
+            </summary>
+            <param name="typedListToFill">Typed list to fill.</param>
+            <param name="additionalFilter">An additional filter to use to filter the fetch of the typed list. If you
+                need a more sophisticated filter approach, please use the overload which
+                accepts an IRelationalPredicateBucket and add your filter to the bucket you
+                receive when calling typedListToFill.GetRelationInfo().</param>
+            <param name="maxNumberOfItemsToReturn">The maximum amount of rows to return. If 0, all rows matching the filter
+                are returned</param>
+            <param name="sortClauses">SortClause expression which is applied to the query executed, sorting the
+                fetch result.</param>
+            <param name="allowDuplicates">When true, it will not filter out duplicate rows, otherwise it will DISTINCT
+                duplicate rows.</param>
+            <param name="pageNumber">the page number to retrieve. First page is 1. When set to 0, no paging logic
+                is applied</param>
+            <param name="pageSize">the size of the page. When set to 0, no paging logic is applied</param>
+            <remarks>
+            Grabs the fields list and relations set from the typed list passed in.
+            </remarks>
+        </member>
+        <member name="M:MonoSoftware.LLBLGen.IRepository.FetchTypedList(SD.LLBLGen.Pro.ORMSupportClasses.IEntityFields2,System.Data.DataTable,SD.LLBLGen.Pro.ORMSupportClasses.IRelationPredicateBucket,System.Int32,SD.LLBLGen.Pro.ORMSupportClasses.ISortExpression,System.Boolean,SD.LLBLGen.Pro.ORMSupportClasses.IGroupByCollection,System.Int32,System.Int32)">
+            <summary>
+            Fetches the fields passed in fieldCollectionToFetch from the persistent storage
+                using the relations and filter information stored in filterBucket into the
+                DataTable object passed in. Use this routine to fill a typed list object.
+                For TypedView filling, use the method FetchTypedView().
+            </summary>
+            <param name="fieldCollectionToFetch">IEntityField2 collection which contains the fields to fetch into the datatable.
+                The fields inside this object are used to construct the selection resultset.
+                Use the typed list's method GetFieldsInfo() to retrieve this IEntityField2
+                information</param>
+            <param name="dataTableToFill">The datatable object to fill with the data for the fields in fieldCollectionToFetch</param>
+            <param name="filterBucket">filter information (relations and predicate expressions) for retrieving the
+                data. Use the TypedList's method GetRelationInfo() to retrieve this bucket.</param>
+            <param name="maxNumberOfItemsToReturn">The maximum amount of rows to return. If 0, all rows matching the filter
+                are returned</param>
+            <param name="sortClauses">SortClause expression which is applied to the query executed, sorting the
+                fetch result.</param>
+            <param name="allowDuplicates">When true, it will not filter out duplicate rows, otherwise it will DISTINCT
+                duplicate rows.</param>
+            <param name="groupByClause">GroupByCollection with fields to group by on</param>
+            <param name="pageNumber">the page number to retrieve. First page is 1. When set to 0, no paging logic
+                is applied</param>
+            <param name="pageSize">the size of the page. When set to 0, no paging logic is applied</param>
+        </member>
+        <member name="M:MonoSoftware.LLBLGen.IRepository.FetchDataReader(SD.LLBLGen.Pro.ORMSupportClasses.IRetrievalQuery,System.Data.CommandBehavior)">
+            <summary>
+            Executes the passed in retrievalquery and returns an open, ready to use IDataReader.
+                The datareader's command behavior is set to the readerBehavior passed in.
+                If a transaction is in progress, the command is wired to the transaction.
+            </summary>
+            <param name="queryToExecute">The query to execute.</param>
+            <param name="readerBehavior">The reader behavior to set.</param>
+            <returns>Open, ready to use IDataReader</returns>
+            <remarks>
+            Advanced functionality: be aware that the datareader returned is open, and
+                the dataaccessadapter's connection is also open
+            </remarks>
+        </member>
+        <member name="M:MonoSoftware.LLBLGen.IRepository.FetchDataReader(SD.LLBLGen.Pro.ORMSupportClasses.IEntityFields2,SD.LLBLGen.Pro.ORMSupportClasses.IRelationPredicateBucket,System.Data.CommandBehavior,System.Int32,System.Boolean)">
+            <summary>
+            Creates a new Retrieval query from the elements passed in and executes that
+                retrievalquery to return an open, ready to use IDataReader.  The datareader's
+                command behavior is set to the readerBehavior passed in. If a transaction
+                is in progress, the command is wired to the transaction.
+            </summary>
+            <param name="fields">The fields to use to build the query.</param>
+            <param name="filter">The filter.</param>
+            <param name="readerBehavior">The reader behavior to set.</param>
+            <param name="maxNumberOfItemsToReturn"> The max number of items to return. Specify 0 to return all elements</param>
+            <param name="allowDuplicates">If set to true, allow duplicates in the resultset, otherwise try to emit
+                DISTINCT (if possible).</param>
+            <returns>Open, ready to use IDataReader</returns>
+            <remarks>
+            Advanced functionality: be aware that the datareader returned is open, and
+                the dataaccessadapter's connection is also open
+            </remarks>
+        </member>
+        <member name="M:MonoSoftware.LLBLGen.IRepository.FetchDataReader(SD.LLBLGen.Pro.ORMSupportClasses.IEntityFields2,SD.LLBLGen.Pro.ORMSupportClasses.IRelationPredicateBucket,System.Data.CommandBehavior,System.Int32,SD.LLBLGen.Pro.ORMSupportClasses.ISortExpression,System.Boolean)">
+            <summary>
+            Creates a new Retrieval query from the elements passed in and executes that
+                retrievalquery to return an open, ready to use IDataReader.  The datareader's
+                command behavior is set to the readerBehavior passed in. If a transaction
+                is in progress, the command is wired to the transaction.
+            </summary>
+            <param name="fields">The fields to use to build the query.</param>
+            <param name="filter">The filter.</param>
+            <param name="readerBehavior"> The reader behavior to set.</param>
+            <param name="maxNumberOfItemsToReturn">The max number of items to return. Specify 0 to return all elements</param>
+            <param name="sortClauses">The sort clauses.</param>
+            <param name="allowDuplicates">If set to true, allow duplicates in the resultset, otherwise try to emit
+                DISTINCT (if possible).</param>
+            <returns> Open, ready to use IDataReader</returns>
+            <remarks>
+            Advanced functionality: be aware that the datareader returned is open, and
+                the dataaccessadapter's connection is also open
+            </remarks>
+        </member>
+        <member name="M:MonoSoftware.LLBLGen.IRepository.FetchDataReader(SD.LLBLGen.Pro.ORMSupportClasses.IEntityFields2,SD.LLBLGen.Pro.ORMSupportClasses.IRelationPredicateBucket,System.Data.CommandBehavior,System.Int32,SD.LLBLGen.Pro.ORMSupportClasses.ISortExpression,System.Boolean,System.Int32,System.Int32)">
+            <summary>
+            Creates a new Retrieval query from the elements passed in and executes that
+                retrievalquery to return an open, ready to use IDataReader.  The datareader's
+                command behavior is set to the readerBehavior passed in. If a transaction
+                is in progress, the command is wired to the transaction.
+            </summary>
+            <param name="fields">The fields to use to build the query.</param>
+            <param name="filter">The filter.</param>
+            <param name="readerBehavior">The reader behavior to set.</param>
+            <param name="maxNumberOfItemsToReturn">The max number of items to return. Specify 0 to return all elements</param>
+            <param name="sortClauses">The sort clauses.</param>
+            <param name="allowDuplicates">If set to true, allow duplicates in the resultset, otherwise try to emit
+                DISTINCT (if possible).</param>
+            <param name="pageNumber"> The page number.</param>
+            <param name="pageSize">Size of the page.</param>
+            <returns>Open, ready to use IDataReader</returns>
+            <remarks>
+            Advanced functionality: be aware that the datareader returned is open, and
+                the dataaccessadapter's connection is also open
+            </remarks>
+        </member>
+        <member name="M:MonoSoftware.LLBLGen.IRepository.FetchDataReader(SD.LLBLGen.Pro.ORMSupportClasses.IEntityFields2,SD.LLBLGen.Pro.ORMSupportClasses.IRelationPredicateBucket,System.Data.CommandBehavior,System.Int32,SD.LLBLGen.Pro.ORMSupportClasses.ISortExpression,SD.LLBLGen.Pro.ORMSupportClasses.IGroupByCollection,System.Boolean,System.Int32,System.Int32)">
+            <summary>
+            Creates a new Retrieval query from the elements passed in and executes that
+                retrievalquery to return an open, ready to use IDataReader.  The datareader's
+                command behavior is set to the readerBehavior passed in. If a transaction
+                is in progress, the command is wired to the transaction.
+            </summary>
+            <param name="fields">The fields to use to build the query.</param>
+            <param name="filter">The filter.</param>
+            <param name="readerBehavior">The reader behavior to set.</param>
+            <param name="maxNumberOfItemsToReturn">The max number of items to return. Specify 0 to return all elements</param>
+            <param name="sortClauses">The sort clauses.</param>
+            <param name="groupByClause">The group by clause.</param>
+            <param name="allowDuplicates">If set to true, allow duplicates in the resultset, otherwise try to emit
+                DISTINCT (if possible).</param>
+            <param name="pageNumber">The page number.</param>
+            <param name="pageSize">Size of the page.</param>
+            <returns>Open, ready to use IDataReader</returns>
+            <remarks>
+             Advanced functionality: be aware that the datareader returned is open, and
+                the dataaccessadapter's connection is also open
+            </remarks>
+        </member>
+        <member name="M:MonoSoftware.LLBLGen.IRepository.GetDbCount(SD.LLBLGen.Pro.ORMSupportClasses.IEntityFields2,SD.LLBLGen.Pro.ORMSupportClasses.IRelationPredicateBucket)">
+            <summary>
+            Gets the number of rows returned by a query for the fields specified, using
+                the filter and groupby clause specified.
+            </summary>
+            <param name="fields">IEntityFields2 instance with the fields returned by the query to get the
+                rowcount for</param>
+            <param name="filter">filter to use by the query to get the rowcount for</param>
+            <returns>the number of rows the query for the fields specified, using the filter,
+                relations and groupbyClause specified.</returns>
+            <remarks>
+            This method performs a SELECT COUNT(*) FROM (actual query) and executes that
+                as a scalar query. This construct is not supported on Firebird. You can try
+                to achieve the same results by using GetScalar and AggregateFunction.CountRow,
+                though those results can differ from the result returned by GetDbCount if
+                you use a group by clause.
+            </remarks>
+        </member>
+        <member name="M:MonoSoftware.LLBLGen.IRepository.GetDbCount(SD.LLBLGen.Pro.ORMSupportClasses.IEntityCollection2,SD.LLBLGen.Pro.ORMSupportClasses.IRelationPredicateBucket,SD.LLBLGen.Pro.ORMSupportClasses.IGroupByCollection)">
+            <summary>
+            Gets the estimated number of objects returned by a query for objects to store
+                in the entity collection passed in, using the filter and groupby clause specified.
+                The number is estimated as duplicate objects can be present in the raw query
+                results, but will be filtered out when the query result is transformed into
+                objects.
+            </summary>
+            <param name="collection">EntityCollection instance which will be fetched by the query to get the rowcount
+                for</param>
+            <param name="filter">filter to use by the query to get the rowcount for</param>
+            <param name="groupByClause">The list of fields to group by on. When not specified or an empty collection
+                is specified, no group by clause is added to the query. A check is performed
+                for each field in the selectList. If a field in the selectList is not present
+                in the groupByClause collection, an exception is thrown.</param>
+            <returns>the number of rows the query for the fields specified, using the filter,
+                relations and groupbyClause specified.</returns>
+                <remarks>
+                This method performs a SELECT COUNT(*) FROM (actual query) and executes that
+                as a scalar query. This construct is not supported on Firebird. You can try
+                to achieve the same results by using GetScalar and AggregateFunction.CountRow,
+                though those results can differ from the result returned by GetDbCount if
+                you use a group by clause.
+                </remarks>
+        </member>
+        <member name="M:MonoSoftware.LLBLGen.IRepository.GetDbCount(SD.LLBLGen.Pro.ORMSupportClasses.IEntityFields2,SD.LLBLGen.Pro.ORMSupportClasses.IRelationPredicateBucket,SD.LLBLGen.Pro.ORMSupportClasses.IGroupByCollection)">
+            <summary>
+            Gets the number of rows returned by a query for the fields specified, using
+                the filter and groupby clause specified.
+            </summary>
+            <param name="fields">IEntityFields2 instance with the fields returned by the query to get the
+                rowcount for</param>
+            <param name="filter">filter to use by the query to get the rowcount for</param>
+            <param name="groupByClause">The list of fields to group by on. When not specified or an empty collection
+                is specified, no group by clause is added to the query. A check is performed
+                for each field in the selectList. If a field in the selectList is not present
+                in the groupByClause collection, an exception is thrown.</param>
+            <returns>the number of rows the query for the fields specified, using the filter,
+                relations and groupbyClause specified.</returns>
+                <remarks>
+                This method performs a SELECT COUNT(*) FROM (actual query) and executes that
+                as a scalar query. This construct is not supported on Firebird. You can try
+                to achieve the same results by using GetScalar and AggregateFunction.CountRow,
+                though those results can differ from the result returned by GetDbCount if
+                you use a group by clause.
+                </remarks>
+        </member>
+        <member name="M:MonoSoftware.LLBLGen.IRepository.GetDbCount(SD.LLBLGen.Pro.ORMSupportClasses.IEntityFields2,SD.LLBLGen.Pro.ORMSupportClasses.IRelationPredicateBucket,SD.LLBLGen.Pro.ORMSupportClasses.IGroupByCollection,System.Boolean)">
+            <summary>
+            Gets the number of rows returned by a query for the fields specified, using
+                the filter and groupby clause specified.
+            </summary>
+            <param name="fields">IEntityFields2 instance with the fields returned by the query to get the
+                rowcount for</param>
+            <param name="filter">filter to use by the query to get the rowcount for</param>
+            <param name="groupByClause">The list of fields to group by on. When not specified or an empty collection
+                is specified, no group by clause is added to the query. A check is performed
+                for each field in the selectList. If a field in the selectList is not present
+                in the groupByClause collection, an exception is thrown.</param>
+            <param name="allowDuplicates">When true, it will not filter out duplicate rows, otherwise it will DISTINCT
+                duplicate rows.</param>
+            <returns>the number of rows the query for the fields specified, using the filter,
+                relations and groupbyClause specified.</returns>
+                <remarks>
+                This method performs a SELECT COUNT(*) FROM (actual query) and executes that
+                as a scalar query. This construct is not supported on Firebird. You can try
+                to achieve the same results by using GetScalar and AggregateFunction.CountRow,
+                though those results can differ from the result returned by GetDbCount if
+                you use a group by clause.
+                </remarks>
+        </member>
+        <member name="M:MonoSoftware.LLBLGen.IRepository.GetScalar(SD.LLBLGen.Pro.ORMSupportClasses.IEntityField2,SD.LLBLGen.Pro.ORMSupportClasses.AggregateFunction)">
+            <summary>
+            Gets a scalar value, calculated with the aggregate and expression specified.
+                the field specified is the field the expression and aggregate are applied
+                on.
+            </summary>
+            <param name="field">Field to which to apply the aggregate function and expression</param>
+            <param name="aggregateToApply">Aggregate function to apply.</param>
+            <returns>the scalar value requested</returns>
+        </member>
+        <member name="M:MonoSoftware.LLBLGen.IRepository.GetScalar(SD.LLBLGen.Pro.ORMSupportClasses.IEntityField2,SD.LLBLGen.Pro.ORMSupportClasses.IExpression,SD.LLBLGen.Pro.ORMSupportClasses.AggregateFunction)">
+            <summary>
+            Gets a scalar value, calculated with the aggregate and expression specified.
+                the field specified is the field the expression and aggregate are applied
+                on.
+            </summary>
+            <param name="field">Field to which to apply the aggregate function and expression</param>
+            <param name="expressionToExecute">The expression to execute. Can be null</param>
+            <param name="aggregateToApply">Aggregate function to apply.</param>
+            <returns>the scalar value requested</returns>
+        </member>
+        <member name="M:MonoSoftware.LLBLGen.IRepository.GetScalar(SD.LLBLGen.Pro.ORMSupportClasses.IEntityFields2,SD.LLBLGen.Pro.ORMSupportClasses.IPredicate,SD.LLBLGen.Pro.ORMSupportClasses.IGroupByCollection)">
+            <summary>
+             Executes the expression defined with the field in the fields collection specified,
+                using the various elements defined. The expression is executed as a scalar
+                query and a single value is returned.
+            </summary>
+            <param name="fields">IEntityFields2 instance with a single field with an expression defined and
+                eventually aggregates</param>
+            <param name="filter">filter to use</param>
+            <param name="groupByClause">The list of fields to group by on. When not specified or an empty collection
+                is specified, no group by clause is added to the query. A check is performed
+                for each field in the selectList. If a field in the selectList is not present
+                in the groupByClause collection, an exception is thrown.</param>
+            <returns>the value which is the result of the expression defined on the specified
+                field</returns>
+        </member>
+        <member name="M:MonoSoftware.LLBLGen.IRepository.GetScalar(SD.LLBLGen.Pro.ORMSupportClasses.IEntityField2,SD.LLBLGen.Pro.ORMSupportClasses.IExpression,SD.LLBLGen.Pro.ORMSupportClasses.AggregateFunction,SD.LLBLGen.Pro.ORMSupportClasses.IPredicate)">
+            <summary>
+            Gets a scalar value, calculated with the aggregate and expression specified.
+                the field specified is the field the expression and aggregate are applied
+                on.
+            </summary>
+            <param name="field">Field to which to apply the aggregate function and expression</param>
+            <param name="expressionToExecute">The expression to execute. Can be null</param>
+            <param name="aggregateToApply">Aggregate function to apply.</param>
+            <param name="filter">The filter to apply to retrieve the scalar</param>
+            <returns>the scalar value requested</returns>
+        </member>
+        <member name="M:MonoSoftware.LLBLGen.IRepository.GetScalar(SD.LLBLGen.Pro.ORMSupportClasses.IEntityFields2,SD.LLBLGen.Pro.ORMSupportClasses.IPredicate,SD.LLBLGen.Pro.ORMSupportClasses.IGroupByCollection,SD.LLBLGen.Pro.ORMSupportClasses.IRelationCollection)">
+            <summary>
+            Executes the expression defined with the field in the fields collection specified,
+                using the various elements defined. The expression is executed as a scalar
+                query and a single value is returned.
+            </summary>
+            <param name="fields">IEntityFields2 instance with a single field with an expression defined and
+                eventually aggregates</param>
+            <param name="filter">filter to use</param>
+            <param name="groupByClause">The list of fields to group by on. When not specified or an empty collection
+                is specified, no group by clause is added to the query. A check is performed
+                for each field in the selectList. If a field in the selectList is not present
+                in the groupByClause collection, an exception is thrown.</param>
+            <param name="relations">The relations part of the filter.</param>
+            <returns>the value which is the result of the expression defined on the specified
+                field</returns>
+        </member>
+        <member name="M:MonoSoftware.LLBLGen.IRepository.GetScalar(SD.LLBLGen.Pro.ORMSupportClasses.IEntityField2,SD.LLBLGen.Pro.ORMSupportClasses.IExpression,SD.LLBLGen.Pro.ORMSupportClasses.AggregateFunction,SD.LLBLGen.Pro.ORMSupportClasses.IPredicate,SD.LLBLGen.Pro.ORMSupportClasses.IGroupByCollection)">
+            <summary>
+            Gets a scalar value, calculated with the aggregate and expression specified.
+                the field specified is the field the expression and aggregate are applied
+                on.
+            </summary>
+            <param name="field">Field to which to apply the aggregate function and expression</param>
+            <param name="expressionToExecute">The expression to execute. Can be null</param>
+            <param name="aggregateToApply">Aggregate function to apply.</param>
+            <param name="filter">The filter to apply to retrieve the scalar</param>
+            <param name="groupByClause">The groupby clause to apply to retrieve the scalar</param>
+            <returns>the scalar value requested</returns>
+        </member>
+        <member name="M:MonoSoftware.LLBLGen.IRepository.GetScalar(SD.LLBLGen.Pro.ORMSupportClasses.IEntityField2,SD.LLBLGen.Pro.ORMSupportClasses.IExpression,SD.LLBLGen.Pro.ORMSupportClasses.AggregateFunction,SD.LLBLGen.Pro.ORMSupportClasses.IPredicate,SD.LLBLGen.Pro.ORMSupportClasses.IGroupByCollection,SD.LLBLGen.Pro.ORMSupportClasses.IRelationCollection)">
+            <summary>
+            Gets a scalar value, calculated with the aggregate and expression specified.
+                the field specified is the field the expression and aggregate are applied
+                on.
+            </summary>
+            <param name="field">Field to which to apply the aggregate function and expression</param>
+            <param name="expressionToExecute">The expression to execute. Can be null</param>
+            <param name="aggregateToApply">Aggregate function to apply.</param>
+            <param name="filter">The filter to apply to retrieve the scalar</param>
+            <param name="groupByClause">The groupby clause to apply to retrieve the scalar</param>
+            <param name="relations">The relations part of the filter.</param>
+            <returns>the scalar value requested</returns>
+        </member>
+        <member name="M:MonoSoftware.LLBLGen.IRepositoryExtender.GetDefaultCommitOrder">
+            <summary>
+            Creates and returns a default commit order for unit of work: direct updates, direct deletes, inserts, updates, deletes.
+            </summary>
+            <returns>List of UnitOfWorkBlockType that defines a default commit order.</returns>
+        </member>
+        <member name="M:MonoSoftware.LLBLGen.IRepositoryExtender.CascadeDelete(SD.LLBLGen.Pro.ORMSupportClasses.IEntity2)">
+            <summary>
+            Used to perform one-level cascading delete in situations where cascading delete cannot be defined on a database level. All dependant sub-entities of the entityToDelete are deleted.
+            </summary>
+            <param name="entityToDelete">Entity to delete</param>
+        </member>
+        <member name="M:MonoSoftware.LLBLGen.IRepositoryExtender.CascadeDelete(SD.LLBLGen.Pro.ORMSupportClasses.IEntity2,System.Int32)">
+            <summary>
+            Used to perform one-level cascading delete in situations where cascading delete cannot be defined on a database level. All dependant sub-entities of the entityToDelete are deleted.
+            </summary>
+            <param name="entityToDelete">Entity to delete</param>
+            <param name="maxLevel">Maximum number of cascade levels.</param>
+        </member>
+        <member name="M:MonoSoftware.LLBLGen.IRepositoryExtender.AddForCascadeDelete(System.Type,SD.LLBLGen.Pro.ORMSupportClasses.RelationPredicateBucket,SD.LLBLGen.Pro.ORMSupportClasses.UnitOfWork2)">
+            <summary>
+            Adds the entity to unit of work used to perform one-level cascading delete in situations where cascading delete cannot be defined on a database level. All dependant sub-entities of the entityToDelete are deleted.
+            </summary>
+            <param name="typeOfEntityFactory">Type of entity factory.</param>
+            <param name="filter">Filter.</param>
+            <param name="unitOfWork">Unit of work.</param>
+        </member>
+        <member name="M:MonoSoftware.LLBLGen.IRepositoryExtender.AddForCascadeDelete(System.Type,SD.LLBLGen.Pro.ORMSupportClasses.RelationPredicateBucket,SD.LLBLGen.Pro.ORMSupportClasses.UnitOfWork2,System.Int32)">
+            <summary>
+            Adds the entity to unit of work used to perform one-level cascading delete in situations where cascading delete cannot be defined on a database level. All dependant sub-entities of the entityToDelete are deleted.
+            </summary>
+            <param name="typeOfEntityFactory">Type of entity factory.</param>
+            <param name="filter">Filter.</param>
+            <param name="unitOfWork">Unit of work.</param>
+            <param name="maxLevel">Maximum number of cascade levels.</param>
+        </member>
+        <member name="M:MonoSoftware.LLBLGen.IRepositoryExtender.AddForCascadeDelete(SD.LLBLGen.Pro.ORMSupportClasses.IEntity2,SD.LLBLGen.Pro.ORMSupportClasses.UnitOfWork2)">
+            <summary>
+            Adds the entity to unit of work used to perform one-level cascading delete in situations where cascading delete cannot be defined on a database level. All dependant sub-entities of the entityToDelete are deleted.
+            </summary>
+            <param name="entityToDelete">Entity to delete</param>
+            <param name="unitOfWork">Unit of work.</param>
+        </member>
+        <member name="M:MonoSoftware.LLBLGen.IRepositoryExtender.AddForCascadeDelete(SD.LLBLGen.Pro.ORMSupportClasses.IEntity2,SD.LLBLGen.Pro.ORMSupportClasses.UnitOfWork2,System.Int32)">
+            <summary>
+            Adds the entity to unit of work used to perform one-level cascading delete in situations where cascading delete cannot be defined on a database level. All dependant sub-entities of the entityToDelete are deleted.
+            </summary>
+            <param name="entityToDelete">Entity to delete</param>
+            <param name="unitOfWork">Unit of work.</param>
+            <param name="maxLevel">Maximum number of cascade levels.</param>
+        </member>
+        <member name="M:MonoSoftware.LLBLGen.IRepositoryExtender.GetEntityPageIndex(SD.LLBLGen.Pro.ORMSupportClasses.IEntityField2,System.Object,SD.LLBLGen.Pro.ORMSupportClasses.IRelationPredicateBucket,SD.LLBLGen.Pro.ORMSupportClasses.ISortExpression,SD.LLBLGen.Pro.ORMSupportClasses.IGroupByCollection,System.Int32,System.Int32@)">
+            <summary>
+            Get page index for entity.
+            </summary>
+            <param name="field">Primary key field</param>
+            <param name="value">Primary key value</param>
+            <param name="bucket">Relation predicate bucket</param>
+            <param name="sorter">Sort expression</param>
+            <param name="groupByCollection">Group by collection</param>
+            <param name="pageSize">Page size</param>
+            <param name="pageIndex">Calculated page index</param>
+        </member>
+        <member name="M:MonoSoftware.LLBLGen.IRepositoryExtender.AddFullPhraseSearch(SD.LLBLGen.Pro.ORMSupportClasses.IRelationPredicateBucket,SD.LLBLGen.Pro.ORMSupportClasses.EntityField2,System.String)">
+            <summary>
+            Appends full phrase search filter to relation predicate bucket.
+            <para>
+            Note: Only exact phrases will be matched.
+            </para>
+            </summary>
+            <param name="field">Field used for searching</param>
+            <param name="bucket">Relation predicate bucket</param>
+            <param name="searchPhrase">Search phrase</param>
+        </member>
+        <member name="M:MonoSoftware.LLBLGen.IRepositoryExtender.AddWithOrFullPhraseSearch(SD.LLBLGen.Pro.ORMSupportClasses.IRelationPredicateBucket,SD.LLBLGen.Pro.ORMSupportClasses.EntityField2,System.String)">
+            <summary>
+            Appends full phrase search filter to relation predicate bucket.
+            <para>
+            Note: Only exact phrases will be matched.
+            </para>
+            </summary>
+            <param name="field">Field used for searching</param>
+            <param name="bucket">Relation predicate bucket</param>
+            <param name="searchPhrase">Search phrase</param>
+        </member>
+        <member name="M:MonoSoftware.LLBLGen.IRepositoryExtender.AddPartialPhraseSearch(SD.LLBLGen.Pro.ORMSupportClasses.IRelationPredicateBucket,SD.LLBLGen.Pro.ORMSupportClasses.EntityField2,System.String)">
+            <summary>
+            Appends partial phrase search filter to relation predicate bucket.
+            <para>
+            Note: All phrases will be matched, full and partial ones.
+            </para>
+            </summary>
+            <param name="field">Field used for searching</param>
+            <param name="bucket">Relation predicate bucket</param>
+            <param name="searchPhrase">Search phrase</param>
+        </member>
+        <member name="M:MonoSoftware.LLBLGen.IRepositoryExtender.AddWithOrPartialPhraseSearch(SD.LLBLGen.Pro.ORMSupportClasses.IRelationPredicateBucket,SD.LLBLGen.Pro.ORMSupportClasses.EntityField2,System.String)">
+            <summary>
+            Appends partial phrase search filter to relation predicate bucket.
+            <para>
+            Note: All phrases will be matched, full and partial ones.
+            </para>
+            </summary>
+            <param name="field">Field used for searching</param>
+            <param name="bucket">Relation predicate bucket</param>
+            <param name="searchPhrase">Search phrase</param>
+        </member>
+        <member name="M:MonoSoftware.LLBLGen.IRepositoryExtender.AddFullPhraseSearch(SD.LLBLGen.Pro.ORMSupportClasses.IPredicateExpression,SD.LLBLGen.Pro.ORMSupportClasses.EntityField2,System.String)">
+            <summary>
+            Appends full phrase search filter to relation predicate bucket.
+            <para>
+            Note: Only exact phrases will be matched.
+            </para>
+            </summary>
+            <param name="field">Field used for searching</param>
+            <param name="predicateExpression">Predicate expression</param>
+            <param name="searchPhrase">Search phrase</param>
+        </member>
+        <member name="M:MonoSoftware.LLBLGen.IRepositoryExtender.AddWithOrFullPhraseSearch(SD.LLBLGen.Pro.ORMSupportClasses.IPredicateExpression,SD.LLBLGen.Pro.ORMSupportClasses.EntityField2,System.String)">
+            <summary>
+            Appends full phrase search filter to relation predicate bucket.
+            <para>
+            Note: Only exact phrases will be matched.
+            </para>
+            </summary>
+            <param name="field">Field used for searching</param>
+            <param name="predicateExpression">Predicate expression</param>
+            <param name="searchPhrase">Search phrase</param>
+        </member>
+        <member name="M:MonoSoftware.LLBLGen.IRepositoryExtender.AddPartialPhraseSearch(SD.LLBLGen.Pro.ORMSupportClasses.IPredicateExpression,SD.LLBLGen.Pro.ORMSupportClasses.EntityField2,System.String)">
+            <summary>
+            Appends partial phrase search filter to relation predicate bucket.
+            <para>
+            Note: All phrases will be matched, full and partial ones.
+            </para>
+            </summary>
+            <param name="field">Field used for searching</param>
+            <param name="predicateExpression">Predicate expression</param>
+            <param name="searchPhrase">Search phrase</param>
+        </member>
+        <member name="M:MonoSoftware.LLBLGen.IRepositoryExtender.AddWithOrPartialPhraseSearch(SD.LLBLGen.Pro.ORMSupportClasses.IPredicateExpression,SD.LLBLGen.Pro.ORMSupportClasses.EntityField2,System.String)">
+            <summary>
+            Appends partial phrase search filter to relation predicate bucket.
+            <para>
+            Note: All phrases will be matched, full and partial ones.
+            </para>
+            </summary>
+            <param name="field">Field used for searching</param>
+            <param name="predicateExpression">Predicate expression</param>
+            <param name="searchPhrase">Search phrase</param>
         </member>
         <member name="T:MonoSoftware.LLBLGen.EnhancedExcludeFieldsList">
             <summary>
@@ -579,7 +1514,7 @@
             </remarks>
             <param name="unitOfWork"></param>
         </member>
-        <member name="M:MonoSoftware.LLBLGen.IEntity2Extension.MarkEntityAsSaved(SD.LLBLGen.Pro.ORMSupportClasses.IEntityCore)">
+        <member name="M:MonoSoftware.LLBLGen.IEntity2Extension.MarkEntityAsSaved(SD.LLBLGen.Pro.ORMSupportClasses.IEntity2)">
             <summary>
             Marks entity as saved after a succesfull database operation via the web service.
             </summary>
@@ -923,10 +1858,10 @@
         </member>
         <member name="M:MonoSoftware.LLBLGen.Repository.CommitUnitOfWork(SD.LLBLGen.Pro.ORMSupportClasses.UnitOfWork2)">
             <summary>
-            Commits unit of work in a transaction
+            Commits unit of work in a transaction.
             </summary>
             <param name="unitOfWork">Unit of work to commit</param>
-            <returns> The total # of entities affected by all actions performed in the Commit method</returns>
+            <returns> The total # of entities affected by all actions performed in the Commit method.</returns>
         </member>
         <member name="M:MonoSoftware.LLBLGen.Repository.CommitUnitOfWork(SD.LLBLGen.Pro.ORMSupportClasses.UnitOfWork2,System.Boolean)">
             <summary>
@@ -1076,7 +2011,30 @@
                 duplicate rows.</param>
             <param name="groupByClause">GroupByCollection with fields to group by on</param>
         </member>
-        <!-- Badly formed XML comment ignored for member "M:MonoSoftware.LLBLGen.Repository.FetchTypedList(SD.LLBLGen.Pro.ORMSupportClasses.ITypedListLgp2,SD.LLBLGen.Pro.ORMSupportClasses.IPredicateExpression,System.Int32,SD.LLBLGen.Pro.ORMSupportClasses.ISortExpression,System.Boolean,System.Int32,System.Int32)" -->
+        <member name="M:MonoSoftware.LLBLGen.Repository.FetchTypedList(SD.LLBLGen.Pro.ORMSupportClasses.ITypedListLgp2,SD.LLBLGen.Pro.ORMSupportClasses.IPredicateExpression,System.Int32,SD.LLBLGen.Pro.ORMSupportClasses.ISortExpression,System.Boolean,System.Int32,System.Int32)">
+            <summary>
+            Fetches the fields passed in fieldCollectionToFetch from the persistent storage
+                using the relations and filter information stored in the passed in typed
+                list.  For TypedView filling, use the method FetchTypedView().
+            </summary>
+            <param name="typedListToFill">Typed list to fill.</param>
+            <param name="additionalFilter">An additional filter to use to filter the fetch of the typed list. If you
+                need a more sophisticated filter approach, please use the overload which
+                accepts an IRelationalPredicateBucket and add your filter to the bucket you
+                receive when calling typedListToFill.GetRelationInfo().</param>
+            <param name="maxNumberOfItemsToReturn">The maximum amount of rows to return. If 0, all rows matching the filter
+                are returned</param>
+            <param name="sortClauses">SortClause expression which is applied to the query executed, sorting the
+                fetch result.</param>
+            <param name="allowDuplicates">When true, it will not filter out duplicate rows, otherwise it will DISTINCT
+                duplicate rows.</param>
+            <param name="pageNumber">the page number to retrieve. First page is 1. When set to 0, no paging logic
+                is applied</param>
+            <param name="pageSize">the size of the page. When set to 0, no paging logic is applied</param>
+            <remarks>
+            Grabs the fields list and relations set from the typed list passed in.
+            </remarks>
+        </member>
         <member name="M:MonoSoftware.LLBLGen.Repository.FetchTypedList(SD.LLBLGen.Pro.ORMSupportClasses.IEntityFields2,System.Data.DataTable,SD.LLBLGen.Pro.ORMSupportClasses.IRelationPredicateBucket,System.Int32,SD.LLBLGen.Pro.ORMSupportClasses.ISortExpression,System.Boolean,SD.LLBLGen.Pro.ORMSupportClasses.IGroupByCollection,System.Int32,System.Int32)">
             <summary>
             Fetches the fields passed in fieldCollectionToFetch from the persistent storage
@@ -1398,6 +2356,54 @@
             Used to perform one-level cascading delete in situations where cascading delete cannot be defined on a database level. All dependant sub-entities of the entityToDelete are deleted.
             </summary>
             <param name="entityToDelete">Entity to delete</param>
+        </member>
+        <member name="M:MonoSoftware.LLBLGen.RepositoryExtender.CascadeDelete(SD.LLBLGen.Pro.ORMSupportClasses.IEntity2,System.Int32)">
+            <summary>
+            Used to perform one-level cascading delete in situations where cascading delete cannot be defined on a database level. All dependant sub-entities of the entityToDelete are deleted.
+            </summary>
+            <param name="entityToDelete">Entity to delete</param>
+            <param name="maxLevel">Maximum number of cascade levels.</param>
+        </member>
+        <member name="M:MonoSoftware.LLBLGen.RepositoryExtender.AddForCascadeDelete(System.Type,SD.LLBLGen.Pro.ORMSupportClasses.RelationPredicateBucket,SD.LLBLGen.Pro.ORMSupportClasses.UnitOfWork2)">
+            <summary>
+            Adds the entity to unit of work used to perform one-level cascading delete in situations where cascading delete cannot be defined on a database level. All dependant sub-entities of the entityToDelete are deleted.
+            </summary>
+            <param name="typeOfEntityFactory">Type of entity factory.</param>
+            <param name="filter">Filter.</param>
+            <param name="unitOfWork">Unit of work.</param>
+        </member>
+        <member name="M:MonoSoftware.LLBLGen.RepositoryExtender.AddForCascadeDelete(System.Type,SD.LLBLGen.Pro.ORMSupportClasses.RelationPredicateBucket,SD.LLBLGen.Pro.ORMSupportClasses.UnitOfWork2,System.Int32)">
+            <summary>
+            Adds the entity to unit of work used to perform one-level cascading delete in situations where cascading delete cannot be defined on a database level. All dependant sub-entities of the entityToDelete are deleted.
+            </summary>
+            <param name="typeOfEntityFactory">Type of entity factory.</param>
+            <param name="filter">Filter.</param>
+            <param name="unitOfWork">Unit of work.</param>
+            <param name="maxLevel">Maximum number of cascade levels.</param>
+        </member>
+        <member name="M:MonoSoftware.LLBLGen.RepositoryExtender.AddForCascadeDelete(SD.LLBLGen.Pro.ORMSupportClasses.IEntity2,SD.LLBLGen.Pro.ORMSupportClasses.UnitOfWork2,System.Collections.Generic.List{System.String},System.Int32)">
+            <summary>
+            Adds the entity to unit of work used to perform one-level cascading delete in situations where cascading delete cannot be defined on a database level. All dependant sub-entities of the entityToDelete are deleted.
+            </summary>
+            <param name="entityToDelete">Entity to delete</param>
+            <param name="unitOfWork">Unit of work.</param>
+            <param name="recursed">Recurse tracker.</param>
+            <param name="maxLevel">Maximum number of cascade levels.</param>
+        </member>
+        <member name="M:MonoSoftware.LLBLGen.RepositoryExtender.AddForCascadeDelete(SD.LLBLGen.Pro.ORMSupportClasses.IEntity2,SD.LLBLGen.Pro.ORMSupportClasses.UnitOfWork2)">
+            <summary>
+            Adds the entity to unit of work used to perform one-level cascading delete in situations where cascading delete cannot be defined on a database level. All dependant sub-entities of the entityToDelete are deleted.
+            </summary>
+            <param name="entityToDelete">Entity to delete</param>
+            <param name="unitOfWork">Unit of work.</param>
+        </member>
+        <member name="M:MonoSoftware.LLBLGen.RepositoryExtender.AddForCascadeDelete(SD.LLBLGen.Pro.ORMSupportClasses.IEntity2,SD.LLBLGen.Pro.ORMSupportClasses.UnitOfWork2,System.Int32)">
+            <summary>
+            Adds the entity to unit of work used to perform one-level cascading delete in situations where cascading delete cannot be defined on a database level. All dependant sub-entities of the entityToDelete are deleted.
+            </summary>
+            <param name="entityToDelete">Entity to delete</param>
+            <param name="unitOfWork">Unit of work.</param>
+            <param name="maxLevel">Maximum number of cascade levels.</param>
         </member>
         <member name="M:MonoSoftware.LLBLGen.RepositoryExtender.GetEntityPageIndex(SD.LLBLGen.Pro.ORMSupportClasses.IEntityField2,System.Object,SD.LLBLGen.Pro.ORMSupportClasses.IRelationPredicateBucket,SD.LLBLGen.Pro.ORMSupportClasses.ISortExpression,SD.LLBLGen.Pro.ORMSupportClasses.IGroupByCollection,System.Int32,System.Int32@)">
             <summary>

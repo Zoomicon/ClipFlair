@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
-  <!--  
+  <!-- 
     Microsoft ResX Schema 
     
     Version 2.0
@@ -1951,7 +1951,7 @@
     <value>What are Administrator Roles ? - Specifies user roles that have administrator privileges. Members of these roles can administer all aspects of locally installed portals.</value>
   </data>
   <data name="PortalSettings_MonoXSettingsLocalizationFolder" xml:space="preserve">
-    <value>What is Localization Folder ? - It is virtual localization subfolder that will be prepended before the locale-specific part of the path (example: /language/en-US)</value>
+    <value>What is Localization Folder ? - It is virtual localization subfolder that will be prepended before the locale-specific part of the path (example: /lng/en-US)</value>
   </data>
   <data name="PortalSettings_MonoXSettingsNewsPublisherRoleName" xml:space="preserve">
     <value>What is a news publisher role name ? - Specifies user roles that have news publisher privileges.</value>
@@ -2382,7 +2382,7 @@ included in the keyword list).</value>
     <value>Show wep part catalog icon images</value>
   </data>
   <data name="PortalSettings_ShowHtmlEditorsInDesignModeOnly" xml:space="preserve">
-    <value>Show HTML document editor in Portal designe mode only</value>
+    <value>Show HTML document editor in Portal designer mode only</value>
   </data>
   <data name="PortalSettings_ShowWebPartZoneTitles" xml:space="preserve">
     <value>Show web part zone titles</value>
@@ -2581,5 +2581,11 @@ included in the keyword list).</value>
   </data>
   <data name="ListManager_colUrl" xml:space="preserve">
     <value>URL</value>
+  </data>
+  <data name="UserManager_sortFailedPasswordAnswerAttempts" xml:space="preserve">
+    <value>Failed password answer attempt</value>
+  </data>
+  <data name="UserManager_sortFailedPasswordAttempts" xml:space="preserve">
+    <value>Failed password attempt</value>
   </data>
 </root>

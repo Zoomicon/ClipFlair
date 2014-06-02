@@ -1942,7 +1942,7 @@
     <value>What are Administrator Roles ? - Specifies user roles that have administrator privileges. Members of these roles can administer all aspects of locally installed portals.</value>
   </data>
   <data name="PortalSettings_MonoXSettingsLocalizationFolder" xml:space="preserve">
-    <value>Što je to Lokalizaciska mapa ? - To je virtualna lokalizaciska podmapa koja će biti pridodana prije lokalizaciskog dijela url putanje (primjer: /language/en-US)</value>
+    <value>Što je to Lokalizaciska mapa ? - To je virtualna lokalizaciska podmapa koja će biti pridodana prije lokalizaciskog dijela url putanje (primjer: /lng/en-US)</value>
   </data>
   <data name="PortalSettings_MonoXSettingsNewsPublisherRoleName" xml:space="preserve">
     <value>Što je to Naziv role objavljivača vijesti ? - Specifies user roles that have news publisher privileges.</value>
@@ -2584,5 +2584,11 @@ included in the keyword list).</value>
   </data>
   <data name="PortalSettings_MonoXSettingsMailQueueName" xml:space="preserve">
     <value>Naziv queue-a za slučaj korištenja MSMQ servisa za procesiranje asinkronih operacija.</value>
+  </data>
+  <data name="UserManager_sortFailedPasswordAnswerAttempts" xml:space="preserve">
+    <value>Broj pokušaja za pitanje za lozinku</value>
+  </data>
+  <data name="UserManager_sortFailedPasswordAttempts" xml:space="preserve">
+    <value>Broj pokušaja za lozinku</value>
   </data>
 </root>

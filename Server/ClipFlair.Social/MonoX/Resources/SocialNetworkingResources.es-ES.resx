@@ -112,10 +112,10 @@
     <value>2.0</value>
   </resheader>
   <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Discussion_Add_New_Board" xml:space="preserve">
     <value>Adicione nueva pizarra de discusión</value>
@@ -1171,5 +1171,8 @@ Atentamente,
   </data>
   <data name="Groups_DeleteMember" xml:space="preserve">
     <value>Remover {0} del grupo</value>
+  </data>
+  <data name="Discussion_TopicTags" xml:space="preserve">
+    <value>Topic tags</value>
   </data>
 </root>

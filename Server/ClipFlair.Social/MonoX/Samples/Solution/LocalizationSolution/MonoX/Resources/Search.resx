@@ -112,31 +112,37 @@
     <value>2.0</value>
   </resheader>
   <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AllProviders" xml:space="preserve">
+    <value>All</value>
+  </data>
   <data name="BlogProviderTitle" xml:space="preserve">
-    <value>Blog search provider</value>
+    <value>Blogs</value>
+  </data>
+  <data name="CalendarEventSearchProviderTitle" xml:space="preserve">
+    <value>Calendars</value>
   </data>
   <data name="DiscussionProviderTitle" xml:space="preserve">
-    <value>Discussion search provider</value>
+    <value>Discussions</value>
   </data>
   <data name="FileProviderTitle" xml:space="preserve">
-    <value>File search provider</value>
+    <value>Files</value>
   </data>
   <data name="GroupProviderTitle" xml:space="preserve">
-    <value>Group search provider</value>
+    <value>Groups</value>
   </data>
   <data name="IndexingServiceProviderTitle" xml:space="preserve">
-    <value>Indexing Service search provider</value>
+    <value>File system (Indexing Service)</value>
   </data>
   <data name="LuceneProviderTitle" xml:space="preserve">
-    <value>Lucene.Net file system search provider</value>
+    <value>File system (Lucene.Net)</value>
   </data>
   <data name="NewsProviderTitle" xml:space="preserve">
-    <value>News search provider</value>
+    <value>News</value>
   </data>
   <data name="NoSearchCriteria" xml:space="preserve">
     <value>Please enter the search criteria.</value>
@@ -145,12 +151,15 @@
     <value>There are no documents that match your search criteria.</value>
   </data>
   <data name="PagesProviderTitle" xml:space="preserve">
-    <value>Pages search provider</value>
+    <value>Pages</value>
   </data>
   <data name="PhotoGalleryProviderTitle" xml:space="preserve">
-    <value>Photo gallery search provider</value>
+    <value>Photos</value>
+  </data>
+  <data name="SearchFilterCaption" xml:space="preserve">
+    <value>Search in:</value>
   </data>
   <data name="UserProfileProviderTitle" xml:space="preserve">
-    <value>User profile search provider</value>
+    <value>User profiles</value>
   </data>
 </root>

@@ -1,4 +1,4 @@
-<%@ Page Language="C#" MasterPageFile="~/MonoX/MasterPages/DefaultSmallHeader.master" AutoEventWireup="true" Inherits="MonoSoftware.MonoX.Samples.ConnectionSample" Title="Connection sample" Theme="Default" Codebehind="ConnectionSample.aspx.cs" %>
+<%@ Page Language="C#" MasterPageFile="~/MonoX/MasterPages/DefaultSmallHeader.master" AutoEventWireup="true" Inherits="MonoSoftware.MonoX.Samples.ConnectionSample" Title="Connection sample" Codebehind="ConnectionSample.aspx.cs" %>
 <%@ MasterType TypeName="MonoSoftware.MonoX.BaseMasterPage" %> 
 <%@ Register TagPrefix="MonoX" TagName="RssProvider" Src="~/MonoX/Samples/ConnectionSample/RssUrlProvider.ascx" %>
 <%@ Register TagPrefix="MonoX" TagName="RssConsumer" Src="~/MonoX/Samples/ConnectionSample/RssConsumer.ascx" %>
@@ -9,7 +9,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="cp" runat="server">
 <table cellspacing="0" cellpadding="0">
     <tr>
-        <td class="left-section">
+        <td class="left-section" style="vertical-align:top;">
             <portal:PortalWebPartZoneTableless HeaderText="Left part zone" ID="leftWebPartZone" runat="server" Width="100%" ChromeTemplateFile="LeftColumn.htm" ShowChromeForNonAdmins="true">
                 <ZoneTemplate>
                     <MonoX:RssProvider runat="server" ID="rssProvider" Title="RSS provider" />

@@ -1951,7 +1951,7 @@
     <value>What are Administrator Roles ? - Specifies user roles that have administrator privileges. Members of these roles can administer all aspects of locally installed portals.</value>
   </data>
   <data name="PortalSettings_MonoXSettingsLocalizationFolder" xml:space="preserve">
-    <value>What is Localization Folder ? - It is virtual localization subfolder that will be prepended before the locale-specific part of the path (example: /language/en-US)</value>
+    <value>What is Localization Folder ? - It is virtual localization subfolder that will be prepended before the locale-specific part of the path (example: /lng/en-US)</value>
   </data>
   <data name="PortalSettings_MonoXSettingsNewsPublisherRoleName" xml:space="preserve">
     <value>What is a news publisher role name ? - Specifies user roles that have news publisher privileges.</value>
@@ -2214,8 +2214,8 @@ used by the portal engine. The value "2" is used for SQL Server 2005.</value>
   <data name="PortalSettings_BlogDisplayUrl" xml:space="preserve">
     <value>Blog display url</value>
   </data>
-  <data name="PortalSettings_ConvertVideoToFlv" xml:space="preserve">
-    <value>Convert video to Flash video</value>
+  <data name="PortalSettings_ConvertVideo" xml:space="preserve">
+    <value>Convert video to specified by provider type</value>
   </data>
   <data name="PortalSettings_CustomAdminTasksControl" xml:space="preserve">
     <value>Custom administration tasks control path</value>
@@ -2263,8 +2263,8 @@ all pages.</value>
   <data name="PortalSettings_MonoXSettingsBlogDisplayUrl" xml:space="preserve">
     <value>Raw, non-rewritten URL of the page that displays blog posts for LiveWriter and similar MetaWeblog-based editing tools</value>
   </data>
-  <data name="PortalSettings_MonoXSettingsConvertVideoToFlv" xml:space="preserve">
-    <value>Indicates if all files are automatically converted to FLV format</value>
+  <data name="PortalSettings_MonoXSettingsConvertVideo" xml:space="preserve">
+    <value>Indicates if all files are automatically converted specified by provider format</value>
   </data>
   <data name="PortalSettings_MonoXSettingsCustomAdminTasksControl" xml:space="preserve">
     <value>Location of the custom task control that can be added to the main
@@ -2382,7 +2382,7 @@ included in the keyword list).</value>
     <value>Show wep part catalog icon images</value>
   </data>
   <data name="PortalSettings_ShowHtmlEditorsInDesignModeOnly" xml:space="preserve">
-    <value>Show HTML document editor in Portal designe mode only</value>
+    <value>Show HTML document editor in Portal designer mode only</value>
   </data>
   <data name="PortalSettings_ShowWebPartZoneTitles" xml:space="preserve">
     <value>Show web part zone titles</value>
@@ -2603,5 +2603,16 @@ included in the keyword list).</value>
   <data name="PageManagerPartAdmin_OrphanedWebPartsDeleted" xml:space="preserve">
     <value>{0} orphaned WebPart(s) deleted from the page.</value>
   </data>
-
+  <data name="PortalSettings_ConvertVideoProviderType" xml:space="preserve">
+    <value>Convert video with specified provider</value>
+  </data>
+  <data name="PortalSettings_MonoXSettingsConvertVideoProviderType" xml:space="preserve">
+    <value>Indicates which video converter provider should be used</value>
+  </data>
+  <data name="UserManager_sortFailedPasswordAnswerAttempts" xml:space="preserve">
+    <value>Failed password answer attempts</value>
+  </data>
+  <data name="UserManager_sortFailedPasswordAttempts" xml:space="preserve">
+    <value>Failed password attempts</value>
+  </data>
 </root>

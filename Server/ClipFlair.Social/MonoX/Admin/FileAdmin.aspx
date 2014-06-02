@@ -5,7 +5,7 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="cp" Runat="Server">
      <telerik:RadCodeBlock ID="cb1" runat="server">
-        <script language="javascript">
+        <script type="text/javascript">
         var selectedTemplateFile = "";
 
         function GridMenuItemClicked(sender, args)
@@ -68,18 +68,16 @@
                 activeWindow.setSize(700, 700);
                 activeWindow.center();
             }, 20);
-        } 
-        
-
+        }
         </script>
     </telerik:RadCodeBlock> 
     <MonoXControls:MonoXWindowManager ID="windowDialog" runat="server" Modal="true"></MonoXControls:MonoXWindowManager>
     <div style="width:100%;height:100%;margin-left:auto;margin-right:auto;" class="fileExplorerContainer">
-    <center>
-    <telerik:RadFileExplorer OnClientFileOpen="OnFileOpen" runat="server" ID="ctlFileExplorer" Width="99%" Height="600px" CssClass="fileExplorer" DisplayUpFolderItem="true" ExplorerMode="Default" >
+    
+    <telerik:RadFileExplorer OnClientFileOpen="OnFileOpen" runat="server" ID="ctlFileExplorer" Width="100%" Height="600px" CssClass="fileExplorer" DisplayUpFolderItem="true" ExplorerMode="Default" >
         <Configuration ViewPaths="~/" UploadPaths="~/" DeletePaths="~/" />
     </telerik:RadFileExplorer>
-    </center>
+    
     </div>
     <telerik:RadAjaxManager runat="server" ID="ajaxManager" OnAjaxRequest="ajaxManager_AjaxRequest" ClientEvents-OnResponseEnd="OnResponseEnd">
        <AjaxSettings>

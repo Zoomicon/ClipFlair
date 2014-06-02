@@ -1215,4 +1215,63 @@ MonoX Team
   <data name="Discussion_Topic_Empty" xml:space="preserve">
     <value>Ne postoji niti jedna tema u raspravi</value>
   </data>
+  <data name="FriendSuggestionList_WatermarkSearch_Text" xml:space="preserve">
+    <value>Traži...</value>
+  </data>
+  <data name="FriendSuggestionList_ButtonConnect_Text" xml:space="preserve">
+    <value>Poveži</value>
+  </data>
+  <data name="FriendSuggestionList_ViewProfile" xml:space="preserve">
+    <value>Pregledaj profil za {0}</value>
+  </data>
+  <data name="FriendSuggestionList_TextBox_RequestMessage" xml:space="preserve">
+    <value>{0} vas poziva da se pridružite njegovoj/njezinoj mreži.</value>
+  </data>
+  <data name="FriendSuggestionList_FriendListEmpty" xml:space="preserve">
+    <value>Lista ljudi koje znate je trenutno prazna.</value>
+  </data>
+  <data name="FriendSuggestionList_MailContent" xml:space="preserve">
+    <value>Pozdrav {FriendName},
+&lt;br/&gt;
+&lt;br/&gt;
+{UserName} vas je pozvao da se pridružite njegovoj/njezinoj mreži. Morate potvrditi poznanstvo sa korisnikom {UserName} kako bi se pridružili njegovoj/njezinoj mreži.&lt;br/&gt;
+{PersonalMessage}
+&lt;br /&gt;&lt;br /&gt;
+Ukoliko želite potvrditi ovaj zahtjev, molimo da kliknete na link ispod:&lt;br /&gt;
+{ConfirmationUrl}
+&lt;br /&gt;&lt;br /&gt;
+Srdačno,
+&lt;br /&gt;&lt;br /&gt;
+MonoX Team</value>
+  </data>
+  <data name="FriendSuggestionList_MailSubject" xml:space="preserve">
+    <value>Pozivnica za pridruženje {UserName} mreži</value>
+  </data>
+  <data name="FriendSuggestionList_PersonalMessage" xml:space="preserve">
+    <value>{0} će morati potvrditi vaš zahtjev. Možete dodati privatnu poruku:</value>
+  </data>
+  <data name="FriendSuggestionList_PersonYouSelected" xml:space="preserve">
+    <value>Osoba koju ste odabrali</value>
+  </data>
+  <data name="FriendSuggestionList_CancelRequest" xml:space="preserve">
+    <value>Otkaži</value>
+  </data>
+  <data name="FriendSuggestionList_SendRequest" xml:space="preserve">
+    <value>Pošalji zahtjev</value>
+  </data>
+  <data name="FriendSuggestionList_AlreadyConnected" xml:space="preserve">
+    <value>Odabrana osoba je već dodana na vašu listu prijatelja.</value>
+  </data>
+  <data name="FriendSuggestionList_AlreadySentInvitation" xml:space="preserve">
+    <value>Već ste poslali poziv za prijateljstvo odabranoj osobi.</value>
+  </data>
+  <data name="FriendSuggestionList_RequestSentMessage" xml:space="preserve">
+    <value>Vaš zahtjev za prijateljstvo je poslan.</value>
+  </data>
+  <data name="Discussion_TopicTags" xml:space="preserve">
+    <value>Tagovi tema</value>
+  </data>
+  <data name="Discussion_DiscussionBoardList" xml:space="preserve">
+    <value>Lista Rasprava</value>
+  </data>
 </root>

@@ -6,7 +6,7 @@
 <%@ Register TagPrefix="Mono" Assembly="MonoX" Namespace="MonoSoftware.MonoX.Blog" %>
 <%@ Register TagPrefix="MonoX" TagName="SilverlightUpload" Src="~/MonoX/ModuleGallery/SilverlightUploadModule.ascx" %>
 <%@ Register TagPrefix="MonoX" TagName="FileGallery" Src="~/MonoX/ModuleGallery/SocialNetworking/FileGallery.ascx" %>
-<div style="border: solid 1px silver;">
+<!--CLIPFLAIR--><div>
     <div style="font-size: 150%; font-weight: bold; padding: 10px;">
         <asp:Literal runat="server" ID="ltlSubject"></asp:Literal></div>
     <div style="padding: 5px; height: 100%; width: 100%;">
@@ -75,7 +75,7 @@
                     </dd>
                 </asp:PlaceHolder>
             </dl>
-            <MonoX:StyledButton ID="btnSend" runat="server" CausesValidation="false" CssClass="CssFormButton"
+            <!--CLIPFLAIR--><MonoX:StyledButton ID="btnSend" runat="server" CausesValidation="false" CssClass="CssFormButton styled-button-clipflair_green"
                 OnClick="btnSend_Click" />
             <MonoX:StyledButton ID="btnCancel" runat="server" CausesValidation="false" CssClass="CssFormButton"
                 OnClick="btnCancel_Click" />

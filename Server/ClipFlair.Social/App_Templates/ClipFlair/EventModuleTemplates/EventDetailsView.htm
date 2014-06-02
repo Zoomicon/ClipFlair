@@ -1,19 +1,18 @@
-﻿<div class="event-details-view">
-    <div class="title"><# Title #></div>
-    <div><# StartTime #> - <# EndTime #></div>    
-    <div class="event-content">
-        <div>
-            <strong><# PlaceLocalizedTitle #></strong>
-            <# Place #>
-        </div>
-        <div class="description">
-            <strong><# DescriptionLocalizedTitle #></strong> <# Description #> 
-        </div>
-    </div>
+﻿<!--CLIPFLAIR-->
+<div class="event-simple-content <# ItemCssClass #>">
+    <h2><# Title #></h2>
+    <div class="date"><# StartTime #> - <# EndTime #></div>
+    <p>
+        <strong><# PlaceLocalizedTitle #></strong>
+        <# Place #>
+    </p>
+    <p>
+        <strong><# DescriptionLocalizedTitle #></strong> <# Description #> 
+    </p>
     #if( $Editable )
-    <div class="options">
-        <# DeleteAction #>
-        <# UpdateAction #>
+    <div class="small-btn float-right"> 
+        <div class="styled-wrapper update-btn-wrapper float-left"><# UpdateAction #></div>
+        <div class="styled-wrapper delete-btn-wrapper float-left"><# DeleteAction #></div>
     </div>
     #end
 </div>

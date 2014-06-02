@@ -1,7 +1,7 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="PopularGroupsList.ascx.cs" Inherits="MonoSoftware.MonoX.ModuleGallery.SocialNetworking.PopularGroupsList" %>
 <%@ Register Namespace="MonoSoftware.Web.Pager" Assembly="MonoSoftware.Web.Pager" TagPrefix="mono" %>
 
-<asp:Panel ID="pnlContainer" CssClass="FriendCenterAlign social-groups" runat="server">
+<asp:Panel ID="pnlContainer" CssClass="social-groups" runat="server">
 <asp:ListView ID="lvItems" runat="server">
     <LayoutTemplate>
         <asp:PlaceHolder runat="server" ID="itemPlaceholder"></asp:PlaceHolder>

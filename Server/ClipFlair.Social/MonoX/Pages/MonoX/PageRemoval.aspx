@@ -1,6 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MonoX/MasterPages/Default.master"
     AutoEventWireup="true" CodeBehind="PageRemoval.aspx.cs" Inherits="MonoSoftware.MonoX.Pages.PageRemoval"
-    Theme="Default" %>
+    %>
 
 <%@ MasterType TypeName="MonoSoftware.MonoX.BaseMasterPage" %>
 <%@ Import Namespace="MonoSoftware.MonoX.Resources" %>

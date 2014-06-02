@@ -5,7 +5,7 @@
     Inherits="MonoSoftware.MonoX.Pages.SocialNetworking.FileView"
     MasterPageFile="~/MonoX/MasterPages/DefaultSmallHeader.master"
     MaintainScrollPositionOnPostback="true"
-    Theme="Default" %>  
+    %>  
 
 <%@ MasterType TypeName="MonoSoftware.MonoX.BaseMasterPage" %>   
 <%@ Import Namespace="MonoSoftware.MonoX.Resources" %>

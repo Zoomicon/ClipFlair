@@ -1,14 +1,13 @@
-<%@ Page Language="C#" 
-    MasterPageFile="~/MonoX/MasterPages/DefaultSmallHeader.master"
+<%@ Page
+    Language="C#" 
+    MasterPageFile="~/App_MasterPages/ClipFlair/Default.master"
     AutoEventWireup="true" 
     Inherits="MonoSoftware.MonoX.Pages.Blog" 
     Title="MonoX Blog"
-    Theme="Default"
     Codebehind="Blog.aspx.cs" 
-    MaintainScrollPositionOnPostback="true"     
-    %>
+    MaintainScrollPositionOnPostback="true" %>
 
-<%@ MasterType TypeName="MonoSoftware.MonoX.BaseMasterPage" %>   
+<%@ MasterType TypeName="MonoSoftware.MonoX.BaseMasterPage" %>
 <%@ Import Namespace="MonoSoftware.MonoX.Resources" %>
 <%@ Register TagPrefix="MonoX" TagName="Editor" Src="~/MonoX/ModuleGallery/MonoXHtmlEditor.ascx" %>
 <%@ Register TagPrefix="MonoX" TagName="BlogContainer" Src="~/MonoX/ModuleGallery/Blog/BlogContainer.ascx" %>
@@ -19,27 +18,42 @@
 <%@ Register Assembly="MonoX" Namespace="MonoSoftware.MonoX" TagPrefix="portal" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="cp" Runat="Server">
-    <table width="100%" border="0" cellspacing="0" cellpadding="0">
-        <tr>        
-            <td class="left-section">
-                <portal:PortalWebPartZoneTableless HeaderText='<%$ Code: PageResources.Zone_LeftPartZone %>' ID="leftPartZone" runat="server" Width="100%" ChromeTemplateFile="LeftColumn.htm">
+    <div class="container-highlighter" style="background-color:#517199">
+        <div class="container">
+            <div class="row-fluid clearfix">
+                <div class="span12">
+                    <portal:PortalWebPartZoneTableless ID="HighlightBanner" runat="server" Width="100%" ChromeTemplateFile="Standard.htm" HeaderText="HighlightBanner">
+                        <ZoneTemplate>
+                            <MonoX:Editor runat="server" ID="editor01" Title='<%$ Code: PageResources.Title_TopSection %>' DefaultDocumentTitle='<%$ Code: PageResources.Title_TopSection %>'>
+                                <DefaultContent>
+                                    <p>Welcome to the Blogs area</p>
+                                </DefaultContent>
+                            </MonoX:Editor>
+                        </ZoneTemplate>
+                    </portal:PortalWebPartZoneTableless>
+                </div>
+            </div>
+        </div>              
+    </div>
+    <div class="container">
+        <div class="row-fluid">
+            <div class="span8">
+                <portal:PortalWebPartZoneTableless HeaderText='<%$ Code: PageResources.Zone_LeftPartZone %>' ID="leftPartZone" runat="server" Width="100%" ChromeTemplateFile="Standard.htm">
                     <ZoneTemplate>
-                        <MonoX:BlogContainer ID="blogContainer" runat="server" UsePrettyPhoto="true" DateFormatString="d" 
-                        RelatedContentVisible="false" EnableSyntaxHighlighter="true" GravatarRenderType="NotSet" />
+                        <MonoX:BlogContainer ID="blogContainer" runat="server" UsePrettyPhoto="true" DateFormatString="d" RelatedContentVisible="false" EnableSyntaxHighlighter="true" GravatarRenderType="NotSet" />
                     </ZoneTemplate>
                 </portal:PortalWebPartZoneTableless>
-            </td>
-            <td class="right-section">
+            </div>
+            <div class="span4">
                 <portal:PortalWebPartZoneTableless HeaderText='<%$ Code: PageResources.Zone_RightPartZone %>' ID="rightWebPartZone" runat="server" Width="100%" ChromeTemplateFile="RightColumn.htm" ShowChromeForNonAdmins="true">
                     <ZoneTemplate>
                         <MonoX:BlogInfo ID="blogInfo" CacheDuration="600" HideIfEmpty="true" runat="server" />
-                        <MonoX:BlogList ID="blogList" CacheDuration="600" HideIfEmpty="true" runat="server" />
-                        <MonoX:TagCloud ID="tagCloud" CacheDuration="600" HideIfEmpty="true" runat="server" />
                         <MonoX:BlogCategories ID="blogCategories" CacheDuration="600" HideIfEmpty="true" runat="server" />
+                        <MonoX:BlogList ID="blogList" CacheDuration="600" HideIfEmpty="true" runat="server" PageSize="5" Template="BlogListShort" />
+                        <MonoX:TagCloud ID="tagCloud" CacheDuration="600" HideIfEmpty="true" runat="server" />
                     </ZoneTemplate>
-                </portal:PortalWebPartZoneTableless>            
-            </td>
-        </tr>
-    </table>
+                </portal:PortalWebPartZoneTableless>
+            </div>
+        </div>
+    </div>
 </asp:Content>
-

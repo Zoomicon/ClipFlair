@@ -5,7 +5,8 @@
     Inherits="MonoSoftware.MonoX.Pages.SocialNetworking.FileView"
     MasterPageFile="~/MonoX/MasterPages/MonoX.master"
     MaintainScrollPositionOnPostback="true"
-    Theme="Default" %>  
+    AdminToolbarVisible="false"
+    %>  
 
 <%@ MasterType TypeName="MonoSoftware.MonoX.BaseMasterPage" %>   
 <%@ Import Namespace="MonoSoftware.MonoX.Resources" %>

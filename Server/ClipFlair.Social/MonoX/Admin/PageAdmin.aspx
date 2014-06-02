@@ -291,8 +291,8 @@
     </telerik:RadCodeBlock> 
     <MonoXControls:MonoXWindowManager ID="rwmSingleton" runat="server" OnClientClose="OnClientClose"></MonoXControls:MonoXWindowManager>
     <div style="width:100%;height:100%;margin-left:auto;margin-right:auto;overflow:visible;">
-            <div style="height:100%;width:98%;margin-left:1%;margin-right:1%;float:left;padding:0px;margin-top:0px;margin-bottom:0px;" class="pageManagerRoot">
-                <telerik:RadSplitter ID="RadSplitterBrowser" runat="server" VisibleDuringInit="false" ResizeWithBrowserWindow="true" BorderColor="Gray"
+            <div style="height:100%;padding:0px;margin-top:0px;margin-bottom:0px;" class="pageManagerRoot">
+                <telerik:RadSplitter ID="RadSplitterBrowser" runat="server" VisibleDuringInit="false" ResizeWithBrowserWindow="true" BorderColor="Gray" 
                     Height="100%"
                     Width="100%"
                     EnableClientDebug="False"
@@ -350,20 +350,20 @@
                     </telerik:RadPane>
 
                     <telerik:RadSplitBar ID="RadSplitBar1" runat="server" Width="1px" />
-                    <telerik:RadPane ID="RadPaneGrid" Height="100%" runat="server" Width="70%">
+                    <telerik:RadPane ID="RadPaneGrid" Height="100%" runat="server" Width="70%" Scrolling="X" >
                         <telerik:RadGrid ID="gridPages" runat="server" AllowSorting="true" OnPreRender="gridPages_PreRender" PagerStyle-Font-Bold="true" PagerStyle-Font-Size="12px" PagerStyle-Mode="NextPrevAndNumeric"
                             AllowAutomaticDeletes="False" AllowAutomaticInserts="False" AllowAutomaticUpdates="False"
                             AllowPaging="true" AllowCustomPaging="true"
                             AutoGenerateColumns="False" PageSize="20"
                             GridLines="None"
                             Width="100%"
-                            Height="100%"
+                            Height="100%" 
                             OnItemDataBound="gridPages_ItemDataBound"
                             OnNeedDataSource="gridPages_NeedDataSource"
                             OnSortCommand="gridPages_SortCommand"
                             Skin="Default" BorderWidth="0"
                             >
-                            <MasterTableView ClientDataKeyNames="Id" Width="98%"  DataKeyNames="Id" TableLayout="Fixed">
+                            <MasterTableView ClientDataKeyNames="Id" Width="100%"  DataKeyNames="Id" TableLayout="Fixed" >
                                 <Columns>
                                     <telerik:GridTemplateColumn
                                         SortExpression="HasNavigation" UniqueName="HasNavigation" HeaderText='<%$ Code: AdminResources.PageAdmin_colNavigation %>'>

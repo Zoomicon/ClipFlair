@@ -605,7 +605,6 @@ cursor:pointer;
 .input{
 font-size:11px;
 color:#444444;
-background-color:#F0F0F0;
 border:1px solid #83919D;
 }
 
@@ -1041,11 +1040,16 @@ span[disabled]
 }
 .RadUploadContainer INPUT[type="checkbox"]
 {
-	margin: 0px !important;
+	margin: 5px 5px 0px 0px !important;
 	padding: 0px !important;
 }
+.RadUploadContainer .button-holder
+{
+	text-align: left !important;
+}
 .RadUploadButton,
-.radUploadButtonMedium
+.radUploadButtonMedium,
+.RadUploadContainer .button-holder .styled-button
 {
 	background: white url(img/radUploadBtnMedium.gif) no-repeat;
 	border: 0px;
@@ -1053,6 +1057,12 @@ span[disabled]
 	width: 115px;
 	font: normal 11px Arial, Verdana, Sans-serif;
 	color: #666;
+}
+.RadUploadContainer .button-holder .styled-button
+{
+	display: block;
+	text-align: center;
+	line-height: 22px;
 }
 .RadUploadButtonDisabled
 {
@@ -1065,6 +1075,16 @@ span[disabled]
 	filter:alpha(opacity=30);
 	-moz-opacity:0.5;
 	opacity: 0.5;
+}
+.rfeCheckBoxContainer
+{
+	padding: 10px 0px;
+	overflow: hidden;
+}
+.rfeCheckBoxContainer INPUT[type="checkbox"]
+{
+	margin: 1px 5px 0px 0px;
+	float: left;
 }
 /* Admin Grid End */
 
@@ -1633,4 +1653,31 @@ span[disabled]
 	height: 20px;
 	display: inline-block;
 	vertical-align: middle;
+}
+.AdminAutoCompleteBox INPUT[type="text"]
+{
+	border: none 0px !important;
+}
+.rspPane.rspLastItem
+{
+    overflow: scroll !important;
+}
+.RadSplitter.RadSplitter_Default,
+.rspPane.rspLastItem
+{
+    overflow: scroll !important;
+}
+.RadTreeView.RadTreeView_Default
+{
+    width: 100% !important;
+    height: 100% !important;
+}
+.rgDataDiv
+{
+    overflow: auto;
+    height: 100% !important;
+}
+.rgDataDiv .rgMasterTable
+{
+    height: 100% !important;
 }

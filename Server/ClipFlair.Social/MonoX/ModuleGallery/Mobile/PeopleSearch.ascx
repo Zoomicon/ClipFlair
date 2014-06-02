@@ -20,7 +20,7 @@
     <MonoX:StyledButton runat="server" ID="btnViewProfile" OnClick="btnViewProfile_Click" CssClass="SNbutton" EnableNativeButtonMode="true" />
     </div>
     <div style="clear: both">
-        <asp:Literal runat="server" ID="ltlMessage"></asp:Literal>
+        <asp:Label runat="server" ID="lblMessage" CssClass="empty-message"></asp:Label>
     </div>
     <asp:Panel runat="server" ID="pnlInviteFriend" CssClass="jq_monoxInviteFriendPanel">
         <div class="personalMessageLabel">

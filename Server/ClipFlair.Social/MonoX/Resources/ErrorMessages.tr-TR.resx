@@ -162,9 +162,6 @@
   <data name="Membership_Update_UnknownError" xml:space="preserve">
     <value>Bilinmeyen bir hata oluştu.Hesap güncellenemedi, lütfen yeniden deneyiniz. Eğer hata devam ederse, lütfen bizimle bağlantı kurunuz.</value>
   </data>
-  <data name="NumberOfUsersExceeded" xml:space="preserve">
-    <value> MonoX ücretsiz versiyonunda izin verilen kullanıcı sayısı aşıldı. Bu sınırlamayı ortadan kaldırmak için lütfen ticari bir lisans satın alınız.</value>
-  </data>
   <data name="PageNotFound" xml:space="preserve">
     <value>Sayfa bulunamadı</value>
   </data>

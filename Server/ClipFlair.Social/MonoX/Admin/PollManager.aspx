@@ -50,30 +50,46 @@
             <CustomActionsTemplate>
             </CustomActionsTemplate>
             <ContentTemplate>
-            <div class="AdminGridFooterContent">
-                <table width="100%" cellpadding="0" cellspacing="0">
+            <div class="AdminGridFooterContent input-form">
+                <table width="100%">
                     <tr>
                         <td colspan="2">
                             <asp:Panel CssClass="CssForm" runat="server" ID="pnlContainer">
-                                <asp:ValidationSummary ID="summary" runat="server" DisplayMode="List" ValidationGroup="Modification"
-                                    ShowSummary="true" />
-                                <p style="display: none;">
-                                    <asp:Label ID="lblApp" runat="server" Text='<%$ Code: AdminResources.Label_Application %>' AssociatedControlID="ddlApp"></asp:Label>
-                                    <asp:DropDownList ID="ddlApp" runat="server">
-                                    </asp:DropDownList>
-                                </p>
-                                <p>
-                                    <asp:Label ID="lblTitle" runat="server" Text='<%$ Code: AdminResources.PollManager_lblTitle %>' AssociatedControlID="txtTitle"></asp:Label>
-                                    <asp:TextBox ID="txtTitle" runat="server"></asp:TextBox>
-                                    <asp:RequiredFieldValidator ID="requiredTitle" runat="server" CssClass="ValidatorAdapter" ValidationGroup="Modification"
-                                        ControlToValidate="txtTitle" SetFocusOnError="true" Display="Static" Text="!" ErrorMessage='<%$ Code: AdminResources.PollManager_requiredTitle %>'></asp:RequiredFieldValidator>
-                                </p>
-                                <p>
-                                    <asp:Label ID="lblQuestion" runat="server" Text='<%$ Code: AdminResources.PollManager_lblQuestion %>' AssociatedControlID="txtQuestion"></asp:Label>
-                                    <asp:TextBox ID="txtQuestion" runat="server"></asp:TextBox>
-                                    <asp:RequiredFieldValidator ID="requiredQuestion" runat="server" CssClass="ValidatorAdapter" ValidationGroup="Modification"
-                                        ControlToValidate="txtQuestion" SetFocusOnError="true" Display="Static" Text="!" ErrorMessage='<%$ Code: AdminResources.PollManager_requiredQuestion %>'></asp:RequiredFieldValidator>
-                                </p>
+                                <table width="100%">
+                                    <tr>
+                                        <td colspan="2">
+                                            <asp:ValidationSummary ID="summary" runat="server" DisplayMode="List" ValidationGroup="Modification" ShowSummary="true" />
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <asp:Label ID="lblApp" runat="server" Text='<%$ Code: AdminResources.Label_Application %>' AssociatedControlID="ddlApp"></asp:Label>
+                                        </td>
+                                        <td>
+                                            <asp:DropDownList ID="ddlApp" runat="server" Width="97%"></asp:DropDownList>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <asp:Label ID="lblTitle" runat="server" Text='<%$ Code: AdminResources.PollManager_lblTitle %>' AssociatedControlID="txtTitle"></asp:Label>
+                                        </td>
+                                        <td>
+                                            <asp:TextBox ID="txtTitle" runat="server" Width="96%"></asp:TextBox>
+                                            <asp:RequiredFieldValidator ID="requiredTitle" runat="server" CssClass="ValidatorAdapter" ValidationGroup="Modification"
+                                                ControlToValidate="txtTitle" SetFocusOnError="true" Display="Static" Text="!" ErrorMessage='<%$ Code: AdminResources.PollManager_requiredTitle %>'></asp:RequiredFieldValidator>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <asp:Label ID="lblQuestion" runat="server" Text='<%$ Code: AdminResources.PollManager_lblQuestion %>' AssociatedControlID="txtQuestion"></asp:Label>
+                                        </td>
+                                        <td>
+                                            <asp:TextBox ID="txtQuestion" runat="server" Width="96%"></asp:TextBox>
+                                            <asp:RequiredFieldValidator ID="requiredQuestion" runat="server" CssClass="ValidatorAdapter" ValidationGroup="Modification"
+                                                ControlToValidate="txtQuestion" SetFocusOnError="true" Display="Static" Text="!" ErrorMessage='<%$ Code: AdminResources.PollManager_requiredQuestion %>'></asp:RequiredFieldValidator>
+                                        </td>
+                                    </tr>
+                                </table>
                             </asp:Panel>
                             <br />
                             <div style="width: 100%; text-align: center">
@@ -111,19 +127,29 @@
             <CustomActionsTemplate>
             </CustomActionsTemplate>
             <ContentTemplate>
-            <div class="AdminGridFooterContent">
-                <table width="100%" cellpadding="0" cellspacing="0">
+            <div class="AdminGridFooterContent input-form">
+                <table width="100%">
                     <tr>
-                        <td colspan="2">
+                        <td>
                             <asp:Panel CssClass="CssForm" runat="server" ID="Panel1">
-                                <p>
-                                    <asp:Label ID="labAnswer" runat="server" Text='<%$ Code: AdminResources.PollManager_labAnswer %>' style="width: 20%; float: left;"></asp:Label>
-                                    <asp:TextBox ID="txtAnswer" runat="server" Text='<%# Eval("Answer") %>'></asp:TextBox>
-                                </p>
-                                <p>
-                                    <asp:Label ID="Label1" runat="server" Text='<%$ Code: AdminResources.PollManager_lblColor %>' style="width: 20%; float: left;"></asp:Label>
-                                    <mono:ColorPicker ID="ddlColor" runat="server" SelectedValue='<%# Eval("Color") %>'/>
-                                </p>
+                                <table width="100%">
+                                    <tr>
+                                        <td>
+                                            <asp:Label ID="labAnswer" runat="server" Text='<%$ Code: AdminResources.PollManager_labAnswer %>' style="width: 20%; float: left;"></asp:Label>
+                                        </td>
+                                        <td>
+                                            <asp:TextBox ID="txtAnswer" runat="server" Text='<%# Eval("Answer") %>'></asp:TextBox>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <asp:Label ID="Label1" runat="server" Text='<%$ Code: AdminResources.PollManager_lblColor %>' style="width: 20%; float: left;"></asp:Label>
+                                        </td>
+                                        <td>
+                                            <mono:ColorPicker ID="ddlColor" runat="server" SelectedValue='<%# Eval("Color") %>'/>
+                                        </td>
+                                    </tr>
+                                </table>
                             </asp:Panel>
                         </td>
                     </tr>

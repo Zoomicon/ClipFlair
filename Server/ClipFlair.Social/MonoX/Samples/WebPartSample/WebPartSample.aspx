@@ -1,11 +1,11 @@
-<%@ Page Language="C#" MasterPageFile="~/MonoX/MasterPages/DefaultSmallHeader.master" AutoEventWireup="true" Inherits="MonoSoftware.MonoX.Samples.WebPartSample" Title="Web part sample" Theme="Default" Codebehind="WebPartSample.aspx.cs" %>
+<%@ Page Language="C#" MasterPageFile="~/MonoX/MasterPages/DefaultSmallHeader.master" AutoEventWireup="true" Inherits="MonoSoftware.MonoX.Samples.WebPartSample" Title="Web part sample" Codebehind="WebPartSample.aspx.cs" %>
 <%@ MasterType TypeName="MonoSoftware.MonoX.BaseMasterPage" %> 
 <%@ Register TagPrefix="MonoX" TagName="HelloWorld" Src="~/MonoX/Samples/WebPartSample/HelloWorld.ascx" %>
 <%@ Register Assembly="MonoX" Namespace="MonoSoftware.MonoX" TagPrefix="portal" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="cp" Runat="Server">
 <table cellspacing="0" cellpadding="0">
     <tr>
-        <td class="left-section">
+        <td class="left-section" style="vertical-align:top;">
             <portal:PortalWebPartZoneTableless HeaderText="Left part zone" ID="leftWebPartZone" runat="server" Width="100%" ChromeTemplateFile="LeftColumn.htm" ShowChromeForNonAdmins="true">
                 <ZoneTemplate>
                     <MonoX:HelloWorld runat="server" ID="helloWorldSample" Title="Hello world" />

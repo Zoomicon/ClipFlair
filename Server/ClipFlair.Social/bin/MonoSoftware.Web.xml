@@ -1215,6 +1215,11 @@
             Provider-based cache manager.
             </summary>
         </member>
+        <member name="F:MonoSoftware.Web.Caching.CacheManager.CacheKeySeparator">
+            <summary>
+            Separator used while constructing cache keys.
+            </summary>
+        </member>
         <member name="M:MonoSoftware.Web.Caching.CacheManager.GetInstance(System.String,System.Int32)">
             <summary>
             Get the instance of the Cache Manager.
@@ -1704,6 +1709,11 @@
             </para>
             </summary>
         </member>
+        <member name="P:MonoSoftware.Web.DataManager.DataManager.EmptyValueDefaults">
+            <summary>
+            Gets or sets the list of default values per type that are used when Web control has empty value.
+            </summary>
+        </member>
         <member name="T:MonoSoftware.Web.DataManager.DataManagerBinding">
             <summary>
             Data manager control mapping used to automate the proces of hiding, showing and transfering data to control.
@@ -1746,6 +1756,11 @@
             Note: Referenced containers are used with hidden fields feature on data manager (e.g. if field is hidden then all referenced containers will be hidden).
             </para>
             </summary>        
+        </member>
+        <member name="P:MonoSoftware.Web.DataManager.DataManagerBinding.EmptyValueDefault">
+            <summary>
+            Gets or sets the default value for binding that is used when Web control has empty value.
+            </summary>
         </member>
         <member name="T:MonoSoftware.Web.DataManager.DataManagerBindingCollection">
             <summary>
@@ -1815,6 +1830,19 @@
             <param name="previewControlValueProperty">Preview control value property</param>
             <param name="fieldName">Bind property or field name</param>
             <param name="referencedContainers">Referenced containers used with hidden feilds feature</param>
+            <param name="validators">Validators used for edit control</param>
+        </member>
+        <member name="M:MonoSoftware.Web.DataManager.DataManagerBindingCollection.Add(System.Web.UI.Control,System.String,System.Web.UI.Control,System.String,System.String,System.Web.UI.Control[],System.Object,System.Web.UI.WebControls.BaseValidator[])">
+            <summary>
+            Initialize binding for control.
+            </summary>
+            <param name="editControl">Edit control</param>
+            <param name="editControlValueProperty">Edit control value property</param>
+            <param name="previewControl">Preview control</param>        
+            <param name="previewControlValueProperty">Preview control value property</param>
+            <param name="fieldName">Bind property or field name</param>
+            <param name="referencedContainers">Referenced containers used with hidden feilds feature</param>
+            <param name="emptyValueDefault">Default value used in case control has empty value.</param>
             <param name="validators">Validators used for edit control</param>
         </member>
         <member name="P:MonoSoftware.Web.DataManager.DataManagerBindingCollection.Item(System.String)">
@@ -2255,6 +2283,21 @@
             IE browser, version 8.
             </summary>
         </member>
+        <member name="F:MonoSoftware.Web.BrowserType.IE9">
+            <summary>
+            IE browser, version 9.
+            </summary>
+        </member>
+        <member name="F:MonoSoftware.Web.BrowserType.IE10">
+            <summary>
+            IE browser, version 10.
+            </summary>
+        </member>
+        <member name="F:MonoSoftware.Web.BrowserType.IE11">
+            <summary>
+            IE browser, version 11.
+            </summary>
+        </member>
         <member name="F:MonoSoftware.Web.BrowserType.FireFox">
             <summary>
             FireFox browser, unknown version.
@@ -2278,6 +2321,11 @@
         <member name="F:MonoSoftware.Web.BrowserType.Safari">
             <summary>
             Safari browser, unknown version.
+            </summary>
+        </member>
+        <member name="F:MonoSoftware.Web.BrowserType.Chrome">
+            <summary>
+            Chrome browser, unknown version.
             </summary>
         </member>
         <member name="T:MonoSoftware.Web.HttpResponseExtension">
@@ -2417,6 +2465,13 @@
             </summary>
             <param name="value">Html</param>
             <returns>Filtered html</returns>
+        </member>
+        <member name="M:MonoSoftware.Web.HtmlFormatter.Multiline2SinglelineText(System.String)">
+            <summary>
+            Converts multiline text to single line text.
+            </summary>
+            <param name="value">Text</param>
+            <returns>Filtered text.</returns>
         </member>
         <member name="M:MonoSoftware.Web.HtmlFormatter.SanitizeHtml(System.String)">
             <summary>
@@ -3145,6 +3200,11 @@
             Allowed Symbols.
             </summary>
         </member>
+        <member name="F:MonoSoftware.Web.Controls.RegExValidator.NumericCharacters">
+            <summary>
+            Gets the numeric characters.
+            </summary>
+        </member>
         <member name="F:MonoSoftware.Web.Controls.RegExValidator.Alpha">
             <summary>
             Alpha
@@ -3288,6 +3348,11 @@
             </summary>
             <param name="type">RegEx type</param>
             <returns>Validation expression</returns>
+        </member>
+        <member name="P:MonoSoftware.Web.Controls.RegExValidator.AlphaCharacters">
+            <summary>
+            Gets the alpha characters.
+            </summary>
         </member>
         <member name="P:MonoSoftware.Web.Controls.RegExValidator.ValidationType">
             <summary>
@@ -3703,7 +3768,15 @@
             <summary>
             Retrieves provider user key for a user with specified user name.
             </summary>
-            <param name="userName"></param>
+            <param name="userName">User name.</param>
+            <returns>Provider user key.</returns>
+        </member>
+        <member name="M:MonoSoftware.Web.Security.Membership.GetProviderUserKey(System.String,MonoSoftware.Web.Caching.CacheManager)">
+            <summary>
+            Retrieves provider user key for a user with specified user name.
+            </summary>
+            <param name="userName">User name.</param>
+            <param name="cacheManager">Cache manager used to optimize database access.</param>
             <returns>Provider user key.</returns>
         </member>
         <member name="M:MonoSoftware.Web.Security.Membership.InvalidateProviderUserKey(System.String)">

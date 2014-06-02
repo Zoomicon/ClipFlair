@@ -906,4 +906,7 @@ Med venlig hilsen
   <data name="ErrorMessage_UserAccountHasBeenLockedOut" xml:space="preserve">
     <value>Adgangskoden kunne ikke findes (f.eks. fordi profilen er låst eller lukket).</value>
   </data>
+  <data name="GoogleMaps_DefaultLocation" xml:space="preserve">
+    <value>Denmark</value>
+  </data>
 </root>

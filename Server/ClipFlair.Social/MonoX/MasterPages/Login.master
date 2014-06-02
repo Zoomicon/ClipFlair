@@ -11,8 +11,7 @@
 <%@ Register TagPrefix="MonoX" TagName="MembershipNavigation" Src="~/MonoX/MasterPages/MembershipNavigation.ascx" %>
 <%@ Register TagPrefix="MonoX" TagName="Membership" Src="~/MonoX/ModuleGallery/Membership/MembershipEditor.ascx" %>
 <%@ Register TagPrefix="MonoX" TagName="LoginRpx" Src="~/MonoX/ModuleGallery/LoginRpx.ascx" %>
-<%@ Register TagPrefix="MonoX" TagName="PageFooter" Src="~/MonoX/MasterPages/PageFooter.ascx" %>
-
+<%@ Register TagPrefix="MonoX" TagName="PageFooter" Src="~/App_MasterPages/ClipFlair/ClipFlairPageFooter.ascx" %>
 <%@ Register Assembly="MonoX" Namespace="MonoSoftware.MonoX" TagPrefix="portal" %>
 
 

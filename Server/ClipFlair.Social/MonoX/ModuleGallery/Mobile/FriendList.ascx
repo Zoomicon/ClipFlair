@@ -13,7 +13,7 @@
     <ItemTemplate></ItemTemplate>
 </asp:ListView>
 </asp:Panel>
-<asp:Literal runat="server" ID="ltlMessage"></asp:Literal>
+<asp:Label runat="server" ID="lblMessage"></asp:Label>
 <div style="clear:both">
 <mono:Pager runat="server" ID="pager" PageSize="10" NumericButtonCount="5" AllowCustomPaging="true" AutoPaging="false">
     <PagerTemplate></PagerTemplate>

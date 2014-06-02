@@ -1,4 +1,5 @@
-﻿<%@ Control Language="C#" 
+﻿<%@ Control
+    Language="C#" 
     AutoEventWireup="true" 
     CodeBehind="DiscussionContainer.ascx.cs" 
     Inherits="MonoSoftware.MonoX.ModuleGallery.SocialNetworking.DiscussionContainer" %>
@@ -14,9 +15,11 @@
     <div class="discussion-permission"><asp:Label ID="labNotificationMessage" runat="server"></asp:Label></div>
 </asp:PlaceHolder>
 
-<div class="discussion-container">
-    <MonoX:DiscussionBoard runat="server" ID="dBoard" Title="Discussion board" />
-    <MonoX:DiscussionTopic runat="server" ID="dTopic" />
-    <MonoX:DiscussionTopic runat="server" ID="dFilterTopic" />
-    <MonoX:DiscussionMessages runat="server" ID="dMessages" />
-</div>
+<asp:UpdatePanel ID="up" runat="server" UpdateMode="Always">
+    <ContentTemplate>
+        <monox:discussionboard runat="server" id="dBoard" title="Discussion board" />
+        <monox:discussiontopic runat="server" id="dTopic" />
+        <monox:discussiontopic runat="server" id="dFilterTopic" />
+        <monox:discussionmessages runat="server" id="dMessages" />
+    </ContentTemplate>
+</asp:UpdatePanel>

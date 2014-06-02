@@ -2,7 +2,7 @@
 <%@ Register Namespace="MonoSoftware.Web.Pager" Assembly="MonoSoftware.Web.Pager" TagPrefix="mono" %>
 
 <asp:Panel ID="pnlContainer" runat="server">
-<div class="list-module">
+<div class="lists">
     <asp:ListView ID="lvItems" runat="server">
     <LayoutTemplate>
         <asp:PlaceHolder runat="server" ID="itemPlaceholder"></asp:PlaceHolder>

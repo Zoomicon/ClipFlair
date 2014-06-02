@@ -1,11 +1,15 @@
-﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="SilverlightUploadModule.ascx.cs"
+﻿<%@ Control
+    Language="C#"
+    AutoEventWireup="true"
+    CodeBehind="SilverlightUploadModule.ascx.cs"
     Inherits="MonoSoftware.MonoX.ModuleGallery.SilverlightUploadModule" %>
+
 <%@ Register TagPrefix="MonoX" TagName="FileGallery" Src="~/MonoX/ModuleGallery/SocialNetworking/FileGallery.ascx" %>
+
 <div class="jq_monoxUploadContainer silverlight-upload">
     <asp:ScriptManagerProxy ID="scriptManagerProxy" runat="server">
     </asp:ScriptManagerProxy>
-    <asp:HyperLink runat="server" NavigateUrl="javascript:void(0);" CssClass="upload-button jq_uploadAction"
-        ID="lnkUpload" ></asp:HyperLink>
+    <asp:HyperLink runat="server" NavigateUrl="javascript:void(0);" CssClass="upload-button jq_uploadAction" ID="lnkUpload" ></asp:HyperLink>
     <asp:Panel ID="pnlUpload" runat="server" CssClass="jq_silverlightUploadModuleBox">
         <object id="SilverlightUpload" data="data:application/x-silverlight," type="application/x-silverlight-2"
             width="<%= Width %>" height="<%= Height %>" >

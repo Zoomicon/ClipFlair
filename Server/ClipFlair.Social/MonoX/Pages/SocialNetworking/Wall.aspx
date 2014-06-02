@@ -3,7 +3,8 @@
     CodeBehind="Wall.aspx.cs"
     Inherits="MonoSoftware.MonoX.Pages.SocialNetworking.Wall"
     MasterPageFile="~/MonoX/MasterPages/DefaultSmallHeader.master"
-    Theme="Default" %>
+    MaintainScrollPositionOnPostback="true"
+    %>
 <%@ MasterType TypeName="MonoSoftware.MonoX.BaseMasterPage" %>   
 <%@ Import Namespace="MonoSoftware.MonoX.Resources" %>
 <%@ Register TagPrefix="MonoX" TagName="PeopleSearch" Src="~/MonoX/ModuleGallery/SocialNetworking/PeopleSearch.ascx" %>
@@ -15,28 +16,25 @@
 <%@ Register Assembly="MonoX" Namespace="MonoSoftware.MonoX" TagPrefix="portal" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="cp" Runat="Server">
-    <table width="100%" border="0" cellspacing="0" cellpadding="0">
-      <tr>        
-        <td class="left-section">
-            <portal:PortalWebPartZoneTableless HeaderText='<%$ Code: PageResources.Zone_LeftPartZone %>' ID="leftPartZone" runat="server" Width="100%" ChromeTemplateFile="LeftColumn.htm">
+<div class="container">  
+    <div class="row-fluid">
+        <div class="span8">
+            <portal:PortalWebPartZoneTableless HeaderText='<%$ Code: PageResources.Zone_LeftPartZone %>' ID="leftPartZone" runat="server" Width="100%" ChromeTemplateFile="Standard.htm">
                 <ZoneTemplate>
                     <MonoX:Wall runat="server" ID="snWallNotes" UsePrettyPhoto="true" ShowRating="false" GravatarRenderType="NotSet"  />                        
                 </ZoneTemplate>
             </portal:PortalWebPartZoneTableless>
-        </td>
-        <td class="right-section">
-            <portal:PortalWebPartZoneTableless HeaderText='<%$ Code: PageResources.Zone_RightPartZone %>' ID="rightWebPartZone" runat="server" Width="100%" ChromeTemplateFile="RightColumn.htm" ShowChromeForNonAdmins="true">
+        </div>
+        <div class="span4">
+            <portal:PortalWebPartZoneTableless HeaderText='<%$ Code: PageResources.Zone_RightPartZone %>' ID="rightWebPartZone" runat="server" Width="100%" ChromeTemplateFile="Rightcolumn.htm" ShowChromeForNonAdmins="true">
                 <ZoneTemplate>
                     <MonoX:PeopleSearch runat="server" CacheDuration="600" ConfirmationRequired="true" ID="snPeopleSearch" />
                     <MonoX:InvitationList runat="server" InvitationType="InvitationsSent" ID="ctlInvitationsSent" PageSize="9" AvatarSize="40" HideIfEmpty="true" />
                     <MonoX:InvitationList runat="server" InvitationType="InvitationsReceived" ID="ctlInvitationsReceived" PageSize="9" AvatarSize="40" HideIfEmpty="true" />
-                    
-                    <MonoX:FriendList runat="server" CacheDuration="600" PageSize="18" AvatarSize="40" ID="snFriendList"></MonoX:FriendList>
-                    <MonoX:Events ID="ctlEvents" runat="server"></MonoX:Events>
+                    <MonoX:FriendList runat="server" CacheDuration="600" PageSize="18" AvatarSize="40" ID="snFriendList"></MonoX:FriendList>                
                 </ZoneTemplate>
-            </portal:PortalWebPartZoneTableless>            
-        </td>
-      </tr>
-    </table>
-
+            </portal:PortalWebPartZoneTableless>
+        </div>
+    </div>
+</div>
 </asp:Content>

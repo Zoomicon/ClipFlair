@@ -1,19 +1,21 @@
-﻿<td>
-    <div class="photo-list">
-        <# PhotoThumb #>    
-        <table cellpadding="0" cellspacing="0">
-            <tr>
-                <td class="photo-title">
-                    <# PhotoName #>&nbsp;<div class="author"><a href="<# AuthorUrl #>" title="<# AuthorToolTip #>"><# AuthorText #></a></div>
-                </td>
-            </tr>
-            <tr>
-                <td class="photo-links">
-                    <span><# EditButton #></span> &nbsp;
-                    <span><# DeleteButton #></span>
-                    <div><# Rating #></div>
-                </td>
-            </tr>
-        </table>
+﻿<div class="item">
+    <div class="inner">
+    <div class="text-ending"></div>  
+        <div class="options">
+            <a href="<# AuthorUrl #>" title="<# AuthorToolTip #>" class="float-left"><# AuthorText #></a>
+            <div class="float-right">
+                <span class="edit"><# EditButton #></span>
+                <span class="delete"><# DeleteButton #></span>
+                <!--CLIPFLAIR<span class="<# PrivacyLevelCSS #>"></span>-->
+            </div>
+        </div>
+        <div class="album-wrapper clearfix">
+            <div class="photo-wrapper">
+                <# PhotoThumb #>
+            </div>
+            <h3><# PhotoName #></h3>
+            <div class="rating"><# Rating #></div>
+            <p>$Container.DataItem.Description</p>
+        </div>
     </div>
-</td>
+</div>

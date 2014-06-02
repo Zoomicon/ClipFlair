@@ -1,47 +1,46 @@
-<%@ Control Language="C#" AutoEventWireup="true" Inherits="MonoSoftware.MonoX.ModuleGallery.Blog.BlogPostList"
+<%@ Control
+    Language="C#"
+    AutoEventWireup="true"
+    Inherits="MonoSoftware.MonoX.ModuleGallery.Blog.BlogPostList"
     CodeBehind="BlogPostList.ascx.cs" %>
+
 <%@ Register Namespace="MonoSoftware.Web.Pager" Assembly="MonoSoftware.Web.Pager" TagPrefix="mono" %>
-<%@ Register TagPrefix="MonoX" TagName="LightBox" Src="~/ClipFlair/Controls/LightBox.ascx" %>
-<%@ Register Src="~/MonoX/controls/SyntaxHighlighter/SyntaxHighlighter.ascx" TagPrefix="mono"
-    TagName="SyntaxHighlighter" %>
+<%@ Register Src="~/MonoX/controls/SyntaxHighlighter/SyntaxHighlighter.ascx" TagPrefix="mono" TagName="SyntaxHighlighter" %>
 
 <mono:SyntaxHighlighter ID="syntaxHighlighter" runat="server" />
-
-    <asp:Panel ID="pnlContainer" runat="server">    
-        <MonoX:LightBox runat="server" ID="lbHeader">
-            <ContentTemplate>
-            <div style="position: relative;">
-                <asp:Literal runat="server" ID="ltlH1Open"><h1></asp:Literal><asp:Literal ID="ltlBlogName" runat="server"></asp:Literal><asp:Literal runat="server" ID="ltlH1Close"></h1></asp:Literal>
-                <div style="margin-bottom: 0px; overflow: hidden;" class="padding1-after"><asp:Literal ID="ltlBlogDescription" runat="server"></asp:Literal></div>
-                <div class="blog-action-container padding1-before">
-                    <ul class="first" id="panFilter" runat="server">
-                        <li title="<%= MonoSoftware.MonoX.Resources.BlogResources.BlogPostList_Filter_Title %>">
-                            <asp:HyperLink ID="lnkCurrent" runat="server" ></asp:HyperLink>
-                            <ul class="level0">
-                                <li><asp:HyperLink ID="lnkFirst" runat="server" ></asp:HyperLink></li>
-                                <li><asp:HyperLink ID="lnkSecond" runat="server" ></asp:HyperLink></li>
-                            </ul>
-                        </li>
+<asp:Panel ID="pnlContainer" runat="server">
+    <!--CLIPFLAIR-->
+    <div class="blog-top-section clearfix" runat="server" id="lbHeader">
+        <div class="blog-info">
+            <asp:Literal runat="server" ID="ltlH1Open"><h1></asp:Literal><asp:Literal ID="ltlBlogName" runat="server"></asp:Literal><asp:Literal runat="server" ID="ltlH1Close"></h1></asp:Literal>
+            <p class="blog-description"><asp:Literal ID="ltlBlogDescription" runat="server"></asp:Literal></p>
+        </div>
+        <div class="main-options">
+            <ul class="first" id="panFilter" runat="server">
+                <li title="<%= MonoSoftware.MonoX.Resources.BlogResources.BlogPostList_Filter_Title %>"> 
+                    <asp:HyperLink ID="lnkCurrent" runat="server" CssClass="options-link styled-button list-btn float-left" ></asp:HyperLink>
+                    <ul class="level0">
+                        <li><asp:HyperLink ID="lnkFirst" runat="server" ></asp:HyperLink></li>
+                        <li><asp:HyperLink ID="lnkSecond" runat="server" ></asp:HyperLink></li>
                     </ul>
-                    <asp:HyperLink runat="server" ID="lnkComments" CssClass="BlogComments MarginBottom"></asp:HyperLink>
-                    <asp:HyperLink runat="server" ID="lnkSettings" CssClass="BlogSettings MarginBottom"></asp:HyperLink>
-                    <asp:HyperLink runat="server" ID="lnkAddNew" CssClass="AddBlogPost MarginBottom"></asp:HyperLink>
-                </div>
-                <!-- <div class="arrow-down arow-position"></div> -->
-            </div>
-            
-        </ContentTemplate>
-        </MonoX:LightBox>  
-
-    <asp:Literal runat="server" ID="ltlHeaderSpace"><br /></asp:Literal>  
+                </li>
+            </ul>
+            <!--<asp:HyperLink runat="server" ID="lnkComments" CssClass="styled-button comments-btn float-left"></asp:HyperLink>-->
+            <asp:HyperLink runat="server" ID="lnkSettings" CssClass="styled-button options-btn float-left"></asp:HyperLink>            
+            <asp:HyperLink runat="server" ID="lnkAddNew" CssClass="styled-button main-button add-btn float-left"></asp:HyperLink>
+        </div>
+    </div>  
+    <asp:Literal runat="server" ID="ltlHeaderSpace"></asp:Literal>  
     <asp:ListView ID="lvItems" runat="server">
         <LayoutTemplate>
-            <asp:PlaceHolder runat="server" ID="itemPlaceholder"></asp:PlaceHolder>
+            <div class="clearfix">
+                <asp:PlaceHolder runat="server" ID="itemPlaceholder"></asp:PlaceHolder>
+            </div>
         </LayoutTemplate>
         <ItemTemplate>
         </ItemTemplate>
     </asp:ListView>
-    <asp:Literal runat="server" ID="ltlNoData"></asp:Literal>
+    <asp:Label runat="server" ID="lblNoData" CssClass="empty-list"></asp:Label>
     <mono:Pager runat="server" ID="pager" PageSize="10" NumericButtonCount="5" AllowCustomPaging="true"
         AutoPaging="false">
         <PagerTemplate>

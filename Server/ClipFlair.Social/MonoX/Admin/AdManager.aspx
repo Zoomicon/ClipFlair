@@ -10,7 +10,6 @@
 <%@ Register TagPrefix="rad" Namespace="Telerik.Web.UI" Assembly="Telerik.Web.UI" %>
 <%@ Register Assembly="MonoX" Namespace="MonoSoftware.MonoX.Controls" TagPrefix="mono" %>
 <%@ Register Assembly="MonoSoftware.Web" Namespace="MonoSoftware.Web.Controls" TagPrefix="mono" %>
-<%@ Register Src="~/MonoX/Admin/controls/DatePicker.ascx" TagPrefix="mono" TagName="DatePicker" %>
 <%@ Register TagPrefix="mono" Namespace="MonoSoftware.Web.LiteGrid" Assembly="MonoSoftware.Web.LiteGrid" %>
 <%@ Register Src="~/MonoX/Admin/controls/GridViewEditBox.ascx" TagPrefix="monox"
     TagName="GridViewEditBox" %>
@@ -42,11 +41,11 @@
                     CssClass="AdminLargeButton" OnClick="btnToggleActive_Click" />
             </CustomActionsTemplate>
             <ContentTemplate>
-            <div class="AdminGridFooterContent">
-                <table cellpadding="0" cellspacing="0" width="100%">
+            <div class="AdminGridFooterContent input-form">
+                <table width="100%">
                     <tr>
                         <td>
-                        <table cellpadding="0" cellspacing="0" width="100%">
+                        <table width="100%">
                             <tr>
                                 <td colspan="2">
                                     <asp:ValidationSummary ID="summary" runat="server" DisplayMode="List" ValidationGroup="Modification"
@@ -133,8 +132,8 @@
             <CustomActionsTemplate>
             </CustomActionsTemplate>
             <ContentTemplate>
-            <div class="AdminGridFooterContent">
-                <table cellpadding="0" cellspacing="0" width="100%">
+            <div class="AdminGridFooterContent input-form">
+                <table width="100%">
                     <tr>
                         <td colspan="2">
                             <asp:ValidationSummary ID="validationSummaryAd" runat="server" DisplayMode="List"
@@ -144,7 +143,7 @@
                     </tr>
                     <tr>
                         <td>
-                            <table cellpadding="0" cellspacing="0">
+                            <table width="100%">
                                 <tr>
                                     <td style="width: 20%;">
                                         <asp:Literal ID="labCampaignEdit" runat="server" Text='<%$ Code: AdminResources.AdAdmin_labCampaignEdit %>'></asp:Literal>

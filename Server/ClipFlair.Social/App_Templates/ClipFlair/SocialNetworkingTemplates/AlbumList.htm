@@ -1,25 +1,22 @@
-﻿<td>
-    <div class="album-list">
-        <# AlbumCover #>    
-        <table cellpadding="0" cellspacing="0">
-            <tr>
-                <td>                    
-                    <span class="album-title"><# AlbumNameViewButton #></span>&nbsp;<div class="author"><a href="<# AuthorUrl #>" title="<# AuthorToolTip #>"><# AuthorText #></a></div>
-                </td>
-            </tr>
-            <tr>
-                <td class="photo-count"><# PhotoCount #></td>
-            </tr>
-            <tr>
-                <td class="descr"><# AlbumDescription #></td>
-            </tr>        
-            <tr>
-                <td class="album-links">
-                    <div><# Rating #></div>
-                    <span><# EditButton #></span> &nbsp;
-                    <span><# DeleteButton #></span>
-                </td>
-            </tr>
-        </table>
-    </div>
-</td>
+﻿<div class="item">
+    <div class="inner">  
+    <div class="text-ending"></div>      
+        <div class="options">
+            <a href="<# AuthorUrl #>" title="<# AuthorToolTip #>" class="float-left"><# AuthorText #></a>
+            <div class="float-right">
+                <span class="edit"><# EditButton #></span>
+                <span class="delete"><# DeleteButton #></span>
+                <!--CLIPFLAIR<span class="<# PrivacyLevelCSS #>"></span>-->
+            </div>
+        </div>  
+        <div class="album-wrapper clearfix">
+            <div class="photo-wrapper">
+                <# AlbumCover #>
+            </div>
+            <div class="photo-count"><# PhotoCount #></div>
+            <h3><# AlbumNameViewButton #></h3>        
+            <div class="rating"><# Rating #></div>
+            <p><# AlbumDescription #></p>
+        </div>  
+    </div>    
+</div>

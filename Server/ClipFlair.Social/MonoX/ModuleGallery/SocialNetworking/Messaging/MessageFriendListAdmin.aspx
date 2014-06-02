@@ -42,8 +42,8 @@
                     <asp:Label runat="server" Text='<%# Eval("MembersString") %>' ID="lblMembers" CssClass="rightLabel"></asp:Label>
                 </p>    
                 <p>
-                    <asp:LinkButton ID="lnkDelete" runat="server" CommandArgument='<%# Eval("Id") %>' CommandName="Delete" Text='<%# DefaultResources.Button_Delete %>' CssClass="blue-button"></asp:LinkButton>
-                    <asp:LinkButton ID="lnkEdit" runat="server" CommandArgument='<%# Eval("Id") %>' CommandName="Edit" Text='<%# DefaultResources.Button_Edit %>' CssClass="blue-button"></asp:LinkButton>                 
+                    <asp:LinkButton ID="lnkDelete" runat="server" CausesValidation="false" CommandArgument='<%# Eval("Id") %>' CommandName="Delete" Text='<%# DefaultResources.Button_Delete %>' CssClass="blue-button"></asp:LinkButton>
+                    <asp:LinkButton ID="lnkEdit" runat="server" CausesValidation="false" CommandArgument='<%# Eval("Id") %>' CommandName="Edit" Text='<%# DefaultResources.Button_Edit %>' CssClass="blue-button"></asp:LinkButton>                 
                 </p>
                 <p class="separator"></p>           
                 </ItemTemplate>
@@ -57,9 +57,9 @@
                     <MonoX:AddressEntry runat="server" Height="200" Width="68%" ID="ddlMembers" Text='<%# Eval("MembersString") %>' UserFilterMode="ShowFriends" />
                 </p>
                 <p>
-                    <asp:LinkButton ID="lnkCancel" runat="server" CommandArgument='<%# Eval("Id") %>' CommandName="Cancel" Text='<%# DefaultResources.Button_Cancel %>' CssClass="blue-button"></asp:LinkButton>
-                    <asp:LinkButton ID="lnkDelete2" runat="server" CommandArgument='<%# Eval("Id") %>' CommandName="Delete" Text='<%# DefaultResources.Button_Delete %>' CssClass="blue-button"></asp:LinkButton> 
-                    <asp:LinkButton ID="lnkUpdate" runat="server" CommandArgument='<%# Eval("Id") %>' CommandName="Update" Text='<%# DefaultResources.Button_Update %>' CssClass="blue-button"></asp:LinkButton>                                
+                    <asp:LinkButton ID="lnkCancel" runat="server" CausesValidation="false" CommandArgument='<%# Eval("Id") %>' CommandName="Cancel" Text='<%# DefaultResources.Button_Cancel %>' CssClass="blue-button"></asp:LinkButton>
+                    <asp:LinkButton ID="lnkDelete2" runat="server" CausesValidation="false" CommandArgument='<%# Eval("Id") %>' CommandName="Delete" Text='<%# DefaultResources.Button_Delete %>' CssClass="blue-button"></asp:LinkButton> 
+                    <asp:LinkButton ID="lnkUpdate" runat="server" CausesValidation="true" CommandArgument='<%# Eval("Id") %>' CommandName="Update" Text='<%# DefaultResources.Button_Update %>' CssClass="blue-button"></asp:LinkButton>                                
                 </p>
                 <p class="separator"></p>           
                 </EditItemTemplate>
@@ -70,7 +70,7 @@
             </asp:Panel>
         <div class="footer">
             <asp:PlaceHolder id="plhActions" Runat="server">
-                <asp:Button id="btnSave" runat="server" CausesValidation="true" ValidationGroup="Modification" CssClass="AdminButton" OnClientClick="javascript:CloseWindow()" />
+                <!--CLIPFLAIR--><asp:Button id="btnSave" runat="server" CausesValidation="true" ValidationGroup="Modification" CssClass="AdminButton styled-button-clipflair_green" OnClientClick="javascript:CloseWindow()" />
             </asp:PlaceHolder>
             <b style="color:Red;"><asp:Literal ID="labMessage" runat="server"></asp:Literal></b>
         </div>

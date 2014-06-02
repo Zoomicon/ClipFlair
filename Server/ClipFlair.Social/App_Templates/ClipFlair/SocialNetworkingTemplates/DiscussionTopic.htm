@@ -1,69 +1,91 @@
-﻿<tr class="jq_snNote <# UnansweredClass #> <# AnsweredClass #> <# PinItemBackgroundClass #>">
-    #if( $AnsweringVisible )
-    <td class="topic-icon">
-        <div class="answered-icon" title="<# AnswerToolTip #>"><# Answer #></div>
-    </td>
-    #end
-    <td class="<# UnapprovedClass #> <# SpamClass #> <# PinItemClass #>">
-        <div class="topic-content">
-            <div class="pin-image"></div>
-            <h3 class="title"><# Name #></h3>                    
-            #if( $TellAFriendVisible ) <span class="tell-a-friend"><# TellAFriend #></span> #end
+﻿<div class="discussion-item <# PinItemClass #> <# PinItemBackgroundClass #>">
+    
+    <div class="jq_snNote <# UnapprovedClass #> <# SpamClass #> <# UnansweredClass #> <# AnsweredClass #>"> 
+        <!--CLIPFLAIR-->
+        <div class="discussion-pins">
+            <div class="pin-image-inactive">
+                <div class="pin-image"></div>
+            </div>
+            #if( $AnsweringVisible )
+                <div class="icon" title="<# AnswerToolTip #>">
+                    <!--<# Answer #>-->
+                </div>
+            #end
+        </div>
+        <div class="discussion-content">
+            <h3><# Name #></h3>
+            <div class="date-author">
+                <# Date #> -
+                <a href="<# AuthorUrl #>" title="<# AuthorToolTip #>" class="author"><# AuthorText #></a>
+            </div>
             #if( $LastPostVisible )
-            <div class="last-topic-name-author">
-                <a class="last-post" href="<# LastPostUrl #>" title="<# LastPostToolTip #>"><span><# LastPostText #></span>&nbsp;<# LastPostName #></a>
+            <div class="last">
+                <span><# LastPostText #></span>
+                <a href="<# LastPostUrl #>" title="<# LastPostToolTip #>">
+                    <# LastPostName #>
+                </a>
                 #if( $LastPostAuthorVisible )
-                <a class="last-post-author" href="<# LastPostAuthorUrl #>" title="<# LastPostAuthorToolTip #>">
-                    <span><# LastPostAuthorText #></span>
-                    &nbsp;<# LastPostAuthorName #>
+                <span><# LastPostAuthorText #></span>
+                <a href="<# LastPostAuthorUrl #>" title="<# LastPostAuthorToolTip #>">
+                    <# LastPostAuthorName #>
                 </a>
                 #end
-                &nbsp;
-                <span class="last-post-date"><# LastPostDate #></span>
+                / <# LastPostDate #>
             </div>
             #end
-            #if( $TagsVisible )
-            <div class="tags">
-                <# Tags #>
-            </div>
-            #end
-            <div class="topic-option">
+            <div class="tags_cont">
+                #if( $TagsVisible )
+                <div class="tags">
+                   <# Tags #>
+                </div>
+                #end
+                <div class="options small-btn">
+                #if( $EditVisible )
+                <a title="<# Edit-ToolTip #>" href='<# Edit-URL #>' class="styled-button main-button edit-btn-b float-left">
+                    <# Edit-ToolTip #>
+                </a>
+                #end
+                #if( $DeleteVisible )
+                <a title="<# Delete-ToolTip #>" href='<# Delete-URL #>' class="styled-button delete-btn float-left" <# Delete-Attributes #>>
+                    <# Delete-ToolTip #>
+                </a>
+                #end
                 #if( $ApproveOptionsVisible )
-                <span class="approve-icon"><# Approve #></span>
+                <div class="styled-wrapper approve-btn-wrapper float-left"><# Approve #></div>
                 #end
                 #if( $SpamOptionsVisible )
-                <span class="report-ham-icon"><# ReportHam #></span>
-                <span class="report-spam-icon"><# ReportSpam #></span>
+                <div class="styled-wrapper report-btn-wrapper float-left"><# ReportHam #></div>
+                <div class="styled-wrapper report-btn-wrapper float-left"><# ReportSpam #></div>
                 #end
-                #if( $PinItemVisible ) <# TogglePinItem #> #end
+                #if( $PinItemVisible ) <div class="styled-wrapper pin-btn-wrapper float-left"><# TogglePinItem #></div> #end
+                #if( $TellAFriendVisible ) <span class="share"><# TellAFriend #></span> #end
             </div>
+            </div>
+            <div class="info-box">
+                <div class="counter">                
+                    <a href="<# ReplyUrl #>" title="<# ReplyToolTip #>">
+                        <# ReplyCount #>
+                        <span><# ReplyText #></span>
+                    </a>
+                    <a href="<# ViewsUrl #>" title="<# ViewsToolTip #>">
+                        <# ViewsCount #>
+                        <span><# ViewsText #></span>
+                    </a>
+                    #if( $RatingVisible )
+                        <strong>
+                            <b><# RatingCount #></b>&nbsp;
+                            <span title="<# RatingToolTip #>"><# RatingText #></span>
+                        </strong>
+                    #end
+                    #if( $NoRatingVisible )
+                        <strong>
+                            0
+                            <span title="<# RatingToolTip #>"><# RatingText #></span>
+                        </strong>
+                    #end
+                </div>
+            </div>
+            
         </div>
-    </td>                
-    <td class="topics"><a href="<# ViewsUrl #>" title="<# ViewsToolTip #>"><# ViewsCount #><span><# ViewsText #></span></a></td>
-    <td class="posts"><a href="<# ReplyUrl #>" title="<# ReplyToolTip #>"><# ReplyCount #><span><# ReplyText #></span></a></td>            
-    <td class="date-author">
-        <div style="padding: 0px 10px;">
-            <span class="edit-icon"><# Edit #></span>
-            <span class="delete-icon"><# Delete #></span>            
-            <div class="date"><# Date #></div>
-            <div class="author"><a href="<# AuthorUrl #>" title="<# AuthorToolTip #>"><# AuthorText #></a></div>
-        </div>
-    </td>
-    #if( $RatingVisible )
-    <td class="posts">
-        <div class="votes">
-            <img src="<# App_ThemesFolder #>img/Sn/Discussion/thumb-up.png" alt="Vote icon" />
-            <div><# RatingCount #></div>
-            <span title="<# RatingToolTip #>"><# RatingText #></span>
-        </div>
-    </td>
-    #end
-    #if( $NoRatingVisible )
-    <td class="posts">
-        <div class="votes">                        
-            <span title="<# RatingToolTip #>"><# RatingText #></span>
-        </div>
-    </td>
-    #end    
-</tr>         
-    
+    </div>
+</div>

@@ -1,65 +1,84 @@
-﻿<div class="message  jq_snNote <# UnapprovedClass #> <# SpamClass #> <# AnsweredBackgroundClass #> <# PinItemBackgroundClass #>">
-    <div class="pin-image"></div>
-    <div class="left-side">                
-        <div class="info-box <# UnansweredClass #> <# AnsweredClass #> <# PinItemClass #>" title="<# AnswerToolTip #>">
-            <table cellpadding="0" cellspacing="0" width="100%">
-                <tr>
-                    <td colspan="2" class="num-avatar">
-                        <table cellpadding="0" cellspacing="0" width="100%">
-                            <tr>
-                                <td class="number">                                            
-                                    #if( $PostLinkVisible )
-                                    <a href="<# PostUrl #>" title="<# PostToolTip #>" name="<# PostIDPermalink #>"><# PostText #></a>
-                                    #end
-                                </td>
-                                <td class="avatar">
-                                    <a href="<# ProfileUrl #>" title="<# Username #>"><# Avatar #></a>
-                                </td>
-                            </tr>
-                        </table>
-                    </td>
-                </tr>
-                <tr>                        
-                    <td class="reputation">
-                        <div title="<# UserScoreToolTip #>">
-                            <strong><# UserScore #></strong>
-                            <span><# UserScoreText #></span>                                    
+﻿<div class="discussion-item message-post clearfix jq_snNote <# PinItemBackgroundClass #> <# AnsweredBackgroundClass #>">
+    <!--CLIPFLAIR-->
+    <div class="<# UnapprovedClass #> <# SpamClass #>">
+        <div class="avatar">
+            <a href="<# ProfileUrl #>" title="<# Username #>"><# Avatar #></a>
+            #if( $AnsweringVisible )
+            <div class="mark">
+                <span class="<# UnansweredClass #> <# AnsweredClass #>" ><# Answer #></span>
+            </div>
+            #end
+            <h3 class="discussion-post-author">
+                <a href="<# ProfileUrl #>" title="<# Username #>"><# Username #></a>               
+            </h3>
+            <div class="info-box">
+                <div class="counter">
+                    <strong title="<# UserScoreToolTip #>">
+                        <# UserScore #>
+                        <span><# UserScoreText #></span>                                    
+                    </strong>
+                    <strong title="<# TotalPostsToolTip #>">
+                        <# TotalPostsCount #>
+                        <span><# TotalPostsText #></span>                                    
+                    </strong>
+                </div>
+            </div>
+        </div>
+        
+        <div class="discussion-pins">
+            <div class="pin-image-inactive">
+                <div class="pin-image"></div>
+            </div>
+            <div class="answer-image-inactive">
+                <div class="answer-image"></div>
+            </div>
+        </div>
+        <div class="content <# UnansweredClass #> <# AnsweredClass #> <# PinItemClass #>" title="<# AnswerToolTip #>">
+            
+            <div class="date-author"><# Date #></div>
+            <p>
+                <# Content #>
+            </p>
+            <div class="rating-wrapper">
+                <div class="rating-files-cont">
+                    #if( $RatingVisible )
+                    <div class="rating">
+                        <# Rating #>
+                    </div>
+                    #end
+                    <div class="attached-files">
+                        <# Files #>
+                    </div>
+                </div>
+                <div class="options small-btn">
+                    #if( $PinItemVisible ) <div class="styled-wrapper pin-btn-wrapper float-right"><# TogglePinItem #></div> #end
+                    #if( $SpamOptionsVisible )
+                        <div class="styled-wrapper report-btn-wrapper float-right"><# ReportHam #></div>
+                        <div class="styled-wrapper report-btn-wrapper float-right"><# ReportSpam #></div>
+                    #end
+                    #if( $ApproveOptionsVisible ) <div class="styled-wrapper approve-btn-wrapper float-right"><# Approve #></div> #end
+                    <div class="styled-wrapper report-btn-wrapper float-right"><# DisapproveDelete #></div>
+                    <div class="styled-wrapper delete-btn-wrapper float-right"><# DeleteStatus #></div>
+                    <div class="styled-wrapper delete-btn-wrapper float-right"><# Delete #></div>
+                    <div class="styled-wrapper main-wrapper edit-btn-wrapper-b float-right"><# Edit #></div>
+                    <div class="styled-wrapper report-btn-wrapper float-right"><# DisapproveReportedPost #></div>
+                    <div class="styled-wrapper report-btn-wrapper float-right"><# ApproveReportedPost #></div>
+                    <div class="styled-wrapper report-btn-wrapper float-right"><# ReportPost #></div>
+                    #if( $AnsweringVisible )
+                        <div class="styled-wrapper answer-btn-wrapper float-right">
+                            <span class="<# UnansweredClass #> <# AnsweredClass #>" ><# Answer #></span>
                         </div>
-                    </td>
-                    <td class="total-posts">
-                        <div title="<# TotalPostsToolTip #>">
-                            <strong><# TotalPostsCount #></strong>
-                            <span><# TotalPostsText #></span>                                    
-                        </div>
-                    </td>
-                </tr>
-            </table>
-        </div>
-        #if( $RatingVisible )
-        <div class="rating">
-            <# Rating #>
-        </div>
-        #end
-        #if( $AnsweringVisible )
-        <div class="mark">
-            <span class="<# UnansweredClass #> <# AnsweredClass #>" ><# Answer #></span>
-        </div>
-        #end
-    </div>
-    <div class="content">
-        <div class="author">
-            <a href="<# ProfileUrl #>" title="<# Username #>"><# Username #></a>
-            <span><# Date #></span>
-        </div>
-        <div class="post-content">
-            <# Content #>
-        </div>
-        <div>
-            <# Files #>
-        </div>
-        <div class="options">
-            <# ReportPost #><# ApproveReportedPost #><# DisapproveReportedPost #>
-            <# Edit #><# Delete #><# DeleteStatus #><# DisapproveDelete #> #if( $ApproveOptionsVisible ) <# Approve #> #end  #if( $SpamOptionsVisible ) <# ReportHam #><# ReportSpam #> #end #if( $PinItemVisible ) <# TogglePinItem #> #end
+                    #end
+                </div>
+            </div>
+            <div class="number-cont">
+                <div class="number">                                            
+                    #if( $PostLinkVisible )
+                    <a href="<# PostUrl #>" title="<# PostToolTip #>" name="<# PostIDPermalink #>"><# PostText #></a>
+                    #end
+                </div>
+            </div>
+            
         </div>
     </div>
 </div>

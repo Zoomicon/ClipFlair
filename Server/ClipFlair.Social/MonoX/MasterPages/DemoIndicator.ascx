@@ -10,7 +10,7 @@ Inherits="MonoSoftware.MonoX.MasterPages.DemoIndicator" %>
     <a href="#" class="close"></a>
 </div>
 
-<script type="text/javascript" language="javascript">
+<script type="text/javascript" >
     //<![CDATA[
     $('div.demo > .close').click(function() {
         $('div.demo').slideUp('fast', function() {

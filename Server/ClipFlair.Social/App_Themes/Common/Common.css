@@ -35,7 +35,6 @@
     position: absolute;
     margin-top: expression((document.body.scrollHeight / 4) + (0 - parseInt(this.offsetParent.clientHeight / 2) + (document.documentElement && document.documentElement.scrollTop || document.body.scrollTop)) + 'px');
 }
-
 /* end AJAX */
 
 /* Web Part Related */
@@ -73,54 +72,62 @@
 }
 
 /* Admin mode draggable parts */
+.ui-widget-content
+{
+    padding-top: 10px;
+}
 .droppable 
 {
-	color: Transparent;
+	height: 0px;
+	color: transparent;
+	opacity: 0;
+} 
+.ui-state-default 
+{
+    font-size: 13px;
+    font-family: Arial;
+}
+.ui-state-active,
+.ui-state-hover
+{
+	background: #F2DEDE;
+    border: 1px dashed #e4bfc5;
+    line-height: 20px;
+    color: #B94A48;
+	text-align: center;
+	margin-top: 2px;
+	margin-bottom: 2px;
+	text-align: center;
+	padding: 7px;
+	-moz-border-radius: 2px;
+	-webkit-border-radius: 2px;
+	border-radius: 2px;
+	opacity:1.0;
 }
 .ui-state-hover
 {
-	height: auto !important;
-	border: solid 1px #9ab0c5;
-	background: #e3ebf2;
-	color: #000;
-	font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
-	font-size: 13px;
-	text-align: center;
-	margin-top: 2px;
-	margin-bottom: 2px;
-	text-align: center;
-	padding: 7px;
-}
-.ui-state-active
-{
-	height: auto !important;
-	border: dashed 1px #dc613f;
-	background: #ffe4dd;
-	color: #444;
-	font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
-	font-size: 13px;
-	text-align: center;
-	margin-top: 2px;
-	margin-bottom: 2px;
-	text-align: center;
-	padding: 7px;
+	border: solid 1px #fff;
+	background: #fff;
+	color: #2c2c2c;
+	opacity:1.0;
 }
 .ui-draggable
 {
 	cursor: move;
 }
-
-.html-editor, textarea, INPUT[type="text"]
+.html-editor
 {
 	cursor: default;
 }
-
 .emptyWebPartZoneClass
 {
 	font-family: Trebuchet MS, Arial, Helvetica, sans-serif;
 	font-size: 13px;
 }
-
+.topPanel
+{
+	line-height: normal;
+}
 .web-part-box
 {
 	width: 165px;
@@ -204,8 +211,8 @@
 .admin-input-form SELECT
 {
 	width: 98%;
-	display: block;
 	padding: 3px;
+	margin: 2px 0px;
 }
 .admin-input-form INPUT[type="checkbox"]
 {
@@ -217,7 +224,6 @@
 {
 	position: relative;
 	min-height: 65px;
-    margin-bottom:10px;
 }
 .web-part-container .web-part-menu-button
 {
@@ -227,8 +233,8 @@
 	height: 25px;
 	background: url(img/web-part-menu-button.png) center center no-repeat;
 	position: absolute;
-	top: 0px;
-	right: 0px;
+	top: 4px;
+	right: 4px;
 	cursor: pointer;
 }
 .web-part-container:hover .web-part-menu-button
@@ -249,8 +255,8 @@
 	background: #4c4c4c url(img/web-part-menu-button-hover.png) center center no-repeat !important;
 	display: block;
 	position: absolute;
-	top: 0px;
-	right: 0px;
+	top: 4px;
+	right: 4px;
 	cursor: pointer;
 	-moz-border-radius-topleft: 5px;
 	-moz-border-radius-topright: 5px;
@@ -277,8 +283,8 @@
 	/* Opera 11.10+ */ background: -o-linear-gradient(top, #4c4c4c, #333333);
 	padding: 3px 1px;
 	position: absolute;
-	top: 25px;
-	right: 0px;
+	top: 29px;
+	right: 4px;
 	-moz-border-radius-topleft: 5px;
 	-moz-border-radius-bottomleft: 5px;
 	-moz-border-radius-bottomright: 5px;
@@ -334,3 +340,12 @@
     color: #FFFFFF;
     font-family: Arial !important;
 }
+/*
+.ui-state-default a
+{
+    font-size: 12px;
+    font-family: Arial !important;
+}
+.ui-tabs .ui-tabs-nav li a
+{
+    padding: 0.5em 1em !important;*/
