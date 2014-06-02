@@ -5,10 +5,10 @@
   </configSections>
   <log4net>
     <appender name="SmtpAppender" type="log4net.Appender.SmtpAppender">
-      <to value="support@mono-software.com" />
-      <from value="info@mono-software.com" />
-      <subject value="MonoX error occured!" />
-      <smtpHost value="mail.mono-software.com" />
+      <to value="clipflair@cti.gr" />
+      <from value="clipflair@cti.gr" />
+      <subject value="ClipFlair Social error occured!" />
+      <smtpHost value="mail.cti.gr" />
       <bufferSize value="256" />
       <lossy value="true" />
       <evaluator type="log4net.spi.LevelEvaluator">
