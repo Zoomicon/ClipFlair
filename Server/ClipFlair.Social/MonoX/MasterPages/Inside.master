@@ -1,0 +1,117 @@
+<%@ Master 
+    Language="C#" 
+    AutoEventWireup="True" 
+    EnableTheming="true"
+    Inherits="MonoSoftware.MonoX.MasterPages.Default" 
+    MasterPageFile="~/MonoX/MasterPages/MonoX.master" 
+    Codebehind="Default.master.cs" %>
+<%@ MasterType VirtualPath="~/MonoX/MasterPages/MonoX.master" %>
+<%@ Import Namespace="MonoSoftware.MonoX.Resources" %>
+<%@ Register TagPrefix="MonoX" TagName="Menu" Src="~/MonoX/ModuleGallery/MonoXMenuHTML5.ascx" %>
+<%@ Register TagPrefix="MonoX" TagName="Search" Src="~/MonoX/ModuleGallery/MonoXSearchBoxWithFilter.ascx" %>
+<%@ Register TagPrefix="MonoX" TagName="PageFooter" Src="~/App_MasterPages/ClipFlair/PageFooter.ascx" %>
+<%@ Register TagPrefix="MonoX" TagName="MembershipNavigation" Src="~/App_MasterPages/ClipFlair/MembershipNavigation.ascx" %>
+<%@ Register Assembly="MonoX" Namespace="MonoSoftware.MonoX" TagPrefix="portal" %>
+<%@ Register Assembly="MonoX" Namespace="MonoSoftware.MonoX.SearchEngine" TagPrefix="Search" %>
+
+<asp:Content ContentPlaceHolderID="cp" runat="server">
+    <asp:ScriptManagerProxy ID="scriptManagerProxy" runat="server"></asp:ScriptManagerProxy>
+    <!--fancybox-->
+    <!-- Add mousewheel plugin (this is optional) -->
+    <script type="text/javascript" src="/MonoX/Scripts/fancybox/lib/jquery.mousewheel-3.0.6.pack.js"></script>
+    <!-- Add fancyBox -->
+    <link rel="stylesheet" href="/MonoX/Scripts/fancybox/source/jquery.fancybox.css" type="text/css" media="screen" />
+    <script type="text/javascript" src="/MonoX/Scripts/fancybox/source/jquery.fancybox.pack.js"></script>
+    <!-- Optionally add helpers - button, thumbnail and/or media -->
+    <link rel="stylesheet" href="/MonoX/Scripts/fancybox/source/helpers/jquery.fancybox-buttons.css" type="text/css" media="screen" />
+    <script type="text/javascript" src="/MonoX/Scripts/fancybox/source/helpers/jquery.fancybox-buttons.js"></script>
+    <script type="text/javascript" src="/MonoX/Scripts/fancybox/source/helpers/jquery.fancybox-media.js"></script>
+    <!--/fancybox-->
+    
+    <!--/roolover image js-->
+    <script type="text/javascript" src="/MonoX/Scripts/rollover.js"></script>
+    
+     <!--/Load fancybox-->
+    <script type="text/javascript">
+    
+        $(document).ready(function() {
+            $(".various").fancybox({
+                maxWidth	: 800,
+                maxHeight	: 600,
+                fitToView	: false,
+                autoSize	: true,
+                closeClick	: false,
+                openEffect	: 'none',
+                closeEffect	: 'none',
+                padding : 0,
+                afterClose : function() {
+                    //location.reload();
+                    location.href='/';
+                    return;
+                }
+            });
+            
+            //check if URL contains the parameter: login and, if so, open the fancybox 
+            if (window.location.href.toLowerCase().indexOf("login") > -1) {
+                $.fancybox({
+                    'type' : 'iframe',
+                    'href' : 'Login.aspx',
+                    padding : 0,
+                    afterClose : function() {
+                        location.href='/';
+                    }
+                });
+            }
+            //check if URL contains the parameter: updateaccount and, if so, open the fancybox 
+            if (window.location.href.toLowerCase().indexOf("updateaccount") > -1) {
+                $.fancybox({
+                    'type' : 'iframe',
+                    'href' : '/Membership/Register.aspx',
+                    padding : 0,
+                    afterClose : function() {
+                        location.href='/';
+                    }
+                });
+            }
+   
+        });
+    </script>
+    <header>
+        <div class="container">
+            <div class="row-fluid">
+                <div class="span8">
+                    <a href="http://clipflair.net" class="logo">
+                        <img id="Img1" runat="server" src="<%$ Code: MonoSoftware.MonoX.Paths.App_Themes.img.logo_png %>" alt="MonoX" />
+                    </a>
+                </div>
+                <div class="span4">
+                    <div class="membership-navigation-holder">
+                        <MonoX:MembershipNavigation runat="server" ID="ctlMemership" LoginStatusLogoutText="&nbsp;" />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fullwidth">
+            <div class="container">
+                <div class="row-fluid clearfix">
+                    <div class="span8">
+                        <div class="menu-holder">
+                            <MonoX:Menu runat="server" ID="ctlMenu" UseSpanElementsInMenuItems="false" SelectedItemCssClass="selected" CacheDuration="600" ResponsiveDesignBrakeWidth="959" /> 
+                        </div>
+                    </div>
+                    <div class="span4">
+                        <div class="search-holder">
+                            <MonoX:Search runat="server" ID="ctlSearch" TextBoxCssClass="mainSearchBoxInputField" ButtonCssClass="searchImage" ButtonText="Go" DefaultSearchText="<%$ Code:DefaultResources.SiteSearch_DefaultText %>"></MonoX:Search>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>    
+    <div id="wrapper">
+        <asp:ContentPlaceHolder ID="cp" runat="server">
+                    
+        </asp:ContentPlaceHolder>
+    </div>
+    <MonoX:PageFooter runat="server" ID="ctlFooter"></MonoX:PageFooter>
+</asp:Content>

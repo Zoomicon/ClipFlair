@@ -4,10 +4,8 @@ AutoEventWireup="true"
 CodeBehind="PageFooter.ascx.cs"
 Inherits="MonoSoftware.MonoX.MasterPages.PageFooter" %>
 <%@ Import Namespace="MonoSoftware.MonoX.Resources"  %>
-<%@ Register TagPrefix="MonoX" TagName="DemoIndicator" Src="~/MonoX/MasterPages/DemoIndicator.ascx" %>
 <%@ Register Src="~/MonoX/controls/SeoLoginStatus.ascx" TagPrefix="monox" TagName="SeoLoginStatus" %>
 
-<MonoX:DemoIndicator ID="ctlDemo" runat="server"></MonoX:DemoIndicator>
 <footer>
     <div class="container">
         <div class="row-fluid">
@@ -20,36 +18,44 @@ Inherits="MonoSoftware.MonoX.MasterPages.PageFooter" %>
                         <li><asp:HyperLink runat="server" ID="lnkRegister" Text="<% $Code:DefaultResources.Login_RegisterInvitation %>" NavigateUrl='<% $Code: MonoSoftware.MonoX.Utilities.LocalizationUtility.RewriteLink("~/Membership/Register.aspx") %>'></asp:HyperLink></li>
                     </AnonymousTemplate>
                 </asp:LoginView>
-                <li><asp:HyperLink runat="server" ID="lnkPrivacyPolicy" NavigateUrl='<% $Code: MonoSoftware.MonoX.Utilities.LocalizationUtility.RewriteLink(MonoSoftware.MonoX.RewrittenUrlBuilder.GetContentPageUrl(MonoSoftware.MonoX.RewrittenPaths.ContentPage, "PrivacyPolicy").Url) %>'><%= PageResources.PageFooter_PrivacyPolicy %></asp:HyperLink></li>
-                <li><asp:HyperLink runat="server" ID="lnkTermsOfUse" NavigateUrl='<% $Code: MonoSoftware.MonoX.Utilities.LocalizationUtility.RewriteLink(MonoSoftware.MonoX.RewrittenUrlBuilder.GetContentPageUrl(MonoSoftware.MonoX.RewrittenPaths.ContentPage, "TermsOfUse").Url) %>'><%= PageResources.PageFooter_TermsOfUse %></asp:HyperLink></li>
+                <li><a href='<% $Code: MonoSoftware.MonoX.Utilities.LocalizationUtility.RewriteLink("~/MonoX/Pages/PrivacyPolicy.aspx") %>' runat="server"><%= PageResources.PageFooter_PrivacyPolicy %></a></li>
+                <li><a href='<% $Code: MonoSoftware.MonoX.Utilities.LocalizationUtility.RewriteLink("~/MonoX/Pages/TermsOfUse.aspx") %>' runat="server"><%= PageResources.PageFooter_TermsOfUse %></a></asp:HyperLink></li>
 		    </ul>
     	    <ul class="span3">
-        	    <li><h2><%= PageResources.PageFooter_GeneralInfo %></h2></li>
-                <li><a href='<% $Code: MonoSoftware.MonoX.Utilities.LocalizationUtility.RewriteLink("~/") %>' runat="server"><%= PageResources.PageFooter_Home %></a></li>
-                <li><a href='<% $Code: MonoSoftware.MonoX.Utilities.LocalizationUtility.RewriteLink("~/MonoX/Pages/Features.aspx") %>' runat="server"><%= PageResources.PageFooter_About%></a></li>
-                <li><a href='<% $Code: MonoSoftware.MonoX.Utilities.LocalizationUtility.RewriteLink("~/MonoX/Pages/AdditionalResources.aspx") %>' runat="server"><%= PageResources.PageFooter_AdditionalResources %></a></li>
-                <li><asp:HyperLink runat="server" ID="lnkLicensing" NavigateUrl='<% $Code: MonoSoftware.MonoX.Utilities.LocalizationUtility.RewriteLink(MonoSoftware.MonoX.RewrittenUrlBuilder.GetContentPageUrl(MonoSoftware.MonoX.RewrittenPaths.ContentPage, "Licensing").Url) %>'><%= PageResources.PageFooter_Licensing%></asp:HyperLink></li>
-                <li><a href='<% $Code: MonoSoftware.MonoX.Utilities.LocalizationUtility.RewriteLink("~/MonoX/Pages/Contact.aspx") %>' runat="server">Contact</a></li>
+        	    <li><h2><%= PageResources.PageFooter_GeneralInfo %><!--needs localozation--> & Tools</h2></li>
+                <li><a href="http://clipflair.net"><%= PageResources.PageFooter_Home %></a></li>
+                <li><a href="http://clipflair.net/overview"><%= PageResources.PageFooter_About%>&nbsp;&rsaquo;</a></li>
+                <li><a href="http://gallery.clipflair.net/activity"><!--needs localozation-->ClipFlair Gallery &rsaquo;</a></li>
+                <li><a href="http://studio.clipflair.net"><!--needs localozation-->ClipFlair Studio &rsaquo;</a></li>                 
 		    </ul>
     	    <ul class="span3">
         	    <li><h2><%= PageResources.PageFooter_SocialNetworking %></h2></li>
-                <li><a href='<% $Code: MonoSoftware.MonoX.Utilities.LocalizationUtility.RewriteLink("~/MonoX/Pages/SocialNetworking/Dashboard.aspx") %>' runat="server"><%= PageResources.PageFooter_SocialNetworkingHome%></a></li>
-                <li><a href='<% $Code: MonoSoftware.MonoX.Utilities.LocalizationUtility.RewriteLink("~/blog/posts/MonoX/") %>' runat="server"><%= PageResources.PageFooter_SocialNetworkingBlog %></a></li>
-                <li><a href='<% $Code: MonoSoftware.MonoX.Utilities.LocalizationUtility.RewriteLink("~/MonoX/Pages/SocialNetworking/Groups/GroupList/") %>' runat="server"><%= PageResources.PageFooter_SocialNetworkingGroups%></a></li>
-                <li><a href='<% $Code: MonoSoftware.MonoX.Utilities.LocalizationUtility.RewriteLink("~/MonoX/Pages/SocialNetworking/PhotoGallery.aspx") %>' runat="server"><%= PageResources.PageFooter_SocialNetworkingPhotos %></a></li>
+                <li><a href='<% $Code: MonoSoftware.MonoX.Utilities.LocalizationUtility.RewriteLink("~/MonoX/Pages/SocialNetworking/Dashboard.aspx") %>' runat="server"><!--needs localozation-->Community</a></li>
+                <li><a href='<% $Code: MonoSoftware.MonoX.Utilities.LocalizationUtility.RewriteLink("~/Blog.aspx") %>' runat="server"><%= PageResources.PageFooter_SocialNetworkingBlog %></a></li>
+                <li><a href='<% $Code: MonoSoftware.MonoX.Utilities.LocalizationUtility.RewriteLink("~/MonoX/Pages/SocialNetworking/Groups/GroupList/") %>' runat="server"><%= PageResources.PageFooter_SocialNetworkingGroups %></a></li>
+                <li><a href='<% $Code: MonoSoftware.MonoX.Utilities.LocalizationUtility.RewriteLink("~/MonoX/Pages/SocialNetworking/Discussion.aspx") %>' runat="server"><!--needs localozation-->Forums</a></li>
 		    </ul>
             <ul class="span3">
                 <li><h2><%= PageResources.PageFooter_ConnectWithUs %></h2></li>
-                <li class="facebook"><a href="http://www.facebook.com/pages/Mono-Software-Ltd/192570507442137"><%= PageResources.PageFooter_FacebookFan %></a></li>
-                <li class="twitter"><a href="https://twitter.com/monosoftware"><%= PageResources.PageFooter_TwitterFollow %></a></li>
-                <li class="linkedin"><a href="http://hr.linkedin.com/company/mono-software-ltd."><%= PageResources.PageFooter_LinkedInConnect %></a></li>
+                <li><a href='<% $Code: MonoSoftware.MonoX.Utilities.LocalizationUtility.RewriteLink("~/MonoX/Pages/Contact.aspx") %>' runat="server">Contact</a></li>
+                <li class="facebook"><a href="https://www.facebook.com/ClipFlair"><%= PageResources.PageFooter_FacebookFan %></a></li>
+                <li class="twitter"><a href="https://twitter.com/ClipFlair"><%= PageResources.PageFooter_TwitterFollow %></a></li>
             </ul>
         </div>
     </div>
+    
     <div class="copyright">
-        <a id="A1" runat="server" href="http://monox.mono-software.com" class="powered-by">
-            <img id="Img1" runat="server" src="<%$ Code: MonoSoftware.MonoX.Paths.App_Themes.img.powered_by_png %>" alt="Powered by MonoX" />
-        </a>
-        <span><%= PageResources.PageFooter_Copyright%> &copy;<%= DateTime.UtcNow.Year.ToString() %> <a href="http://www.mono-software.com">Mono Ltd.</a></span>
+        <div class="container">
+            <div class="row-fluid">
+                <a id="A1" runat="server" href="http://monox.mono-software.com" class="powered-by">
+                    <img id="Img1" runat="server" src="~/App_Themes/ClipFlair/img/PoweredBy/MonoXSmallButton.png" alt="Powered by MonoX" />
+                </a>
+                <div class="logo-eu">
+                    <img id="Img3" runat="server" src="~/App_Themes/ClipFlair/img/logo-eu.jpg" alt="Lifelong Learning Programme" class="footer-logo" />
+                    <p>This project has been funded with support from the European Commission. This publication reflects the views only of the author, and the Commission cannot be held responsible for any use which may be made of the information contained therein.</p>
+                </div>
+                
+            </div>
+        </div>
     </div>
 </footer>

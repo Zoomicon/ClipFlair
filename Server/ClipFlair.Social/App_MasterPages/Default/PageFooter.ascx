@@ -50,6 +50,6 @@ Inherits="MonoSoftware.MonoX.MasterPages.PageFooter" %>
         <a id="A1" runat="server" href="http://monox.mono-software.com" class="powered-by">
             <img id="Img1" runat="server" src="<%$ Code: MonoSoftware.MonoX.Paths.App_Themes.img.powered_by_png %>" alt="Powered by MonoX" />
         </a>
-        <span><%= PageResources.PageFooter_Copyright%> &#169;2012 <a href="http://www.mono-software.com">Mono Ltd.</a></span>
+        <span><%= PageResources.PageFooter_Copyright%> &copy;<%= DateTime.UtcNow.Year.ToString() %> <a href="http://www.mono-software.com">Mono Ltd.</a></span>
     </div>
 </footer>

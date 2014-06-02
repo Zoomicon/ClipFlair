@@ -1,0 +1,55 @@
+<%@ Master
+    Language="C#"
+    AutoEventWireup="true"
+    Inherits="MonoSoftware.MonoX.MasterPages.Main"
+    EnableTheming="true"
+    Codebehind="Main.master.cs" %>
+
+<%@ Register Src="~/MonoX/MasterPages/AjaxErrorHandler.ascx" TagPrefix="monox" TagName="AjaxErrorHandler" %>
+
+<asp:literal runat="server" ID="ltlDoctype"></asp:literal>
+
+<html<asp:Literal runat="server" ID="ltlXmlns" /> <asp:Literal runat="server" ID="ltlRootHtml" />>
+<head runat="server">
+    <title></title>
+    <!--[if lt IE 9]>
+		<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]--> 
+    <link rel="apple-touch-icon" href="apple-touch-icon-ipad.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="apple-touch-icon-ipad3.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="apple-touch-icon-iphone.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="apple-touch-icon-iphone4.png">
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,400,300,600,700&subset=latin,greek-ext,greek,latin-ext' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,700,300italic&subset=latin,greek' rel='stylesheet' type='text/css'> 
+    <!-- Twitter Cards -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:url" content="http://social.clipflair.net">
+    <meta name="twitter:title" content="Clipflair.net: Foreign Language Learning through Interactive Captioning and Revoicing of Clips">
+    <meta name="twitter:description" content="@Teachers: Increase your students' motivation by introducing innovative activities to complement your course programme. @Students: Add fun to your language learning experience!">
+    <meta name="twitter:image" content="http://social.clipflair.net/App_Themes/ClipFlair/img/logo.png">
+    <!-- // end -->    
+    <!-- Facebook Open Graph protocol -->
+    <meta property="fb:admins" content="100000813825134">
+    <meta property="fb:app_id" content="182684375208290">
+    <meta property="og:url" content="http://social.clipflair.net">
+    <meta property="og:title" content="Clipflair.net: Foreign Language Learning through Interactive Captioning and Revoicing of Clips">
+    <meta property="og:site_name" content="ClipFlair">
+    <meta property="og:description" content="@Teachers: Increase your students' motivation by introducing innovative activities to complement your course programme. @Students: Add fun to your language learning experience!">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="http://social.clipflair.net/App_Themes/ClipFlair/img/logo.png">
+    <meta property="og:locale" content="en_us">
+    <!-- // end -->
+    
+</head>
+<body style="height:100%">
+  <div id="main_wrapper">  
+		<form id="form1" runat="server" style="height: 100%">
+	        <asp:ScriptManager ID="AjaxScriptManager" runat="server">
+	        </asp:ScriptManager>    
+	        <monox:AjaxErrorHandler id="ajaxErrorHandler" runat="server"></monox:AjaxErrorHandler>
+	        <asp:ContentPlaceHolder ID="cp" runat="server">
+	        </asp:ContentPlaceHolder>
+	    </form>
+	</div>	
+</body>
+</html>

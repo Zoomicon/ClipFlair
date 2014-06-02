@@ -37,7 +37,7 @@
                     </div>-->
                     <div class="user-account login-social" >
                         <MonoX:LoginSocial runat="server" ID="ctlLoginSocial" />
-                        <div class="italic-style"><asp:Literal ID="Literal1" runat="server" Visible="<% $Code: MonoSoftware.MonoX.ApplicationSettings.EnableUserRegistration %>" Text="<% $Code: PageResources.Login_RpxWarning %>"></asp:Literal></div>
+                        <div class="italic-style"><asp:Literal ID="Literal1" runat="server" Visible="<% $Code: MonoSoftware.MonoX.ApplicationSettings.EnableUserRegistration %>" Text="Do not use social login if you've already registered directly with ClipFlair Social: enter your User name and Password instead and click the Log in button"></asp:Literal></div>
                     </div>
                 </div>
             </div>
