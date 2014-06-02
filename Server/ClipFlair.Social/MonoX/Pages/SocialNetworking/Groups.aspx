@@ -3,7 +3,7 @@
     AutoEventWireup="true"
     CodeBehind="Groups.aspx.cs"
     Inherits="MonoSoftware.MonoX.Pages.SocialNetworking.Groups"
-    MasterPageFile="~/MonoX/MasterPages/DefaultSmallHeader.master"    
+    MasterPageFile="~/MonoX/MasterPages/Default.master"    
 %>
 <%@ MasterType TypeName="MonoSoftware.MonoX.BaseMasterPage" %>   
 <%@ Import Namespace="MonoSoftware.MonoX.Resources" %>
