@@ -2857,16 +2857,21 @@ NAV UL UL UL
     margin: 0px 5px 0px 0px;
     position: relative;
 }
+
+/****changes:20140603*/
 .file-gallery .group-template .item .icon-holder
 {
-    overflow: hidden;
-    height: 80px;
+    /*overflow: hidden;
+    height: 80px;*/
 }
 .file-gallery .group-template .item IMG
 {
-	width: 118px;
+	/*width: 118px;*/
 	display: block;
+    width:100px;
 }
+/***/
+
 .file-gallery .group-template .item .options
 {
 	position: absolute;
@@ -5125,12 +5130,17 @@ a.addthis_button:hover img{
 {
     text-decoration:underline;
 }
+
+/****changed:20140603*/
 .message-post .content
 {
 	overflow: hidden;
     line-height: 24px;
     font-size: 14px;
+    padding-right: 10%;
 }
+/***/
+
 .message-post .content p A
 {
 	text-decoration:underline;
@@ -5153,22 +5163,26 @@ a.addthis_button:hover img{
 {
 
 }
+
+/***changes:20140603*/
 .message-post .content .number-cont
 {
 	position: absolute;
     right: 20px;
-    top: -20px;
+    top: 0;
     overflow: hidden;
     /*z-index: -100;*/
 }
 .message-post .content .number
 {
     font-family: 'Open Sans Condensed', sans-serif;
-    font-size: 120px;
+    font-size: 50px;
     line-height: normal;
     /*font-weight: bold;*/
     color: #dcdcdc;
 }
+/***/
+
 .message-post .content .number A
 {
 	/*!!!color: #fff;*/
