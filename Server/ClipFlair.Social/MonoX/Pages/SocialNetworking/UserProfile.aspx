@@ -1,7 +1,7 @@
 ﻿<%@ Page 
     Title=""
     Language="C#"
-    MasterPageFile="~/MonoX/MasterPages/DefaultSmallHeader.master"
+    MasterPageFile="~/MonoX/MasterPages/Default.master"
     AutoEventWireup="true"
     CodeBehind="UserProfile.aspx.cs"
     Inherits="MonoSoftware.MonoX.Pages.SocialNetworking.UserProfile"

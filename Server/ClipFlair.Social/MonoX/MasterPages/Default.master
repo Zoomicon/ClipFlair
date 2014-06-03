@@ -169,7 +169,7 @@
             });
             
             //scrollbar
-           $("html").niceScroll({styler:"fb",cursorcolor:"#000"});
+           $("html").niceScroll({styler:"fb", cursorcolor:"#000", spacebarenabled:false});
 
         });
     </script>

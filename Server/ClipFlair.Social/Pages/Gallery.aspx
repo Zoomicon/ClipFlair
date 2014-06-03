@@ -1,6 +1,6 @@
 <%@ Page 
 	Language="C#" 
-	MasterPageFile="~/MonoX/MasterPages/DefaultSmallHeader.master" 
+	MasterPageFile="~/MonoX/MasterPages/Default.master" 
 	AutoEventWireup="true" 
 	Inherits="MonoSoftware.MonoX.Pages.Features" 
 	Title="Media Gallery" 

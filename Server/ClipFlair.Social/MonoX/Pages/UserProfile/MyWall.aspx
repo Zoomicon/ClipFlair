@@ -2,7 +2,7 @@
     AutoEventWireup="true"
     CodeBehind="MyWall.aspx.cs"
     Inherits="MonoSoftware.MonoX.Pages.Profile.MyWall"
-    MasterPageFile="~/MonoX/MasterPages/DefaultSmallHeader.master" %>
+    MasterPageFile="~/MonoX/MasterPages/Default.master" %>
 
 <%@ MasterType TypeName="MonoSoftware.MonoX.BaseMasterPage" %>   
 <%@ Import Namespace="MonoSoftware.MonoX.Resources" %>
