@@ -3,7 +3,7 @@
     AutoEventWireup="True"
     CodeBehind="Content.aspx.cs"
     Inherits="MonoSoftware.MonoX.Pages.Content"    
-    MasterPageFile="~/MonoX/MasterPages/DefaultSmallHeader.master" %>
+    MasterPageFile="~/MonoX/MasterPages/Default.master" %>
         
 <%@ MasterType TypeName="MonoSoftware.MonoX.BaseMasterPage" %>   
 

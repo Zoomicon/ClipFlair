@@ -1,4 +1,4 @@
-<%@ Page Language="C#" MasterPageFile="~/MonoX/MasterPages/DefaultSmallHeader.master" AutoEventWireup="true" Inherits="MonoSoftware.MonoX.Samples.ConnectionSample" Title="Connection sample" Codebehind="ConnectionSample.aspx.cs" %>
+<%@ Page Language="C#" MasterPageFile="~/MonoX/MasterPages/Default.master" AutoEventWireup="true" Inherits="MonoSoftware.MonoX.Samples.ConnectionSample" Title="Connection sample" Codebehind="ConnectionSample.aspx.cs" %>
 <%@ MasterType TypeName="MonoSoftware.MonoX.BaseMasterPage" %> 
 <%@ Register TagPrefix="MonoX" TagName="RssProvider" Src="~/MonoX/Samples/ConnectionSample/RssUrlProvider.ascx" %>
 <%@ Register TagPrefix="MonoX" TagName="RssConsumer" Src="~/MonoX/Samples/ConnectionSample/RssConsumer.ascx" %>

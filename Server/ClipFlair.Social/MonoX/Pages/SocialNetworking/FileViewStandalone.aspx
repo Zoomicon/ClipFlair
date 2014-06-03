@@ -3,7 +3,7 @@
     AutoEventWireup="true"
     CodeBehind="FileViewStandalone.aspx.cs"
     Inherits="MonoSoftware.MonoX.Pages.SocialNetworking.FileView"
-    MasterPageFile="~/MonoX/MasterPages/DefaultSmallHeader.master"
+    MasterPageFile="~/MonoX/MasterPages/Default.master"
     MaintainScrollPositionOnPostback="true"
     %>  
 

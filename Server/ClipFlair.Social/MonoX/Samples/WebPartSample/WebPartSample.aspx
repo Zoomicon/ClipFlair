@@ -1,4 +1,4 @@
-<%@ Page Language="C#" MasterPageFile="~/MonoX/MasterPages/DefaultSmallHeader.master" AutoEventWireup="true" Inherits="MonoSoftware.MonoX.Samples.WebPartSample" Title="Web part sample" Codebehind="WebPartSample.aspx.cs" %>
+<%@ Page Language="C#" MasterPageFile="~/MonoX/MasterPages/Default.master" AutoEventWireup="true" Inherits="MonoSoftware.MonoX.Samples.WebPartSample" Title="Web part sample" Codebehind="WebPartSample.aspx.cs" %>
 <%@ MasterType TypeName="MonoSoftware.MonoX.BaseMasterPage" %> 
 <%@ Register TagPrefix="MonoX" TagName="HelloWorld" Src="~/MonoX/Samples/WebPartSample/HelloWorld.ascx" %>
 <%@ Register Assembly="MonoX" Namespace="MonoSoftware.MonoX" TagPrefix="portal" %>
