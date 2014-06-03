@@ -1,9 +1,9 @@
 <%@ Page 
     Language="C#" 
-    MasterPageFile="~/MonoX/MasterPages/DefaultSmallHeader.master"
+    MasterPageFile="~/MonoX/MasterPages/Default.master"
     AutoEventWireup="true"     
     Inherits="MonoSoftware.MonoX.BasePage" 
-    Theme="Default"
+    Theme="ClipFlair"
     Title="" %>
 
 <%@ MasterType TypeName="MonoSoftware.MonoX.BaseMasterPage" %>   
