@@ -2529,8 +2529,10 @@ FOOTER .copyright .logo-eu p
 	-webkit-border-radius: 3px;
 	border-radius: 3px;*/
 	z-index: 500;
-    /*!!!*/
-    /*/!!!*/     
+    
+    /***changes:20140605*/
+    position:relative;
+    /***/  
 }
 .search .holder
 {
@@ -2596,10 +2598,13 @@ FOOTER .copyright .logo-eu p
 {
 	background: url(img/bg.png) repeat;
 	padding: 10px;
-	margin: 5px 0px 0px 0px;
+	margin: 0;
 	clear: both;
 	z-index: 100;
-	position: relative;
+	/*position: relative;*/
+    /***changes:20140605*/
+    position:absolute;
+    /***/
 	font-size: 11px;
 	color: #2c2c2c;
 	-moz-border-radius: 3px;
@@ -2632,6 +2637,9 @@ FOOTER .copyright .logo-eu p
 {
 	width: 50%;
 	float: left;
+    /***changes:20140605*/
+    margin: 2px 0;
+    /***/
 }
 .search .search-filter-list INPUT[type="checkbox"]
 {
@@ -4728,7 +4736,10 @@ a:hover.green_btn{
 	margin-bottom: 10px;*/
     /*!!!*/
     font-size: 13px;
-    padding-bottom: 30px;
+    /*padding-bottom: 30px;*/
+    /***changes:20140604*/
+    padding-bottom: 10px;
+    /***/
     color:#333;
     /*/!!!*/
 }
@@ -4740,7 +4751,11 @@ a:hover.green_btn{
 }
 .discussion-item .topic-answer .date-author, .discussion-item .topic-no-answer .date-author
 {
-     padding-bottom: 30px;
+     /*padding-bottom: 30px;*/
+     /***changes:20140604*/
+     padding-bottom: 10px;
+     /***/
+     
 }
 .discussion-item .last
 {
@@ -4758,7 +4773,10 @@ a:hover.green_btn{
 .discussion-item .topic-answer .last, .discussion-item .topic-no-answer .last  {
     font-size: 14px;
     line-height: 24px;
-    padding-bottom:30px;
+    /*padding-bottom:30px;*/
+    /***changes:20140604*/
+    padding-bottom: 10px;
+    /***/
     color: #333;
 }
 .discussion-item .topic-answer .last A SPAN, .discussion-item .topic-no-answer .last A SPAN 
@@ -4791,9 +4809,14 @@ a:hover.green_btn{
 .discussion-item .topic-answer .icon,
 .discussion-item .topic-no-answer .icon
 {
-	width: 68px;
+	/*width: 68px;
     height: 70px;
-    background: url(img/Sn/Discussion/answer-image.png) no-repeat;
+    background: url(img/Sn/Discussion/answer-image.png) no-repeat;*/
+    /***changes:20140604*/
+    width: 54px;
+    height: 56px;
+    background: url(img/Sn/Discussion/answer-image_sm.png) no-repeat;
+    /***/
     margin-left: 10px;
     float: left;
     display: block;
@@ -4827,9 +4850,12 @@ a:hover.green_btn{
 }
 /*!!!*/
 .tags_cont, .files_cont{
-   width: 100%;
-   /* margin-bottom: 50px;*/
-    margin-top: 20px;
+    width: 100%;
+    /* margin-bottom: 50px;*/
+    /*margin-top: 20px;*/
+    /***changes:20140604*/
+    margin-top: 10px;
+    /***/
     display: inline-block;
     margin-bottom: -10px;
 }
@@ -4941,7 +4967,10 @@ a:hover.green_btn{
     
     /*added in order to be vertically displayed*/
     clear: both;
-    padding: 10px 0 10px 0;
+    /*padding: 10px 0 10px 0;*/
+    /***changes:20140604*/
+    padding: 4px 0;
+    /***/
     border-bottom:solid 1px #dcdcdc;
 }
 .discussion-item .info-box .counter A SPAN,
@@ -4969,7 +4998,10 @@ a:hover.green_btn{
     z-index: 100;
 }
 .message-post .options {
-    margin-top: 25px;
+    /*margin-top: 25px;*/
+    /***changes:20140604*/
+    margin-top: 12px;
+    /***/
     width: 49%;
 }
 .discussion-item .options:empty
@@ -5101,7 +5133,9 @@ a.addthis_button:hover img{
 	float: left;
 	margin-right: 25px;
     clear: both;
-    margin-bottom:10px;
+    /***changes:20140604*/
+    /*margin-bottom:10px;*/
+    /***/
 }
 .message-post .avatar IMG
 {
@@ -5137,7 +5171,6 @@ a.addthis_button:hover img{
 	overflow: hidden;
     line-height: 24px;
     font-size: 14px;
-    padding-right: 10%;
 }
 /***/
 
@@ -9743,7 +9776,9 @@ ul.languages li ul li:last-child {
 
 /*HIDE THE SEARCH FILTER*/
 .search-filter-list {
-    display:none !important;
+    /***changes:20140605*/
+    /*display:none !important;*/
+    /***/ 
 }
 
 /*UPLOAD CONTROL*/
@@ -9790,9 +9825,14 @@ ul.languages li ul li:last-child {
     
 }
 .discussion .board-pin-background .pin-image, .discussion .topic-pin-background  .pin-image, .discussion .message-pin-background .pin-image {
-    width: 68px;
+    /*width: 68px;
     height: 70px;
-    background: url(img/Sn/Discussion/pin-image.png) no-repeat;
+    background: url(img/Sn/Discussion/pin-image.png) no-repeat;*/
+    /***changes:20140604*/
+    width: 54px;
+    height: 56px;
+    background: url(img/Sn/Discussion/pin-image_sm.png) no-repeat;
+    /***/
     display:block;
     margin-left:10px;
 }
@@ -9803,9 +9843,14 @@ ul.languages li ul li:last-child {
     display: block;
 }
 .discussion .topic-answer-background .answer-image {
-    width: 68px;
+    /*width: 68px;
     height: 70px;
-    background: url(img/Sn/Discussion/answer-image.png) no-repeat;
+    background: url(img/Sn/Discussion/answer-image.png) no-repeat;*/
+    /***changes:20140604*/
+    width: 54px;
+    height: 56px;
+    background: url(img/Sn/Discussion/answer-image_sm.png) no-repeat;
+    /***/
     float: left;
     display: block;
     margin-left: 10px
@@ -9842,7 +9887,10 @@ ul.languages li ul li:last-child {
     color:#c4c4c4;
     font-size:18px;
     font-weight:400;
-    padding:24px 0 0 0;
+    /*padding:24px 0 0 0;*/
+    /***changes:20140604*/
+    padding:12px 0 0 0;
+    /***/
     /*margin-bottom: 40px;*/
 }
 
@@ -10981,7 +11029,9 @@ h3.discussion-post-author {
     line-height:22px !important;
     width:100%;
     text-align:center;
-    padding-bottom:10px;
+    /***changes:20140604*/
+    /*padding-bottom:10px;*/
+    /***/
 }
 
 .float-none {
@@ -11170,3 +11220,9 @@ a.no-style {
     font-weight: 700;
     text-decoration:none;
 }
+
+/***changes:20140603*/
+.text-center {
+    text-align:center;
+}
+/***/
