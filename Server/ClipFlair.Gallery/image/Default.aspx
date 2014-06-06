@@ -7,7 +7,7 @@
 <%--
 Project: ClipFlair (http://ClipFlair.codeplex.com)
 Filename: image/Default.aspx
-Version: 20131012
+Version: 20140606
 --%>
 
 <html>
@@ -23,6 +23,7 @@ body
 {
   margin:0px;
   padding:0px;
+  overflow-y:hidden;
 }
 
 iframe 
