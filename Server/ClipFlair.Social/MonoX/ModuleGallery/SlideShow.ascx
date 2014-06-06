@@ -22,7 +22,7 @@
     <a href="#" class='<%= this.EnableTextualNavigation ? "next-text" : "next-arrow" %>'><img runat="server" id="imgNext" alt="Arrow Next" /><!--<asp:Literal runat="server" ID="ltlNext"></asp:Literal>--></a>
     <img id="imgShadow" alt="image-shadow" runat="server" class="scale-with-grid slider-shadow" />      
     <asp:PlaceHolder runat="server" ID="plhTitle">
-        <div class="title"><%= this.SliderTitle %></div>
+        <div class="title"><!--<%= this.SliderTitle %>-->Featured Activities</div>
     </asp:PlaceHolder>
 </div>
 <script type="text/javascript">
