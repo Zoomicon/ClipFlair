@@ -8145,6 +8145,9 @@ STYLED CHECKBOX LIST*/
     padding-bottom: 60px;
     /*margin-top: 30px;*/
     /*/!!!*/
+    /***changes:20140606*/
+    clear: both;
+    /***/
 }
 /*!!!*/
 .side-bar .button-holder{
