@@ -5,7 +5,7 @@
 using System;
 using System.Windows;
 
-namespace WPFCompatibility
+namespace WPF_Compatibility
 {
 
     public static class WPF_DependencyProperty

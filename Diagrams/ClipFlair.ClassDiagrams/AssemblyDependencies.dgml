@@ -2591,7 +2591,7 @@
     <Node Id="@3587" Category="CodeSchema_Method" CodeSchemaProperty_IsConstructor="True" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" Label="VisualHelper" />
     <Node Id="@3588" Category="CodeSchema_Method" CodeSchemaProperty_IsConstructor="True" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" Label="WAVEFORMATEX" />
     <Node Id="@3589" Category="CodeSchema_Method" CodeSchemaProperty_IsConstructor="True" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" Label="WavManager" />
-    <Node Id="@359" Category="CodeSchema_Namespace" Group="Collapsed" Label="WPFCompatibility" />
+    <Node Id="@359" Category="CodeSchema_Namespace" Group="Collapsed" Label="WPF_Compatibility" />
     <Node Id="@3590" Category="CodeSchema_Method" CodeSchemaProperty_IsConstructor="True" CodeSchemaProperty_IsExternal="True" CodeSchemaProperty_IsPublic="True" Label="WebClient" />
     <Node Id="@3591" Category="CodeSchema_Method" CodeSchemaProperty_IsConstructor="True" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" Label="WindowIcon" />
     <Node Id="@3592" Category="CodeSchema_Method" CodeSchemaProperty_IsConstructor="True" CodeSchemaProperty_IsExternal="True" CodeSchemaProperty_IsPublic="True" Label="XmlWriterSettings" />
@@ -19216,7 +19216,7 @@
     <Alias n="355" Id="(@85 @354)" />
     <Alias n="356" Id="Namespace=Utils.Extensions" />
     <Alias n="357" Id="(@85 @356)" />
-    <Alias n="358" Id="Namespace=WPFCompatibility" />
+    <Alias n="358" Id="Namespace=WPF_Compatibility" />
     <Alias n="359" Id="(@101 @358)" />
     <Alias n="360" Id="Namespace=ZoomAndPan" />
     <Alias n="361" Id="(@39 @360)" />

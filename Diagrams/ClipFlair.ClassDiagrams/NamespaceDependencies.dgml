@@ -1939,7 +1939,7 @@
     <Node Id="@2947" Category="CodeSchema_Method" CodeSchemaProperty_IsPrivate="True" Label="btnHelp_Click" />
     <Node Id="@2948" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" Label="btnHighlight_Checked" />
     <Node Id="@2949" Category="CodeSchema_Method" CodeSchemaProperty_IsPrivate="True" Label="btnHyperlink_Click" />
-    <Node Id="@295" Category="CodeSchema_Namespace" Group="Collapsed" Label="WPFCompatibility" />
+    <Node Id="@295" Category="CodeSchema_Namespace" Group="Collapsed" Label="WPF_Compatibility" />
     <Node Id="@2950" Category="CodeSchema_Method" CodeSchemaProperty_IsPrivate="True" Label="btnImport_Click" />
     <Node Id="@2951" Category="CodeSchema_Method" CodeSchemaProperty_IsPrivate="True" Label="btnItalic_Click" />
     <Node Id="@2952" Category="CodeSchema_Method" CodeSchemaProperty_IsPrivate="True" Label="btnLoad_Click" />
@@ -19065,7 +19065,7 @@
     <Alias n="291" Id="(@290)" />
     <Alias n="292" Id="Namespace=Utils.Extensions" />
     <Alias n="293" Id="(@292)" />
-    <Alias n="294" Id="Namespace=WPFCompatibility" />
+    <Alias n="294" Id="Namespace=WPF_Compatibility" />
     <Alias n="295" Id="(@294)" />
     <Alias n="296" Id="Namespace=ZoomAndPan" />
     <Alias n="297" Id="(@296)" />

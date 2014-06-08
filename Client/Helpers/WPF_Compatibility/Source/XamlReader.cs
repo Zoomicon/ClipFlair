@@ -2,8 +2,7 @@
 //Version: 20130705
 //Author: George Birbilis <birbilis@kagi.com>
 
-
-namespace WPFCompatibility
+namespace WPF_Compatibility
 {
 
   public static class XamlReader
