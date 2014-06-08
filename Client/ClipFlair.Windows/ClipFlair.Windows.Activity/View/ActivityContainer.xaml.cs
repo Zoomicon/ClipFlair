@@ -1,12 +1,12 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: ActivityContainer.xaml.cs
-//Version: 20140418
+//Version: 20140608
 
 //TODO: add ContentPartsCloseable property
 //TODO: add ContentPartsZoomable property
 //TODO: must clear bindings when child window closes (now seem to stay as zombies hearing revoicing entries play at given time)
 
-//TODO: maybe use MEF Deployment Catalog and put components in separate XAPs (each one a Silverlight app, set to reuse the same Web PRoject) and imported here with CopyLocal=False
+//TODO: maybe use MEF Deployment Catalog and put components in separate XAPs (each one a Silverlight app, set to reuse the same Web Project) and imported here with CopyLocal=False
 
 using ClipFlair.UI.Dialogs;
 using ClipFlair.Windows.Views;
@@ -34,12 +34,14 @@ namespace ClipFlair.Windows
     #region --- Constants ---
 
     public const string URL_PROJECT_HOME = "http://ClipFlair.net";
-    public const string URL_HELP_TUTORIALS = "http://social.clipflair.net/Pages/Tutorials.aspx";
+    public const string URL_HELP_TUTORIAL_ACTIVITY = ""; //TODO: use in HelpTutorialActivity method
+    public const string URL_HELP_TUTORIAL_VIDEOS = "http://social.clipflair.net/Pages/Tutorials.aspx";
     public const string URL_HELP_FAQ = "http://social.clipflair.net/help/faq.aspx";
     public const string URL_HELP_CONTACT = "http://social.clipflair.net/MonoX/Pages/Contact.aspx";
     public const string URL_SOCIAL = "http://social.clipflair.net";
     public const string URL_NEWS = "http://social.clipflair.net/Blog.aspx?MonoXRssFeed=ClipFlair-All-blog-posts";
 
+    public const string URL_DEFAULT_ACTIVITY = ""; //TODO: use at param passed to Open Activity from URL Dialog
     public const string URL_DEFAULT_VIDEO = "http://video3.smoothhd.com.edgesuite.net/ondemand/Big%20Buck%20Bunny%20Adaptive.ism/Manifest"; //MPEG-DASH sample: http://wams.edgesuite.net/media/MPTExpressionData02/BigBuckBunny_1080p24_IYUV_2ch.ism/manifest(format=mpd-time-csf)
     public const string URL_DEFAULT_IMAGE = "http://gallery.clipflair.net/image/clipflair-logo.jpg";
     public const string URL_GALLERY_PREFIX = "http://gallery.clipflair.net/collection/";
@@ -682,9 +684,15 @@ namespace ClipFlair.Windows
 
     //Help//
 
-    public bool HelpTutorials()
+    public bool HelpTutorialActivity()
     {
-      return NavigateTo(URL_HELP_TUTORIALS);
+      LoadURLClick(this, new RoutedEventArgs());
+      return true;
+    } //TODO: return false if user cancelled //TODO: should open the tutorial activity directly instead of showing open activity from URL dialog (that has this as default URL)
+
+    public bool HelpTutorialVideos()
+    {
+      return NavigateTo(URL_HELP_TUTORIAL_VIDEOS);
     }
 
     public bool HelpFAQ()

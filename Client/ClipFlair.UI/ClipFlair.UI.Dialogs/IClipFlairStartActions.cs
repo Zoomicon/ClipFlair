@@ -1,6 +1,6 @@
 ﻿//Prroject: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: IClipFlairStartActions.cs
-//Version: 20140414
+//Version: 20140608
 
 namespace ClipFlair.UI.Dialogs
 {
@@ -28,7 +28,8 @@ namespace ClipFlair.UI.Dialogs
      bool OpenImageGallery();
 
     //Help//
-     bool HelpTutorials();
+     bool HelpTutorialActivity();
+     bool HelpTutorialVideos();
      bool HelpContact();
      bool HelpFAQ();
 
