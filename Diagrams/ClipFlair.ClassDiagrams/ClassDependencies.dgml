@@ -8562,7 +8562,7 @@
     <Alias n="360" Id="(@1 @86 @359)" />
     <Alias n="361" Id="(@30 @95 Type=ViewDefaults)" />
     <Alias n="362" Id="(@59 @133 Type=VisibilityToBooleanConverter)" />
-    <Alias n="363" Id="Namespace=WPFCompatibility" />
+    <Alias n="363" Id="Namespace=WPF_Compatibility" />
     <Alias n="364" Id="Type=Visual" />
     <Alias n="365" Id="(@47 @363 @364)" />
     <Alias n="366" Id="(@1 @130 Type=VisualHelper)" />

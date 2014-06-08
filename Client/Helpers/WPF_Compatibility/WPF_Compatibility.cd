@@ -29,42 +29,42 @@
       <FileName>C:\Dropbox\ClipFlairDev\ClipFlair_Source\Client\WPF_Compatibility\Source\ValueConversionAttribute.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="WPFCompatibility.Visual" Collapsed="true">
+  <Class Name="WPF_Compatibility.Visual" Collapsed="true">
     <Position X="0.5" Y="1.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AEACECAAFAgAAEAAEAgAAEIABACAgAAAAAAAIAAQAAA=</HashCode>
       <FileName>C:\Dropbox\ClipFlairDev\ClipFlair_Source\Client\WPF_Compatibility\Source\Visual.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="WPFCompatibility.WPF_DependencyObject" Collapsed="true">
+  <Class Name="WPF_Compatibility.WPF_DependencyObject" Collapsed="true">
     <Position X="2.5" Y="1.5" Width="2" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAA=</HashCode>
       <FileName>C:\Dropbox\ClipFlairDev\ClipFlair_Source\Client\WPF_Compatibility\Source\WPF_DependencyObject.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="WPFCompatibility.WPF_DependencyProperty" Collapsed="true">
+  <Class Name="WPF_Compatibility.WPF_DependencyProperty" Collapsed="true">
     <Position X="5" Y="1.5" Width="2" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAA=</HashCode>
       <FileName>C:\Dropbox\ClipFlairDev\ClipFlair_Source\Client\WPF_Compatibility\Source\WPF_DependencyProperty.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="WPFCompatibility.WPF_Rect" Collapsed="true">
+  <Class Name="WPF_Compatibility.WPF_Rect" Collapsed="true">
     <Position X="7.5" Y="1.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAA=</HashCode>
       <FileName>C:\Dropbox\ClipFlairDev\ClipFlair_Source\Client\WPF_Compatibility\Source\WPF_Rect.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="WPFCompatibility.WPF_ScaleTransform" Collapsed="true">
+  <Class Name="WPF_Compatibility.WPF_ScaleTransform" Collapsed="true">
     <Position X="0.5" Y="2.5" Width="1.75" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAA=</HashCode>
       <FileName>C:\Dropbox\ClipFlairDev\ClipFlair_Source\Client\WPF_Compatibility\Source\WPF_ScaleTransform.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="WPFCompatibility.WPF_UIElement" Collapsed="true">
+  <Class Name="WPF_Compatibility.WPF_UIElement" Collapsed="true">
     <Position X="2.5" Y="2.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADAAA=</HashCode>

@@ -3,7 +3,7 @@
 
 using System.Windows;
 using System.Windows.Controls;
-using WPFCompatibility;
+using WPF_Compatibility;
 
 #if !SILVERLIGHT
 using System.Windows.Media; //for Visual type

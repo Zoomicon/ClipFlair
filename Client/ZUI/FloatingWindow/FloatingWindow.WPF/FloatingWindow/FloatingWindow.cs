@@ -25,7 +25,7 @@ using SilverFlow.Controls.Helpers;
 using Microsoft.Win32; //for SaveFileDialog
 #endif
 
-using WPFCompatibility;
+using WPF_Compatibility;
 
 namespace SilverFlow.Controls
 {

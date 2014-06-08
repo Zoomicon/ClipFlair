@@ -5,7 +5,7 @@
 #if SILVERLIGHT
 
 using System.Windows;
-using WPFCompatibility;
+using WPF_Compatibility;
 
 namespace ZoomAndPan
 {

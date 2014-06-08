@@ -4,7 +4,7 @@
 using SilverFlow.Controls.Extensions;
 using System.Collections.Generic;
 using System.Windows;
-using WPFCompatibility;
+using WPF_Compatibility;
 
 namespace SilverFlow.Controls.Helpers
 {

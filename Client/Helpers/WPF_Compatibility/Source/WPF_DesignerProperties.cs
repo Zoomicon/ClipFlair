@@ -4,7 +4,7 @@
 
 using System.ComponentModel;
 
-namespace WPFCompatibility
+namespace WPF_Compatibility
 {
 
   using System.Windows.Controls;

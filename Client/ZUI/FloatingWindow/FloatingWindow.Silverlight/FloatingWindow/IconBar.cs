@@ -12,7 +12,7 @@ using System.Windows.Input;
 using System.Windows.Media.Animation;
 using SilverFlow.Controls.Extensions;
 using SilverFlow.Controls.Helpers;
-using WPFCompatibility;
+using WPF_Compatibility;
 
 namespace SilverFlow.Controls
 {

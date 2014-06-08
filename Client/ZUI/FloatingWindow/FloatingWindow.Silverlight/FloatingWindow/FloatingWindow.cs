@@ -21,7 +21,7 @@ using SilverFlow.Controls.Enums;
 using SilverFlow.Controls.Extensions;
 using SilverFlow.Controls.Helpers;
 
-using WPFCompatibility;
+using WPF_Compatibility;
 
 namespace SilverFlow.Controls
 {

@@ -4,7 +4,7 @@
 
 using System.Windows.Media;
 
-namespace WPFCompatibility
+namespace WPF_Compatibility
 {
 
   public static class WPF_ScaleTransform

@@ -7,7 +7,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Markup;
-using WPFCompatibility;
+using WPF_Compatibility;
 using ZoomAndPan;
 
 namespace FloatingWindowZUI
