@@ -1,7 +1,7 @@
 ﻿<!--
 Project: ClipFlair (http://ClipFlair.codeplex.com)
 Filename: StartDialog.xaml
-Version: 20140415
+Version: 20140608
 -->
 
 <controls:ChildWindow 
@@ -82,7 +82,8 @@ Version: 20140415
     <Button Grid.Row="2" Grid.Column="6" Template="{StaticResource OpenImageGallery.xaml}" Name="btnOpenImageGallery" Click="btnOpenImageGallery_Click" />
 
     <!-- Help -->
-    <Button Grid.Row="2" Grid.Column="5" Template="{StaticResource HelpTutorials.xaml}" Name="btnHelpTutorials" Click="btnHelpTutorials_Click" />
+    <Button Grid.Row="2" Grid.Column="4" Template="{StaticResource HelpTutorialActivity.xaml}" Name="btnHelpTutorialActivity" Click="btnHelpTutorialActivity_Click" Margin="10,10,9,0" />
+    <Button Grid.Row="2" Grid.Column="5" Template="{StaticResource HelpTutorialVideos.xaml}" Name="btnHelpTutorialVideos" Click="btnHelpTutorialVideos_Click" Margin="10,10,9,0" />
     <Button Grid.Row="2" Grid.Column="6" Template="{StaticResource HelpFAQ.xaml}" Name="btnHelpFAQ" Click="btnHelpFAQ_Click" />
     <Button Grid.Row="2" Grid.Column="7" Template="{StaticResource HelpContact.xaml}" Name="btnHelpContact" Click="btnHelpContact_Click" />
 

@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: StartDialog.xaml.cs
-//Version: 20140415
+//Version: 20140608
 
 using System;
 using System.ComponentModel;
@@ -51,7 +51,8 @@ namespace ClipFlair.UI.Dialogs
       btnOpenImageFile.Visibility =
       btnOpenImageURL.Visibility =
       btnOpenImageGallery.Visibility =
-      btnHelpTutorials.Visibility =
+      btnHelpTutorialActivity.Visibility =
+      btnHelpTutorialVideos.Visibility =
       btnHelpFAQ.Visibility =
       btnHelpContact.Visibility = Visibility.Collapsed;
     }
@@ -200,22 +201,31 @@ namespace ClipFlair.UI.Dialogs
     {
       Hide2ndLevelButtons();
 
-      btnHelpTutorials.Visibility = 
+      btnHelpTutorialActivity.Visibility =
+      btnHelpTutorialVideos.Visibility = 
       btnHelpFAQ.Visibility = 
       btnHelpContact.Visibility = Visibility.Visible;
     }
-    
-    private void btnHelpTutorials_Click(object sender, System.Windows.RoutedEventArgs e)
-    {
-      //Hide2ndLevelButtons();
 
-      if (Actions != null && Actions.HelpTutorials())
+    private void btnHelpTutorialActivity_Click(object sender, System.Windows.RoutedEventArgs e)
+    {
+      Hide2ndLevelButtons();
+
+      if (Actions != null && Actions.HelpTutorialActivity())
+        Close();
+    }
+    
+    private void btnHelpTutorialVideos_Click(object sender, System.Windows.RoutedEventArgs e)
+    {
+      Hide2ndLevelButtons();
+
+      if (Actions != null && Actions.HelpTutorialVideos())
         Nop(); //Close();
     }
 
     private void btnHelpFAQ_Click(object sender, System.Windows.RoutedEventArgs e)
     {
-      //Hide2ndLevelButtons();
+      Hide2ndLevelButtons();
 
       if (Actions != null && Actions.HelpFAQ())
         Nop(); //Close();
@@ -223,7 +233,7 @@ namespace ClipFlair.UI.Dialogs
 
     private void btnHelpContact_Click(object sender, System.Windows.RoutedEventArgs e)
     {
-      //Hide2ndLevelButtons();
+      Hide2ndLevelButtons();
 
       if (Actions != null && Actions.HelpContact())
         Nop(); //Close();    
@@ -233,7 +243,7 @@ namespace ClipFlair.UI.Dialogs
 
     private void btnSocial_Click(object sender, System.Windows.RoutedEventArgs e)
     {
-      //Hide2ndLevelButtons();
+      Hide2ndLevelButtons();
 
       if (Actions != null && Actions.Social())
         Nop(); //Close();
