@@ -1,5 +1,5 @@
 ﻿//Filename: FloatingWindowHostZUI.cs
-//Version: 20131214
+//Version: 20140608
 
 using SilverFlow.Controls;
 using System.Collections.Specialized;
@@ -102,8 +102,9 @@ namespace FloatingWindowZUI
 
     #endregion
 
-    public FloatingWindowHostZUI()
+    public FloatingWindowHostZUI() //do not use ": base()" to call the ancestor's constructor, replicating its logic here instead (since its code wouldn't call our overriden ApplyStyle [our instance isn't constructed yet at that point])
     {
+      Windows = new FloatingWindowCollection(); //must set this here and not in the DependencyProperty definition's default value (that would be a singleton collection!)
       ApplyStyle();
     }
 
