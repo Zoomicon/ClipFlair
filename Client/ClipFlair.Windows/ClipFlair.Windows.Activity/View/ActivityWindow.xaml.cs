@@ -1,13 +1,15 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: ActivityWindow.xaml.cs
-//Version: 20140526
+//Version: 20140609
 
 using ClipFlair.UI.Dialogs;
 using ClipFlair.Windows.Captions;
 using ClipFlair.Windows.Media;
 using ClipFlair.Windows.Text;
 using ClipFlair.Windows.Views;
+
 using Ionic.Zip;
+
 using System;
 using System.ComponentModel;
 using System.IO;
@@ -16,7 +18,7 @@ using System.Windows;
 using System.Windows.Browser;
 using System.Windows.Input;
 using System.Windows.Media;
-using Utils.Bindings;
+
 using Utils.Extensions;
 
 [assembly: TypeForwardedTo(typeof(MediaPlayerView))]
@@ -64,9 +66,6 @@ namespace ClipFlair.Windows
       View = activity.View; //set window's View to be the same as the nested activity's View
 
       defaultLoadURL = DEFAULT_ACTIVITY;
-
-      BindingUtils.RegisterForNotification("Width", this, (d, e) => { CheckZoomToFit(); });
-      BindingUtils.RegisterForNotification("Height", this, (d, e) => { CheckZoomToFit(); });
     }
 
     #endregion
@@ -264,6 +263,11 @@ namespace ClipFlair.Windows
       ShowSaveDialog();
     }
 
+    private void BaseWindow_SizeChanged(object sender, SizeChangedEventArgs e)
+    {
+      CheckZoomToFit();
+    }
+    
     #endregion
 
   }
