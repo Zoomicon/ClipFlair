@@ -1,5 +1,5 @@
 ﻿//Filename: ZoomImage.xaml.cs
-//Version: 20140302
+//Version: 20140609
 //Author: George Birbilis (http://zoomicon.com)
 
 //Based on http://samples.msdn.microsoft.com/Silverlight/SampleBrowser DeepZoom samples
@@ -13,7 +13,7 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using Utils.Bindings;
+
 using Utils.Extensions;
 
 namespace ZoomImage
@@ -23,6 +23,7 @@ namespace ZoomImage
 
     #region Constants
 
+    public const bool DEFAULT_CONTENT_ZOOM_TO_FIT = true;
     public const bool DEFAULT_ZOOM_CONTROLS_AVAILABLE = true;
     public const double DEFAULT_ZOOM_STEP = 0.2;
 
@@ -31,9 +32,6 @@ namespace ZoomImage
     public ZoomImage()
     {
       InitializeComponent();
-
-      BindingUtils.RegisterForNotification("Width", this, (d, e) => { CheckZoomToFit(); });
-      BindingUtils.RegisterForNotification("Height", this, (d, e) => { CheckZoomToFit(); });
 
       imgPlainZoom.AddHandler(MouseLeftButtonDownEvent, new MouseButtonEventHandler(control_MouseLeftButtonDown), true); //seems to be needed to grab that specific event
       imgPlainZoom.AddHandler(MouseWheelEvent, new MouseWheelEventHandler(control_MouseWheel), true); //seems to be needed to grab that specific event
@@ -99,7 +97,7 @@ namespace ZoomImage
     /// </summary>
     public static readonly DependencyProperty ContentZoomToFitProperty =
         DependencyProperty.Register("ContentZoomToFit", typeof(bool), typeof(ZoomImage),
-            new FrameworkPropertyMetadata(true,
+            new FrameworkPropertyMetadata(DEFAULT_CONTENT_ZOOM_TO_FIT,
                 FrameworkPropertyMetadataOptions.None,
                 new PropertyChangedCallback(OnContentZoomToFitChanged)));
 
@@ -194,7 +192,7 @@ namespace ZoomImage
 
       }
 
-      CheckZoomToFit();
+      //CheckZoomToFit(); //not calling this here, since it will be called by "control_ImageOpenSucceeded" when image has opened
     }
 
     #endregion
@@ -213,6 +211,17 @@ namespace ZoomImage
         catch { }
     }
 
+    public void ZoomToFit()
+    {
+      if (PlainZoomMode)
+        imgPlainZoom.ZoomToFit();
+      else if (DeepZoomMode)
+      {
+        imgDeepZoom.ViewportOrigin = new Point(0, 0);
+        imgDeepZoom.ViewportWidth = 1;
+      }
+    }
+
     public void ZoomIn(double zoomStep = DEFAULT_ZOOM_STEP)
     {
       if (PlainZoomMode) imgPlainZoom.ZoomIn(zoomStep);
@@ -225,17 +234,6 @@ namespace ZoomImage
       else if (DeepZoomMode) imgDeepZoom.ZoomAboutLogicalPoint(1 - zoomStep, 0.5, 0.5); //using same ZoomFactorStep as ZoomAndPan control (imgPlainZoom) uses
     }
       
-      public void ZoomToFit()
-    {
-      if (PlainZoomMode) 
-        imgPlainZoom.ZoomToFit();
-      else if (DeepZoomMode)
-      {
-        imgDeepZoom.ViewportOrigin = new Point(0, 0);
-        imgDeepZoom.ViewportWidth = 1;
-      }
-    }
-
     private void Zoom(double zoomStep, Point elementFocusPoint)
     {
       if (PlainZoomMode) 
@@ -372,12 +370,17 @@ namespace ZoomImage
       }
     }
 
-    private void control_ImageOpenSucceeded(object sender, RoutedEventArgs e)
+    private void control_ImageOpenSucceeded(object sender, RoutedEventArgs e) //using same event handler for "imgDeepZoom" and "imgPlain"
     {
       CheckZoomToFit();
     }
 
+    private void UserControl_SizeChanged(object sender, SizeChangedEventArgs e)
+    {
+      CheckZoomToFit();
+    }
+    
     #endregion
-   
+  
   }
 }

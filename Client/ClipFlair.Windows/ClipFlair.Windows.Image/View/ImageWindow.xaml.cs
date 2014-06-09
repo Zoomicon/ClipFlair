@@ -1,15 +1,14 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: ImageWindow.xaml.cs
-//Version: 20140421
+//Version: 20140609
+
+using ClipFlair.UI.Dialogs;
+using ClipFlair.Windows.Views;
 
 using System;
 using System.ComponentModel;
 using System.Windows;
 using System.Windows.Input;
-
-using ClipFlair.UI.Dialogs;
-using ClipFlair.Windows.Views;
-using Utils.Extensions;
 
 namespace ClipFlair.Windows
 {
@@ -60,14 +59,25 @@ namespace ClipFlair.Windows
       switch (e.PropertyName)
       {
         case null: //BaseWindow's "View" property's setter calls View_PropertyChanged with PropertyName=null to signify multiple properties have changed (initialized with default values that is)
+          UpdateZoomControlsVisible();
+          imgContent.ContentZoomToFit = ImageView.ContentZoomToFit;
+          break;
         case IImageViewerProperties.PropertyActionTime:
         case IImageViewerProperties.PropertyActionURL:          
           UpdateZoomControlsVisible();
+          break;
+        case IImageViewerProperties.PropertyContentZoomToFit:
+          imgContent.ContentZoomToFit = ImageView.ContentZoomToFit;
           break;
       }
     }
 
     #endregion
+
+    public void ZoomToFit()
+    {
+      imgContent.ZoomToFit();
+    }
 
     private void UpdateZoomControlsVisible()
     {
