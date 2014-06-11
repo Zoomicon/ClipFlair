@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: BaseWindow.xaml.cs
-//Version: 20140418
+//Version: 20140612
 
 //TODO: unbind control at close
 
@@ -387,7 +387,7 @@ namespace ClipFlair.Windows
         foreach (ZipEntry options in zip.SelectEntries("*.options.xml", zipFolder))
         {
           //Note: we try to load the 1st file that ends in ".options.xml" (so that a component can support various versions
-          //of saved state, e.g. both ClipFlair.Windows.Views.TextEditorView [that one had a data contract namespace typo] and
+          //of saved state (not coexisting of course), e.g. both ClipFlair.Windows.Views.TextEditorView [that one had a data contract namespace typo] and
           //ClipFlair.Windows.Views.TextEditorView2 [replacing the older view] implement ITextEditor interface and can be set as TextEditorView to TextEditorWindow)
 
           DataContractSerializer serializer = new DataContractSerializer(ResolveType(options.FileName.ReplaceSuffix(".options.xml", ""))); //assuming the view exists in the same assembly as the component
@@ -454,8 +454,21 @@ namespace ClipFlair.Windows
 
     public void LoadOptions(Stream stream, string zipFolder = "") //doesn't close stream
     {
-      using (ZipFile zip = ZipFile.Read(stream))
-        LoadOptions(zip, zipFolder); //reading from root folder
+      //save position and size (to restore later)
+      Point oldPos = Position;
+      Size oldSize = new Size(Width, Height); //do not use (ActualWidth, ActualHeight) here, assigning to (Width, Height) below
+      try
+      {
+        using (ZipFile zip = ZipFile.Read(stream))
+          LoadOptions(zip, zipFolder); //reading from root folder
+      }
+      finally
+      {
+        //restore position and size - needed so that components and especially nested activity ones don't change position/size after loading saved state of theirs from file [dragdrop included] or URL
+        Position = oldPos;
+        Width = oldSize.Width;
+        Height = oldSize.Height;
+      }
     }
 
     public static BaseWindow LoadWindow(Stream stream, string zipFolder = "") //doesn't close stream
