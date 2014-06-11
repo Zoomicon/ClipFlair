@@ -1,5 +1,5 @@
 //Filename: FloatingWindow.cs
-//Version: 20140526
+//Version: 20140611
 
 //#define BORDER_ONLY_AT_RESIZABLE //using BorderThickness instead to allow user to define when they want the border to be visible themselves
 
@@ -2996,7 +2996,7 @@ namespace SilverFlow.Controls
           Point point = windowState == WindowState.Normal ? Position : previousPosition;
           localStorage[positionKey] = point;
 
-          Size size = windowState == WindowState.Normal ? new Size(ActualWidth, ActualHeight) : previousSize;
+          Size size = windowState == WindowState.Normal ? new Size(Width, Height) : previousSize; //do not use (ActualWidth, ActualHeight) here, since at RestoreSizeAndPosition this value will be assigned to (Width, Height)
           localStorage[sizeKey] = size;
 
           return true;
