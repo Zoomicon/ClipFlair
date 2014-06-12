@@ -1,7 +1,7 @@
 ﻿<!--
 Project: ClipFlair (http://ClipFlair.codeplex.com)
 Filename: MediaPlayerOptions.xaml
-Version: 20140306
+Version: 20140612
 -->
 
 <UserControl x:Class="ClipFlair.Windows.Options.MediaPlayerOptions"
@@ -44,8 +44,8 @@ Version: 20140306
                  Margin="0,0,5,0" />
 
         <btn:ImageButton Name="btnLoadMedia"
-                         Image="/ClipFlair.Windows.Media;component/Images/LoadMedia.png"
-                         ImageHover="/ClipFlair.Windows.Media;component/Images/LoadMedia_hover.png"
+                         Image="/ClipFlair.Windows.Media;component/Images/Load.png"
+                         ImageHover="/ClipFlair.Windows.Media;component/Images/Load_hover.png"
                          Click="btnLoadMedia_Click"
                          ToolTipService.ToolTip="Open local media file"
                          Grid.Column="2" />

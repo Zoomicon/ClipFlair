@@ -1,7 +1,7 @@
 ﻿<!--
 Project: ClipFlair (http://ClipFlair.codeplex.com)
 Filename: ImageOptions.xaml
-Version: 20140306
+Version: 20140612
 -->
 
 <UserControl x:Class="ClipFlair.Windows.Options.ImageOptions"
@@ -11,7 +11,8 @@ Version: 20140306
   xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
   xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk"  
   xmlns:btn="clr-namespace:ImageButtons;assembly=ImageButtons"
-  mc:Ignorable="d" d:DesignHeight="295" d:DesignWidth="424"
+  mc:Ignorable="d"
+  d:DesignHeight="295" d:DesignWidth="424"
   >
 
   <UserControl.Resources>
@@ -25,10 +26,34 @@ Version: 20140306
   <StackPanel Orientation="Vertical">
 
     <StackPanel Orientation="Vertical">
-      <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Image Source URL:" Target="{Binding ElementName=edImageURL}"/>
-      <TextBox Name="edImageURL" Text="{Binding Source, Mode=TwoWay}" HorizontalAlignment="Stretch" />
-    </StackPanel>
+      <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Image Source:" Target="{Binding ElementName=btnLoadImage}" />
 
+      <Grid>
+        <Grid.ColumnDefinitions>
+          <ColumnDefinition Width="Auto" />
+          <ColumnDefinition Width="*" />
+          <ColumnDefinition Width="Auto" />
+        </Grid.ColumnDefinitions>
+
+        <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="URL:" Target="{Binding ElementName=edImageURL}" Margin="5,0" Grid.Column="0" />
+        <TextBox Name="edImageURL"
+                 Text="{Binding Source, Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=True}"
+                 HorizontalScrollBarVisibility="Hidden"
+                 AcceptsReturn="False"
+                 Grid.Column="1"
+                 Margin="0,0,5,0" />
+
+        <btn:ImageButton Name="btnLoadImage"
+                         Image="/ClipFlair.Windows.Image;component/Images/Load.png"
+                         ImageHover="/ClipFlair.Windows.Image;component/Images/Load_hover.png"
+                         Click="btnLoadImage_Click"
+                         ToolTipService.ToolTip="Open local image file"
+                         Grid.Column="2" />
+
+      </Grid>
+
+    </StackPanel>
+    
     <StackPanel Orientation="Horizontal">
       <CheckBox Name="cbContentZoomToFit" IsChecked="{Binding ContentZoomToFit, Mode=TwoWay}" />
       <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Content Zoom to Fit" Target="{Binding ElementName=cbContentZoomToFit}"/>

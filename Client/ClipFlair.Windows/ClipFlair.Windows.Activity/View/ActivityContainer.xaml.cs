@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: ActivityContainer.xaml.cs
-//Version: 20140608
+//Version: 20140612
 
 //TODO: add ContentPartsCloseable property
 //TODO: add ContentPartsZoomable property
@@ -582,7 +582,7 @@ namespace ClipFlair.Windows
       #if !WINDOWS_PHONE
       if (!Application.Current.IsRunningOutOfBrowser)
       #endif
-        btnAddBrowser.Visibility = Visibility.Collapsed; //TODO: try to find some C# WebBrowser (still would have issue with remote sites not using ClientAccessPolicy.xml)
+        btnAddBrowser.Visibility = Visibility.Collapsed; //WebBrowser class is available in OOB mode only - even if we had some C# version of a full WebBrowser, still would have issue with remote sites not using ClientAccessPolicy.xml
       #endif
     }
 
@@ -643,7 +643,8 @@ namespace ClipFlair.Windows
     public bool OpenVideoFile()
     {
       MediaPlayerWindow win = AddClip();
-      win.OpenLocalFile(); //TODO: doesn't work, maybe AddClip takes too much time? Check why LoadClick above works fine
+      //win.OpenLocalFile(); //TODO: doesn't work, maybe AddClip takes too much time? Check why LoadClick above works fine
+      win.Flipped = true; //flip for user to click the open local media file button //WORKARROUND FOR THE ABOVE ISSUE
       return true; //TODO: return false if user cancelled
     }
 
@@ -665,7 +666,8 @@ namespace ClipFlair.Windows
     public bool OpenImageFile()
     {
       ImageWindow win = AddImage();
-      //win.OpenLocalFile(); //TODO
+      //win.OpenLocalFile(); //TODO: doesn't work, maybe AddClip takes too much time? Check why LoadClick above works fine
+      win.Flipped = true; //flip for user to click the open local image file button //WORKARROUND FOR THE ABOVE ISSUE
       return true; //TODO: return false if user cancelled
     }
 

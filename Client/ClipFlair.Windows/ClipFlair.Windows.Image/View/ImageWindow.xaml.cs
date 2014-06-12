@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: ImageWindow.xaml.cs
-//Version: 20140609
+//Version: 20140612
 
 using ClipFlair.UI.Dialogs;
 using ClipFlair.Windows.Views;
@@ -74,6 +74,8 @@ namespace ClipFlair.Windows
 
     #endregion
 
+    #region --- Methods ---
+
     public void ZoomToFit()
     {
       imgContent.ZoomToFit();
@@ -84,6 +86,17 @@ namespace ClipFlair.Windows
       if (imgContent != null)
         imgContent.ZoomControlsAvailable = (ImageView.ActionTime == null && ImageView.ActionURL == null); //TODO: add a ZoomControlsAvailable property to the view too and AND its value here
     }
+
+    public bool OpenLocalFile()
+    {
+      bool done = imgContent.OpenLocalFile();
+      if (done) Flipped = false; //flip back to front
+      return done;
+    }
+
+    #endregion
+
+    #region --- Events ---
 
     private void imgContent_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
     {
@@ -100,6 +113,8 @@ namespace ClipFlair.Windows
         e.Handled = true; //event should already be handled by inner content, but marking it as handled anyway in case inner content hasn't
       }
     }
+
+    #endregion
 
   }
 }

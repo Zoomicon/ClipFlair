@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: MediaPlayer.cs
-//Version: 20140403
+//Version: 20140612
 
 using Utils.Extensions;
 
@@ -752,7 +752,7 @@ namespace ClipFlair.MediaPlayer
 
     #region --- Methods ---
 
-    public void OpenLocalFile() //Note: this has to be initiated by user action (Silverlight security)
+    public bool OpenLocalFile() //Note: this has to be initiated by user action (Silverlight security)
     {
       try
       {
@@ -763,12 +763,16 @@ namespace ClipFlair.MediaPlayer
         };
 
         if (dlg.ShowDialog() == true) //TODO: find the parent window
+        { 
           Open(dlg.File);
+          return true;
+        }
       }
       catch (Exception e)
       {
         MessageBox.Show("Loading failed: " + e.Message); //TODO: find the parent window
       }
+      return false;
     }
 
     public void Open(FileInfo file)

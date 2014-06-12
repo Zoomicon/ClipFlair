@@ -150,8 +150,8 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\LoadMedia.png" />
-    <Resource Include="Images\LoadMedia_hover.png" />
+    <Resource Include="Images\Load.png" />
+    <Resource Include="Images\Load_hover.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Media.cd" />
