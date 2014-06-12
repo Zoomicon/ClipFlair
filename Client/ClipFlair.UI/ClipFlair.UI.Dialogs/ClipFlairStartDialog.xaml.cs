@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: StartDialog.xaml.cs
-//Version: 20140608
+//Version: 20140612
 
 using System;
 using System.ComponentModel;
@@ -131,7 +131,7 @@ namespace ClipFlair.UI.Dialogs
     {
       Hide2ndLevelButtons();
 
-      //btnOpenVideoFile.Visibility = 
+      btnOpenVideoFile.Visibility = 
       btnOpenVideoURL.Visibility = 
       btnOpenVideoGallery.Visibility = Visibility.Visible;
     }
@@ -166,7 +166,7 @@ namespace ClipFlair.UI.Dialogs
     {
       Hide2ndLevelButtons();
 
-      //btnOpenImageFile.Visibility =
+      btnOpenImageFile.Visibility =
       btnOpenImageURL.Visibility = 
       btnOpenImageGallery.Visibility = Visibility.Visible;
     }
