@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: SliderExt.cs
-//Version: 20140313
+//Version: 20140612
 
 using System.Windows;
 using System.Windows.Controls;
@@ -26,14 +26,22 @@ namespace SliderExtLib
 
     #region --- Properties ---
     
-    public bool IsMoveToPointEnabled //WPF has such property (hiding it on purpose), but doesn't implement move to point if you click and drag on the track instead of the thumb
+    public 
+      #if !SILVERLIGHT
+      new
+      #endif
+      bool IsMoveToPointEnabled //WPF has such property (hiding it on purpose), but doesn't implement move to point if you click and drag on the track instead of the thumb
     {
       get { return (bool)GetValue(IsMoveToPointEnabledProperty); }
       set { SetValue(IsMoveToPointEnabledProperty, value); }
     }
 
-    public static readonly DependencyProperty IsMoveToPointEnabledProperty = 
-      DependencyProperty.RegisterAttached("IsMoveToPointEnabled",
+    public static readonly 
+      #if !SILVERLIGHT
+      new
+      #endif
+      DependencyProperty IsMoveToPointEnabledProperty = 
+                                        DependencyProperty.RegisterAttached("IsMoveToPointEnabled",
                                           typeof(bool), typeof(SliderExt), new PropertyMetadata(false));
     
     #endregion
