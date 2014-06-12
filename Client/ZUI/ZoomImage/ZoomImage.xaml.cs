@@ -1,5 +1,5 @@
 ﻿//Filename: ZoomImage.xaml.cs
-//Version: 20140609
+//Version: 20140612
 //Author: George Birbilis (http://zoomicon.com)
 
 //Based on http://samples.msdn.microsoft.com/Silverlight/SampleBrowser DeepZoom samples
@@ -8,12 +8,12 @@
 //TODO: add way to select the mode programmatically since some URIs may not provide a file extension (or if it has no extension try first to open as image and if it fails its the XML content for DeepZoom which shouldn't take long to reload into MultiScaleImage used as fallback)
 
 using System;
+using System.IO;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-
 using Utils.Extensions;
 
 namespace ZoomImage
@@ -22,6 +22,8 @@ namespace ZoomImage
   {
 
     #region Constants
+
+    public const string IMAGE_LOAD_FILTER = "Image files (*.png, *.jpg)|*.png;*.jpg";
 
     public const bool DEFAULT_CONTENT_ZOOM_TO_FIT = true;
     public const bool DEFAULT_ZOOM_CONTROLS_AVAILABLE = true;
@@ -182,7 +184,7 @@ namespace ZoomImage
         imgDeepZoom.Visibility = Visibility.Visible;
         imgDeepZoom.Source = new DeepZoomImageTileSource(uri);
       }
-      else
+      else //Plain image (no DeepZoom one)
       {
         imgDeepZoom.Visibility = Visibility.Collapsed;
         imgDeepZoom.Source = null;
@@ -261,6 +263,46 @@ namespace ZoomImage
 
     #endregion
 
+    public bool OpenLocalFile() //Note: this has to be initiated by user action (Silverlight security)
+    {
+      try
+      {
+        OpenFileDialog dlg = new OpenFileDialog()
+        {
+          Filter = IMAGE_LOAD_FILTER,
+          FilterIndex = 1 //note: this index is 1-based, not 0-based //OpenFileDialog doesn't seem to have a DefaultExt like SaveFileDialog
+        };
+
+        if (dlg.ShowDialog() == true) //TODO: find the parent window
+        { 
+          Open(dlg.File);
+          return true;
+        }
+      }
+      catch (Exception e)
+      {
+        MessageBox.Show("Loading failed: " + e.Message); //TODO: find the parent window
+      }
+      return false;
+    }
+
+    public void Open(FileInfo file)
+    {
+      imgDeepZoom.Visibility = Visibility.Collapsed;
+      imgDeepZoom.Source = null;
+
+      scrollPlainZoom.Visibility = Visibility.Visible; //show the ScrollViewer parent of ZoomAndPan control that hosts the classic Image control
+
+      Open(file.OpenRead());
+    }
+
+    public void Open(Stream stream)
+    {
+      BitmapImage bitmap = new BitmapImage();
+      bitmap.SetSource(stream);
+      imgPlain.Source = bitmap;
+    } 
+   
     #endregion
 
     #region Events
@@ -379,8 +421,70 @@ namespace ZoomImage
     {
       CheckZoomToFit();
     }
+
+    #region Drag & Drop
+
+    protected override void OnDragEnter(DragEventArgs e)
+    {
+      base.OnDragEnter(e);
+      e.Handled = true; //must do this
+      VisualStateManager.GoToState(this, "DragOver", true);
+    }
+
+    protected override void OnDragOver(DragEventArgs e)
+    {
+      base.OnDragOver(e);
+      e.Handled = true; //must do this
+      //NOP
+    }
+
+    protected override void OnDragLeave(DragEventArgs e)
+    {
+      base.OnDragLeave(e);
+      e.Handled = true; //must do this
+      VisualStateManager.GoToState(this, "Normal", true);
+    }
+
+    protected override void OnDrop(DragEventArgs e)
+    {
+      base.OnDrop(e);
+
+      VisualStateManager.GoToState(this, "Normal", true);
+
+      //we receive an array of FileInfo objects for the list of files that were selected and drag-dropped onto this control.
+      if (e.Data == null)
+        return;
+
+      IDataObject f = e.Data as IDataObject;
+      if (f == null) //checks if the dropped objects are files
+        return;
+
+      object data = f.GetData(DataFormats.FileDrop); //Silverlight 5 only supports FileDrop - GetData returns null if format is not supported
+      FileInfo[] files = data as FileInfo[];
+
+      if (files != null && files.Length > 0) //Use only 1st item from array of FileInfo objects
+      {
+        //TODO: instead of hardcoding which file extensions to ignore, should have this as property of the control (a ; separated string or an array)
+        if (files[0].Name.EndsWith(new string[] { ".clipflair", ".clipflair.zip" }, StringComparison.OrdinalIgnoreCase))
+          return;
+
+        e.Handled = true; //must do this
+
+        try
+        {
+          Open(files[0]);
+        }
+        catch (Exception ex)
+        {
+          MessageBox.Show("Loading failed: " + ex.Message); //TODO: find the parent window
+          //TODO: maybe should wrap the original exception as inner exception and throw a new one
+        }
+      }
+    }
+
+    #endregion
     
     #endregion
-  
+
   }
 }

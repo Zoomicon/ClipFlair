@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: MediaPlayerWindow.xaml.cs
-//Version: 20140318
+//Version: 20140612
 
 using ClipFlair.Windows.Media;
 using ClipFlair.Windows.Views;
@@ -118,9 +118,11 @@ namespace ClipFlair.Windows
       player.Open(stream, title);
     }
 
-    public void OpenLocalFile()
+    public bool OpenLocalFile()
     {
-      player.OpenLocalFile();
+      bool done = player.OpenLocalFile();
+      if (done) Flipped = false; //flip back to front
+      return done;
     }
  
     #endregion

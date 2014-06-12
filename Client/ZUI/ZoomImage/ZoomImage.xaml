@@ -1,6 +1,6 @@
 ﻿<!--
 Filename: ZoomImage.xaml
-Version: 20140609
+Version: 20140612
 Author: George Birbilis (http://zoomicon.com)  
 -->
 
@@ -14,10 +14,32 @@ Author: George Birbilis (http://zoomicon.com)
     mc:Ignorable="d"
     d:DesignHeight="300" d:DesignWidth="300"
     BorderThickness="0"
+    AllowDrop="True"         
+             
     SizeChanged="UserControl_SizeChanged"
     MouseEnter="UserControl_MouseEnter"
     MouseLeave="UserControl_MouseLeave"
     >
+
+  <VisualStateManager.VisualStateGroups>
+    <VisualStateGroup x:Name="DragStates">
+      <VisualStateGroup.Transitions>
+        <VisualTransition GeneratedDuration="0:0:0.3">
+          <VisualTransition.GeneratedEasingFunction>
+            <CircleEase EasingMode="EaseIn"/>
+          </VisualTransition.GeneratedEasingFunction>
+        </VisualTransition>
+      </VisualStateGroup.Transitions>
+      <VisualState x:Name="Normal"/>
+      <VisualState x:Name="DragOver">
+        <Storyboard>
+          <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Control.Background).(SolidColorBrush.Color)" Storyboard.TargetName="ContentBorder"> <!-- TODO: change TargetName -->
+            <EasingColorKeyFrame KeyTime="0" Value="#FFFFF7D1"/>
+          </ColorAnimationUsingKeyFrames>
+        </Storyboard>
+      </VisualState>
+    </VisualStateGroup>
+  </VisualStateManager.VisualStateGroups>
 
   <Grid x:Name="LayoutRoot">
     <Grid.RowDefinitions>

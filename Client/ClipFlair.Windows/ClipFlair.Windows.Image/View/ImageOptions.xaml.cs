@@ -36,7 +36,6 @@ namespace ClipFlair.Windows.Options
 
     #endregion
 
-/*
     #region --- Events ---
 
     private void btnLoadImage_Click(object sender, RoutedEventArgs e)
@@ -45,7 +44,6 @@ namespace ClipFlair.Windows.Options
     }
 
     #endregion
-*/
 
   }
 
