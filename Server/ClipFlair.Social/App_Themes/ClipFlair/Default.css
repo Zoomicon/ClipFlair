@@ -8273,6 +8273,9 @@ STYLED CHECKBOX LIST*/
 .user-account .social-mail INPUT[type="text"]
 {
 	padding: 7px;
+    /***changes:20140613*/
+    padding-left: 40px;
+    /****/
 }
 .user-account .input-form .disabled
 {
@@ -11231,5 +11234,27 @@ a.no-style {
 /***changes:20140603*/
 .text-center {
     text-align:center;
+}
+/***/
+
+/***changes:20140613*/
+.social-mail h3 {
+    padding-top: 30px;
+    padding-bottom: 20px;
+}
+
+.social-mail dd {
+    font-size:13px;
+}
+
+.social-mail .italic-style {
+    padding-top:14px;
+    clear: both;
+}
+
+.social-mail .ValidatorAdapterImage {
+    position: absolute;
+    top: -15px !important;
+    right: 0 !important;
 }
 /***/
