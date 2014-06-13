@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: BaseWindow.xaml.cs
-//Version: 20140612
+//Version: 20140613
 
 //TODO: unbind control at close
 
@@ -372,6 +372,11 @@ namespace ClipFlair.Windows
 
     #region ---------------- Load ----------------
 
+    public virtual void LoadContent(Stream stream, string filename) //filename can be used to check filetype from file extension, or to show as title etc.
+    {
+      throw new NotImplementedException(); //descendents that support loading content from a stream should override and implement this method
+    }
+
     protected virtual Type ResolveType(string typeName)
     {
       return GetType().Assembly.GetType(typeName, true); //don't use Type.GetType(), want GetType to execute at the context of the assembly of the descendent class
@@ -446,7 +451,7 @@ namespace ClipFlair.Windows
       }
     }
 
-    public virtual void LoadOptions(FileInfo f)
+    public virtual void LoadOptions(FileInfo f) //used for the Load button at the backpanel (descendents can override to open more filetypes)
     {
       using (Stream stream = f.OpenRead()) //will close the stream when done
         LoadOptions(stream);

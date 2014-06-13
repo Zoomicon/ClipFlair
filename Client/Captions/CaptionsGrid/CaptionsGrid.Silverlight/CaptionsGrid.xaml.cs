@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: CaptionsGrid.xaml.cs
-//Version: 20140515
+//Version: 20140613
 
 using ClipFlair.AudioRecorder;
 using ClipFlair.CaptionsGrid.Resources;
@@ -881,17 +881,22 @@ namespace ClipFlair.CaptionsGrid
       }
     }
 
-    public void LoadCaptions(IEnumerable<FileInfo> files)
+    public void LoadCaptions(IEnumerable<FileInfo> files) //merge multiple captions files
     {
       CaptionRegion newCaptions = new CaptionRegion();
       foreach (FileInfo file in files)
         LoadCaptions(newCaptions, file); //load all caption files into a single CaptionRegion (merge), which should take care automatically of sorting CaptionElements by start time
     }
 
-    public void LoadCaptions(CaptionRegion newCaptions, FileInfo file)
+    public void LoadCaptions(FileInfo file)
+    {
+      LoadCaptions(new CaptionRegion(), file);
+    }
+
+    private void LoadCaptions(CaptionRegion newCaptions, FileInfo file)
     {
       using (Stream stream = file.OpenRead()) //closes stream when finished
-        LoadCaptions(newCaptions, stream, file.Name);
+        LoadCaptions(newCaptions, stream, file.Name); //this will also set Captions to newCaptions
     }
 
     public void LoadCaptions(CaptionRegion newCaptions, Stream stream, string filename) //doesn't close stream

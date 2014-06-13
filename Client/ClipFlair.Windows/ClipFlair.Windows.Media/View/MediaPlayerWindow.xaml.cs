@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: MediaPlayerWindow.xaml.cs
-//Version: 20140612
+//Version: 20140613
 
 using ClipFlair.Windows.Media;
 using ClipFlair.Windows.Views;
@@ -113,7 +113,7 @@ namespace ClipFlair.Windows
       }
     }
 
-    public void Open(Stream stream, string title = "") //doesn't close stream
+    public override void LoadContent(Stream stream, string title = "") //doesn't close stream
     {
       player.Open(stream, title);
     }

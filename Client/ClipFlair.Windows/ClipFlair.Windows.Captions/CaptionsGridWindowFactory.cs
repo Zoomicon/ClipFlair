@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: CaptionsGridWindowFactory.cs
-//Version: 20140318
+//Version: 20140613
 
 using System.ComponentModel.Composition;
 using System.IO;
@@ -32,13 +32,6 @@ namespace ClipFlair.Windows.Captions
     public BaseWindow CreateWindow()
     {
       return new CaptionsGridWindow();
-    }
-
-    public BaseWindow CreateWindow(string filename, Stream stream)
-    {
-      CaptionsGridWindow window = new CaptionsGridWindow();
-      window.LoadCaptions(stream, filename);
-      return window;
     }
 
   }

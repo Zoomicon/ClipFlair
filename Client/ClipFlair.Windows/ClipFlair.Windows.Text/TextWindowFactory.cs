@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: TextWindowFactory.cs
-//Version: 20140318
+//Version: 20140613
 
 using System.ComponentModel.Composition;
 using System.IO;
@@ -31,13 +31,6 @@ namespace ClipFlair.Windows.Text
     public BaseWindow CreateWindow()
     {
       return new TextEditorWindow();
-    }
-
-    public BaseWindow CreateWindow(string filename, Stream stream)
-    {
-      TextEditorWindow window = new TextEditorWindow();
-      window.Load(stream, filename);
-      return window;
     }
 
   }

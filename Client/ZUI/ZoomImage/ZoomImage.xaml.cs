@@ -288,19 +288,19 @@ namespace ZoomImage
 
     public void Open(FileInfo file)
     {
-      imgDeepZoom.Visibility = Visibility.Collapsed;
-      imgDeepZoom.Source = null;
-
-      scrollPlainZoom.Visibility = Visibility.Visible; //show the ScrollViewer parent of ZoomAndPan control that hosts the classic Image control
-
       Open(file.OpenRead());
     }
 
     public void Open(Stream stream)
     {
+      imgDeepZoom.Visibility = Visibility.Collapsed;
+      imgDeepZoom.Source = null;
+
       BitmapImage bitmap = new BitmapImage();
       bitmap.SetSource(stream);
       imgPlain.Source = bitmap;
+
+      scrollPlainZoom.Visibility = Visibility.Visible; //show the ScrollViewer parent of ZoomAndPan control that hosts the classic Image control
     } 
    
     #endregion
