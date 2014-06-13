@@ -1,6 +1,6 @@
 <%@ Page 
     Language="C#" 
-    MasterPageFile="~/App_MasterPages/ClipFlair/Login.master" 
+    MasterPageFile="~/App_MasterPages/ClipFlair/Default.master" 
     AutoEventWireup="true" 
     Inherits="MonoSoftware.MonoX.Pages.Login" 
     Codebehind="Login.aspx.cs" %>
@@ -12,7 +12,12 @@
 <%@ Register TagPrefix="MonoX" TagName="MembershipNavigation" Src="~/MonoX/MasterPages/MembershipNavigation.ascx" %>
 
 <asp:Content ContentPlaceHolderID="cp" Runat="Server">
-   
+<div class="container-highlighter" style="background-color:#38595b">
+            <div class="container">
+                <p></p>
+            </div>              
+        </div>
+  <div class="container"> 
     <div class="empty-top-section">        
         <div class="container-fluid-small">
             <asp:PlaceHolder ID="plhAuthorizationMessage" runat="server" Visible="false">
@@ -23,7 +28,7 @@
             </asp:PlaceHolder>
         </div>
     </div>
-    <div class="fancybox-container">
+    <div class="fancybox-container login-cont">
         <div class="row-fluid">
             <div class="span6 clearfix">       
                 <MonoX:MembershipNavigation runat="server" ID="ctlMemership" LoginStatusLogoutText="&nbsp;" />
@@ -43,4 +48,5 @@
             </div>
         </div> 
     </div>
+  </div>
 </asp:Content>

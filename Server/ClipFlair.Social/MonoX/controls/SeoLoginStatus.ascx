@@ -6,5 +6,5 @@
     <asp:LinkButton runat="server" ID="btnButton" CssClass="login-status" title="exit">
         <span><%= LogoutText %></span>        
     </asp:LinkButton>
-    <asp:HyperLink runat="server" CssClass="various fancybox.iframe" ID="btnLink"><%= LoginText %></asp:HyperLink>
+    <asp:HyperLink runat="server" ID="btnLink"><%= LoginText %></asp:HyperLink>
 </asp:PlaceHolder>

@@ -31,8 +31,5 @@
             <monox:SeoLoginStatus runat="server" ID="loginStatus2"/>
         </div>
     </asp:PlaceHolder> 
-    <script type="text/javascript">
-        parent.$.fancybox.close();
-        // elegxo gia null - p.x. an exei cookie kai se kanei login epitopou isos den yparxei fancybox, min xtipisei lathos to parent.$.fancybox otan paei na kalesei tin close()
-    </script>
+    
 </div>
