@@ -1,14 +1,16 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: ImageWindow.xaml.cs
-//Version: 20140612
+//Version: 20140613
 
 using ClipFlair.UI.Dialogs;
 using ClipFlair.Windows.Views;
-
+using Utils.Extensions;
 using System;
 using System.ComponentModel;
+using System.IO;
 using System.Windows;
 using System.Windows.Input;
+using ClipFlair.Windows.Image;
 
 namespace ClipFlair.Windows
 {
@@ -92,6 +94,27 @@ namespace ClipFlair.Windows
       bool done = imgContent.OpenLocalFile();
       if (done) Flipped = false; //flip back to front
       return done;
+    }
+
+    public override string LoadFilter
+    {
+      get
+      {
+        return base.LoadFilter + "|" + ImageWindowFactory.LOAD_FILTER;
+      }
+    }
+
+    public override void LoadOptions(FileInfo f)
+    {
+      if (!f.Name.EndsWith(new string[] { CLIPFLAIR_EXTENSION, CLIPFLAIR_ZIP_EXTENSION }))
+        imgContent.Open(f);
+      else
+        base.LoadOptions(f);
+    }
+
+    public override void LoadContent(Stream stream, string title = "") //doesn't close stream
+    {
+      imgContent.Open(stream); //image filetype is autodetected from stream data
     }
 
     #endregion

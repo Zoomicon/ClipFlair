@@ -1,15 +1,14 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: ActivityWindow.xaml.cs
-//Version: 20140609
+//Version: 20140613
 
 using ClipFlair.UI.Dialogs;
 using ClipFlair.Windows.Captions;
+using ClipFlair.Windows.Image;
 using ClipFlair.Windows.Media;
 using ClipFlair.Windows.Text;
 using ClipFlair.Windows.Views;
-
 using Ionic.Zip;
-
 using System;
 using System.ComponentModel;
 using System.IO;
@@ -18,7 +17,6 @@ using System.Windows;
 using System.Windows.Browser;
 using System.Windows.Input;
 using System.Windows.Media;
-
 using Utils.Extensions;
 
 [assembly: TypeForwardedTo(typeof(MediaPlayerView))]
@@ -124,18 +122,27 @@ namespace ClipFlair.Windows
         return base.LoadFilter + 
                "|" + MediaPlayerWindowFactory.LOAD_FILTER + 
                "|" + CaptionsGridWindowFactory.LOAD_FILTER +
-               "|" + TextEditorWindowFactory.LOAD_FILTER
-               //"|" + ImageViewerWindowFactory.LOAD_FILTER
+               "|" + ImageWindowFactory.LOAD_FILTER +
+               "|" + TextEditorWindowFactory.LOAD_FILTER //placing this last, since it has an "All Files (*.*)" at its end
                ;
       }
+    }
+
+    public override void LoadContent(Stream stream, string filename)
+    {
+      LoadOptions(stream); //ActivityWindow's "content" is a .clipflair/.clipflair.zip file
     }
 
     public override void LoadOptions(FileInfo f){
       if (!f.Name.EndsWith(new string[]{ CLIPFLAIR_EXTENSION, CLIPFLAIR_ZIP_EXTENSION }))
       {
-        IFileWindowFactory win = GetFileWindowFactory(f.Extension.ToUpper());
-        if (win != null)
-          activity.AddWindow(win.CreateWindow(f.Name, /*stream*/f.OpenRead())); //not closing the stream (components like MediaPlayerWindow require it open) //TODO: make sure those components close the streams when not using them anymore
+        IFileWindowFactory windowFactory = GetFileWindowFactory(f.Extension.ToUpper());
+        if (windowFactory != null)
+        {
+          BaseWindow window = windowFactory.CreateWindow();
+          activity.AddWindow(window); //some components may require to be added to a parent container first, then add content to them
+          window.LoadContent(f.OpenRead(), f.Name); //not closing the stream (components like MediaPlayerWindow require it open) //TODO: make sure those components close the streams when not using them anymore
+        }
         else
           MessageDialog.Show("Error", "Unsuppored file extension");
       } //TODO: see why the above doesn't work with CaptionsGridWindow (load .srt/.tts - loads them but must be losing them when AddWindow binds the window)

@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: CaptionsGridWindow.xaml.cs
-//Version: 20140515
+//Version: 20140613
 
 //TODO: add Source property to CaptionsGrid control and use data-binding to bind it to CaptionsGridView's Source property
 
@@ -50,11 +50,14 @@ namespace ClipFlair.Windows
     public override void LoadOptions(FileInfo f)
     {
       if (!f.Name.EndsWith(new string[] { CLIPFLAIR_EXTENSION, CLIPFLAIR_ZIP_EXTENSION }))
-        gridCaptions.LoadCaptions(new CaptionRegion(), f);
+      {
+        gridCaptions.LoadCaptions(f);
+        CaptionsGridView.Captions = gridCaptions.Captions; //TODO: see why this is needed (two-way data-binding doesn't seem to work?)
+      }
       else
         base.LoadOptions(f);
     }
-
+    
     public override void LoadOptions(ZipFile zip, string zipFolder = "")
     {
       base.LoadOptions(zip, zipFolder);
@@ -63,9 +66,9 @@ namespace ClipFlair.Windows
       LoadCaptions(newCaptions, zip, zipFolder);
       LoadAudio(newCaptions, zip, zipFolder);
 
-      CaptionsGridView.Captions = newCaptions;
+      CaptionsGridView.Captions = newCaptions; //TODO: see why this is needed (two-way data-binding doesn't seem to work?)
     }
-
+ 
     private void LoadCaptions(CaptionRegion captions, ZipFile zip, string zipFolder = "")
     {
       ZipEntry captionsEntry = zip[zipFolder + "/" + DEFAULT_CAPTIONS];
@@ -128,9 +131,10 @@ namespace ClipFlair.Windows
       return "/Audio/" + startTime  + "-" + endTime + ".wav";
     }
 
-    public void LoadCaptions(Stream stream, string filename) //doesn't close stream
+    public override void LoadContent(Stream stream, string filename) //doesn't close stream
     {
       gridCaptions.LoadCaptions(new CaptionRegion(), stream, filename);
+      CaptionsGridView.Captions = gridCaptions.Captions; //TODO: see why this is needed (two-way data-binding doesn't seem to work?)
     }
 
     #endregion

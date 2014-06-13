@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: ActivityWindowFactory.cs
-//Version: 20140318
+//Version: 20140613y
 
 using System.ComponentModel.Composition;
 using System.IO;
@@ -28,13 +28,6 @@ namespace ClipFlair.Windows.Activity
     public BaseWindow CreateWindow()
     {
       return new ActivityWindow();
-    }
-
-    public BaseWindow CreateWindow(string filename, Stream stream)
-    {
-      ActivityWindow window = new ActivityWindow();
-      window.LoadOptions(stream);
-      return window;
     }
 
   }
