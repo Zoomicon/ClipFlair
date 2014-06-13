@@ -9116,6 +9116,7 @@ a.large-green-btn{
    float:right;
    /*margin-top: 10px;*/
    margin-top:25px;
+   clear:both;
 }
 /*/!!!*/
 
@@ -9662,10 +9663,13 @@ span.cat_title {
 
 /*!!!NEW CONTAINER: FANCYBOX-CONTAINER*/
 .fancybox-container {
-    width: 96%;
-    padding: 2%;
+    /*width: 96%;
+    padding: 2%;*/
+    width:100%;
     margin-right: auto;
     margin-left: auto;
+    
+    padding-top:75px;
 }
 
 /*HIDE FOOTER FROM LOGIN PAGE*/

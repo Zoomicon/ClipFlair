@@ -50,11 +50,6 @@
                 openEffect	: 'none',
                 closeEffect	: 'none',
                 padding : 0,
-                afterClose : function() {
-                    location.reload();
-                    //location.href='/';
-                    return;
-                }
             });
             
              $(".iframe").fancybox({
@@ -105,30 +100,7 @@
                 $(this).scrollTop(scrollTop-Math.round(delta * 40));
             });
             
-            //check if URL contains the parameter: login and, if so, open the fancybox 
-            if (window.location.href.toLowerCase().indexOf("login") > -1) {
-                $.fancybox({
-                    'type' : 'iframe',
-                    'href' : 'Login.aspx',
-                    padding : 0,
-                    afterClose : function() {
-                        //location.reload();
-                        location.href='/';
-                    }
-                });
-            }
-            //check if URL contains the parameter: updateaccount and, if so, open the fancybox 
-            if (window.location.href.toLowerCase().indexOf("updateaccount") > -1) {
-                $.fancybox({
-                    'type' : 'iframe',
-                    'href' : '/Membership/Register.aspx',
-                    padding : 0,
-                    afterClose : function() {
-                        //location.reload();
-                        location.href='/';
-                    }
-                });
-            }
+            
             
             //Up Arrow - Down arrow
             
@@ -169,7 +141,7 @@
             });
             
             //scrollbar
-           $("html").niceScroll({styler:"fb", cursorcolor:"#000", spacebarenabled:false});
+           $("html").niceScroll({styler:"fb",cursorcolor:"#000",spacebarenabled:false});
 
         });
     </script>
