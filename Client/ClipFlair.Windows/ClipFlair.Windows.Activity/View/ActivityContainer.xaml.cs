@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: ActivityContainer.xaml.cs
-//Version: 20140612
+//Version: 20140615
 
 //TODO: add ContentPartsCloseable property
 //TODO: add ContentPartsZoomable property
@@ -173,7 +173,9 @@ namespace ClipFlair.Windows
         if (!newInstance)
           AddWindow(w);
         else
-        { //for new child window instances (that the user adds), must reset their properties to match their containers so that they don't cause other components bound to the container to lose their Time/Captions when these get bound as sources to the container (which AddWindow does by calling BindWindow)
+        { //TODO: must change this scheme to remove hardcoded logic here, by using reverse binding order (source=container, target=component) when adding a new component manually than when loading saved state
+
+          //for new child window instances (that the user adds), must reset their properties to match their containers so that they don't cause other components bound to the container to lose their Time/Captions when these get bound as sources to the container (which AddWindow does by calling BindWindow)
           if (w is MediaPlayerWindow)
           {
             IMediaPlayer v = ((MediaPlayerWindow)w).MediaPlayerView;
@@ -186,6 +188,23 @@ namespace ClipFlair.Windows
             v.Time = View.Time;
             v.Captions = View.Captions;
           }
+          else if (w is TextEditorWindow)
+          {
+            ITextEditor2 v = ((TextEditorWindow)w).TextEditorView2;
+            v.Time = View.Time;
+            //v.Captions = View.Captions;
+          }
+          else if (w is ImageWindow)
+          {
+            IImageViewer v = ((ImageWindow)w).ImageView;
+            v.Time = View.Time;
+          }
+          else if (w is MapWindow)
+          {
+            IMapViewer v = ((MapWindow)w).MapView;
+            v.Time = View.Time;
+            //v.Captions = View.Captions;
+          } 
           AddWindowInViewCenter(w);
         };
 
