@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: TextEditorView2.cs
-//Version: 20131205
+//Version: 20140615
 
 using System;
 using System.ComponentModel;
@@ -12,7 +12,7 @@ namespace ClipFlair.Windows.Views
 
   [ScriptableType]
   [DataContract(Namespace = "http://clipflair.net/Contracts/View")] //Using the correct contract name (compared to the older TextEditorView that had a typo ["Views" instead of "View"])
-  public class TextEditorView2 : BaseView, ITextEditor
+  public class TextEditorView2 : BaseView, ITextEditor2
   {
     public TextEditorView2()
     {

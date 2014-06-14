@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: ActivityWindow.xaml.cs
-//Version: 20140613
+//Version: 20140615
 
 using ClipFlair.UI.Dialogs;
 using ClipFlair.Windows.Captions;
@@ -95,6 +95,34 @@ namespace ClipFlair.Windows
     public ActivityContainer Container
     {
       get { return activity; }
+    }
+
+    #endregion
+
+    #region --- OOB install ---
+
+    public bool IsShowingInstall
+    {
+      get
+      {
+        Application app = Application.Current;
+        return IsTopLevel && !app.IsRunningOutOfBrowser && (app.InstallState != InstallState.Installed);
+      }
+    }
+
+    private void lblInstall_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+    {
+      Application app = Application.Current;
+      if ((app.InstallState != InstallState.Installed) &&
+          (app.InstallState != InstallState.Installing))
+        try
+        {
+          app.Install();
+        }
+        catch (InvalidOperationException)
+        {
+          MessageDialog.Show("Error", "ClipFlair Studio is already installed for Out-Of-Browser (OOB) use");
+        }
     }
 
     #endregion
@@ -235,11 +263,6 @@ namespace ClipFlair.Windows
     #endregion
 
     #region --- Events ---
-
-    private void lblBeta_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
-    {
-      SendFeedback();
-    }
 
     protected override void OnClosing(CancelEventArgs e)
     {

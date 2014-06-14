@@ -1,7 +1,7 @@
 ﻿<!--
 Project: ClipFlair (http://ClipFlair.codeplex.com)
 Filename: ActivityWindow.xaml
-Version: 20140609
+Version: 20140615
 -->
 
 <clipflair:BaseWindow x:Class="ClipFlair.Windows.ActivityWindow"
@@ -53,18 +53,18 @@ Version: 20140609
       />
       <!-- don't bind any properties of ActivityContainer to our view, since ActivityWindow reuses the view of ActivityContainer -->
 
-    <sdk:Label Name="lblBeta" 
+    <sdk:Label Name="lblInstall" 
                Grid.Row="0" Grid.Column="0" 
                HorizontalAlignment="Right" VerticalAlignment="Bottom" 
                Margin="0,0,40,1"
                FontWeight="ExtraBold" 
                FontStretch="UltraExpanded"
                Foreground="#909A15"
-               Content="beta"
+               Content="install"
                Cursor="Hand"
-               MouseLeftButtonDown="lblBeta_MouseLeftButtonDown"
-               ToolTipService.ToolTip="Send feedback"
-               Visibility="{Binding IsTopLevel, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=clipflair:BaseWindow}, Converter={StaticResource BooleanToVisibilityConverter}}"
+               MouseLeftButtonDown="lblInstall_MouseLeftButtonDown"
+               ToolTipService.ToolTip="Install for Out-Of-Browser (OOB) use"
+               Visibility="{Binding IsShowingInstall, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:ActivityWindow}, Converter={StaticResource BooleanToVisibilityConverter}}"
                />
 
   </Grid>
