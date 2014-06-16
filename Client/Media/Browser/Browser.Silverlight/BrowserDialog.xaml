@@ -1,7 +1,7 @@
 ﻿<!--
 Project: ClipFlair (http://ClipFlair.codeplex.com)
 Filename: BrowserDialog.xaml
-Version: 20140418
+Version: 20140616
 -->
 
 <controls:ChildWindow 
@@ -13,7 +13,6 @@ Version: 20140418
   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
   mc:Ignorable="d" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
   d:DesignHeight="409" d:DesignWidth="632"
-  Width="800" Height="600"
   Title="Gallery" 
   >
 

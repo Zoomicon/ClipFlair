@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: BrowserDialog.xaml.cs
-//Version: 20140418
+//Version: 20140616
 
 using System;
 using System.ComponentModel;
@@ -15,6 +15,18 @@ namespace ClipFlair.UI.Dialogs
     public BrowserDialog()
     {
       InitializeComponent();
+    }
+
+    public override void OnApplyTemplate()
+    {
+      base.OnApplyTemplate();
+
+      //ChildWindow template part names can be found at: http://msdn.microsoft.com/en-us/library/dd833070(v=vs.95).aspx
+      FrameworkElement contentRoot = GetTemplateChild("ContentRoot") as FrameworkElement;
+
+      //make the ChildWindow content take up the whole ChildWindow area
+      contentRoot.HorizontalAlignment = HorizontalAlignment.Stretch;
+      contentRoot.VerticalAlignment = VerticalAlignment.Stretch;
     }
 
     //we inherit Title property from ancestor class
