@@ -1,5 +1,5 @@
 ﻿//Filename: ZoomImage.xaml.cs
-//Version: 20140615
+//Version: 20140616
 //Author: George Birbilis (http://zoomicon.com)
 
 //Based on http://samples.msdn.microsoft.com/Silverlight/SampleBrowser DeepZoom samples
@@ -307,13 +307,16 @@ namespace ZoomImage
 
     public void Open(FileInfo file)
     {
-      Open(file.OpenRead(), file.Name);
+      using (Stream fileStream = file.OpenRead()) //closing stream after loading image
+        Open(fileStream, file.Name);
     }
 
     public void Open(Stream stream, string filename)
     {
       Filename = filename;
       ImageData = stream;
+
+      Source = null; //clear source URL since we're loading directly from a Stream
 
       imgDeepZoom.Visibility = Visibility.Collapsed;
       imgDeepZoom.Source = null;
@@ -494,7 +497,7 @@ namespace ZoomImage
 
         try
         {
-          Open(files[0]);
+          Open(files[0]); //open the first file dropped //TODO: add slideshow support using SlideShow.net component
         }
         catch (Exception ex)
         {
