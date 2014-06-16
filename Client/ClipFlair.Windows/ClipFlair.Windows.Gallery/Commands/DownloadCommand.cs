@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: DownloadCommand.cs
-//Version: 20140421
+//Version: 20140616
 
 using ClipFlair.UI.Dialogs;
 using System;
@@ -19,10 +19,12 @@ namespace ClipFlair.Windows.Gallery.Commands
       DisplayName = "";
       Icon = new System.Uri("/ClipFlair.Windows.Gallery;component/Images/Download.png", UriKind.Relative); //must specify that this is a relative Uri
 
-      bool isVideo = (((string)item["Href"][0]).Contains("?video="));
       string filename = (string)item["Filename"][0];
+      string href = (string)item["Href"][0];
+      bool isVideo = href.Contains("?video=");
+      bool isImage = href.Contains("?image=");
 
-      string url = "http://gallery.clipflair.net/" + ((isVideo)?"video/"+filename+"/" : "activity/") + filename + ((isVideo)?".mp4":"");
+      string url = "http://gallery.clipflair.net/" + ((isImage)? "image" : "activity") + "/" + filename;
       ToolTip = "Download " + url;
       IsExecutable = !string.IsNullOrWhiteSpace(url) && !isVideo;
 
@@ -32,7 +34,14 @@ namespace ClipFlair.Windows.Gallery.Commands
 
     public override void Execute(object parameter)
     {
-      Uri uri = new Uri("http://gallery.clipflair.net/activity/" + (string)((PivotViewerItem)parameter)["Filename"][0]);
+      PivotViewerItem item = (PivotViewerItem)parameter;
+
+      string filename = (string)item["Filename"][0]; 
+      string href = (string)item["Href"][0];
+      bool isVideo = href.Contains("?video=");
+      bool isImage = href.Contains("?image=");
+
+      Uri uri = new Uri("http://gallery.clipflair.net/" + ((isImage)? "image" : "activity") + "/" + filename);
 
       BrowserDialog.Show(uri);
     }
