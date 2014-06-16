@@ -1877,7 +1877,10 @@ namespace SilverFlow.Controls
     /// </summary
     public void ResizeToView()
     {
-      this.MoveAndResize(FloatingWindowHost.MaximizedWindowBounds, MaximizingDurationInMilliseconds);
+      Rect r = FloatingWindowHost.MaximizedWindowBounds;
+      Position = r.Position(); //there is no r.Location in Silverlight
+      Width = r.Width;
+      Height = r.Height;
     }
 
     /// <summary>
