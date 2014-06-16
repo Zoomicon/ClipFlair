@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: BaseWindow.xaml.cs
-//Version: 20140613
+//Version: 20140615
 
 //TODO: unbind control at close
 
@@ -28,13 +28,14 @@ using System.Windows.Markup;
 using System.Xml;
 using Utils.Extensions;
 using System.ComponentModel.Composition.Primitives;
+using System.Collections.Generic;
 
 namespace ClipFlair.Windows
 {
 
   [ScriptableType]
   [ContentProperty("FrontContent")]
-  public partial class BaseWindow : FloatingWindow
+  public partial class BaseWindow : FloatingWindow, INotifyPropertyChanged
   {
 
     #region --- Constants ---
@@ -164,7 +165,11 @@ namespace ClipFlair.Windows
       get { return isTopLevel;  }
       set
       {
-        isTopLevel = value;
+        if (isTopLevel != value)
+        {
+          isTopLevel = value;
+          RaisePropertyChanged("IsTopLevel");
+        }
 
         Visibility visibility = value ? Visibility.Collapsed : Visibility.Visible; //hide backpanel properties not relevant when not being a child window
         //propPosition.Visibility = visiblity;
@@ -180,6 +185,8 @@ namespace ClipFlair.Windows
         if (value) MoveEnabled = false; else MoveEnabled = ViewDefaults.DefaultMoveable;
         if (value) ResizeEnabled = false; else ResizeEnabled = ViewDefaults.DefaultResizable;
         if (value) ScaleEnabled = false; else ScaleEnabled = ViewDefaults.DefaultZoomable;
+
+        ShowHelpButton = value; //showing help button only for top level window
       }
     }
 
@@ -307,13 +314,14 @@ namespace ClipFlair.Windows
         {
           Filter = LoadFilter,
           FilterIndex = 1, //note: this index is 1-based, not 0-based
+          Multiselect = true, //depends on the component whether they'll load the first file selected or try to handle more
           //DefaultExt = CLIPFLAIR_EXTENSION //OpenFileDialog doesn't seem to have a DefaultExt like SaveFileDialog
         };
 
         if (dlg.ShowDialog() == true) //TODO: find the parent window
         {
           loadModifiers = Keyboard.Modifiers;
-          LoadOptions(dlg.File);
+          LoadOptions(dlg.Files);
           Flipped = false; //flip the view back to front after succesful options loading
         }
       }
@@ -382,7 +390,7 @@ namespace ClipFlair.Windows
       return GetType().Assembly.GetType(typeName, true); //don't use Type.GetType(), want GetType to execute at the context of the assembly of the descendent class
     }
 
-    public virtual void LoadOptions(ZipFile zip, string zipFolder = "") //THIS IS THE CORE LOADING LOGIC
+    public virtual void /*bool*/ LoadOptions(ZipFile zip, string zipFolder = "") //THIS IS THE CORE LOADING LOGIC
     {
       if (LoadingOptions != null) LoadingOptions(this, null); //notify any listeners
 
@@ -402,9 +410,12 @@ namespace ClipFlair.Windows
 
           if (LoadedOptions != null) LoadedOptions(this, null); //notify any listeners
 
-          break; //expecting only one .options.xml file
+          break; //return true; //expecting only one .options.xml file
         }
-      }
+
+        //return false; //didn't find saved options file
+
+      } //note: we aren't catching exceptions
       finally
       {
         View.Busy = false; //in any case (error or not) clear the Busy flag
@@ -449,6 +460,12 @@ namespace ClipFlair.Windows
       {
         View.Busy = false;
       }
+    }
+
+    public virtual void LoadOptions(IEnumerable<FileInfo> files) //descendents that can handle multiple files should override this
+    {
+      if (files != null && files.Count() > 0)
+        LoadOptions(files.First());
     }
 
     public virtual void LoadOptions(FileInfo f) //used for the Load button at the backpanel (descendents can override to open more filetypes)
@@ -507,6 +524,7 @@ namespace ClipFlair.Windows
         return LoadWindow(memStream);
       }
     }
+
     protected static IWindowFactory GetWindowFactory(string contract)
     {
       Lazy<IWindowFactory> win = mefContainer.GetExports<IWindowFactory>(contract).FirstOrDefault();
@@ -594,6 +612,18 @@ namespace ClipFlair.Windows
     public delegate void ViewChangedEventHandler(object sender, IView newView);
     public event ViewChangedEventHandler ViewChanged;
 
+    #region INotifyPropertyChanged
+
+    public event PropertyChangedEventHandler PropertyChanged;
+
+    public void RaisePropertyChanged(string PropertyName)
+    {
+      if (PropertyChanged != null)
+        PropertyChanged(this, new PropertyChangedEventArgs(PropertyName));
+    }
+
+    #endregion
+
     #region Drag & Drop
 
     protected override void OnDragEnter(DragEventArgs e)
@@ -635,13 +665,13 @@ namespace ClipFlair.Windows
       object data = f.GetData(DataFormats.FileDrop); //Silverlight 5 only supports FileDrop - GetData returns null if format is not supported
       FileInfo[] files = data as FileInfo[];
 
-      if (files != null && files.Length > 0) //Use only 1st item from array of FileInfo objects
+      if (files != null && files.Length > 0)
       {
         loadModifiers = Keyboard.Modifiers;
 
         try
         {
-          LoadOptions(files[0]); //TODO: make LoadOptions of activity (override) clever to handle various file extensions apart from .clipflair/.clipflair.zip (no extension will be assumed to be .clipflair) and add to LoadOptions file dialog more file types, like videos, images etc. and create respective components to load and wrap that content (need an array property to be able to define the extra extensions allowed per component). Do similar at each component's LoadOptions for the extra data types they know how to handle (override BaseWindow.LoadOptions and do the check before calling base.LoadOptions)
+          LoadOptions(files);
         }
         catch (NullReferenceException ex)
         {
@@ -658,15 +688,20 @@ namespace ClipFlair.Windows
 
     #region Closing
 
+    protected void BaseOnClosing(CancelEventArgs e) //needed to be able to call directly by ancestors
+    {
+      base.OnClosing(e);
+    }
+
     protected override void OnClosing(CancelEventArgs e)
     {
       if (!IsTopLevel //for top level window showing closing warning (with option to cancel closing) via webpage JavaScript event handler or via App class event handler at OOB mode
-          && View.WarnOnClosing) //Containers should set WarnOnClosing=false to each of their children if they warn user themselves and users select to proceed with closing
+          && View.WarnOnClosing) 
         e.Cancel = (MessageBox.Show("Are you sure you want to close this window?", "Confirmation", MessageBoxButton.OKCancel) != MessageBoxResult.OK);
 
       if (!e.Cancel)
       {
-        //TODO: 
+        //Containers should reimplement this method and set WarnOnClosing=false here to each of their children if they warn user themselves and users select to proceed with closing
         base.OnClosing(e); //this will fire "Closing" event handler
       }
     }

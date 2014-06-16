@@ -3,6 +3,7 @@
 //Version: 20140615
 
 using ClipFlair.UI.Dialogs;
+using ClipFlair.Windows;
 using ClipFlair.Windows.Captions;
 using ClipFlair.Windows.Image;
 using ClipFlair.Windows.Media;
@@ -10,8 +11,10 @@ using ClipFlair.Windows.Text;
 using ClipFlair.Windows.Views;
 using Ionic.Zip;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
+using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Browser;
@@ -43,12 +46,6 @@ namespace ClipFlair.Windows
 
     #endregion
 
-    #region --- Fields ---
-
-    protected bool loadingChildWindow = false; //loading a child window instead of an activity saved state
-
-    #endregion
-
     #region --- Constructor ---
 
     public ActivityWindow()
@@ -64,6 +61,8 @@ namespace ClipFlair.Windows
       View = activity.View; //set window's View to be the same as the nested activity's View
 
       defaultLoadURL = DEFAULT_ACTIVITY;
+      IsTopLevel = false; //must call this property setter
+      Container.zuiContainer.CloseWindowsOnApplicationExit = false; //do not allow this, only using for parent FloatingWindowHost of the toplevel ActivityWindow (setting at App.xaml.cs)
     }
 
     #endregion
@@ -75,14 +74,8 @@ namespace ClipFlair.Windows
       get { return (IActivity)base.View; } //delegating to parent property
       set
       {
-        IActivity activityView = value as IActivity;
-
-        loadingChildWindow = (activityView == null);
-        if (loadingChildWindow) //special handling to allow activity to load a single component's state, by clearing the activity and then adding it as a child (see LoadOptions too)
-          activityView = new ActivityView();
-                
-        base.View = activityView;
-        activity.View = activityView; //set the view of the activity control too
+        activity.View = (ActivityView)value; //try to cast to ActivityView before setting base.View - do not allow setting other IView objects so that we can detect and insert as children saved states of other components
+        base.View = value;
       }
     }
 
@@ -161,41 +154,56 @@ namespace ClipFlair.Windows
       LoadOptions(stream); //ActivityWindow's "content" is a .clipflair/.clipflair.zip file
     }
 
-    public override void LoadOptions(FileInfo f){
+    public override void LoadOptions(IEnumerable<FileInfo> files) //descendents that can handle multiple files should override this
+    {
+      if (files != null)
+      {
+        if (files.Count() > 1) //if trying to load more than one files, always add as children (do not replace current activity state) 
+          loadModifiers = loadModifiers | ModifierKeys.Control; //turn on the CTRL flag
+
+        foreach (FileInfo f in files)
+          LoadOptions(f);
+      }
+    }
+
+    public override void LoadOptions(FileInfo f){ 
       if (!f.Name.EndsWith(new string[]{ CLIPFLAIR_EXTENSION, CLIPFLAIR_ZIP_EXTENSION }))
       {
-        IFileWindowFactory windowFactory = GetFileWindowFactory(f.Extension.ToUpper());
-        if (windowFactory != null)
-        {
-          BaseWindow window = windowFactory.CreateWindow();
-          activity.AddWindow(window); //some components may require to be added to a parent container first, then add content to them
-          window.LoadContent(f.OpenRead(), f.Name); //not closing the stream (components like MediaPlayerWindow require it open) //TODO: make sure those components close the streams when not using them anymore
-        }
-        else
-          MessageDialog.Show("Error", "Unsuppored file extension");
-      } //TODO: see why the above doesn't work with CaptionsGridWindow (load .srt/.tts - loads them but must be losing them when AddWindow binds the window)
+        IFileWindowFactory windowFactory = GetFileWindowFactory(f.Extension.ToUpper()) ?? new TextEditorWindowFactory();
+
+        BaseWindow window = windowFactory.CreateWindow();
+        activity.AddWindow(window); //some components may require to be added to a parent container first, then add content to them
+        window.LoadContent(f.OpenRead(), f.Name); //not closing the stream (components like MediaPlayerWindow require it open) //TODO: make sure those components close the streams when not using them anymore
+      }
       else
         base.LoadOptions(f);
     }
 
     public override void LoadOptions(ZipFile zip, string zipFolder = "")
     {
-      bool insertingChildWindow = ((loadModifiers & ModifierKeys.Control) > 0); //if CTRL was pressed at start of loading action, then insert content instead without removing current state & content
-     
-      if (!insertingChildWindow)
-        base.LoadOptions(zip, zipFolder); //this will set the View of the ActivityWindow, which will set the view of the ActivityContainer control too
+      bool insert = ((loadModifiers & ModifierKeys.Control) > 0); //if CTRL was pressed at start of loading action, then insert content instead without removing current state & content
+      bool childrenOnly = ((loadModifiers & ModifierKeys.Shift) > 0); //if SHIFT was pressed, insert children of each component only (if components don't have such it won't load anything)
+
+      if (!insert && !childrenOnly) //if inserting or loading only children of activity, don't load its options
+        try
+        {
+          base.LoadOptions(zip, zipFolder); //this will set the View of the ActivityWindow, which will set the view of the ActivityContainer control too
+        }
+        catch //couldn't load saved options (*.options.xml) as ActivityView...
+        {
+          insert = true; //...so assuming this is saved state of other control and insert as child
+        }
 
       View.Busy = true; //set busy flag again since base.LoadOptions call will set it to false after loading state
       try
       {
-        if (!insertingChildWindow) //inserting as child window, don't erase current content
+        if (!insert) //remove current windows only if not an insert action
           activity.RemoveWindows(ignoreChildrenWarnOnClosing:true); //don't call Windows.Clear(), won't work //TODO: remove this note when fixed: don't call Windows.RemoveAll(), won't do bindings currently
-        else
-          loadingChildWindow = ((loadModifiers & ModifierKeys.Shift) == 0); //if CTRL+SHIFT is pressed when trying to load a saved activity state, it will insert the children of that activity instead of a loading as a nested (child) activity
 
-        if (loadingChildWindow) //check if this is not a saved activity state (as marked by View property's set accessor)...
+        if (insert && !childrenOnly) //load component as child window
           activity.AddWindow(LoadWindow(zip, zipFolder)); //...loading as a child window saved state instead //TODO: remove THIS NOTE when fixed: don't call Windows.Add, won't do bindings currently
-        else //load inner archives as child windows
+        
+        else //load inner archives as child windows //this occurs when insert=false or when childrenOnly=true
         { //TODO: maybe can use ";" to pass multiple search items instead of using two "foreach" loops
           foreach (ZipEntry childZip in zip.SelectEntries("*" + BaseWindow.CLIPFLAIR_ZIP_EXTENSION, zipFolder))
             activity.AddWindow(LoadWindow(childZip), bringToFront:false); //TODO: remove THIS NOTE when fixed: don't call Windows.Add, won't do bindings currently
@@ -206,7 +214,6 @@ namespace ClipFlair.Windows
       }
       finally
       {
-        loadingChildWindow = false; //make sure we always reset this
         View.Busy = false;
       }
 
@@ -266,9 +273,15 @@ namespace ClipFlair.Windows
 
     protected override void OnClosing(CancelEventArgs e)
     {
-      base.OnClosing(e);
-      if (!e.Cancel) //disable warning at each child window before proceeding to close the activity
-        activity.DisableChildrenWarnOnClosing();
+      if (!IsTopLevel //for top level window showing closing warning (with option to cancel closing) via webpage JavaScript event handler or via App class event handler at OOB mode
+           && View.WarnOnClosing) //Containers should set WarnOnClosing=false to each of their children if they warn user themselves and users select to proceed with closing
+        e.Cancel = (MessageBox.Show("Are you sure you want to close this window?", "Confirmation", MessageBoxButton.OKCancel) != MessageBoxResult.OK);
+
+      if (!e.Cancel)
+      {
+        activity.DisableChildrenWarnOnClosing(); //disable warning at each child window before proceeding to close the activity
+        BaseOnClosing(e); //this will fire "Closing" event handler of FloatingWindow (2nd level ancestor)
+      }
     }
 
     protected override void OnClosed(EventArgs e)

@@ -83,7 +83,7 @@
     <Compile Include="ViewModel\TextEditorView2.cs" />
     <Compile Include="ViewModel\ITextEditor.cs" />
     <Compile Include="ViewModel\TextEditorDefaults.cs" />
-    <Compile Include="TextWindowFactory.cs" />
+    <Compile Include="TextEditorWindowFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModel\TextEditorView.cs" />
     <Compile Include="View\TextEditorWindow.xaml.cs">

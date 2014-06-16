@@ -1,5 +1,5 @@
 ﻿//Filename: ZoomImage.xaml.cs
-//Version: 20140612
+//Version: 20140615
 //Author: George Birbilis (http://zoomicon.com)
 
 //Based on http://samples.msdn.microsoft.com/Silverlight/SampleBrowser DeepZoom samples
@@ -21,7 +21,7 @@ namespace ZoomImage
   public partial class ZoomImage : UserControl
   {
 
-    #region Constants
+    #region --- Constants ---
 
     public const string IMAGE_LOAD_FILTER = "Image files (*.png, *.jpg)|*.png;*.jpg";
 
@@ -31,6 +31,8 @@ namespace ZoomImage
 
     #endregion
 
+    #region --- Initialization ---
+
     public ZoomImage()
     {
       InitializeComponent();
@@ -39,7 +41,12 @@ namespace ZoomImage
       imgPlainZoom.AddHandler(MouseWheelEvent, new MouseWheelEventHandler(control_MouseWheel), true); //seems to be needed to grab that specific event
     }
 
-    #region Properties
+    #endregion
+
+    #region --- Properties ---
+
+    public string Filename { get; set; }
+    public Stream ImageData { get; set; } 
     
     private bool PlainZoomMode
     {
@@ -175,6 +182,9 @@ namespace ZoomImage
         return;
       }
 
+      Filename = null;
+      ImageData = null;
+
       Uri uri = PreprocessUri(newSource);
       if (uri.ToString().EndsWith(new string[]{".dzi",".dzc",".xml"}, StringComparison.OrdinalIgnoreCase)) //.DZI or .XML for DeepZoom Image and .DZC or .XML for DeepZoom Image Collection (there's also .DZIZ for zipped package with assets, but should be only for authoring/editing tools use)
       {
@@ -191,17 +201,16 @@ namespace ZoomImage
 
         scrollPlainZoom.Visibility = Visibility.Visible; //show the ScrollViewer parent of ZoomAndPan control that hosts the classic Image control
         imgPlain.Source = new BitmapImage(uri);
-
       }
 
-      //CheckZoomToFit(); //not calling this here, since it will be called by "control_ImageOpenSucceeded" when image has opened
+      //CheckZoomToFit(); //not calling this here, since it will be called by "control_ImageOpenSucceeded" when image has opened (which will be called for local images too)
     }
 
     #endregion
 
     #endregion
 
-    #region Methods
+    #region --- Methods ---
 
     public void CheckZoomToFit()
     {
@@ -249,6 +258,7 @@ namespace ZoomImage
     private Uri PreprocessUri(Uri uri)
     {
       uri = ZoomItUriToDeepZoomImageUri(uri);
+      //uri = ClipFlairGalleryToDeepZoomImageUri(uri); //DO NOT USE, HAS LABELS BURNED ON THE IMAGE
       //note: can add other filter calls too as separate "uri = Filter(uri);" rows or can call them as one chain in a single command like "uri = Filter1(Filter2(Filter3(uri)));"
       return uri;
     }
@@ -260,6 +270,15 @@ namespace ZoomImage
         uri = new Uri(uriStr.ReplacePrefix("http://zoom.it/", "http://cache.zoom.it/content/", StringComparison.OrdinalIgnoreCase) + ".dzi");
       return uri;
     }
+
+    public static Uri ClipFlairGalleryToDeepZoomImageUri(Uri uri) //UNFORTUNATELY THESE DEEPZOOM IMAGES HAVE LABELS BURNED ON THEM
+    {
+      string uriStr = uri.ToString();
+      if (uriStr.StartsWith("http://gallery.clipflair.net/image/"))
+        uri = new Uri(uriStr.ReplacePrefix("http://gallery.clipflair.net/image/", "http://gallery.clipflair.net/collection/images_deepzoom/", StringComparison.OrdinalIgnoreCase) + ".dzi");
+      return uri;
+    }
+
 
     #endregion
 
@@ -288,11 +307,14 @@ namespace ZoomImage
 
     public void Open(FileInfo file)
     {
-      Open(file.OpenRead());
+      Open(file.OpenRead(), file.Name);
     }
 
-    public void Open(Stream stream)
+    public void Open(Stream stream, string filename)
     {
+      Filename = filename;
+      ImageData = stream;
+
       imgDeepZoom.Visibility = Visibility.Collapsed;
       imgDeepZoom.Source = null;
 
@@ -305,7 +327,7 @@ namespace ZoomImage
    
     #endregion
 
-    #region Events
+    #region --- Events ---
 
     private void UserControl_MouseEnter(object sender, MouseEventArgs e)
     {

@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
-//Filename: TextWindowFactory.cs
-//Version: 20140613
+//Filename: TextEditorWindowFactory.cs
+//Version: 20140615
 
 using System.ComponentModel.Composition;
 using System.IO;

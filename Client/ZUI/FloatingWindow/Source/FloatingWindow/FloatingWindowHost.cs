@@ -1,5 +1,5 @@
 ﻿//Filename: FloatingWindowHost.cs
-//Version: 20140611
+//Version: 20140615
 
 using System;
 using System.Collections.Generic;
@@ -75,6 +75,8 @@ namespace SilverFlow.Controls
     private const double DefaultIconWidth = 120;
     private const double DefaultIconHeight = 70;
 
+    private const bool DefaultCloseWindowsOnApplicationExit = true;
+
     #endregion Constants
 
     #region Member Fields
@@ -91,6 +93,7 @@ namespace SilverFlow.Controls
     private ContentControl barContent;
 
     private bool templateIsApplied;
+    private bool closeWindowsOnApplicationExit = DefaultCloseWindowsOnApplicationExit;
 
     #endregion Member Fields
 
@@ -112,6 +115,12 @@ namespace SilverFlow.Controls
           return (w > maxZIndex) ? w : maxZIndex;
         });
       }
+    }
+
+    public bool CloseWindowsOnApplicationExit
+    {
+      get { return closeWindowsOnApplicationExit; }
+      set { closeWindowsOnApplicationExit = value; }
     }
 
     #region public Style BottomBarStyle
@@ -1367,7 +1376,8 @@ namespace SilverFlow.Controls
     /// <param name="e">Event args.</param>
     private void Application_Exit(object sender, ExitEventArgs e)
     {
-      CloseAllWindows(); //FloatingWindows expect FloatingWindowHost to close them at App exit
+      if (CloseWindowsOnApplicationExit)
+        CloseAllWindows(); //FloatingWindows expect FloatingWindowHost to close them at App exit
     }
 
     /// <summary>

@@ -1,5 +1,5 @@
 ﻿//Filename: FloatingWindow.cs
-//Version: 20140526
+//Version: 20140615
 
 //#define BORDER_ONLY_AT_RESIZABLE //using BorderThickness instead to allow user to define when they want the border to be visible themselves
 
@@ -269,43 +269,46 @@ namespace SilverFlow.Controls
 
     #endregion
 
-    #region public bool ShowMaximizeButton
+    #region public bool ShowMaximizeRestoreButton
 
     /// <summary>
     /// Gets or sets a value indicating whether to show Maximize button.
     /// </summary>
     /// <value><c>true</c> if to show Maximize button; otherwise, <c>false</c>.</value>
-    public bool ShowMaximizeButton
+    public bool ShowMaximizeRestoreButton
     {
-      get { return (bool)GetValue(ShowMaximizeButtonProperty); }
-      set { SetValue(ShowMaximizeButtonProperty, value); }
+      get { return (bool)GetValue(ShowMaximizeRestoreButtonProperty); }
+      set { SetValue(ShowMaximizeRestoreButtonProperty, value); }
     }
 
     /// <summary>
-    /// Identifies the <see cref="FloatingWindow.ShowMaximizeButton" /> dependency property.
+    /// Identifies the <see cref="FloatingWindow.ShowMaximizeRestoreButton" /> dependency property.
     /// </summary>
     /// <value>
-    /// The identifier for the <see cref="FloatingWindow.ShowMaximizeButton" /> dependency property.
+    /// The identifier for the <see cref="FloatingWindow.ShowMaximizeRestoreButton" /> dependency property.
     /// </value>
-    public static readonly DependencyProperty ShowMaximizeButtonProperty =
+    public static readonly DependencyProperty ShowMaximizeRestoreButtonProperty =
         DependencyProperty.Register(
-        "ShowMaximizeButton",
+        "ShowMaximizeRestoreButton",
         typeof(bool),
         typeof(FloatingWindow),
-        new PropertyMetadata(true, ShowMaximizeButtonPropertyChanged));
+        new PropertyMetadata(true, ShowMaximizeRestoreButtonPropertyChanged));
 
     /// <summary>
-    /// ShowMaximizeButtonProperty PropertyChangedCallback call back static function.
+    /// ShowMaximizeRestoreButtonProperty PropertyChangedCallback call back static function.
     /// </summary>
-    /// <param name="d">FloatingWindow object whose ShowMaximizeButton property is changed.</param>
+    /// <param name="d">FloatingWindow object whose ShowMaximizeRestoreButton property is changed.</param>
     /// <param name="e">DependencyPropertyChangedEventArgs which contains the old and new values.</param>
-    private static void ShowMaximizeButtonPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    private static void ShowMaximizeRestoreButtonPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
       FloatingWindow window = (FloatingWindow)d;
       bool visible = window.IsModal ? false : (bool)e.NewValue;
 
       if (window.maximizeButton != null)
         window.maximizeButton.SetVisible(visible);
+
+      if (window.restoreButton != null)
+        window.restoreButton.SetVisible(false);
     }
 
     #endregion
@@ -347,47 +350,6 @@ namespace SilverFlow.Controls
 
       if (window.minimizeButton != null)
         window.minimizeButton.SetVisible(visible);
-    }
-
-    #endregion
-
-    #region public bool ShowRestoreButton
-
-    /// <summary>
-    /// Gets or sets a value indicating whether to show Restore button.
-    /// </summary>
-    /// <value><c>true</c> if to show Restore button; otherwise, <c>false</c>.</value>
-    public bool ShowRestoreButton
-    {
-      get { return (bool)GetValue(ShowRestoreButtonProperty); }
-      set { SetValue(ShowRestoreButtonProperty, value); }
-    }
-
-    /// <summary>
-    /// Identifies the <see cref="FloatingWindow.ShowRestoreButton" /> dependency property.
-    /// </summary>
-    /// <value>
-    /// The identifier for the <see cref="FloatingWindow.ShowRestoreButton" /> dependency property.
-    /// </value>
-    public static readonly DependencyProperty ShowRestoreButtonProperty =
-        DependencyProperty.Register(
-        "ShowRestoreButton",
-        typeof(bool),
-        typeof(FloatingWindow),
-        new PropertyMetadata(true, ShowRestoreButtonPropertyChanged));
-
-    /// <summary>
-    /// ShowRestoreButtonProperty PropertyChangedCallback call back static function.
-    /// </summary>
-    /// <param name="d">FloatingWindow object whose ShowRestoreButton property is changed.</param>
-    /// <param name="e">DependencyPropertyChangedEventArgs which contains the old and new values.</param>
-    private static void ShowRestoreButtonPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
-    {
-      FloatingWindow window = (FloatingWindow)d;
-      bool visible = window.IsModal ? false : (bool)e.NewValue;
-
-      if (window.restoreButton != null)
-        window.restoreButton.SetVisible(visible);
     }
 
     #endregion
@@ -1534,7 +1496,7 @@ namespace SilverFlow.Controls
     {
       IsModal = true;
       Position = new Point(double.NaN, double.NaN);
-      ShowMaximizeButton = false;
+      ShowMaximizeRestoreButton = false;
       ShowMinimizeButton = false;
 
       Show();
@@ -1922,7 +1884,7 @@ namespace SilverFlow.Controls
         minimizeButton.SetVisible(ShowMinimizeButton);
 
       if (maximizeButton != null)
-        maximizeButton.SetVisible(ShowMaximizeButton);
+        maximizeButton.SetVisible(ShowMaximizeRestoreButton);
 
       SubscribeToTemplatePartEvents();
       SubscribeToStoryBoardEvents();
@@ -2499,11 +2461,11 @@ namespace SilverFlow.Controls
       {
         if (maximizeButton != null && restoreButton != null && HostPanel != null)
         {
-          if (this.ShowMaximizeButton)
+          if (this.ShowMaximizeRestoreButton)
+          {
             maximizeButton.SetVisible(false);
-
-          if (this.ShowRestoreButton)
             restoreButton.SetVisible(true);
+          }
 
           VisualStateManager.GoToState(restoreButton, VSMSTATE_StateNormal, true);
 
@@ -2667,11 +2629,11 @@ namespace SilverFlow.Controls
       {
         if (maximizeButton != null && restoreButton != null && HostPanel != null)
         {
-          if (this.ShowMaximizeButton)
+          if (this.ShowMaximizeRestoreButton)
+          {
             maximizeButton.SetVisible(true);
-
-          if (this.ShowRestoreButton)
             restoreButton.SetVisible(false);
+          }
 
           VisualStateManager.GoToState(maximizeButton, VSMSTATE_StateNormal, true);
         }
