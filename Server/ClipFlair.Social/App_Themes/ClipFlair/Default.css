@@ -7957,6 +7957,9 @@ h2.comment-title {
     padding-bottom:10px;
     font-size: 12px;*/
     /*/!!!*/
+    /***changes:20140616*/
+    clear:both;
+    /***/
 }
 .input-form DL DD:nth-child(1)
 {
@@ -8439,6 +8442,10 @@ STYLED CHECKBOX LIST*/
 {
 	background:#0071b0;
     border: solid 1px #0071b0;
+    
+    /***changes:20140616*/
+    display:none;
+    /***/
 }
 .social-login .linkedin:hover
 {
@@ -8449,6 +8456,10 @@ STYLED CHECKBOX LIST*/
 {
 	background:#35ccff;
     border: solid 1px #35ccff;
+    
+    /***changes:20140616*/
+    display:none;
+    /***/
 }
 .social-login .twitter:hover 
 {
