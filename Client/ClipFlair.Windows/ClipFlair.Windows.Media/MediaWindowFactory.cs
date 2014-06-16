@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: MediaWindowFactory.cs
-//Version: 20140613
+//Version: 20140616
 
 using System.ComponentModel.Composition;
 using System.IO;
@@ -22,7 +22,7 @@ namespace ClipFlair.Windows.Media
 
     public const string LOAD_FILTER = "Media files (*.wmv, *.mp4, *.wma, *.mp3)|*.wmv;*.mp4;*.wma;*.mp3";
 
-    private static string[] SUPPORTED_FILE_EXTENSIONS = new string[] { ".WMV", ".MP4", ".WMA", ".MP3" };
+    public static string[] SUPPORTED_FILE_EXTENSIONS = new string[] { ".WMV", ".MP4", ".WMA", ".MP3" };
 
     public string[] SupportedFileExtensions()
     {

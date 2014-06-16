@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: MediaPlayerWindow.xaml.cs
-//Version: 20140613
+//Version: 20140616
 
 using ClipFlair.Windows.Media;
 using ClipFlair.Windows.Views;
@@ -55,34 +55,8 @@ namespace ClipFlair.Windows
     #endregion
 
     #region --- Methods ---
-
-    public override string LoadFilter
-    {
-      get
-      {
-        return base.LoadFilter +"|" + MediaPlayerWindowFactory.LOAD_FILTER;
-      } 
-    }
-
-    public override void LoadOptions(FileInfo f)
-    {
-      if (!f.Name.EndsWith(new string[] { CLIPFLAIR_EXTENSION, CLIPFLAIR_ZIP_EXTENSION }))
-        player.Open(f);
-      else
-        base.LoadOptions(f);
-    }
-
-    public override void LoadOptions(ZipFile zip, string zipFolder = "")
-    {
-      base.LoadOptions(zip, zipFolder);
-
-      if (player.VolumeLevel == MediaPlayerView.Volume) //SMF-bug patch: change volume temporarily, so that the volume control gets updated correctly after state loading
-        if (player.VolumeLevel < 1)
-          player.VolumeLevel = 1;
-        else
-          player.VolumeLevel = 0.9;
-      player.VolumeLevel = MediaPlayerView.Volume; //try to set again the volume (patch for SMF bug: keeps the volume widget at wrong position)
-    }
+    
+    #region --- Offline playlist ---
 
     public void LoadOfflinePlaylist()
     {
@@ -113,10 +87,9 @@ namespace ClipFlair.Windows
       }
     }
 
-    public override void LoadContent(Stream stream, string title = "") //doesn't close stream
-    {
-      player.Open(stream, title);
-    }
+    #endregion
+
+    #region --- Open local file dialog ---
 
     public bool OpenLocalFile()
     {
@@ -124,7 +97,90 @@ namespace ClipFlair.Windows
       if (done) Flipped = false; //flip back to front
       return done;
     }
- 
+
+    #endregion
+    
+    #region --- LoadOptions dialog ---
+
+    public override string LoadFilter
+    {
+      get
+      {
+        return base.LoadFilter +"|" + MediaPlayerWindowFactory.LOAD_FILTER;
+      } 
+    }
+
+    public override void LoadOptions(FileInfo f)
+    {
+      if (!f.Name.EndsWith(new string[] { CLIPFLAIR_EXTENSION, CLIPFLAIR_ZIP_EXTENSION }))
+        player.Open(f);
+      else
+        base.LoadOptions(f);
+    }
+
+    #endregion
+
+    #region --- Load media from stream ----
+
+    public override void LoadContent(Stream stream, string title = "") //doesn't close stream
+    {
+      player.Open(stream, title);
+    }
+
+    #endregion
+
+    #region --- Load saved state ---
+
+    public override void LoadOptions(ZipFile zip, string zipFolder = "")
+    {
+      base.LoadOptions(zip, zipFolder);
+
+      //fix for loading saved volume
+      if (player.VolumeLevel == MediaPlayerView.Volume) //SMF-bug patch: change volume temporarily, so that the volume control gets updated correctly after state loading
+        if (player.VolumeLevel < 1)
+          player.VolumeLevel = 1;
+        else
+          player.VolumeLevel = 0.9;
+      player.VolumeLevel = MediaPlayerView.Volume; //try to set again the volume (patch for SMF bug: keeps the volume widget at wrong position)
+
+      //load embedded media file
+      foreach (string ext in MediaPlayerWindowFactory.SUPPORTED_FILE_EXTENSIONS)
+        foreach (ZipEntry mediaEntry in zip.SelectEntries("*" + ext, zipFolder))
+          using (Stream zipStream = mediaEntry.OpenReader())
+          {
+            MemoryStream memStream = new MemoryStream(); //do not wrap this in "using" clause, keep the stream alive in memory
+            zipStream.CopyTo(memStream);
+            memStream.Position = 0;
+            LoadContent(memStream, mediaEntry.FileName); //seems we need to copy the media file to a memory stream for it to play OK
+            return; //just load the first one
+          }
+    }
+
+    #endregion
+
+    #region --- Save state ---
+
+    public override void SaveOptions(ZipFile zip, string zipFolder = "")
+    {
+      base.SaveOptions(zip, zipFolder);
+
+      //save media file (embed)
+      if (player.MediaData != null)
+        zip.AddEntry(zipFolder + "/" + player.Filename, SaveMedia); //SaveMedia is a callback method
+    }
+
+    public void SaveMedia(string entryName, Stream stream) //callback
+    {
+      Stream s = player.MediaData;
+      if (s != null)
+      {
+        s.Position = 0;
+        s.CopyTo(stream);
+      }
+    }
+
+    #endregion
+
     #endregion
 
     #region --- Events ---
