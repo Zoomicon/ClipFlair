@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: ImageWindow.xaml.cs
-//Version: 20140613
+//Version: 20140615
 
 using ClipFlair.UI.Dialogs;
 using ClipFlair.Windows.Views;
@@ -11,12 +11,16 @@ using System.IO;
 using System.Windows;
 using System.Windows.Input;
 using ClipFlair.Windows.Image;
+using Ionic.Zip;
 
 namespace ClipFlair.Windows
 {
 
   public partial class ImageWindow : BaseWindow
   {
+
+    #region ---- Initialization ---
+
     public ImageWindow()
     {
       View = new ImageView(); //must set the view first
@@ -29,7 +33,9 @@ namespace ClipFlair.Windows
       UpdateZoomControlsVisible();
     }
 
-    #region View
+    #endregion
+
+    #region --- View ---
 
     public IImageViewer ImageView
     {
@@ -76,7 +82,7 @@ namespace ClipFlair.Windows
 
     #endregion
 
-    #region --- Methods ---
+    #region --- Zoom ---
 
     public void ZoomToFit()
     {
@@ -89,12 +95,20 @@ namespace ClipFlair.Windows
         imgContent.ZoomControlsAvailable = (ImageView.ActionTime == null && ImageView.ActionURL == null); //TODO: add a ZoomControlsAvailable property to the view too and AND its value here
     }
 
+    #endregion
+
+    #region --- Open local file dialog ---
+
     public bool OpenLocalFile()
     {
       bool done = imgContent.OpenLocalFile();
       if (done) Flipped = false; //flip back to front
       return done;
     }
+
+    #endregion
+
+    #region --- LoadOptions dialog ---
 
     public override string LoadFilter
     {
@@ -112,14 +126,56 @@ namespace ClipFlair.Windows
         base.LoadOptions(f);
     }
 
+    #endregion
+
+    #region --- Load image from stream ----
+
     public override void LoadContent(Stream stream, string title = "") //doesn't close stream
     {
-      imgContent.Open(stream); //image filetype is autodetected from stream data
+      imgContent.Open(stream, title); //image filetype is autodetected from stream data
     }
 
     #endregion
 
-    #region --- Events ---
+    #region --- Load saved state ---
+
+    public override void LoadOptions(ZipFile zip, string zipFolder = "")
+    {
+      base.LoadOptions(zip, zipFolder);
+
+      foreach (ZipEntry img in zip.SelectEntries("*.JPG", zipFolder))
+      {
+        LoadContent(img.OpenReader(), img.FileName);
+        break; //just load the first one
+      }
+    }
+
+    #endregion
+
+    #region --- Save state ---
+
+    public override void SaveOptions(ZipFile zip, string zipFolder = "")
+    {
+      base.SaveOptions(zip, zipFolder);
+
+      //save image
+      if (imgContent.ImageData != null)
+        zip.AddEntry(zipFolder + "/" + imgContent.Filename, SaveImage); //SaveImage is a callback method
+    }
+
+    public void SaveImage(string entryName, Stream stream) //callback
+    {
+      Stream s = imgContent.ImageData;
+      if (s != null)
+      {
+        s.Position = 0;
+        s.CopyTo(stream);
+      }
+    }
+        
+    #endregion
+
+    #region --- Click Action (goto ActiveURL and/or ActiveTime) ---
 
     private void imgContent_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
     {

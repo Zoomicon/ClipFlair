@@ -16,7 +16,6 @@ Version: 20140615
   mc:Ignorable="d"
                     
   ShowScreenshotButton="False"
-  ShowHelpButton="{Binding IsTopLevel, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=clipflair:BaseWindow}}"                      
   
   SizeChanged="BaseWindow_SizeChanged"
                       

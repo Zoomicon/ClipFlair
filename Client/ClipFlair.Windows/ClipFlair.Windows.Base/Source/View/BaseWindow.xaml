@@ -1,7 +1,7 @@
 ﻿<!--
 Project: ClipFlair (http://ClipFlair.codeplex.com)
 Filename: BaseWindow.xaml
-Version: 20140612
+Version: 20140615
 -->
 
 <float:FloatingWindow x:Class="ClipFlair.Windows.BaseWindow"
@@ -49,10 +49,10 @@ Version: 20140612
                       
     ShowCloseButton="True"
     ShowMinimizeButton="True"
-    ShowMaximizeButton="True"                  
+    ShowMaximizeRestoreButton="True"                  
     ShowScreenshotButton="False"
     ShowHelpButton="False"
-    >
+    > <!-- ShowHelpButton is set in code to true when IsTopLevel=true -->
 
   <VisualStateManager.VisualStateGroups>
     <VisualStateGroup x:Name="DragStates">

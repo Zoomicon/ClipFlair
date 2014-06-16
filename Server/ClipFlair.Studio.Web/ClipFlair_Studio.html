@@ -3,7 +3,7 @@
 <!--
 Project: ClipFlair (http://ClipFlair.codeplex.com)
 Filename: ClipFlair_Studio.html
-Version: 20140415
+Version: 20140615
 -->
 
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -32,8 +32,8 @@ Version: 20140415
   <meta name="msapplication-window" content="width=1024;height=768" />
   <meta name="msapplication-task" content="name=ClipFlair Studio; action-uri=http://studio.clipflair.net/; icon-uri=http://studio.clipflair.net/favicon.ico" />
   <meta name="msapplication-task" content="name=ClipFlair Social Network; action-uri=http://social.clipflair.net/; icon-uri=http://social.clipflair.net/favicon.ico" />
+  <meta name="msapplication-task" content="name=ClipFlair Gallery; action-uri=http://gallery.clipflair.net//; icon-uri=http://clipflair.net/wp-content/themes/clipflair-theme/favicon.ico" />
   <meta name="msapplication-task" content="name=ClipFlair overview; action-uri=http://clipflair.net/overview/; icon-uri=http://clipflair.net/wp-content/themes/clipflair-theme/favicon.ico" />
-  <meta name="msapplication-task" content="name=ClipFlair aims & objectives; action-uri=http://clipflair.net/aims-objectives/; icon-uri=http://clipflair.net/wp-content/themes/clipflair-theme/favicon.ico" />
   <meta name="msapplication-task" content="name=Follow ClipFlair on Facebook; action-uri=http://www.facebook.com/ClipFlair; icon-uri=http://clipflair.net/wp-content/themes/clipflair-theme/favicon.ico" />
   <meta name="msapplication-task" content="name=Follow ClipFlair on Twitter; action-uri=http://twitter.com/ClipFlair; icon-uri=http://clipflair.net/wp-content/themes/clipflair-theme/favicon.ico" />
   <meta name="msapplication-task" content="name=Follow ClipFlair on SlideShare; action-uri=http://www.slideshare.net/ClipFlair; icon-uri=http://clipflair.net/wp-content/themes/clipflair-theme/favicon.ico" />
@@ -124,9 +124,9 @@ Version: 20140415
     function onClosing() {
       //TODO: fix this to work OK when many tabs are closing at the same time (maybe an IE10 bug? Shows many confirmation dialogs and have to focus each page 1st to reply them)
     
-//      var a = activityView();
-//      if ( (a != null) && (a.WarnOnClosing) )
-//        return "Do you want to exit ClipFlair Studio?"; //else return undefined is implied (no onClosing message that is)
+/**/  var a = activityView();
+/**/  if ( (a != null) && (a.WarnOnClosing) )
+/**/    return "Do you want to exit ClipFlair Studio?"; //else return undefined is implied (no onClosing message that is)
     }
 
     function onClosed() {
@@ -148,14 +148,11 @@ Version: 20140415
 
 <body>
 
-  <form id="form1" runat="server" style="width:100%; height:100%">
-    <div id="silverlightControlHost">
-      <object 
-        id="silverlightControl"
-        data="data:application/x-silverlight-2,"
-        type="application/x-silverlight-2"
-        width="100%" height="100%"
-        >
+    <div id="silverlightControlHost" style="width:100%; height:100%">
+      <object id="silverlightControl"
+              data="data:application/x-silverlight-2,"
+              type="application/x-silverlight-2"
+              width="100%" height="100%">
         <param name="source" value="ClientBin/ClipFlair.xap" />
 
         <param name="onError" value="onSilverlightError" />
@@ -168,11 +165,10 @@ Version: 20140415
 
         <param name="minRuntimeVersion" value="5.0.61118.0" />
         <param name="autoUpgrade" value="true" />
-        <a href="http://go.microsoft.com/fwlink/?LinkID=149156&v=5.0.61118.0" style="text-decoration:none"> <img src="http://go.microsoft.com/fwlink/?LinkId=161376" alt="Get Microsoft Silverlight" style="border-style:none"/> </a>
+        <a href="http://go.microsoft.com/fwlink/?LinkID=149156&v=5.0.61118.0" style="text-decoration:none"> <img src="http://go.microsoft.com/fwlink/?LinkId=161376" alt="Get Microsoft Silverlight" style="border-style:none" /> </a>
       </object>
-      <iframe id="_sl_historyFrame" style="visibility:hidden;height:0px;width:0px;border:0px"></iframe>
+      <iframe id="_sl_historyFrame" style="visibility:hidden;height:0;width:0;border:0"></iframe>
     </div>
-  </form>
 
 </body>
 

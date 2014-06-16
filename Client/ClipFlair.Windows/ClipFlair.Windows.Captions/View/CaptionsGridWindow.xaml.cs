@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: CaptionsGridWindow.xaml.cs
-//Version: 20140613
+//Version: 20140615
 
 //TODO: add Source property to CaptionsGrid control and use data-binding to bind it to CaptionsGridView's Source property
 
@@ -37,7 +37,7 @@ namespace ClipFlair.Windows
     
     #endregion
 
-    #region Load / Save
+    #region --- LoadOptions dialog ---
 
     public override string LoadFilter
     {
@@ -57,7 +57,21 @@ namespace ClipFlair.Windows
       else
         base.LoadOptions(f);
     }
+
+    #endregion
+
+    #region --- Load captions file from stream ---
     
+    public override void LoadContent(Stream stream, string filename) //doesn't close stream
+    {
+      gridCaptions.LoadCaptions(new CaptionRegion(), stream, filename);
+      CaptionsGridView.Captions = gridCaptions.Captions; //TODO: see why this is needed (two-way data-binding doesn't seem to work?)
+    }
+    
+    #endregion
+    
+    #region --- Load saved state ---
+
     public override void LoadOptions(ZipFile zip, string zipFolder = "")
     {
       base.LoadOptions(zip, zipFolder);
@@ -93,19 +107,23 @@ namespace ClipFlair.Windows
         CaptionsGrid.CaptionsGrid.LoadAudio(caption, entry.OpenReader());
     }
 
+    #endregion
+
+    #region --- Save state ---
+
     public override void SaveOptions(ZipFile zip, string zipFolder = "")
     {
       base.SaveOptions(zip, zipFolder);
 
       //save captions
-      zip.AddEntry(zipFolder + "/" + DEFAULT_CAPTIONS, SaveCaptions); //save captions //saving even when no captions are available as a placeholder for user to edit manually
+      zip.AddEntry(zipFolder + "/" + DEFAULT_CAPTIONS, SaveCaptions); //SaveCaptions is a callback method //saving even when no captions are available as a placeholder for user to edit manually
 
       //save revoicing audio
       //if (CaptionsGridView.AudioVisible || CaptionsGridView.SaveInvisibleAudio) //TODO: removed, need to fix this (maybe with separate Audio property or something?), since currently Captions is synced between components and if only some save the audio, it may be lost at load, depending on the load order of those components by their parent (activity)
       SaveAudio(CaptionsGridView.Captions, zip, zipFolder); //...maybe if captions property is bound to a parent (activity), save the captions/audio there once
     }
 
-    public void SaveCaptions(string entryName, Stream stream)
+    public void SaveCaptions(string entryName, Stream stream) //callback
     {
       gridCaptions.SaveCaptions(stream, entryName);
     }
@@ -129,12 +147,6 @@ namespace ClipFlair.Windows
       string startTime = caption.BeginText ?? "00:00:00"; //if null using "00:00:00"
       string endTime = caption.EndText ?? "00:00:00"; //if null using "00:00:00"
       return "/Audio/" + startTime  + "-" + endTime + ".wav";
-    }
-
-    public override void LoadContent(Stream stream, string filename) //doesn't close stream
-    {
-      gridCaptions.LoadCaptions(new CaptionRegion(), stream, filename);
-      CaptionsGridView.Captions = gridCaptions.Captions; //TODO: see why this is needed (two-way data-binding doesn't seem to work?)
     }
 
     #endregion

@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: App.xaml.cs
-//Version: 20140413
+//Version: 20140415
 
 //#define GALLERY_IN_BACKGROUND
 
@@ -93,6 +93,8 @@ namespace ClipFlair
       //bool isFullScreen = content.IsFullScreen;
 
       FloatingWindowHost host = new FloatingWindowHost(); //don't use FloatingWindowHostZUI here
+      host.CloseWindowsOnApplicationExit = true; //only using for the parent of the toplevel ActivityWindow, else multiple closing warning dialogs can show up
+
       ActivityWindow activityWindow = CreateActivityWindow(host);
 
       if (IsRunningOutOfBrowser) //Must not set this for in-browser apps, else warning that this will be ignored will be shown at runtime
@@ -101,10 +103,16 @@ namespace ClipFlair
         {
           if (activityWindow.View.WarnOnClosing)
             if (MessageBox.Show("Do you want to exit " + ProductName + "?", "Confirmation", MessageBoxButton.OKCancel) != MessageBoxResult.OK)
+            {
               ev.Cancel = true;
+              return;
+            }
             else //proceed with app closing
               activityWindow.View.WarnOnClosing = false; //disable warning before proceeding with close (not really needed, since the ActivityWindow checks if it's TopLevel or not)
-        }; //TODO: add Closing (with cancel) event handler in webpage script too for when running in-browser
+          
+          activityWindow.Container.DisableChildrenWarnOnClosing();
+          activityWindow.Close();
+        };
 
 
       host.Rendered += (s, ev) =>
@@ -292,7 +300,7 @@ namespace ClipFlair
       w.Position = new Point(0, 0);
       w.MaximizeWindow(); //TODO: seems MaximizeAction is broken, need to check original FloatingWindow control (Silverlight version)
 
-      w.ShowMaximizeButton = false;
+      w.ShowMaximizeRestoreButton = false;
       w.ShowMinimizeButton = false;
       w.ShowCloseButton = false;
 

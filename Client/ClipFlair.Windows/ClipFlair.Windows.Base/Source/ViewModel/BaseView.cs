@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: BaseView.cs
-//Version: 20140326
+//Version: 20140615
 
 using System;
 using System.ComponentModel;
@@ -59,7 +59,7 @@ namespace ClipFlair.Windows.Views
 
     #endregion
 
-    #region Fields
+    #region --- Fields ---
 
     private TimeSpan time;
     private bool dirty;
@@ -87,7 +87,7 @@ namespace ClipFlair.Windows.Views
 
     #endregion
 
-    #region Properties
+    #region --- Properties ---
 
     //not stored
     [DefaultValue(ViewDefaults.DefaultDirty)]
@@ -492,7 +492,7 @@ namespace ClipFlair.Windows.Views
 
     #endregion
 
-    #region Methods
+    #region --- Methods ---
 
     public virtual void SetDefaults()
     {
