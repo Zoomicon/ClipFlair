@@ -1,9 +1,10 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: InfoCommand.cs
-//Version: 20130905
+//Version: 20140616
 
 using System;
 using System.Collections;
+using System.Windows;
 using System.Windows.Controls.Pivot;
 using Utils.Extensions;
 
@@ -40,6 +41,10 @@ namespace ClipFlair.Windows.Gallery.Commands
     public override void Execute(object parameter)
     {
       //TODO: toggle visibility of Details pane (may need to pass pivot viewer itself at constructor or a reference to the details pane)
+      
+      PivotViewerItem item = (PivotViewerItem)parameter;
+
+      Clipboard.SetText((string)item["Href"][0]); //Copy raw URL to Clipboard
     }
 
   }
