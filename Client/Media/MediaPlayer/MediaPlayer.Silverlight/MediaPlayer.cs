@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: MediaPlayer.cs
-//Version: 20140612
+//Version: 20140616
 
 using Utils.Extensions;
 
@@ -61,6 +61,9 @@ namespace ClipFlair.MediaPlayer
 
     #region --- Properties ---
 
+    public string Filename { get; set; }
+    public Stream MediaData { get; set; } 
+
     #region Source
 
     /// <summary>
@@ -101,6 +104,9 @@ namespace ClipFlair.MediaPlayer
         Playlist.Clear(); //giving an empty source clears the current playlist (this will also stop any current playback)
         return;
       }
+
+      Filename = null;
+      MediaData = null;
 
       PlaylistItem playlistItem = new PlaylistItem();
 
@@ -780,13 +786,16 @@ namespace ClipFlair.MediaPlayer
       Open(file.OpenRead(), file.Name); //TODO: when playlist is cleared should close the stream (not sure if can listen for playlistitem lifetime events)
     }
 
-    public void Open(Stream stream, string title = "") //TODO: add support for opening .url (and maybe pinned site shortcuts too if one can pin media files) //doesn't close stream
+    public void Open(Stream stream, string filename = "") //TODO: add support for opening .url (and maybe pinned site shortcuts too if one can pin media files) //doesn't close stream
     {
+      Filename = filename;
+      MediaData = stream;
+
       Source = null; //clear source URL since we're loading directly from a Stream
 
       PlaylistItem playlistItem = new PlaylistItem();
       playlistItem.StreamSource = stream;
-      playlistItem.Title = title;
+      playlistItem.Title = filename;
 
       Open(playlistItem);
     }
