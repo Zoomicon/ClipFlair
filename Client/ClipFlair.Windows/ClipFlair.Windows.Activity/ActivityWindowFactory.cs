@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: ActivityWindowFactory.cs
-//Version: 20140613y
+//Version: 20140616
 
 using System.ComponentModel.Composition;
 using System.IO;
@@ -18,7 +18,7 @@ namespace ClipFlair.Windows.Activity
   public class ActivityWindowFactory : IFileWindowFactory
   {
 
-    private static string[] SUPPORTED_FILE_EXTENSIONS = new string[] { ".CLIPFLAIR", ".CLIPFLAIR.ZIP" };
+    public static string[] SUPPORTED_FILE_EXTENSIONS = new string[] { ".CLIPFLAIR", ".CLIPFLAIR.ZIP" };
 
     public string[] SupportedFileExtensions()
     {
