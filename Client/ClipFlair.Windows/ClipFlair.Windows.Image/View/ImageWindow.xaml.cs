@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: ImageWindow.xaml.cs
-//Version: 20140615
+//Version: 20140616
 
 using ClipFlair.UI.Dialogs;
 using ClipFlair.Windows.Views;
@@ -142,12 +142,15 @@ namespace ClipFlair.Windows
     public override void LoadOptions(ZipFile zip, string zipFolder = "")
     {
       base.LoadOptions(zip, zipFolder);
-
-      foreach (ZipEntry img in zip.SelectEntries("*.JPG", zipFolder))
-      {
-        LoadContent(img.OpenReader(), img.FileName);
-        break; //just load the first one
-      }
+      
+      //Load embedded image file
+      foreach (string ext in ImageWindowFactory.SUPPORTED_FILE_EXTENSIONS)
+        foreach (ZipEntry imageEntry in zip.SelectEntries("*" + ext, zipFolder))
+          using (Stream zipStream = imageEntry.OpenReader())
+          {
+            LoadContent(zipStream, imageEntry.FileName);
+            return; //just load the first one //TODO: add support for multiple image files using slideshow.net opensource component
+          }
     }
 
     #endregion
@@ -158,7 +161,7 @@ namespace ClipFlair.Windows
     {
       base.SaveOptions(zip, zipFolder);
 
-      //save image
+      //save image file (embed)
       if (imgContent.ImageData != null)
         zip.AddEntry(zipFolder + "/" + imgContent.Filename, SaveImage); //SaveImage is a callback method
     }
