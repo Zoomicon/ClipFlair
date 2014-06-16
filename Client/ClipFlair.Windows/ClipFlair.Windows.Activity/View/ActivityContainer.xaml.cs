@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: ActivityContainer.xaml.cs
-//Version: 20140615
+//Version: 20140616
 
 //TODO: add ContentPartsCloseable property
 //TODO: add ContentPartsZoomable property
@@ -653,7 +653,8 @@ namespace ClipFlair.Windows
 
     public bool OpenActivityGallery()
     {
-      AddGallery("activities"); //TODO: use PivotDialog instead, then load activity
+      GalleryWindow w = AddGallery("activities"); //TODO: use PivotDialog instead, then load activity
+      w.ResizeToView();
       return true; //TODO: return false if user cancelled PivotDialog
     }
 
@@ -676,7 +677,8 @@ namespace ClipFlair.Windows
 
     public bool OpenVideoGallery()
     {
-      AddGallery("video"); //TODO: use PivotDialog instead, invoked by talking to newly added video component
+      GalleryWindow w = AddGallery("video"); //TODO: use PivotDialog instead, invoked by talking to newly added video component
+      w.ResizeToView();
       return true; //TODO: return false if user cancelled PivotDialog
     }
 
@@ -699,7 +701,8 @@ namespace ClipFlair.Windows
 
     public bool OpenImageGallery()
     {
-      AddGallery("images"); //TODO: use PivotDialog instead to get URL, invoked by talking to newly added image component
+      GalleryWindow w = AddGallery("images"); //TODO: use PivotDialog instead to get URL, invoked by talking to newly added image component
+      w.ResizeToView();
       return true; //TODO: return false if user cancelled PivotDialog
     }
 

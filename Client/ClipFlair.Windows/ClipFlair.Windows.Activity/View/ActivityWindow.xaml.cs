@@ -1,9 +1,10 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: ActivityWindow.xaml.cs
-//Version: 20140615
+//Version: 20140616
 
 using ClipFlair.UI.Dialogs;
 using ClipFlair.Windows;
+using ClipFlair.Windows.Activity;
 using ClipFlair.Windows.Captions;
 using ClipFlair.Windows.Image;
 using ClipFlair.Windows.Media;
@@ -200,17 +201,17 @@ namespace ClipFlair.Windows
         if (!insert) //remove current windows only if not an insert action
           activity.RemoveWindows(ignoreChildrenWarnOnClosing:true); //don't call Windows.Clear(), won't work //TODO: remove this note when fixed: don't call Windows.RemoveAll(), won't do bindings currently
 
-        if (insert && !childrenOnly) //load component as child window
+        if (insert && !childrenOnly)
+          
+          //load component as child window
           activity.AddWindow(LoadWindow(zip, zipFolder)); //...loading as a child window saved state instead //TODO: remove THIS NOTE when fixed: don't call Windows.Add, won't do bindings currently
         
-        else //load inner archives as child windows //this occurs when insert=false or when childrenOnly=true
-        { //TODO: maybe can use ";" to pass multiple search items instead of using two "foreach" loops
-          foreach (ZipEntry childZip in zip.SelectEntries("*" + BaseWindow.CLIPFLAIR_ZIP_EXTENSION, zipFolder))
-            activity.AddWindow(LoadWindow(childZip), bringToFront:false); //TODO: remove THIS NOTE when fixed: don't call Windows.Add, won't do bindings currently
-
-          foreach (ZipEntry childZip in zip.SelectEntries("*" + BaseWindow.CLIPFLAIR_EXTENSION, zipFolder)) //in case somebody has placed .clipflair files inside a ClipFlair archive (when saving those contain .clipflair.zip files for each component)
-            activity.AddWindow(LoadWindow(childZip), bringToFront: false); //TODO: remove THIS NOTE when fixed: don't call Windows.Add, won't do bindings currently
-        }
+        else //occurs when (insert==false || childrenOnly==true)
+          
+          //load inner archives as child windows 
+          foreach (string ext in ActivityWindowFactory.SUPPORTED_FILE_EXTENSIONS)
+           foreach (ZipEntry zipEntry in zip.SelectEntries("*" + ext, zipFolder))       
+             activity.AddWindow(LoadWindow(zipEntry), bringToFront:false); //TODO: remove THIS NOTE when fixed: don't call Windows.Add, won't do bindings currently
       }
       finally
       {
