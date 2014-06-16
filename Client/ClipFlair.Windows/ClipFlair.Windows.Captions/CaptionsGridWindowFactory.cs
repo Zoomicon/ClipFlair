@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: CaptionsGridWindowFactory.cs
-//Version: 20140613
+//Version: 20140616
 
 using System.ComponentModel.Composition;
 using System.IO;
@@ -22,7 +22,7 @@ namespace ClipFlair.Windows.Captions
 
     public const string LOAD_FILTER =  "Subtitle files (*.srt, *.tts)|*.srt;*.tts|SRT files (*.srt)|*.srt|TTS files (*.tts)|*.tts";
 
-    private static string[] SUPPORTED_FILE_EXTENSIONS = new string[] { ".SRT", ".TTS", ".FAB", ".ENC" };
+    public static string[] SUPPORTED_FILE_EXTENSIONS = new string[] { ".SRT", ".TTS", ".FAB", ".ENC" };
 
     public string[] SupportedFileExtensions()
     {

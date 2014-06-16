@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: CaptionsGridWindow.xaml.cs
-//Version: 20140615
+//Version: 20140616
 
 //TODO: add Source property to CaptionsGrid control and use data-binding to bind it to CaptionsGridView's Source property
 
@@ -19,7 +19,6 @@ namespace ClipFlair.Windows
   {
 
     public const string DEFAULT_CAPTIONS = "captions.srt";
-    public const string ALTERNATIVE_CAPTIONS = "captions.tts";
 
     public CaptionsGridWindow()
     {
@@ -85,12 +84,10 @@ namespace ClipFlair.Windows
  
     private void LoadCaptions(CaptionRegion captions, ZipFile zip, string zipFolder = "")
     {
-      ZipEntry captionsEntry = zip[zipFolder + "/" + DEFAULT_CAPTIONS];
-      if (captionsEntry == null)
-        captionsEntry = zip[zipFolder + "/" + ALTERNATIVE_CAPTIONS]; //if one of SRT/TTS not found, look for the other type
-
-      if (captionsEntry != null)
-        gridCaptions.LoadCaptions(captions, captionsEntry.OpenReader(), captionsEntry.FileName);
+      foreach (string ext in CaptionsGridWindowFactory.SUPPORTED_FILE_EXTENSIONS)
+        foreach (ZipEntry captionsEntry in zip.SelectEntries("*" + ext, zipFolder))
+          using (Stream zipStream = captionsEntry.OpenReader()) //closing stream when done
+            gridCaptions.LoadCaptions(captions, zipStream, captionsEntry.FileName); //merge multiple embedded caption files (if user added them by hand to the saved state file, since we save only DEFAULT_CAPTIONS file, not multiple caption files)
     }
     
     public void LoadAudio(CaptionRegion captions, ZipFile zip, string zipFolder = "")
@@ -116,7 +113,7 @@ namespace ClipFlair.Windows
       base.SaveOptions(zip, zipFolder);
 
       //save captions
-      zip.AddEntry(zipFolder + "/" + DEFAULT_CAPTIONS, SaveCaptions); //SaveCaptions is a callback method //saving even when no captions are available as a placeholder for user to edit manually
+      zip.AddEntry(zipFolder + "/" + DEFAULT_CAPTIONS, SaveCaptions); //SaveCaptions is callback method //saving even when no captions are available as a placeholder for user to edit manually
 
       //save revoicing audio
       //if (CaptionsGridView.AudioVisible || CaptionsGridView.SaveInvisibleAudio) //TODO: removed, need to fix this (maybe with separate Audio property or something?), since currently Captions is synced between components and if only some save the audio, it may be lost at load, depending on the load order of those components by their parent (activity)
