@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: TextEditorWindow.xaml.cs
-//Version: 20140615
+//Version: 20140616
 
 using ClipFlair.Windows.Text;
 using ClipFlair.Windows.Views;
@@ -13,6 +13,13 @@ namespace ClipFlair.Windows
 
   public partial class TextEditorWindow : BaseWindow
   {
+
+    #region --- Constants ---
+
+    public const string DEFAULT_TEXT = "document.text";
+
+    #endregion
+
     public TextEditorWindow()
     {
       View = new TextEditorView2(); //must set the view first
@@ -50,6 +57,8 @@ namespace ClipFlair.Windows
 
     #region Load / Save
 
+    #region --- Load Options Dialog ---
+
     public override string LoadFilter
     {
       get
@@ -66,30 +75,41 @@ namespace ClipFlair.Windows
         base.LoadOptions(f);
     }
 
+    #endregion
+
+    #region --- Load from stream ---
+
     public override void LoadContent(Stream stream, string filename)
     {
       editor.Load(stream, filename, true);
     }
 
+    #endregion
+
+    #region --- Load saved state ---
+
     public override void LoadOptions(ZipFile zip, string zipFolder = "")
     {
       base.LoadOptions(zip, zipFolder);
-      
-      //load text
-      ZipEntry entry = zip[zipFolder + "/document.text"];
-      if (entry == null) entry = zip[zipFolder + "/document.txt"];
-      if (entry == null) entry = zip[zipFolder + "/document.docx"]; //TODO: check if it's possible to also support RTF there
-      if (entry != null)
-        editor.Load(entry.OpenReader(), entry.FileName);
-      else
-        editor.Clear(confirm: false);
+
+      editor.Clear(confirm: false);
+
+      //load embedded text documents
+      foreach (string ext in TextEditorWindowFactory.SUPPORTED_FILE_EXTENSIONS)
+        foreach (ZipEntry textEntry in zip.SelectEntries("*" + ext, zipFolder))
+          using (Stream zipStream = textEntry.OpenReader()) //closing stream when done
+            editor.Load(zipStream, textEntry.FileName, clearFirst:false); //merge multiple text documents together (if user has embedded them manually in the saved state file, since we save only DEFAULT_TEXT with all the content)
     }
+
+    #endregion
+
+    #region --- Save state ---
 
     public override void SaveOptions(ZipFile zip, string zipFolder = "")
     {
       base.SaveOptions(zip, zipFolder);
 
-      zip.AddEntry(zipFolder + "/document.text", SaveText); //when there is no text, saving an empty file
+      zip.AddEntry(zipFolder + "/" + DEFAULT_TEXT, SaveText); //when there is no text, saving an empty file //SaveText is callback method
     }
 
     public void SaveText(string entryName, Stream stream) //callback
@@ -97,6 +117,8 @@ namespace ClipFlair.Windows
       editor.SelectNone(); //must clear selection first, else it will save only that in the saved state
       editor.SaveXaml(stream);
     }
+
+    #endregion
 
     #endregion
 
