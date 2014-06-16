@@ -41,27 +41,7 @@
     <script type="text/javascript">
     
         $(document).ready(function() {
-            $(".various").fancybox({
-                maxWidth	: 800,
-                maxHeight	: 600,
-                fitToView	: false,
-                autoSize	: true,
-                closeClick	: false,
-                openEffect	: 'none',
-                closeEffect	: 'none',
-                padding : 0,
-            });
             
-             $(".iframe").fancybox({
-                maxWidth	: 800,
-                maxHeight	: 600,
-                fitToView	: false,
-                autoSize	: true,
-                closeClick	: false,
-                openEffect	: 'none',
-                closeEffect	: 'none',
-                padding : 0
-            });
             
             //load video fancybox
             $(".fancyframe").fancybox({
