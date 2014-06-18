@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: ActivityContainer.xaml.cs
-//Version: 20140616
+//Version: 20140618
 
 //TODO: add ContentPartsCloseable property
 //TODO: add ContentPartsZoomable property
@@ -438,10 +438,12 @@ namespace ClipFlair.Windows
       return w;
     }
 
-    public GalleryWindow AddGallery(string source = "activities")
+    public GalleryWindow AddGallery(string source = "activities", string title = null)
     {
       GalleryWindow w = (GalleryWindow)AddWindow(GalleryWindowFactory, newInstance: true);
       w.GalleryView.Source = new Uri(URL_GALLERY_PREFIX + source + ".cxml"); //TODO: move logic from Studio's App.xaml.cs into GalleryWindow's Source proprty to translate partial URIs into ClipFlair gallery URIs
+      if (title != null)
+        w.Title = title;
       return w;
     }
 
@@ -653,7 +655,7 @@ namespace ClipFlair.Windows
 
     public bool OpenActivityGallery()
     {
-      GalleryWindow w = AddGallery("activities"); //TODO: use PivotDialog instead, then load activity
+      GalleryWindow w = AddGallery("activities", "Activity Gallery"); //TODO: use PivotDialog instead, then load activity
       w.ResizeToView();
       return true; //TODO: return false if user cancelled PivotDialog
     }
@@ -677,7 +679,7 @@ namespace ClipFlair.Windows
 
     public bool OpenVideoGallery()
     {
-      GalleryWindow w = AddGallery("video"); //TODO: use PivotDialog instead, invoked by talking to newly added video component
+      GalleryWindow w = AddGallery("video", "Video Gallery"); //TODO: use PivotDialog instead, invoked by talking to newly added video component
       w.ResizeToView();
       return true; //TODO: return false if user cancelled PivotDialog
     }
@@ -701,7 +703,7 @@ namespace ClipFlair.Windows
 
     public bool OpenImageGallery()
     {
-      GalleryWindow w = AddGallery("images"); //TODO: use PivotDialog instead to get URL, invoked by talking to newly added image component
+      GalleryWindow w = AddGallery("images", "Image Gallery"); //TODO: use PivotDialog instead to get URL, invoked by talking to newly added image component
       w.ResizeToView();
       return true; //TODO: return false if user cancelled PivotDialog
     }
