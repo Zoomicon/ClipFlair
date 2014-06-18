@@ -1,5 +1,5 @@
 ﻿//Filename: ZoomImage.xaml.cs
-//Version: 20140616
+//Version: 20140618
 //Author: George Birbilis (http://zoomicon.com)
 
 //Based on http://samples.msdn.microsoft.com/Silverlight/SampleBrowser DeepZoom samples
@@ -386,7 +386,7 @@ namespace ZoomImage
         {
           duringDrag = true;
 
-          if (!DeepZoomMode) return; //TODO: check if drag to pan works OK at non-DeepZoom mode when zoomed in
+          if (!DeepZoomMode) return;
           
           e.Handled = true;
           lastMouseLogicalPos = e.GetPosition(imgDeepZoom);
@@ -407,7 +407,7 @@ namespace ZoomImage
 
       duringDrag = false;
 
-      if (DeepZoomMode) //TODO: check if drag to pan works OK at non-DeepZoom mode when zoomed in
+      if (DeepZoomMode)
       {
         e.Handled = true;
         imgDeepZoom.UseSprings = true; //???
