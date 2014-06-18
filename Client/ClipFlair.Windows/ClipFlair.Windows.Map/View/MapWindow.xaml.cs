@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: MapWindow.xaml.cs
-//Version: 20140204
+//Version: 20140618
 
 using ClipFlair.Windows.Views;
 
@@ -62,6 +62,11 @@ namespace ClipFlair.Windows
         MapView.ModeValue = map.Mode;
     }
 
+    private void map_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+    {
+      e.Handled = true; //consume the mouse down event (used to pan arround) that Bing Maps doesn't seem to consume itself, so that it isn't grabbed by BaseWindow to drag the component arround
+    }
+    
     #endregion
 
   }

@@ -1,7 +1,7 @@
 ﻿<!--
 Project: ClipFlair (http://ClipFlair.codeplex.com)
 Filename: MapWindow.xaml
-Version: 20131216
+Version: 20140618
 -->
 
 <clipflair:BaseWindow x:Class="ClipFlair.Windows.MapWindow"
@@ -42,6 +42,7 @@ Version: 20131216
            ModeChanged="map_ModeChanged"
            Center="{Binding MapCenter, Mode=TwoWay}"
            ZoomLevel="{Binding MapZoom, Mode=TwoWay}"
+           MouseLeftButtonDown="map_MouseLeftButtonDown"
            />
   <!-- UseInertia="{Binding Inertia, Mode=TwoWay}" -->
   
