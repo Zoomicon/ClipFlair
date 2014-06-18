@@ -7267,7 +7267,7 @@ h2.comment-title {
 }
 .group-item .group-image .counter
 {
-	background: #000;
+	/*background: #000;
 	filter: Alpha(opacity=70);
 	opacity: .70;
 	position: absolute;
@@ -7282,7 +7282,14 @@ h2.comment-title {
 	border-top-right-radius: 3px;
 	-moz-border-radius-bottomright: 3px;
 	-webkit-border-bottom-right-radius: 3px;
-	border-bottom-right-radius: 3px;
+	border-bottom-right-radius: 3px;*/
+    /***changes:20140617*/
+    position: absolute;
+    bottom: -32px;
+    left: 0px;
+    font-size: 13px;
+    color: #777;
+    /***/
 }
 .group-item .content
 {
