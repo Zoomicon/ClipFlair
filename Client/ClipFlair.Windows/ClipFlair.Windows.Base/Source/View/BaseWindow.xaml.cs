@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: BaseWindow.xaml.cs
-//Version: 20140616
+//Version: 20140618
 
 //TODO: unbind control at close
 
@@ -476,9 +476,10 @@ namespace ClipFlair.Windows
 
     public void LoadOptions(Stream stream, string zipFolder = "") //doesn't close stream
     {
-      //save position and size (to restore later)
+      //save position, size and ZIndex (to restore after loading saved state) //used in drag-drop and when loading state from backpanel to avoid having the component move arround or go to the background
       Point oldPos = Position;
       Size oldSize = new Size(Width, Height); //do not use (ActualWidth, ActualHeight) here, assigning to (Width, Height) below
+      int oldZIndex = View.ZIndex;
       try
       {
         using (ZipFile zip = ZipFile.Read(stream))
@@ -490,6 +491,7 @@ namespace ClipFlair.Windows
         Position = oldPos;
         Width = oldSize.Width;
         Height = oldSize.Height;
+        View.ZIndex = oldZIndex; //Canvas.ZIndex attached dependency property which is two-way bound to View.ZIndex in the XAML
       }
     }
 
