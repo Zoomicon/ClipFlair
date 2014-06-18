@@ -1,7 +1,7 @@
 ﻿<!--
 Project: ClipFlair (http://ClipFlair.codeplex.com)
 Filename: BaseWindow.xaml
-Version: 20140615
+Version: 20140618
 -->
 
 <float:FloatingWindow x:Class="ClipFlair.Windows.BaseWindow"
@@ -16,6 +16,7 @@ Version: 20140615
     xmlns:widgets="clr-namespace:ClipFlair.UI.Widgets;assembly=ClipFlair.UI.Widgets.Silverlight"
     xmlns:lbl="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk"
     xmlns:color="clr-namespace:ColorPickerLib;assembly=ColorPicker"
+    xmlns:bind="clr-namespace:Utils.Bindings;assembly=Utils.Silverlight"
     xmlns:local="clr-namespace:ClipFlair.Windows;assembly=ClipFlair.Windows.Base"
     mc:Ignorable="d"
     d:DesignHeight="400" d:DesignWidth="400"
@@ -172,7 +173,13 @@ Version: 20140615
               Orientation="Vertical"
               >
               <lbl:Label Style="{StaticResource PropertyLabelStyle}" Content="Title:" Target="{Binding ElementName=edTitle}" />
-              <TextBox Name="edTitle" Text="{Binding Title, Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=True}" />
+              <TextBox
+                Name="edTitle"
+                Text="{Binding Title, Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=True}"
+                bind:ImmediateSourceUpdate.IsEnabled="True"
+                bind:ImmediateSourceUpdate.Source="{Binding Title, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnExceptions=True, NotifyOnValidationError=True}"
+                />
+                <!-- ImmediateSourceUpdate is used because of http://social.msdn.microsoft.com/Forums/silverlight/en-US/951bde54-1bd1-4fdc-8148-86d5a5183de8/updatesourcetriggerpropertychanged-is-ignored?forum=silverlightgen&prof=required -->
             </StackPanel>
 
             <toolkit:Accordion
