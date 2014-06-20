@@ -7,7 +7,7 @@
 <%--
 Project: ClipFlair (http://ClipFlair.codeplex.com)
 Filename: actvity/Default.aspx
-Version: 20140606 
+Version: 20140620 
 --%>
 
 <html>
@@ -20,8 +20,8 @@ Version: 20140606
 <style type="text/css">
 body
 {
-  margin:0px;
-  padding:0px;
+  margin:0;
+  padding:0;
   overflow-y:hidden;
 }
 

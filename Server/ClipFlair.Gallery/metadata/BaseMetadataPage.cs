@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: BaseMetadataPage.cs
-//Version: 20130903
+//Version: 20140620
 
 using Metadata.CXML;
 
@@ -71,6 +71,7 @@ namespace ClipFlair.Gallery
 
     public void UpdateSelection(string key)
     {
+      ShowMetadataUI(!key.StartsWith("*"));
       DisplayMetadata(key);
     }
 
@@ -98,6 +99,8 @@ namespace ClipFlair.Gallery
 
     protected void SaveMetadata(string key)
     {
+      if (key.StartsWith("*")) return; //just for safety in case somebody manages to try saving the "* Please select..." item
+
       string cxmlFilename = GetMetadataFilepath(key);
       Directory.CreateDirectory(Path.GetDirectoryName(Path.GetFullPath(cxmlFilename))); //create any parent directories needed
       using (XmlWriter cxml = XmlWriter.Create(cxmlFilename))
@@ -111,6 +114,9 @@ namespace ClipFlair.Gallery
       foreach (ListItem l in _listItems.Items)
       {
         string key = l.Text;
+
+        if (key.StartsWith("*")) continue; //Skip "* Please select..." item
+        
         UpdateSelection(key); //must pass value here
         metadataItems.Add(ExtractMetadata(key));
       }
@@ -130,6 +136,7 @@ namespace ClipFlair.Gallery
     public abstract string GetMergeMetadataFilePath();
 
     public abstract void Merge();
+    public abstract void ShowMetadataUI(bool visible);
     public abstract void DisplayMetadata(string key);
     public abstract ICXMLMetadata ExtractMetadata(string key);
 

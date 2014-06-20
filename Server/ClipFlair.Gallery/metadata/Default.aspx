@@ -7,7 +7,7 @@
 <%--
 Project: ClipFlair (http://ClipFlair.codeplex.com)
 Filename: metadata/Default.aspx
-Version: 20131119
+Version: 20140620
 --%>
 
 <html>
@@ -21,8 +21,9 @@ Version: 20131119
 <style type="text/css">
 body
 {
-  margin:0px;
-  padding:0px;
+  margin:0;
+  padding:0;
+  overflow-y:hidden;
 }
 
 iframe 

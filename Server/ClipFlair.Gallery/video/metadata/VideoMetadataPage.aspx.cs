@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: VideoMetadataPage.aspx.cs
-//Version: 20140410
+//Version: 20140620
 
 using ClipFlair.Metadata;
 using Metadata.CXML;
@@ -23,12 +23,15 @@ namespace ClipFlair.Gallery
       
       if (!IsPostBack)
       {
-        listItems.DataSource =
-          Directory.GetDirectories(path)
+        var itemPleaseSelect = new[] { new { Foldername = "* Please select..." } };
+
+        var items = Directory.GetDirectories(path)
             .Where(f => (Directory.EnumerateFiles(f, Path.GetFileName(f) + ".ism").Count() != 0)) //Available in .NET4, more efficient than GetFiles
             .Select(f => new { Foldername = Path.GetFileName(f) });
         //when having a full path to a directory don't use Path.GetDirectoryName (gives parent directory),
         //use Path.GetFileName instead to extract the name of the directory
+
+        listItems.DataSource = itemPleaseSelect.Concat(items);
 
         listItems.DataBind(); //must call this
 
@@ -57,6 +60,18 @@ namespace ClipFlair.Gallery
     public override string GetMergeMetadataFilePath()
     {
       return Path.Combine(path, "video.cxml");
+    }
+
+    #endregion
+
+    #region UI
+
+    public override void ShowMetadataUI(bool visible)
+    {
+      if (uiMetadata != null)
+        uiMetadata.Visible = visible;
+
+      linkUrl.Visible = visible;
     }
 
     #endregion
