@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: ImageView.cs
-//Version: 20131213
+//Version: 20140619
 
 //TODO: maybe allow to load (scaled) local image and store it in options file (show image from memorystream)
 
@@ -24,6 +24,7 @@ namespace ClipFlair.Windows.Views
 
     //fields are initialized via respective properties at "SetDefaults" method
     private Uri source;
+    private bool cameraSourceUsed;
     private bool contentZoomToFit;
     private Uri actionURL;
     private TimeSpan? actionTime;
@@ -43,6 +44,22 @@ namespace ClipFlair.Windows.Views
         {
           source = value;
           RaisePropertyChanged(IImageViewerProperties.PropertySource);
+          Dirty = true;
+        }
+      }
+    }
+
+    [DataMember]
+    [DefaultValue(ImageViewerDefaults.DefaultCameraSourceUsed)]
+    public bool CameraSourceUsed
+    {
+      get { return cameraSourceUsed; }
+      set
+      {
+        if (value != cameraSourceUsed)
+        {
+          cameraSourceUsed = value;
+          RaisePropertyChanged(IImageViewerProperties.PropertyCameraSourceUsed);
           Dirty = true;
         }
       }

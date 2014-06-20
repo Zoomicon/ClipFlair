@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: AudioRecorderView.cs
-//Version: 20130704
+//Version: 20140619
 
 using AudioLib;
 
@@ -210,7 +210,7 @@ namespace ClipFlair.AudioRecorder
           AudioCaptureDevice audioDevice = CaptureDeviceConfiguration.GetDefaultAudioCaptureDevice();
           if (audioDevice != null)
           {
-            audioDevice.DesiredFormat = PickAudioFormat(audioDevice, new AudioFormatEx(WaveFormatType.Pcm, 1, 16, 44100)); //mono, 8-bit, 44.1Khz (only supporting 16-bit playback, make sure we record at same bit depth) //if not found, will set to null which is the default value
+            audioDevice.DesiredFormat = PickAudioFormat(audioDevice, new AudioFormatEx(WaveFormatType.Pcm, 1, 16, 44100)); //mono, 16-bit, 44.1Khz (only supporting 16-bit playback, make sure we record at same bit depth) //if not found, will set to null which is the default value
             _captureSource = new CaptureSource() { AudioCaptureDevice = audioDevice };
           }
         }  //TODO: maybe do something if _captureSource is still null here

@@ -1,7 +1,7 @@
 ﻿<!--
 Project: ClipFlair (http://ClipFlair.codeplex.com)
 Filename: ImageOptions.xaml
-Version: 20140612
+Version: 20140619
 -->
 
 <UserControl x:Class="ClipFlair.Windows.Options.ImageOptions"
@@ -53,12 +53,22 @@ Version: 20140612
       </Grid>
 
     </StackPanel>
-    
+
+    <StackPanel Orientation="Horizontal">
+      <CheckBox Name="cbCameraSourceUsed" IsChecked="{Binding CameraSourceUsed, Mode=TwoWay}" />
+      <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Use Camera for Source" Target="{Binding ElementName=cbCameraSourceUsed}"/>
+    </StackPanel>
+
     <StackPanel Orientation="Horizontal">
       <CheckBox Name="cbContentZoomToFit" IsChecked="{Binding ContentZoomToFit, Mode=TwoWay}" />
       <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Content Zoom to Fit" Target="{Binding ElementName=cbContentZoomToFit}"/>
     </StackPanel>
 
+    <StackPanel Orientation="Horizontal">
+      <CheckBox Name="edRTL" IsChecked="{Binding RTL, Mode=TwoWay}" />
+      <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Right to Left (RTL) Direction" Target="{Binding ElementName=edRTL}"/>
+    </StackPanel>    
+    
     <StackPanel Orientation="Vertical">
       <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Action URL:" Target="{Binding ElementName=edActionURL}"/>
       <TextBox Name="edActionURL" Text="{Binding ActionURL, Mode=TwoWay}" HorizontalAlignment="Stretch" />
