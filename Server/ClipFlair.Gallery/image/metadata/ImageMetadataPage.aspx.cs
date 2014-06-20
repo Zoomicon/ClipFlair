@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: ImageMetadataPage.aspx.cs
-//Version: 20140410
+//Version: 20140620
 
 using ClipFlair.Metadata;
 using Metadata.CXML;
@@ -24,11 +24,14 @@ namespace ClipFlair.Gallery
       
       if (!IsPostBack)
       {
-        listItems.DataSource =
-          filter.Split('|').SelectMany(
+        var itemPleaseSelect = new[] { new { Filename = "* Please select..." } };
+
+        var items = filter.Split('|').SelectMany(
             oneFilter => Directory.EnumerateFiles(path, oneFilter) //Available in .NET4, more efficient than GetFiles
                          .Select(f => new { Filename = Path.GetFileName(f) })
           );
+
+        listItems.DataSource = itemPleaseSelect.Concat(items);
 
         listItems.DataBind(); //must call this
 
@@ -57,6 +60,18 @@ namespace ClipFlair.Gallery
     public override string GetMergeMetadataFilePath()
     {
       return Path.Combine(path, "images.cxml");
+    }
+
+    #endregion
+
+    #region UI
+
+    public override void ShowMetadataUI(bool visible)
+    {
+      if (uiMetadata != null)
+        uiMetadata.Visible = visible;
+
+      linkUrl.Visible = visible;
     }
 
     #endregion
