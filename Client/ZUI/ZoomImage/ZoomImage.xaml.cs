@@ -1,5 +1,5 @@
 ﻿//Filename: ZoomImage.xaml.cs
-//Version: 20140618
+//Version: 20140619
 //Author: George Birbilis (http://zoomicon.com)
 
 //Based on http://samples.msdn.microsoft.com/Silverlight/SampleBrowser DeepZoom samples
@@ -31,6 +31,13 @@ namespace ZoomImage
 
     #endregion
 
+    #region --- Fields ---
+
+    CaptureSource videoCaptureSource; //=null
+    VideoBrush videoBrush; //=null
+
+    #endregion
+    
     #region --- Initialization ---
 
     public ZoomImage()
@@ -45,9 +52,58 @@ namespace ZoomImage
 
     #region --- Properties ---
 
+    #region Local file content
+
     public string Filename { get; set; }
-    public Stream ImageData { get; set; } 
-    
+    public Stream ImageData { get; set; }
+
+    #endregion
+
+    #region RTL
+
+    /// <summary>
+    /// RTL Dependency Property
+    /// </summary>
+    public static readonly DependencyProperty RTLProperty =
+        DependencyProperty.Register("RTL", typeof(bool), typeof(ZoomImage),
+            new FrameworkPropertyMetadata(false, new PropertyChangedCallback(OnRTLChanged)));
+
+    /// <summary>
+    /// Gets or sets the RTL property.
+    /// </summary>
+    public bool RTL
+    {
+      get { return (bool)GetValue(RTLProperty); }
+      set { SetValue(RTLProperty, value); }
+    }
+
+    /// <summary>
+    /// Handles changes to the RTL property.
+    /// </summary>
+    private static void OnRTLChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    {
+      ZoomImage target = (ZoomImage)d;
+      target.OnRTLChanged((bool)e.OldValue, target.RTL);
+    }
+
+    /// <summary>
+    /// Provides derived classes an opportunity to handle changes to the IsAvailable property.
+    /// </summary>
+    protected virtual void OnRTLChanged(bool oldRTL, bool newRTL)
+    {
+      FlowDirection direction = (newRTL) ? System.Windows.FlowDirection.RightToLeft : System.Windows.FlowDirection.LeftToRight; //not using ApplicationBorder anymore, don't want to flip the toolbar direction too
+      imgPlain.FlowDirection = direction;
+      imgDeepZoom.FlowDirection = direction;
+
+      //...could have also used in the XAML: FlowDirection="{Binding RTL, Converter={StaticResource BooleanToFlowDirectionConverter}}"
+      //combined with:   <conv:BooleanToFlowDirectionConverter x:Key="BooleanToFlowDirectionConverter" />
+      //and with:   xmlns:conv="clr-namespace:Utils.Converters;assembly=Utils.Silverlight"
+    }
+
+    #endregion
+
+    #region ZoomMode
+
     private bool PlainZoomMode
     {
       get { return (scrollPlainZoom.Visibility == Visibility.Visible); }
@@ -57,6 +113,8 @@ namespace ZoomImage
     {
       get { return (imgDeepZoom.Visibility == Visibility.Visible); }
     }
+
+    #endregion
 
     #region ZoomControlsAvailable
 
@@ -176,34 +234,51 @@ namespace ZoomImage
     /// </summary>
     protected virtual void OnSourceChanged(Uri oldSource, Uri newSource)
     {
-      if (newSource == null) {
-        imgPlain.Source = null;
-        imgDeepZoom.Source = null;
-        return;
-      }
+      ApplySource(newSource);
+    }
 
-      Filename = null;
-      ImageData = null;
+    #endregion
 
-      Uri uri = PreprocessUri(newSource);
-      if (uri.ToString().EndsWith(new string[]{".dzi",".dzc",".xml"}, StringComparison.OrdinalIgnoreCase)) //.DZI or .XML for DeepZoom Image and .DZC or .XML for DeepZoom Image Collection (there's also .DZIZ for zipped package with assets, but should be only for authoring/editing tools use)
-      {
-        scrollPlainZoom.Visibility = Visibility.Collapsed; //hide the ScrollViewer parent of ZoomAndPan control that hosts the classic Image control
-        imgPlain.Source = null;
+    #region CameraSourceUsed
 
-        imgDeepZoom.Visibility = Visibility.Visible;
-        imgDeepZoom.Source = new DeepZoomImageTileSource(uri);
-      }
-      else //Plain image (no DeepZoom one)
-      {
-        imgDeepZoom.Visibility = Visibility.Collapsed;
-        imgDeepZoom.Source = null;
+    /// <summary>
+    /// CameraSourceUsed Dependency Property
+    /// </summary>
+    public static readonly DependencyProperty CameraSourceUsedProperty =
+        DependencyProperty.Register("CameraSourceUsed", typeof(bool), typeof(ZoomImage),
+            new FrameworkPropertyMetadata(false, //this has to be false so that we receive the change event to open the camera source
+                FrameworkPropertyMetadataOptions.None,
+                new PropertyChangedCallback(OnCameraSourceUsedChanged)));
 
-        scrollPlainZoom.Visibility = Visibility.Visible; //show the ScrollViewer parent of ZoomAndPan control that hosts the classic Image control
-        imgPlain.Source = new BitmapImage(uri);
-      }
+    /// <summary>
+    /// Gets or sets the CameraSourceUsed property
+    /// </summary>
+    public bool CameraSourceUsed
+    {
+      get { return (bool)GetValue(CameraSourceUsedProperty); }
+      set { SetValue(CameraSourceUsedProperty, value); }
+    }
 
-      //CheckZoomToFit(); //not calling this here, since it will be called by "control_ImageOpenSucceeded" when image has opened (which will be called for local images too)
+    /// <summary>
+    /// Handles changes to the CameraSourceUsed property
+    /// </summary>
+    private static void OnCameraSourceUsedChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    {
+      ZoomImage target = (ZoomImage)d;
+      bool oldCameraSourceUsed = (bool)e.OldValue;
+      bool newCameraSourceUsed = target.CameraSourceUsed;
+      target.OnCameraSourceUsedChanged(oldCameraSourceUsed, newCameraSourceUsed);
+    }
+
+    /// <summary>
+    /// Provides derived classes an opportunity to handle changes to the CameraSourceUsed property
+    /// </summary>
+    protected virtual void OnCameraSourceUsedChanged(bool oldCameraSourceUsed, bool newCameraSourceUsed)
+    {
+      if (newCameraSourceUsed)
+        StartVideoCapture();
+      else
+        StopVideoCapture();
     }
 
     #endregion
@@ -211,6 +286,82 @@ namespace ZoomImage
     #endregion
 
     #region --- Methods ---
+
+    private void StartVideoCapture()
+    {
+      try
+      {
+        if (CaptureDeviceConfiguration.RequestDeviceAccess())
+        {
+          //use default video capture device (can select other from Silverlight settings)
+          if (videoCaptureSource == null)
+            videoCaptureSource = new CaptureSource()
+            {
+              VideoCaptureDevice = CaptureDeviceConfiguration.GetDefaultVideoCaptureDevice()
+            };
+
+          if (videoBrush == null)
+          {
+            videoBrush = new VideoBrush()
+            {
+              Stretch = Stretch.UniformToFill //don't deform the image
+            };
+            videoBrush.SetSource(videoCaptureSource);
+
+            videoCaptureSource.Start();
+          }
+
+          imgPlain.Visibility = Visibility.Collapsed;
+          imgPlainZoom.Background = videoBrush;
+        }
+      }
+      catch
+      {
+        //NOP
+      }
+      ShowPlainImage();
+    }
+
+    private void StopVideoCapture()
+    {
+      try
+      { 
+        videoCaptureSource.Stop();
+      }
+      catch {
+        //NOP
+      }
+      imgPlain.Visibility = Visibility.Visible;
+      ApplySource(Source); //reapply existing Source uri
+    }
+
+    private void ApplySource(Uri newSource)
+    {
+      if (newSource == null)
+      {
+        imgPlain.Source = null;
+        imgDeepZoom.Source = null;
+        ShowPlainImage(); //show the plain image control even with empty image
+        return;
+      }
+
+      Filename = null;
+      ImageData = null;
+
+      Uri uri = PreprocessUri(newSource);
+      if (uri.ToString().EndsWith(new string[] { ".dzi", ".dzc", ".xml" }, StringComparison.OrdinalIgnoreCase)) //.DZI or .XML for DeepZoom Image and .DZC or .XML for DeepZoom Image Collection (there's also .DZIZ for zipped package with assets, but should be only for authoring/editing tools use)
+      {
+        imgDeepZoom.Source = new DeepZoomImageTileSource(uri);
+        ShowDeepZoomImage();
+      }
+      else //Plain image (no DeepZoom one)
+      {
+        imgPlain.Source = new BitmapImage(uri);
+        ShowPlainImage();
+      }
+
+      //CheckZoomToFit(); //not calling this here, since it will be called by "control_ImageOpenSucceeded" when image has opened (which will be called for local images too)
+    }
 
     public void CheckZoomToFit()
     {
@@ -318,15 +469,26 @@ namespace ZoomImage
 
       Source = null; //clear source URL since we're loading directly from a Stream
 
-      imgDeepZoom.Visibility = Visibility.Collapsed;
-      imgDeepZoom.Source = null;
-
       BitmapImage bitmap = new BitmapImage();
       bitmap.SetSource(stream);
       imgPlain.Source = bitmap;
 
+      ShowPlainImage();
+    }
+
+    private void ShowPlainImage()
+    {
+      imgDeepZoom.Visibility = Visibility.Collapsed;
+      imgDeepZoom.Source = null;
       scrollPlainZoom.Visibility = Visibility.Visible; //show the ScrollViewer parent of ZoomAndPan control that hosts the classic Image control
-    } 
+    }
+
+    private void ShowDeepZoomImage()
+    {
+      scrollPlainZoom.Visibility = Visibility.Collapsed; //hide the ScrollViewer parent of ZoomAndPan control that hosts the classic Image control
+      imgPlain.Source = null;
+      imgDeepZoom.Visibility = Visibility.Visible;
+    }
    
     #endregion
 

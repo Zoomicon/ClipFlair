@@ -1,7 +1,7 @@
 ﻿<!--
 Project: ClipFlair (http://ClipFlair.codeplex.com)
 Filename: ImageWindow.xaml
-Version: 20140311
+Version: 20140619
 -->
 
 <clipflair:BaseWindow x:Class="ClipFlair.Windows.ImageWindow"
@@ -32,7 +32,9 @@ Version: 20140311
     Background="Transparent"
     
     Source="{Binding Source, Mode=Oneway}"
+    CameraSourceUsed="{Binding CameraSourceUsed, Mode=TwoWay}"
     ContentZoomToFit="{Binding ContentZoomToFit, Mode=TwoWay}"
+    RTL="{Binding RTL, Mode=TwoWay}"
     />
   
   <!--</clipflair:BaseWindow.FrontContent>-->
