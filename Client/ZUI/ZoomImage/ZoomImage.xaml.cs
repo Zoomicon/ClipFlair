@@ -1,5 +1,5 @@
 ﻿//Filename: ZoomImage.xaml.cs
-//Version: 20140619
+//Version: 20140622
 //Author: George Birbilis (http://zoomicon.com)
 
 //Based on http://samples.msdn.microsoft.com/Silverlight/SampleBrowser DeepZoom samples
@@ -37,7 +37,7 @@ namespace ZoomImage
     VideoBrush videoBrush; //=null
 
     #endregion
-    
+
     #region --- Initialization ---
 
     public ZoomImage()
@@ -197,7 +197,7 @@ namespace ZoomImage
     }
 
     #endregion
-    
+
     #region Source
 
     /// <summary>
@@ -285,7 +285,7 @@ namespace ZoomImage
 
     #endregion
 
-    #region --- Methods ---
+    #region --- Video Source ---
 
     private void StartVideoCapture()
     {
@@ -325,43 +325,20 @@ namespace ZoomImage
     private void StopVideoCapture()
     {
       try
-      { 
+      {
         videoCaptureSource.Stop();
       }
-      catch {
+      catch
+      {
         //NOP
       }
       imgPlain.Visibility = Visibility.Visible;
       ApplySource(Source); //reapply existing Source uri
     }
 
-    private void ApplySource(Uri newSource)
-    {
-      if (newSource == null)
-      {
-        imgPlain.Source = null;
-        imgDeepZoom.Source = null;
-        ShowPlainImage(); //show the plain image control even with empty image
-        return;
-      }
+    #endregion
 
-      Filename = null;
-      ImageData = null;
-
-      Uri uri = PreprocessUri(newSource);
-      if (uri.ToString().EndsWith(new string[] { ".dzi", ".dzc", ".xml" }, StringComparison.OrdinalIgnoreCase)) //.DZI or .XML for DeepZoom Image and .DZC or .XML for DeepZoom Image Collection (there's also .DZIZ for zipped package with assets, but should be only for authoring/editing tools use)
-      {
-        imgDeepZoom.Source = new DeepZoomImageTileSource(uri);
-        ShowDeepZoomImage();
-      }
-      else //Plain image (no DeepZoom one)
-      {
-        imgPlain.Source = new BitmapImage(uri);
-        ShowPlainImage();
-      }
-
-      //CheckZoomToFit(); //not calling this here, since it will be called by "control_ImageOpenSucceeded" when image has opened (which will be called for local images too)
-    }
+    #region --- Zoom ---
 
     public void CheckZoomToFit()
     {
@@ -395,17 +372,21 @@ namespace ZoomImage
       if (PlainZoomMode) imgPlainZoom.ZoomOut(zoomStep);
       else if (DeepZoomMode) imgDeepZoom.ZoomAboutLogicalPoint(1 - zoomStep, 0.5, 0.5); //using same ZoomFactorStep as ZoomAndPan control (imgPlainZoom) uses
     }
-      
+
     private void Zoom(double zoomStep, Point elementFocusPoint)
     {
-      if (PlainZoomMode) 
+      if (PlainZoomMode)
         imgPlainZoom.ZoomAboutPoint(imgPlainZoom.ContentScale + zoomStep, imgPlainZoom.ElementToLogicalPoint(elementFocusPoint)); //NOTE: this expects to get the new zoom, not a delta
       else if (DeepZoomMode)
         imgDeepZoom.ZoomAboutLogicalPoint(1 + zoomStep, imgDeepZoom.ElementToLogicalPoint(elementFocusPoint)); //NOTE: this expects a delta?
     }
 
+    #endregion
+
+    #region --- Load ---
+
     #region Uri filters
-    
+
     private Uri PreprocessUri(Uri uri)
     {
       uri = ZoomItUriToDeepZoomImageUri(uri);
@@ -433,6 +414,34 @@ namespace ZoomImage
 
     #endregion
 
+    private void ApplySource(Uri newSource)
+    {
+      if (newSource == null)
+      {
+        imgPlain.Source = null;
+        imgDeepZoom.Source = null;
+        ShowPlainImage(); //show the plain image control even with empty image
+        return;
+      }
+
+      Filename = null;
+      ImageData = null;
+
+      Uri uri = PreprocessUri(newSource);
+      if (uri.ToString().EndsWith(new string[] { ".dzi", ".dzc", ".xml" }, StringComparison.OrdinalIgnoreCase)) //.DZI or .XML for DeepZoom Image and .DZC or .XML for DeepZoom Image Collection (there's also .DZIZ for zipped package with assets, but should be only for authoring/editing tools use)
+      {
+        imgDeepZoom.Source = new DeepZoomImageTileSource(uri);
+        ShowDeepZoomImage();
+      }
+      else //Plain image (no DeepZoom one)
+      {
+        imgPlain.Source = new BitmapImage(uri);
+        ShowPlainImage();
+      }
+
+      //CheckZoomToFit(); //not calling this here, since it will be called by "control_ImageOpenSucceeded" when image has opened (which will be called for local images too)
+    }
+
     public bool OpenLocalFile() //Note: this has to be initiated by user action (Silverlight security)
     {
       try
@@ -444,7 +453,7 @@ namespace ZoomImage
         };
 
         if (dlg.ShowDialog() == true) //TODO: find the parent window
-        { 
+        {
           Open(dlg.File);
           return true;
         }
@@ -476,6 +485,10 @@ namespace ZoomImage
       ShowPlainImage();
     }
 
+    #endregion
+
+    #region --- Display ---
+
     private void ShowPlainImage()
     {
       imgDeepZoom.Visibility = Visibility.Collapsed;
@@ -489,14 +502,14 @@ namespace ZoomImage
       imgPlain.Source = null;
       imgDeepZoom.Visibility = Visibility.Visible;
     }
-   
+
     #endregion
 
     #region --- Events ---
 
     private void UserControl_MouseEnter(object sender, MouseEventArgs e)
     {
-      zoomControls.Visibility = (ZoomControlsAvailable)? Visibility.Visible : Visibility.Collapsed; //show zoom controls at mouse enter if ZoomControlsAvailable is true
+      zoomControls.Visibility = (ZoomControlsAvailable) ? Visibility.Visible : Visibility.Collapsed; //show zoom controls at mouse enter if ZoomControlsAvailable is true
     }
 
     private void UserControl_MouseLeave(object sender, MouseEventArgs e)
@@ -524,36 +537,36 @@ namespace ZoomImage
       e.Handled = true;
       Zoom(ZoomStep * Math.Sign(e.Delta), e.GetPosition((UIElement)sender));
     }
-  
+
     Point lastMouseLogicalPos = new Point();
     Point lastMouseViewPort = new Point();
     bool duringDrag = false;
-  
+
     private void control_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
     {
-      #if SILVERLIGHT
+#if SILVERLIGHT
       if (e.ClickCount == 2)
       {
         control_MouseLeftDoubleClick(sender, e); //called function will handle the event
         return;
       }
-      #endif
+#endif
 
       if ((Keyboard.Modifiers & ModifierKeys.Alt) != 0)
-        {
-          e.Handled = true;
-          Zoom(ZoomStep, e.GetPosition((UIElement)sender));
-        }
-        else
-        {
-          duringDrag = true;
+      {
+        e.Handled = true;
+        Zoom(ZoomStep, e.GetPosition((UIElement)sender));
+      }
+      else
+      {
+        duringDrag = true;
 
-          if (!DeepZoomMode) return;
-          
-          e.Handled = true;
-          lastMouseLogicalPos = e.GetPosition(imgDeepZoom);
-          lastMouseViewPort = imgDeepZoom.ViewportOrigin;
-        }
+        if (!DeepZoomMode) return;
+
+        e.Handled = true;
+        lastMouseLogicalPos = e.GetPosition(imgDeepZoom);
+        lastMouseViewPort = imgDeepZoom.ViewportOrigin;
+      }
     }
 
     private void control_MouseLeftDoubleClick(object sender, MouseButtonEventArgs e)
@@ -670,7 +683,7 @@ namespace ZoomImage
     }
 
     #endregion
-    
+
     #endregion
 
   }
