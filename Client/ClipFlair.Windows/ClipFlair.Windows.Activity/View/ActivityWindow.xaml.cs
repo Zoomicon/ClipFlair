@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: ActivityWindow.xaml.cs
-//Version: 20140616
+//Version: 20140623
 
 using ClipFlair.UI.Dialogs;
 using ClipFlair.Windows;
@@ -153,6 +153,19 @@ namespace ClipFlair.Windows
     public override void LoadContent(Stream stream, string filename)
     {
       LoadOptions(stream); //ActivityWindow's "content" is a .clipflair/.clipflair.zip file
+    }
+
+    public override void LoadOptions(Stream stream, string zipFolder = "") //doesn't close stream
+    {
+      bool oldToolbarVisible = ActivityView.ToolbarVisible;
+      try
+      {
+        base.LoadOptions(stream, zipFolder);
+      }
+      finally
+      {
+        ActivityView.ToolbarVisible &= oldToolbarVisible; //show the activity toolbar only if it was already visible and the loaded state specifies it as visible too
+      }
     }
 
     public override void LoadOptions(IEnumerable<FileInfo> files) //descendents that can handle multiple files should override this
