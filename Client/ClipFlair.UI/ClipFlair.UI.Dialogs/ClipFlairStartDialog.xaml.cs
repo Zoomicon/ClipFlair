@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: StartDialog.xaml.cs
-//Version: 20140612
+//Version: 20140623
 
 using System;
 using System.ComponentModel;
@@ -53,6 +53,7 @@ namespace ClipFlair.UI.Dialogs
       btnOpenImageGallery.Visibility =
       btnHelpTutorialActivity.Visibility =
       btnHelpTutorialVideos.Visibility =
+      btnHelpManual.Visibility =
       btnHelpFAQ.Visibility =
       btnHelpContact.Visibility = Visibility.Collapsed;
     }
@@ -203,6 +204,7 @@ namespace ClipFlair.UI.Dialogs
 
       btnHelpTutorialActivity.Visibility =
       btnHelpTutorialVideos.Visibility = 
+      btnHelpManual.Visibility =
       btnHelpFAQ.Visibility = 
       btnHelpContact.Visibility = Visibility.Visible;
     }
@@ -223,6 +225,14 @@ namespace ClipFlair.UI.Dialogs
         Nop(); //Close();
     }
 
+    private void btnHelpManual_Click(object sender, System.Windows.RoutedEventArgs e)
+    {
+      Hide2ndLevelButtons();
+
+      if (Actions != null && Actions.HelpManual())
+        Nop(); //Close();
+    }
+    
     private void btnHelpFAQ_Click(object sender, System.Windows.RoutedEventArgs e)
     {
       Hide2ndLevelButtons();

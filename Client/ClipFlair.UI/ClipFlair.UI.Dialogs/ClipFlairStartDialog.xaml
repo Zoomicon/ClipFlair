@@ -1,7 +1,7 @@
 ﻿<!--
 Project: ClipFlair (http://ClipFlair.codeplex.com)
 Filename: StartDialog.xaml
-Version: 20140610
+Version: 20140623
 -->
 
 <controls:ChildWindow 
@@ -82,8 +82,9 @@ Version: 20140610
     <Button Grid.Row="2" Grid.Column="6" Template="{StaticResource OpenImageGallery.xaml}" Name="btnOpenImageGallery" Click="btnOpenImageGallery_Click" />
 
     <!-- Help -->
-    <Button Grid.Row="2" Grid.Column="4" Template="{StaticResource HelpTutorialActivity.xaml}" Name="btnHelpTutorialActivity" Click="btnHelpTutorialActivity_Click" />
-    <Button Grid.Row="2" Grid.Column="5" Template="{StaticResource HelpTutorialVideos.xaml}" Name="btnHelpTutorialVideos" Click="btnHelpTutorialVideos_Click" />
+    <Button Grid.Row="2" Grid.Column="3" Template="{StaticResource HelpTutorialActivity.xaml}" Name="btnHelpTutorialActivity" Click="btnHelpTutorialActivity_Click" />
+    <Button Grid.Row="2" Grid.Column="4" Template="{StaticResource HelpTutorialVideos.xaml}" Name="btnHelpTutorialVideos" Click="btnHelpTutorialVideos_Click" />
+    <Button Grid.Row="2" Grid.Column="5" Template="{StaticResource HelpManual.xaml}" Name="btnHelpManual" Click="btnHelpManual_Click" />
     <Button Grid.Row="2" Grid.Column="6" Template="{StaticResource HelpFAQ.xaml}" Name="btnHelpFAQ" Click="btnHelpFAQ_Click" />
     <Button Grid.Row="2" Grid.Column="7" Template="{StaticResource HelpContact.xaml}" Name="btnHelpContact" Click="btnHelpContact_Click" />
 
