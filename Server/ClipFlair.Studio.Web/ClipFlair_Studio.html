@@ -3,7 +3,7 @@
 <!--
 Project: ClipFlair (http://ClipFlair.codeplex.com)
 Filename: ClipFlair_Studio.html
-Version: 20140615
+Version: 20140623
 -->
 
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -107,8 +107,12 @@ Version: 20140615
 
     function activityWindow() {
       var control = silverlightControl();
-      if ( (control != null) && (control.content != null) )
-        return control.content.activityWindow;
+      if ((control != null) && (control.content != null))
+        try {
+          return control.content.activityWindow;
+        } catch (err) {
+          return null; //in case of error return null
+        }
       else
         return null; //need this so that it doesn't return undefined
     }
