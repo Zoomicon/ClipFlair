@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: ActivityContainer.xaml.cs
-//Version: 20140618
+//Version: 20140623
 
 //TODO: add ContentPartsCloseable property
 //TODO: add ContentPartsZoomable property
@@ -36,6 +36,7 @@ namespace ClipFlair.Windows
     public const string URL_PROJECT_HOME = "http://ClipFlair.net";
     public const string URL_HELP_TUTORIAL_ACTIVITY = ""; //TODO: use in HelpTutorialActivity method
     public const string URL_HELP_TUTORIAL_VIDEOS = "http://social.clipflair.net/Pages/Tutorials.aspx";
+    public const string URL_HELP_MANUAL = "http://social.clipflair.net/help/manual.aspx";
     public const string URL_HELP_FAQ = "http://social.clipflair.net/help/faq.aspx";
     public const string URL_HELP_CONTACT = "http://social.clipflair.net/MonoX/Pages/Contact.aspx";
     public const string URL_SOCIAL = "http://social.clipflair.net";
@@ -719,6 +720,11 @@ namespace ClipFlair.Windows
     public bool HelpTutorialVideos()
     {
       return NavigateTo(URL_HELP_TUTORIAL_VIDEOS);
+    }
+
+    public bool HelpManual()
+    {
+      return NavigateTo(URL_HELP_MANUAL);
     }
 
     public bool HelpFAQ()
