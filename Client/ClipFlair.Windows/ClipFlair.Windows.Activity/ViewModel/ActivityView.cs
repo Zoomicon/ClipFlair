@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: ActivityView.cs
-//Version: 20131213
+//Version: 20140705
 
 //TODO: add "Inertia" property
 
@@ -102,7 +102,7 @@ namespace ClipFlair.Windows.Views
         {
           viewWidth = value;
           RaisePropertyChanged(IActivityProperties.PropertyViewWidth);
-          //Dirty = true; //not considering zooming in-out to be an editing action\
+          //Dirty = true; //not considering zooming in-out to be an editing action //NOTE: THIS PROPERTY IS CURRENTLY READ-ONLY IN THE UI
         }
       }
     }
@@ -118,7 +118,7 @@ namespace ClipFlair.Windows.Views
         {
           viewHeight = value;
           RaisePropertyChanged(IActivityProperties.PropertyViewHeight);
-          //Dirty = true; //not considering zooming in-out to be an editing action\
+          //Dirty = true; //not considering zooming in-out to be an editing action //NOTE: THIS PROPERTY IS CURRENTLY READ-ONLY IN THE UI
         }
       }
     }
@@ -134,7 +134,8 @@ namespace ClipFlair.Windows.Views
         {
           contentZoom = value;
           RaisePropertyChanged(IActivityProperties.PropertyContentZoom);
-          //Dirty = true; //not considering zooming in-out to be an editing action\
+          if (!ContentZoomToFit)
+            Dirty = true; //not considering zooming in-out to be an editing action while ContentZoomToFit is enabled
         }
       }
     }
