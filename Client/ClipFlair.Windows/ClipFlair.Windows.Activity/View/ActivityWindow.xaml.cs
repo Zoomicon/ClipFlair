@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: ActivityWindow.xaml.cs
-//Version: 20140623
+//Version: 20140705
 
 using ClipFlair.UI.Dialogs;
 using ClipFlair.Windows;
@@ -43,11 +43,11 @@ namespace ClipFlair.Windows
     #region --- Constants ---
 
     private const string DEFAULT_ACTIVITY = "http://gallery.clipflair.net/activity/Tutorial.clipflair"; //TODO: change this with a list of entries loaded from the web (and have a cached one in app config for offline scenaria or fetched/cached during oob install) //MAYBE COULD HAVE A DEFAULT SMALL ONE IN THE XAP
-    private const string CLIPFLAIR_FEEDBACK = "http://bit.ly/YGBPbD"; //http://social.clipflair.net/MonoX/Pages/SocialNetworking/Discussion/dboard/O6PslGovYUqUraEHARCOVw/
+    //private const string CLIPFLAIR_FEEDBACK = "http://bit.ly/YGBPbD"; //http://social.clipflair.net/MonoX/Pages/SocialNetworking/Discussion/dboard/O6PslGovYUqUraEHARCOVw/
 
     #endregion
 
-    #region --- Constructor ---
+    #region --- Initialization ---
 
     public ActivityWindow()
     {
@@ -130,7 +130,7 @@ namespace ClipFlair.Windows
 
     #endregion
 
-    #region --- Load / Save Options ---
+    #region --- Load / Save ---
 
     public override void ShowLoadURLDialog(string loadItemTitle = "ClipFlair Activity")
     {
@@ -267,23 +267,38 @@ namespace ClipFlair.Windows
         SaveWindow(window, zip, zipFolder);
     }
 
+    private void activity_LoadURLClick(object sender, RoutedEventArgs e) //assinged to ActivityContainer object's respective event in the XAML
+    {
+      ShowLoadURLDialog("ClipFlair Activity"); //there is an issue with overriden methods using the parent method initializer for default parameters, so have to explicitly pass the parameter here
+    }
+
+    private void activity_LoadClick(object sender, RoutedEventArgs e) //assinged to ActivityContainer object's respective event in the XAML
+    {
+      ShowLoadDialog();
+    }
+
+    private void activity_SaveClick(object sender, RoutedEventArgs e) //assinged to ActivityContainer object's respective event in the XAML
+    {
+      ShowSaveDialog();
+    }
+
     #endregion
 
-    #region --- Methods ---
+    #region --- ZoomToFit ---
 
     public void CheckZoomToFit()
     {
       activity.CheckZoomToFit();
     }
 
-    public void SendFeedback()
+    private void BaseWindow_SizeChanged(object sender, SizeChangedEventArgs e)
     {
-      BrowserDialog.Show(new Uri(CLIPFLAIR_FEEDBACK));
+      CheckZoomToFit();
     }
 
     #endregion
-
-    #region --- Events ---
+    
+    #region --- Closing ---
 
     protected override void OnClosing(CancelEventArgs e)
     {
@@ -305,27 +320,14 @@ namespace ClipFlair.Windows
       View = null; //clearing the view to release property change event handler //must not do this at class destructor, else may get cross-thread-access exceptions //this also clears the View for nested ActivityContainer
     }
 
-    private void activity_LoadURLClick(object sender, RoutedEventArgs e)
-    {
-      ShowLoadURLDialog("ClipFlair Activity"); //there is a bug with overriden methods using the parent method initializer for default parameters, so have to explicitly pass the parameter here
-    }
-
-    private void activity_LoadClick(object sender, RoutedEventArgs e)
-    {
-      ShowLoadDialog();
-    }
-
-    private void activity_SaveClick(object sender, RoutedEventArgs e)
-    {
-      ShowSaveDialog();
-    }
-
-    private void BaseWindow_SizeChanged(object sender, SizeChangedEventArgs e)
-    {
-      CheckZoomToFit();
-    }
-    
     #endregion
+    
+    /* //not used
+    public void SendFeedback()
+    {
+      BrowserDialog.Show(new Uri(CLIPFLAIR_FEEDBACK));
+    }
+    */
 
   }
 
