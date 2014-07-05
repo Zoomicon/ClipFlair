@@ -1,4 +1,6 @@
-﻿using SilverFlow.Controls.Extensions;
+﻿//Version: 20140705
+
+using SilverFlow.Controls.Extensions;
 using SilverFlow.Geometry;
 using System;
 using System.Collections.Generic;
@@ -15,7 +17,7 @@ namespace SilverFlow.Controls.Controllers
         private const double SCREEN_DPI = 96; //THIS SHOULDN'T BE HARDCODED
         private const double INCH = 0.0254;
         private const double GRAVITATIONAL_ACCELERATION = 9.81;
-        private const double COEFFICIENT_OF_SLIDING_FRICTION = 0.015;
+        private const double COEFFICIENT_OF_SLIDING_FRICTION = 5.015; //TODO: This should be a window parameter (and also a container parameter to apply to all its windows) - 0.015 was the original value but was going to fast, especially when used with zooming container (FloatingWindowHostZUI) - should also support 0 for no intertia
         private const double MIN_DELTA = 0.001;
         private const double DELAY_BEFORE_MOUSE_UP_IN_MILLISECONDS = 100;
         private const int MAX_LAST_POINTS_TO_COUNT = 4;
