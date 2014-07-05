@@ -1,7 +1,7 @@
 ﻿<!--
 Project: ClipFlair (http://ClipFlair.codeplex.com)
 Filename: StartDialog.xaml
-Version: 20140623
+Version: 20140705
 -->
 
 <controls:ChildWindow 
@@ -29,6 +29,8 @@ Version: 20140623
 
     </ResourceDictionary>
   </controls:ChildWindow.Resources>
+  
+  <Viewbox>
 
   <Grid Margin="20">
     <Grid.RowDefinitions>
@@ -90,4 +92,6 @@ Version: 20140623
 
   </Grid>
 
+  </Viewbox>
+  
 </controls:ChildWindow>

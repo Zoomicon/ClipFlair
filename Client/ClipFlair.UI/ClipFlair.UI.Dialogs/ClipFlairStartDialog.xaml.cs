@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: StartDialog.xaml.cs
-//Version: 20140623
+//Version: 20140705
 
 using System;
 using System.ComponentModel;
@@ -24,6 +24,20 @@ namespace ClipFlair.UI.Dialogs
     #endregion
     
     #region --- Methods ---
+
+    /*
+    public override void OnApplyTemplate()
+    {
+      base.OnApplyTemplate();
+
+      //ChildWindow template part names can be found at: http://msdn.microsoft.com/en-us/library/dd833070(v=vs.95).aspx
+      FrameworkElement contentRoot = GetTemplateChild("ContentRoot") as FrameworkElement;
+
+      //make the ChildWindow content take up the whole ChildWindow area
+      contentRoot.HorizontalAlignment = HorizontalAlignment.Stretch;
+      contentRoot.VerticalAlignment = VerticalAlignment.Stretch;
+    }
+    */
 
     public static void Show(IClipFlairStartActions actions, EventHandler<CancelEventArgs> closingHandler = null)
     {
