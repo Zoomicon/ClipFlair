@@ -1,9 +1,10 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
-//Filename: CaptionElementExt.cs
-//Version: 20140328
+//Filename: CaptionElementExt_Audio.cs
+//Version: 20140706
 
 using AudioLib;
 
+using ClipFlair.AudioRecorder;
 using Microsoft.SilverlightMediaFramework.Core.Accessibility.Captions;
 
 using System;
@@ -13,9 +14,9 @@ namespace ClipFlair.CaptionsGrid
 {
 
   /// <summary>
-  /// Audio helper class
+  /// Audio extensions class for CaptionElementExt
   /// </summary>
-  public static class CaptionAudioHelper
+  public static class CaptionElementExt_Audio
   {
 
     public static bool HasAudio(this CaptionElement caption)
@@ -39,7 +40,25 @@ namespace ClipFlair.CaptionsGrid
       return result;
     }
 
-    public static void SaveAudio(CaptionRegion captions, Stream output)
+    public static void LoadAudio(this CaptionElement caption, Stream stream) //does not close stream
+    {
+      CaptionElementExt captionExt = caption as CaptionElementExt;
+      if (captionExt == null) return;
+
+      MemoryStream buffer = new MemoryStream();
+      AudioRecorderView.LoadAudio(stream, buffer); //keep load logic encapsulated so that we can add decoding/decompression there
+      captionExt.Audio = buffer;
+    }
+
+    public static void SaveAudio(this CaptionElement caption, Stream stream) //does not close stream
+    {
+      CaptionElementExt captionExt = caption as CaptionElementExt;
+      if (captionExt == null) return;
+
+      AudioRecorderView.SaveAudio(stream, captionExt.Audio); //keep save logic encapsulated so that we can add encoding/compression there
+   }
+
+    public static void SaveMergedAudio(this CaptionRegion captions, Stream output)
     {
       CaptionElement lastCaptionWithAudio = captions.GetLastCaptionWithAudio();
       if (lastCaptionWithAudio == null)
