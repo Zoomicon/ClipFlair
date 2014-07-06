@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: CaptionElementExt.cs
-//Version: 20140327
+//Version: 20140706
 
 using Microsoft.SilverlightMediaFramework.Core.Accessibility.Captions;
 using System;
@@ -14,7 +14,7 @@ namespace ClipFlair.CaptionsGrid
   /// <summary>
   /// Represents an extended closed caption
   /// </summary>
-  public class CaptionElementExt : CaptionElement
+  public class CaptionElementExt : CaptionElement, ICaptionElementExtraData
   {
 
     #region --- Constants ---
@@ -40,9 +40,8 @@ namespace ClipFlair.CaptionsGrid
     private string _roleSeparator = DEFAULT_ROLE_SEPARATOR;
     private string _role; //=null
     private string _caption; //=null
-    private Stream _audio; //=null 
-    private string _comments; //=null
-    private bool _rtl; //=false
+    private Stream _audio; //=null
+    private CaptionElementExtraData _extraData = new CaptionElementExtraData();
 
     #endregion
 
@@ -287,18 +286,38 @@ namespace ClipFlair.CaptionsGrid
       }
     }
 
+    #region Extra Data
+    
+    /// <summary>
+    /// Gets or sets the extra data for this marker item.
+    /// </summary>
+    [ScriptableMember]
+    public CaptionElementExtraData ExtraData
+    {
+      get { return _extraData; }
+      set
+      {
+        if (_extraData != value)
+        {
+          _extraData = value;
+          NotifyPropertyChanged(PROPERTY_COMMENTS);
+          NotifyPropertyChanged(PROPERTY_RTL);
+        }
+      }
+    }
+    
     /// <summary>
     /// Gets or sets the comments for this marker item.
     /// </summary>
     [ScriptableMember]
     public string Comments
     {
-      get { return _comments; }
+      get { return _extraData.Comments; }
       set
       {
-        if (_comments != value)
+        if (_extraData.Comments != value)
         {
-          _comments = value;
+          _extraData.Comments = value;
           NotifyPropertyChanged(PROPERTY_COMMENTS);
         }
       }
@@ -310,16 +329,18 @@ namespace ClipFlair.CaptionsGrid
     [ScriptableMember]
     public bool RTL
     {
-      get { return _rtl; }
+      get { return _extraData.RTL; }
       set
       {
-        if (_rtl != value)
+        if (_extraData.RTL != value)
         {
-          _rtl = value;
+          _extraData.RTL = value;
           NotifyPropertyChanged(PROPERTY_RTL);
         }
       }
     }
+
+    #endregion
 
     #endregion
 

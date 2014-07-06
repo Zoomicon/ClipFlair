@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: CaptionsGrid.xaml.cs
-//Version: 20140613
+//Version: 20140706
 
 using ClipFlair.AudioRecorder;
 using ClipFlair.CaptionsGrid.Resources;
@@ -939,29 +939,6 @@ namespace ClipFlair.CaptionsGrid
       writer.WriteCaptions(Captions, stream, Encoding.UTF8);
     }
 
-    public static void LoadAudio(CaptionElement caption, Stream stream)
-    {
-      CaptionElementExt captionExt = caption as CaptionElementExt;
-      if (captionExt == null) return;
-
-      MemoryStream buffer = new MemoryStream();
-      AudioRecorderView.LoadAudio(stream, buffer); //keep load logic encapsulated so that we can add decoding/decompression there
-      captionExt.Audio = buffer;
-    }
-
-    public static void SaveAudio(CaptionElement caption, Stream stream)
-    {
-      CaptionElementExt captionExt = caption as CaptionElementExt;
-      if (captionExt == null) return;
-
-      AudioRecorderView.SaveAudio(stream, captionExt.Audio); //keep save logic encapsulated so that we can add encoding/compression there
-    }
-
-    public static void SaveAudio(CaptionRegion captions, Stream stream) //does not flush and close stream
-    {
-      CaptionAudioHelper.SaveAudio(captions, stream);
-    }
-
     private void btnSaveMergedAudio_Click(object sender, RoutedEventArgs e)
     {
       SaveFileDialog saveFileDialog = new SaveFileDialog()
@@ -972,7 +949,7 @@ namespace ClipFlair.CaptionsGrid
       if (saveFileDialog.ShowDialog() == true)
         using (Stream stream = saveFileDialog.OpenFile())
         {
-          SaveAudio(Captions, stream);
+          Captions.SaveMergedAudio(stream);
           stream.Flush(); //write any buffers to file
         }
     }

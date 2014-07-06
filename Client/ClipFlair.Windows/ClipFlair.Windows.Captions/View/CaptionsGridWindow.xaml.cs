@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: CaptionsGridWindow.xaml.cs
-//Version: 20140616
+//Version: 20140706
 
 //TODO: add Source property to CaptionsGrid control and use data-binding to bind it to CaptionsGridView's Source property
 
@@ -68,7 +68,28 @@ namespace ClipFlair.Windows
     }
     
     #endregion
+
+    #region --- Caption specific file paths for saved state ---
+
+    private string CaptionSpecificPath(CaptionElement caption, string pathPrefix, string pathSuffix)
+    {
+      string startTime = caption.BeginText ?? "00:00:00"; //if null using "00:00:00"
+      string endTime = caption.EndText ?? "00:00:00"; //if null using "00:00:00"
+      return pathPrefix + startTime + "-" + endTime + pathSuffix;
+    }
+
+    private string CaptionExtraDataPath(CaptionElement caption)
+    {
+      return CaptionSpecificPath(caption, "/ExtraData/", ".xml");
+    }
     
+    private string CaptionAudioPath(CaptionElement caption)
+    {
+      return CaptionSpecificPath(caption, "/Audio/", ".wav"); //TODO: need to update this if storing to formats other than WAV in the future
+    }
+
+    #endregion
+
     #region --- Load saved state ---
 
     public override void LoadOptions(ZipFile zip, string zipFolder = "")
@@ -76,8 +97,13 @@ namespace ClipFlair.Windows
       base.LoadOptions(zip, zipFolder);
 
       CaptionRegion newCaptions = new CaptionRegion();
+
+      //load captions
       LoadCaptions(newCaptions, zip, zipFolder);
-      LoadAudio(newCaptions, zip, zipFolder);
+      LoadCaptionsExtraData(newCaptions, zip, zipFolder); //load Comments, RTL, etc. fields that can't be stored in SRT file
+
+      //load revoicing audio
+      LoadCaptionsAudio(newCaptions, zip, zipFolder);
 
       CaptionsGridView.Captions = newCaptions; //TODO: see why this is needed (two-way data-binding doesn't seem to work?)
     }
@@ -89,20 +115,42 @@ namespace ClipFlair.Windows
           using (Stream zipStream = captionsEntry.OpenReader()) //closing stream when done
             gridCaptions.LoadCaptions(captions, zipStream, captionsEntry.FileName); //merge multiple embedded caption files (if user added them by hand to the saved state file, since we save only DEFAULT_CAPTIONS file, not multiple caption files)
     }
-    
-    public void LoadAudio(CaptionRegion captions, ZipFile zip, string zipFolder = "")
+
+    #region Caption Extra Data
+
+    public void LoadCaptionsExtraData(CaptionRegion captions, ZipFile zip, string zipFolder = "")
+    {
+      //load any caption extra data associated to each caption
+      foreach (CaptionElement caption in captions.Children)
+        LoadCaptionExtraData(caption, zip, zipFolder);
+    }
+
+    public void LoadCaptionExtraData(CaptionElement caption, ZipFile zip, string zipFolder = "")
+    {
+      ZipEntry entry = zip[zipFolder + CaptionExtraDataPath(caption)];
+      if (entry != null)
+        caption.LoadExtraData(entry.OpenReader());
+    }
+
+    #endregion
+
+    #region Caption Audio
+
+    public void LoadCaptionsAudio(CaptionRegion captions, ZipFile zip, string zipFolder = "")
     {
       //load any audio associated to each caption
       foreach (CaptionElement caption in captions.Children)
-        LoadAudio(caption, zip, zipFolder);
+        LoadCaptionAudio(caption, zip, zipFolder);
     }
 
-    public void LoadAudio(CaptionElement caption, ZipFile zip, string zipFolder = "")
+    public void LoadCaptionAudio(CaptionElement caption, ZipFile zip, string zipFolder = "")
     {
-      ZipEntry entry = zip[zipFolder + AudioFilename(caption)];
+      ZipEntry entry = zip[zipFolder + CaptionAudioPath(caption)];
       if (entry != null)
-        CaptionsGrid.CaptionsGrid.LoadAudio(caption, entry.OpenReader());
+        caption.LoadAudio(entry.OpenReader());
     }
+
+    #endregion
 
     #endregion
 
@@ -113,11 +161,17 @@ namespace ClipFlair.Windows
       base.SaveOptions(zip, zipFolder);
 
       //save captions
-      zip.AddEntry(zipFolder + "/" + DEFAULT_CAPTIONS, SaveCaptions); //SaveCaptions is callback method //saving even when no captions are available as a placeholder for user to edit manually
+      SaveCaptions(CaptionsGridView.Captions, zip, zipFolder);
+      SaveCaptionsExtraData(CaptionsGridView.Captions, zip, zipFolder);
 
       //save revoicing audio
       //if (CaptionsGridView.AudioVisible || CaptionsGridView.SaveInvisibleAudio) //TODO: removed, need to fix this (maybe with separate Audio property or something?), since currently Captions is synced between components and if only some save the audio, it may be lost at load, depending on the load order of those components by their parent (activity)
-      SaveAudio(CaptionsGridView.Captions, zip, zipFolder); //...maybe if captions property is bound to a parent (activity), save the captions/audio there once
+      SaveCaptionsAudio(CaptionsGridView.Captions, zip, zipFolder); //...maybe if captions property is bound to a parent (activity), save the captions/audio there once
+    }
+
+    private void SaveCaptions(CaptionRegion captions, ZipFile zip, string zipFolder = "")
+    {
+      zip.AddEntry(zipFolder + "/" + DEFAULT_CAPTIONS, SaveCaptions); //SaveCaptions(string, Stream) is callback method //saving even when no captions are available as a placeholder for user to edit manually
     }
 
     public void SaveCaptions(string entryName, Stream stream) //callback
@@ -125,26 +179,41 @@ namespace ClipFlair.Windows
       gridCaptions.SaveCaptions(stream, entryName);
     }
 
-    public void SaveAudio(CaptionRegion captions, ZipFile zip, string zipFolder = "")
+    #region Caption Extra Data
+
+    public void SaveCaptionsExtraData(CaptionRegion captions, ZipFile zip, string zipFolder = "")
     {
-      foreach (CaptionElement caption in captions.Children) //save any audio associated to each caption
-        SaveAudio(caption, zip, zipFolder);
+      foreach (CaptionElement caption in captions.Children) //save any ExtraData associated to each caption
+        SaveCaptionExtraData(caption, zip, zipFolder);
     }
 
-    public void SaveAudio(CaptionElement caption, ZipFile zip, string zipFolder = "")
+    public void SaveCaptionExtraData(CaptionElement caption, ZipFile zip, string zipFolder = "")
+    {
+      if ((caption != null) && caption.HasExtraData())
+        zip.AddEntry(
+          zipFolder + CaptionExtraDataPath(caption),
+          new WriteDelegate((entryName, stream) => { caption.SaveExtraData(stream); }) );
+    }
+
+    #endregion
+    
+    #region Caption Audio
+
+    public void SaveCaptionsAudio(CaptionRegion captions, ZipFile zip, string zipFolder = "")
+    {
+      foreach (CaptionElement caption in captions.Children) //save any audio associated to each caption
+        SaveCaptionAudio(caption, zip, zipFolder);
+    }
+
+    public void SaveCaptionAudio(CaptionElement caption, ZipFile zip, string zipFolder = "")
     {
       if ((caption != null) && caption.HasAudio())
         zip.AddEntry(
-          zipFolder + AudioFilename(caption),
-          new WriteDelegate((entryName, stream) => { CaptionsGrid.CaptionsGrid.SaveAudio(caption, stream); }) );
+          zipFolder + CaptionAudioPath(caption),
+          new WriteDelegate((entryName, stream) => { caption.SaveAudio(stream); }) );
     }
 
-    private string AudioFilename(CaptionElement caption)
-    {
-      string startTime = caption.BeginText ?? "00:00:00"; //if null using "00:00:00"
-      string endTime = caption.EndText ?? "00:00:00"; //if null using "00:00:00"
-      return "/Audio/" + startTime  + "-" + endTime + ".wav";
-    }
+    #endregion
 
     #endregion
 
