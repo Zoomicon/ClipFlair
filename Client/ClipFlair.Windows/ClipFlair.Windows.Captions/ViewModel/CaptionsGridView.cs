@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: CaptionsGridView.cs
-//Version: 20140326
+//Version: 20140707
 
 using Microsoft.SilverlightMediaFramework.Core.Accessibility.Captions;
 
@@ -37,7 +37,8 @@ namespace ClipFlair.Windows.Views
     private bool wpmVisible;
     private bool audioVisible;
     private bool commentsVisible;
-    private bool saveInvisibleAudio;
+    private bool commentsAudioVisible;
+    //private bool saveInvisibleAudio;
 
     #endregion
 
@@ -173,7 +174,6 @@ namespace ClipFlair.Windows.Views
       }
     }
 
-
     [DataMember]
     [DefaultValue(CaptionsGridDefaults.DefaultRTLVisible)]
     public bool RTLVisible
@@ -270,7 +270,24 @@ namespace ClipFlair.Windows.Views
         }
       }
     }
+
+    [DataMember]
+    [DefaultValue(CaptionsGridDefaults.DefaultCommentsAudioVisible)]
+    public bool CommentsAudioVisible
+    {
+      get { return commentsAudioVisible; }
+      set
+      {
+        if (value != commentsAudioVisible)
+        {
+          commentsAudioVisible = value;
+          RaisePropertyChanged(ICaptionsGridProperties.PropertyCommentsAudioVisible);
+          Dirty = true;
+        }
+      }
+    }
     
+    /*
     [DataMember]
     [DefaultValue(CaptionsGridDefaults.DefaultSaveInvisibleAudio)]
     public bool SaveInvisibleAudio
@@ -286,6 +303,7 @@ namespace ClipFlair.Windows.Views
         }
       }
     }
+    */
 
     #endregion
 

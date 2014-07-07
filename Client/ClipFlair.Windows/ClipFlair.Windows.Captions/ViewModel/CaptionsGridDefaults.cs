@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: CaptionsGridDefaults.cs
-//Version: 20140326
+//Version: 20140707
 
 using Microsoft.SilverlightMediaFramework.Core.Accessibility.Captions;
 
@@ -38,7 +38,8 @@ namespace ClipFlair.Windows.Views
     public const bool DefaultWPMVisible = false;
     public const bool DefaultAudioVisible = false;
     public const bool DefaultCommentsVisible = false;
-    public const bool DefaultSaveInvisibleAudio = false;
+    public const bool DefaultCommentsAudioVisible = false;
+    //public const bool DefaultSaveInvisibleAudio = false;
 
     #region Methods
 
@@ -66,7 +67,8 @@ namespace ClipFlair.Windows.Views
       view.WPMVisible = DefaultWPMVisible;
       view.AudioVisible = DefaultAudioVisible;
       view.CommentsVisible = DefaultCommentsVisible;
-      view.SaveInvisibleAudio = DefaultSaveInvisibleAudio;
+      view.CommentsAudioVisible = DefaultCommentsAudioVisible;
+      //view.SaveInvisibleAudio = DefaultSaveInvisibleAudio;
 
       //Dirty flag
       view.Dirty = ViewDefaults.DefaultDirty; //must do last - this should be set again at the end of any SetDefaults method (at descendents)

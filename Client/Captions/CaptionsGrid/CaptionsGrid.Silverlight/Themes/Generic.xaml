@@ -1,7 +1,7 @@
 ﻿<!-- 
 Project: ClipFlair (http://ClipFlair.codeplex.com)
 Filename: Generic.xaml
-Version: 20140509
+Version: 20140707
 -->
   
 <ResourceDictionary
@@ -149,6 +149,12 @@ Version: 20140509
 
   <DataTemplate x:Key="CommentsCellEditTemplate">
     <TextBox AcceptsReturn="True" Text="{Binding Comments, Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=True}" />
+  </DataTemplate>
+
+  <!-- CommentsAudio -->
+  
+  <DataTemplate x:Key="CommentsAudioCellTemplate">
+    <audio:AudioRecorderControl Margin="2" Audio="{Binding RelativeSource={RelativeSource AncestorType=FrameworkElement}, Path=DataContext.CommentsAudio, Mode=TwoWay}" /> <!-- AudioRecorderControl sets its DataContext to its ViewModel, so it doesn't inherit its parent's DataContext -->
   </DataTemplate>
   
   <!-- Column Header -->

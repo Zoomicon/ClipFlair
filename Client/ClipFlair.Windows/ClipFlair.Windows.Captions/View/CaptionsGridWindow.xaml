@@ -1,7 +1,7 @@
 ﻿<!--
 Project: ClipFlair (http://ClipFlair.codeplex.com)
 Filename: CaptionsGridWindow.xaml
-Version: 20140326
+Version: 20140707
 -->
   
 <clipflair:BaseWindow x:Class="ClipFlair.Windows.CaptionsGridWindow"
@@ -46,6 +46,7 @@ Version: 20140326
                          WPMVisible="{Binding WPMVisible, Mode=TwoWay}"
                          AudioVisible="{Binding AudioVisible, Mode=TwoWay}"
                          CommentsVisible="{Binding CommentsVisible, Mode=TwoWay}"
+                         CommentsAudioVisible="{Binding CommentsAudioVisible, Mode=TwoWay}"
                          RTL="{Binding RTL, Mode=TwoWay}"
   /> <!-- Source="{Binding Path=Source, Mode=TwoWay}" -->
 
@@ -96,6 +97,11 @@ Version: 20140326
     </StackPanel>
 
     <StackPanel Orientation="Horizontal">
+      <CheckBox Name="cbRTL" IsChecked="{Binding RTL, Mode=TwoWay}" />
+      <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Right to Left (RTL) Text Direction" Target="{Binding ElementName=cbRTL}"/>
+    </StackPanel>
+
+    <StackPanel Orientation="Horizontal">
       <CheckBox Name="cbRTLVisible" IsChecked="{Binding RTLVisible, Mode=TwoWay}" />
       <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="RTL (Right to Left) visible" Target="{Binding ElementName=cbRTLVisible}"/>
     </StackPanel>
@@ -126,8 +132,8 @@ Version: 20140326
     </StackPanel>
 
     <StackPanel Orientation="Horizontal">
-      <CheckBox Name="cbRTL" IsChecked="{Binding RTL, Mode=TwoWay}" />
-      <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Right to Left (RTL) Text Direction" Target="{Binding ElementName=cbRTL}"/>
+      <CheckBox Name="cbCommentsAudioVisible" IsChecked="{Binding CommentsAudioVisible, Mode=TwoWay}" />
+      <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Comments (Audio) visible" Target="{Binding ElementName=cbCommentsAudioVisible}"/>
     </StackPanel>
 
 <!-- //TODO: need to see how this can be implemented correctly

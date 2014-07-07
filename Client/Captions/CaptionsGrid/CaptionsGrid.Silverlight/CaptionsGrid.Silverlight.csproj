@@ -80,6 +80,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CaptionElementExt_CommentsAudio.cs" />
     <Compile Include="CaptionElementExt_ExtraData.cs" />
     <Compile Include="CaptionElementExtraData.cs" />
     <Compile Include="ICaptionElementExtraData.cs" />
