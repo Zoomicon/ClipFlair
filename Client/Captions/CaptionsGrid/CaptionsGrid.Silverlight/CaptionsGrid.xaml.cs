@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: CaptionsGrid.xaml.cs
-//Version: 20140706
+//Version: 20140707
 
 using ClipFlair.AudioRecorder;
 using ClipFlair.CaptionsGrid.Resources;
@@ -62,6 +62,7 @@ namespace ClipFlair.CaptionsGrid
       ColumnWPM = gridCaptions.Columns[8];
       ColumnAudio = gridCaptions.Columns[9];
       ColumnComments = gridCaptions.Columns[10];
+      ColumnCommentsAudio = gridCaptions.Columns[11];
 
       gridCaptions.ClipboardCopyMode = DataGridClipboardCopyMode.IncludeHeader;
       gridCaptions.SelectionMode = DataGridSelectionMode.Single;
@@ -96,6 +97,7 @@ namespace ClipFlair.CaptionsGrid
     public DataGridColumn ColumnWPM { get; private set; }
     public DataGridColumn ColumnAudio { get; private set; }
     public DataGridColumn ColumnComments { get; private set; }
+    public DataGridColumn ColumnCommentsAudio { get; private set; }
 
     #endregion
 
@@ -646,6 +648,43 @@ namespace ClipFlair.CaptionsGrid
     protected virtual void OnCommentsVisibleChanged(bool oldValue, bool newValue)
     {
       ColumnComments.Visibility = (newValue) ? Visibility.Visible : Visibility.Collapsed;
+    }
+
+    #endregion
+
+    #region CommentsAudioVisible
+
+    /// <summary>
+    /// CommentsAudioVisible Dependency Property
+    /// </summary>
+    public static readonly DependencyProperty CommentsAudioVisibleProperty =
+        DependencyProperty.Register("CommentsAudioVisible", typeof(bool), typeof(CaptionsGrid),
+            new FrameworkPropertyMetadata(true, new PropertyChangedCallback(OnCommentsAudioVisibleChanged)));
+
+    /// <summary>
+    /// Gets or sets the CommentsAudioVisible property. 
+    /// </summary>
+    public bool CommentsAudioVisible
+    {
+      get { return (bool)GetValue(CommentsAudioVisibleProperty); }
+      set { SetValue(CommentsAudioVisibleProperty, value); }
+    }
+
+    /// <summary>
+    /// Handles changes to the CommentsAudioVisible property.
+    /// </summary>
+    private static void OnCommentsAudioVisibleChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    {
+      CaptionsGrid target = (CaptionsGrid)d;
+      target.OnCommentsAudioVisibleChanged((bool)e.OldValue, target.CommentsAudioVisible);
+    }
+
+    /// <summary>
+    /// Provides derived classes an opportunity to handle changes to the CommentsAudioVisible property.
+    /// </summary>
+    protected virtual void OnCommentsAudioVisibleChanged(bool oldValue, bool newValue)
+    {
+      ColumnCommentsAudio.Visibility = (newValue) ? Visibility.Visible : Visibility.Collapsed;
     }
 
     #endregion

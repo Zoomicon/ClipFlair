@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: CaptionElementExt.cs
-//Version: 20140706
+//Version: 20140707
 
 using Microsoft.SilverlightMediaFramework.Core.Accessibility.Captions;
 using System;
@@ -23,12 +23,13 @@ namespace ClipFlair.CaptionsGrid
     public const string PROPERTY_ROLESEPARATOR = "RoleSeparator";
     public const string PROPERTY_ROLE = "Role";
     public const string PROPERTY_CAPTION = "Caption";
+    public const string PROPERTY_RTL = "RTL";
     public const string PROPERTY_CPL = "CPL";
     public const string PROPERTY_CPS = "CPS";
     public const string PROPERTY_WPM = "WPM";
     public const string PROPERTY_AUDIO = "Audio";
     public const string PROPERTY_COMMENTS = "Comments";
-    public const string PROPERTY_RTL = "RTL";
+    public const string PROPERTY_COMMENTS_AUDIO = "CommentsAudio";
 
     public const string DEFAULT_ROLE_SEPARATOR = ": "; //note: has a space at the end
     private static readonly string[] LineSeparators = new string[] { "\r\n", "\r", "\n"};
@@ -41,6 +42,7 @@ namespace ClipFlair.CaptionsGrid
     private string _role; //=null
     private string _caption; //=null
     private Stream _audio; //=null
+    private Stream _commentsAudio; //=null
     private CaptionElementExtraData _extraData = new CaptionElementExtraData();
 
     #endregion
@@ -286,6 +288,23 @@ namespace ClipFlair.CaptionsGrid
       }
     }
 
+    /// <summary>
+    /// Gets or sets the comments audio for this marker item.
+    /// </summary>
+    [ScriptableMember]
+    public Stream CommentsAudio
+    {
+      get { return _commentsAudio; }
+      set
+      {
+        if (_commentsAudio != value)
+        {
+          _commentsAudio = value;
+          NotifyPropertyChanged(PROPERTY_COMMENTS_AUDIO);
+        }
+      }
+    }
+    
     #region Extra Data
     
     /// <summary>

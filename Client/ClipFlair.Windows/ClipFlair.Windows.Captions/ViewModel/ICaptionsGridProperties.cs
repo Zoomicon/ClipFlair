@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: ICaptionsGridProperties.cs
-//Version: 20140326
+//Version: 20140707
 
 namespace ClipFlair.Windows.Views
 {
@@ -21,7 +21,8 @@ namespace ClipFlair.Windows.Views
     public const string PropertyWPMVisible = "WPMVisible";
     public const string PropertyAudioVisible = "AudioVisible";
     public const string PropertyCommentsVisible = "CommentsVisible";
-    public const string PropertySaveInvisibleAudio = "SaveInvisibleAudio";
+    public const string PropertyCommentsAudioVisible = "CommentsAudioVisible";
+    //public const string PropertySaveInvisibleAudio = "SaveInvisibleAudio";
   }
 
 }

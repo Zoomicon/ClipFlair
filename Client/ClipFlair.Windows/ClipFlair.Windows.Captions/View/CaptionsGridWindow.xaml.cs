@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: CaptionsGridWindow.xaml.cs
-//Version: 20140706
+//Version: 20140707
 
 //TODO: add Source property to CaptionsGrid control and use data-binding to bind it to CaptionsGridView's Source property
 
@@ -88,6 +88,11 @@ namespace ClipFlair.Windows
       return CaptionSpecificPath(caption, "/Audio/", ".wav"); //TODO: need to update this if storing to formats other than WAV in the future
     }
 
+    private string CaptionCommentsAudioPath(CaptionElement caption)
+    {
+      return CaptionSpecificPath(caption, "/CommentsAudio/", ".wav"); //TODO: need to update this if storing to formats other than WAV in the future
+    }
+    
     #endregion
 
     #region --- Load saved state ---
@@ -104,6 +109,9 @@ namespace ClipFlair.Windows
 
       //load revoicing audio
       LoadCaptionsAudio(newCaptions, zip, zipFolder);
+
+      //load comments audio
+      LoadCaptionsCommentsAudio(newCaptions, zip, zipFolder);
 
       CaptionsGridView.Captions = newCaptions; //TODO: see why this is needed (two-way data-binding doesn't seem to work?)
     }
@@ -152,6 +160,24 @@ namespace ClipFlair.Windows
 
     #endregion
 
+    #region Caption CommentsAudio
+
+    public void LoadCaptionsCommentsAudio(CaptionRegion captions, ZipFile zip, string zipFolder = "")
+    {
+      //load any CommentsAudio associated to each caption
+      foreach (CaptionElement caption in captions.Children)
+        LoadCaptionCommentsAudio(caption, zip, zipFolder);
+    }
+
+    public void LoadCaptionCommentsAudio(CaptionElement caption, ZipFile zip, string zipFolder = "")
+    {
+      ZipEntry entry = zip[zipFolder + CaptionCommentsAudioPath(caption)];
+      if (entry != null)
+        caption.LoadCommentsAudio(entry.OpenReader());
+    }
+
+    #endregion
+
     #endregion
 
     #region --- Save state ---
@@ -160,13 +186,18 @@ namespace ClipFlair.Windows
     {
       base.SaveOptions(zip, zipFolder);
 
+      CaptionRegion captions = CaptionsGridView.Captions;
+
       //save captions
-      SaveCaptions(CaptionsGridView.Captions, zip, zipFolder);
-      SaveCaptionsExtraData(CaptionsGridView.Captions, zip, zipFolder);
+      SaveCaptions(captions, zip, zipFolder);
+      SaveCaptionsExtraData(captions, zip, zipFolder);
 
       //save revoicing audio
       //if (CaptionsGridView.AudioVisible || CaptionsGridView.SaveInvisibleAudio) //TODO: removed, need to fix this (maybe with separate Audio property or something?), since currently Captions is synced between components and if only some save the audio, it may be lost at load, depending on the load order of those components by their parent (activity)
-      SaveCaptionsAudio(CaptionsGridView.Captions, zip, zipFolder); //...maybe if captions property is bound to a parent (activity), save the captions/audio there once
+      SaveCaptionsAudio(captions, zip, zipFolder); //...maybe if captions property is bound to a parent (activity), save the captions/audio there once
+
+      //save comments audio
+      SaveCaptionsCommentsAudio(captions, zip, zipFolder);
     }
 
     private void SaveCaptions(CaptionRegion captions, ZipFile zip, string zipFolder = "")
@@ -211,6 +242,24 @@ namespace ClipFlair.Windows
         zip.AddEntry(
           zipFolder + CaptionAudioPath(caption),
           new WriteDelegate((entryName, stream) => { caption.SaveAudio(stream); }) );
+    }
+
+    #endregion
+
+    #region Caption CommentsAudio
+
+    public void SaveCaptionsCommentsAudio(CaptionRegion captions, ZipFile zip, string zipFolder = "")
+    {
+      foreach (CaptionElement caption in captions.Children) //save any CommentsAudio associated to each caption
+        SaveCaptionCommentsAudio(caption, zip, zipFolder);
+    }
+
+    public void SaveCaptionCommentsAudio(CaptionElement caption, ZipFile zip, string zipFolder = "")
+    {
+      if ((caption != null) && caption.HasCommentsAudio())
+        zip.AddEntry(
+          zipFolder + CaptionCommentsAudioPath(caption),
+          new WriteDelegate((entryName, stream) => { caption.SaveCommentsAudio(stream); }));
     }
 
     #endregion

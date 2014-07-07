@@ -1,7 +1,7 @@
 ﻿<!--
 Project: ClipFlair (http://ClipFlair.codeplex.com)
 Filename: CaptionsGrid.xaml
-Version: 20140326
+Version: 20140707
 -->
 
 <UserControl x:Class="ClipFlair.CaptionsGrid.CaptionsGrid"
@@ -191,6 +191,7 @@ Version: 20140326
         <sdk:DataGridTemplateColumn Header="WPM" Width="50" CellTemplate="{StaticResource WPMCellTemplate}" IsReadOnly="True" />
         <sdk:DataGridTemplateColumn Header="AUDIO" Width="115" CellTemplate="{StaticResource AudioCellTemplate}" IsReadOnly="True" />
         <sdk:DataGridTemplateColumn Header="COMMENTS" Width="100" CellTemplate="{StaticResource CommentsCellTemplate}" CellEditingTemplate="{StaticResource CommentsCellEditTemplate}" />
+        <sdk:DataGridTemplateColumn Header="COMMENTS (AUDIO)" Width="124" CellTemplate="{StaticResource CommentsAudioCellTemplate}" IsReadOnly="True" />
       </sdk:DataGrid.Columns>
     </sdk:DataGrid>
 
