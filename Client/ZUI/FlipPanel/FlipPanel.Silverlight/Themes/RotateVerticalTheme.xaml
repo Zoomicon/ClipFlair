@@ -1,6 +1,6 @@
 ﻿<!-- 
 Filename: RotateVerticalTheme.xaml
-Version: 20130704
+Version: 20140715
 -->
   
 <ResourceDictionary
@@ -19,21 +19,21 @@ Version: 20130704
         <VisualStateGroup x:Name="ViewStates">
           <VisualStateGroup.Transitions>
 
-            <VisualTransition To="Normal" From="Flipped" GeneratedDuration="0:0:0.7">
+            <VisualTransition To="Normal" From="Flipped" GeneratedDuration="0:0:0.5">
               <Storyboard>
                 <DoubleAnimation Storyboard.TargetName="BackContentProjection"
-                                 Storyboard.TargetProperty="RotationX" To="-90" Duration="0:0:0.5"></DoubleAnimation>
-                <DoubleAnimation Storyboard.TargetName="FrontContentProjection"  BeginTime="0:0:0.5"
-                                 Storyboard.TargetProperty="RotationX" To="0" Duration="0:0:0.5"></DoubleAnimation>
+                                 Storyboard.TargetProperty="RotationX" To="-90" Duration="0:0:0.25"></DoubleAnimation>
+                <DoubleAnimation Storyboard.TargetName="FrontContentProjection" BeginTime="0:0:0.25"
+                                 Storyboard.TargetProperty="RotationX" To="0" Duration="0:0:0.25"></DoubleAnimation>
               </Storyboard>
             </VisualTransition>
 
-            <VisualTransition To="Flipped" From="Normal" GeneratedDuration="0:0:0.7">
+            <VisualTransition To="Flipped" From="Normal" GeneratedDuration="0:0:0.5">
               <Storyboard>
                 <DoubleAnimation Storyboard.TargetName="FrontContentProjection"
-                                 Storyboard.TargetProperty="RotationX" To="90" Duration="0:0:0.5"></DoubleAnimation>
-                <DoubleAnimation Storyboard.TargetName="BackContentProjection" BeginTime="0:0:0.5"
-                                 Storyboard.TargetProperty="RotationX" To="0" Duration="0:0:0.5"></DoubleAnimation>
+                                 Storyboard.TargetProperty="RotationX" To="90" Duration="0:0:0.25"></DoubleAnimation>
+                <DoubleAnimation Storyboard.TargetName="BackContentProjection" BeginTime="0:0:0.25"
+                                 Storyboard.TargetProperty="RotationX" To="0" Duration="0:0:0.25"></DoubleAnimation>
               </Storyboard>
             </VisualTransition>
 
