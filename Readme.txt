@@ -19,7 +19,8 @@ Prerequisites
 Useful
 ------
 
-- for using Mercurial (say for contributing to http://ClipFlair.codeplex.com) in Visual Studio you can use https://visualhg.codeplex.com/
+- for using Mercurial (say for contributing to http://ClipFlair.codeplex.com) in Visual Studio you can use VisualHG (https://visualhg.codeplex.com/).
+  (after installing it, make sure you go to TOOLS/Options.../Source Control/Plug-in Selection and choose VisualHG)
 
 - Productivity Power Tools extension for Visual Studio: http://visualstudiogallery.msdn.microsoft.com/dbcb8670-889e-4a54-a226-a48a15e4cace
-(in the Visual Studio Gallery exist releases of it various Visual Studio versions)
+  (in the Visual Studio Gallery exist releases of it various Visual Studio versions)

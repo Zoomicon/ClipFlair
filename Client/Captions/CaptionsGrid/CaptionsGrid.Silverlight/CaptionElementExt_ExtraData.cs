@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: CaptionExtraDataHelper.cs
-//Version: 20140707
+//Version: 20140718
 
 #define WRITE_FORMATTED_XML
 
@@ -27,7 +27,7 @@ namespace ClipFlair.CaptionsGrid
     public static bool HasExtraData(this CaptionElement caption)
     {
       CaptionElementExt c = caption as CaptionElementExt;
-      return (c != null) ? (string.IsNullOrWhiteSpace(c.Comments) || c.RTL) : false; //not saving empty or plain whitespace comments
+      return (c != null) ? (!string.IsNullOrWhiteSpace(c.Comments) || c.RTL) : false; //not saving empty or plain whitespace comments
     }
 
     public static CaptionElementExtraData GetExtraData(this CaptionElement caption)
