@@ -5,7 +5,7 @@
 <!--
 Project: ClipFlair (http://ClipFlair.codeplex.com)
 Filename: ActivityMetadataPage.aspx
-Version: 20140620
+Version: 20140717
 -->
 
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -247,14 +247,23 @@ Version: 20140620
           <div class="label">License</div>
           <asp:TextBox ID="txtLicense" runat="server" Columns="150" Text="CC BY-SA 3.0"></asp:TextBox>
         </div>
-           
+        
+        <%-- SAVE BUTTON --%>   
         <div>
           <asp:Button ID="btnSave" runat="server"
             Text="Save metadata"
             Font-Bold="true"
             height="50"
-            OnClick="btnSave_Click"/>
+            OnClick="btnSave_Click"
+            />
+          &nbsp;
+          &nbsp;
+          <i>Gallery contents are updated once a day from saved metadata</i>
         </div>
+
+        <%-- EXTRA PADDING AT THE END --%>
+        <br />
+        <br />
 
       </asp:Panel>
     
