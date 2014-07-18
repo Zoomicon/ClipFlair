@@ -1,7 +1,7 @@
 ﻿<!--
 Project: ClipFlair (http://ClipFlair.codeplex.com)
 Filename: CaptionsGrid.xaml
-Version: 20140707
+Version: 20140718
 -->
 
 <UserControl x:Class="ClipFlair.CaptionsGrid.CaptionsGrid"
@@ -11,6 +11,7 @@ Version: 20140707
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk"
     xmlns:toolkit="http://schemas.microsoft.com/winfx/2006/xaml/presentation/toolkit"
+    xmlns:sort="clr-namespace:System.ComponentModel;assembly=System.Windows"
     xmlns:btn="clr-namespace:ImageButtons;assembly=ImageButtons"
     xmlns:captions="clr-namespace:ClipFlair.CaptionsGrid"
     d:DesignHeight="167" d:DesignWidth="856"
@@ -24,6 +25,16 @@ Version: 20140707
       <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="/CaptionsGrid;component/Themes/Generic.xaml" />
       </ResourceDictionary.MergedDictionaries>
+
+      <CollectionViewSource 
+        x:Key="SortedCaptions" 
+        Source="{Binding Path=Captions.Children, Mode=TwoWay}"
+        > <!-- Filter="CollectionViewSource_Filter" -->
+        <CollectionViewSource.SortDescriptions>
+          <sort:SortDescription PropertyName="Begin" Direction="Ascending" />
+        </CollectionViewSource.SortDescriptions>
+      </CollectionViewSource>
+
     </ResourceDictionary>
   </UserControl.Resources>
 
@@ -170,15 +181,16 @@ Version: 20140707
       AutoGenerateColumns="False"
       HeadersVisibility="All"
       ColumnHeaderStyle="{StaticResource ColumnHeaderStyle}"
-      ItemsSource="{Binding Path=Captions.Children, RelativeSource={RelativeSource AncestorType=captions:CaptionsGrid}}"
-
+      ItemsSource="{Binding Source={StaticResource SortedCaptions}}"
+      
       AllowDrop="True" 
       Drop="gridCaptions_Drop"
       DragEnter="gridCaptions_DragEnter"
       DragOver="gridCaptions_DragOver"
       DragLeave="gridCaptions_DragLeave"
       >
-      
+      <!-- ItemsSource="{Binding Path=Captions.Children, RelativeSource={RelativeSource AncestorType=captions:CaptionsGrid}}" -->
+         
       <sdk:DataGrid.Columns>
         <sdk:DataGridTemplateColumn Header="START" CellTemplate="{StaticResource StartTimeCellTemplate}" CellEditingTemplate="{StaticResource StartTimeCellEditTemplate}" />
         <sdk:DataGridTemplateColumn Header="END" CellTemplate="{StaticResource EndTimeCellTemplate}" CellEditingTemplate="{StaticResource EndTimeCellEditTemplate}" />

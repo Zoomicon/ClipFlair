@@ -995,6 +995,13 @@ namespace ClipFlair.CaptionsGrid
 
     #endregion
 
+ /*
+    private void CollectionViewSource_Filter(object sender, System.Windows.Data.FilterEventArgs e)
+    {
+      e.Accepted = true;
+    }
+ */
+
   }
 
 }
