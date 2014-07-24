@@ -1,6 +1,8 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: CaptionElementExt.cs
-//Version: 20140707
+//Version: 20140724
+
+//TODO: listen PROPERTY_CONTENT property change event and somehow notify players to render the caption again if it's currently visible
 
 using Microsoft.SilverlightMediaFramework.Core.Accessibility.Captions;
 using System;
@@ -19,7 +21,10 @@ namespace ClipFlair.CaptionsGrid
 
     #region --- Constants ---
 
+    public const string PROPERTY_BEGIN = "Begin";
+    public const string PROPERTY_END = "End";
     public const string PROPERTY_DURATION = "Duration";
+    public const string PROPERTY_CONTENT = "Content";
     public const string PROPERTY_ROLESEPARATOR = "RoleSeparator";
     public const string PROPERTY_ROLE = "Role";
     public const string PROPERTY_CAPTION = "Caption";
@@ -53,8 +58,14 @@ namespace ClipFlair.CaptionsGrid
     {
       PropertyChanged += (s, e) =>
       {
-        if (e.PropertyName == PROPERTY_DURATION)
-          HandleDurationChanged(); //if duration changed also notify that CPS and WPM changed
+        switch (e.PropertyName) {
+          case PROPERTY_DURATION:
+            HandleDurationChanged(); //if duration changed also notify that CPS and WPM changed
+            break;
+          case PROPERTY_BEGIN: //fix for MediaMarker ancestor: calling NotifyPositionChanged to remove/add again the CaptionElement at the correct place at MediaMarkerCollection
+            NotifyPositionChanged();
+            break;
+        };
       };
     }
 

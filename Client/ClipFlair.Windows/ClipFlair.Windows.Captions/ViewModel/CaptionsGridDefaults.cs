@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: CaptionsGridDefaults.cs
-//Version: 20140707
+//Version: 20140722
 
 using Microsoft.SilverlightMediaFramework.Core.Accessibility.Captions;
 
@@ -27,6 +27,7 @@ namespace ClipFlair.Windows.Views
     public const Uri DefaultSource = null;
     public const CaptionRegion DefaultCaptions = null; //don't make this "static readonly", it's an object reference, not a struct (better check for "null" in the view and create default instance if needed)
     public const bool DefaultToolbarVisible = true;
+    public const bool DefaultIndexVisible = false;
     public const bool DefaultStartTimeVisible = true;
     public const bool DefaultEndTimeVisible = true;
     public const bool DefaultDurationVisible = false;
@@ -56,6 +57,7 @@ namespace ClipFlair.Windows.Views
       view.Source = DefaultSource;
       view.Captions = DefaultCaptions;
       view.ToolbarVisible = DefaultToolbarVisible;
+      view.IndexVisible = DefaultIndexVisible;
       view.StartTimeVisible = DefaultStartTimeVisible;
       view.EndTimeVisible = DefaultEndTimeVisible;
       view.DurationVisible = DefaultDurationVisible;

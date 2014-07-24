@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: CaptionsGridView.cs
-//Version: 20140707
+//Version: 20140722
 
 using Microsoft.SilverlightMediaFramework.Core.Accessibility.Captions;
 
@@ -26,10 +26,11 @@ namespace ClipFlair.Windows.Views
     private Uri source;
     private CaptionRegion captions;
     private bool toolbarVisible;
-    private bool roleVisible;
+    private bool indexVisible;
     private bool startTimeVisible;
     private bool endTimeVisible;
     private bool durationVisible;
+    private bool roleVisible;
     private bool captionVisible;
     private bool rtlVisible;
     private bool cplVisible;
@@ -94,6 +95,22 @@ namespace ClipFlair.Windows.Views
       }
     }
 
+    [DataMember]
+    [DefaultValue(CaptionsGridDefaults.DefaultIndexVisible)]
+    public bool IndexVisible
+    {
+      get { return indexVisible; }
+      set
+      {
+        if (value != indexVisible)
+        {
+          indexVisible = value;
+          RaisePropertyChanged(ICaptionsGridProperties.PropertyIndexVisible);
+          Dirty = true;
+        }
+      }
+    }
+    
     [DataMember]
     [DefaultValue(CaptionsGridDefaults.DefaultStartTimeVisible)]
     public bool StartTimeVisible

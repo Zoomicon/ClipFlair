@@ -1,7 +1,7 @@
 ﻿<!-- 
 Project: ClipFlair (http://ClipFlair.codeplex.com)
 Filename: Generic.xaml
-Version: 20140707
+Version: 20140722
 -->
   
 <ResourceDictionary
@@ -24,6 +24,12 @@ Version: 20140707
   <!-- Toolbar -->
 
   <SolidColorBrush x:Key="ToolbarBackground" Color="#E3DAC9" />
+
+  <!-- Index -->
+
+  <DataTemplate x:Key="IndexCellTemplate">
+    <TextBlock Margin="4" Text="{Binding Index}" />
+  </DataTemplate>
 
   <!-- StartTime -->
   
