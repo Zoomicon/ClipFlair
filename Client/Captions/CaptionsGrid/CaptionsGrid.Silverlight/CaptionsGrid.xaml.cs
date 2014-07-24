@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: CaptionsGrid.xaml.cs
-//Version: 20140707
+//Version: 20140724
 
 using ClipFlair.AudioRecorder;
 using ClipFlair.CaptionsGrid.Resources;
@@ -51,18 +51,19 @@ namespace ClipFlair.CaptionsGrid
     protected void InitializeDataGrid()
     {
       //Note: Columns below must be in same order as in XAML
-      ColumnStartTime = gridCaptions.Columns[0];
-      ColumnEndTime = gridCaptions.Columns[1];
-      ColumnDuration = gridCaptions.Columns[2];
-      ColumnRole = gridCaptions.Columns[3];
-      ColumnCaption = gridCaptions.Columns[4];
-      ColumnRTL = gridCaptions.Columns[5];
-      ColumnCPL = gridCaptions.Columns[6];
-      ColumnCPS = gridCaptions.Columns[7];
-      ColumnWPM = gridCaptions.Columns[8];
-      ColumnAudio = gridCaptions.Columns[9];
-      ColumnComments = gridCaptions.Columns[10];
-      ColumnCommentsAudio = gridCaptions.Columns[11];
+      ColumnIndex = gridCaptions.Columns[0];
+      ColumnStartTime = gridCaptions.Columns[1];
+      ColumnEndTime = gridCaptions.Columns[2];
+      ColumnDuration = gridCaptions.Columns[3];
+      ColumnRole = gridCaptions.Columns[4];
+      ColumnCaption = gridCaptions.Columns[5];
+      ColumnRTL = gridCaptions.Columns[6];
+      ColumnCPL = gridCaptions.Columns[7];
+      ColumnCPS = gridCaptions.Columns[8];
+      ColumnWPM = gridCaptions.Columns[9];
+      ColumnAudio = gridCaptions.Columns[10];
+      ColumnComments = gridCaptions.Columns[11];
+      ColumnCommentsAudio = gridCaptions.Columns[12];
 
       gridCaptions.ClipboardCopyMode = DataGridClipboardCopyMode.IncludeHeader;
       gridCaptions.SelectionMode = DataGridSelectionMode.Single;
@@ -86,10 +87,11 @@ namespace ClipFlair.CaptionsGrid
     #region Columns
 
     //not using column indices as constants, using column references instead to allow for column reordering by the user
-    public DataGridColumn ColumnRole { get; private set; }
+    public DataGridColumn ColumnIndex { get; private set; }
     public DataGridColumn ColumnStartTime { get; private set; }
     public DataGridColumn ColumnEndTime { get; private set; }
     public DataGridColumn ColumnDuration { get; private set; }
+    public DataGridColumn ColumnRole { get; private set; }
     public DataGridColumn ColumnCaption { get; private set; }
     public DataGridColumn ColumnRTL { get; private set; }
     public DataGridColumn ColumnCPL { get; private set; }
@@ -237,6 +239,43 @@ namespace ClipFlair.CaptionsGrid
     protected virtual void OnToolbarVisibleChanged(bool oldToolbarVisible, bool newToolbarVisible)
     {
       Toolbar.Visibility = (newToolbarVisible) ? Visibility.Visible : Visibility.Collapsed;
+    }
+
+    #endregion
+
+    #region IndexVisible
+
+    /// <summary>
+    /// IndexVisible Dependency Property
+    /// </summary>
+    public static readonly DependencyProperty IndexVisibleProperty =
+        DependencyProperty.Register("IndexVisible", typeof(bool), typeof(CaptionsGrid),
+            new FrameworkPropertyMetadata(true, new PropertyChangedCallback(OnIndexVisibleChanged))); //do not use false here, unless Visibility is hidden in XAML
+
+    /// <summary>
+    /// Gets or sets the IndexVisible property. 
+    /// </summary>
+    public bool IndexVisible
+    {
+      get { return (bool)GetValue(IndexVisibleProperty); }
+      set { SetValue(IndexVisibleProperty, value); }
+    }
+
+    /// <summary>
+    /// Handles changes to the IndexVisible property.
+    /// </summary>
+    private static void OnIndexVisibleChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    {
+      CaptionsGrid target = (CaptionsGrid)d;
+      target.OnIndexVisibleChanged((bool)e.OldValue, target.IndexVisible);
+    }
+
+    /// <summary>
+    /// Provides derived classes an opportunity to handle changes to the IndexVisible property.
+    /// </summary>
+    protected virtual void OnIndexVisibleChanged(bool oldValue, bool newValue)
+    {
+      ColumnIndex.Visibility = (newValue) ? Visibility.Visible : Visibility.Collapsed;
     }
 
     #endregion
@@ -998,7 +1037,7 @@ namespace ClipFlair.CaptionsGrid
  /*
     private void CollectionViewSource_Filter(object sender, System.Windows.Data.FilterEventArgs e)
     {
-      e.Accepted = true;
+      e.Accepted = true; //TODO: could use filter to select to show only captions for a given role
     }
  */
 

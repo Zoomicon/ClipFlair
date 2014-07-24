@@ -1,7 +1,7 @@
 ﻿<!--
 Project: ClipFlair (http://ClipFlair.codeplex.com)
 Filename: CaptionsGridWindow.xaml
-Version: 20140707
+Version: 20140722
 -->
   
 <clipflair:BaseWindow x:Class="ClipFlair.Windows.CaptionsGridWindow"
@@ -27,28 +27,30 @@ Version: 20140707
 
   <!--<clipflair:BaseWindow.FrontContent>-->
 
-  <captions:CaptionsGrid Name="gridCaptions"
-                         HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+  <captions:CaptionsGrid 
+    Name="gridCaptions"
+    HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
                          
-                         Background="Transparent"
+    Background="Transparent"
 
-                         Time="{Binding Time, Mode=TwoWay}"
-                         Captions="{Binding Captions, Mode=TwoWay}"
-                         ToolbarVisible="{Binding ToolbarVisible, Mode=TwoWay}"
-                         StartTimeVisible="{Binding StartTimeVisible, Mode=TwoWay}"
-                         EndTimeVisible="{Binding EndTimeVisible, Mode=TwoWay}"
-                         DurationVisible="{Binding DurationVisible, Mode=TwoWay}"
-                         RoleVisible="{Binding RoleVisible, Mode=TwoWay}"
-                         CaptionVisible="{Binding CaptionVisible, Mode=TwoWay}"
-                         RTLVisible="{Binding RTLVisible, Mode=TwoWay}"
-                         CPLVisible="{Binding CPLVisible, Mode=TwoWay}"
-                         CPSVisible="{Binding CPSVisible, Mode=TwoWay}"
-                         WPMVisible="{Binding WPMVisible, Mode=TwoWay}"
-                         AudioVisible="{Binding AudioVisible, Mode=TwoWay}"
-                         CommentsVisible="{Binding CommentsVisible, Mode=TwoWay}"
-                         CommentsAudioVisible="{Binding CommentsAudioVisible, Mode=TwoWay}"
-                         RTL="{Binding RTL, Mode=TwoWay}"
-  /> <!-- Source="{Binding Path=Source, Mode=TwoWay}" -->
+    Time="{Binding Time, Mode=TwoWay}"
+    Captions="{Binding Captions, Mode=TwoWay}"
+    ToolbarVisible="{Binding ToolbarVisible, Mode=TwoWay}"
+    IndexVisible="{Binding IndexVisible, Mode=TwoWay}"
+    StartTimeVisible="{Binding StartTimeVisible, Mode=TwoWay}"
+    EndTimeVisible="{Binding EndTimeVisible, Mode=TwoWay}"
+    DurationVisible="{Binding DurationVisible, Mode=TwoWay}"
+    RoleVisible="{Binding RoleVisible, Mode=TwoWay}"
+    CaptionVisible="{Binding CaptionVisible, Mode=TwoWay}"
+    RTLVisible="{Binding RTLVisible, Mode=TwoWay}"
+    CPLVisible="{Binding CPLVisible, Mode=TwoWay}"
+    CPSVisible="{Binding CPSVisible, Mode=TwoWay}"
+    WPMVisible="{Binding WPMVisible, Mode=TwoWay}"
+    AudioVisible="{Binding AudioVisible, Mode=TwoWay}"
+    CommentsVisible="{Binding CommentsVisible, Mode=TwoWay}"
+    CommentsAudioVisible="{Binding CommentsAudioVisible, Mode=TwoWay}"
+    RTL="{Binding RTL, Mode=TwoWay}"
+    /> <!-- Source="{Binding Path=Source, Mode=TwoWay}" -->
 
   <!--</clipflair:BaseWindow.FrontContent>-->
 
@@ -72,28 +74,33 @@ Version: 20140707
     </StackPanel>
 
     <StackPanel Orientation="Horizontal">
+      <CheckBox Name="cbIndexVisible" IsChecked="{Binding IndexVisible, Mode=TwoWay}" />
+      <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Index column visible" Target="{Binding ElementName=cbIndexVisible}"/>
+    </StackPanel>
+    
+    <StackPanel Orientation="Horizontal">
       <CheckBox Name="cbStartTimeVisible" IsChecked="{Binding StartTimeVisible, Mode=TwoWay}" />
-      <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Start Time visible" Target="{Binding ElementName=cbStartTimeVisible}"/>
+      <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Start Time column visible" Target="{Binding ElementName=cbStartTimeVisible}"/>
     </StackPanel>
 
     <StackPanel Orientation="Horizontal">
       <CheckBox Name="cbEndTimeVisible" IsChecked="{Binding EndTimeVisible, Mode=TwoWay}" />
-      <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="End Time visible" Target="{Binding ElementName=cbEndTimeVisible}"/>
+      <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="End Time column visible" Target="{Binding ElementName=cbEndTimeVisible}"/>
     </StackPanel>
 
     <StackPanel Orientation="Horizontal">
       <CheckBox Name="cbDurationVisible" IsChecked="{Binding DurationVisible, Mode=TwoWay}" />
-      <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Duration visible" Target="{Binding ElementName=cbDurationVisible}"/>
+      <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Duration column visible" Target="{Binding ElementName=cbDurationVisible}"/>
     </StackPanel>
 
     <StackPanel Orientation="Horizontal">
       <CheckBox Name="cbRoleVisible" IsChecked="{Binding RoleVisible, Mode=TwoWay}" />
-      <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Role visible" Target="{Binding ElementName=cbRoleVisible}"/>
+      <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Role column visible" Target="{Binding ElementName=cbRoleVisible}"/>
     </StackPanel>
 
     <StackPanel Orientation="Horizontal">
       <CheckBox Name="cbCaptionVisible" IsChecked="{Binding CaptionVisible, Mode=TwoWay}" />
-      <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Caption visible" Target="{Binding ElementName=cbCaptionVisible}"/>
+      <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Caption column visible" Target="{Binding ElementName=cbCaptionVisible}"/>
     </StackPanel>
 
     <StackPanel Orientation="Horizontal">
@@ -103,37 +110,37 @@ Version: 20140707
 
     <StackPanel Orientation="Horizontal">
       <CheckBox Name="cbRTLVisible" IsChecked="{Binding RTLVisible, Mode=TwoWay}" />
-      <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="RTL (Right to Left) visible" Target="{Binding ElementName=cbRTLVisible}"/>
+      <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="RTL (Right to Left) column visible" Target="{Binding ElementName=cbRTLVisible}"/>
     </StackPanel>
 
     <StackPanel Orientation="Horizontal">
       <CheckBox Name="cbCPLVisible" IsChecked="{Binding CPLVisible, Mode=TwoWay}" />
-      <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="CPL (Characters per Line) visible" Target="{Binding ElementName=cbCPLVisible}"/>
+      <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="CPL (Characters per Line) column visible" Target="{Binding ElementName=cbCPLVisible}"/>
     </StackPanel>   
     
     <StackPanel Orientation="Horizontal">
       <CheckBox Name="cbCPSVisible" IsChecked="{Binding CPSVisible, Mode=TwoWay}" />
-      <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="CPS (Characters per Second) visible" Target="{Binding ElementName=cbCPSVisible}"/>
+      <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="CPS (Characters per Second) column visible" Target="{Binding ElementName=cbCPSVisible}"/>
     </StackPanel>
 
     <StackPanel Orientation="Horizontal">
       <CheckBox Name="cbWPMVisible" IsChecked="{Binding WPMVisible, Mode=TwoWay}" />
-      <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="WPM (Words per Minute) visible" Target="{Binding ElementName=cbWPMVisible}"/>
+      <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="WPM (Words per Minute) column visible" Target="{Binding ElementName=cbWPMVisible}"/>
     </StackPanel>
     
     <StackPanel Orientation="Horizontal">
       <CheckBox Name="cbAudioVisible" IsChecked="{Binding AudioVisible, Mode=TwoWay}" />
-      <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Audio visible" Target="{Binding ElementName=cbAudioVisible}"/>
+      <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Audio column visible" Target="{Binding ElementName=cbAudioVisible}"/>
     </StackPanel>
 
     <StackPanel Orientation="Horizontal">
       <CheckBox Name="cbCommentsVisible" IsChecked="{Binding CommentsVisible, Mode=TwoWay}" />
-      <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Comments visible" Target="{Binding ElementName=cbCommentsVisible}"/>
+      <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Comments column visible" Target="{Binding ElementName=cbCommentsVisible}"/>
     </StackPanel>
 
     <StackPanel Orientation="Horizontal">
       <CheckBox Name="cbCommentsAudioVisible" IsChecked="{Binding CommentsAudioVisible, Mode=TwoWay}" />
-      <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Comments (Audio) visible" Target="{Binding ElementName=cbCommentsAudioVisible}"/>
+      <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Comments (Audio) column visible" Target="{Binding ElementName=cbCommentsAudioVisible}"/>
     </StackPanel>
 
 <!-- //TODO: need to see how this can be implemented correctly
