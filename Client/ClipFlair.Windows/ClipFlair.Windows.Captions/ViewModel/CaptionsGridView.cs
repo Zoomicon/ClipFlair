@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: CaptionsGridView.cs
-//Version: 20140722
+//Version: 20140803
 
 using Microsoft.SilverlightMediaFramework.Core.Accessibility.Captions;
 
@@ -144,7 +144,6 @@ namespace ClipFlair.Windows.Views
 
     [DataMember]
     [DefaultValue(CaptionsGridDefaults.DefaultDurationVisible)]
-
     public bool DurationVisible
     {
       get { return durationVisible; }
@@ -206,7 +205,6 @@ namespace ClipFlair.Windows.Views
         }
       }
     }
-
 
     [DataMember]
     [DefaultValue(CaptionsGridDefaults.DefaultCPLVisible)]

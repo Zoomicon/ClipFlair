@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: CaptionsGrid.xaml.cs
-//Version: 20140724
+//Version: 20140803
 
 using ClipFlair.AudioRecorder;
 using ClipFlair.CaptionsGrid.Resources;
@@ -39,13 +39,11 @@ namespace ClipFlair.CaptionsGrid
       InitializeComponent();
       InitializeDataGrid();
 
-      /*
       btnRTL.Click += (s, e) =>
       {
         if (btnRTL.IsChecked == true) //when one manually (from the toolar) toggles RTL to true, the RTLVisible column appears to adjust RTL per-caption (remains visible till hidden from component settings)
           RTLVisible = true;
       };
-      */  //not using this, since we don't save RTL per-caption at this point //TODO
     }
 
     protected void InitializeDataGrid()
@@ -242,6 +240,8 @@ namespace ClipFlair.CaptionsGrid
     }
 
     #endregion
+
+    #region Column visibility
 
     #region IndexVisible
 
@@ -728,6 +728,8 @@ namespace ClipFlair.CaptionsGrid
 
     #endregion
 
+    #endregion
+
     #region Roles
 
     public IEnumerable<string> Roles
@@ -1034,12 +1036,14 @@ namespace ClipFlair.CaptionsGrid
 
     #endregion
 
- /*
+    /*
     private void CollectionViewSource_Filter(object sender, System.Windows.Data.FilterEventArgs e)
     {
-      e.Accepted = true; //TODO: could use filter to select to show only captions for a given role
+      //e.Accepted = true; //TODO: could use filter to select to show only captions for a given role
+      String role = abFilterRole.Text;
+      e.Accepted = String.IsNullOrWhiteSpace(role) || role.Equals(((CaptionElementExt)e.Item).Role);
     }
- */
+    */
 
   }
 

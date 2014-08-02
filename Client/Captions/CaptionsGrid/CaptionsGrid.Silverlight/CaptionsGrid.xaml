@@ -1,22 +1,21 @@
 ﻿<!--
 Project: ClipFlair (http://ClipFlair.codeplex.com)
 Filename: CaptionsGrid.xaml
-Version: 20140724
+Version: 20140802
 -->
 
 <UserControl x:Class="ClipFlair.CaptionsGrid.CaptionsGrid"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d"
-    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008" d:DesignHeight="167" d:DesignWidth="856"
     xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk"
     xmlns:toolkit="http://schemas.microsoft.com/winfx/2006/xaml/presentation/toolkit"
     xmlns:sort="clr-namespace:System.ComponentModel;assembly=System.Windows"
     xmlns:btn="clr-namespace:ImageButtons;assembly=ImageButtons"
     xmlns:captions="clr-namespace:ClipFlair.CaptionsGrid"
-    d:DesignHeight="167" d:DesignWidth="856"
-    BorderThickness="0"
              
+    BorderThickness="0"
     MouseLeftButtonDown="UserControl_MouseLeftButtonDown"
    >
 
@@ -29,7 +28,8 @@ Version: 20140724
       <CollectionViewSource 
         x:Key="SortedCaptions" 
         Source="{Binding Path=Captions.Children, Mode=TwoWay}"
-        > <!-- Filter="CollectionViewSource_Filter" -->
+        d:Filter="CollectionViewSource_Filter"
+        > <!-- TODO: need some way to reapply the filter to existing rows, seems to only work on new rows --> <!-- maybe use PagedCollectionView -->
         <CollectionViewSource.SortDescriptions>
           <sort:SortDescription PropertyName="Begin" Direction="Ascending" />
         </CollectionViewSource.SortDescriptions>
@@ -84,6 +84,9 @@ Version: 20140724
         <Style TargetType="btn:ImageToggleButton">
           <Setter Property="Margin" Value="1,7" />
         </Style>
+        <Style TargetType="sdk:AutoCompleteBox">
+          <Setter Property="Margin" Value="1,8" />
+        </Style>        
       </toolkit:WrapPanel.Resources>
 
       <toolkit:WrapPanel Orientation="Horizontal">
@@ -167,6 +170,17 @@ Version: 20140724
 
       </toolkit:WrapPanel>
 
+      <!--
+      <sdk:AutoCompleteBox
+        Name="abFilterRole"
+        Text="{Binding RoleFilter, Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=True}" 
+        ItemsSource="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=captions:CaptionsGrid}, Path=Roles}" 
+        IsTextCompletionEnabled="True"
+        MinimumPrefixLength="0" 
+        MinimumPopulateDelay="0"
+        />
+      --> <!-- TODO: show "Role" watermark in it or label before it -->
+
     </toolkit:WrapPanel>
 
     <sdk:DataGrid
@@ -194,20 +208,93 @@ Version: 20140724
 
       <sdk:DataGrid.Columns>
         <!-- order of columns must be same as at InitializeDataGrid in codebehind -->
-        <sdk:DataGridTemplateColumn Header="#" CellTemplate="{StaticResource IndexCellTemplate}" IsReadOnly="True" />
-        <sdk:DataGridTemplateColumn Header="START" CellTemplate="{StaticResource StartTimeCellTemplate}" CellEditingTemplate="{StaticResource StartTimeCellEditTemplate}" />
-        <sdk:DataGridTemplateColumn Header="END" CellTemplate="{StaticResource EndTimeCellTemplate}" CellEditingTemplate="{StaticResource EndTimeCellEditTemplate}" />
-        <sdk:DataGridTemplateColumn Header="DURATION" CellTemplate="{StaticResource DurationCellTemplate}" CellEditingTemplate="{StaticResource DurationCellEditTemplate}" />
-        <sdk:DataGridTemplateColumn Header="ROLE" CellTemplate="{StaticResource RoleCellTemplate}" CellEditingTemplate="{StaticResource RoleCellEditTemplate}" />
-        <sdk:DataGridTemplateColumn Header="CAPTION" Width="*" CellTemplate="{StaticResource CaptionCellTemplate}" CellEditingTemplate="{StaticResource CaptionCellEditTemplate}" />
+        <sdk:DataGridTemplateColumn
+          Header="#"
+          CellTemplate="{StaticResource IndexCellTemplate}"
+          IsReadOnly="True"
+          />
+
+        <sdk:DataGridTemplateColumn
+          Header="START"
+          CellTemplate="{StaticResource StartTimeCellTemplate}"
+          CellEditingTemplate="{StaticResource StartTimeCellEditTemplate}"
+          />
+
+        <sdk:DataGridTemplateColumn
+          Header="END"
+          CellTemplate="{StaticResource EndTimeCellTemplate}"
+          CellEditingTemplate="{StaticResource EndTimeCellEditTemplate}" 
+          />
+
+        <sdk:DataGridTemplateColumn
+          Header="DURATION"
+          CellTemplate="{StaticResource DurationCellTemplate}"
+          CellEditingTemplate="{StaticResource DurationCellEditTemplate}"
+          />
+
+        <sdk:DataGridTemplateColumn
+          Header="ROLE"
+          CellTemplate="{StaticResource RoleCellTemplate}"
+          CellEditingTemplate="{StaticResource RoleCellEditTemplate}"
+          />
+
+        <sdk:DataGridTemplateColumn
+          Header="CAPTION"
+          Width="*"
+          CellTemplate="{StaticResource CaptionCellTemplate}"
+          CellEditingTemplate="{StaticResource CaptionCellEditTemplate}"
+          />
+        
         <!-- for all columns after the one with Width="*" we have to explicitly set the Width -->
-        <sdk:DataGridTemplateColumn Header="RTL" Width="30" CellTemplate="{StaticResource RTLCellTemplate}" IsReadOnly="True" />
-        <sdk:DataGridTemplateColumn Header="CPL" Width="30" CellTemplate="{StaticResource CPLCellTemplate}" IsReadOnly="True" />
-        <sdk:DataGridTemplateColumn Header="CPS" Width="50" CellTemplate="{StaticResource CPSCellTemplate}" IsReadOnly="True" />
-        <sdk:DataGridTemplateColumn Header="WPM" Width="50" CellTemplate="{StaticResource WPMCellTemplate}" IsReadOnly="True" />
-        <sdk:DataGridTemplateColumn Header="AUDIO" Width="115" CellTemplate="{StaticResource AudioCellTemplate}" IsReadOnly="True" />
-        <sdk:DataGridTemplateColumn Header="COMMENTS" Width="100" CellTemplate="{StaticResource CommentsCellTemplate}" CellEditingTemplate="{StaticResource CommentsCellEditTemplate}" />
-        <sdk:DataGridTemplateColumn Header="COMMENTS (AUDIO)" Width="124" CellTemplate="{StaticResource CommentsAudioCellTemplate}" IsReadOnly="True" />
+        <sdk:DataGridTemplateColumn
+          Header="RTL"
+          Width="30"
+          CellTemplate="{StaticResource RTLCellTemplate}"
+          IsReadOnly="True"
+          />
+
+        <sdk:DataGridTemplateColumn
+          Header="CPL" 
+          Width="30" 
+          CellTemplate="{StaticResource CPLCellTemplate}" 
+          IsReadOnly="True" 
+          />
+
+        <sdk:DataGridTemplateColumn
+          Header="CPS" 
+          Width="50" 
+          CellTemplate="{StaticResource CPSCellTemplate}" 
+          IsReadOnly="True" 
+          />
+
+        <sdk:DataGridTemplateColumn
+          Header="WPM"
+          Width="50"
+          CellTemplate="{StaticResource WPMCellTemplate}"
+          IsReadOnly="True"
+          />
+
+        <sdk:DataGridTemplateColumn
+          Header="AUDIO"
+          Width="115"
+          CellTemplate="{StaticResource AudioCellTemplate}"
+          IsReadOnly="True"
+          />
+        
+        <sdk:DataGridTemplateColumn
+          Header="COMMENTS"
+          Width="100"
+          CellTemplate="{StaticResource CommentsCellTemplate}"
+          CellEditingTemplate="{StaticResource CommentsCellEditTemplate}"
+          />
+        
+        <sdk:DataGridTemplateColumn
+          Header="COMMENTS (AUDIO)"
+          Width="124"
+          CellTemplate="{StaticResource CommentsAudioCellTemplate}"
+          IsReadOnly="True"
+          />
+        
       </sdk:DataGrid.Columns>
     </sdk:DataGrid>
 

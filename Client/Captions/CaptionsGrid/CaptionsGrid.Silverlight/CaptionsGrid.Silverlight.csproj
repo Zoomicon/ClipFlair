@@ -80,12 +80,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CaptionElementExt_CommentsAudio.cs" />
-    <Compile Include="CaptionElementExt_ExtraData.cs" />
-    <Compile Include="CaptionElementExtraData.cs" />
-    <Compile Include="ICaptionElementExtraData.cs" />
-    <Compile Include="CaptionElementExt.cs" />
-    <Compile Include="CaptionElementExt_Audio.cs" />
+    <Compile Include="CaptionElementExt\CaptionElementExt_CommentsAudio.cs" />
+    <Compile Include="CaptionElementExt\CaptionElementExt_ExtraData.cs" />
+    <Compile Include="CaptionElementExt\CaptionElementExtraData.cs" />
+    <Compile Include="CaptionElementExt\ICaptionElementExtraData.cs" />
+    <Compile Include="CaptionElementExt\CaptionElementExt.cs" />
+    <Compile Include="CaptionElementExt\CaptionElementExt_Audio.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="CaptionsGrid.xaml.cs">
       <DependentUpon>CaptionsGrid.xaml</DependentUpon>
