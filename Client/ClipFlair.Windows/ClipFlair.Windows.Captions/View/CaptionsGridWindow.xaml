@@ -1,7 +1,7 @@
 ﻿<!--
 Project: ClipFlair (http://ClipFlair.codeplex.com)
 Filename: CaptionsGridWindow.xaml
-Version: 20140722
+Version: 20140803
 -->
   
 <clipflair:BaseWindow x:Class="ClipFlair.Windows.CaptionsGridWindow"
@@ -73,10 +73,12 @@ Version: 20140722
       <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Toolbar Visible" Target="{Binding ElementName=edToolbarVisible}"/>
     </StackPanel>
 
+<!--
     <StackPanel Orientation="Horizontal">
       <CheckBox Name="cbIndexVisible" IsChecked="{Binding IndexVisible, Mode=TwoWay}" />
       <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Index column visible" Target="{Binding ElementName=cbIndexVisible}"/>
     </StackPanel>
+-->
     
     <StackPanel Orientation="Horizontal">
       <CheckBox Name="cbStartTimeVisible" IsChecked="{Binding StartTimeVisible, Mode=TwoWay}" />
