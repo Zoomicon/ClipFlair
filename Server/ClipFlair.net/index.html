@@ -1,0 +1,322 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"  class="no-js">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>ClipFlair | Foreign Language Learning through Interactive Revoicing and Captioning of Clips</title>
+<link rel="shortcut icon" type="image/ico" href='favicon.ico' />
+
+<!-- Pinned site shortcuts-->
+<meta name="application-name" content="ClipFlair" />
+<meta name="msapplication-starturl" content="http://clipflair.net" />
+<meta name="msapplication-window" content="width=1024;height=768" />
+<meta name="msapplication-task" content="name=ClipFlair Activity Gallery; action-uri=http://gallery.clipflair.net/activity/; icon-uri=http://gallery.clipflair.net/activity/favicon.ico" />
+<meta name="msapplication-task" content="name=ClipFlair Video Gallery; action-uri=http://gallery.clipflair.net/video/; icon-uri=http://gallery.clipflair.net/video/favicon.ico" />
+<meta name="msapplication-task" content="name=ClipFlair Image Gallery; action-uri=http://gallery.clipflair.net/image/; icon-uri=http://gallery.clipflair.net/image/favicon.ico" />
+<meta name="msapplication-task" content="name=ClipFlair Studio; action-uri=http://studio.clipflair.net/; icon-uri=http://studio.clipflair.net/favicon.ico" />
+<meta name="msapplication-task" content="name=ClipFlair Social; action-uri=http://social.clipflair.net/; icon-uri=http://social.clipflair.net/favicon.ico" />
+<meta name="msapplication-task" content="name=ClipFlair; action-uri=http://clipflair.net/; icon-uri=http://clipflair.net/favicon.ico" />
+<!-- // end -->
+
+<!-- Facebook Open Graph protocol -->
+<meta property="fb:admins" content="100000813825134">
+<meta property="fb:app_id" content="182684375208290">
+<meta property="og:url" content="http://clipflair.net">
+<meta property="og:title" content="ClipFlair">
+<meta property="og:site_name" content="ClipFlair">
+<meta property="og:description" content="Foreign Language Learning through Interactive Revoicing and Captioning of Clips">
+<meta property="og:type" content="website">
+<meta property="og:image" content="http://clipflair.net/wp-content/uploads/2012/06/clipflair-logo02.jpg">
+<meta property="og:locale" content="en_us">
+<!-- // end -->
+
+<link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+<link href="home/css/style.css" rel="stylesheet" type="text/css" />
+<!--[if lt IE 9]>
+	<link href="home/css/style-ie.css" rel="stylesheet" type="text/css" />
+<![endif]-->
+
+<script src="home/js/icu.js"></script>
+<script src="home/js/translate.js"></script>
+<script src="home/js/modernizr.custom.07231.js"></script>
+
+<script type="text/javascript" charset="utf-8">
+var FIREFOX = /Firefox/i.test(navigator.userAgent);
+
+if (FIREFOX) {
+  document.getElementById("studio").style.display="none";
+  document.getElementById("studio-firefox").style.display="block";
+}
+</script>
+</head>
+
+<body>
+<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+<!--fancybox-->
+<!-- Add mousewheel plugin (this is optional) -->
+<script type="text/javascript" src="home/js/fancybox/lib/jquery.mousewheel-3.0.6.pack.js"></script>
+<!-- Add fancyBox -->
+<link rel="stylesheet" href="home/js/fancybox/source/jquery.fancybox.css" type="text/css" media="screen" />
+<script type="text/javascript" src="home/js/fancybox/source/jquery.fancybox.pack.js"></script>
+<!-- Optionally add helpers - button, thumbnail and/or media -->
+<link rel="stylesheet" href="home/js/fancybox/source/helpers/jquery.fancybox-buttons.css" type="text/css" media="screen" />
+<script type="text/javascript" src="home/js/fancybox/source/helpers/jquery.fancybox-buttons.js"></script>
+<script type="text/javascript" src="home/js/fancybox/source/helpers/jquery.fancybox-media.js"></script>
+<!--/fancybox-->
+<script type="text/javascript" charset="utf-8">
+
+function getAjax(filename) {
+    var json = null;
+    $.ajax({
+        'async': false,
+        'global': false,
+        'url': filename,
+        'dataType': "json",
+        'success': function (data) {
+            json = data;
+        }
+    });
+    return json;
+};
+
+
+function mytranslate() {
+var langfix = $("#langsel").val()
+var filename = langfix+'_'+langfix.toUpperCase()+'.json';
+
+_.setTranslation(getAjax(filename));
+
+// actual translate:
+$("#studio").find('p').text(_('Create activities with ClipFlair Studio'));
+$("#video1").find('p').text(_('Watch 1\' intro to ClipFlair'));
+$("#gallery").find('p').text(_('Explore content in ClipFlair Gallery'));
+$("#social").find('p').text(_('Visit the Social Network'));
+$("#video2").find('p').text(_('Watch ClipFlair Studio basics'));
+$("#info").find('p').text(_('Learn more about the ClipFlair project'));
+$("#contact").find('p').text(_('Send us a message'));
+$("#help").find('p').text(_('Read manuals, tutorials and FAQ'));
+$("#subfootercontent").find('p').text(_('Foreign Language Learning through Interactive Revoicing & Captioning of Clips'));
+$("#content_wrapper").find('p').text(_('This project has been funded with support from the European Commission. This publication reflects the views only of the author, and the Commission cannot be held responsible for any use which may be made of the information contained therein.'));
+// ...
+
+
+};
+</script>
+<script src="home/js/jquery.hoverIntent.minified.js"></script>
+<script type="text/javascript" charset="utf-8">
+$(document ).ready(function() {
+							 
+	//load fancybox
+	$(".fancyframe").fancybox({
+		beforeLoad: function() {
+            var el, id = $(this.element).data('title-id');
+            if (id) {
+                el = $('#' + id);
+
+                if (el.length) {
+                    this.title = el.html();
+                }
+            }
+        },
+		type        : 'iframe',
+		maxWidth    : 800,
+		maxHeight   : 600,
+		fitToView   : false,
+		width       : '70%',
+		height      : '70%',
+		autoSize    : false,
+		closeClick  : false,
+		openEffect  : 'none',
+		closeEffect : 'none',		
+		helpers : {
+			title: {
+				type: 'outside'
+			}
+		}
+	});
+
+	
+	$( "#logo" ).animate({
+   		opacity: 1.0,
+  		}, 300, function() {
+    		// Animation complete.
+			$( "#studio" ).animate({
+   				opacity: 1.0,
+  				}, 300, function() {
+    				// Animation complete.
+					$( "#video1" ).animate({
+   						opacity: 1.0,
+  						}, 300, function() {
+    						// Animation complete.
+							
+  					});
+  			});
+			$( "#gallery" ).animate({
+   				opacity: 1.0,
+  				}, 300, function() {
+    				// Animation complete.
+					$( "#info" ).animate({
+   						opacity: 1.0,
+  						}, 300, function() {
+    						// Animation complete.
+							
+  					});
+  			});
+			$( "#social" ).animate({
+   				opacity: 1.0,
+  				}, 300, function() {
+    				// Animation complete.
+					$( "#video2" ).animate({
+   						opacity: 1.0,
+  						}, 300, function() {
+    						// Animation complete.
+							
+  					});
+					$( "#contact" ).animate({
+   						opacity: 1.0,
+  						}, 300, function() {
+    						// Animation complete.
+							
+  					});
+					$( "#help" ).animate({
+   						opacity: 1.0,
+  						}, 300, function() {
+    						// Animation complete.
+							
+  					});
+  			});
+  	});
+	
+	$(".roll-over").hoverIntent({
+                over: fadeIn,
+                out: fadeOut
+    });
+	$(".text").hoverIntent({
+                over: fadeIn,
+                out: fadeOut
+    });
+	
+	//fadein
+	function fadeIn(){
+		$(this).animate({
+   			opacity: 1.0,
+  			}, 10, function() {
+    			// Animation complete.
+  		});
+	}
+	
+	//fadeout
+	function fadeOut(){
+		$(this).animate({
+   			opacity: 0,
+  			}, 10, function() {
+    			// Animation complete.							
+  		});
+	}
+	
+	//hide an image title
+	$("a[rel='videoWithTitle']").each(function(e) {
+    	var title = $(this).attr('title');
+		$(this).mouseover(
+			function() {
+				$(this).attr('title','');
+			}).mouseout(
+				function() {
+				$(this).attr('title', title);
+		});
+		$(this).click(
+		function() {
+			$(this).attr('title', title);
+			}
+		);
+	});
+	
+});
+</script>
+	<div ID="wrapper">
+    	<div id="maincontentcontainer">
+        	<div id="language-select-wrapper" style="visibility:hidden;">
+                <label class="custom-select"> 
+                	<img src="home/img/globe.svg" width="18" height="18" align="middle" style="padding-bottom:10px;" />
+					<select id="langsel" onChange="mytranslate()">
+                        <option value="en">english</option>
+                        <option value="eu">euskera</option>
+                        <option value="ca">català</option>
+                        <option value="ga">gaeilge</option>
+                        <option value="pl">polski</option>
+                        <option value="pt">português</option>
+                        <option value="ro">română</option>
+                        <option value="el">ελληνικά</option>
+                        <option value="es">español</option>
+                        <option value="ee">eesti</option>
+          			</select>
+                </label>
+          	</div>
+        	<div id="maincontent">
+            	<div class="section group">
+                    <a class="col span_1_of_3  smaller-text" id="logo" href="http://clipflair.net" target="_top" title="">
+                   		<div class="roll-over"><p class="text" style="background:#fff"> <span style="line-height:1.15em; color:#a5ac2c; font-weight:600; font-size:larger">Foreign<br /> Language<br /> Learning</span> <br /> <span style="line-height:1.25em; color:#2e1c17; font-weight:lighter">through Interactive Revoicing & Captioning of Clips</span></p></div>
+                        <img src="home/img/logo.svg" border="none" width="100%" />
+                    </a>
+                    <a class="col span_1_of_3" id="studio" href="http://studio.clipflair.net">
+                    	<div class="roll-over"><p class="text" style="background:#1878ec">Create activities with ClipFlair Studio</p></div>
+                    	<img src="home/img/studio.svg" border="none" width="100%" class="" />
+                    </a>
+                    <a class="col span_1_of_3 fancybox.iframe fancyframe" href="http://player.vimeo.com/video/70558092?autoplay=1" id="video1">
+                   		<div class="roll-over" style="background:#9f2baa"><p class="text" style="background:#9f2baa">Watch 1' intro to ClipFlair</span></p></div>
+                    	<img src="home/img/video01.png" border="none" width="100%" class="" />
+                    </a>
+				</div> 
+                <div class="section group">
+                    <a class="col span_1_of_3" id="gallery"  href="http://gallery.clipflair.net//">
+                    	<div class="roll-over"><p class="text" style="background:#F67F00">Explore content in ClipFlair Gallery</p></div>
+               	    	<img src="home/img/gallery.svg" border="none" width="100%" class="" />
+                    </a>
+                    <a class="col span_1_of_3" id="social" href="http://social.clipflair.net">
+               			<div class="roll-over"><p class="text" style="background:#c32540">Visit the ClipFlair Social Network</p></div>
+                    	<img src="home/img/social.svg" border="none" width="100%" class="" />
+                    </a>                   
+                    <a rel="videoWithTitle" title="<a style='color:#b4b921; text-decoration:none; font-size:14px' href='http://social.clipflair.net/Pages/Tutorials.aspx' target='_blank'>more video tutorials &raquo;</a>" class="col span_1_of_3 fancybox.iframe fancyframe" id="video2"  href="http://player.vimeo.com/video/70557366?autoplay=1">
+                    	<div class="roll-over" style="background:#9f2baa"><p class="text" style="background:#9f2baa">Watch ClipFlair Studio basics</p></div>
+                    	<img src="home/img/video02.png" border="none" width="100%" class="" />
+                    </a>
+				</div>
+                <div class="section group">
+                    <a class="col span_1_of_3" id="info"  href="http://clipflair.net/overview">
+                    	<div class="roll-over"><p class="text" style="background:#b4b921">Learn more about the ClipFlair project</p></div>
+               	    	<img src="home/img/info.svg" border="none" width="100%" class="" />
+                    </a>
+                    <a class="col span_1_of_3" id="contact"  href="http://social.clipflair.net/MonoX/Pages/Contact.aspx">
+           		<div class="roll-over"><p class="text" style="background:#029eaf">Send us a message</p></div>
+                    	<img src="home/img/contact.svg" border="none" width="100%" class="" />
+                    </a>
+                    <a class="col span_1_of_3" id="help"  href="http://social.clipflair.net/help/faq.aspx">
+                    	<div class="roll-over"><p class="text" style="background:#00aaf1">Read manuals, tutorials and FAQ</p></div>
+                    	<img src="home/img/help.svg" border="none" width="100%" class="imgover" />
+                    </a>
+				</div>                            
+            </div>
+            <div id="subfooter">
+            	<div id="subfootercontent">
+            		<p class="footer-text"><span>Foreign Language Learning through Interactive</span> <span> Revoicing & Captioning of Clips</span></p>
+                </div>
+            </div>
+            <div id="footer">
+            	<div id="footercontent">
+                	<div class="content_wrapper">
+                        <div class="llp_logo"><img src="home/img/llp-logo.png" width="148" height="50" /></div>
+                      <p>This project has been funded with support from the European Commission. This publication reflects the views only of the author, and the Commission cannot be held responsible for any use which may be made of the information contained therein.</p>
+                        <a href="http://www.addthis.com/bookmark.php?url=http://clipflair.net&title=ClipFlair%20-%20Foreign%20Language%20Learning%20through%20Interactive%20Revoicing%20%26%20Captioning%20of%20Clips" target="_blank" class="share"><img src="home/img/share-btn.svg" width="82" height="25" align="left" /></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+<script src="home/js/jquery.fittext.js"></script>
+<script type="text/javascript">
+	jQuery(".span_1_of_3").fitText(0.6);
+	jQuery(".smaller-text").fitText(1);
+</script>
+</html>
