@@ -1,0 +1,260 @@
+@charset "utf-8";
+/* CSS Document */
+
+body {
+	margin: 0 auto;
+	padding: 0;
+	font-family: 'Open Sans', sans-serif;
+	color: #fff;
+	text-align: center;
+	background: #243445;
+	width:100%;
+}
+#wrapper {
+	width: 100%;
+	position: relative;
+	text-align: left;
+}
+#maincontentcontainer {
+	width: 100%;
+	background: #3c5773;
+}
+#maincontent {
+	clear: both;
+	width: 800px;
+	margin: 0 auto;
+	padding: 0;
+	position: relative;
+}
+
+#language-select-wrapper{
+	clear: both;
+	width: 130px;
+	float:right;
+	padding: 10px 40px 10px 0;
+	line-height: 1.5em;
+	position: relative;
+}
+/*  SECTIONS  */
+.section {
+	clear: both;
+	padding: 0px;
+	margin: 0px;
+	position:relative;
+}
+/*  COLUMN SETUP  */
+.col {
+
+	float:left;
+	margin: 10px 0 10px 20px;
+	display: inline-block !important;
+}
+.col:first-child {
+	margin-left: 0;
+}
+/*  GROUPING  */
+.group:before, .group:after {
+	content:"";
+	display:table;
+}
+.group:after {
+	clear:both;
+}
+/*  GRID OF THREE  */
+.span_3_of_3 {
+	width: 100%;
+	background-color:#0F6;
+}
+.span_2_of_3 {
+	width: 66.1%;
+	background-color:#C66;
+}
+.span_1_of_3 {
+	width: 242px;
+	height:242px;
+	/*background-color:#F90;*/
+	/*add*/
+	position:relative;
+	overflow:hidden;
+	/*!!!*/
+	text-decoration:none !important;
+	background-color:inherit;
+	/*/!!!*/
+}
+/*!!!*/
+
+
+#subfooter {
+	width: 98%;
+	background: #30465c;
+	text-align:center;
+	color:#a5aeb7;
+	padding: 34px 1%;
+	margin-top:1.5%;
+	font-weight:lighter;
+	clear:both;
+}
+#footer {
+	width: 98%;
+	background: #243445;
+	text-align:left;
+	color:#a5aeb7;
+	padding: 20px 1%;
+	font-size:12px;
+}
+#footercontent, #subfootercontent {
+	clear: both;
+	width: 900px;
+	margin: 0 auto;
+}
+#subfootercontent p.footer-text {
+	font-size:32px;
+	line-height:1.2em;
+	margin:0;
+	padding:0;
+	
+}
+#subfootercontent span {
+	white-space:nowrap;
+}
+.content_wrapper {
+	/*float:left;*/
+}
+.llp_logo {
+	float:left;
+}
+.llp_logo img {
+
+}
+#footercontent p {
+	float:left;
+	width:65%;
+	padding:0;
+	padding-left:10px;
+	margin:0;
+	color:#808993;
+}
+a.share {
+	float:right;
+	padding-top:6px;
+	width:94px;
+	height:30px;
+	display:block;
+}
+a.share img {
+
+	border:none;
+}
+/*ROLL-OVER TEXT*/
+a.span_1_of_3 .roll-over {
+	position:absolute;
+	top:0;
+	left:0;
+	/*display:none;*/
+	visibility:hidden;
+	width:100%;
+	height:100%;
+	
+}
+a.span_1_of_3:hover {
+	_background-color: transparent;
+}
+a.span_1_of_3:hover .roll-over {
+	cursor:pointer;
+	/*display:block;*/
+	visibility:visible;
+	
+}
+/*a.span_1_of_3:hover .roll-over .text {
+	display:block;
+	opacity:0;
+	color:#fff;
+	width:88%;
+	height:88%;
+	padding:6%;
+	margin:0;
+	font-weight: lighter;
+	line-height:1em;
+}*/
+a.span_1_of_3 .roll-over .text {
+	color:#fff;
+	width:89%;
+	height:89%;
+	padding:5%;
+	margin:0;
+	font-weight:lighter;
+	font-size:1.8em;
+	line-height:1.2em;
+}
+
+/*select*/
+label.custom-select {
+	position: relative;
+	display: inline-block;
+	float:right;
+}
+.custom-select select {
+	display: inline-block;
+	padding: 4px;
+	margin: 0;
+	font: inherit;
+	font-size:13px;
+	outline:none; /* remove focus ring from Webkit */
+	line-height: 1.2;
+	background: #3c5773;
+	color:#b1bcc7;
+	border:0;
+	cursor:pointer;
+	width: 100px;
+}
+
+/* Targetting Webkit browsers only. FF will show the dropdown arrow with so much padding. */
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+    select {padding-right:18px}
+}
+
+label.custom-select {position:relative}
+label.custom-select:after {
+    content:'';
+    font:13px "Consolas", monospace;
+    color:#778a9d;
+    -webkit-transform:rotate(90deg);
+    -moz-transform:rotate(90deg);
+    -ms-transform:rotate(90deg);
+    transform:rotate(90deg);
+    right:4px; top:4px;
+    padding:6px 2px 2px 2px;
+    position:absolute;
+    pointer-events:none;
+
+    opacity: 0;
+    filter: alpha(opacity=0);
+}
+label.custom-select:before {
+    content:'';
+    right:4px; top:4px;
+    width:25px; height:25px;
+    background:#3c5773;
+    position:absolute;
+    pointer-events:none;
+    display:block;
+}
+/* Select arrow styling
+.custom-select:after {
+	content: "▼";
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	font-size: 60%;
+	line-height: 30px;
+	padding: 0 7px;
+	background: #3c5773;
+	color: #778a9d;
+
+}
+.no-pointer-events .custom-select:after {
+	content: none;
+} */
+
+
