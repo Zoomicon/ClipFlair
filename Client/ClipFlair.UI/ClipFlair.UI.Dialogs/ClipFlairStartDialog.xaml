@@ -20,7 +20,7 @@ Version: 20140705
     <ResourceDictionary>
 
       <ResourceDictionary.MergedDictionaries>
-        <ResourceDictionary Source="/ClipFlair.UI.Dialogs;component/StartItems/Items.xaml" />
+        <ResourceDictionary Source="/ClipFlair.UI.Dialogs;component/Images/Items.xaml" />
       </ResourceDictionary.MergedDictionaries>
 
       <Style TargetType="Button">

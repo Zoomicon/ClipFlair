@@ -10,7 +10,7 @@
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>ClipFlair.UI.Widgets</RootNamespace>
-    <AssemblyName>ClipFlair.UI.Widgets.Silverlight</AssemblyName>
+    <AssemblyName>ClipFlair.UI.Widgets</AssemblyName>
     <TargetFrameworkIdentifier>Silverlight</TargetFrameworkIdentifier>
     <TargetFrameworkVersion>v5.0</TargetFrameworkVersion>
     <SilverlightVersion>$(TargetFrameworkVersion)</SilverlightVersion>
@@ -86,40 +86,12 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\ZUI\ImageButtons\ImageButtons.Silverlight\ImageButtons.Silverlight.csproj">
-      <Project>{127105AF-C0F4-40F8-87C5-D6C391552936}</Project>
-      <Name>ImageButtons.Silverlight</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="..\Images\Load.png">
-      <Link>Images\Load.png</Link>
-    </Resource>
-    <Resource Include="..\Images\LoadURL.png">
-      <Link>Images\LoadURL.png</Link>
-    </Resource>
-    <Resource Include="..\Images\LoadURL_hover.png">
-      <Link>Images\LoadURL_hover.png</Link>
-    </Resource>
-    <Resource Include="..\Images\Load_hover.png">
-      <Link>Images\Load_hover.png</Link>
-    </Resource>
-    <Resource Include="..\Images\Save.png">
-      <Link>Images\Save.png</Link>
-    </Resource>
-    <Resource Include="..\Images\SaveDirty.png">
-      <Link>Images\SaveDirty.png</Link>
-    </Resource>
-    <Resource Include="..\Images\SaveDirty_hover.png">
-      <Link>Images\SaveDirty_hover.png</Link>
-    </Resource>
-    <Resource Include="..\Images\Save_hover.png">
-      <Link>Images\Save_hover.png</Link>
-    </Resource>
-  </ItemGroup>
-  <ItemGroup>
     <Page Include="..\Source\OptionsLoadSaveControl.xaml">
       <Link>OptionsLoadSaveControl.xaml</Link>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Images\Items.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

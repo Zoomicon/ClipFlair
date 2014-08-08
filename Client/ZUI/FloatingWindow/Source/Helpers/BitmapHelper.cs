@@ -1,5 +1,5 @@
 ﻿//Filename: BitmapHelper.cs
-//Version: 20130804
+//Version: 20140808
 
 using System;
 using System.Globalization;
@@ -10,8 +10,6 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 
 using SilverFlow.Controls.Extensions;
-
-
 
 #if SILVERLIGHT
 using FluxJpeg.Core;

@@ -1,42 +1,56 @@
 ﻿<!--
 Project: ClipFlair (http://ClipFlair.codeplex.com
 Filename: OptionsLoadSaveControl.xaml
-Version: 20140526
+Version: 20140808
 -->
 
 <UserControl x:Class="ClipFlair.UI.Widgets.OptionsLoadSaveControl"
-    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:btn="clr-namespace:ImageButtons;assembly=ImageButtons"
-    mc:Ignorable="d" d:DesignHeight="20" d:DesignWidth="88">
+  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+  mc:Ignorable="d" d:DesignHeight="35" d:DesignWidth="108"
+  >
 
-  <StackPanel Name="LayoutRoot"
-              Orientation="Horizontal"
-              Background="{Binding Path=Background, RelativeSource={RelativeSource AncestorType=UserControl}}"
-              HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+  <UserControl.Resources>
+    <ResourceDictionary>
+      
+      <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="/ClipFlair.UI.Widgets;component/Images/Items.xaml" />
+      </ResourceDictionary.MergedDictionaries>
 
-    <btn:ImageButton Name="btnLoadURL"
-                     Margin="3,0,3,0"
-                     Click="btnLoadURL_Click"
-                     Image="Images/LoadURL.png"
-                     ImageHover="Images/LoadURL_hover.png"
-                     />
+      <Style TargetType="Button">
+        <Setter Property="Cursor" Value="Hand" />
+        <Setter Property="Margin" Value="3,5" />
+      </Style>
+      
+    </ResourceDictionary>
+  </UserControl.Resources>
 
-    <btn:ImageButton Name="btnLoad"
-                     Margin="3,0,3,0"
-                     Click="btnLoad_Click"
-                     Image="Images/Load.png"
-                     ImageHover="Images/Load_hover.png"
-                     />
+  <StackPanel
+    Name="LayoutRoot"
+    Orientation="Horizontal"
+    Background="{Binding Path=Background, RelativeSource={RelativeSource AncestorType=UserControl}}"
+    HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+    >
 
-    <btn:ImageButton Name="btnSave"
-                     Margin="3,0,3,0"
-                     Click="btnSave_Click"
-                     Image="Images/Save.png"
-                     ImageHover="Images/Save_hover.png"
-                     />
+    <Button
+      Name="btnLoadURL"
+      Click="btnLoadURL_Click"
+      Template="{StaticResource LoadUrl.xaml}" 
+      />
+    
+    <Button
+      Name="btnLoad"
+      Click="btnLoad_Click"
+      Template="{StaticResource Load.xaml}"
+      />
+
+    <Button
+      Name="btnSave"
+      Click="btnSave_Click"
+      Template="{StaticResource Save.xaml}"
+      />
 
   </StackPanel>
 
