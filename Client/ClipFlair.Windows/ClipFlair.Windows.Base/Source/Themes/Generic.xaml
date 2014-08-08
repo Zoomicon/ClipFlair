@@ -1,7 +1,7 @@
 ﻿<!--
 Project: ClipFlair (http://ClipFlair.codeplex.com)
 Filename: Generic.xaml
-Version: 20140608
+Version: 20140808
 -->
 
 <ResourceDictionary
@@ -14,7 +14,7 @@ Version: 20140608
   xmlns:local="clr-namespace:ClipFlair.Windows"
   mc:Ignorable="d"
   >
-  <!-- xmlns:lbl="clr-namespace:ClipFlair.UI.Widgets;assembly=ClipFlair.UI.Widgets.Silverlight" -->
+  <!-- xmlns:lbl="clr-namespace:ClipFlair.UI.Widgets;assembly=ClipFlair.UI.Widgets" -->
 
   <ResourceDictionary.MergedDictionaries>
     <ResourceDictionary Source="/SilverFlow.Controls;component/Themes/generic.xaml" />

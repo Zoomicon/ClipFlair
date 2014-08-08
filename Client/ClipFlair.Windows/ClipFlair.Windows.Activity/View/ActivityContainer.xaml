@@ -1,7 +1,7 @@
 ﻿<!--
 Project: ClipFlair (http://ClipFlair.codeplex.com)
 Filename: ActivityContainer.xaml
-Version: 20140414
+Version: 20140808
 -->
 
 <UserControl x:Class="ClipFlair.Windows.ActivityContainer" 
@@ -12,7 +12,7 @@ Version: 20140414
   xmlns:float="clr-namespace:SilverFlow.Controls;assembly=SilverFlow.Controls"
   xmlns:zui="clr-namespace:FloatingWindowZUI;assembly=FloatingWindowZUI"
   xmlns:clipflair="clr-namespace:ClipFlair.Windows"
-  xmlns:widgets="clr-namespace:ClipFlair.UI.Widgets;assembly=ClipFlair.UI.Widgets.Silverlight"
+  xmlns:widgets="clr-namespace:ClipFlair.UI.Widgets;assembly=ClipFlair.UI.Widgets"
   xmlns:utils="clr-namespace:System.Windows.Controls;assembly=WPF_Compatibility"
   xmlns:btn="clr-namespace:ImageButtons;assembly=ImageButtons"
   d:DesignWidth="800" d:DesignHeight="600"
@@ -87,7 +87,7 @@ Version: 20140414
             LoadURLClick="OptionsLoadSaveControl_LoadURLClick"
             LoadClick="OptionsLoadSaveControl_LoadClick"
             SaveClick="OptionsLoadSaveControl_SaveClick"
-            Margin="20,0"
+            Margin="20,3"
             />
 
           <StackPanel Name="panelAddComponents" Orientation="Horizontal">

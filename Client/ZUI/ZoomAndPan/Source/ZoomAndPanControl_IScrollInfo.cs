@@ -1,5 +1,5 @@
 ﻿//Filename: ZoomAndPanControl_IScrollInfo.cs
-//Version: 20120802
+//Version: 20140808
 
 using System.Windows;
 using System.Windows.Controls;
@@ -140,7 +140,6 @@ namespace ZoomAndPan
             }
         }
         #endregion Properties
-
 
         #region Methods
 
