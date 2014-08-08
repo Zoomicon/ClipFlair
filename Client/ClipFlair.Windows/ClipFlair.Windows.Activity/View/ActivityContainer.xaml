@@ -14,7 +14,9 @@ Version: 20140808
   xmlns:clipflair="clr-namespace:ClipFlair.Windows"
   xmlns:widgets="clr-namespace:ClipFlair.UI.Widgets;assembly=ClipFlair.UI.Widgets"
   xmlns:utils="clr-namespace:System.Windows.Controls;assembly=WPF_Compatibility"
+
   xmlns:btn="clr-namespace:ImageButtons;assembly=ImageButtons"
+             
   d:DesignWidth="800" d:DesignHeight="600"
   >
   <!-- //EXAMPLE//
@@ -26,9 +28,10 @@ Version: 20140808
     <ResourceDictionary>
 
       <ResourceDictionary.MergedDictionaries>
-        <ResourceDictionary Source="/SilverFlow.Controls;component/Themes/generic.xaml"/>
-        <!-- <ResourceDictionary Source="/FloatingWindowZUI;component/Themes/Generic.xaml"/> *** MUST NOT USE THIS, ELSE THE ADD BUTTONS DON'T SHOW UP *** -->
+        <ResourceDictionary Source="/SilverFlow.Controls;component/Themes/generic.xaml" />
+        <!-- <ResourceDictionary Source="/FloatingWindowZUI;component/Themes/Generic.xaml" /> *** MUST NOT USE THIS, ELSE THE ADD BUTTONS DON'T SHOW UP *** -->
         <ResourceDictionary Source="/ClipFlair.Windows.Base;component/Themes/Generic.xaml" />
+        <ResourceDictionary Source="/Clipflair.Windows.Activity;component/Images/Items.xaml" />
       </ResourceDictionary.MergedDictionaries>
 
     </ResourceDictionary>
@@ -68,15 +71,21 @@ Version: 20140808
         <StackPanel 
           Orientation="Horizontal"
           HorizontalAlignment="Stretch"
-          Background="{StaticResource ClipFlairActivityToolbarBackground}"          
+          Background="{StaticResource ClipFlairActivityToolbarBackground}"  
+          Margin="15,0,0,0"
           >
+          
+          <StackPanel.Resources>
+            <Style TargetType="Button">
+              <Setter Property="Margin" Value="0,8,5,8" />
+            </Style>
+          </StackPanel.Resources>
 
-          <btn:ImageButton
+          <Button
             Name="btnProjectHome"
-            VerticalAlignment="Center" Margin="20,0,0,0"              
+            VerticalAlignment="Center"
             ToolTipService.ToolTip="Show start dialog"
-            Image="/ClipFlair.Windows.Activity;component/Images/Home.png"
-            ImageHover="/ClipFlair.Windows.Activity;component/Images/Home_hover.png"
+            Template="{StaticResource Home.xaml}"
             Click="btnProjectHome_Click"  
             />
           
@@ -87,65 +96,58 @@ Version: 20140808
             LoadURLClick="OptionsLoadSaveControl_LoadURLClick"
             LoadClick="OptionsLoadSaveControl_LoadClick"
             SaveClick="OptionsLoadSaveControl_SaveClick"
-            Margin="20,3"
+            Margin="10,3"
             />
 
           <StackPanel Name="panelAddComponents" Orientation="Horizontal">
 
-            <btn:ImageButton
+            <Button
               Name="btnAddClip"
-              VerticalAlignment="Center" Margin="0,0,5,0"
+              VerticalAlignment="Center"
               ToolTipService.ToolTip="Add Clip"
-              Image="/ClipFlair.Windows.Activity;component/Images/AddClip.png"
-              ImageHover="/ClipFlair.Windows.Activity;component/Images/AddClip_hover.png"
+              Template="{StaticResource AddClip.xaml}"
               />
 
-            <btn:ImageButton
+            <Button
               Name="btnAddCaptions"
-              VerticalAlignment="Center" Margin="0,0,5,0"
+              VerticalAlignment="Center"
               ToolTipService.ToolTip="Add Captions"
-              Image="/ClipFlair.Windows.Activity;component/Images/AddCaptions.png"
-              ImageHover="/ClipFlair.Windows.Activity;component/Images/AddCaptions_hover.png"
+              Template="{StaticResource AddCaptions.xaml}"
               />
 
-            <btn:ImageButton
+            <Button
               Name="btnAddRevoicing"
-              VerticalAlignment="Center" Margin="0,0,5,0"
+              VerticalAlignment="Center"
               ToolTipService.ToolTip="Add Revoicing"
-              Image="/ClipFlair.Windows.Activity;component/Images/AddRevoicing.png"
-              ImageHover="/ClipFlair.Windows.Activity;component/Images/AddRevoicing_hover.png"
+              Template="{StaticResource AddRevoicing.xaml}"
               />
 
-            <btn:ImageButton
+            <Button
               Name="btnAddText"
-              VerticalAlignment="Center" Margin="0,0,5,0"
+              VerticalAlignment="Center"
               ToolTipService.ToolTip="Add Text"
-              Image="/ClipFlair.Windows.Activity;component/Images/AddText.png"
-              ImageHover="/ClipFlair.Windows.Activity;component/Images/AddText_hover.png"
+              Template="{StaticResource AddText.xaml}"
               />
 
-            <btn:ImageButton
+            <Button
               Name="btnAddImage"
-              VerticalAlignment="Center" Margin="0,0,5,0"
+              VerticalAlignment="Center"
               ToolTipService.ToolTip="Add Image"
-              Image="/ClipFlair.Windows.Activity;component/Images/AddImage.png"
-              ImageHover="/ClipFlair.Windows.Activity;component/Images/AddImage_hover.png"
+              Template="{StaticResource AddImage.xaml}"
               />
 
-            <btn:ImageButton
+            <Button
               Name="btnAddMap"
-              VerticalAlignment="Center" Margin="0,0,5,0"
+              VerticalAlignment="Center"
               ToolTipService.ToolTip="Add Map"
-              Image="/ClipFlair.Windows.Activity;component/Images/AddMap.png"
-              ImageHover="/ClipFlair.Windows.Activity;component/Images/AddMap_hover.png"
+              Template="{StaticResource AddMap.xaml}"
               />
 
-            <btn:ImageButton
+            <Button
               Name="btnAddNews"
-              VerticalAlignment="Center" Margin="0,0,5,0"
+              VerticalAlignment="Center"
               ToolTipService.ToolTip="Add News"
-              Image="/ClipFlair.Windows.Activity;component/Images/AddNews.png"
-              ImageHover="/ClipFlair.Windows.Activity;component/Images/AddNews_hover.png"
+              Template="{StaticResource AddNews.xaml}"
               />
 
             <btn:ImageButton
@@ -156,20 +158,18 @@ Version: 20140808
               ImageHover="/ClipFlair.Windows.Activity;component/Images/AddBrowser_hover.png"
               />
             
-            <btn:ImageButton
+            <Button
               Name="btnAddGallery"
-              VerticalAlignment="Center" Margin="0,0,5,0"              
+              VerticalAlignment="Center"              
               ToolTipService.ToolTip="Add Gallery"
-              Image="/ClipFlair.Windows.Activity;component/Images/AddGallery.png"
-              ImageHover="/ClipFlair.Windows.Activity;component/Images/AddGallery_hover.png"
+              Template="{StaticResource AddGallery.xaml}"
               />
 
-            <btn:ImageButton
+            <Button
               Name="btnAddNestedActivity"
-              VerticalAlignment="Center" Margin="0,0,5,0"              
+              VerticalAlignment="Center"             
               ToolTipService.ToolTip="Add nested Activity"
-              Image="/ClipFlair.Windows.Activity;component/Images/AddActivity.png"
-              ImageHover="/ClipFlair.Windows.Activity;component/Images/AddActivity_hover.png"
+              Template="{StaticResource AddActivity.xaml}"
               />
 
           </StackPanel>
