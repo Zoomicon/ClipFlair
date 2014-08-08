@@ -141,7 +141,7 @@
       <Name>WPF_Compatibility.Silverlight</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\ZUI\ImageButtons\ImageButtons.Silverlight\ImageButtons.Silverlight.csproj">
-      <Project>{127105AF-C0F4-40F8-87C5-D6C391552936}</Project>
+      <Project>{127105af-c0f4-40f8-87c5-d6c391552936}</Project>
       <Name>ImageButtons.Silverlight</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\ZUI\ZoomAndPan\ZoomAndPan.Silverlight\ZoomAndPan.Silverlight.csproj">
@@ -198,48 +198,10 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\AddCaptions.png" />
-    <Resource Include="Images\AddCaptions_hover.png" />
-    <Resource Include="Images\AddImage.png" />
-    <Resource Include="Images\AddImage_hover.png" />
-    <Resource Include="Images\AddRevoicing.png" />
-    <Resource Include="Images\AddRevoicing_hover.png" />
-    <Resource Include="Images\AddText.png" />
-    <Resource Include="Images\AddText_hover.png" />
-    <Resource Include="Images\AddClip.png" />
-    <Resource Include="Images\AddClip_hover.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\AddMap.png" />
-    <Resource Include="Images\AddMap_hover.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\AddGallery.png" />
-    <Resource Include="Images\AddGallery_hover.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\AddActivity.png" />
-    <Resource Include="Images\AddActivity_hover.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\AddVision.png" />
-    <Resource Include="Images\AddVision_hover.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\AddNews.png" />
-    <Resource Include="Images\AddNews_hover.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\Home.png" />
-    <Resource Include="Images\Home_hover.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Activity.cd" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\AddBrowser.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Images\AddBrowser_hover.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Silverlight\$(SilverlightVersion)\Microsoft.Silverlight.CSharp.targets" />
