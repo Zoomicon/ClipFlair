@@ -1,6 +1,6 @@
 ﻿'Project: ClipFlair (http://ClipFlair.codeplex.com)
 'Filename: BaseCaptionReader.vb
-'Version: 20131105
+'Version: 20140809
 
 Imports ClipFlair.CaptionsLib.Models
 
@@ -30,9 +30,12 @@ Namespace ClipFlair.CaptionsLib
 
     Public Overloads Sub ReadCaptions(Of T As {CaptionElement, New})(ByVal captions As CaptionRegion, ByVal reader As TextReader) Implements ICaptionsReader.ReadCaptions
       ReadHeader(reader)
+      Dim index As Integer = 0
       While reader.Peek <> -1
         Dim caption As New T()
         ReadCaption(caption, reader)
+        index += 1 'first increment, then use (first caption will have Index=1)
+        caption.Index = index
         captions.Children.Add(caption)
       End While
       ReadFooter(reader)

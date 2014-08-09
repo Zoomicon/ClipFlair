@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: BaseCaptionReader.cs
-//Version: 20140321
+//Version: 20140809
 
 using ClipFlair.CaptionsLib.Models;
 using Microsoft.SilverlightMediaFramework.Core.Accessibility.Captions;
@@ -30,9 +30,11 @@ namespace ClipFlair.CaptionsLib
     public void ReadCaptions<T>(CaptionRegion captions, TextReader reader) where T : CaptionElement, new()
     {
       ReadHeader(reader);
+      int index = 0;
       while (reader.Peek() != -1) {
         T caption = new T();
         ReadCaption(caption, reader);
+        caption.Index = ++index; //prefix increment: first increment, then evaluate (first caption will have Index=1)
         captions.Children.Add(caption);
       }
       ReadFooter(reader);
