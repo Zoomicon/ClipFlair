@@ -925,6 +925,11 @@ namespace ClipFlair.MediaPlayer
       base.OnMediaOpened();
       OnBitrateVisibleChanged(!BitrateVisible, BitrateVisible); //BitrateMonitorElement seems to be shown by default after media opening
       UpdateCaptions1(Captions1);
+
+      /* //TODO: doesn't work - also see how we can detect current playing state and pause (or play if paused)
+      if (MediaPresenterElement != null) //this can be null if media url can't be resolved
+        MediaPresenterElement.MouseLeftButtonDown += (s, e) => { Pause(); };
+      */
     }
     
     protected void MediaPlayer_MediaPluginRegistered(object source, CustomEventArgs<IMediaPlugin> args)
