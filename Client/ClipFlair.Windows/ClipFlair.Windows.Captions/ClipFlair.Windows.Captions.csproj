@@ -92,9 +92,16 @@
     </Compile>
     <Compile Include="ViewModel\ICaptionsGridProperties.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="View\CaptionsGridOptions.xaml.cs">
+      <DependentUpon>CaptionsGridOptions.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Page Include="View\CaptionsGridWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\CaptionsGridOptions.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
