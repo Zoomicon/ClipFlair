@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: MediaPlayerOptions.xaml.cs
-//Version: 20140315
+//Version: 20140811
 
 using System.Windows;
 using System.Windows.Controls;
@@ -27,11 +27,7 @@ namespace ClipFlair.Windows.Options
     public MediaPlayerWindow MediaPlayerWindow
     {
       get { return mediaPlayerWindow; }
-      set
-      {
-        mediaPlayerWindow = value;
-        DataContext = (value != null) ? value.View : null;
-      }
+      set { mediaPlayerWindow = value; }
     }
 
     #endregion

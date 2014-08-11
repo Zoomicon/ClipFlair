@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: MediaPlayerWindow.xaml.cs
-//Version: 20140616
+//Version: 20140811
 
 using ClipFlair.Windows.Media;
 using ClipFlair.Windows.Views;
@@ -40,16 +40,8 @@ namespace ClipFlair.Windows
 
     public override IView View
     {
-      get
-      {
-        return base.View;
-      }
-      set
-      {
-        base.View = value;
-        if (options != null)
-          options.MediaPlayerWindow = this;
-      }
+      get { return base.View; }
+      set { base.View = value; }
     }
 
     #endregion
