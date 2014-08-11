@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: BaseWindow.xaml.cs
-//Version: 20140623
+//Version: 20140811
 
 //TODO: unbind control at close
 
@@ -199,7 +199,7 @@ namespace ClipFlair.Windows
         DependencyProperty.Register("Flipped", typeof(bool), typeof(BaseWindow),
             new FrameworkPropertyMetadata((bool)false,
                 FrameworkPropertyMetadataOptions.None,
-                new PropertyChangedCallback(OnFlippedChanged)));
+                OnFlippedChanged));
 
     /// <summary>
     /// Gets or sets the Flipped property.
@@ -240,7 +240,7 @@ namespace ClipFlair.Windows
         DependencyProperty.Register("IsAnimated", typeof(bool), typeof(BaseWindow),
             new FrameworkPropertyMetadata(true,
                 FrameworkPropertyMetadataOptions.None,
-                new PropertyChangedCallback(OnIsAnimatedChanged)));
+                OnIsAnimatedChanged));
 
     /// <summary>
     /// Gets or sets the IsAnimated property.
