@@ -1,7 +1,7 @@
 ﻿<!--
 Project: ClipFlair (http://ClipFlair.codeplex.com)
 Filename: ActivityContainer.xaml
-Version: 20140808
+Version: 20140816
 -->
 
 <UserControl x:Class="ClipFlair.Windows.ActivityContainer" 
@@ -78,6 +78,7 @@ Version: 20140808
           <StackPanel.Resources>
             <Style TargetType="Button">
               <Setter Property="Margin" Value="0,8,5,8" />
+              <Setter Property="Cursor" Value="Hand" />
             </Style>
           </StackPanel.Resources>
 
