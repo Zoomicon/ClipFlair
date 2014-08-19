@@ -1,0 +1,99 @@
+/* SCREEN & PRINT */
+
+@media all {
+
+  body {
+    margin: 0;
+    padding: 0;
+    font-family: Verdana, Geneva, sans-serif;
+    font-size: 13px;
+  }
+
+  .container {
+    clear: both;
+  }
+
+  .row {
+    width: 100%;
+    clear: both;
+  }
+
+  .col {
+    width: 45%;
+    margin: 2.5%;
+    float: left;
+  }
+
+  ul.meta {
+    width: 100%;
+    clear: both;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  ul.meta li {
+    width: 48%;
+    margin: 0;
+    padding: 1% 1% 1% 0;
+    float: left;
+    font-size: 12px;
+  }
+
+  h2.title {
+    font-size: 18px;
+    padding: 0 0 10px 0;
+  }
+
+  h2.title a {
+    text-decoration: underline;
+    color: #8c961c;
+    word-wrap: break-word;    
+  }
+
+  h2.title a:hover {
+    text-decoration: none;
+  }
+
+  p.description {
+    color: #333;
+    line-height: 20px;
+    padding: 12px 0 6px 0;
+  }
+
+  span.meta-title {
+    font-weight: bold;
+  }
+
+  .img-wrapper {
+    width: 100%;
+    max-width: 100%;
+    overflow: hidden;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+  }
+
+  .img-wrapper img {
+    max-width: 100%;
+  }
+
+}
+
+/* PRINT ONLY */
+
+@media print {
+
+  .container {
+    page-break-after: always;
+  }
+
+  /* //IE's File menu has Page setup option where one can set page header/footer, numbering etc.
+  @page {
+    @bottom-center {
+      content: counter(page) "/" counter(pages);
+    }
+  }
+  */
+
+}
