@@ -2755,7 +2755,7 @@ span.level0-wrapper
     position:absolute;
     top: 15px;
     left: -8px;
-    z-index:100;	
+    z-index:100;
     /*/!!!*/
 }
 NAV UL UL
@@ -4867,13 +4867,11 @@ a:hover.green_btn{
     margin-bottom: -10px;
 }
 /*/!!!*/
-.discussion-item .tags, .blog-item .tags
+    
 {
 	/*margin-top: 15px;
     margin-bottom: 55px;*/
     width: 50%;
-    float: left;
-    margin-top: 3px;
 }
 .discussion-item .tags A, .blog-item .tags A, .tag-cloud A
 {
@@ -7238,8 +7236,8 @@ h2.comment-title {
 	-webkit-box-shadow: 0px 0px 7px rgba(0,0,0,0.1);
 	box-shadow: 0px 0px 7px rgba(0,0,0,0.1);
 	margin-bottom: 20px;*/
-    /*!!!*/
-    padding-bottom:60px;
+    /***CHANGES:20140623*/
+    padding-bottom:40px;
     /*!!!*/
 }
 .groups .top-section H1
@@ -9680,8 +9678,25 @@ span.cat_title {
 .container-languages {
     width:100%;
     /*padding: 4px 0;*/
+    display:none;
 }
-
+.language-notification.container-highlighter {
+    width:100%;
+    background: none;
+    padding: 0;
+    margin-bottom:0px;
+    text-align:right;
+}
+.language-notification h4 {
+    font-size:14px;
+    
+    margin:0;
+    padding:6px 14px 6px 0;
+}
+.language-notification a {
+    color:#606060;
+    font-family: Arial, Helvetica, sans-serif;
+}
 
 /*!!!NEW CONTAINER: FANCYBOX-CONTAINER*/
 .fancybox-container {
@@ -10441,6 +10456,9 @@ ul.languages li ul li:last-child {
        
        margin-bottom: 0px;
        width:100%;
+       float: left;
+       margin-top: 3px;
+       
     }
     
     .small-padding-btn {
