@@ -41,6 +41,7 @@
     <script type="text/javascript">
     
         $(document).ready(function() {
+
             
             
             //load video fancybox
@@ -125,14 +126,10 @@
 
         });
         
-        //multilingual
-        var curAddr = document.location.href;
-        var newAddr = curAddr.replace(new RegExp("/lng/[a-z]{2}-[A-Z]{2}", "gi"), "");
-        if (curAddr != newAddr)
-          document.location = newAddr;
-          
+        
+  
     </script>
-    <div class="container-languages" style="background-color:#e0e0e0;">
+    <div class="container-languages" style="background-color:#e0e0e0; display:block !important;">
         <div class="container ">
             <div class="row-fluid">
                 <div class="span12 clearfix">
