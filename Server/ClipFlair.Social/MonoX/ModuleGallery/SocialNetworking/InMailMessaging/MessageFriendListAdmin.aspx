@@ -4,7 +4,7 @@
     CodeBehind="MessageFriendListAdmin.aspx.cs"
     EnableTheming="true"
     Inherits="MonoSoftware.MonoX.ModuleGallery.SocialNetworking.InMail.MessageFriendListAdmin" %>
-    MasterPageFile="~/App_MasterPages/ClipFlair/Default.master"
+    MasterPageFile="~/MonoX/MasterPages/Default.master"
 
 <%@ Register Assembly="MonoX" Namespace="MonoSoftware.MonoX.Controls" TagPrefix="mono" %> 
 <%@ Register TagPrefix="rad" Namespace="Telerik.Web.UI" Assembly="Telerik.Web.UI" %>

@@ -7,7 +7,7 @@
     Codebehind="Default.master.cs" %>
 <%@ MasterType VirtualPath="~/MonoX/MasterPages/MonoX.master" %>
 <%@ Import Namespace="MonoSoftware.MonoX.Resources" %>
-<%@ Register TagPrefix="MonoX" TagName="PageFooter" Src="~/App_MasterPages/ClipFlair/PageFooter.ascx" %>
+<%@ Register TagPrefix="MonoX" TagName="PageFooter" Src="~/MonoX/MasterPages/PageFooter.ascx" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="cp" runat="server">
     <div class="login-cont">

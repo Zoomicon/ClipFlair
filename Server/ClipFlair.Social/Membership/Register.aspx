@@ -1,6 +1,6 @@
 <%@ Page 
     Language="C#" 
-    MasterPageFile="~/App_MasterPages/ClipFlair/Default.master" 
+    MasterPageFile="~/MonoX/MasterPages/Default.master" 
     AutoEventWireup="true" 
     Inherits="MonoSoftware.MonoX.Pages.Register" 
     Codebehind="Register.aspx.cs" %>
