@@ -41,32 +41,7 @@
     <script type="text/javascript">
     
         $(document).ready(function() {
-            $(".various").fancybox({
-                maxWidth	: 800,
-                maxHeight	: 600,
-                fitToView	: false,
-                autoSize	: true,
-                closeClick	: false,
-                openEffect	: 'none',
-                closeEffect	: 'none',
-                padding : 0,
-                afterClose : function() {
-                    location.reload();
-                    //location.href='/';
-                    return;
-                }
-            });
             
-             $(".iframe").fancybox({
-                maxWidth	: 800,
-                maxHeight	: 600,
-                fitToView	: false,
-                autoSize	: true,
-                closeClick	: false,
-                openEffect	: 'none',
-                closeEffect	: 'none',
-                padding : 0
-            });
             
             //load video fancybox
             $(".fancyframe").fancybox({
@@ -105,30 +80,7 @@
                 $(this).scrollTop(scrollTop-Math.round(delta * 40));
             });
             
-            //check if URL contains the parameter: login and, if so, open the fancybox 
-            if (window.location.href.toLowerCase().indexOf("login") > -1) {
-                $.fancybox({
-                    'type' : 'iframe',
-                    'href' : 'Login.aspx',
-                    padding : 0,
-                    afterClose : function() {
-                        //location.reload();
-                        location.href='/';
-                    }
-                });
-            }
-            //check if URL contains the parameter: updateaccount and, if so, open the fancybox 
-            if (window.location.href.toLowerCase().indexOf("updateaccount") > -1) {
-                $.fancybox({
-                    'type' : 'iframe',
-                    'href' : '/Membership/Register.aspx',
-                    padding : 0,
-                    afterClose : function() {
-                        //location.reload();
-                        location.href='/';
-                    }
-                });
-            }
+            
             
             //Up Arrow - Down arrow
             
@@ -169,11 +121,18 @@
             });
             
             //scrollbar
-           $("html").niceScroll({styler:"fb", cursorcolor:"#000", spacebarenabled:false});
+           $("html").niceScroll({styler:"fb",cursorcolor:"#000",spacebarenabled:false});
 
         });
+        
+        //multilingual
+        var curAddr = document.location.href;
+        var newAddr = curAddr.replace(new RegExp("/lng/[a-z]{2}-[A-Z]{2}", "gi"), "");
+        if (curAddr != newAddr)
+          document.location = newAddr;
+          
     </script>
-    <div class="container-languages" style="background-color:#e0e0e0; display:none;">
+    <div class="container-languages" style="background-color:#e0e0e0;">
         <div class="container ">
             <div class="row-fluid">
                 <div class="span12 clearfix">
