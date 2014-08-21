@@ -10,8 +10,8 @@
 <%@ Register TagPrefix="MonoX" TagName="Menu" Src="~/MonoX/ModuleGallery/MonoXMenuHTML5.ascx" %>
 <%@ Register TagPrefix="MonoX" TagName="Language" Src="~/MonoX/ModuleGallery/LanguageChanger.ascx" %>
 <%@ Register TagPrefix="MonoX" TagName="Search" Src="~/MonoX/ModuleGallery/MonoXSearchBoxWithFilter.ascx" %>
-<%@ Register TagPrefix="MonoX" TagName="PageFooter" Src="~/App_MasterPages/ClipFlair/PageFooter.ascx" %>
-<%@ Register TagPrefix="MonoX" TagName="MembershipNavigation" Src="~/App_MasterPages/ClipFlair/MembershipNavigation.ascx" %>
+<%@ Register TagPrefix="MonoX" TagName="PageFooter" Src="~/MonoX/MasterPages/PageFooter.ascx" %>
+<%@ Register TagPrefix="MonoX" TagName="MembershipNavigation" Src="~/MonoX/MasterPages/MembershipNavigation.ascx" %>
 <%@ Register Assembly="MonoX" Namespace="MonoSoftware.MonoX" TagPrefix="portal" %>
 <%@ Register Assembly="MonoX" Namespace="MonoSoftware.MonoX.SearchEngine" TagPrefix="Search" %>
 

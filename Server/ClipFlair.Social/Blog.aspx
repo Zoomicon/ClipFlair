@@ -1,6 +1,6 @@
 <%@ Page
     Language="C#" 
-    MasterPageFile="~/App_MasterPages/ClipFlair/DefaultPartiallyLocalized.master"
+    MasterPageFile="~/MonoX/MasterPages/DefaultPartiallyLocalized.master"
     AutoEventWireup="true" 
     Inherits="MonoSoftware.MonoX.Pages.Blog" 
     Title="MonoX Blog"

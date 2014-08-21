@@ -4,7 +4,7 @@
     Theme="ClipFlair"
     CodeBehind="EventCalendar.aspx.cs"
     Inherits="MonoSoftware.MonoX.Pages.SocialNetworking.EventCalendar"
-    MasterPageFile="~/App_MasterPages/ClipFlair/Default.master" %>
+    MasterPageFile="~/MonoX/MasterPages/Default.master" %>
 
 <%@ MasterType TypeName="MonoSoftware.MonoX.BaseMasterPage" %>
 <%@ Import Namespace="MonoSoftware.MonoX.Resources" %>
