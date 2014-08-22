@@ -180,7 +180,7 @@
                        var curAddr = document.location.href;
                        var newAddr = curAddr.replace(new RegExp("/lng/[a-z]{2}-[A-Z]{2}","gi"), "/lng/en-US");
                        if (curAddr != newAddr)
-                         document.write("<h4><a href='" + newAddr + "'>&laquo; More content for this page in (<strong>en</strong>) english</a></h4>");
+                         document.write("<h4><a href='" + newAddr + "'>&laquo; More content for this page is available in <strong>en</strong>glish</a></h4>");
                     }
                 </script>          
         </div>
