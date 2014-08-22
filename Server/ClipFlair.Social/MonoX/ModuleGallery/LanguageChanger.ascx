@@ -5,7 +5,7 @@
     
 <div class="language-changer">
     <asp:DataList ID="languageChooser" runat="server" 
-        RepeatColumns="10" RepeatDirection="Horizontal" RepeatLayout="Flow"    
+        RepeatColumns="20" RepeatDirection="Horizontal" RepeatLayout="Flow"    
         CellSpacing="1" CellPadding="1" ItemStyle-HorizontalAlign="center" ItemStyle-VerticalAlign="middle"
         OnItemDataBound="languageChooser_ItemDataBound" >
         <AlternatingItemStyle VerticalAlign="Top" />
