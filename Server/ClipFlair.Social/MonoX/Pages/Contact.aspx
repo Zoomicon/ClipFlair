@@ -4,7 +4,7 @@
     CodeBehind="Contact.aspx.cs"
     Inherits="MonoSoftware.MonoX.Pages.Contact"    
     Theme="ClipFlair"
-    MasterPageFile="~/MonoX/MasterPages/Default.master" %>
+    MasterPageFile="~/MonoX/MasterPages/DefaultLocalized.master" %>
         
 <%@ MasterType TypeName="MonoSoftware.MonoX.BaseMasterPage" %>   
 
