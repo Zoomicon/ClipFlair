@@ -4,7 +4,7 @@
     CodeBehind="Dashboard.aspx.cs"
     Inherits="MonoSoftware.MonoX.BasePage"
     Theme="ClipFlair"
-    MasterPageFile="~/MonoX/MasterPages/Default.master" %>
+    MasterPageFile="~/MonoX/MasterPages/DefaultLocalized.master" %>
         
 <%@ MasterType TypeName="MonoSoftware.MonoX.BaseMasterPage" %>
 
