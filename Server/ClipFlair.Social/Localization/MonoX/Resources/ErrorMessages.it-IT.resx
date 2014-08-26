@@ -162,9 +162,6 @@
   <data name="Membership_Update_UnknownError" xml:space="preserve">
     <value>An unknown error occured. The account could not be updated, please try again later. If the problem persists, please contact us.</value>
   </data>
-  <data name="NumberOfUsersExceeded" xml:space="preserve">
-    <value>Number of portal users for a free edition of MonoX was exceeded. Please purchase a commercial license to remove this limilation.</value>
-  </data>
   <data name="PageNotFound" xml:space="preserve">
     <value>Pagina non trovata</value>
   </data>

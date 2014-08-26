@@ -112,10 +112,10 @@
     <value>2.0</value>
   </resheader>
   <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AddNewEvent" xml:space="preserve">
     <value>Add new event</value>
@@ -182,6 +182,12 @@
   </data>
   <data name="EventEditorTitle" xml:space="preserve">
     <value>Event details</value>
+  </data>
+  <data name="Event_Description" xml:space="preserve">
+    <value>{0} {1}({2} - {3}){4}{5}</value>
+  </data>
+  <data name="Event_Description_Place" xml:space="preserve">
+    <value>at {0} </value>
   </data>
   <data name="NoCalendarSelected" xml:space="preserve">
     <value>There is no calendar selected.</value>

@@ -932,4 +932,49 @@ Vaš {1} tim</value>
   <data name="PasswordRecovery_RequestExpired" xml:space="preserve">
     <value>Zahtijev za izmjenu lozinke je istekao</value>
   </data>
+  <data name="CropImage_Cancel" xml:space="preserve">
+    <value>Otkaži</value>
+  </data>
+  <data name="CropImage_CropCaption" xml:space="preserve">
+    <value>Izreži i spremi</value>
+  </data>
+  <data name="GoogleMaps_DefaultLocation" xml:space="preserve">
+    <value>Croatia</value>
+  </data>
+  <data name="SlideShow_Next" xml:space="preserve">
+    <value>Slijedeće</value>
+  </data>
+  <data name="SlideShow_Prev" xml:space="preserve">
+    <value>Prethodno</value>
+  </data>
+  <data name="SlideShow_Title" xml:space="preserve">
+    <value>Istaknuti projekti</value>
+  </data>
+  <data name="MonoXMaster_ControlsPaneHeader_Text" xml:space="preserve">
+    <value>Ovo je popis svih modula i master stranica koje su aktivne na ovoj stranici. Molimo kliknite na datoteku koju želite urediti.</value>
+  </data>
+  <data name="MonoXMaster_ControlsPane_Text" xml:space="preserve">
+    <value>Uredi izvorni kod</value>
+  </data>
+  <data name="PasswordRecovery_SentSuccessfully" xml:space="preserve">
+    <value>E-mail poruka uspješno poslana.</value>
+  </data>
+  <data name="SocialDisconnect_EmptyButtonList" xml:space="preserve">
+    <value>Trenutno niste spojeni na niti jednu društvenu mrežu.</value>
+  </data>
+  <data name="SocialDisconnect_FacebookButtonText" xml:space="preserve">
+    <value>Prekini vezu s Facebook</value>
+  </data>
+  <data name="SocialDisconnect_GoogleButtonText" xml:space="preserve">
+    <value>Prekini vezu s Google</value>
+  </data>
+  <data name="SocialDisconnect_LinkedInButtonText" xml:space="preserve">
+    <value>Prekini vezu s LinkedIn</value>
+  </data>
+  <data name="SocialDisconnect_Title" xml:space="preserve">
+    <value>Upravljanje računima društvenih mreža</value>
+  </data>
+  <data name="SocialDisconnect_TwitterButtonText" xml:space="preserve">
+    <value>Prekini vezu s Twitter</value>
+  </data>
 </root>

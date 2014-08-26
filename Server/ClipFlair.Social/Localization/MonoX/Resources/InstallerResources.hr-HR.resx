@@ -112,10 +112,10 @@
     <value>2.0</value>
   </resheader>
   <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="DatabaseInfo_btnCreateNew" xml:space="preserve">
     <value>Postavi novu bazu podataka</value>
@@ -139,7 +139,7 @@
     <value>Odaberite bazu podataka u kojoj želite instalirati MonoX.</value>
   </data>
   <data name="DatabaseInfo_NextText" xml:space="preserve">
-    <value>Završi &gt;</value>
+    <value>Završi</value>
   </data>
   <data name="DatabaseInfo_PageTitle" xml:space="preserve">
     <value>Čarobnjak baze podataka</value>
@@ -328,7 +328,7 @@
     <value>ovdje</value>
   </data>
   <data name="InstallComplete_NextText" xml:space="preserve">
-    <value>Web stranica &gt;</value>
+    <value>Web stranica</value>
   </data>
   <data name="InstallComplete_Note" xml:space="preserve">
     <value>Napomena: 'Worker' proces Korisnički račun: {0}) mora imati privilegije pisanja u web.config da bi snimio sve postavke i izvršio instalaciju.</value>
@@ -355,10 +355,10 @@
     <value>Prilagođeno</value>
   </data>
   <data name="Master_btnNext" xml:space="preserve">
-    <value>Slijedeća &gt;</value>
+    <value>Slijedeća</value>
   </data>
   <data name="Master_btnPrevious" xml:space="preserve">
-    <value>&lt; Prethodna</value>
+    <value>Prethodna</value>
   </data>
   <data name="Master_EmptyHeaderTitle" xml:space="preserve">
     <value>Prazno zaglavlje</value>
@@ -391,7 +391,7 @@
     <value>Više-aplikacijsko sučelje</value>
   </data>
   <data name="NewApplication_NextText" xml:space="preserve">
-    <value>Završi &gt;</value>
+    <value>Završi</value>
   </data>
   <data name="NewApplication_PageTitle" xml:space="preserve">
     <value>Instalacija nove aplikacije</value>
@@ -448,7 +448,7 @@
     <value>Napredne Postavke</value>
   </data>
   <data name="AdvancedSettings_NextText" xml:space="preserve">
-    <value>Završi &gt;</value>
+    <value>Završi</value>
   </data>
   <data name="Default_linkMSNet31" xml:space="preserve">
     <value>Pomoć pri instaliranju .NET framework (3.0 SP1)</value>

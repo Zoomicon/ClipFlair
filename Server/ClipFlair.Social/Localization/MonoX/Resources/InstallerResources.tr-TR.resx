@@ -355,10 +355,10 @@
     <value>Özel</value>
   </data>
   <data name="Master_btnNext" xml:space="preserve">
-    <value>Sonraki&gt;</value>
+    <value>Sonraki</value>
   </data>
   <data name="Master_btnPrevious" xml:space="preserve">
-    <value>&lt; Önceki</value>
+    <value>Önceki</value>
   </data>
   <data name="Master_EmptyHeaderTitle" xml:space="preserve">
     <value>Boş başlık</value>
@@ -394,7 +394,7 @@
     <value>Multi uygulama ortamı</value>
   </data>
   <data name="NewApplication_NextText" xml:space="preserve">
-    <value>Bitir &gt;</value>
+    <value>Bitir</value>
   </data>
   <data name="NewApplication_PageTitle" xml:space="preserve">
     <value>Yeni uygulama kurulumu</value>
@@ -448,7 +448,7 @@
     <value>Gelişmiş Ayarlar</value>
   </data>
   <data name="AdvancedSettings_NextText" xml:space="preserve">
-    <value>Bitir &gt;</value>
+    <value>Bitir</value>
   </data>
   <data name="Default_linkMSNet31" xml:space="preserve">
     <value>.NET framework (3.0) SP1  kurulumu için yardım</value>

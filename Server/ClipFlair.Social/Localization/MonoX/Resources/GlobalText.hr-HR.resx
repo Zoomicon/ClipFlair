@@ -112,10 +112,10 @@
     <value>2.0</value>
   </resheader>
   <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="CacheTime" xml:space="preserve">
     <value>U cache-u {0} sekundi.</value>
@@ -169,7 +169,7 @@
     <value>Slijedeći</value>
   </data>
   <data name="NoPreference" xml:space="preserve">
-    <value>Bez preferenci</value>
+    <value>Odaberite</value>
   </data>
   <data name="Of" xml:space="preserve">
     <value>Od</value>
@@ -290,5 +290,8 @@
   </data>
   <data name="NoActionPermissions" xml:space="preserve">
     <value>Nemate dopuštenje za ovu radnju.</value>
+  </data>
+  <data name="ValidationSummary_HeaderText" xml:space="preserve">
+    <value>Sljedeći problemi trebaju biti riješeni kako biste mogli nastaviti:</value>
   </data>
 </root>

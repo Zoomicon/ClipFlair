@@ -112,10 +112,10 @@
     <value>2.0</value>
   </resheader>
   <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="EditProfile_AboutMySelf" xml:space="preserve">
     <value>About me:</value>
@@ -248,5 +248,29 @@
   </data>
   <data name="UserScore" xml:space="preserve">
     <value>Reputation</value>
+  </data>
+  <data name="UserProfileHeader_About" xml:space="preserve">
+    <value>About</value>
+  </data>
+  <data name="UserProfileHeader_Friends" xml:space="preserve">
+    <value>Friends</value>
+  </data>
+  <data name="UserProfileHeader_MyWall" xml:space="preserve">
+    <value>Wall</value>
+  </data>
+  <data name="UserProfileHeader_Photos" xml:space="preserve">
+    <value>Photos</value>
+  </data>
+  <data name="UserProfileModule_CompleteProfile" xml:space="preserve">
+    <value>Complete your profile by clicking on the edit link.</value>
+  </data>
+  <data name="UserAvatart_InvalidImageSize" xml:space="preserve">
+    <value>Desired image dimensions you have uploaded are too small.</value>
+  </data>
+  <data name="EditProfile_PasswordLengthErrorMessageFormat" xml:space="preserve">
+    <value>The length of parameter "Password" needs to be greater or equal to '{0}'</value>
+  </data>
+  <data name="EditProfile_PasswordLengthText" xml:space="preserve">
+    <value>!</value>
   </data>
 </root>

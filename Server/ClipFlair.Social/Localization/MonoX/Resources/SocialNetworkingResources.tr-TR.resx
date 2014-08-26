@@ -536,17 +536,17 @@
     <value>Profili gör</value>
   </data>
   <data name="PeopleSearch_ConfirmationMailContent" xml:space="preserve">
-    <value>Merhaba {FriendName},
+    <value>Merhaba &lt;a title="{FriendName}" url="{FriendUrl}"&gt;{FriendName}&lt;/a&gt;,
 &lt;br /&gt;&lt;br /&gt;
-{UserName} kulanıcısı sizi MonoX portalında arkadaş olarak ekledi. {UserName}  isimli kullanıcıyı web sitemiz üzerinde arkadaşınız olarak eklemezden önce onu tanıdığınızdan emin olmalıyız.&lt;br /&gt;
+&lt;a title="{UserName}" url="{UserUrl}"&gt;{UserName}&lt;/a&gt; kulanıcısı sizi MonoX portalında arkadaş olarak ekledi. {UserName}  isimli kullanıcıyı web sitemiz üzerinde arkadaşınız olarak eklemezden önce onu tanıdığınızdan emin olmalıyız.&lt;br /&gt;
 {PersonalMessage}
 &lt;br /&gt;&lt;br /&gt;
 Bu arkadaşlık isteğini onaylamak için, lütfen takip eden linke tıklayınız:&lt;br /&gt;
-{ConfirmationUrl}
+&lt;a title="Confirm this request" href="{ConfirmationUrl}"&gt;{ConfirmationUrl}&lt;/a&gt;
 &lt;br /&gt;&lt;br /&gt;
 Saygılar,
 &lt;br /&gt;&lt;br /&gt;
-MonoX Takımı</value>
+{ApplicationName} Takımı</value>
   </data>
   <data name="PeopleSearch_ConfirmationMailSubject" xml:space="preserve">
     <value> {UserName} kullanıcısından arkadaşlık isteği</value>
@@ -636,17 +636,17 @@ MonoX Takımı</value>
     <value>Profili gör</value>
   </data>
   <data name="Groups_PeopleSearch_ConfirmationMailContent" xml:space="preserve">
-    <value>Merhaba {FriendName},
+    <value>Merhaba &lt;a title="{FriendName}" href="{FriendUrl}"&gt;{FriendName}&lt;/a&gt;,
 &lt;br /&gt;&lt;br /&gt;
-{UserName} sizi {GroupName} isimli gruba katılmaya davet ediyor. Bu grubun üyesi olmazdan önce bu isteği onaylamanız gerekmektedir.&lt;br /&gt;
+&lt;a title="{UserName}" href="{UserUrl}"&gt;{UserName}&lt;/a&gt; sizi &lt;a title="{GroupName}" href="{GroupUrl}"&gt;{GroupName}&lt;/a&gt; isimli gruba katılmaya davet ediyor. Bu grubun üyesi olmazdan önce bu isteği onaylamanız gerekmektedir.&lt;br /&gt;
 {PersonalMessage}
 &lt;br /&gt;&lt;br /&gt;
 İsteğe onay  vermek için, lütfen  takip eden linke tıklayınız:&lt;br /&gt;
-{ConfirmationUrl}
+&lt;a title="Confirm this request" href="{ConfirmationUrl}"&gt;{ConfirmationUrl}&lt;/a&gt;
 &lt;br /&gt;&lt;br /&gt;
 Saygılar,
 &lt;br /&gt;&lt;br /&gt;
-MonoX Takımı</value>
+{ApplicationName} Takımı</value>
   </data>
   <data name="Groups_PeopleSearch_ConfirmationMailSubject" xml:space="preserve">
     <value>{UserName} sizi {GroupName} isimli gruba katılmaya davet ediyor</value>
@@ -1220,5 +1220,8 @@ MonoX Takımı</value>
   </data>
   <data name="WallNotes_NotificationSubjectNote" xml:space="preserve">
     <value>{0} duvarınıza bir not gönderdi.</value>
+  </data>
+  <data name="Discussion_TopicTags" xml:space="preserve">
+    <value>Topic tags</value>
   </data>
 </root>

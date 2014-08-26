@@ -162,9 +162,6 @@
   <data name="Membership_Update_UnknownError" xml:space="preserve">
     <value>Der er opstået en ukendt fejl. Profilen kunne ikke opdateres men prøv igen senere. Kontakt venligst supporten hvis fejlen fortsætter.</value>
   </data>
-  <data name="NumberOfUsersExceeded" xml:space="preserve">
-    <value>Number of portal users for a free edition of MonoX was exceeded. Please purchase a commercial license to remove this limilation.</value>
-  </data>
   <data name="PageNotFound" xml:space="preserve">
     <value>Siden blev ikke fundet</value>
   </data>

@@ -160,7 +160,7 @@
     <value>URL:</value>
   </data>
   <data name="PageProperties_ValidationHeaderText" xml:space="preserve">
-    <value>Wrong value has been entered in the following fields:</value>
+    <value>The following issues have to be resolved before you can proceed:</value>
   </data>
   <data name="PageRegister_ErrorMessages_PageAlreadyExists" xml:space="preserve">
     <value>The page you have tried to register already exists in the portal database.</value>
@@ -256,10 +256,10 @@
     <value>Toggle status (Activate/Deactivate)</value>
   </data>
   <data name="AdAdmin_labActive" xml:space="preserve">
-    <value>Is campaign active:</value>
+    <value>Is campaign active</value>
   </data>
   <data name="AdAdmin_labAdContent" xml:space="preserve">
-    <value>Ad Content (Html, Script, etc.)</value>
+    <value>Ad Content (Html, Script, etc.):</value>
   </data>
   <data name="AdAdmin_labAdContentNote" xml:space="preserve">
     <value>Note: If any content is added into Ad Content field, field Image (Media) is ignored.</value>
@@ -274,7 +274,7 @@
     <value>Caption:</value>
   </data>
   <data name="AdAdmin_labImageUrl" xml:space="preserve">
-    <value>Image (Media)</value>
+    <value>Image (Media):</value>
   </data>
   <data name="AdAdmin_labKeyword" xml:space="preserve">
     <value>Keyword:</value>
@@ -619,37 +619,37 @@
     <value>Date value is required!</value>
   </data>
   <data name="Default_AddAd" xml:space="preserve">
-    <value>ADD AD ITEM</value>
+    <value>Add Ad Item</value>
   </data>
   <data name="Default_AddBlogPost" xml:space="preserve">
-    <value>ADD BLOG POST</value>
+    <value>Add Blog Post</value>
   </data>
   <data name="Default_AddList" xml:space="preserve">
-    <value>ADD LIST</value>
+    <value>Add List</value>
   </data>
   <data name="Default_AddNews" xml:space="preserve">
-    <value>ADD NEWS ITEM</value>
+    <value>Add News Item</value>
   </data>
   <data name="Default_AddNewsletter" xml:space="preserve">
-    <value>ADD NEWSLETTER</value>
+    <value>Add Newsletter</value>
   </data>
   <data name="Default_AddPage" xml:space="preserve">
-    <value>ADD PAGE</value>
+    <value>Add Page</value>
   </data>
   <data name="Default_AddPoll" xml:space="preserve">
-    <value>ADD POLL</value>
+    <value>Add Poll</value>
   </data>
   <data name="Default_AddRole" xml:space="preserve">
-    <value>ADD ROLE</value>
+    <value>Add Role</value>
   </data>
   <data name="Default_AddUser" xml:space="preserve">
-    <value>ADD USER</value>
+    <value>Add User</value>
   </data>
   <data name="Default_Ads" xml:space="preserve">
     <value>Create banner ads and manage your campaigns here.</value>
   </data>
   <data name="Default_Amazon" xml:space="preserve">
-    <value>Use Amazon Simple Storage Service (S3) - highly scalable, reliable, fast, inexpensive data storage infrastructure - to store portal files. </value>
+    <value>Use Amazon Simple Storage Service (S3)</value>
   </data>
   <data name="Default_Blog" xml:space="preserve">
     <value>Create and publish blog posts; assign posts to roles, categories and tags.</value>
@@ -658,13 +658,13 @@
     <value>All file management tools in one place - create, upload, rename and delete files and directories using the familiar Windows Explorer interface.</value>
   </data>
   <data name="Default_labDocumentation" xml:space="preserve">
-    <value>DOCUMENTATION</value>
+    <value>Documentation</value>
   </data>
   <data name="Default_labOtherTasks" xml:space="preserve">
-    <value>OTHER TASKS</value>
+    <value>Other Tasks</value>
   </data>
   <data name="Default_labQuickTasks" xml:space="preserve">
-    <value>QUICK TASKS</value>
+    <value>Quick Tasks</value>
   </data>
   <data name="Default_lblNewsIntro" xml:space="preserve">
     <value>Create and publish news articles:</value>
@@ -673,31 +673,31 @@
     <value>Manage all list-based information: FAQs, link lists, testimonials, and similar.</value>
   </data>
   <data name="Default_lnkAds" xml:space="preserve">
-    <value>ADS</value>
+    <value>Ads</value>
   </data>
   <data name="Default_lnkAmazon" xml:space="preserve">
-    <value>AMAZON S3</value>
+    <value>Amazon S3</value>
   </data>
   <data name="Default_lnkBlog" xml:space="preserve">
-    <value>BLOG</value>
+    <value>Blog</value>
   </data>
   <data name="Default_lnkFiles" xml:space="preserve">
-    <value>FILES</value>
+    <value>Files</value>
   </data>
   <data name="Default_lnkLanguageAdmin" xml:space="preserve">
-    <value>LANGUAGE MANAGER</value>
+    <value>Language Manager</value>
   </data>
   <data name="Default_lnkLists" xml:space="preserve">
-    <value>LISTS</value>
+    <value>Lists</value>
   </data>
   <data name="Default_lnkMonoXApi" xml:space="preserve">
-    <value>MonoX API HELP</value>
+    <value>MonoX API Help</value>
   </data>
   <data name="Default_lnkMonoXDocumentation" xml:space="preserve">
-    <value>MonoX USER MANUAL</value>
+    <value>MonoX User Manual</value>
   </data>
   <data name="Default_lnkNews" xml:space="preserve">
-    <value>NEWS</value>
+    <value>News</value>
   </data>
   <data name="Default_lnkNewsAdmin" xml:space="preserve">
     <value>Enter news articles</value>
@@ -706,7 +706,7 @@
     <value>News category administration</value>
   </data>
   <data name="Default_lnkNewsletters" xml:space="preserve">
-    <value>NEWSLETTERS</value>
+    <value>Newsletters</value>
   </data>
   <data name="Default_lnkNewsPublisherAdmin" xml:space="preserve">
     <value>Publish news</value>
@@ -715,19 +715,19 @@
     <value>Quick post</value>
   </data>
   <data name="Default_lnkPages" xml:space="preserve">
-    <value>PAGES</value>
+    <value>Pages</value>
   </data>
   <data name="Default_lnkPolls" xml:space="preserve">
-    <value>POLLS</value>
+    <value>Polls</value>
   </data>
   <data name="Default_lnkPortalLocalization" xml:space="preserve">
-    <value>PORTAL LOCALIZATION</value>
+    <value>Portal Localization</value>
   </data>
   <data name="Default_lnkRoles" xml:space="preserve">
-    <value>ROLES</value>
+    <value>Roles</value>
   </data>
   <data name="Default_lnkUsers" xml:space="preserve">
-    <value>USERS</value>
+    <value>Users</value>
   </data>
   <data name="Default_Newsletters" xml:space="preserve">
     <value>Create and send newsletters to the target subscriber groups.</value>
@@ -871,10 +871,10 @@
     <value>Page properties</value>
   </data>
   <data name="FileManagerProperties_rfvPageTitle" xml:space="preserve">
-    <value>Page title</value>
+    <value>Page title is required</value>
   </data>
   <data name="FileManagerProperties_valSum" xml:space="preserve">
-    <value>A wrong value has been detected in the following fields:</value>
+    <value>The following issues have to be resolved before you can proceed:</value>
   </data>
   <data name="GroupCategoryManager_colName" xml:space="preserve">
     <value>Category name</value>
@@ -1402,13 +1402,13 @@
     <value>URL:</value>
   </data>
   <data name="PageManagerExternalPage_rfvPageTitle" xml:space="preserve">
-    <value>Page title</value>
+    <value>Page title is required</value>
   </data>
   <data name="PageManagerExternalPage_rfvPageUrl" xml:space="preserve">
-    <value>Page URL</value>
+    <value>Page URL is required</value>
   </data>
   <data name="PageManagerExternalPage_valSum" xml:space="preserve">
-    <value>A wrong value has been detected in the following fields:</value>
+    <value>The following issues have to be resolved before you can proceed:</value>
   </data>
   <data name="PageManagerNavigationRoles_lblDescription" xml:space="preserve">
     <value>Please mark the users roles which are allowed to view the selected navigation item. Note that navigation items inherit the security settings from the target pages, but it is possible to override these settings using the role list below. If all roles are unchecked, all visitors will see the selected item.</value>
@@ -1525,7 +1525,7 @@
     <value>Page properties</value>
   </data>
   <data name="PageManagerPropertiesDialog_rfvPageTitle" xml:space="preserve">
-    <value>Page title</value>
+    <value>Page title is required</value>
   </data>
   <data name="PageManagerPropertiesDialog_SaveErrorText" xml:space="preserve">
     <value>An error has occured while trying to create new page. Please double-check all fields and try again.</value>
@@ -1534,16 +1534,16 @@
     <value>Page was created successfully.</value>
   </data>
   <data name="PageManagerPropertiesDialog_valSum" xml:space="preserve">
-    <value>Wrong value has been entered in the following fields:</value>
+    <value>The following issues have to be resolved before you can proceed:</value>
   </data>
   <data name="PageManagerSetUrl_lblPageUrl" xml:space="preserve">
     <value>URL:</value>
   </data>
   <data name="PageManagerSetUrl_rfvPageUrl" xml:space="preserve">
-    <value>Page URL</value>
+    <value>Page URL is required</value>
   </data>
   <data name="PageManagerSetUrl_valSum" xml:space="preserve">
-    <value>A wrong value has been detected in the following fields:</value>
+    <value>The following issues have to be resolved before you can proceed:</value>
   </data>
   <data name="PollManager_AlertPrompt" xml:space="preserve">
     <value>Poll</value>
@@ -1783,34 +1783,34 @@
     <value>You can't delete this user due to insufficient privileges or database constraints.</value>
   </data>
   <data name="UserManager_labAvailableRoles" xml:space="preserve">
-    <value>Available roles</value>
+    <value>Available roles:</value>
   </data>
   <data name="UserManager_labComment" xml:space="preserve">
-    <value>Comment</value>
+    <value>Comment:</value>
   </data>
   <data name="UserManager_labCreateDate" xml:space="preserve">
-    <value>Create date</value>
+    <value>Create date:</value>
   </data>
   <data name="UserManager_labDescription" xml:space="preserve">
-    <value>Description</value>
+    <value>Description:</value>
   </data>
   <data name="UserManager_labEmail" xml:space="preserve">
-    <value>Email</value>
+    <value>Email:</value>
   </data>
   <data name="UserManager_labEmptyMessage" xml:space="preserve">
     <value>No user records!</value>
   </data>
   <data name="UserManager_labFailedPasswordAnswerAttemptCount" xml:space="preserve">
-    <value>Failed password answer attempt count</value>
+    <value>Failed password answer attempt count:</value>
   </data>
   <data name="UserManager_labFailedPasswordAnswerAttemptWindowStart" xml:space="preserve">
-    <value>Failed password answer attempt window start</value>
+    <value>Failed password answer attempt window start:</value>
   </data>
   <data name="UserManager_labFailedPasswordAttemptCount" xml:space="preserve">
-    <value>Failed password attempt count</value>
+    <value>Failed password attempt count:</value>
   </data>
   <data name="UserManager_labFailedPasswordAttemptWindowStart" xml:space="preserve">
-    <value>Failed password attempt window start</value>
+    <value>Failed password attempt window start:</value>
   </data>
   <data name="UserManager_labIsAnonymous" xml:space="preserve">
     <value>Is Anonymous</value>
@@ -1822,40 +1822,40 @@
     <value>Is locked out</value>
   </data>
   <data name="UserManager_labLastActivityDate" xml:space="preserve">
-    <value>Last activity date</value>
+    <value>Last activity date:</value>
   </data>
   <data name="UserManager_labLastLockoutDate" xml:space="preserve">
-    <value>Last lock out</value>
+    <value>Last lock out:</value>
   </data>
   <data name="UserManager_labLastLoginDate" xml:space="preserve">
-    <value>Last login date</value>
+    <value>Last login date:</value>
   </data>
   <data name="UserManager_labLastPasswordChangedDate" xml:space="preserve">
-    <value>Last password changed</value>
+    <value>Last password changed:</value>
   </data>
   <data name="UserManager_labMobileAlias" xml:space="preserve">
-    <value>Mobile alias</value>
+    <value>Mobile alias:</value>
   </data>
   <data name="UserManager_labMobilePin" xml:space="preserve">
-    <value>Mobile PIN</value>
+    <value>Mobile PIN:</value>
   </data>
   <data name="UserManager_labPassword" xml:space="preserve">
-    <value>Password</value>
+    <value>Password:</value>
   </data>
   <data name="UserManager_labPasswordAnswer" xml:space="preserve">
-    <value>Password answer</value>
+    <value>Password answer:</value>
   </data>
   <data name="UserManager_labPasswordQuestion" xml:space="preserve">
-    <value>Password question</value>
+    <value>Password question:</value>
   </data>
   <data name="UserManager_labRoles" xml:space="preserve">
-    <value>Roles</value>
+    <value>Roles:</value>
   </data>
   <data name="UserManager_labUserInRoles" xml:space="preserve">
-    <value>User is in roles</value>
+    <value>User is in roles:</value>
   </data>
   <data name="UserManager_labUsername" xml:space="preserve">
-    <value>Username</value>
+    <value>Username:</value>
   </data>
   <data name="UserManager_labUserRoles" xml:space="preserve">
     <value>Add user to roles</value>
@@ -1936,7 +1936,7 @@
     <value>Invalid data entered in Username field!</value>
   </data>
   <data name="Default_lnkPortalSettings" xml:space="preserve">
-    <value>PORTAL SETTINGS</value>
+    <value>Portal Settings</value>
   </data>
   <data name="PortalSettings_AdminRoles" xml:space="preserve">
     <value>Administrator Roles</value>
@@ -1951,7 +1951,7 @@
     <value>What are Administrator Roles ? - Specifies user roles that have administrator privileges. Members of these roles can administer all aspects of locally installed portals.</value>
   </data>
   <data name="PortalSettings_MonoXSettingsLocalizationFolder" xml:space="preserve">
-    <value>What is Localization Folder ? - It is virtual localization subfolder that will be prepended before the locale-specific part of the path (example: /language/en-US)</value>
+    <value>What is Localization Folder ? - It is virtual localization subfolder that will be prepended before the locale-specific part of the path (example: /lng/en-US)</value>
   </data>
   <data name="PortalSettings_MonoXSettingsNewsPublisherRoleName" xml:space="preserve">
     <value>What is a news publisher role name ? - Specifies user roles that have news publisher privileges.</value>
@@ -2214,8 +2214,8 @@ used by the portal engine. The value "2" is used for SQL Server 2005.</value>
   <data name="PortalSettings_BlogDisplayUrl" xml:space="preserve">
     <value>Blog display url</value>
   </data>
-  <data name="PortalSettings_ConvertVideoToFlv" xml:space="preserve">
-    <value>Convert video to Flash video</value>
+  <data name="PortalSettings_ConvertVideo" xml:space="preserve">
+    <value>Convert video to specified by provider type</value>
   </data>
   <data name="PortalSettings_CustomAdminTasksControl" xml:space="preserve">
     <value>Custom administration tasks control path</value>
@@ -2263,8 +2263,8 @@ all pages.</value>
   <data name="PortalSettings_MonoXSettingsBlogDisplayUrl" xml:space="preserve">
     <value>Raw, non-rewritten URL of the page that displays blog posts for LiveWriter and similar MetaWeblog-based editing tools</value>
   </data>
-  <data name="PortalSettings_MonoXSettingsConvertVideoToFlv" xml:space="preserve">
-    <value>Indicates if all files are automatically converted to FLV format</value>
+  <data name="PortalSettings_MonoXSettingsConvertVideo" xml:space="preserve">
+    <value>Indicates if all files are automatically converted specified by provider format</value>
   </data>
   <data name="PortalSettings_MonoXSettingsCustomAdminTasksControl" xml:space="preserve">
     <value>Location of the custom task control that can be added to the main
@@ -2382,7 +2382,7 @@ included in the keyword list).</value>
     <value>Show wep part catalog icon images</value>
   </data>
   <data name="PortalSettings_ShowHtmlEditorsInDesignModeOnly" xml:space="preserve">
-    <value>Show HTML document editor in Portal designe mode only</value>
+    <value>Show HTML document editor in Portal designer mode only</value>
   </data>
   <data name="PortalSettings_ShowWebPartZoneTitles" xml:space="preserve">
     <value>Show web part zone titles</value>
@@ -2568,7 +2568,7 @@ included in the keyword list).</value>
     <value>Page name:</value>
   </data>
   <data name="PageManagerPropertiesDialog_rfvPageName" xml:space="preserve">
-    <value>Page name</value>
+    <value>Page name is required</value>
   </data>
   <data name="PageAdmin_DeleteErrorNavigation" xml:space="preserve">
     <value>An error has occured while trying to delete the selected navigation item. Please check your credentials and make sure that all child items are deleted before you try to attempt to delete the parent item.</value>
@@ -2603,5 +2603,58 @@ included in the keyword list).</value>
   <data name="PageManagerPartAdmin_OrphanedWebPartsDeleted" xml:space="preserve">
     <value>{0} orphaned WebPart(s) deleted from the page.</value>
   </data>
-
+  <data name="PortalSettings_ConvertVideoProviderType" xml:space="preserve">
+    <value>Convert video with specified provider</value>
+  </data>
+  <data name="PortalSettings_MonoXSettingsConvertVideoProviderType" xml:space="preserve">
+    <value>Indicates which video converter provider should be used</value>
+  </data>
+  <data name="UserManager_sortFailedPasswordAnswerAttempts" xml:space="preserve">
+    <value>Failed password answer attempts</value>
+  </data>
+  <data name="UserManager_sortFailedPasswordAttempts" xml:space="preserve">
+    <value>Failed password attempts</value>
+  </data>
+  <data name="AdminHeader_lnkAzure" xml:space="preserve">
+    <value>Azure</value>
+  </data>
+  <data name="Default_Azure" xml:space="preserve">
+    <value>Use Azure Blob Storage</value>
+  </data>
+  <data name="Default_lnkCloud" xml:space="preserve">
+    <value>CLOUD</value>
+  </data>
+  <data name="FileAdminAzure_PageTitle" xml:space="preserve">
+    <value>Azure blob storage administration</value>
+  </data>
+  <data name="NewsletterManager_validateEmail" xml:space="preserve">
+    <value>Invalid data entered in E-mail field!</value>
+  </data>
+  <data name="PortalSettings_jQueryCSSReferencePath" xml:space="preserve">
+    <value>jQuery CSS reference path</value>
+  </data>
+  <data name="PortalSettings_MonoXSettingsjQueryCSSReferencePath" xml:space="preserve">
+    <value>jQuery CSS reference path. Change it to use other jQuery versions.</value>
+  </data>
+  <data name="PollManager_requiredAnswer" xml:space="preserve">
+    <value>Please enter data in poll answer field!</value>
+  </data>
+  <data name="AdAdmin_Upload_Success" xml:space="preserve">
+    <value>You have successfully uploaded a resource to your campaign </value>
+  </data>
+  <data name="PortalSettings_RequiredFieldFormat" xml:space="preserve">
+    <value>'{0}' is required!</value>
+  </data>
+  <data name="PortalSettings_valSum" xml:space="preserve">
+    <value>The following issues have to be resolved before you can proceed:</value>
+  </data>
+  <data name="NewsCategoryManager_AlertMessage" xml:space="preserve">
+    <value>You can't delete category. Category is in use!</value>
+  </data>
+  <data name="NewsCategoryManager_AlertPrompt" xml:space="preserve">
+    <value>News Category Manager</value>
+  </data>
+  <data name="PortalSettings_RequiredMessageFormat" xml:space="preserve">
+    <value>"{0}" is required.</value>
+  </data>
 </root>

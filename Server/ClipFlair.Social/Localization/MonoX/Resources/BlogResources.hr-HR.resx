@@ -183,9 +183,6 @@
   <data name="ConfirmDelete" xml:space="preserve">
     <value>Ovaj će članak biti obrisan. Jeste li sigurni?</value>
   </data>
-  <data name="ConfirmDeleteSpam" xml:space="preserve">
-    <value>Svi komentari na ovaj post koji su označeni kao spam će biti obrisani. Jeste li sigurni?</value>
-  </data>
   <data name="ConfirmDeleteUnapproved" xml:space="preserve">
     <value>Svi neodobreni komentari na ovaj post će biti obrisani. Jeste li sigurni?</value>
   </data>
@@ -386,5 +383,17 @@
   </data>
   <data name="BlogPostList_Filter_Title" xml:space="preserve">
     <value>Trenutni filter</value>
+  </data>
+  <data name="Unpublished" xml:space="preserve">
+    <value>Neobjavljeni</value>
+  </data>
+  <data name="ConfirmDeleteSpam" xml:space="preserve">
+    <value>Svi komentari na ovaj post koji su označeni kao spam će biti obrisani. Jeste li sigurni?</value>
+  </data>
+  <data name="Spam" xml:space="preserve">
+    <value>Spam</value>
+  </data>
+  <data name="Unapproved" xml:space="preserve">
+    <value>Neodobreno</value>
   </data>
 </root>

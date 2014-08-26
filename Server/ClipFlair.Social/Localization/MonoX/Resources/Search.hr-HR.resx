@@ -112,31 +112,34 @@
     <value>2.0</value>
   </resheader>
   <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AllProviders" xml:space="preserve">
+    <value>Sve</value>
+  </data>
   <data name="BlogProviderTitle" xml:space="preserve">
-    <value>Pretraživački provider za blog</value>
+    <value>Blogovi</value>
   </data>
   <data name="DiscussionProviderTitle" xml:space="preserve">
-    <value>Pretraživački provider za forume</value>
+    <value>Forumi</value>
   </data>
   <data name="FileProviderTitle" xml:space="preserve">
-    <value>Pretraživački provider za datoteke</value>
+    <value>Datoteke</value>
   </data>
   <data name="GroupProviderTitle" xml:space="preserve">
-    <value>Pretraživački provider za grupe</value>
+    <value>Grupe</value>
   </data>
   <data name="IndexingServiceProviderTitle" xml:space="preserve">
-    <value>Pretraživački provider za Indexing Service</value>
+    <value>Datoteke (Indexing Service)</value>
   </data>
   <data name="LuceneProviderTitle" xml:space="preserve">
-    <value>Pretraživački provider za Lucene.Net</value>
+    <value>Datoteke (Lucene.Net)</value>
   </data>
   <data name="NewsProviderTitle" xml:space="preserve">
-    <value>Pretraživački provider za vijesti</value>
+    <value>Vijesti</value>
   </data>
   <data name="NoSearchCriteria" xml:space="preserve">
     <value>Molimo unesite kriterije za pretraživanje.</value>
@@ -145,12 +148,15 @@
     <value>Ne postoje dokumenti koji odgovaraju kriteriju pretraživanja.</value>
   </data>
   <data name="PagesProviderTitle" xml:space="preserve">
-    <value>Pretraživački provider za stranice</value>
+    <value>Stranice</value>
   </data>
   <data name="PhotoGalleryProviderTitle" xml:space="preserve">
-    <value>Pretraživački provider galerije slika</value>
+    <value>Fotografije</value>
+  </data>
+  <data name="SearchFilterCaption" xml:space="preserve">
+    <value>Pretražuju se:</value>
   </data>
   <data name="UserProfileProviderTitle" xml:space="preserve">
-    <value>Pretraživački provider za korisničke profile</value>
+    <value>Korisnički profili</value>
   </data>
 </root>

@@ -112,10 +112,10 @@
     <value>2.0</value>
   </resheader>
   <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="DatabaseInfo_btnCreateNew" xml:space="preserve">
     <value>Use an empty database</value>
@@ -139,7 +139,7 @@
     <value>Choose the database where you would like to install MonoX.</value>
   </data>
   <data name="DatabaseInfo_NextText" xml:space="preserve">
-    <value>Finish &gt;</value>
+    <value>Finish</value>
   </data>
   <data name="DatabaseInfo_PageTitle" xml:space="preserve">
     <value>Database setup</value>
@@ -157,7 +157,7 @@
     <value>Microsoft .NET Framework</value>
   </data>
   <data name="Default_labMSNetInfo" xml:space="preserve">
-    <value>Version 3.5 or higher of the .NET framework must be installed</value>
+    <value>Version 4.0 or higher of the .NET framework must be installed</value>
   </data>
   <data name="Default_labRequirements" xml:space="preserve">
     <value>Requirements: </value>
@@ -167,9 +167,6 @@
   </data>
   <data name="Default_linkIIS" xml:space="preserve">
     <value>Get help installing IIS</value>
-  </data>
-  <data name="Default_linkMSNet3" xml:space="preserve">
-    <value>Get help installing .NET framework (3.0)</value>
   </data>
   <data name="Default_PageTitle" xml:space="preserve">
     <value>Welcome</value>
@@ -193,7 +190,7 @@
     <value>Database created.</value>
   </data>
   <data name="InstallComplete_FolderPermissionsSet" xml:space="preserve">
-    <value>Folder permssions set for "{0}".</value>
+    <value>Folder permissions set for "{0}".</value>
   </data>
   <data name="InstallComplete_ImportedAspnet_Applications" xml:space="preserve">
     <value>Imported "aspnet_Applications".</value>
@@ -328,10 +325,10 @@
     <value>here</value>
   </data>
   <data name="InstallComplete_NextText" xml:space="preserve">
-    <value>Web site &gt;</value>
+    <value>Web site</value>
   </data>
   <data name="InstallComplete_Note" xml:space="preserve">
-    <value>Please note: Worker process (Account: {0}) needs to have write permissions on the web.config file in order to write all settings and complete the installation process.</value>
+    <value>&lt;strong&gt;Please note:&lt;/strong&gt; Worker process (Account: {0}) needs to have write permissions on the web.config file in order to write all settings and complete the installation process.</value>
   </data>
   <data name="InstallComplete_Note2" xml:space="preserve">
     <value>Once you've finished click </value>
@@ -343,7 +340,7 @@
     <value>Complete</value>
   </data>
   <data name="InstallComplete_SettingFolderPermissions" xml:space="preserve">
-    <value>Setting folder permssions for "{0}" ...</value>
+    <value>Setting folder permissions for "{0}" ...</value>
   </data>
   <data name="InstallComplete_Title" xml:space="preserve">
     <value>Complete.</value>
@@ -355,10 +352,10 @@
     <value>Custom</value>
   </data>
   <data name="Master_btnNext" xml:space="preserve">
-    <value>Next &gt;</value>
+    <value>Next</value>
   </data>
   <data name="Master_btnPrevious" xml:space="preserve">
-    <value>&lt; Previous</value>
+    <value>Previous</value>
   </data>
   <data name="Master_EmptyHeaderTitle" xml:space="preserve">
     <value>Empty header title</value>
@@ -394,7 +391,7 @@
     <value>Multi application environment</value>
   </data>
   <data name="NewApplication_NextText" xml:space="preserve">
-    <value>Finish &gt;</value>
+    <value>Finish</value>
   </data>
   <data name="NewApplication_PageTitle" xml:space="preserve">
     <value>New application installation</value>
@@ -448,16 +445,16 @@
     <value>Advanced Settings</value>
   </data>
   <data name="AdvancedSettings_NextText" xml:space="preserve">
-    <value>Finish &gt;</value>
+    <value>Finish</value>
   </data>
-  <data name="Default_linkMSNet31" xml:space="preserve">
-    <value>Get help installing .NET framework (3.0 SP1)</value>
+  <data name="Default_linkMSNet40" xml:space="preserve">
+    <value>Get help installing .NET framework (4.0)</value>
   </data>
-  <data name="Default_linkMSNet35" xml:space="preserve">
-    <value>Get help installing .NET framework (3.5)</value>
+  <data name="Default_linkMSNet45" xml:space="preserve">
+    <value>Get help installing .NET framework (4.5)</value>
   </data>
   <data name="InstallComplete_FolderPermissionsNotSet" xml:space="preserve">
-    <value>Warning: Folder permssions not set on folder "{0}". Please set the write permission manually for account: "{1}".</value>
+    <value>Warning: Folder permissions not set on folder "{0}". Please set the write permission manually for account: "{1}".</value>
   </data>
   <data name="PermissionCheckBox_Ok" xml:space="preserve">
     <value>The '{0}' account is granted with permissions '{1}' on the '{2}' folder.</value>
@@ -484,9 +481,45 @@
     <value>A valid MonoX database cannot be located under the name you selected.</value>
   </data>
   <data name="SQLInfo_EnterDatabaseName" xml:space="preserve">
-    <value>Cannot list databases - please enter a database name manually</value>
+    <value>Please enter a database name</value>
   </data>
   <data name="SQLInfo_EnterDatabaseServerName" xml:space="preserve">
-    <value>Cannot list servers - please enter a server name manually</value>
+    <value>Please enter a server name </value>
+  </data>
+  <data name="AccountInfo_labEmail" xml:space="preserve">
+    <value>E-mail:</value>
+  </data>
+  <data name="AccountInfo_labPassword" xml:space="preserve">
+    <value>Password:</value>
+  </data>
+  <data name="AccountInfo_labSubTitle" xml:space="preserve">
+    <value>Please enter an administrator account information.</value>
+  </data>
+  <data name="AccountInfo_labUsername" xml:space="preserve">
+    <value>Username:</value>
+  </data>
+  <data name="AccountInfo_Title" xml:space="preserve">
+    <value>MonoX Administrator Account</value>
+  </data>
+  <data name="AccountInfo_UsernameNote" xml:space="preserve">
+    <value>Please note that if you leave the fields empty a default MonoX administration username and password will be used.</value>
+  </data>
+  <data name="AccountInfo_validateEmail" xml:space="preserve">
+    <value>Invalid data entered in E-mail field!</value>
+  </data>
+  <data name="DatabaseInfo_chkImportData" xml:space="preserve">
+    <value>Import Demo Data ?</value>
+  </data>
+  <data name="DatabaseInfo_ImportDataNote" xml:space="preserve">
+    <value>Note: If you select the above option installer will import demo data into your MonoX installation.</value>
+  </data>
+  <data name="NewApplication_requiredNewApp" xml:space="preserve">
+    <value>Please enter new application name</value>
+  </data>
+  <data name="SQLInfo_labDatabaseName" xml:space="preserve">
+    <value>Database name: </value>
+  </data>
+  <data name="NewApplication_requiredCloneAppName" xml:space="preserve">
+    <value>Please select application to clone.</value>
   </data>
 </root>

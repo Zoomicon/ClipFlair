@@ -160,13 +160,13 @@
     <value>You are about to leave the membership of this group. Are you sure?</value>
   </data>
   <data name="Groups_Delete" xml:space="preserve">
-    <value>Delete group</value>
+    <value>Delete</value>
   </data>
   <data name="Groups_Description" xml:space="preserve">
     <value>Description:</value>
   </data>
   <data name="Groups_Edit" xml:space="preserve">
-    <value>Edit group settings</value>
+    <value>Edit</value>
   </data>
   <data name="Groups_GroupEdit_Categories" xml:space="preserve">
     <value>Categories:</value>
@@ -302,13 +302,13 @@ Administrators of &lt;i&gt;closed groups&lt;/i&gt; must approve requests for new
     <value>Your message was successfully sent!</value>
   </data>
   <data name="Messaging_NewMessage" xml:space="preserve">
-    <value>+ New message</value>
+    <value>&lt;span&gt;+ New message&lt;/span&gt;</value>
   </data>
   <data name="Messaging_Received" xml:space="preserve">
-    <value>Received</value>
+    <value>&lt;span&gt;Received&lt;/span&gt;</value>
   </data>
   <data name="Messaging_Sent" xml:space="preserve">
-    <value>Sent</value>
+    <value>&lt;span&gt;Sent&lt;/span&gt;</value>
   </data>
   <data name="PhotoGallery_AlbumEditView_CreateAlbum" xml:space="preserve">
     <value>Create a Photo Album</value>
@@ -380,7 +380,7 @@ Administrators of &lt;i&gt;closed groups&lt;/i&gt; must approve requests for new
     <value>View Photo</value>
   </data>
   <data name="Messaging_CreateMessage_SubjectRequired" xml:space="preserve">
-    <value>Message subject is required!</value>
+    <value>Message Subject is required.</value>
   </data>
   <data name="Messaging_MessageList_Collapse_ToolTip" xml:space="preserve">
     <value>Collapse</value>
@@ -524,7 +524,7 @@ Administrators of &lt;i&gt;closed groups&lt;/i&gt; must approve requests for new
     <value>{0} is already added to your list of friends.</value>
   </data>
   <data name="PeopleSearch_Button_Add" xml:space="preserve">
-    <value>Add a friend</value>
+    <value>Add as a friend</value>
   </data>
   <data name="PeopleSearch_Button_Send" xml:space="preserve">
     <value>Send</value>
@@ -533,9 +533,9 @@ Administrators of &lt;i&gt;closed groups&lt;/i&gt; must approve requests for new
     <value>View profile</value>
   </data>
   <data name="PeopleSearch_ConfirmationMailContent" xml:space="preserve">
-    <value>Hi {FriendName},
+    <value>Hi &lt;a title="{FriendName}" url="{FriendUrl}"&gt;{FriendName}&lt;/a&gt;,
 &lt;br /&gt;&lt;br /&gt;
-{UserName} has added you as a friend on MonoX portal. We need to confirm that you know {UserName} in order for you to be friends on our Web site.&lt;br /&gt;
+&lt;a title="{UserName}" url="{UserUrl}"&gt;{UserName}&lt;/a&gt; has added you as a friend on {ApplicationName}. We need to confirm that you know &lt;a title="{UserName}" url="{UserUrl}"&gt;{UserName}&lt;/a&gt; in order for you to be friends on our Web site.&lt;br /&gt;
 {PersonalMessage}
 &lt;br /&gt;&lt;br /&gt;
 To confirm this request, please click on the following link:&lt;br /&gt;
@@ -543,7 +543,7 @@ To confirm this request, please click on the following link:&lt;br /&gt;
 &lt;br /&gt;&lt;br /&gt;
 Best regards,
 &lt;br /&gt;&lt;br /&gt;
-MonoX Team
+{ApplicationName} Team
 </value>
   </data>
   <data name="PeopleSearch_ConfirmationMailSubject" xml:space="preserve">
@@ -583,7 +583,7 @@ MonoX Team
     <value>This note will be deleted. Are you sure?</value>
   </data>
   <data name="WallNotes_NoData" xml:space="preserve">
-    <value>Currently there are no messages on your wall.</value>
+    <value>Currently there are no messages on the wall.</value>
   </data>
   <data name="WallNotes_WatermarkText" xml:space="preserve">
     <value>What's on your mind?</value>
@@ -637,17 +637,17 @@ MonoX Team
     <value>View profile</value>
   </data>
   <data name="Groups_PeopleSearch_ConfirmationMailContent" xml:space="preserve">
-    <value>Hi {FriendName},
+    <value>Hi &lt;a title="{FriendName}" href="{FriendUrl}"&gt;{FriendName}&lt;/a&gt;,
 &lt;br /&gt;&lt;br /&gt;
-{UserName} has invited you to join a group {GroupName}. We need to confirm that you want to join the group before you are added to the list of group's members.&lt;br /&gt;
+&lt;a title="{UserName}" href="{UserUrl}"&gt;{UserName}&lt;/a&gt; has invited you to join a group &lt;a title="{GroupName}" href="{GroupUrl}"&gt;{GroupName}&lt;/a&gt;. We need to confirm that you want to join the group before you are added to the list of group's members.&lt;br /&gt;
 {PersonalMessage}
 &lt;br /&gt;&lt;br /&gt;
 To confirm this request, please click on the following link:&lt;br /&gt;
-{ConfirmationUrl}
+&lt;a title="Confirm this request" href="{ConfirmationUrl}"&gt;{ConfirmationUrl}&lt;/a&gt;
 &lt;br /&gt;&lt;br /&gt;
 Best regards,
 &lt;br /&gt;&lt;br /&gt;
-MonoX Team
+{ApplicationName} Team
 </value>
   </data>
   <data name="Groups_PeopleSearch_ConfirmationMailSubject" xml:space="preserve">
@@ -660,7 +660,7 @@ MonoX Team
     <value>Tip: this will search people's first names, last names, and user names.</value>
   </data>
   <data name="Friends_FriendListEmpty" xml:space="preserve">
-    <value>Your friend list is currently empty.</value>
+    <value>Friend list is currently empty.</value>
   </data>
   <data name="Groups_InvitationList_AddingUser" xml:space="preserve">
     <value>The selected user will now be added to this group.</value>
@@ -819,10 +819,10 @@ MonoX Team
     <value>Posted</value>
   </data>
   <data name="Discussion_RepliesCount" xml:space="preserve">
-    <value>post(s).</value>
+    <value>post(s)</value>
   </data>
   <data name="Discussion_TopicCount" xml:space="preserve">
-    <value>topic(s).</value>
+    <value>topic(s)</value>
   </data>
   <data name="Discussion_TopicCreatedDate" xml:space="preserve">
     <value>Created</value>
@@ -837,7 +837,7 @@ MonoX Team
     <value>Your post may require administrative approval before it is published. </value>
   </data>
   <data name="Discussion_ViewsCount" xml:space="preserve">
-    <value>view(s).</value>
+    <value>view(s)</value>
   </data>
   <data name="Discussion_ViewsCountToolTip" xml:space="preserve">
     <value>Topic viewed {0} times</value>
@@ -879,10 +879,10 @@ MonoX Team
     <value>Mark as answer</value>
   </data>
   <data name="Discussion_TopicAnswer" xml:space="preserve">
-    <value>Answer</value>
+    <value>Unmark as Answer</value>
   </data>
   <data name="Discussion_TopicAnswerDescription" xml:space="preserve">
-    <value>Message is market as an answer to this topic.</value>
+    <value>Message is marked as an answer to this topic. Unmark it as an answer.</value>
   </data>
   <data name="Discussion_Topic_TopicAnswer" xml:space="preserve">
     <value>Answered</value>
@@ -942,7 +942,7 @@ MonoX Team
     <value>Click here to post a reply or unsubscribe from this topic.</value>
   </data>
   <data name="Discussion_NewMessageCreated" xml:space="preserve">
-    <value>New reply posted - </value>
+    <value>Re:  </value>
   </data>
   <data name="Discussion_NewMessageNoReply" xml:space="preserve">
     <value>Please, do not reply to this e-mail.</value>
@@ -1065,7 +1065,7 @@ MonoX Team
     <value>Related files</value>
   </data>
   <data name="PhotoGallery_AlbumView_MyAlbums" xml:space="preserve">
-    <value>My albums</value>
+    <value>{0}'s albums</value>
   </data>
   <data name="PhotoGallery_AlbumView_NewAlbums" xml:space="preserve">
     <value>New albums</value>
@@ -1219,5 +1219,190 @@ MonoX Team
   </data>
   <data name="WallNotes_NotificationSubjectNote" xml:space="preserve">
     <value>{0} posted a note on your wall.</value>
+  </data>
+  <data name="FriendSuggestionList_WatermarkSearch_Text" xml:space="preserve">
+    <value>Search...</value>
+  </data>
+  <data name="FriendSuggestionList_ButtonConnect_Text" xml:space="preserve">
+    <value>Connect</value>
+  </data>
+  <data name="FriendSuggestionList_ViewProfile" xml:space="preserve">
+    <value>View profile for {0}</value>
+  </data>
+  <data name="FriendSuggestionList_TextBox_RequestMessage" xml:space="preserve">
+    <value>{0} would like you to join his/her network.</value>
+  </data>
+  <data name="FriendSuggestionList_FriendListEmpty" xml:space="preserve">
+    <value>People you may know list is currently empty.</value>
+  </data>
+  <data name="FriendSuggestionList_MailContent" xml:space="preserve">
+    <value>Hi {FriendName},
+&lt;br/&gt;
+&lt;br/&gt;
+{UserName} has invited you to join his/her personal network. We need to confirm that you know {UserName} in order to join his/her personal network on our Web Site.&lt;br/&gt;
+{PersonalMessage}
+&lt;br /&gt;&lt;br /&gt;
+To confirm this request, please click on the following link:&lt;br /&gt;
+{ConfirmationUrl}
+&lt;br /&gt;&lt;br /&gt;
+Best regards,
+&lt;br /&gt;&lt;br /&gt;
+MonoX Team</value>
+  </data>
+  <data name="FriendSuggestionList_MailSubject" xml:space="preserve">
+    <value>Invitation to join {UserName} network</value>
+  </data>
+  <data name="FriendSuggestionList_PersonalMessage" xml:space="preserve">
+    <value>{0} will have to confirm your request. You may add a personal message:</value>
+  </data>
+  <data name="FriendSuggestionList_PersonYouSelected" xml:space="preserve">
+    <value>The person you selected</value>
+  </data>
+  <data name="FriendSuggestionList_CancelRequest" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="FriendSuggestionList_SendRequest" xml:space="preserve">
+    <value>Send request</value>
+  </data>
+  <data name="FriendSuggestionList_AlreadyConnected" xml:space="preserve">
+    <value>The selected person is already added to your list of friends.</value>
+  </data>
+  <data name="FriendSuggestionList_AlreadySentInvitation" xml:space="preserve">
+    <value>You have already invited the selected person to become your friend.</value>
+  </data>
+  <data name="FriendSuggestionList_RequestSentMessage" xml:space="preserve">
+    <value>Your friend request has been sent.</value>
+  </data>
+  <data name="Events_UserWallNoteAdded" xml:space="preserve">
+    <value>&lt;a href="{ProfileUrl}"&gt;{UserName}&lt;/a&gt; has posted a note to &lt;a href="{OwnerProfileUrl}"&gt;{OwnerUserName}&lt;/a&gt; wall. &lt;br /&gt;&lt;br/&gt; {WallNote}</value>
+  </data>
+  <data name="Events_WallNoteAdded" xml:space="preserve">
+    <value>&lt;a href="{ProfileUrl}"&gt;{UserName}&lt;/a&gt; has posted a note to wall. &lt;br /&gt;&lt;br /&gt; {WallNote}</value>
+  </data>
+  <data name="Messaging_Back" xml:space="preserve">
+    <value>Back</value>
+  </data>
+  <data name="BlockedUserList_ConfirmDelete" xml:space="preserve">
+    <value>This person will be removed from your blocked user list. Are you sure?</value>
+  </data>
+  <data name="BlockedUserList_Delete" xml:space="preserve">
+    <value>Remove {0} from your list of blocked users</value>
+  </data>
+  <data name="BlockedUserList_FriendListEmpty" xml:space="preserve">
+    <value>Your blocked user list is currently empty.</value>
+  </data>
+  <data name="BlockedUserList_ViewProfile" xml:space="preserve">
+    <value>View profile for {0}</value>
+  </data>
+  <data name="BlockUser_BlockConfirmation" xml:space="preserve">
+    <value>User {0} has been successfully added to your blocked users list.</value>
+  </data>
+  <data name="BlockUser_BlockProblem" xml:space="preserve">
+    <value>You cannot block {0}. Please check if this user is already present in your blocked user list.</value>
+  </data>
+  <data name="BlockUser_Button_Block" xml:space="preserve">
+    <value>Block</value>
+  </data>
+  <data name="BlockUser_Button_ViewProfile" xml:space="preserve">
+    <value>View Profile</value>
+  </data>
+  <data name="BlockUser_NoUsers" xml:space="preserve">
+    <value>You must select a valid user from the dropdown box.</value>
+  </data>
+  <data name="BlockUser_TipText" xml:space="preserve">
+    <value>Tip: this will search people's first names, last names, and user names.</value>
+  </data>
+  <data name="PeopleSearch_Button_Block" xml:space="preserve">
+    <value>Block a User</value>
+  </data>
+  <data name="PeopleSearch_BlockProblem" xml:space="preserve">
+    <value>You cannot block {0}. Please check if this user is already present in your blocked user list.</value>
+  </data>
+  <data name="PeopleSearch_Button_UnBlock" xml:space="preserve">
+    <value>Unblock a User</value>
+  </data>
+  <data name="InvitationList_ListEmpty" xml:space="preserve">
+    <value>Your invitation list is currently empty.</value>
+  </data>
+  <data name="PhotoGallery_MyPhotos_ListEmpty" xml:space="preserve">
+    <value>Photo list is currently empty.</value>
+  </data>
+  <data name="Discussion_TopicTags" xml:space="preserve">
+    <value>Topic tags</value>
+  </data>
+  <data name="Groups_GroupList_AllGroups" xml:space="preserve">
+    <value>All Groups</value>
+  </data>
+  <data name="Groups_GroupList_MyGroups" xml:space="preserve">
+    <value>My Groups</value>
+  </data>
+  <data name="Messaging_CreateMessage_BodyRequired" xml:space="preserve">
+    <value>Message Body is required.</value>
+  </data>
+  <data name="Discussion_BoardDoesntExist" xml:space="preserve">
+    <value>Board doesn't exist</value>
+  </data>
+  <data name="Discussion_TopicDoesntExists" xml:space="preserve">
+    <value>Topic doesn't exist</value>
+  </data>
+  <data name="PhotoGallery_AlbumEditView_EditAlbum" xml:space="preserve">
+    <value>Update a Photo Album</value>
+  </data>
+  <data name="PhotoGallery_AlbumEditView_NameRequired" xml:space="preserve">
+    <value>Album name is required.</value>
+  </data>
+  <data name="Groups_AllGroupsInCategoryTitleFormatString" xml:space="preserve">
+    <value>{0} in {1} category.</value>
+  </data>
+  <data name="Groups_NoGroupsShowingAllGroupsFormatString" xml:space="preserve">
+    <value>There are no groups for given criteria, showing all groups.</value>
+  </data>
+  <data name="Discussion_DiscussionBoardList" xml:space="preserve">
+    <value>Discussion Board List</value>
+  </data>
+  <data name="Discussion_NewBoardAdded" xml:space="preserve">
+    <value>A new board has been added that you are subscribed on.</value>
+  </data>
+  <data name="Discussion_NewBoardClickToSubscribe" xml:space="preserve">
+    <value>Click on the board name to subscribe to this board.</value>
+  </data>
+  <data name="Discussion_NewBoardCreated" xml:space="preserve">
+    <value>New Discussion Board Created</value>
+  </data>
+  <data name="Discussion_Topic_BoardEdit" xml:space="preserve">
+    <value>Edit</value>
+  </data>
+  <data name="Discussion_Message_Edit" xml:space="preserve">
+    <value>Edit</value>
+  </data>
+  <data name="Discussion_Message_Spam" xml:space="preserve">
+    <value>Spam</value>
+  </data>
+  <data name="Discussion_Topic_Spam" xml:space="preserve">
+    <value>Spam</value>
+  </data>
+  <data name="Discussion_Message_Unapproved" xml:space="preserve">
+    <value>Unapproved</value>
+  </data>
+  <data name="Discussion_Topic_Unapproved" xml:space="preserve">
+    <value>Unapproved</value>
+  </data>
+  <data name="Comments_Validator_ErrorMessage" xml:space="preserve">
+    <value>Please enter your comment</value>
+  </data>
+  <data name="Messaging_ListAdmin_NameRequired" xml:space="preserve">
+    <value>Please enter a value for 'Name'</value>
+  </data>
+  <data name="BlockedUserList_FriendListNoMatchFormat" xml:space="preserve">
+    <value>No matches found for '{0}'.</value>
+  </data>
+  <data name="Discussion_Attachments" xml:space="preserve">
+    <value>Attachments:</value>
+  </data>
+  <data name="BlockedUserList_Clear" xml:space="preserve">
+    <value>Clear</value>
+  </data>
+  <data name="BlockedUserList_Filter" xml:space="preserve">
+    <value>Filter</value>
   </data>
 </root>

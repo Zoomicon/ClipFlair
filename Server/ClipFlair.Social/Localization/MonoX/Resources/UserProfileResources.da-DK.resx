@@ -201,6 +201,9 @@
   <data name="EditProfile_ZipCode" xml:space="preserve">
     <value>Postnummer:</value>
   </data>
+  <data name="UserAvatart_InvalidImageSize" xml:space="preserve">
+    <value>Desired image dimensions you have uploaded are too small.</value>
+  </data>
   <data name="UserAvatar_Caption" xml:space="preserve">
     <value>Profilbillede</value>
   </data>
