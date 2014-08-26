@@ -139,7 +139,7 @@
     <value>Elegir la base de datos donde se desea instalar MonoX</value>
   </data>
   <data name="DatabaseInfo_NextText" xml:space="preserve">
-    <value>Finalizar&gt;</value>
+    <value>Finaliza</value>
   </data>
   <data name="DatabaseInfo_PageTitle" xml:space="preserve">
     <value>Configuración de la base de datos</value>
@@ -328,7 +328,7 @@
     <value>Aca</value>
   </data>
   <data name="InstallComplete_NextText" xml:space="preserve">
-    <value>Sitio Web &gt;</value>
+    <value>Sitio Web</value>
   </data>
   <data name="InstallComplete_Note" xml:space="preserve">
     <value>Tenga en cuenta: El proceso de trabajo (Cuenta: {0}) tiene que tener permisos de escritura en el archivo web.config para escribir todos los ajustes y completar el proceso de instalación.</value>
@@ -355,10 +355,10 @@
     <value>Personalizar</value>
   </data>
   <data name="Master_btnNext" xml:space="preserve">
-    <value>Siguiente &gt;</value>
+    <value>Siguiente</value>
   </data>
   <data name="Master_btnPrevious" xml:space="preserve">
-    <value>&lt; Anterior</value>
+    <value>Anterior</value>
   </data>
   <data name="Master_EmptyHeaderTitle" xml:space="preserve">
     <value>Título de cabecera vacío</value>
@@ -394,7 +394,7 @@
     <value>Ambiente de multiples aplicacónes</value>
   </data>
   <data name="NewApplication_NextText" xml:space="preserve">
-    <value>Finalizar &gt;</value>
+    <value>Finalizar</value>
   </data>
   <data name="NewApplication_PageTitle" xml:space="preserve">
     <value>Nueva instalación de aplicación</value>
@@ -448,7 +448,7 @@
     <value>Propiedades avanzadas</value>
   </data>
   <data name="AdvancedSettings_NextText" xml:space="preserve">
-    <value>Finish &gt;</value>
+    <value>Finish</value>
   </data>
   <data name="Default_linkMSNet31" xml:space="preserve">
     <value>Obtener ayuda instalando .NET framework (3.0 SP1)</value>

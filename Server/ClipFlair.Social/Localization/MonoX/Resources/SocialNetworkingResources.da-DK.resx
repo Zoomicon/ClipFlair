@@ -533,17 +533,17 @@ Administrator af &lt;i&gt;lukkede/ private grupper&lt;/i&gt; skal godkende anmod
     <value>Se profil</value>
   </data>
   <data name="PeopleSearch_ConfirmationMailContent" xml:space="preserve">
-    <value>Hej {FriendName},
+    <value>Hej &lt;a title="{FriendName}" url="{FriendUrl}"&gt;{FriendName}&lt;/a&gt;,
 &lt;br /&gt;&lt;br /&gt;
-{UserName} har tilføjet dig som ven på LykkenEr.dk. Du skal bare bekræfet at du ønsker at stå på {UserName}´s venneliste.&lt;br /&gt;
+&lt;a title="{UserName}" url="{UserUrl}"&gt;{UserName}&lt;/a&gt; har tilføjet dig som ven på {ApplicationName}. Du skal bare bekræfet at du ønsker at stå på {UserName}´s venneliste.&lt;br /&gt;
 {PersonalMessage}
 &lt;br /&gt;&lt;br /&gt;
 Klik venligst på linket for at bekræfte:&lt;br /&gt;
-{ConfirmationUrl}
+&lt;a title="Confirm this request" href="{ConfirmationUrl}"&gt;{ConfirmationUrl}&lt;/a&gt;
 &lt;br /&gt;&lt;br /&gt;
 Med venlig hilsen
 &lt;br /&gt;&lt;br /&gt;
-LykkenEr - Supporten
+{ApplicationName} Supporten
 </value>
   </data>
   <data name="PeopleSearch_ConfirmationMailSubject" xml:space="preserve">
@@ -637,17 +637,17 @@ LykkenEr - Supporten
     <value>Se profil</value>
   </data>
   <data name="Groups_PeopleSearch_ConfirmationMailContent" xml:space="preserve">
-    <value>Hej {FriendName},
+    <value>Hej &lt;a title="{FriendName}" href="{FriendUrl}"&gt;{FriendName}&lt;/a&gt;,
 &lt;br /&gt;&lt;br /&gt;
-{UserName} har inviteret dig til at være med i gruppen:{GroupName}. Du skal bare lige bekræfte at du ønsker at være med i gruppen og så vil dit profilnavn blive tilføjet på gruppelisten.&lt;br /&gt;
+&lt;a title="{UserName}" href="{UserUrl}"&gt;{UserName}&lt;/a&gt; har inviteret dig til at være med i gruppen:&lt;a title="{GroupName}" href="{GroupUrl}"&gt;{GroupName}&lt;/a&gt;. Du skal bare lige bekræfte at du ønsker at være med i gruppen og så vil dit profilnavn blive tilføjet på gruppelisten.&lt;br /&gt;
 {PersonalMessage}
 &lt;br /&gt;&lt;br /&gt;
 Klik venligst på linket for at bekræfte:&lt;br /&gt;
-{ConfirmationUrl}
+&lt;a title="Confirm this request" href="{ConfirmationUrl}"&gt;{ConfirmationUrl}&lt;/a&gt;
 &lt;br /&gt;&lt;br /&gt;
 Med venlig hilsen
 &lt;br /&gt;&lt;br /&gt;
-LykkenEr - Supporten
+{ApplicationName} Supporten
 </value>
   </data>
   <data name="Groups_PeopleSearch_ConfirmationMailSubject" xml:space="preserve">
@@ -1171,5 +1171,14 @@ LykkenEr - Supporten
   </data>
   <data name="Groups_DeleteMember" xml:space="preserve">
     <value>Slet {0} fra gruppen</value>
+  </data>
+  <data name="Discussion_TopicTags" xml:space="preserve">
+    <value>Topic tags</value>
+  </data>
+  <data name="Discussion_Message_Spam" xml:space="preserve">
+    <value>Spam</value>
+  </data>
+  <data name="Discussion_Topic_Spam" xml:space="preserve">
+    <value>Spam</value>
   </data>
 </root>

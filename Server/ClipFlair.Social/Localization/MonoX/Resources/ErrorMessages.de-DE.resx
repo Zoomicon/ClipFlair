@@ -159,9 +159,6 @@
   <data name="CannotFindLicenseFile" xml:space="preserve">
     <value>Lizenzdatei konnte nicht gefunden werden. Bitte registrieren Sie Ihre MonoX Installation und legen Sie die Lizenz im Papierkorb-Ordner ab.</value>
   </data>
-  <data name="NumberOfUsersExceeded" xml:space="preserve">
-    <value>Die Anzahl der Portalbenutzer für die kostenfreie Version von MonoX wurde überschritten. Bitte erwerben Sie eine gewerbliche Lizenz, um diese Beschränkung aufzuheben.</value>
-  </data>
   <data name="PageNotFound" xml:space="preserve">
     <value>Seite nicht gefunden</value>
   </data>

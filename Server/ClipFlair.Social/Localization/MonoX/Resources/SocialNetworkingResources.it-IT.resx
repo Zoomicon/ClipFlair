@@ -112,10 +112,10 @@
     <value>2.0</value>
   </resheader>
   <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Discussion_Add_New_Board" xml:space="preserve">
     <value>Apri una nuova discussione</value>
@@ -533,17 +533,17 @@ Le iscrizioni ai &lt;i&gt;gruppi privati&lt;/i&gt; devono essere autorizzate da 
     <value>Guarda il profilo</value>
   </data>
   <data name="PeopleSearch_ConfirmationMailContent" xml:space="preserve">
-    <value>Ciao {FriendName},
+    <value>Ciao &lt;a title="{FriendName}" url="{FriendUrl}"&gt;{FriendName}&lt;/a&gt;,
 &lt;br /&gt;&lt;br /&gt;
-{UserName} ti ha aggiunto agli amici di ViaggiGiovani. Abbiamo bisogno di una tua conferma per completare l'iscrizione.&lt;br /&gt;
+&lt;a title="{UserName}" url="{UserUrl}"&gt;{UserName}&lt;/a&gt; ti ha aggiunto agli amici di {ApplicationName}. Abbiamo bisogno di una tua conferma per completare l'iscrizione.&lt;br /&gt;
 {PersonalMessage}
 &lt;br /&gt;&lt;br /&gt;
 Per confermare clicca sul seguente link:&lt;br /&gt;
-{ConfirmationUrl}
+&lt;a title="Confirm this request" href="{ConfirmationUrl}"&gt;{ConfirmationUrl}&lt;/a&gt;
 &lt;br /&gt;&lt;br /&gt;
 Un saluto,
 &lt;br /&gt;&lt;br /&gt;
-ViaggiGiovani Team
+{ApplicationName} Team
 </value>
   </data>
   <data name="PeopleSearch_ConfirmationMailSubject" xml:space="preserve">
@@ -634,17 +634,17 @@ ViaggiGiovani Team
     <value>Guarda il profilo</value>
   </data>
   <data name="Groups_PeopleSearch_ConfirmationMailContent" xml:space="preserve">
-    <value>Ciao {FriendName},
+    <value>Ciao &lt;a title="{FriendName}" href="{FriendUrl}"&gt;{FriendName}&lt;/a&gt;,
 &lt;br /&gt;&lt;br /&gt;
-{UserName} ti ha invitato al gruppo {GroupName}. Abbiamo bisogno di una tua conferma per completare l'iscrizione.&lt;br /&gt;
+&lt;a title="{UserName}" href="{UserUrl}"&gt;{UserName}&lt;/a&gt; ti ha invitato al gruppo &lt;a title="{GroupName}" href="{GroupUrl}"&gt;{GroupName}&lt;/a&gt;. Abbiamo bisogno di una tua conferma per completare l'iscrizione.&lt;br /&gt;
 {PersonalMessage}
 &lt;br /&gt;&lt;br /&gt;
 Per confermare l'iscrizione, fai click sul seguente link:&lt;br /&gt;
-{ConfirmationUrl}
+&lt;a title="Confirm this request" href="{ConfirmationUrl}"&gt;{ConfirmationUrl}&lt;/a&gt;
 &lt;br /&gt;&lt;br /&gt;
 Un saluto,
 &lt;br /&gt;&lt;br /&gt;
-Viaggigiovani Team
+{ApplicationName} Team
 </value>
   </data>
   <data name="Groups_PeopleSearch_ConfirmationMailSubject" xml:space="preserve">
@@ -889,5 +889,14 @@ Viaggigiovani Team
   </data>
   <data name="Discussion_TopicRatingToolTip" xml:space="preserve">
     <value>Media valutazioni: {0} di {1} voti.</value>
+  </data>
+  <data name="Discussion_TopicTags" xml:space="preserve">
+    <value>Topic tags</value>
+  </data>
+  <data name="Discussion_Message_Spam" xml:space="preserve">
+    <value>Spam</value>
+  </data>
+  <data name="Discussion_Topic_Spam" xml:space="preserve">
+    <value>Spam</value>
   </data>
 </root>

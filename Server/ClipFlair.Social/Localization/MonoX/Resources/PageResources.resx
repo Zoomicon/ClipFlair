@@ -166,7 +166,7 @@
     <value>Enter people search terms</value>
   </data>
   <data name="Login_RpxWarning" xml:space="preserve">
-    <value>NOTE: RPX login module is here for the demonstration purposes only. IT WILL NOT WORK on your domain until you properly set the target applications on other social networks as described in the documentation. </value>
+    <value>NOTE: Social login module is here for the demonstration purposes only. IT WILL NOT WORK on your domain until you properly set the target applications on other social networks as described in the documentation. </value>
   </data>
   <data name="Messages_Title" xml:space="preserve">
     <value>Messages</value>
@@ -311,5 +311,62 @@
   </data>
   <data name="Groups_InvitationsReceived" xml:space="preserve">
     <value>Request received</value>
+  </data>
+  <data name="MyWall_Title" xml:space="preserve">
+    <value>My Wall</value>
+  </data>
+  <data name="Module_UserProfilePhotos" xml:space="preserve">
+    <value>{0}'s Photos</value>
+  </data>
+  <data name="Module_UserProfileAlbums" xml:space="preserve">
+    <value>{0}'s Albums</value>
+  </data>
+  <data name="UserProfile_Map_Title" xml:space="preserve">
+    <value>{0}'s Location</value>
+  </data>
+  <data name="UserProfile_FriendSuggestion_Title" xml:space="preserve">
+    <value>People you may know</value>
+  </data>
+  <data name="Module_BlockedUsersList" xml:space="preserve">
+    <value>My Blocked Users</value>
+  </data>
+  <data name="Module_BlockUser" xml:space="preserve">
+    <value>Block a User</value>
+  </data>
+  <data name="PageFooter_ConnectWithUs" xml:space="preserve">
+    <value>Connect with us</value>
+  </data>
+  <data name="PageFooter_FacebookFan" xml:space="preserve">
+    <value>Become a fan on Facebook</value>
+  </data>
+  <data name="PageFooter_LinkedInConnect" xml:space="preserve">
+    <value>Connect on LinkedIn</value>
+  </data>
+  <data name="PageFooter_TwitterFollow" xml:space="preserve">
+    <value>Follow on Twitter</value>
+  </data>
+  <data name="Login_Or" xml:space="preserve">
+    <value>Or</value>
+  </data>
+  <data name="News_ReadMore_Title" xml:space="preserve">
+    <value>Read More ...</value>
+  </data>
+  <data name="Title_BottomSection" xml:space="preserve">
+    <value>Bottom section</value>
+  </data>
+  <data name="Title_MiddleSection" xml:space="preserve">
+    <value>Middle section</value>
+  </data>
+  <data name="Title_TopSection" xml:space="preserve">
+    <value>Top section</value>
+  </data>
+  <data name="Zone_BottomPartZone" xml:space="preserve">
+    <value>Bottom part zone</value>
+  </data>
+  <data name="Zone_MiddlePartZone" xml:space="preserve">
+    <value>Middle part zone</value>
+  </data>
+  <data name="Zone_TopPartZone" xml:space="preserve">
+    <value>Top part zone</value>
   </data>
 </root>

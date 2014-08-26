@@ -249,4 +249,7 @@
   <data name="UserScore" xml:space="preserve">
     <value>Karma Puanı</value>
   </data>
+  <data name="String" xml:space="preserve">
+    <value>Desired image dimensions you have uploaded are too small.</value>
+  </data>
 </root>

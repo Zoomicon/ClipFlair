@@ -112,10 +112,10 @@
     <value>2.0</value>
   </resheader>
   <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="CacheTime" xml:space="preserve">
     <value>Cached for {0} seconds.</value>
@@ -169,7 +169,7 @@
     <value>Next</value>
   </data>
   <data name="NoPreference" xml:space="preserve">
-    <value>No preference</value>
+    <value>Please select</value>
   </data>
   <data name="Of" xml:space="preserve">
     <value>Of</value>
@@ -216,12 +216,6 @@
   <data name="Upload" xml:space="preserve">
     <value>Upload</value>
   </data>
-  <data name="MessagingGroup" xml:space="preserve">
-    <value>messaging group</value>
-  </data>
-  <data name="MessagingList" xml:space="preserve">
-    <value>messaging list</value>
-  </data>
   <data name="PoweredByMonoX" xml:space="preserve">
     <value>Powered by Mono Software MonoX CMS for ASP.NET.</value>
   </data>
@@ -253,7 +247,7 @@
     <value>Request approved!</value>
   </data>
   <data name="Confirmation_GroupRequestSuccessDescription" xml:space="preserve">
-    <value>You have been successfully added to the group {GroupName}. </value>
+    <value>You have been successfully added to the group &lt;a title='{GroupName}' href='{GroupUrl}'&gt;{GroupName}&lt;/a&gt;. </value>
   </data>
   <data name="MailSendError" xml:space="preserve">
     <value>Your message was not sent.</value>
@@ -302,5 +296,8 @@
   </data>
   <data name="NoActionPermissions" xml:space="preserve">
     <value>You don't have permissions for this action.</value>
+  </data>
+  <data name="ValidationSummary_HeaderText" xml:space="preserve">
+    <value>The following issues have to be resolved before you can proceed:</value>
   </data>
 </root>

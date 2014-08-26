@@ -220,8 +220,8 @@
     <value>Otvorena grupa?</value>
   </data>
   <data name="Groups_GroupEdit_PrivacyLegend" xml:space="preserve">
-    <value>Svi korisnici se mogu priključiti&lt;i&gt;otvorenim grupama&lt;/i&gt; i pozvati ostale korisnike. Sve informacije unutar otvorenih grupa su javne.&lt;br /&gt;
-Adminisatratori &lt;i&gt;zatvorenih grupa&lt;/i&gt; moraju odobriti zahtjev za pridruživanjem. Svi mogu vidjeti opise grupa, ali samo članovi mogu vidjeti njihov sadržaj.</value>
+    <value>Svi korisnici se mogu priključiti &lt;i&gt;otvorenim grupama&lt;/i&gt; i pozvati ostale korisnike. Sve informacije unutar otvorenih grupa su javne.&lt;br /&gt;
+Administratori &lt;i&gt;zatvorenih grupa&lt;/i&gt; moraju odobriti zahtjev za pridruživanjem. Svi mogu vidjeti opise grupa, ali samo članovi mogu vidjeti njihov sadržaj.</value>
   </data>
   <data name="Groups_GroupList_AddNew" xml:space="preserve">
     <value>Dodaj novu grupu</value>
@@ -464,17 +464,17 @@ Adminisatratori &lt;i&gt;zatvorenih grupa&lt;/i&gt; moraju odobriti zahtjev za p
     <value>Pogledaj profil</value>
   </data>
   <data name="PeopleSearch_ConfirmationMailContent" xml:space="preserve">
-    <value>Pozdrav {FriendName},
+    <value>Pozdrav &lt;a title="{FriendName}" url="{FriendUrl}"&gt;{FriendName}&lt;/a&gt;,
 &lt;br /&gt;&lt;br /&gt;
-{UserName} vas je dodao/la kao prijatelja/prijateljicu na našem portalu. Morate potvrditi poznanstvo sa korisnikom {UserName} kako bi mogli postati prijatelji.&lt;br /&gt;
+&lt;a title="{UserName}" url="{UserUrl}"&gt;{UserName}&lt;/a&gt; vas je dodao/la kao prijatelja/prijateljicu na našem portalu. Morate potvrditi poznanstvo sa korisnikom {UserName} kako bi mogli postati prijatelji.&lt;br /&gt;
 {PersonalMessage}
 &lt;br /&gt;&lt;br /&gt;
 Ukoliko želite potvrditi ovaj zahtjev, molimo da kliknete na link ispod:&lt;br /&gt;
-{ConfirmationUrl}
+&lt;a title="Confirm this request" href="{ConfirmationUrl}"&gt;{ConfirmationUrl}&lt;/a&gt;
 &lt;br /&gt;&lt;br /&gt;
 Srdačno,
 &lt;br /&gt;&lt;br /&gt;
-MonoX Team
+{ApplicationName} Team
 </value>
   </data>
   <data name="PeopleSearch_ConfirmationMailSubject" xml:space="preserve">
@@ -637,17 +637,17 @@ MonoX Team
     <value>Pogledaj profil</value>
   </data>
   <data name="Groups_PeopleSearch_ConfirmationMailContent" xml:space="preserve">
-    <value>Pozdrav {FriendName},
+    <value>Pozdrav &lt;a title="{FriendName}" href="{FriendUrl}"&gt;{FriendName}&lt;/a&gt;,
 &lt;br /&gt;&lt;br /&gt;
-{UserName} vas poziva da se pridružite grupi {GroupName}. Morate potvrditi da se doista želite učlaniti prije.&lt;br /&gt;
+&lt;a title="{UserName}" href="{UserUrl}"&gt;{UserName}&lt;/a&gt; vas poziva da se pridružite grupi &lt;a title="{GroupName}" href="{GroupUrl}"&gt;{GroupName}&lt;/a&gt;. Morate potvrditi da se doista želite učlaniti prije.&lt;br /&gt;
 {PersonalMessage}
 &lt;br /&gt;&lt;br /&gt;
 Ukoliko želite potvrditi ovaj zahtjev, molimo da kliknete na link ispod:&lt;br /&gt;
-{ConfirmationUrl}
+&lt;a title="Confirm this request" href="{ConfirmationUrl}"&gt;{ConfirmationUrl}&lt;/a&gt;
 &lt;br /&gt;&lt;br /&gt;
 Srdačno,
 &lt;br /&gt;&lt;br /&gt;
-MonoX Team
+{ApplicationName} Team
 
 </value>
   </data>
@@ -1201,7 +1201,7 @@ MonoX Team
     <value>Zakači poruku</value>
   </data>
   <data name="Discussion_UnPinItem" xml:space="preserve">
-    <value>Odkači poruku</value>
+    <value>Otkači poruku</value>
   </data>
   <data name="Discussion_Topic_SortHotTopicsOnTop" xml:space="preserve">
     <value>Poredak: Vruće teme na vrh</value>
@@ -1214,5 +1214,82 @@ MonoX Team
   </data>
   <data name="Discussion_Topic_Empty" xml:space="preserve">
     <value>Ne postoji niti jedna tema u raspravi</value>
+  </data>
+  <data name="FriendSuggestionList_WatermarkSearch_Text" xml:space="preserve">
+    <value>Traži...</value>
+  </data>
+  <data name="FriendSuggestionList_ButtonConnect_Text" xml:space="preserve">
+    <value>Poveži</value>
+  </data>
+  <data name="FriendSuggestionList_ViewProfile" xml:space="preserve">
+    <value>Pregledaj profil za {0}</value>
+  </data>
+  <data name="FriendSuggestionList_TextBox_RequestMessage" xml:space="preserve">
+    <value>{0} vas poziva da se pridružite njegovoj/njezinoj mreži.</value>
+  </data>
+  <data name="FriendSuggestionList_FriendListEmpty" xml:space="preserve">
+    <value>Lista ljudi koje znate je trenutno prazna.</value>
+  </data>
+  <data name="FriendSuggestionList_MailContent" xml:space="preserve">
+    <value>Pozdrav {FriendName},
+&lt;br/&gt;
+&lt;br/&gt;
+{UserName} vas je pozvao da se pridružite njegovoj/njezinoj mreži. Morate potvrditi poznanstvo sa korisnikom {UserName} kako bi se pridružili njegovoj/njezinoj mreži.&lt;br/&gt;
+{PersonalMessage}
+&lt;br /&gt;&lt;br /&gt;
+Ukoliko želite potvrditi ovaj zahtjev, molimo da kliknete na link ispod:&lt;br /&gt;
+{ConfirmationUrl}
+&lt;br /&gt;&lt;br /&gt;
+Srdačno,
+&lt;br /&gt;&lt;br /&gt;
+MonoX Team</value>
+  </data>
+  <data name="FriendSuggestionList_MailSubject" xml:space="preserve">
+    <value>Pozivnica za pridruženje {UserName} mreži</value>
+  </data>
+  <data name="FriendSuggestionList_PersonalMessage" xml:space="preserve">
+    <value>{0} će morati potvrditi vaš zahtjev. Možete dodati privatnu poruku:</value>
+  </data>
+  <data name="FriendSuggestionList_PersonYouSelected" xml:space="preserve">
+    <value>Osoba koju ste odabrali</value>
+  </data>
+  <data name="FriendSuggestionList_CancelRequest" xml:space="preserve">
+    <value>Otkaži</value>
+  </data>
+  <data name="FriendSuggestionList_SendRequest" xml:space="preserve">
+    <value>Pošalji zahtjev</value>
+  </data>
+  <data name="FriendSuggestionList_AlreadyConnected" xml:space="preserve">
+    <value>Odabrana osoba je već dodana na vašu listu prijatelja.</value>
+  </data>
+  <data name="FriendSuggestionList_AlreadySentInvitation" xml:space="preserve">
+    <value>Već ste poslali poziv za prijateljstvo odabranoj osobi.</value>
+  </data>
+  <data name="FriendSuggestionList_RequestSentMessage" xml:space="preserve">
+    <value>Vaš zahtjev za prijateljstvo je poslan.</value>
+  </data>
+  <data name="Discussion_TopicTags" xml:space="preserve">
+    <value>Tagovi tema</value>
+  </data>
+  <data name="Discussion_DiscussionBoardList" xml:space="preserve">
+    <value>Lista Rasprava</value>
+  </data>
+  <data name="Discussion_Topic_BoardEdit" xml:space="preserve">
+    <value>Izmjeni</value>
+  </data>
+  <data name="Discussion_Message_Edit" xml:space="preserve">
+    <value>Izmjeni</value>
+  </data>
+  <data name="Discussion_Message_Spam" xml:space="preserve">
+    <value>Spam</value>
+  </data>
+  <data name="Discussion_Topic_Spam" xml:space="preserve">
+    <value>Spam</value>
+  </data>
+  <data name="Discussion_Message_Unapproved" xml:space="preserve">
+    <value>Neodobreno</value>
+  </data>
+  <data name="Discussion_Topic_Unapproved" xml:space="preserve">
+    <value>Neodobreno</value>
   </data>
 </root>

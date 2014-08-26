@@ -649,7 +649,7 @@
     <value>Upravljanje pojedinačnim reklamama i skupnim reklamnim kampanjama.</value>
   </data>
   <data name="Default_Amazon" xml:space="preserve">
-    <value>Koristite Amazon Simple Storage Service (S3) - skalabilnu, pouzdanu, brzu i jeftinu infrastrukturu za pohranu podataka.</value>
+    <value>Koristite Amazon Simple Storage Service (S3)</value>
   </data>
   <data name="Default_Blog" xml:space="preserve">
     <value>Kreiranje i objavljivanje blog postova; definiranje uloga, kategorija i tagova, itd.</value>
@@ -1942,7 +1942,7 @@
     <value>What are Administrator Roles ? - Specifies user roles that have administrator privileges. Members of these roles can administer all aspects of locally installed portals.</value>
   </data>
   <data name="PortalSettings_MonoXSettingsLocalizationFolder" xml:space="preserve">
-    <value>Što je to Lokalizaciska mapa ? - To je virtualna lokalizaciska podmapa koja će biti pridodana prije lokalizaciskog dijela url putanje (primjer: /language/en-US)</value>
+    <value>Što je to Lokalizaciska mapa ? - To je virtualna lokalizaciska podmapa koja će biti pridodana prije lokalizaciskog dijela url putanje (primjer: /lng/en-US)</value>
   </data>
   <data name="PortalSettings_MonoXSettingsNewsPublisherRoleName" xml:space="preserve">
     <value>Što je to Naziv role objavljivača vijesti ? - Specifies user roles that have news publisher privileges.</value>
@@ -2271,7 +2271,7 @@ administrative screen.</value>
     <value>Gravatar types: identicon, monsterid, wavatar or url to custom icon.</value>
   </data>
   <data name="PortalSettings_MonoXSettingsjQueryReferencePath" xml:space="preserve">
-    <value>jQuery reference path. Change it to use other jQuery versions.</value>
+    <value>jQuery putanja. Promijenite je da biste koristili druge jQuery verzije.</value>
   </data>
   <data name="PortalSettings_MonoXSettingsLocalizationConnectionStringKey" xml:space="preserve">
     <value>Database connection string for DB localization provider.</value>
@@ -2584,5 +2584,29 @@ included in the keyword list).</value>
   </data>
   <data name="PortalSettings_MonoXSettingsMailQueueName" xml:space="preserve">
     <value>Naziv queue-a za slučaj korištenja MSMQ servisa za procesiranje asinkronih operacija.</value>
+  </data>
+  <data name="UserManager_sortFailedPasswordAnswerAttempts" xml:space="preserve">
+    <value>Broj pokušaja za pitanje za lozinku</value>
+  </data>
+  <data name="UserManager_sortFailedPasswordAttempts" xml:space="preserve">
+    <value>Broj pokušaja za lozinku</value>
+  </data>
+  <data name="AdminHeader_lnkAzure" xml:space="preserve">
+    <value>Azure</value>
+  </data>
+  <data name="Default_Azure" xml:space="preserve">
+    <value>Koristite Azure Blob Storage</value>
+  </data>
+  <data name="Default_lnkCloud" xml:space="preserve">
+    <value>OBLAK</value>
+  </data>
+  <data name="FileAdminAzure_PageTitle" xml:space="preserve">
+    <value>Azure blob storage administracija</value>
+  </data>
+  <data name="PortalSettings_jQueryCSSReferencePath" xml:space="preserve">
+    <value>jQuery CSS putanja</value>
+  </data>
+  <data name="PortalSettings_MonoXSettingsjQueryCSSReferencePath" xml:space="preserve">
+    <value>jQuery CSS putanja. Promijenite da biste koristili druge jQuery verzije.</value>
   </data>
 </root>

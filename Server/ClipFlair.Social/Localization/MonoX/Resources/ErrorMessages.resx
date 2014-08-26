@@ -112,10 +112,10 @@
     <value>2.0</value>
   </resheader>
   <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Authorization_Description" xml:space="preserve">
     <value>You are not authorized to view this page.</value>
@@ -162,9 +162,6 @@
   <data name="Membership_Update_UnknownError" xml:space="preserve">
     <value>An unknown error occured. The account could not be updated, please try again later. If the problem persists, please contact us.</value>
   </data>
-  <data name="NumberOfUsersExceeded" xml:space="preserve">
-    <value>Number of portal users for a free edition of MonoX was exceeded. Please purchase a commercial license to remove this limilation.</value>
-  </data>
   <data name="PageNotFound" xml:space="preserve">
     <value>Page not found</value>
   </data>
@@ -203,5 +200,11 @@
   </data>
   <data name="PageNotFoundRemovePersonalization" xml:space="preserve">
     <value>Do you want to remove personalization data for the page?</value>
+  </data>
+  <data name="ErrorPage_SubTitle" xml:space="preserve">
+    <value>An error has occured in the application.</value>
+  </data>
+  <data name="ErrorPage_Title" xml:space="preserve">
+    <value>Error</value>
   </data>
 </root>

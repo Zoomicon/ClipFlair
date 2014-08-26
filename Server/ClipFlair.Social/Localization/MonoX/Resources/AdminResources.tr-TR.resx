@@ -1965,7 +1965,7 @@ Bu alanların doldurulmaması durumunda varsayılan ayarlar geçerli olacaktır.
     <value>Yönetici rolleri nelerdir? - Yönetici yetkilerine sahip rolleri belirler.Bu rollere sahip kullanıcılar portalı portal admini olarak her açıdan yönetebilirler.</value>
   </data>
   <data name="PortalSettings_MonoXSettingsLocalizationFolder" xml:space="preserve">
-    <value>Lokalizasyon klasörü nedir ? - Sanal lokalizasyon alt klasörüdür. (örn:/language/tr-TR)</value>
+    <value>Lokalizasyon klasörü nedir ? - Sanal lokalizasyon alt klasörüdür. (örn:/lng/tr-TR)</value>
   </data>
   <data name="PortalSettings_MonoXSettingsNewsPublisherRoleName" xml:space="preserve">
     <value>Haber yayınlayıcısı rol adı nedir? -Haber yayınlama yetkisi olan kullanıcı gruplarını belirler.</value>
@@ -2600,5 +2600,14 @@ Facebook mantığına benzeyen bir mantık içerinde mesaj gönderebilecektir.</
   </data>
   <data name="PortalSettings_PhotoGalleryAdministratorRoles" xml:space="preserve">
     <value>Fotoğraf galerisi yönetici rolleri</value>
+  </data>
+  <data name="UserManager_sortFailedPasswordAnswerAttempts" xml:space="preserve">
+    <value>Failed password answer attempt</value>
+  </data>
+  <data name="UserManager_sortFailedPasswordAttempts" xml:space="preserve">
+    <value>Failed password attempt</value>
+  </data>
+  <data name="PortalSettings_MonoXSettingsjQueryCSSReferencePath" xml:space="preserve">
+    <value>jQuery CSS reference path. Change it to use other jQuery versions.</value>
   </data>
 </root>

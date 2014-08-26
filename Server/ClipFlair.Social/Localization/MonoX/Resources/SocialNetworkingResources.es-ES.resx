@@ -112,10 +112,10 @@
     <value>2.0</value>
   </resheader>
   <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Discussion_Add_New_Board" xml:space="preserve">
     <value>Adicione nueva pizarra de discusión</value>
@@ -533,17 +533,17 @@ Los administradores de &lt;i&gt;grupos cerrados&lt;/i&gt; deben aprovar los pedi
     <value>Ver perfil</value>
   </data>
   <data name="PeopleSearch_ConfirmationMailContent" xml:space="preserve">
-    <value>Hola {FriendName},
+    <value>Hola &lt;a title="{FriendName}" url="{FriendUrl}"&gt;{FriendName}&lt;/a&gt;,
 &lt;br /&gt;&lt;br /&gt;
-{UserName} le ha agregado como un amigo desde el portal. Necesitamos confirmar que Ud. conoce a {UserName} para que sean amigos en nuestro sitio Web site.&lt;br /&gt;
+&lt;a title="{UserName}" url="{UserUrl}"&gt;{UserName}&lt;/a&gt; le ha agregado como un amigo desde el portal. Necesitamos confirmar que Ud. conoce a {UserName} para que sean amigos en nuestro sitio Web site.&lt;br /&gt;
 {PersonalMessage}
 &lt;br /&gt;&lt;br /&gt;
 Para confirmar este pedido, por favor dar click en el vínculo siguiente:&lt;br /&gt;
-{ConfirmationUrl}
+&lt;a title="Confirm this request" href="{ConfirmationUrl}"&gt;{ConfirmationUrl}&lt;/a&gt;
 &lt;br /&gt;&lt;br /&gt;
 Atentamente,
 &lt;br /&gt;&lt;br /&gt;
-Team Yo Quiero Ser Mejor
+Team {ApplicationName}
 </value>
   </data>
   <data name="PeopleSearch_ConfirmationMailSubject" xml:space="preserve">
@@ -637,16 +637,16 @@ Team Yo Quiero Ser Mejor
     <value>Ver perfil</value>
   </data>
   <data name="Groups_PeopleSearch_ConfirmationMailContent" xml:space="preserve">
-    <value>Hola {FriendName},
+    <value>Hola &lt;a title="{FriendName}" href="{FriendUrl}"&gt;{FriendName}&lt;/a&gt;,
 &lt;br /&gt;&lt;br /&gt;
-{UserName} te ha invitado a incorporarte al grupo {GroupName}. Necesitamos confirmar que Ud. desea incorporarse al grupo, antes de añadirlo a la lista de miembros del grupo.&lt;br /&gt;
+&lt;a title="{UserName}" href="{UserUrl}"&gt;{UserName}&lt;/a&gt; te ha invitado a incorporarte al grupo &lt;a title="{GroupName}" href="{GroupUrl}"&gt;{GroupName}&lt;/a&gt;. Necesitamos confirmar que Ud. desea incorporarse al grupo, antes de añadirlo a la lista de miembros del grupo.&lt;br /&gt;
 {PersonalMessage}
 &lt;br /&gt;&lt;br /&gt;
 Para confirmar este pedido, por favor dar click en el siguiente vínculo:&lt;br /&gt;
-{ConfirmationUrl}
+&lt;a title="Confirm this request" href="{ConfirmationUrl}"&gt;{ConfirmationUrl}&lt;/a&gt;
 &lt;br /&gt;&lt;br /&gt;
 Atentamente,
-&lt;br /&gt;&lt;br /&gt;Team Yo Quiero Ser Mejor
+&lt;br /&gt;&lt;br /&gt;Team {ApplicationName}
 
 </value>
   </data>
@@ -1171,5 +1171,14 @@ Atentamente,
   </data>
   <data name="Groups_DeleteMember" xml:space="preserve">
     <value>Remover {0} del grupo</value>
+  </data>
+  <data name="Discussion_TopicTags" xml:space="preserve">
+    <value>Topic tags</value>
+  </data>
+  <data name="Discussion_Message_Spam" xml:space="preserve">
+    <value>Spam</value>
+  </data>
+  <data name="Discussion_Topic_Spam" xml:space="preserve">
+    <value>Spam</value>
   </data>
 </root>
