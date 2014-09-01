@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: IActivityProperties.cs
-//Version: 20131205
+//Version: 20140901
 
 namespace ClipFlair.Windows.Views
 {
@@ -17,6 +17,7 @@ namespace ClipFlair.Windows.Views
     public const string PropertyContentZoomToFit = "ContentZoomToFit";
     public const string PropertyContentPartsConfigurable = "ContentPartsConfigurable";
     public const string PropertyToolbarVisible = "ToolbarVisible";
+    public const string PropertyToolbarOrientation = "ToolbarOrientation";
 
     //TODO: maybe also add WindowsMoveable/WindowsResizable/WindowZoomable to override child settings
   }

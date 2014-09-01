@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: OptionsLoadSaveControl.xaml.cs
-//Version: 20130315
+//Version: 20140901
 
 using System.Windows;
 using System.Windows.Controls;
@@ -15,6 +15,26 @@ namespace ClipFlair.UI.Widgets
     {
       InitializeComponent();
     }
+
+    #region Orientation
+
+    /// <summary>
+    /// Orientation Attached Dependency Property
+    /// </summary>
+    public static readonly DependencyProperty OrientationProperty =
+      DependencyProperty.RegisterAttached("Orientation", typeof(Orientation), typeof(OptionsLoadSaveControl), new PropertyMetadata(Orientation.Horizontal));
+
+    /// <summary>
+    /// Gets the Orientation property. This dependency property 
+    /// is attached to any dependency object that contains coerced property values.
+    /// </summary>
+    public Orientation Orientation
+    {
+      get { return (Orientation)GetValue(OrientationProperty); }
+      set { SetValue(OrientationProperty, value); }
+    }
+
+    #endregion
 
     #region LoadURLTooltip
 

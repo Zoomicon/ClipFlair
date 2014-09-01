@@ -9,7 +9,8 @@ Version: 20140808
   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
   xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-  mc:Ignorable="d" d:DesignHeight="35" d:DesignWidth="108"
+  xmlns:local="clr-namespace:ClipFlair.UI.Widgets"
+  mc:Ignorable="d" d:DesignHeight="308" d:DesignWidth="108"
   >
 
   <UserControl.Resources>
@@ -29,7 +30,7 @@ Version: 20140808
 
   <StackPanel
     Name="LayoutRoot"
-    Orientation="Horizontal"
+    Orientation="{Binding Path=Orientation, RelativeSource={RelativeSource AncestorType=local:OptionsLoadSaveControl}}"
     Background="{Binding Path=Background, RelativeSource={RelativeSource AncestorType=UserControl}}"
     HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
     >

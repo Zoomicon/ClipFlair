@@ -1,10 +1,10 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: SilverTextEditor.xaml.cs
-//Version: 20140619
+//Version: 20140901
 
 //Originated from Microsoft Silverlight sample (MSPL license)
 
-//Note: localization could use "PublicResxFileCodeGeneratorEx" custom build tool for the "Strings.resx" file
+//Note: localization could use "PublicResxFileCodeGeneratorEx" custom build tool for the "SilverTextEditorStrings.resx" file
 //      from http://resxfilecodegenex.codeplex.com/ if that is fixed to generate public constuctor instead of protected (see issue tracker there)
 //      (Currently one needs to open Resources\Strings.Designer.cs and change internal constructor to public)
 

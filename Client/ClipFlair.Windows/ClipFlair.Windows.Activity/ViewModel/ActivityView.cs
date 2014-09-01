@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: ActivityView.cs
-//Version: 20140705
+//Version: 20140901
 
 //TODO: add "Inertia" property
 
@@ -11,6 +11,7 @@ using System.ComponentModel;
 using System.Runtime.Serialization;
 using System.Windows;
 using System.Windows.Browser;
+using System.Windows.Controls;
 
 namespace ClipFlair.Windows.Views
 {
@@ -36,6 +37,7 @@ namespace ClipFlair.Windows.Views
     private bool contentZoomToFit;
     private bool contentPartsConfigurable;
     private bool toolbarVisible;
+    private Orientation toolbarOrientation;
 
     #endregion
 
@@ -204,6 +206,22 @@ namespace ClipFlair.Windows.Views
       }
     }
 
+    [DataMember]
+    [DefaultValue(ActivityDefaults.DefaultToolbarOrientation)]
+    public Orientation ToolbarOrientation
+    {
+      get { return toolbarOrientation; }
+      set
+      {
+        if (value != toolbarOrientation)
+        {
+          toolbarOrientation = value;
+          RaisePropertyChanged(IActivityProperties.PropertyToolbarOrientation);
+          Dirty = true;
+        }
+      }
+    }
+    
     #endregion
 
     #region Methods

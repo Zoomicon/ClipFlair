@@ -1,10 +1,11 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: ActivityDefaults.cs
-//Version: 20140808
+//Version: 20140901
 
 using Microsoft.SilverlightMediaFramework.Core.Accessibility.Captions;
 using System;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Media;
 
 namespace ClipFlair.Windows.Views
@@ -33,6 +34,7 @@ namespace ClipFlair.Windows.Views
     public const bool DefaultContentZoomToFit = true;
     public const bool DefaultContentPartsConfigurable = true;
     public const bool DefaultToolbarVisible = true;
+    public const Orientation DefaultToolbarOrientation = Orientation.Horizontal;
 
     #region Methods
 
@@ -57,6 +59,7 @@ namespace ClipFlair.Windows.Views
       view.ContentZoomToFit = DefaultContentZoomToFit;
       view.ContentPartsConfigurable = DefaultContentPartsConfigurable;
       view.ToolbarVisible = DefaultToolbarVisible;
+      view.ToolbarOrientation = DefaultToolbarOrientation;
 
       //Dirty flag
       view.Dirty = ViewDefaults.DefaultDirty; //must do last - this should be set again at the end of any SetDefaults method (at descendents)
