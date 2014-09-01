@@ -114,11 +114,8 @@
       <Link>Dialogs\PrintPreview.xaml.cs</Link>
       <DependentUpon>PrintPreview.xaml</DependentUpon>
     </Compile>
-    <Compile Include="..\Source\Resources\Strings.Designer.cs">
-      <Link>Resources\Strings.Designer.cs</Link>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Strings.resx</DependentUpon>
+    <Compile Include="..\Source\Resources\SilverTextEditorStrings.Designer.cs">
+      <Link>Resources\SilverTextEditorStrings.Designer.cs</Link>
     </Compile>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
@@ -307,15 +304,14 @@
       <Link>Images\Underline_hover.png</Link>
     </Resource>
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
-    <EmbeddedResource Include="..\Source\Resources\Strings.el.resx">
-      <Link>Resources\Strings.el.resx</Link>
+    <EmbeddedResource Include="..\Source\Resources\SilverTextEditorStrings.el.resx">
+      <Link>Resources\SilverTextEditorStrings.el.resx</Link>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="..\Source\Resources\Strings.resx">
-      <Link>Resources\Strings.resx</Link>
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>Strings.Designer.cs</LastGenOutput>
+    <EmbeddedResource Include="..\Source\Resources\SilverTextEditorStrings.resx">
+      <Link>Resources\SilverTextEditorStrings.resx</Link>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Silverlight\$(SilverlightVersion)\Microsoft.Silverlight.CSharp.targets" />

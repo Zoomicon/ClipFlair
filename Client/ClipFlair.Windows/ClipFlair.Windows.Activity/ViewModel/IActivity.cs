@@ -1,11 +1,12 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: IActivity.cs
-//Version: 20131205
+//Version: 20140901
 
 using Microsoft.SilverlightMediaFramework.Core.Accessibility.Captions;
 
 using System;
 using System.Windows;
+using System.Windows.Controls;
 
 namespace ClipFlair.Windows.Views
 {
@@ -22,6 +23,7 @@ namespace ClipFlair.Windows.Views
     bool ContentZoomToFit { get; set; }
     bool ContentPartsConfigurable { get; set; }
     bool ToolbarVisible { get; set; }
+    Orientation ToolbarOrientation { get; set; } //20140901
   }
 
 }
