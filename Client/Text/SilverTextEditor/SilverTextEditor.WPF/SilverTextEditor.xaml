@@ -1,6 +1,6 @@
 ﻿<!--
 Filename: SilverTextEditor.xaml
-Version: 20140226
+Version: 20140901
 -->
 
 <UserControl x:Class="SilverTextEditor.SilverTextEditor"
@@ -126,14 +126,6 @@ Version: 20140226
         <StackPanel Orientation="Horizontal">
 
           <btn:ImageButton
-              x:Name="btnPaste" Click="btnPaste_Click" 
-              ToolTipService.ToolTip="{Binding tooltip_Paste, Source={StaticResource localizedStrings}}"
-              Visibility="{Binding Editable, Converter={StaticResource BooleanToVisibilityConverter}}"
-              Image="Images/Paste.png"
-              ImageHover="Images/Paste_hover.png"
-              />
-
-          <btn:ImageButton
               x:Name="btnCut" Click="btnCut_Click"
               ToolTipService.ToolTip="{Binding tooltip_Cut, Source={StaticResource localizedStrings}}"
               Visibility="{Binding Editable, Converter={StaticResource BooleanToVisibilityConverter}}"
@@ -146,6 +138,14 @@ Version: 20140226
               ToolTipService.ToolTip="{Binding tooltip_Copy, Source={StaticResource localizedStrings}}"
               Image="Images/Copy.png"
               ImageHover="Images/Copy_hover.png"
+              />
+
+          <btn:ImageButton
+              x:Name="btnPaste" Click="btnPaste_Click" 
+              ToolTipService.ToolTip="{Binding tooltip_Paste, Source={StaticResource localizedStrings}}"
+              Visibility="{Binding Editable, Converter={StaticResource BooleanToVisibilityConverter}}"
+              Image="Images/Paste.png"
+              ImageHover="Images/Paste_hover.png"
               />
 
         </StackPanel>
