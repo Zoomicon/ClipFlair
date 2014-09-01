@@ -76,6 +76,7 @@
     </Compile>
     <Compile Include="..\Source\Resources\SilverTextEditorStrings.Designer.cs">
       <Link>Resources\SilverTextEditorStrings.Designer.cs</Link>
+      <DependentUpon>SilverTextEditorStrings.resx</DependentUpon>      
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SilverTextEditor.xaml.cs">
