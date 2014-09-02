@@ -1,5 +1,5 @@
 ﻿//Filename: PivotViewerExt.cs
-//Version: 20140228
+//Version: 20140902
 
 //using Microsoft.Internal.Pivot.Views;
 using System;
@@ -7,6 +7,7 @@ using System.Linq;
 using System.Windows;
 //using System.Windows.Controls;
 using System.Windows.Controls.Pivot;
+using WPF_Compatibility;
 
 namespace PivotViewerExt
 {
@@ -23,6 +24,7 @@ namespace PivotViewerExt
         filter = Filter ?? ""; //if Filter is null, keep as "" instead
       };
 
+      //SetValue(Clipper.ClipToBoundsProperty, true); //TODO: DOESN'T SEEM TO WORK, CAN'T CLIP PIVOTVIEWER'S CONTENT WHICH DRAWS ALL OVER THE SCREEN AT CHART MODE OR WHEN USING A SMALL SIZE WITH THE GRID MODE
     }
 
     #region Fields
