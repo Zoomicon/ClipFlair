@@ -1,18 +1,20 @@
 ﻿<!-- 
 Filename: Generic.xaml
-Version: 20140808
+Version: 20140902
 -->
   
 <ResourceDictionary
   xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-  xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk" 
+  xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk"
+  xmlns:toolkit="http://schemas.microsoft.com/winfx/2006/xaml/presentation/toolkit"
   xmlns:controls="clr-namespace:SilverFlow.Controls;assembly=SilverFlow.Controls"
   xmlns:zoom="clr-namespace:ZoomAndPan;assembly=ZoomAndPan"
   xmlns:zui="clr-namespace:FloatingWindowZUI;assembly=FloatingWindowZUI"
   xmlns:utils="clr-namespace:System.Windows.Controls;assembly=WPF_Compatibility"
   >
-  <!-- xmlns:helpers="clr-namespace:SilverFlow.Controls.Helpers;assembly=SilverFlow.Controls" -->
+
+  <!-- <helpers:BitmapHelper x:Key="BitmapHelper" Width="100" Height="100" xmlns:helpers="clr-namespace:SilverFlow.Controls.Helpers;assembly=SilverFlow.Controls" /> -->
 
   <ResourceDictionary.MergedDictionaries>
     <ResourceDictionary Source="/SilverFlow.Controls;component/Themes/generic.xaml"/>
@@ -25,8 +27,7 @@ Version: 20140808
   </Style>
 
   <utils:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
-
-  <!-- <helpers:BitmapHelper x:Key="BitmapHelper" Width="100" Height="100"/> -->
+  
 
   <ControlTemplate x:Key="FloatingWindowHostZUI_DefaultTemplate" TargetType="zui:FloatingWindowHostZUI">
     <Grid x:Name="PART_Root" 
@@ -66,47 +67,17 @@ Version: 20140808
         </VisualStateGroup>
       </VisualStateManager.VisualStateGroups>
 
-      <Grid x:Name="PART_ContentRoot">
-        <Grid.RowDefinitions>
-          <RowDefinition Height="*" />
-          <RowDefinition Height="Auto" />
-        </Grid.RowDefinitions>
-        
-        <!-- Scroll pane with ZoomAndPanControl in it that wraps HostCanvas (where the FloatingWindows are) -->
+      <!-- MAIN CONTENT -->
 
-        <ScrollViewer Grid.Row="0" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" >
-          <zoom:ZoomAndPanControl Name="PART_ZoomHost" 
-            ContentScalable="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=ContentScalable, Mode=TwoWay}" 
-            ContentScale="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=ContentScale, Mode=TwoWay}" 
-            MinContentScale="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=MinContentScale, Mode=TwoWay}" 
-            MaxContentScale="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=MaxContentScale, Mode=TwoWay}"
-            >
-            <Canvas Width="5000" Height="5000" x:Name="PART_HostCanvas" />
-            <!-- TODO: ViewMaxWidth and ViewMaxHeight should be configurable using a TemplateBinding and respective FloatingWindowHostZUI properties -->
-          </zoom:ZoomAndPanControl>
-        </ScrollViewer>
-
-        <!-- Navigation map -->
-        <!--
-        <Image
-          Grid.Row="0" 
-          HorizontalAlignment="Right" 
-          VerticalAlignment="Bottom" 
-          Width="100" 
-          Height="100" 
-          Source="{Binding ElementName=PART_HostCanvas, Converter={StaticResource BitmapHelper}, Mode=OneWay}"
-          />
-        -->
-        
-        <!-- Icon bar -->
-        
-        <Grid x:Name="PART_IconBarContainer" VerticalAlignment="Bottom">
-          <zui:IconBarZUI x:Name="PART_IconBar"/>
-        </Grid>
+      <toolkit:DockPanel x:Name="PART_ContentRoot">
         
         <!-- Bottom bar -->
 
-        <Border x:Name="PART_BottomBar" Grid.Row="1" Style="{StaticResource BottomBarStyle}">
+        <Border
+          x:Name="PART_BottomBar"
+          Style="{StaticResource BottomBarStyle}"
+          toolkit:DockPanel.Dock="Bottom"
+          >
           <Grid>
             <Grid.ColumnDefinitions>
               <ColumnDefinition Width="Auto" />
@@ -115,7 +86,6 @@ Version: 20140808
             </Grid.ColumnDefinitions>
 
             <!-- Bootstrap button (shows/hides iconbar) -->
-            
             <controls:BootstrapButton
               Grid.Column="0"
               x:Name="PART_BootstrapButton"
@@ -125,7 +95,6 @@ Version: 20140808
               />
 
             <!-- Zoom controls -->
-            
             <StackPanel
               Grid.Column="1"
               Orientation="Horizontal"
@@ -148,8 +117,7 @@ Version: 20140808
               
             </StackPanel>
 
-            <!-- Extra content -->
-            
+            <!-- Bottom bar extra content -->
             <Border Grid.Column="2">
               <ContentControl
                 x:Name="PART_BarContent"
@@ -161,9 +129,55 @@ Version: 20140808
             
           </Grid>
         </Border>
-      </Grid>
 
-      <Grid x:Name="PART_Overlay" Background="{TemplateBinding OverlayBrush}" Opacity="0" Visibility="Collapsed" />
+        <!-- Icon bar -->
+
+        <Grid
+          x:Name="PART_IconBarContainer"
+          toolkit:DockPanel.Dock="Bottom"
+          >
+          <zui:IconBarZUI x:Name="PART_IconBar"/>
+        </Grid>
+
+        <!-- Scroll pane with ZoomAndPanControl in it that wraps HostCanvas (where the FloatingWindows are) -->
+
+        <ScrollViewer
+            VerticalScrollBarVisibility="Auto"
+            HorizontalScrollBarVisibility="Auto"
+            >
+          <zoom:ZoomAndPanControl Name="PART_ZoomHost" 
+              ContentScalable="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=ContentScalable, Mode=TwoWay}" 
+              ContentScale="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=ContentScale, Mode=TwoWay}" 
+              MinContentScale="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=MinContentScale, Mode=TwoWay}" 
+              MaxContentScale="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=MaxContentScale, Mode=TwoWay}"
+              >
+            <Canvas Width="5000" Height="5000" x:Name="PART_HostCanvas" />
+            <!-- TODO: ViewMaxWidth and ViewMaxHeight should be configurable using a TemplateBinding and respective FloatingWindowHostZUI properties -->
+          </zoom:ZoomAndPanControl>
+        </ScrollViewer>
+
+      </toolkit:DockPanel>
+
+      <!-- NAVIGATION MAP -->
+
+<!--  
+      <Image
+        HorizontalAlignment="Right" 
+        VerticalAlignment="Bottom" 
+        Width="300" 
+        Height="300" 
+        Source="{Binding ElementName=PART_HostCanvas, Converter={StaticResource BitmapHelper}, Mode=OneWay}"
+        />
+-->
+      
+      <!-- MODAL CONTENT -->
+      
+      <Grid
+        x:Name="PART_Overlay"
+        Background="{TemplateBinding OverlayBrush}"
+        Opacity="0"
+        Visibility="Collapsed"
+        />
       
       <Canvas x:Name="PART_ModalCanvas" />
       
@@ -193,11 +207,6 @@ Version: 20140808
 
           <VisualState x:Name="Open">
             <Storyboard>
-              <DoubleAnimation Duration="0:0:0.2" To="0" Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)" Storyboard.TargetName="PART_FixedBar">
-                <DoubleAnimation.EasingFunction>
-                  <CubicEase EasingMode="EaseOut"/>
-                </DoubleAnimation.EasingFunction>
-              </DoubleAnimation>
               <ObjectAnimationUsingKeyFrames Duration="0" Storyboard.TargetProperty="Visibility" Storyboard.TargetName="PART_FixedBar">
                 <DiscreteObjectKeyFrame KeyTime="0">
                   <DiscreteObjectKeyFrame.Value>
@@ -210,11 +219,6 @@ Version: 20140808
 
           <VisualState x:Name="Closed">
             <Storyboard>
-              <DoubleAnimation Duration="0:0:0.2" To="104" Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)" Storyboard.TargetName="PART_FixedBar">
-                <DoubleAnimation.EasingFunction>
-                  <CubicEase EasingMode="EaseOut"/>
-                </DoubleAnimation.EasingFunction>
-              </DoubleAnimation>
               <ObjectAnimationUsingKeyFrames Duration="0:0:0.2" Storyboard.TargetProperty="Visibility" Storyboard.TargetName="PART_FixedBar">
                 <DiscreteObjectKeyFrame KeyTime="0:0:0.2">
                   <DiscreteObjectKeyFrame.Value>
@@ -228,11 +232,10 @@ Version: 20140808
         </VisualStateGroup>
       </VisualStateManager.VisualStateGroups>
 
-      <Border x:Name="PART_FixedBar" RenderTransformOrigin="0.5,1" Style="{StaticResource IconBarStyle}">
-        <Border.RenderTransform>
-          <!-- Hide the IconBar -->
-          <CompositeTransform TranslateY="104" />
-        </Border.RenderTransform>
+      <Border
+        x:Name="PART_FixedBar"
+        Visibility="Collapsed"
+        Style="{StaticResource IconBarStyle}">
 
         <Canvas>
           <Border 
@@ -242,7 +245,6 @@ Version: 20140808
             >
             <StackPanel
               x:Name="PART_Carousel"
-              RenderTransformOrigin="0.5,1"
               Orientation="Horizontal" 
               HorizontalAlignment="Left" VerticalAlignment="Bottom"
               />

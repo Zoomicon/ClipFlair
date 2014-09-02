@@ -874,7 +874,7 @@ namespace SilverFlow.Controls
     }
 
     /// <summary>
-    /// Shows the IconBar UI.
+    /// Shows the BottomBar UI.
     /// </summary>
     public void ShowBottomBar()
     {
@@ -885,7 +885,7 @@ namespace SilverFlow.Controls
     }
 
     /// <summary>
-    /// Hides the IconBar UI.
+    /// Hides the BottomBar UI.
     /// </summary>
     public void HideBottomBar()
     {
