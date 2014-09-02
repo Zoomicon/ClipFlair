@@ -76,6 +76,9 @@
     <Compile Include="..\Source\ChildWindowExt.cs">
       <Link>ChildWindowExt.cs</Link>
     </Compile>
+    <Compile Include="..\Source\Clipper.cs">
+      <Link>Clipper.cs</Link>
+    </Compile>
     <Compile Include="..\Source\CoerceValueCallback.cs">
       <Link>CoerceValueCallback.cs</Link>
     </Compile>
