@@ -27,6 +27,9 @@ namespace SilverFlow.Controls
   [StyleTypedProperty(Property = PROPERTY_WindowIconStyle, StyleTargetType = typeof(WindowIcon))]
   public class IconBar : ContentControl, INotifyPropertyChanged
   {
+
+    #region Constants
+
     // Template parts
     public const string PART_LayoutRoot = "PART_LayoutRoot";
     public const string PART_FixedBar = "PART_FixedBar";
@@ -47,7 +50,18 @@ namespace SilverFlow.Controls
     // Animation duration in milliseconds
     private const double SlidingDurationInMilliseconds = 200;
 
-    #region public Style IconBarStyle
+    #endregion
+
+    private FrameworkElement layoutRoot;
+    private Border fixedBar;
+    private Border slidingBar;
+    private StackPanel carousel;
+    private Storyboard closingStoryboard;
+    private Storyboard openingStoryboard;
+    private bool isOpen;
+    private double slidingBarPosition;
+
+    #region IconBarStyle
 
     /// <summary>
     /// Gets or sets the style of the IconBar.
@@ -84,7 +98,7 @@ namespace SilverFlow.Controls
 
     #endregion
 
-    #region public Style WindowIconStyle
+    #region WindowIconStyle
 
     /// <summary>
     /// Gets or sets the style of the WindowIcon.
@@ -107,15 +121,7 @@ namespace SilverFlow.Controls
 
     #endregion
 
-    private FrameworkElement layoutRoot;
-    private Border fixedBar;
-    private Border slidingBar;
-    private StackPanel carousel;
-    private Storyboard closingStoryboard;
-    private Storyboard openingStoryboard;
-    private bool isOpen;
-    private double slidingBarPosition;
-
+    #region IsOpen
     /// <summary>
     /// Gets or sets a value indicating whether the IconBar is open.
     /// </summary>
@@ -143,11 +149,17 @@ namespace SilverFlow.Controls
       }
     }
 
+    #endregion
+
+    #region FloatingWindowHost
+
     /// <summary>
     /// Gets or sets the FloatingWindowHost containing the IconBar.
     /// </summary>
     /// <value>FloatingWindowHost containing the IconBar.</value>
     public FloatingWindowHost FloatingWindowHost { get; set; }
+
+    #endregion
 
     /// <summary>
     /// Initializes a new instance of the <see cref="IconBar"/> class.
@@ -155,53 +167,6 @@ namespace SilverFlow.Controls
     public IconBar()
     {
       DefaultStyleKey = typeof(IconBar);
-    }
-
-    /// <summary>
-    /// Occurs when the <see cref="IconBar" /> is opened.
-    /// </summary>
-    public event EventHandler Opened;
-
-    /// <summary>
-    /// Occurs when the <see cref="IconBar" /> is closed.
-    /// </summary>
-    public event EventHandler Closed;
-
-    #region INotifyPropertyChanged implementation
-    /// <summary>
-    /// Occurs when a property changed.
-    /// </summary>
-    public event PropertyChangedEventHandler PropertyChanged;
-
-    /// <summary>
-    /// Raises the <see cref="E:PropertyChanged"/> event.
-    /// </summary>
-    /// <param name="e">The <see cref="System.ComponentModel.PropertyChangedEventArgs"/> instance containing the event data.</param>
-    public void OnPropertyChanged(PropertyChangedEventArgs e)
-    {
-      if (PropertyChanged != null)
-        PropertyChanged(this, e);
-    }
-    #endregion
-
-    /// <summary>
-    /// Builds the visual tree for the <see cref="IconBar" /> control 
-    /// when a new template is applied.
-    /// </summary>
-    public override void OnApplyTemplate()
-    {
-      UnsubscribeFromEvents();
-
-      base.OnApplyTemplate();
-
-      layoutRoot = GetTemplatePart<FrameworkElement>(PART_LayoutRoot);
-      fixedBar = GetTemplatePart<Border>(PART_FixedBar);
-      slidingBar = GetTemplatePart<Border>(PART_SlidingBar);
-      carousel = GetTemplatePart<StackPanel>(PART_Carousel);
-
-      SetStyles();
-      GetStoryboards();
-      SubscribeToEvents();
     }
 
     /// <summary>
@@ -261,6 +226,15 @@ namespace SilverFlow.Controls
     }
 
     /// <summary>
+    /// Sets styles that are applied for different template parts.
+    /// </summary>
+    private void SetStyles()
+    {
+      if (fixedBar != null && this.IconBarStyle != null)
+        fixedBar.Style = this.IconBarStyle;
+    }
+
+    /// <summary>
     /// Subscribes to the events after new template is applied. 
     /// </summary>
     private void SubscribeToEvents()
@@ -297,12 +271,50 @@ namespace SilverFlow.Controls
     }
 
     /// <summary>
-    /// Sets styles that are applied for different template parts.
+    /// Occurs when the <see cref="IconBar" /> is opened.
     /// </summary>
-    private void SetStyles()
+    public event EventHandler Opened;
+
+    /// <summary>
+    /// Occurs when the <see cref="IconBar" /> is closed.
+    /// </summary>
+    public event EventHandler Closed;
+
+    #region INotifyPropertyChanged implementation
+    /// <summary>
+    /// Occurs when a property changed.
+    /// </summary>
+    public event PropertyChangedEventHandler PropertyChanged;
+
+    /// <summary>
+    /// Raises the <see cref="E:PropertyChanged"/> event.
+    /// </summary>
+    /// <param name="e">The <see cref="System.ComponentModel.PropertyChangedEventArgs"/> instance containing the event data.</param>
+    public void OnPropertyChanged(PropertyChangedEventArgs e)
     {
-      if (fixedBar != null && this.IconBarStyle != null)
-        fixedBar.Style = this.IconBarStyle;
+      if (PropertyChanged != null)
+        PropertyChanged(this, e);
+    }
+    #endregion
+
+    /// <summary>
+    /// Builds the visual tree for the <see cref="IconBar" /> control 
+    /// when a new template is applied.
+    /// </summary>
+    public override void OnApplyTemplate()
+    {
+      UnsubscribeFromEvents();
+
+      base.OnApplyTemplate();
+
+      layoutRoot = GetTemplatePart<FrameworkElement>(PART_LayoutRoot);
+      fixedBar = GetTemplatePart<Border>(PART_FixedBar);
+      slidingBar = GetTemplatePart<Border>(PART_SlidingBar);
+      carousel = GetTemplatePart<StackPanel>(PART_Carousel);
+
+      SetStyles();
+      GetStoryboards();
+      SubscribeToEvents();
     }
 
     /// <summary>
@@ -349,54 +361,6 @@ namespace SilverFlow.Controls
 
       if (handler != null)
         handler(this, e);
-    }
-
-    /// <summary>
-    /// Add windows icons to the carousel.
-    /// </summary>
-    private void FillCarousel()
-    {
-      ClearCarousel();
-
-      foreach (var window in this.FloatingWindowHost.WindowsInIconBar)
-      {
-        WindowIcon icon = new WindowIcon()
-        {
-          Title = window.IconText,
-          Thumbnail = window.WindowThumbnail,
-          Icon = window.Icon as FrameworkElement,
-          FlowDirection = window.FlowDirection,
-          Window = window,
-          IconWidth = this.FloatingWindowHost.IconWidth,
-          IconHeight = this.FloatingWindowHost.IconHeight
-        };
-
-        if (WindowIconStyle != null)
-          icon.Style = WindowIconStyle; //removed access to Application.Current.Resources. Assuming the WindowIcon constructor loads default style using DefaultStyleKey, so overriding that only if WindowIconStyle is not null
-
-        icon.Click += new RoutedEventHandler(Icon_Click);
-        carousel.Children.Add(icon);
-      }
-    }
-
-    /// <summary>
-    /// Remove Icon Click event handlers and clear the carousel.
-    /// </summary>
-    private void ClearCarousel()
-    {
-      if (carousel.Children.Count > 0)
-      {
-        foreach (var windowIcon in carousel.Children.OfType<WindowIcon>())
-        {
-          windowIcon.Click -= new RoutedEventHandler(Icon_Click);
-
-          // If the Icon is a FrameworkElement and we placed it into the container, remove it
-          if (windowIcon.Icon != null)
-            windowIcon.Icon.RemoveFromContainer();
-        }
-
-        carousel.Children.Clear();
-      }
     }
 
     /// <summary>
@@ -463,6 +427,54 @@ namespace SilverFlow.Controls
     }
 
     /// <summary>
+    /// Add windows icons to the carousel.
+    /// </summary>
+    private void FillCarousel()
+    {
+      ClearCarousel();
+
+      foreach (var window in this.FloatingWindowHost.WindowsInIconBar)
+      {
+        WindowIcon icon = new WindowIcon()
+        {
+          Title = window.IconText,
+          Thumbnail = window.WindowThumbnail,
+          Icon = window.Icon as FrameworkElement,
+          FlowDirection = window.FlowDirection,
+          Window = window,
+          IconWidth = this.FloatingWindowHost.IconWidth,
+          IconHeight = this.FloatingWindowHost.IconHeight
+        };
+
+        if (WindowIconStyle != null)
+          icon.Style = WindowIconStyle; //removed access to Application.Current.Resources. Assuming the WindowIcon constructor loads default style using DefaultStyleKey, so overriding that only if WindowIconStyle is not null
+
+        icon.Click += new RoutedEventHandler(Icon_Click);
+        carousel.Children.Add(icon);
+      }
+    }
+
+    /// <summary>
+    /// Remove Icon Click event handlers and clear the carousel.
+    /// </summary>
+    private void ClearCarousel()
+    {
+      if (carousel.Children.Count > 0)
+      {
+        foreach (var windowIcon in carousel.Children.OfType<WindowIcon>())
+        {
+          windowIcon.Click -= new RoutedEventHandler(Icon_Click);
+
+          // If the Icon is a FrameworkElement and we placed it into the container, remove it
+          if (windowIcon.Icon != null)
+            windowIcon.Icon.RemoveFromContainer();
+        }
+
+        carousel.Children.Clear();
+      }
+    }
+
+    /// <summary>
     /// Sets the sliding bar position.
     /// </summary>
     /// <param name="position">X-coordinate of the sliding bar.</param>
@@ -489,4 +501,5 @@ namespace SilverFlow.Controls
       return part;
     }
   }
+
 }

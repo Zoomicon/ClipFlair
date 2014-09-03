@@ -956,23 +956,6 @@ namespace SilverFlow.Controls
     }
 
     /// <summary>
-    /// Handles the MouseLeftButtonDown event of the FloatingWindowHost control.
-    /// Closes the IconBar on mouse left click.
-    /// </summary>
-    /// <param name="sender">The source of the event.</param>
-    /// <param name="e">The <see cref="System.Windows.Input.MouseButtonEventArgs"/> instance containing the event data.</param>
-    private void FloatingWindowHost_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-    {
-      if (e.Handled) //did some action on a FloatingWindow child
-        IsIconBarVisible = false;
-      else //clicked in empty area
-      {
-        e.Handled = true;
-        ToggleIconBar(); //TODO: doesn't seem to ever get called (something handles the left click events in the empty area of the activity)
-      }
-    }
-
-    /// <summary>
     /// Handles the MouseLeftButtonDown event of the BottomBar control. 
     /// Toggles the IconBar on mouse left click.
     /// </summary>
@@ -1164,13 +1147,13 @@ namespace SilverFlow.Controls
     /// </summary>
     private void SubscribeToTemplatePartEvents()
     {
-      bootstrapButton.Click += new RoutedEventHandler(BootstrapButton_Click);
-      iconBar.Opened += new EventHandler(IconBar_VisibilityChanged);
-      iconBar.Closed += new EventHandler(IconBar_VisibilityChanged);
-      bottomBar.MouseLeftButtonDown += new MouseButtonEventHandler(BottomBar_MouseLeftButtonDown);
-      hostCanvas.SizeChanged += new SizeChangedEventHandler(HostCanvas_SizeChanged);
-      modalCanvas.SizeChanged += new SizeChangedEventHandler(ModalCanvas_SizeChanged);
-      iconBarContainer.SizeChanged += new SizeChangedEventHandler(IconBarContainer_SizeChanged);
+      bootstrapButton.Click += BootstrapButton_Click;
+      iconBar.Opened += IconBar_VisibilityChanged;
+      iconBar.Closed += IconBar_VisibilityChanged;
+      bottomBar.MouseLeftButtonDown += BottomBar_MouseLeftButtonDown;
+      hostCanvas.SizeChanged += HostCanvas_SizeChanged;
+      modalCanvas.SizeChanged += ModalCanvas_SizeChanged;
+      iconBarContainer.SizeChanged += IconBarContainer_SizeChanged;
     }
 
     /// <summary>
@@ -1183,21 +1166,21 @@ namespace SilverFlow.Controls
 
       if (iconBar != null)
       {
-        iconBar.Opened -= new EventHandler(IconBar_VisibilityChanged);
-        iconBar.Closed -= new EventHandler(IconBar_VisibilityChanged);
+        iconBar.Opened -= IconBar_VisibilityChanged;
+        iconBar.Closed -= IconBar_VisibilityChanged;
       }
 
       if (bottomBar != null)
-        bottomBar.MouseLeftButtonDown -= new MouseButtonEventHandler(BottomBar_MouseLeftButtonDown);
+        bottomBar.MouseLeftButtonDown -= BottomBar_MouseLeftButtonDown;
 
       if (hostCanvas != null)
-        hostCanvas.SizeChanged -= new SizeChangedEventHandler(HostCanvas_SizeChanged);
+        hostCanvas.SizeChanged -= HostCanvas_SizeChanged;
 
       if (modalCanvas != null)
-        modalCanvas.SizeChanged -= new SizeChangedEventHandler(ModalCanvas_SizeChanged);
+        modalCanvas.SizeChanged -= ModalCanvas_SizeChanged;
 
       if (iconBarContainer != null)
-        iconBarContainer.SizeChanged -= new SizeChangedEventHandler(IconBarContainer_SizeChanged);
+        iconBarContainer.SizeChanged -= IconBarContainer_SizeChanged;
     }
 
     /// <summary>
@@ -1208,8 +1191,7 @@ namespace SilverFlow.Controls
       if (Application.Current != null)
         Application.Current.Exit += Application_Exit;
 
-      this.AddHandler(MouseLeftButtonDownEvent, new MouseButtonEventHandler(FloatingWindowHost_MouseLeftButtonDown), true); //also grab handled events (to hide the window bar)
-      this.LayoutUpdated += new EventHandler(FloatingWindowHost_LayoutUpdated);
+      this.LayoutUpdated += FloatingWindowHost_LayoutUpdated;
     }
 
     /// <summary>
@@ -1217,8 +1199,10 @@ namespace SilverFlow.Controls
     /// </summary>
     private void UnsubscribeFromEvents()
     {
-      this.RemoveHandler(MouseLeftButtonDownEvent, new MouseButtonEventHandler(FloatingWindowHost_MouseLeftButtonDown));
-      this.LayoutUpdated -= new EventHandler(FloatingWindowHost_LayoutUpdated);
+      if (Application.Current != null)
+        Application.Current.Exit -= Application_Exit; 
+      
+      this.LayoutUpdated -= FloatingWindowHost_LayoutUpdated;
     }
 
     /// <summary>
@@ -1230,7 +1214,7 @@ namespace SilverFlow.Controls
     {
       if (!IsLayoutUpdated)
       {
-        this.LayoutUpdated -= new EventHandler(FloatingWindowHost_LayoutUpdated);
+        this.LayoutUpdated -= FloatingWindowHost_LayoutUpdated; //TODO: should this be removed here? now OnRendered will only fire once (is it correct?)
         IsLayoutUpdated = true;
         OnRendered(EventArgs.Empty);
       }
