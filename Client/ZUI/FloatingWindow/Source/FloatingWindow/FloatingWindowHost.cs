@@ -1,5 +1,5 @@
 ﻿//Filename: FloatingWindowHost.cs
-//Version: 20140615
+//Version: 20140903
 
 using System;
 using System.Collections.Generic;
@@ -87,8 +87,8 @@ namespace SilverFlow.Controls
     private Canvas modalCanvas;
     private FrameworkElement iconBarContainer;
     private Grid overlay;
-    private IconBar iconBar;
-    private FrameworkElement bottomBar;
+    internal IconBar iconBar;
+    internal FrameworkElement bottomBar;
     private BootstrapButton bootstrapButton;
     private ContentControl barContent;
 
@@ -123,7 +123,7 @@ namespace SilverFlow.Controls
       set { closeWindowsOnApplicationExit = value; }
     }
 
-    #region public Style BottomBarStyle
+    #region BottomBarStyle
 
     /// <summary>
     /// Gets or sets the style of the BottomBar.
@@ -160,7 +160,7 @@ namespace SilverFlow.Controls
 
     #endregion
 
-    #region public Style BootstrapButtonStyle
+    #region BootstrapButtonStyle
 
     /// <summary>
     /// Gets or sets the style of the BootstrapButton.
@@ -197,7 +197,50 @@ namespace SilverFlow.Controls
 
     #endregion
 
-    #region public bool IsBottomBarVisible
+    #region IsIconBarVisible
+
+    /// <summary>
+    /// Gets or sets a value indicating whether icon bar UI is available.
+    /// </summary>
+    /// <value><c>true</c> if snap in is enabled; otherwise, <c>false</c>.</value>
+    public bool IsIconBarVisible
+    {
+      get { return (bool)GetValue(IsIconBarVisibleProperty); }
+      set { SetValue(IsIconBarVisibleProperty, value); }
+    }
+
+    /// <summary>
+    /// Identifies the <see cref="FloatingWindowHost.IsIconBarVisible" /> dependency property.
+    /// </summary>
+    /// <value>
+    /// The identifier for the <see cref="FloatingWindowHost.IsIconBarVisible" /> dependency property.
+    /// </value>
+    public static readonly DependencyProperty IsIconBarVisibleProperty =
+        DependencyProperty.Register(
+        "IsIconBarVisible",
+        typeof(bool),
+        typeof(FloatingWindowHost),
+        new PropertyMetadata(false, IsIconBarVisiblePropertyChanged));
+
+    /// <summary>
+    /// IsIconBarVisible PropertyChangedCallback call back static function.
+    /// </summary>
+    /// <param name="d">FloatingWindowHost object whose IsIconBarVisible property is changed.</param>
+    /// <param name="e">The <see cref="System.Windows.DependencyPropertyChangedEventArgs"/> instance containing the event data.</param>
+    private static void IsIconBarVisiblePropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    {
+      FloatingWindowHost host = (FloatingWindowHost)d;
+      if (host != null && e.NewValue != null)
+      {
+        if (!host.templateIsApplied)
+          host.ApplyTemplate();
+        host.iconBar.IsOpen = (bool)e.NewValue;
+      }
+    }
+
+    #endregion
+
+    #region IsBottomBarVisible
 
     /// <summary>
     /// Gets or sets a value indicating whether icon bar UI is available.
@@ -231,15 +274,16 @@ namespace SilverFlow.Controls
     {
       FloatingWindowHost host = (FloatingWindowHost)d;
       if (host != null && e.NewValue != null)
-        if ((bool)e.NewValue)
-          host.ShowBottomBar();
-        else
-          host.HideBottomBar();
+      {
+        if (!host.templateIsApplied)
+          host.ApplyTemplate();
+        host.bottomBar.Visibility = ((bool)e.NewValue) ? Visibility.Visible : Visibility.Collapsed;
+      }
     }
 
     #endregion
 
-    #region public bool ShowScreenshotButton
+    #region ShowScreenshotButton
 
     /// <summary>
     /// Gets or sets a value indicating whether window bars show configuration button.
@@ -278,7 +322,7 @@ namespace SilverFlow.Controls
 
     #endregion
 
-    #region public bool ShowHelpButton
+    #region ShowHelpButton
 
     /// <summary>
     /// Gets or sets a value indicating whether window bars show configuration button.
@@ -317,7 +361,7 @@ namespace SilverFlow.Controls
 
     #endregion
 
-    #region public bool ShowOptionsButton
+    #region ShowOptionsButton
 
     /// <summary>
     /// Gets or sets a value indicating whether window bars show configuration button.
@@ -356,7 +400,7 @@ namespace SilverFlow.Controls
 
     #endregion
 
-    #region public Style WindowIconStyle
+    #region WindowIconStyle
 
     /// <summary>
     /// Gets or sets the style of the WindowIcon.
@@ -393,7 +437,7 @@ namespace SilverFlow.Controls
 
     #endregion
 
-    #region public bool SnapinEnabled
+    #region SnapinEnabled
 
     /// <summary>
     /// Gets or sets a value indicating whether snap in is enabled.
@@ -420,7 +464,7 @@ namespace SilverFlow.Controls
 
     #endregion
 
-    #region public double SnapinDistance
+    #region SnapinDistance
 
     /// <summary>
     /// Gets or sets a value of the snap in distance.
@@ -447,7 +491,7 @@ namespace SilverFlow.Controls
 
     #endregion
 
-    #region public double SnapinMargin
+    #region SnapinMargin
 
     /// <summary>
     /// Gets or sets a value of the snap in margin - distance between adjacent edges.
@@ -474,7 +518,7 @@ namespace SilverFlow.Controls
 
     #endregion
 
-    #region public bool ShowMinimizedOnlyInIconbar
+    #region ShowMinimizedOnlyInIconbar
 
     /// <summary>
     /// Gets or sets a value indicating whether to show only minimized windows in the iconbar.
@@ -501,7 +545,7 @@ namespace SilverFlow.Controls
 
     #endregion
 
-    #region public Brush OverlayBrush
+    #region OverlayBrush
 
     /// <summary>
     /// Gets or sets the overlay color.
@@ -541,7 +585,7 @@ namespace SilverFlow.Controls
 
     #endregion
 
-    #region public double IconWidth
+    #region IconWidth
 
     /// <summary>
     /// Gets or sets the width of the window's icon.
@@ -568,7 +612,7 @@ namespace SilverFlow.Controls
 
     #endregion
 
-    #region public double IconHeight
+    #region IconHeight
 
     /// <summary>
     /// Gets or sets the height of the window's icon.
@@ -595,7 +639,7 @@ namespace SilverFlow.Controls
 
     #endregion
 
-    #region public object Bar
+    #region Bar
 
     /// <summary>
     /// Gets or sets a control displayed in the BottomBar.
@@ -623,24 +667,6 @@ namespace SilverFlow.Controls
     #endregion
 
     /// <summary>
-    /// Gets a collection of windows shown in the IconBar.
-    /// </summary>
-    /// <value>Collection of windows shown in the IconBar.</value>
-    public IOrderedEnumerable<FloatingWindow> WindowsInIconBar
-    {
-      get
-      {
-        var windows = from window in this.FloatingWindows
-                      where window.IsOpen && window.ShowInIconbar &&
-                      !(ShowMinimizedOnlyInIconbar && window.WindowState != WindowState.Minimized)
-                      orderby window.IconText
-                      select window;
-
-        return windows;
-      }
-    }
-
-    /// <summary>
     /// Gets the host panel, containing the floating windows.
     /// </summary>
     /// <value>The host panel.</value>
@@ -658,7 +684,7 @@ namespace SilverFlow.Controls
       get { return /* Windows.AsEnumerable(); */ hostCanvas.Children.OfType<FloatingWindow>(); }
     }
 
-    #region Windows Property
+    #region Windows
 
     /// <summary>
     /// Gets or Sets the floating windows collection.
@@ -869,57 +895,38 @@ namespace SilverFlow.Controls
     /// </summary>
     public void CloseAllWindows()
     {
-      HideIconBar();
+      //IsIconBarVisible = false;
       FloatingWindows.ToList().ForEach(x => x.Close());
     }
 
-    /// <summary>
-    /// Shows the BottomBar UI.
-    /// </summary>
-    public void ShowBottomBar()
-    {
-      if (!templateIsApplied)
-        ApplyTemplate();
-      iconBarContainer.Visibility = Visibility.Visible;
-      bottomBar.Visibility = Visibility.Visible;
-    }
+    #region IconBar
 
     /// <summary>
-    /// Hides the BottomBar UI.
+    /// Gets a collection of windows shown in the IconBar.
     /// </summary>
-    public void HideBottomBar()
+    /// <value>Collection of windows shown in the IconBar.</value>
+    public IOrderedEnumerable<FloatingWindow> WindowsInIconBar
     {
-      if (!templateIsApplied)
-        ApplyTemplate();
-      iconBarContainer.Visibility = Visibility.Collapsed;
-      bottomBar.Visibility = Visibility.Collapsed;
-    }
+      get
+      {
+        var windows = from window in this.FloatingWindows
+                      where window.IsOpen && window.ShowInIconbar &&
+                      !(ShowMinimizedOnlyInIconbar && window.WindowState != WindowState.Minimized)
+                      orderby window.IconText
+                      select window;
 
+        return windows;
+      }
+    }
+    
     /// <summary>
     /// Toggles the IconBar.
     /// </summary>
     public void ToggleIconBar()
     {
-      bootstrapButton.IsOpen = !bootstrapButton.IsOpen;
-      SyncIconBarWithBootstrapButton();
+      IsIconBarVisible = !IsIconBarVisible;
     }
     
-    /// <summary>
-    /// Shows the IconBar.
-    /// </summary>
-    public void ShowIconBar()
-    {
-      iconBar.Show();
-    }
-
-    /// <summary>
-    /// Hides the IconBar.
-    /// </summary>
-    public void HideIconBar()
-    {
-      iconBar.Hide();
-    }
-
     /// <summary>
     /// Updates the IconBar if it is open.
     /// </summary>
@@ -927,6 +934,59 @@ namespace SilverFlow.Controls
     {
       iconBar.Update();
     }
+
+    /// <summary>
+    /// Handles the Click event of the BootstrapButton.
+    /// </summary>
+    /// <param name="sender">The source of the event.</param>
+    /// <param name="e">The <see cref="System.Windows.RoutedEventArgs"/> instance containing the event data.</param>
+    private void BootstrapButton_Click(object sender, RoutedEventArgs e)
+    {
+      IsIconBarVisible = bootstrapButton.IsOpen;
+    }
+
+    /// <summary>
+    /// Handles the IconBar Visibility Changed event.
+    /// </summary>
+    /// <param name="sender">The sender.</param>
+    /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
+    private void IconBar_VisibilityChanged(object sender, EventArgs e)
+    {
+      bootstrapButton.IsOpen = iconBar.IsOpen;
+    }
+
+    /// <summary>
+    /// Handles the MouseLeftButtonDown event of the FloatingWindowHost control.
+    /// Closes the IconBar on mouse left click.
+    /// </summary>
+    /// <param name="sender">The source of the event.</param>
+    /// <param name="e">The <see cref="System.Windows.Input.MouseButtonEventArgs"/> instance containing the event data.</param>
+    private void FloatingWindowHost_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+    {
+      if (e.Handled) //did some action on a FloatingWindow child
+        IsIconBarVisible = false;
+      else //clicked in empty area
+      {
+        e.Handled = true;
+        ToggleIconBar(); //TODO: doesn't seem to ever get called (something handles the left click events in the empty area of the activity)
+      }
+    }
+
+    /// <summary>
+    /// Handles the MouseLeftButtonDown event of the BottomBar control. 
+    /// Toggles the IconBar on mouse left click.
+    /// </summary>
+    /// <param name="sender">The source of the event.</param>
+    /// <param name="e">The <see cref="System.Windows.Input.MouseButtonEventArgs"/> instance containing the event data.</param>
+    private void BottomBar_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+    {
+      e.Handled = true;
+      ToggleIconBar();
+    }
+
+    #endregion
+
+    #region Topmost window
 
     /// <summary>
     /// Sets the specified floating window topmost, and set Focus on it.
@@ -969,6 +1029,8 @@ namespace SilverFlow.Controls
       OnActiveWindowChanged(e);
     }
 
+    #endregion
+
     /// <summary>
     /// Gets Snap In bounds as bounds of the host and all open windows except the specified one.
     /// </summary>
@@ -994,12 +1056,12 @@ namespace SilverFlow.Controls
     }
 
     /// <summary>
-    /// Shows the overlay, moves the window to the "modal" layer and hides the IconBar.
+    /// Shows the overlay, moves the window to the "modal" layer.
     /// </summary>
     /// <param name="modalWindow">The modal window.</param>
     internal void ShowWindowAsModal(FloatingWindow modalWindow)
     {
-      HideIconBar();
+      //IsIconBarVisible = false;
       VisualStateManager.GoToState(this, VSMSTATE_VisibleOverlay, true);
 
       MoveWindowToModalLayer(modalWindow);
@@ -1268,66 +1330,6 @@ namespace SilverFlow.Controls
       {
         //NOP ("IsVisualAncestorOf" can throw exception "Reference is not a valid visual Dependency Object" (e.g. if a link in a RichText control hosted at a non-focused FloatingWindow is clicked), it is safe to ignore it here
       }
-    }
-
-    /// <summary>
-    /// Handles the MouseLeftButtonDown event of the FloatingWindowHost control.
-    /// Closes the IconBar on mouse left click.
-    /// </summary>
-    /// <param name="sender">The source of the event.</param>
-    /// <param name="e">The <see cref="System.Windows.Input.MouseButtonEventArgs"/> instance containing the event data.</param>
-    private void FloatingWindowHost_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-    {
-      if (e.Handled) //did some action on a FloatingWindow child
-        HideIconBar();
-      else //clicked in empty area //TODO: doesn't seem to ever get called (something handles the left click events in the empty area of the activity)
-      {
-        e.Handled = true;
-        ToggleIconBar();
-      }
-    }
-
-    /// <summary>
-    /// Handles the MouseLeftButtonDown event of the BottomBar control. 
-    /// Toggles the IconBar on mouse left click.
-    /// </summary>
-    /// <param name="sender">The source of the event.</param>
-    /// <param name="e">The <see cref="System.Windows.Input.MouseButtonEventArgs"/> instance containing the event data.</param>
-    private void BottomBar_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-    {
-      e.Handled = true;
-      ToggleIconBar();
-    }
-
-    /// <summary>
-    /// Handles the Click event of the BootstrapButton.
-    /// </summary>
-    /// <param name="sender">The source of the event.</param>
-    /// <param name="e">The <see cref="System.Windows.RoutedEventArgs"/> instance containing the event data.</param>
-    private void BootstrapButton_Click(object sender, RoutedEventArgs e)
-    {
-      SyncIconBarWithBootstrapButton();
-    }
-
-    /// <summary>
-    /// Handles the Click event of the BootstrapButton.
-    /// </summary>
-    private void SyncIconBarWithBootstrapButton()
-    {
-      if (bootstrapButton.IsOpen)
-        ShowIconBar();
-      else
-        HideIconBar();
-    }
-
-    /// <summary>
-    /// Handles the IconBar Visibility Changed event.
-    /// </summary>
-    /// <param name="sender">The sender.</param>
-    /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
-    private void IconBar_VisibilityChanged(object sender, EventArgs e)
-    {
-      bootstrapButton.IsOpen = iconBar.IsOpen;
     }
 
     /// <summary>
