@@ -1,5 +1,5 @@
 //Filename: FloatingWindow.cs
-//Version: 20140616
+//Version: 20140903
 
 //#define BORDER_ONLY_AT_RESIZABLE //using BorderThickness instead to allow user to define when they want the border to be visible themselves
 
@@ -203,7 +203,7 @@ namespace SilverFlow.Controls
 
     #region Properties
 
-    #region public bool? DialogResult
+    #region DialogResult
 
     /// <summary>
     /// Gets or sets a value that indicates whether the FloatingWindow was accepted or canceled.
@@ -377,7 +377,7 @@ namespace SilverFlow.Controls
 
     #region DependencyProperties
 
-    #region public bool ShowScreenshotButton
+    #region ShowScreenshotButton
 
     /// <summary>
     /// Gets or sets a value indicating whether to show Screenshot button.
@@ -417,7 +417,7 @@ namespace SilverFlow.Controls
 
     #endregion
 
-    #region public bool ShowHelpButton
+    #region ShowHelpButton
 
     /// <summary>
     /// Gets or sets a value indicating whether to show Help button.
@@ -457,7 +457,7 @@ namespace SilverFlow.Controls
 
     #endregion
 
-    #region public bool ShowOptionsButton
+    #region ShowOptionsButton
 
     /// <summary>
     /// Gets or sets a value indicating whether to show Options button.
@@ -497,7 +497,7 @@ namespace SilverFlow.Controls
 
     #endregion
 
-    #region public bool ShowCloseButton
+    #region ShowCloseButton
 
     /// <summary>
     /// Gets or sets a value indicating whether to show Close button.
@@ -537,7 +537,7 @@ namespace SilverFlow.Controls
 
     #endregion
 
-    #region public bool ShowMaximizeRestoreButton
+    #region ShowMaximizeRestoreButton
 
     /// <summary>
     /// Gets or sets a value indicating whether to show Maximize (and respective Restore) button.
@@ -581,7 +581,7 @@ namespace SilverFlow.Controls
 
     #endregion
 
-    #region public bool ShowMinimizeButton
+    #region ShowMinimizeButton
 
     /// <summary>
     /// Gets or sets a value indicating whether to show Minimize button.
@@ -622,7 +622,7 @@ namespace SilverFlow.Controls
 
     #endregion
 
-    #region public object Title
+    #region Title
 
     /// <summary>
     /// Gets or sets title content that is displayed on the top of the window. 
@@ -652,7 +652,7 @@ namespace SilverFlow.Controls
 
     #endregion
 
-    #region public object Icon
+    #region Icon
 
     /// <summary>
     /// Gets or sets content that is displayed as an icon of the window on the iconbar. 
@@ -681,7 +681,7 @@ namespace SilverFlow.Controls
 
     #endregion
 
-    #region public string IconText
+    #region IconText
 
     /// <summary>
     /// Gets or sets a text displayed on the icon of the minimized window.
@@ -710,7 +710,7 @@ namespace SilverFlow.Controls
 
     #endregion
 
-    #region public Brush TitleForeground
+    #region TitleForeground
 
     /// <summary>
     /// Gets or sets the title Foreground.
@@ -737,7 +737,7 @@ namespace SilverFlow.Controls
 
     #endregion
 
-    #region public Brush TitleBackground
+    #region TitleBackground
 
     /// <summary>
     /// Gets or sets the title background.
@@ -764,7 +764,7 @@ namespace SilverFlow.Controls
 
     #endregion
 
-    #region public CornerRadius CornerRadius
+    #region CornerRadius
 
     /// <summary>
     /// Gets or sets the corner radius.
@@ -791,7 +791,7 @@ namespace SilverFlow.Controls
 
     #endregion
 
-    #region public bool MoveEnabled
+    #region MoveEnabled
 
     /// <summary>
     /// Gets or sets a value indicating whether moving is enabled.
@@ -818,7 +818,7 @@ namespace SilverFlow.Controls
 
     #endregion
 
-    #region public bool MoveMaximizedEnabled
+    #region MoveMaximizedEnabled
 
     /// <summary>
     /// Gets or sets a value indicating whether moving is enabled when window is maximized.
@@ -845,7 +845,7 @@ namespace SilverFlow.Controls
 
     #endregion
 
-    #region public bool ResizeEnabled
+    #region ResizeEnabled
 
     /// <summary>
     /// Gets or sets a value indicating whether resizing is enabled.
@@ -888,7 +888,7 @@ namespace SilverFlow.Controls
 
     #endregion
 
-    #region public bool ResizeMaximizedEnabled
+    #region ResizeMaximizedEnabled
 
     /// <summary>
     /// Gets or sets a value indicating whether resizing is enabled when window is maximized.
@@ -915,7 +915,7 @@ namespace SilverFlow.Controls
 
     #endregion
 
-    #region public double ResizingAreaThickness
+    #region ResizingAreaThickness
 
     /// <summary>
     /// Gets or sets the width of the resizing area.
@@ -953,7 +953,7 @@ namespace SilverFlow.Controls
 
     #endregion
 
-    #region public Point Position
+    #region Position
 
     /// <summary>
     /// Gets or sets current window position.
@@ -996,7 +996,7 @@ namespace SilverFlow.Controls
 
     #endregion
 
-    #region public double Scale
+    #region Scale
 
     /// <summary>
     /// Gets or sets current window scale.
@@ -1051,7 +1051,7 @@ namespace SilverFlow.Controls
 
     #endregion
 
-    #region public bool ScaleEnabled
+    #region ScaleEnabled
 
     /// <summary>
     /// Gets or sets a value indicating whether to allow the user to scale the window.
@@ -1078,7 +1078,7 @@ namespace SilverFlow.Controls
 
     #endregion
 
-    #region public bool ShowInIconbar
+    #region ShowInIconbar
 
     /// <summary>
     /// Gets or sets a value indicating whether to show minimized window in the iconbar.
@@ -1142,7 +1142,7 @@ namespace SilverFlow.Controls
 
     #endregion
 
-    #region public Style TitleStyle
+    #region TitleStyle
 
     /// <summary>
     /// Gets or sets the style that is used when rendering the Title of the window.
@@ -1180,7 +1180,7 @@ namespace SilverFlow.Controls
 
     #endregion
 
-    #region public Style ScreenshotButtonStyle
+    #region ScreenshotButtonStyle
 
     /// <summary>
     /// Gets or sets the style of the Screenshot button.
@@ -1221,7 +1221,7 @@ namespace SilverFlow.Controls
 
     #endregion
 
-    #region public Style HelpButtonStyle
+    #region HelpButtonStyle
 
     /// <summary>
     /// Gets or sets the style of the Help button.
@@ -1262,7 +1262,7 @@ namespace SilverFlow.Controls
 
     #endregion
 
-    #region public Style OptionsButtonStyle
+    #region OptionsButtonStyle
 
     /// <summary>
     /// Gets or sets the style of the Options button.
@@ -1303,7 +1303,7 @@ namespace SilverFlow.Controls
 
     #endregion
 
-    #region public Style CloseButtonStyle
+    #region CloseButtonStyle
 
     /// <summary>
     /// Gets or sets the style of the Close button.
@@ -1344,7 +1344,7 @@ namespace SilverFlow.Controls
 
     #endregion
 
-    #region public Style MinimizeButtonStyle
+    #region MinimizeButtonStyle
 
     /// <summary>
     /// Gets or sets the style of the Minimize button.
@@ -1385,7 +1385,7 @@ namespace SilverFlow.Controls
 
     #endregion
 
-    #region public Style MaximizeButtonStyle
+    #region MaximizeButtonStyle
 
     /// <summary>
     /// Gets or sets the style of the Maximize button.
@@ -1426,7 +1426,7 @@ namespace SilverFlow.Controls
 
     #endregion
 
-    #region public Style RestoreButtonStyle
+    #region RestoreButtonStyle
 
     /// <summary>
     /// Gets or sets the style of the Restore button.
@@ -2354,21 +2354,19 @@ namespace SilverFlow.Controls
       // Brings current window to the front
       SetTopmost(); //TODO: add property AutoBringToFront (default true) to select whether we want it to be brought to front automatically
 
-      if (elementWithFocus != null)
+      if (elementWithFocus != null /*&& elementWithFocus.GetType() != Hyperlink*/) //TODO: filter hyperlinkbutton and hyperlink here (remove some other related patch we had)
       {
-        if (IsControlInVisualTree(elementWithFocus))
-        {
+        //if ((this as DependencyObject).IsVisualAncestorOf(elementWithFocus))
+        if (IsControlInVisualTree(elementWithFocus)) //TODO: maybe use the code above instead as in WPF version?
           elementWithFocus.Focus();
-        }
-        else
-        {
-          // Try to set focus on the window
+        else // Try to set focus on the window
           Focus();
-        }
       }
 
       // Stop any inertial motion
       StopInertialMotion();
+
+      //FloatingWindowHost.IsIconBarVisible = false;
     }
 
     #endregion

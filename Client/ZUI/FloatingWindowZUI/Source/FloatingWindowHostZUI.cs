@@ -1,5 +1,5 @@
 ﻿//Filename: FloatingWindowHostZUI.cs
-//Version: 20140615
+//Version: 20140903
 
 using SilverFlow.Controls;
 using System.Collections.Specialized;
@@ -122,7 +122,7 @@ namespace FloatingWindowZUI
       ZoomHost.IsDefaultMouseHandling = true; //use default mouse handling
 
       ZoomToFitButton = base.GetTemplateChild(PART_ZoomToFitButton) as Button;
-      ZoomToFitButton.Click += new RoutedEventHandler(ZoomToFitButton_Click);
+      ZoomToFitButton.Click += ZoomToFitButton_Click;
 
       ZoomSlider = base.GetTemplateChild(PART_ZoomSlider) as Slider;
 
@@ -246,8 +246,8 @@ namespace FloatingWindowZUI
       //w.AddHandler(MouseRightButtonDownEvent, new MouseButtonEventHandler(FloatingWindow_MouseRightButtonDown), true);
       w.AddHandler(MouseLeftButtonUpEvent, new MouseButtonEventHandler(FloatingWindow_MouseLeftButtonUp), true);
       w.AddHandler(MouseRightButtonUpEvent, new MouseButtonEventHandler(FloatingWindow_MouseRightButtonUp), true);
-      //w.MouseMove += new MouseEventHandler(FloatingWindow_MouseMove);
-      w.MouseWheel += new MouseWheelEventHandler(FloatingWindow_MouseWheel);
+      //w.MouseMove += FloatingWindow_MouseMove;
+      w.MouseWheel += FloatingWindow_MouseWheel;
     }
 
     private void UnsubscribeFromFloatingWindowEvents(FloatingWindow w)
@@ -256,8 +256,8 @@ namespace FloatingWindowZUI
       //w.RemoveHandler(MouseRightButtonDownEvent, new MouseButtonEventHandler(FloatingWindow_MouseRightButtonDown));
       w.RemoveHandler(MouseLeftButtonUpEvent, new MouseButtonEventHandler(FloatingWindow_MouseLeftButtonUp));
       w.RemoveHandler(MouseRightButtonUpEvent, new MouseButtonEventHandler(FloatingWindow_MouseRightButtonUp));
-      //w.MouseMove -= new MouseEventHandler(FloatingWindow_MouseMove);
-      w.MouseWheel -= new MouseWheelEventHandler(FloatingWindow_MouseWheel);
+      //w.MouseMove -= FloatingWindow_MouseMove;
+      w.MouseWheel -= FloatingWindow_MouseWheel;
     }
 
     private void FloatingWindow_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)

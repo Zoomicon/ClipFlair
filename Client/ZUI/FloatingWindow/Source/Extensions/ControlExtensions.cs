@@ -1,5 +1,5 @@
 ﻿//Filename: ControlExtensions.cs
-//Version: 20131224
+//Version: 20140903
 
 using System;
 using System.Linq;
@@ -13,6 +13,7 @@ using System.Collections.Generic;
 
 #if SILVERLIGHT
 using Decorator = System.Windows.Controls.Border;
+using System.Globalization;
 #endif
 
 namespace SilverFlow.Controls.Extensions
@@ -282,6 +283,25 @@ namespace SilverFlow.Controls.Extensions
       return Keyboard.FocusedElement == control;
 #endif
     }
+
+ /*
+    /// <summary>
+    /// Gets the FrameworkElement template part with the specified name.
+    /// </summary>
+    /// <typeparam name="T">The template part type.</typeparam>
+    /// <param name="partName">The template part name.</param>
+    /// <returns>The requested element.</returns>
+    /// <exception cref="NotImplementedException">The template part not found.</exception>
+    public static T GetTemplatePart<T>(this FrameworkElement element, string partName) where T : class
+    {
+      T part = element.GetTemplateChild(partName) as T; //cannot call this without using Reflection since this is a protected method
+
+      if (part == null)
+        throw new NotImplementedException(string.Format(CultureInfo.InvariantCulture, "Template Part {0} is required.", partName));
+
+      return part;
+    }
+*/
 
   }
 }

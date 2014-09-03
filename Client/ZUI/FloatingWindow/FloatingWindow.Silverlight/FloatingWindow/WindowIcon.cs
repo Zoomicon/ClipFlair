@@ -34,7 +34,7 @@ namespace SilverFlow.Controls
           DefaultStyleKey = typeof(WindowIcon); //This is required, else GetTemplatePart will fail to get PART_Border etc. for the WindowIcon //Make sure the respective XAML style doesn't have an x:Key attribute, but only a TargetType="controls:WindowIcon" 
         }
         
-        #region public Style IconBorderStyle
+        #region IconBorderStyle
 
         /// <summary>
         /// Gets or sets the style of the WindowIcon.
@@ -71,7 +71,7 @@ namespace SilverFlow.Controls
 
         #endregion
 
-        #region public double IconWidth
+        #region IconWidth
 
         /// <summary>
         /// Gets or sets the width of the window's icon.
@@ -98,7 +98,7 @@ namespace SilverFlow.Controls
 
         #endregion
 
-        #region public double IconHeight
+        #region IconHeight
 
         /// <summary>
         /// Gets or sets the height of the window's icon.

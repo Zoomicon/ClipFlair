@@ -29,6 +29,9 @@ namespace SilverFlow.Controls
   [StyleTypedProperty(Property = PROPERTY_WindowIconStyle, StyleTargetType = typeof(WindowIcon))]
   public class IconBar : ContentControl, INotifyPropertyChanged
   {
+
+    #region --- Constants ---
+
     // Template parts
     public const string PART_LayoutRoot = "PART_LayoutRoot";
     public const string PART_FixedBar = "PART_FixedBar";
@@ -49,7 +52,9 @@ namespace SilverFlow.Controls
     // Animation duration in milliseconds
     private const double SlidingDurationInMilliseconds = 200;
 
-    #region Fields
+    #endregion
+
+    #region --- Fields ---
 
     private FrameworkElement layoutRoot;
     private Border fixedBar;
@@ -172,6 +177,34 @@ namespace SilverFlow.Controls
     #endregion
 
     #region --- Methods ---
+
+    /// <summary>
+    /// Sets the sliding bar position.
+    /// </summary>
+    /// <param name="position">X-coordinate of the sliding bar.</param>
+    private void SetSlidingBarPosition(double x)
+    {
+      slidingBarPosition = x;
+      if (slidingBar != null)
+        Canvas.SetLeft(slidingBar, slidingBarPosition);
+    }
+
+    /// <summary>
+    /// Gets the FrameworkElement template part with the specified name.
+    /// </summary>
+    /// <typeparam name="T">The template part type.</typeparam>
+    /// <param name="partName">The template part name.</param>
+    /// <returns>The requested element.</returns>
+    /// <exception cref="NotImplementedException">The template part not found.</exception>
+    private T GetTemplatePart<T>(string partName) where T : class
+    {
+      T part = this.GetTemplateChild(partName) as T;
+
+      if (part == null)
+        throw new NotImplementedException(string.Format(CultureInfo.InvariantCulture, "Template Part {0} is required.", partName));
+
+      return part;
+    }
 
     /// <summary>
     /// Updates the IconBar if it is open.
@@ -418,7 +451,13 @@ namespace SilverFlow.Controls
 
     #endregion
 
-    #endregion
+    protected override void OnMouseLeftButtonDown(MouseButtonEventArgs e)
+    {
+      base.OnMouseLeftButtonDown(e);
+
+      //if (AutoHide) //TODO: check AutoHide
+        IsOpen = false; //close the IconBar
+    }
 
     /// <summary>
     /// Handles the Click event of the Icon control.
@@ -431,7 +470,8 @@ namespace SilverFlow.Controls
 
       if (icon != null && icon.Window != null)
       {
-        isOpen = false;
+        //if (AutoHide) //TODO: check AutoHide
+          IsOpen = false; //close the IconBar
         icon.Window.RestoreWindow();
       }
     }
@@ -512,32 +552,7 @@ namespace SilverFlow.Controls
         SetSlidingBarPosition(0);
     }
 
-    /// <summary>
-    /// Sets the sliding bar position.
-    /// </summary>
-    /// <param name="position">X-coordinate of the sliding bar.</param>
-    private void SetSlidingBarPosition(double x)
-    {
-      slidingBarPosition = x;
-      if (slidingBar != null)
-        Canvas.SetLeft(slidingBar, slidingBarPosition);
-    }
+    #endregion
 
-    /// <summary>
-    /// Gets the FrameworkElement template part with the specified name.
-    /// </summary>
-    /// <typeparam name="T">The template part type.</typeparam>
-    /// <param name="partName">The template part name.</param>
-    /// <returns>The requested element.</returns>
-    /// <exception cref="NotImplementedException">The template part not found.</exception>
-    private T GetTemplatePart<T>(string partName) where T : class
-    {
-      T part = this.GetTemplateChild(partName) as T;
-
-      if (part == null)
-        throw new NotImplementedException(string.Format(CultureInfo.InvariantCulture, "Template Part {0} is required.", partName));
-
-      return part;
-    }
   }
 }

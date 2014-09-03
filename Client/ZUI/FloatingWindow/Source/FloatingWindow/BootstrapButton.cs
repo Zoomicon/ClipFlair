@@ -24,7 +24,7 @@ namespace SilverFlow.Controls
            DefaultStyleKey = typeof(BootstrapButton); //REQUIRED
         }
 
-        #region public bool IsOpen
+        #region IsOpen
 
         /// <summary>
         /// Gets or sets a value indicating whether the bootstrap button is in the "Open" state.

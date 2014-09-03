@@ -40,7 +40,7 @@ namespace SilverFlow.Controls
           DefaultStyleKey = typeof(WindowIcon); //This is required, else GetTemplatePart will fail to get PART_Border etc. for the WindowIcon //Make sure the respective XAML style doesn't have an x:Key attribute, but only a TargetType="controls:WindowIcon" 
         }
         
-        #region public Style IconBorderStyle
+        #region IconBorderStyle
 
         /// <summary>
         /// Gets or sets the style of the WindowIcon.
@@ -77,7 +77,7 @@ namespace SilverFlow.Controls
 
         #endregion
 
-        #region public double IconWidth
+        #region IconWidth
 
         /// <summary>
         /// Gets or sets the width of the window's icon.
@@ -104,7 +104,7 @@ namespace SilverFlow.Controls
 
         #endregion
 
-        #region public double IconHeight
+        #region IconHeight
 
         /// <summary>
         /// Gets or sets the height of the window's icon.
@@ -131,7 +131,7 @@ namespace SilverFlow.Controls
 
         #endregion
 
-        #region public ImageSource Thumbnail
+        #region Thumbnail
 
         /// <summary>
         /// Gets or sets the window's icon.
@@ -158,7 +158,7 @@ namespace SilverFlow.Controls
 
         #endregion
 
-        #region public FrameworkElement Icon
+        #region Icon
 
         /// <summary>
         /// Gets or sets a FrameworkElement that is displayed as an icon of the window. 
@@ -313,12 +313,13 @@ namespace SilverFlow.Controls
         /// <exception cref="NotImplementedException">The template part not found.</exception>
         private T GetTemplatePart<T>(string partName) where T : class
         {
-            T part = this.GetTemplateChild(partName) as T;
+          T part = this.GetTemplateChild(partName) as T;
 
-            if (part == null)
-                throw new NotImplementedException(string.Format(CultureInfo.InvariantCulture, "Template Part {0} is required.", partName));
+          if (part == null)
+            throw new NotImplementedException(string.Format(CultureInfo.InvariantCulture, "Template Part {0} is required.", partName));
 
-            return part;
+          return part;
         }
+
     }
 }
