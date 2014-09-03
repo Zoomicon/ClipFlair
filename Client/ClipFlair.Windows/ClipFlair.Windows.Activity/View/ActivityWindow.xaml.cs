@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: ActivityWindow.xaml.cs
-//Version: 20140705
+//Version: 20140903
 
 using ClipFlair.UI.Dialogs;
 using ClipFlair.Windows;
@@ -157,6 +157,8 @@ namespace ClipFlair.Windows
 
     public override void LoadOptions(Stream stream, string zipFolder = "") //doesn't close stream
     {
+      //bool oldIconbarAutohide = ActivityView.IconbarAutohide;
+      bool oldIconbarVisible = ActivityView.IconbarVisible;
       bool oldToolbarVisible = ActivityView.ToolbarVisible;
       try
       {
@@ -164,6 +166,8 @@ namespace ClipFlair.Windows
       }
       finally
       {
+        //ActivityView.IcobarAutohide &= oldIconbarAutohide; //set the iconbar to autohide only if it was already autohiding and the loaded state specifies it as autohiding
+        ActivityView.IconbarVisible |= oldIconbarVisible; //show the iconbar if it was already visible or the loaded state specifies it as visible
         ActivityView.ToolbarVisible &= oldToolbarVisible; //show the activity toolbar only if it was already visible and the loaded state specifies it as visible too
       }
     }

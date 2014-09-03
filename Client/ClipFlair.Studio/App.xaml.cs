@@ -35,6 +35,7 @@ namespace ClipFlair
     private const string GALLERY_EXTENSION = ".cxml";
 
     public const string PARAMETER_ICONBAR = "iconbar";
+    //public const string PARAMETER_LOCKICONBAR = "lockiconbar";
     public const string PARAMETER_NOTOOLBAR = "notoolbar";
     public const string PARAMETER_ACTIVITY = "activity";
     public const string PARAMETER_COMPONENT = "component";
@@ -127,10 +128,12 @@ namespace ClipFlair
         {
           HtmlPage.RegisterScriptableObject("activityWindow", activityWindow); //NOTE: must do this only after setting RootVisual (obviously for Rendered to be called this will have occured)
 
+          if (queryString.ContainsKey(PARAMETER_ICONBAR))
+            activityWindow.ActivityView.IconbarVisible = true;
+          //if (queryString.ContainsKey(PARAMETER_LOCKICONBAR))
+          //  activityWindow.ActivityView.IconbarAutoHide = false;         
           if (queryString.ContainsKey(PARAMETER_NOTOOLBAR))
             activityWindow.ActivityView.ToolbarVisible = false;
-          else if (queryString.ContainsKey(PARAMETER_ICONBAR))
-            activityWindow.ActivityView.IconbarVisible = true;
         }
 
         if (!ParseUrlParameters(activityWindow)) //ParseUrlParameters returns false if IsRunningOutOfBrowser is true
