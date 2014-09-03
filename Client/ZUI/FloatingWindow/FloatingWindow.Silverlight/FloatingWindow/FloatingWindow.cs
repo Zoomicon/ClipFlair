@@ -1,5 +1,5 @@
 //Filename: FloatingWindow.cs
-//Version: 20140903
+//Version: 20140904
 
 //#define BORDER_ONLY_AT_RESIZABLE //using BorderThickness instead to allow user to define when they want the border to be visible themselves
 
@@ -20,6 +20,10 @@ using SilverFlow.Controls.Controllers;
 using SilverFlow.Controls.Enums;
 using SilverFlow.Controls.Extensions;
 using SilverFlow.Controls.Helpers;
+
+#if !SILVERLIGHT
+using Microsoft.Win32; //for SaveFileDialog
+#endif
 
 using WPF_Compatibility;
 
@@ -57,7 +61,7 @@ namespace SilverFlow.Controls
   public class FloatingWindow : ContentControl, IResizableElement, IDisposable
   {
 
-    #region Constants
+    #region --- Constants ---
 
     // Template parts
     private const string PART_Chrome = "Chrome";
@@ -105,7 +109,7 @@ namespace SilverFlow.Controls
 
     #endregion
 
-    #region Member Fields
+    #region --- Fields ---
 
     // Mouse click point
     private Point clickPoint;
@@ -125,7 +129,9 @@ namespace SilverFlow.Controls
     private Storyboard openingStoryboard;
     private Storyboard closingStoryboard;
     private Storyboard maximizingStoryboard;
-    //private Storyboard restoringStoryboard;
+    #if !SILVERLIGHT
+    private Storyboard restoringStoryboard;
+    #endif
     private Storyboard restoreMaximizedStoryboard;
     private Storyboard inertialMotionStoryboard;
 
@@ -164,9 +170,9 @@ namespace SilverFlow.Controls
 
     private bool templateIsApplied; //=false
 
-    #endregion Member Fields
+    #endregion
 
-    #region Constructor
+    #region --- Constructor ---
 
     /// <summary>
     /// Initializes a new instance of the <see cref="FloatingWindow" /> class.
@@ -187,7 +193,7 @@ namespace SilverFlow.Controls
 
     #endregion
 
-    #region Desctructor
+    #region --- Desctructor ---
 
     /// <summary>
     /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
@@ -201,7 +207,7 @@ namespace SilverFlow.Controls
 
     #endregion
 
-    #region Properties
+    #region --- Properties ---
 
     #region DialogResult
 
@@ -366,16 +372,12 @@ namespace SilverFlow.Controls
     {
       get
       {
-        //             return new Point((HostPanel.ActualWidth - ActualWidth.ValueOrZero()) / 2, (HostPanel.ActualHeight - ActualHeight.ValueOrZero()) / 2); //using ActualWidth/ActualHeight to cater for any applied ScaleTransform
-        //             return new Point((HostPanel.ActualWidth - Width * Scale) / 2, (HostPanel.ActualHeight - Height * Scale) / 2); //using ActualWidth/ActualHeight to cater for any applied ScaleTransform
+        //return new Point((HostPanel.ActualWidth - ActualWidth.ValueOrZero()) / 2, (HostPanel.ActualHeight - ActualHeight.ValueOrZero()) / 2); //using ActualWidth/ActualHeight to cater for any applied ScaleTransform
+        //return new Point((HostPanel.ActualWidth - Width * Scale) / 2, (HostPanel.ActualHeight - Height * Scale) / 2); //using ActualWidth/ActualHeight to cater for any applied ScaleTransform
         Point parentCenter = this.FloatingWindowHost.ViewCenter;
         return new Point(parentCenter.X - Width / 2 * Scale, parentCenter.Y - Height / 2 * Scale);
       } //TODO: need to have some flag on whether Window is allowed to be placed out of container bounds and if not use Max(...,0) to make negative values to 0
     }
-
-    #endregion Properties
-
-    #region DependencyProperties
 
     #region ShowScreenshotButton
 
@@ -1142,6 +1144,35 @@ namespace SilverFlow.Controls
 
     #endregion
 
+    /*
+        #region FlowDirection
+
+        /// <summary>
+        /// Gets or sets the direction that title text flows within window's icon.
+        /// </summary>
+        /// <value>A constant name from the FlowDirection enumeration, either LeftToRight or RightToLeft.</value>
+        public FlowDirection FlowDirection
+        {
+            get { return (FlowDirection)GetValue(FlowDirectionProperty); }
+            set { SetValue(FlowDirectionProperty, value); }
+        }
+
+        /// <summary>
+        /// Identifies the <see cref="FloatingWindow.FlowDirection" /> dependency property.
+        /// </summary>
+        /// <value>
+        /// The identifier for the <see cref="FloatingWindow.FlowDirection" /> dependency property.
+        /// </value>
+        public static readonly DependencyProperty FlowDirectionProperty =
+            DependencyProperty.Register(
+            "FlowDirection",
+            typeof(FlowDirection),
+            typeof(FloatingWindow),
+            new PropertyMetadata(FlowDirection.LeftToRight));
+
+        #endregion
+*/
+
     #region TitleStyle
 
     /// <summary>
@@ -1469,7 +1500,7 @@ namespace SilverFlow.Controls
 
     #endregion
 
-    #region Events
+    #region --- Events ---
 
     /// <summary>
     /// Occurs when the <see cref="FloatingWindow" /> is activated.
@@ -2028,7 +2059,7 @@ namespace SilverFlow.Controls
 
       // If window size is not set explicitly we should wait
       // when the window layout is updated and update its position
-      if (!IsWindowSizeSet && point.IsNotSet())
+      if (!IsWindowSizeSet && point.IsNotSet() & (contentRoot != null))
         contentRoot.SizeChanged += new SizeChangedEventHandler(ContentRoot_SizeChanged);
 
       VisualStateManager.GoToState(this, VSMSTATE_StateOpen, true);
@@ -2286,7 +2317,7 @@ namespace SilverFlow.Controls
     /// </summary>
     protected virtual void OnOpened()
     {
-#if SILVERLIGHT
+      #if SILVERLIGHT
       if (!Focus())
       {
         // If the Focus() fails it means there is no focusable element in the window.
@@ -2294,13 +2325,13 @@ namespace SilverFlow.Controls
         IsTabStop = true;
         Focus();
       }
-#else
-            Focus();
+      #else
+      Focus();
 
-            // Set focus to the first focusable element in the window
-            TraversalRequest request = new TraversalRequest(FocusNavigationDirection.First);
-            this.MoveFocus(request);
-#endif
+      // Set focus to the first focusable element in the window
+      TraversalRequest request = new TraversalRequest(FocusNavigationDirection.First);
+      this.MoveFocus(request);
+      #endif
     }
 
     /// <summary>
@@ -2345,19 +2376,22 @@ namespace SilverFlow.Controls
     {
       // Gets the element with keyboard focus
       Control elementWithFocus =
-#if SILVERLIGHT
- FocusManager.GetFocusedElement() as Control;
-#else
+        #if SILVERLIGHT
+        FocusManager.GetFocusedElement() as Control;
+        #else
         Keyboard.FocusedElement as Control;
-#endif
+        #endif
 
       // Brings current window to the front
       SetTopmost(); //TODO: add property AutoBringToFront (default true) to select whether we want it to be brought to front automatically
 
       if (elementWithFocus != null /*&& elementWithFocus.GetType() != Hyperlink*/) //TODO: filter hyperlinkbutton and hyperlink here (remove some other related patch we had)
       {
-        //if ((this as DependencyObject).IsVisualAncestorOf(elementWithFocus))
-        if (IsControlInVisualTree(elementWithFocus)) //TODO: maybe use the code above instead as in WPF version?
+        #if SILVERLIGHT
+        if (IsControlInVisualTree(elementWithFocus)) //TODO: maybe use WPF code for Silverlight too here?
+        #else
+        if ((this as DependencyObject).IsVisualAncestorOf(elementWithFocus))
+        #endif
           elementWithFocus.Focus();
         else // Try to set focus on the window
           Focus();
@@ -2575,6 +2609,17 @@ namespace SilverFlow.Controls
 
       if (inertialMotionStoryboard != null)
         inertialMotionStoryboard.Completed += new EventHandler(InertialMotion_Completed);
+
+      #if !SILVERLIGHT
+      if (maximizingStoryboard != null)
+        maximizingStoryboard.Completed += new EventHandler(Maximizing_Completed);
+
+      if (restoringStoryboard != null)
+        restoringStoryboard.Completed += new EventHandler(RestoringMinimized_Completed);
+
+      if (restoreMaximizedStoryboard != null)
+        restoreMaximizedStoryboard.Completed += new EventHandler(RestoringMaximized_Completed);
+      #endif
     }
 
     /// <summary>
@@ -2590,6 +2635,17 @@ namespace SilverFlow.Controls
 
       if (inertialMotionStoryboard != null)
         inertialMotionStoryboard.Completed -= new EventHandler(InertialMotion_Completed);
+
+      #if !SILVERLIGHT
+      if (maximizingStoryboard != null)
+        maximizingStoryboard.Completed -= new EventHandler(Maximizing_Completed);
+
+      if (restoringStoryboard != null)
+        restoringStoryboard.Completed -= new EventHandler(RestoringMinimized_Completed);
+
+      if (restoreMaximizedStoryboard != null)
+        restoreMaximizedStoryboard.Completed -= new EventHandler(RestoringMaximized_Completed);
+      #endif
     }
 
     /// <summary>

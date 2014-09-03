@@ -1,5 +1,5 @@
 ﻿//Filename MainPage.xaml.cs
-//Version: 20130805
+//Version: 20140904
 
 using System.Diagnostics;
 using System.Windows;
@@ -77,12 +77,12 @@ namespace FloatingWindowZUI.Demo
 
     private void ShowIconbar_Click(object sender, RoutedEventArgs e)
     {
-      host.ShowIconBar();
+      host.IsIconBarVisible = true;
     }
 
     private void HideIconbar_Click(object sender, RoutedEventArgs e)
     {
-      host.HideIconBar();
+      host.IsIconBarVisible = false;
     }
 
     private void CloseWindows_Click(object sender, RoutedEventArgs e)

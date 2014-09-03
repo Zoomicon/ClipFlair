@@ -1,4 +1,6 @@
-﻿using System.Diagnostics;
+﻿//Version: 20140904
+
+using System.Diagnostics;
 using System.Windows;
 using SilverFlow.Controls;
 using SilverFlow.Controls.Extensions;
@@ -156,12 +158,12 @@ namespace FloatingWindowWPF
 
         private void ShowIconbar_Click(object sender, RoutedEventArgs e)
         {
-            host.ShowIconBar();
+          host.IsIconBarVisible = true;
         }
 
         private void HideIconbar_Click(object sender, RoutedEventArgs e)
         {
-            host.HideIconBar();
+          host.IsIconBarVisible = false;
         }
 
         private void CloseWindows_Click(object sender, RoutedEventArgs e)

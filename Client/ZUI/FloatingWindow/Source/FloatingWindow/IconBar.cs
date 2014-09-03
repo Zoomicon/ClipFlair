@@ -11,8 +11,11 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media.Animation;
 using SilverFlow.Controls.Extensions;
+
+#if SILVERLIGHT
 using SilverFlow.Controls.Helpers;
 using WPF_Compatibility;
+#endif
 
 namespace SilverFlow.Controls
 {
@@ -46,7 +49,7 @@ namespace SilverFlow.Controls
     public const string VSMSTATE_StateClosed = "Closed";
 
     // Style typed properties
-    public const string PROPERTY_IconBarStyle = "IconBarStyle"; //renamed, was PROPERTY_TitleStyle
+    public const string PROPERTY_IconBarStyle = "IconBarStyle";
     public const string PROPERTY_WindowIconStyle = "WindowIconStyle";
 
     // Animation duration in milliseconds
@@ -168,11 +171,15 @@ namespace SilverFlow.Controls
 
     #endregion
 
+    #region FloatingWindowHost
+
     /// <summary>
     /// Gets or sets the FloatingWindowHost containing the IconBar.
     /// </summary>
     /// <value>FloatingWindowHost containing the IconBar.</value>
     public FloatingWindowHost FloatingWindowHost { get; set; }
+
+    #endregion
 
     #endregion
 
@@ -247,7 +254,13 @@ namespace SilverFlow.Controls
       {
         var states = (from stategroup in groups
                       where stategroup.Name == IconBar.VSMGROUP_States
-                      select stategroup.States).FirstOrDefault() as Collection<VisualState>;
+                      select stategroup.States).FirstOrDefault() as
+                        #if SILVERLIGHT
+                        Collection
+                        #else
+                        FreezableCollection
+                        #endif
+                        <VisualState>;
 
         if (states != null)
         {
@@ -268,15 +281,15 @@ namespace SilverFlow.Controls
     private void SubscribeToEvents()
     {
       if (closingStoryboard != null)
-        closingStoryboard.Completed += new EventHandler(Closing_Completed);
+        closingStoryboard.Completed += Closing_Completed;
 
       if (openingStoryboard != null)
-        openingStoryboard.Completed += new EventHandler(Opening_Completed);
+        openingStoryboard.Completed += Opening_Completed;
 
       if (fixedBar != null)
       {
-        fixedBar.MouseMove += new MouseEventHandler(FixedBar_MouseMove);
-        fixedBar.SizeChanged += new SizeChangedEventHandler(FixedBar_SizeChanged);
+        fixedBar.MouseMove += FixedBar_MouseMove;
+        fixedBar.SizeChanged += FixedBar_SizeChanged;
       }
     }
 
@@ -286,15 +299,15 @@ namespace SilverFlow.Controls
     private void UnsubscribeFromEvents()
     {
       if (closingStoryboard != null)
-        closingStoryboard.Completed -= new EventHandler(Closing_Completed);
+        closingStoryboard.Completed -= Closing_Completed;
 
       if (openingStoryboard != null)
-        openingStoryboard.Completed -= new EventHandler(Opening_Completed);
+        openingStoryboard.Completed -= Opening_Completed;
 
       if (fixedBar != null)
       {
-        fixedBar.MouseMove += new MouseEventHandler(FixedBar_MouseMove);
-        fixedBar.SizeChanged -= new SizeChangedEventHandler(FixedBar_SizeChanged);
+        fixedBar.MouseMove += FixedBar_MouseMove;
+        fixedBar.SizeChanged -= FixedBar_SizeChanged;
       }
     }
 
@@ -320,6 +333,9 @@ namespace SilverFlow.Controls
         {
           Title = window.IconText,
           Thumbnail = window.WindowThumbnail,
+          #if !SILVERLIGHT
+          Icon = window.Icon as FrameworkElement,
+          #endif
           FlowDirection = window.FlowDirection,
           Window = window,
           IconWidth = this.FloatingWindowHost.IconWidth,
@@ -341,9 +357,17 @@ namespace SilverFlow.Controls
     {
       if (carousel == null) return;
 
-      foreach (var icon in carousel.Children.OfType<WindowIcon>())
+      foreach (var windowIcon in carousel.Children.OfType<WindowIcon>())
       {
-        icon.Click -= new RoutedEventHandler(Icon_Click);
+        windowIcon.Click -= new RoutedEventHandler(Icon_Click);
+
+        #if !SILVERLIGHT
+
+        // If the Icon is a FrameworkElement and we placed it into the container, remove it
+        if (windowIcon.Icon != null)
+          windowIcon.Icon.RemoveFromContainer();
+
+        #endif
       }
 
       carousel.Children.Clear();
@@ -425,6 +449,8 @@ namespace SilverFlow.Controls
       OnOpened(EventArgs.Empty);
     }
 
+    #endregion
+
     /// <summary>
     /// Raises the <see cref="E:Opened"/> event.
     /// </summary>
@@ -448,8 +474,6 @@ namespace SilverFlow.Controls
       if (handler != null)
         handler(this, e);
     }
-
-    #endregion
 
     protected override void OnMouseLeftButtonDown(MouseButtonEventArgs e)
     {
@@ -483,9 +507,6 @@ namespace SilverFlow.Controls
     /// <param name="e">The <see cref="System.Windows.Input.MouseEventArgs"/> instance containing the event data.</param>
     private void FixedBar_MouseMove(object sender, MouseEventArgs e)
     {
-      // Get absolute mouse position
-      Point mousePosition = e.GetPosition(null);
-
       var icon = carousel.Children.OfType<WindowIcon>().FirstOrDefault();
 
       // If there is at least one icon on the bar
@@ -509,6 +530,10 @@ namespace SilverFlow.Controls
 
             if (x != slidingBarPosition)
             {
+              #if SILVERLIGHT
+              // Get absolute mouse position
+              Point mousePosition = e.GetPosition(null);
+
               Storyboard storyboard = slidingBar.AnimateDoubleProperty("(Canvas.Left)", null, x, SlidingDurationInMilliseconds);
               storyboard.Completed += (s, args) =>
                   {
@@ -517,11 +542,16 @@ namespace SilverFlow.Controls
                     SlidingBarStoryboardCompleted(mousePosition);
                     slidingBarPosition = x;
                   };
+              #else
+              SetSlidingBarPosition(x);
+              #endif
             }
           }
         }
       }
     }
+
+    #if SILVERLIGHT
 
     /// <summary>
     /// Handles the Completed event of the SlidingBarStoryboard control.
@@ -539,6 +569,8 @@ namespace SilverFlow.Controls
         icon.Selected = selectedIcon != null && icon == selectedIcon;
       }
     }
+
+    #endif
 
     /// <summary>
     /// Handles the SizeChanged event of the FixedBar control.
