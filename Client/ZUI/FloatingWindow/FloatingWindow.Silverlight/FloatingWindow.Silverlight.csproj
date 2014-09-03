@@ -123,6 +123,12 @@
     <Compile Include="..\Source\FloatingWindow\FloatingWindowHost.cs">
       <Link>FloatingWindow\FloatingWindowHost.cs</Link>
     </Compile>
+    <Compile Include="..\Source\FloatingWindow\IconBar.cs">
+      <Link>FloatingWindow\IconBar.cs</Link>
+    </Compile>
+    <Compile Include="..\Source\FloatingWindow\WindowIcon.cs">
+      <Link>FloatingWindow\WindowIcon.cs</Link>
+    </Compile>
     <Compile Include="..\Source\Geometry\Distance.cs">
       <Link>Geometry\Distance.cs</Link>
     </Compile>
@@ -153,8 +159,6 @@
     <Compile Include="Extensions\AnimationExtensions.cs" />
     <Compile Include="FloatingWindow\FloatingWindow.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="FloatingWindow\IconBar.cs" />
-    <Compile Include="FloatingWindow\WindowIcon.cs" />
   </ItemGroup>
   <ItemGroup>
     <Page Include="Themes\generic.xaml">

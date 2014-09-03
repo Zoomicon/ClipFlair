@@ -1,5 +1,5 @@
 ﻿//Filename: FloatingWindowHost.cs
-//Version: 20140903
+//Version: 20140904
 
 using System;
 using System.Collections.Generic;
@@ -42,7 +42,7 @@ namespace SilverFlow.Controls
   [ContentProperty("Windows")]
   public class FloatingWindowHost : ContentControl
   {
-    #region Constants
+    #region --- Constants ---
 
     // Template parts
     protected const string PART_Root = "PART_Root";
@@ -79,7 +79,7 @@ namespace SilverFlow.Controls
 
     #endregion Constants
 
-    #region Member Fields
+    #region --- Fields ---
 
     private Grid root;
     private FrameworkElement contentRoot;
@@ -96,6 +96,8 @@ namespace SilverFlow.Controls
     private bool closeWindowsOnApplicationExit = DefaultCloseWindowsOnApplicationExit;
 
     #endregion Member Fields
+
+    #region --- Properties ---
 
     public virtual Rect MaximizedWindowBounds
     {
@@ -763,6 +765,17 @@ namespace SilverFlow.Controls
       get { return modalCanvas.Children.OfType<FloatingWindow>().FirstOrDefault(); }
     }
 
+    #endregion
+
+    #region --- Constructor ---
+
+    #if !SILVERLIGHT
+    static FloatingWindowHost()
+    {
+      DefaultStyleKeyProperty.OverrideMetadata(typeof(FloatingWindowHost), new FrameworkPropertyMetadata(typeof(FloatingWindowHost)));
+    }
+    #endif
+
     /// <summary>
     /// Initializes a new instance of the <see cref="FloatingWindowHost"/> class.
     /// </summary>
@@ -771,6 +784,8 @@ namespace SilverFlow.Controls
       Windows = new FloatingWindowCollection(); //must set this here and not in the DependencyProperty definition's default value (that would be a singleton collection!)
       ApplyStyle();
     }
+
+    #endregion
 
     public virtual void ApplyStyle()
     {

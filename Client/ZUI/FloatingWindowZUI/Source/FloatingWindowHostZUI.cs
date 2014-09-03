@@ -1,5 +1,5 @@
 ﻿//Filename: FloatingWindowHostZUI.cs
-//Version: 20140903
+//Version: 20140904
 
 using SilverFlow.Controls;
 using System.Collections.Specialized;
@@ -38,14 +38,16 @@ namespace FloatingWindowZUI
   public class FloatingWindowHostZUI : FloatingWindowHost
   {
 
-    #region Part names
+    #region --- Constants ---
 
     protected const string PART_ZoomHost = "PART_ZoomHost";
     protected const string PART_ZoomToFitButton = "PART_ZoomToFitButton";
     protected const string PART_ZoomSlider = "PART_ZoomSlider";
 
     #endregion
-    
+
+    #region --- Properties ---
+
     #region ZoomHost
 
     protected ZoomAndPanControl _zoomHost;
@@ -102,10 +104,23 @@ namespace FloatingWindowZUI
 
     #endregion
 
+    #endregion
+
+    #region --- Constructor ---
+
+    #if !SILVERLIGHT
+    static FloatingWindowHostZUI()
+    {
+      DefaultStyleKeyProperty.OverrideMetadata(typeof(FloatingWindowHostZUI), new FrameworkPropertyMetadata(typeof(FloatingWindowHostZUI)));
+    }
+    #endif
+
     public FloatingWindowHostZUI()
     {
       ApplyStyle();
     }
+
+    #endregion
 
     public override void ApplyStyle()
     {
