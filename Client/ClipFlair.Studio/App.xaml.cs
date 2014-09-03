@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: App.xaml.cs
-//Version: 20140415
+//Version: 20140903
 
 //#define GALLERY_IN_BACKGROUND
 
@@ -34,6 +34,7 @@ namespace ClipFlair
     private const string SMOOTH_STREAM_EXTENSION = ".ism/Manifest";
     private const string GALLERY_EXTENSION = ".cxml";
 
+    public const string PARAMETER_ICONBAR = "iconbar";
     public const string PARAMETER_NOTOOLBAR = "notoolbar";
     public const string PARAMETER_ACTIVITY = "activity";
     public const string PARAMETER_COMPONENT = "component";
@@ -128,6 +129,8 @@ namespace ClipFlair
 
           if (queryString.ContainsKey(PARAMETER_NOTOOLBAR))
             activityWindow.ActivityView.ToolbarVisible = false;
+          else if (queryString.ContainsKey(PARAMETER_ICONBAR))
+            activityWindow.ActivityView.IconbarVisible = true;
         }
 
         if (!ParseUrlParameters(activityWindow)) //ParseUrlParameters returns false if IsRunningOutOfBrowser is true

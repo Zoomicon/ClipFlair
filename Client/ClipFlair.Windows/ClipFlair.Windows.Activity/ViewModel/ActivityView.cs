@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: ActivityView.cs
-//Version: 20140901
+//Version: 20140903
 
 //TODO: add "Inertia" property
 
@@ -36,6 +36,7 @@ namespace ClipFlair.Windows.Views
     private bool contentZoomable;
     private bool contentZoomToFit;
     private bool contentPartsConfigurable;
+    private bool iconbarVisible;
     private bool toolbarVisible;
     private Orientation toolbarOrientation;
 
@@ -190,6 +191,22 @@ namespace ClipFlair.Windows.Views
       }
     }
 
+    [DataMember]
+    [DefaultValue(ActivityDefaults.DefaultIconbarVisible)]
+    public bool IconbarVisible
+    {
+      get { return iconbarVisible; }
+      set
+      {
+        if (value != iconbarVisible)
+        {
+          iconbarVisible = value;
+          RaisePropertyChanged(IActivityProperties.PropertyIconbarVisible);
+          Dirty = true;
+        }
+      }
+    }
+    
     [DataMember]
     [DefaultValue(ActivityDefaults.DefaultToolbarVisible)]
     public bool ToolbarVisible

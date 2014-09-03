@@ -1,4 +1,5 @@
-﻿//Version: 20140228
+﻿//Filename: IconBar.cs
+//Version: 20140903
 
 using System;
 using System.Collections.ObjectModel;
@@ -122,11 +123,21 @@ namespace SilverFlow.Controls
     public bool IsOpen
     {
       get { return isOpen; }
-      private set
+      set
       {
         if (value != isOpen)
         {
           isOpen = value;
+          if (value)
+          {
+            if (carousel == null) ApplyTemplate();
+            FillCarousel();
+            SetSlidingBarPosition(0);
+            VisualStateManager.GoToState(this, VSMSTATE_StateOpen, true);
+          }
+          else
+            VisualStateManager.GoToState(this, VSMSTATE_StateClosed, true);
+
           OnPropertyChanged(new PropertyChangedEventArgs("IsOpen"));
         }
       }
@@ -191,30 +202,6 @@ namespace SilverFlow.Controls
       SetStyles();
       GetStoryboards();
       SubscribeToEvents();
-    }
-
-    /// <summary>
-    /// Shows the IconBar.
-    /// </summary>
-    public void Show()
-    {
-      if (!IsOpen)
-      {
-        FillCarousel();
-        SetSlidingBarPosition(0);
-        VisualStateManager.GoToState(this, VSMSTATE_StateOpen, true);
-      }
-    }
-
-    /// <summary>
-    /// Hides the IconBar.
-    /// </summary>
-    public void Hide()
-    {
-      if (IsOpen)
-      {
-        VisualStateManager.GoToState(this, VSMSTATE_StateClosed, true);
-      }
     }
 
     /// <summary>
@@ -423,7 +410,7 @@ namespace SilverFlow.Controls
 
       if (icon != null && icon.Window != null)
       {
-        this.Hide();
+        isOpen = false;
         icon.Window.RestoreWindow();
       }
     }

@@ -142,6 +142,20 @@ Version: 20140901
       <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Options Button Visible (at Components)" Target="{Binding ElementName=cbContentPartsConfigurable}"/>
     </StackPanel>
 
+    <!-- IconbarVisible -->
+
+    <StackPanel Orientation="Horizontal">
+      <CheckBox
+        Name="cbIconbarVisible"
+        IsChecked="{Binding IconbarVisible, Mode=TwoWay}"
+        />
+      <sdk:Label
+        Style="{StaticResource PropertyLabelStyle}"
+        Content="Iconbar Visible"
+        Target="{Binding ElementName=cbIconbarVisible}"
+        />
+    </StackPanel>
+
     <!-- ToolbarVisible -->
     
     <StackPanel Orientation="Horizontal">

@@ -1,4 +1,4 @@
-﻿//Version: 20120712
+﻿//Version: 20140903
 
 #if SILVERLIGHT
 
@@ -28,7 +28,7 @@ namespace System.Windows.Controls
       if (value == null)
         throw new ArgumentNullException("value");
 
-      return (bool)value ? Visibility.Visible : Visibility.Collapsed;
+      return ((bool)value)? Visibility.Visible : Visibility.Collapsed;
     }
 
     public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
@@ -36,7 +36,7 @@ namespace System.Windows.Controls
       if (value == null)
         throw new ArgumentNullException("value");
 
-      return (Visibility)value == Visibility.Visible ? true : false;
+      return ((Visibility)value == Visibility.Visible)? true : false;
     }
 
   }
