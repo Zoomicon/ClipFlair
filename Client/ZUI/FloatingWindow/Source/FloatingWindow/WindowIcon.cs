@@ -1,14 +1,15 @@
-﻿//Version: 20140903
-
-#if !SILVERLIGHT
-using SilverFlow.Controls.Extensions;
-#endif
+﻿//Filename: WindowIcon.cs
+//Version: 20140904
 
 using System;
 using System.Globalization;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
+
+#if !SILVERLIGHT
+using SilverFlow.Controls.Extensions;
+#endif
 
 namespace SilverFlow.Controls
 {
@@ -59,10 +60,23 @@ namespace SilverFlow.Controls
 
     #endregion
 
+    #region --- Constructor ---
+
+    #if !SILVERLIGHT
+    static WindowIcon()
+    {
+      DefaultStyleKeyProperty.OverrideMetadata(typeof(WindowIcon), new FrameworkPropertyMetadata(typeof(WindowIcon)));
+    }
+    #endif
+
     public WindowIcon()
     {
       DefaultStyleKey = typeof(WindowIcon); //This is required, else GetTemplatePart will fail to get PART_Border etc. for the WindowIcon //Make sure the respective XAML style doesn't have an x:Key attribute, but only a TargetType="controls:WindowIcon" 
     }
+
+    #endregion
+
+    #region --- Properties ---
 
     #region IconBorderStyle
 
@@ -155,11 +169,15 @@ namespace SilverFlow.Controls
 
     #endregion
 
+    #region Title
+
     /// <summary>
     /// Gets or sets the window title that is displayed on the icon />.
     /// </summary>
     /// <value>The title displayed on the icon.</value>
     public string Title { get; set; }
+
+    #endregion
 
     #region Thumbnail
 
@@ -225,11 +243,17 @@ namespace SilverFlow.Controls
 
     #endif
 
+    #region FloatingWindow
+
     /// <summary>
     /// Gets or sets the FloatingWindow associated with the icon.
     /// </summary>
     /// <value>Floating window.</value>
     public FloatingWindow Window { get; set; }
+
+    #endregion
+
+    #region Selected
 
     /// <summary>
     /// Gets or sets a value indicating whether this <see cref="WindowIcon"/> is selected.
@@ -251,33 +275,11 @@ namespace SilverFlow.Controls
       }
     }
 
-    /// <summary>
-    /// Builds the visual tree for the <see cref="WindowIcon" /> control 
-    /// when a new template is applied.
-    /// </summary>
-    public override void OnApplyTemplate()
-    {
-      base.OnApplyTemplate();
+    #endregion
 
-      border = GetTemplatePart<Border>(PART_Border);
-      title = GetTemplatePart<TextBlock>(PART_Title);
-      thumbnail = GetTemplatePart<Image>(PART_Thumbnail);
-      #if !SILVERLIGHT
-      iconContainer = GetTemplatePart<Border>(PART_IconContainer);
-      overlay = GetTemplatePart<Border>(PART_Overlay);
-      #endif
+    #endregion
 
-      SetStyles();
-      #if !SILVERLIGHT
-      SetIcon();
-      #endif
-
-      title.Text = Title;
-      title.FlowDirection = this.FlowDirection;
-      #if SILVERLIGHT
-      thumbnail.Source = Thumbnail;
-      #endif
-    }
+    #region --- Methods ---
 
     /// <summary>
     /// Sets styles that are applied for different template parts.
@@ -356,6 +358,40 @@ namespace SilverFlow.Controls
 
       return part;
     }
+
+    #endregion
+
+    #region --- Events ---
+
+    /// <summary>
+    /// Builds the visual tree for the <see cref="WindowIcon" /> control 
+    /// when a new template is applied.
+    /// </summary>
+    public override void OnApplyTemplate()
+    {
+      base.OnApplyTemplate();
+
+      border = GetTemplatePart<Border>(PART_Border);
+      title = GetTemplatePart<TextBlock>(PART_Title);
+      thumbnail = GetTemplatePart<Image>(PART_Thumbnail);
+#if !SILVERLIGHT
+      iconContainer = GetTemplatePart<Border>(PART_IconContainer);
+      overlay = GetTemplatePart<Border>(PART_Overlay);
+#endif
+
+      SetStyles();
+#if !SILVERLIGHT
+      SetIcon();
+#endif
+
+      title.Text = Title;
+      title.FlowDirection = this.FlowDirection;
+#if SILVERLIGHT
+      thumbnail.Source = Thumbnail;
+#endif
+    }
+
+    #endregion
 
   }
 }

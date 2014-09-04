@@ -87,17 +87,14 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="..\Images\ZoomToFit.png">
-      <Link>Images\ZoomToFit.png</Link>
-    </Resource>
-    <Resource Include="..\Images\ZoomToFit_hover.png">
-      <Link>Images\ZoomToFit_hover.png</Link>
-    </Resource>
-  </ItemGroup>
-  <ItemGroup>
     <None Include="FloatingWindowZUI.cd" />
   </ItemGroup>
   <ItemGroup>
+    <Page Include="..\Images\Items.xaml">
+      <Link>Images\Items.xaml</Link>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Themes\Generic.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

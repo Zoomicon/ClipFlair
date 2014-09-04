@@ -85,7 +85,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Page Include="Images\Items.xaml">
+    <Page Include="..\Images\Items.xaml">
+      <Link>Images\Items.xaml</Link>
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
