@@ -1,6 +1,6 @@
 ﻿<!--
   Filename: Generic.xaml 
-  Version: 20140326
+  Version: 20140904
 -->
 
 <ResourceDictionary
@@ -328,7 +328,7 @@
     </Setter>
   </Style>
 
-  <Style x:Key="FloatingWindowStyle" TargetType="controls:FloatingWindow">
+  <Style TargetType="controls:FloatingWindow"> <!-- don't use x:Key="FloatingWindowStyle" here, fails to call FloatingWindow.OnApplyTemplate -->
     <Setter Property="Width" Value="300"/>
     <Setter Property="Height" Value="200"/>
     <Setter Property="IsTabStop" Value="False"/>

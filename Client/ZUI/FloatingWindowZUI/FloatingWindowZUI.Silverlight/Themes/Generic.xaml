@@ -1,6 +1,6 @@
 ﻿<!-- 
 Filename: Generic.xaml
-Version: 20140902
+Version: 20140904
 -->
   
 <ResourceDictionary
@@ -17,7 +17,7 @@ Version: 20140902
   <!-- <helpers:BitmapHelper x:Key="BitmapHelper" Width="100" Height="100" xmlns:helpers="clr-namespace:SilverFlow.Controls.Helpers;assembly=SilverFlow.Controls" /> -->
 
   <ResourceDictionary.MergedDictionaries>
-    <ResourceDictionary Source="/SilverFlow.Controls;component/Themes/generic.xaml"/>
+    <ResourceDictionary Source="/SilverFlow.Controls;component/Themes/Generic.xaml"/>
     <ResourceDictionary Source="/FloatingWindowZUI;component/Images/Items.xaml" />
   </ResourceDictionary.MergedDictionaries>
 
@@ -27,12 +27,11 @@ Version: 20140902
   </Style>
 
   <utils:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
-  
 
   <ControlTemplate x:Key="FloatingWindowHostZUI_DefaultTemplate" TargetType="zui:FloatingWindowHostZUI">
-    <Grid x:Name="PART_Root" 
-          Background="{TemplateBinding Background}" 
-          Width="{TemplateBinding Width}" Height="{TemplateBinding Height}">
+    <Grid x:Name="PART_Root"
+      Background="{TemplateBinding Background}"
+      Width="{TemplateBinding Width}" Height="{TemplateBinding Height}">
 
       <VisualStateManager.VisualStateGroups>
         <VisualStateGroup x:Name="OverlayStates">
@@ -70,7 +69,7 @@ Version: 20140902
       <!-- MAIN CONTENT -->
 
       <toolkit:DockPanel x:Name="PART_ContentRoot">
-        
+
         <!-- Bottom bar -->
 
         <Border
@@ -98,35 +97,34 @@ Version: 20140902
             <StackPanel
               Grid.Column="1"
               Orientation="Horizontal"
-              Visibility="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=ContentScalable, Converter={StaticResource BooleanToVisibilityConverter}}">
-             
+              Visibility="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=ContentScalable, Converter={StaticResource BooleanToVisibilityConverter}}"
+              >
               <Button x:Name="PART_ZoomToFitButton"
                  ToolTipService.ToolTip="Zoom to Fit"
-                 Template="{StaticResource ZoomToFit.xaml}" 
+                 Template="{StaticResource ZoomToFit.xaml}"
                  Margin="4,5,2,5"
                  />
-              
-              <Slider x:Name="PART_ZoomSlider"
-                      Cursor="Hand"
-                      Minimum="{TemplateBinding MinContentScale}" Maximum="{TemplateBinding MaxContentScale}"
-                      SmallChange="0.1" LargeChange="0.5"
-                      Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=ContentScale, Mode=TwoWay}"
-                      Width="150"
-                      ToolTipService.ToolTip="Zoom"
-                      />
-              
+              <Slider
+                x:Name="PART_ZoomSlider"
+                Cursor="Hand"
+                Minimum="{TemplateBinding MinContentScale}" Maximum="{TemplateBinding MaxContentScale}"
+                SmallChange="0.1" LargeChange="0.5"
+                Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=ContentScale, Mode=TwoWay}"
+                Width="150"
+                ToolTipService.ToolTip="Zoom"
+                />
             </StackPanel>
 
             <!-- Bottom bar extra content -->
             <Border Grid.Column="2">
               <ContentControl
                 x:Name="PART_BarContent"
-                Content="{TemplateBinding Bar}" 
+                Content="{TemplateBinding Bar}"
                 VerticalContentAlignment="Stretch"
                 HorizontalContentAlignment="Stretch"
                 />
             </Border>
-            
+
           </Grid>
         </Border>
 
@@ -142,15 +140,15 @@ Version: 20140902
         <!-- Scroll pane with ZoomAndPanControl in it that wraps HostCanvas (where the FloatingWindows are) -->
 
         <ScrollViewer
-            VerticalScrollBarVisibility="Auto"
-            HorizontalScrollBarVisibility="Auto"
+          VerticalScrollBarVisibility="Auto"
+          HorizontalScrollBarVisibility="Auto"
+          >
+          <zoom:ZoomAndPanControl Name="PART_ZoomHost"
+            ContentScalable="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=ContentScalable, Mode=TwoWay}"
+            ContentScale="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=ContentScale, Mode=TwoWay}"
+            MinContentScale="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=MinContentScale, Mode=TwoWay}"
+            MaxContentScale="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=MaxContentScale, Mode=TwoWay}"
             >
-          <zoom:ZoomAndPanControl Name="PART_ZoomHost" 
-              ContentScalable="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=ContentScalable, Mode=TwoWay}" 
-              ContentScale="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=ContentScale, Mode=TwoWay}" 
-              MinContentScale="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=MinContentScale, Mode=TwoWay}" 
-              MaxContentScale="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=MaxContentScale, Mode=TwoWay}"
-              >
             <Canvas Width="5000" Height="5000" x:Name="PART_HostCanvas" />
             <!-- TODO: ViewMaxWidth and ViewMaxHeight should be configurable using a TemplateBinding and respective FloatingWindowHostZUI properties -->
           </zoom:ZoomAndPanControl>
@@ -159,7 +157,6 @@ Version: 20140902
       </toolkit:DockPanel>
 
       <!-- NAVIGATION MAP -->
-
 <!--  
       <Image
         HorizontalAlignment="Right" 
@@ -169,18 +166,18 @@ Version: 20140902
         Source="{Binding ElementName=PART_HostCanvas, Converter={StaticResource BitmapHelper}, Mode=OneWay}"
         />
 -->
-      
+
       <!-- MODAL CONTENT -->
-      
+
       <Grid
         x:Name="PART_Overlay"
         Background="{TemplateBinding OverlayBrush}"
         Opacity="0"
         Visibility="Collapsed"
         />
-      
+
       <Canvas x:Name="PART_ModalCanvas" />
-      
+
     </Grid>
   </ControlTemplate>
 

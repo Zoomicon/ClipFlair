@@ -1,5 +1,5 @@
 ﻿//Filename: IconBar.cs
-//Version: 20140903
+//Version: 20140904
 
 using System;
 using System.Collections.ObjectModel;
@@ -70,6 +70,15 @@ namespace SilverFlow.Controls
 
     #endregion
 
+    #region --- Constructor ---
+
+    #if !SILVERLIGHT
+    static IconBar()
+    {
+      DefaultStyleKeyProperty.OverrideMetadata(typeof(IconBar), new FrameworkPropertyMetadata(typeof(IconBar)));
+    }
+    #endif
+
     /// <summary>
     /// Initializes a new instance of the <see cref="IconBar"/> class.
     /// </summary>
@@ -77,6 +86,8 @@ namespace SilverFlow.Controls
     {
       DefaultStyleKey = typeof(IconBar);
     }
+
+    #endregion
 
     #region --- Properties ---
 

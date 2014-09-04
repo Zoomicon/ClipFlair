@@ -1,5 +1,5 @@
 ﻿//Filename: IconBarZUI.cs
-//Version: 20131213
+//Version: 20140904
 
 using SilverFlow.Controls;
 using System.Windows;
@@ -19,10 +19,23 @@ namespace FloatingWindowZUI
   public class IconBarZUI : IconBar
   {
 
+    #region --- Constructor ---
+
+    #if !SILVERLIGHT
+    static IconBarZUI()
+    {
+      DefaultStyleKeyProperty.OverrideMetadata(typeof(IconBarZUI), new FrameworkPropertyMetadata(typeof(IconBarZUI)));
+    }
+    #endif
+
     public IconBarZUI()
     {
       DefaultStyleKey = typeof(IconBarZUI);
     }
+
+    #endregion
+
+    #region --- Events ---
 
     public override void OnApplyTemplate() //TODO: CHECK (not sure it's true) - if we want to be able to set a new template to IconBarZUI, then we need to override this (ancestor's implementation won't be called automatically)
     {
@@ -47,6 +60,8 @@ namespace FloatingWindowZUI
 
       zoomHost.ScrollToCenter(w.BoundingRectangle); //zoomHost.ZoomTo(w.BoundingRectangle);
     }
+
+    #endregion
 
   }
 

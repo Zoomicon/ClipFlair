@@ -5,7 +5,7 @@
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{33CE99A3-8F43-421C-997A-4FF17FE1BE61}</ProjectGuid>
+    <ProjectGuid>{A7CB8324-81B9-48C4-9357-3AAD3A4E8982}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>FloatingWindowWPF</RootNamespace>
