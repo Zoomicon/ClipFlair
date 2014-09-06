@@ -1,5 +1,5 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
-//Filename: CaptionsGridWindowFactory.cs
+//Filename: CaptionsWindowFactory.cs
 //Version: 20140616
 
 using System.ComponentModel.Composition;
@@ -17,7 +17,7 @@ namespace ClipFlair.Windows.Captions
   [Export("ClipFlair.Windows.Views.CaptionsGridView", typeof(IWindowFactory))]
   //MEF creation policy
   [PartCreationPolicy(CreationPolicy.Shared)]
-  public class CaptionsGridWindowFactory : IFileWindowFactory
+  public class CaptionsWindowFactory : IFileWindowFactory
   {
 
     public const string LOAD_FILTER =  "Subtitle files (*.srt, *.tts)|*.srt;*.tts|SRT files (*.srt)|*.srt|TTS files (*.tts)|*.tts";
@@ -31,7 +31,7 @@ namespace ClipFlair.Windows.Captions
 
     public BaseWindow CreateWindow()
     {
-      return new CaptionsGridWindow();
+      return new CaptionsWindow();
     }
 
   }
