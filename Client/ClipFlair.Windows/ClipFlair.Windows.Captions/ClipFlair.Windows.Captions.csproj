@@ -81,10 +81,10 @@
     <Reference Include="System.Windows.Controls.Layout.Toolkit, Version=5.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CaptionsGridWindowFactory.cs" />
+    <Compile Include="CaptionsWindowFactory.cs" />
     <Compile Include="ViewModel\CaptionsGridView.cs" />
-    <Compile Include="View\CaptionsGridWindow.xaml.cs">
-      <DependentUpon>CaptionsGridWindow.xaml</DependentUpon>
+    <Compile Include="View\CaptionsWindow.xaml.cs">
+      <DependentUpon>CaptionsWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModel\CaptionsGridDefaults.cs" />
     <Compile Include="ViewModel\ICaptionsGrid.cs">
@@ -92,16 +92,16 @@
     </Compile>
     <Compile Include="ViewModel\ICaptionsGridProperties.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="View\CaptionsGridOptions.xaml.cs">
-      <DependentUpon>CaptionsGridOptions.xaml</DependentUpon>
+    <Compile Include="View\CaptionsOptions.xaml.cs">
+      <DependentUpon>CaptionsOptions.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Page Include="View\CaptionsGridWindow.xaml">
+    <Page Include="View\CaptionsWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="View\CaptionsGridOptions.xaml">
+    <Page Include="View\CaptionsOptions.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

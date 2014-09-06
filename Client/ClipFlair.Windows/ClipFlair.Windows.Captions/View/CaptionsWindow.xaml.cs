@@ -1,5 +1,5 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
-//Filename: CaptionsGridWindow.xaml.cs
+//Filename: CaptionsWindow.xaml.cs
 //Version: 20140707
 
 //TODO: add Source property to CaptionsGrid control and use data-binding to bind it to CaptionsGridView's Source property
@@ -15,12 +15,12 @@ using Utils.Extensions;
 namespace ClipFlair.Windows
 {
 
-  public partial class CaptionsGridWindow : BaseWindow
+  public partial class CaptionsWindow : BaseWindow
   {
 
     public const string DEFAULT_CAPTIONS = "captions.srt";
 
-    public CaptionsGridWindow()
+    public CaptionsWindow()
     {
       View = new CaptionsGridView(); //must set the view first
       InitializeComponent();
@@ -42,7 +42,7 @@ namespace ClipFlair.Windows
     {
       get
       {
-        return base.LoadFilter + "|" + CaptionsGridWindowFactory.LOAD_FILTER;
+        return base.LoadFilter + "|" + CaptionsWindowFactory.LOAD_FILTER;
       }
     }
 
@@ -118,7 +118,7 @@ namespace ClipFlair.Windows
  
     private void LoadCaptions(CaptionRegion captions, ZipFile zip, string zipFolder = "")
     {
-      foreach (string ext in CaptionsGridWindowFactory.SUPPORTED_FILE_EXTENSIONS)
+      foreach (string ext in CaptionsWindowFactory.SUPPORTED_FILE_EXTENSIONS)
         foreach (ZipEntry captionsEntry in zip.SelectEntries("*" + ext, zipFolder))
           using (Stream zipStream = captionsEntry.OpenReader()) //closing stream when done
             gridCaptions.LoadCaptions(captions, zipStream, captionsEntry.FileName); //merge multiple embedded caption files (if user added them by hand to the saved state file, since we save only DEFAULT_CAPTIONS file, not multiple caption files)

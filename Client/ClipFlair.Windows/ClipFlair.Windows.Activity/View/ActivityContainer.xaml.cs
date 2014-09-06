@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: ActivityContainer.xaml.cs
-//Version: 20140623
+//Version: 20140906
 
 //TODO: add ContentPartsCloseable property
 //TODO: add ContentPartsZoomable property
@@ -28,26 +28,8 @@ namespace ClipFlair.Windows
 {
 
   [ContentProperty("Windows")]
-  public partial class ActivityContainer : UserControl, IClipFlairStartActions
+  public partial class ActivityContainer : UserControl
   {
-
-    #region --- Constants ---
-
-    public const string URL_PROJECT_HOME = "http://ClipFlair.net";
-    public const string URL_HELP_TUTORIAL_ACTIVITY = ""; //TODO: use in HelpTutorialActivity method
-    public const string URL_HELP_TUTORIAL_VIDEOS = "http://social.clipflair.net/Pages/Tutorials.aspx";
-    public const string URL_HELP_MANUAL = "http://social.clipflair.net/help/manual.aspx";
-    public const string URL_HELP_FAQ = "http://social.clipflair.net/help/faq.aspx";
-    public const string URL_HELP_CONTACT = "http://social.clipflair.net/MonoX/Pages/Contact.aspx";
-    public const string URL_SOCIAL = "http://social.clipflair.net";
-    public const string URL_NEWS = "http://social.clipflair.net/Blog.aspx?MonoXRssFeed=ClipFlair-All-blog-posts";
-
-    public const string URL_DEFAULT_ACTIVITY = ""; //TODO: use at param passed to Open Activity from URL Dialog
-    public const string URL_DEFAULT_VIDEO = "http://video3.smoothhd.com.edgesuite.net/ondemand/Big%20Buck%20Bunny%20Adaptive.ism/Manifest"; //MPEG-DASH sample: http://wams.edgesuite.net/media/MPTExpressionData02/BigBuckBunny_1080p24_IYUV_2ch.ism/manifest(format=mpd-time-csf)
-    public const string URL_DEFAULT_IMAGE = "http://gallery.clipflair.net/image/clipflair-logo.jpg";
-    public const string URL_GALLERY_PREFIX = "http://gallery.clipflair.net/collection/";
-    
-    #endregion
 
     #region --- Initialization ---
 
@@ -125,7 +107,9 @@ namespace ClipFlair.Windows
     #endregion
 
     #region --- Windows ---
-    
+
+    public ActivityWindow ActivityWindow { get; internal set; }
+
     public BaseWindow FindWindow(string tag) //need this since floating windows are not added in the XAML visual tree by the FloatingWindowHostZUI.Windows property (maybe should have FloatingWindowHostZUI inherit 
     {
       foreach (BaseWindow w in zuiContainer.Windows)
@@ -183,9 +167,9 @@ namespace ClipFlair.Windows
             v.Time = View.Time;
             v.Captions = View.Captions;
           }
-          else if (w is CaptionsGridWindow)
+          else if (w is CaptionsWindow)
           {
-            ICaptionsGrid v = ((CaptionsGridWindow)w).CaptionsGridView;
+            ICaptionsGrid v = ((CaptionsWindow)w).CaptionsGridView;
             v.Time = View.Time;
             v.Captions = View.Captions;
           }
@@ -246,14 +230,91 @@ namespace ClipFlair.Windows
       return window;
     }
 
-    #region Binding
+    #region Add actions
+
+    public MediaPlayerWindow AddClip()
+    {
+      MediaPlayerWindow w = (MediaPlayerWindow)AddWindow(MediaPlayerWindowFactory, newInstance: true);
+      w.MediaPlayerView.AutoPlay = false;
+      w.MediaPlayerView.Source = new Uri(ActivityWindow.URL_DEFAULT_VIDEO, UriKind.Absolute);
+      return w;
+    }
+
+    public CaptionsWindow AddCaptions()
+    {
+      CaptionsWindow w = (CaptionsWindow)AddWindow(CaptionsWindowFactory, newInstance: true);
+      return w;
+    }
+
+    public CaptionsWindow AddRevoicing()
+    {
+      CaptionsWindow w = (CaptionsWindow)AddWindow(CaptionsWindowFactory, newInstance: true);
+      w.View.Title = "Revoicing";
+      w.CaptionsGridView.CaptionVisible = false;
+      w.CaptionsGridView.AudioVisible = true;
+      w.View.Width = CaptionsGridDefaults.DefaultWidth_Revoicing;
+      return w;
+    }
+
+    public TextEditorWindow AddText()
+    {
+      TextEditorWindow w = (TextEditorWindow)AddWindow(TextEditorWindowFactory, newInstance: true);
+      return w;
+    }
+
+    public ImageWindow AddImage()
+    {
+      ImageWindow w = (ImageWindow)AddWindow(ImageWindowFactory, newInstance: true);
+      w.ImageView.Source = new Uri(ActivityWindow.URL_DEFAULT_IMAGE, UriKind.Absolute);
+      return w;
+    }
+
+    public MapWindow AddMap()
+    {
+      MapWindow w = (MapWindow)AddWindow(MapWindowFactory, newInstance: true);
+      return w;
+    }
+
+    public NewsWindow AddNews()
+    {
+      NewsWindow w = (NewsWindow)AddWindow(NewsWindowFactory, newInstance: true);
+      w.NewsView.Source = new Uri(ActivityWindow.URL_NEWS, UriKind.Absolute);
+      return w;
+    }
+
+    public BrowserWindow AddBrowser()
+    {
+      BrowserWindow w = (BrowserWindow)AddWindow(BrowserWindowFactory, newInstance: true);
+      w.BrowserView.Source = new Uri(ActivityWindow.URL_PROJECT_HOME, UriKind.Absolute);
+      return w;
+    }
+
+    public GalleryWindow AddGallery(string source = "activities", string title = null)
+    {
+      GalleryWindow w = (GalleryWindow)AddWindow(GalleryWindowFactory, newInstance: true);
+      w.GalleryView.Source = new Uri(ActivityWindow.URL_GALLERY_PREFIX + source + ".cxml"); //TODO: move logic from Studio's App.xaml.cs into GalleryWindow's Source proprty to translate partial URIs into ClipFlair gallery URIs
+      if (title != null)
+        w.Title = title;
+      return w;
+    }
+
+    public void AddNestedActivity()
+    {
+      AddWindow(ActivityWindowFactory, newInstance: true);
+    }
+
+    #endregion
+
+    #endregion
+
+    #region --- Binding ---
 
     private void BindWindow(BaseWindow window)
     {
       window.ViewChanged += (d, e) => { BindWindow(window); }; //rebind the window if its view changes (e.g. after it loads new state)
       //TODO: remove this when no hard-coded bindings are needed any more
       if (window is MediaPlayerWindow) BindMediaPlayerWindow((MediaPlayerWindow)window);
-      else if (window is CaptionsGridWindow) BindCaptionsGridWindow((CaptionsGridWindow)window);
+      else if (window is CaptionsWindow) BindCaptionsGridWindow((CaptionsWindow)window);
       else if (window is TextEditorWindow) BindTextEditorWindow((TextEditorWindow)window);
       else if (window is ImageWindow) BindImageWindow((ImageWindow)window);
       else if (window is MapWindow) BindMapWindow((MapWindow)window);
@@ -279,7 +340,7 @@ namespace ClipFlair.Windows
         }
     } //TODO: check why it won't sync smoothly (see what was doing in LvS, maybe ignore time events that are very close to current time) //most probably need to ignore small time differences at sync
 
-    private void BindCaptionsGridWindow(CaptionsGridWindow window)
+    private void BindCaptionsGridWindow(CaptionsWindow window)
     {
       if (window.View != null && View != null)
         try
@@ -323,7 +384,7 @@ namespace ClipFlair.Windows
           ErrorDialog.Show("Failed to bind Image component", ex);
         }
     }
-    
+
     private void BindMapWindow(MapWindow window)
     {
       if (window.View != null && View != null)
@@ -365,7 +426,7 @@ namespace ClipFlair.Windows
           ErrorDialog.Show("Failed to bind Browser component", ex);
         }
     }
-    
+
     private void BindGalleryWindow(GalleryWindow window)
     {
       if (window.View != null && View != null)
@@ -379,78 +440,12 @@ namespace ClipFlair.Windows
           ErrorDialog.Show("Failed to bind Gallery component", ex);
         }
     }
-    
+
     #endregion
 
-    public MediaPlayerWindow AddClip()
+    private void btnProjectHome_Click(object sender, RoutedEventArgs e)
     {
-      MediaPlayerWindow w = (MediaPlayerWindow)AddWindow(MediaPlayerWindowFactory, newInstance: true);
-      w.MediaPlayerView.AutoPlay = false;
-      w.MediaPlayerView.Source = new Uri(URL_DEFAULT_VIDEO, UriKind.Absolute);
-      return w;
-    }
-
-    public CaptionsGridWindow AddCaptions()
-    {
-      CaptionsGridWindow w = (CaptionsGridWindow)AddWindow(CaptionsGridWindowFactory, newInstance: true);
-      return w;
-    }
-
-    public CaptionsGridWindow AddRevoicing()
-    {
-      CaptionsGridWindow w = (CaptionsGridWindow)AddWindow(CaptionsGridWindowFactory, newInstance: true);
-      w.View.Title = "Revoicing";
-      w.CaptionsGridView.CaptionVisible = false;
-      w.CaptionsGridView.AudioVisible = true;
-      w.View.Width = CaptionsGridDefaults.DefaultWidth_Revoicing;
-      return w;
-    }
-
-    public TextEditorWindow AddText()
-    {
-      TextEditorWindow w = (TextEditorWindow)AddWindow(TextEditorWindowFactory, newInstance: true);
-      return w;
-    }
-
-    public ImageWindow AddImage()
-    {
-      ImageWindow w = (ImageWindow)AddWindow(ImageWindowFactory, newInstance: true);
-      w.ImageView.Source = new Uri(URL_DEFAULT_IMAGE, UriKind.Absolute);
-      return w;
-    }
-
-    public MapWindow AddMap()
-    {
-      MapWindow w = (MapWindow)AddWindow(MapWindowFactory, newInstance: true);
-      return w;
-    }
-
-    public NewsWindow AddNews()
-    {
-      NewsWindow w = (NewsWindow)AddWindow(NewsWindowFactory, newInstance: true);
-      w.NewsView.Source = new Uri(URL_NEWS, UriKind.Absolute);
-      return w;
-    }
-
-    public BrowserWindow AddBrowser()
-    {
-      BrowserWindow w = (BrowserWindow)AddWindow(BrowserWindowFactory, newInstance: true);
-      w.BrowserView.Source = new Uri(URL_PROJECT_HOME, UriKind.Absolute);
-      return w;
-    }
-
-    public GalleryWindow AddGallery(string source = "activities", string title = null)
-    {
-      GalleryWindow w = (GalleryWindow)AddWindow(GalleryWindowFactory, newInstance: true);
-      w.GalleryView.Source = new Uri(URL_GALLERY_PREFIX + source + ".cxml"); //TODO: move logic from Studio's App.xaml.cs into GalleryWindow's Source proprty to translate partial URIs into ClipFlair gallery URIs
-      if (title != null)
-        w.Title = title;
-      return w;
-    }
-
-    public void AddNestedActivity()
-    {
-      AddWindow(ActivityWindowFactory, newInstance: true);
+      ActivityWindow.ShowStartDialog();
     }
 
     #region Add Button events
@@ -533,8 +528,6 @@ namespace ClipFlair.Windows
 
     #endregion
 
-    #endregion
-
     #region --- MEF ---
 
     public CompositionContainer mefContainer;
@@ -543,7 +536,7 @@ namespace ClipFlair.Windows
     public IWindowFactory MediaPlayerWindowFactory { get; set; }
 
     [Import("ClipFlair.Windows.Views.CaptionsGridView", typeof(IWindowFactory), RequiredCreationPolicy = CreationPolicy.Shared)]
-    public IWindowFactory CaptionsGridWindowFactory { get; set; }
+    public IWindowFactory CaptionsWindowFactory { get; set; }
 
     [Import("ClipFlair.Windows.Views.TextEditorView", typeof(IWindowFactory), RequiredCreationPolicy = CreationPolicy.Shared)]
     public IWindowFactory TextEditorWindowFactory { get; set; }
@@ -571,7 +564,7 @@ namespace ClipFlair.Windows
       AggregateCatalog partsCatalog = new AggregateCatalog();
       //don't put the following in conditional compilation block, all are needed for loading of saved options
       partsCatalog.Catalogs.Add(new AssemblyCatalog(typeof(MediaPlayerWindow).Assembly));
-      partsCatalog.Catalogs.Add(new AssemblyCatalog(typeof(CaptionsGridWindow).Assembly));
+      partsCatalog.Catalogs.Add(new AssemblyCatalog(typeof(CaptionsWindow).Assembly));
       partsCatalog.Catalogs.Add(new AssemblyCatalog(typeof(TextEditorWindow).Assembly));
       partsCatalog.Catalogs.Add(new AssemblyCatalog(typeof(ImageWindow).Assembly));
       partsCatalog.Catalogs.Add(new AssemblyCatalog(typeof(MapWindow).Assembly));
@@ -607,157 +600,6 @@ namespace ClipFlair.Windows
         btnAddBrowser.Visibility = Visibility.Collapsed; //WebBrowser class is available in OOB mode only - even if we had some C# version of a full WebBrowser, still would have issue with remote sites not using ClientAccessPolicy.xml
       #endif
     }
-
-    #endregion
-
-    #region --- Start Dialog ---
-
-    public void ShowStartDialog()
-    {
-      StartDialog.Show(this);
-    }
-
-    private void btnProjectHome_Click(object sender, RoutedEventArgs e)
-    {
-      ShowStartDialog();
-    }
-
-    #region --- IClipFlairStartActions ---
-
-    //Project Home//
-
-    public bool ProjectHome()
-    {
-      return NavigateTo(URL_PROJECT_HOME);
-    }
-
-    //NewActivity//
-
-    public bool NewActivity()
-    {
-      RemoveWindows(ignoreChildrenWarnOnClosing: true);
-      View = new ActivityView(); //must set the view first
-      return true;
-    }
-
-    //OpenActivity//
-
-    public bool OpenActivityFile()
-    {
-      LoadClick(this, new RoutedEventArgs());
-      return true; //TODO: return false if user cancelled
-    }
-
-    public bool OpenActivityURL()
-    {
-      LoadURLClick(this, new RoutedEventArgs());
-      return true; //TODO: return false if user cancelled
-    }
-
-    public bool OpenActivityGallery()
-    {
-      GalleryWindow w = AddGallery("activities", "Activity Gallery"); //TODO: use PivotDialog instead, then load activity
-      w.ResizeToView();
-      return true; //TODO: return false if user cancelled PivotDialog
-    }
-
-    //OpenVideo//
-
-    public bool OpenVideoFile()
-    {
-      MediaPlayerWindow win = AddClip();
-      //win.OpenLocalFile(); //TODO: doesn't work, maybe AddClip takes too much time? Check why LoadClick above works fine
-      win.Flipped = true; //flip for user to click the open local media file button //WORKARROUND FOR THE ABOVE ISSUE
-      return true; //TODO: return false if user cancelled
-    }
-
-    public bool OpenVideoURL()
-    {
-      MediaPlayerWindow win = AddClip();
-      win.Flipped = true; //flip for user to fill-in Media URL field
-      return true;
-    }
-
-    public bool OpenVideoGallery()
-    {
-      GalleryWindow w = AddGallery("video", "Video Gallery"); //TODO: use PivotDialog instead, invoked by talking to newly added video component
-      w.ResizeToView();
-      return true; //TODO: return false if user cancelled PivotDialog
-    }
-
-    //OpenImage//
-
-    public bool OpenImageFile()
-    {
-      ImageWindow win = AddImage();
-      //win.OpenLocalFile(); //TODO: doesn't work, maybe AddClip takes too much time? Check why LoadClick above works fine
-      win.Flipped = true; //flip for user to click the open local image file button //WORKARROUND FOR THE ABOVE ISSUE
-      return true; //TODO: return false if user cancelled
-    }
-
-    public bool OpenImageURL()
-    {
-      ImageWindow win = AddImage();
-      win.Flipped = true; //flip for user to fill-in Image URL field
-      return true;
-    }
-
-    public bool OpenImageGallery()
-    {
-      GalleryWindow w = AddGallery("images", "Image Gallery"); //TODO: use PivotDialog instead to get URL, invoked by talking to newly added image component
-      w.ResizeToView();
-      return true; //TODO: return false if user cancelled PivotDialog
-    }
-
-    //Help//
-
-    public bool HelpTutorialActivity()
-    {
-      LoadURLClick(this, new RoutedEventArgs());
-      return true;
-    } //TODO: return false if user cancelled //TODO: should open the tutorial activity directly instead of showing open activity from URL dialog (that has this as default URL)
-
-    public bool HelpTutorialVideos()
-    {
-      return NavigateTo(URL_HELP_TUTORIAL_VIDEOS);
-    }
-
-    public bool HelpManual()
-    {
-      return NavigateTo(URL_HELP_MANUAL);
-    }
-
-    public bool HelpFAQ()
-    {
-      return NavigateTo(URL_HELP_FAQ);
-    }
-
-    public bool HelpContact()
-    {
-      return NavigateTo(URL_HELP_CONTACT);
-    }
-
-    //Social//
-
-    public bool Social()
-    {
-      return NavigateTo(URL_SOCIAL);
-    }
-
-    private bool NavigateTo(string uri)
-    {
-      try
-      {
-        BrowserDialog.Show(new Uri(uri)); //TODO: add WebBrowserWindow and WebBrowserDialog for OOP version and use that to show URLs
-        return true;
-      }
-      catch
-      {
-        return false;
-      }
-    }
-
-    #endregion
 
     #endregion
 

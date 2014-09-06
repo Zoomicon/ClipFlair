@@ -58,7 +58,7 @@ namespace ClipFlair.Windows
 
     /*
     public static IWindowFactory MediaPlayerWindowFactory { get; protected set; }
-    public static IWindowFactory CaptionsGridWindowFactory { get; protected set; }
+    public static IWindowFactory CaptionsWindowFactory { get; protected set; }
     public static IWindowFactory TextEditorWindowFactory { get; protected set; }
     public static IWindowFactory ImageWindowFactory { get; protected set; }
     //public static IWindowFactory CameraWindowFactory { get; protected set; }

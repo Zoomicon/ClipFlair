@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: ActivityWindow.xaml.cs
-//Version: 20140903
+//Version: 20140906
 
 using ClipFlair.UI.Dialogs;
 using ClipFlair.Windows;
@@ -37,13 +37,27 @@ namespace ClipFlair.Windows
 {
 
   [ScriptableType]
-  public partial class ActivityWindow : BaseWindow
+  public partial class ActivityWindow : BaseWindow, IClipFlairStartActions
   {
 
     #region --- Constants ---
 
-    private const string DEFAULT_ACTIVITY = "http://gallery.clipflair.net/activity/Tutorial.clipflair"; //TODO: change this with a list of entries loaded from the web (and have a cached one in app config for offline scenaria or fetched/cached during oob install) //MAYBE COULD HAVE A DEFAULT SMALL ONE IN THE XAP
-    //private const string CLIPFLAIR_FEEDBACK = "http://bit.ly/YGBPbD"; //http://social.clipflair.net/MonoX/Pages/SocialNetworking/Discussion/dboard/O6PslGovYUqUraEHARCOVw/
+    public const string URL_PROJECT_HOME = "http://ClipFlair.net";
+    public const string URL_HELP_TUTORIAL_ACTIVITY = "http://gallery.clipflair.net/activity/Tutorial.clipflair"; //TODO: use in HelpTutorialActivity method
+    public const string URL_HELP_TUTORIAL_VIDEOS = "http://social.clipflair.net/Pages/Tutorials.aspx";
+    public const string URL_HELP_MANUAL = "http://social.clipflair.net/help/manual.aspx";
+    public const string URL_HELP_FAQ = "http://social.clipflair.net/help/faq.aspx";
+    public const string URL_HELP_CONTACT = "http://social.clipflair.net/MonoX/Pages/Contact.aspx";
+    public const string URL_SOCIAL = "http://social.clipflair.net";
+    public const string URL_NEWS = "http://social.clipflair.net/Blog.aspx?MonoXRssFeed=ClipFlair-All-blog-posts";
+
+    public const string URL_DEFAULT_ACTIVITY = ""; //TODO: use at param passed to Open Activity from URL Dialog
+    public const string URL_DEFAULT_VIDEO = "http://video3.smoothhd.com.edgesuite.net/ondemand/Big%20Buck%20Bunny%20Adaptive.ism/Manifest"; //MPEG-DASH sample: http://wams.edgesuite.net/media/MPTExpressionData02/BigBuckBunny_1080p24_IYUV_2ch.ism/manifest(format=mpd-time-csf)
+    public const string URL_DEFAULT_IMAGE = "http://gallery.clipflair.net/image/clipflair-logo.jpg";
+    public const string URL_GALLERY_PREFIX = "http://gallery.clipflair.net/collection/";
+
+    private const string DEFAULT_ACTIVITY = URL_HELP_TUTORIAL_ACTIVITY; //TODO: change this with a list of entries loaded from the web (and have a cached one in app config for offline scenaria or fetched/cached during oob install) //MAYBE COULD HAVE A DEFAULT SMALL ONE IN THE XAP
+    //private const string CLIPFLAIR_FEEDBACK = "http://social.clipflair.net/MonoX/Pages/SocialNetworking/Discussion/dboard/O6PslGovYUqUraEHARCOVw/"; //http://bit.ly/YGBPbD
 
     #endregion
 
@@ -53,6 +67,7 @@ namespace ClipFlair.Windows
     {
       InitializeComponent();
 
+      activity.ActivityWindow = this;
       mefContainer = activity.mefContainer;
 
       OptionsLoadSave.LoadURLTooltip = "Load activity from URL"; //TODO: localize
@@ -121,15 +136,6 @@ namespace ClipFlair.Windows
 
     #endregion
 
-    #region --- StartDialog ---
-
-    public void ShowStartDialog()
-    {
-      Container.ShowStartDialog();
-    }
-
-    #endregion
-
     #region --- Load / Save ---
 
     public override void ShowLoadURLDialog(string loadItemTitle = "ClipFlair Activity")
@@ -143,7 +149,7 @@ namespace ClipFlair.Windows
       { 
         return base.LoadFilter + 
                "|" + MediaPlayerWindowFactory.LOAD_FILTER + 
-               "|" + CaptionsGridWindowFactory.LOAD_FILTER +
+               "|" + CaptionsWindowFactory.LOAD_FILTER +
                "|" + ImageWindowFactory.LOAD_FILTER +
                "|" + TextEditorWindowFactory.LOAD_FILTER //placing this last, since it has an "All Files (*.*)" at its end
                ;
@@ -332,6 +338,152 @@ namespace ClipFlair.Windows
       BrowserDialog.Show(new Uri(CLIPFLAIR_FEEDBACK));
     }
     */
+
+    #region --- Start Dialog ---
+
+    public void ShowStartDialog()
+    {
+      StartDialog.Show(this);
+    }
+
+    #region --- IClipFlairStartActions ---
+
+    //Project Home//
+
+    public bool ProjectHome()
+    {
+      return NavigateTo(URL_PROJECT_HOME);
+    }
+
+    //NewActivity//
+
+    public bool NewActivity()
+    {
+      Container.RemoveWindows(ignoreChildrenWarnOnClosing: true);
+      View = new ActivityView(); //must set the view first
+      return true;
+    }
+
+    //OpenActivity//
+
+    public bool OpenActivityFile()
+    {
+      ShowLoadDialog();
+      return true; //TODO: return false if user cancelled
+    }
+
+    public bool OpenActivityURL()
+    {
+      ShowLoadURLDialog();
+      return true; //TODO: return false if user cancelled
+    }
+
+    public bool OpenActivityGallery()
+    {
+      GalleryWindow w = Container.AddGallery("activities", "Activity Gallery"); //TODO: use PivotDialog instead, then load activity
+      w.ResizeToView();
+      return true; //TODO: return false if user cancelled PivotDialog
+    }
+
+    //OpenVideo//
+
+    public bool OpenVideoFile()
+    {
+      MediaPlayerWindow win = Container.AddClip();
+      //win.OpenLocalFile(); //TODO: doesn't work, maybe AddClip takes too much time? Check why LoadClick above works fine
+      win.Flipped = true; //flip for user to click the open local media file button //WORKARROUND FOR THE ABOVE ISSUE
+      return true; //TODO: return false if user cancelled
+    }
+
+    public bool OpenVideoURL()
+    {
+      MediaPlayerWindow win = Container.AddClip();
+      win.Flipped = true; //flip for user to fill-in Media URL field
+      return true;
+    }
+
+    public bool OpenVideoGallery()
+    {
+      GalleryWindow w = Container.AddGallery("video", "Video Gallery"); //TODO: use PivotDialog instead, invoked by talking to newly added video component
+      w.ResizeToView();
+      return true; //TODO: return false if user cancelled PivotDialog
+    }
+
+    //OpenImage//
+
+    public bool OpenImageFile()
+    {
+      ImageWindow win = Container.AddImage();
+      //win.OpenLocalFile(); //TODO: doesn't work, maybe AddClip takes too much time? Check why LoadClick above works fine
+      win.Flipped = true; //flip for user to click the open local image file button //WORKARROUND FOR THE ABOVE ISSUE
+      return true; //TODO: return false if user cancelled
+    }
+
+    public bool OpenImageURL()
+    {
+      ImageWindow win = Container.AddImage();
+      win.Flipped = true; //flip for user to fill-in Image URL field
+      return true;
+    }
+
+    public bool OpenImageGallery()
+    {
+      GalleryWindow w = Container.AddGallery("images", "Image Gallery"); //TODO: use PivotDialog instead to get URL, invoked by talking to newly added image component
+      w.ResizeToView();
+      return true; //TODO: return false if user cancelled PivotDialog
+    }
+
+    //Help//
+
+    public bool HelpTutorialActivity()
+    {
+      LoadOptions(new Uri(URL_HELP_TUTORIAL_ACTIVITY, UriKind.Absolute));
+      return true;
+    } //TODO: return false if user cancelled
+
+    public bool HelpTutorialVideos()
+    {
+      return NavigateTo(URL_HELP_TUTORIAL_VIDEOS);
+    }
+
+    public bool HelpManual()
+    {
+      return NavigateTo(URL_HELP_MANUAL);
+    }
+
+    public bool HelpFAQ()
+    {
+      return NavigateTo(URL_HELP_FAQ);
+    }
+
+    public bool HelpContact()
+    {
+      return NavigateTo(URL_HELP_CONTACT);
+    }
+
+    //Social//
+
+    public bool Social()
+    {
+      return NavigateTo(URL_SOCIAL);
+    }
+
+    private bool NavigateTo(string uri)
+    {
+      try
+      {
+        BrowserDialog.Show(new Uri(uri)); //TODO: add WebBrowserWindow and WebBrowserDialog for OOP version and use that to show URLs
+        return true;
+      }
+      catch
+      {
+        return false;
+      }
+    }
+
+    #endregion
+
+    #endregion
 
   }
 
