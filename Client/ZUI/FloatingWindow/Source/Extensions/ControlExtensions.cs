@@ -125,7 +125,7 @@ namespace SilverFlow.Controls.Extensions
       if (element == null)
         throw new ArgumentNullException("element");
 
-      return new Rect(0, 0, element.ActualWidth, element.ActualHeight);
+      return new Rect(0, 0, element.ActualWidth, element.ActualHeight); //TODO: see where this is used, maybe causing issues when using scale parameter
     }
 
     /// <summary>

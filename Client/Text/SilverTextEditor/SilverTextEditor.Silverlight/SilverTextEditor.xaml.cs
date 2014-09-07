@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: SilverTextEditor.xaml.cs
-//Version: 20140901
+//Version: 20140907
 
 //Originated from Microsoft Silverlight sample (MSPL license)
 
@@ -1038,6 +1038,11 @@ namespace SilverTextEditor
     }
 
     #endregion
+
+    private void rtb_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+    {
+      e.Handled = true; //handle events, else when a hyperlink is clicked and the richtextbox background is transparent the event will pass through and some handler may cause the hyperlink not to act
+    }
 
     #endregion
 
