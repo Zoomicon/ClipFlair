@@ -1,6 +1,6 @@
 ﻿<!--
 Filename: SilverTextEditor.xaml
-Version: 20140901
+Version: 20140907
 -->
 
 <UserControl x:Class="SilverTextEditor.SilverTextEditor"
@@ -371,21 +371,23 @@ Version: 20140901
           </Rectangle>
           -->
 
-        <RichTextBox x:Name="rtb"
-                       Background="{Binding Background, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=UserControl}}"
-                       AllowDrop="True" 
-                       BorderThickness="0"
-                       Style="{StaticResource RichTextBoxStyle1}"
-                       HorizontalScrollBarVisibility="Auto"
-                       VerticalScrollBarVisibility="Auto" 
-                       FontSize="20" 
-                       
-                       MouseRightButtonDown="rtb_MouseRightButtonDown" MouseRightButtonUp="rtb_MouseRightButtonUp" 
-                       MouseMove="rtb_MouseMove" 
-                       Drop="rtb_Drop" 
-                       DragEnter="rtb_DragEnter" DragLeave="rtb_DragLeave" 
-                       >
-          <!-- TextWrapping="Wrap"     *** NO SUCH PROPERTY IN WPF RichTextBox, WRAPPING BY DEFAULT *** -->
+        <RichTextBox
+          x:Name="rtb"
+          Background="{Binding Background, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=UserControl}}"
+          AllowDrop="True" 
+          BorderThickness="0"
+          Style="{StaticResource RichTextBoxStyle1}"
+          HorizontalScrollBarVisibility="Auto"
+          VerticalScrollBarVisibility="Auto" 
+          FontSize="20" 
+          
+          MouseLeftButtonDown="rtb_MouseLeftButtonDown"
+          MouseRightButtonDown="rtb_MouseRightButtonDown" MouseRightButtonUp="rtb_MouseRightButtonUp" 
+          MouseMove="rtb_MouseMove" 
+          Drop="rtb_Drop" 
+          DragEnter="rtb_DragEnter" DragLeave="rtb_DragLeave" 
+          >
+          <!-- TextWrapping="Wrap"     *** NO SUCH PROPERTY IN WPF RichTextBox, WRAPPING BY DEFAULT (see: http://stackoverflow.com/questions/1368047/c-wpf-disable-text-wrap-of-richtextbox) *** -->
           <!-- Margin="8,10,8,10" -->
 
           <!-- ****************** -->

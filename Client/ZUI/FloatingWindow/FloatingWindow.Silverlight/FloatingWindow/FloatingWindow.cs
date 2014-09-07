@@ -1741,7 +1741,7 @@ namespace SilverFlow.Controls
         CaptureMouseCursor();
         windowAction = WindowAction.Resize;
       }
-      else if (MoveMaximizedEnabled)
+      else if (MoveMaximizedEnabled) //TODO: maybe should check MoveMaximizedEnabled maybe only when the window is maximized (use something like !Maximized || MoveMaximizedEnabled)
       {
         if (chrome != null)
         {
@@ -1762,8 +1762,7 @@ namespace SilverFlow.Controls
           // If the mouse was clicked on the contentBorder - start dragging the window
           Point point = e.GetPosition(contentBorder);
 
-          if (MoveEnabled && contentBorder.ContainsPoint(point) &&
-              !this.FindElementsInCoordinates(e.GetPosition(this)).Any(x => x is RichTextBox || x is RichTextBlock || x is RichTextBlockOverflow || x is HyperlinkButton) ) //Note: must check this, else hyperlinks in RichText controls won't be clickable, even at readonly mode of RichTextBox
+          if (MoveEnabled && contentBorder.ContainsPoint(point))
           {
             snapinController.SnapinBounds = this.FloatingWindowHost.GetSnapinBounds(this);
             CaptureMouseCursor();
@@ -2374,7 +2373,7 @@ namespace SilverFlow.Controls
     /// <param name="e">The <see cref="System.Windows.Input.MouseButtonEventArgs"/> instance containing the event data.</param>
     private void FloatingWindow_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
     {
-      // Gets the element with keyboard focus
+      // Gets the element with keyboard focus (must do before calling "SetTopmost")
       Control elementWithFocus =
         #if SILVERLIGHT
         FocusManager.GetFocusedElement() as Control;
@@ -2385,7 +2384,7 @@ namespace SilverFlow.Controls
       // Brings current window to the front
       SetTopmost(); //TODO: add property AutoBringToFront (default true) to select whether we want it to be brought to front automatically
 
-      if (elementWithFocus != null /*&& elementWithFocus.GetType() != Hyperlink*/) //TODO: filter hyperlinkbutton and hyperlink here (remove some other related patch we had)
+      if (elementWithFocus != null)
       {
         #if SILVERLIGHT
         if (IsControlInVisualTree(elementWithFocus)) //TODO: maybe use WPF code for Silverlight too here?
