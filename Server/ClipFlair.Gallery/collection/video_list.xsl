@@ -75,18 +75,60 @@ exclude-result-prefixes="cxml"
     <xsl:variable name="PEDAGOGICAL_ADAPTABILITY" select="cxml:Facets/cxml:Facet[@Name='Pedagogical adaptability']/cxml:String/@Value"/>
  
     <div class="col">
-    <h2 class="title"><a href="{$URL}" title="Open activity"><xsl:value-of select="$TITLE"/></a></h2>
-    <div class="img-wrapper"><a href="{$URL}" title="Open activity"><img src="{$IMAGE}" /></a></div>
-    <p class="description"><xsl:value-of select="$DESCRIPTION"/></p>
-    <ul class="meta">
-      <li><span class="meta-title">Duration </span><xsl:value-of select="$DURATION"/></li>
-      <li><span class="meta-title">Genre </span><xsl:value-of select="$GENRE"/></li>
-      <li><span class="meta-title">Age group </span><xsl:value-of select="$AGE_GROUP"/></li>
-      <li><span class="meta-title">Audio language </span><xsl:value-of select="$AUDIO_LANGUAGE"/></li>
-      <li><span class="meta-title">Captions language </span><xsl:value-of select="$CAPTIONS_LANGUAGE"/></li>
-      <li><span class="meta-title">Authors / Source </span><xsl:value-of select="$AUTHORS_SOURCE"/></li>
-    </ul>
+      <h2 class="title"><a href="{$URL}" title="Open activity"><xsl:value-of select="$TITLE"/></a></h2>
+      <div class="img-wrapper"><a href="{$URL}" title="Open activity"><img src="{$IMAGE}" /></a></div>
+      <p class="description"><xsl:value-of select="$DESCRIPTION"/></p>
+      <ul class="meta">
+     
+        <xsl:call-template name="property">
+          <xsl:with-param name="title" select="'Duration'" />
+          <xsl:with-param name="value" select="$DURATION" />
+        </xsl:call-template>
+        
+        <xsl:call-template name="property">
+          <xsl:with-param name="title" select="'Genre'" />
+          <xsl:with-param name="value" select="$GENRE" />
+        </xsl:call-template>
+        
+        <xsl:call-template name="property">
+          <xsl:with-param name="title" select="'Age group'" />
+          <xsl:with-param name="value" select="$AGE_GROUP" />
+        </xsl:call-template>
+        
+        <xsl:call-template name="property">
+          <xsl:with-param name="title" select="'Audio language'" />
+          <xsl:with-param name="value" select="$AUDIO_LANGUAGE" />
+        </xsl:call-template>
+        
+        <xsl:call-template name="property">
+          <xsl:with-param name="title" select="'Captions language'" />
+          <xsl:with-param name="value" select="$CAPTIONS_LANGUAGE" />
+        </xsl:call-template>
+        
+        <xsl:call-template name="property">
+          <xsl:with-param name="title" select="'Authors / Source'" />
+          <xsl:with-param name="value" select="$AUTHORS_SOURCE" />
+        </xsl:call-template>
+        
+      </ul>
     </div>
+  </xsl:template>
+  
+  <xsl:template name="property" match="*">
+    <xsl:param name="title"/>
+    <xsl:param name="value"/>
+    
+    <li>
+      <xsl:choose>
+        <xsl:when test="normalize-space($value)!=''">
+          <span class="meta-title"><xsl:value-of select="$title"/>&#160;</span><xsl:value-of select="$value"/>
+        </xsl:when>
+        
+        <xsl:otherwise>
+          <span class="meta-title">&#160;</span>
+        </xsl:otherwise>
+      </xsl:choose>
+    </li> 
   </xsl:template>
 
   <!-- ########################### -->

@@ -70,17 +70,50 @@ exclude-result-prefixes="cxml"
     <xsl:variable name="CAPTIONS_LANGUAGE" select="cxml:Facets/cxml:Facet[@Name='Captions language (on image)']/cxml:String/@Value"/>
  
     <div class="col">
-    <h2 class="title"><a href="{$URL}" title="Open activity"><xsl:value-of select="$TITLE"/></a></h2>
-    <div class="img-wrapper"><a href="{$URL}" title="Open activity"><img src="{$IMAGE}" /></a></div>
-    <p class="description"><xsl:value-of select="$DESCRIPTION"/></p>
-    <ul class="meta">
-      <li><span class="meta-title">Age group </span><xsl:value-of select="$AGE_GROUP"/></li>
-      <li><span class="meta-title">Captions language </span><xsl:value-of select="$CAPTIONS_LANGUAGE"/></li>
-      <li><span class="meta-title">Authors / Source </span><xsl:value-of select="$AUTHORS_SOURCE"/></li>
-      <li><span class="meta-title">License </span><xsl:value-of select="$LICENSE"/></li>
+      <h2 class="title"><a href="{$URL}" title="Open activity"><xsl:value-of select="$TITLE"/></a></h2>
+      <div class="img-wrapper"><a href="{$URL}" title="Open activity"><img src="{$IMAGE}" /></a></div>
+      <p class="description"><xsl:value-of select="$DESCRIPTION"/></p>
+      <ul class="meta">
+      
+        <xsl:call-template name="property">
+          <xsl:with-param name="title" select="'Age group'" />
+          <xsl:with-param name="value" select="$AGE_GROUP" />
+        </xsl:call-template>
 
-    </ul>
+        <xsl:call-template name="property">
+          <xsl:with-param name="title" select="'Captions language'" />
+          <xsl:with-param name="value" select="$CAPTIONS_LANGUAGE" />
+        </xsl:call-template>
+
+        <xsl:call-template name="property">
+          <xsl:with-param name="title" select="'Authors / Source'" />
+          <xsl:with-param name="value" select="$AUTHORS_SOURCE" />
+        </xsl:call-template>
+
+        <xsl:call-template name="property">
+          <xsl:with-param name="title" select="'License'" />
+          <xsl:with-param name="value" select="$LICENSE" />
+        </xsl:call-template>
+
+      </ul>
     </div>
+  </xsl:template>
+  
+  <xsl:template name="property" match="*">
+    <xsl:param name="title"/>
+    <xsl:param name="value"/>
+    
+    <li>
+      <xsl:choose>
+        <xsl:when test="normalize-space($value)!=''">
+          <span class="meta-title"><xsl:value-of select="$title"/>&#160;</span><xsl:value-of select="$value"/>
+        </xsl:when>
+        
+        <xsl:otherwise>
+          <span class="meta-title">&#160;</span>
+        </xsl:otherwise>
+      </xsl:choose>
+    </li> 
   </xsl:template>
 
   <!-- ########################### -->

@@ -72,16 +72,50 @@ exclude-result-prefixes="cxml"
     <xsl:variable name="LEVEL" select="cxml:Facets/cxml:Facet[@Name='Level']/cxml:String/@Value"/>
 
     <div class="col">
-    <h2 class="title"><a href="{$URL}" title="Open activity"><xsl:value-of select="$TITLE"/></a></h2>
-    <div class="img-wrapper"><a href="{$URL}" title="Open activity"><img src="{$IMAGE}" /></a></div>
-    <p class="description"><xsl:value-of select="$DESCRIPTION"/></p>
-    <ul class="meta">
-      <li><span class="meta-title">For learners of </span><xsl:value-of select="$FOR_LEARNERS"/></li>
-      <li><span class="meta-title">For speakers of </span><xsl:value-of select="$FOR_SPEAKERS"/></li>
-      <li><span class="meta-title">Level </span><xsl:value-of select="$LEVEL"/></li>
-      <li><span class="meta-title">Author </span><xsl:value-of select="$AUTHORS_SOURCE"/></li>
-    </ul>
+      <h2 class="title"><a href="{$URL}" title="Open activity"><xsl:value-of select="$TITLE"/></a></h2>
+      <div class="img-wrapper"><a href="{$URL}" title="Open activity"><img src="{$IMAGE}" /></a></div>
+      <p class="description"><xsl:value-of select="$DESCRIPTION"/></p>
+      <ul class="meta">
+
+        <xsl:call-template name="property">
+          <xsl:with-param name="title" select="'For learners of'" />
+          <xsl:with-param name="value" select="$FOR_LEARNERS" />
+        </xsl:call-template>
+        
+        <xsl:call-template name="property">
+          <xsl:with-param name="title" select="'For speakers of'" />
+          <xsl:with-param name="value" select="$FOR_SPEAKERS" />
+        </xsl:call-template>
+        
+        <xsl:call-template name="property">
+          <xsl:with-param name="title" select="'Level'" />
+          <xsl:with-param name="value" select="$LEVEL" />
+        </xsl:call-template>
+        
+        <xsl:call-template name="property">
+          <xsl:with-param name="title" select="'Author'" />
+          <xsl:with-param name="value" select="$AUTHORS_SOURCE" />
+        </xsl:call-template>
+        
+      </ul>
     </div>
+  </xsl:template>
+  
+  <xsl:template name="property" match="*">
+    <xsl:param name="title"/>
+    <xsl:param name="value"/>
+    
+    <li>
+      <xsl:choose>
+        <xsl:when test="normalize-space($value)!=''">
+          <span class="meta-title"><xsl:value-of select="$title"/>&#160;</span><xsl:value-of select="$value"/>
+        </xsl:when>
+        
+        <xsl:otherwise>
+          <span class="meta-title">&#160;</span>
+        </xsl:otherwise>
+      </xsl:choose>
+    </li> 
   </xsl:template>
 
   <!-- ########################### -->
