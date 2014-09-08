@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?altova_samplexml http://gallery.clipflair.net/collection/activities.cxml?>
 
+<!--
+Filename: activities_list.xsl
+Version: 20140908
+-->
+
 <xsl:stylesheet 
 version="1.0"
 xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
@@ -74,7 +79,7 @@ exclude-result-prefixes="cxml"
       <li><span class="meta-title">For learners of </span><xsl:value-of select="$FOR_LEARNERS"/></li>
       <li><span class="meta-title">For speakers of </span><xsl:value-of select="$FOR_SPEAKERS"/></li>
       <li><span class="meta-title">Level </span><xsl:value-of select="$LEVEL"/></li>
-      <li><span class="meta-title">Author</span><xsl:value-of select="$AUTHORS_SOURCE"/></li>
+      <li><span class="meta-title">Author </span><xsl:value-of select="$AUTHORS_SOURCE"/></li>
     </ul>
     </div>
   </xsl:template>

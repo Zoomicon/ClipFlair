@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?altova_samplexml http://gallery.clipflair.net/collection/images.cxml?>
 
+<!--
+Filename: images_list.xsl
+Version: 20140908
+-->
+
 <xsl:stylesheet 
 version="1.0"
 xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
@@ -72,7 +77,7 @@ exclude-result-prefixes="cxml"
       <li><span class="meta-title">Age group </span><xsl:value-of select="$AGE_GROUP"/></li>
       <li><span class="meta-title">Captions language </span><xsl:value-of select="$CAPTIONS_LANGUAGE"/></li>
       <li><span class="meta-title">Authors / Source </span><xsl:value-of select="$AUTHORS_SOURCE"/></li>
-      <li><span class="meta-title">License</span><xsl:value-of select="$LICENSE"/></li>
+      <li><span class="meta-title">License </span><xsl:value-of select="$LICENSE"/></li>
 
     </ul>
     </div>
