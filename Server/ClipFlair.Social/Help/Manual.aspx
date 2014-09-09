@@ -3,7 +3,7 @@
     AutoEventWireup="True"
     CodeBehind="Dashboard.aspx.cs"
     Inherits="MonoSoftware.MonoX.BasePage"
-    Theme="Default"
+    Theme="ClipFlair"
     MasterPageFile="~/MonoX/MasterPages/DefaultLocalized.master" %>
         
 <%@ MasterType TypeName="MonoSoftware.MonoX.BaseMasterPage" %>
