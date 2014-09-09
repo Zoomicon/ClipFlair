@@ -38,7 +38,7 @@
         <div class="container">
             <div class="row-fluid">
                 <div class="span12 clearfix">
-                    <portal:PortalWebPartZoneTableless ID="ForthLeftPartZone" runat="server" Width="100%" ChromeTemplateFile="Standard.htm" HeaderText='<%$ Code: PageResources.Zone_LeftPartZone %>'>
+                    <portal:PortalWebPartZoneTableless CssClass="margin-top-40" ID="ForthLeftPartZone" runat="server" Width="100%" ChromeTemplateFile="Standard.htm" HeaderText='<%$ Code: PageResources.Zone_LeftPartZone %>'>
                         <ZoneTemplate>
                             <MonoX:Editor runat="server" ID="editor02" Title='<%$ Code: PageResources.Title_TopSection %>' DefaultDocumentTitle='<%$ Code: PageResources.Title_TopSection %>'>
                                 <DefaultContent>
@@ -64,7 +64,7 @@
                     </portal:PortalWebPartZoneTableless>             
                 </div>
                 <div class="span6 clearfix" style="position: relative;">
-                    <portal:PortalWebPartZoneTableless ID="ForthRightPartZone" runat="server" Width="100%" ChromeTemplateFile="Standard.htm" HeaderText='<%$ Code: PageResources.Zone_RightPartZone %>'>
+                    <portal:PortalWebPartZoneTableless ID="ForthRightPartZone" CssClass="activities-slideshow" runat="server" Width="100%" ChromeTemplateFile="Standard.htm" HeaderText='<%$ Code: PageResources.Zone_RightPartZone %>'>
                         <ZoneTemplate>
                             <MonoX:SlideShow runat="server" ID="ctlSlideShow" Title='<%$ Code: PageResources.Title_RightSection %>'
                                 NavigationNextCaption="<%$ Code: MonoSoftware.MonoX.Resources.DefaultResources.SlideShow_Next.ToUpper() %>" 
@@ -80,8 +80,10 @@
                                     <ModuleGallery:SlideShowItem runat="server" ImageUrl="~/App_Themes/ClipFlair/img/Projects/FriendsBabyShower-Cap-C1-EN.jpg" Url="http://studio.clipflair.net/?activity=FriendsBabyShower-Cap-C1-EN.clipflair" Title="FriendsBabyShower-Cap-C1-EN"></ModuleGallery:SlideShowItem>
                                 </SlideShowItems>
                             </MonoX:SlideShow>
+			    
                         </ZoneTemplate>
-                    </portal:PortalWebPartZoneTableless>  
+                    </portal:PortalWebPartZoneTableless>
+		    <p><a class="iframe" style="font-size: 18px; font-weight: 600; padding-top: 10px;" data-fancybox-type="iframe" href="https://docs.google.com/forms/d/1oqBPyNDwVBEK33MwmSeNXEiBthjG5UdYHwJLFTUphmo/viewform?embedded=true">Click here to tell us what you think about ClipFlair!</a></p>		    
                 </div>               
             </div>
         </div>    
