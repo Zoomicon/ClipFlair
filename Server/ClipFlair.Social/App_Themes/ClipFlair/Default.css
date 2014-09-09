@@ -962,7 +962,10 @@ a.tab-button:hover
    
 }
 /*/!!!*/
-
+/*SLIDESHOW*/
+    .activities-slideshow {
+	margin-top: 96px;
+    }
 /*!!!*/
 .styled-button-clipflair_green
 {
@@ -11295,3 +11298,41 @@ a.no-style {
     right: 0 !important;
 }
 /***/
+
+/*front page LANGUAGES web-part styles*/
+/*ul.languages {
+	list-style: none;
+	display: inline;
+	margin: 0;
+	padding: 0;
+}
+ul.languages li {
+	display: inline;
+	margin: 0;
+	padding: 0;
+}
+ul.languages li ul {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	width: 33%;
+	float: left;
+}
+ul.languages li ul li {
+	clear: both !important;
+	margin: 0;
+	padding: 0;
+	padding-bottom: 6px;
+	margin-bottom: 6px;
+	color: #555;
+	font-family: 'Open Sans', sans-serif !important;
+	font-weight: 600;
+	font-size: 12px;
+	float: left;
+	width: 100%;
+	border-bottom:solid 1px #d0d0d0;
+	padding-right: 3%;
+}
+ul.languages li ul li:last-child {
+	border-bottom:none;
+}*/

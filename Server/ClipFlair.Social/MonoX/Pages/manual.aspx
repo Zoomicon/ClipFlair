@@ -33,14 +33,45 @@
     <div class="container">             
         <div class="row-fluid">
             <div class="span8">
+		<!--chapter 1-->
                 <portal:PortalWebPartZoneTableless HeaderText="Content zone" ID="contentPartZone" runat="server" Width="100%" ChromeTemplateFile="Standard.htm">
                     <ZoneTemplate>
                         <MonoX:Editor ID="ctlEditor" runat="server" Title=""></MonoX:Editor>
                     </ZoneTemplate>
                 </portal:PortalWebPartZoneTableless>
+		<!--chapter 2-->
+                <portal:PortalWebPartZoneTableless HeaderText="Content zone" ID="contentPartZone2" runat="server" Width="100%" ChromeTemplateFile="Standard.htm">
+                    <ZoneTemplate>
+                        <MonoX:Editor ID="ctlEditor2" runat="server" Title=""></MonoX:Editor>
+                    </ZoneTemplate>
+                </portal:PortalWebPartZoneTableless>
+		<!--chapter 3-->
+                <portal:PortalWebPartZoneTableless HeaderText="Content zone" ID="contentPartZone3" runat="server" Width="100%" ChromeTemplateFile="Standard.htm">
+                    <ZoneTemplate>
+                        <MonoX:Editor ID="ctlEditor3" runat="server" Title=""></MonoX:Editor>
+                    </ZoneTemplate>
+                </portal:PortalWebPartZoneTableless>
+		<!--chapter 4-->
+                <portal:PortalWebPartZoneTableless HeaderText="Content zone" ID="contentPartZone4" runat="server" Width="100%" ChromeTemplateFile="Standard.htm">
+                    <ZoneTemplate>
+                        <MonoX:Editor ID="ctlEditor4" runat="server" Title=""></MonoX:Editor>
+                    </ZoneTemplate>
+                </portal:PortalWebPartZoneTableless>
+		<!--chapter 5-->
+                <portal:PortalWebPartZoneTableless HeaderText="Content zone" ID="contentPartZone5" runat="server" Width="100%" ChromeTemplateFile="Standard.htm">
+                    <ZoneTemplate>
+                        <MonoX:Editor ID="ctlEditor5" runat="server" Title=""></MonoX:Editor>
+                    </ZoneTemplate>
+                </portal:PortalWebPartZoneTableless>
+		<!--chapter 6-->
+                <portal:PortalWebPartZoneTableless HeaderText="Content zone" ID="contentPartZone6" runat="server" Width="100%" ChromeTemplateFile="Standard.htm">
+                    <ZoneTemplate>
+                        <MonoX:Editor ID="ctlEditor6" runat="server" Title=""></MonoX:Editor>
+                    </ZoneTemplate>
+                </portal:PortalWebPartZoneTableless>
             </div>
             <div class="span4">
-                <portal:PortalWebPartZoneTableless HeaderText="Right part zone" ID="rightPartZone" runat="server" Width="100%" ChromeTemplateFile="RightColumn.htm" ShowChromeForNonAdmins="true">
+                <portal:PortalWebPartZoneTableless HeaderText="Right part zone" ID="rightPartZone" CssClass="table-of-contents" runat="server" Width="100%" Height="400px" ChromeTemplateFile="RightColumn.htm" ShowChromeForNonAdmins="true">
                     <ZoneTemplate>
                          
                     </ZoneTemplate>
