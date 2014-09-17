@@ -3,7 +3,7 @@
 
 <!--
 Filename: activities_list.xsl
-Version: 20140908
+Version: 20140917
 -->
 
 <xsl:stylesheet 
@@ -56,7 +56,7 @@ exclude-result-prefixes="cxml"
   <xsl:template match="cxml:Item" mode="col">
     <xsl:variable name="FILENAME" select="cxml:Facets/cxml:Facet[@Name='Filename']/cxml:String/@Value"/>
     <xsl:variable name="URL" select="@Href"/>
-    <xsl:variable name="IMAGE" select="concat('http://gallery.clipflair.net/activity/image/', $FILENAME, '.png')"/>
+    <xsl:variable name="IMAGE" select="concat('http://gallery.clipflair.net/activity/image/526x302/', $FILENAME, '.png')"/>
     <xsl:variable name="TITLE" select="@Name"/>
     <xsl:variable name="DESCRIPTION" select="cxml:Description/text()" />
     <!-- Common Facets -->
