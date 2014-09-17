@@ -1,4 +1,7 @@
-/* SCREEN & PRINT */
+/*
+  Filename: List.css
+  Version: 20140917
+*/
 
 @media all {
 
@@ -69,9 +72,11 @@
     width: 100%;
     max-width: 100%;
     overflow: hidden;
+    /* (too heavy, crashes when printing many images - looks ugly too)
     -webkit-border-radius: 10px;
     -moz-border-radius: 10px;
     border-radius: 10px;
+    */
   }
 
   .img-wrapper img {
