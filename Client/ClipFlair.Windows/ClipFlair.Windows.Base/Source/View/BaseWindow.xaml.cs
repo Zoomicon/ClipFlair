@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: BaseWindow.xaml.cs
-//Version: 20140811
+//Version: 20140921
 
 //TODO: unbind control at close
 
@@ -306,7 +306,7 @@ namespace ClipFlair.Windows
       get { return CLIPFLAIR_LOAD_FILTER;  }
     }
 
-    public void ShowLoadDialog() //this has to be called by user-initiated event handler
+    public bool ShowLoadDialog() //this has to be called by user-initiated event handler
     {
       try
       {
@@ -323,6 +323,7 @@ namespace ClipFlair.Windows
           loadModifiers = Keyboard.Modifiers;
           LoadOptions(dlg.Files);
           Flipped = false; //flip the view back to front after succesful options loading
+          return true;
         }
       }
       catch (NullReferenceException ex)
@@ -333,11 +334,12 @@ namespace ClipFlair.Windows
       {
         ErrorDialog.Show("Loading failed", ex);
       }
+      return false;
     }
 
-    public void ShowSaveDialog() //this has to be called by user-initiated event handler
+    public bool ShowSaveDialog() //this has to be called by user-initiated event handler
     {
-      if (View == null) return;
+      if (View == null) return false;
 
       try
       {
@@ -350,13 +352,17 @@ namespace ClipFlair.Windows
         };
 
         if (dlg.ShowDialog() == true) //TODO: find the parent window
+        {
           using (Stream stream = dlg.OpenFile()) //will close the stream when done
             SaveOptions(stream);
+          return true;
+        }
       }
       catch (Exception ex)
       {
         ErrorDialog.Show("Saving failed", ex);
       }
+      return false;
     }
 
     public void ShowHelp()

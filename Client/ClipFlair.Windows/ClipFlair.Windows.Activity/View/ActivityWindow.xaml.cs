@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: ActivityWindow.xaml.cs
-//Version: 20140906
+//Version: 20140921
 
 using ClipFlair.UI.Dialogs;
 using ClipFlair.Windows;
@@ -360,7 +360,7 @@ namespace ClipFlair.Windows
     public bool NewActivity()
     {
       Container.RemoveWindows(ignoreChildrenWarnOnClosing: true);
-      View = new ActivityView(); //must set the view first
+      Container.View = new ActivityView(); //must set Container.View, not this.View, else the activity doesn't show in full window size
       return true;
     }
 
@@ -368,14 +368,13 @@ namespace ClipFlair.Windows
 
     public bool OpenActivityFile()
     {
-      ShowLoadDialog();
-      return true; //TODO: return false if user cancelled
+      return ShowLoadDialog();
     }
 
     public bool OpenActivityURL()
     {
       ShowLoadURLDialog();
-      return true; //TODO: return false if user cancelled
+      return true; //TODO: return false if user cancelled (need to make ShowLoadURLDialog wait for OnClosing before returning and check DialogResult, then return false if InputDialog was cancelled)
     }
 
     public bool OpenActivityGallery()
@@ -390,9 +389,7 @@ namespace ClipFlair.Windows
     public bool OpenVideoFile()
     {
       MediaPlayerWindow win = Container.AddClip();
-      //win.OpenLocalFile(); //TODO: doesn't work, maybe AddClip takes too much time? Check why LoadClick above works fine
-      win.Flipped = true; //flip for user to click the open local media file button //WORKARROUND FOR THE ABOVE ISSUE
-      return true; //TODO: return false if user cancelled
+      return win.OpenLocalFile();
     }
 
     public bool OpenVideoURL()
@@ -414,9 +411,7 @@ namespace ClipFlair.Windows
     public bool OpenImageFile()
     {
       ImageWindow win = Container.AddImage();
-      //win.OpenLocalFile(); //TODO: doesn't work, maybe AddClip takes too much time? Check why LoadClick above works fine
-      win.Flipped = true; //flip for user to click the open local image file button //WORKARROUND FOR THE ABOVE ISSUE
-      return true; //TODO: return false if user cancelled
+      return win.OpenLocalFile();
     }
 
     public bool OpenImageURL()
@@ -439,7 +434,7 @@ namespace ClipFlair.Windows
     {
       LoadOptions(new Uri(URL_HELP_TUTORIAL_ACTIVITY, UriKind.Absolute));
       return true;
-    } //TODO: return false if user cancelled
+    }
 
     public bool HelpTutorialVideos()
     {
