@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: TextEditorWindow.xaml.cs
-//Version: 20140616
+//Version: 20140921
 
 using ClipFlair.Windows.Text;
 using ClipFlair.Windows.Views;
@@ -99,6 +99,8 @@ namespace ClipFlair.Windows
         foreach (ZipEntry textEntry in zip.SelectEntries("*" + ext, zipFolder))
           using (Stream zipStream = textEntry.OpenReader()) //closing stream when done
             editor.Load(zipStream, textEntry.FileName, clearFirst:false); //merge multiple text documents together (if user has embedded them manually in the saved state file, since we save only DEFAULT_TEXT with all the content)
+
+      editor.ScrollToStart(); //must do this here, since we use false for "clearFirst" above (because we're merging multiple documents), which makes "editor.Load" not call "ScrollToStart"
     }
 
     #endregion
