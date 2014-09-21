@@ -1,6 +1,6 @@
 ﻿<!--
 Filename: SilverTextEditor.xaml
-Version: 20140907
+Version: 20140921
 -->
 
 <UserControl x:Class="SilverTextEditor.SilverTextEditor"
@@ -168,7 +168,7 @@ Version: 20140907
             <ComboBoxItem Content="Courier New" Tag="Courier New" FontFamily="Courier New" FontSize="12"/>
             <ComboBoxItem Content="Georgia" Tag="Georgia" FontFamily="Georgia" FontSize="12"/>
             <ComboBoxItem Content="Lucida Sans Unicode" Tag="Lucida Sans Unicode" FontFamily="Lucida Sans Unicode" FontSize="12"/>
-            <ComboBoxItem Content="Portable User Interface" Tag="{x:Null}" FontFamily="Portable User Interface" FontSize="12"/>
+            <ComboBoxItem Content="Portable User Interface" Tag="Portable User Interface" FontFamily="Portable User Interface" FontSize="12"/>
             <ComboBoxItem Content="Times New Roman" Tag="Times New Roman" FontFamily="Times New Roman" FontSize="12"/>
             <ComboBoxItem Content="Trebuchet MS" Tag="Trebuchet MS" FontFamily="Trebuchet MS" FontSize="12"/>
             <ComboBoxItem Content="Verdana" Tag="Verdana" FontFamily="Verdana" FontSize="12"/>
