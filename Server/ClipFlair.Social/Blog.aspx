@@ -48,9 +48,9 @@
                 <portal:PortalWebPartZoneTableless HeaderText='<%$ Code: PageResources.Zone_RightPartZone %>' ID="rightWebPartZone" runat="server" Width="100%" ChromeTemplateFile="RightColumn.htm" ShowChromeForNonAdmins="true">
                     <ZoneTemplate>
                         <MonoX:BlogInfo ID="blogInfo" CacheDuration="600" HideIfEmpty="true" runat="server" />
-                        <MonoX:BlogCategories ID="blogCategories" CacheDuration="600" HideIfEmpty="true" runat="server" />
-                        <MonoX:BlogList ID="blogList" CacheDuration="600" HideIfEmpty="true" runat="server" PageSize="5" Template="BlogListShort" />
-                        <MonoX:TagCloud ID="tagCloud" CacheDuration="600" HideIfEmpty="true" runat="server" />
+			<MonoX:TagCloud ID="tagCloud" CacheDuration="600" HideIfEmpty="true" runat="server" />
+                        <MonoX:BlogCategories ID="blogCategories" CacheDuration="600" HideIfEmpty="true" runat="server" />			
+                        <MonoX:BlogList ID="blogList" CacheDuration="600" HideIfEmpty="true" runat="server" PageSize="5" Template="BlogListShort" />                      
                     </ZoneTemplate>
                 </portal:PortalWebPartZoneTableless>
             </div>

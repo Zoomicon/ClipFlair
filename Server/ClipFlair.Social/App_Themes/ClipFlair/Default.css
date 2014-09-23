@@ -11300,7 +11300,7 @@ a.no-style {
 /***/
 
 /*front page LANGUAGES web-part styles*/
-/*ul.languages {
+ul.languages {
 	list-style: none;
 	display: inline;
 	margin: 0;
@@ -11335,4 +11335,4 @@ ul.languages li ul li {
 }
 ul.languages li ul li:last-child {
 	border-bottom:none;
-}*/
+}
