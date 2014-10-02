@@ -32,7 +32,7 @@
     <!--CLIPFLAIR-->
     <div style="text-align:center">
         <MonoX:StyledButton ID="btnSend" runat="server" CssClass="main-button submit-btn float-right"></MonoX:StyledButton>
-        <!--needs localization-->
+        
         <a class="styled-button back-btn float-right" href="../Login.aspx">back</a>
     </div>
     <!--/CLIPFLAIR-->
