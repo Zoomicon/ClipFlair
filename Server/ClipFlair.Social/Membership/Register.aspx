@@ -33,7 +33,7 @@
                             <div class="italic-style"><!--<asp:Literal ID="Literal1" runat="server" Visible="<% $Code: MonoSoftware.MonoX.ApplicationSettings.EnableUserRegistration %>" Text="<% $Code: PageResources.Login_RpxWarning %>"></asp:Literal>-->Do not use social login if you've already registered directly with ClipFlair Social: enter your User name and Password instead and click the Log in button</div>
                         </div>
                         <div class="gotoLogin">
-                            <!--needs localization-->
+                            
                             <p>Already a user? Sign in <a href="../Login.aspx">here</a>.</p>
                         </div>
                     </div>

@@ -4,7 +4,7 @@
 
  
 <asp:Panel runat="server" ID="pnlContainer">
-    <!--needs localization-->
+    
     <h1>Blog Settings</h1>
     <div class="input-form">
         <asp:ValidationSummary ID="summary" runat="server" DisplayMode="List" ValidationGroup="Modification" ShowSummary="true" />

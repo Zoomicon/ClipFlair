@@ -22,18 +22,18 @@ Inherits="MonoSoftware.MonoX.MasterPages.PageFooter" %>
                 <li><a href='<% $Code: MonoSoftware.MonoX.Utilities.LocalizationUtility.RewriteLink("~/Pages/TermsOfUse.aspx") %>' runat="server"><%= PageResources.PageFooter_TermsOfUse %></a></asp:HyperLink></li>
 		    </ul>
     	    <ul class="span3">
-        	    <li><h2><%= PageResources.PageFooter_GeneralInfo %><!--needs localozation--> & Tools</h2></li>
+        	    <li><h2><%= PageResources.PageFooter_GeneralInfo %> & Tools</h2></li>
                 <li><a href="http://clipflair.net"><%= PageResources.PageFooter_Home %></a></li>
                 <li><a href="http://clipflair.net/overview"><%= PageResources.PageFooter_About%>&nbsp;&rsaquo;</a></li>
-                <li><a href="http://gallery.clipflair.net/activity"><!--needs localozation-->ClipFlair Gallery &rsaquo;</a></li>
-                <li><a href="http://studio.clipflair.net"><!--needs localozation-->ClipFlair Studio &rsaquo;</a></li>                 
+                <li><a href="http://gallery.clipflair.net/activity">ClipFlair Gallery &rsaquo;</a></li>
+                <li><a href="http://studio.clipflair.net">ClipFlair Studio &rsaquo;</a></li>                 
 		    </ul>
     	    <ul class="span3">
         	    <li><h2><%= PageResources.PageFooter_SocialNetworking %></h2></li>
-                <li><a href='<% $Code: MonoSoftware.MonoX.Utilities.LocalizationUtility.RewriteLink("~/MonoX/Pages/SocialNetworking/Dashboard.aspx") %>' runat="server"><!--needs localozation-->Community</a></li>
+                <li><a href='<% $Code: MonoSoftware.MonoX.Utilities.LocalizationUtility.RewriteLink("~/MonoX/Pages/SocialNetworking/Dashboard.aspx") %>' runat="server">Community</a></li>
                 <li><a href='<% $Code: MonoSoftware.MonoX.Utilities.LocalizationUtility.RewriteLink("~/Blog.aspx") %>' runat="server"><%= PageResources.PageFooter_SocialNetworkingBlog %></a></li>
                 <li><a href='<% $Code: MonoSoftware.MonoX.Utilities.LocalizationUtility.RewriteLink("~/MonoX/Pages/SocialNetworking/Groups/GroupList/") %>' runat="server"><%= PageResources.PageFooter_SocialNetworkingGroups %></a></li>
-                <li><a href='<% $Code: MonoSoftware.MonoX.Utilities.LocalizationUtility.RewriteLink("~/MonoX/Pages/SocialNetworking/Discussion.aspx") %>' runat="server"><!--needs localozation-->Forums</a></li>
+                <li><a href='<% $Code: MonoSoftware.MonoX.Utilities.LocalizationUtility.RewriteLink("~/MonoX/Pages/SocialNetworking/Discussion.aspx") %>' runat="server">Forums</a></li>
 		    </ul>
             <ul class="span3">
                 <li><h2><%= PageResources.PageFooter_ConnectWithUs %></h2></li>

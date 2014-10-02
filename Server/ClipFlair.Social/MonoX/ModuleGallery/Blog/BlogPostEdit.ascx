@@ -15,7 +15,7 @@
 <asp:ScriptManagerProxy ID="scriptManagerProxy" runat="server"></asp:ScriptManagerProxy>
 
 <asp:Panel runat="server" ID="pnlContainer">
-    <!--needs localization-->
+    
     <h1>New blog / Edit Blog</h1>
     <div class="blog-edit-settings input-form">
         <asp:ValidationSummary ID="summary" runat="server" DisplayMode="List"  ShowSummary="true" />

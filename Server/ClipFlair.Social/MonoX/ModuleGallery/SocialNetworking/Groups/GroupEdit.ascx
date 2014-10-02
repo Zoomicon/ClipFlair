@@ -9,7 +9,7 @@
 
 <asp:Panel runat="server" ID="pnlContainer">
     <!--!!!CLIPFLAIR-->
-        <!--needs localization-->
+        
         <h1>Create / Edit group</h1>
     <!--/!!!CLIPFLAIR-->
     <div class="input-form">

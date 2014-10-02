@@ -8,7 +8,7 @@
 <asp:UpdatePanel ID="up" runat="server" UpdateMode="Always">
     <ContentTemplate>
         <!--!!!CLIPFLAIR-->
-        <!--needs localization-->
+        
         <h1>Activity Stream <a class="rss-icon" href="/MonoX/Pages/SocialNetworking/Dashboard.aspx?MonoXRssFeed=ClipFlair-All-blog-posts" target="_blank"></a></h1>
         <!--/!!!CLIPFLAIR-->
         <asp:Panel ID="pnlContainer" runat="server">
