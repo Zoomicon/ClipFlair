@@ -50,6 +50,7 @@
 
 <body>
 <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+
 <!--fancybox-->
 <!-- Add mousewheel plugin (this is optional) -->
 <script type="text/javascript" src="home/js/fancybox/lib/jquery.mousewheel-3.0.6.pack.js"></script>
@@ -61,49 +62,11 @@
 <script type="text/javascript" src="home/js/fancybox/source/helpers/jquery.fancybox-buttons.js"></script>
 <script type="text/javascript" src="home/js/fancybox/source/helpers/jquery.fancybox-media.js"></script>
 <!--/fancybox-->
-<script type="text/javascript" charset="utf-8">
 
-function getAjax(filename) {
-    var json = null;
-    $.ajax({
-        'async': false,
-        'global': false,
-        'url': filename,
-        'dataType': "json",
-        'success': function (data) {
-            json = data;
-        }
-    });
-    return json;
-};
-
-
-function mytranslate() {
-var langfix = $("#langsel").val()
-var filename = langfix+'_'+langfix.toUpperCase()+'.json';
-
-_.setTranslation(getAjax(filename));
-
-// actual translate:
-$("#studio").find('p').text(_('Create activities with ClipFlair Studio'));
-$("#video1").find('p').text(_('Watch 1\' intro to ClipFlair'));
-$("#gallery").find('p').text(_('Explore content in ClipFlair Gallery'));
-$("#social").find('p').text(_('Visit the Social Network'));
-$("#video2").find('p').text(_('Watch ClipFlair Studio basics'));
-$("#info").find('p').text(_('Learn more about the ClipFlair project'));
-$("#contact").find('p').text(_('Send us a message'));
-$("#help").find('p').text(_('Read manuals, tutorials and FAQ'));
-$("#subfootercontent").find('p').text(_('Foreign Language Learning through Interactive Revoicing & Captioning of Clips'));
-$("#content_wrapper").find('p').text(_('This project has been funded with support from the European Commission. This publication reflects the views only of the author, and the Commission cannot be held responsible for any use which may be made of the information contained therein.'));
-// ...
-
-
-};
-</script>
 <script src="home/js/jquery.hoverIntent.minified.js"></script>
+
 <script type="text/javascript" charset="utf-8">
 $(document ).ready(function() {
-
 		
 	//load fancybox
 	$(".fancyframe").fancybox({
@@ -134,7 +97,6 @@ $(document ).ready(function() {
 		}
 	});
 
-
 	//hide an image title
 	$("a[rel='videoWithTitle']").each(function(e) {
     	var title = $(this).attr('title');
@@ -154,25 +116,9 @@ $(document ).ready(function() {
 	
 });
 </script>
+
 	<div ID="wrapper">
     	<div id="maincontentcontainer">
-        	<div id="language-select-wrapper" style="visibility:hidden;">
-                <label class="custom-select"> 
-                	<img src="home/img/globe.svg" width="18" height="18" align="middle" style="padding-bottom:10px;" />
-					<select id="langsel" onChange="mytranslate()">
-                        <option value="en">english</option>
-                        <option value="eu">euskera</option>
-                        <option value="ca">català</option>
-                        <option value="ga">gaeilge</option>
-                        <option value="pl">polski</option>
-                        <option value="pt">português</option>
-                        <option value="ro">română</option>
-                        <option value="el">ελληνικά</option>
-                        <option value="es">español</option>
-                        <option value="ee">eesti</option>
-          			</select>
-                </label>
-          	</div>
         	<div id="maincontent">
             	<div class="section group">
                     <a class="col span_1_of_3  smaller-text" id="logo" href="http://clipflair.net" target="_top" title="">
