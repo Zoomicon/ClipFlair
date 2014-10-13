@@ -1,6 +1,6 @@
 <%@ Page 
     Language="C#" 
-    MasterPageFile="~/MonoX/MasterPages/DefaultPartiallyLocalized.master"
+    MasterPageFile="~/MonoX/MasterPages/DefaultTransifex.master"
     AutoEventWireup="true"     
     Inherits="MonoSoftware.MonoX.BasePage" 
     Theme="ClipFlair"
