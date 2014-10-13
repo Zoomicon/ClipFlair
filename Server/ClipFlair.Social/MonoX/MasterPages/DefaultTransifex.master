@@ -17,6 +17,9 @@
 
 <asp:Content ContentPlaceHolderID="cp" runat="server">
     <asp:ScriptManagerProxy ID="scriptManagerProxy" runat="server"></asp:ScriptManagerProxy>
+    
+    
+    
     <!--fancybox-->
     <!-- Add mousewheel plugin (this is optional) -->
     <script type="text/javascript" src="/MonoX/Scripts/fancybox/lib/jquery.mousewheel-3.0.6.pack.js"></script>
@@ -126,10 +129,20 @@
            $("html").niceScroll({styler:"fb",cursorcolor:"#000",spacebarenabled:false});
 
         });
-        
-        
-  
     </script>
+    
+    <!-- TRANSIFEX -->
+    <script type="text/javascript">
+      window.liveSettings = {
+        api_key: "b44a482d205c41c5b558e264c20d3b05",
+        picker: "top-right",
+        detectlang: true,
+        autocollect: true
+      };
+    </script>
+    <script type="text/javascript" src="//cdn.transifex.com/live.js"></script>
+
+<%--
     <div class="container-languages" style="background-color:#e0e0e0;">
         <div class="container ">
             <div class="row-fluid">
@@ -139,6 +152,8 @@
             </div>
         </div>
     </div>
+--%>
+    
     <header>        
         <div class="container">
             <div class="row-fluid">
@@ -178,15 +193,4 @@
         </asp:ContentPlaceHolder>
     </div>
     <MonoX:PageFooter runat="server" ID="ctlFooter"></MonoX:PageFooter>
-    
-    <!-- TRANSIFEX -->
-    <script type="text/javascript">
-	window.liveSettings = {
-		api_key: "b44a482d205c41c5b558e264c20d3b05",
-		picker: "bottom-right",
-		detectlang: true,
-		autocollect: true
-	};
-    </script>
-    <script type="text/javascript" src="//cdn.transifex.com/live.js"></script>
 </asp:Content>
