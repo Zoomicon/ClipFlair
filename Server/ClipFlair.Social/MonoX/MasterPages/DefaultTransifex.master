@@ -1,0 +1,192 @@
+<%@ Master 
+    Language="C#" 
+    AutoEventWireup="True" 
+    EnableTheming="true"
+    Inherits="MonoSoftware.MonoX.MasterPages.Default" 
+    MasterPageFile="~/MonoX/MasterPages/MonoX.master" 
+    Codebehind="Default.master.cs" %>
+<%@ MasterType VirtualPath="~/MonoX/MasterPages/MonoX.master" %>
+<%@ Import Namespace="MonoSoftware.MonoX.Resources" %>
+<%@ Register TagPrefix="MonoX" TagName="Menu" Src="~/MonoX/ModuleGallery/MonoXMenuHTML5.ascx" %>
+<%@ Register TagPrefix="MonoX" TagName="Language" Src="~/MonoX/ModuleGallery/LanguageChanger.ascx" %>
+<%@ Register TagPrefix="MonoX" TagName="Search" Src="~/MonoX/ModuleGallery/MonoXSearchBoxWithFilter.ascx" %>
+<%@ Register TagPrefix="MonoX" TagName="PageFooter" Src="~/MonoX/MasterPages/PageFooter.ascx" %>
+<%@ Register TagPrefix="MonoX" TagName="MembershipNavigation" Src="~/MonoX/MasterPages/MembershipNavigation.ascx" %>
+<%@ Register Assembly="MonoX" Namespace="MonoSoftware.MonoX" TagPrefix="portal" %>
+<%@ Register Assembly="MonoX" Namespace="MonoSoftware.MonoX.SearchEngine" TagPrefix="Search" %>
+
+<asp:Content ContentPlaceHolderID="cp" runat="server">
+    <asp:ScriptManagerProxy ID="scriptManagerProxy" runat="server"></asp:ScriptManagerProxy>
+    <!--fancybox-->
+    <!-- Add mousewheel plugin (this is optional) -->
+    <script type="text/javascript" src="/MonoX/Scripts/fancybox/lib/jquery.mousewheel-3.0.6.pack.js"></script>
+    <!-- Add fancyBox -->
+    <link rel="stylesheet" href="/MonoX/Scripts/fancybox/source/jquery.fancybox.css" type="text/css" media="screen" />
+    <script type="text/javascript" src="/MonoX/Scripts/fancybox/source/jquery.fancybox.pack.js"></script>
+    <!-- Optionally add helpers - button, thumbnail and/or media -->
+    <link rel="stylesheet" href="/MonoX/Scripts/fancybox/source/helpers/jquery.fancybox-buttons.css" type="text/css" media="screen" />
+    <script type="text/javascript" src="/MonoX/Scripts/fancybox/source/helpers/jquery.fancybox-buttons.js"></script>
+    <script type="text/javascript" src="/MonoX/Scripts/fancybox/source/helpers/jquery.fancybox-media.js"></script>
+    
+    <!--/scrollbar-->
+    <script src="/MonoX/Scripts/jquery.nicescroll.min.js"></script>
+    <script src="/MonoX/Scripts/jquery.nicescroll.plus.js"></script>
+    
+    
+    
+
+    <!--/roolover image js-->
+    <script type="text/javascript" src="/MonoX/Scripts/rollover.js"></script>
+    
+     <!--/Load fancybox-->
+    <script type="text/javascript">
+    
+        $(document).ready(function() {
+
+            
+            
+            //load video fancybox
+            $(".fancyframe").fancybox({
+                beforeLoad: function() {
+                    var el, id = $(this.element).data('title-id');
+                    if (id) {
+                        el = $('#' + id);
+
+                        if (el.length) {
+                            this.title = el.html();
+                        }
+                    }
+                },
+                type        : 'iframe',
+                maxWidth    : 800,
+                maxHeight   : 600,
+                fitToView   : false,
+                width       : '70%',
+                height      : '70%',
+                autoSize    : false,
+                closeClick  : false,
+                openEffect  : 'none',
+                closeEffect : 'none',
+                padding : 0,                
+                helpers : {
+                    title: {
+                        type: 'outside'
+                    }
+                }
+            });
+
+            
+            //wheelScroll
+            $("body").bind("mousewheel",function(ev, delta) {
+                var scrollTop = $(this).scrollTop();
+                $(this).scrollTop(scrollTop-Math.round(delta * 40));
+            });
+            
+            
+            
+            //Up Arrow - Down arrow
+            
+            //on page load show the Down arrow
+            $('.downarrow').fadeIn();
+            
+            $(window).scroll(function(){  
+                // hide the 'up' arrow image
+                if ($(this).scrollTop() == 0){
+                    $('.uparrow').fadeOut();
+                    $('.downarrow').fadeIn();
+                }
+                //only show up arrow if we are at bottom of page ***DOESN'T WORK
+                else if ($(window).scrollTop() == $(document).height() - $(window).height()){
+                      $('.downarrow').fadeOut();
+                }                
+                // if the user scrolled the page more than 10 pixels, show the 'up' arrow image
+                else {
+                    $('.uparrow').fadeIn();
+                    $('.downarrow').fadeIn();
+                }               
+            });
+            
+            var pageHeight = $(window).height();
+            var pageHeightPercent = parseInt(pageHeight*0.25);
+            
+            // when the user clicks on the 'up' arrow image, it will scroll the page to the top
+            // it will occur in a second (see 1000 value below)
+            // you can change that value if you want to make the scroll faster or slower
+            $('.uparrow').click(function(){
+                $("html, body").animate({ scrollTop: "-=200"}, 1000);
+                return false;
+            });
+            //scroll down
+            $('.downarrow').click(function(){
+                $("html, body").animate({ scrollTop: "+=200"}, 1000);
+                return false;
+            });
+            
+            //scrollbar
+           $("html").niceScroll({styler:"fb",cursorcolor:"#000",spacebarenabled:false});
+
+        });
+        
+        
+  
+    </script>
+    <div class="container-languages" style="background-color:#e0e0e0;">
+        <div class="container ">
+            <div class="row-fluid">
+                <div class="span12 clearfix">
+                    <MonoX:Language runat="server" ID="ctlLanguage" />     
+                </div>
+            </div>
+        </div>
+    </div>
+    <header>        
+        <div class="container">
+            <div class="row-fluid">
+                <div class="span8">
+                    <a href="http://clipflair.net" class="logo">
+                        <img id="Img1" runat="server" src="<%$ Code: MonoSoftware.MonoX.Paths.App_Themes.img.logo_png %>" alt="MonoX" />
+                    </a>
+                </div>
+                <div class="span4">
+                    <div class="membership-navigation-holder">
+                        <MonoX:MembershipNavigation runat="server" ID="ctlMemership" LoginStatusLogoutText="&nbsp;" />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row-fluid clearfix">
+                <div class="span8">
+                    <div class="menu-holder">
+                        <MonoX:Menu runat="server" ID="ctlMenu" UseSpanElementsInMenuItems="false" SelectedItemCssClass="selected" CacheDuration="600" ResponsiveDesignBrakeWidth="959" /> 
+                    </div>
+                </div>
+                <div class="span4">
+                    <div class="search-holder">
+                        <MonoX:Search runat="server" ID="ctlSearch" TextBoxCssClass="mainSearchBoxInputField" ButtonCssClass="searchImage" ButtonText="Go" DefaultSearchText="<%$ Code:DefaultResources.SiteSearch_DefaultText %>"></MonoX:Search>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <a href="#" class="uparrow" title='Scroll up'>Scroll</a>    
+    <a href="#" class="downarrow" title='Scroll down'>Scroll</a>     
+    <div id="wrapper">
+        <asp:ContentPlaceHolder ID="cp" runat="server">
+                    
+        </asp:ContentPlaceHolder>
+    </div>
+    <MonoX:PageFooter runat="server" ID="ctlFooter"></MonoX:PageFooter>
+    
+    <!-- TRANSIFEX -->
+    <script type="text/javascript">
+	window.liveSettings = {
+		api_key: "b44a482d205c41c5b558e264c20d3b05",
+		picker: "bottom-right",
+		detectlang: true,
+		autocollect: true
+	};
+    </script>
+    <script type="text/javascript" src="//cdn.transifex.com/live.js"></script>
+</asp:Content>
