@@ -1,7 +1,7 @@
 ﻿<%@ Page 
     Language="C#" 
     AutoEventWireup="true" 
-    MasterPageFile="~/MonoX/MasterPages/DefaultTransifex.master"
+    MasterPageFile="~/MonoX/MasterPages/Default.master"
     Inherits="MonoSoftware.MonoX.Pages.Default" 
     Title="MonoX - Portal Framework for ASP.NET" 
     Codebehind="Default.aspx.cs" %>
