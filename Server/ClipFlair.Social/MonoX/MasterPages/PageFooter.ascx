@@ -18,8 +18,8 @@ Inherits="MonoSoftware.MonoX.MasterPages.PageFooter" %>
                         <li><asp:HyperLink runat="server" ID="lnkRegister" Text="<% $Code:DefaultResources.Login_RegisterInvitation %>" NavigateUrl='<% $Code: MonoSoftware.MonoX.Utilities.LocalizationUtility.RewriteLink("~/Membership/Register.aspx") %>'></asp:HyperLink></li>
                     </AnonymousTemplate>
                 </asp:LoginView>
-                <li><a href='<% $Code: MonoSoftware.MonoX.Utilities.LocalizationUtility.RewriteLink("~/Pages/PrivacyPolicy.aspx") %>' runat="server"><%= PageResources.PageFooter_PrivacyPolicy %></a></li>
-                <li><a href='<% $Code: MonoSoftware.MonoX.Utilities.LocalizationUtility.RewriteLink("~/Pages/TermsOfUse.aspx") %>' runat="server"><%= PageResources.PageFooter_TermsOfUse %></a></asp:HyperLink></li>
+                <li><a href='<% $Code: MonoSoftware.MonoX.Utilities.LocalizationUtility.RewriteLink("~/MonoX/Pages/PrivacyPolicy.aspx") %>' runat="server"><%= PageResources.PageFooter_PrivacyPolicy %></a></li>
+                <li><a href='<% $Code: MonoSoftware.MonoX.Utilities.LocalizationUtility.RewriteLink("~/MonoX/Pages/TermsOfUse.aspx") %>' runat="server"><%= PageResources.PageFooter_TermsOfUse %></a></asp:HyperLink></li>
 		    </ul>
     	    <ul class="span3">
         	    <li><h2><%= PageResources.PageFooter_GeneralInfo %> & Tools</h2></li>
@@ -37,9 +37,10 @@ Inherits="MonoSoftware.MonoX.MasterPages.PageFooter" %>
 		    </ul>
             <ul class="span3">
                 <li><h2><%= PageResources.PageFooter_ConnectWithUs %></h2></li>
-                <li><a href='<% $Code: MonoSoftware.MonoX.Utilities.LocalizationUtility.RewriteLink("~/MonoX/Pages/Contact.aspx") %>' runat="server">Contact</a></li>
-                <li class="facebook"><a href="https://www.facebook.com/ClipFlair"><%= PageResources.PageFooter_FacebookFan %></a></li>
-                <li class="twitter"><a href="https://twitter.com/ClipFlair"><%= PageResources.PageFooter_TwitterFollow %></a></li>
+                <li class="contact"><a href='<% $Code: MonoSoftware.MonoX.Utilities.LocalizationUtility.RewriteLink("~/MonoX/Pages/Contact.aspx") %>' runat="server">Contact</a></li>
+                <li class="facebook"><a href="https://www.facebook.com/ClipFlair">Facebook</a></li>
+                <li class="twitter"><a href="https://twitter.com/ClipFlair">Twitter</a></li>
+		<li class="slideshare"><a href="http://www.slideshare.net/ClipFlair">SlideShare</a></li>
             </ul>
         </div>
     </div>
