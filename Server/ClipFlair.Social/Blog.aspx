@@ -1,6 +1,6 @@
 <%@ Page
     Language="C#" 
-    MasterPageFile="~/MonoX/MasterPages/DefaultPartiallyLocalized.master"
+    MasterPageFile="~/MonoX/MasterPages/Default.master"
     AutoEventWireup="true" 
     Inherits="MonoSoftware.MonoX.Pages.Blog" 
     Title="MonoX Blog"
