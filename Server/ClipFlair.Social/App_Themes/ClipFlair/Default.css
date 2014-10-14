@@ -2099,7 +2099,9 @@ FOOTER .linkedin
 }
 FOOTER .facebook A,
 FOOTER .twitter A,
-FOOTER .linkedin A
+FOOTER .linkedin A,
+FOOTER .contact A,
+FOOTER .slideshare A
 {
 	padding-left: 30px;
 	display: inline-block;
@@ -2111,6 +2113,12 @@ FOOTER .twitter
 FOOTER .linkedin
 {
 	background: url(img/icon-linkedin.png) left 0px no-repeat;
+}
+FOOTER .contact {
+	background: url(img/icon-contact.png) left 0px no-repeat;
+}
+FOOTER .slideshare {
+	background: url(img/icon-slideshare.png) left 0px no-repeat;
 }
 FOOTER .copyright
 {
