@@ -6527,7 +6527,7 @@ h2.comment-title {
 }
 .captcha .captcha-input INPUT[type="text"]
 {
-	
+	padding-left:40px;	
 }
 .captcha .captcha-input INPUT[type="text"]:focus
 {
@@ -6536,9 +6536,9 @@ h2.comment-title {
 .captcha .captcha-input .refresh
 {
 	position: absolute;
-	top: 0px;
-	left: 0px;
-    background: #c0c0c0;
+	top: 1px;
+	left: 1px;
+	background: #c0c0c0;
 }
 .captcha .captcha-input .refresh:hover {
     background: #999;
