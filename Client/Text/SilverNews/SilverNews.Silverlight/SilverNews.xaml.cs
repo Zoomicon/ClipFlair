@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: SilverNews.xaml.cs
-//Version: 20140314
+//Version: 20141017
 
 using System;
 using System.IO;
@@ -8,17 +8,43 @@ using System.Net;
 using System.ServiceModel.Syndication;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Threading;
 using System.Xml;
 
 namespace SilverNews
 {
   public partial class SilverNews : UserControl
   {
+
+    #region --- Constants ---
+
+    public static readonly TimeSpan DEFAULT_REFRESH_INTERVAL = TimeSpan.Zero;
+
+    #endregion
+
+    #region --- Fields ---
+
+    DispatcherTimer timer = new DispatcherTimer(); //do not use "private" here, want to access from static code (that has an instance of SilverNews) in local file
+
+    #endregion
+
+    #region --- Initialization ---
     public SilverNews()
     {
       InitializeComponent();
-      //DefaultStyleKey = typeof(SilverNews); //if we convert this to Control, need to do this
+      //DefaultStyleKey = typeof(SilverNews); //if we convert this to a CustomControl, we need to do this
+
+      InitTimer();
     }
+
+    private void InitTimer()
+    {
+      timer.Interval = DEFAULT_REFRESH_INTERVAL;
+      timer.Tick += Timer_Tick;
+      if (DEFAULT_REFRESH_INTERVAL != TimeSpan.Zero) timer.Start(); else timer.Stop();
+    }
+
+    #endregion
 
     #region --- Properties ---
 
@@ -34,17 +60,49 @@ namespace SilverNews
 
     private static void SourcePropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
- 	    if (e.OldValue != e.NewValue) { //is this really needed?
+      if (e.OldValue != e.NewValue)
+      { //is this really needed?
         SilverNews news = d as SilverNews;
         news.LoadRSS((Uri)e.NewValue);
       }
     }
 
     #endregion
-    
+
+    #region RefreshInterval
+
+    public TimeSpan RefreshInterval
+    {
+      get { return (TimeSpan)GetValue(RefreshIntervalProperty); }
+      set { SetValue(RefreshIntervalProperty, value); }
+    }
+
+    public static readonly DependencyProperty RefreshIntervalProperty =
+      DependencyProperty.Register("RefreshInterval", typeof(TimeSpan), typeof(SilverNews), new PropertyMetadata(DEFAULT_REFRESH_INTERVAL, RefreshIntervalPropertyChanged));
+
+    private static void RefreshIntervalPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    {
+      if (e.OldValue != e.NewValue)
+      {
+        SilverNews news = d as SilverNews;
+        TimeSpan newValue = (TimeSpan)e.NewValue;
+        news.timer.Interval = newValue;
+        if (newValue != TimeSpan.Zero) news.timer.Start(); else news.timer.Stop();
+      }
+    }
+
+    #endregion
+
+    #endregion
+
     #region --- Methods ---
 
-    public void LoadRSS(Uri uri)
+    public void Refresh()
+    {
+      LoadRSS(Source); //refresh by reloading the RSS
+    }
+
+    protected void LoadRSS(Uri uri)
     {
       if (uri == null) return;
 
@@ -69,8 +127,14 @@ namespace SilverNews
 
     #endregion
 
-    #endregion
+    #region --- Events ---
 
+    public void Timer_Tick(object sender, EventArgs e)
+    {
+      Refresh();
+    }
+
+    #endregion
   }
 
 }

@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: NewsReaderDefaults.cs
-//Version: 20140418
+//Version: 20141017
 
 using System;
 using System.Windows.Media;
@@ -20,6 +20,7 @@ namespace ClipFlair.Windows.Views
     #endregion
 
     public const Uri DefaultSource = null;
+    public static readonly TimeSpan DefaultRefreshInterval = new TimeSpan(0,15,0); //refresh news every 15' min
 
     #region Methods
 
@@ -34,6 +35,7 @@ namespace ClipFlair.Windows.Views
 
       //INewsReader defaults
       view.Source = DefaultSource;
+      view.RefreshInterval = DefaultRefreshInterval;
 
       //Dirty flag
       view.Dirty = ViewDefaults.DefaultDirty; //must do last - this should be set again at the end of any SetDefaults method (at descendents)

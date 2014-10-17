@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: NewsView.cs
-//Version: 20140311
+//Version: 20141017
 
 using System;
 using System.ComponentModel;
@@ -22,6 +22,7 @@ namespace ClipFlair.Windows.Views
 
     //fields are initialized via respective properties at "SetDefaults" method
     private Uri source;
+    private TimeSpan refreshInterval;
 
     #endregion
 
@@ -43,6 +44,22 @@ namespace ClipFlair.Windows.Views
       }
     }
 
+    [DataMember]
+    //[DefaultValue(NewsReaderDefaults.DefaultRefreshInterval)]
+    public TimeSpan RefreshInterval
+    {
+      get { return refreshInterval; }
+      set
+      {
+        if (value != refreshInterval)
+        {
+          refreshInterval = value;
+          RaisePropertyChanged(INewsReaderProperties.PropertyRefreshInterval);
+          Dirty = true;
+        }
+      }
+    }
+    
     #endregion
 
     #region Methods

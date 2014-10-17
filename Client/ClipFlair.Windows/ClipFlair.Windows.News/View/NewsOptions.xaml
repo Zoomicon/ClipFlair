@@ -1,7 +1,7 @@
 ﻿<!--
 Project: ClipFlair (http://ClipFlair.codeplex.com)
 Filename: NewsOptions.xaml
-Version: 20140311
+Version: 20141017
 -->
 
 <UserControl x:Class="ClipFlair.Windows.Options.NewsOptions"
@@ -28,6 +28,11 @@ Version: 20140311
       <TextBox Name="edNewsURL" Text="{Binding Source, Mode=TwoWay}" HorizontalAlignment="Stretch" />
     </StackPanel>
 
+    <StackPanel Orientation="Vertical">
+      <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Refresh Interval" Target="{Binding ElementName=edRefreshInterval}"/>
+      <TextBox Name="edRefreshInterval" Text="{Binding RefreshInterval, Mode=TwoWay}" HorizontalAlignment="Stretch" />
+    </StackPanel>
+    
   </StackPanel>
   
 </UserControl>
