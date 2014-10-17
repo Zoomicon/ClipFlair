@@ -83,6 +83,14 @@
       <Project>{e784b6a1-a300-4571-a881-b15240eee377}</Project>
       <Name>Utils.Silverlight</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\..\ZUI\ImageButtons\ImageButtons.Silverlight\ImageButtons.Silverlight.csproj">
+      <Project>{127105af-c0f4-40f8-87c5-d6c391552936}</Project>
+      <Name>ImageButtons.Silverlight</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Go.png" />
+    <Resource Include="Images\Go_hover.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Silverlight\$(SilverlightVersion)\Microsoft.Silverlight.CSharp.targets" />
   <ProjectExtensions>
