@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: Browser.xaml.cs
-//Version: 20140418
+//Version: 20141017
 
 using System;
 using System.Text;
@@ -64,6 +64,11 @@ namespace ClipFlair.Browser
 
     #region --- Methods ---
 
+    public void Refresh()
+    {
+      GoTo(new Uri(edAddress.Text, UriKind.Absolute));
+    }
+
     public void GoTo(Uri address)
     {
       Dispatcher.BeginInvoke(() => web.Source = address);
@@ -91,6 +96,11 @@ namespace ClipFlair.Browser
     #endregion
 
     #region --- Events ---
+
+    private void btnGo_Click(object sender, RoutedEventArgs e)
+    {
+      Refresh();
+    }
 
     private void btnBack_Click(object sender, RoutedEventArgs e)
     {
