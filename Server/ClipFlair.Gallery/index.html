@@ -59,6 +59,13 @@
   <script src="js/jquery.fittext.js"></script>
 
   <script type="text/javascript" charset="utf-8">
+    function fitTilesText() {
+      //TODO: should iterate and calculate ratio based on max word width and tile width maybe
+      jQuery(".span_1_of_2").fitText(0.6);
+      jQuery(".smaller-text").fitText(1);
+    }
+
+    //When document is loaded:
     $(document).ready(function () {
 
       //load fancybox
@@ -158,10 +165,7 @@
         );
       });
 
-      //responsively scale text
-      jQuery(".span_1_of_2").fitText(0.6);
-      jQuery(".smaller-text").fitText(1);
-
+      fitTilesText();
     });
   </script>
 
@@ -176,6 +180,11 @@
     };
   </script>
   <script type="text/javascript" src="//cdn.transifex.com/live.js"></script>
+  <script type="text/javascript">
+    Transifex.live.onTranslatePage(function(lang) {
+      fitTilesText();
+    });
+  </script>
 
 </head>
 
