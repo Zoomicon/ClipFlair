@@ -8140,6 +8140,12 @@ h2.comment-title {
 STYLED CHECKBOX LIST*/
 
 /*REGURAL CHECKBOX LIST: temporarily active*/
+
+.discussion-form .input-form  INPUT[type="checkbox"]
+{
+    width: 14px;
+    height: 14px;
+}
 .input-form  INPUT[type="checkbox"]
 {
 	float: left;
@@ -11277,9 +11283,13 @@ a.no-style {
      top: 0;
 }
 
-.contents-list li a.active{
+.contents-list li a.active, .contents-list li a.active:hover{
     font-weight: 700;
     text-decoration:none;
+    background: inherit !important;
+	width: inherit;
+	height: inherit;
+	position: inherit;
 }
 
 /***changes:20140603*/

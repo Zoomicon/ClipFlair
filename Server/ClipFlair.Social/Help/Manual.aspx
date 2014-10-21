@@ -71,7 +71,7 @@
                 </portal:PortalWebPartZoneTableless>
             </div>
             <div class="span4">
-                <portal:PortalWebPartZoneTableless HeaderText="Right part zone" ID="rightPartZone" CssClass="table-of-contents" runat="server" Width="100%" Height="400px" ChromeTemplateFile="RightColumn.htm" ShowChromeForNonAdmins="false">
+                <portal:PortalWebPartZoneTableless HeaderText="Right part zone" ID="rightPartZone" CssClass="table-of-contents" runat="server" Width="100%" Height="400px" ChromeTemplateFile="Standard.htm" ShowChromeForNonAdmins="false">
                     <ZoneTemplate>
                          <MonoX:Editor ID="ctlEditor7" runat="server" Title="Contents"></MonoX:Editor>
                     </ZoneTemplate>
