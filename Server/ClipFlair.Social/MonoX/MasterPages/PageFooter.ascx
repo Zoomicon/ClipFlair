@@ -49,7 +49,7 @@ Inherits="MonoSoftware.MonoX.MasterPages.PageFooter" %>
         <div class="container">
             <div class="row-fluid">
                 <a id="A1" runat="server" href="http://monox.mono-software.com" class="powered-by">
-                    <img id="Img1" runat="server" src="~/App_Themes/ClipFlair/img/PoweredBy/MonoXSmallButton.png" alt="Powered by MonoX" />
+                    <img id="Img1" runat="server" src="~/App_Themes/ClipFlair/img/PoweredBy/MonoXButton1.gif" alt="Powered by MonoX" />
                 </a>
                 <div class="logo-eu">
                     <img id="Img3" runat="server" src="~/App_Themes/ClipFlair/img/logo-eu.jpg" alt="Lifelong Learning Programme" class="footer-logo" />
