@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: SilverNews.xaml.cs
-//Version: 20141017
+//Version: 20141020
 
 using System;
 using System.IO;
@@ -99,7 +99,15 @@ namespace SilverNews
 
     public void Refresh()
     {
-      LoadRSS(Source); //refresh by reloading the RSS
+      if (Source == null) return;
+      
+      string url = Source.ToString();
+      if (!url.Contains("?")) url += "?"; //add first URL parameter
+      else if (url.Contains("&")) url += "&"; //add one more URL parameter   
+
+      url += "p" + Guid.NewGuid().ToString() + "=1"; //the URL parameter has for name "p" + a GUID (statistically unique number) and a dummy value (1)
+
+      LoadRSS(new Uri(url, UriKind.Absolute)); //refresh loading the RSS URL with a unique URL parameter, so that it doesn't get cached results
     }
 
     protected void LoadRSS(Uri uri)
