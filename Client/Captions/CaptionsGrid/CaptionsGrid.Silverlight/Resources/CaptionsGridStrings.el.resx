@@ -117,91 +117,37 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="color_Black" xml:space="preserve">
-    <value>Μαύρο</value>
+  <data name="tooltip_caption_add" xml:space="preserve">
+    <value>Προσθήκη υπότιτλου στον τρέχοντα χρόνο</value>
   </data>
-  <data name="color_Blue" xml:space="preserve">
-    <value>Μπλέ</value>
+  <data name="tooltip_caption_remove" xml:space="preserve">
+    <value>Αφαίρεση επιλεγμένου υπότιτλου</value>
   </data>
-  <data name="color_Green" xml:space="preserve">
-    <value>Πράσινο</value>
+  <data name="tooltip_captions_import" xml:space="preserve">
+    <value>Εισαγωγή χρονισμών και υποτίτλων από TTS, SRT και άλλες μορφές αρχείων</value>
   </data>
-  <data name="color_Red" xml:space="preserve">
-    <value>Κόκκινο</value>
+  <data name="tooltip_captions_export" xml:space="preserve">
+    <value>Εξαγωγή χρονισμών και υποτίτλων σε TTS, SRT και άλλες μορφές αρχείων</value>
   </data>
-  <data name="color_Yellow" xml:space="preserve">
-    <value>Κίτρινο</value>
+  <data name="tooltip_caption_end" xml:space="preserve">
+    <value>Ορισμός χρόνου τέλους επιλεγμένου υπότιτλου</value>
   </data>
-  <data name="tooltip_Bold" xml:space="preserve">
-    <value>Έντονα</value>
+  <data name="tooltip_caption_start" xml:space="preserve">
+    <value>Ορισμός χρόνου αρχής επιλεγμένου υπότιτλου</value>
   </data>
-  <data name="tooltip_Copy" xml:space="preserve">
-    <value>Αντιγραφή κειμένου</value>
+  <data name="captions_export" xml:space="preserve">
+    <value>Εξαγωγή</value>
   </data>
-  <data name="tooltip_Cut" xml:space="preserve">
-    <value>Αποκοπή κειμένου</value>
-  </data>
-  <data name="tooltip_Italic" xml:space="preserve">
-    <value>Πλάγια</value>
-  </data>
-  <data name="tooltip_Clear" xml:space="preserve">
-    <value>Καθαρισμός</value>
-  </data>
-  <data name="tooltip_Open" xml:space="preserve">
-    <value>Άνοιγμα υπάρχοντος εγγράφου</value>
-  </data>
-  <data name="tooltip_Paste" xml:space="preserve">
-    <value>Επικόλληση κειμένου</value>
-  </data>
-  <data name="tooltip_Print" xml:space="preserve">
-    <value>Εκτύπωση εγγράφου</value>
-  </data>
-  <data name="tooltip_Save" xml:space="preserve">
-    <value>Αποθήκευση σε εξωτερικό αρχείο</value>
-  </data>
-  <data name="tooltip_Underline" xml:space="preserve">
-    <value>Υπογραμμισμένα</value>
-  </data>
-  <data name="txt_Status_Ready" xml:space="preserve">
-    <value>Έτοιμο</value>
-  </data>
-  <data name="tooltip_Image" xml:space="preserve">
-    <value>Εισαγωγή εικόνας</value>
-  </data>
-  <data name="tooltip_Hyperlink" xml:space="preserve">
-    <value>Εισαγωγή συνδέσμου</value>
-  </data>
-  <data name="txt_Clipboard" xml:space="preserve">
-    <value>Πρόχειρο</value>
-  </data>
-  <data name="txt_Display" xml:space="preserve">
-    <value>Εμφάνιση</value>
-  </data>
-  <data name="txt_File" xml:space="preserve">
-    <value>Αρχείο</value>
-  </data>
-  <data name="txt_Font" xml:space="preserve">
-    <value>Γραμματοσειρά</value>
-  </data>
-  <data name="txt_Highlight" xml:space="preserve">
-    <value>Επισήμανση</value>
-  </data>
-  <data name="txt_Insert" xml:space="preserve">
+  <data name="captions_import" xml:space="preserve">
     <value>Εισαγωγή</value>
   </data>
-  <data name="txt_Print" xml:space="preserve">
-    <value>Εκτύπωση</value>
+  <data name="filter_wav" xml:space="preserve">
+    <value>Αρχεία ήχου (*.wav)|*.wav</value>
   </data>
-  <data name="txt_XAML" xml:space="preserve">
-    <value>Πηγή</value>
-  </data>
-  <data name="tooltip_Timestamp" xml:space="preserve">
-    <value>Εισαγωγή χρονοσήμανσης</value>
+  <data name="tooltip_merged_audio_save" xml:space="preserve">
+    <value>Αποθήκευση όλου του ήχου σε ένα αρχείο .WAV</value>
   </data>
   <data name="tooltip_TextDirection" xml:space="preserve">
-    <value>Κατεύθυνση κειμένου</value>
-  </data>
-  <data name="tooltip_EditViewMode" xml:space="preserve">
-    <value>Επεξεργασία / Προβολή ανάγνωσης</value>
+    <value>Προσανατολισμός κειμένου</value>
   </data>
 </root>

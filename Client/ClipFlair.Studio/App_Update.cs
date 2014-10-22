@@ -6,6 +6,7 @@ using System.Windows;
 
 using ClipFlair.UI.Dialogs;
 using System.Net.NetworkInformation;
+using ClipFlair.Resources;
 
 namespace ClipFlair
 {
@@ -39,9 +40,9 @@ namespace ClipFlair
       CheckAndDownloadUpdateCompleted -= OnCheckAndDownloadUpdateCompleted; //detach event handler
 
       if (e.UpdateAvailable) //update was found and downloaded
-        MessageDialog.Show("", "Update downloaded, will use at next launch");
+        MessageDialog.Show("", ClipFlairStudioStrings.MsgUpdateDownloaded);
       else if (e.Error != null) //error during update process
-        ErrorDialog.Show("Update failed, will try again at next launch", e.Error);
+        ErrorDialog.Show(ClipFlairStudioStrings.MsgUpdateFailed, e.Error);
     }
 
   }

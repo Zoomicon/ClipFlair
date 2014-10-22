@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: App.xaml.cs
-//Version: 20140903
+//Version: 20141022
 
 //#define GALLERY_IN_BACKGROUND
 
@@ -8,11 +8,14 @@ using ClipFlair.Windows;
 using SilverFlow.Controls;
 using System;
 using System.Collections.Generic;
+//using System.Globalization;
 using System.Threading;
 using System.Windows;
 using System.Windows.Browser;
 using System.Windows.Interop;
+//using System.Windows.Markup;
 using Utils.Extensions;
+using ClipFlair.Resources;
 
 namespace ClipFlair
 {
@@ -74,6 +77,8 @@ namespace ClipFlair
     {
       UpdateOOB(); //TODO: run this from background thread, seems to take some time //CALLING THIS FIRST, SINCE THE REST OF THE CODE COULD THROW AN EXCEPTION WHICH WOULD BLOCK UPDATES (AND ALSO TO MAKE USE OF THE TIME TO SET UP THE APP, SINCE UPDATING OCCURS IN THE BACKGROUND)
 
+      LocalizeUI();
+
       silverlightHost = Application.Current.Host;
       settings = silverlightHost.Settings;
       content = silverlightHost.Content;
@@ -104,7 +109,7 @@ namespace ClipFlair
         App.Current.MainWindow.Closing += (s, ev) => //due to a bug in Silverlight, this has to be attached BEFORE setting the App's RootVisual
         {
           if (activityWindow.View.WarnOnClosing)
-            if (MessageBox.Show("Do you want to exit " + ProductName + "?", "Confirmation", MessageBoxButton.OKCancel) != MessageBoxResult.OK)
+            if (MessageBox.Show(ClipFlairStudioStrings.MsgExit + " " + ProductName + ClipFlairStudioStrings.MsgQuestionMark, ClipFlairStudioStrings.MsgConfirmation, MessageBoxButton.OKCancel) != MessageBoxResult.OK)
             {
               ev.Cancel = true;
               return;
@@ -149,6 +154,7 @@ namespace ClipFlair
 
       };
 
+      //host.Language = XmlLanguage.GetLanguage(Thread.CurrentThread.CurrentUICulture.Name); //don't do this, will use "," for decimal points in some cultures, which could cause problems with fractional times etc. //TODO: test if this is indeed a problem with the data binding in CaptionsGrid control
       RootVisual = host;
      
       //MessageBox.Show("ClipFlair loaded"); //uncomment this to test the loading indicator
@@ -296,6 +302,13 @@ namespace ClipFlair
     #endregion
 
     #region Helpers
+
+    private void LocalizeUI()
+    {
+      //CultureInfo c = new CultureInfo("el");
+      //Thread.CurrentThread.CurrentCulture = c;
+      Thread.CurrentThread.CurrentUICulture = Thread.CurrentThread.CurrentCulture;
+    }
 
     private ActivityWindow CreateActivityWindow(FloatingWindowHost host)
     {

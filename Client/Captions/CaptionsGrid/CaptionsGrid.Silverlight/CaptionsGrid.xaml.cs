@@ -1023,7 +1023,7 @@ namespace ClipFlair.CaptionsGrid
     {
       SaveFileDialog saveFileDialog = new SaveFileDialog()
       {
-        Filter = Strings.filter_wav
+        Filter = CaptionsGridStrings.filter_wav
       };
 
       if (saveFileDialog.ShowDialog() == true)
