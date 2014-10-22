@@ -6,6 +6,7 @@ using System.Windows;
 using System.Windows.Threading;
 
 using ClipFlair.UI.Dialogs;
+using ClipFlair.Resources;
 
 namespace ClipFlair
 {
@@ -31,7 +32,7 @@ namespace ClipFlair
       Dispatcher dispatcher = Deployment.Current.Dispatcher;
       if (dispatcher != null)
         dispatcher.BeginInvoke(
-          () => ErrorDialog.Show("Unexpected error", e.ExceptionObject)
+          () => ErrorDialog.Show(ClipFlairStudioStrings.MsgUnexpectedError, e.ExceptionObject)
           //ReportErrorToDOM(e) //don't use this, uses Browser's error facility (wouldn't work in OOB)
         );
     }

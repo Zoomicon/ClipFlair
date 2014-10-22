@@ -1,5 +1,5 @@
 ﻿//Filename: MetroPivotViewer.cs
-//Version: 20140228
+//Version: 20141022
 
 //article: http://stevenhollidge.blogspot.gr/2012/12/pivotviewer-itemsloaded-event.html
 //demo:    http://stevenhollidge.com/blog-source-code/pivotviewerwithitemsloadedevent
@@ -17,7 +17,7 @@ namespace PivotViewerExt
 
     #region --- Fields ---
  
-    private string title;
+    //private string title;
     private bool isLoading; //=false
     private readonly UiHelper layoutUpdatedFinished;
 

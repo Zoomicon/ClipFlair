@@ -3,7 +3,7 @@
 <!--
 Project: ClipFlair (http://ClipFlair.codeplex.com)
 Filename: ClipFlair_Studio.html
-Version: 20140623
+Version: 20141022
 -->
 
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -131,7 +131,7 @@ Version: 20140623
 /**/  var a = activityView();
 /**/  if ( (a != null) && (a.WarnOnClosing) )
 /**/    return "Do you want to exit ClipFlair Studio?"; //else return undefined is implied (no onClosing message that is)
-    }
+    } //TODO: get localized message from Silverlight code (and reuse at OOB mode)
 
     function onClosed() {
       var a = activityView();

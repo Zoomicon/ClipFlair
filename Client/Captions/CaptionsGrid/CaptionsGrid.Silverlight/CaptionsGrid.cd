@@ -21,7 +21,7 @@
       <FileName>CaptionsGrid.xaml.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="ClipFlair.CaptionsGrid.Resources.Strings">
+  <Class Name="ClipFlair.CaptionsGrid.Resources.CaptionsGridStrings">
     <Position X="3.75" Y="0.5" Width="2" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAABABAAhABEIAAAQAAiAAEAAAAACAAAIA=</HashCode>

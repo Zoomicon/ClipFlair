@@ -116,7 +116,9 @@
     </Compile>
     <Compile Include="..\Source\Resources\SilverTextEditorStrings.Designer.cs">
       <Link>Resources\SilverTextEditorStrings.Designer.cs</Link>
-      <DependentUpon>SilverTextEditorStrings.resx</DependentUpon> 
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SilverTextEditorStrings.resx</DependentUpon>
     </Compile>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
@@ -313,6 +315,8 @@
     <EmbeddedResource Include="..\Source\Resources\SilverTextEditorStrings.resx">
       <Link>Resources\SilverTextEditorStrings.resx</Link>
       <SubType>Designer</SubType>
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>SilverTextEditorStrings.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Silverlight\$(SilverlightVersion)\Microsoft.Silverlight.CSharp.targets" />

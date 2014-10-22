@@ -1,7 +1,7 @@
 ﻿<!-- 
 Project: ClipFlair (http://ClipFlair.codeplex.com)
 Filename: Generic.xaml
-Version: 20140724
+Version: 20141022
 -->
   
 <ResourceDictionary
@@ -15,7 +15,7 @@ Version: 20140724
  xmlns:captions="clr-namespace:ClipFlair.CaptionsGrid"
  > <!-- xmlns:input="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Input.Toolkit" -->
 
-  <res:Strings x:Key="localizedStrings"/>
+  <res:CaptionsGridStrings x:Key="localizedStrings"/>
   
   <conv:BooleanToFlowDirectionConverter x:Key="BooleanToFlowDirectionConverter" />
   <conv:ArrayToStringConverter x:Key="ArrayToStringConverter" />

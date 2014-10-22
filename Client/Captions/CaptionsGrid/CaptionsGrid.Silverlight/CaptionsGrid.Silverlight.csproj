@@ -90,10 +90,10 @@
     <Compile Include="CaptionsGrid.xaml.cs">
       <DependentUpon>CaptionsGrid.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Resources\Strings.Designer.cs">
-      <DependentUpon>Strings.resx</DependentUpon>
+    <Compile Include="Resources\CaptionsGridStrings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
+      <DependentUpon>CaptionsGridStrings.resx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -149,9 +149,10 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Resources\Strings.resx">
+    <EmbeddedResource Include="Resources\CaptionsGridStrings.el.resx" />
+    <EmbeddedResource Include="Resources\CaptionsGridStrings.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>Strings.Designer.cs</LastGenOutput>
+      <LastGenOutput>CaptionsGridStrings.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
