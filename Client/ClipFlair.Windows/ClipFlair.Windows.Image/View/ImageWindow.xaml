@@ -1,7 +1,7 @@
 ﻿<!--
 Project: ClipFlair (http://ClipFlair.codeplex.com)
 Filename: ImageWindow.xaml
-Version: 20140623
+Version: 20141025
 -->
 
 <clipflair:BaseWindow x:Class="ClipFlair.Windows.ImageWindow"
@@ -14,7 +14,8 @@ Version: 20140623
   xmlns:options="clr-namespace:ClipFlair.Windows.Options"
   mc:Ignorable="d"
   d:DesignWidth="400" d:DesignHeight="400"
-  >
+  ShowScreenshotButton="{Binding CameraSourceUsed}"
+  > <!-- when we're showing image from camera, Silverlight Security model shouldn't have a problem with saving the image (as it does when the image is coming from another domain) [note: don't use two-way binding here] -->
 
   <clipflair:BaseWindow.Resources>
     <ResourceDictionary>
