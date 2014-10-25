@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: BaseView.cs
-//Version: 20140615
+//Version: 20141025
 
 using System;
 using System.ComponentModel;
@@ -84,6 +84,7 @@ namespace ClipFlair.Windows.Views
     private bool zoomable;
     private bool warnOnClosing;
     private bool rtl;
+    private bool titlebarVisible;
 
     #endregion
 
@@ -485,6 +486,22 @@ namespace ClipFlair.Windows.Views
         {
           rtl = value;
           RaisePropertyChanged(IViewProperties.PropertyRTL);
+          Dirty = true;
+        }
+      }
+    }
+
+    [DataMember]
+    [DefaultValue(ViewDefaults.DefaultTitlebarVisible)]
+    public bool TitlebarVisible
+    {
+      get { return titlebarVisible; }
+      set
+      {
+        if (value != titlebarVisible)
+        {
+          titlebarVisible = value;
+          RaisePropertyChanged(IViewProperties.PropertyTitlebarVisible);
           Dirty = true;
         }
       }

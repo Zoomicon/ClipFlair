@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: IView.cs
-//Version: 20140326
+//Version: 20141025
 
 using System;
 using System.ComponentModel;
@@ -37,6 +37,7 @@ namespace ClipFlair.Windows.Views
     bool Zoomable { get; set; }
     bool WarnOnClosing { get; set; }
     bool RTL { get; set; } //20131205
+    bool TitlebarVisible { get; set; } //20141025
 
     bool Dirty { get; set; } //20131120
   }
