@@ -446,16 +446,19 @@
                 </TransformGroup>
               </Grid.RenderTransform>
 
-              <Border x:Name="ContentBorder" 
-                                    BorderThickness="{TemplateBinding BorderThickness}" 
-                                    BorderBrush="{TemplateBinding BorderBrush}"
-                                    CornerRadius="3">
+              <Border
+                x:Name="ContentBorder" 
+                BorderThickness="{TemplateBinding BorderThickness}" 
+                BorderBrush="{TemplateBinding BorderBrush}"
+                CornerRadius="3"
+                >
                 <Grid>
                   <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition/>
                   </Grid.RowDefinitions>
 
+                  <!-- Titlebar -->
                   <Border
                     x:Name="Chrome"
                     Width="Auto"
@@ -508,8 +511,16 @@
                       </Button>
                     </Grid>
                   </Border>
-                  <Border Grid.Row="1"
-                                            Background="{TemplateBinding Background}">
+                  
+                  <!-- Content -->
+                  <Border
+                    Grid.Row="1"
+                    BorderThickness="0"
+                    Margin="-1"                    
+                    Padding="0"
+                    Background="{TemplateBinding Background}"
+                    >
+                    <!-- the special Margin is needed to fix a small line gap between window border and titlebar that shows up when zooming the UI -->
                     <!-- not setting the background at the outer border, sice we want to be able to have titlebar color with transparency -->
 
                     <ContentPresenter x:Name="ContentPresenter" Content="{TemplateBinding Content}"
