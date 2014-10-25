@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: ViewDefaults.cs
-//Version: 20140326
+//Version: 20141025
 
 using System;
 using System.Windows;
@@ -36,6 +36,7 @@ namespace ClipFlair.Windows.Views
     public const bool DefaultZoomable = true;
     public const bool DefaultWarnOnClosing = true;
     public const bool DefaultRTL = false;
+    public const bool DefaultTitlebarVisible = true;
     //
     public const bool DefaultDirty = false;
 
@@ -67,6 +68,7 @@ namespace ClipFlair.Windows.Views
       view.Zoomable = DefaultZoomable;
       view.WarnOnClosing = DefaultWarnOnClosing;
       view.RTL = DefaultRTL;
+      view.TitlebarVisible = DefaultTitlebarVisible;
 
       //Dirty flag
       view.Dirty = ViewDefaults.DefaultDirty; //must do last - this should be set again at the end of any SetDefaults method (at descendents)

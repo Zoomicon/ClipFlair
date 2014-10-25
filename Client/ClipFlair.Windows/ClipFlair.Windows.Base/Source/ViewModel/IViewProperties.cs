@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: IViewProperties.cs
-//Version: 20140326
+//Version: 20141025
 
 namespace ClipFlair.Windows.Views
 {
@@ -32,6 +32,7 @@ namespace ClipFlair.Windows.Views
     public const string PropertyZoomable = "Zoomable";
     public const string PropertyWarnOnClosing = "WarnOnClosing";
     public const string PropertyRTL = "RTL";
+    public const string PropertyTitlebarVisible = "TitlebarVisible";
   }
 
 }
