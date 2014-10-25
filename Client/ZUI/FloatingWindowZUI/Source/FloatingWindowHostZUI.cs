@@ -50,17 +50,17 @@ namespace FloatingWindowZUI
 
     #region ZoomHost
 
-    protected ZoomAndPanControl zoomHost;
+    protected ZoomAndPanControl _zoomHost;
     
     public ZoomAndPanControl ZoomHost {
       get
       {
-        if (zoomHost == null) ApplyTemplate();
-        return zoomHost;
+        if (_zoomHost == null) ApplyTemplate();
+        return _zoomHost;
       }
       private set
       {
-        zoomHost = value;
+        _zoomHost = value;
       }
     }
 

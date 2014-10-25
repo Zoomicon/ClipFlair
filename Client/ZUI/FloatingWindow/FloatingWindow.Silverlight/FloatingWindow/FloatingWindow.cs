@@ -1,5 +1,5 @@
 //Filename: FloatingWindow.cs
-//Version: 20140904
+//Version: 20141025
 
 //#define BORDER_ONLY_AT_RESIZABLE //using BorderThickness instead to allow user to define when they want the border to be visible themselves
 
@@ -379,6 +379,46 @@ namespace SilverFlow.Controls
       } //TODO: need to have some flag on whether Window is allowed to be placed out of container bounds and if not use Max(...,0) to make negative values to 0
     }
 
+    #region ShowChrome
+
+    /// <summary>
+    /// Gets or sets a value indicating whether to show Chrome (titlebar).
+    /// </summary>
+    /// <value><c>true</c> if to show Chrome; otherwise, <c>false</c>.</value>
+    public bool ShowChrome
+    {
+      get { return (bool)GetValue(ShowChromeProperty); }
+      set { SetValue(ShowChromeProperty, value); }
+    }
+
+    /// <summary>
+    /// Identifies the <see cref="FloatingWindow.ShowChrome" /> dependency property.
+    /// </summary>
+    /// <value>
+    /// The identifier for the <see cref="FloatingWindow.ShowChrome" /> dependency property.
+    /// </value>
+    public static readonly DependencyProperty ShowChromeProperty =
+        DependencyProperty.Register(
+        "ShowChrome",
+        typeof(bool),
+        typeof(FloatingWindow),
+        new PropertyMetadata(true, OnShowChromePropertyChanged));
+
+    /// <summary>
+    /// ShowChromeProperty PropertyChangedCallback call back static function.
+    /// </summary>
+    /// <param name="d">FloatingWindow object whose ShowChrome property is changed.</param>
+    /// <param name="e">DependencyPropertyChangedEventArgs which contains the old and new values.</param>
+    private static void OnShowChromePropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    {
+      FloatingWindow window = (FloatingWindow)d;
+
+      if (window.chrome != null)
+        window.chrome.SetVisible((bool)e.NewValue); //TODO: could also use a VisibilityToBooleanConverter at the Template
+    }
+
+    #endregion
+
     #region ShowScreenshotButton
 
     /// <summary>
@@ -414,7 +454,7 @@ namespace SilverFlow.Controls
       FloatingWindow window = (FloatingWindow)d;
 
       if (window.screenshotButton != null)
-        window.screenshotButton.SetVisible((bool)e.NewValue);
+        window.screenshotButton.SetVisible((bool)e.NewValue); //TODO: could also use a VisibilityToBooleanConverter at the Template
     }
 
     #endregion
@@ -454,7 +494,7 @@ namespace SilverFlow.Controls
       FloatingWindow window = (FloatingWindow)d;
 
       if (window.helpButton != null)
-        window.helpButton.SetVisible((bool)e.NewValue);
+        window.helpButton.SetVisible((bool)e.NewValue); //TODO: could also use a VisibilityToBooleanConverter at the Template
     }
 
     #endregion
@@ -494,7 +534,7 @@ namespace SilverFlow.Controls
       FloatingWindow window = (FloatingWindow)d;
 
       if (window.optionsButton != null)
-        window.optionsButton.SetVisible((bool)e.NewValue);
+        window.optionsButton.SetVisible((bool)e.NewValue); //TODO: could also use a VisibilityToBooleanConverter at the Template
     }
 
     #endregion
@@ -534,7 +574,7 @@ namespace SilverFlow.Controls
       FloatingWindow window = (FloatingWindow)d;
 
       if (window.closeButton != null)
-        window.closeButton.SetVisible((bool)e.NewValue);
+        window.closeButton.SetVisible((bool)e.NewValue); //TODO: could also use a VisibilityToBooleanConverter at the Template
     }
 
     #endregion
@@ -575,10 +615,10 @@ namespace SilverFlow.Controls
       bool visible = window.IsModal ? false : (bool)e.NewValue;
 
       if (window.maximizeButton != null)
-        window.maximizeButton.SetVisible(visible);
+        window.maximizeButton.SetVisible(visible); //TODO: could also use a VisibilityToBooleanConverter at the Template
 
       if (window.restoreButton != null)
-        window.restoreButton.SetVisible(false);
+        window.restoreButton.SetVisible(false); //TODO: could also use a VisibilityToBooleanConverter at the Template
     }
 
     #endregion
@@ -619,7 +659,7 @@ namespace SilverFlow.Controls
       bool visible = window.IsModal ? false : (bool)e.NewValue;
 
       if (window.minimizeButton != null)
-        window.minimizeButton.SetVisible(visible);
+        window.minimizeButton.SetVisible(visible); //TODO: could also use a VisibilityToBooleanConverter at the Template
     }
 
     #endregion
@@ -1139,7 +1179,7 @@ namespace SilverFlow.Controls
     /// </summary>
     protected virtual void OnRTLChanged(bool oldRTL, bool newRTL)
     {
-      FlowDirection = (newRTL) ? System.Windows.FlowDirection.RightToLeft : System.Windows.FlowDirection.LeftToRight; //this will also flip titlebar and toolbar direction, scrollpanes etc.
+      FlowDirection = (newRTL) ? System.Windows.FlowDirection.RightToLeft : System.Windows.FlowDirection.LeftToRight; //this will also flip chrome and toolbar direction, scrollpanes etc.
     }
 
     #endregion
@@ -2444,22 +2484,20 @@ namespace SilverFlow.Controls
       GetStoryboards();
       SetInitialRootPosition();
       InitializeContentRootTransformGroup();
-
+      
+      //TODO: the following if...SetVisible clauses could be removed if databinding with BooleanToVisibilityConverter in XAML are used
+      if (chrome != null)
+        chrome.SetVisible(ShowChrome);
       if (screenshotButton != null)
         screenshotButton.SetVisible(ShowScreenshotButton);
-
       if (helpButton != null)
         helpButton.SetVisible(ShowHelpButton);
-
       if (optionsButton != null)
         optionsButton.SetVisible(ShowOptionsButton);
-
       if (closeButton != null)
         closeButton.SetVisible(ShowCloseButton);
-
       if (minimizeButton != null)
         minimizeButton.SetVisible(ShowMinimizeButton);
-
       if (maximizeButton != null)
         maximizeButton.SetVisible(ShowMaximizeRestoreButton);
 
