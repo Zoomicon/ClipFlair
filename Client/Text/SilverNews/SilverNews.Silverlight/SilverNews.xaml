@@ -1,7 +1,7 @@
 ﻿<!--
 Project: ClipFlair (http://ClipFlair.codeplex.com)
 Filename: SilverNews.xaml
-Version: 20140311
+Version: 20141025
 -->
 
 <UserControl x:Class="SilverNews.SilverNews"
@@ -25,6 +25,8 @@ Version: 20140311
 
     <ListBox x:Name="RSSList"
       ItemTemplate="{StaticResource NewsItem}"
+      BorderThickness="0"
+      Padding="0"
       />
 
   </Grid>
