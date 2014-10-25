@@ -1,5 +1,5 @@
 ﻿//Filename: FloatingWindowHostZUI.cs
-//Version: 20140904
+//Version: 20141025
 
 using SilverFlow.Controls;
 using System.Collections.Specialized;
@@ -50,17 +50,17 @@ namespace FloatingWindowZUI
 
     #region ZoomHost
 
-    protected ZoomAndPanControl _zoomHost;
+    protected ZoomAndPanControl zoomHost;
     
     public ZoomAndPanControl ZoomHost {
       get
       {
-        if (_zoomHost == null) ApplyTemplate();
-        return _zoomHost;
+        if (zoomHost == null) ApplyTemplate();
+        return zoomHost;
       }
       private set
       {
-        _zoomHost = value;
+        zoomHost = value;
       }
     }
 

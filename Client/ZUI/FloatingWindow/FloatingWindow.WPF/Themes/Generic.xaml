@@ -1,6 +1,6 @@
 ﻿<!--
   Filename: Generic.xaml 
-  Version: 20140904
+  Version: 20141025
 -->
 
 <ResourceDictionary
@@ -456,7 +456,19 @@
                     <RowDefinition/>
                   </Grid.RowDefinitions>
 
-                  <Border x:Name="Chrome" Width="Auto" Background="{TemplateBinding TitleBackground}" UseLayoutRounding="False" CornerRadius="2,2,0,0" FocusManager.IsFocusScope="True">
+                  <Border
+                    x:Name="Chrome"
+                    Width="Auto"
+                    Background="{TemplateBinding TitleBackground}"
+                    UseLayoutRounding="True"
+                    CornerRadius="2,2,0,0"
+                    Margin="-1,-1,-1,0"
+                    Padding="0"                    
+                    FocusManager.IsFocusScope="True"
+                    >
+                    <!-- the special Margin is needed to fix a small line gap between window border and titlebar that shows up when zooming the UI -->
+                    <!-- Note: changed to UseLayoutRounding="True" to help with GPU acceleration -->
+
                     <Grid Height="Auto" Width="Auto">
                       <Grid.ColumnDefinitions>
                         <ColumnDefinition/>
