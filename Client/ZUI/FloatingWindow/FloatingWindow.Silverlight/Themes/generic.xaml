@@ -628,6 +628,7 @@
                     <RowDefinition/>
                   </Grid.RowDefinitions>
 
+                  <!-- Titlebar -->
                   <Border
                     x:Name="Chrome"
                     Width="Auto"
@@ -637,7 +638,8 @@
                     CornerRadius="0"
                     Margin="-1,-1,-1,0"
                     Padding="0"
-                    > <!-- the special Margin is needed to fix a small line gap between window border and titlebar that shows up when zooming the UI -->
+                    >
+                    <!-- the special Margin is needed to fix a small line gap between window border and titlebar that shows up when zooming the UI -->
                     <!-- Note: changed to UseLayoutRounding="True" to help with GPU acceleration -->
                     
                     <Grid Height="Auto" Width="Auto">
@@ -704,13 +706,16 @@
                     </Grid>
                   </Border>
 
+                  <!-- Content -->
                   <Border
                     Grid.Row="1"
                     BorderThickness="0"
-                    Margin="0"
+                    Margin="-1"
                     Padding="0"
                     Background="{TemplateBinding Background}"
-                    > <!-- not setting the background at the outer border, sice we want to be able to have titlebar color with transparency -->
+                    >
+                    <!-- the special Margin is needed to fix a small line gap between window border and titlebar that shows up when zooming the UI -->
+                    <!-- not setting the background at the outer border, sice we want to be able to have titlebar color with transparency -->
                     <ContentPresenter
                       x:Name="ContentPresenter"
                       Content="{TemplateBinding Content}"
