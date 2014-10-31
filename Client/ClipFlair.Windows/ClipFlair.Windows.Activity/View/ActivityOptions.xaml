@@ -1,0 +1,151 @@
+﻿<!--
+Project: ClipFlair (http://ClipFlair.codeplex.com)
+Filename: ActivityOptions.xaml
+Version: 20141031
+-->
+
+<UserControl x:Class="ClipFlair.Windows.Options.ActivityOptions"
+  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+  xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk"  
+  mc:Ignorable="d"
+  d:DesignHeight="400" d:DesignWidth="324"
+  >
+
+  <UserControl.Resources>
+    <ResourceDictionary>
+      <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="/ClipFlair.Windows.Base;component/Themes/Generic.xaml" />
+      </ResourceDictionary.MergedDictionaries>
+    </ResourceDictionary>
+  </UserControl.Resources>
+  
+  <StackPanel Orientation="Vertical">
+
+    <StackPanel.Resources>
+      <Style TargetType="StackPanel" BasedOn="{StaticResource PropertyStackPanelStyle}" />
+      <Style TargetType="sdk:Label" BasedOn="{StaticResource PropertyLabelStyle}" />
+    </StackPanel.Resources>
+
+    <!-- SourceURL -->
+
+    <!--
+    <StackPanel Orientation="Vertical">
+      <sdk:Label Content="Source URL:" Target="{Binding ElementName=edSourceURL}" />
+      <TextBox Name="edSourceURL" Text="{Binding Path=Source, Mode=TwoWay}" />
+    </StackPanel>
+    -->
+
+    <!-- Time -->
+
+    <StackPanel Orientation="Vertical">
+      <sdk:Label Content="Time:" Target="{Binding ElementName=edTime}" />
+      <TextBox Name="edTime" Text="{Binding Time, Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=True}" />
+    </StackPanel>
+
+    <!-- ViewPosition -->
+
+    <!--
+    <StackPanel Orientation="Vertical">
+      <sdk:Label Content="View Position:" Target="{Binding ElementName=edViewPosition}" />
+      <TextBox Name="edViewPosition" Text="{Binding ViewPosition, Mode=TwoWay}" />
+    </StackPanel>
+    -->
+
+    <!-- ViewWidth -->
+
+    <StackPanel Orientation="Vertical">
+      <sdk:Label Content="View Width:" Target="{Binding ElementName=edViewWidth}" />
+      <TextBox Name="edViewWidth" Text="{Binding ViewWidth, Mode=TwoWay}" IsReadOnly="True" />
+    </StackPanel>
+
+    <!-- ViewHeight -->
+
+    <StackPanel Orientation="Vertical">
+      <sdk:Label Content="View Height:" Target="{Binding ElementName=edViewHeight}" />
+      <TextBox Name="edViewHeight" Text="{Binding ViewHeight, Mode=TwoWay}" IsReadOnly="True" />
+    </StackPanel>
+
+    <!-- ContentZoom -->
+
+    <StackPanel Orientation="Vertical">
+      <sdk:Label Content="Content Zoom:" Target="{Binding ElementName=sldContentZoom}" />
+      <TextBox Name="edContentZoom" Text="{Binding ContentZoom, Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=True}"/>
+      <Slider Name="sldContentZoom" Minimum="0.3" Maximum="3" SmallChange="0.1" LargeChange="0.5" Value="{Binding ContentZoom, Mode=TwoWay}"/>
+    </StackPanel>
+
+    <!-- ContentZoomable -->
+
+    <StackPanel Orientation="Horizontal">
+      <CheckBox Name="cbContentZoomable" IsChecked="{Binding ContentZoomable, Mode=TwoWay}" />
+      <sdk:Label Content="Content Zoomable" Target="{Binding ElementName=cbContentZoomable}"/>
+    </StackPanel>
+
+    <!-- ContentZoomToFit -->
+
+    <StackPanel Orientation="Horizontal">
+      <CheckBox Name="cbContentZoomToFit" IsChecked="{Binding ContentZoomToFit, Mode=TwoWay}" />
+      <sdk:Label Content="Content Zoom to Fit" Target="{Binding ElementName=cbContentZoomToFit}"/>
+    </StackPanel>
+
+    <!-- ContentPartsConfigurable -->
+
+    <StackPanel Orientation="Horizontal">
+      <CheckBox Name="cbContentPartsConfigurable" IsChecked="{Binding ContentPartsConfigurable, Mode=TwoWay}" />
+      <sdk:Label Content="Options Button Visible (at Components)" Target="{Binding ElementName=cbContentPartsConfigurable}"/>
+    </StackPanel>
+
+    <!-- IconbarVisible -->
+
+    <StackPanel Orientation="Horizontal">
+      <CheckBox
+        Name="cbIconbarVisible"
+        IsChecked="{Binding IconbarVisible, Mode=TwoWay}"
+        />
+      <sdk:Label
+        Style="{StaticResource PropertyLabelStyle}"
+        Content="Iconbar Visible"
+        Target="{Binding ElementName=cbIconbarVisible}"
+        />
+    </StackPanel>
+
+    <!-- ToolbarVisible -->
+
+    <StackPanel Orientation="Horizontal">
+      <CheckBox
+        Name="cbToolbarVisible"
+        IsChecked="{Binding ToolbarVisible, Mode=TwoWay}"
+        />
+      <sdk:Label
+        Style="{StaticResource PropertyLabelStyle}"
+        Content="Toolbar Visible"
+        Target="{Binding ElementName=cbToolbarVisible}"
+        />
+    </StackPanel>
+
+    <!-- ToolbarOrientation -->
+    <!-- TODO: DOESN'T SEEM TO WORK    
+    <StackPanel Orientation="Horizontal">
+      <sdk:Label
+        Style="{StaticResource PropertyLabelStyle}"
+        Content="Toolbar Orientation: " 
+        Target="{Binding ElementName=comboToolbarOrientation}"
+        />
+      <ComboBox
+        Name="comboToolbarOrientation"
+        SelectedValuePath="Tag"
+        SelectedValue="{Binding ToolbarOrientation, Mode=TwoWay}"
+        >
+        <ComboBox.Items>
+          <ComboBoxItem Tag="Horizontal">Horizontal</ComboBoxItem>
+          <ComboBoxItem Tag="Vertical">Vertical</ComboBoxItem>
+        </ComboBox.Items>
+      </ComboBox>
+    </StackPanel>
+    -->
+
+  </StackPanel>
+  
+</UserControl>

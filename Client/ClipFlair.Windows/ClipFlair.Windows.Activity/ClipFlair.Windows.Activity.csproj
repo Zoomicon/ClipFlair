@@ -94,6 +94,9 @@
     <Compile Include="ViewModel\IActivity.cs" />
     <Compile Include="ViewModel\ActivityDefaults.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="View\ActivityOptions.xaml.cs">
+      <DependentUpon>ActivityOptions.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Page Include="Images\Items.xaml">
@@ -101,6 +104,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="View\ActivityContainer.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\ActivityOptions.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
