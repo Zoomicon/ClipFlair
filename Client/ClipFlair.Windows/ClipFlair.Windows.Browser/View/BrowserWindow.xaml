@@ -1,7 +1,7 @@
 ﻿<!--
 Project: ClipFlair (http://ClipFlair.codeplex.com)
 Filename: BrowserWindow.xaml
-Version: 20140417
+Version: 20141031
 -->
 
 <clipflair:BaseWindow x:Class="ClipFlair.Windows.BrowserWindow"
@@ -38,7 +38,7 @@ Version: 20140417
 
   <clipflair:BaseWindow.PropertyItems>
 
-    <options:BrowserOptions Name="options" /> <!-- uses our DataContext (the View) -->
+    <options:BrowserOptions Name="browserOptions" /> <!-- uses our DataContext (the View) -->
 
   </clipflair:BaseWindow.PropertyItems>
 
