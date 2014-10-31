@@ -1,7 +1,7 @@
 ﻿<!--
 Project: ClipFlair (http://ClipFlair.codeplex.com)
 Filename: MapWindow.xaml
-Version: 20140618
+Version: 20141031
 -->
 
 <clipflair:BaseWindow x:Class="ClipFlair.Windows.MapWindow"
@@ -49,29 +49,37 @@ Version: 20140618
   <!--</clipflair:BaseWindow.FrontContent>-->
 
   <clipflair:BaseWindow.PropertyItems>
-<!--
+
+    <!-- WHEN MOVED TO SEPARATE OPTIONS CONTROL, MAKE SURE THIS IS USED IN ITS XAML
+    <StackPanel.Resources>
+      <Style TargetType="StackPanel" BasedOn="{StaticResource PropertyStackPanelStyle}" />
+      <Style TargetType="sdk:Label" BasedOn="{StaticResource PropertyLabelStyle}" />
+    </StackPanel.Resources>
+    -->
+    
+    <!--
     <StackPanel Orientation="Horizontal">
       <CheckBox Name="cbInertia" IsChecked="{Binding Inertia, Mode=TwoWay}" />
-      <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Inertia" Target="{Binding ElementName=cbInertia}"/>
+      <sdk:Label Content="Inertia" Target="{Binding ElementName=cbInertia}"/>
     </StackPanel>
--->
+    -->
     <StackPanel Orientation="Horizontal">
       <CheckBox Name="cbNavigationVisible" IsChecked="{Binding NavigationVisible, Mode=TwoWay}" />
-      <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Navigation Visible" Target="{Binding ElementName=cbNavigationVisible}"/>
+      <sdk:Label Content="Navigation Visible" Target="{Binding ElementName=cbNavigationVisible}"/>
     </StackPanel>
 
     <StackPanel Orientation="Horizontal">
       <CheckBox Name="cbScaleVisible" IsChecked="{Binding ScaleVisible, Mode=TwoWay}" />
-      <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Scale Visible" Target="{Binding ElementName=cbScaleVisible}"/>
+      <sdk:Label Content="Scale Visible" Target="{Binding ElementName=cbScaleVisible}"/>
     </StackPanel>
     
     <StackPanel Orientation="Vertical">
-      <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Language-Culture:" Target="{Binding ElementName=edCulture}" />
+      <sdk:Label Content="Language-Culture:" Target="{Binding ElementName=edCulture}" />
       <TextBox Name="edCulture" Text="{Binding Culture, Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=True}" />
     </StackPanel>
 
     <StackPanel Orientation="Vertical">
-      <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Mode" Target="{Binding ElementName=edMode}"/>
+      <sdk:Label Content="Mode" Target="{Binding ElementName=edMode}"/>
       <!-- <TextBox Name="edMode" Text="{Binding Mode, Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=True}" /> -->
       <ComboBox Name="comboMode" SelectedValue="{Binding Mode, Mode=TwoWay}" DisplayMemberPath="Content" SelectedValuePath="Tag">
         <ComboBoxItem Content="Road" Tag="Road" />
@@ -81,39 +89,39 @@ Version: 20140618
    
     <StackPanel Orientation="Horizontal">
       <CheckBox Name="cbLabelsVisible" IsChecked="{Binding LabelsVisible, Mode=TwoWay}" />
-      <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Labels Visible" Target="{Binding ElementName=cbLabelsVisible}"/>
+      <sdk:Label Content="Labels Visible" Target="{Binding ElementName=cbLabelsVisible}"/>
     </StackPanel>
 
     <StackPanel Orientation="Horizontal">
       <CheckBox Name="cbLabelsFading" IsChecked="{Binding LabelsFading, Mode=TwoWay}" />
-      <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Labels Fading" Target="{Binding ElementName=cbLabelsFading}"/>
+      <sdk:Label Content="Labels Fading" Target="{Binding ElementName=cbLabelsFading}"/>
     </StackPanel>
 
     <StackPanel Orientation="Vertical">
-      <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Latitude:" Target="{Binding ElementName=edLatitude}" />
+      <sdk:Label Content="Latitude:" Target="{Binding ElementName=edLatitude}" />
       <TextBox Name="edLatitude" Text="{Binding Latitude, Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=True}" />
     </StackPanel>
 
     <StackPanel Orientation="Vertical">
-      <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Longitude:" Target="{Binding ElementName=edLongitude}" />
+      <sdk:Label Content="Longitude:" Target="{Binding ElementName=edLongitude}" />
       <TextBox Name="edLongitude" Text="{Binding Longitude, Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=True}" />
     </StackPanel>
     
 <!--
     <StackPanel Orientation="Vertical">
-      <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Altitude:" Target="{Binding ElementName=edAltitude}" />
+      <sdk:Label Content="Altitude:" Target="{Binding ElementName=edAltitude}" />
       <TextBox Name="edAltitude" Text="{Binding Altitude, Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=True}" />
     </StackPanel>
 -->
     
     <StackPanel Orientation="Vertical">
-      <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Map Zoom:" Target="{Binding ElementName=sldMapZoom}" />
+      <sdk:Label Content="Map Zoom:" Target="{Binding ElementName=sldMapZoom}" />
       <!-- <TextBox Name="edMapZoom" Text="{Binding MapZoom, Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=True}" /> -->
       <Slider Name="sldMapZoom" Value="{Binding MapZoom, Mode=TwoWay}" Minimum="1.0" Maximum="13.0" SmallChange="0.5" LargeChange="1.0" Orientation="Horizontal" />
     </StackPanel>
 
     <StackPanel Orientation="Vertical">
-      <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Time:" Target="{Binding ElementName=edTime}" />
+      <sdk:Label Content="Time:" Target="{Binding ElementName=edTime}" />
       <TextBox Name="edTime" Text="{Binding Time, Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=True}" />
     </StackPanel>
 
