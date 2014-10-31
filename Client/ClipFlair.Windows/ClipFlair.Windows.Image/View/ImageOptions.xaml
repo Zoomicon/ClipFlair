@@ -1,7 +1,7 @@
 ﻿<!--
 Project: ClipFlair (http://ClipFlair.codeplex.com)
 Filename: ImageOptions.xaml
-Version: 20140619
+Version: 20141031
 -->
 
 <UserControl x:Class="ClipFlair.Windows.Options.ImageOptions"
@@ -25,8 +25,13 @@ Version: 20140619
   
   <StackPanel Orientation="Vertical">
 
+    <StackPanel.Resources>
+      <Style TargetType="StackPanel" BasedOn="{StaticResource PropertyStackPanelStyle}" />
+      <Style TargetType="sdk:Label" BasedOn="{StaticResource PropertyLabelStyle}" />
+    </StackPanel.Resources>
+    
     <StackPanel Orientation="Vertical">
-      <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Image Source:" Target="{Binding ElementName=btnLoadImage}" />
+      <sdk:Label Content="Image Source:" Target="{Binding ElementName=btnLoadImage}" />
 
       <Grid>
         <Grid.ColumnDefinitions>
@@ -35,7 +40,7 @@ Version: 20140619
           <ColumnDefinition Width="Auto" />
         </Grid.ColumnDefinitions>
 
-        <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="URL:" Target="{Binding ElementName=edImageURL}" Margin="5,0" Grid.Column="0" />
+        <sdk:Label Content="URL:" Target="{Binding ElementName=edImageURL}" Margin="5,0" Grid.Column="0" />
         <TextBox Name="edImageURL"
                  Text="{Binding Source, Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=True}"
                  HorizontalScrollBarVisibility="Hidden"
@@ -56,31 +61,31 @@ Version: 20140619
 
     <StackPanel Orientation="Horizontal">
       <CheckBox Name="cbCameraSourceUsed" IsChecked="{Binding CameraSourceUsed, Mode=TwoWay}" />
-      <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Use Camera for Source" Target="{Binding ElementName=cbCameraSourceUsed}"/>
+      <sdk:Label Content="Use Camera for Source" Target="{Binding ElementName=cbCameraSourceUsed}"/>
     </StackPanel>
 
     <StackPanel Orientation="Horizontal">
       <CheckBox Name="cbContentZoomToFit" IsChecked="{Binding ContentZoomToFit, Mode=TwoWay}" />
-      <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Content Zoom to Fit" Target="{Binding ElementName=cbContentZoomToFit}"/>
+      <sdk:Label Content="Content Zoom to Fit" Target="{Binding ElementName=cbContentZoomToFit}"/>
     </StackPanel>
 
     <StackPanel Orientation="Horizontal">
       <CheckBox Name="edRTL" IsChecked="{Binding RTL, Mode=TwoWay}" />
-      <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Right to Left (RTL) Direction" Target="{Binding ElementName=edRTL}"/>
+      <sdk:Label Content="Right to Left (RTL) Direction" Target="{Binding ElementName=edRTL}"/>
     </StackPanel>    
     
     <StackPanel Orientation="Vertical">
-      <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Action URL:" Target="{Binding ElementName=edActionURL}"/>
+      <sdk:Label Content="Action URL:" Target="{Binding ElementName=edActionURL}"/>
       <TextBox Name="edActionURL" Text="{Binding ActionURL, Mode=TwoWay}" HorizontalAlignment="Stretch" />
     </StackPanel>
 
     <StackPanel Orientation="Vertical">
-      <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Action Time:" Target="{Binding ElementName=edActionTime}" />
+      <sdk:Label Content="Action Time:" Target="{Binding ElementName=edActionTime}" />
       <TextBox Name="edActionTime" Text="{Binding ActionTime, Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=True}" />
     </StackPanel>
 
     <StackPanel Orientation="Vertical">
-      <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Time:" Target="{Binding ElementName=edTime}" />
+      <sdk:Label Content="Time:" Target="{Binding ElementName=edTime}" />
       <TextBox Name="edTime" Text="{Binding Time, Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=True}" />
     </StackPanel>
 

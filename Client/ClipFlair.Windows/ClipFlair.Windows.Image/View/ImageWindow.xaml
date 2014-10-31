@@ -1,7 +1,7 @@
 ﻿<!--
 Project: ClipFlair (http://ClipFlair.codeplex.com)
 Filename: ImageWindow.xaml
-Version: 20141025
+Version: 20141031
 -->
 
 <clipflair:BaseWindow x:Class="ClipFlair.Windows.ImageWindow"
@@ -42,7 +42,7 @@ Version: 20141025
 
   <clipflair:BaseWindow.PropertyItems>
 
-    <options:ImageOptions Name="options" /> <!-- uses our DataContext (the View) -->
+    <options:ImageOptions Name="imageOptions" /> <!-- uses our DataContext (the View) -->
 
   </clipflair:BaseWindow.PropertyItems>
 
