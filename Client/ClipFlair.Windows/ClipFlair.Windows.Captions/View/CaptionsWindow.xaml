@@ -1,7 +1,7 @@
 ﻿<!--
 Project: ClipFlair (http://ClipFlair.codeplex.com)
 Filename: CaptionsWindow.xaml
-Version: 20140811
+Version: 20141031
 -->
   
 <clipflair:BaseWindow x:Class="ClipFlair.Windows.CaptionsWindow"
@@ -57,7 +57,7 @@ Version: 20140811
 
   <clipflair:BaseWindow.PropertyItems>
 
-    <options:CaptionsOptions x:Name="options" DataContext="{Binding}" /> <!-- uses our DataContext (the View) -->
+    <options:CaptionsOptions x:Name="captionsOptions" DataContext="{Binding}" /> <!-- uses our DataContext (the View) -->
 
   </clipflair:BaseWindow.PropertyItems>
 
