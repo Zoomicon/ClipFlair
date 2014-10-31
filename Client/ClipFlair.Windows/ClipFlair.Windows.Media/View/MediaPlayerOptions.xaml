@@ -1,7 +1,7 @@
 ﻿<!--
 Project: ClipFlair (http://ClipFlair.codeplex.com)
 Filename: MediaPlayerOptions.xaml
-Version: 20140612
+Version: 20141031
 -->
 
 <UserControl x:Class="ClipFlair.Windows.Options.MediaPlayerOptions"
@@ -12,7 +12,7 @@ Version: 20140612
   xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk"  
   xmlns:btn="clr-namespace:ImageButtons;assembly=ImageButtons"
   mc:Ignorable="d"
-  d:DesignHeight="295" d:DesignWidth="424"
+  d:DesignHeight="295" d:DesignWidth="224"
   >
 
   <UserControl.Resources>
@@ -24,9 +24,14 @@ Version: 20140612
   </UserControl.Resources>
   
   <StackPanel Orientation="Vertical">
-    
+
+    <StackPanel.Resources>
+      <Style TargetType="StackPanel" BasedOn="{StaticResource PropertyStackPanelStyle}" />
+      <Style TargetType="sdk:Label" BasedOn="{StaticResource PropertyLabelStyle}" />
+    </StackPanel.Resources>
+
     <StackPanel Orientation="Vertical">
-      <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Media Source:" Target="{Binding ElementName=btnLoadMedia}" />
+      <sdk:Label Content="Media Source:" Target="{Binding ElementName=btnLoadMedia}" />
       
       <Grid>
         <Grid.ColumnDefinitions>
@@ -35,7 +40,7 @@ Version: 20140612
           <ColumnDefinition Width="Auto" />
         </Grid.ColumnDefinitions>
        
-        <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="URL:" Target="{Binding ElementName=edMediaURL}" Margin="5,0" Grid.Column="0" />
+        <sdk:Label Content="URL:" Target="{Binding ElementName=edMediaURL}" Margin="5,0" Grid.Column="0" />
         <TextBox Name="edMediaURL"
                  Text="{Binding Source, Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=True}"
                  HorizontalScrollBarVisibility="Hidden"
@@ -60,50 +65,50 @@ Version: 20140612
     </StackPanel>
 
     <StackPanel Orientation="Vertical">
-      <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Time:" Target="{Binding ElementName=edTime}" />
+      <sdk:Label Content="Time:" Target="{Binding ElementName=edTime}" />
       <TextBox Name="edTime" Text="{Binding Time, Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=True}" />
     </StackPanel>
 
     <StackPanel Orientation="Vertical">
-      <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="ReplayOffset:" Target="{Binding ElementName=edReplayOffset}" />
+      <sdk:Label Content="ReplayOffset:" Target="{Binding ElementName=edReplayOffset}" />
       <TextBox Name="edReplayOffset" Text="{Binding ReplayOffset, Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=True}" />
     </StackPanel>
 
     <StackPanel Orientation="Horizontal">
       <CheckBox Name="cbAutoPlay" IsChecked="{Binding AutoPlay, Mode=TwoWay}" />
-      <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Automatic playback" Target="{Binding ElementName=cbAutoPlay}"/>
+      <sdk:Label Content="Automatic playback" Target="{Binding ElementName=cbAutoPlay}"/>
     </StackPanel>
 
     <StackPanel Orientation="Horizontal">
       <CheckBox Name="cbLooping" IsChecked="{Binding Looping, Mode=TwoWay}" />
-      <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Looping" Target="{Binding ElementName=cbLooping}"/>
+      <sdk:Label Content="Looping" Target="{Binding ElementName=cbLooping}"/>
     </StackPanel>
 
     <StackPanel Orientation="Vertical" Name="propVolume">
-      <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Volume:" Target="{Binding ElementName=sldVolume}" />
+      <sdk:Label Content="Volume:" Target="{Binding ElementName=sldVolume}" />
       <!-- <TextBox Name="edVolume" Text="{Binding Volume, Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=True}" /> -->
       <Slider Name="sldVolume" Value="{Binding Volume, Mode=TwoWay}" Minimum="0" Maximum="1" SmallChange="0.05" LargeChange="0.1" Orientation="Horizontal" />
     </StackPanel>
 
     <StackPanel Orientation="Vertical" Name="propBalance">
-      <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Balance:" Target="{Binding ElementName=sldBalance}" />
+      <sdk:Label Content="Balance:" Target="{Binding ElementName=sldBalance}" />
       <!-- <TextBox Name="edBalance" Text="{Binding Balance, Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=True}" /> -->
       <Slider Name="sldBalance" Value="{Binding Balance, Mode=TwoWay}" Minimum="-1" Maximum="1" SmallChange="0.05" LargeChange="0.1" Orientation="Horizontal" />
     </StackPanel>
 
     <StackPanel Orientation="Horizontal">
       <CheckBox Name="cbVideoVisible" IsChecked="{Binding VideoVisible, Mode=TwoWay}" />
-      <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Video visible" Target="{Binding ElementName=cbVideoVisible}"/>
+      <sdk:Label Content="Video visible" Target="{Binding ElementName=cbVideoVisible}"/>
     </StackPanel>
 
     <StackPanel Orientation="Horizontal">
       <CheckBox Name="cbControlStripVisible" IsChecked="{Binding ControllerVisible, Mode=TwoWay}" />
-      <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Controller visible" Target="{Binding ElementName=cbControlStripVisible}"/>
+      <sdk:Label Content="Controller visible" Target="{Binding ElementName=cbControlStripVisible}"/>
     </StackPanel>
 
     <StackPanel Orientation="Horizontal">
       <CheckBox Name="cbCaptionsVisible" IsChecked="{Binding CaptionsVisible, Mode=TwoWay}" />
-      <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Captions visible" Target="{Binding ElementName=cbCaptionsVisible}"/>
+      <sdk:Label Content="Captions visible" Target="{Binding ElementName=cbCaptionsVisible}"/>
     </StackPanel>
 
   </StackPanel>
