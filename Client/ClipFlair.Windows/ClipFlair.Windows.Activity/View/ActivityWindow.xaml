@@ -1,7 +1,7 @@
 ﻿<!--
 Project: ClipFlair (http://ClipFlair.codeplex.com)
 Filename: ActivityWindow.xaml
-Version: 20140926
+Version: 20141031
 -->
 
 <clipflair:BaseWindow x:Class="ClipFlair.Windows.ActivityWindow"
@@ -85,11 +85,18 @@ Version: 20140926
 
   <clipflair:BaseWindow.PropertyItems>
 
+    <!-- WHEN MOVED TO SEPARATE OPTIONS CONTROL, MAKE SURE THIS IS USED IN ITS XAML
+    <StackPanel.Resources>
+      <Style TargetType="StackPanel" BasedOn="{StaticResource PropertyStackPanelStyle}" />
+      <Style TargetType="sdk:Label" BasedOn="{StaticResource PropertyLabelStyle}" />
+    </StackPanel.Resources>
+    -->
+
     <!-- SourceURL -->
     
     <!--
     <StackPanel Orientation="Vertical">
-      <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Source URL:" Target="{Binding ElementName=edSourceURL}" />
+      <sdk:Label Content="Source URL:" Target="{Binding ElementName=edSourceURL}" />
       <TextBox Name="edSourceURL" Text="{Binding Path=Source, Mode=TwoWay}" />
     </StackPanel>
     -->
@@ -97,7 +104,7 @@ Version: 20140926
     <!-- Time -->
     
     <StackPanel Orientation="Vertical">
-      <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Time:" Target="{Binding ElementName=edTime}" />
+      <sdk:Label Content="Time:" Target="{Binding ElementName=edTime}" />
       <TextBox Name="edTime" Text="{Binding Time, Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=True}" />
     </StackPanel>
     
@@ -105,7 +112,7 @@ Version: 20140926
     
     <!--
     <StackPanel Orientation="Vertical">
-      <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="View Position:" Target="{Binding ElementName=edViewPosition}" />
+      <sdk:Label Content="View Position:" Target="{Binding ElementName=edViewPosition}" />
       <TextBox Name="edViewPosition" Text="{Binding ViewPosition, Mode=TwoWay}" />
     </StackPanel>
     -->
@@ -113,21 +120,21 @@ Version: 20140926
     <!-- ViewWidth -->
     
     <StackPanel Orientation="Vertical">
-      <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="View Width:" Target="{Binding ElementName=edViewWidth}" />
+      <sdk:Label Content="View Width:" Target="{Binding ElementName=edViewWidth}" />
       <TextBox Name="edViewWidth" Text="{Binding ViewWidth, Mode=TwoWay}" IsReadOnly="True" />
     </StackPanel>
 
     <!-- ViewHeight -->
     
     <StackPanel Orientation="Vertical">
-      <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="View Height:" Target="{Binding ElementName=edViewHeight}" />
+      <sdk:Label Content="View Height:" Target="{Binding ElementName=edViewHeight}" />
       <TextBox Name="edViewHeight" Text="{Binding ViewHeight, Mode=TwoWay}" IsReadOnly="True" />
     </StackPanel>
 
     <!-- ContentZoom -->
     
     <StackPanel Orientation="Vertical">
-      <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Content Zoom:" Target="{Binding ElementName=sldContentZoom}" />
+      <sdk:Label Content="Content Zoom:" Target="{Binding ElementName=sldContentZoom}" />
       <TextBox Name="edContentZoom" Text="{Binding ContentZoom, Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=True}"/>
       <Slider Name="sldContentZoom" Minimum="0.3" Maximum="3" SmallChange="0.1" LargeChange="0.5" Value="{Binding ContentZoom, Mode=TwoWay}"/>
     </StackPanel>
@@ -136,21 +143,21 @@ Version: 20140926
     
     <StackPanel Orientation="Horizontal">
       <CheckBox Name="cbContentZoomable" IsChecked="{Binding ContentZoomable, Mode=TwoWay}" />
-      <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Content Zoomable" Target="{Binding ElementName=cbContentZoomable}"/>
+      <sdk:Label Content="Content Zoomable" Target="{Binding ElementName=cbContentZoomable}"/>
     </StackPanel>
 
     <!-- ContentZoomToFit -->
     
     <StackPanel Orientation="Horizontal">
       <CheckBox Name="cbContentZoomToFit" IsChecked="{Binding ContentZoomToFit, Mode=TwoWay}" />
-      <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Content Zoom to Fit" Target="{Binding ElementName=cbContentZoomToFit}"/>
+      <sdk:Label Content="Content Zoom to Fit" Target="{Binding ElementName=cbContentZoomToFit}"/>
     </StackPanel>
     
     <!-- ContentPartsConfigurable -->
     
     <StackPanel Orientation="Horizontal">
       <CheckBox Name="cbContentPartsConfigurable" IsChecked="{Binding ContentPartsConfigurable, Mode=TwoWay}" />
-      <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Options Button Visible (at Components)" Target="{Binding ElementName=cbContentPartsConfigurable}"/>
+      <sdk:Label Content="Options Button Visible (at Components)" Target="{Binding ElementName=cbContentPartsConfigurable}"/>
     </StackPanel>
 
     <!-- IconbarVisible -->
