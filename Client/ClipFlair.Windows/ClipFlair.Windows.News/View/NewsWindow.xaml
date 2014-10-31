@@ -38,7 +38,7 @@ Version: 20140311
 
   <clipflair:BaseWindow.PropertyItems>
 
-    <options:NewsOptions Name="options" /> <!-- uses our DataContext (the View) -->
+    <options:NewsOptions Name="newsOptions" /> <!-- uses our DataContext (the View) -->
 
   </clipflair:BaseWindow.PropertyItems>
 
