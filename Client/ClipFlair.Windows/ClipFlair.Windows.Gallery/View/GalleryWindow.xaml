@@ -1,7 +1,7 @@
 ﻿<!--
 Project: ClipFlair (http://ClipFlair.codeplex.com)
 Filename: GalleryWindow.xaml
-Version: 20140223
+Version: 20141031
 -->
 
 <clipflair:BaseWindow x:Class="ClipFlair.Windows.GalleryWindow"
@@ -70,13 +70,20 @@ Version: 20140223
 
   <clipflair:BaseWindow.PropertyItems>
 
+    <!-- WHEN MOVED TO SEPARATE OPTIONS CONTROL, MAKE SURE THIS IS USED IN ITS XAML
+    <StackPanel.Resources>
+      <Style TargetType="StackPanel" BasedOn="{StaticResource PropertyStackPanelStyle}" />
+      <Style TargetType="sdk:Label" BasedOn="{StaticResource PropertyLabelStyle}" />
+    </StackPanel.Resources>
+    -->
+
     <StackPanel Orientation="Vertical">
-      <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Gallery Source (URL)" Target="{Binding ElementName=edGalleryURL}"/>
+      <sdk:Label Content="Gallery Source (URL)" Target="{Binding ElementName=edGalleryURL}"/>
       <TextBox Name="edGalleryURL" Text="{Binding Source, Mode=TwoWay}" HorizontalAlignment="Stretch" />
     </StackPanel>
 
     <StackPanel Orientation="Vertical">
-      <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Filter" Target="{Binding ElementName=edFilter}"/>
+      <sdk:Label Content="Filter" Target="{Binding ElementName=edFilter}"/>
       <TextBox Name="edFilter" Text="{Binding Filter, Mode=TwoWay}" HorizontalAlignment="Stretch" />
     </StackPanel>
     <!-- , Converter={StaticResource EncodedToDecodedStringConverter} -->
