@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: BaseWindow.xaml.cs
-//Version: 20140921
+//Version: 20141031
 
 //TODO: unbind control at close
 
@@ -29,6 +29,7 @@ using System.Xml;
 using Utils.Extensions;
 using System.ComponentModel.Composition.Primitives;
 using System.Collections.Generic;
+using ClipFlair.Windows.Base.Resources;
 
 namespace ClipFlair.Windows
 {
@@ -42,8 +43,8 @@ namespace ClipFlair.Windows
 
     public const string CLIPFLAIR_EXTENSION = ".clipflair";
     public const string CLIPFLAIR_ZIP_EXTENSION = ".clipflair.zip";
-    public const string CLIPFLAIR_LOAD_FILTER = "ClipFlair archive (*.clipflair, *.clipflair.zip)|*.clipflair;*.clipflair.zip";
-    public const string CLIPFLAIR_SAVE_FILTER = "ClipFlair archive (*.clipflair)|*.clipflair|ClipFlair archive (*.clipflair.zip)|*.clipflair.zip";
+    public string CLIPFLAIR_LOAD_FILTER = BaseWindowStrings.msgLoadFilter;
+    public string CLIPFLAIR_SAVE_FILTER = BaseWindowStrings.msgSaveFilter;
     public const string CLIPFLAIR_TUTORIALS = "http://social.clipflair.net/Pages/Tutorials.aspx";
 
     #if WRITE_FORMATTED_XML
@@ -72,7 +73,6 @@ namespace ClipFlair.Windows
 
     #region --- Fields ---
 
-    protected bool isTopLevel;
     protected OptionsLoadSaveControl OptionsLoadSave;
     protected string defaultLoadURL = "";
     protected ModifierKeys loadModifiers = ModifierKeys.None;
@@ -162,25 +162,13 @@ namespace ClipFlair.Windows
 
     public bool IsTopLevel
     {
-      get { return isTopLevel;  }
-      set
-      {
-        if (isTopLevel != value)
+      get { return options.IsTopLevel; }
+      set {
+        if (IsTopLevel != value)
         {
-          isTopLevel = value;
+          options.IsTopLevel = value;
           RaisePropertyChanged("IsTopLevel");
-        }
-
-        Visibility visibility = value ? Visibility.Collapsed : Visibility.Visible; //hide backpanel properties not relevant when not being a child window
-        //propPosition.Visibility = visiblity;
-        propX.Visibility = visibility;
-        propY.Visibility = visibility;
-        propWidth.Visibility = visibility;
-        propHeight.Visibility = visibility;
-        propZoom.Visibility = visibility;
-        propMoveable.Visibility = visibility;
-        propResizable.Visibility = visibility;
-        propZoomable.Visibility = visibility;
+        } //TODO: see if the following could get inside the "if" block without breaking any related functionality
 
         if (value) MoveEnabled = false; else MoveEnabled = ViewDefaults.DefaultMoveable;
         if (value) ResizeEnabled = false; else ResizeEnabled = ViewDefaults.DefaultResizable;
@@ -276,11 +264,14 @@ namespace ClipFlair.Windows
 
     #region --- Methods ---
 
-    public virtual void ShowLoadURLDialog(string loadItemTitle = "ClipFlair Component Template")
+    public virtual void ShowLoadURLDialog(string loadItemTitle = "#msgLoadURLDialogTitle#")
     {
       try
       {
-        InputDialog.Show("Load " + loadItemTitle, "URL:", defaultLoadURL,
+        if (loadItemTitle.Equals("#msgLoadURLDialogTitle#"))
+          loadItemTitle = BaseWindowStrings.msgLoadURLDialogTitle;
+
+        InputDialog.Show(BaseWindowStrings.msgLoad + " " + loadItemTitle, BaseWindowStrings.msgURL, defaultLoadURL,
         (s, ex) =>
         {
           string input = ((InputDialog)s).Input;
@@ -293,11 +284,11 @@ namespace ClipFlair.Windows
       }
       catch (NullReferenceException ex)
       {
-        ErrorDialog.Show("Loading failed - Saved options may be for other window", ex);
+        ErrorDialog.Show(BaseWindowStrings.msgLoadingFailedOtherWindow, ex);
       }
       catch (Exception ex)
       {
-        ErrorDialog.Show("Loading failed", ex);
+        ErrorDialog.Show(BaseWindowStrings.msgLoadingFailed, ex);
       }
     }
 
@@ -328,11 +319,11 @@ namespace ClipFlair.Windows
       }
       catch (NullReferenceException ex)
       {
-        ErrorDialog.Show("Loading failed - Saved options may be for other window", ex);
+        ErrorDialog.Show(BaseWindowStrings.msgLoadingFailedOtherWindow, ex);
       }
       catch (Exception ex)
       {
-        ErrorDialog.Show("Loading failed", ex);
+        ErrorDialog.Show(BaseWindowStrings.msgLoadingFailed, ex);
       }
       return false;
     }
@@ -360,7 +351,7 @@ namespace ClipFlair.Windows
       }
       catch (Exception ex)
       {
-        ErrorDialog.Show("Saving failed", ex);
+        ErrorDialog.Show(BaseWindowStrings.msgSavingFailed, ex);
       }
       return false;
     }
@@ -538,7 +529,7 @@ namespace ClipFlair.Windows
     {
       Lazy<IWindowFactory> win = mefContainer.GetExports<IWindowFactory>(contract).FirstOrDefault();
       if (win == null)
-        throw new Exception("Unknown view type: " + contract);
+        throw new Exception(BaseWindowStrings.msgUnknownViewType + contract);
       else
         return win.Value;
     }
@@ -577,7 +568,7 @@ namespace ClipFlair.Windows
       }
       catch (Exception e)
       {
-        ErrorDialog.Show("Saving failed", e);
+        ErrorDialog.Show(BaseWindowStrings.msgSavingFailed, e);
       }
       finally
       {
@@ -684,11 +675,11 @@ namespace ClipFlair.Windows
         }
         catch (NullReferenceException ex)
         {
-          ErrorDialog.Show("Loading failed - Saved options may be for other window", ex);
+          ErrorDialog.Show(BaseWindowStrings.msgLoadingFailedOtherWindow, ex);
         }
         catch (Exception ex)
         {
-          ErrorDialog.Show("Loading failed", ex);
+          ErrorDialog.Show(BaseWindowStrings.msgLoadingFailed, ex);
         }
       }
     }
@@ -706,7 +697,7 @@ namespace ClipFlair.Windows
     {
       if (!IsTopLevel //for top level window showing closing warning (with option to cancel closing) via webpage JavaScript event handler or via App class event handler at OOB mode
           && View.WarnOnClosing) 
-        e.Cancel = (MessageBox.Show("Are you sure you want to close this window?", "Confirmation", MessageBoxButton.OKCancel) != MessageBoxResult.OK);
+        e.Cancel = (MessageBox.Show(BaseWindowStrings.msgCloseConfirmation, BaseWindowStrings.msgConfirmation, MessageBoxButton.OKCancel) != MessageBoxResult.OK);
 
       if (!e.Cancel)
       {
