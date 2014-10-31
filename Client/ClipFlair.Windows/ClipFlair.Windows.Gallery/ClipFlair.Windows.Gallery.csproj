@@ -86,12 +86,19 @@
     <Compile Include="ViewModel\IGallery.cs" />
     <Compile Include="ViewModel\GalleryDefaults.cs" />
     <Compile Include="ViewModel\GalleryView.cs" />
+    <Compile Include="View\GalleryOptions.xaml.cs">
+      <DependentUpon>GalleryOptions.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\GalleryWindow.xaml.cs">
       <DependentUpon>GalleryWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Page Include="View\GalleryOptions.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="View\GalleryWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
