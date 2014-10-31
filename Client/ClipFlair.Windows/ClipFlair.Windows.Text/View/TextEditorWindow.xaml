@@ -12,6 +12,7 @@ Version: 20141031
   xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk"  
   xmlns:clipflair="clr-namespace:ClipFlair.Windows;assembly=ClipFlair.Windows.Base"    
   xmlns:text="clr-namespace:SilverTextEditor;assembly=SilverTextEditor"
+  xmlns:options="clr-namespace:ClipFlair.Windows.Options"                      
   mc:Ignorable="d"                      
   d:DesignWidth="650" d:DesignHeight="630"
                       
@@ -43,40 +44,8 @@ Version: 20141031
 
   <clipflair:BaseWindow.PropertyItems>
 
-    <!-- WHEN MOVED TO SEPARATE OPTIONS CONTROL, MAKE SURE THIS IS USED IN ITS XAML
-    <StackPanel.Resources>
-      <Style TargetType="StackPanel" BasedOn="{StaticResource PropertyStackPanelStyle}" />
-      <Style TargetType="sdk:Label" BasedOn="{StaticResource PropertyLabelStyle}" />
-    </StackPanel.Resources>
-    -->
-
-    <!-- 
-    <StackPanel Orientation="Vertical">
-      <sdk:Label Content="Text URL" Target="{Binding ElementName=edTextURL}"/>
-      <TextBox Name="edTextURL" Text="" />
-    </StackPanel>
-    -->
-
-    <StackPanel Orientation="Horizontal">
-      <CheckBox Name="edToolbarVisible" IsChecked="{Binding ToolbarVisible, Mode=TwoWay}" />
-      <sdk:Label Content="Toolbar Visible" Target="{Binding ElementName=edToolbarVisible}"/>
-    </StackPanel>
-
-    <StackPanel Orientation="Horizontal">
-      <CheckBox Name="edEditable" IsChecked="{Binding Editable, Mode=TwoWay}" />
-      <sdk:Label Content="Editable" Target="{Binding ElementName=edEditable}"/>
-    </StackPanel>
-
-    <StackPanel Orientation="Horizontal">
-      <CheckBox Name="edRTL" IsChecked="{Binding RTL, Mode=TwoWay}" />
-      <sdk:Label Content="Right to Left (RTL) Text Direction" Target="{Binding ElementName=edRTL}"/>
-    </StackPanel>
-
-    <StackPanel Orientation="Vertical">
-      <sdk:Label Content="Time:" Target="{Binding ElementName=edTime}" />
-      <TextBox Name="edTime" Text="{Binding Time, Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=True}" />
-    </StackPanel>
-
+    <options:TextEditorOptions x:Name="textEditorOptions" DataContext="{Binding}" /> <!-- uses our DataContext (the View) -->
+    
   </clipflair:BaseWindow.PropertyItems>
 
 </clipflair:BaseWindow>
