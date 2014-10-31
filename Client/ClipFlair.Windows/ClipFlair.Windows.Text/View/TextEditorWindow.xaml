@@ -1,7 +1,7 @@
 ﻿<!-- 
 Project: ClipFlair (http://ClipFlair.codeplex.com)
 Filename: TextEditorWindow.xaml
-Version: 20140709
+Version: 20141031
 -->
   
 <clipflair:BaseWindow x:Class="ClipFlair.Windows.TextEditorWindow"
@@ -43,28 +43,37 @@ Version: 20140709
 
   <clipflair:BaseWindow.PropertyItems>
 
-<!-- <StackPanel Orientation="Vertical">
-      <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Text URL" Target="{Binding ElementName=edTextURL}"/>
+    <!-- WHEN MOVED TO SEPARATE OPTIONS CONTROL, MAKE SURE THIS IS USED IN ITS XAML
+    <StackPanel.Resources>
+      <Style TargetType="StackPanel" BasedOn="{StaticResource PropertyStackPanelStyle}" />
+      <Style TargetType="sdk:Label" BasedOn="{StaticResource PropertyLabelStyle}" />
+    </StackPanel.Resources>
+    -->
+
+    <!-- 
+    <StackPanel Orientation="Vertical">
+      <sdk:Label Content="Text URL" Target="{Binding ElementName=edTextURL}"/>
       <TextBox Name="edTextURL" Text="" />
-    </StackPanel> -->
+    </StackPanel>
+    -->
 
     <StackPanel Orientation="Horizontal">
       <CheckBox Name="edToolbarVisible" IsChecked="{Binding ToolbarVisible, Mode=TwoWay}" />
-      <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Toolbar Visible" Target="{Binding ElementName=edToolbarVisible}"/>
+      <sdk:Label Content="Toolbar Visible" Target="{Binding ElementName=edToolbarVisible}"/>
     </StackPanel>
 
     <StackPanel Orientation="Horizontal">
       <CheckBox Name="edEditable" IsChecked="{Binding Editable, Mode=TwoWay}" />
-      <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Editable" Target="{Binding ElementName=edEditable}"/>
+      <sdk:Label Content="Editable" Target="{Binding ElementName=edEditable}"/>
     </StackPanel>
 
     <StackPanel Orientation="Horizontal">
       <CheckBox Name="edRTL" IsChecked="{Binding RTL, Mode=TwoWay}" />
-      <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Right to Left (RTL) Text Direction" Target="{Binding ElementName=edRTL}"/>
+      <sdk:Label Content="Right to Left (RTL) Text Direction" Target="{Binding ElementName=edRTL}"/>
     </StackPanel>
 
     <StackPanel Orientation="Vertical">
-      <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Time:" Target="{Binding ElementName=edTime}" />
+      <sdk:Label Content="Time:" Target="{Binding ElementName=edTime}" />
       <TextBox Name="edTime" Text="{Binding Time, Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=True}" />
     </StackPanel>
 
