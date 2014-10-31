@@ -9,17 +9,15 @@ Version: 20141031
   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
   xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-  xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk"
   xmlns:pivot="clr-namespace:System.Windows.Controls.Pivot;assembly=System.Windows.Controls.Pivot"
   xmlns:pivotex="clr-namespace:PivotViewerExt;assembly=PivotViewerExt"
-  xmlns:clipflair="clr-namespace:ClipFlair.Windows;assembly=ClipFlair.Windows.Base"    
-  xmlns:clipflairview="clr-namespace:ClipFlair.Windows.Views"
+  xmlns:clipflair="clr-namespace:ClipFlair.Windows;assembly=ClipFlair.Windows.Base"
   xmlns:con="clr-namespace:Microsoft.Internal.Pivot.Controls;assembly=System.Windows.Controls.Pivot"
   xmlns:toolkit="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Toolkit"
+  xmlns:options="clr-namespace:ClipFlair.Windows.Options"                      
   mc:Ignorable="d"
   d:DesignWidth="800" d:DesignHeight="600"
   >
-  <!-- xmlns:utils="clr-namespace:Utils.Converters;assembly=Zoomicon.Utils.Silverlight" -->
 
   <clipflair:BaseWindow.Resources>
     <ResourceDictionary>
@@ -70,23 +68,7 @@ Version: 20141031
 
   <clipflair:BaseWindow.PropertyItems>
 
-    <!-- WHEN MOVED TO SEPARATE OPTIONS CONTROL, MAKE SURE THIS IS USED IN ITS XAML
-    <StackPanel.Resources>
-      <Style TargetType="StackPanel" BasedOn="{StaticResource PropertyStackPanelStyle}" />
-      <Style TargetType="sdk:Label" BasedOn="{StaticResource PropertyLabelStyle}" />
-    </StackPanel.Resources>
-    -->
-
-    <StackPanel Orientation="Vertical">
-      <sdk:Label Content="Gallery Source (URL)" Target="{Binding ElementName=edGalleryURL}"/>
-      <TextBox Name="edGalleryURL" Text="{Binding Source, Mode=TwoWay}" HorizontalAlignment="Stretch" />
-    </StackPanel>
-
-    <StackPanel Orientation="Vertical">
-      <sdk:Label Content="Filter" Target="{Binding ElementName=edFilter}"/>
-      <TextBox Name="edFilter" Text="{Binding Filter, Mode=TwoWay}" HorizontalAlignment="Stretch" />
-    </StackPanel>
-    <!-- , Converter={StaticResource EncodedToDecodedStringConverter} -->
+    <options:GalleryOptions x:Name="galleryOptions" DataContext="{Binding}" /> <!-- uses our DataContext (the View) -->
 
   </clipflair:BaseWindow.PropertyItems>
 
