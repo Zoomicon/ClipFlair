@@ -15,6 +15,7 @@
     <TargetFrameworkVersion>v5.0</TargetFrameworkVersion>
     <SilverlightVersion>$(TargetFrameworkVersion)</SilverlightVersion>
     <SilverlightApplication>false</SilverlightApplication>
+    <SupportedCultures>el</SupportedCultures>
     <ValidateXaml>true</ValidateXaml>
     <ThrowErrorsInValidation>true</ThrowErrorsInValidation>
     <IsWebBootstrapper>false</IsWebBootstrapper>
@@ -86,6 +87,12 @@
     <Compile Include="..\Source\IWindowFactory.cs">
       <Link>IWindowFactory.cs</Link>
     </Compile>
+    <Compile Include="..\Source\Resources\BaseWindowStrings.Designer.cs">
+      <Link>Resources\BaseWindowStrings.Designer.cs</Link>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BaseWindowStrings.resx</DependentUpon>
+    </Compile>
     <Compile Include="..\Source\ViewModel\BaseView.cs">
       <Link>ViewModel\BaseView.cs</Link>
     </Compile>
@@ -103,6 +110,9 @@
       <DependentUpon>BaseWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="View\BaseOptions.xaml.cs">
+      <DependentUpon>BaseOptions.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Page Include="..\Source\Themes\Generic.xaml">
@@ -112,6 +122,10 @@
     </Page>
     <Page Include="..\Source\View\BaseWindow.xaml">
       <Link>View\BaseWindow.xaml</Link>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\BaseOptions.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -214,6 +228,17 @@
     <None Include="..\Base.cd">
       <Link>Base.cd</Link>
     </None>
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="..\Source\Resources\BaseWindowStrings.el.resx">
+      <Link>Resources\BaseWindowStrings.el.resx</Link>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\Source\Resources\BaseWindowStrings.resx">
+      <Link>Resources\BaseWindowStrings.resx</Link>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Silverlight\$(SilverlightVersion)\Microsoft.Silverlight.CSharp.targets" />
   <ProjectExtensions>
