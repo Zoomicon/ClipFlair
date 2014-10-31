@@ -1,7 +1,7 @@
 ﻿<!--
 Project: ClipFlair (http://ClipFlair.codeplex.com)
 Filename: MediaPlayerWindow.xaml
-Version: 20140811
+Version: 20141031
 -->
 
 <clipflair:BaseWindow x:Class="ClipFlair.Windows.MediaPlayerWindow"
@@ -74,7 +74,7 @@ Version: 20140811
 
   <clipflair:BaseWindow.PropertyItems>
 
-    <options:MediaPlayerOptions x:Name="options" DataContext="{Binding}" /> <!-- uses same DataContext (the View) -->
+    <options:MediaPlayerOptions x:Name="mediaPlayerOptions" DataContext="{Binding}" /> <!-- uses same DataContext (the View) -->
     
     <StackPanel Orientation="Vertical">
 
