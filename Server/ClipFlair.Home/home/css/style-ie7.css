@@ -10,15 +10,18 @@ body {
 	background: #243445;
 	width:100%;
 }
+
 #wrapper {
 	width: 100%;
 	position: relative;
 	text-align: left;
 }
+
 #maincontentcontainer {
 	width: 100%;
 	background: #3c5773;
 }
+
 #maincontent {
 	clear: both;
 	width: 800px;
@@ -35,6 +38,7 @@ body {
 	line-height: 1.5em;
 	position: relative;
 }
+
 /*  SECTIONS  */
 .section {
 	clear: both;
@@ -42,6 +46,7 @@ body {
 	margin: 0px;
 	position:relative;
 }
+
 /*  COLUMN SETUP  */
 .col {
 
@@ -49,26 +54,32 @@ body {
 	margin: 10px 0 10px 20px;
 	display: inline-block !important;
 }
+
 .col:first-child {
 	margin-left: 0;
 }
+
 /*  GROUPING  */
 .group:before, .group:after {
 	content:"";
 	display:table;
 }
+
 .group:after {
 	clear:both;
 }
+
 /*  GRID OF THREE  */
 .span_3_of_3 {
 	width: 100%;
 	background-color:#0F6;
 }
+
 .span_2_of_3 {
 	width: 66.1%;
 	background-color:#C66;
 }
+
 .span_1_of_3 {
 	width: 242px;
 	height:242px;
@@ -81,8 +92,8 @@ body {
 	background-color:inherit;
 	/*/!!!*/
 }
-/*!!!*/
 
+/*!!!*/
 
 #subfooter {
 	width: 98%;
@@ -94,6 +105,7 @@ body {
 	font-weight:lighter;
 	clear:both;
 }
+
 #footer {
 	width: 98%;
 	background: #243445;
@@ -102,11 +114,13 @@ body {
 	padding: 20px 1%;
 	font-size:12px;
 }
+
 #footercontent, #subfootercontent {
 	clear: both;
 	width: 900px;
 	margin: 0 auto;
 }
+
 #subfootercontent p.footer-text {
 	font-size:32px;
 	line-height:1.2em;
@@ -114,18 +128,23 @@ body {
 	padding:0;
 	
 }
+
 #subfootercontent span {
 	white-space:nowrap;
 }
+
 .content_wrapper {
 	/*float:left;*/
 }
+
 .llp_logo {
 	float:left;
 }
+
 .llp_logo img {
 
 }
+
 #footercontent p {
 	float:left;
 	width:65%;
@@ -134,6 +153,7 @@ body {
 	margin:0;
 	color:#808993;
 }
+
 a.share {
 	float:right;
 	padding-top:6px;
@@ -141,10 +161,12 @@ a.share {
 	height:30px;
 	display:block;
 }
+
 a.share img {
 
 	border:none;
 }
+
 /*ROLL-OVER TEXT*/
 a.span_1_of_3 .roll-over {
 	position:absolute;
@@ -156,15 +178,18 @@ a.span_1_of_3 .roll-over {
 	height:100%;
 	
 }
+
 a.span_1_of_3:hover {
 	_background-color: transparent;
 }
+
 a.span_1_of_3:hover .roll-over {
 	cursor:pointer;
 	/*display:block;*/
 	visibility:visible;
 	
 }
+
 /*a.span_1_of_3:hover .roll-over .text {
 	display:block;
 	opacity:0;
@@ -193,6 +218,7 @@ label.custom-select {
 	display: inline-block;
 	float:right;
 }
+
 .custom-select select {
 	display: inline-block;
 	padding: 4px;
@@ -214,6 +240,7 @@ label.custom-select {
 }
 
 label.custom-select {position:relative}
+
 label.custom-select:after {
     content:'';
     font:13px "Consolas", monospace;
@@ -230,6 +257,7 @@ label.custom-select:after {
     opacity: 0;
     filter: alpha(opacity=0);
 }
+
 label.custom-select:before {
     content:'';
     right:4px; top:4px;
@@ -239,6 +267,7 @@ label.custom-select:before {
     pointer-events:none;
     display:block;
 }
+
 /* Select arrow styling
 .custom-select:after {
 	content: "▼";
@@ -253,8 +282,14 @@ label.custom-select:before {
 	color: #778a9d;
 
 }
+
 .no-pointer-events .custom-select:after {
 	content: none;
-} */
+}
+*/
 
-
+.fancybox-title-outside-wrap {
+position: relative;
+margin-top: 4px;
+color: #fff;
+}
