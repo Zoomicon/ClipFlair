@@ -190,6 +190,7 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Resources\ClipFlairStudioStrings.el.resx" />
+    <EmbeddedResource Include="Resources\ClipFlairStudioStrings.es.resx" />
     <EmbeddedResource Include="Resources\ClipFlairStudioStrings.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>ClipFlairStudioStrings.Designer.cs</LastGenOutput>

@@ -150,6 +150,7 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Resources\CaptionsGridStrings.el.resx" />
+    <EmbeddedResource Include="Resources\CaptionsGridStrings.es.resx" />
     <EmbeddedResource Include="Resources\CaptionsGridStrings.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>CaptionsGridStrings.Designer.cs</LastGenOutput>
