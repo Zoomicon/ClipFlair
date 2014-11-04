@@ -312,6 +312,9 @@
       <Link>Resources\SilverTextEditorStrings.el.resx</Link>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="..\Source\Resources\SilverTextEditorStrings.es.resx">
+      <Link>Resources\SilverTextEditorStrings.es.resx</Link>
+    </EmbeddedResource>
     <EmbeddedResource Include="..\Source\Resources\SilverTextEditorStrings.resx">
       <Link>Resources\SilverTextEditorStrings.resx</Link>
       <SubType>Designer</SubType>

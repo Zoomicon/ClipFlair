@@ -235,6 +235,9 @@
       <Link>Resources\BaseWindowStrings.el.resx</Link>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="..\Source\Resources\BaseWindowStrings.es.resx">
+      <Link>Resources\BaseWindowStrings.es.resx</Link>
+    </EmbeddedResource>
     <EmbeddedResource Include="..\Source\Resources\BaseWindowStrings.resx">
       <Link>Resources\BaseWindowStrings.resx</Link>
       <SubType>Designer</SubType>
