@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: AudioRecorderView.cs
-//Version: 20140619
+//Version: 20141107
 
 using AudioLib;
 
@@ -249,7 +249,7 @@ namespace ClipFlair.AudioRecorder
 
       try
       {
-        Audio = new MemoryStream();
+        Audio = new MemoryStream(WavManager.WAV_HEADER_SIZE + (int)_sink.BackingStream.Length); //setting initial capacity of MemoryStream to avoid having it resize multiple times (default is 0 if not given)
         WavManager.SavePcmToWav(_sink.BackingStream, Audio, new AudioFormatEx(_sink.CurrentFormat));
         _sink.CloseStream(); //close the backing stream, will be reallocated at next recording
 
@@ -341,9 +341,10 @@ namespace ClipFlair.AudioRecorder
       {
         Status = MSG_LOADING;
 
-        using (Stream stream = openFileDialog.File.OpenRead())
+        FileInfo f = openFileDialog.File;
+        using (Stream stream = f.OpenRead())
         {
-          MemoryStream m = new MemoryStream();
+          MemoryStream m = new MemoryStream((int)f.Length);
           LoadAudio(stream, m);
           Audio = m;
         }
@@ -409,9 +410,9 @@ namespace ClipFlair.AudioRecorder
       }
     }
 
-    public static void LoadAudio(Stream stream, Stream target) //does not close the stream
+    public static void LoadAudio(Stream stream, Stream target, int bufferSize = 4096) //does not close the stream
     {
-      stream.CopyTo(target); //default buffer size is 4096
+      stream.CopyTo(target, bufferSize);
     }
 
     public static void SaveAudio(Stream stream, Stream source) //does not close the stream

@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: CaptionExtraDataHelper.cs
-//Version: 20140718
+//Version: 20141107
 
 #define WRITE_FORMATTED_XML
 
@@ -36,12 +36,12 @@ namespace ClipFlair.CaptionsGrid
       return (c != null) ? c.ExtraData : null;
     }
 
-    public static void LoadExtraData(this CaptionElement caption, Stream stream) //does not close stream
+    public static void LoadExtraData(this CaptionElement caption, Stream stream, int sizeHint = 0) //does not close stream
     {
       CaptionElementExt captionExt = caption as CaptionElementExt;
       if (captionExt == null) return;
 
-      MemoryStream buffer = new MemoryStream();
+      MemoryStream buffer = new MemoryStream(sizeHint); //using "sizeHint" only to set MemoryStream's initial capacity
 
       DataContractSerializer serializer = new DataContractSerializer(typeof(CaptionElementExtraData));
       captionExt.ExtraData = (CaptionElementExtraData)serializer.ReadObject(stream); //this will set a new View that defaults to Busy=false

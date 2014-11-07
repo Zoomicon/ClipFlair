@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: MediaPlayerWindow.xaml.cs
-//Version: 20141031
+//Version: 20141107
 
 using ClipFlair.Windows.Media;
 using ClipFlair.Windows.Views;
@@ -144,7 +144,7 @@ namespace ClipFlair.Windows
         foreach (ZipEntry mediaEntry in zip.SelectEntries("*" + ext, zipFolder))
           using (Stream zipStream = mediaEntry.OpenReader())
           {
-            MemoryStream memStream = new MemoryStream(); //do not wrap this in "using" clause, keep the stream alive in memory
+            MemoryStream memStream = new MemoryStream((int)mediaEntry.UncompressedSize); //do not wrap this in "using" clause, keep the stream alive in memory
             zipStream.CopyTo(memStream);
             memStream.Position = 0;
             LoadContent(memStream, mediaEntry.FileName); //seems we need to copy the media file to a memory stream for it to play OK
@@ -171,7 +171,7 @@ namespace ClipFlair.Windows
       if (s != null)
       {
         s.Position = 0;
-        s.CopyTo(stream);
+        s.CopyTo(stream); //default buffer size is 4096
       }
     }
 
