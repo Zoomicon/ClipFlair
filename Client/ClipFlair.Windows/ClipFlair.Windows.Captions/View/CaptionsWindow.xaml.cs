@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: CaptionsWindow.xaml.cs
-//Version: 20140707
+//Version: 20141107
 
 //TODO: add Source property to CaptionsGrid control and use data-binding to bind it to CaptionsGridView's Source property
 
@@ -137,7 +137,7 @@ namespace ClipFlair.Windows
     {
       ZipEntry entry = zip[zipFolder + CaptionExtraDataPath(caption)];
       if (entry != null)
-        caption.LoadExtraData(entry.OpenReader());
+        caption.LoadExtraData(entry.OpenReader(), (int)entry.UncompressedSize);
     }
 
     #endregion
@@ -155,7 +155,7 @@ namespace ClipFlair.Windows
     {
       ZipEntry entry = zip[zipFolder + CaptionAudioPath(caption)];
       if (entry != null)
-        caption.LoadAudio(entry.OpenReader());
+        caption.LoadAudio(entry.OpenReader(), (int)entry.UncompressedSize);
     }
 
     #endregion
@@ -173,7 +173,7 @@ namespace ClipFlair.Windows
     {
       ZipEntry entry = zip[zipFolder + CaptionCommentsAudioPath(caption)];
       if (entry != null)
-        caption.LoadCommentsAudio(entry.OpenReader());
+        caption.LoadCommentsAudio(entry.OpenReader(), (int)entry.UncompressedSize);
     }
 
     #endregion

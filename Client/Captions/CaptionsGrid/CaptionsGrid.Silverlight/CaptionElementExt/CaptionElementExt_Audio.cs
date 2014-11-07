@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: CaptionElementExt_Audio.cs
-//Version: 20140706
+//Version: 20141107
 
 using AudioLib;
 
@@ -40,12 +40,13 @@ namespace ClipFlair.CaptionsGrid
       return result;
     }
 
-    public static void LoadAudio(this CaptionElement caption, Stream stream) //does not close stream
+    public static void LoadAudio(this CaptionElement caption, Stream stream, int sizeHint = 0) //does not close stream
     {
       CaptionElementExt captionExt = caption as CaptionElementExt;
       if (captionExt == null) return;
 
-      MemoryStream buffer = new MemoryStream();
+      MemoryStream buffer = new MemoryStream(sizeHint); //using "sizeHint" only to set MemoryStream's initial capacity
+
       AudioRecorderView.LoadAudio(stream, buffer); //keep load logic encapsulated so that we can add decoding/decompression there
       captionExt.Audio = buffer;
     }

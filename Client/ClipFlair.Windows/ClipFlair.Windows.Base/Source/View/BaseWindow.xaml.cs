@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: BaseWindow.xaml.cs
-//Version: 20141031
+//Version: 20141107
 
 //TODO: unbind control at close
 
@@ -430,12 +430,13 @@ namespace ClipFlair.Windows
       {
         try
         {
-          using (e.Result)
+          Stream f = e.Result;
+          using (f)
           {
-            MemoryStream memStream = new MemoryStream(); //TODO: see why this is needed (Ionic.Zip fails to load directly from the InternalMemoryStream because of some call to Flush which is not supported)
+            MemoryStream memStream = new MemoryStream((int)f.Length); //TODO: see why this is needed (Ionic.Zip fails to load directly from the InternalMemoryStream because of some call to Flush which is not supported [maybe we could wrap InternalMemoryStream with other stream that ignores the Flush])
             using (memStream)
             {
-              e.Result.CopyTo(memStream);
+              f.CopyTo(memStream);
               memStream.Position = 0;
               LoadOptions(memStream);
             }
@@ -517,7 +518,7 @@ namespace ClipFlair.Windows
     public static BaseWindow LoadWindow(ZipEntry childZip) //load window from nested archive
     {
       using (Stream zipStream = childZip.OpenReader())
-        using (MemoryStream memStream = new MemoryStream()) //TODO: see why this is needed - can't use activity.Windows.Add(LoadWindow(stream), seems DotNetZip fails to open a .zip from a stream inside another .zip
+        using (MemoryStream memStream = new MemoryStream((int)childZip.UncompressedSize)) //TODO: see why this is needed - can't use activity.Windows.Add(LoadWindow(stream), seems DotNetZip fails to open a .zip from a stream inside another .zip
         {
           zipStream.CopyTo(memStream);
           memStream.Position = 0;

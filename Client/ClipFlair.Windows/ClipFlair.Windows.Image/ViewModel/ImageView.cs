@@ -1,8 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: ImageView.cs
-//Version: 20140619
-
-//TODO: maybe allow to load (scaled) local image and store it in options file (show image from memorystream)
+//Version: 20141107
 
 using System;
 using System.ComponentModel;

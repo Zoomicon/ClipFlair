@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: ImageWindow.xaml.cs
-//Version: 20141031
+//Version: 20141107
 
 using ClipFlair.UI.Dialogs;
 using ClipFlair.Windows.Views;
@@ -172,7 +172,7 @@ namespace ClipFlair.Windows
       if (s != null)
       {
         s.Position = 0;
-        s.CopyTo(stream);
+        s.CopyTo(stream); //default buffer size is 4096
       }
     }
         
