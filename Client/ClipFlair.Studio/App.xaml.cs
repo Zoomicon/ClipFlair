@@ -1,8 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: App.xaml.cs
-//Version: 20141022
-
-//#define GALLERY_IN_BACKGROUND
+//Version: 20141111
 
 using ClipFlair.Windows;
 using SilverFlow.Controls;
@@ -142,15 +140,7 @@ namespace ClipFlair
         }
 
         if (!ParseUrlParameters(activityWindow)) //ParseUrlParameters returns false if IsRunningOutOfBrowser is true
-        {
-          #if GALLERY_IN_BACKGROUND
-          GalleryWindow w = activityWindow.Container.AddGallery();
-          w.Width = activityWindow.Width;
-          w.Height = activityWindow.Height - (activityWindow.ActivityView.ToolbarVisible?80:0); //TODO: should change this if/when activity toolbar is made vertical (have option to get ActualWidth/ActualHeight of activity toolbar)
-          #endif
-
           activityWindow.ShowStartDialog();
-        }
 
       };
 
@@ -316,12 +306,13 @@ namespace ClipFlair
       w.IsTopLevel = true; //hide backpanel properties not relevant when not being a child window
       host.Add(w);
 
-      w.Position = new Point(0, 0);
-      w.MaximizeWindow(); //TODO: seems MaximizeAction is broken, need to check original FloatingWindow control (Silverlight version)
-
+      w.BorderThickness = new Thickness(0); //remove the default 3px border
       w.ShowMaximizeRestoreButton = false;
       w.ShowMinimizeButton = false;
       w.ShowCloseButton = false;
+
+      w.Position = new Point(0, 0);
+      w.MaximizeWindow(); //TODO: seems MaximizeAction is broken, need to check original FloatingWindow control (Silverlight version)
 
       return w;
     }
