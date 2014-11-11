@@ -1,7 +1,7 @@
 ﻿<!--
 Project: ClipFlair (http://ClipFlair.codeplex.com)
 Filename: ActivityContainer.xaml
-Version: 20140903
+Version: 20141111
 -->
 
 <UserControl x:Class="ClipFlair.Windows.ActivityContainer" 
@@ -14,9 +14,9 @@ Version: 20140903
   xmlns:clipflair="clr-namespace:ClipFlair.Windows"
   xmlns:widgets="clr-namespace:ClipFlair.UI.Widgets;assembly=ClipFlair.UI.Widgets"
   xmlns:utils="clr-namespace:System.Windows.Controls;assembly=WPF_Compatibility"
-
   xmlns:btn="clr-namespace:ImageButtons;assembly=ImageButtons"
              
+  BorderThickness="0"
   d:DesignWidth="800" d:DesignHeight="600"
   >
   <!-- //EXAMPLE//

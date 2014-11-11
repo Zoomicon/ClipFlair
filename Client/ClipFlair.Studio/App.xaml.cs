@@ -99,6 +99,7 @@ namespace ClipFlair
 
       FloatingWindowHost host = new FloatingWindowHost(); //don't use FloatingWindowHostZUI here
       host.CloseWindowsOnApplicationExit = true; //only using for the parent of the toplevel ActivityWindow, else multiple closing warning dialogs can show up
+      host.BorderThickness = new Thickness(0); //removing border of outer FloatingWindowHost container so that activityWindow will take up all space of the Silverlight control
 
       ActivityWindow activityWindow = CreateActivityWindow(host);
 
@@ -306,7 +307,8 @@ namespace ClipFlair
       w.IsTopLevel = true; //hide backpanel properties not relevant when not being a child window
       host.Add(w);
 
-      w.BorderThickness = new Thickness(0); //remove the default 3px border
+      w.BorderThickness = new Thickness(0); //remove the default 3px border //this shouldn't be needed if "MaximizeWindow()" below works fine (not showing border at maximized windows)
+
       w.ShowMaximizeRestoreButton = false;
       w.ShowMinimizeButton = false;
       w.ShowCloseButton = false;
