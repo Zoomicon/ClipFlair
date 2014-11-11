@@ -466,10 +466,12 @@
                     UseLayoutRounding="True"
                     CornerRadius="2,2,0,0"
                     Margin="-1,-1,-1,0"
-                    Padding="0"                    
+                    Padding="0"
+                    Canvas.ZIndex="1"
                     FocusManager.IsFocusScope="True"
                     >
-                    <!-- the special Margin is needed to fix a small line gap between window border and titlebar that shows up when zooming the UI -->
+                    <!-- Note: the special Margin is needed to fix a small line gap between window border and titlebar that shows up when zooming the UI -->
+                    <!-- Note: must set Canvas.ZIndex above, since some controls (like Bing Maps) can overflow their content off their container - using a higher ZIndex than 0 ensures that such content doesn't draw over the Chrome (Titlebar) -->
                     <!-- Note: changed to UseLayoutRounding="True" to help with GPU acceleration -->
 
                     <Grid Height="Auto" Width="Auto">
