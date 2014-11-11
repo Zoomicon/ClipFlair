@@ -90,7 +90,7 @@ namespace SilverFlow.Controls
     }
 
     /// <summary>
-    /// Identifies the <see cref="IconBar.IconBorderStyleProperty" /> dependency property.
+    /// Identifies the <see cref="Iconbar.IconBorderStyleProperty" /> dependency property.
     /// </summary>
     public static readonly DependencyProperty IconBorderStyleProperty =
         DependencyProperty.Register(

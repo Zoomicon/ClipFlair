@@ -455,14 +455,14 @@
   </Style>
   <!-- removed <Setter Property="Foreground" Value="#FF67676C"/> since we now have FloatingWindowTitleForegroundBrush -->
 
-  <Style x:Key="BottomBarStyle" TargetType="Border">
+  <Style x:Key="ToolbarStyle" TargetType="Border">
     <Setter Property="Height" Value="24" />
     <Setter Property="Background" Value="#FFE7EBED" />
     <Setter Property="BorderThickness" Value="0,1,0,0" />
     <Setter Property="BorderBrush" Value="#FFFEFEFE" />
   </Style>
 
-  <Style x:Key="IconBarStyle" TargetType="Border">
+  <Style x:Key="IconbarStyle" TargetType="Border">
     <Setter Property="VerticalAlignment" Value="Top" />
     <Setter Property="Height" Value="104" />
     <Setter Property="Padding" Value="2,2" />
@@ -883,11 +883,11 @@
 
               <Canvas x:Name="PART_HostCanvas" />
 
-              <Grid x:Name="PART_IconBarContainer" VerticalAlignment="Bottom">
-                <controls:IconBar x:Name="PART_IconBar"/>
+              <Grid x:Name="PART_IconbarContainer" VerticalAlignment="Bottom">
+                <controls:Iconbar x:Name="PART_Iconbar"/>
               </Grid>
 
-              <Border x:Name="PART_BottomBar" Grid.Row="1" Style="{StaticResource BottomBarStyle}">
+              <Border x:Name="PART_Toolbar" Grid.Row="1" Style="{StaticResource ToolbarStyle}">
                 <Grid>
                   <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto" />
@@ -898,7 +898,7 @@
                     x:Name="PART_BootstrapButton"
                     Style="{StaticResource BootstrapButtonStyle}"
                     Margin="10,-4,10,0"
-                    IsOpen="{Binding IsOpen, ElementName=PART_IconBar}"
+                    IsOpen="{Binding IsOpen, ElementName=PART_Iconbar}"
                     />
 
                   <Border Grid.Column="1">
@@ -923,13 +923,13 @@
     </Setter>
   </Style>
 
-  <Style TargetType="controls:IconBar">
+  <Style TargetType="controls:Iconbar">
     <Setter Property="IsTabStop" Value="false"/>
     <Setter Property="HorizontalAlignment" Value="Stretch"/>
     <Setter Property="VerticalAlignment" Value="Bottom"/>
     <Setter Property="Template">
       <Setter.Value>
-        <ControlTemplate TargetType="controls:IconBar">
+        <ControlTemplate TargetType="controls:Iconbar">
           <Grid x:Name="PART_LayoutRoot">
             <VisualStateManager.VisualStateGroups>
               <VisualStateGroup x:Name="VisualStateGroup">
@@ -968,16 +968,25 @@
               </VisualStateGroup>
             </VisualStateManager.VisualStateGroups>
 
-            <Border x:Name="PART_FixedBar" RenderTransformOrigin="0.5,1" Style="{StaticResource IconBarStyle}">
+            <Border x:Name="PART_FixedBar" RenderTransformOrigin="0.5,1" Style="{StaticResource IconbarStyle}">
               <Border.RenderTransform>
-                <!-- Hide the IconBar -->
+                <!-- Hide the Iconbar -->
                 <CompositeTransform TranslateY="104" />
               </Border.RenderTransform>
 
               <Canvas>
-                <Border x:Name="PART_SlidingBar" Canvas.Left="0" VerticalAlignment="Bottom">
-                  <StackPanel x:Name="PART_Carousel" RenderTransformOrigin="0.5,1" Orientation="Horizontal" 
-                                                  HorizontalAlignment="Left" VerticalAlignment="Bottom"/>
+                <Border
+                  x:Name="PART_SlidingBar"
+                  Canvas.Left="0"
+                  VerticalAlignment="Bottom"
+                  >
+                  <StackPanel
+                    x:Name="PART_Carousel"
+                    RenderTransformOrigin="0.5,1"
+                    Orientation="Horizontal" 
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Bottom"
+                    />
                 </Border>
               </Canvas>
             </Border>

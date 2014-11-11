@@ -2361,7 +2361,7 @@ namespace SilverFlow.Controls
       if (openingStoryboard != null)
         openingStoryboard.Completed -= new EventHandler(Opening_Completed);
 
-      this.FloatingWindowHost.UpdateIconBar();
+      this.FloatingWindowHost.UpdateIconbar();
       IsOpen = true;
       OnOpened();
     }
@@ -2418,7 +2418,7 @@ namespace SilverFlow.Controls
       // Stop any inertial motion
       StopInertialMotion();
 
-      //FloatingWindowHost.IsIconBarVisible = false;
+      //FloatingWindowHost.IsIconbarVisible = false;
     }
 
     /// <summary>

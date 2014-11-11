@@ -1,4 +1,4 @@
-﻿//Filename: IconBarZUI.cs
+﻿//Filename: IconbarZUI.cs
 //Version: 20140904
 
 using SilverFlow.Controls;
@@ -14,30 +14,30 @@ namespace FloatingWindowZUI
   [TemplatePart(Name = PART_Carousel, Type = typeof(StackPanel))]
   [TemplateVisualState(Name = VSMSTATE_StateOpen, GroupName = VSMGROUP_States)]
   [TemplateVisualState(Name = VSMSTATE_StateClosed, GroupName = VSMGROUP_States)]
-  [StyleTypedProperty(Property = PROPERTY_IconBarStyle, StyleTargetType = typeof(Border))]
+  [StyleTypedProperty(Property = PROPERTY_IconbarStyle, StyleTargetType = typeof(Border))]
   [StyleTypedProperty(Property = PROPERTY_WindowIconStyle, StyleTargetType = typeof(WindowIcon))]
-  public class IconBarZUI : IconBar
+  public class IconbarZUI : Iconbar
   {
 
     #region --- Constructor ---
 
     #if !SILVERLIGHT
-    static IconBarZUI()
+    static IconbarZUI()
     {
-      DefaultStyleKeyProperty.OverrideMetadata(typeof(IconBarZUI), new FrameworkPropertyMetadata(typeof(IconBarZUI)));
+      DefaultStyleKeyProperty.OverrideMetadata(typeof(IconbarZUI), new FrameworkPropertyMetadata(typeof(IconbarZUI)));
     }
     #endif
 
-    public IconBarZUI()
+    public IconbarZUI()
     {
-      DefaultStyleKey = typeof(IconBarZUI);
+      DefaultStyleKey = typeof(IconbarZUI);
     }
 
     #endregion
 
     #region --- Events ---
 
-    public override void OnApplyTemplate() //TODO: CHECK (not sure it's true) - if we want to be able to set a new template to IconBarZUI, then we need to override this (ancestor's implementation won't be called automatically)
+    public override void OnApplyTemplate() //TODO: CHECK (not sure it's true) - if we want to be able to set a new template to IconbarZUI, then we need to override this (ancestor's implementation won't be called automatically)
     {
       base.OnApplyTemplate();
     }

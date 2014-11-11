@@ -28,15 +28,15 @@ namespace SilverFlow.Controls
   [TemplatePart(Name = PART_ContentRoot, Type = typeof(FrameworkElement))]
   [TemplatePart(Name = PART_HostCanvas, Type = typeof(Canvas))]
   [TemplatePart(Name = PART_ModalCanvas, Type = typeof(Canvas))]
-  [TemplatePart(Name = PART_IconBarContainer, Type = typeof(FrameworkElement))]
+  [TemplatePart(Name = PART_IconbarContainer, Type = typeof(FrameworkElement))]
   [TemplatePart(Name = PART_Overlay, Type = typeof(Grid))]
-  [TemplatePart(Name = PART_IconBar, Type = typeof(IconBar))]
-  [TemplatePart(Name = PART_BottomBar, Type = typeof(FrameworkElement))]
+  [TemplatePart(Name = PART_Iconbar, Type = typeof(Iconbar))]
+  [TemplatePart(Name = PART_Toolbar, Type = typeof(FrameworkElement))]
   [TemplatePart(Name = PART_BootstrapButton, Type = typeof(BootstrapButton))]
   [TemplatePart(Name = PART_BarContent, Type = typeof(ContentControl))]
   [TemplateVisualState(Name = VSMSTATE_VisibleOverlay, GroupName = VSMGROUP_Overlay)]
   [TemplateVisualState(Name = VSMSTATE_HiddenOverlay, GroupName = VSMGROUP_Overlay)]
-  [StyleTypedProperty(Property = PROPERTY_BottomBarStyle, StyleTargetType = typeof(Border))]
+  [StyleTypedProperty(Property = PROPERTY_ToolbarStyle, StyleTargetType = typeof(Border))]
   [StyleTypedProperty(Property = PROPERTY_BootstrapButtonStyle, StyleTargetType = typeof(BootstrapButton))]
   [StyleTypedProperty(Property = PROPERTY_WindowIconStyle, StyleTargetType = typeof(WindowIcon))]
   [ContentProperty("Windows")]
@@ -49,10 +49,10 @@ namespace SilverFlow.Controls
     protected const string PART_ContentRoot = "PART_ContentRoot";
     protected const string PART_HostCanvas = "PART_HostCanvas";
     protected const string PART_ModalCanvas = "PART_ModalCanvas";
-    protected const string PART_IconBarContainer = "PART_IconBarContainer";
+    protected const string PART_IconbarContainer = "PART_IconbarContainer";
     protected const string PART_Overlay = "PART_Overlay";
-    protected const string PART_IconBar = "PART_IconBar";
-    protected const string PART_BottomBar = "PART_BottomBar";
+    protected const string PART_Iconbar = "PART_Iconbar";
+    protected const string PART_Toolbar = "PART_Toolbar";
     protected const string PART_BootstrapButton = "PART_BootstrapButton";
     protected const string PART_BarContent = "PART_BarContent";
 
@@ -64,7 +64,7 @@ namespace SilverFlow.Controls
     protected const string VSMSTATE_HiddenOverlay = "HiddenOverlay";
 
     // Style typed properties
-    protected const string PROPERTY_BottomBarStyle = "BottomBarStyle";
+    protected const string PROPERTY_ToolbarStyle = "ToolbarStyle";
     protected const string PROPERTY_BootstrapButtonStyle = "BootstrapButtonStyle";
     protected const string PROPERTY_WindowIconStyle = "WindowIconStyle";
 
@@ -85,10 +85,10 @@ namespace SilverFlow.Controls
     private FrameworkElement contentRoot;
     private Canvas hostCanvas;
     private Canvas modalCanvas;
-    private FrameworkElement iconBarContainer;
+    private FrameworkElement iconbarContainer;
     private Grid overlay;
-    internal IconBar iconBar;
-    internal FrameworkElement bottomBar;
+    internal Iconbar iconbar;
+    internal FrameworkElement toolbar;
     private BootstrapButton bootstrapButton;
     private ContentControl barContent;
 
@@ -125,38 +125,38 @@ namespace SilverFlow.Controls
       set { closeWindowsOnApplicationExit = value; }
     }
 
-    #region BottomBarStyle
+    #region ToolbarStyle
 
     /// <summary>
-    /// Gets or sets the style of the BottomBar.
+    /// Gets or sets the style of the Toolbar.
     /// </summary>
-    public Style BottomBarStyle
+    public Style ToolbarStyle
     {
-      get { return GetValue(BottomBarStyleProperty) as Style; }
-      set { SetValue(BottomBarStyleProperty, value); }
+      get { return GetValue(ToolbarStyleProperty) as Style; }
+      set { SetValue(ToolbarStyleProperty, value); }
     }
 
     /// <summary>
-    /// Identifies the <see cref="FloatingWindowHost.BottomBarStyleProperty" /> dependency property.
+    /// Identifies the <see cref="FloatingWindowHost.ToolbarStyleProperty" /> dependency property.
     /// </summary>
-    public static readonly DependencyProperty BottomBarStyleProperty =
+    public static readonly DependencyProperty ToolbarStyleProperty =
         DependencyProperty.Register(
-            "BottomBarStyle",
+            "ToolbarStyle",
             typeof(Style),
             typeof(FloatingWindowHost),
-            new PropertyMetadata(BottomBarStylePropertyChanged));
+            new PropertyMetadata(ToolbarStylePropertyChanged));
 
     /// <summary>
-    /// BottomBarStyle PropertyChangedCallback call back static function.
+    /// ToolbarStyle PropertyChangedCallback call back static function.
     /// </summary>
-    /// <param name="d">FloatingWindowHost object whose BottomBarStyle property is changed.</param>
+    /// <param name="d">FloatingWindowHost object whose ToolbarStyle property is changed.</param>
     /// <param name="e">The <see cref="System.Windows.DependencyPropertyChangedEventArgs"/> instance containing the event data.</param>
-    private static void BottomBarStylePropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    private static void ToolbarStylePropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
       FloatingWindowHost host = (FloatingWindowHost)d;
-      if (host != null && host.bottomBar != null)
+      if (host != null && host.toolbar != null)
       {
-        host.bottomBar.Style = e.NewValue as Style;
+        host.toolbar.Style = e.NewValue as Style;
       }
     }
 
@@ -191,7 +191,7 @@ namespace SilverFlow.Controls
     private static void BootstrapButtonStylePropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
       FloatingWindowHost host = (FloatingWindowHost)d;
-      if (host != null && host.bottomBar != null)
+      if (host != null && host.toolbar != null)
       {
         host.bootstrapButton.Style = e.NewValue as Style;
       }
@@ -199,87 +199,87 @@ namespace SilverFlow.Controls
 
     #endregion
 
-    #region IsIconBarVisible
+    #region IsIconbarVisible
 
     /// <summary>
     /// Gets or sets a value indicating whether icon bar UI is available.
     /// </summary>
     /// <value><c>true</c> if snap in is enabled; otherwise, <c>false</c>.</value>
-    public bool IsIconBarVisible
+    public bool IsIconbarVisible
     {
-      get { return (bool)GetValue(IsIconBarVisibleProperty); }
-      set { SetValue(IsIconBarVisibleProperty, value); }
+      get { return (bool)GetValue(IsIconbarVisibleProperty); }
+      set { SetValue(IsIconbarVisibleProperty, value); }
     }
 
     /// <summary>
-    /// Identifies the <see cref="FloatingWindowHost.IsIconBarVisible" /> dependency property.
+    /// Identifies the <see cref="FloatingWindowHost.IsIconbarVisible" /> dependency property.
     /// </summary>
     /// <value>
-    /// The identifier for the <see cref="FloatingWindowHost.IsIconBarVisible" /> dependency property.
+    /// The identifier for the <see cref="FloatingWindowHost.IsIconbarVisible" /> dependency property.
     /// </value>
-    public static readonly DependencyProperty IsIconBarVisibleProperty =
+    public static readonly DependencyProperty IsIconbarVisibleProperty =
         DependencyProperty.Register(
-        "IsIconBarVisible",
+        "IsIconbarVisible",
         typeof(bool),
         typeof(FloatingWindowHost),
-        new PropertyMetadata(false, IsIconBarVisiblePropertyChanged));
+        new PropertyMetadata(false, IsIconbarVisiblePropertyChanged));
 
     /// <summary>
-    /// IsIconBarVisible PropertyChangedCallback call back static function.
+    /// IsIconbarVisible PropertyChangedCallback call back static function.
     /// </summary>
-    /// <param name="d">FloatingWindowHost object whose IsIconBarVisible property is changed.</param>
+    /// <param name="d">FloatingWindowHost object whose IsIconbarVisible property is changed.</param>
     /// <param name="e">The <see cref="System.Windows.DependencyPropertyChangedEventArgs"/> instance containing the event data.</param>
-    private static void IsIconBarVisiblePropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    private static void IsIconbarVisiblePropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
       FloatingWindowHost host = (FloatingWindowHost)d;
       if (host != null && e.NewValue != null)
       {
         if (!host.templateIsApplied)
           host.ApplyTemplate();
-        host.iconBar.IsOpen = (bool)e.NewValue;
+        host.iconbar.IsOpen = (bool)e.NewValue;
       }
     }
 
     #endregion
 
-    #region IsBottomBarVisible
+    #region IsToolbarVisible
 
     /// <summary>
     /// Gets or sets a value indicating whether icon bar UI is available.
     /// </summary>
     /// <value><c>true</c> if snap in is enabled; otherwise, <c>false</c>.</value>
-    public bool IsBottomBarVisible
+    public bool IsToolbarVisible
     {
-      get { return (bool)GetValue(IsBottomBarVisibleProperty); }
-      set { SetValue(IsBottomBarVisibleProperty, value); }
+      get { return (bool)GetValue(IsToolbarVisibleProperty); }
+      set { SetValue(IsToolbarVisibleProperty, value); }
     }
 
     /// <summary>
-    /// Identifies the <see cref="FloatingWindowHost.IsBottomBarVisible" /> dependency property.
+    /// Identifies the <see cref="FloatingWindowHost.IsToolbarVisible" /> dependency property.
     /// </summary>
     /// <value>
-    /// The identifier for the <see cref="FloatingWindowHost.IsBottomBarVisible" /> dependency property.
+    /// The identifier for the <see cref="FloatingWindowHost.IsToolbarVisible" /> dependency property.
     /// </value>
-    public static readonly DependencyProperty IsBottomBarVisibleProperty =
+    public static readonly DependencyProperty IsToolbarVisibleProperty =
         DependencyProperty.Register(
-        "IsBottomBarVisible",
+        "IsToolbarVisible",
         typeof(bool),
         typeof(FloatingWindowHost),
-        new PropertyMetadata(true, IsBottomBarVisiblePropertyChanged));
+        new PropertyMetadata(true, IsToolbarVisiblePropertyChanged));
 
     /// <summary>
-    /// IsBottomBarVisible PropertyChangedCallback call back static function.
+    /// IsToolbarVisible PropertyChangedCallback call back static function.
     /// </summary>
-    /// <param name="d">FloatingWindowHost object whose IsBottomBarVisible property is changed.</param>
+    /// <param name="d">FloatingWindowHost object whose IsToolbarVisible property is changed.</param>
     /// <param name="e">The <see cref="System.Windows.DependencyPropertyChangedEventArgs"/> instance containing the event data.</param>
-    private static void IsBottomBarVisiblePropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    private static void IsToolbarVisiblePropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
       FloatingWindowHost host = (FloatingWindowHost)d;
       if (host != null && e.NewValue != null)
       {
         if (!host.templateIsApplied)
           host.ApplyTemplate();
-        host.bottomBar.Visibility = ((bool)e.NewValue) ? Visibility.Visible : Visibility.Collapsed;
+        host.toolbar.Visibility = ((bool)e.NewValue) ? Visibility.Visible : Visibility.Collapsed;
       }
     }
 
@@ -431,9 +431,9 @@ namespace SilverFlow.Controls
     private static void WindowIconStylePropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
       FloatingWindowHost host = (FloatingWindowHost)d;
-      if (host != null && host.iconBar != null)
+      if (host != null && host.iconbar != null)
       {
-        host.iconBar.WindowIconStyle = e.NewValue as Style;
+        host.iconbar.WindowIconStyle = e.NewValue as Style;
       }
     }
 
@@ -644,9 +644,9 @@ namespace SilverFlow.Controls
     #region Bar
 
     /// <summary>
-    /// Gets or sets a control displayed in the BottomBar.
+    /// Gets or sets a control displayed in the Toolbar.
     /// </summary>
-    /// <value>The control displayed in the BottomBar. The default is null.</value>
+    /// <value>The control displayed in the Toolbar. The default is null.</value>
     public object Bar
     {
       get { return GetValue(BarProperty); }
@@ -807,14 +807,14 @@ namespace SilverFlow.Controls
       contentRoot = GetTemplatePart<FrameworkElement>(PART_ContentRoot);
       hostCanvas = GetTemplatePart<Canvas>(PART_HostCanvas);
       modalCanvas = GetTemplatePart<Canvas>(PART_ModalCanvas);
-      iconBarContainer = GetTemplatePart<FrameworkElement>(PART_IconBarContainer);
+      iconbarContainer = GetTemplatePart<FrameworkElement>(PART_IconbarContainer);
       overlay = GetTemplatePart<Grid>(PART_Overlay);
-      iconBar = GetTemplatePart<IconBar>(PART_IconBar);
-      bottomBar = GetTemplatePart<FrameworkElement>(PART_BottomBar);
+      iconbar = GetTemplatePart<Iconbar>(PART_Iconbar);
+      toolbar = GetTemplatePart<FrameworkElement>(PART_Toolbar);
       bootstrapButton = GetTemplatePart<BootstrapButton>(PART_BootstrapButton);
       barContent = GetTemplatePart<ContentControl>(PART_BarContent);
 
-      iconBar.FloatingWindowHost = this;
+      iconbar.FloatingWindowHost = this;
 
       SetStyles();
       SubscribeToTemplatePartEvents();
@@ -901,7 +901,7 @@ namespace SilverFlow.Controls
       {
         hostCanvas.Children.Remove(window);
         modalCanvas.Children.Remove(window);
-        iconBar.Remove(window);
+        iconbar.Remove(window);
       }
     }
 
@@ -910,17 +910,17 @@ namespace SilverFlow.Controls
     /// </summary>
     public void CloseAllWindows()
     {
-      //IsIconBarVisible = false;
+      //IsIconbarVisible = false;
       FloatingWindows.ToList().ForEach(x => x.Close());
     }
 
-    #region IconBar
+    #region Iconbar
 
     /// <summary>
-    /// Gets a collection of windows shown in the IconBar.
+    /// Gets a collection of windows shown in the Iconbar.
     /// </summary>
-    /// <value>Collection of windows shown in the IconBar.</value>
-    public IOrderedEnumerable<FloatingWindow> WindowsInIconBar
+    /// <value>Collection of windows shown in the Iconbar.</value>
+    public IOrderedEnumerable<FloatingWindow> WindowsInIconbar
     {
       get
       {
@@ -935,19 +935,19 @@ namespace SilverFlow.Controls
     }
     
     /// <summary>
-    /// Toggles the IconBar.
+    /// Toggles the Iconbar.
     /// </summary>
-    public void ToggleIconBar()
+    public void ToggleIconbar()
     {
-      IsIconBarVisible = !IsIconBarVisible;
+      IsIconbarVisible = !IsIconbarVisible;
     }
     
     /// <summary>
-    /// Updates the IconBar if it is open.
+    /// Updates the Iconbar if it is open.
     /// </summary>
-    public void UpdateIconBar()
+    public void UpdateIconbar()
     {
-      iconBar.Update();
+      iconbar.Update();
     }
 
     /// <summary>
@@ -957,29 +957,29 @@ namespace SilverFlow.Controls
     /// <param name="e">The <see cref="System.Windows.RoutedEventArgs"/> instance containing the event data.</param>
     private void BootstrapButton_Click(object sender, RoutedEventArgs e)
     {
-      IsIconBarVisible = bootstrapButton.IsOpen;
+      IsIconbarVisible = bootstrapButton.IsOpen;
     }
 
     /// <summary>
-    /// Handles the IconBar Visibility Changed event.
+    /// Handles the Iconbar Visibility Changed event.
     /// </summary>
     /// <param name="sender">The sender.</param>
     /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
-    private void IconBar_VisibilityChanged(object sender, EventArgs e)
+    private void Iconbar_VisibilityChanged(object sender, EventArgs e)
     {
-      bootstrapButton.IsOpen = iconBar.IsOpen;
+      bootstrapButton.IsOpen = iconbar.IsOpen;
     }
 
     /// <summary>
-    /// Handles the MouseLeftButtonDown event of the BottomBar control. 
-    /// Toggles the IconBar on mouse left click.
+    /// Handles the MouseLeftButtonDown event of the Toolbar control. 
+    /// Toggles the Iconbar on mouse left click.
     /// </summary>
     /// <param name="sender">The source of the event.</param>
     /// <param name="e">The <see cref="System.Windows.Input.MouseButtonEventArgs"/> instance containing the event data.</param>
-    private void BottomBar_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+    private void Toolbar_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
     {
       e.Handled = true;
-      ToggleIconBar();
+      ToggleIconbar();
     }
 
     #endregion
@@ -1059,7 +1059,7 @@ namespace SilverFlow.Controls
     /// <param name="modalWindow">The modal window.</param>
     internal void ShowWindowAsModal(FloatingWindow modalWindow)
     {
-      //IsIconBarVisible = false;
+      //IsIconbarVisible = false;
       VisualStateManager.GoToState(this, VSMSTATE_VisibleOverlay, true);
 
       MoveWindowToModalLayer(modalWindow);
@@ -1163,12 +1163,12 @@ namespace SilverFlow.Controls
     private void SubscribeToTemplatePartEvents()
     {
       bootstrapButton.Click += BootstrapButton_Click;
-      iconBar.Opened += IconBar_VisibilityChanged;
-      iconBar.Closed += IconBar_VisibilityChanged;
-      bottomBar.MouseLeftButtonDown += BottomBar_MouseLeftButtonDown;
+      iconbar.Opened += Iconbar_VisibilityChanged;
+      iconbar.Closed += Iconbar_VisibilityChanged;
+      toolbar.MouseLeftButtonDown += Toolbar_MouseLeftButtonDown;
       hostCanvas.SizeChanged += HostCanvas_SizeChanged;
       modalCanvas.SizeChanged += ModalCanvas_SizeChanged;
-      iconBarContainer.SizeChanged += IconBarContainer_SizeChanged;
+      iconbarContainer.SizeChanged += IconbarContainer_SizeChanged;
     }
 
     /// <summary>
@@ -1179,14 +1179,14 @@ namespace SilverFlow.Controls
       if (bootstrapButton != null)
         bootstrapButton.Click -= new RoutedEventHandler(BootstrapButton_Click);
 
-      if (iconBar != null)
+      if (iconbar != null)
       {
-        iconBar.Opened -= IconBar_VisibilityChanged;
-        iconBar.Closed -= IconBar_VisibilityChanged;
+        iconbar.Opened -= Iconbar_VisibilityChanged;
+        iconbar.Closed -= Iconbar_VisibilityChanged;
       }
 
-      if (bottomBar != null)
-        bottomBar.MouseLeftButtonDown -= BottomBar_MouseLeftButtonDown;
+      if (toolbar != null)
+        toolbar.MouseLeftButtonDown -= Toolbar_MouseLeftButtonDown;
 
       if (hostCanvas != null)
         hostCanvas.SizeChanged -= HostCanvas_SizeChanged;
@@ -1194,8 +1194,8 @@ namespace SilverFlow.Controls
       if (modalCanvas != null)
         modalCanvas.SizeChanged -= ModalCanvas_SizeChanged;
 
-      if (iconBarContainer != null)
-        iconBarContainer.SizeChanged -= IconBarContainer_SizeChanged;
+      if (iconbarContainer != null)
+        iconbarContainer.SizeChanged -= IconbarContainer_SizeChanged;
     }
 
     /// <summary>
@@ -1358,15 +1358,15 @@ namespace SilverFlow.Controls
     }
 
     /// <summary>
-    /// Handles the SizeChanged event of the IconBarContainer control to set its clipping region.
+    /// Handles the SizeChanged event of the IconbarContainer control to set its clipping region.
     /// </summary>
     /// <param name="sender">The source of the event.</param>
     /// <param name="e">The <see cref="System.Windows.SizeChangedEventArgs"/> instance containing the event data.</param>
-    private void IconBarContainer_SizeChanged(object sender, SizeChangedEventArgs e)
+    private void IconbarContainer_SizeChanged(object sender, SizeChangedEventArgs e)
     {
-      iconBarContainer.Clip = new RectangleGeometry()
+      iconbarContainer.Clip = new RectangleGeometry()
       {
-        Rect = iconBarContainer.GetActualBoundingRectangle()
+        Rect = iconbarContainer.GetActualBoundingRectangle()
       };
     }
 
@@ -1386,14 +1386,14 @@ namespace SilverFlow.Controls
     /// </summary>
     private void SetStyles()
     {
-      if (bottomBar != null && this.BottomBarStyle != null)
-        bottomBar.Style = this.BottomBarStyle;
+      if (toolbar != null && this.ToolbarStyle != null)
+        toolbar.Style = this.ToolbarStyle;
 
       if (bootstrapButton != null && this.BootstrapButtonStyle != null)
         bootstrapButton.Style = this.BootstrapButtonStyle;
 
-      if (iconBar != null && this.WindowIconStyle != null)
-        iconBar.WindowIconStyle = this.WindowIconStyle;
+      if (iconbar != null && this.WindowIconStyle != null)
+        iconbar.WindowIconStyle = this.WindowIconStyle;
     }
 
     /// <summary>

@@ -1,5 +1,5 @@
 //Filename: FloatingWindow.cs
-//Version: 20141025
+//Version: 20141111
 
 //#define BORDER_ONLY_AT_RESIZABLE //using BorderThickness instead to allow user to define when they want the border to be visible themselves
 
@@ -2383,7 +2383,7 @@ namespace SilverFlow.Controls
       if (openingStoryboard != null)
         openingStoryboard.Completed -= new EventHandler(Opening_Completed);
 
-      this.FloatingWindowHost.UpdateIconBar();
+      this.FloatingWindowHost.UpdateIconbar();
       IsOpen = true;
       OnOpened();
     }
@@ -2439,7 +2439,7 @@ namespace SilverFlow.Controls
       // Stop any inertial motion
       StopInertialMotion();
 
-      //FloatingWindowHost.IsIconBarVisible = false;
+      //FloatingWindowHost.IsIconbarVisible = false;
     }
 
     #endregion
