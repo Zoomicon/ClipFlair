@@ -123,7 +123,7 @@ namespace ClipFlair
       host.Rendered += (s, ev) =>
       //content.Resized += (s, ev) => //if we use this, should use as a method so that we can remove it after 1st call
       {
-        host.IsBottomBarVisible = false; //hide outer container's bottom bar, only want to show the one of the ActivityContainer that the ActivityWindow hosts
+        host.IsToolbarVisible = false; //hide outer container's toolbar, only want to show the one of the ActivityContainer that the ActivityWindow hosts
         activityWindow.Width = host.ActualWidth;
         activityWindow.Height = host.ActualHeight;
 

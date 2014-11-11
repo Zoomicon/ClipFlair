@@ -93,11 +93,11 @@
       <FileName>C:\Dropbox\ClipFlairDev\ClipFlair_Source\Client\ZUI\FloatingWindow\Source\FloatingWindow\FloatingWindowHost.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="SilverFlow.Controls.IconBar" Collapsed="true" BaseTypeListCollapsed="true">
+  <Class Name="SilverFlow.Controls.Iconbar" Collapsed="true" BaseTypeListCollapsed="true">
     <Position X="0.5" Y="2.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>KASAgIQAAAJKACAAMAIF5AgKsIAERIBAABAKJCiCARA=</HashCode>
-      <FileName>FloatingWindow\IconBar.cs</FileName>
+      <FileName>FloatingWindow\Iconbar.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" Collapsed="true" />
   </Class>

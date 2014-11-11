@@ -51,21 +51,21 @@ Version: 20140903
       SnapinEnabled="True" 
       
       ShowOptionsButton="{Binding ContentPartsConfigurable, Mode=TwoWay}"
-      IsIconBarVisible="{Binding IconbarVisible, Mode=TwoWay}"
-      IsBottomBarVisible="{Binding ToolbarVisible, Mode=TwoWay}"
+      IsIconbarVisible="{Binding IconbarVisible, Mode=TwoWay}"
+      IsToolbarVisible="{Binding ToolbarVisible, Mode=TwoWay}"
       ContentScalable="{Binding ContentZoomable, Mode=TwoWay}"
       ContentScale="{Binding ContentZoom, Mode=TwoWay}"
       MinContentScale="0.3"
       MaxContentScale="3"
       >
 
-      <zui:FloatingWindowHostZUI.BottomBarStyle>
-        <Style TargetType="Border" BasedOn="{StaticResource BottomBarStyle}">
+      <zui:FloatingWindowHostZUI.ToolbarStyle>
+        <Style TargetType="Border" BasedOn="{StaticResource ToolbarStyle}">
           <Setter Property="Height" Value="35" />
           <Setter Property="Background" Value="{StaticResource ClipFlairActivityToolbarBackground}" />
           <Setter Property="BorderThickness" Value="0" />
         </Style>
-      </zui:FloatingWindowHostZUI.BottomBarStyle>
+      </zui:FloatingWindowHostZUI.ToolbarStyle>
 
       <zui:FloatingWindowHostZUI.Bar>
         

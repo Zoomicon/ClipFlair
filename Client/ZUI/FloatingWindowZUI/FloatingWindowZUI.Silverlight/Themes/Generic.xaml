@@ -1,6 +1,6 @@
 ﻿<!-- 
 Filename: Generic.xaml
-Version: 20140904
+Version: 20141111
 -->
   
 <ResourceDictionary
@@ -68,14 +68,16 @@ Version: 20140904
 
       <!-- MAIN CONTENT -->
 
-      <toolkit:DockPanel x:Name="PART_ContentRoot">
-
-        <!-- Bottom bar -->
+      <toolkit:DockPanel x:Name="PART_ContentRoot" LastChildFill="True">
+        <!-- NOTE: must set Canvas.ZIndex to children below, since some controls [like Bing Maps] can overflow their content off their container - using a lower ZIndex at the ScrollViewer ensures that such content doesn't draw over the Toolbar and the Iconbar -->
+        
+        <!-- Toolbar -->
 
         <Border
-          x:Name="PART_BottomBar"
-          Style="{StaticResource BottomBarStyle}"
+          x:Name="PART_Toolbar"
+          Style="{StaticResource ToolbarStyle}"
           toolkit:DockPanel.Dock="Bottom"
+          Canvas.ZIndex="1"
           >
           <Grid>
             <Grid.ColumnDefinitions>
@@ -90,7 +92,7 @@ Version: 20140904
               x:Name="PART_BootstrapButton"
               Style="{StaticResource BootstrapButtonStyle}"
               Margin="5,5,5,5"
-              IsOpen="{Binding IsOpen, ElementName=PART_IconBar}"
+              IsOpen="{Binding IsOpen, ElementName=PART_Iconbar}"
               />
 
             <!-- Zoom controls -->
@@ -115,7 +117,7 @@ Version: 20140904
                 />
             </StackPanel>
 
-            <!-- Bottom bar extra content -->
+            <!-- Toolbar extra content -->
             <Border Grid.Column="2">
               <ContentControl
                 x:Name="PART_BarContent"
@@ -128,13 +130,14 @@ Version: 20140904
           </Grid>
         </Border>
 
-        <!-- Icon bar -->
+        <!-- Iconbar -->
 
         <Grid
-          x:Name="PART_IconBarContainer"
+          x:Name="PART_IconbarContainer"
           toolkit:DockPanel.Dock="Bottom"
+          Canvas.ZIndex="2"          
           >
-          <zui:IconBarZUI x:Name="PART_IconBar"/>
+          <zui:IconbarZUI x:Name="PART_Iconbar"/>
         </Grid>
 
         <!-- Scroll pane with ZoomAndPanControl in it that wraps HostCanvas (where the FloatingWindows are) -->
@@ -142,6 +145,7 @@ Version: 20140904
         <ScrollViewer
           VerticalScrollBarVisibility="Auto"
           HorizontalScrollBarVisibility="Auto"
+          Canvas.ZIndex="0"
           >
           <zoom:ZoomAndPanControl Name="PART_ZoomHost"
             ContentScalable="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=ContentScalable, Mode=TwoWay}"
@@ -195,9 +199,9 @@ Version: 20140904
     <Setter Property="Template" Value="{StaticResource FloatingWindowHostZUI_DefaultTemplate}" />
   </Style>
   
-  <!-- IconBarZUI -->
+  <!-- IconbarZUI -->
 
-  <ControlTemplate x:Key="IconBarZUI_DefaultTemplate" TargetType="zui:IconBarZUI">
+  <ControlTemplate x:Key="IconbarZUI_DefaultTemplate" TargetType="zui:IconbarZUI">
     <Grid x:Name="PART_LayoutRoot">
       <VisualStateManager.VisualStateGroups>
         <VisualStateGroup x:Name="VisualStateGroup">
@@ -232,7 +236,7 @@ Version: 20140904
       <Border
         x:Name="PART_FixedBar"
         Visibility="Collapsed"
-        Style="{StaticResource IconBarStyle}">
+        Style="{StaticResource IconbarStyle}">
 
         <Canvas>
           <Border 
@@ -252,11 +256,11 @@ Version: 20140904
     
   </ControlTemplate>
 
-  <Style TargetType="zui:IconBarZUI">
+  <Style TargetType="zui:IconbarZUI">
     <Setter Property="IsTabStop" Value="false"/>
     <Setter Property="HorizontalAlignment" Value="Stretch"/>
     <Setter Property="VerticalAlignment" Value="Bottom"/>
-    <Setter Property="Template" Value="{StaticResource IconBarZUI_DefaultTemplate}" />
+    <Setter Property="Template" Value="{StaticResource IconbarZUI_DefaultTemplate}" />
   </Style>
 
 </ResourceDictionary>

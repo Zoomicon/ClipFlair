@@ -7,11 +7,11 @@
       <FileName>C:\Dropbox\ClipFlairDev\ClipFlair_Source\Client\ZUI\FloatingWindowZUI\Source\FloatingWindowHostZUI.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="FloatingWindowZUI.IconBarZUI">
+  <Class Name="FloatingWindowZUI.IconbarZUI">
     <Position X="4" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>C:\Dropbox\ClipFlairDev\ClipFlair_Source\Client\ZUI\FloatingWindowZUI\Source\IconBarZUI.cs</FileName>
+      <FileName>C:\Dropbox\ClipFlairDev\ClipFlair_Source\Client\ZUI\FloatingWindowZUI\Source\IconbarZUI.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Font Name="Tahoma" Size="8.25" />

@@ -1,4 +1,4 @@
-﻿//Filename: IconBar.cs
+﻿//Filename: Iconbar.cs
 //Version: 20140904
 
 using System;
@@ -20,7 +20,7 @@ using WPF_Compatibility;
 namespace SilverFlow.Controls
 {
   /// <summary>
-  /// IconBar containing window icons.
+  /// Iconbar containing window icons.
   /// </summary>
   [TemplatePart(Name = PART_LayoutRoot, Type = typeof(FrameworkElement))]
   [TemplatePart(Name = PART_FixedBar, Type = typeof(Border))]
@@ -28,9 +28,9 @@ namespace SilverFlow.Controls
   [TemplatePart(Name = PART_Carousel, Type = typeof(StackPanel))]
   [TemplateVisualState(Name = VSMSTATE_StateOpen, GroupName = VSMGROUP_States)]
   [TemplateVisualState(Name = VSMSTATE_StateClosed, GroupName = VSMGROUP_States)]
-  [StyleTypedProperty(Property = PROPERTY_IconBarStyle, StyleTargetType = typeof(Border))]
+  [StyleTypedProperty(Property = PROPERTY_IconbarStyle, StyleTargetType = typeof(Border))]
   [StyleTypedProperty(Property = PROPERTY_WindowIconStyle, StyleTargetType = typeof(WindowIcon))]
-  public class IconBar : ContentControl, INotifyPropertyChanged
+  public class Iconbar : ContentControl, INotifyPropertyChanged
   {
 
     #region --- Constants ---
@@ -49,7 +49,7 @@ namespace SilverFlow.Controls
     public const string VSMSTATE_StateClosed = "Closed";
 
     // Style typed properties
-    public const string PROPERTY_IconBarStyle = "IconBarStyle";
+    public const string PROPERTY_IconbarStyle = "IconbarStyle";
     public const string PROPERTY_WindowIconStyle = "WindowIconStyle";
 
     // Animation duration in milliseconds
@@ -73,56 +73,56 @@ namespace SilverFlow.Controls
     #region --- Constructor ---
 
     #if !SILVERLIGHT
-    static IconBar()
+    static Iconbar()
     {
-      DefaultStyleKeyProperty.OverrideMetadata(typeof(IconBar), new FrameworkPropertyMetadata(typeof(IconBar)));
+      DefaultStyleKeyProperty.OverrideMetadata(typeof(Iconbar), new FrameworkPropertyMetadata(typeof(Iconbar)));
     }
     #endif
 
     /// <summary>
-    /// Initializes a new instance of the <see cref="IconBar"/> class.
+    /// Initializes a new instance of the <see cref="Iconbar"/> class.
     /// </summary>
-    public IconBar()
+    public Iconbar()
     {
-      DefaultStyleKey = typeof(IconBar);
+      DefaultStyleKey = typeof(Iconbar);
     }
 
     #endregion
 
     #region --- Properties ---
 
-    #region IconBarStyle
+    #region IconbarStyle
 
     /// <summary>
-    /// Gets or sets the style of the IconBar.
+    /// Gets or sets the style of the Iconbar.
     /// </summary>
-    public Style IconBarStyle
+    public Style IconbarStyle
     {
-      get { return GetValue(IconBarStyleProperty) as Style; }
-      set { SetValue(IconBarStyleProperty, value); }
+      get { return GetValue(IconbarStyleProperty) as Style; }
+      set { SetValue(IconbarStyleProperty, value); }
     }
 
     /// <summary>
-    /// Identifies the <see cref="IconBar.IconBarStyleProperty" /> dependency property.
+    /// Identifies the <see cref="Iconbar.IconbarStyleProperty" /> dependency property.
     /// </summary>
-    public static readonly DependencyProperty IconBarStyleProperty =
+    public static readonly DependencyProperty IconbarStyleProperty =
         DependencyProperty.Register(
-            "IconBarStyle",
+            "IconbarStyle",
             typeof(Style),
-            typeof(IconBar),
-            new PropertyMetadata(IconBarStylePropertyChanged));
+            typeof(Iconbar),
+            new PropertyMetadata(IconbarStylePropertyChanged));
 
     /// <summary>
-    /// IconBarStyle PropertyChangedCallback call back static function.
+    /// IconbarStyle PropertyChangedCallback call back static function.
     /// </summary>
-    /// <param name="d">IconBar object whose IconBarStyle property is changed.</param>
+    /// <param name="d">Iconbar object whose IconbarStyle property is changed.</param>
     /// <param name="e">The <see cref="System.Windows.DependencyPropertyChangedEventArgs"/> instance containing the event data.</param>
-    private static void IconBarStylePropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    private static void IconbarStylePropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
-      IconBar iconBar = (IconBar)d;
-      if (iconBar != null && iconBar.fixedBar != null)
+      Iconbar iconbar = (Iconbar)d;
+      if (iconbar != null && iconbar.fixedBar != null)
       {
-        iconBar.fixedBar.Style = e.NewValue as Style;
+        iconbar.fixedBar.Style = e.NewValue as Style;
       }
     }
 
@@ -140,13 +140,13 @@ namespace SilverFlow.Controls
     }
 
     /// <summary>
-    /// Identifies the <see cref="IconBar.WindowIconStyleProperty" /> dependency property.
+    /// Identifies the <see cref="Iconbar.WindowIconStyleProperty" /> dependency property.
     /// </summary>
     public static readonly DependencyProperty WindowIconStyleProperty =
         DependencyProperty.Register(
             "WindowIconStyle",
             typeof(Style),
-            typeof(IconBar),
+            typeof(Iconbar),
             null);
 
     #endregion
@@ -154,9 +154,9 @@ namespace SilverFlow.Controls
     #region IsOpen
 
     /// <summary>
-    /// Gets or sets a value indicating whether the IconBar is open.
+    /// Gets or sets a value indicating whether the Iconbar is open.
     /// </summary>
-    /// <value><c>true</c> if the IconBar is open; otherwise, <c>false</c>.</value>
+    /// <value><c>true</c> if the Iconbar is open; otherwise, <c>false</c>.</value>
     public bool IsOpen
     {
       get { return isOpen; }
@@ -185,9 +185,9 @@ namespace SilverFlow.Controls
     #region FloatingWindowHost
 
     /// <summary>
-    /// Gets or sets the FloatingWindowHost containing the IconBar.
+    /// Gets or sets the FloatingWindowHost containing the Iconbar.
     /// </summary>
-    /// <value>FloatingWindowHost containing the IconBar.</value>
+    /// <value>FloatingWindowHost containing the Iconbar.</value>
     public FloatingWindowHost FloatingWindowHost { get; set; }
 
     #endregion
@@ -225,7 +225,7 @@ namespace SilverFlow.Controls
     }
 
     /// <summary>
-    /// Updates the IconBar if it is open.
+    /// Updates the Iconbar if it is open.
     /// </summary>
     public void Update()
     {
@@ -236,9 +236,9 @@ namespace SilverFlow.Controls
     }
 
     /// <summary>
-    /// Removes the specified window from the IconBar.
+    /// Removes the specified window from the Iconbar.
     /// </summary>
-    /// <param name="window">The window to remove from the IconBar.</param>
+    /// <param name="window">The window to remove from the Iconbar.</param>
     public void Remove(FloatingWindow window)
     {
       if (window != null && carousel != null)
@@ -256,7 +256,7 @@ namespace SilverFlow.Controls
     }
 
     /// <summary>
-    /// Gets the storyboards defined in the <see cref="IconBar" /> style.
+    /// Gets the storyboards defined in the <see cref="Iconbar" /> style.
     /// </summary>
     private void GetStoryboards()
     {
@@ -264,7 +264,7 @@ namespace SilverFlow.Controls
       if (groups != null)
       {
         var states = (from stategroup in groups
-                      where stategroup.Name == IconBar.VSMGROUP_States
+                      where stategroup.Name == Iconbar.VSMGROUP_States
                       select stategroup.States).FirstOrDefault() as
                         #if SILVERLIGHT
                         Collection
@@ -276,11 +276,11 @@ namespace SilverFlow.Controls
         if (states != null)
         {
           openingStoryboard = (from state in states
-                               where state.Name == IconBar.VSMSTATE_StateOpen
+                               where state.Name == Iconbar.VSMSTATE_StateOpen
                                select state.Storyboard).FirstOrDefault();
 
           closingStoryboard = (from state in states
-                               where state.Name == IconBar.VSMSTATE_StateClosed
+                               where state.Name == Iconbar.VSMSTATE_StateClosed
                                select state.Storyboard).FirstOrDefault();
         }
       }
@@ -327,8 +327,8 @@ namespace SilverFlow.Controls
     /// </summary>
     private void SetStyles()
     {
-      if (fixedBar != null && this.IconBarStyle != null)
-        fixedBar.Style = this.IconBarStyle;
+      if (fixedBar != null && this.IconbarStyle != null)
+        fixedBar.Style = this.IconbarStyle;
     }
 
     /// <summary>
@@ -338,7 +338,7 @@ namespace SilverFlow.Controls
     {
       ClearCarousel();
 
-      foreach (var window in this.FloatingWindowHost.WindowsInIconBar)
+      foreach (var window in this.FloatingWindowHost.WindowsInIconbar)
       {
         WindowIcon icon = new WindowIcon()
         {
@@ -389,12 +389,12 @@ namespace SilverFlow.Controls
     #region --- Events ---
 
     /// <summary>
-    /// Occurs when the <see cref="IconBar" /> is opened.
+    /// Occurs when the <see cref="Iconbar" /> is opened.
     /// </summary>
     public event EventHandler Opened;
 
     /// <summary>
-    /// Occurs when the <see cref="IconBar" /> is closed.
+    /// Occurs when the <see cref="Iconbar" /> is closed.
     /// </summary>
     public event EventHandler Closed;
 
@@ -416,7 +416,7 @@ namespace SilverFlow.Controls
     #endregion
 
     /// <summary>
-    /// Builds the visual tree for the <see cref="IconBar" /> control 
+    /// Builds the visual tree for the <see cref="Iconbar" /> control 
     /// when a new template is applied.
     /// </summary>
     public override void OnApplyTemplate()
@@ -491,7 +491,7 @@ namespace SilverFlow.Controls
       base.OnMouseLeftButtonDown(e);
 
       //if (AutoHide) //TODO: check AutoHide
-        IsOpen = false; //close the IconBar
+        IsOpen = false; //close the Iconbar
     }
 
     /// <summary>
@@ -506,7 +506,7 @@ namespace SilverFlow.Controls
       if (icon != null && icon.Window != null)
       {
         //if (AutoHide) //TODO: check AutoHide
-          IsOpen = false; //close the IconBar
+          IsOpen = false; //close the Iconbar
         icon.Window.RestoreWindow();
       }
     }
