@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: MediaPlayerWindow.xaml.cs
-//Version: 20141107
+//Version: 20141112
 
 using ClipFlair.Windows.Media;
 using ClipFlair.Windows.Views;
@@ -17,7 +17,19 @@ namespace ClipFlair.Windows
   public partial class MediaPlayerWindow : BaseWindow
   {
 
+    #region --- Constants ---
+    
+    private const string DEFAULT_PLAYLIST_NAME = "ClipFlairPlaylist";
+
+    #endregion
+
+    #region --- Fields ---
+
     private TimeSpan defaultReplayOffset;
+
+    #endregion
+
+    #region --- Initialization ---
 
     public MediaPlayerWindow()
     {
@@ -29,6 +41,8 @@ namespace ClipFlair.Windows
 
       defaultReplayOffset = player.ReplayOffset; //can set ReplayOffset in XAML
     }
+
+    #endregion
 
     #region --- Properties ---
 
@@ -54,12 +68,12 @@ namespace ClipFlair.Windows
     
     #region --- Offline playlist ---
 
-    public void LoadOfflinePlaylist()
+    public void LoadOfflinePlaylist(string playlistName = DEFAULT_PLAYLIST_NAME)
     {
       player.Source = new Uri(""); //this will also do Playlist.Clear()
       try
       {
-        foreach (PlaylistItem p in player.OpenOfflinePlaylist("ClipFlairPlaylist")) //TODO: allow to define offline filename and maybe allow to delete old ones? (or show offline size and allow clear)
+        foreach (PlaylistItem p in player.OpenOfflinePlaylist(playlistName))
           player.Playlist.Add(p);
         MessageBox.Show("Offline playlist restored"); //TODO: find parent window and pass here
         player.GoToPlaylistItem(0); //after playlist is restored go to the 1st playlist item
@@ -70,11 +84,11 @@ namespace ClipFlair.Windows
       }
     }
 
-    public void SaveOfflinePlaylist() //TODO: need Smooth Streaming ISO Cache plugin for SMF from Media Experiences project at codeplex since this now works only for ProgressiveDownload media
+    public void SaveOfflinePlaylist(string playlistName = DEFAULT_PLAYLIST_NAME) //TODO: need Smooth Streaming ISO Cache plugin for SMF from Media Experiences project at codeplex since this now works only for ProgressiveDownload media
     {
       try
       {
-        player.StorePlaylistContentOffline("ClipFlairPlaylist"); //TODO: allow to define offline filename and maybe allow to delete old ones? (or show offline size and allow clear)
+        player.StorePlaylistContentOffline(playlistName); //TODO: maybe allow to delete old playlists with other names? (or show offline size and allow clear)
         MessageBox.Show("Playlist stored offline"); //TODO: find parent window and pass here
       }
       catch (Exception ex)

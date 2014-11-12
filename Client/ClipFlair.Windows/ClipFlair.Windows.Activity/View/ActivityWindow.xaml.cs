@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: ActivityWindow.xaml.cs
-//Version: 20140921
+//Version: 20141112
 
 using ClipFlair.UI.Dialogs;
 using ClipFlair.Windows;
@@ -43,7 +43,7 @@ namespace ClipFlair.Windows
     #region --- Constants ---
 
     public const string URL_PROJECT_HOME = "http://ClipFlair.net";
-    public const string URL_HELP_TUTORIAL_ACTIVITY = "http://gallery.clipflair.net/activity/Tutorial.clipflair"; //TODO: use in HelpTutorialActivity method
+    public const string URL_HELP_TUTORIAL_ACTIVITY = "http://gallery.clipflair.net/activity/Tutorial.clipflair";
     public const string URL_HELP_TUTORIAL_VIDEOS = "http://social.clipflair.net/Pages/Tutorials.aspx";
     public const string URL_HELP_MANUAL = "http://social.clipflair.net/help/manual.aspx";
     public const string URL_HELP_FAQ = "http://social.clipflair.net/help/faq.aspx";
