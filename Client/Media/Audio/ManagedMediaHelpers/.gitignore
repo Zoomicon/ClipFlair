@@ -1,0 +1,20 @@
+#use glob syntax.
+TestResults\*
+*\Bin\*
+*\ClientBin\*.xap
+*\obj\*
+*.pdb
+*.dll
+*.[C|c]ache
+*.suo
+*.hgignore*
+*.sln.orig
+*.CodeAnalysisLog.xml
+*.vsmdi
+*.FileListAbsolute.txt
+*.lastcodeanalysissucceeded
+*.user
+*.StyleCop
+*.testsettings
+*.orig
+*.sdf
