@@ -1,6 +1,6 @@
 ﻿<!--
 Filename: AudioRecorderControl.xaml
-Version: 20130404
+Version: 20141118
 -->
 
 <UserControl
@@ -21,6 +21,8 @@ Version: 20130404
   </UserControl.Resources>
 
   <StackPanel x:Name="LayoutRoot" Orientation="Horizontal">
+    
+    <MediaElement x:Name="player" Visibility="Collapsed"/>
 
     <btn:ImageToggleButton
       x:Name="btnRecord" 
@@ -35,7 +37,6 @@ Version: 20130404
       ImageCheckedHover="Images/Stop_hover.png"
       />
 
-    <!--
     <btn:ImageToggleButton
       x:Name="btnPlay"
       Visibility="{Binding Path=PlayCommand.IsEnabled, Converter={StaticResource BooleanToVisibilityConverter}}"
@@ -48,19 +49,6 @@ Version: 20130404
       ImageChecked="Images/Stop.png"
       ImageCheckedHover="Images/Stop_hover.png"
       />
-    -->
-
-    <!-- -->
-    <btn:ImageButton
-      x:Name="btnPlay"
-      Visibility="{Binding Path=PlayCommand.IsEnabled, Converter={StaticResource BooleanToVisibilityConverter}}"
-      Command="{Binding PlayCommand}" 
-      Margin="3,0,3,0"
-      ToolTipService.ToolTip="Play audio"
-      Image="Images/Play.png"
-      ImageHover="Images/Play_hover.png"
-      />
-    <!-- -->
 
     <btn:ImageButton 
       x:Name="btnLoad"

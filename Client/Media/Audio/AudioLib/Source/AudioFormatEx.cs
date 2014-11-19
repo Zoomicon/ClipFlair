@@ -1,5 +1,5 @@
 ﻿//Filename: AudioFormatEx.cs
-//Version: 20130504
+//Version: 20141117
 //Author: George Birbilis (http://zoomicon.com)
 
 using System.Collections.ObjectModel;
@@ -10,12 +10,12 @@ namespace AudioLib
 
   /// <summary>
   /// Class AudioFormatEx
-  /// Extension of AudioFormat class to wrap standard WAVEFORMATEX structure 
+  /// Extension of AudioFormat class that is instantiatable and can also wrap standard WAVEFORMATEX structure 
   /// </summary>
   public class AudioFormatEx
   {
 
-    #region Fields
+    #region --- Fields ---
 
     private WaveFormatType format;
     private int bitsPerSample;
@@ -23,6 +23,8 @@ namespace AudioLib
     private int samplesPerSecond;
 
     #endregion
+
+    #region --- Initialization ---
 
     public AudioFormatEx(WaveFormatType format, int channels, int bitsPerSample, int samplesPerSecond)
     {
@@ -35,12 +37,18 @@ namespace AudioLib
     public AudioFormatEx(AudioFormat audioFormat)
       : this(audioFormat.WaveFormat, audioFormat.Channels, audioFormat.BitsPerSample, audioFormat.SamplesPerSecond)
     {
+      //NOP
     }
 
     public AudioFormatEx(WAVEFORMATEX wavFormat)
       : this((WaveFormatType)wavFormat.FormatTag, wavFormat.Channels, wavFormat.BitsPerSample, wavFormat.SamplesPerSec)
     { //note: WAVEFORMATEX.FormatPCM = 1 and also WaveFormatType.Pcm = 1 that's why the cast is OK  
+      //NOP
     }
+
+    #endregion
+
+    #region --- Properties ---
 
     // Summary:
     //     Gets the encoding format of the audio format as a System.Windows.Media.WaveFormatType
@@ -80,18 +88,21 @@ namespace AudioLib
       set { bitsPerSample = value; }
     }
 
-
-    //
-    // Summary:
-    //     Gets the number of samples per second that are provided by the audio format.
-    //
-    // Returns:
-    //     The number of samples per second that are provided by the audio format.
+    /// <summary>
+    /// Gets the number of samples per second that are provided by the audio format.
+    /// </summary>
+    /// <value>
+    /// The number of samples per second that are provided by the audio format.
+    /// </value>
     public int SamplesPerSecond
     {
       get { return samplesPerSecond; }
       set { samplesPerSecond = value; }
     }
+
+    #endregion
+
+    #region --- Methods ---
 
     public override bool Equals(object obj)
     {
@@ -118,6 +129,8 @@ namespace AudioLib
           return audioFormat;
       return null;
     }
+
+    #endregion
 
   }
 
