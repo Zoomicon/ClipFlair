@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: CaptionElementExt_Audio.cs
-//Version: 20141107
+//Version: 20141117
 
 using AudioLib;
 
@@ -25,7 +25,7 @@ namespace ClipFlair.CaptionsGrid
       return (c != null) ? (c.Audio != null) : false;
     }
 
-    public static Stream GetAudio(this CaptionElement caption)
+    public static AudioStream GetAudio(this CaptionElement caption)
     {
       CaptionElementExt c = caption as CaptionElementExt;
       return (c != null) ? c.Audio : null;
@@ -40,7 +40,7 @@ namespace ClipFlair.CaptionsGrid
       return result;
     }
 
-    public static void LoadAudio(this CaptionElement caption, Stream stream, int sizeHint = 0) //does not close stream
+    public static void LoadAudio(this CaptionElement caption, Stream stream, string fileExtension, int sizeHint = 0) //does not close stream
     {
       CaptionElementExt captionExt = caption as CaptionElementExt;
       if (captionExt == null) return;
@@ -48,7 +48,7 @@ namespace ClipFlair.CaptionsGrid
       MemoryStream buffer = new MemoryStream(sizeHint); //using "sizeHint" only to set MemoryStream's initial capacity
 
       AudioRecorderView.LoadAudio(stream, buffer); //keep load logic encapsulated so that we can add decoding/decompression there
-      captionExt.Audio = buffer;
+      captionExt.Audio = new AudioStream(buffer, fileExtension);
     }
 
     public static void SaveAudio(this CaptionElement caption, Stream stream) //does not close stream
@@ -72,7 +72,7 @@ namespace ClipFlair.CaptionsGrid
 
       foreach (CaptionElement caption in captions.Children)
       {
-        Stream audio = caption.GetAudio();
+        AudioStream audio = caption.GetAudio();
         if (audio == null) continue; //skip entries that have no audio
 
         double currentBegin = caption.Begin.TotalMilliseconds;
@@ -82,7 +82,7 @@ namespace ClipFlair.CaptionsGrid
         lastEnd = caption.End.TotalMilliseconds;
         double audioDuration = lastEnd - currentBegin;
 
-        WavParser parsedAudio = new WavParser(audio);
+        WavParser parsedAudio = new WavParser(audio.Data);
         WAVEFORMATEX waveFormatEx = parsedAudio.WaveFormatEx;
 
         if (firstAudio)
@@ -97,7 +97,7 @@ namespace ClipFlair.CaptionsGrid
 
         uint overlapSize = (uint)waveFormatEx.BufferSizeFromAudioDuration((long)(overlap * 10000)); //expects time in 100-nanosecond units [hns]
         uint audioSize = (uint)waveFormatEx.BufferSizeFromAudioDuration((long)(audioDuration * 10000)); //expects time in 100-nanosecond units [hns]
-        WavManager.WriteRawData(audio, output, WavManager.WAV_HEADER_SIZE + overlapSize, audioSize - overlapSize);
+        WavManager.WriteRawData(audio.Data, output, WavManager.WAV_HEADER_SIZE + overlapSize, audioSize - overlapSize);
       }
 
     }
