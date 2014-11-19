@@ -117,37 +117,91 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="msgConfirmation" xml:space="preserve">
-    <value>Επιβεβαίωση</value>
+  <data name="color_Black" xml:space="preserve">
+    <value>Black</value>
   </data>
-  <data name="msgCloseConfirmation" xml:space="preserve">
-    <value>Είστε βέβαιοι ότι θέλετε να κλείσετε αυτό το παράθυρο;</value>
+  <data name="color_Blue" xml:space="preserve">
+    <value>Bleu</value>
   </data>
-  <data name="msgLoadingFailed" xml:space="preserve">
-    <value>Φόρτωση απέτυχε</value>
+  <data name="color_Green" xml:space="preserve">
+    <value>Vert</value>
   </data>
-  <data name="msgLoadingFailedOtherWindow" xml:space="preserve">
-    <value>Φόρτωση απέτυχε - Οι αποθηκευμένες επιλογές μπορεί να είναι για άλλο παράθυρο</value>
+  <data name="color_Red" xml:space="preserve">
+    <value>Rouge</value>
   </data>
-  <data name="msgSavingFailed" xml:space="preserve">
-    <value>Η αποθήκευση απέτυχε</value>
+  <data name="color_Yellow" xml:space="preserve">
+    <value>Jaune</value>
   </data>
-  <data name="msgUnknownViewType" xml:space="preserve">
-    <value>Άγνωστος τύπος προβολής: </value>
+  <data name="tooltip_Bold" xml:space="preserve">
+    <value>Gras</value>
   </data>
-  <data name="msgURL" xml:space="preserve">
-    <value>Σύνδεσμος:</value>
+  <data name="tooltip_Copy" xml:space="preserve">
+    <value>Copier du texte</value>
   </data>
-  <data name="msgLoad" xml:space="preserve">
-    <value>Φόρτωση</value>
+  <data name="tooltip_Cut" xml:space="preserve">
+    <value>Couper le texte</value>
   </data>
-  <data name="msgLoadURLDialogTitle" xml:space="preserve">
-    <value>Προτύπου Παραθύρου ClipFlair</value>
+  <data name="tooltip_Italic" xml:space="preserve">
+    <value>italique</value>
   </data>
-  <data name="msgSaveFilter" xml:space="preserve">
-    <value>Αρχείο ClipFlair (*.clipflair)|*.clipflair|Αρχείο ClipFlair (*.clipflair.zip)|*.clipflair.zip</value>
+  <data name="tooltip_Clear" xml:space="preserve">
+    <value>Supprimer</value>
   </data>
-  <data name="msgLoadFilter" xml:space="preserve">
-    <value>Αρχείο ClipFlair (*.clipflair, *.clipflair.zip)|*.clipflair;*.clipflair.zip</value>
+  <data name="tooltip_Open" xml:space="preserve">
+    <value>Ouvrir un document existant</value>
+  </data>
+  <data name="tooltip_Paste" xml:space="preserve">
+    <value>Coller le texte</value>
+  </data>
+  <data name="tooltip_Print" xml:space="preserve">
+    <value>Imprimer Document</value>
+  </data>
+  <data name="tooltip_Save" xml:space="preserve">
+    <value>Enregistrer dans un fichier externe</value>
+  </data>
+  <data name="tooltip_Underline" xml:space="preserve">
+    <value>Souligné</value>
+  </data>
+  <data name="txt_Status_Ready" xml:space="preserve">
+    <value>Prêt</value>
+  </data>
+  <data name="tooltip_Image" xml:space="preserve">
+    <value>Insérer une Image</value>
+  </data>
+  <data name="tooltip_Hyperlink" xml:space="preserve">
+    <value>Insérer un Lien hypertexte</value>
+  </data>
+  <data name="txt_Clipboard" xml:space="preserve">
+    <value>Presse-papier</value>
+  </data>
+  <data name="txt_Display" xml:space="preserve">
+    <value>Affichage</value>
+  </data>
+  <data name="txt_File" xml:space="preserve">
+    <value>Fichier</value>
+  </data>
+  <data name="txt_Font" xml:space="preserve">
+    <value>Font</value>
+  </data>
+  <data name="txt_Highlight" xml:space="preserve">
+    <value>Subriller</value>
+  </data>
+  <data name="txt_Insert" xml:space="preserve">
+    <value>Insérer</value>
+  </data>
+  <data name="txt_Print" xml:space="preserve">
+    <value>Imprimer</value>
+  </data>
+  <data name="txt_XAML" xml:space="preserve">
+    <value>Source</value>
+  </data>
+  <data name="tooltip_Timestamp" xml:space="preserve">
+    <value>Insérer timestamp</value>
+  </data>
+  <data name="tooltip_TextDirection" xml:space="preserve">
+    <value>Orientation du texte</value>
+  </data>
+  <data name="tooltip_EditViewMode" xml:space="preserve">
+    <value>Mode d&apos;édition / d&apos;affichage</value>
   </data>
 </root>

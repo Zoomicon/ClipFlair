@@ -118,36 +118,36 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="msgConfirmation" xml:space="preserve">
-    <value>Επιβεβαίωση</value>
+    <value>Confirmation</value>
   </data>
   <data name="msgCloseConfirmation" xml:space="preserve">
-    <value>Είστε βέβαιοι ότι θέλετε να κλείσετε αυτό το παράθυρο;</value>
+    <value>Êtes-vous sûr de que vouloir fermer cette fenêtre?</value>
   </data>
   <data name="msgLoadingFailed" xml:space="preserve">
-    <value>Φόρτωση απέτυχε</value>
+    <value>Chargement  a échoué</value>
   </data>
   <data name="msgLoadingFailedOtherWindow" xml:space="preserve">
-    <value>Φόρτωση απέτυχε - Οι αποθηκευμένες επιλογές μπορεί να είναι για άλλο παράθυρο</value>
+    <value>Chargement  a échoué - sauvé des options peut être pour une autre fenêtre</value>
   </data>
   <data name="msgSavingFailed" xml:space="preserve">
-    <value>Η αποθήκευση απέτυχε</value>
+    <value>Enregistrement a échoué</value>
   </data>
   <data name="msgUnknownViewType" xml:space="preserve">
-    <value>Άγνωστος τύπος προβολής: </value>
+    <value>Type de vue inconnue:</value>
   </data>
   <data name="msgURL" xml:space="preserve">
-    <value>Σύνδεσμος:</value>
+    <value>URL :</value>
   </data>
   <data name="msgLoad" xml:space="preserve">
-    <value>Φόρτωση</value>
+    <value>Charge</value>
   </data>
   <data name="msgLoadURLDialogTitle" xml:space="preserve">
-    <value>Προτύπου Παραθύρου ClipFlair</value>
+    <value>Modèle de Composant ClipFlair</value>
   </data>
   <data name="msgSaveFilter" xml:space="preserve">
-    <value>Αρχείο ClipFlair (*.clipflair)|*.clipflair|Αρχείο ClipFlair (*.clipflair.zip)|*.clipflair.zip</value>
+    <value>Archive de ClipFlair (*.clipflair)|*.clipflair|ClipFlair archive (*.clipflair.zip)|*.clipflair.zip</value>
   </data>
   <data name="msgLoadFilter" xml:space="preserve">
-    <value>Αρχείο ClipFlair (*.clipflair, *.clipflair.zip)|*.clipflair;*.clipflair.zip</value>
+    <value>Archive de ClipFlair (*.clipflair, *.clipflair.zip)|*.clipflair;*.clipflair.zip</value>
   </data>
 </root>

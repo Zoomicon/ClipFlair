@@ -10,6 +10,7 @@
     <RootNamespace>ClipFlair.Windows.Base.WPF</RootNamespace>
     <AssemblyName>ClipFlair.Windows.Base.WPF</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <SupportedCultures>el,es,fr</SupportedCultures>    
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">

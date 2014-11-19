@@ -117,37 +117,22 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="msgConfirmation" xml:space="preserve">
-    <value>Επιβεβαίωση</value>
+  <data name="MsgConfirmation" xml:space="preserve">
+    <value>Confirmation</value>
   </data>
-  <data name="msgCloseConfirmation" xml:space="preserve">
-    <value>Είστε βέβαιοι ότι θέλετε να κλείσετε αυτό το παράθυρο;</value>
+  <data name="MsgQuestionMark" xml:space="preserve">
+    <value>?</value>
   </data>
-  <data name="msgLoadingFailed" xml:space="preserve">
-    <value>Φόρτωση απέτυχε</value>
+  <data name="MsgExit" xml:space="preserve">
+    <value>Voulez vous sortir de</value>
   </data>
-  <data name="msgLoadingFailedOtherWindow" xml:space="preserve">
-    <value>Φόρτωση απέτυχε - Οι αποθηκευμένες επιλογές μπορεί να είναι για άλλο παράθυρο</value>
+  <data name="MsgUnexpectedError" xml:space="preserve">
+    <value>Erreur inattendue</value>
   </data>
-  <data name="msgSavingFailed" xml:space="preserve">
-    <value>Η αποθήκευση απέτυχε</value>
+  <data name="MsgUpdateFailed" xml:space="preserve">
+    <value>Mise à jour a échoué, tentera à nouveau au prochain lancement</value>
   </data>
-  <data name="msgUnknownViewType" xml:space="preserve">
-    <value>Άγνωστος τύπος προβολής: </value>
-  </data>
-  <data name="msgURL" xml:space="preserve">
-    <value>Σύνδεσμος:</value>
-  </data>
-  <data name="msgLoad" xml:space="preserve">
-    <value>Φόρτωση</value>
-  </data>
-  <data name="msgLoadURLDialogTitle" xml:space="preserve">
-    <value>Προτύπου Παραθύρου ClipFlair</value>
-  </data>
-  <data name="msgSaveFilter" xml:space="preserve">
-    <value>Αρχείο ClipFlair (*.clipflair)|*.clipflair|Αρχείο ClipFlair (*.clipflair.zip)|*.clipflair.zip</value>
-  </data>
-  <data name="msgLoadFilter" xml:space="preserve">
-    <value>Αρχείο ClipFlair (*.clipflair, *.clipflair.zip)|*.clipflair;*.clipflair.zip</value>
+  <data name="MsgUpdateDownloaded" xml:space="preserve">
+    <value>Mise à jour téléchargé, utilisera au prochain lancement</value>
   </data>
 </root>

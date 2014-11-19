@@ -15,7 +15,7 @@
     <TargetFrameworkVersion>v5.0</TargetFrameworkVersion>
     <SilverlightVersion>$(TargetFrameworkVersion)</SilverlightVersion>
     <SilverlightApplication>false</SilverlightApplication>
-    <SupportedCultures>el</SupportedCultures>
+    <SupportedCultures>el,es,fr</SupportedCultures>
     <ValidateXaml>true</ValidateXaml>
     <ThrowErrorsInValidation>true</ThrowErrorsInValidation>
     <IsWebBootstrapper>false</IsWebBootstrapper>
@@ -237,6 +237,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="..\Source\Resources\BaseWindowStrings.es.resx">
       <Link>Resources\BaseWindowStrings.es.resx</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\Source\Resources\BaseWindowStrings.fr.resx">
+      <Link>Resources\BaseWindowStrings.fr.resx</Link>
     </EmbeddedResource>
     <EmbeddedResource Include="..\Source\Resources\BaseWindowStrings.resx">
       <Link>Resources\BaseWindowStrings.resx</Link>

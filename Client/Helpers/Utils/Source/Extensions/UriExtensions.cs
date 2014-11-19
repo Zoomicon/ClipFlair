@@ -28,19 +28,19 @@ namespace Utils.Extensions
         public static void NavigateTo(this Uri link)
         { //source: http://social.msdn.microsoft.com/Forums/en-US/lightswitchgeneral/thread/5871c39a-a5fe-4d0c-a157-151442f6ee8d
           #if SILVERLIGHT && !WINDOWS_PHONE
-                      if (AutomationFactory.IsAvailable) //needs elevated rights
-                      {
-                        dynamic shell = AutomationFactory.CreateObject("Shell.Application");
-                        shell.ShellExecute(link.ToString());
-                      }
-                      else if (!System.Windows.Application.Current.IsRunningOutOfBrowser) //works only when running in browser (not as OOB app)
-                      {
-                        System.Windows.Browser.HtmlPage.Window.Navigate(link, "_blank");
-                      }
-                      else
-                      {
-                        MessageBox.Show("Please visit: " + link); //TODO: implement for OOP with WebBrowser control shown in dialog
-                      }
+          if (AutomationFactory.IsAvailable) //needs elevated rights
+          {
+            dynamic shell = AutomationFactory.CreateObject("Shell.Application");
+            shell.ShellExecute(link.ToString());
+          }
+          else if (!System.Windows.Application.Current.IsRunningOutOfBrowser) //works only when running in browser (not as OOB app)
+          {
+            System.Windows.Browser.HtmlPage.Window.Navigate(link, "_blank");
+          }
+          else
+          {
+            MessageBox.Show("Please visit: " + link); //TODO: implement for OOP with WebBrowser control shown in dialog
+          }
           #else
           //TODO: implement for WPF (see http://social.msdn.microsoft.com/Forums/vstudio/en-US/61fd208c-140e-4cf0-8876-a34731da5d20/converting-silverlight-4-automation-factory-to-net40-wpf)
           #endif

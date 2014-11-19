@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.30723.0
+VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ZUI", "ZUI", "{FBDD15EE-2A2C-4180-9286-123757F78949}"
 EndProject
@@ -153,6 +153,12 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 	ProjectSection(SolutionItems) = preProject
 		Readme.txt = Readme.txt
 	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ManagedMediaHelpers", "ManagedMediaHelpers", "{00FE5B2D-FDE7-4C12-B5F6-3F3C163DABC9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MediaParsers.SL4", "Client\Media\Audio\ManagedMediaHelpers\MediaParsers.SL4\MediaParsers.SL4.csproj", "{57D1603F-B2C1-46E2-8497-BA7DA950DADD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mp3MediaStreamSource.SL4", "Client\Media\Audio\ManagedMediaHelpers\Mp3MediaStreamSource.SL4\Mp3MediaStreamSource.SL4.csproj", "{E3E82147-D334-4F67-A22C-34A0E0005D67}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -826,6 +832,30 @@ Global
 		{FCB42315-C45C-4DCC-995E-FBAEB6115B4F}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{FCB42315-C45C-4DCC-995E-FBAEB6115B4F}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{FCB42315-C45C-4DCC-995E-FBAEB6115B4F}.Release|x86.ActiveCfg = Release|Any CPU
+		{57D1603F-B2C1-46E2-8497-BA7DA950DADD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{57D1603F-B2C1-46E2-8497-BA7DA950DADD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{57D1603F-B2C1-46E2-8497-BA7DA950DADD}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{57D1603F-B2C1-46E2-8497-BA7DA950DADD}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{57D1603F-B2C1-46E2-8497-BA7DA950DADD}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{57D1603F-B2C1-46E2-8497-BA7DA950DADD}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{57D1603F-B2C1-46E2-8497-BA7DA950DADD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{57D1603F-B2C1-46E2-8497-BA7DA950DADD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{57D1603F-B2C1-46E2-8497-BA7DA950DADD}.Release|ARM.ActiveCfg = Release|Any CPU
+		{57D1603F-B2C1-46E2-8497-BA7DA950DADD}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{57D1603F-B2C1-46E2-8497-BA7DA950DADD}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{57D1603F-B2C1-46E2-8497-BA7DA950DADD}.Release|x86.ActiveCfg = Release|Any CPU
+		{E3E82147-D334-4F67-A22C-34A0E0005D67}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E3E82147-D334-4F67-A22C-34A0E0005D67}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E3E82147-D334-4F67-A22C-34A0E0005D67}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{E3E82147-D334-4F67-A22C-34A0E0005D67}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{E3E82147-D334-4F67-A22C-34A0E0005D67}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{E3E82147-D334-4F67-A22C-34A0E0005D67}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{E3E82147-D334-4F67-A22C-34A0E0005D67}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E3E82147-D334-4F67-A22C-34A0E0005D67}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E3E82147-D334-4F67-A22C-34A0E0005D67}.Release|ARM.ActiveCfg = Release|Any CPU
+		{E3E82147-D334-4F67-A22C-34A0E0005D67}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{E3E82147-D334-4F67-A22C-34A0E0005D67}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{E3E82147-D334-4F67-A22C-34A0E0005D67}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -900,5 +930,8 @@ Global
 		{0771A5EA-F8F5-4BB4-A29E-2FD3CF9A5088} = {29574CA4-9687-42BB-AAE0-31C3BD52A803}
 		{9513B4C0-6C0E-4878-9756-952BB90B4B9A} = {A129522C-6275-43AC-BE3D-439330EE69C7}
 		{FCB42315-C45C-4DCC-995E-FBAEB6115B4F} = {9513B4C0-6C0E-4878-9756-952BB90B4B9A}
+		{00FE5B2D-FDE7-4C12-B5F6-3F3C163DABC9} = {5AC692F1-6E35-442B-BB40-E4D05CB90AB9}
+		{57D1603F-B2C1-46E2-8497-BA7DA950DADD} = {00FE5B2D-FDE7-4C12-B5F6-3F3C163DABC9}
+		{E3E82147-D334-4F67-A22C-34A0E0005D67} = {00FE5B2D-FDE7-4C12-B5F6-3F3C163DABC9}
 	EndGlobalSection
 EndGlobal
