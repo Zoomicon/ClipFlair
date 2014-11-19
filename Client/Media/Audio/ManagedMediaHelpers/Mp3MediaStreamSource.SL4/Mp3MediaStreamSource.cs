@@ -9,6 +9,8 @@
 // See http://code.msdn.microsoft.com/ManagedMediaHelpers/Project/License.aspx
 // All other rights reserved.
 // </copyright>
+//
+// Edited by George Birbilis (http://zoomicon.com) [Fixed to be able to rewind back to start]
 //-----------------------------------------------------------------------
 
 [module: System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming",
@@ -46,6 +48,9 @@ namespace Media
     /// </summary>
     public class Mp3MediaStreamSource : MediaStreamSource
     {
+
+        #region --- Fields ---
+
         /// <summary>
         ///  ID3 version 1 tags are 128 bytes at the end of the file.
         ///  http://www.id3.org/ID3v1
@@ -92,6 +97,20 @@ namespace Media
         private MpegFrame currentFrame;
 
         /// <summary>
+        /// The first known frame (for rewind)
+        /// </summary>     
+        private MpegFrame firstFrame;
+
+        /// <summary>
+        /// The first audio stream position (for rewind)
+        /// </summary>
+        private long firstAudioStreamPosition;
+
+        #endregion
+
+        #region --- Initialization ---
+
+        /// <summary>
         /// Initializes a new instance of the Mp3MediaStreamSource class.
         /// </summary>
         /// <param name="audioStream">
@@ -117,10 +136,43 @@ namespace Media
             this.audioStreamLength = length;
         }
 
+        #endregion
+
+        #region --- Cleanup ---
+
+        /// <summary>
+        ///  TODO FILL ME IN LATER
+        /// </summary>
+        protected override void CloseMedia()
+        {
+          try
+          {
+            this.audioStream.Close();
+          }
+          catch (CryptographicException)
+          {
+            // Ignore these, they are thrown when abruptly closing a
+            // stream (i.e. skipping tracks) where the source is a
+            // CryptoStream
+          }
+          catch (Exception e)
+          {
+            Debug.Assert(false, e.StackTrace);
+          }
+        }
+
+        #endregion
+
+        #region --- Properties ---
+
         /// <summary>
         /// Gets the MpegLayer3WaveFormat structure which represents this Mp3 file.
         /// </summary>
         public MpegLayer3WaveFormat MpegLayer3WaveFormat { get; private set; }
+
+        #endregion
+
+        #region --- Methods ---
 
         /// <summary>
         /// Read off the Id3Data from the stream and return the first MpegFrame of the audio stream.
@@ -193,6 +245,65 @@ namespace Media
             // Cleanup and quit if you couldn't even read the initial data for some reason.
         cleanup:
             throw new Exception("Could not read intial audio stream data");
+        }
+
+        /// <summary>
+        /// Callback which handles setting up an MSS once the first MpegFrame after Id3v2 data has been read.
+        /// </summary>
+        /// <param name="mpegLayer3Frame"> First MpegFrame</param>
+        /// <param name="mediaStreamAttributes">Empty dictionary for MediaStreamAttributes</param>
+        /// <param name="mediaStreamDescriptions">Empty dictionary for MediaStreamDescriptions</param>
+        /// <param name="mediaSourceAttributes">Empty dictionary for MediaSourceAttributes</param>
+        private void ReadPastId3v2TagsCallback(
+            MpegFrame mpegLayer3Frame,
+            Dictionary<MediaStreamAttributeKeys, string> mediaStreamAttributes,
+            List<MediaStreamDescription> mediaStreamDescriptions,
+            Dictionary<MediaSourceAttributesKeys, string> mediaSourceAttributes)
+        {
+          if (mpegLayer3Frame.FrameSize <= 0)
+            throw new InvalidOperationException("MpegFrame's FrameSize cannot be negative");
+
+          // Initialize the Mp3 data structures used by the Media pipeline with state from the first frame.
+          WaveFormatExtensible wfx = new WaveFormatExtensible();
+          this.MpegLayer3WaveFormat = new MpegLayer3WaveFormat();
+          this.MpegLayer3WaveFormat.WaveFormatExtensible = wfx;
+
+          this.MpegLayer3WaveFormat.WaveFormatExtensible.FormatTag = 85;
+          this.MpegLayer3WaveFormat.WaveFormatExtensible.Channels = (short)((mpegLayer3Frame.Channels == Channel.SingleChannel) ? 1 : 2);
+          this.MpegLayer3WaveFormat.WaveFormatExtensible.SamplesPerSec = mpegLayer3Frame.SamplingRate;
+          this.MpegLayer3WaveFormat.WaveFormatExtensible.AverageBytesPerSecond = mpegLayer3Frame.Bitrate / 8;
+          this.MpegLayer3WaveFormat.WaveFormatExtensible.BlockAlign = 1;
+          this.MpegLayer3WaveFormat.WaveFormatExtensible.BitsPerSample = 0;
+          this.MpegLayer3WaveFormat.WaveFormatExtensible.ExtraDataSize = 12;
+
+          this.MpegLayer3WaveFormat.Id = 1;
+          this.MpegLayer3WaveFormat.BitratePaddingMode = 0;
+          this.MpegLayer3WaveFormat.FramesPerBlock = 1;
+          this.MpegLayer3WaveFormat.BlockSize = (short)mpegLayer3Frame.FrameSize;
+          this.MpegLayer3WaveFormat.CodecDelay = 0;
+
+          mediaStreamAttributes[MediaStreamAttributeKeys.CodecPrivateData] = this.MpegLayer3WaveFormat.ToHexString();
+          this.audioStreamDescription = new MediaStreamDescription(MediaStreamType.Audio, mediaStreamAttributes);
+
+          mediaStreamDescriptions.Add(this.audioStreamDescription);
+
+          this.trackDuration = new TimeSpan(0, 0, (int)(this.audioStreamLength / MpegLayer3WaveFormat.WaveFormatExtensible.AverageBytesPerSecond));
+          mediaSourceAttributes[MediaSourceAttributesKeys.Duration] = this.trackDuration.Ticks.ToString(CultureInfo.InvariantCulture);
+
+          if (this.audioStream.CanSeek)
+            mediaSourceAttributes[MediaSourceAttributesKeys.CanSeek] = "1";
+          else
+            mediaSourceAttributes[MediaSourceAttributesKeys.CanSeek] = "0";
+
+          // Report that the Mp3MediaStreamSource has finished initializing its internal state and can now
+          // pass in Mp3 Samples.
+          this.ReportOpenMediaCompleted(mediaSourceAttributes, mediaStreamDescriptions);
+
+          this.currentFrame = mpegLayer3Frame;
+          this.currentFrameStartPosition = MpegFrame.FrameHeaderSize;
+
+          this.firstFrame = mpegLayer3Frame; //keeping the 1st frame position for rewinding back to start
+          this.firstAudioStreamPosition = audioStream.Position;
         }
 
         /// <summary>
@@ -279,27 +390,6 @@ namespace Media
         /// <summary>
         ///  TODO FILL ME IN LATER
         /// </summary>
-        protected override void CloseMedia()
-        {
-            try
-            {
-                this.audioStream.Close();
-            }
-            catch (CryptographicException)
-            {
-                // Ignore these, they are thrown when abruptly closing a
-                // stream (i.e. skipping tracks) where the source is a
-                // CryptoStream
-            }
-            catch (Exception e)
-            {
-                Debug.Assert(false, e.StackTrace);
-            }
-        }
-
-        /// <summary>
-        ///  TODO FILL ME IN LATER
-        /// </summary>
         /// <param name="diagnosticKind">
         ///  TODO FILL ME IN LATER . . .
         /// </param>
@@ -310,8 +400,7 @@ namespace Media
 
         /// <summary>
         /// <para>
-        /// Effectively a Null-Op for when a MediaElement requests a seek at the beginning
-        /// of the stream. This makes the stream semi-unseekable.
+        /// Only supporting seeking back to start of the stream (e.g. when doing MediaElement.Stop()).
         /// </para>
         /// <para>
         /// In a fuller MediaStreamSource, the logic here would be to actually seek to
@@ -319,10 +408,25 @@ namespace Media
         /// </para>
         /// </summary>
         /// <param name="seekToTime">
-        ///  The time to seek to in nanosecond ticks.
+        /// The time to seek to (in 100-nanosecond units [hns])
         /// </param>
         protected override void SeekAsync(long seekToTime)
         {
+            /*
+            if (seekToTime > this.trackDuration.TotalMilliseconds * 10)
+            {
+              throw new InvalidOperationException("The seek position is beyond the length of the stream");
+            }
+            */
+            if (seekToTime != 0) //only supporting rewinding back to start
+                throw new InvalidOperationException("Only supporting seeking back to start of the stream");
+            else
+            {
+                this.currentFrame = firstFrame;
+                this.currentFrameStartPosition = MpegFrame.FrameHeaderSize;
+                this.audioStream.Position = firstAudioStreamPosition;
+            }
+            
             this.ReportSeekCompleted(seekToTime);
         }
 
@@ -337,65 +441,6 @@ namespace Media
             throw new NotImplementedException();
         }
 
-        /// <summary>
-        /// Callback which handles setting up an MSS once the first MpegFrame after Id3v2 data has been read.
-        /// </summary>
-        /// <param name="mpegLayer3Frame"> First MpegFrame</param>
-        /// <param name="mediaStreamAttributes">Empty dictionary for MediaStreamAttributes</param>
-        /// <param name="mediaStreamDescriptions">Empty dictionary for MediaStreamDescriptions</param>
-        /// <param name="mediaSourceAttributes">Empty dictionary for MediaSourceAttributes</param>
-        private void ReadPastId3v2TagsCallback(
-            MpegFrame mpegLayer3Frame, 
-            Dictionary<MediaStreamAttributeKeys, string> mediaStreamAttributes, 
-            List<MediaStreamDescription> mediaStreamDescriptions, 
-            Dictionary<MediaSourceAttributesKeys, string> mediaSourceAttributes)
-        {
-            if (mpegLayer3Frame.FrameSize <= 0)
-            {
-                throw new InvalidOperationException("MpegFrame's FrameSize cannot be negative");
-            }
-
-            // Initialize the Mp3 data structures used by the Media pipeline with state from the first frame.
-            WaveFormatExtensible wfx = new WaveFormatExtensible();
-            this.MpegLayer3WaveFormat = new MpegLayer3WaveFormat();
-            this.MpegLayer3WaveFormat.WaveFormatExtensible = wfx;
-
-            this.MpegLayer3WaveFormat.WaveFormatExtensible.FormatTag = 85;
-            this.MpegLayer3WaveFormat.WaveFormatExtensible.Channels = (short)((mpegLayer3Frame.Channels == Channel.SingleChannel) ? 1 : 2);
-            this.MpegLayer3WaveFormat.WaveFormatExtensible.SamplesPerSec = mpegLayer3Frame.SamplingRate;
-            this.MpegLayer3WaveFormat.WaveFormatExtensible.AverageBytesPerSecond = mpegLayer3Frame.Bitrate / 8;
-            this.MpegLayer3WaveFormat.WaveFormatExtensible.BlockAlign = 1;
-            this.MpegLayer3WaveFormat.WaveFormatExtensible.BitsPerSample = 0;
-            this.MpegLayer3WaveFormat.WaveFormatExtensible.ExtraDataSize = 12;
-
-            this.MpegLayer3WaveFormat.Id = 1;
-            this.MpegLayer3WaveFormat.BitratePaddingMode = 0;
-            this.MpegLayer3WaveFormat.FramesPerBlock = 1;
-            this.MpegLayer3WaveFormat.BlockSize = (short)mpegLayer3Frame.FrameSize;
-            this.MpegLayer3WaveFormat.CodecDelay = 0;
-
-            mediaStreamAttributes[MediaStreamAttributeKeys.CodecPrivateData] = this.MpegLayer3WaveFormat.ToHexString();
-            this.audioStreamDescription = new MediaStreamDescription(MediaStreamType.Audio, mediaStreamAttributes);
-
-            mediaStreamDescriptions.Add(this.audioStreamDescription);
-
-            this.trackDuration = new TimeSpan(0, 0, (int)(this.audioStreamLength / MpegLayer3WaveFormat.WaveFormatExtensible.AverageBytesPerSecond));
-            mediaSourceAttributes[MediaSourceAttributesKeys.Duration] = this.trackDuration.Ticks.ToString(CultureInfo.InvariantCulture);
-            if (this.audioStream.CanSeek)
-            {
-                mediaSourceAttributes[MediaSourceAttributesKeys.CanSeek] = "1";
-            }
-            else
-            {
-                mediaSourceAttributes[MediaSourceAttributesKeys.CanSeek] = "0";
-            }
-
-            // Report that the Mp3MediaStreamSource has finished initializing its internal state and can now
-            // pass in Mp3 Samples.
-            this.ReportOpenMediaCompleted(mediaSourceAttributes, mediaStreamDescriptions);
-
-            this.currentFrame = mpegLayer3Frame;
-            this.currentFrameStartPosition = MpegFrame.FrameHeaderSize;
-        }
+        #endregion
     }
 }
