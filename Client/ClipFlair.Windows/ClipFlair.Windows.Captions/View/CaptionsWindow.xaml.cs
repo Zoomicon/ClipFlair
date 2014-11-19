@@ -1,9 +1,10 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: CaptionsWindow.xaml.cs
-//Version: 20141107
+//Version: 20141118
 
 //TODO: add Source property to CaptionsGrid control and use data-binding to bind it to CaptionsGridView's Source property
 
+using AudioLib;
 using ClipFlair.CaptionsGrid;
 using ClipFlair.Windows.Captions;
 using ClipFlair.Windows.Views;
@@ -18,7 +19,13 @@ namespace ClipFlair.Windows
   public partial class CaptionsWindow : BaseWindow
   {
 
+    #region --- Constants ---
+
     public const string DEFAULT_CAPTIONS = "captions.srt";
+
+    #endregion
+
+    #region --- Initialization ---
 
     public CaptionsWindow()
     {
@@ -26,6 +33,8 @@ namespace ClipFlair.Windows
       InitializeComponent();
     }
 
+    #endregion
+    
     #region --- Properties ---
 
     public ICaptionsGrid CaptionsGridView
@@ -83,14 +92,14 @@ namespace ClipFlair.Windows
       return CaptionSpecificPath(caption, "/ExtraData/", ".xml");
     }
     
-    private string CaptionAudioPath(CaptionElement caption)
+    private string CaptionAudioPath(CaptionElement caption, string fileExtension = "") //note: do not change ""
     {
-      return CaptionSpecificPath(caption, "/Audio/", ".wav"); //TODO: need to update this if storing to formats other than WAV in the future
+      return CaptionSpecificPath(caption, "/Audio/", fileExtension);
     }
 
-    private string CaptionCommentsAudioPath(CaptionElement caption)
+    private string CaptionCommentsAudioPath(CaptionElement caption, string fileExtension = "") //note: do not change ""
     {
-      return CaptionSpecificPath(caption, "/CommentsAudio/", ".wav"); //TODO: need to update this if storing to formats other than WAV in the future
+      return CaptionSpecificPath(caption, "/CommentsAudio/", fileExtension);
     }
     
     #endregion
@@ -153,9 +162,19 @@ namespace ClipFlair.Windows
 
     public void LoadCaptionAudio(CaptionElement caption, ZipFile zip, string zipFolder = "")
     {
-      ZipEntry entry = zip[zipFolder + CaptionAudioPath(caption)];
+      string path = CaptionAudioPath(caption);
+
+      string fileExtension = AudioStreamKindUtils.EXTENSION_WAV;
+      ZipEntry entry = zip[zipFolder + path + fileExtension];
+
+      if (entry == null)
+      {
+        fileExtension = AudioStreamKindUtils.EXTENSION_MP3;
+        entry = zip[zipFolder + path + fileExtension];
+      }
+
       if (entry != null)
-        caption.LoadAudio(entry.OpenReader(), (int)entry.UncompressedSize);
+        caption.LoadAudio(entry.OpenReader(), fileExtension, (int)entry.UncompressedSize);
     }
 
     #endregion
@@ -171,9 +190,19 @@ namespace ClipFlair.Windows
 
     public void LoadCaptionCommentsAudio(CaptionElement caption, ZipFile zip, string zipFolder = "")
     {
-      ZipEntry entry = zip[zipFolder + CaptionCommentsAudioPath(caption)];
+      string path = CaptionCommentsAudioPath(caption);
+
+      string fileExtension = AudioStreamKindUtils.EXTENSION_WAV;
+      ZipEntry entry = zip[zipFolder + path + fileExtension];
+
+      if (entry == null)
+      {
+        fileExtension = AudioStreamKindUtils.EXTENSION_MP3;
+        entry = zip[zipFolder + path + fileExtension];
+      }
+      
       if (entry != null)
-        caption.LoadCommentsAudio(entry.OpenReader(), (int)entry.UncompressedSize);
+        caption.LoadCommentsAudio(entry.OpenReader(), fileExtension, (int)entry.UncompressedSize);
     }
 
     #endregion
@@ -240,7 +269,7 @@ namespace ClipFlair.Windows
     {
       if ((caption != null) && caption.HasAudio())
         zip.AddEntry(
-          zipFolder + CaptionAudioPath(caption),
+          zipFolder + CaptionAudioPath(caption, caption.GetAudio().Kind.GetExtension()),
           new WriteDelegate((entryName, stream) => { caption.SaveAudio(stream); }) );
     }
 
@@ -258,7 +287,7 @@ namespace ClipFlair.Windows
     {
       if ((caption != null) && caption.HasCommentsAudio())
         zip.AddEntry(
-          zipFolder + CaptionCommentsAudioPath(caption),
+          zipFolder + CaptionCommentsAudioPath(caption, caption.GetCommentsAudio().Kind.GetExtension()),
           new WriteDelegate((entryName, stream) => { caption.SaveCommentsAudio(stream); }));
     }
 

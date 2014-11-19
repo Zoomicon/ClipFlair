@@ -107,6 +107,10 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Media\Audio\AudioLib\AudioLib.Silverlight\AudioLib.Silverlight.csproj">
+      <Project>{a5e8bffb-da12-4ee4-9ca4-667412d98614}</Project>
+      <Name>AudioLib.Silverlight</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Media\Audio\AudioRecorderControl\AudioRecorderControl.Silverlight\AudioRecorderControl.Silverlight.csproj">
       <Project>{BF52BDBA-830F-4CD4-AA9C-F653B6448184}</Project>
       <Name>AudioRecorderControl.Silverlight</Name>
