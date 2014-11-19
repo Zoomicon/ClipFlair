@@ -7,6 +7,8 @@
 // This source is subject to the Microsoft Public License (Ms-PL)
 // All other rights reserved.
 // </copyright>
+//
+// Edited by George Birbilis (http://zoomicon.com)
 //-----------------------------------------------------------------------
 
 using System;
@@ -22,6 +24,9 @@ namespace AudioLib
     /// </summary>
     public class WaveMediaStreamSource : MediaStreamSource, IDisposable
     {
+
+        #region --- Fields ---
+
         /// <summary>
         /// The stream that we're playing back
         /// </summary>
@@ -57,6 +62,10 @@ namespace AudioLib
         /// </summary>
         private Dictionary<MediaSampleAttributeKeys, string> emptySampleDict = new Dictionary<MediaSampleAttributeKeys, string>();
 
+        #endregion
+
+        #region --- Initialization ---
+
         /// <summary>
         /// Initializes a new instance of the WaveMediaStreamSource class.
         /// </summary>
@@ -66,7 +75,12 @@ namespace AudioLib
             this.stream = stream;
         }
 
-        #region IDisposable Members
+        #endregion
+
+        #region --- Cleanup ---
+
+        #region IDisposable
+
         /// <summary>
         /// Implement the Dispose method to release the resources
         /// </summary>
@@ -75,7 +89,6 @@ namespace AudioLib
             this.Dispose(true);
             GC.SuppressFinalize(this);
         }
-        #endregion
 
         /// <summary>
         /// Implementation of the IDisposable pattern
@@ -92,6 +105,23 @@ namespace AudioLib
                 }
             }
         }
+
+        #endregion
+
+        /// <summary>
+        /// Close the media. Release the resources.
+        /// </summary>
+        protected override void CloseMedia()
+        {
+          // Close the stream
+          this.startPosition = this.currentPosition = 0;
+          this.wavParser = null;
+          this.audioDesc = null;
+        }
+
+        #endregion
+
+        #region --- Methods ---
 
         /// <summary>
         /// Open the media.
@@ -123,17 +153,6 @@ namespace AudioLib
 
             sourceAttributes[MediaSourceAttributesKeys.Duration] = this.wavParser.Duration.ToString();
             ReportOpenMediaCompleted(sourceAttributes, availableStreams);
-        }
-
-        /// <summary>
-        /// Close the media. Release the resources.
-        /// </summary>
-        protected override void CloseMedia()
-        {
-            // Close the stream
-            this.startPosition = this.currentPosition = 0;
-            this.wavParser = null;
-            this.audioDesc = null;
         }
 
         /// <summary>
@@ -232,5 +251,7 @@ namespace AudioLib
             int tmp = a + b - 1;
             return tmp - (tmp % b);
         }
+
+        #endregion
     }
 }

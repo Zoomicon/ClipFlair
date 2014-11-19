@@ -87,6 +87,8 @@
     <Compile Include="..\Source\WavParser.cs">
       <Link>WavParser.cs</Link>
     </Compile>
+    <Compile Include="AudioStreamKind.cs" />
+    <Compile Include="AudioStream.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -106,6 +108,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="AudioLib.cd" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\ManagedMediaHelpers\Mp3MediaStreamSource.SL4\Mp3MediaStreamSource.SL4.csproj">
+      <Project>{e3e82147-d334-4f67-a22c-34a0e0005d67}</Project>
+      <Name>Mp3MediaStreamSource.SL4</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Silverlight\$(SilverlightVersion)\Microsoft.Silverlight.CSharp.targets" />
   <ProjectExtensions>

@@ -1,12 +1,11 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: AudioRecorderControl.xaml.cs
-//Version: 20130404
+//Version: 20141118
 
 //TODO: fix so that when ToggleCommand is unchecked the respective toggle button listens for respective event and unchecks too
 
-
+using AudioLib;
 using System.ComponentModel;
-using System.IO;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -20,6 +19,7 @@ namespace ClipFlair.AudioRecorder
     {
       View = new AudioRecorderView(); //must do first
       InitializeComponent();
+      View.Player = player;
 
       //TODO: check if the following are needed
       //Need to use a MouseLeftButtonDownHandler, to handle mouse events first, before any hosting control (and since the Button/ToggleButton handles the ButtonDown events internally in favor of Click event, asking to process handled events too)
@@ -74,16 +74,16 @@ namespace ClipFlair.AudioRecorder
     /// Audio Dependency Property
     /// </summary>
     public static readonly DependencyProperty AudioProperty =
-        DependencyProperty.Register("Audio", typeof(Stream), typeof(AudioRecorderControl),
+        DependencyProperty.Register("Audio", typeof(AudioStream), typeof(AudioRecorderControl),
             new FrameworkPropertyMetadata(null,
                 new PropertyChangedCallback(OnAudioChanged)));
 
     /// <summary>
     /// Gets or sets the Audio property.
     /// </summary>
-    public Stream Audio
+    public AudioStream Audio
     {
-      get { return (Stream)GetValue(AudioProperty); }
+      get { return (AudioStream)GetValue(AudioProperty); }
       set { SetValue(AudioProperty, value); }
     }
 
@@ -93,15 +93,15 @@ namespace ClipFlair.AudioRecorder
     private static void OnAudioChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
       AudioRecorderControl target = (AudioRecorderControl)d;
-      Stream oldAudio = (Stream)e.OldValue;
-      Stream newAudio = target.Audio;
+      AudioStream oldAudio = (AudioStream)e.OldValue;
+      AudioStream newAudio = target.Audio;
       target.OnAudioChanged(oldAudio, newAudio);
     }
 
     /// <summary>
     /// Provides derived classes an opportunity to handle changes to the Audio property.
     /// </summary>
-    protected virtual void OnAudioChanged(Stream oldAudio, Stream newAudio)
+    protected virtual void OnAudioChanged(AudioStream oldAudio, AudioStream newAudio)
     {
       View.Audio = newAudio;
     }

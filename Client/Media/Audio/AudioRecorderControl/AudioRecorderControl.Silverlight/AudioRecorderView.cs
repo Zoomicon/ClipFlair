@@ -1,9 +1,8 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: AudioRecorderView.cs
-//Version: 20141107
+//Version: 20141118
 
 using AudioLib;
-
 using System;
 using System.ComponentModel;
 using System.IO;
@@ -17,7 +16,7 @@ namespace ClipFlair.AudioRecorder
   public class AudioRecorderView : INotifyPropertyChanged
   {
 
-    #region Constants
+    #region --- Constants ---
 
     public const string PROPERTY_BUSY = "Busy";
     public const string PROPERTY_AUDIO = "Audio";
@@ -28,7 +27,9 @@ namespace ClipFlair.AudioRecorder
     const string MSG_RECORDED = "Recording finished. You may play or save your record";
     const string MSG_RECORD_FAILED = "Could not record: ";
     const string MSG_PLAY_FAILED = "Could not play: ";
-    const string MSG_FILE_FILTER = "Audio files (*.wav)|*.wav";
+    const string MSG_LOAD_FILE_FILTER = "Audio files (*.wav, *.mp3)|*.wav;*.mp3|WAV files (*.wav)|*.wav|MP3 files (*.mp3)|*.mp3";
+    const string MSG_SAVE_FILE_FILTER_WAV = "WAV files (*.wav)|*.wav";
+    const string MSG_SAVE_FILE_FILTER_MP3 = "MP3 files (*.mp3)|*.mp3"; 
     const string MSG_LOADING = "Loading...";
     const string MSG_LOADED = "Loaded OK";
     const string MSG_LOAD_FAILED = "Could not load: ";
@@ -37,27 +38,66 @@ namespace ClipFlair.AudioRecorder
     const string MSG_SAVE_FAILED = "Could not save: ";
     const string MSG_NO_AUDIO_TO_SAVE = "No audio available to save";
 
+    const double DEFAULT_VOLUME = 1.0; //set playback to highest volume (1.0) - MediaElement's default is 0.5
+
     #endregion
 
-    #region Fields
+    #region --- Fields ---
 
     private bool busy = false;
-    private Stream _audio;
-    private WaveMediaStreamSource wavMss;
-    private MediaElement player = new MediaElement();
+    private AudioStream _audio;
+    private MediaStreamSource mediaStreamSource; //WaveMediaStreamSource or MP3MediaStreamSource
+    private MediaElement player; //= null //Note: we shouldn't instantiate a MediaElement in code and not add it to a visual tree, better do it in XAML and then pass it to this class
     private MemoryAudioSink _sink;
     private CaptureSource _captureSource;
   
     #endregion
 
-    #region Properties
+    #region --- Initialiation ---
+
+    public AudioRecorderView()
+    {
+
+      RecordCommand = new ToggleCommand()
+      {
+        IsEnabled = true,
+        IsChecked = false,
+        ExecuteAction = () => Record(),
+        ExecuteUncheckAction = () => StopRecording()
+      };
+
+      PlayCommand = new ToggleCommand()
+      {
+        IsEnabled = false,
+        IsChecked = false,
+        ExecuteAction = () => Play(),
+        ExecuteUncheckAction = () => StopPlayback()
+      };
+
+      LoadCommand = new Command()
+      {
+        IsEnabled = true,
+        ExecuteAction = () => LoadFile()
+      };
+
+      SaveCommand = new Command()
+      {
+        IsEnabled = false,
+        ExecuteAction = () => SaveFile()
+      };
+
+      Status = MSG_RECORD_OR_LOAD;
+    }
+
+    #endregion
+
+    #region --- Properties ---
 
     #region Commands
 
     //using public Commands and protected handler methods to keep the buttons state consistent. Outsiders should talk to the commands, not the handlers
     public ToggleCommand RecordCommand { get; private set; }
-    //public ToggleCommand PlayCommand { get; private set; }
-    /**/public Command PlayCommand { get; private set; }
+    public ToggleCommand PlayCommand { get; private set; }
     public Command LoadCommand { get; private set; }
     public Command SaveCommand { get; private set; }
 
@@ -66,6 +106,19 @@ namespace ClipFlair.AudioRecorder
     #region Status
 
     public string Status { get; set; }
+
+    public bool Busy
+    {
+      get { return busy; }
+      set
+      {
+        if (busy != value)
+        {
+          busy = value;
+          RaisePropertyChanged(PROPERTY_BUSY);
+        }
+      }
+    }
 
     #endregion
 
@@ -81,20 +134,7 @@ namespace ClipFlair.AudioRecorder
       get { return (Audio != null); }
     }
 
-    public bool Busy
-    {
-      get { return busy; }
-      set
-      {
-        if (busy != value)
-        {
-          busy = value;
-          RaisePropertyChanged(PROPERTY_BUSY);
-        }
-      }
-    }
-
-    public Stream Audio
+    public AudioStream Audio
     {
       get { return _audio; }
       set
@@ -106,17 +146,16 @@ namespace ClipFlair.AudioRecorder
           bool flag = (_audio != null); //is there any recorded audio?
           RecordCommand.IsEnabled = true;
           LoadCommand.IsEnabled = true;
-          PlayCommand.IsEnabled = flag;
+          //PlayCommand.IsEnabled = flag; //do not use this, enabling it at "MediaOpened" event and disabling it at "MediaFailed"
           SaveCommand.IsEnabled = flag;
+
+          mediaStreamSource = (flag)? _audio.GetMediaStreamSource() : null;
+          player.SetSource(mediaStreamSource); //must set the source once, not every time we play the same audio, else with Mp3MediaSource it will throw DRM error
 
           RaisePropertyChanged(PROPERTY_AUDIO);
         }
       }
     }
-
-    #endregion
-
-    #region Volume
 
     public double Volume
     {
@@ -124,60 +163,39 @@ namespace ClipFlair.AudioRecorder
       set { player.Volume = value; }
     }
 
-    #endregion
-
-    #endregion
-
-    #region Constructor
-
-    public static AudioFormat PickAudioFormat(AudioCaptureDevice audioCaptureDevice, AudioFormatEx desiredFormat)
+    public MediaElement Player
     {
-      return AudioFormatEx.PickAudioFormat(audioCaptureDevice.SupportedFormats, desiredFormat);
-     }
-
-    public AudioRecorderView()
-    {
-
-      RecordCommand = new ToggleCommand()
+      get { return player; }
+      set
       {
-        IsEnabled = true,
-        IsChecked = false,
-        ExecuteAction = () => Record(),
-        ExecuteUncheckAction = () => StopRecording()
-      };
+        if (player != null)
+        {
+          player.MediaOpened -= MediaElement_MediaOpened;
+          player.MediaFailed -= MediaElement_MediaFailed;
+          player.MediaEnded -= MediaElement_MediaEnded;
+        }
 
-      PlayCommand = new /*Toggle*/Command()
-      {
-        IsEnabled = false,
-        //IsChecked = false,
-        ExecuteAction = () => Play()
-        //, ExecuteUncheckAction = () => StopPlayback()
-      };
+        player = value;
 
-      LoadCommand = new Command()
-      {
-        IsEnabled = true,
-        ExecuteAction = () => LoadFile()
-      };
+        if (player != null)
+        {
+          player.MediaOpened += MediaElement_MediaOpened;
+          player.MediaFailed += MediaElement_MediaFailed;
+          player.MediaEnded += MediaElement_MediaEnded;
 
-      SaveCommand = new Command()
-      {
-        IsEnabled = false,
-        ExecuteAction = () => SaveFile()
-      };
-
-       Volume = 1.0; //set playback to highest volume (1.0) - MediaElement's default is 0.5
-
-      //player.MediaOpened += new RoutedEventHandler(MediaElement_MediaOpened);
-      //player.MediaEnded += new RoutedEventHandler(MediaElement_MediaEnded);
-      //player.MarkerReached += new TimelineMarkerRoutedEventHandler(MediaElement_MarkerReached);
-
-      Status = MSG_RECORD_OR_LOAD;
+          player.AutoPlay = false;
+          player.PlaybackRate = 1.0;
+          player.Balance = 0;
+          Volume = DEFAULT_VOLUME;
+        }
+      }
     }
 
     #endregion
 
-    #region Methods
+    #endregion
+
+    #region --- Methods ---
 
     public void Reset()
     {
@@ -187,6 +205,13 @@ namespace ClipFlair.AudioRecorder
       SaveCommand.IsEnabled = false;
 
       Status = MSG_RECORD_OR_LOAD;
+    }
+
+    #region Recording
+
+    public static AudioFormat PickAudioFormat(AudioCaptureDevice audioCaptureDevice, AudioFormatEx desiredFormat)
+    {
+      return AudioFormatEx.PickAudioFormat(audioCaptureDevice.SupportedFormats, desiredFormat);
     }
 
     public void Record()
@@ -249,8 +274,8 @@ namespace ClipFlair.AudioRecorder
 
       try
       {
-        Audio = new MemoryStream(WavManager.WAV_HEADER_SIZE + (int)_sink.BackingStream.Length); //setting initial capacity of MemoryStream to avoid having it resize multiple times (default is 0 if not given)
-        WavManager.SavePcmToWav(_sink.BackingStream, Audio, new AudioFormatEx(_sink.CurrentFormat));
+        Audio = new AudioStream(new MemoryStream(WavManager.WAV_HEADER_SIZE + (int)_sink.BackingStream.Length), AudioStreamKind.WAV); //setting initial capacity of MemoryStream to avoid having it resize multiple times (default is 0 if not given)
+        WavManager.SavePcmToWav(_sink.BackingStream, Audio.Data, new AudioFormatEx(_sink.CurrentFormat));
         _sink.CloseStream(); //close the backing stream, will be reallocated at next recording
 
         Status = MSG_RECORDED;
@@ -274,9 +299,18 @@ namespace ClipFlair.AudioRecorder
 
     }
 
+    #endregion
+
+    #region Playback
+
+    private void PlayCommandCheck()
+    {
+      PlayCommand.IsChecked = true; //visually press playback toggle button //don't talk to ToggleButton directly
+    }
+
     private void PlayCommandUncheck()
     {
-      //PlayCommand.IsChecked = false; //depress playback toggle button //don't talk to ToggleButton directly
+      PlayCommand.IsChecked = false; //visually depress playback toggle button //don't talk to ToggleButton directly
     }
 
     public void Play()
@@ -292,9 +326,8 @@ namespace ClipFlair.AudioRecorder
 
       try
       {
-        wavMss = new WaveMediaStreamSource(Audio);
-        player.SetSource(wavMss);
-        player.Position = TimeSpan.Zero;
+        StopPlayback();
+        PlayCommandCheck(); //press play button //don't talk to ToggleButton directly
         player.Play();
       }
       catch (Exception e)
@@ -320,13 +353,15 @@ namespace ClipFlair.AudioRecorder
       }
     }
 
+    #endregion
+
     #region Load-Save
 
     public void LoadFile() //this has to be called by user-initiated event handler
     {
       OpenFileDialog openFileDialog = new OpenFileDialog()
       {
-        Filter = MSG_FILE_FILTER
+        Filter = MSG_LOAD_FILE_FILTER
       };
 
       if (openFileDialog.ShowDialog() == false)
@@ -346,7 +381,8 @@ namespace ClipFlair.AudioRecorder
         {
           MemoryStream m = new MemoryStream((int)f.Length);
           LoadAudio(stream, m);
-          Audio = m;
+          
+          Audio = new AudioStream(m, f.Extension);
         }
 
         Status = MSG_LOADED;
@@ -374,9 +410,18 @@ namespace ClipFlair.AudioRecorder
         return;
       }
 
-      SaveFileDialog saveFileDialog = new SaveFileDialog()
+      SaveFileDialog saveFileDialog = new SaveFileDialog();
+      switch (Audio.Kind)
       {
-        Filter = MSG_FILE_FILTER
+        case AudioStreamKind.WAV:
+          saveFileDialog.Filter = MSG_SAVE_FILE_FILTER_WAV;
+          break;
+        case AudioStreamKind.MP3:
+          saveFileDialog.Filter = MSG_SAVE_FILE_FILTER_MP3;
+          break;
+        default:
+          Busy = false;
+          return;
       };
 
       if (saveFileDialog.ShowDialog() == false)
@@ -415,46 +460,40 @@ namespace ClipFlair.AudioRecorder
       stream.CopyTo(target, bufferSize);
     }
 
-    public static void SaveAudio(Stream stream, Stream source) //does not close the stream
+    public static void SaveAudio(Stream stream, AudioStream source) //does not close the stream
     {
       if (source == null) return; //when no source is available, not writing anything to the stream
 
-      long originalPosition = source.Position; //keep position to restore at the end
-      source.Position = 0; //reset position to 0
-      source.CopyTo(stream); //default buffer size is 4096
-      source.Position = originalPosition; //restore position
+      Stream s = source.Data;
+      long originalPosition = s.Position; //keep position to restore at the end
+      s.Position = 0; //reset position to 0
+      s.CopyTo(stream); //default buffer size is 4096
+      s.Position = originalPosition; //restore position
     }
 
     #endregion
 
     #endregion
 
-    #region Events
+    #region --- Events ---
 
-    private const string EOF_MARKER = "EOF";
+    #region MediaElement Events
 
-    /*
     protected void MediaElement_MediaOpened(object sender, RoutedEventArgs e)
     {
-      TimelineMarker eofMarker = new TimelineMarker() { Time = new TimeSpan(player.NaturalDuration.TimeSpan.Ticks - 1), Text = EOF_MARKER }; //TODO: set this via databinding to MaxTime
-      player.Markers.Add(eofMarker);
+      PlayCommand.IsEnabled = true;
     }
-    */
 
-    /*
-    protected void MediaElement_MarkerReached(object sender, TimelineMarkerRoutedEventArgs e)
+    protected void MediaElement_MediaFailed(object sender, RoutedEventArgs e)
     {
-      if (e.Marker.Text == EOF_MARKER)
-        PlayCommandUncheck(); //depress play button to stop playback //don't talk to ToggleButton directly
+      PlayCommandUncheck();
+      PlayCommand.IsEnabled = false;
     }
-    */
-    
-/*
-    protected void MediaElement_MediaEnded(object sender, RoutedEventArgs e) //TODO: doesn't seem to get always called
+
+    protected void MediaElement_MediaEnded(object sender, RoutedEventArgs e)
     {
-      PlayCommandUncheck(); //depress play button to stop playback //don't talk to ToggleButton directly
+      PlayCommandUncheck(); //depress play button //don't talk to ToggleButton directly
     }
- */
 
     #endregion
 
@@ -469,6 +508,9 @@ namespace ClipFlair.AudioRecorder
     }
 
     #endregion
+
+    #endregion
+
 
   }
 }
