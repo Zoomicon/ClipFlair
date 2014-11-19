@@ -1,9 +1,10 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: CaptionElementExt.cs
-//Version: 20140724
+//Version: 20141117
 
 //TODO: listen PROPERTY_CONTENT property change event and somehow notify players to render the caption again if it's currently visible
 
+using AudioLib;
 using Microsoft.SilverlightMediaFramework.Core.Accessibility.Captions;
 using System;
 using System.IO;
@@ -46,8 +47,8 @@ namespace ClipFlair.CaptionsGrid
     private string _roleSeparator = DEFAULT_ROLE_SEPARATOR;
     private string _role; //=null
     private string _caption; //=null
-    private Stream _audio; //=null
-    private Stream _commentsAudio; //=null
+    private AudioStream _audio; //=null
+    private AudioStream _commentsAudio; //=null
     private CaptionElementExtraData _extraData = new CaptionElementExtraData();
 
     #endregion
@@ -286,7 +287,7 @@ namespace ClipFlair.CaptionsGrid
     /// Gets or sets the audio for this marker item.
     /// </summary>
     [ScriptableMember]
-    public Stream Audio
+    public AudioStream Audio
     {
       get { return _audio; }
       set
@@ -303,7 +304,7 @@ namespace ClipFlair.CaptionsGrid
     /// Gets or sets the comments audio for this marker item.
     /// </summary>
     [ScriptableMember]
-    public Stream CommentsAudio
+    public AudioStream CommentsAudio
     {
       get { return _commentsAudio; }
       set
