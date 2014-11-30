@@ -74,6 +74,7 @@
     <Compile Include="ZoomImage.xaml.cs">
       <DependentUpon>ZoomImage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ZoomImage_Video.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Helpers\Utils\Utils.Silverlight\Utils.Silverlight.csproj">
