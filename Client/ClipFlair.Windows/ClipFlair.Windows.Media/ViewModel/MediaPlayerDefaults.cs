@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: MediaPlayerDefaults.cs
-//Version: 20140324
+//Version: 20141211
 
 using Microsoft.SilverlightMediaFramework.Core.Accessibility.Captions;
 
@@ -31,7 +31,7 @@ namespace ClipFlair.Windows.Views
     public const double DefaultSpeed = 1.0;
     public const double DefaultVolume = 1.0;
     public const double DefaultBalance = 0.0;
-    public const bool DefaultAutoPlay = true;
+    public const bool DefaultAutoPlay = false;
     public const bool DefaultLooping = false;
     public const bool DefaultVideoVisible = true;
     public const bool DefaultControllerVisible = true;
