@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: ActivityContainer.xaml.cs
-//Version: 20140906
+//Version: 20141211
 
 //TODO: add ContentPartsCloseable property
 //TODO: add ContentPartsZoomable property
@@ -23,6 +23,7 @@ using System.Windows.Markup;
 using Utils.Bindings;
 using ZoomAndPan;
 using Utils.Extensions;
+using Microsoft.SilverlightMediaFramework.Core.Accessibility.Captions;
 
 namespace ClipFlair.Windows
 {
@@ -160,36 +161,54 @@ namespace ClipFlair.Windows
         else
         { //TODO: must change this scheme to remove hardcoded logic here, by using reverse binding order (source=container, target=component) when adding a new component manually than when loading saved state
 
+          TimeSpan activityTime = View.Time; //Since settings Captions can change Time (jump to 0), must cache it here
+          CaptionRegion activityCaptions = View.Captions; //Since we use it at various if/else clauses below, better do this once here (doesn't cost much) to generate smaller compiled code
+
           //for new child window instances (that the user adds), must reset their properties to match their containers so that they don't cause other components bound to the container to lose their Time/Captions when these get bound as sources to the container (which AddWindow does by calling BindWindow)
           if (w is MediaPlayerWindow)
           {
             IMediaPlayer v = ((MediaPlayerWindow)w).MediaPlayerView;
-            v.Time = View.Time;
-            v.Captions = View.Captions;
+            //v.Captions = activityCaptions; //first set Captions, then Time //Note: this one is not needed since we added reverse binding logic for the Clip component (both at loading from saved state and for new one added in activity) - it doesn't store captions in its saved state
+            v.Time = activityTime;
           }
           else if (w is CaptionsWindow)
           {
             ICaptionsGrid v = ((CaptionsWindow)w).CaptionsGridView;
-            v.Time = View.Time;
-            v.Captions = View.Captions;
+            v.Captions = activityCaptions; //first set Captions, then Time
+            v.Time = activityTime;
           }
           else if (w is TextEditorWindow)
           {
             ITextEditor2 v = ((TextEditorWindow)w).TextEditorView2;
-            v.Time = View.Time;
-            //v.Captions = View.Captions;
+            //v.Captions = activityCaptions; //first set Captions, then Time
+            v.Time = activityTime;
           }
           else if (w is ImageWindow)
           {
             IImageViewer v = ((ImageWindow)w).ImageView;
-            v.Time = View.Time;
+            v.Time = activityTime;
           }
           else if (w is MapWindow)
           {
             IMapViewer v = ((MapWindow)w).MapView;
-            v.Time = View.Time;
-            //v.Captions = View.Captions;
-          } 
+            //v.Captions = activityCaptions; //first set Captions, then Time
+            v.Time = activityTime;
+          }
+          else if (w is NewsWindow)
+          {            
+            INewsReader v = ((NewsWindow)w).NewsView;
+            //v.Time = activityTime; //doesn't use the Time property
+          }
+          else if (w is BrowserWindow)
+          {
+            IBrowser v = ((BrowserWindow)w).BrowserView;
+            //v.Time = activityTime; //doesn't use the Time property
+          }
+          else if (w is GalleryWindow)
+          {
+            IGallery v = ((GalleryWindow)w).GalleryView;
+            //v.Time = activityTime; //doesn't use the Time property
+          }
           AddWindowInViewCenter(w);
         };
 
@@ -215,7 +234,7 @@ namespace ClipFlair.Windows
       Point startPoint = new Point(host.ContentOffsetX + host.ContentViewportWidth / 2,
                                    host.ContentOffsetY + host.ContentViewportHeight / 2); //Center at current view //must use ContentViewport methods, not Viewport ones (they give width/height in content coordinates)
       zuiContainer.Add(window).Show(startPoint, true);
-      BindWindow(window);
+      BindWindow(window); //Note: this is the moment after adding the window to the visual tree
       return window;
     }
 
@@ -225,7 +244,7 @@ namespace ClipFlair.Windows
       BindWindow(window);
 
       //GalleryWindow gw = window as GalleryWindow; //TODO: try to remove this patch (needed to be able to load activities with saved gallery that has a filter set to it)
-      //if (gw != null) gw.RefreshFilter();
+      //if (gw != null) gw.RefreshFilter(); //could use (window as GalleryWindow)?.RefreshFilter() in next C# version
 
       return window;
     }
@@ -235,7 +254,6 @@ namespace ClipFlair.Windows
     public MediaPlayerWindow AddClip()
     {
       MediaPlayerWindow w = (MediaPlayerWindow)AddWindow(MediaPlayerWindowFactory, newInstance: true);
-      w.MediaPlayerView.AutoPlay = false;
       w.MediaPlayerView.Source = new Uri(ActivityWindow.URL_DEFAULT_VIDEO, UriKind.Absolute);
       return w;
     }
@@ -327,12 +345,14 @@ namespace ClipFlair.Windows
     {
       if (window.View != null && View != null)
         try
-        {
+        {          
+          //bind Time
           BindingUtils.BindProperties(window.View, IViewProperties.PropertyTime,
                                       View, IViewProperties.PropertyTime); //TODO: should rebind after changing view if the window is inside a BaseWindow (get its View and bind to it)
 
-          BindingUtils.BindProperties(window.View, IMediaPlayerProperties.PropertyCaptions,
-                                      View, IActivityProperties.PropertyCaptions); //TODO: should rebind after changing view if the window is inside a BaseWindow (get its View and bind to it)
+          //bind Captions (note: must do 2nd else freezes, not sure why - would expect the reverse order to be needed)
+          BindingUtils.BindProperties(View, IActivityProperties.PropertyCaptions, //Note: Since Clip component doesn't save/load captions itself, it should use as source the Activity, not the other way around, else order of component loading (e.g. 1st load Captions component in Activity and then Clip component) causes loss of captions in the Captions component (gets null value from Clip component via the Container two-way binding)
+                                      window.View, IMediaPlayerProperties.PropertyCaptions); //TODO: should rebind after changing view if the window is inside a BaseWindow (get its View and bind to it)
         }
         catch (Exception ex)
         {
@@ -345,9 +365,11 @@ namespace ClipFlair.Windows
       if (window.View != null && View != null)
         try
         {
+          //bind Time
           BindingUtils.BindProperties(window.View, IViewProperties.PropertyTime,
                                       View, IViewProperties.PropertyTime); //TODO: should rebind after changing view if the window is inside a BaseWindow (get its View and bind to it)
 
+          //bind Captions (note: must do 2nd else freezes, not sure why - would expect the reverse order to be needed)
           BindingUtils.BindProperties(window.View, ICaptionsGridProperties.PropertyCaptions,
                                       View, IActivityProperties.PropertyCaptions); //TODO: should rebind after changing view if the window is inside a BaseWindow (get its View and bind to it)
         }
@@ -362,8 +384,13 @@ namespace ClipFlair.Windows
       if (window.View != null && View != null)
         try
         {
+          //bind Time
           BindingUtils.BindProperties(window.View, IViewProperties.PropertyTime,
                                       View, IViewProperties.PropertyTime); //TODO: should rebind after changing view if the window is inside a BaseWindow (get its View and bind to it)
+
+          //bind Captions (note: must do 2nd else freezes, not sure why - would expect the reverse order to be needed)
+          //BindingUtils.BindProperties(View, IActivityProperties.PropertyCaptions, //Note: Since Text component doesn't save/load captions itself, it should use as source the Activity, not the other way around, else order of component loading (e.g. 1st load Captions component in Activity and then Text component) causes loss of captions in the Captions component (gets null value from Text component via the Container two-way binding)
+          //                            window.View, ITextEditorProperties.PropertyCaptions); //TODO: should rebind after changing view if the window is inside a BaseWindow (get its View and bind to it)
         }
         catch (Exception ex)
         {
@@ -376,6 +403,7 @@ namespace ClipFlair.Windows
       if (window.View != null && View != null)
         try
         {
+          //bind Time
           BindingUtils.BindProperties(window.View, IViewProperties.PropertyTime,
                                       View, IViewProperties.PropertyTime); //TODO: should rebind after changing view if the window is inside a BaseWindow (get its View and bind to it)
         }
@@ -390,8 +418,13 @@ namespace ClipFlair.Windows
       if (window.View != null && View != null)
         try
         {
+          //bind Time
           BindingUtils.BindProperties(window.View, IViewProperties.PropertyTime,
                                       View, IViewProperties.PropertyTime); //TODO: should rebind after changing view if the window is inside a BaseWindow (get its View and bind to it)
+
+          //bind Captions (note: must do 2nd else freezes, not sure why - would expect the reverse order to be needed)
+          //BindingUtils.BindProperties(View, IActivityProperties.PropertyCaptions, //Note: Since Map component doesn't save/load captions itself, it should use as source the Activity, not the other way around, else order of component loading (e.g. 1st load Captions component in Activity and then Map component) causes loss of captions in the Captions component (gets null value from Map component via the Container two-way binding)
+          //                            window.View, IMapViewerProperties.PropertyCaptions); //TODO: should rebind after changing view if the window is inside a BaseWindow (get its View and bind to it)
         }
         catch (Exception ex)
         {
@@ -404,8 +437,7 @@ namespace ClipFlair.Windows
       if (window.View != null && View != null)
         try
         {
-          //BindingUtils.BindProperties(window.View, IViewProperties.PropertyTime,
-          //                            View, IViewProperties.PropertyTime); //TODO: should rebind after changing view if the window is inside a BaseWindow (get its View and bind to it)
+          //NOP
         }
         catch (Exception ex)
         {
@@ -418,8 +450,7 @@ namespace ClipFlair.Windows
       if (window.View != null && View != null)
         try
         {
-          //BindingUtils.BindProperties(window.View, IViewProperties.PropertyTime,
-          //                            View, IViewProperties.PropertyTime); //TODO: should rebind after changing view if the window is inside a BaseWindow (get its View and bind to it)
+          //NOP
         }
         catch (Exception ex)
         {
@@ -432,8 +463,7 @@ namespace ClipFlair.Windows
       if (window.View != null && View != null)
         try
         {
-          BindingUtils.BindProperties(window.View, IViewProperties.PropertyTime,
-                                      View, IViewProperties.PropertyTime); //TODO: should rebind after changing view if the window is inside a BaseWindow (get its View and bind to it)
+          //NOP
         }
         catch (Exception ex)
         {
