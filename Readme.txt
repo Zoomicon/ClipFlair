@@ -14,7 +14,7 @@ Features list
 1234 Text Component (SilverText - TXT, XAML, DOCX)
 1238 ClipFlair Studio - Activity Container / Component (supporting Nested Activities too)
 1240 Captions Component (CaptionsGrid)
-1241 Audio recording and playback (WAV)
+1241 Audio recording and playback (WAV/MP3 playback, WAV recording)
 1246 Clip Component (SMF - Progressive download videos and IIS Smooth Streaming)
 1275 Standard Caption Formats support (CaptionsLib - SRT, TTS, Adobe Encore, FAB)
 1287 ClipFlair Social Network platform (MonoX - ASP.net WebParts Framework)
@@ -23,7 +23,7 @@ Features list
 1360 Gallery component (PivotViewer)
 1383 News component (SilverNews - Atom/RSS)
 1384 Browser component and dialog for Studio's OOB version (Browser / BrowserDialog)
-1386 ClipFlair Home Page (NxN Grid Tiles)
+1386 ClipFlair Home Page (NxN Grid Tiles, HTML / SVG)
 
 
 Prerequisites
