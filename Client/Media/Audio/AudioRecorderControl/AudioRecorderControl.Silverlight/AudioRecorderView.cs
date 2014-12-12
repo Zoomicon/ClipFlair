@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: AudioRecorderView.cs
-//Version: 20141119
+//Version: 20141212
 
 using AudioLib;
 using System;
@@ -143,14 +143,17 @@ namespace ClipFlair.AudioRecorder
         {
           _audio = value;
 
-          bool flag = (_audio != null); //is there any recorded audio?
+          bool audioAvailable = (_audio != null); //is there any recorded audio?
           RecordCommand.IsEnabled = true;
           LoadCommand.IsEnabled = true;
           //PlayCommand.IsEnabled = flag; //do not use this, enabling it at "MediaOpened" event and disabling it at "MediaFailed"
-          SaveCommand.IsEnabled = flag;
+          SaveCommand.IsEnabled = audioAvailable;
 
-          mediaStreamSource = (flag)? _audio.GetMediaStreamSource() : null;
-          player.SetSource(mediaStreamSource); //must set the source once, not every time we play the same audio, else with Mp3MediaSource it will throw DRM error
+          mediaStreamSource = (audioAvailable)? _audio.GetMediaStreamSource() : null;
+          if (mediaStreamSource != null)
+            player.SetSource(mediaStreamSource); //must set the source once, not every time we play the same audio, else with Mp3MediaSource it will throw DRM error
+          else
+            player.Source = null;
 
           RaisePropertyChanged(PROPERTY_AUDIO);
         }
