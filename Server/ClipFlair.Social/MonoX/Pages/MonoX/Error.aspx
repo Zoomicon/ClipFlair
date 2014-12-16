@@ -1,9 +1,11 @@
 ﻿<%@ Page 
     Language="C#" 
-    MasterPageFile="~/MonoX/MasterPages/Empty.master" 
-    AutoEventWireup="true" 
     Inherits="MonoSoftware.MonoX.Pages.Error" 
-    Codebehind="Error.aspx.cs" %>
+    Codebehind="Error.aspx.cs"
+    MasterPageFile="~/MonoX/MasterPages/Default.master" 
+    Theme="ClipFlair"
+    AutoEventWireup="true"
+    %>
 
 <%@ MasterType TypeName="MonoSoftware.MonoX.BaseMasterPage" %>
 
@@ -21,7 +23,7 @@
     <div class="error-bottom-section">
         <div class="container-fluid-large">
             <p><%= Description %></p>
-            <h3><%= MonoSoftware.MonoX.Resources.ErrorMessages.ToContinueWorkingWithApplication %> <asp:HyperLink ID="lnkHome" runat="server" NavigateUrl="~/"></asp:HyperLink></h3>
+            <h3><%= MonoSoftware.MonoX.Resources.ErrorMessages.ToContinueWorkingWithApplication %> <asp:HyperLink ID="lnkHome" runat="server" NavigateUrl="http://social.clipflair.net"></asp:HyperLink></h3>
         </div>
     </div>
 </asp:Content>
