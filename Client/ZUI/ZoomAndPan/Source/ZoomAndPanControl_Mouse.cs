@@ -1,5 +1,5 @@
 ﻿//Filename: ZoomAndPanControl_Mouse.cs
-//Version: 20130703
+//Version: 20150104
 //Editor: George Birbilis (http://zoomicon.com)
 
 using System;
@@ -131,17 +131,18 @@ namespace ZoomAndPan
         origZoomAndPanControlMouseDownPoint = e.GetPosition(this);
         origContentMouseDownPoint = e.GetPosition(content);
 
+        // Control + left/right-down initiates zooming mode.
         if (ContentScalable && ((Keyboard.Modifiers & ModifierKeys.Control) != 0) 
             &&
             (mouseButtonDown == MouseButton.Left ||
              mouseButtonDown == MouseButton.Right))
         {
-          // Control + left- or right-down initiates zooming mode.
+          Cursor = Cursors.SizeNESW;
           mouseHandlingMode = MouseHandlingMode.Zooming;
         }
         else if (mouseButtonDown == MouseButton.Left)
         {
-          // Just a plain old left-down initiates panning mode.
+          Cursor = Cursors.Hand;
           mouseHandlingMode = MouseHandlingMode.Panning;
         }
 
@@ -206,6 +207,7 @@ namespace ZoomAndPan
             break;
         }
 
+        Cursor = Cursors.Arrow;
         mouseHandlingMode = MouseHandlingMode.None;
       }
 
