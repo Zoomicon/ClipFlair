@@ -50,8 +50,6 @@
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="System" />
-    <Reference Include="System.Core" />
-    <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Xaml" />
     <Reference Include="WindowsBase" />
   </ItemGroup>
@@ -108,10 +106,6 @@
     <ProjectReference Include="..\..\FloatingWindow\FloatingWindow.WPF\FloatingWindow.WPF.csproj">
       <Project>{7C67AC53-E3BC-4482-8DFB-4CBAA644D280}</Project>
       <Name>FloatingWindow.WPF</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\ImageButtons\ImageButtons.WPF\ImageButtons.WPF.csproj">
-      <Project>{5BB0F96D-2B5F-409C-9782-434B12E06600}</Project>
-      <Name>ImageButtons.WPF</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\ZoomAndPan\ZoomAndPan.WPF\ZoomAndPan.WPF.csproj">
       <Project>{468ADEDE-6F5E-40C0-99C9-C6DAC4FAC934}</Project>

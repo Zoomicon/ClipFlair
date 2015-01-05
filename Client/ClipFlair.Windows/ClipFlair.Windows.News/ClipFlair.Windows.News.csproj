@@ -97,13 +97,13 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Text\SilverNews\SilverNews.Silverlight\SilverNews.Silverlight.csproj">
-      <Project>{edac9709-c2cd-4673-ab04-d044f40dd681}</Project>
-      <Name>SilverNews.Silverlight</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\Helpers\Utils\Utils.Silverlight\Utils.Silverlight.csproj">
       <Project>{e784b6a1-a300-4571-a881-b15240eee377}</Project>
       <Name>Utils.Silverlight</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Media\Text\SilverNews\SilverNews.Silverlight\SilverNews.Silverlight.csproj">
+      <Project>{edac9709-c2cd-4673-ab04-d044f40dd681}</Project>
+      <Name>SilverNews.Silverlight</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\ZUI\FloatingWindow\FloatingWindow.Silverlight\FloatingWindow.Silverlight.csproj">
       <Project>{3F3D3C8C-9724-4531-A04D-B92049F64686}</Project>

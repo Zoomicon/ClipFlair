@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: GalleryWindow.xaml.cs
-//Version: 20140226
+//Version: 20141211
 
 using ClipFlair.Windows.Gallery.Commands;
 using ClipFlair.Windows.Views;
@@ -30,7 +30,12 @@ namespace ClipFlair.Windows
 
     #endregion
 
-    #region Events
+    #region Methods
+
+    public void RefreshFilter()
+    {
+      pivot.RefreshFilter();
+    }
 
     /*
     public override void ShowOptions() //workarround: Can't turn over Pivot viewer when using 3D-style rotation, thowing transformation class cast errors (the IsAnimated=false isn't enough, need this too, else at resize etc. when flipped will throw exceptions)
@@ -43,7 +48,11 @@ namespace ClipFlair.Windows
       if (!Flipped)
         pivot.Visibility = Visibility.Visible;
     }
-*/
+    */
+
+    #endregion
+
+    #region Events
 
     private void GalleryItemAdorner_CommandsRequested(object sender, PivotViewerCommandsRequestedEventArgs e)
     {

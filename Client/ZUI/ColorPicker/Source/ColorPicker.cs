@@ -14,6 +14,21 @@ namespace ColorPickerLib
   public class ColorPicker : Control
   {
 
+    #region --- Fields ---
+
+    private FrameworkElement rootElement;
+
+    private Button buttonDropDown;
+    private Rectangle rectangleColor;
+    private TextBlock textBlockColor;
+
+    private Popup popupDropDown;
+    private Canvas canvasOutside;
+    private Canvas canvasOutsidePopup;
+    private ColorBoard colorBoard; //field only accessible by code in this file
+
+    #endregion
+
     #region --- Initialization ---
 
     public ColorPicker()
@@ -31,8 +46,8 @@ namespace ColorPickerLib
     {
       colorBoard = new ColorBoard();
       colorBoard.IsTabStop = true;
-      colorBoard.MouseLeftButtonDown += new MouseButtonEventHandler(ColorBoard_MouseLeftButtonDown);
-      colorBoard.KeyDown += new KeyEventHandler(ColorBoard_KeyDown);
+      //colorBoard.MouseLeftButtonDown += new MouseButtonEventHandler(ColorBoard_MouseLeftButtonDown);
+      //colorBoard.KeyDown += new KeyEventHandler(ColorBoard_KeyDown);
       colorBoard.SizeChanged += new SizeChangedEventHandler(ColorBoard_SizeChanged);
       colorBoard.ColorChanged += new RoutedEventHandler(ColorBoard_ColorChanged);
       colorBoard.DoneClicked += new RoutedEventHandler(ColorBoard_DoneClicked);
@@ -51,11 +66,15 @@ namespace ColorPickerLib
       textBlockColor = (TextBlock)GetTemplateChild("TextBlockColor");
 
       if (buttonDropDown != null)
-      {
         buttonDropDown.Click += new RoutedEventHandler(buttonDropDown_Click);
-      }
+
       if (popupDropDown != null)
       {
+        #if !SILVERLIGHT
+        popupDropDown.PlacementTarget = buttonDropDown; //todo: this doesn't help either to show the popup in WPF
+        popupDropDown.Placement = PlacementMode.Bottom;
+        #endif
+
         if (canvasOutside == null)
         {
           canvasOutsidePopup = new Canvas();
@@ -71,21 +90,6 @@ namespace ColorPickerLib
 
       UpdateControls();
     }
-
-    #endregion
-
-    #region --- Fields ---
-
-    private FrameworkElement rootElement;
-
-    private Button buttonDropDown;
-    private Rectangle rectangleColor;
-    private TextBlock textBlockColor;
-
-    private Popup popupDropDown;
-    private Canvas canvasOutside;
-    private Canvas canvasOutsidePopup;
-    private ColorBoard colorBoard; //field only accessible by code in this file
 
     #endregion
 
@@ -143,9 +147,7 @@ namespace ColorPickerLib
     private void OnColorChanged()
     {
       if (ColorChanged != null)
-      {
         ColorChanged(this, new RoutedEventArgs());
-      }
     }
 
     private void ColorBoard_ColorChanged(object sender, RoutedEventArgs e)
@@ -160,6 +162,7 @@ namespace ColorPickerLib
       popupDropDown.IsOpen = false;
     }
 
+/*
     private void ColorBoard_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
     {
     }
@@ -167,6 +170,7 @@ namespace ColorPickerLib
     private void ColorBoard_KeyDown(object sender, KeyEventArgs e)
     {
     }
+*/
 
     private void ColorBoard_SizeChanged(object sender, SizeChangedEventArgs e)
     {
@@ -175,9 +179,9 @@ namespace ColorPickerLib
 
     private void SetPopupPosition()
     {
-      if (colorBoard != null && Application.Current != null
+      if (colorBoard != null
           #if SILVERLIGHT
-          && Application.Current.Host != null && Application.Current.Host.Content != null
+          && Application.Current != null && Application.Current.Host != null && Application.Current.Host.Content != null
           #endif
          )
       {
@@ -191,17 +195,13 @@ namespace ColorPickerLib
 
         double colorboardheight = colorBoard.ActualHeight;
         double colorboardwidth = colorBoard.ActualWidth;
+        
         double pickerheight = ActualHeight;
         double pickerwidth = ActualWidth;
 
         if (rootElement != null)
         {
-
-          #if SILVERLIGHT
-          GeneralTransform transform = rootElement.TransformToVisual(null);
-          #else
-          GeneralTransform transform = rootElement.TransformToAncestor(Window.GetWindow(this)); //TODO: this doesn't seem to work
-          #endif
+          GeneralTransform transform = new MatrixTransform();
 
           if (transform != null)
           {
@@ -221,8 +221,10 @@ namespace ColorPickerLib
 
             popupDropDown.HorizontalOffset = 0.0;
             popupDropDown.VerticalOffset = 0.0;
+
             canvasOutsidePopup.Width = contentwidth;
             canvasOutsidePopup.Height = contentheight;
+
             colorBoard.HorizontalAlignment = HorizontalAlignment.Left;
             colorBoard.VerticalAlignment = VerticalAlignment.Top;
             Canvas.SetLeft(colorBoard, x - x00);
@@ -236,20 +238,11 @@ namespace ColorPickerLib
             identity.OffsetX = point00.X;
             identity.OffsetY = point00.Y;
 
-            MatrixTransform matrixtransform = new MatrixTransform();
-            //InvertMatrix(ref identity); //not needed since there's an Inverse property at GeneralTransform (an ancestor of MatrixTransform)
-            matrixtransform.Matrix = identity;
-
+            MatrixTransform matrixtransform = new MatrixTransform() { Matrix = identity };
             canvasOutsidePopup.RenderTransform = (Transform)matrixtransform.Inverse;
           }
         }
-      }
-
-      #if !SILVERLIGHT
-      popupDropDown.PlacementTarget = Window.GetWindow(this); //todo: this doesn't help either to show the popup in WPF
-      popupDropDown.Placement = PlacementMode.Bottom;
-      #endif
-    
+      }    
     }
 
     private void buttonDropDown_Click(object sender, RoutedEventArgs e)
@@ -278,30 +271,6 @@ namespace ColorPickerLib
       if (textBlockColor != null)
         textBlockColor.Text = PredefinedColor.GetColorName(Color);
     }
-
-    #endregion
-
-    #region --- Math utils ---
-
-    /*
-    private bool InvertMatrix(ref Matrix matrix)
-    {
-      double d = (matrix.M11 * matrix.M22) - (matrix.M12 * matrix.M21);
-      if (d == 0.0)
-      {
-        return false;
-      }
-
-      Matrix orgmatrix = matrix;
-      matrix.M11 = orgmatrix.M22 / d;
-      matrix.M12 = (-1.0 * orgmatrix.M12) / d;
-      matrix.M21 = (-1.0 * orgmatrix.M21) / d;
-      matrix.M22 = orgmatrix.M11 / d;
-      matrix.OffsetX = (orgmatrix.OffsetY * orgmatrix.M21 - orgmatrix.OffsetX * orgmatrix.M22) / d;
-      matrix.OffsetY = (orgmatrix.OffsetX * orgmatrix.M12 - orgmatrix.OffsetY * orgmatrix.M11) / d;
-      return true;
-    }
-    */
 
     #endregion
 

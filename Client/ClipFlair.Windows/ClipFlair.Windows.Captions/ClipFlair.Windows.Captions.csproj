@@ -115,13 +115,13 @@
       <Project>{BF52BDBA-830F-4CD4-AA9C-F653B6448184}</Project>
       <Name>AudioRecorderControl.Silverlight</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Captions\CaptionsGrid\CaptionsGrid.Silverlight\CaptionsGrid.Silverlight.csproj">
-      <Project>{D2C64A3F-BD21-427C-A68A-69223088967C}</Project>
-      <Name>CaptionsGrid.Silverlight</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\Helpers\Utils\Utils.Silverlight\Utils.Silverlight.csproj">
       <Project>{e784b6a1-a300-4571-a881-b15240eee377}</Project>
       <Name>Utils.Silverlight</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Media\Captions\CaptionsGrid\CaptionsGrid.Silverlight\CaptionsGrid.Silverlight.csproj">
+      <Project>{d2c64a3f-bd21-427c-a68a-69223088967c}</Project>
+      <Name>CaptionsGrid.Silverlight</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\ZUI\FloatingWindow\FloatingWindow.Silverlight\FloatingWindow.Silverlight.csproj">
       <Project>{3F3D3C8C-9724-4531-A04D-B92049F64686}</Project>

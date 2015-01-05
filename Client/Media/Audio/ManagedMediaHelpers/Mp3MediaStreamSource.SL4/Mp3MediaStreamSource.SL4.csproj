@@ -66,7 +66,7 @@
   <ItemGroup>
     <ProjectReference Include="..\MediaParsers.SL4\MediaParsers.SL4.csproj">
       <Project>{57D1603F-B2C1-46E2-8497-BA7DA950DADD}</Project>
-      <Name>MediaParsers</Name>
+      <Name>MediaParsers.SL4</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Silverlight\$(SilverlightVersion)\Microsoft.Silverlight.CSharp.targets" />
