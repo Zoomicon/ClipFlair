@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: AudioRecorderView.cs
-//Version: 20141212
+//Version: 20150105
 
 using AudioLib;
 using System;
@@ -146,7 +146,7 @@ namespace ClipFlair.AudioRecorder
           bool audioAvailable = (_audio != null); //is there any recorded audio?
           RecordCommand.IsEnabled = true;
           LoadCommand.IsEnabled = true;
-          //PlayCommand.IsEnabled = flag; //do not use this, enabling it at "MediaOpened" event and disabling it at "MediaFailed"
+          PlayCommand.IsEnabled = audioAvailable; //need to do this here too to conver the case where null audio is set (else Play button appears). Enabling it also at "MediaOpened" event and disabling it at "MediaFailed"
           SaveCommand.IsEnabled = audioAvailable;
 
           mediaStreamSource = (audioAvailable)? _audio.GetMediaStreamSource() : null;
