@@ -1,6 +1,6 @@
 ﻿<!-- 
 Filename: DropDownWithButtonTheme.xaml
-Version: 20121004
+Version: 20150108
 -->
   
 <ResourceDictionary
@@ -9,10 +9,12 @@ Version: 20121004
  xmlns:local="clr-namespace:FlipPanel;assembly=FlipPanel">
 
   <ControlTemplate x:Key="FlipPanel_DropDownWithButtonTemplate" TargetType="local:FlipPanel">
-    <Grid
+    <Grid Name="LayoutRoot"
       HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
-      VerticalAlignment="{TemplateBinding VerticalAlignment}"      
+      VerticalAlignment="{TemplateBinding VerticalAlignment}"
       >
+      <!-- need LayoutRoot to hold (and programmatically find) the VSM-->
+      
       <VisualStateManager.VisualStateGroups>
         <VisualStateGroup x:Name="ViewStates">
           <VisualStateGroup.Transitions>
@@ -24,10 +26,10 @@ Version: 20121004
             <Storyboard>
               <DoubleAnimation Storyboard.TargetName="BackContentTransform"
                        Storyboard.TargetProperty="ScaleY" To="0" Duration="0:0:0"></DoubleAnimation>
-
+<!--
               <DoubleAnimation Storyboard.TargetName="BackContentEffect" 
                        Storyboard.TargetProperty="Radius" To="30" Duration="0:0:0"></DoubleAnimation>
-
+-->
             </Storyboard>
           </VisualState>
 
@@ -35,10 +37,10 @@ Version: 20121004
             <Storyboard>
               <DoubleAnimation Storyboard.TargetName="FrontContentTransform"
                        Storyboard.TargetProperty="ScaleY" To="0" Duration="0:0:0"></DoubleAnimation>
-
+<!--
               <DoubleAnimation Storyboard.TargetName="FrontContentEffect" 
                        Storyboard.TargetProperty="Radius" To="30" Duration="0:0:0"></DoubleAnimation>
-
+-->
             </Storyboard>
           </VisualState>
         </VisualStateGroup>
@@ -61,7 +63,7 @@ Version: 20121004
           <ScaleTransform x:Name="FrontContentTransform"></ScaleTransform>
         </Border.RenderTransform>
 
-        <!-- *** NOT AVAILABLE AT WINDOWS PHONE 8, REMOVED ***        
+        <!-- //Note: removed, causes content to not be h/w accelerated on desktop Silverlight, plus not available on Windows Phone        
         <Border.Effect>
           <BlurEffect x:Name="FrontContentEffect" Radius="0"></BlurEffect>
         </Border.Effect>
@@ -99,7 +101,7 @@ Version: 20121004
           <ScaleTransform x:Name="BackContentTransform"></ScaleTransform>
         </Border.RenderTransform>
 
-        <!-- *** NOT AVAILABLE AT WINDOWS PHONE 8, REMOVED ***
+        <!-- //Note: removed, causes content to not be h/w accelerated on desktop Silverlight, plus not available on Windows Phone        
         <Border.Effect>
           <BlurEffect x:Name="BackContentEffect" Radius="0"></BlurEffect>
         </Border.Effect>

@@ -1,16 +1,16 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{F804B57F-6A6D-4A4E-99F7-D99AE4512CCA}</ProjectGuid>
+    <ProjectGuid>{FE312796-4F57-4B4B-87BE-2583B98363A2}</ProjectGuid>
     <ProjectTypeGuids>{C089C8C0-30E0-4E22-80C0-CE093F111A43};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Utils</RootNamespace>
-    <AssemblyName>Utils</AssemblyName>
+    <RootNamespace>FlipPanel</RootNamespace>
+    <AssemblyName>FlipPanel</AssemblyName>
     <TargetFrameworkVersion>v8.0</TargetFrameworkVersion>
     <SilverlightVersion>
     </SilverlightVersion>
@@ -92,62 +92,8 @@
     <Optimize>true</Optimize>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="..\Source\Bindings\BindingUtils.cs">
-      <Link>Bindings\BindingUtils.cs</Link>
-    </Compile>
-    <Compile Include="..\Source\Bindings\ImmediateSourceUpdate.cs">
-      <Link>Bindings\ImmediateSourceUpdate.cs</Link>
-    </Compile>
-    <Compile Include="..\Source\Bindings\ReflectionUtils.cs">
-      <Link>Bindings\ReflectionUtils.cs</Link>
-    </Compile>
-    <Compile Include="..\Source\Converters\ArrayToStringConverter.cs">
-      <Link>Converters\ArrayToStringConverter.cs</Link>
-    </Compile>
-    <Compile Include="..\Source\Converters\BooleanToFlowDirectionConverter.cs">
-      <Link>Converters\BooleanToFlowDirectionConverter.cs</Link>
-    </Compile>
-    <Compile Include="..\Source\Converters\BooleanToTextWrappingConverter.cs">
-      <Link>Converters\BooleanToTextWrappingConverter.cs</Link>
-    </Compile>
-    <Compile Include="..\Source\Converters\FlowDirectionToBooleanConverter.cs">
-      <Link>Converters\FlowDirectionToBooleanConverter.cs</Link>
-    </Compile>
-    <Compile Include="..\Source\Converters\HtmlDecodedToEncodedStringConverter.cs">
-      <Link>Converters\HtmlDecodedToEncodedStringConverter.cs</Link>
-    </Compile>
-    <Compile Include="..\Source\Converters\HtmlEncodedToDecodedStringConverter.cs">
-      <Link>Converters\HtmlEncodedToDecodedStringConverter.cs</Link>
-    </Compile>
-    <Compile Include="..\Source\Converters\NullToVisibilityConverter.cs">
-      <Link>Converters\NullToVisibilityConverter.cs</Link>
-    </Compile>
-    <Compile Include="..\Source\Converters\ReverseConverter.cs">
-      <Link>Converters\ReverseConverter.cs</Link>
-    </Compile>
-    <Compile Include="..\Source\Converters\StringToUriConverter.cs">
-      <Link>Converters\StringToUriConverter.cs</Link>
-    </Compile>
-    <Compile Include="..\Source\Converters\UrlEncodedToDecodedStringConverter.cs">
-      <Link>Converters\UrlEncodedToDecodedStringConverter.cs</Link>
-    </Compile>
-    <Compile Include="..\Source\Converters\UrllDecodedToEncodedStringConverter.cs">
-      <Link>Converters\UrllDecodedToEncodedStringConverter.cs</Link>
-    </Compile>
-    <Compile Include="..\Source\Converters\VisibilityToBooleanConverter.cs">
-      <Link>Converters\VisibilityToBooleanConverter.cs</Link>
-    </Compile>
-    <Compile Include="..\Source\Extensions\ArrayExtensions.cs">
-      <Link>Extensions\ArrayExtensions.cs</Link>
-    </Compile>
-    <Compile Include="..\Source\Extensions\MultiScaleImageExtensions.cs">
-      <Link>Extensions\MultiScaleImageExtensions.cs</Link>
-    </Compile>
-    <Compile Include="..\Source\Extensions\StringExtensions.cs">
-      <Link>Extensions\StringExtensions.cs</Link>
-    </Compile>
-    <Compile Include="..\Source\Extensions\UriExtensions.cs">
-      <Link>Extensions\UriExtensions.cs</Link>
+    <Compile Include="..\Source\FlipPanel.cs">
+      <Link>FlipPanel.cs</Link>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -164,9 +110,51 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\WPF_Compatibility\WPF_Compatibility.WindowsPhone\WPF_Compatibility.WindowsPhone.csproj">
+    <Page Include="..\Source\Themes\AllFrontTheme.xaml">
+      <Link>Themes\AllFrontTheme.xaml</Link>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="..\Source\Themes\DropDownTheme.xaml">
+      <Link>Themes\DropDownTheme.xaml</Link>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="..\Source\Themes\DropDownWithButtonTheme.xaml">
+      <Link>Themes\DropDownWithButtonTheme.xaml</Link>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="..\Source\Themes\Generic.xaml">
+      <Link>Themes\Generic.xaml</Link>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="..\Source\Themes\RotateHorizontalTheme.xaml">
+      <Link>Themes\RotateHorizontalTheme.xaml</Link>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="..\Source\Themes\RotateHorizontalWithButtonTheme.xaml">
+      <Link>Themes\RotateHorizontalWithButtonTheme.xaml</Link>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="..\Source\Themes\RotateVerticalTheme.xaml">
+      <Link>Themes\RotateVerticalTheme.xaml</Link>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="..\Source\Themes\RotateVerticalWithButtonTheme.xaml">
+      <Link>Themes\RotateVerticalWithButtonTheme.xaml</Link>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Helpers\WPF_Compatibility\WPF_Compatibility.WP8\WPF_Compatibility.WP8.csproj">
       <Project>{280683A7-E949-4E5F-87A3-D445C68A270F}</Project>
-      <Name>WPF_Compatibility.WindowsPhone</Name>
+      <Name>WPF_Compatibility.WP8</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\$(TargetFrameworkIdentifier)\$(TargetFrameworkVersion)\Microsoft.$(TargetFrameworkIdentifier).$(TargetFrameworkVersion).Overrides.targets" />

@@ -1,11 +1,13 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPF_Compatibility.Silverlight", "WPF_Compatibility.Silverlight\WPF_Compatibility.Silverlight.csproj", "{7DC832CC-2D97-4DBC-B963-3F77C1F20730}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPF_Compatibility.WPF", "WPF_Compatibility.WPF\WPF_Compatibility.WPF.csproj", "{DC154E89-74E8-4ADC-95B5-0772CA254F71}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPF_Compatibility.WindowsPhone", "WPF_Compatibility.WindowsPhone\WPF_Compatibility.WindowsPhone.csproj", "{280683A7-E949-4E5F-87A3-D445C68A270F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPF_Compatibility.WP8", "WPF_Compatibility.WP8\WPF_Compatibility.WP8.csproj", "{280683A7-E949-4E5F-87A3-D445C68A270F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPF_Compatibility.WP7", "WPF_Compatibility.WP7\WPF_Compatibility.WP7.csproj", "{D57C97B9-68B8-49E7-B7D4-0504877A5A55}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -25,6 +27,10 @@ Global
 		{280683A7-E949-4E5F-87A3-D445C68A270F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{280683A7-E949-4E5F-87A3-D445C68A270F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{280683A7-E949-4E5F-87A3-D445C68A270F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D57C97B9-68B8-49E7-B7D4-0504877A5A55}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D57C97B9-68B8-49E7-B7D4-0504877A5A55}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D57C97B9-68B8-49E7-B7D4-0504877A5A55}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D57C97B9-68B8-49E7-B7D4-0504877A5A55}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

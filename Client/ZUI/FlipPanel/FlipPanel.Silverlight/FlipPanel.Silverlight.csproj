@@ -101,38 +101,43 @@
     <None Include="FlipPanel.cd" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Themes\NOTE.txt" />
-  </ItemGroup>
-  <ItemGroup>
-    <Page Include="Themes\AllFrontTheme.xaml">
+    <Page Include="..\Source\Themes\AllFrontTheme.xaml">
+      <Link>Themes\AllFrontTheme.xaml</Link>
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Themes\DropDownTheme.xaml">
+    <Page Include="..\Source\Themes\DropDownTheme.xaml">
+      <Link>Themes\DropDownTheme.xaml</Link>
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Themes\DropDownWithButtonTheme.xaml">
+    <Page Include="..\Source\Themes\DropDownWithButtonTheme.xaml">
+      <Link>Themes\DropDownWithButtonTheme.xaml</Link>
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Themes\Generic.xaml">
+    <Page Include="..\Source\Themes\Generic.xaml">
+      <Link>Themes\Generic.xaml</Link>
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Themes\RotateHorizontalTheme.xaml">
+    <Page Include="..\Source\Themes\RotateHorizontalTheme.xaml">
+      <Link>Themes\RotateHorizontalTheme.xaml</Link>
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Themes\RotateHorizontalWithButtonTheme.xaml">
+    <Page Include="..\Source\Themes\RotateHorizontalWithButtonTheme.xaml">
+      <Link>Themes\RotateHorizontalWithButtonTheme.xaml</Link>
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Themes\RotateVerticalTheme.xaml">
+    <Page Include="..\Source\Themes\RotateVerticalTheme.xaml">
+      <Link>Themes\RotateVerticalTheme.xaml</Link>
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Themes\RotateVerticalWithButtonTheme.xaml">
+    <Page Include="..\Source\Themes\RotateVerticalWithButtonTheme.xaml">
+      <Link>Themes\RotateVerticalWithButtonTheme.xaml</Link>
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

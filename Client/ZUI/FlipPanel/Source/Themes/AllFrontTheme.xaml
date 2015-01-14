@@ -1,6 +1,6 @@
 ﻿<!-- 
 Filename: AllFrontTheme.xaml
-Version: 20121004
+Version: 20150108
 -->
 
 <ResourceDictionary
@@ -9,10 +9,11 @@ Version: 20121004
  xmlns:local="clr-namespace:FlipPanel;assembly=FlipPanel">
 
   <ControlTemplate x:Key="FlipPanel_AllFrontTemplate" TargetType="local:FlipPanel">
-    <Grid
+    <Grid Name="LayoutRoot"
       HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
       VerticalAlignment="{TemplateBinding VerticalAlignment}"
       >
+      <!-- need LayoutRoot to hold (and programmatically find) the VSM-->
 
       <Grid.RowDefinitions>
         <RowDefinition Height="*" />
