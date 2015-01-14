@@ -1,1 +1,0 @@
-﻿Due to XAML designer bug, can't use links to XAML files, so make sure to replicate any changes to subprojects for other target platforms

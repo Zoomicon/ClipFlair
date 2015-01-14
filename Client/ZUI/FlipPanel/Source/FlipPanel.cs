@@ -1,6 +1,5 @@
 ﻿//Filename: FlipPanel.cs
-//Version: 20130704
-
+//Version: 20150108
 
 using System;
 using System.Collections.ObjectModel;
@@ -32,17 +31,38 @@ namespace FlipPanel
 
     #endregion
 
-    #region --- Constructor ---
+    #region --- Initialization ---
 
     public FlipPanel()
     {
       DefaultStyleKey = typeof(FlipPanel);
     }
 
+    public override void OnApplyTemplate()
+    {
+      base.OnApplyTemplate();
+
+      RegisterVSMevent();
+
+      ToggleButton flipButton = GetTemplateChild(PART_FLIPBUTTON) as ToggleButton;
+      if (flipButton != null) flipButton.Click += flipButton_Click;
+
+      // Allow for two flip buttons if needed (one for each side of the panel).
+      // This is an optional design, as the control consumer may use template
+      // that places the flip button outside of the panel sides, like the 
+      // default template does.
+      ToggleButton flipButtonAlternate = GetTemplateChild(PART_FLIPBUTTONALTERNATE) as ToggleButton;
+      if (flipButtonAlternate != null) flipButtonAlternate.Click += flipButton_Click;
+
+      this.ChangeVisualState(false); //do not do any animation at this phase
+    }
+
     private void RegisterVSMevent()
     {
-      Collection<VisualStateGroup> grps = (Collection<VisualStateGroup>)VisualStateManager.GetVisualStateGroups((FrameworkElement)base.GetTemplateChild(PART_LAYOUTROOT));
-      foreach (VisualStateGroup grp in grps)
+      FrameworkElement layoutRoot = (FrameworkElement)GetTemplateChild(PART_LAYOUTROOT);
+      if (layoutRoot == null) return;
+
+      foreach (VisualStateGroup grp in VisualStateManager.GetVisualStateGroups(layoutRoot))
       {
         if (grp.Name == STATE_GROUP)
         {
@@ -183,25 +203,6 @@ namespace FlipPanel
 
     public event EventHandler Flipping;
     public event EventHandler Flipped;
-
-    public override void OnApplyTemplate()
-    {
-      base.OnApplyTemplate();
-
-      RegisterVSMevent();
-
-      ToggleButton flipButton = base.GetTemplateChild("FlipButton") as ToggleButton;
-      if (flipButton != null) flipButton.Click += flipButton_Click;
-
-      // Allow for two flip buttons if needed (one for each side of the panel).
-      // This is an optional design, as the control consumer may use template
-      // that places the flip button outside of the panel sides, like the 
-      // default template does.
-      ToggleButton flipButtonAlternate = base.GetTemplateChild("FlipButtonAlternate") as ToggleButton;
-      if (flipButtonAlternate != null) flipButtonAlternate.Click += flipButton_Click;
-
-      this.ChangeVisualState(false); //do not do any animation at this phase
-    }
 
     private void flipButton_Click(object sender, RoutedEventArgs e)
     {

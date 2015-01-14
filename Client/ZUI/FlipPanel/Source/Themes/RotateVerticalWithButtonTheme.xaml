@@ -1,6 +1,6 @@
 ﻿<!-- 
-Filename: RotateHorizontalWithButtonTheme.xaml
-Version: 20130704
+Filename: RotateVerticalWithButtonTheme.xaml
+Version: 20150108
 -->
   
 <ResourceDictionary
@@ -8,7 +8,7 @@ Version: 20130704
  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
  xmlns:local="clr-namespace:FlipPanel;assembly=FlipPanel">
 
-  <ControlTemplate x:Key="FlipPanel_RotateHorizontalWithButtonTemplate" TargetType="local:FlipPanel">
+  <ControlTemplate x:Key="FlipPanel_RotateVerticalWithButtonTemplate" TargetType="local:FlipPanel">
     <Grid Name="LayoutRoot"
       HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
       VerticalAlignment="{TemplateBinding VerticalAlignment}"
@@ -22,18 +22,18 @@ Version: 20130704
             <VisualTransition To="Normal" From="Flipped" GeneratedDuration="0:0:0.7">
               <Storyboard>
                 <DoubleAnimation Storyboard.TargetName="BackContentProjection"
-                     Storyboard.TargetProperty="RotationY" To="-90" Duration="0:0:0.5"></DoubleAnimation>
+                     Storyboard.TargetProperty="RotationX" To="-90" Duration="0:0:0.5"></DoubleAnimation>
                 <DoubleAnimation Storyboard.TargetName="FrontContentProjection"  BeginTime="0:0:0.5"
-                         Storyboard.TargetProperty="RotationY" To="0" Duration="0:0:0.5"></DoubleAnimation>
+                         Storyboard.TargetProperty="RotationX" To="0" Duration="0:0:0.5"></DoubleAnimation>
               </Storyboard>
             </VisualTransition>
 
             <VisualTransition To="Flipped" From="Normal" GeneratedDuration="0:0:0.7">
               <Storyboard>
                 <DoubleAnimation Storyboard.TargetName="FrontContentProjection"
-                         Storyboard.TargetProperty="RotationY" To="90" Duration="0:0:0.5"></DoubleAnimation>
+                         Storyboard.TargetProperty="RotationX" To="90" Duration="0:0:0.5"></DoubleAnimation>
                 <DoubleAnimation Storyboard.TargetName="BackContentProjection" BeginTime="0:0:0.5"
-                         Storyboard.TargetProperty="RotationY" To="0" Duration="0:0:0.5"></DoubleAnimation>
+                         Storyboard.TargetProperty="RotationX" To="0" Duration="0:0:0.5"></DoubleAnimation>
               </Storyboard>
             </VisualTransition>
 
@@ -42,14 +42,14 @@ Version: 20130704
           <VisualState x:Name="Normal">
             <Storyboard>
               <DoubleAnimation Storyboard.TargetName="BackContentProjection"
-                       Storyboard.TargetProperty="RotationY" To="-90" Duration="0:0:0"></DoubleAnimation>
+                       Storyboard.TargetProperty="RotationX" To="-90" Duration="0:0:0"></DoubleAnimation>
             </Storyboard>
           </VisualState>
 
           <VisualState x:Name="Flipped">
             <Storyboard>
               <DoubleAnimation Storyboard.TargetName="FrontContentProjection"
-                       Storyboard.TargetProperty="RotationY" To="90" Duration="0:0:0"></DoubleAnimation>
+                       Storyboard.TargetProperty="RotationX" To="90" Duration="0:0:0"></DoubleAnimation>
 
               <DoubleAnimation Storyboard.TargetName="FlipButtonTransform"
                        Storyboard.TargetProperty="Angle" Duration="0:0:0" To="90"></DoubleAnimation>
@@ -129,8 +129,8 @@ Version: 20130704
 
   </ControlTemplate>
 
-  <Style x:Key="FlipPanel_RotateHorizontalWithButtonStyle" TargetType="local:FlipPanel">
-    <Setter Property="Template" Value="{StaticResource FlipPanel_RotateHorizontalWithButtonTemplate}"/>
+  <Style x:Key="FlipPanel_RotateVerticalWithButtonStyle" TargetType="local:FlipPanel">
+    <Setter Property="Template" Value="{StaticResource FlipPanel_RotateVerticalWithButtonTemplate}"/>
   </Style>
 
 </ResourceDictionary>

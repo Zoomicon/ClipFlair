@@ -1,13 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.30110.0
-MinimumVisualStudioVersion = 10.0.40219.1
+# Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImageButtons.Silverlight", "ImageButtons.Silverlight\ImageButtons.Silverlight.csproj", "{127105AF-C0F4-40F8-87C5-D6C391552936}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImageButtons.WPF", "ImageButtons.WPF\ImageButtons.WPF.csproj", "{5BB0F96D-2B5F-409C-9782-434B12E06600}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImageButtons.WindowsPhone", "ImageButtons.WindowsPhone\ImageButtons.WindowsPhone.csproj", "{53E8E52B-DC17-4545-9B93-EA74534B1014}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImageButtons.WP8", "ImageButtons.WP8\ImageButtons.WP8.csproj", "{53E8E52B-DC17-4545-9B93-EA74534B1014}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImageButtons.WP7", "ImageButtons.WP7\ImageButtons.WP7.csproj", "{692FC7A7-70C2-48E8-B23F-12B1C2060B77}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -47,6 +47,14 @@ Global
 		{53E8E52B-DC17-4545-9B93-EA74534B1014}.Release|ARM.Build.0 = Release|ARM
 		{53E8E52B-DC17-4545-9B93-EA74534B1014}.Release|x86.ActiveCfg = Release|x86
 		{53E8E52B-DC17-4545-9B93-EA74534B1014}.Release|x86.Build.0 = Release|x86
+		{692FC7A7-70C2-48E8-B23F-12B1C2060B77}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{692FC7A7-70C2-48E8-B23F-12B1C2060B77}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{692FC7A7-70C2-48E8-B23F-12B1C2060B77}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{692FC7A7-70C2-48E8-B23F-12B1C2060B77}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{692FC7A7-70C2-48E8-B23F-12B1C2060B77}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{692FC7A7-70C2-48E8-B23F-12B1C2060B77}.Release|Any CPU.Build.0 = Release|Any CPU
+		{692FC7A7-70C2-48E8-B23F-12B1C2060B77}.Release|ARM.ActiveCfg = Release|Any CPU
+		{692FC7A7-70C2-48E8-B23F-12B1C2060B77}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
