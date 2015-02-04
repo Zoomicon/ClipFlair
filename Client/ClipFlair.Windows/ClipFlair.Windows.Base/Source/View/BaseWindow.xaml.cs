@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: BaseWindow.xaml.cs
-//Version: 20141107
+//Version: 20150204
 
 //TODO: unbind control at close
 
@@ -9,16 +9,18 @@
 
 using ClipFlair.UI.Dialogs;
 using ClipFlair.UI.Widgets;
+using ClipFlair.Windows.Base.Resources;
 using ClipFlair.Windows.Views;
 using Ionic.Zip;
 using SilverFlow.Controls;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.Composition.Hosting;
 using System.IO;
+using System.Linq;
 using System.Net;
 using System.Runtime.Serialization;
-using System.Linq;
 using System.Text;
 using System.Windows;
 using System.Windows.Browser;
@@ -27,9 +29,6 @@ using System.Windows.Input;
 using System.Windows.Markup;
 using System.Xml;
 using Utils.Extensions;
-using System.ComponentModel.Composition.Primitives;
-using System.Collections.Generic;
-using ClipFlair.Windows.Base.Resources;
 
 namespace ClipFlair.Windows
 {
