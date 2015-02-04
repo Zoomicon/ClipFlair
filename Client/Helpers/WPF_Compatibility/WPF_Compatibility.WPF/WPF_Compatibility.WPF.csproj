@@ -28,6 +28,8 @@
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
     <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\..\..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -52,16 +54,31 @@
     <Reference Include="PresentationFramework" />
     <Reference Include="System" />
     <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Windows.Controls.Layout.Toolkit, Version=3.5.40128.1, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Xaml" />
     <Reference Include="System.Xml" />
     <Reference Include="WindowsBase" />
+    <Reference Include="WPFToolkit, Version=3.5.40128.1, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="Xceed.Wpf.Toolkit, Version=2.3.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Lib\Extended WPF Toolkit\Xceed.Wpf.Toolkit.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\Source\Accordion.cs">
+      <Link>Accordion.cs</Link>
+    </Compile>
+    <Compile Include="..\Source\AccordionItem.cs">
+      <Link>AccordionItem.cs</Link>
+    </Compile>
     <Compile Include="..\Source\ApplicationException.cs">
       <Link>ApplicationException.cs</Link>
     </Compile>
     <Compile Include="..\Source\BooleanToVisibilityConverter.cs">
       <Link>BooleanToVisibilityConverter.cs</Link>
+    </Compile>
+    <Compile Include="..\Source\BusyIndicator.cs">
+      <Link>BusyIndicator.cs</Link>
     </Compile>
     <Compile Include="..\Source\ChildWindowExt.cs">
       <Link>ChildWindowExt.cs</Link>
@@ -78,8 +95,17 @@
     <Compile Include="..\Source\IsolatedStorageSettings.cs">
       <Link>IsolatedStorageSettings.cs</Link>
     </Compile>
+    <Compile Include="..\Source\Label.cs">
+      <Link>Label.cs</Link>
+    </Compile>
     <Compile Include="..\Source\MouseButton.cs">
       <Link>MouseButton.cs</Link>
+    </Compile>
+    <Compile Include="..\Source\ScriptableMemberAttribute.cs">
+      <Link>ScriptableMemberAttribute.cs</Link>
+    </Compile>
+    <Compile Include="..\Source\ScriptableTypeAttribute.cs">
+      <Link>ScriptableTypeAttribute.cs</Link>
     </Compile>
     <Compile Include="..\Source\ValueConversionAttribute.cs">
       <Link>ValueConversionAttribute.cs</Link>
@@ -142,6 +168,13 @@
     </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('$(SolutionDir)\.nuget\NuGet.targets')" Text="$([System.String]::Format('$(ErrorText)', '$(SolutionDir)\.nuget\NuGet.targets'))" />
+  </Target>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
