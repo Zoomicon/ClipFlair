@@ -655,7 +655,7 @@ namespace SilverTextEditor
       RTBGrid.FlowDirection = (newRTL) ? System.Windows.FlowDirection.RightToLeft : System.Windows.FlowDirection.LeftToRight; //not using ApplicationBorder anymore, don't want to flip the toolbar direction too
       //...could have also used in the XAML: FlowDirection="{Binding RTL, Converter={StaticResource BooleanToFlowDirectionConverter}}"
       //combined with:   <conv:BooleanToFlowDirectionConverter x:Key="BooleanToFlowDirectionConverter" />
-      //and with:   xmlns:conv="clr-namespace:Utils.Converters;assembly=Utils.Silverlight"
+      //and with:   xmlns:conv="clr-namespace:Utils.Converters;assembly=Utils"
 
       //Set the button image based on the state of the toggle button. 
       btnRTL.Content = new Uri(newRTL ? "/SilverTextEditor;component/Images/RTL.png" : "/SilverTextEditor;component/Images/LTR.png", UriKind.RelativeOrAbsolute).CreateImage();

@@ -1,7 +1,7 @@
 ﻿<!-- 
 Project: ClipFlair (http://ClipFlair.codeplex.com)
 Filename: Generic.xaml
-Version: 20141022
+Version: 20150203
 -->
   
 <ResourceDictionary
@@ -9,8 +9,8 @@ Version: 20141022
  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
  xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk"
  xmlns:audio="clr-namespace:ClipFlair.AudioRecorder;assembly=AudioRecorder"
- xmlns:conv="clr-namespace:Utils.Converters;assembly=Utils.Silverlight"
- xmlns:bind="clr-namespace:Utils.Bindings;assembly=Utils.Silverlight"
+ xmlns:conv="clr-namespace:Utils.Converters;assembly=Utils"
+ xmlns:bind="clr-namespace:Utils.Bindings;assembly=Utils"
  xmlns:res="clr-namespace:ClipFlair.CaptionsGrid.Resources"
  xmlns:captions="clr-namespace:ClipFlair.CaptionsGrid"
  > <!-- xmlns:input="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Input.Toolkit" -->

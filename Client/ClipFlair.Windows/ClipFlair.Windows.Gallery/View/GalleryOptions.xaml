@@ -1,7 +1,7 @@
 ﻿<!--
 Project: ClipFlair (http://ClipFlair.codeplex.com)
 Filename: GalleryOptions.xaml
-Version: 20141031
+Version: 20150203
 -->
 
 <UserControl x:Class="ClipFlair.Windows.Options.GalleryOptions"
@@ -13,7 +13,7 @@ Version: 20141031
   mc:Ignorable="d"
   d:DesignHeight="270" d:DesignWidth="224"
   >
-  <!-- xmlns:utils="clr-namespace:Utils.Converters;assembly=Zoomicon.Utils.Silverlight" -->
+  <!-- xmlns:utils="clr-namespace:Utils.Converters;assembly=Zoomicon.Utils" -->
 
   <UserControl.Resources>
     <ResourceDictionary>

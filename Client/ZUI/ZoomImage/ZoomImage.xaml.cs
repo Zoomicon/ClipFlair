@@ -90,7 +90,7 @@ namespace ZoomImage
 
       //...could have also used in the XAML: FlowDirection="{Binding RTL, Converter={StaticResource BooleanToFlowDirectionConverter}}"
       //combined with:   <conv:BooleanToFlowDirectionConverter x:Key="BooleanToFlowDirectionConverter" />
-      //and with:   xmlns:conv="clr-namespace:Utils.Converters;assembly=Utils.Silverlight"
+      //and with:   xmlns:conv="clr-namespace:Utils.Converters;assembly=Utils"
     }
 
     #endregion
