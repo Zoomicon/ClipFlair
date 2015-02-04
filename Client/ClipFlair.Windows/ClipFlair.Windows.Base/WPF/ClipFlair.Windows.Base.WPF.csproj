@@ -7,10 +7,10 @@
     <ProjectGuid>{BB3B5D31-2AE2-4E89-B0B2-42F3463559AA}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ClipFlair.Windows.Base.WPF</RootNamespace>
-    <AssemblyName>ClipFlair.Windows.Base.WPF</AssemblyName>
+    <RootNamespace>ClipFlair.Windows.Base</RootNamespace>
+    <AssemblyName>ClipFlair.Windows.Base</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
-    <SupportedCultures>el,es,fr</SupportedCultures>    
+    <SupportedCultures>el,es,fr</SupportedCultures>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -38,12 +38,21 @@
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Windows.Controls.Layout.Toolkit, Version=3.5.40128.1, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Xaml" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Xml" />
     <Reference Include="WindowsBase" />
+    <Reference Include="WPFToolkit, Version=3.5.40128.1, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Aliases>WPFToolkit</Aliases>
+    </Reference>
+    <Reference Include="Xceed.Wpf.Toolkit">
+      <HintPath>..\..\..\Lib\Extended WPF Toolkit\Xceed.Wpf.Toolkit.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="..\Source\IFileWindowFactory.cs">
@@ -51,6 +60,12 @@
     </Compile>
     <Compile Include="..\Source\IWindowFactory.cs">
       <Link>IWindowFactory.cs</Link>
+    </Compile>
+    <Compile Include="..\Source\Resources\BaseWindowStrings.Designer.cs">
+      <Link>Resources\BaseWindowStrings.Designer.cs</Link>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BaseWindowStrings.resx</DependentUpon>
     </Compile>
     <Compile Include="..\Source\ViewModel\BaseView.cs">
       <Link>ViewModel\BaseView.cs</Link>
@@ -63,6 +78,9 @@
     </Compile>
     <Compile Include="..\Source\ViewModel\ViewDefaults.cs">
       <Link>ViewModel\ViewDefaults.cs</Link>
+    </Compile>
+    <Compile Include="..\Source\View\BaseOptions.xaml.cs">
+      <Link>View\BaseOptions.xaml.cs</Link>
     </Compile>
     <Compile Include="..\Source\View\BaseWindow.xaml.cs">
       <Link>View\BaseWindow.xaml.cs</Link>
@@ -156,6 +174,22 @@
       <Project>{7c67ac53-e3bc-4482-8dfb-4cbaa644d280}</Project>
       <Name>FloatingWindow.WPF</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="..\Source\Resources\BaseWindowStrings.el.resx">
+      <Link>Resources\BaseWindowStrings.el.resx</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\Source\Resources\BaseWindowStrings.es.resx">
+      <Link>Resources\BaseWindowStrings.es.resx</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\Source\Resources\BaseWindowStrings.fr.resx">
+      <Link>Resources\BaseWindowStrings.fr.resx</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\Source\Resources\BaseWindowStrings.resx">
+      <Link>Resources\BaseWindowStrings.resx</Link>
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>BaseWindowStrings.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

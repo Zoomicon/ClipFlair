@@ -105,14 +105,15 @@
     <Compile Include="..\Source\ViewModel\ViewDefaults.cs">
       <Link>ViewModel\ViewDefaults.cs</Link>
     </Compile>
+    <Compile Include="..\Source\View\BaseOptions.xaml.cs">
+      <Link>View\BaseOptions.xaml.cs</Link>
+      <DependentUpon>BaseOptions.xaml</DependentUpon>
+    </Compile>
     <Compile Include="..\Source\View\BaseWindow.xaml.cs">
       <Link>View\BaseWindow.xaml.cs</Link>
       <DependentUpon>BaseWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="View\BaseOptions.xaml.cs">
-      <DependentUpon>BaseOptions.xaml</DependentUpon>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Page Include="..\Source\Themes\Generic.xaml">
@@ -120,12 +121,13 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="..\Source\View\BaseWindow.xaml">
-      <Link>View\BaseWindow.xaml</Link>
+    <Page Include="..\Source\View\BaseOptions.xaml">
+      <Link>View\BaseOptions.xaml</Link>
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="View\BaseOptions.xaml">
+    <Page Include="..\Source\View\BaseWindow.xaml">
+      <Link>View\BaseWindow.xaml</Link>
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
