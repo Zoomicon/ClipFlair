@@ -30,9 +30,10 @@ Prerequisites
 -------------
 
 - Visual Studio 2010+ (with latest updates)
+- Smooth Streaming Client 2.5 RTW (http://www.microsoft.com/en-us/download/details.aspx?id=42080)
 - Microsoft Silverlight 5 SDK (http://www.microsoft.com/en-us/download/details.aspx?id=42080)
 - Silverlight Toolkit (http://silverlight.codeplex.com)
-- Smooth Streaming Client 2.5 RTW (http://www.microsoft.com/en-us/download/details.aspx?id=42080)
+- WPF Toolkit (https://wpf.codeplex.com/)
 
 
 Useful
