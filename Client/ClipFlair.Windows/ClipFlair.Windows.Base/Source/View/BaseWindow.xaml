@@ -1,7 +1,7 @@
 ﻿<!--
 Project: ClipFlair (http://ClipFlair.codeplex.com)
 Filename: BaseWindow.xaml
-Version: 20141031
+Version: 20150203
 -->
 
 <float:FloatingWindow x:Class="ClipFlair.Windows.BaseWindow"
@@ -9,12 +9,10 @@ Version: 20141031
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk"    
-    xmlns:toolkit="http://schemas.microsoft.com/winfx/2006/xaml/presentation/toolkit"
     xmlns:flip="clr-namespace:FlipPanel;assembly=FlipPanel"
     xmlns:float="clr-namespace:SilverFlow.Controls;assembly=SilverFlow.Controls"                      
     xmlns:widgets="clr-namespace:ClipFlair.UI.Widgets;assembly=ClipFlair.UI.Widgets"
-    xmlns:bind="clr-namespace:Utils.Bindings;assembly=Utils.Silverlight"
+    xmlns:bind="clr-namespace:Utils.Bindings;assembly=Utils"
     xmlns:options="clr-namespace:ClipFlair.Windows.Options"                                          
     xmlns:local="clr-namespace:ClipFlair.Windows;assembly=ClipFlair.Windows.Base"
     mc:Ignorable="d"
@@ -120,7 +118,7 @@ Version: 20141031
 
   </float:FloatingWindow.Style>
 
-  <toolkit:BusyIndicator
+  <BusyIndicator
     BusyContent="Loading..."
     IsBusy="{Binding Busy}"
     HorizontalAlignment="Stretch"
@@ -164,7 +162,7 @@ Version: 20141031
 
             <!--
             <StackPanel Orientation="Horizontal">
-              <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Options Source (URL):" Target="{Binding ElementName=edOptionsURL}" />
+              <Label Style="{StaticResource PropertyLabelStyle}" Content="Options Source (URL):" Target="{Binding ElementName=edOptionsURL}" />
               <TextBox Name="edOptionsURL" Text="{Binding OptionsSource, Mode=TwoWay}" HorizontalAlignment="Stretch" />
             </StackPanel>
             -->
@@ -174,7 +172,7 @@ Version: 20141031
               Name="propTitle"
               Orientation="Vertical"
               >
-              <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Title:" Target="{Binding ElementName=edTitle}" />
+              <Label Style="{StaticResource PropertyLabelStyle}" Content="Title:" Target="{Binding ElementName=edTitle}" />
               <TextBox
                 Name="edTitle"
                 Text="{Binding Title, Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=True}"
@@ -184,7 +182,7 @@ Version: 20141031
               <!-- ImmediateSourceUpdate is used because of http://social.msdn.microsoft.com/Forums/silverlight/en-US/951bde54-1bd1-4fdc-8148-86d5a5183de8/updatesourcetriggerpropertychanged-is-ignored?forum=silverlightgen&prof=required -->
             </StackPanel>
 
-            <toolkit:Accordion
+            <Accordion
               Grid.Row="2"
               SelectionMode="ZeroOrOne"
               SelectionSequence="Simultaneous"
@@ -192,28 +190,28 @@ Version: 20141031
               HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch"
               >
 
-              <toolkit:AccordionItem
+              <AccordionItem
                 Header="Window Options"
                 IsSelected="False"
                 Background="Transparent"
                 HorizontalAlignment="Stretch"
                 HorizontalContentAlignment="Stretch"
                 >
-                <toolkit:AccordionItem.Content>
+                <AccordionItem.Content>
                   
                   <options:BaseOptions x:Name="options" DataContext="{Binding}" /> <!-- uses our DataContext (the View) -->
 
-                </toolkit:AccordionItem.Content>
-              </toolkit:AccordionItem>
+                </AccordionItem.Content>
+              </AccordionItem>
 
-              <toolkit:AccordionItem
+              <AccordionItem
                 Header="Content Options"
                 IsSelected="True"
                 Background="Transparent"
                 HorizontalAlignment="Stretch"
                 HorizontalContentAlignment="Stretch"
                 >
-                <toolkit:AccordionItem.Content>
+                <AccordionItem.Content>
 
                   <StackPanel
                     Name="PropertiesPanel"
@@ -224,17 +222,17 @@ Version: 20141031
 
                     <StackPanel.Resources>
                       <Style TargetType="StackPanel" BasedOn="{StaticResource PropertyStackPanelStyle}" />
-                      <Style TargetType="sdk:Label" BasedOn="{StaticResource PropertyLabelStyle}" />
+                      <Style TargetType="Label" BasedOn="{StaticResource PropertyLabelStyle}" />
                     </StackPanel.Resources>
 
                     <!-- descendents should add items (better be a list of StackPanels) under a clipflair:BaseWindow.PropertyItems node in XAML -->
 
                   </StackPanel>
 
-                </toolkit:AccordionItem.Content>
-              </toolkit:AccordionItem>
+                </AccordionItem.Content>
+              </AccordionItem>
 
-            </toolkit:Accordion>
+            </Accordion>
 
           </Grid>
         </ScrollViewer>
@@ -242,6 +240,6 @@ Version: 20141031
       </flip:FlipPanel.BackContent>
 
     </flip:FlipPanel>
-  </toolkit:BusyIndicator>
+  </BusyIndicator>
 
 </float:FloatingWindow>
