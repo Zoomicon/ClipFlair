@@ -7,10 +7,10 @@ Imports System.Runtime.InteropServices
 ' associated with an assembly.
 
 ' Review the values of the assembly attributes
-<Assembly: AssemblyTitle("ClipFlair.CaptionsLib.Silverlight")> 
+<Assembly: AssemblyTitle("CaptionsLib")> 
 <Assembly: AssemblyDescription("")> 
 <Assembly: AssemblyCompany("")> 
-<Assembly: AssemblyProduct("ClipFlair.CaptionsLib.Silverlight")> 
+<Assembly: AssemblyProduct("CaptionsLib")> 
 <Assembly: AssemblyCopyright("Copyright ©  2012")> 
 <Assembly: AssemblyTrademark("")> 
 
