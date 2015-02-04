@@ -1,7 +1,7 @@
 ﻿<!--
 Project: ClipFlair (http://ClipFlair.codeplex.com)
 Filename: PivotViewerExt/Themes/Generic.xaml
-Version: 20140226
+Version: 20150203
 -->
 
 <ResourceDictionary
@@ -11,7 +11,7 @@ Version: 20140226
   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
   xmlns:sdk="clr-namespace:System.Windows.Controls.Pivot;assembly=System.Windows.Controls.Pivot"
   xmlns:con="clr-namespace:Microsoft.Internal.Pivot.Controls;assembly=System.Windows.Controls.Pivot"  
-  xmlns:utils="clr-namespace:Utils.Converters;assembly=Utils.Silverlight"
+  xmlns:utils="clr-namespace:Utils.Converters;assembly=Utils"
   mc:Ignorable="d"
   >  
   
