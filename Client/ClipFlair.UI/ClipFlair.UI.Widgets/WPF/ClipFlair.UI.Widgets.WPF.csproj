@@ -7,8 +7,8 @@
     <ProjectGuid>{FCB42315-C45C-4DCC-995E-FBAEB6115B4F}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ClipFlair.UI.Widgets.WPF</RootNamespace>
-    <AssemblyName>ClipFlair.UI.Widgets.WPF</AssemblyName>
+    <RootNamespace>ClipFlair.UI.Widgets</RootNamespace>
+    <AssemblyName>ClipFlair.UI.Widgets</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
