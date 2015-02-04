@@ -65,13 +65,25 @@
     <Reference Include="mscorlib" />
     <Reference Include="System.Windows" />
     <Reference Include="System.Windows.Controls, Version=5.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Windows.Controls.Data.Input, Version=5.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Windows.Controls.Layout.Toolkit, Version=5.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Windows.Controls.Toolkit, Version=5.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\Source\Accordion.cs">
+      <Link>Accordion.cs</Link>
+    </Compile>
+    <Compile Include="..\Source\AccordionItem.cs">
+      <Link>AccordionItem.cs</Link>
+    </Compile>
     <Compile Include="..\Source\ApplicationException.cs">
       <Link>ApplicationException.cs</Link>
     </Compile>
     <Compile Include="..\Source\BooleanToVisibilityConverter.cs">
       <Link>BooleanToVisibilityConverter.cs</Link>
+    </Compile>
+    <Compile Include="..\Source\BusyIndicator.cs">
+      <Link>BusyIndicator.cs</Link>
     </Compile>
     <Compile Include="..\Source\ChildWindowExt.cs">
       <Link>ChildWindowExt.cs</Link>
@@ -88,8 +100,17 @@
     <Compile Include="..\Source\IsolatedStorageSettings.cs">
       <Link>IsolatedStorageSettings.cs</Link>
     </Compile>
+    <Compile Include="..\Source\Label.cs">
+      <Link>Label.cs</Link>
+    </Compile>
     <Compile Include="..\Source\MouseButton.cs">
       <Link>MouseButton.cs</Link>
+    </Compile>
+    <Compile Include="..\Source\ScriptableMemberAttribute.cs">
+      <Link>ScriptableMemberAttribute.cs</Link>
+    </Compile>
+    <Compile Include="..\Source\ScriptableTypeAttribute.cs">
+      <Link>ScriptableTypeAttribute.cs</Link>
     </Compile>
     <Compile Include="..\Source\ValueConversionAttribute.cs">
       <Link>ValueConversionAttribute.cs</Link>
@@ -124,7 +145,9 @@
     <Compile Include="..\Source\XamlReader.cs">
       <Link>XamlReader.cs</Link>
     </Compile>
-    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">

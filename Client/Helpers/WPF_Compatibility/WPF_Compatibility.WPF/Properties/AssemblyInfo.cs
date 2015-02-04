@@ -1,4 +1,4 @@
-﻿//Version: 20140226
+﻿//Version: 20150203
 
 using System.Reflection;
 using System.Runtime.InteropServices;
@@ -6,15 +6,23 @@ using System.Windows.Markup;
 
 [assembly: XmlnsDefinition("http://schemas.microsoft.com/winfx/2006/xaml/presentation", "System.Windows.Controls")]
 
+//for Label, Accordion:
+[assembly: XmlnsDefinition("http://schemas.microsoft.com/winfx/2006/xaml/presentation", "WPF_Compatibility")]
+[assembly: XmlnsDefinition("http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk", "WPF_Compatibility")]
+
+//for BusyIndicator, Accordion:
+[assembly: XmlnsDefinition("http://schemas.microsoft.com/winfx/2006/xaml/presentation/toolkit", "WPF_Compatibility")]
+[assembly: XmlnsDefinition("http://schemas.microsoft.com/winfx/2006/xaml/presentation/toolkit/extended", "WPF_Compatibility")]
+
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("WPF_Compatibility.Windows")]
+[assembly: AssemblyTitle("WPF_Compatibility")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("WPF_Compatibility.Windows")]
-[assembly: AssemblyCopyright("Copyright ©  2012")]
+[assembly: AssemblyCompany("Zoomicon")]
+[assembly: AssemblyProduct("WPF_Compatibility")]
+[assembly: AssemblyCopyright("Copyright ©  2012-2015")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -24,7 +32,7 @@ using System.Windows.Markup;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("ec5792a3-8d98-4ece-b41c-ece001bbc941")]
+[assembly: Guid("bd173844-634c-40dd-97aa-fe3e8ec4dd27")]
 
 // Version information for an assembly consists of the following four values:
 //
@@ -33,8 +41,7 @@ using System.Windows.Markup;
 //      Build Number
 //      Revision
 //
-// You can specify all the values or you can default the Build and Revision Numbers 
+// You can specify all the values or you can default the Revision and Build Numbers 
 // by using the '*' as shown below:
-// [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("1.0.0.0")]
-[assembly: AssemblyFileVersion("1.0.0.0")]
+[assembly: AssemblyVersion("1.0.*")]
+
