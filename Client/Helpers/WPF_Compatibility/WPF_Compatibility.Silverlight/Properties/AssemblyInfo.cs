@@ -1,4 +1,4 @@
-﻿//Version: 20150203
+﻿//Version: 20150206
 
 using System.Reflection;
 using System.Runtime.InteropServices;
@@ -10,7 +10,7 @@ using System.Windows.Markup;
 [assembly: XmlnsDefinition("http://schemas.microsoft.com/winfx/2006/xaml/presentation", "WPF_Compatibility")]
 [assembly: XmlnsDefinition("http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk", "WPF_Compatibility")]
 
-//for BusyIndicator, Accordion:
+//for BusyIndicator, DockPanel, Accordion, AccordionItem, Expander:
 [assembly: XmlnsDefinition("http://schemas.microsoft.com/winfx/2006/xaml/presentation/toolkit", "WPF_Compatibility")]
 [assembly: XmlnsDefinition("http://schemas.microsoft.com/winfx/2006/xaml/presentation/toolkit/extended", "WPF_Compatibility")]
 

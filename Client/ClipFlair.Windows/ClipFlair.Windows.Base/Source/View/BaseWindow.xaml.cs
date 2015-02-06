@@ -30,6 +30,10 @@ using System.Windows.Markup;
 using System.Xml;
 using Utils.Extensions;
 
+#if !SILVERLIGHT
+using Microsoft.Win32;
+#endif
+
 namespace ClipFlair.Windows
 {
 
@@ -311,7 +315,11 @@ namespace ClipFlair.Windows
         if (dlg.ShowDialog() == true) //TODO: find the parent window
         {
           loadModifiers = Keyboard.Modifiers;
-          LoadOptions(dlg.Files);
+          #if SILVERLIGHT
+          LoadOptions(dlg.Files); 
+          #else
+          LoadOptions(dlg.FileNames.Select<string,FileInfo>((s)=>{ return new FileInfo(s);}));
+          #endif
           Flipped = false; //flip the view back to front after succesful options loading
           return true;
         }

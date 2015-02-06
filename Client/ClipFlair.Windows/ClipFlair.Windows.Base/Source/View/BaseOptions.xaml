@@ -1,7 +1,7 @@
 ﻿<!--
 Project: ClipFlair (http://ClipFlair.codeplex.com)
 Filename: BaseOptions.xaml
-Version: 20141031
+Version: 20150204
 -->
 
 <UserControl x:Class="ClipFlair.Windows.Options.BaseOptions"
@@ -9,7 +9,6 @@ Version: 20141031
   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
   xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-  xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk"    
   xmlns:color="clr-namespace:ColorPickerLib;assembly=ColorPicker"
   mc:Ignorable="d"
   d:DesignHeight="700" d:DesignWidth="424"
@@ -33,12 +32,12 @@ Version: 20141031
     <StackPanel.Resources>
       <Style TargetType="StackPanel" BasedOn="{StaticResource PropertyStackPanelStyle}" />
       <Style TargetType="Grid" BasedOn="{StaticResource PropertyGridStyle}" />
-      <Style TargetType="sdk:Label" BasedOn="{StaticResource PropertyLabelStyle}" />
+      <Style TargetType="Label" BasedOn="{StaticResource PropertyLabelStyle}" />
     </StackPanel.Resources>
 
     <!--
     <StackPanel Orientation="Vertical" Name="propID">
-      <sdk:Label
+      <Label
         Content="ID:"
         Target="{Binding ElementName=edID}"
         />
@@ -58,7 +57,7 @@ Version: 20141031
       </Grid.ColumnDefinitions>
 
       <StackPanel Grid.Column="0" Orientation="Vertical" Name="propX" Margin="0,0,5,0">
-        <sdk:Label
+        <Label
           Content="X:"
           Target="{Binding ElementName=edX}"
           />
@@ -69,7 +68,7 @@ Version: 20141031
       </StackPanel>
 
       <StackPanel Grid.Column="1" Orientation="Vertical" Name="propY" Margin="5,0,0,0">
-        <sdk:Label
+        <Label
           Content="Y:"
           Target="{Binding ElementName=edY}"
           />
@@ -90,7 +89,7 @@ Version: 20141031
       </Grid.ColumnDefinitions>
 
       <StackPanel Grid.Column="0" Orientation="Vertical" Name="propWidth" Margin="0,0,5,0">
-        <sdk:Label
+        <Label
           Content="Width:"
           Target="{Binding ElementName=edWidth}"
           />
@@ -101,7 +100,7 @@ Version: 20141031
       </StackPanel>
 
       <StackPanel Grid.Column="1" Orientation="Vertical" Name="propHeight" Margin="5,0,0,0">
-        <sdk:Label
+        <Label
           Content="Height:" Target="{Binding ElementName=edHeight}"
           />
         <TextBox
@@ -115,7 +114,7 @@ Version: 20141031
     <!-- Zoom -->
 
     <StackPanel Orientation="Vertical" Name="propZoom">
-      <sdk:Label
+      <Label
         Content="Zoom:"
         Target="{Binding ElementName=edZoom}"
         />
@@ -129,7 +128,7 @@ Version: 20141031
     <!-- ZIndex -->
 
     <StackPanel Orientation="Vertical" Name="propZIndex">
-      <sdk:Label
+      <Label
         Content="Z-order layer index:"
         Target="{Binding ElementName=edZIndex}"
         />
@@ -142,7 +141,7 @@ Version: 20141031
     <!-- Opacity -->
 
     <StackPanel Orientation="Vertical" Name="propOpacity">
-      <sdk:Label
+      <Label
         Content="Opacity:"
         Target="{Binding ElementName=sldOpacity}"
         />
@@ -161,7 +160,7 @@ Version: 20141031
     <!-- TitleForegroundColor -->
 
     <StackPanel Orientation="Vertical" Name="propTitleForegroundColor">
-      <sdk:Label
+      <Label
         Content="Title Foreground Color:" Target="{Binding ElementName=edTitleForegroundColor}"
         />
       <color:ColorPicker
@@ -173,7 +172,7 @@ Version: 20141031
     <!-- TitleBackgroundColor -->
 
     <StackPanel Orientation="Vertical" Name="propTitleBackgroundColor">
-      <sdk:Label
+      <Label
         Content="Title Background Color:" Target="{Binding ElementName=edTitleBackgroundColor}"
         />
       <color:ColorPicker
@@ -185,7 +184,7 @@ Version: 20141031
     <!-- BackgroundColor -->
 
     <StackPanel Orientation="Vertical" Name="propBackgroundColor">
-      <sdk:Label
+      <Label
         Content="Background Color:" Target="{Binding ElementName=edBackgroundColor}"
         />
       <color:ColorPicker
@@ -197,7 +196,7 @@ Version: 20141031
     <!-- BorderColor -->
 
     <StackPanel Orientation="Vertical" Name="propBorderColor">
-      <sdk:Label
+      <Label
         Content="Border Color:" Target="{Binding ElementName=edBorderColor}"
         />
       <color:ColorPicker
@@ -209,7 +208,7 @@ Version: 20141031
     <!-- BorderThickness -->
 
     <StackPanel Orientation="Vertical" Name="propBorderThickness">
-      <sdk:Label
+      <Label
         Content="Border Thickness:" Target="{Binding ElementName=edBorderThickness}"
         />
       <TextBox
@@ -221,7 +220,7 @@ Version: 20141031
     <!-- CornerRadius -->
 
     <StackPanel Orientation="Vertical" Name="propCornerRadius">
-      <sdk:Label 
+      <Label 
         Content="Corner Radius:" Target="{Binding ElementName=edCornerRadius}"
         />
       <TextBox
@@ -237,7 +236,7 @@ Version: 20141031
         Name="cbMoveable" 
         IsChecked="{Binding Moveable, Mode=TwoWay}"
         />
-      <sdk:Label
+      <Label
         Content="Moveable"
         Target="{Binding ElementName=cbMoveable}"
         />
@@ -250,7 +249,7 @@ Version: 20141031
         Name="cbResizable" 
         IsChecked="{Binding Resizable, Mode=TwoWay}" 
         />
-      <sdk:Label 
+      <Label 
         Content="Resizable" 
         Target="{Binding ElementName=cbResizable}"
         />
@@ -263,7 +262,7 @@ Version: 20141031
         Name="cbZoomable"
         IsChecked="{Binding Zoomable, Mode=TwoWay}"
         />
-      <sdk:Label
+      <Label
         Content="Zoomable" 
         Target="{Binding ElementName=cbZoomable}"
         />
@@ -276,7 +275,7 @@ Version: 20141031
         Name="cbWarnOnClosing" 
         IsChecked="{Binding WarnOnClosing, Mode=TwoWay}"
         />
-      <sdk:Label 
+      <Label 
         Content="Warn on closing" 
         Target="{Binding ElementName=cbWarnOnClosing}"
         />
@@ -289,7 +288,7 @@ Version: 20141031
         Name="cbTitlebarVisible"
         IsChecked="{Binding TitlebarVisible, Mode=TwoWay}"
         />
-      <sdk:Label
+      <Label
         Content="Titlebar Visible"
         Target="{Binding ElementName=cbTitlebarVisible}"
         />

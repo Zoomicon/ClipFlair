@@ -70,49 +70,30 @@
     <Reference Include="System.Windows.Controls.Toolkit, Version=5.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ConfirmDialog.xaml.cs">
-      <DependentUpon>ConfirmDialog.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="ErrorDialog.xaml.cs">
-      <DependentUpon>ErrorDialog.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="IClipFlairStartActions.cs" />
-    <Compile Include="ClipFlairStartDialog.xaml.cs">
+    <Compile Include="..\Source\ClipFlairStartDialog.xaml.cs">
+      <Link>ClipFlairStartDialog.xaml.cs</Link>
       <DependentUpon>ClipFlairStartDialog.xaml</DependentUpon>
     </Compile>
-    <Compile Include="MessageDialog.xaml.cs">
-      <DependentUpon>MessageDialog.xaml</DependentUpon>
+    <Compile Include="..\Source\ConfirmDialog.xaml.cs">
+      <Link>ConfirmDialog.xaml.cs</Link>
+      <DependentUpon>ConfirmDialog.xaml</DependentUpon>
     </Compile>
-    <Compile Include="InputDialog.xaml.cs">
+    <Compile Include="..\Source\ErrorDialog.xaml.cs">
+      <Link>ErrorDialog.xaml.cs</Link>
+      <DependentUpon>ErrorDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="..\Source\IClipFlairStartActions.cs">
+      <Link>IClipFlairStartActions.cs</Link>
+    </Compile>
+    <Compile Include="..\Source\InputDialog.xaml.cs">
+      <Link>InputDialog.xaml.cs</Link>
       <DependentUpon>InputDialog.xaml</DependentUpon>
     </Compile>
+    <Compile Include="..\Source\MessageDialog.xaml.cs">
+      <Link>MessageDialog.xaml.cs</Link>
+      <DependentUpon>MessageDialog.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <Page Include="ConfirmDialog.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="ErrorDialog.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="ClipFlairStartDialog.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="MessageDialog.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="InputDialog.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Images\Items.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
@@ -127,7 +108,47 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Dialogs.cd" />
+    <Page Include="..\Images\Items.xaml">
+      <Link>Images\Items.xaml</Link>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="..\Source\ClipFlairStartDialog.xaml">
+      <Link>ClipFlairStartDialog.xaml</Link>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="..\Source\ConfirmDialog.xaml">
+      <Link>ConfirmDialog.xaml</Link>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="..\Source\ErrorDialog.xaml">
+      <Link>ErrorDialog.xaml</Link>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="..\Source\InputDialog.xaml">
+      <Link>InputDialog.xaml</Link>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="..\Source\MessageDialog.xaml">
+      <Link>MessageDialog.xaml</Link>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\ClipFlair.UI.Dialogs.cd">
+      <Link>ClipFlair.UI.Dialogs.cd</Link>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Helpers\WPF_Compatibility\WPF_Compatibility.Silverlight\WPF_Compatibility.Silverlight.csproj">
+      <Project>{7dc832cc-2d97-4dbc-b963-3f77c1f20730}</Project>
+      <Name>WPF_Compatibility.Silverlight</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Silverlight\$(SilverlightVersion)\Microsoft.Silverlight.CSharp.targets" />
   <ProjectExtensions>

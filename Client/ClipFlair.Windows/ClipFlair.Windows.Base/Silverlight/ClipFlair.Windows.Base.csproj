@@ -133,7 +133,7 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\ClipFlair.UI\ClipFlair.UI.Dialogs\ClipFlair.UI.Dialogs.Silverlight.csproj">
+    <ProjectReference Include="..\..\..\ClipFlair.UI\ClipFlair.UI.Dialogs\ClipFlair.UI.Dialogs.Silverlight\ClipFlair.UI.Dialogs.Silverlight.csproj">
       <Project>{C6900312-0545-4E5E-9FE0-2AEF75674E29}</Project>
       <Name>ClipFlair.UI.Dialogs.Silverlight</Name>
     </ProjectReference>

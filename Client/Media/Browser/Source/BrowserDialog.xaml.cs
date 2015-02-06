@@ -1,16 +1,17 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: BrowserDialog.xaml.cs
-//Version: 20140616
+//Version: 20150206
 
 using System;
 using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
 using Utils.Extensions;
+using WPF_Compatibility;
 
 namespace ClipFlair.UI.Dialogs
 {
-  public partial class BrowserDialog : ChildWindow
+  public partial class BrowserDialog : ChildWindowExt
   {
     public BrowserDialog()
     {
@@ -46,7 +47,13 @@ namespace ClipFlair.UI.Dialogs
       }
     }
 
-    public static void Show(Uri address, string title = "", EventHandler<CancelEventArgs> closingHandler = null)
+    public static void Show(Uri address, string title = "", 
+     #if SILVERLIGHT
+     EventHandler<CancelEventArgs>
+     #else
+     CancelEventHandler
+     #endif
+     closingHandler = null)
     {
       #if SILVERLIGHT && !WINDOWS_PHONE
       if (!Application.Current.IsRunningOutOfBrowser) {
@@ -69,4 +76,5 @@ namespace ClipFlair.UI.Dialogs
     }
 
   }
+
 }

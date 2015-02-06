@@ -1,15 +1,16 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: InputDialog.xaml.cs
-//Version: 20130131
+//Version: 20150206
 
 using System;
 using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
+using WPF_Compatibility;
 
 namespace ClipFlair.UI.Dialogs
 {
-  public partial class InputDialog : ChildWindow
+  public partial class InputDialog : ChildWindowExt
   {
     public InputDialog()
     {
@@ -52,7 +53,13 @@ namespace ClipFlair.UI.Dialogs
       set { btnHelp.Visibility = value ? Visibility.Visible : Visibility.Collapsed;  }
     }
 
-    public static void Show(string title, string message, string defaultInput, EventHandler<CancelEventArgs> closingHandler)
+    public static void Show(string title, string message, string defaultInput, 
+      #if SILVERLIGHT
+      EventHandler<CancelEventArgs> closingHandler
+      #else
+      CancelEventHandler closingHandler
+      #endif
+      )
     {
       InputDialog prompt = new InputDialog();
       prompt.Title = title;
@@ -62,7 +69,13 @@ namespace ClipFlair.UI.Dialogs
       prompt.Show();
     }
 
-    public static void Show(string title, string message, string defaultInput, EventHandler<CancelEventArgs> closingHandler, EventHandler helpHandler)
+    public static void Show(string title, string message, string defaultInput, 
+      #if SILVERLIGHT
+      EventHandler<CancelEventArgs> closingHandler
+      #else
+      CancelEventHandler closingHandler
+      #endif
+      , EventHandler helpHandler)
     {
       InputDialog prompt = new InputDialog();
       prompt.Title = title;

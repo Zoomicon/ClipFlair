@@ -1,15 +1,16 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: ConfirmDialog.xaml.cs
-//Version: 20130501
+//Version: 20150206
 
 using System;
 using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
+using WPF_Compatibility;
 
 namespace ClipFlair.UI.Dialogs
 {
-  public partial class ConfirmDialog : ChildWindow
+  public partial class ConfirmDialog : ChildWindowExt
   {
     public ConfirmDialog()
     {
@@ -34,12 +35,19 @@ namespace ClipFlair.UI.Dialogs
       set { lblMessage.Text = value; }
     }
 
-    public static void Show(string title, string message, EventHandler<CancelEventArgs> closingHandler)
+    public static void Show(string title, string message, 
+      #if SILVERLIGHT
+      EventHandler<CancelEventArgs> closingHandler
+      #else
+      CancelEventHandler closingHandler
+      #endif
+      )
     {
       ConfirmDialog prompt = new ConfirmDialog();
       prompt.Title = title;
       prompt.Message = message;
-      prompt.Closing += closingHandler;
+      if (closingHandler != null)
+        prompt.Closing += closingHandler;
       prompt.Show();
     }
 

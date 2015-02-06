@@ -1,7 +1,7 @@
 ﻿<!--
 Project: ClipFlair (http://ClipFlair.codeplex.com)
 Filename: MapOptions.xaml
-Version: 20141031
+Version: 20150204
 -->
 
 <UserControl x:Class="ClipFlair.Windows.Options.MapOptions"
@@ -9,7 +9,6 @@ Version: 20141031
   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
   xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-  xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk"  
   mc:Ignorable="d"
   d:DesignHeight="450" d:DesignWidth="220"
   >
@@ -26,33 +25,33 @@ Version: 20141031
 
     <StackPanel.Resources>
       <Style TargetType="StackPanel" BasedOn="{StaticResource PropertyStackPanelStyle}" />
-      <Style TargetType="sdk:Label" BasedOn="{StaticResource PropertyLabelStyle}" />
+      <Style TargetType="Label" BasedOn="{StaticResource PropertyLabelStyle}" />
     </StackPanel.Resources>
 
     <!--
     <StackPanel Orientation="Horizontal">
       <CheckBox Name="cbInertia" IsChecked="{Binding Inertia, Mode=TwoWay}" />
-      <sdk:Label Content="Inertia" Target="{Binding ElementName=cbInertia}"/>
+      <Label Content="Inertia" Target="{Binding ElementName=cbInertia}"/>
     </StackPanel>
     -->
     
     <StackPanel Orientation="Horizontal">
       <CheckBox Name="cbNavigationVisible" IsChecked="{Binding NavigationVisible, Mode=TwoWay}" />
-      <sdk:Label Content="Navigation Visible" Target="{Binding ElementName=cbNavigationVisible}"/>
+      <Label Content="Navigation Visible" Target="{Binding ElementName=cbNavigationVisible}"/>
     </StackPanel>
 
     <StackPanel Orientation="Horizontal">
       <CheckBox Name="cbScaleVisible" IsChecked="{Binding ScaleVisible, Mode=TwoWay}" />
-      <sdk:Label Content="Scale Visible" Target="{Binding ElementName=cbScaleVisible}"/>
+      <Label Content="Scale Visible" Target="{Binding ElementName=cbScaleVisible}"/>
     </StackPanel>
 
     <StackPanel Orientation="Vertical">
-      <sdk:Label Content="Language-Culture:" Target="{Binding ElementName=edCulture}" />
+      <Label Content="Language-Culture:" Target="{Binding ElementName=edCulture}" />
       <TextBox Name="edCulture" Text="{Binding Culture, Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=True}" />
     </StackPanel>
 
     <StackPanel Orientation="Vertical">
-      <sdk:Label Content="Mode" Target="{Binding ElementName=edMode}"/>
+      <Label Content="Mode" Target="{Binding ElementName=edMode}"/>
       <!-- <TextBox Name="edMode" Text="{Binding Mode, Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=True}" /> -->
       <ComboBox Name="comboMode" SelectedValue="{Binding Mode, Mode=TwoWay}" DisplayMemberPath="Content" SelectedValuePath="Tag">
         <ComboBoxItem Content="Road" Tag="Road" />
@@ -62,39 +61,39 @@ Version: 20141031
 
     <StackPanel Orientation="Horizontal">
       <CheckBox Name="cbLabelsVisible" IsChecked="{Binding LabelsVisible, Mode=TwoWay}" />
-      <sdk:Label Content="Labels Visible" Target="{Binding ElementName=cbLabelsVisible}"/>
+      <Label Content="Labels Visible" Target="{Binding ElementName=cbLabelsVisible}"/>
     </StackPanel>
 
     <StackPanel Orientation="Horizontal">
       <CheckBox Name="cbLabelsFading" IsChecked="{Binding LabelsFading, Mode=TwoWay}" />
-      <sdk:Label Content="Labels Fading" Target="{Binding ElementName=cbLabelsFading}"/>
+      <Label Content="Labels Fading" Target="{Binding ElementName=cbLabelsFading}"/>
     </StackPanel>
 
     <StackPanel Orientation="Vertical">
-      <sdk:Label Content="Latitude:" Target="{Binding ElementName=edLatitude}" />
+      <Label Content="Latitude:" Target="{Binding ElementName=edLatitude}" />
       <TextBox Name="edLatitude" Text="{Binding Latitude, Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=True}" />
     </StackPanel>
 
     <StackPanel Orientation="Vertical">
-      <sdk:Label Content="Longitude:" Target="{Binding ElementName=edLongitude}" />
+      <Label Content="Longitude:" Target="{Binding ElementName=edLongitude}" />
       <TextBox Name="edLongitude" Text="{Binding Longitude, Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=True}" />
     </StackPanel>
 
     <!--
     <StackPanel Orientation="Vertical">
-      <sdk:Label Content="Altitude:" Target="{Binding ElementName=edAltitude}" />
+      <Label Content="Altitude:" Target="{Binding ElementName=edAltitude}" />
       <TextBox Name="edAltitude" Text="{Binding Altitude, Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=True}" />
     </StackPanel>
     -->
 
     <StackPanel Orientation="Vertical">
-      <sdk:Label Content="Map Zoom:" Target="{Binding ElementName=sldMapZoom}" />
+      <Label Content="Map Zoom:" Target="{Binding ElementName=sldMapZoom}" />
       <!-- <TextBox Name="edMapZoom" Text="{Binding MapZoom, Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=True}" /> -->
       <Slider Name="sldMapZoom" Value="{Binding MapZoom, Mode=TwoWay}" Minimum="1.0" Maximum="13.0" SmallChange="0.5" LargeChange="1.0" Orientation="Horizontal" />
     </StackPanel>
 
     <StackPanel Orientation="Vertical">
-      <sdk:Label Content="Time:" Target="{Binding ElementName=edTime}" />
+      <Label Content="Time:" Target="{Binding ElementName=edTime}" />
       <TextBox Name="edTime" Text="{Binding Time, Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=True}" />
     </StackPanel>
 

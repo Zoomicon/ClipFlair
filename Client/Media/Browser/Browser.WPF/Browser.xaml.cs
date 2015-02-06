@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: Browser.xaml.cs
-//Version: 20141017
+//Version: 20150206
 
 using System;
 using System.Text;
@@ -69,10 +69,17 @@ namespace ClipFlair.Browser
       GoTo(new Uri(edAddress.Text, UriKind.Absolute));
     }
 
+    private void GoToHandler(object[] args)
+    {
+      web.Source=(Uri)args[0];
+    }
+
+    delegate void GoToDelegate(object[] args);
+
     public void GoTo(Uri address)
     {
-      Dispatcher.BeginInvoke(() => web.Source = address);
-    }
+      Dispatcher.BeginInvoke(new GoToDelegate(GoToHandler), new object[]{address});
+    } //a BeginInvoke(()=> web.Source=address) would have been enough for Silverlight, but WPF doesn't take Action as param of BeginInvoke
 
     public void GoBack()
     {
@@ -127,8 +134,12 @@ namespace ClipFlair.Browser
     protected override void OnGotFocus(RoutedEventArgs e)
     {
       base.OnGotFocus(e);
+      #if SILVERLIGHT
       web.Visibility = Visibility.Visible;
       webOverlay.Visibility = Visibility.Collapsed;
+      #else
+      //TODO: maybe see https://social.msdn.microsoft.com/Forums/vstudio/en-US/90cb3bf6-ca7a-4e8a-a539-957de1f939d9/changing-zindex-of-webbrowser-control?forum=wpf
+      #endif //or get snapshot of component first (see utility code at FloatingWindow library)
     }
 
     //
@@ -143,9 +154,13 @@ namespace ClipFlair.Browser
       base.OnLostFocus(e);
       if (!IsFocused(edAddress) && !IsFocused(web) && !IsFocused(btn))
       {
+        #if SILVERLIGHT
         webOverlay.Visibility = Visibility.Visible;
         webBrush.Redraw();
         web.Visibility = Visibility.Collapsed;
+        #else
+        //TODO: maybe see https://social.msdn.microsoft.com/Forums/vstudio/en-US/90cb3bf6-ca7a-4e8a-a539-957de1f939d9/changing-zindex-of-webbrowser-control?forum=wpf
+        #endif
       }
     }
     
