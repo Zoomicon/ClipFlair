@@ -1,7 +1,7 @@
 ﻿<!--
 Project: ClipFlair (http://ClipFlair.codeplex.com)
 Filename: MediaPlayerWindow.xaml
-Version: 20141031
+Version: 20150204
 -->
 
 <clipflair:BaseWindow x:Class="ClipFlair.Windows.MediaPlayerWindow"
@@ -9,7 +9,6 @@ Version: 20141031
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk"  
     xmlns:clipflair="clr-namespace:ClipFlair.Windows;assembly=ClipFlair.Windows.Base"
     xmlns:media="clr-namespace:ClipFlair.MediaPlayer;assembly=MediaPlayer"
     xmlns:options="clr-namespace:ClipFlair.Windows.Options"
@@ -83,17 +82,17 @@ Version: 20141031
 
       <StackPanel Orientation="Horizontal">
         <CheckBox Name="cbBitrateVisible" IsChecked="{Binding Path=BitrateVisible, ElementName=player, Mode=TwoWay}" />
-        <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Bitrate visible" Target="{Binding ElementName=cbBitrateVisible}"/>
+        <Label Style="{StaticResource PropertyLabelStyle}" Content="Bitrate visible" Target="{Binding ElementName=cbBitrateVisible}"/>
       </StackPanel>
 
       <StackPanel Orientation="Horizontal">
         <CheckBox Name="cbGraphVisible" IsChecked="{Binding Path=GraphVisible, ElementName=player, Mode=TwoWay}" />
-        <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Graph visible" Target="{Binding ElementName=cbGraphVisible}"/>
+        <Label Style="{StaticResource PropertyLabelStyle}" Content="Graph visible" Target="{Binding ElementName=cbGraphVisible}"/>
       </StackPanel>
 
       <StackPanel Orientation="Horizontal">
         <CheckBox Name="cbConsoleVisible" IsChecked="{Binding Path=ConsoleVisible, ElementName=player, Mode=TwoWay}" />
-        <sdk:Label Style="{StaticResource PropertyLabelStyle}" Content="Console visible" Target="{Binding ElementName=cbConsoleVisible}"/>
+        <Label Style="{StaticResource PropertyLabelStyle}" Content="Console visible" Target="{Binding ElementName=cbConsoleVisible}"/>
       </StackPanel>
 
     </StackPanel>

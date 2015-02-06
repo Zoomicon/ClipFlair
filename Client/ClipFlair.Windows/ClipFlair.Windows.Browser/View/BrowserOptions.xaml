@@ -1,7 +1,7 @@
 ﻿<!--
 Project: ClipFlair (http://ClipFlair.codeplex.com)
 Filename: BrowserOptions.xaml
-Version: 20141031
+Version: 20150204
 -->
 
 <UserControl x:Class="ClipFlair.Windows.Options.BrowserOptions"
@@ -9,7 +9,6 @@ Version: 20141031
   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
   xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-  xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk"  
   mc:Ignorable="d" d:DesignHeight="295" d:DesignWidth="224"
   >
 
@@ -25,11 +24,11 @@ Version: 20141031
 
     <StackPanel.Resources>
       <Style TargetType="StackPanel" BasedOn="{StaticResource PropertyStackPanelStyle}" />
-      <Style TargetType="sdk:Label" BasedOn="{StaticResource PropertyLabelStyle}" />
+      <Style TargetType="Label" BasedOn="{StaticResource PropertyLabelStyle}" />
     </StackPanel.Resources>
 
     <StackPanel Orientation="Vertical">
-      <sdk:Label Content="Source URL:" Target="{Binding ElementName=edBrowserURL}"/>
+      <Label Content="Source URL:" Target="{Binding ElementName=edBrowserURL}"/>
       <TextBox Name="edBrowserURL" Text="{Binding Source, Mode=TwoWay}" HorizontalAlignment="Stretch" />
     </StackPanel>
 

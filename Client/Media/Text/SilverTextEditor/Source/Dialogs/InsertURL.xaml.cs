@@ -1,9 +1,9 @@
 ﻿//Filename: InsertURL.xaml.cs
-//Version: 20130811
+//Version: 20150206
 
 using System;
 using System.Windows;
-using System.Windows.Controls;
+using WPF_Compatibility;
 
 namespace SilverTextEditor
 {

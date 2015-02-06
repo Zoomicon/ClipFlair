@@ -5,6 +5,16 @@ using System.Windows;
 
 namespace WPF_Compatibility
 {
+  #if SILVERLIGHT
+  [TemplateVisualStateAttribute(Name = "Invalid", GroupName = "ValidationStates")]
+  [TemplateVisualStateAttribute(Name = "Disabled", GroupName = "CommonStates")]
+  [TemplateVisualStateAttribute(Name = "Normal", GroupName = "CommonStates")]
+  [TemplateVisualStateAttribute(Name = "Valid", GroupName = "ValidationStates")]
+  [TemplateVisualStateAttribute(Name = "NotRequired", GroupName = "RequiredStates")]
+  [TemplateVisualStateAttribute(Name = "Required", GroupName = "RequiredStates")]
+  #else
+  [LocalizabilityAttribute(LocalizationCategory.Label)]
+  #endif
   public class Label : System.Windows.Controls.Label
   {
 

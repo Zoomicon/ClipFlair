@@ -1,7 +1,7 @@
 ﻿<!--
 Project: ClipFlair (http://ClipFlair.codeplex.com)
 Filename: ActivityWindow.xaml
-Version: 20141031
+Version: 20150204
 -->
 
 <clipflair:BaseWindow x:Class="ClipFlair.Windows.ActivityWindow"
@@ -9,7 +9,6 @@ Version: 20141031
   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
   xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-  xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk"
   xmlns:clipflair="clr-namespace:ClipFlair.Windows;assembly=ClipFlair.Windows.Base"
   xmlns:utils="clr-namespace:System.Windows.Controls;assembly=WPF_Compatibility"
   xmlns:options="clr-namespace:ClipFlair.Windows.Options"                                            
@@ -61,7 +60,7 @@ Version: 20141031
       <!-- don't bind any properties of ActivityContainer to our view, since ActivityWindow reuses the view of ActivityContainer -->
 
     <!-- Install -->
-    <sdk:Label
+    <Label
       Name="lblInstall" 
       Grid.Row="0" Grid.Column="0" 
       HorizontalAlignment="Right" VerticalAlignment="Bottom" 

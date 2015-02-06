@@ -1,15 +1,16 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: StartDialog.xaml.cs
-//Version: 20140705
+//Version: 20150206
 
 using System;
 using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
+using WPF_Compatibility;
 
 namespace ClipFlair.UI.Dialogs
 {
-  public partial class StartDialog : ChildWindow
+  public partial class StartDialog : ChildWindowExt
   {
     public StartDialog()
     {
@@ -39,7 +40,13 @@ namespace ClipFlair.UI.Dialogs
     }
     */
 
-    public static void Show(IClipFlairStartActions actions, EventHandler<CancelEventArgs> closingHandler = null)
+    public static void Show(IClipFlairStartActions actions, 
+      #if SILVERLIGHT
+      EventHandler<CancelEventArgs> closingHandler
+      #else
+      CancelEventHandler closingHandler
+      #endif
+      = null)
     {
       StartDialog prompt = new StartDialog();
       prompt.Title = "";

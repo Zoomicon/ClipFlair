@@ -1,15 +1,16 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: MessageDialog.xaml.cs
-//Version: 20130501
+//Version: 20150206
 
 using System;
 using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
+using WPF_Compatibility;
 
 namespace ClipFlair.UI.Dialogs
 {
-  public partial class MessageDialog : ChildWindow
+  public partial class MessageDialog : ChildWindowExt
   {
     public MessageDialog()
     {
@@ -30,7 +31,13 @@ namespace ClipFlair.UI.Dialogs
 
     #region Methods
 
-    public static void Show(string title, string message, EventHandler<CancelEventArgs> closingHandler = null)
+    public static void Show(string title, string message, 
+      #if SILVERLIGHT
+      EventHandler<CancelEventArgs> closingHandler
+      #else
+      CancelEventHandler closingHandler
+      #endif
+      = null)
     {
       MessageDialog prompt = new MessageDialog();
       prompt.Title = title;

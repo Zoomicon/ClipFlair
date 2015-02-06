@@ -58,7 +58,9 @@
     <Reference Include="System.Xaml" />
     <Reference Include="System.Xml" />
     <Reference Include="WindowsBase" />
-    <Reference Include="WPFToolkit, Version=3.5.40128.1, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="WPFToolkit, Version=3.5.40128.1, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Aliases>WPFToolkit</Aliases>
+    </Reference>
     <Reference Include="Xceed.Wpf.Toolkit, Version=2.3.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\Lib\Extended WPF Toolkit\Xceed.Wpf.Toolkit.dll</HintPath>
@@ -80,14 +82,17 @@
     <Compile Include="..\Source\BusyIndicator.cs">
       <Link>BusyIndicator.cs</Link>
     </Compile>
-    <Compile Include="..\Source\ChildWindowExt.cs">
-      <Link>ChildWindowExt.cs</Link>
+    <Compile Include="..\Source\ChildWindow.cs">
+      <Link>ChildWindow.cs</Link>
     </Compile>
     <Compile Include="..\Source\Clipper.cs">
       <Link>Clipper.cs</Link>
     </Compile>
     <Compile Include="..\Source\CoerceValueCallback.cs">
       <Link>CoerceValueCallback.cs</Link>
+    </Compile>
+    <Compile Include="..\Source\Expander.cs">
+      <Link>Expander.cs</Link>
     </Compile>
     <Compile Include="..\Source\FrameworkPropertyMetadata.cs">
       <Link>FrameworkPropertyMetadata.cs</Link>

@@ -85,14 +85,20 @@
     <Compile Include="..\Source\BusyIndicator.cs">
       <Link>BusyIndicator.cs</Link>
     </Compile>
-    <Compile Include="..\Source\ChildWindowExt.cs">
-      <Link>ChildWindowExt.cs</Link>
+    <Compile Include="..\Source\ChildWindow.cs">
+      <Link>ChildWindow.cs</Link>
     </Compile>
     <Compile Include="..\Source\Clipper.cs">
       <Link>Clipper.cs</Link>
     </Compile>
     <Compile Include="..\Source\CoerceValueCallback.cs">
       <Link>CoerceValueCallback.cs</Link>
+    </Compile>
+    <Compile Include="..\Source\DockPanel.cs">
+      <Link>DockPanel.cs</Link>
+    </Compile>
+    <Compile Include="..\Source\Expander.cs">
+      <Link>Expander.cs</Link>
     </Compile>
     <Compile Include="..\Source\FrameworkPropertyMetadata.cs">
       <Link>FrameworkPropertyMetadata.cs</Link>

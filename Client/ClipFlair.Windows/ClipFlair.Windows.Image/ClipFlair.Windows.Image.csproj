@@ -101,13 +101,17 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\ClipFlair.UI\ClipFlair.UI.Dialogs\ClipFlair.UI.Dialogs.Silverlight.csproj">
+    <ProjectReference Include="..\..\ClipFlair.UI\ClipFlair.UI.Dialogs\ClipFlair.UI.Dialogs.Silverlight\ClipFlair.UI.Dialogs.Silverlight.csproj">
       <Project>{c6900312-0545-4e5e-9fe0-2aef75674e29}</Project>
       <Name>ClipFlair.UI.Dialogs.Silverlight</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Helpers\Utils\Utils.Silverlight\Utils.Silverlight.csproj">
       <Project>{e784b6a1-a300-4571-a881-b15240eee377}</Project>
       <Name>Utils.Silverlight</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Helpers\WPF_Compatibility\WPF_Compatibility.Silverlight\WPF_Compatibility.Silverlight.csproj">
+      <Project>{7dc832cc-2d97-4dbc-b963-3f77c1f20730}</Project>
+      <Name>WPF_Compatibility.Silverlight</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Media\Browser\Browser.Silverlight\Browser.Silverlight.csproj">
       <Project>{c44eabe3-1be9-4689-a5f5-0f36fd8059de}</Project>

@@ -81,6 +81,7 @@
     </Compile>
     <Compile Include="..\Source\View\BaseOptions.xaml.cs">
       <Link>View\BaseOptions.xaml.cs</Link>
+      <DependentUpon>BaseOptions.xaml</DependentUpon>
     </Compile>
     <Compile Include="..\Source\View\BaseWindow.xaml.cs">
       <Link>View\BaseWindow.xaml.cs</Link>
@@ -143,6 +144,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="..\Source\View\BaseOptions.xaml">
+      <Link>View\BaseOptions.xaml</Link>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="..\Source\View\BaseWindow.xaml">
       <Link>View\BaseWindow.xaml</Link>
       <Generator>MSBuild:Compile</Generator>
@@ -150,6 +156,10 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\ClipFlair.UI\ClipFlair.UI.Dialogs\ClipFlair.UI.Dialogs.WPF\ClipFlair.UI.Dialogs.WPF.csproj">
+      <Project>{61047a3d-55a8-4b3c-8daf-4043060f0def}</Project>
+      <Name>ClipFlair.UI.Dialogs.WPF</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\ClipFlair.UI\ClipFlair.UI.Widgets\WPF\ClipFlair.UI.Widgets.WPF.csproj">
       <Project>{fcb42315-c45c-4dcc-995e-fbaeb6115b4f}</Project>
       <Name>ClipFlair.UI.Widgets.WPF</Name>
@@ -161,6 +171,10 @@
     <ProjectReference Include="..\..\..\Helpers\WPF_Compatibility\WPF_Compatibility.WPF\WPF_Compatibility.WPF.csproj">
       <Project>{dc154e89-74e8-4adc-95b5-0772ca254f71}</Project>
       <Name>WPF_Compatibility.WPF</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Media\Browser\Browser.WPF\Browser.WPF.csproj">
+      <Project>{72ea81e1-ac78-481b-b484-c38b4a2b4ecb}</Project>
+      <Name>Browser.WPF</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\..\ZUI\ColorPicker\WPF\ColorPicker.WPF\ColorPicker.WPF.csproj">
       <Project>{2d343c72-381b-4b90-8ad2-13b8b4d01cb9}</Project>

@@ -1,7 +1,7 @@
 ﻿<!--
 Project: ClipFlair (http://ClipFlair.codeplex.com)
 Filename: GalleryOptions.xaml
-Version: 20150203
+Version: 20150204
 -->
 
 <UserControl x:Class="ClipFlair.Windows.Options.GalleryOptions"
@@ -9,7 +9,6 @@ Version: 20150203
   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
   xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-  xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk"  
   mc:Ignorable="d"
   d:DesignHeight="270" d:DesignWidth="224"
   >
@@ -27,16 +26,16 @@ Version: 20150203
 
     <StackPanel.Resources>
       <Style TargetType="StackPanel" BasedOn="{StaticResource PropertyStackPanelStyle}" />
-      <Style TargetType="sdk:Label" BasedOn="{StaticResource PropertyLabelStyle}" />
+      <Style TargetType="Label" BasedOn="{StaticResource PropertyLabelStyle}" />
     </StackPanel.Resources>
 
     <StackPanel Orientation="Vertical">
-      <sdk:Label Content="Gallery Source (URL)" Target="{Binding ElementName=edGalleryURL}"/>
+      <Label Content="Gallery Source (URL)" Target="{Binding ElementName=edGalleryURL}"/>
       <TextBox Name="edGalleryURL" Text="{Binding Source, Mode=TwoWay}" HorizontalAlignment="Stretch" />
     </StackPanel>
 
     <StackPanel Orientation="Vertical">
-      <sdk:Label Content="Filter" Target="{Binding ElementName=edFilter}"/>
+      <Label Content="Filter" Target="{Binding ElementName=edFilter}"/>
       <TextBox Name="edFilter" Text="{Binding Filter, Mode=TwoWay}" HorizontalAlignment="Stretch" />
     </StackPanel>
     <!-- , Converter={StaticResource EncodedToDecodedStringConverter} -->

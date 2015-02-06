@@ -1,15 +1,16 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: ErrorDialog.xaml.cs
-//Version: 20140403
+//Version: 20150206
 
 using System;
 using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
+using WPF_Compatibility;
 
 namespace ClipFlair.UI.Dialogs
 {
-  public partial class ErrorDialog : ChildWindow
+  public partial class ErrorDialog : ChildWindowExt
   {
     public ErrorDialog()
     {
@@ -45,7 +46,13 @@ namespace ClipFlair.UI.Dialogs
 
     #region Methods
 
-    public static void Show(string title, Exception e, EventHandler<CancelEventArgs> closingHandler = null)
+    public static void Show(string title, Exception e, 
+      #if SILVERLIGHT
+      EventHandler<CancelEventArgs> closingHandler
+      #else
+      CancelEventHandler closingHandler
+      #endif 
+      = null)
     {
       ErrorDialog prompt = new ErrorDialog(e);
       prompt.Title = title;

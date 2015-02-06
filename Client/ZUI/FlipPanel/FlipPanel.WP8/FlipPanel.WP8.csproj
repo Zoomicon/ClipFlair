@@ -153,7 +153,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\Helpers\WPF_Compatibility\WPF_Compatibility.WP8\WPF_Compatibility.WP8.csproj">
-      <Project>{280683A7-E949-4E5F-87A3-D445C68A270F}</Project>
+      <Project>{280683a7-e949-4e5f-87a3-d445c68a270f}</Project>
       <Name>WPF_Compatibility.WP8</Name>
     </ProjectReference>
   </ItemGroup>

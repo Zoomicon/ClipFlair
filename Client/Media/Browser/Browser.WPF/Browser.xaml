@@ -1,7 +1,7 @@
 ﻿<!--
 Project: ClipFlair (http://ClipFlair.codeplex.com)
 Filename: Browser.xaml
-Version: 20141017
+Version: 20150204
 -->
   
 <UserControl x:Class="ClipFlair.Browser.Browser"
@@ -9,8 +9,6 @@ Version: 20141017
   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
   xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-  xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk"
-  xmlns:toolkit="http://schemas.microsoft.com/winfx/2006/xaml/presentation/toolkit"
   xmlns:img="clr-namespace:ImageButtons;assembly=ImageButtons"
   xmlns:local="clr-namespace:ClipFlair.Browser"
   mc:Ignorable="d"
@@ -18,52 +16,52 @@ Version: 20141017
   IsTabStop="True"
   >
 
-  <toolkit:DockPanel
+  <DockPanel
     x:Name="LayoutRoot"
     LastChildFill="True"
     >
 
     <!-- TOOLBAR -->
 
-    <toolkit:DockPanel
-      toolkit:DockPanel.Dock="Top"
+    <DockPanel
+      DockPanel.Dock="Top"
       LastChildFill="True"
       >
       <Button 
         x:Name="btnBack" 
         Content="&lt;"
-        toolkit:DockPanel.Dock="Left"
+        DockPanel.Dock="Left"
         Click="btnBack_Click" 
         Visibility="Collapsed"
         />
       <Button
         x:Name="btnForward"
         Content="&gt;"
-        toolkit:DockPanel.Dock="Left"
+        DockPanel.Dock="Left"
         Click="btnForward_Click"
         Visibility="Collapsed" />
-      <sdk:Label 
+      <Label 
         Content="Address: " 
         Target="{Binding ElementName=edAddress}"
-        toolkit:DockPanel.Dock="Left"
+        DockPanel.Dock="Left"
         />
       <img:ImageButton
         x:Name="btnGo"
         ToolTipService.ToolTip="Go"
         Image="Images/Go.png"
         ImageHover="Images/Go_hover.png"
-        toolkit:DockPanel.Dock="Right"
+        DockPanel.Dock="Right"
         Click="btnGo_Click"
         />
       <TextBox
         x:Name="edAddress"
         Text="{Binding Path=Source, RelativeSource={RelativeSource AncestorType=local:Browser}, Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=True}"
         />
-    </toolkit:DockPanel>
+    </DockPanel>
 
     <!-- BROWSER -->
 
-    <Grid toolkit:DockPanel.Dock="Top">
+    <Grid DockPanel.Dock="Top">
 
       <Button x:Name="btn"/> <!-- obscured by the following controls, only used for OnGotFocus of the UserControl to fire -->
           
@@ -76,12 +74,14 @@ Version: 20141017
         />
 
       <Rectangle x:Name="webOverlay" IsHitTestVisible="False"> <!-- letting pointer events get grabbed by WebBrowser or Button above -->
+        <!-- 
         <Rectangle.Fill>
           <WebBrowserBrush x:Name="webBrush" SourceName="web" />
         </Rectangle.Fill>
+        -->
       </Rectangle>
       
     </Grid>
 
-  </toolkit:DockPanel>
+  </DockPanel>
 </UserControl>

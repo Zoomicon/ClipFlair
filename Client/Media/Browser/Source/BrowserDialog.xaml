@@ -4,7 +4,7 @@ Filename: BrowserDialog.xaml
 Version: 20140616
 -->
 
-<controls:ChildWindow 
+<ChildWindowExt 
   x:Class="ClipFlair.UI.Dialogs.BrowserDialog"
   xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
@@ -18,4 +18,4 @@ Version: 20140616
 
   <web:Browser x:Name="browser" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
 
-</controls:ChildWindow>
+</ChildWindowExt>
