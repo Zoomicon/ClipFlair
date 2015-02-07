@@ -78,51 +78,67 @@
     <Reference Include="System.Windows.Browser" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ViewModel\ITextEditorProperties.cs" />
-    <Compile Include="ViewModel\ITextEditor2.cs" />
-    <Compile Include="ViewModel\TextEditorView2.cs" />
-    <Compile Include="ViewModel\ITextEditor.cs" />
-    <Compile Include="ViewModel\TextEditorDefaults.cs" />
-    <Compile Include="TextEditorWindowFactory.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ViewModel\TextEditorView.cs" />
-    <Compile Include="View\TextEditorOptions.xaml.cs">
-      <DependentUpon>TextEditorOptions.xaml</DependentUpon>
+    <Compile Include="..\Source\ViewModel\ITextEditorProperties.cs">
+      <Link>ViewModel\ITextEditorProperties.cs</Link>
     </Compile>
-    <Compile Include="View\TextEditorWindow.xaml.cs">
+    <Compile Include="..\Source\ViewModel\ITextEditor2.cs">
+      <Link>ViewModel\ITextEditor2.cs</Link>
+    </Compile>
+    <Compile Include="..\Source\ViewModel\TextEditorView2.cs">
+      <Link>ViewModel\TextEditorView2.cs</Link>
+    </Compile>
+    <Compile Include="..\Source\ViewModel\ITextEditor.cs">
+      <Link>ViewModel\ITextEditor.cs</Link>
+    </Compile>
+    <Compile Include="..\Source\ViewModel\TextEditorDefaults.cs">
+      <Link>ViewModel\TextEditorDefaults.cs</Link>
+    </Compile>
+    <Compile Include="..\Source\TextEditorWindowFactory.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="..\Source\ViewModel\TextEditorView.cs">
+      <Link>ViewModel\TextEditorView.cs</Link>
+    </Compile>
+    <Compile Include="..\Source\View\TextEditorOptions.xaml.cs">
+      <DependentUpon>TextEditorOptions.xaml</DependentUpon>
+      <Link>View\TextEditorOptions.xaml.cs</Link>
+    </Compile>
+    <Compile Include="..\Source\View\TextEditorWindow.xaml.cs">
       <DependentUpon>TextEditorWindow.xaml</DependentUpon>
+      <Link>View\TextEditorWindow.xaml.cs</Link>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Helpers\Utils\Utils.Silverlight\Utils.Silverlight.csproj">
+    <ProjectReference Include="..\..\..\Helpers\Utils\Utils.Silverlight\Utils.Silverlight.csproj">
       <Project>{e784b6a1-a300-4571-a881-b15240eee377}</Project>
       <Name>Utils.Silverlight</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Helpers\WPF_Compatibility\WPF_Compatibility.Silverlight\WPF_Compatibility.Silverlight.csproj">
+    <ProjectReference Include="..\..\..\Helpers\WPF_Compatibility\WPF_Compatibility.Silverlight\WPF_Compatibility.Silverlight.csproj">
       <Project>{7DC832CC-2D97-4DBC-B963-3F77C1F20730}</Project>
       <Name>WPF_Compatibility.Silverlight</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Media\Text\SilverTextEditor\SilverTextEditor.Silverlight\SilverTextEditor.Silverlight.csproj">
+    <ProjectReference Include="..\..\..\Media\Text\SilverTextEditor\SilverTextEditor.Silverlight\SilverTextEditor.Silverlight.csproj">
       <Project>{52f76969-e7cd-414f-8e98-4ff90ee48b05}</Project>
       <Name>SilverTextEditor.Silverlight</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\ZUI\FloatingWindow\FloatingWindow.Silverlight\FloatingWindow.Silverlight.csproj">
+    <ProjectReference Include="..\..\..\ZUI\FloatingWindow\FloatingWindow.Silverlight\FloatingWindow.Silverlight.csproj">
       <Project>{3f3d3c8c-9724-4531-a04d-b92049f64686}</Project>
       <Name>FloatingWindow.Silverlight</Name>
     </ProjectReference>
-    <ProjectReference Include="..\ClipFlair.Windows.Base\Silverlight\ClipFlair.Windows.Base.csproj">
+    <ProjectReference Include="..\..\ClipFlair.Windows.Base\Silverlight\ClipFlair.Windows.Base.csproj">
       <Project>{4ce71fc4-b8d9-4305-ae15-2f0501ca58b3}</Project>
       <Name>ClipFlair.Windows.Base</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Page Include="View\TextEditorOptions.xaml">
+    <Page Include="..\Source\View\TextEditorOptions.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+      <Link>View\TextEditorOptions.xaml</Link>
     </Page>
-    <Page Include="View\TextEditorWindow.xaml">
+    <Page Include="..\Source\View\TextEditorWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+      <Link>View\TextEditorWindow.xaml</Link>
     </Page>
   </ItemGroup>
   <ItemGroup>
@@ -138,7 +154,9 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Text.cd" />
+    <None Include="..\Text.cd">
+      <Link>Text.cd</Link>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Silverlight\$(SilverlightVersion)\Microsoft.Silverlight.CSharp.targets" />
   <ProjectExtensions>

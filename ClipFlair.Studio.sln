@@ -35,7 +35,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClipFlair.Windows.Media", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClipFlair.Windows.Captions", "Client\ClipFlair.Windows\ClipFlair.Windows.Captions\ClipFlair.Windows.Captions.csproj", "{38818955-5894-441C-9B80-69C38BEC9A76}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClipFlair.Windows.Text", "Client\ClipFlair.Windows\ClipFlair.Windows.Text\ClipFlair.Windows.Text.csproj", "{396DD176-BC1D-45CF-900E-4FC85B7398FC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClipFlair.Windows.Text.Silverlight", "Client\ClipFlair.Windows\ClipFlair.Windows.Text\Silverlight\ClipFlair.Windows.Text.Silverlight.csproj", "{396DD176-BC1D-45CF-900E-4FC85B7398FC}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClipFlair.Windows.Image", "Client\ClipFlair.Windows\ClipFlair.Windows.Image\ClipFlair.Windows.Image.csproj", "{AA7B9EC6-8A08-4300-827B-65A66818BAF7}"
 EndProject
@@ -166,6 +166,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Browser.Silverlight", "Client\Media\Browser\Browser.Silverlight\Browser.Silverlight.csproj", "{C44EABE3-1BE9-4689-A5F5-0F36FD8059DE}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Browser.WPF", "Client\Media\Browser\Browser.WPF\Browser.WPF.csproj", "{72EA81E1-AC78-481B-B484-C38B4A2B4ECB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClipFlair.Windows.Text.WPF", "Client\ClipFlair.Windows\ClipFlair.Windows.Text\WPF\ClipFlair.Windows.Text.WPF.csproj", "{9EAD5997-92B2-4630-9DB6-39A54332105A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -887,6 +889,18 @@ Global
 		{72EA81E1-AC78-481B-B484-C38B4A2B4ECB}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{72EA81E1-AC78-481B-B484-C38B4A2B4ECB}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{72EA81E1-AC78-481B-B484-C38B4A2B4ECB}.Release|x86.ActiveCfg = Release|Any CPU
+		{9EAD5997-92B2-4630-9DB6-39A54332105A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9EAD5997-92B2-4630-9DB6-39A54332105A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9EAD5997-92B2-4630-9DB6-39A54332105A}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{9EAD5997-92B2-4630-9DB6-39A54332105A}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{9EAD5997-92B2-4630-9DB6-39A54332105A}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{9EAD5997-92B2-4630-9DB6-39A54332105A}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{9EAD5997-92B2-4630-9DB6-39A54332105A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9EAD5997-92B2-4630-9DB6-39A54332105A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9EAD5997-92B2-4630-9DB6-39A54332105A}.Release|ARM.ActiveCfg = Release|Any CPU
+		{9EAD5997-92B2-4630-9DB6-39A54332105A}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{9EAD5997-92B2-4630-9DB6-39A54332105A}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{9EAD5997-92B2-4630-9DB6-39A54332105A}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -967,5 +981,6 @@ Global
 		{280683A7-E949-4E5F-87A3-D445C68A270F} = {1F2F3DA5-5A02-4C7B-BAEC-70DA57BC8D33}
 		{C44EABE3-1BE9-4689-A5F5-0F36FD8059DE} = {AB8CB11F-F724-4E42-BEED-74A778A61FC9}
 		{72EA81E1-AC78-481B-B484-C38B4A2B4ECB} = {C6BB80F7-1F8D-4CA5-BF76-D550AF74E312}
+		{9EAD5997-92B2-4630-9DB6-39A54332105A} = {65BF3DED-354F-4502-8329-BFF8299ADF8D}
 	EndGlobalSection
 EndGlobal

@@ -1,0 +1,143 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{9EAD5997-92B2-4630-9DB6-39A54332105A}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ClipFlair.Windows.Text</RootNamespace>
+    <AssemblyName>ClipFlair.Windows.Text</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <SupportedCultures>el,es,fr</SupportedCultures>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Ionic.Zip">
+      <HintPath>..\..\..\Lib\DotNetZip\Ionic.Zip.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Windows.Controls.Layout.Toolkit, Version=3.5.40128.1, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Xaml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\Source\TextEditorWindowFactory.cs">
+      <Link>TextEditorWindowFactory.cs</Link>
+    </Compile>
+    <Compile Include="..\Source\ViewModel\ITextEditor.cs">
+      <Link>ViewModel\ITextEditor.cs</Link>
+    </Compile>
+    <Compile Include="..\Source\ViewModel\ITextEditor2.cs">
+      <Link>ViewModel\ITextEditor2.cs</Link>
+    </Compile>
+    <Compile Include="..\Source\ViewModel\ITextEditorProperties.cs">
+      <Link>ViewModel\ITextEditorProperties.cs</Link>
+    </Compile>
+    <Compile Include="..\Source\ViewModel\TextEditorDefaults.cs">
+      <Link>ViewModel\TextEditorDefaults.cs</Link>
+    </Compile>
+    <Compile Include="..\Source\ViewModel\TextEditorView.cs">
+      <Link>ViewModel\TextEditorView.cs</Link>
+    </Compile>
+    <Compile Include="..\Source\ViewModel\TextEditorView2.cs">
+      <Link>ViewModel\TextEditorView2.cs</Link>
+    </Compile>
+    <Compile Include="..\Source\View\TextEditorWindow.xaml.cs">
+      <Link>View\TextEditorWindow.xaml.cs</Link>
+      <DependentUpon>TextEditorWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="..\Source\View\TextEditorOptions.xaml.cs">
+      <Link>View\TextEditorOptions.xaml.cs</Link>
+      <DependentUpon>TextEditorOptions.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\ClipFlair.UI\ClipFlair.UI.Dialogs\ClipFlair.UI.Dialogs.WPF\ClipFlair.UI.Dialogs.WPF.csproj">
+      <Project>{61047a3d-55a8-4b3c-8daf-4043060f0def}</Project>
+      <Name>ClipFlair.UI.Dialogs.WPF</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\ClipFlair.UI\ClipFlair.UI.Widgets\WPF\ClipFlair.UI.Widgets.WPF.csproj">
+      <Project>{fcb42315-c45c-4dcc-995e-fbaeb6115b4f}</Project>
+      <Name>ClipFlair.UI.Widgets.WPF</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Helpers\Utils\Utils.WPF\Utils.WPF.csproj">
+      <Project>{a1100da3-93dd-49b5-ba91-cf868051ca16}</Project>
+      <Name>Utils.WPF</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Helpers\WPF_Compatibility\WPF_Compatibility.WPF\WPF_Compatibility.WPF.csproj">
+      <Project>{dc154e89-74e8-4adc-95b5-0772ca254f71}</Project>
+      <Name>WPF_Compatibility.WPF</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Media\Browser\Browser.WPF\Browser.WPF.csproj">
+      <Project>{72ea81e1-ac78-481b-b484-c38b4a2b4ecb}</Project>
+      <Name>Browser.WPF</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Media\Text\SilverTextEditor\SilverTextEditor.WPF\SilverTextEditor.WPF.csproj">
+      <Project>{b6a8e771-f3d5-4c60-a9f4-e3d9f0071226}</Project>
+      <Name>SilverTextEditor.WPF</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\ZUI\FloatingWindow\FloatingWindow.WPF\FloatingWindow.WPF.csproj">
+      <Project>{7c67ac53-e3bc-4482-8dfb-4cbaa644d280}</Project>
+      <Name>FloatingWindow.WPF</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\ClipFlair.Windows.Base\WPF\ClipFlair.Windows.Base.WPF.csproj">
+      <Project>{bb3b5d31-2ae2-4e89-b0b2-42f3463559aa}</Project>
+      <Name>ClipFlair.Windows.Base.WPF</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <None Include="..\Text.cd">
+      <Link>Text.cd</Link>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="..\Source\View\TextEditorWindow.xaml">
+      <Link>View\TextEditorWindow.xaml</Link>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="..\Source\View\TextEditorOptions.xaml">
+      <Link>View\TextEditorOptions.xaml</Link>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
