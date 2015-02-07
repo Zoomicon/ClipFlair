@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LiveSmoothStreamingSettings>
+  <HeuristicsEngineSettings
+    FrameRateHeuristicsSuspendTrackIfMoreThanXPercentDroppedFrames="0.05"
+    FrameRateHeuristicsFlushBufferIfMoreThanXPercentDroppedFrames="0.05"
+    FrameRateHeuristicsSuspendNextLowestTrackIfMoreThanXPercentDroppedFrames="0.25"
+    FrameRateHeuristicsOverallHistorySize="16"
+    FrameRateHeuristicsTrackHistorySize="12"
+    FrameRateHeuristicsResetTrackHistoryAfterXSecondsOfInactivity="20"
+    SwitchingFrequencyChunksBeforeUpgrade="15"
+    SwitchingFrequencyStepSizeForUpgrade="1"
+    FrameRateHeuristicsMaxSuspensions="2"
+    />
+</LiveSmoothStreamingSettings>
+
+<!-- needs to be in root folder of application XAP (put in app's project and use Build Action: Content) -->
+<!-- based on: http://blog.axinom.com/2012/02/02/optimizing-iis-smooth-streaming-for-cpu-constrained-devices/ -->
