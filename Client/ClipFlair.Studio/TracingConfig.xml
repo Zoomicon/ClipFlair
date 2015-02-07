@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TracingConfiguration
+  enabled="false"
+  includeClassName="true"
+  includeDate="false"
+  includeMethodName="true"
+  includeThreadId="true"
+  includeTime="true"
+  includeTraceLevel="false"
+  includeMediaElementId="false">
+
+  <TraceAreas baseSet="all">
+    <!--
+    <remove area="HttpWebRequest" />
+    <remove area="HttpWebResponse" />
+    
+    <remove area="Test" />
+    -->
+    <remove area="MediaSampleTrickPlay"></remove>
+  </TraceAreas>
+
+  <TraceDestinations>
+    <add destination="Debug" />
+    <add destination="Console" />
+  </TraceDestinations>
+
+  <TraceLevels baseSet="all">
+    <remove level="Verbose" />
+    <remove level="FunctionEntry" />
+    <remove level="FunctionExit" />
+  </TraceLevels>
+
+</TracingConfiguration>
+
+<!-- needs to be in root folder of application XAP (put in app's project and use Build Action: Content) -->
+<!-- based on: https://social.msdn.microsoft.com/Forums/windowsapps/en-US/7e1fa914-c062-41de-8712-b50eca31b2d9/cannot-find-file-tracingconfigxml-in-the-application-xap-package?forum=wpdevelop -->

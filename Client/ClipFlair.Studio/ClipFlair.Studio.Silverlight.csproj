@@ -170,6 +170,8 @@
     <None Include="Properties\OutOfBrowserSettings.xml" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="TracingConfig.xml" />
+    <Content Include="Config.xml" />
     <Content Include="Images\clipflair_logo03_128x128.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
