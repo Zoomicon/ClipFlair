@@ -95,6 +95,9 @@
     <Compile Include="..\Source\ApplicationException.cs">
       <Link>ApplicationException.cs</Link>
     </Compile>
+    <Compile Include="..\Source\ApplicationExtensions.cs">
+      <Link>ApplicationExtensions.cs</Link>
+    </Compile>
     <Compile Include="..\Source\BooleanToVisibilityConverter.cs">
       <Link>BooleanToVisibilityConverter.cs</Link>
     </Compile>
@@ -106,6 +109,9 @@
     </Compile>
     <Compile Include="..\Source\IsolatedStorageSettings.cs">
       <Link>IsolatedStorageSettings.cs</Link>
+    </Compile>
+    <Compile Include="..\Source\Label.cs">
+      <Link>Label.cs</Link>
     </Compile>
     <Compile Include="..\Source\MouseButton.cs">
       <Link>MouseButton.cs</Link>
