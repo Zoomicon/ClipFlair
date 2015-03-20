@@ -1,7 +1,7 @@
 ﻿<!-- 
 Project: ClipFlair (http://ClipFlair.codeplex.com)
 Filename: Generic.xaml
-Version: 20150203
+Version: 20150320
 -->
   
 <ResourceDictionary
@@ -34,11 +34,12 @@ Version: 20150203
   
   <DataTemplate x:Key="StartTimeCellTemplate">
     <TextBlock Margin="4" Text="{Binding Begin, StringFormat='hh\\:mm\\:ss'}" />
-    <!-- can use .fff to always show all digits, don't use .fFF has bug at parsing new values -->
+    <!-- can use .fff to always show all digits, don't use .fFF - has bug at parsing new values -->
   </DataTemplate>
 
   <DataTemplate x:Key="StartTimeCellTemplate_msec">
-    <TextBlock Margin="4" Text="{Binding Begin, StringFormat='hh\\:mm\\:ss\\.FFF'}" /> <!-- can use .fff to always show all digits, don't use .fFF has bug at parsing new values -->
+    <TextBlock Margin="4" Text="{Binding Begin, StringFormat='hh\\:mm\\:ss\\.FFF'}" />
+    <!-- can use .fff to always show all digits, don't use .fFF - has bug at parsing new values -->
   </DataTemplate>
 
   <DataTemplate x:Key="StartTimeCellEditTemplate">
@@ -144,8 +145,15 @@ Version: 20150203
   <!-- Audio -->
   
   <DataTemplate x:Key="AudioCellTemplate">
-    <audio:AudioRecorderControl Margin="2" Audio="{Binding RelativeSource={RelativeSource AncestorType=FrameworkElement}, Path=DataContext.Audio, Mode=TwoWay}" /> <!-- AudioRecorderControl sets its DataContext to its ViewModel, so it doesn't inherit its parent's DataContext -->
-  </DataTemplate>
+    <audio:AudioRecorderControl
+      Margin="2" 
+      Audio="{Binding RelativeSource={RelativeSource AncestorType=FrameworkElement}, Path=DataContext.Audio, Mode=TwoWay}"
+      MaxPlaybackDuration="{Binding RelativeSource={RelativeSource AncestorType=FrameworkElement}, Path=DataContext.Duration, Mode=TwoWay}"
+      MaxRecordingDuration="{Binding RelativeSource={RelativeSource AncestorType=FrameworkElement}, Path=DataContext.Duration, Mode=TwoWay}"
+      > <!-- TODO: should also have properties to enable/disable the use of MaxPlaybackDuration and MaxRecordingDuration -->
+    </audio:AudioRecorderControl>
+    <!-- AudioRecorderControl sets its DataContext to its ViewModel, so it doesn't inherit its parent's DataContext -->
+  </DataTemplate> <!-- TODO: checkout why TwoWay connection mode is needed for MaxPlaybackDuration/MaxRecordingDuration (OneWay fails to update the respective AudioRecorderControl property) -->
 
   <!-- Comments -->
 

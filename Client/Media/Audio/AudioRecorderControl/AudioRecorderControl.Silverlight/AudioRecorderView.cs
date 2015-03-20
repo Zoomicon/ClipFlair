@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: AudioRecorderView.cs
-//Version: 20150105
+//Version: 20150320
 
 using AudioLib;
 using System;
@@ -18,8 +18,16 @@ namespace ClipFlair.AudioRecorder
 
     #region --- Constants ---
 
+    public const string MARKER_MAX_PLAYBACK_POSITION = "Playback Limit";
+
     public const string PROPERTY_BUSY = "Busy";
     public const string PROPERTY_AUDIO = "Audio";
+    public const string PROPERTY_MAX_PLAYBACK_DURATION = "MaxPlaybackDuration";
+    public const string PROPERTY_MAX_RECORDING_DURATION = "MaxRecordingDuration";
+
+    const double DEFAULT_VOLUME = 1.0; //set playback to highest volume (1.0) - MediaElement's default is 0.5
+
+    #region Messages
 
     const string MSG_NO_AUDIO = "No access to audio device";
     const string MSG_RECORD_OR_LOAD = "Press Record or Load audio file";
@@ -38,19 +46,25 @@ namespace ClipFlair.AudioRecorder
     const string MSG_SAVE_FAILED = "Could not save: ";
     const string MSG_NO_AUDIO_TO_SAVE = "No audio available to save";
 
-    const double DEFAULT_VOLUME = 1.0; //set playback to highest volume (1.0) - MediaElement's default is 0.5
+    #endregion
 
     #endregion
 
     #region --- Fields ---
 
     private bool busy = false;
+    
     private AudioStream _audio;
     private MediaStreamSource mediaStreamSource; //WaveMediaStreamSource or MP3MediaStreamSource
-    private MediaElement player; //= null //Note: we shouldn't instantiate a MediaElement in code and not add it to a visual tree, better do it in XAML and then pass it to this class
+
+    private MediaElement player; //= null //Note: we shouldn't instantiate a MediaElement in code without adding it to a visual tree (won't play audio), better do the instantiation directly in XAML and then pass it to this class
+    
     private MemoryAudioSink _sink;
     private CaptureSource _captureSource;
-  
+
+    private TimelineMarker _maxPlaybackMarker = new TimelineMarker() { Text = MARKER_MAX_PLAYBACK_POSITION };    
+    private TimeSpan _maxRecordingDuration;    
+
     #endregion
 
     #region --- Initialiation ---
@@ -160,6 +174,32 @@ namespace ClipFlair.AudioRecorder
       }
     }
 
+    public TimeSpan MaxPlaybackDuration
+    {
+      get { return _maxPlaybackMarker.Time; }
+      set
+      {
+        if (_maxPlaybackMarker.Time != value)
+        {
+          _maxPlaybackMarker.Time = value;
+          RaisePropertyChanged(PROPERTY_MAX_PLAYBACK_DURATION);
+        }
+      }
+    }
+
+    public TimeSpan MaxRecordingDuration
+    {
+      get { return _maxRecordingDuration; }
+      set
+      {
+        if (_maxRecordingDuration != value)
+        {
+          _maxRecordingDuration = value; //TODO: need to check the recording position while recording to stop (could also crop existing audio if it is in WAV form [instead of MP3] in memory)
+          RaisePropertyChanged(PROPERTY_MAX_RECORDING_DURATION);
+        }
+      }
+    }
+
     public double Volume
     {
       get { return player.Volume; }
@@ -173,18 +213,20 @@ namespace ClipFlair.AudioRecorder
       {
         if (player != null)
         {
-          player.MediaOpened -= MediaElement_MediaOpened;
-          player.MediaFailed -= MediaElement_MediaFailed;
-          player.MediaEnded -= MediaElement_MediaEnded;
+          player.MediaOpened -= Player_MediaOpened;
+          player.MediaFailed -= Player_MediaFailed;
+          player.MediaEnded -= Player_MediaEnded;
+          player.MarkerReached -= Player_MarkerReached;
         }
 
         player = value;
 
         if (player != null)
         {
-          player.MediaOpened += MediaElement_MediaOpened;
-          player.MediaFailed += MediaElement_MediaFailed;
-          player.MediaEnded += MediaElement_MediaEnded;
+          player.MediaOpened += Player_MediaOpened;
+          player.MediaFailed += Player_MediaFailed;
+          player.MediaEnded += Player_MediaEnded;
+          player.MarkerReached += Player_MarkerReached;
 
           player.AutoPlay = false;
           player.PlaybackRate = 1.0;
@@ -354,6 +396,7 @@ namespace ClipFlair.AudioRecorder
       }
       finally
       {
+        //do not call "PlayCommandUncheck" here, will do infinite loop, since it results in "StopPlayback" getting called
         Busy = false;
       }
     }
@@ -484,20 +527,27 @@ namespace ClipFlair.AudioRecorder
 
     #region MediaElement Events
 
-    protected void MediaElement_MediaOpened(object sender, RoutedEventArgs e)
+    protected void Player_MediaOpened(object sender, RoutedEventArgs e)
     {
       PlayCommand.IsEnabled = true;
+      player.Markers.Add(_maxPlaybackMarker); //any existing markers have already been removed by MediaElement before raising this event
     }
 
-    protected void MediaElement_MediaFailed(object sender, RoutedEventArgs e)
+    protected void Player_MediaFailed(object sender, RoutedEventArgs e)
     {
       PlayCommandUncheck();
       PlayCommand.IsEnabled = false;
-    }
+    } //do not remove media marker here, since MediaOpened is called once after recording or loading the audio, but this one is called at each fail of playback
 
-    protected void MediaElement_MediaEnded(object sender, RoutedEventArgs e)
+    protected void Player_MediaEnded(object sender, RoutedEventArgs e)
     {
       PlayCommandUncheck(); //depress play button //don't talk to ToggleButton directly
+    } //do not remove media marker here, since MediaOpened is called once after recording or loading the audio, but this one is called at each end of playback
+
+    void Player_MarkerReached(object sender, TimelineMarkerRoutedEventArgs e)
+    {
+      if (e.Marker.Text.Equals(MARKER_MAX_PLAYBACK_POSITION)) //do not use e.Marker == _maxPlaybackMarker, seems the marker we give is wrapped or cloned by other marker before raising this event
+        PlayCommandUncheck(); //this also results in "StopPlayback" getting called
     }
 
     #endregion
