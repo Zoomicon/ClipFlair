@@ -50,6 +50,9 @@
     <Compile Include="..\Source\ApplicationException.cs">
       <Link>ApplicationException.cs</Link>
     </Compile>
+    <Compile Include="..\Source\ApplicationExtensions.cs">
+      <Link>ApplicationExtensions.cs</Link>
+    </Compile>
     <Compile Include="..\Source\BooleanToVisibilityConverter.cs">
       <Link>BooleanToVisibilityConverter.cs</Link>
     </Compile>

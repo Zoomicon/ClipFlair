@@ -1,13 +1,13 @@
 ﻿//Filename: WPF_DesignerProperties
-//Version: 20130708
+//Version: 20150209
 //Author: George Birbilis <birbilis@kagi.com>
 
 using System.ComponentModel;
+using System.Windows.Controls;
 
 namespace WPF_Compatibility
 {
 
-  using System.Windows.Controls;
   public static class WPF_DesignerProperties
   {
 
