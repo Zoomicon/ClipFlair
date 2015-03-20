@@ -1,10 +1,11 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: AudioRecorderControl.xaml.cs
-//Version: 20141118
+//Version: 20150320
 
 //TODO: fix so that when ToggleCommand is unchecked the respective toggle button listens for respective event and unchecks too
 
 using AudioLib;
+using System;
 using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
@@ -60,9 +61,19 @@ namespace ClipFlair.AudioRecorder
       switch (e.PropertyName)
       {
         case null: //multiple (not specified) properties have changed, consider all as changed
+          Audio = View.Audio;
+          MaxPlaybackDuration = View.MaxPlaybackDuration;
+          MaxRecordingDuration = View.MaxRecordingDuration;
+          break;
         case AudioRecorderView.PROPERTY_AUDIO:
           Audio = View.Audio;
-          break; 
+          break;
+        case AudioRecorderView.PROPERTY_MAX_PLAYBACK_DURATION:
+          MaxPlaybackDuration = View.MaxPlaybackDuration;
+          break;
+        case AudioRecorderView.PROPERTY_MAX_RECORDING_DURATION:
+          MaxRecordingDuration = View.MaxRecordingDuration;
+          break;
       }
     }
 
@@ -74,7 +85,7 @@ namespace ClipFlair.AudioRecorder
     /// Audio Dependency Property
     /// </summary>
     public static readonly DependencyProperty AudioProperty =
-        DependencyProperty.Register("Audio", typeof(AudioStream), typeof(AudioRecorderControl),
+        DependencyProperty.Register(AudioRecorderView.PROPERTY_AUDIO, typeof(AudioStream), typeof(AudioRecorderControl),
             new FrameworkPropertyMetadata(null,
                 new PropertyChangedCallback(OnAudioChanged)));
 
@@ -104,6 +115,86 @@ namespace ClipFlair.AudioRecorder
     protected virtual void OnAudioChanged(AudioStream oldAudio, AudioStream newAudio)
     {
       View.Audio = newAudio;
+    }
+
+    #endregion
+
+    #region MaxPlaybackDuration
+
+    /// <summary>
+    /// MaxPlaybackDuration Dependency Property
+    /// </summary>
+    public static readonly DependencyProperty MaxPlaybackDurationProperty =
+        DependencyProperty.Register(AudioRecorderView.PROPERTY_MAX_PLAYBACK_DURATION, typeof(TimeSpan), typeof(AudioRecorderControl),
+            new FrameworkPropertyMetadata(TimeSpan.Zero,
+                new PropertyChangedCallback(OnMaxPlaybackDurationChanged)));
+
+    /// <summary>
+    /// Gets or sets the MaxPlaybackDuration property.
+    /// </summary>
+    public TimeSpan MaxPlaybackDuration
+    {
+      get { return (TimeSpan)GetValue(MaxPlaybackDurationProperty); }
+      set { SetValue(MaxPlaybackDurationProperty, value); }
+    }
+
+    /// <summary>
+    /// Handles changes to the MaxPlaybackDuration property.
+    /// </summary>
+    private static void OnMaxPlaybackDurationChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    {
+      AudioRecorderControl target = (AudioRecorderControl)d;
+      TimeSpan oldMaxPlaybackDuration = (TimeSpan)e.OldValue;
+      TimeSpan newMaxPlaybackDuration = target.MaxPlaybackDuration;
+      target.OnMaxPlaybackDurationChanged(oldMaxPlaybackDuration, newMaxPlaybackDuration);
+    }
+
+    /// <summary>
+    /// Provides derived classes an opportunity to handle changes to the MaxPlaybackDuration property.
+    /// </summary>
+    protected virtual void OnMaxPlaybackDurationChanged(TimeSpan oldMaxPlaybackDuration, TimeSpan newMaxPlaybackDuration)
+    {
+      View.MaxPlaybackDuration = newMaxPlaybackDuration;
+    }
+
+    #endregion
+
+    #region MaxRecordingDuration
+
+    /// <summary>
+    /// MaxRecordingDuration Dependency Property
+    /// </summary>
+    public static readonly DependencyProperty MaxRecordingDurationProperty =
+        DependencyProperty.Register(AudioRecorderView.PROPERTY_MAX_RECORDING_DURATION, typeof(TimeSpan), typeof(AudioRecorderControl),
+            new FrameworkPropertyMetadata(TimeSpan.Zero,
+                new PropertyChangedCallback(OnMaxRecordingDurationChanged)));
+
+    /// <summary>
+    /// Gets or sets the MaxRecordingDuration property.
+    /// </summary>
+    public TimeSpan MaxRecordingDuration
+    {
+      get { return (TimeSpan)GetValue(MaxRecordingDurationProperty); }
+      set { SetValue(MaxRecordingDurationProperty, value); }
+    }
+
+    /// <summary>
+    /// Handles changes to the MaxRecordingDuration property.
+    /// </summary>
+    private static void OnMaxRecordingDurationChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    {
+      AudioRecorderControl target = (AudioRecorderControl)d;
+      TimeSpan oldMaxRecordingDuration = (TimeSpan)e.OldValue;
+      TimeSpan newMaxRecordingDuration = target.MaxRecordingDuration;
+      target.OnMaxRecordingDurationChanged(oldMaxRecordingDuration, newMaxRecordingDuration);
+    }
+
+    /// <summary>
+    /// Provides derived classes an opportunity to handle changes to the MaxRecordingDuration property.
+    /// </summary>
+    protected virtual void OnMaxRecordingDurationChanged(TimeSpan oldMaxRecordingDuration, TimeSpan newMaxRecordingDuration)
+    {
+      View.MaxRecordingDuration = newMaxRecordingDuration;
     }
 
     #endregion
