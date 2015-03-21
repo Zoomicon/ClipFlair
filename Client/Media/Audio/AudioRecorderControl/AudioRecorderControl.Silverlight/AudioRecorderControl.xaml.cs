@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: AudioRecorderControl.xaml.cs
-//Version: 20150320
+//Version: 20150321
 
 //TODO: fix so that when ToggleCommand is unchecked the respective toggle button listens for respective event and unchecks too
 
@@ -64,6 +64,8 @@ namespace ClipFlair.AudioRecorder
           Audio = View.Audio;
           MaxPlaybackDuration = View.MaxPlaybackDuration;
           MaxRecordingDuration = View.MaxRecordingDuration;
+          LimitPlayback = View.LimitPlayback;
+          LimitRecording = View.LimitRecording;
           break;
         case AudioRecorderView.PROPERTY_AUDIO:
           Audio = View.Audio;
@@ -73,6 +75,12 @@ namespace ClipFlair.AudioRecorder
           break;
         case AudioRecorderView.PROPERTY_MAX_RECORDING_DURATION:
           MaxRecordingDuration = View.MaxRecordingDuration;
+          break;
+        case AudioRecorderView.PROPERTY_LIMIT_PLAYBACK:
+          LimitPlayback = View.LimitPlayback;
+          break;
+        case AudioRecorderView.PROPERTY_LIMIT_RECORDING:
+          LimitRecording = View.LimitRecording;
           break;
       }
     }
@@ -119,6 +127,86 @@ namespace ClipFlair.AudioRecorder
 
     #endregion
 
+    #region LimitPlayback
+
+    /// <summary>
+    /// LimitPlayback Dependency Property
+    /// </summary>
+    public static readonly DependencyProperty LimitPlaybackProperty =
+        DependencyProperty.Register(AudioRecorderView.PROPERTY_LIMIT_PLAYBACK, typeof(bool), typeof(AudioRecorderControl),
+            new FrameworkPropertyMetadata(AudioRecorderView.DEFAULT_LIMIT_PLAYBACK,
+                new PropertyChangedCallback(OnLimitPlaybackChanged)));
+
+    /// <summary>
+    /// Gets or sets the LimitPlayback property.
+    /// </summary>
+    public bool LimitPlayback
+    {
+      get { return (bool)GetValue(LimitPlaybackProperty); }
+      set { SetValue(LimitPlaybackProperty, value); }
+    }
+
+    /// <summary>
+    /// Handles changes to the LimitPlayback property.
+    /// </summary>
+    private static void OnLimitPlaybackChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    {
+      AudioRecorderControl target = (AudioRecorderControl)d;
+      bool oldLimitPlayback = (bool)e.OldValue;
+      bool newLimitPlayback = target.LimitPlayback;
+      target.OnLimitPlaybackChanged(oldLimitPlayback, newLimitPlayback);
+    }
+
+    /// <summary>
+    /// Provides derived classes an opportunity to handle changes to the LimitPlayback property.
+    /// </summary>
+    protected virtual void OnLimitPlaybackChanged(bool oldLimitPlayback, bool newLimitPlayback)
+    {
+      View.LimitPlayback = newLimitPlayback;
+    }
+
+    #endregion
+
+    #region LimitRecording
+
+    /// <summary>
+    /// LimitRecording Dependency Property
+    /// </summary>
+    public static readonly DependencyProperty LimitRecordingProperty =
+        DependencyProperty.Register(AudioRecorderView.PROPERTY_LIMIT_RECORDING, typeof(bool), typeof(AudioRecorderControl),
+            new FrameworkPropertyMetadata(AudioRecorderView.DEFAULT_LIMIT_RECORDING,
+                new PropertyChangedCallback(OnLimitRecordingChanged)));
+
+    /// <summary>
+    /// Gets or sets the LimitRecording property.
+    /// </summary>
+    public bool LimitRecording
+    {
+      get { return (bool)GetValue(LimitRecordingProperty); }
+      set { SetValue(LimitRecordingProperty, value); }
+    }
+
+    /// <summary>
+    /// Handles changes to the LimitRecording property.
+    /// </summary>
+    private static void OnLimitRecordingChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    {
+      AudioRecorderControl target = (AudioRecorderControl)d;
+      bool oldLimitRecording = (bool)e.OldValue;
+      bool newLimitRecording = target.LimitRecording;
+      target.OnLimitRecordingChanged(oldLimitRecording, newLimitRecording);
+    }
+
+    /// <summary>
+    /// Provides derived classes an opportunity to handle changes to the LimitRecording property.
+    /// </summary>
+    protected virtual void OnLimitRecordingChanged(bool oldLimitRecording, bool newLimitRecording)
+    {
+      View.LimitRecording = newLimitRecording;
+    }
+
+    #endregion
+
     #region MaxPlaybackDuration
 
     /// <summary>
@@ -126,7 +214,7 @@ namespace ClipFlair.AudioRecorder
     /// </summary>
     public static readonly DependencyProperty MaxPlaybackDurationProperty =
         DependencyProperty.Register(AudioRecorderView.PROPERTY_MAX_PLAYBACK_DURATION, typeof(TimeSpan), typeof(AudioRecorderControl),
-            new FrameworkPropertyMetadata(TimeSpan.Zero,
+            new FrameworkPropertyMetadata(AudioRecorderView.DEFAULT_MAX_PLAYBACK_DURATION,
                 new PropertyChangedCallback(OnMaxPlaybackDurationChanged)));
 
     /// <summary>
@@ -166,7 +254,7 @@ namespace ClipFlair.AudioRecorder
     /// </summary>
     public static readonly DependencyProperty MaxRecordingDurationProperty =
         DependencyProperty.Register(AudioRecorderView.PROPERTY_MAX_RECORDING_DURATION, typeof(TimeSpan), typeof(AudioRecorderControl),
-            new FrameworkPropertyMetadata(TimeSpan.Zero,
+            new FrameworkPropertyMetadata(AudioRecorderView.DEFAULT_MAX_RECORDING_DURATION,
                 new PropertyChangedCallback(OnMaxRecordingDurationChanged)));
 
     /// <summary>

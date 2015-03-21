@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: AudioRecorderView.cs
-//Version: 20150320
+//Version: 20150321
 
 using AudioLib;
 using System;
@@ -22,10 +22,16 @@ namespace ClipFlair.AudioRecorder
 
     public const string PROPERTY_BUSY = "Busy";
     public const string PROPERTY_AUDIO = "Audio";
+    public const string PROPERTY_LIMIT_PLAYBACK = "LimitPlayback";
+    public const string PROPERTY_LIMIT_RECORDING = "LimitRecording";
     public const string PROPERTY_MAX_PLAYBACK_DURATION = "MaxPlaybackDuration";
     public const string PROPERTY_MAX_RECORDING_DURATION = "MaxRecordingDuration";
 
-    const double DEFAULT_VOLUME = 1.0; //set playback to highest volume (1.0) - MediaElement's default is 0.5
+    public const double DEFAULT_VOLUME = 1.0; //set playback to highest volume (1.0) - MediaElement's default is 0.5
+    public const bool DEFAULT_LIMIT_PLAYBACK = false; //do not use true here since default max playback duration is 00:00
+    public const bool DEFAULT_LIMIT_RECORDING = false; //do not use true here since default max recording duration is 00:00
+    public static readonly TimeSpan DEFAULT_MAX_PLAYBACK_DURATION = TimeSpan.Zero;
+    public static readonly TimeSpan DEFAULT_MAX_RECORDING_DURATION = TimeSpan.Zero;
 
     #region Messages
 
@@ -52,7 +58,7 @@ namespace ClipFlair.AudioRecorder
 
     #region --- Fields ---
 
-    private bool busy = false;
+    private bool busy; //= false;
     
     private AudioStream _audio;
     private MediaStreamSource mediaStreamSource; //WaveMediaStreamSource or MP3MediaStreamSource
@@ -62,8 +68,10 @@ namespace ClipFlair.AudioRecorder
     private MemoryAudioSink _sink;
     private CaptureSource _captureSource;
 
-    private TimelineMarker _maxPlaybackMarker = new TimelineMarker() { Text = MARKER_MAX_PLAYBACK_POSITION };    
-    private TimeSpan _maxRecordingDuration;    
+    private bool _limitPlayback = DEFAULT_LIMIT_PLAYBACK;
+    private bool _limitRecording = DEFAULT_LIMIT_RECORDING;
+    private TimelineMarker _maxPlaybackMarker = new TimelineMarker() { Text = MARKER_MAX_PLAYBACK_POSITION, Time=DEFAULT_MAX_PLAYBACK_DURATION };    
+    private TimeSpan _maxRecordingDuration = DEFAULT_MAX_RECORDING_DURATION;    
 
     #endregion
 
@@ -174,6 +182,32 @@ namespace ClipFlair.AudioRecorder
       }
     }
 
+    public bool LimitPlayback
+    {
+      get { return _limitPlayback; }
+      set
+      {
+        if (_limitPlayback != value)
+        {
+          _limitPlayback = value;
+          RaisePropertyChanged(PROPERTY_LIMIT_PLAYBACK);
+        }
+      }
+    }
+
+    public bool LimitRecording
+    {
+      get { return _limitRecording; }
+      set
+      {
+        if (_limitRecording != value)
+        {
+          _limitRecording = value;
+          RaisePropertyChanged(PROPERTY_LIMIT_RECORDING);
+        }
+      }
+    }
+
     public TimeSpan MaxPlaybackDuration
     {
       get { return _maxPlaybackMarker.Time; }
@@ -181,7 +215,7 @@ namespace ClipFlair.AudioRecorder
       {
         if (_maxPlaybackMarker.Time != value)
         {
-          _maxPlaybackMarker.Time = value;
+          _maxPlaybackMarker.Time = value; //we don't need to remove/add again the marker
           RaisePropertyChanged(PROPERTY_MAX_PLAYBACK_DURATION);
         }
       }
@@ -194,7 +228,7 @@ namespace ClipFlair.AudioRecorder
       {
         if (_maxRecordingDuration != value)
         {
-          _maxRecordingDuration = value; //TODO: need to check the recording position while recording to stop (could also crop existing audio if it is in WAV form [instead of MP3] in memory)
+          _maxRecordingDuration = value; //TODO: need to check the recording position while recording to stop if LimitRecording (could also crop existing audio if it is in WAV form [instead of MP3] in memory)
           RaisePropertyChanged(PROPERTY_MAX_RECORDING_DURATION);
         }
       }
@@ -546,7 +580,7 @@ namespace ClipFlair.AudioRecorder
 
     void Player_MarkerReached(object sender, TimelineMarkerRoutedEventArgs e)
     {
-      if (e.Marker.Text.Equals(MARKER_MAX_PLAYBACK_POSITION)) //do not use e.Marker == _maxPlaybackMarker, seems the marker we give is wrapped or cloned by other marker before raising this event
+      if (_limitPlayback && e.Marker.Text.Equals(MARKER_MAX_PLAYBACK_POSITION)) //do not use e.Marker == _maxPlaybackMarker, seems the marker we give is wrapped or cloned by other marker before raising this event
         PlayCommandUncheck(); //this also results in "StopPlayback" getting called
     }
 
