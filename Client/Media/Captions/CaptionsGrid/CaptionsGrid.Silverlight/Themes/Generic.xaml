@@ -1,7 +1,7 @@
 ﻿<!-- 
 Project: ClipFlair (http://ClipFlair.codeplex.com)
 Filename: Generic.xaml
-Version: 20150320
+Version: 20150321
 -->
   
 <ResourceDictionary
@@ -148,6 +148,8 @@ Version: 20150320
     <audio:AudioRecorderControl
       Margin="2" 
       Audio="{Binding RelativeSource={RelativeSource AncestorType=FrameworkElement}, Path=DataContext.Audio, Mode=TwoWay}"
+      LimitPlayback="True"
+      LimitRecording="True"
       MaxPlaybackDuration="{Binding RelativeSource={RelativeSource AncestorType=FrameworkElement}, Path=DataContext.Duration, Mode=TwoWay}"
       MaxRecordingDuration="{Binding RelativeSource={RelativeSource AncestorType=FrameworkElement}, Path=DataContext.Duration, Mode=TwoWay}"
       > <!-- TODO: should also have properties to enable/disable the use of MaxPlaybackDuration and MaxRecordingDuration -->
