@@ -1,7 +1,7 @@
 ﻿<!--
 Project: ClipFlair (http://ClipFlair.codeplex.com)
 Filename: CaptionsOptions.xaml
-Version: 20150204
+Version: 20150321
 -->
 
 <UserControl x:Class="ClipFlair.Windows.Options.CaptionsOptions"
@@ -10,7 +10,7 @@ Version: 20150204
   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
   xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
   mc:Ignorable="d"
-  d:DesignHeight="470" d:DesignWidth="324"
+  d:DesignHeight="540" d:DesignWidth="324"
   >
 
   <UserControl.Resources>
@@ -121,6 +121,16 @@ Version: 20150204
       <Label Content="Save invisible audio" Target="{Binding ElementName=cbSaveInvisibleAudio}"/>
     </StackPanel>
     -->
+
+    <StackPanel Orientation="Horizontal">
+      <CheckBox Name="cbLimitAudioPlayback" IsChecked="{Binding LimitAudioPlayback, Mode=TwoWay}" />
+      <Label Content="Limit audio playback" Target="{Binding ElementName=cbLimitAudioPlayback}"/>
+    </StackPanel>
+
+    <StackPanel Orientation="Horizontal">
+      <CheckBox Name="cbLimitAudioRecording" IsChecked="{Binding LimitAudioRecording, Mode=TwoWay}" />
+      <Label Content="Limit audio recording" Target="{Binding ElementName=cbLimitAudioRecording}"/>
+    </StackPanel>
 
   </StackPanel>
   

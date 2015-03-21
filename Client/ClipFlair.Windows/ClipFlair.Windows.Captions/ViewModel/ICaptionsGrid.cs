@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: ICaptionsGrid.cs
-//Version: 20140722
+//Version: 20150321
 
 using Microsoft.SilverlightMediaFramework.Core.Accessibility.Captions;
 
@@ -27,8 +27,9 @@ namespace ClipFlair.Windows.Views
     bool AudioVisible { get; set; }
     bool CommentsVisible { get; set; }
     bool CommentsAudioVisible { get; set; } //20140707
-
     //bool SaveInvisibleAudio { get; set; } //20140206
+    bool LimitAudioPlayback { get; set; } //20150321
+    bool LimitAudioRecording { get; set; } //20150321
   }
 
 }

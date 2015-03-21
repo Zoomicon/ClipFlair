@@ -1,7 +1,7 @@
 ﻿<!--
 Project: ClipFlair (http://ClipFlair.codeplex.com)
 Filename: CaptionsWindow.xaml
-Version: 20141031
+Version: 20150321
 -->
   
 <clipflair:BaseWindow x:Class="ClipFlair.Windows.CaptionsWindow"
@@ -51,6 +51,8 @@ Version: 20141031
     CommentsVisible="{Binding CommentsVisible, Mode=TwoWay}"
     CommentsAudioVisible="{Binding CommentsAudioVisible, Mode=TwoWay}"
     RTL="{Binding RTL, Mode=TwoWay}"
+    LimitAudioPlayback="{Binding LimitAudioPlayback, Mode=TwoWay}"
+    LimitAudioRecording="{Binding LimitAudioRecording, Mode=TwoWay}"
     /> <!-- Source="{Binding Path=Source, Mode=TwoWay}" -->
 
   <!--</clipflair:BaseWindow.FrontContent>-->

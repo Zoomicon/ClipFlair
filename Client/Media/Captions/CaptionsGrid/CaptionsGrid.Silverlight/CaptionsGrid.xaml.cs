@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: CaptionsGrid.xaml.cs
-//Version: 20140803
+//Version: 20150321
 
 using ClipFlair.AudioRecorder;
 using ClipFlair.CaptionsGrid.Resources;
@@ -29,6 +29,9 @@ namespace ClipFlair.CaptionsGrid
     public const string EXPORT_FILTER = "Subtitle files (SRT, TTS, FAB, ENC)|*.srt;*.tts;*.fab;*.enc|SRT files|*.srt|FAB files|*.fab|Adobe Encore files|*.enc|TTS files|*.tts";
 
     private TimeSpan CaptionDefaultDuration = new TimeSpan(0, 0, 2); //TODO: see LVS for the best value there
+
+    public const bool DEFAULT_LIMIT_AUDIO_PLAYBACK = true;
+    public const bool DEFAULT_LIMIT_AUDIO_RECORDING = true;
 
     #endregion
 
@@ -781,6 +784,46 @@ namespace ClipFlair.CaptionsGrid
       btnRTL.Content = new Uri(newRTL ? "/CaptionsGrid;component/Images/RTL.png" : "/CaptionsGrid;component/Images/LTR.png", UriKind.RelativeOrAbsolute).CreateImage();
 
       ReturnFocus();
+    }
+
+    #endregion
+
+    #region LimitAudioPlayback
+
+    /// <summary>
+    /// LimitAudioPlayback Dependency Property
+    /// </summary>
+    public static readonly DependencyProperty LimitAudioPlaybackProperty =
+        DependencyProperty.Register("LimitAudioPlayback", typeof(bool), typeof(CaptionsGrid),
+            new FrameworkPropertyMetadata(DEFAULT_LIMIT_AUDIO_PLAYBACK));
+
+    /// <summary>
+    /// Gets or sets the LimitAudioPlayback property.
+    /// </summary>
+    public bool LimitAudioPlayback
+    {
+      get { return (bool)GetValue(LimitAudioPlaybackProperty); }
+      set { SetValue(LimitAudioPlaybackProperty, value); }
+    }
+
+    #endregion
+
+    #region LimitAudioRecording
+
+    /// <summary>
+    /// LimitAudioRecording Dependency Property
+    /// </summary>
+    public static readonly DependencyProperty LimitAudioRecordingProperty =
+        DependencyProperty.Register("LimitAudioRecording", typeof(bool), typeof(CaptionsGrid),
+            new FrameworkPropertyMetadata(DEFAULT_LIMIT_AUDIO_RECORDING));
+
+    /// <summary>
+    /// Gets or sets the LimitAudioRecording property.
+    /// </summary>
+    public bool LimitAudioRecording
+    {
+      get { return (bool)GetValue(LimitAudioRecordingProperty); }
+      set { SetValue(LimitAudioRecordingProperty, value); }
     }
 
     #endregion
