@@ -87,7 +87,7 @@ Version: 20150321
     <!-- <TextBox Text="{Binding Role, Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=True}" /> -->
     <sdk:AutoCompleteBox
       Text="{Binding Role, Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=True}" 
-      ItemsSource="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=captions:CaptionsGrid}, Path=Roles}" 
+      ItemsSource="{Binding RelativeSource={RelativeSource AncestorType=captions:CaptionsGrid}, Path=Roles}" 
       IsTextCompletionEnabled="True"
       MinimumPrefixLength="0" 
       MinimumPopulateDelay="0"
@@ -148,14 +148,14 @@ Version: 20150321
     <audio:AudioRecorderControl
       Margin="2" 
       Audio="{Binding RelativeSource={RelativeSource AncestorType=FrameworkElement}, Path=DataContext.Audio, Mode=TwoWay}"
-      LimitPlayback="True"
-      LimitRecording="True"
+      LimitPlayback="{Binding RelativeSource={RelativeSource AncestorType=captions:CaptionsGrid}, Path=LimitAudioPlayback}"
+      LimitRecording="{Binding RelativeSource={RelativeSource AncestorType=captions:CaptionsGrid}, Path=LimitAudioRecording}"
       MaxPlaybackDuration="{Binding RelativeSource={RelativeSource AncestorType=FrameworkElement}, Path=DataContext.Duration, Mode=TwoWay}"
       MaxRecordingDuration="{Binding RelativeSource={RelativeSource AncestorType=FrameworkElement}, Path=DataContext.Duration, Mode=TwoWay}"
-      > <!-- TODO: should also have properties to enable/disable the use of MaxPlaybackDuration and MaxRecordingDuration -->
+      >
     </audio:AudioRecorderControl>
     <!-- AudioRecorderControl sets its DataContext to its ViewModel, so it doesn't inherit its parent's DataContext -->
-  </DataTemplate> <!-- TODO: checkout why TwoWay connection mode is needed for MaxPlaybackDuration/MaxRecordingDuration (OneWay fails to update the respective AudioRecorderControl property) -->
+  </DataTemplate> <!-- TODO: checkout why TwoWay connection mode is needed for MaxPlaybackDuration/MaxRecordingDuration (OneWay fails to update the respective AudioRecorderControl property), PROBABLY RELATED TO HOW DATACONTEXT IS USED -->
 
   <!-- Comments -->
 
