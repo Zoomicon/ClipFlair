@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: AudioRecorderControl.xaml.cs
-//Version: 20150321
+//Version: 20150322
 
 //TODO: fix so that when ToggleCommand is unchecked the respective toggle button listens for respective event and unchecks too
 
@@ -10,12 +10,22 @@ using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Media;
 
 namespace ClipFlair.AudioRecorder
 {
   public partial class AudioRecorderControl : UserControl
   {
- 
+
+    #region --- Constants ---
+
+    public static readonly Brush BACKGROUND_EXCESS_DURATION = new SolidColorBrush(Colors.Red);
+    public static readonly Brush BACKGROUND_NORMAL_DURATION = new SolidColorBrush(Colors.Transparent);
+
+    #endregion
+
+    #region --- Initialization ---
+
     public AudioRecorderControl()
     {
       View = new AudioRecorderView(); //must do first
@@ -32,7 +42,9 @@ namespace ClipFlair.AudioRecorder
       //Unloaded += (s, e) => View = null; //release property change event handlers
     }
 
-    #region Properties
+    #endregion
+
+    #region --- Properties ---
 
     #region View
 
@@ -81,6 +93,9 @@ namespace ClipFlair.AudioRecorder
           break;
         case AudioRecorderView.PROPERTY_LIMIT_RECORDING:
           LimitRecording = View.LimitRecording;
+          break;
+        case AudioRecorderView.PROPERTY_MAX_PLAYBACK_DURATION_EXCEEDED:
+          LayoutRoot.Background = View.MaxPlaybackDurationExceeded ? BACKGROUND_EXCESS_DURATION : BACKGROUND_NORMAL_DURATION;
           break;
       }
     }
@@ -289,7 +304,7 @@ namespace ClipFlair.AudioRecorder
 
     #endregion
 
-    #region Events
+    #region --- Events ---
 
     private void MouseLeftButtonDownHandler(object sender, MouseButtonEventArgs e)
     {
