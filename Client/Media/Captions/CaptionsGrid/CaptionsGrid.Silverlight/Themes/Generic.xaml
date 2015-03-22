@@ -1,7 +1,7 @@
 ﻿<!-- 
 Project: ClipFlair (http://ClipFlair.codeplex.com)
 Filename: Generic.xaml
-Version: 20150321
+Version: 20150322
 -->
   
 <ResourceDictionary
@@ -148,8 +148,8 @@ Version: 20150321
     <audio:AudioRecorderControl
       Margin="2" 
       Audio="{Binding RelativeSource={RelativeSource AncestorType=FrameworkElement}, Path=DataContext.Audio, Mode=TwoWay}"
-      LimitPlayback="{Binding RelativeSource={RelativeSource AncestorType=captions:CaptionsGrid}, Path=LimitAudioPlayback}"
-      LimitRecording="{Binding RelativeSource={RelativeSource AncestorType=captions:CaptionsGrid}, Path=LimitAudioRecording}"
+      LimitPlayback="{Binding RelativeSource={RelativeSource AncestorType=captions:CaptionsGrid}, Path=LimitAudioPlayback, Mode=TwoWay}"
+      LimitRecording="{Binding RelativeSource={RelativeSource AncestorType=captions:CaptionsGrid}, Path=LimitAudioRecording, Mode=TwoWay}"
       MaxPlaybackDuration="{Binding RelativeSource={RelativeSource AncestorType=FrameworkElement}, Path=DataContext.Duration, Mode=TwoWay}"
       MaxRecordingDuration="{Binding RelativeSource={RelativeSource AncestorType=FrameworkElement}, Path=DataContext.Duration, Mode=TwoWay}"
       >

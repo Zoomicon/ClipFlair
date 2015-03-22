@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: CaptionsGrid.xaml.cs
-//Version: 20150321
+//Version: 20150322
 
 using ClipFlair.AudioRecorder;
 using ClipFlair.CaptionsGrid.Resources;
@@ -32,6 +32,9 @@ namespace ClipFlair.CaptionsGrid
 
     public const bool DEFAULT_LIMIT_AUDIO_PLAYBACK = true;
     public const bool DEFAULT_LIMIT_AUDIO_RECORDING = true;
+
+    public const string PROPERTY_LIMIT_AUDIO_PLAYBACK = "LimitAudioPlayback";
+    public const string PROPERTY_LIMIT_AUDIO_RECORDING = "LimitAudioRecording";
 
     #endregion
 
@@ -794,7 +797,7 @@ namespace ClipFlair.CaptionsGrid
     /// LimitAudioPlayback Dependency Property
     /// </summary>
     public static readonly DependencyProperty LimitAudioPlaybackProperty =
-        DependencyProperty.Register("LimitAudioPlayback", typeof(bool), typeof(CaptionsGrid),
+        DependencyProperty.Register(PROPERTY_LIMIT_AUDIO_PLAYBACK, typeof(bool), typeof(CaptionsGrid),
             new FrameworkPropertyMetadata(DEFAULT_LIMIT_AUDIO_PLAYBACK));
 
     /// <summary>
@@ -814,7 +817,7 @@ namespace ClipFlair.CaptionsGrid
     /// LimitAudioRecording Dependency Property
     /// </summary>
     public static readonly DependencyProperty LimitAudioRecordingProperty =
-        DependencyProperty.Register("LimitAudioRecording", typeof(bool), typeof(CaptionsGrid),
+        DependencyProperty.Register(PROPERTY_LIMIT_AUDIO_RECORDING, typeof(bool), typeof(CaptionsGrid),
             new FrameworkPropertyMetadata(DEFAULT_LIMIT_AUDIO_RECORDING));
 
     /// <summary>

@@ -9,6 +9,7 @@ using System.IO;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
+using System.Windows.Threading;
 
 namespace ClipFlair.AudioRecorder
 {
@@ -71,7 +72,8 @@ namespace ClipFlair.AudioRecorder
     private bool _limitPlayback = DEFAULT_LIMIT_PLAYBACK;
     private bool _limitRecording = DEFAULT_LIMIT_RECORDING;
     private TimelineMarker _maxPlaybackMarker = new TimelineMarker() { Text = MARKER_MAX_PLAYBACK_POSITION, Time=DEFAULT_MAX_PLAYBACK_DURATION };    
-    private TimeSpan _maxRecordingDuration = DEFAULT_MAX_RECORDING_DURATION;    
+    private TimeSpan _maxRecordingDuration = DEFAULT_MAX_RECORDING_DURATION;
+    private DispatcherTimer _maxRecordingTimer = new DispatcherTimer();
 
     #endregion
 
@@ -79,6 +81,7 @@ namespace ClipFlair.AudioRecorder
 
     public AudioRecorderView()
     {
+      _maxRecordingTimer.Tick += _maxRecordingTimer_Tick;
       InitCommands();
       Status = MSG_RECORD_OR_LOAD;
     }
@@ -305,8 +308,8 @@ namespace ClipFlair.AudioRecorder
         RecordCommand.IsChecked = false; //depress recording toggle button //don't talk to ToggleButton directly
         Reset();
         Status = MSG_NO_AUDIO;
-        MessageBox.Show(Status); //TODO: find parent window
         Busy = false;
+        MessageBox.Show(Status); //TODO: find parent window
         return;
       }
 
@@ -324,7 +327,16 @@ namespace ClipFlair.AudioRecorder
 
         _sink = new MemoryAudioSink(); //TODO: should we dispose previous sink if any? (esp. if it uses a backing memory stream)
         _sink.CaptureSource = _captureSource;
+
         _captureSource.Start(); //assuming captureSource is stopped
+  
+        if (LimitRecording)
+        {
+          _maxRecordingTimer.Start(); //do after _captureSource.Start, since that one takes some time to be executed
+          _maxRecordingTimer.Interval = _maxRecordingDuration;
+        }
+        else
+          _maxRecordingTimer.Stop();
 
         Status = MSG_RECORDING; //keep recording message since we can't depress the button (TODO: may add Uncheck method to ToggleCommand)
 
@@ -335,7 +347,7 @@ namespace ClipFlair.AudioRecorder
       }
       catch (Exception e)
       {
-        RecordCommand.IsChecked = false; //depress recording toggle button //don't talk to ToggleButton directly
+        RecordCommand.IsChecked = false; //depress recording toggle button //don't talk to ToggleButton directly //TODO: see why this fails to depress the Rec button (e.g. when trying to record something which alredy recording)
         Reset();
         Status = MSG_RECORD_FAILED + e.Message;
         Busy = false;
@@ -346,16 +358,18 @@ namespace ClipFlair.AudioRecorder
 
     public void StopRecording()
     {
+      _maxRecordingTimer.Stop();
+
       if ((_captureSource == null) || (_captureSource.State != CaptureState.Started))
       {
         Busy = false;
         return;
       }
 
-      _captureSource.Stop();
-
       try
       {
+        _captureSource.Stop();
+
         MemoryStream recordedWAV = new MemoryStream(WavManager.WAV_HEADER_SIZE + (int)_sink.BackingStream.Length); //setting initial capacity of MemoryStream to avoid having it resize multiple times (default is 0 if not given)
         WavManager.SavePcmToWav(_sink.BackingStream, recordedWAV, new AudioFormatEx(_sink.CurrentFormat));
         _sink.CloseStream(); //close the backing stream, will be reallocated at next recording
@@ -571,13 +585,20 @@ namespace ClipFlair.AudioRecorder
       PlayCommand.IsChecked = false; //depress playback toggle button //don't talk to ToggleButton directly
     } //do not remove media marker here, since MediaOpened is called once after recording or loading the audio, but this one is called at each end of playback
 
-    void Player_MarkerReached(object sender, TimelineMarkerRoutedEventArgs e)
+    protected void Player_MarkerReached(object sender, TimelineMarkerRoutedEventArgs e)
     {
       if (_limitPlayback && e.Marker.Text.Equals(MARKER_MAX_PLAYBACK_POSITION)) //do not use e.Marker == _maxPlaybackMarker, seems the marker we give is wrapped or cloned by other marker before raising this event
         PlayCommand.IsChecked = false; //depress playback toggle button //don't talk to ToggleButton directly //this also results in "StopPlayback" getting called
     }
 
     #endregion
+
+    protected void _maxRecordingTimer_Tick(object sender, EventArgs e)
+    {
+      RecordCommand.IsChecked = false; //depress recording toggle button //don't talk to ToggleButton directly     
+      StopRecording(); //this also does _maxRecordingTimer.Stop() and Busy=false
+    }
+
 
     #region INotifyPropertyChanged
 
@@ -592,7 +613,6 @@ namespace ClipFlair.AudioRecorder
     #endregion
 
     #endregion
-
 
   }
 }
