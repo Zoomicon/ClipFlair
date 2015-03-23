@@ -1,7 +1,7 @@
 ﻿<!--
 Project: ClipFlair (http://ClipFlair.codeplex.com)
 Filename: CaptionsOptions.xaml
-Version: 20150321
+Version: 20150323
 -->
 
 <UserControl x:Class="ClipFlair.Windows.Options.CaptionsOptions"
@@ -130,6 +130,11 @@ Version: 20150321
     <StackPanel Orientation="Horizontal">
       <CheckBox Name="cbLimitAudioRecording" IsChecked="{Binding LimitAudioRecording, Mode=TwoWay}" />
       <Label Content="Limit audio recording" Target="{Binding ElementName=cbLimitAudioRecording}"/>
+    </StackPanel>
+
+    <StackPanel Orientation="Horizontal">
+      <CheckBox Name="cbDrawAudioDuration" IsChecked="{Binding DrawAudioDuration, Mode=TwoWay}" />
+      <Label Content="Draw audio duration" Target="{Binding ElementName=cbDrawAudioDuration}"/>
     </StackPanel>
 
   </StackPanel>

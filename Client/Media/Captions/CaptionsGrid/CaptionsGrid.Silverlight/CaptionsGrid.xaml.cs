@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: CaptionsGrid.xaml.cs
-//Version: 20150322
+//Version: 20150323
 
 using ClipFlair.AudioRecorder;
 using ClipFlair.CaptionsGrid.Resources;
@@ -32,9 +32,11 @@ namespace ClipFlair.CaptionsGrid
 
     public const bool DEFAULT_LIMIT_AUDIO_PLAYBACK = true;
     public const bool DEFAULT_LIMIT_AUDIO_RECORDING = true;
+    public const bool DEFAULT_DRAW_AUDIO_DURATION = true;
 
     public const string PROPERTY_LIMIT_AUDIO_PLAYBACK = "LimitAudioPlayback";
     public const string PROPERTY_LIMIT_AUDIO_RECORDING = "LimitAudioRecording";
+    public const string PROPERTY_DRAW_AUDIO_DURATION = "DrawAudioDuration";
 
     #endregion
 
@@ -827,6 +829,26 @@ namespace ClipFlair.CaptionsGrid
     {
       get { return (bool)GetValue(LimitAudioRecordingProperty); }
       set { SetValue(LimitAudioRecordingProperty, value); }
+    }
+
+    #endregion
+
+    #region DrawAudioDuration
+
+    /// <summary>
+    /// DrawAudioDuration Dependency Property
+    /// </summary>
+    public static readonly DependencyProperty DrawAudioDurationProperty =
+        DependencyProperty.Register(PROPERTY_DRAW_AUDIO_DURATION, typeof(bool), typeof(CaptionsGrid),
+            new FrameworkPropertyMetadata(DEFAULT_DRAW_AUDIO_DURATION));
+
+    /// <summary>
+    /// Gets or sets the DrawAudioDuration property.
+    /// </summary>
+    public bool DrawAudioDuration
+    {
+      get { return (bool)GetValue(DrawAudioDurationProperty); }
+      set { SetValue(DrawAudioDurationProperty, value); }
     }
 
     #endregion

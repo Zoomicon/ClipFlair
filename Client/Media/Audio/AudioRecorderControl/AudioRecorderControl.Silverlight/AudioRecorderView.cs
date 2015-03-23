@@ -28,12 +28,14 @@ namespace ClipFlair.AudioRecorder
     public const string PROPERTY_MAX_PLAYBACK_DURATION = "MaxPlaybackDuration";
     public const string PROPERTY_MAX_RECORDING_DURATION = "MaxRecordingDuration";
     public const string PROPERTY_DURATION = "Duration";
+    public const string PROPERTY_DRAW_DURATION = "DrawDuration";
 
     public const double DEFAULT_VOLUME = 1.0; //set playback to highest volume (1.0) - MediaElement's default is 0.5
     public const bool DEFAULT_LIMIT_PLAYBACK = false; //do not use true here since default max playback duration is 00:00
     public const bool DEFAULT_LIMIT_RECORDING = false; //do not use true here since default max recording duration is 00:00
     public static readonly TimeSpan DEFAULT_MAX_PLAYBACK_DURATION = TimeSpan.Zero;
     public static readonly TimeSpan DEFAULT_MAX_RECORDING_DURATION = TimeSpan.Zero;
+    public const bool DEFAULT_DRAW_DURATION = false; //do not use true here since default max playback duration is 00:00
 
     #region Messages
 
@@ -75,6 +77,7 @@ namespace ClipFlair.AudioRecorder
     private TimelineMarker _maxPlaybackMarker = new TimelineMarker() { Text = MARKER_MAX_PLAYBACK_POSITION, Time=DEFAULT_MAX_PLAYBACK_DURATION };    
     private TimeSpan _maxRecordingDuration = DEFAULT_MAX_RECORDING_DURATION;
     private DispatcherTimer _maxRecordingTimer = new DispatcherTimer();
+    private bool _drawDuration = DEFAULT_DRAW_DURATION;
 
     #endregion
 
@@ -247,6 +250,19 @@ namespace ClipFlair.AudioRecorder
         {
           _maxRecordingDuration = value;
           RaisePropertyChanged(PROPERTY_MAX_RECORDING_DURATION);
+        }
+      }
+    }
+
+    public bool DrawDuration
+    {
+      get { return _drawDuration; }
+      set
+      {
+        if (_drawDuration != value)
+        {
+          _drawDuration = value;
+          RaisePropertyChanged(PROPERTY_DRAW_DURATION);
         }
       }
     }
