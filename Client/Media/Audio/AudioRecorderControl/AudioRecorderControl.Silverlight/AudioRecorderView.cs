@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: AudioRecorderView.cs
-//Version: 20150322
+//Version: 20150323
 
 using AudioLib;
 using System;
@@ -27,7 +27,7 @@ namespace ClipFlair.AudioRecorder
     public const string PROPERTY_LIMIT_RECORDING = "LimitRecording";
     public const string PROPERTY_MAX_PLAYBACK_DURATION = "MaxPlaybackDuration";
     public const string PROPERTY_MAX_RECORDING_DURATION = "MaxRecordingDuration";
-    public const string PROPERTY_MAX_PLAYBACK_DURATION_EXCEEDED = "MaxPlaybackDurationExceeded";
+    public const string PROPERTY_DURATION = "Duration";
 
     public const double DEFAULT_VOLUME = 1.0; //set playback to highest volume (1.0) - MediaElement's default is 0.5
     public const bool DEFAULT_LIMIT_PLAYBACK = false; //do not use true here since default max playback duration is 00:00
@@ -215,12 +215,12 @@ namespace ClipFlair.AudioRecorder
       }
     }
 
-    public bool MaxPlaybackDurationExceeded
+    public TimeSpan Duration
     {
       get
       {
         Duration duration = player.NaturalDuration;
-        return (duration.HasTimeSpan) && (duration.TimeSpan > MaxPlaybackDuration);
+        return (duration.HasTimeSpan)? duration.TimeSpan : TimeSpan.Zero;
       }
 
     }
@@ -234,7 +234,6 @@ namespace ClipFlair.AudioRecorder
         {
           _maxPlaybackMarker.Time = value; //we don't need to remove/add again the marker
           RaisePropertyChanged(PROPERTY_MAX_PLAYBACK_DURATION);
-          CheckMaxPlaybackDuration();
         }
       }
     }
@@ -293,11 +292,6 @@ namespace ClipFlair.AudioRecorder
     #endregion
 
     #region --- Methods ---
-
-    protected void CheckMaxPlaybackDuration()
-    {
-      RaisePropertyChanged(PROPERTY_MAX_PLAYBACK_DURATION_EXCEEDED); //always throw the property change (called when MaxPlaybackDuration or NaturalDuration [available when at MediaOpened event] changes)
-    }
 
     public void Reset()
     {
@@ -589,7 +583,7 @@ namespace ClipFlair.AudioRecorder
     {
       PlayCommand.IsEnabled = true;
       player.Markers.Add(_maxPlaybackMarker); //any existing markers have already been removed by MediaElement before raising this event
-      CheckMaxPlaybackDuration();
+      RaisePropertyChanged(PROPERTY_DURATION); //MediaElement.NaturalDuration.TimeSpan is available after MediaOpened event is raised
     }
 
     protected void Player_MediaFailed(object sender, RoutedEventArgs e)
