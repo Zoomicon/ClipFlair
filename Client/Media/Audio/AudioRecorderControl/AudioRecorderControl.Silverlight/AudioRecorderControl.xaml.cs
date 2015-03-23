@@ -1,8 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: AudioRecorderControl.xaml.cs
-//Version: 20150322
-
-//TODO: fix so that when ToggleCommand is unchecked the respective toggle button listens for respective event and unchecks too
+//Version: 20150323
 
 using AudioLib;
 using System;
@@ -17,12 +15,12 @@ namespace ClipFlair.AudioRecorder
   public partial class AudioRecorderControl : UserControl
   {
 
-    #region --- Constants ---
-
-    public static readonly Brush BACKGROUND_EXCESS_DURATION = new SolidColorBrush(Colors.Red);
-    public static readonly Brush BACKGROUND_NORMAL_DURATION = new SolidColorBrush(Colors.Transparent);
-
-    #endregion
+     #region --- Constants ---
+ 
+     public static readonly Brush COLOR_EXCESS_DURATION = new SolidColorBrush(Colors.Red);
+     public static readonly Brush COLOR_NORMAL_DURATION = new SolidColorBrush(Colors.Green);
+ 
+     #endregion
 
     #region --- Initialization ---
 
@@ -82,8 +80,12 @@ namespace ClipFlair.AudioRecorder
         case AudioRecorderView.PROPERTY_AUDIO:
           Audio = View.Audio;
           break;
+        case AudioRecorderView.PROPERTY_DURATION:
+          CheckDurationLimit();
+          break;
         case AudioRecorderView.PROPERTY_MAX_PLAYBACK_DURATION:
           MaxPlaybackDuration = View.MaxPlaybackDuration;
+          CheckDurationLimit();
           break;
         case AudioRecorderView.PROPERTY_MAX_RECORDING_DURATION:
           MaxRecordingDuration = View.MaxRecordingDuration;
@@ -93,9 +95,6 @@ namespace ClipFlair.AudioRecorder
           break;
         case AudioRecorderView.PROPERTY_LIMIT_RECORDING:
           LimitRecording = View.LimitRecording;
-          break;
-        case AudioRecorderView.PROPERTY_MAX_PLAYBACK_DURATION_EXCEEDED:
-          LayoutRoot.Background = View.MaxPlaybackDurationExceeded ? BACKGROUND_EXCESS_DURATION : BACKGROUND_NORMAL_DURATION;
           break;
       }
     }
@@ -301,6 +300,20 @@ namespace ClipFlair.AudioRecorder
     }
 
     #endregion
+
+    #endregion
+
+    #region --- Methods ---
+
+    protected void CheckDurationLimit()
+    {
+      TimeSpan duration = View.Duration;
+      TimeSpan maxDuration = View.MaxPlaybackDuration;
+      progress.Minimum = 0;
+      progress.Maximum = maxDuration.TotalMilliseconds;
+      progress.Value = duration.TotalMilliseconds;
+      progress.Foreground = (duration > maxDuration) ? COLOR_EXCESS_DURATION : COLOR_NORMAL_DURATION;
+    }
 
     #endregion
 
