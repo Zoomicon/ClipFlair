@@ -76,6 +76,7 @@ namespace ClipFlair.AudioRecorder
           MaxRecordingDuration = View.MaxRecordingDuration;
           LimitPlayback = View.LimitPlayback;
           LimitRecording = View.LimitRecording;
+          DrawDuration = View.DrawDuration;
           break;
         case AudioRecorderView.PROPERTY_AUDIO:
           Audio = View.Audio;
@@ -95,6 +96,9 @@ namespace ClipFlair.AudioRecorder
           break;
         case AudioRecorderView.PROPERTY_LIMIT_RECORDING:
           LimitRecording = View.LimitRecording;
+          break;
+        case AudioRecorderView.PROPERTY_DRAW_DURATION:
+          DrawDuration = View.DrawDuration;
           break;
       }
     }
@@ -297,6 +301,46 @@ namespace ClipFlair.AudioRecorder
     protected virtual void OnMaxRecordingDurationChanged(TimeSpan oldMaxRecordingDuration, TimeSpan newMaxRecordingDuration)
     {
       View.MaxRecordingDuration = newMaxRecordingDuration;
+    }
+
+    #endregion
+
+    #region DrawDuration
+
+    /// <summary>
+    /// DrawDuration Dependency Property
+    /// </summary>
+    public static readonly DependencyProperty DrawDurationProperty =
+        DependencyProperty.Register(AudioRecorderView.PROPERTY_DRAW_DURATION, typeof(bool), typeof(AudioRecorderControl),
+            new FrameworkPropertyMetadata(AudioRecorderView.DEFAULT_DRAW_DURATION,
+                new PropertyChangedCallback(OnDrawDurationChanged)));
+
+    /// <summary>
+    /// Gets or sets the DrawDuration property.
+    /// </summary>
+    public bool DrawDuration
+    {
+      get { return (bool)GetValue(DrawDurationProperty); }
+      set { SetValue(DrawDurationProperty, value); }
+    }
+
+    /// <summary>
+    /// Handles changes to the DrawDuration property.
+    /// </summary>
+    private static void OnDrawDurationChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    {
+      AudioRecorderControl target = (AudioRecorderControl)d;
+      bool oldDrawDuration = (bool)e.OldValue;
+      bool newDrawDuration = target.DrawDuration;
+      target.OnDrawDurationChanged(oldDrawDuration, newDrawDuration);
+    }
+
+    /// <summary>
+    /// Provides derived classes an opportunity to handle changes to the DrawDuration property.
+    /// </summary>
+    protected virtual void OnDrawDurationChanged(bool oldDrawDuration, bool newDrawDuration)
+    {
+      View.DrawDuration = newDrawDuration;
     }
 
     #endregion

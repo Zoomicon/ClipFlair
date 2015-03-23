@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: CaptionsGridView.cs
-//Version: 20150321
+//Version: 20150323
 
 using Microsoft.SilverlightMediaFramework.Core.Accessibility.Captions;
 
@@ -42,6 +42,7 @@ namespace ClipFlair.Windows.Views
     //private bool saveInvisibleAudio;
     private bool limitAudioPlayback;
     private bool limitAudioRecording;
+    private bool drawAudioDuration;
 
     #endregion
 
@@ -349,6 +350,22 @@ namespace ClipFlair.Windows.Views
         {
           limitAudioRecording = value;
           RaisePropertyChanged(ICaptionsGridProperties.PropertyLimitAudioRecording);
+          Dirty = true;
+        }
+      }
+    }
+
+    [DataMember]
+    [DefaultValue(CaptionsGridDefaults.DefaultDrawAudioDuration)]
+    public bool DrawAudioDuration
+    {
+      get { return drawAudioDuration; }
+      set
+      {
+        if (value != drawAudioDuration)
+        {
+          drawAudioDuration = value;
+          RaisePropertyChanged(ICaptionsGridProperties.PropertyDrawAudioDuration);
           Dirty = true;
         }
       }

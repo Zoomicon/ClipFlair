@@ -33,13 +33,13 @@ Version: 20150323
       x:Name="progress"
       Foreground="Green"
       Background="LightGray"
-      Visibility="Visible"
       Height="5"
       Margin="0,-1"
       BorderThickness="0"
       BorderBrush="Transparent"
       DockPanel.Dock="Bottom"
-      /> <!-- ADD BOOLEANTOVISIBILITY CONVERTER AND PROPERTY TO CONTROL IF IT DRAWS THE DURATION -->
+      Visibility="{Binding Path=DrawDuration, Converter={StaticResource BooleanToVisibilityConverter}}"
+      />
     
     <StackPanel Orientation="Horizontal">
     

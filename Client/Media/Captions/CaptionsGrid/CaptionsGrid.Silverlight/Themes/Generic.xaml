@@ -1,7 +1,7 @@
 ﻿<!-- 
 Project: ClipFlair (http://ClipFlair.codeplex.com)
 Filename: Generic.xaml
-Version: 20150322
+Version: 20150323
 -->
   
 <ResourceDictionary
@@ -152,6 +152,7 @@ Version: 20150322
       LimitRecording="{Binding RelativeSource={RelativeSource AncestorType=captions:CaptionsGrid}, Path=LimitAudioRecording, Mode=TwoWay}"
       MaxPlaybackDuration="{Binding RelativeSource={RelativeSource AncestorType=FrameworkElement}, Path=DataContext.Duration, Mode=TwoWay}"
       MaxRecordingDuration="{Binding RelativeSource={RelativeSource AncestorType=FrameworkElement}, Path=DataContext.Duration, Mode=TwoWay}"
+      DrawDuration="{Binding RelativeSource={RelativeSource AncestorType=captions:CaptionsGrid}, Path=DrawAudioDuration, Mode=TwoWay}"
       >
     </audio:AudioRecorderControl>
     <!-- AudioRecorderControl sets its DataContext to its ViewModel, so it doesn't inherit its parent's DataContext -->
@@ -170,7 +171,13 @@ Version: 20150322
   <!-- CommentsAudio -->
   
   <DataTemplate x:Key="CommentsAudioCellTemplate">
-    <audio:AudioRecorderControl Margin="2" Audio="{Binding RelativeSource={RelativeSource AncestorType=FrameworkElement}, Path=DataContext.CommentsAudio, Mode=TwoWay}" /> <!-- AudioRecorderControl sets its DataContext to its ViewModel, so it doesn't inherit its parent's DataContext -->
+    <audio:AudioRecorderControl
+      Margin="2"
+      Audio="{Binding RelativeSource={RelativeSource AncestorType=FrameworkElement}, Path=DataContext.CommentsAudio, Mode=TwoWay}"
+      LimitPlayback="False"
+      LimitRecording="False"
+      DrawDuration="False"
+      /> <!-- AudioRecorderControl sets its DataContext to its ViewModel, so it doesn't inherit its parent's DataContext -->
   </DataTemplate>
   
   <!-- Column Header -->
