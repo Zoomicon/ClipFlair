@@ -1,6 +1,6 @@
 ﻿//Filename: WPF_UIElement
 //Version: 20131224
-//Author: George Birbilis <birbilis@kagi.com>
+//Author: George Birbilis <zoomicon.com>
 
 using System.Collections.Generic;
 using System.Windows;

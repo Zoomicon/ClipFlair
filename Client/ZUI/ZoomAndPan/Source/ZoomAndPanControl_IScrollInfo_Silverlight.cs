@@ -1,6 +1,6 @@
 ﻿//Filename: ZoomAndPanControl_IScrollInfo_Silverlight
 //Version: 20120609
-//Author: George Birbilis <birbilis@kagi.com>
+//Author: George Birbilis <zoomicon.com>
 
 #if SILVERLIGHT
 

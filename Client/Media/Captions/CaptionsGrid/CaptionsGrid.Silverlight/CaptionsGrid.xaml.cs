@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: CaptionsGrid.xaml.cs
-//Version: 20150323
+//Version: 20150324
 
 using ClipFlair.AudioRecorder;
 using ClipFlair.CaptionsGrid.Resources;
@@ -145,7 +145,8 @@ namespace ClipFlair.CaptionsGrid
     protected virtual void OnTimeChanged(TimeSpan oldTime, TimeSpan newTime) //if StartTime or EndTime cell is being edited (doesn't work), update its value with current Time, else if any caption contains current Time select it (else keep current selection)
     {
       CaptionElement activeCaption = null;
- /*       activeCaption = (CaptionElement)gridCaptions.SelectedItem;
+      /*   
+      activeCaption = (CaptionElement)gridCaptions.SelectedItem;
       DataGridColumn curcol = gridCaptions.CurrentColumn;
 
       if (curcol == ColumnStartTime || curcol == ColumnEndTime)
@@ -157,7 +158,8 @@ namespace ClipFlair.CaptionsGrid
           ((TextBox)txt).Text = timeStr;
         }
       }
-      else */
+      else
+      */
       {
         foreach (CaptionElement c in Captions.Children.WhereActiveAtPosition(newTime))
           activeCaption = c; //if multiple captions cover this position, select the last one
@@ -873,7 +875,7 @@ namespace ClipFlair.CaptionsGrid
       }
     }
 
-    private CaptionElement AddCaption()
+    public CaptionElement AddCaption()
     {
       if (Captions == null) return null;
 
@@ -893,6 +895,40 @@ namespace ClipFlair.CaptionsGrid
       return newCaption;
     }
 
+    public void RemoveCaption()
+    {
+      if (Captions == null) return;
+
+      CaptionElement selectedCaption = (CaptionElement)gridCaptions.SelectedItem;
+      if (selectedCaption != null)
+      {
+        gridCaptions.SelectedItem = null; //clear current selection before removing the caption, so that selection doesn't move to the next row and make current time change
+        Captions.Children.Remove(selectedCaption);
+      }
+    }
+
+    public void SetCaptionStart()
+    {
+      if (Captions == null) return;
+
+      CaptionElement selectedCaption = (CaptionElement)gridCaptions.SelectedItem;
+      if (selectedCaption != null)
+        selectedCaption.Begin = Time;
+      else
+        AddCaption(); //also sets the begin time, no need to do AddCaption().Begin = Time;
+    }
+
+    public void SetCaptionEnd()
+    {
+      if (Captions == null) return;
+
+      CaptionElement selectedCaption = (CaptionElement)gridCaptions.SelectedItem;
+      if (selectedCaption != null)
+        selectedCaption.End = Time;
+      else
+        AddCaption().End = Time; //also sets the begin time, no need to do AddCaption().Begin = Time;
+    }
+
     #endregion
 
     #region --- Events ---
@@ -909,36 +945,17 @@ namespace ClipFlair.CaptionsGrid
 
     private void btnRemove_Click(object sender, RoutedEventArgs e)
     {
-      if (Captions == null) return;
-
-      CaptionElement selectedCaption = (CaptionElement)gridCaptions.SelectedItem;
-      if (selectedCaption != null)
-      {
-        gridCaptions.SelectedItem = null; //clear current selection before removing the caption, so that selection doesn't move to the next row and make current time change
-        Captions.Children.Remove(selectedCaption);
-      }
+      RemoveCaption();
     }
 
     private void btnStart_Click(object sender, RoutedEventArgs e)
     {
-      if (Captions == null) return;
-
-      CaptionElement selectedCaption = (CaptionElement)gridCaptions.SelectedItem;
-      if (selectedCaption != null)
-        selectedCaption.Begin = Time;
-      else
-        AddCaption(); //also sets the begin time, no need to do AddCaption().Begin = Time;
+      SetCaptionStart();
     }
     
     private void btnEnd_Click(object sender, RoutedEventArgs e)
     {
-      if (Captions == null) return;
-
-      CaptionElement selectedCaption = (CaptionElement)gridCaptions.SelectedItem;
-      if (selectedCaption != null)
-        selectedCaption.End = Time;
-      else
-        AddCaption().End = Time; //also sets the begin time, no need to do AddCaption().Begin = Time;
+      SetCaptionEnd();
     }
 
     protected void DataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)

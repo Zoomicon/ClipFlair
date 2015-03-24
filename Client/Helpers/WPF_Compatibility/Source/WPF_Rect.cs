@@ -1,6 +1,6 @@
 ﻿//Filename: WPF_Rect
 //Version: 20120606
-//Author: George Birbilis <birbilis@kagi.com>
+//Author: George Birbilis <zoomicon.com>
 
 using System.Windows;
 

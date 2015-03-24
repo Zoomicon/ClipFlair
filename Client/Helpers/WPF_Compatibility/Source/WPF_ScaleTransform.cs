@@ -1,6 +1,6 @@
 ﻿//Filename: WPF_ScaleTransform.cs
 //Version: 20121204
-//Author: George Birbilis <birbilis@kagi.com>
+//Author: George Birbilis <zoomicon.com>
 
 using System.Windows.Media;
 

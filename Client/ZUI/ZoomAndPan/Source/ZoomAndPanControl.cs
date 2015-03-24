@@ -1,6 +1,6 @@
 ﻿//Filename: ZoomAndPanControl.cs
 //Version: 20140306
-//Editor: George Birbilis <birbilis@kagi.com>
+//Editor: George Birbilis <zoomicon.com>
 
 //Based on:
 //- WPF: http://www.codeproject.com/Articles/85603/A-WPF-custom-control-for-zooming-and-panning

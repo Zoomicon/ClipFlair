@@ -1,6 +1,6 @@
 ﻿//Filename: Visual
 //Version: 20130605
-//Author: George Birbilis <birbilis@kagi.com>
+//Author: George Birbilis <zoomicon.com>
 
 #if SILVERLIGHT
 

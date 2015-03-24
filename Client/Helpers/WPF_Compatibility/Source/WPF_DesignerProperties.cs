@@ -1,6 +1,6 @@
 ﻿//Filename: WPF_DesignerProperties
 //Version: 20150209
-//Author: George Birbilis <birbilis@kagi.com>
+//Author: George Birbilis <zoomicon.com>
 
 using System.ComponentModel;
 using System.Windows.Controls;
