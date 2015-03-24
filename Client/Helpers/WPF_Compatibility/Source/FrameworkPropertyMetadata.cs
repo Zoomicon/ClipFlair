@@ -1,6 +1,6 @@
 ﻿//Filename: FrameworkPropertyMetadata.cs
 //Version: 20130131
-//Editor: George Birbilis <birbilis@kagi.com>
+//Editor: George Birbilis <zoomicon.com>
 
 //Based on: http://drwpf.com/blog/2010/05/05/value-coercion-for-the-masses/
 

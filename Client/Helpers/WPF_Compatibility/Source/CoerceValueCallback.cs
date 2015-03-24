@@ -1,6 +1,6 @@
 ﻿//Filename: CoerceValueCallback.cs
 //Version: 20120606
-//Editor: George Birbilis <birbilis@kagi.com>
+//Editor: George Birbilis <zoomicon.com>
 
 #if SILVERLIGHT
 

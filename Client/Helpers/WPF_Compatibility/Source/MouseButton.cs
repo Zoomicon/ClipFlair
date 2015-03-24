@@ -1,6 +1,6 @@
 ﻿//Filename: MouseButton.cs
 //Version: 20120728
-//Author: George Birbilis <birbilis@kagi.com>
+//Author: George Birbilis <zoomicon.com>
 
 #if SILVERLIGHT
 

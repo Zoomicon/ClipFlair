@@ -1,6 +1,6 @@
 ﻿//Filename: XamlReader.cs
 //Version: 20130705
-//Author: George Birbilis <birbilis@kagi.com>
+//Author: George Birbilis <zoomicon.com>
 
 namespace WPF_Compatibility
 {

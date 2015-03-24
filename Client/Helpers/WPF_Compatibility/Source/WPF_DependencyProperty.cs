@@ -1,6 +1,6 @@
 ﻿//Filename: WPF_DependencyProperty
 //Version: 20130131
-//Author: George Birbilis <birbilis@kagi.com>
+//Author: George Birbilis <zoomicon.com>
 
 using System;
 using System.Windows;
