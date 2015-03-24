@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: AudioRecorderView.cs
-//Version: 20150323
+//Version: 20150324
 
 using AudioLib;
 using System;
@@ -18,6 +18,8 @@ namespace ClipFlair.AudioRecorder
   {
 
     #region --- Constants ---
+
+    public static readonly TimeSpan DURATION_UPDATE_INTERVAL = new TimeSpan(0,0,0,0,100); //update duration value every 1/10 sec while recording 
 
     public const string MARKER_MAX_PLAYBACK_POSITION = "Playback Limit";
 
@@ -78,6 +80,8 @@ namespace ClipFlair.AudioRecorder
     private TimeSpan _maxRecordingDuration = DEFAULT_MAX_RECORDING_DURATION;
     private DispatcherTimer _maxRecordingTimer = new DispatcherTimer();
     private bool _drawDuration = DEFAULT_DRAW_DURATION;
+    private DispatcherTimer _durationUpdateTimer = new DispatcherTimer() { Interval = DURATION_UPDATE_INTERVAL };
+    private DateTime? _recordingStartTime; //=null
 
     #endregion
 
@@ -86,6 +90,7 @@ namespace ClipFlair.AudioRecorder
     public AudioRecorderView()
     {
       _maxRecordingTimer.Tick += _maxRecordingTimer_Tick;
+      _durationUpdateTimer.Tick += _durationUpdateTimer_Tick;
       InitCommands();
       Status = MSG_RECORD_OR_LOAD;
     }
@@ -222,8 +227,13 @@ namespace ClipFlair.AudioRecorder
     {
       get
       {
-        Duration duration = player.NaturalDuration;
-        return (duration.HasTimeSpan)? duration.TimeSpan : TimeSpan.Zero;
+        if (_recordingStartTime != null)
+          return DateTime.Now - (DateTime)_recordingStartTime; //casting because _recordingStartTime is nullable type (DateTime?) [and we've just checked for null]
+        else
+        {
+          Duration duration = player.NaturalDuration;
+          return (duration.HasTimeSpan) ? duration.TimeSpan : TimeSpan.Zero;
+        }
       }
 
     }
@@ -356,14 +366,21 @@ namespace ClipFlair.AudioRecorder
         _sink.CaptureSource = _captureSource;
 
         _captureSource.Start(); //assuming captureSource is stopped
+
+        _recordingStartTime = DateTime.Now;
   
-        if (LimitRecording)
+        if (_limitRecording)
         {
+          _maxRecordingTimer.Interval = _maxRecordingDuration; //important: first set the interval, then start the timer
           _maxRecordingTimer.Start(); //do after _captureSource.Start, since that one takes some time to be executed
-          _maxRecordingTimer.Interval = _maxRecordingDuration;
         }
         else
-          _maxRecordingTimer.Stop();
+          _maxRecordingTimer.Stop(); //stop that timer in case it has been left running
+
+        if (_drawDuration) //only updating the Duration if AudioRecorderControl is showing the duration progress bar
+          _durationUpdateTimer.Start(); //start this after first starting the recording timer (that one has to be the closest to _captureSource.Start call)
+        else
+          _durationUpdateTimer.Stop(); //stop that timer in case it has been left running
 
         Status = MSG_RECORDING; //keep recording message since we can't depress the button (TODO: may add Uncheck method to ToggleCommand)
 
@@ -374,6 +391,9 @@ namespace ClipFlair.AudioRecorder
       }
       catch (Exception e)
       {
+        _maxRecordingTimer.Stop();
+        _durationUpdateTimer.Stop();
+        _recordingStartTime = null;
         RecordCommand.IsChecked = false; //depress recording toggle button //don't talk to ToggleButton directly //TODO: see why this fails to depress the Rec button (e.g. when trying to record something which alredy recording)
         Reset();
         Status = MSG_RECORD_FAILED + e.Message;
@@ -385,7 +405,9 @@ namespace ClipFlair.AudioRecorder
 
     public void StopRecording()
     {
-      _maxRecordingTimer.Stop(); //do first
+      _maxRecordingTimer.Stop(); //do first //always do independent of current value of RecordingLimited
+      _durationUpdateTimer.Stop(); //always do independent of current value of DrawDuration
+      _recordingStartTime = null; //do this after stoping _durationUpdateTimer
 
       if ((_captureSource == null) || (_captureSource.State != CaptureState.Started))
       {
@@ -621,12 +643,20 @@ namespace ClipFlair.AudioRecorder
 
     #endregion
 
+    #region Timers
+
     protected void _maxRecordingTimer_Tick(object sender, EventArgs e)
     {
       RecordCommand.IsChecked = false; //depress recording toggle button //don't talk to ToggleButton directly     
-      StopRecording(); //this also does _maxRecordingTimer.Stop() and Busy=false
+      StopRecording(); //this also does _maxRecordingTimer.Stop(), _durationUpdateTimer.Stop() and Busy=false
     }
 
+    void _durationUpdateTimer_Tick(object sender, EventArgs e)
+    {
+      RaisePropertyChanged(PROPERTY_DURATION);
+    }
+
+    #endregion
 
     #region INotifyPropertyChanged
 
