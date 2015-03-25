@@ -1,12 +1,13 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: CaptionsGrid.xaml.cs
-//Version: 20150324
+//Version: 20150325
 
 using ClipFlair.AudioRecorder;
 using ClipFlair.CaptionsGrid.Resources;
 using ClipFlair.CaptionsLib.Models;
 using ClipFlair.CaptionsLib.Utils;
 using Microsoft.SilverlightMediaFramework.Core.Accessibility.Captions;
+using Microsoft.SilverlightMediaFramework.Core.Media;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -161,8 +162,13 @@ namespace ClipFlair.CaptionsGrid
       else
       */
       {
-        foreach (CaptionElement c in Captions.Children.WhereActiveAtPosition(newTime))
-          activeCaption = c; //if multiple captions cover this position, select the last one
+        //Stop any audio playback from captions that aren't active at the current time position
+        IEnumerable<TimedTextElement> activeCaptions = Captions.Children.WhereActiveAtPosition(newTime);
+        foreach (CaptionElement c in Captions.Children)
+          if (!activeCaptions.Contains<TimedTextElement>(c)) //TODO: THE FOLLOWING WON'T WORK UNLESS EACH CAPTION IS FIRST SCROLLED INTO VIEW WHICH WOULD CAUSE EXCESSIVE SCROLLING, NEED SOME OTHER WAY TO GET THE AUDIORECORDERCONTROL FOR A CAPTION
+            ;//((AudioRecorderControl)ColumnAudio.GetCellContent(c)).View.StopPlayback(); //TODO: see if this also depresses the playback toggle button
+          else
+            activeCaption = c; //if multiple captions cover this position, select the last one
 
         if (activeCaption != null) //remember last selected caption (do not deselect if no active caption at current time position) so that we can change its start/end times using respective buttons
           gridCaptions.SelectedItem = activeCaption;

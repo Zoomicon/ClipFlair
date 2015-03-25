@@ -1,5 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <LiveSmoothStreamingSettings>
+  <BufferingEngineSettings 
+    ForceAccurateSeeks="true"
+    />
   <HeuristicsEngineSettings
     FrameRateHeuristicsSuspendTrackIfMoreThanXPercentDroppedFrames="0.05"
     FrameRateHeuristicsFlushBufferIfMoreThanXPercentDroppedFrames="0.05"
@@ -14,4 +17,8 @@
 </LiveSmoothStreamingSettings>
 
 <!-- needs to be in root folder of application XAP (put in app's project and use Build Action: Content) -->
-<!-- based on: http://blog.axinom.com/2012/02/02/optimizing-iis-smooth-streaming-for-cpu-constrained-devices/ -->
+<!-- 
+based on:
+http://blog.axinom.com/2012/02/02/optimizing-iis-smooth-streaming-for-cpu-constrained-devices/
+http://blogs.southworks.net/ejadib/2010/07/16/quick-tip-accurate-seeks-on-the-smooth-streaming-media-element-ssme/
+-->
