@@ -15,7 +15,7 @@ Features list
 1238 ClipFlair Studio - Activity Container / Component (supporting Nested Activities too)
 1240 Captions Component (CaptionsGrid)
 1241 Audio recording and playback (WAV/MP3 playback, WAV recording)
-1246 Clip Component (SMF - Progressive download videos and IIS Smooth Streaming)
+1246 Clip Component (SMF - Progressive download videos, IIS Smooth Streaming and DASH streaming)
 1275 Standard Caption Formats support (CaptionsLib - SRT, TTS, Adobe Encore, FAB)
 1287 ClipFlair Social Network platform (MonoX - ASP.net WebParts Framework)
 1334 Image component (ZoomImage + MultiScaleImage - DeepZoom)
