@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: MediaPlayer.cs
-//Version: 20140616
+//Version: 20150325
 
 using Utils.Extensions;
 
@@ -29,7 +29,7 @@ namespace ClipFlair.MediaPlayer
   public class MediaPlayer : SMFPlayer
   {
 
-    #region Constants
+    #region --- Constants ---
 
     public const string MEDIA_LOAD_FILTER = "Media files (*.wmv, *.mp4, *.wma, *.mp3)|*.wmv;*.mp4;*.wma;*.mp3";
 
@@ -42,12 +42,16 @@ namespace ClipFlair.MediaPlayer
 
     #endregion
     
-    #region Fields
+    #region --- Fields ---
 
     protected IMediaPlugin activeMediaPlugin;
     protected BitrateMonitor BitrateMonitorElement;
+    protected TimeSpan _bufferingTimeBeforeScrubbing;
+    protected bool _wasPausedBeforeScrubbing;
     
     #endregion
+
+    #region --- Initialization ---
 
     public MediaPlayer()
     {
@@ -58,6 +62,19 @@ namespace ClipFlair.MediaPlayer
 
       AllowDrop = true;
     }
+
+    public override void OnApplyTemplate()
+    {
+      base.OnApplyTemplate();
+
+      BitrateMonitorElement = GetTemplateChild("BitrateMonitorElement") as BitrateMonitor;
+
+      ApplyTemplateOverrides();
+
+      UpdateVolumeElement(); //patch for SMF bug
+    }
+
+    #endregion
 
     #region --- Properties ---
 
@@ -894,10 +911,8 @@ namespace ClipFlair.MediaPlayer
     {
       //listen for changed to PlaybackPosition and sync with Time
       PlaybackPositionChanged += Player_PlaybackPositionChanged;
-
       //listen for changes to CaptionsVisibility and sync with CaptionsVisible
       CaptionsVisibilityChanged += Player_CaptionsVisibilityChanged;
-
       //listen to MediaPlugin registration and keep reference to use for getting Balance property which is not exposed by SMFPlayer 2.7
       MediaPluginRegistered += MediaPlayer_MediaPluginRegistered;
     }
@@ -909,16 +924,40 @@ namespace ClipFlair.MediaPlayer
       MediaPluginRegistered -= MediaPlayer_MediaPluginRegistered;
     }
 
-    public override void OnApplyTemplate()
+    #region "Scrubbing (fix - see https://smf.codeplex.com/workitem/21952)
+
+    protected override void OnScrubbingStarted(TimeSpan scrubbingPosition)
     {
-      base.OnApplyTemplate();
+      // Save current state
+      _bufferingTimeBeforeScrubbing = ActiveMediaPlugin.BufferingTime;
+      _wasPausedBeforeScrubbing = (PlayState == MediaPluginState.Paused);
 
-      BitrateMonitorElement = GetTemplateChild("BitrateMonitorElement") as BitrateMonitor;
+      Pause(); //pause playback while scrubbing to avoid audio hickups and losing the holding of the knob when pausing dragging and time keeps on flowing - when knob is released it will resume playback if it was playing
+      ActiveMediaPlugin.BufferingTime = TimeSpan.FromTicks(1); // Try to reduce lag. Not very effective, but no negative impact (buffering occurs when resuming playback in any case).
 
-      ApplyTemplateOverrides();
-
-      UpdateVolumeElement(); //patch for SMF bug
+      base.OnScrubbingStarted(scrubbingPosition);
     }
+
+    protected override void OnScrubbing(TimeSpan scrubbingPosition)
+    {
+      // Override default behavior to fix 'seek while scrubbing'
+      if (!scrubbingPosition.Equals(PlaybackPosition) && SeekWhileScrubbing)
+        ActiveMediaPlugin.Position = scrubbingPosition;
+
+      base.OnScrubbing(scrubbingPosition);
+    }
+
+    protected override void OnScrubbingCompleted(TimeSpan scrubbingPosition)
+    {
+      //Restore state
+      ActiveMediaPlugin.BufferingTime = _bufferingTimeBeforeScrubbing;
+      if (!_wasPausedBeforeScrubbing)
+        Play();
+
+      base.OnScrubbingCompleted(scrubbingPosition);
+    }
+
+    #endregion
 
     protected override void OnMediaOpened()
     {
