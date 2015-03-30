@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: BindingUtils.cs
-//Version: 20121205
+//Version: 20150331
 
 
 using System;
@@ -38,7 +38,25 @@ namespace Utils.Bindings
     /// <param name="sourcePropertyName">source property name</param>
     /// <param name="target">target object</param>
     /// <param name="targetPropertyName">target property name</param>
-    /// <param name="bindmode">e.g. BindingMode.TwoWay</param>
+    /// <param name="bindmode">binding mode, e.g. BindingMode.TwoWay</param>
+    public static void BindProperties(INotifyPropertyChanged source, string sourcePropertyName, INotifyPropertyChanged target, string targetPropertyName, BindingMode bindMode = BindingMode.TwoWay)
+    {
+      switch (bindMode) {
+        case BindingMode.OneTime:
+          target.SetProperty(targetPropertyName, source.GetProperty(sourcePropertyName)); //just set value once
+          break;
+        case BindingMode.OneWay:
+          source.PropertyChanged += (s,e)=> { if (e.PropertyName == sourcePropertyName) target.SetProperty(targetPropertyName, source.GetProperty(sourcePropertyName)); }; //bind forward...
+          BindProperties(source, sourcePropertyName, target, targetPropertyName, BindingMode.OneTime); //...then set value (target may have looped back to us and changed our value, in that case we read that latest value from source and set to target)
+          break;
+        case BindingMode.TwoWay:
+          target.PropertyChanged += (s, e) => { if (e.PropertyName == targetPropertyName) source.SetProperty(sourcePropertyName, target.GetProperty(targetPropertyName)); }; //reverse bind
+          BindProperties(source, sourcePropertyName, target, targetPropertyName, BindingMode.OneWay); //bind forward and then set value
+          break;
+        default:
+          throw new NotSupportedException("Unsupported binding mode");
+      }
+    }
 
     /*
     public static DependencyObject BindProperties(INotifyPropertyChanged source, string sourcePropertyName, INotifyPropertyChanged target, string targetPropertyName)
@@ -52,26 +70,7 @@ namespace Utils.Bindings
       return binder; //use this to break the bindings (maybe dispose of the object or something). If that isn't easy, maybe return new Binding[]{binding1, binding2}
     }
     */
-
-    public static void BindProperties(INotifyPropertyChanged source, string sourcePropertyName, INotifyPropertyChanged target, string targetPropertyName, BindingMode bindMode = BindingMode.TwoWay)
-    {
-      switch (bindMode) {
-        case BindingMode.OneTime:
-          target.SetProperty(targetPropertyName, source.GetProperty(sourcePropertyName));
-          break;
-        case BindingMode.OneWay:
-          source.PropertyChanged += new PropertyChangedEventHandler((s,e)=> { if (e.PropertyName == sourcePropertyName) BindProperties(source, sourcePropertyName, target, targetPropertyName, BindingMode.OneTime);} );
-          BindProperties(source, sourcePropertyName, target, targetPropertyName, BindingMode.OneTime); //first bind, then set value (target may have looped back to us and changed our value, in that case we read that latest value from source and set to target)
-          break;
-        case BindingMode.TwoWay:
-          target.PropertyChanged += new PropertyChangedEventHandler((s, e) => { if (e.PropertyName == targetPropertyName) BindProperties(target, targetPropertyName, source, sourcePropertyName, BindingMode.OneTime);} );
-          BindProperties(source, sourcePropertyName, target, targetPropertyName, BindingMode.OneWay);
-          break;
-        default:
-          throw new NotSupportedException("Unsupported binding mode");
-      }
-    }
-
+    
     /// <summary>
     /// Bind two components over given properties
     /// </summary>
