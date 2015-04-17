@@ -41,6 +41,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.Phone" />
     <Reference Include="system" />
     <Reference Include="System.Core" />
     <Reference Include="mscorlib.extensions" />
