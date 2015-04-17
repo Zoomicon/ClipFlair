@@ -1,15 +1,19 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: StringExtensions.cs
-//Version: 20140321
+//Version: 20140411
 
 using System;
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 
-#if SILVERLIGHT
+#if SILVERLIGHT && !WINDOWS_PHONE
 using System.Runtime.InteropServices.Automation;
 using System.Windows;
+#endif
+
+#if WINDOWS_PHONE
+using Microsoft.Phone.Tasks;
 #endif
 
 namespace Utils.Extensions
@@ -26,8 +30,16 @@ namespace Utils.Extensions
 
         /**/
         public static void NavigateTo(this Uri link)
-        { //source: http://social.msdn.microsoft.com/Forums/en-US/lightswitchgeneral/thread/5871c39a-a5fe-4d0c-a157-151442f6ee8d
-          #if SILVERLIGHT && !WINDOWS_PHONE
+        { 
+          
+          #if WINDOWS_PHONE
+
+          (new WebBrowserTask() { Uri = link }).Show();
+
+          #else
+
+          #if SILVERLIGHT //source: http://social.msdn.microsoft.com/Forums/en-US/lightswitchgeneral/thread/5871c39a-a5fe-4d0c-a157-151442f6ee8d
+
           if (AutomationFactory.IsAvailable) //needs elevated rights
           {
             dynamic shell = AutomationFactory.CreateObject("Shell.Application");
@@ -41,8 +53,11 @@ namespace Utils.Extensions
           {
             MessageBox.Show("Please visit: " + link); //TODO: implement for OOP with WebBrowser control shown in dialog
           }
-          #else
+
+          #else //WPF
           //TODO: implement for WPF (see http://social.msdn.microsoft.com/Forums/vstudio/en-US/61fd208c-140e-4cf0-8876-a34731da5d20/converting-silverlight-4-automation-factory-to-net40-wpf)
+          #endif
+
           #endif
         } //USE PROGRAMMABLEHYPERLINK CLASS?
        /**/
