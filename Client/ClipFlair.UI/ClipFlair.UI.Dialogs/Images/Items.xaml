@@ -1,5 +1,5 @@
 <ResourceDictionary 
-  xmlns="http://schemas.microsoft.com/client/2007" 
+  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
 
@@ -13,7 +13,7 @@ Version: 20150522
 -->
 
 <Canvas Width="438.324" Height="438.329"
-  xmlns="http://schemas.microsoft.com/client/2007"
+  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
   <!-- Layer 1/<Group>/<Path> -->
@@ -48,7 +48,7 @@ Version: 20150522
 -->
 
 <Canvas Width="438.324" Height="438.329"
-  xmlns="http://schemas.microsoft.com/client/2007"
+  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
   <!-- Layer 1/<Group>/<Path> -->
@@ -92,7 +92,7 @@ Version: 20150522
 -->
 
 <Canvas Width="438.324" Height="438.329"
-  xmlns="http://schemas.microsoft.com/client/2007"
+  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
   <!-- Layer 1/<Group>/<Path> -->
@@ -133,7 +133,7 @@ Version: 20150522
 -->
 
 <Canvas Width="438.324" Height="438.324"
-  xmlns="http://schemas.microsoft.com/client/2007"
+  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
   <!-- Layer 1/<Group>/<Path> -->
@@ -189,7 +189,7 @@ Version: 20150522
 -->
 
 <Canvas Width="438.324" Height="438.324"
-  xmlns="http://schemas.microsoft.com/client/2007"
+  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
   <!-- Layer 1/<Path> -->
@@ -269,7 +269,7 @@ Version: 20150522
 -->
 
 <Canvas Width="438.324" Height="438.324"
-  xmlns="http://schemas.microsoft.com/client/2007"
+  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
   <!-- Layer 1/<Group>/<Path> -->
@@ -337,7 +337,7 @@ Version: 20150522
 -->
 
 <Canvas Width="438.324" Height="438.324"
-  xmlns="http://schemas.microsoft.com/client/2007"
+  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
   <!-- Layer 1/<Group>/<Path> -->
@@ -581,7 +581,7 @@ Version: 20150522
 -->
 
 <Canvas Width="438.324" Height="438.324"
-  xmlns="http://schemas.microsoft.com/client/2007"
+  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
   <!-- Layer 1/<Group>/<Path> -->
@@ -637,7 +637,7 @@ Version: 20150522
 -->
 
 <Canvas Width="438.324" Height="438.324"
-  xmlns="http://schemas.microsoft.com/client/2007"
+  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
   <!-- Layer 1/<Group>/<Path> -->
@@ -696,7 +696,7 @@ Version: 20150522
 -->
 
 <Canvas Width="438.324" Height="438.329"
-  xmlns="http://schemas.microsoft.com/client/2007"
+  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
   <!-- Layer 1/<Group>/<Path> -->
@@ -773,7 +773,7 @@ Version: 20150522
 -->
 
 <Canvas Width="438.325" Height="438.329"
-  xmlns="http://schemas.microsoft.com/client/2007"
+  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
   <!-- Layer 1/<Group>/<Path> -->
@@ -844,7 +844,7 @@ Version: 20150522
 -->
 
 <Canvas Width="438.324" Height="438.324"
-  xmlns="http://schemas.microsoft.com/client/2007"
+  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
   <!-- Layer 1/<Path> -->
@@ -924,7 +924,7 @@ Version: 20150522
 -->
 
 <Canvas Width="438.324" Height="438.329"
-  xmlns="http://schemas.microsoft.com/client/2007"
+  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
   <!-- Layer 1/<Group>/<Path> -->
@@ -995,7 +995,7 @@ Version: 20150522
 -->
 
 <Canvas Width="438.324" Height="438.324"
-  xmlns="http://schemas.microsoft.com/client/2007"
+  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
   <!-- Layer 1/<Group>/<Path> -->
@@ -1051,7 +1051,7 @@ Version: 20150522
 -->
 
 <Canvas Width="438.324" Height="438.324"
-  xmlns="http://schemas.microsoft.com/client/2007"
+  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
   <!-- Layer 1/<Group>/<Path> -->
@@ -1123,7 +1123,7 @@ Version: 20150522
 <!-- For questions, contact Mike Swanson: http://www.mikeswanson.com/XAMLExport -->
 
 <Canvas Width="438.324" Height="438.324"
-  xmlns="http://schemas.microsoft.com/client/2007"
+  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
   <Canvas>
@@ -1213,7 +1213,7 @@ Version: 20150522
 -->
 
 <Canvas Width="438.324" Height="438.324"
-  xmlns="http://schemas.microsoft.com/client/2007"
+  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
   <!-- Layer 1/<Group>/<Path> -->
@@ -1284,7 +1284,7 @@ Version: 20150522
 -->
 
 <Canvas Width="438.324" Height="438.325"
-  xmlns="http://schemas.microsoft.com/client/2007"
+  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
   <!-- Layer 1/<Group>/<Path> -->
@@ -1346,7 +1346,7 @@ Version: 20150522
 -->
 
 <Canvas Width="438.324" Height="438.330"
-  xmlns="http://schemas.microsoft.com/client/2007"
+  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
   <!-- Layer 1/<Group>/<Path> -->
@@ -1417,7 +1417,7 @@ Version: 20150522
 -->
 
 <Canvas Width="438.324" Height="438.326"
-  xmlns="http://schemas.microsoft.com/client/2007"
+  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
   <!-- Layer 1/<Group>/<Path> -->
@@ -1482,7 +1482,7 @@ Version: 20150522
 -->
 
 <Canvas Width="438.324" Height="438.329"
-  xmlns="http://schemas.microsoft.com/client/2007"
+  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
   <!-- Layer 1/<Group>/<Path> -->
@@ -1547,7 +1547,7 @@ Version: 20150522
 -->
 
 <Canvas Width="438.324" Height="438.329"
-  xmlns="http://schemas.microsoft.com/client/2007"
+  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
   <!-- Layer 1/<Group>/<Path> -->
