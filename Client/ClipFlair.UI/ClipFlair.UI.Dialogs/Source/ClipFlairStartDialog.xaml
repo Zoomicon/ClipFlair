@@ -1,7 +1,7 @@
 ﻿<!--
 Project: ClipFlair (http://ClipFlair.codeplex.com)
 Filename: StartDialog.xaml
-Version: 20150205
+Version: 20150522
 -->
 
 <ChildWindowExt 
@@ -71,6 +71,7 @@ Version: 20150205
     <Button Grid.Row="2" Grid.Column="2" Template="{StaticResource OpenActivityFile.xaml}" Name="btnOpenActivityFile" Click="btnOpenActivityFile_Click" />
     <Button Grid.Row="2" Grid.Column="3" Template="{StaticResource OpenActivityURL.xaml}" Name="btnOpenActivityURL" Click="btnOpenActivityURL_Click" />
     <Button Grid.Row="2" Grid.Column="4" Template="{StaticResource OpenActivityGallery.xaml}" Name="btnOpenActivityGallery" Click="btnOpenActivityGallery_Click" />
+    <Button Grid.Row="2" Grid.Column="5" Template="{StaticResource OpenActivityTutorial.xaml}" Name="btnOpenActivityTutorial" Click="btnOpenActivityTutorial_Click" />
 
     <!-- OpenVideo -->
     <Button Grid.Row="2" Grid.Column="3" Template="{StaticResource OpenVideoFile.xaml}" Name="btnOpenVideoFile" Click="btnOpenVideoFile_Click" />

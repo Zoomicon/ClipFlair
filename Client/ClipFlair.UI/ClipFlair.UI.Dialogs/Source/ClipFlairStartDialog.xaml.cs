@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: StartDialog.xaml.cs
-//Version: 20150206
+//Version: 20150522
 
 using System;
 using System.ComponentModel;
@@ -66,6 +66,7 @@ namespace ClipFlair.UI.Dialogs
       btnOpenActivityFile.Visibility =
       btnOpenActivityURL.Visibility =
       btnOpenActivityGallery.Visibility =
+      btnOpenActivityTutorial.Visibility =
       btnOpenVideoFile.Visibility =
       btnOpenVideoURL.Visibility =
       btnOpenVideoGallery.Visibility =
@@ -120,7 +121,8 @@ namespace ClipFlair.UI.Dialogs
 
       btnOpenActivityFile.Visibility = 
       btnOpenActivityURL.Visibility = 
-      btnOpenActivityGallery.Visibility = Visibility.Visible;
+      btnOpenActivityGallery.Visibility = 
+      btnOpenActivityTutorial.Visibility = Visibility.Visible;
     }
 
     private void btnOpenActivityFile_Click(object sender, System.Windows.RoutedEventArgs e)
@@ -145,6 +147,11 @@ namespace ClipFlair.UI.Dialogs
 
       if (Actions != null && Actions.OpenActivityGallery())
         Close();
+    }
+
+    private void btnOpenActivityTutorial_Click(object sender, System.Windows.RoutedEventArgs e)
+    {
+      btnHelpTutorialActivity_Click(sender, e); //OpenActivityTutorial button is an alias for the HelpTutorialActivity one
     }
 
     //OpenVideo//
