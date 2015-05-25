@@ -1073,7 +1073,8 @@ namespace ClipFlair.CaptionsGrid
     public void LoadCaptions(CaptionRegion newCaptions, Stream stream, string filename) //doesn't close stream
     {
       ICaptionsReader reader = CaptionUtils.GetCaptionsReader(filename);
-      reader.ReadCaptions<CaptionElementExt>(newCaptions, stream, Encoding.UTF8);
+      if (reader != null)
+        reader.ReadCaptions<CaptionElementExt>(newCaptions, stream, Encoding.UTF8);
       Captions = newCaptions;
     }
 
