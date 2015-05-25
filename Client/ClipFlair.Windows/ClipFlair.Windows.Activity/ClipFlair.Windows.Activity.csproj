@@ -189,7 +189,7 @@
     </ProjectReference>
     <ProjectReference Include="..\ClipFlair.Windows.Text\Silverlight\ClipFlair.Windows.Text.Silverlight.csproj">
       <Project>{396DD176-BC1D-45CF-900E-4FC85B7398FC}</Project>
-      <Name>ClipFlair.Windows.Text</Name>
+      <Name>ClipFlair.Windows.Text.Silverlight</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

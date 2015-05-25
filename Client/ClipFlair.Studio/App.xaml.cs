@@ -244,7 +244,7 @@ namespace ClipFlair
       //TODO: add ...PARAMETER_CAPTIONS, PARAMETER_COMPONENT, TEXT, MAP etc.
 
       return foundParam;
-    } //TODO: add CAPTIONS parameter to load .SRT/.TTS and show it
+    } //TODO: add CAPTIONS parameter to load .SRT/.TTS/.SSA and show it
 
     public static Uri makeActivityUri(string param) //TODO: reuse this code at load-activity-from-url dialog and activity component
     {

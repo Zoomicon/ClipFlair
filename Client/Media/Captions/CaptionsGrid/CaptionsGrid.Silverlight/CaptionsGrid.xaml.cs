@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: CaptionsGrid.xaml.cs
-//Version: 20150325
+//Version: 20150525
 
 using ClipFlair.AudioRecorder;
 using ClipFlair.CaptionsGrid.Resources;
@@ -26,8 +26,8 @@ namespace ClipFlair.CaptionsGrid
 
     #region --- Constants ---
 
-    public const string IMPORT_FILTER = "Subtitle files (*.srt, *.tts)|*.srt;*.tts|SRT files (*.srt)|*.srt|TTS files (*.tts)|*.tts";
-    public const string EXPORT_FILTER = "Subtitle files (SRT, TTS, FAB, ENC)|*.srt;*.tts;*.fab;*.enc|SRT files|*.srt|FAB files|*.fab|Adobe Encore files|*.enc|TTS files|*.tts";
+    public const string IMPORT_FILTER = "Subtitle files (SRT, TTS, SSA)|*.srt;*.tts;*.ssa|SRT files (*.srt)|*.srt|TTS files (*.tts)|*.tts|SSA files (*.ssa)|*.ssa";
+    public const string EXPORT_FILTER = "Subtitle files (SRT, TTS, FAB, ENC, SSA)|*.srt;*.tts;*.fab;*.enc;*.ssa|SRT files (*.srt)|*.srt|TTS files (*.tts)|*.tts|FAB files (*.fab)|*.fab|Adobe Encore files (*.enc)|*.enc|SSA files (*.ssa)|*.ssa";
 
     private TimeSpan CaptionDefaultDuration = new TimeSpan(0, 0, 2); //TODO: see LVS for the best value there
 
