@@ -1,5 +1,5 @@
 ﻿//Filename: EncoreWriter.cs
-//Version: 20140322
+//Version: 20150525
 
 using ClipFlair.CaptionsLib.Utils;
 using Microsoft.SilverlightMediaFramework.Core.Accessibility.Captions;
@@ -15,7 +15,10 @@ namespace ClipFlair.CaptionsLib.Encore
 
     public override void WriteCaption(CaptionElement caption, TextWriter writer)
     {
-      writer.WriteLine(EncoreUtils.SecondsToEncoreTime(caption.Begin.TotalSeconds) + " " + EncoreUtils.SecondsToEncoreTime(caption.End.TotalSeconds) + " " + ((string)caption.Content).CrToCrLf());
+      writer.WriteLine(
+        EncoreUtils.SecondsToEncoreTime(caption.Begin.TotalSeconds) + " " + 
+        EncoreUtils.SecondsToEncoreTime(caption.End.TotalSeconds) + " " + 
+        ((string)caption.Content ?? "").CrToCrLf());
     }
 
     #endregion

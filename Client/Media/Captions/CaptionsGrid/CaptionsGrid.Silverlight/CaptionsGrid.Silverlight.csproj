@@ -150,9 +150,15 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Resources\CaptionsGridStrings.el.resx" />
-    <EmbeddedResource Include="Resources\CaptionsGridStrings.es.resx" />
-    <EmbeddedResource Include="Resources\CaptionsGridStrings.fr.resx" />
+    <EmbeddedResource Include="Resources\CaptionsGridStrings.el.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\CaptionsGridStrings.es.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\CaptionsGridStrings.fr.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="Resources\CaptionsGridStrings.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>CaptionsGridStrings.Designer.cs</LastGenOutput>

@@ -35,7 +35,7 @@ namespace ClipFlair.CaptionsLib.SRT
       //assuming we're reading a "file" from start, so resetting counter
     }
 
-    public override void ReadCaption(CaptionElement Caption, TextReader reader)
+    public override void ReadCaption(CaptionElement caption, TextReader reader)
     {
       fLineNumber += 1;
 
@@ -55,7 +55,7 @@ namespace ClipFlair.CaptionsLib.SRT
         fLine = reader.ReadLine();
 
       if (c != "")
-        SRTUtils.SRTStringToCaption(c, Caption);
+        SRTUtils.SRTStringToCaption(c, caption);
     }
 
     public override void ReadFooter(System.IO.TextReader reader)

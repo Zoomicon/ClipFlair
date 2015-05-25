@@ -1,5 +1,5 @@
 ﻿//Filenam: SRTUtils.cs
-//Version: 20140324
+//Version: 20150525
 
 using ClipFlair.CaptionsLib.Utils;
 using Microsoft.SilverlightMediaFramework.Core.Accessibility.Captions;
@@ -32,28 +32,27 @@ namespace ClipFlair.CaptionsLib.SRT
     {
       try
       {
-        if (srtString != null)
+        if (srtString == null) return;
+
+        string[] TimesAndCaptions = StringUtils.Split(srtString, StringUtils.vbCrLf);
+
+        string[] TimesOnly = StringUtils.Split(TimesAndCaptions[1], SRT_TIME_SEPARATOR);
+        caption.Begin = TimeSpan.FromSeconds(SRTtimeToSeconds(TimesOnly[0]));
+        caption.End = TimeSpan.FromSeconds(SRTtimeToSeconds(TimesOnly[1]));
+
+        caption.Content = "";
+        for (int i = 2; i <= TimesAndCaptions.Length - 1; i++)
         {
-          string[] TimesAndCaptions = StringUtils.Split(srtString, StringUtils.vbCrLf);
+          if (!string.IsNullOrEmpty((string)caption.Content))
+            caption.Content += StringUtils.vbCrLf;
 
-          string[] TimesOnly = StringUtils.Split(TimesAndCaptions[1], SRT_TIME_SEPARATOR);
-          caption.Begin = TimeSpan.FromSeconds(SRTtimeToSeconds(TimesOnly[0]));
-          caption.End = TimeSpan.FromSeconds(SRTtimeToSeconds(TimesOnly[1]));
-
-          caption.Content = "";
-          for (int i = 2; i <= TimesAndCaptions.Length - 1; i++)
-          {
-            if (!string.IsNullOrEmpty((string)caption.Content))
-              caption.Content += StringUtils.vbCrLf;
-
-            caption.Content += TimesAndCaptions[i];
-          }
+          caption.Content += TimesAndCaptions[i];
         }
+
       }
       catch
       {
-        throw new Exception("Invalid SRT");
-        //TODO: localize
+        throw new FormatException("Invalid SRT");
       }
     }
 

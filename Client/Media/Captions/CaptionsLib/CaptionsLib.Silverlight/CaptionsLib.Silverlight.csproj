@@ -106,6 +106,15 @@
     <Compile Include="..\source\srt\SRTWriter.cs">
       <Link>srt\SRTWriter.cs</Link>
     </Compile>
+    <Compile Include="..\source\ssa\SSAReader.cs">
+      <Link>ssa\SSAReader.cs</Link>
+    </Compile>
+    <Compile Include="..\source\ssa\SSAUtils.cs">
+      <Link>ssa\SSAUtils.cs</Link>
+    </Compile>
+    <Compile Include="..\source\ssa\SSAWriter.cs">
+      <Link>ssa\SSAWriter.cs</Link>
+    </Compile>
     <Compile Include="..\source\tts\TTSReader.cs">
       <Link>tts\TTSReader.cs</Link>
     </Compile>
@@ -142,6 +151,7 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Silverlight\$(SilverlightVersion)\Microsoft.Silverlight.CSharp.targets" />
   <ProjectExtensions>
     <VisualStudio>

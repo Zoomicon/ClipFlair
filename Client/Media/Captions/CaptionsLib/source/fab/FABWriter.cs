@@ -1,5 +1,5 @@
 ﻿//Filename: FABWriter.cs
-//Version: 20140322
+//Version: 20150525
 
 using ClipFlair.CaptionsLib.Utils;
 using Microsoft.SilverlightMediaFramework.Core.Accessibility.Captions;
@@ -15,8 +15,13 @@ namespace ClipFlair.CaptionsLib.FAB
 
     public override void WriteCaption(CaptionElement caption, TextWriter writer)
     {
-      writer.WriteLine(FABUtils.SecondsToFABtime(caption.Begin.TotalSeconds) + "  " + FABUtils.SecondsToFABtime(caption.End.TotalSeconds));  //separator is double space
-      writer.WriteLine(((string)caption.Content).CrToCrLf().PrefixEmptyLines(" "));
+      writer.WriteLine(
+        FABUtils.SecondsToFABtime(caption.Begin.TotalSeconds) + 
+        FABUtils.FAB_TIME_SEPARATOR + 
+        FABUtils.SecondsToFABtime(caption.End.TotalSeconds));
+
+      writer.WriteLine(((string)caption.Content ?? "").CrToCrLf().PrefixEmptyLines(" "));
+      
       writer.WriteLine();  //FAB format has an empty line AFTER each Caption, resuling to the file ending up at two empty lines (maybe done so that more Captions can be easily appended later on to the file)
     }
 
