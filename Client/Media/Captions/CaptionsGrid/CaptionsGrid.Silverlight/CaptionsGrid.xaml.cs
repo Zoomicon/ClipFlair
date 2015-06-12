@@ -146,7 +146,8 @@ namespace ClipFlair.CaptionsGrid
     protected virtual void OnTimeChanged(TimeSpan oldTime, TimeSpan newTime) //if StartTime or EndTime cell is being edited (doesn't work), update its value with current Time, else if any caption contains current Time select it (else keep current selection)
     {
       CaptionElement activeCaption = null;
-      /*   
+      
+      /*
       activeCaption = (CaptionElement)gridCaptions.SelectedItem;
       DataGridColumn curcol = gridCaptions.CurrentColumn;
 
@@ -170,7 +171,7 @@ namespace ClipFlair.CaptionsGrid
           else
             activeCaption = c; //if multiple captions cover this position, select the last one
 
-        if (activeCaption != null) //remember last selected caption (do not deselect if no active caption at current time position) so that we can change its start/end times using respective buttons
+        if (activeCaption != null) //do not set selection to null (keep currently selected caption instead) if no active caption found at current time position, so that we can change currently selected caption's start/end times using respective buttons
           gridCaptions.SelectedItem = activeCaption;
       }
     }
@@ -871,6 +872,11 @@ namespace ClipFlair.CaptionsGrid
         gridCaptions.Focus();
     }
 
+    private void DeselectAll()
+    {
+      gridCaptions.SelectedItem = null;
+    }
+
     private void UpdateCaptionsRTL()
     {
       if (Captions != null)
@@ -908,7 +914,7 @@ namespace ClipFlair.CaptionsGrid
       CaptionElement selectedCaption = (CaptionElement)gridCaptions.SelectedItem;
       if (selectedCaption != null)
       {
-        gridCaptions.SelectedItem = null; //clear current selection before removing the caption, so that selection doesn't move to the next row and make current time change
+        DeselectAll(); //clear current selection before removing the caption, so that selection doesn't move to the next row and make current time change
         Captions.Children.Remove(selectedCaption);
       }
     }
