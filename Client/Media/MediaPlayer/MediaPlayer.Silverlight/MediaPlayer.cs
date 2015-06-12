@@ -928,32 +928,41 @@ namespace ClipFlair.MediaPlayer
 
     protected override void OnScrubbingStarted(TimeSpan scrubbingPosition)
     {
-      // Save current state
-      _bufferingTimeBeforeScrubbing = ActiveMediaPlugin.BufferingTime;
-      _wasPausedBeforeScrubbing = (PlayState == MediaPluginState.Paused);
+      if (activeMediaPlugin != null) //only if media is loaded
+      {
+        // Save current state
+        _bufferingTimeBeforeScrubbing = activeMediaPlugin.BufferingTime;
+        _wasPausedBeforeScrubbing = (PlayState == MediaPluginState.Paused);
 
-      Pause(); //pause playback while scrubbing to avoid audio hickups and losing the holding of the knob when pausing dragging and time keeps on flowing - when knob is released it will resume playback if it was playing
-      ActiveMediaPlugin.BufferingTime = TimeSpan.FromTicks(1); // Try to reduce lag. Not very effective, but no negative impact (buffering occurs when resuming playback in any case).
+        Pause(); //pause playback while scrubbing to avoid audio hickups and losing the holding of the knob when pausing dragging and time keeps on flowing - when knob is released it will resume playback if it was playing
+        activeMediaPlugin.BufferingTime = TimeSpan.FromTicks(1); // Try to reduce lag. Not very effective, but no negative impact (buffering occurs when resuming playback in any case)
+      }
 
       base.OnScrubbingStarted(scrubbingPosition);
     }
 
     protected override void OnScrubbing(TimeSpan scrubbingPosition)
     {
-      // Override default behavior to fix 'seek while scrubbing'
-      if (!scrubbingPosition.Equals(PlaybackPosition) && SeekWhileScrubbing)
-        ActiveMediaPlugin.Position = scrubbingPosition;
-
+      if (activeMediaPlugin != null) //only if media is loaded
+      {
+        // Override default behavior to fix 'seek while scrubbing'
+        if (!scrubbingPosition.Equals(PlaybackPosition) && SeekWhileScrubbing)
+          activeMediaPlugin.Position = scrubbingPosition;
+      }
+      
       base.OnScrubbing(scrubbingPosition);
     }
 
     protected override void OnScrubbingCompleted(TimeSpan scrubbingPosition)
     {
-      //Restore state
-      ActiveMediaPlugin.BufferingTime = _bufferingTimeBeforeScrubbing;
-      if (!_wasPausedBeforeScrubbing)
-        Play();
-
+      if (activeMediaPlugin != null) //only if media is loaded
+      {
+        //Restore state
+        activeMediaPlugin.BufferingTime = _bufferingTimeBeforeScrubbing;
+        if (!_wasPausedBeforeScrubbing)
+          Play();
+      }
+      
       base.OnScrubbingCompleted(scrubbingPosition);
     }
 
