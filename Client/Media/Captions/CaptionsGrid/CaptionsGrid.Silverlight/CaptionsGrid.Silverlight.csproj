@@ -87,6 +87,7 @@
     <Compile Include="CaptionElementExt\ICaptionElementExtraData.cs" />
     <Compile Include="CaptionElementExt\CaptionElementExt.cs" />
     <Compile Include="CaptionElementExt\CaptionElementExt_Audio.cs" />
+    <Compile Include="ICaptionsGrid.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="CaptionsGrid.xaml.cs">
       <DependentUpon>CaptionsGrid.xaml</DependentUpon>
