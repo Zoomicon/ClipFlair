@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: CaptionsGrid.xaml.cs
-//Version: 20150525
+//Version: 20150613
 
 using ClipFlair.AudioRecorder;
 using ClipFlair.CaptionsGrid.Resources;
@@ -21,7 +21,7 @@ using Utils.Extensions;
 
 namespace ClipFlair.CaptionsGrid
 {
-  public partial class CaptionsGrid : UserControl
+  public partial class CaptionsGrid : UserControl, ICaptionsGrid
   {
 
     #region --- Constants ---
@@ -89,26 +89,7 @@ namespace ClipFlair.CaptionsGrid
         
     #region --- Properties ---
 
-    public bool Editing { get; private set; }
- 
-    #region Columns
-
-    //not using column indices as constants, using column references instead to allow for column reordering by the user
-    public DataGridColumn ColumnIndex { get; private set; }
-    public DataGridColumn ColumnStartTime { get; private set; }
-    public DataGridColumn ColumnEndTime { get; private set; }
-    public DataGridColumn ColumnDuration { get; private set; }
-    public DataGridColumn ColumnRole { get; private set; }
-    public DataGridColumn ColumnCaption { get; private set; }
-    public DataGridColumn ColumnRTL { get; private set; }
-    public DataGridColumn ColumnCPL { get; private set; }
-    public DataGridColumn ColumnCPS { get; private set; }
-    public DataGridColumn ColumnWPM { get; private set; }
-    public DataGridColumn ColumnAudio { get; private set; }
-    public DataGridColumn ColumnComments { get; private set; }
-    public DataGridColumn ColumnCommentsAudio { get; private set; }
-
-    #endregion
+    #region Captioning
 
     #region Time
 
@@ -221,6 +202,67 @@ namespace ClipFlair.CaptionsGrid
 
     #endregion
 
+    #region Roles
+
+    public IEnumerable<string> Roles
+    {
+      get
+      {
+        if (Captions == null) return null;
+        return (from caption in Captions.Children select ((CaptionElementExt)caption).Role).Distinct().OrderBy(n => n);
+      }
+    }
+
+    #endregion
+
+    #region Audio Duration
+
+    #region LimitAudioPlayback
+
+    /// <summary>
+    /// LimitAudioPlayback Dependency Property
+    /// </summary>
+    public static readonly DependencyProperty LimitAudioPlaybackProperty =
+        DependencyProperty.Register(PROPERTY_LIMIT_AUDIO_PLAYBACK, typeof(bool), typeof(CaptionsGrid),
+            new FrameworkPropertyMetadata(DEFAULT_LIMIT_AUDIO_PLAYBACK));
+
+    /// <summary>
+    /// Gets or sets the LimitAudioPlayback property.
+    /// </summary>
+    public bool LimitAudioPlayback
+    {
+      get { return (bool)GetValue(LimitAudioPlaybackProperty); }
+      set { SetValue(LimitAudioPlaybackProperty, value); }
+    }
+
+    #endregion
+
+    #region LimitAudioRecording
+
+    /// <summary>
+    /// LimitAudioRecording Dependency Property
+    /// </summary>
+    public static readonly DependencyProperty LimitAudioRecordingProperty =
+        DependencyProperty.Register(PROPERTY_LIMIT_AUDIO_RECORDING, typeof(bool), typeof(CaptionsGrid),
+            new FrameworkPropertyMetadata(DEFAULT_LIMIT_AUDIO_RECORDING));
+
+    /// <summary>
+    /// Gets or sets the LimitAudioRecording property.
+    /// </summary>
+    public bool LimitAudioRecording
+    {
+      get { return (bool)GetValue(LimitAudioRecordingProperty); }
+      set { SetValue(LimitAudioRecordingProperty, value); }
+    }
+
+    #endregion
+
+    #endregion
+
+    #endregion
+
+    #region UI
+
     #region ToolbarVisible
 
     /// <summary>
@@ -255,6 +297,89 @@ namespace ClipFlair.CaptionsGrid
     {
       Toolbar.Visibility = (newToolbarVisible) ? Visibility.Visible : Visibility.Collapsed;
     }
+
+    #endregion
+
+    #region RTL
+
+    /// <summary>
+    /// RTL Dependency Property
+    /// </summary>
+    public static readonly DependencyProperty RTLProperty =
+        DependencyProperty.Register("RTL", typeof(bool), typeof(CaptionsGrid),
+            new FrameworkPropertyMetadata(false, new PropertyChangedCallback(OnRTLChanged)));
+
+    /// <summary>
+    /// Gets or sets the RTL property.
+    /// </summary>
+    public bool RTL
+    {
+      get { return (bool)GetValue(RTLProperty); }
+      set { SetValue(RTLProperty, value); }
+    }
+
+    /// <summary>
+    /// Handles changes to the RTL property.
+    /// </summary>
+    private static void OnRTLChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    {
+      CaptionsGrid target = (CaptionsGrid)d;
+      target.OnRTLChanged((bool)e.OldValue, target.RTL);
+    }
+
+    /// <summary>
+    /// Provides derived classes an opportunity to handle changes to the IsAvailable property.
+    /// </summary>
+    protected virtual void OnRTLChanged(bool oldRTL, bool newRTL)
+    {
+      UpdateCaptionsRTL();
+
+      //Set the button image based on the state of the toggle button. 
+      btnRTL.Content = new Uri(newRTL ? "/CaptionsGrid;component/Images/RTL.png" : "/CaptionsGrid;component/Images/LTR.png", UriKind.RelativeOrAbsolute).CreateImage();
+
+      ReturnFocus();
+    }
+
+    #endregion
+
+    #region DrawAudioDuration
+
+    /// <summary>
+    /// DrawAudioDuration Dependency Property
+    /// </summary>
+    public static readonly DependencyProperty DrawAudioDurationProperty =
+        DependencyProperty.Register(PROPERTY_DRAW_AUDIO_DURATION, typeof(bool), typeof(CaptionsGrid),
+            new FrameworkPropertyMetadata(DEFAULT_DRAW_AUDIO_DURATION));
+
+    /// <summary>
+    /// Gets or sets the DrawAudioDuration property.
+    /// </summary>
+    public bool DrawAudioDuration
+    {
+      get { return (bool)GetValue(DrawAudioDurationProperty); }
+      set { SetValue(DrawAudioDurationProperty, value); }
+    }
+
+    #endregion
+
+    public bool Editing { get; private set; }
+
+    #region Columns
+
+    //not using column indices as constants, using column references instead to allow for column reordering by the user
+    public DataGridColumn ColumnIndex { get; private set; }
+    public DataGridColumn ColumnStartTime { get; private set; }
+    public DataGridColumn ColumnEndTime { get; private set; }
+    public DataGridColumn ColumnDuration { get; private set; }
+    public DataGridColumn ColumnRole { get; private set; }
+    public DataGridColumn ColumnCaption { get; private set; }
+    public DataGridColumn ColumnRTL { get; private set; }
+    public DataGridColumn ColumnCPL { get; private set; }
+    public DataGridColumn ColumnCPS { get; private set; }
+    public DataGridColumn ColumnWPM { get; private set; }
+    public DataGridColumn ColumnAudio { get; private set; }
+    public DataGridColumn ColumnComments { get; private set; }
+    public DataGridColumn ColumnCommentsAudio { get; private set; }
 
     #endregion
 
@@ -747,134 +872,18 @@ namespace ClipFlair.CaptionsGrid
 
     #endregion
 
-    #region Roles
-
-    public IEnumerable<string> Roles
-    {
-      get
-      {
-        if (Captions == null) return null;
-        return (from caption in Captions.Children select ((CaptionElementExt)caption).Role).Distinct().OrderBy(n => n);
-      }
-    }
-
-    #endregion
-
-    #region RTL
-
-    /// <summary>
-    /// RTL Dependency Property
-    /// </summary>
-    public static readonly DependencyProperty RTLProperty =
-        DependencyProperty.Register("RTL", typeof(bool), typeof(CaptionsGrid),
-            new FrameworkPropertyMetadata(false, new PropertyChangedCallback(OnRTLChanged)));
-
-    /// <summary>
-    /// Gets or sets the RTL property.
-    /// </summary>
-    public bool RTL
-    {
-      get { return (bool)GetValue(RTLProperty); }
-      set { SetValue(RTLProperty, value); }
-    }
-
-    /// <summary>
-    /// Handles changes to the RTL property.
-    /// </summary>
-    private static void OnRTLChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
-    {
-      CaptionsGrid target = (CaptionsGrid)d;
-      target.OnRTLChanged((bool)e.OldValue, target.RTL);
-    }
-
-    /// <summary>
-    /// Provides derived classes an opportunity to handle changes to the IsAvailable property.
-    /// </summary>
-    protected virtual void OnRTLChanged(bool oldRTL, bool newRTL)
-    {
-      UpdateCaptionsRTL();
-
-      //Set the button image based on the state of the toggle button. 
-      btnRTL.Content = new Uri(newRTL ? "/CaptionsGrid;component/Images/RTL.png" : "/CaptionsGrid;component/Images/LTR.png", UriKind.RelativeOrAbsolute).CreateImage();
-
-      ReturnFocus();
-    }
-
-    #endregion
-
-    #region LimitAudioPlayback
-
-    /// <summary>
-    /// LimitAudioPlayback Dependency Property
-    /// </summary>
-    public static readonly DependencyProperty LimitAudioPlaybackProperty =
-        DependencyProperty.Register(PROPERTY_LIMIT_AUDIO_PLAYBACK, typeof(bool), typeof(CaptionsGrid),
-            new FrameworkPropertyMetadata(DEFAULT_LIMIT_AUDIO_PLAYBACK));
-
-    /// <summary>
-    /// Gets or sets the LimitAudioPlayback property.
-    /// </summary>
-    public bool LimitAudioPlayback
-    {
-      get { return (bool)GetValue(LimitAudioPlaybackProperty); }
-      set { SetValue(LimitAudioPlaybackProperty, value); }
-    }
-
-    #endregion
-
-    #region LimitAudioRecording
-
-    /// <summary>
-    /// LimitAudioRecording Dependency Property
-    /// </summary>
-    public static readonly DependencyProperty LimitAudioRecordingProperty =
-        DependencyProperty.Register(PROPERTY_LIMIT_AUDIO_RECORDING, typeof(bool), typeof(CaptionsGrid),
-            new FrameworkPropertyMetadata(DEFAULT_LIMIT_AUDIO_RECORDING));
-
-    /// <summary>
-    /// Gets or sets the LimitAudioRecording property.
-    /// </summary>
-    public bool LimitAudioRecording
-    {
-      get { return (bool)GetValue(LimitAudioRecordingProperty); }
-      set { SetValue(LimitAudioRecordingProperty, value); }
-    }
-
-    #endregion
-
-    #region DrawAudioDuration
-
-    /// <summary>
-    /// DrawAudioDuration Dependency Property
-    /// </summary>
-    public static readonly DependencyProperty DrawAudioDurationProperty =
-        DependencyProperty.Register(PROPERTY_DRAW_AUDIO_DURATION, typeof(bool), typeof(CaptionsGrid),
-            new FrameworkPropertyMetadata(DEFAULT_DRAW_AUDIO_DURATION));
-
-    /// <summary>
-    /// Gets or sets the DrawAudioDuration property.
-    /// </summary>
-    public bool DrawAudioDuration
-    {
-      get { return (bool)GetValue(DrawAudioDurationProperty); }
-      set { SetValue(DrawAudioDurationProperty, value); }
-    }
-
     #endregion
 
     #endregion
 
     #region --- Methods ---
 
+    #region Helper methods (private)
+
     private void ReturnFocus()
     {
       if (gridCaptions != null)
         gridCaptions.Focus();
-    }
-
-    private void DeselectAll()
-    {
-      gridCaptions.SelectedItem = null;
     }
 
     private void UpdateCaptionsRTL()
@@ -886,6 +895,21 @@ namespace ClipFlair.CaptionsGrid
           c.RTL = value;
       }
     }
+
+    #endregion
+
+    #region Selection
+
+    public void DeselectAll()
+    {
+      gridCaptions.SelectedItem = null;
+    }
+
+    #endregion
+
+    #region Captioning
+
+    #region Add / Remove caption
 
     public CaptionElement AddCaption()
     {
@@ -919,6 +943,10 @@ namespace ClipFlair.CaptionsGrid
       }
     }
 
+    #endregion
+
+    #region Adjust Time slot
+
     public void SetCaptionStart()
     {
       if (Captions == null) return;
@@ -943,31 +971,52 @@ namespace ClipFlair.CaptionsGrid
 
     #endregion
 
+    #endregion
+
+    #region Load / Save
+
+    public void LoadCaptions(IEnumerable<FileInfo> files) //merge multiple captions files
+    {
+      CaptionRegion newCaptions = new CaptionRegion();
+      foreach (FileInfo file in files)
+        LoadCaptions(newCaptions, file); //load all caption files into a single CaptionRegion (merge), which should take care automatically of sorting CaptionElements by start time
+    }
+
+    public void LoadCaptions(FileInfo file)
+    {
+      LoadCaptions(new CaptionRegion(), file);
+    }
+
+    public void LoadCaptions(CaptionRegion newCaptions, FileInfo file)
+    {
+      using (Stream stream = file.OpenRead()) //closes stream when finished
+        LoadCaptions(newCaptions, stream, file.Name); //this will also set Captions to newCaptions
+    }
+
+    public void LoadCaptions(CaptionRegion newCaptions, Stream stream, string filename) //doesn't close stream
+    {
+      ICaptionsReader reader = CaptionUtils.GetCaptionsReader(filename);
+      if (reader != null)
+        reader.ReadCaptions<CaptionElementExt>(newCaptions, stream, Encoding.UTF8);
+      Captions = newCaptions;
+    }
+
+    public void SaveCaptions(Stream stream, string filename) //doesn't close stream
+    {
+      if (Captions == null) return;
+      ICaptionsWriter writer = CaptionUtils.GetCaptionsWriter(filename);
+      writer.WriteCaptions(Captions, stream, Encoding.UTF8);
+    }
+
+    #endregion
+
+    #endregion
+
     #region --- Events ---
 
     private void UserControl_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
     {
       e.Handled = true; //do not allow events to propagate to parent, since DataGrid's column dragging code doesn't consume mouse events as it should
-    }
-
-    private void btnAdd_Click(object sender, RoutedEventArgs e)
-    {
-      AddCaption();
-    }
-
-    private void btnRemove_Click(object sender, RoutedEventArgs e)
-    {
-      RemoveCaption();
-    }
-
-    private void btnStart_Click(object sender, RoutedEventArgs e)
-    {
-      SetCaptionStart();
-    }
-    
-    private void btnEnd_Click(object sender, RoutedEventArgs e)
-    {
-      SetCaptionEnd();
     }
 
     protected void DataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -984,10 +1033,104 @@ namespace ClipFlair.CaptionsGrid
         ((AudioRecorderControl)ColumnAudio.GetCellContent(selectedCaption)).View.Play(); //assuming the audio column is inside the current view
       }
     }
+    
+    #region Toolbar
+
+    #region Add / Remove caption
+
+    private void btnAdd_Click(object sender, RoutedEventArgs e)
+    {
+      AddCaption();
+    }
+
+    private void btnRemove_Click(object sender, RoutedEventArgs e)
+    {
+      RemoveCaption();
+    }
 
     #endregion
 
-    #region --- Drag & Drop ---
+    #region Adjust Time slot
+
+    private void btnStart_Click(object sender, RoutedEventArgs e)
+    {
+      SetCaptionStart();
+    }
+    
+    private void btnEnd_Click(object sender, RoutedEventArgs e)
+    {
+      SetCaptionEnd();
+    }
+
+    #endregion
+
+    #region Import / Export
+
+    private void btnImport_Click(object sender, RoutedEventArgs e)
+    {
+      try
+      {
+        OpenFileDialog dlg = new OpenFileDialog()
+        {
+          Filter = IMPORT_FILTER,
+          FilterIndex = 1, //note: this index is 1-based, not 0-based
+          Multiselect = true //allow selection of multiple captions files to merge them at load
+        };
+
+        if (dlg.ShowDialog() == true) //TODO: find the parent window
+          LoadCaptions(dlg.Files);
+      }
+      catch (Exception ex)
+      {
+        MessageBox.Show("Captions import failed: " + ex.Message); //TODO: find the parent window
+      }
+    }
+
+    //TODO: blog about 1-based index gotcha and the DefaultFileName issue, also make sure one doesn't use OpenFile (says its MethodGroup type) instead of OpenFile() and that SafeFileName, DefaultFileName etc. have N caps in filename and that DefaultExt (point to doc too) isn't used if a filter is supplied. Show how to have a filter with multiple extensions and multiple filters, note that 1st extension of filterindex is used as default
+    private void btnExport_Click(object sender, RoutedEventArgs e)
+    {
+      if (Captions == null) return;
+
+      try
+      {
+        SaveFileDialog dlg = new SaveFileDialog()
+        {
+          Filter = EXPORT_FILTER,
+          //FilterIndex = 1, //note: this index is 1based, not 0based //not needed if we set DefaultExt
+          //DefaultFileName = "Captions", //Silverlight will prompt "Do you want to save Captions?" if we set this, but the prompt can go under the main window, so avoid it
+          DefaultExt = ".srt" //this doesn't seem to be used if you set FilterIndex
+        };
+
+        if (dlg.ShowDialog() == true) //TODO: find the parent window
+          using (Stream stream = dlg.OpenFile()) //closes stream when finished
+            SaveCaptions(stream, dlg.SafeFileName);
+      }
+      catch (Exception ex)
+      {
+        MessageBox.Show("Captions export failed: " + ex.Message); //TODO: find the parent window
+      }
+    }
+
+    private void btnSaveMergedAudio_Click(object sender, RoutedEventArgs e)
+    {
+      SaveFileDialog saveFileDialog = new SaveFileDialog()
+      {
+        Filter = CaptionsGridStrings.filter_wav
+      };
+
+      if (saveFileDialog.ShowDialog() == true)
+        using (Stream stream = saveFileDialog.OpenFile())
+        {
+          Captions.SaveMergedAudio(stream);
+          stream.Flush(); //write any buffers to file
+        }
+    }
+
+    #endregion
+
+    #endregion
+    
+    #region Drag & Drop
 
      private void gridCaptions_DragEnter(object sender, DragEventArgs e)
     {
@@ -1036,104 +1179,6 @@ namespace ClipFlair.CaptionsGrid
     
     #endregion
 
-    #region --- Load-Save ---
-
-    private void btnImport_Click(object sender, RoutedEventArgs e)
-    {
-      try
-      {
-        OpenFileDialog dlg = new OpenFileDialog()
-        {
-          Filter = IMPORT_FILTER,
-          FilterIndex = 1, //note: this index is 1-based, not 0-based
-          Multiselect = true //allow selection of multiple captions files to merge them at load
-        };
-
-        if (dlg.ShowDialog() == true) //TODO: find the parent window
-          LoadCaptions(dlg.Files);
-      }
-      catch (Exception ex)
-      {
-        MessageBox.Show("Captions import failed: " + ex.Message); //TODO: find the parent window
-      }
-    }
-
-    public void LoadCaptions(IEnumerable<FileInfo> files) //merge multiple captions files
-    {
-      CaptionRegion newCaptions = new CaptionRegion();
-      foreach (FileInfo file in files)
-        LoadCaptions(newCaptions, file); //load all caption files into a single CaptionRegion (merge), which should take care automatically of sorting CaptionElements by start time
-    }
-
-    public void LoadCaptions(FileInfo file)
-    {
-      LoadCaptions(new CaptionRegion(), file);
-    }
-
-    private void LoadCaptions(CaptionRegion newCaptions, FileInfo file)
-    {
-      using (Stream stream = file.OpenRead()) //closes stream when finished
-        LoadCaptions(newCaptions, stream, file.Name); //this will also set Captions to newCaptions
-    }
-
-    public void LoadCaptions(CaptionRegion newCaptions, Stream stream, string filename) //doesn't close stream
-    {
-      ICaptionsReader reader = CaptionUtils.GetCaptionsReader(filename);
-      if (reader != null)
-        reader.ReadCaptions<CaptionElementExt>(newCaptions, stream, Encoding.UTF8);
-      Captions = newCaptions;
-    }
-
-     //TODO: blog about 1-based index gotcha and the DefaultFileName issue, also make sure one doesn't use OpenFile (says its MethodGroup type) instead of OpenFile() and that SafeFileName, DefaultFileName etc. have N caps in filename and that DefaultExt (point to doc too) isn't used if a filter is supplied. Show how to have a filter with multiple extensions and multiple filters, note that 1st extension of filterindx is used as default
-
-    private void btnExport_Click(object sender, RoutedEventArgs e)
-    {
-      if (Captions == null) return;
-
-      try
-      {
-        SaveFileDialog dlg = new SaveFileDialog()
-        {
-          Filter = EXPORT_FILTER,
-          //FilterIndex = 1, //note: this index is 1based, not 0based //not needed if we set DefaultExt
-          //DefaultFileName = "Captions", //Silverlight will prompt "Do you want to save Captions?" if we set this, but the prompt can go under the main window, so avoid it
-          DefaultExt = ".srt" //this doesn't seem to be used if you set FilterIndex
-        };
-
-        if (dlg.ShowDialog() == true) //TODO: find the parent window
-          using (Stream stream = dlg.OpenFile()) //closes stream when finished
-            SaveCaptions(stream, dlg.SafeFileName);
-      }
-      catch (Exception ex)
-      {
-        MessageBox.Show("Captions export failed: " + ex.Message); //TODO: find the parent window
-      }
-    }
-
-    public void SaveCaptions(Stream stream, string filename) //doesn't close stream
-    {
-      if (Captions == null) return;
-      ICaptionsWriter writer = CaptionUtils.GetCaptionsWriter(filename);
-      writer.WriteCaptions(Captions, stream, Encoding.UTF8);
-    }
-
-    private void btnSaveMergedAudio_Click(object sender, RoutedEventArgs e)
-    {
-      SaveFileDialog saveFileDialog = new SaveFileDialog()
-      {
-        Filter = CaptionsGridStrings.filter_wav
-      };
-
-      if (saveFileDialog.ShowDialog() == true)
-        using (Stream stream = saveFileDialog.OpenFile())
-        {
-          Captions.SaveMergedAudio(stream);
-          stream.Flush(); //write any buffers to file
-        }
-    }
-
-    #endregion
-
     /*
     private void CollectionViewSource_Filter(object sender, System.Windows.Data.FilterEventArgs e)
     {
@@ -1142,6 +1187,8 @@ namespace ClipFlair.CaptionsGrid
       e.Accepted = String.IsNullOrWhiteSpace(role) || role.Equals(((CaptionElementExt)e.Item).Role);
     }
     */
+
+    #endregion
 
   }
 
