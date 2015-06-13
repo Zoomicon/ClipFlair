@@ -17,7 +17,7 @@ Features list
 1241 Audio recording and playback (WAV/MP3 playback, in-memory recording, WAV export)
 1246 Clip Component (SMF - Progressive download videos, IIS Smooth Streaming and DASH streaming)
 1275 Standard Caption Formats support (CaptionsLib - SRT, TTS, Adobe Encore, FAB)
-1287 ClipFlair Social Network platform (MonoX - ASP.net WebParts Framework)
+1287 ClipFlair Social Network platform (MonoX Social CMS - ASP.net WebParts Framework)
 1334 Image component (ZoomImage + MultiScaleImage - DeepZoom)
 1335 Map component (Bing Maps)
 1360 Gallery component (PivotViewer)
