@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: MediaPlayer.cs
-//Version: 20150325
+//Version: 20150625
 
 using Utils.Extensions;
 
@@ -60,6 +60,8 @@ namespace ClipFlair.MediaPlayer
 
       AddEventHandlers();
 
+      AutoLoad = true; //after setting a Source, start buffering immediately, don't wait for playback to be started. This should mean faster playback response in non-autoplay scenaria
+
       AllowDrop = true;
     }
 
@@ -72,6 +74,33 @@ namespace ClipFlair.MediaPlayer
       ApplyTemplateOverrides();
 
       UpdateVolumeElement(); //patch for SMF bug
+    }
+
+    protected void ApplyTemplateOverrides()
+    {
+      if (ShowPlaylistElement != null)
+        ShowPlaylistElement.Content = "..."; //don't show "Playlist" text but show "..." instead to avoid localizing it and because it can distract viewers from the captions' text //TODO: should maybe show an Image here or expose this as a property?
+
+      //apply UI template overrides
+      OnFullScreenButtonVisibleChanged(!FullScreenButtonVisible, FullScreenButtonVisible);
+      OnSlowMotionButtonVisibleChanged(!SlowMotionButtonVisible, SlowMotionButtonVisible);
+      OnReplayButtonVisibleChanged(!ReplayButtonVisible, ReplayButtonVisible);
+      OnRewindButtonVisibleChanged(!RewindButtonVisible, RewindButtonVisible);
+      OnFastForwardButtonVisibleChanged(!FastForwardButtonVisible, FastForwardButtonVisible);
+      OnPlaylistButtonVisibleChanged(!PlaylistButtonVisible, PlaylistButtonVisible);
+
+      //the following don't seem to do something:
+      /* 
+      if (GraphToggleElement!=null) GraphToggleElement.Visibility = Visibility.Collapsed;
+      if (ControlStripToggleElement != null) ControlStripToggleElement.Visibility = Visibility.Visible;
+      */
+    }
+
+    protected void UpdateVolumeElement()
+    {
+      //patch for SMF to update VolumeElement UI with any already set VolumeLevel
+      if (VolumeElement != null) //check this in case some SMF skin doesn't have a volume element
+        VolumeElement.VolumeLevel = VolumeLevel;
     }
 
     #endregion
@@ -162,7 +191,7 @@ namespace ClipFlair.MediaPlayer
       playlistItem.Title = new Uri(s).GetComponents(UriComponents.Path, UriFormat.Unescaped).Split('/').Last();
 
       //Set thumbnail//
-      playlistItem.ThumbSource = new Uri(s + "_Thumb.jpg"); //TODO: YouTube uses URL of the form "http://img.youtube.com/vi/vV0tjWx9YQ8/0.jpg" (and 1.jpg for smaller thumb)
+      playlistItem.ThumbSource = new Uri(s + "_Thumb.jpg"); //Note: YouTube instead uses thumbnail URL of the form "http://img.youtube.com/vi/vV0tjWx9YQ8/0.jpg" (and 1.jpg for smaller thumb)
 
       /*
             List<MarkerResource> markerResources = new List<MarkerResource>();
@@ -214,7 +243,12 @@ namespace ClipFlair.MediaPlayer
     {
       try
       {
-        if (newTime != null && base.PlaybackPosition != newTime) //check against PlayBackPosition, not oldTime to avoid loops
+        /* note: NOT USED, THIS WOULD MEAN ONE CAN'T CLICK ON A CAPTION ROW WHILE VIDEO IS PLAYING TO JUMP TO THAT TIME AND WOULD HAVE TO FIRST STOP THE VIDEO TO DO IT
+        if (PlayState == MediaPluginState.Playing) //while playing ignore received Time change events to avoid jumping backwards when a slave (non-playing) video tries to follow up. That also allows multiple videos to playback independently, although they compete for the container's Time property
+          return;
+        */
+       
+        if (newTime != null && base.PlaybackPosition != newTime) //check against PlayBackPosition, not oldTime to avoid loops (since we set Time at PlayBackPositionChanged event)
           this.SeekToPosition(newTime);
       }
       catch
@@ -775,6 +809,8 @@ namespace ClipFlair.MediaPlayer
 
     #region --- Methods ---
 
+    #region Load
+
     public bool OpenLocalFile() //Note: this has to be initiated by user action (Silverlight security)
     {
       try
@@ -823,6 +859,10 @@ namespace ClipFlair.MediaPlayer
       Playlist.Add(playlistItem);
       GoToPlaylistItem(Playlist.Count - 1);
     }
+
+    #endregion
+
+    #region Captions
 
     public void UpdateCaptions1(CaptionRegion newCaptions1)
     {
@@ -876,31 +916,12 @@ namespace ClipFlair.MediaPlayer
       theCaption.Style.FontSize = length;
     }
 
-    protected void ApplyTemplateOverrides()
+    #endregion
+
+    public override void Play() //note: this isn't called when autoplaying, only when manually starting playback, so the patch below has to be added to OnMediaOpened too to cover the autoplay scenario
     {
-      if (ShowPlaylistElement != null)
-        ShowPlaylistElement.Content = "..."; //don't show "Playlist" text but show "..." instead to avoid localizing it and because it can distract viewers from the captions' text //TODO: should maybe show an Image here or expose this as a property?
-
-      //apply UI template overrides
-      OnFullScreenButtonVisibleChanged(!FullScreenButtonVisible, FullScreenButtonVisible);
-      OnSlowMotionButtonVisibleChanged(!SlowMotionButtonVisible, SlowMotionButtonVisible);
-      OnReplayButtonVisibleChanged(!ReplayButtonVisible, ReplayButtonVisible);
-      OnRewindButtonVisibleChanged(!RewindButtonVisible, RewindButtonVisible);
-      OnFastForwardButtonVisibleChanged(!FastForwardButtonVisible, FastForwardButtonVisible);
-      OnPlaylistButtonVisibleChanged(!PlaylistButtonVisible, PlaylistButtonVisible);
-
-      //the following don't seem to do something:
-      /* 
-      if (GraphToggleElement!=null) GraphToggleElement.Visibility = Visibility.Collapsed;
-      if (ControlStripToggleElement != null) ControlStripToggleElement.Visibility = Visibility.Visible;
-      */
-    }
-
-    protected void UpdateVolumeElement()
-    {
-      //patch for SMF to update VolumeElement UI with any already set VolumeLevel
-      if (VolumeElement != null) //check this in case some SMF skin doesn't have a volume element
-        VolumeElement.VolumeLevel = VolumeLevel;
+      Time = TimeSpan.MinValue; //patch: doing this so that CaptionsGrid checks for (Time < TimeSpan.Zero) at each change of its Time dependency property, so that it can detect the play event and play audio for the currently selected caption too
+      base.Play();
     }
 
     #endregion
@@ -968,23 +989,25 @@ namespace ClipFlair.MediaPlayer
 
     #endregion
 
+    protected void MediaPlayer_MediaPluginRegistered(object source, CustomEventArgs<IMediaPlugin> args)
+    {
+      activeMediaPlugin = args.Value;
+      activeMediaPlugin.EnableGPUAcceleration = true; //make sure GPU acceleration is used by SSME etc. plugins
+      activeMediaPlugin.Balance = Balance;
+    }
+    
     protected override void OnMediaOpened()
     {
       base.OnMediaOpened();
-      OnBitrateVisibleChanged(!BitrateVisible, BitrateVisible); //BitrateMonitorElement seems to be shown by default after media opening
+      OnBitrateVisibleChanged(!BitrateVisible, BitrateVisible); //BitrateMonitorElement seems to be shown by default after media opening     
       UpdateCaptions1(Captions1);
 
       /* //TODO: doesn't work - also see how we can detect current playing state and pause (or play if paused)
       if (MediaPresenterElement != null) //this can be null if media url can't be resolved
         MediaPresenterElement.MouseLeftButtonDown += (s, e) => { Pause(); };
       */
-    }
-    
-    protected void MediaPlayer_MediaPluginRegistered(object source, CustomEventArgs<IMediaPlugin> args)
-    {
-      activeMediaPlugin = args.Value;
-      activeMediaPlugin.EnableGPUAcceleration = true; //make sure GPU acceleration is used by SSME etc. plugins
-      activeMediaPlugin.Balance = Balance;
+
+      Time = TimeSpan.MinValue; //patch: doing this so that CaptionsGrid checks for (Time < TimeSpan.Zero) at each change of its Time dependency property, so that it can detect the autoplay event and play audio for the currently selected caption too (not enough to do it here, we also have to do it at Play overriden method since user may manually Pause/Play multiple times after open). Do not use PlayStateChanged event, since it may fire with "Playing" multiple times, if it does "Buffering" in-betweeen
     }
 
     protected void Player_PlaybackPositionChanged(object sender, CustomEventArgs<TimeSpan> args)

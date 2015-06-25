@@ -4,6 +4,11 @@ Filename: Generic.xaml
 Version: 20150323
 -->
   
+<!-- 
+  TODO: re-template the DataGrid to turn off row virtualization, since it causes issue with audio playback (stops playing audio for rows that get out of the view [it destroys them] if you scroll up/down)
+        see how to do it at http://blogs.msdn.com/b/mcsuksoldev/archive/2010/04/13/performance-characteristics-of-the-silverlight-datagrid.aspx
+-->
+  
 <ResourceDictionary
  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"

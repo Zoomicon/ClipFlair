@@ -1,7 +1,7 @@
 ﻿<!--
 Project: ClipFlair (http://ClipFlair.codeplex.com)
 Filename: CaptionsGrid.xaml
-Version: 20140802
+Version: 20150614
 -->
 
 <UserControl x:Class="ClipFlair.CaptionsGrid.CaptionsGrid"
@@ -191,18 +191,25 @@ Version: 20140802
       Background="Transparent"
       RowBackground="Transparent"
       AlternatingRowBackground="#FFFFFF"
-
-      ClipboardCopyMode="IncludeHeader"
+      
       AutoGenerateColumns="False"
+      
       HeadersVisibility="All"
       ColumnHeaderStyle="{StaticResource ColumnHeaderStyle}"
-      ItemsSource="{Binding Source={StaticResource SortedCaptions}}"
+      
+      ClipboardCopyMode="IncludeHeader"
+      SelectionMode="Extended"
       
       AllowDrop="True" 
       Drop="gridCaptions_Drop"
       DragEnter="gridCaptions_DragEnter"
       DragOver="gridCaptions_DragOver"
       DragLeave="gridCaptions_DragLeave"
+      
+      SelectionChanged="grid_SelectionChanged"
+      CurrentCellChanged="grid_CurrentCellChanged"
+      
+      ItemsSource="{Binding Source={StaticResource SortedCaptions}}"      
       >
       <!-- ItemsSource="{Binding Path=Captions.Children, RelativeSource={RelativeSource AncestorType=captions:CaptionsGrid}}" -->
 

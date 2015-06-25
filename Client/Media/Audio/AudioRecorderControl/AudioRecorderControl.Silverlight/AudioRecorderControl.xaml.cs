@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: AudioRecorderControl.xaml.cs
-//Version: 20150323
+//Version: 20150625
 
 using AudioLib;
 using System;
@@ -15,12 +15,12 @@ namespace ClipFlair.AudioRecorder
   public partial class AudioRecorderControl : UserControl
   {
 
-     #region --- Constants ---
+    #region --- Constants ---
  
-     public static readonly Brush COLOR_EXCESS_DURATION = new SolidColorBrush(Colors.Red);
-     public static readonly Brush COLOR_NORMAL_DURATION = new SolidColorBrush(Colors.Green);
+    public static readonly Brush COLOR_EXCESS_DURATION = new SolidColorBrush(Colors.Red);
+    public static readonly Brush COLOR_NORMAL_DURATION = new SolidColorBrush(Colors.Green);
  
-     #endregion
+    #endregion
 
     #region --- Initialization ---
 
