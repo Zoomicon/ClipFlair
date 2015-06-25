@@ -1,7 +1,7 @@
 ﻿<!--
 Project: ClipFlair (http://ClipFlair.codeplex.com)
 Filename: MapWindow.xaml
-Version: 20141031
+Version: 20150625
 -->
 
 <clipflair:BaseWindow x:Class="ClipFlair.Windows.MapWindow"
@@ -34,7 +34,7 @@ Version: 20141031
 
   <!-- TODO: hiding Bing logo and Map data copyright, should check Bing license on this -->
   <map:Map Name="map"
-           CredentialsProvider="AteCcwxu4odM95hYVKZTcvJzDyp4KlfsGKrPRa8QFn0VjwJjlQdSmMOSfoicgi9X" 
+           CredentialsProvider="Agym4sFGpihhA05O6X-xYPlLdYtUc95T16SPsZWTTS0ISkv89BfRw2pw06VC6Mep" 
            CopyrightVisibility="Collapsed"
            LogoVisibility="Collapsed"
            NavigationVisibility="{Binding NavigationVisible, Mode=TwoWay, Converter={StaticResource BooleanToVisibilityConverter}}"
