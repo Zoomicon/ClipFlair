@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: ICaptionsGrid.xaml.cs
-//Version: 20150613
+//Version: 20150614
 
 using System;
 using System.Collections.Generic;
@@ -20,6 +20,7 @@ namespace ClipFlair.CaptionsGrid
     TimeSpan Time { get; set; }
     CaptionRegion Captions { get; set; }
     IEnumerable<string> Roles { get; }
+    IEnumerable<TimedTextElement> ActiveCaptions { get; }
 
     #region Audio Duration
 
@@ -82,23 +83,25 @@ namespace ClipFlair.CaptionsGrid
 
     #region Selection
 
+    void Select(TimedTextElement captionToSelect);
+    void Select(IEnumerable<TimedTextElement> captionsToSelect); 
     void DeselectAll();
 
     #endregion
 
     #region Captioning
 
-    #region Add / Remove caption
+    #region Add / Remove captions
 
     CaptionElement AddCaption();
-    void SetCaptionStart();
+    void RemoveSelectedCaptions();
     
     #endregion
 
     #region Adjust Time slot
 
     void SetCaptionEnd();
-    void RemoveCaption();
+    void SetCaptionStart();
 
     #endregion
 

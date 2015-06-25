@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: AudioRecorderView.cs
-//Version: 20150324
+//Version: 20150625
 
 using AudioLib;
 using System;
@@ -474,7 +474,7 @@ namespace ClipFlair.AudioRecorder
       }
     }
 
-    public void StopPlayback()
+    private void StopPlayback()
     {
       try
       {
@@ -489,6 +489,13 @@ namespace ClipFlair.AudioRecorder
         //do not call "PlayCommandUncheck" here, will do infinite loop, since it results in "StopPlayback" getting called
         Busy = false;
       }
+    }
+
+    public void Stop()
+    {
+      StopPlayback();
+      PlayCommand.IsChecked = false; //depress playback toggle button //don't talk to ToggleButton directly
+      Status = MSG_RECORD_OR_LOAD; //prompt user to record audio or load a WAV file
     }
 
     #endregion

@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: CaptionsGrid.xaml.cs
-//Version: 20150613
+//Version: 20150614
 
 using ClipFlair.AudioRecorder;
 using ClipFlair.CaptionsGrid.Resources;
@@ -9,6 +9,7 @@ using ClipFlair.CaptionsLib.Utils;
 using Microsoft.SilverlightMediaFramework.Core.Accessibility.Captions;
 using Microsoft.SilverlightMediaFramework.Core.Media;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -71,18 +72,9 @@ namespace ClipFlair.CaptionsGrid
       ColumnAudio = gridCaptions.Columns[10];
       ColumnComments = gridCaptions.Columns[11];
       ColumnCommentsAudio = gridCaptions.Columns[12];
-
-      gridCaptions.ClipboardCopyMode = DataGridClipboardCopyMode.IncludeHeader;
-      gridCaptions.SelectionMode = DataGridSelectionMode.Single;
-      gridCaptions.SelectionChanged += new SelectionChangedEventHandler(DataGrid_SelectionChanged);
   
-      gridCaptions.BeginningEdit += (s, e) => { 
-        Editing = true;
-      };
-      gridCaptions.CellEditEnded += (s, e) => { 
-        Editing = false;
-      };
-
+      gridCaptions.BeginningEdit += (s, e) => { Editing = true; };
+      gridCaptions.CellEditEnded += (s, e) => { Editing = false; };
     }
 
     #endregion
@@ -118,7 +110,8 @@ namespace ClipFlair.CaptionsGrid
       CaptionsGrid target = (CaptionsGrid)d;
       TimeSpan oldTime = (TimeSpan)e.OldValue;
       TimeSpan newTime = target.Time;
-      target.OnTimeChanged(oldTime, newTime);
+      if (newTime != oldTime) //avoid infinite recursion
+        target.OnTimeChanged(oldTime, newTime);
     }
 
     /// <summary>
@@ -126,35 +119,37 @@ namespace ClipFlair.CaptionsGrid
     /// </summary>
     protected virtual void OnTimeChanged(TimeSpan oldTime, TimeSpan newTime) //if StartTime or EndTime cell is being edited (doesn't work), update its value with current Time, else if any caption contains current Time select it (else keep current selection)
     {
-      CaptionElement activeCaption = null;
-      
-      /*
-      activeCaption = (CaptionElement)gridCaptions.SelectedItem;
+      /* At start of playback (assuming time is set to <0 momentarily by the media player), deselects all, so that audio of currently selected row will play too */
+
+      if (newTime < TimeSpan.Zero) //patch: assuming MediaPlayer does Time=TimeSpan.MinValue at each PlayStateChanged to Playing, so that we can detect the play event and play audio for the currently selected caption too
+      {
+        DeselectAll();
+        return;
+      }
+
+      /* Update Begin or End time cell in-place as Time flows if it is in edit mode */
+
+      CaptionElement previousActiveCaption = (CaptionElement)gridCaptions.SelectedItem;
       DataGridColumn curcol = gridCaptions.CurrentColumn;
 
-      if (curcol == ColumnStartTime || curcol == ColumnEndTime)
+      if (previousActiveCaption != null && (curcol == ColumnStartTime || curcol == ColumnEndTime)) //gridCaptions.SelectedItemgridCaptions.SelectedItem can occur for example if there are no grid rows
       {
-        object txt = curcol.GetCellContent(activeCaption);
+        object txt = curcol.GetCellContent(previousActiveCaption);
         if (txt is TextBox) //since Editing property doesn't seem to work OK, not checking it above, but using this check instead
         {
-          string timeStr = newTime.ToString("hh:mm:ss.FFF");
-          ((TextBox)txt).Text = timeStr;
+          if (curcol == ColumnStartTime)
+            previousActiveCaption.Begin = newTime;
+          else //assuming curcol == ColumnEndTime
+            previousActiveCaption.End = newTime;
+          return;
         }
       }
-      else
-      */
-      {
-        //Stop any audio playback from captions that aren't active at the current time position
-        IEnumerable<TimedTextElement> activeCaptions = Captions.Children.WhereActiveAtPosition(newTime);
-        foreach (CaptionElement c in Captions.Children)
-          if (!activeCaptions.Contains<TimedTextElement>(c)) //TODO: THE FOLLOWING WON'T WORK UNLESS EACH CAPTION IS FIRST SCROLLED INTO VIEW WHICH WOULD CAUSE EXCESSIVE SCROLLING, NEED SOME OTHER WAY TO GET THE AUDIORECORDERCONTROL FOR A CAPTION
-            ;//((AudioRecorderControl)ColumnAudio.GetCellContent(c)).View.StopPlayback(); //TODO: see if this also depresses the playback toggle button
-          else
-            activeCaption = c; //if multiple captions cover this position, select the last one
 
-        if (activeCaption != null) //do not set selection to null (keep currently selected caption instead) if no active caption found at current time position, so that we can change currently selected caption's start/end times using respective buttons
-          gridCaptions.SelectedItem = activeCaption;
-      }
+      /* Update selection */
+
+      IEnumerable<TimedTextElement> activeCaptions = ActiveCaptions; //call this once, since it is costly (uses current Time value and searches for captions that contain that time value)
+      if (activeCaptions.Count<TimedTextElement>() != 0) //do not clear selection (keep currently selected captions instead) if no active captions found at current time position, so that we can change currently selected captions' start/end times using respective buttons
+        Select(activeCaptions);
     }
 
     #endregion
@@ -214,6 +209,13 @@ namespace ClipFlair.CaptionsGrid
     }
 
     #endregion
+
+    public IEnumerable<TimedTextElement> ActiveCaptions {
+      get
+      {
+        return Captions.Children.WhereActiveAtPosition(Time);
+      }
+    }
 
     #region Audio Duration
 
@@ -896,20 +898,65 @@ namespace ClipFlair.CaptionsGrid
       }
     }
 
+    private void ChangePlayState(IList items, bool play, IList onlyFromThese = null)
+    {
+      DataGridColumn scrollToColumn = gridCaptions.CurrentColumn;
+      if (scrollToColumn == null)
+        scrollToColumn = gridCaptions.Columns[0]; //if no column selected scroll to show 1st one
+
+      foreach (CaptionElement caption in items)
+        if (onlyFromThese == null || onlyFromThese.Contains(caption))
+          try
+          {
+            //cells that are scrolled out of view aren't created yet and won't give us their content
+            //TODO: blog this workarround (needed if the row is out of view or not rendered yet)
+            gridCaptions.ScrollIntoView(caption, scrollToColumn); //scroll vertically to show selected caption's row        
+            AudioRecorderControl audioRecorder = (AudioRecorderControl)ColumnAudio.GetCellContent(caption);
+            if (audioRecorder != null)
+              if (play)
+                audioRecorder.View.Play();
+              else
+                audioRecorder.View.Stop(); //assuming the audio column is inside the current view (think DataGrid uses only row virtualization anyway, not column-based one)
+          }
+          catch
+          {
+            //NOP
+          }
+      }
+
     #endregion
 
     #region Selection
 
+    public void Select(TimedTextElement captionToSelect)
+    {
+      gridCaptions.SelectedItem = captionToSelect; //this should clear existing selection (even multiple one) and also set current row
+    }
+
+    public void Select(IEnumerable<TimedTextElement> captionsToSelect)
+    {
+      if (captionsToSelect == null || Captions == null) return;
+
+      if (captionsToSelect.Count() != 0)
+        gridCaptions.SelectedItem = captionsToSelect.Last(); //set the last caption of the selection as the current grid row - MUST DO THIS BEFORE THE FOREACH LOOP THAT ADDS TO SELECTEDITEMS
+
+      foreach (CaptionElement caption in Captions.Children) //this loop will cause SelectionChanged event to fire multiple times as captions are added and removed from the current selection (which will also cause inactive/deselected captions to stop playing audio and active ones to play)
+        if (captionsToSelect.Contains(caption))
+          gridCaptions.SelectedItems.Add(caption);
+        else
+          gridCaptions.SelectedItems.Remove(caption);
+    }
+
     public void DeselectAll()
     {
-      gridCaptions.SelectedItem = null;
+      gridCaptions.SelectedItems.Clear(); //this requires SelectionMode=Extended
     }
 
     #endregion
 
     #region Captioning
 
-    #region Add / Remove caption
+    #region Add / Remove captions
 
     public CaptionElement AddCaption()
     {
@@ -926,44 +973,51 @@ namespace ClipFlair.CaptionsGrid
 
       Captions.Children.Add(newCaption); //this adds the caption to the correct place in the list based on its Begin time (logic is implemented by SMF in MediaMarkerCollection class) //TODO: blog about this, Insert isn't implemented, Add does its job too (see http://smf.codeplex.com/workitem/23308)
       
-      gridCaptions.SelectedItem = newCaption; //select the caption after adding it //TODO: check if it causes hickup and if so tell selection to not jump to selected caption start time
+      Select(newCaption); //select the caption after adding it //TODO: check if it causes hickup and if so tell selection to not jump to selected caption start time
       
       return newCaption;
     }
 
-    public void RemoveCaption()
+    public void RemoveSelectedCaptions()
     {
       if (Captions == null) return;
 
-      CaptionElement selectedCaption = (CaptionElement)gridCaptions.SelectedItem;
-      if (selectedCaption != null)
-      {
-        DeselectAll(); //clear current selection before removing the caption, so that selection doesn't move to the next row and make current time change
-        Captions.Children.Remove(selectedCaption);
-      }
+      List<CaptionElement> selectedCaptions = new List<CaptionElement>(gridCaptions.SelectedItems.Count);
+      foreach (CaptionElement caption in gridCaptions.SelectedItems) 
+        selectedCaptions.Add(caption); //must do before DeselectAll (copy the items, do not just keep a reference to the gridCaptions.SelectedItems, since it would be cleared after DeselectAll below)
+        //unfortunately "CopyTo" isn't implemented by the SelectedItems collection, so we have to copy items one-by-one
+
+      DeselectAll(); //clear current selection before removing the caption, so that selection doesn't move to the next row and make current time change
+      
+      ChangePlayState(selectedCaptions, false); //seems SelectionChanged event isn't fired before the Remove that follows this command (even tried using Dispatcher.BeginInvoke for that), so we're stoping any playing audio for the captions to be removed here
+
+      foreach (CaptionElement caption in selectedCaptions) //remove the cached (previously) selected captions
+        Captions.Children.Remove(caption);
+
+      selectedCaptions.Clear(); //release the cached selected captions, in case garbage collection takes some time to dispose that list
     }
 
     #endregion
 
     #region Adjust Time slot
 
-    public void SetCaptionStart()
+    public void SetCaptionStart() //this acts only on the current caption (the SelectedItem), not on all selected captions (the SelectedItems), else we wouldn't be able to "ungroup" captions
     {
       if (Captions == null) return;
 
       CaptionElement selectedCaption = (CaptionElement)gridCaptions.SelectedItem;
-      if (selectedCaption != null)
+      if (selectedCaption != null) //gridCaptions.SelectedItem==null can occur for example if there are no grid rows
         selectedCaption.Begin = Time;
       else
         AddCaption(); //also sets the begin time, no need to do AddCaption().Begin = Time;
     }
 
-    public void SetCaptionEnd()
+    public void SetCaptionEnd() //this acts only on the current caption (the SelectedItem), not on all selected captions (the SelectedItems), else we wouldn't be able to "ungroup" captions
     {
       if (Captions == null) return;
 
       CaptionElement selectedCaption = (CaptionElement)gridCaptions.SelectedItem;
-      if (selectedCaption != null)
+      if (selectedCaption != null) //gridCaptions.SelectedItem==null can occur for example if there are no grid rows
         selectedCaption.End = Time;
       else
         AddCaption().End = Time; //also sets the begin time, no need to do AddCaption().Begin = Time;
@@ -1019,21 +1073,25 @@ namespace ClipFlair.CaptionsGrid
       e.Handled = true; //do not allow events to propagate to parent, since DataGrid's column dragging code doesn't consume mouse events as it should
     }
 
-    protected void DataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+    #region Selection
+
+    private void grid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+    {
+      if (LimitAudioPlayback) 
+        ChangePlayState(e.RemovedItems, false); //Stop playing audio for just deselected captions
+      
+      ChangePlayState(e.AddedItems, true, ActiveCaptions.ToList()); //Play audio for selected captions, but only for those that are active at the current time
+    }
+
+    private void grid_CurrentCellChanged(object sender, EventArgs e)
     {
       CaptionElement selectedCaption = (CaptionElement)gridCaptions.SelectedItem;
-      if (selectedCaption != null)
-      {
-        DataGridColumn scrollToColumn = gridCaptions.CurrentColumn;
-        if (scrollToColumn == null) scrollToColumn = gridCaptions.Columns[0]; //if no column selected scroll to show 1st one
-        gridCaptions.ScrollIntoView(selectedCaption, scrollToColumn); //scroll vertically to show selected caption's row
-        //cells that are scrolled out of view aren't created yet and won't give us their content //TODO: blog this workarround (needed if the row is out of view or not rendered yet)
-
-        Time = selectedCaption.Begin;
-        ((AudioRecorderControl)ColumnAudio.GetCellContent(selectedCaption)).View.Play(); //assuming the audio column is inside the current view
-      }
+      if (selectedCaption != null) //gridCaptions.SelectedItem can occur for example if there are no grid rows
+        Time = selectedCaption.Begin; //only set time here, not at grid_SelectionChanged (the SelectedItem should correspond to the current row, even when SelectedItems contains more items)
     }
-    
+
+    #endregion
+
     #region Toolbar
 
     #region Add / Remove caption
@@ -1045,7 +1103,7 @@ namespace ClipFlair.CaptionsGrid
 
     private void btnRemove_Click(object sender, RoutedEventArgs e)
     {
-      RemoveCaption();
+      RemoveSelectedCaptions();
     }
 
     #endregion
