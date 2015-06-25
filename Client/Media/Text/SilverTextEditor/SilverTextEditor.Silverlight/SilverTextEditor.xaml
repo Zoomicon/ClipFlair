@@ -1,6 +1,6 @@
 ﻿<!--
 Filename: SilverTextEditor.xaml
-Version: 20140921
+Version: 20150625
 -->
 
 <UserControl x:Class="SilverTextEditor.SilverTextEditor"
@@ -384,7 +384,9 @@ Version: 20140921
 
           MouseLeftButtonDown="rtb_MouseLeftButtonDown"
           MouseRightButtonDown="rtb_MouseRightButtonDown" MouseRightButtonUp="rtb_MouseRightButtonUp" 
-          MouseMove="rtb_MouseMove" 
+          MouseMove="rtb_MouseMove"
+          
+          ContentChanged="rtb_ContentChanged"
 
           AllowDrop="True" 
           Drop="rtb_Drop" 

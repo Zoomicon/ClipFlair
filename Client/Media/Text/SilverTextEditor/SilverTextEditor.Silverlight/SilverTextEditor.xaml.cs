@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: SilverTextEditor.xaml.cs
-//Version: 20140907
+//Version: 20150625
 
 //Originated from Microsoft Silverlight sample (MSPL license)
 
@@ -1041,7 +1041,14 @@ namespace SilverTextEditor
 
     private void rtb_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
     {
-      e.Handled = true; //handle events, else when a hyperlink is clicked and the richtextbox background is transparent the event will pass through and some handler may cause the hyperlink not to act
+      e.Handled = true; //handle events, else when a hyperlink is clicked and the richtextbox background is transparent the event will pass through and some handler may cause the hyperlink not to act (see https://zoomicon.wordpress.com/2014/09/07/fix-hypelinks-not-clickable-in-richtextbox-under-silverlight/)
+    }
+
+    private void rtb_ContentChanged(object sender, ContentChangedEventArgs e)
+    {
+      //TODO: find all [time] entries in the text and remember their paragraphs so that they can be selected when time changes
+      // Maybe this one should just mark the content as changed and wake up another background task to index it. See how find is implemented usually
+      // alternative is to do find everytime Time changes (using a queue where find/scrollto events are pushed), but that will be more costly during video playback, since text rarely changes
     }
 
     #endregion
