@@ -1,5 +1,5 @@
 ﻿//Filename: FloatingWindow.cs
-//Version: 20141025
+//Version: 20150703
 
 //#define BORDER_ONLY_AT_RESIZABLE //using BorderThickness instead to allow user to define when they want the border to be visible themselves
 
@@ -107,8 +107,6 @@ namespace SilverFlow.Controls
     private const double MinimizingDurationInMilliseconds = 200;
     private const double RestoringDurationInMilliseconds = 20;
 
-    private bool templateIsApplied; //=false
-
     #endregion
 
     #region --- Fields ---
@@ -131,9 +129,9 @@ namespace SilverFlow.Controls
     private Storyboard openingStoryboard;
     private Storyboard closingStoryboard;
     private Storyboard maximizingStoryboard;
-#if !SILVERLIGHT
+    #if !SILVERLIGHT
     private Storyboard restoringStoryboard;
-#endif
+    #endif
     private Storyboard restoreMaximizedStoryboard;
     private Storyboard inertialMotionStoryboard;
 
@@ -170,9 +168,64 @@ namespace SilverFlow.Controls
     // Bitmap containing thumbnail image
     private ImageSource minimizedWindowThumbnail;
 
+    private bool templateIsApplied; //=false
+
+    #endregion
+
+    #region --- Constructor ---
+
+    #if !SILVERLIGHT
+    static FloatingWindow()
+    {
+      DefaultStyleKeyProperty.OverrideMetadata(typeof(FloatingWindow), new FrameworkPropertyMetadata(typeof(FloatingWindow)));
+    }
+    #endif
+
+    /// <summary>
+    /// Initializes a new instance of the <see cref="FloatingWindow" /> class.
+    /// </summary>
+    public FloatingWindow()
+    {
+      DefaultStyleKey = typeof(FloatingWindow);
+
+      resizeController = new ResizeController(this);
+      resizeController.ResizingArea = ResizingAreaThickness;
+      snapinController = new SnapinController();
+      inertiaController = new InertiaController();
+      localStorage = new LocalStorage();
+      bitmapHelper = new BitmapHelper();
+
+      this.SetVisible(false);
+    }
+
+    #endregion
+
+    #region --- Desctructor ---
+
+    /// <summary>
+    /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
+    /// </summary>
+    public void Dispose()
+    {
+      GC.Collect();
+      GC.WaitForPendingFinalizers();
+      GC.Collect();
+    }
+
     #endregion
 
     #region --- Properties ---
+
+    #region DialogResult
+
+    /// <summary>
+    /// Gets or sets a value that indicates whether the FloatingWindow was accepted or canceled.
+    /// </summary>
+    /// <value>true if the FloatingWindow was accepted; false - if canceled. The default is null.</value>
+    [TypeConverter(typeof(NullableBoolConverter))]
+    public bool? DialogResult { get; set; }
+
+    #endregion
 
     /// <summary>
     /// Gets or sets a reference to the FloatingWindowHost, containing the window.
@@ -254,6 +307,18 @@ namespace SilverFlow.Controls
       set
       {
         base.MinHeight = value;
+      }
+    }
+
+    /// <summary>
+    /// Gets the bounds of the maximized window.
+    /// </summary>
+    /// <value>Bounding rectangle of maximized window.</value>
+    public Rect BoundingRectangleMaximized
+    {
+      get {
+        Rect bounds = FloatingWindowHost.MaximizedWindowBounds;
+        return bounds.Scaled(1 / Scale); //TODO: this doesn't work very well when Scale isn't 1, seems to do wrong positioning
       }
     }
 
@@ -396,7 +461,7 @@ namespace SilverFlow.Controls
       FloatingWindow window = (FloatingWindow)d;
 
       if (window.screenshotButton != null)
-        window.screenshotButton.SetVisible((bool)e.NewValue);
+        window.screenshotButton.SetVisible((bool)e.NewValue); //TODO: could also use a VisibilityToBooleanConverter at the Template
     }
 
     #endregion
@@ -436,7 +501,7 @@ namespace SilverFlow.Controls
       FloatingWindow window = (FloatingWindow)d;
 
       if (window.helpButton != null)
-        window.helpButton.SetVisible((bool)e.NewValue);
+        window.helpButton.SetVisible((bool)e.NewValue); //TODO: could also use a VisibilityToBooleanConverter at the Template
     }
 
     #endregion
@@ -476,7 +541,7 @@ namespace SilverFlow.Controls
       FloatingWindow window = (FloatingWindow)d;
 
       if (window.optionsButton != null)
-        window.optionsButton.SetVisible((bool)e.NewValue);
+        window.optionsButton.SetVisible((bool)e.NewValue); //TODO: could also use a VisibilityToBooleanConverter at the Template
     }
 
     #endregion
@@ -516,7 +581,7 @@ namespace SilverFlow.Controls
       FloatingWindow window = (FloatingWindow)d;
 
       if (window.closeButton != null)
-        window.closeButton.SetVisible((bool)e.NewValue);
+        window.closeButton.SetVisible((bool)e.NewValue); //TODO: could also use a VisibilityToBooleanConverter at the Template
     }
 
     #endregion
@@ -557,10 +622,10 @@ namespace SilverFlow.Controls
       bool visible = window.IsModal ? false : (bool)e.NewValue;
 
       if (window.maximizeButton != null)
-        window.maximizeButton.SetVisible(visible);
+        window.maximizeButton.SetVisible(visible); //TODO: could also use a VisibilityToBooleanConverter at the Template
 
       if (window.restoreButton != null)
-        window.restoreButton.SetVisible(false);
+        window.restoreButton.SetVisible(false); //TODO: could also use a VisibilityToBooleanConverter at the Template
     }
 
     #endregion
@@ -601,7 +666,7 @@ namespace SilverFlow.Controls
       bool visible = window.IsModal ? false : (bool)e.NewValue;
 
       if (window.minimizeButton != null)
-        window.minimizeButton.SetVisible(visible);
+        window.minimizeButton.SetVisible(visible); //TODO: could also use a VisibilityToBooleanConverter at the Template
     }
 
     #endregion
@@ -861,13 +926,13 @@ namespace SilverFlow.Controls
     /// <param name="e">DependencyPropertyChangedEventArgs which contains the old and new values.</param>
     private static void OnResizeEnabledChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
-#if BORDER_ONLY_AT_RESIZABLE
+      #if BORDER_ONLY_AT_RESIZABLE
       FloatingWindow window = (FloatingWindow)d;
       if ((bool)e.NewValue)
         window.RestoreBorder();
       else
         window.HideBorder();
-#endif
+      #endif
     }
 
     #endregion
@@ -1480,48 +1545,108 @@ namespace SilverFlow.Controls
 
     #endregion
 
-    #region DialogResult
-
-    /// <summary>
-    /// Gets or sets a value that indicates whether the FloatingWindow was accepted or canceled.
-    /// </summary>
-    /// <value>true if the FloatingWindow was accepted; false - if canceled. The default is null.</value>
-    [TypeConverter(typeof(NullableBoolConverter))]
-    public bool? DialogResult { get; set; }
-
-    #endregion
-
-    #endregion
-
-    #region --- Constructor ---
-
-    #if !SILVERLIGHT
-    static FloatingWindow()
-    {
-      DefaultStyleKeyProperty.OverrideMetadata(typeof(FloatingWindow), new FrameworkPropertyMetadata(typeof(FloatingWindow)));
-    }
-    #endif
-
-    /// <summary>
-    /// Initializes a new instance of the <see cref="FloatingWindow" /> class.
-    /// </summary>
-    public FloatingWindow()
-    {
-      DefaultStyleKey = typeof(FloatingWindow);
-
-      resizeController = new ResizeController(this);
-      resizeController.ResizingArea = ResizingAreaThickness;
-      snapinController = new SnapinController();
-      inertiaController = new InertiaController();
-      localStorage = new LocalStorage();
-      bitmapHelper = new BitmapHelper();
-
-      this.SetVisible(false);
-    }
-
     #endregion
 
     #region --- Methods ---
+
+    /// <summary>
+    /// Minimizes the window.
+    /// </summary>
+    private void MinimizeWindow()
+    {
+      if (windowState != WindowState.Minimized)
+      {
+        if (minimizeButton != null)
+          VisualStateManager.GoToState(minimizeButton, VSMSTATE_StateNormal, true);
+
+        if (windowState == WindowState.Normal)
+        {
+          // Store previous coordinates
+          previousPosition = Position;
+          previousSize = new Size(ActualWidth, ActualHeight);
+        }
+
+        minimizedWindowThumbnail = GetThumbnailImage();
+
+        previousWindowState = windowState;
+        VisualStateManager.GoToState(this, VSMSTATE_StateMinimized, true);
+        OnMinimized(EventArgs.Empty);
+      }
+
+      windowState = WindowState.Minimized;
+      OnDeactivated(EventArgs.Empty);
+
+      this.FloatingWindowHost.ActivateTopmostWindow();
+    }
+
+    /// <summary>
+    /// Creates a thumbnail of the window.
+    /// </summary>
+    /// <returns>Bitmap containing thumbnail image.</returns>
+    public ImageSource GetThumbnailImage()
+    {
+      // If an Icon is an image - use it as a thumbnail displayed on the iconbar
+      if (Icon != null)
+        return (Icon is Image) ? (Icon as Image).Source : null;
+
+      // If other kind of Icon is specified - use it as a thumbnail displayed on the iconbar
+      // Otherwise, display the window itself
+      FrameworkElement icon = (Icon as FrameworkElement) ?? contentRoot;
+      ImageSource bitmap = bitmapHelper.RenderVisual(icon, FloatingWindowHost.IconWidth, FloatingWindowHost.IconHeight);
+
+      return bitmap;
+    }
+
+    public ImageSource GetImage()
+    {
+      return bitmapHelper.RenderVisual(contentRoot, contentRoot.Width, contentRoot.Height);
+    }
+
+    /// <summary>
+    /// Resizing the window to current view bounds without setting it to maximized mode
+    /// </summary
+    public void ResizeToView()
+    {
+      Rect r = FloatingWindowHost.MaximizedWindowBounds;
+      Position = r.Position(); //there is no r.Location in Silverlight
+      Width = r.Width;
+      Height = r.Height;
+    }
+
+    /// <summary>
+    /// Maximizes the window.
+    /// </summary>
+    public void MaximizeWindow()
+    {
+      if (windowState != WindowState.Maximized)
+      {
+        if (maximizeButton != null && restoreButton != null && HostPanel != null)
+        {
+          if (this.ShowMaximizeRestoreButton)
+          {
+            maximizeButton.SetVisible(false);
+            restoreButton.SetVisible(true);
+          }
+
+          VisualStateManager.GoToState(restoreButton, VSMSTATE_StateNormal, true);
+
+          // Store previous coordinates
+          previousPosition = Position;
+          previousSize = new Size(ActualWidth, ActualHeight);
+
+          HideBorder();
+
+          SetTopmost(); //!!! this seems to be needed, else after maximize action, windows don't overlap correctly
+
+          StartMaximizingAnimation();
+        }
+
+        previousWindowState = windowState;
+        windowState = WindowState.Maximized;
+      }
+    }
+
+    #region Show
 
     /// <summary>
     /// Shows the window as a modal one.
@@ -1540,9 +1665,9 @@ namespace SilverFlow.Controls
     /// Opens the <see cref="FloatingWindow" /> in previously saved position or
     /// in the center of the <see cref="FloatingWindowHost" />.
     /// </summary>
-    public void Show()
+    public void Show(bool bringToFront = true)
     {
-      Show(Position);
+      Show(Position, centered: false, bringToFront: bringToFront);
     }
 
     /// <summary>
@@ -1600,47 +1725,44 @@ namespace SilverFlow.Controls
     /// <exception cref="System.InvalidOperationException">"The FloatingWindow was not added to the host.</exception>
     private void ShowWindow(Point point, bool bringToFront = true)
     {
-      if (!IsOpen)
-      {
-        if (IsModal)
-          this.FloatingWindowHost.ShowWindowAsModal(this);
-
-        SubscribeToEvents();
-
-        //SubscribeToTemplatePartEvents(); //this is done at "OnApplyTemplate", called below via ApplyTemplate (and may have been done already if templateIsApplied)
-        //SubscribeToStoryBoardEvents();   //this is done at "OnApplyTemplate", called below via ApplyTemplate (and may have been done already if templateIsApplied)
-
-        // Guarantee that the visual tree of an element is complete
-        if (!templateIsApplied)
-          ApplyTemplate();
-
-        // Brings current window to the front
-        if (bringToFront)
-          SetTopmost();
-
-        Point position = point;
-
-        if (point.IsNotSet())
-          position = CenteredWindowPosition;
-
-        MoveWindow(position);
-        this.SetVisible(true);
-
-        if (!IsWindowSizeSet && point.IsNotSet() & (contentRoot != null))
-        {
-          // If window size is not set explicitly we should wait
-          // when the window layout is updated and update its position
-          contentRoot.SizeChanged += new SizeChangedEventHandler(ContentRoot_SizeChanged);
-        }
-
-        VisualStateManager.GoToState(this, VSMSTATE_StateOpen, true);
-        IsOpen = true;
-      }
-      else
+      if (IsOpen)
       {
         MoveWindow(point);
         this.SetVisible(true);
+        return;
       }
+
+      if (IsModal)
+        this.FloatingWindowHost.ShowWindowAsModal(this);
+
+      SubscribeToEvents();
+
+      //SubscribeToTemplatePartEvents(); //this is done at "OnApplyTemplate", called below via ApplyTemplate (and may have been done already if templateIsApplied)
+      //SubscribeToStoryBoardEvents();   //this is done at "OnApplyTemplate", called below via ApplyTemplate (and may have been done already if templateIsApplied)
+
+      // Guarantee that the visual tree of an element is complete
+      if (!templateIsApplied)
+        ApplyTemplate();
+
+      // Brings current window to the front
+      if (bringToFront)
+        SetTopmost();
+
+      Point position = point;
+
+      if (point.IsNotSet())
+        position = CenteredWindowPosition;
+
+      MoveWindow(position);
+      this.SetVisible(true);
+
+      // If window size is not set explicitly we should wait
+      // when the window layout is updated and update its position
+      if (!IsWindowSizeSet && point.IsNotSet() & (contentRoot != null))
+        contentRoot.SizeChanged += new SizeChangedEventHandler(ContentRoot_SizeChanged);
+
+      VisualStateManager.GoToState(this, VSMSTATE_StateOpen, true);
+      IsOpen = true;
     }
 
     /// <summary>
@@ -1704,6 +1826,8 @@ namespace SilverFlow.Controls
       }
     }
 
+    #endregion
+
     /// <summary>
     /// Closes a <see cref="FloatingWindow" />.
     /// </summary>
@@ -1734,28 +1858,6 @@ namespace SilverFlow.Controls
 
         UnSubscribeFromEvents();
         UnsubscribeFromTemplatePartEvents();
-      }
-    }
-
-    /// <summary>
-    /// Restores the size and position stored in the IsolatedStorage on closing.
-    /// </summary>
-    public void RestoreSizeAndPosition()
-    {
-      if (IsWindowTagSet)
-      {
-        string positionKey = GetAppSettingsKey("Position");
-        string sizeKey = GetAppSettingsKey("Size");
-
-        if (localStorage.Contains(positionKey))
-          Position = (Point)localStorage[positionKey];
-
-        if (localStorage.Contains(sizeKey))
-        {
-          Size size = (Size)localStorage[sizeKey];
-          Width = size.Width == 0 ? double.NaN : size.Width;
-          Height = size.Height == 0 ? double.NaN : size.Height;
-        }
       }
     }
 
@@ -1812,198 +1914,6 @@ namespace SilverFlow.Controls
       if (optionsButton != null && this.OptionsButtonStyle != null)
         optionsButton.Style = this.OptionsButtonStyle;
 
-    }
-
-    /// <summary>
-    /// Gets the storyboards defined in the <see cref="FloatingWindow" /> style.
-    /// </summary>
-    private void GetStoryboards()
-    {
-      if (root != null)
-      {
-        var groups = VisualStateManager.GetVisualStateGroups(root) as Collection<VisualStateGroup>;
-        if (groups != null)
-        {
-          var states = (from stategroup in groups
-                        where stategroup.Name == FloatingWindow.VSMGROUP_Window
-                        select stategroup.States).FirstOrDefault() as FreezableCollection<VisualState>;
-
-          if (states != null)
-          {
-            closingStoryboard = (from state in states
-                                 where state.Name == FloatingWindow.VSMSTATE_StateClosed
-                                 select state.Storyboard).FirstOrDefault();
-
-            openingStoryboard = (from state in states
-                                 where state.Name == FloatingWindow.VSMSTATE_StateOpen
-                                 select state.Storyboard).FirstOrDefault();
-
-            restoringStoryboard = (from state in states
-                                   where state.Name == FloatingWindow.VSMSTATE_StateRestored
-                                   select state.Storyboard).FirstOrDefault();
-          }
-        }
-
-        if (inertialMotionStoryboard == null)
-          inertialMotionStoryboard = new Storyboard();
-
-        if (maximizingStoryboard == null)
-          maximizingStoryboard = new Storyboard();
-
-        if (restoreMaximizedStoryboard == null)
-          restoreMaximizedStoryboard = new Storyboard();
-      }
-    }
-
-    /// <summary>
-    /// Shift the root of the window to compensate its margins.
-    /// </summary>
-    private void SetInitialRootPosition()
-    {
-      double x = Math.Round(-this.Margin.Left);
-      double y = Math.Round(-this.Margin.Top);
-
-      var transformGroup = (root.RenderTransform as TransformGroup).Clone();
-      if (transformGroup == null)
-      {
-        transformGroup = new TransformGroup();
-        transformGroup.Children.Add(root.RenderTransform);
-        root.RenderTransform = transformGroup;
-      }
-
-      var translateTransform = transformGroup.Children.OfType<TranslateTransform>().FirstOrDefault();
-      if (translateTransform == null)
-      {
-        transformGroup.Children.Add(new TranslateTransform() { X = x, Y = y });
-      }
-      else
-      {
-        translateTransform.X = x;
-        translateTransform.Y = y;
-      }
-
-      root.RenderTransform = transformGroup;
-    }
-
-    /// <summary>
-    /// Checks the TransformGroup of the content root or creates it if necesary.
-    /// </summary>
-    private void InitializeContentRootTransformGroup()
-    {
-      var transformGroup = contentRoot.RenderTransform as TransformGroup;
-      if (transformGroup == null)
-      {
-        transformGroup = new TransformGroup();
-        transformGroup.Children.Add(contentRoot.RenderTransform);
-        contentRoot.RenderTransform = transformGroup;
-      }
-
-      // Check that ScaleTransform exists in the TransformGroup
-      // ScaleTransform is used as a target in Storyboards 
-      var scaleTransform = transformGroup.Children.OfType<ScaleTransform>().FirstOrDefault();
-
-      if (scaleTransform == null)
-        transformGroup.Children.Insert(0, new ScaleTransform());
-
-      var translateTransform = transformGroup.Children.OfType<TranslateTransform>().FirstOrDefault();
-
-      if (translateTransform == null)
-        transformGroup.Children.Add(new TranslateTransform());
-    }
-
-    /// <summary>
-    /// Minimizes the window.
-    /// </summary>
-    private void MinimizeWindow()
-    {
-      if (windowState != WindowState.Minimized)
-      {
-        if (minimizeButton != null)
-          VisualStateManager.GoToState(minimizeButton, VSMSTATE_StateNormal, true);
-
-        if (windowState == WindowState.Normal)
-        {
-          // Store previous coordinates
-          previousPosition = Position;
-          previousSize = new Size(ActualWidth, ActualHeight);
-        }
-
-        minimizedWindowThumbnail = GetThumbnailImage();
-
-        previousWindowState = windowState;
-        VisualStateManager.GoToState(this, VSMSTATE_StateMinimized, true);
-        OnMinimized(EventArgs.Empty);
-      }
-
-      windowState = WindowState.Minimized;
-      OnDeactivated(EventArgs.Empty);
-
-      this.FloatingWindowHost.ActivateTopmostWindow();
-    }
-
-    /// <summary>
-    /// Creates a thumbnail of the window.
-    /// </summary>
-    /// <returns>Bitmap containing thumbnail image.</returns>
-    private ImageSource GetThumbnailImage()
-    {
-      if (Icon != null)
-      {
-        // If an Icon is an image - use it as a thumbnail displayed on the iconbar
-        return (Icon is Image) ? (Icon as Image).Source : null;
-      }
-
-      // Otherwise, display the window itself
-      ImageSource bitmap = bitmapHelper.RenderVisual(contentRoot, FloatingWindowHost.IconWidth, FloatingWindowHost.IconHeight);
-
-      return bitmap;
-    }
-
-    public ImageSource GetImage()
-    {
-      return bitmapHelper.RenderVisual(contentRoot, contentRoot.Width, contentRoot.Height);
-    }
-
-    /// <summary>
-    /// Resizing the window to current view bounds without setting it to maximized mode
-    /// </summary
-    public void ResizeToView()
-    {
-      Rect r = FloatingWindowHost.MaximizedWindowBounds;
-      Position = r.Position(); //there is no r.Location in Silverlight
-      Width = r.Width;
-      Height = r.Height;
-    }
-
-    /// <summary>
-    /// Maximizes the window.
-    /// </summary>
-    public void MaximizeWindow()
-    {
-      if (windowState != WindowState.Maximized)
-      {
-        if (maximizeButton != null && restoreButton != null && HostPanel != null)
-        {
-          if (this.ShowMaximizeRestoreButton)
-          {
-            maximizeButton.SetVisible(false);
-            restoreButton.SetVisible(true);
-          }
-
-          VisualStateManager.GoToState(restoreButton, VSMSTATE_StateNormal, true);
-
-          // Store previous coordinates
-          previousPosition = Position;
-          previousSize = new Size(ActualWidth, ActualHeight);
-
-          HideBorder();
-
-          StartMaximizingAnimation();
-        }
-
-        previousWindowState = windowState;
-        windowState = WindowState.Maximized;
-      }
     }
 
     #endregion
@@ -2071,7 +1981,6 @@ namespace SilverFlow.Controls
       isAppExit = true; //expecting FloatingWindowHost to close its hosted FloatingWindows
       //Do not call Close here expliclity, since then Close handlers of FloatingWindows may get called at any order by the App which will cause problems if the FloatingWindowHost is also hosted in a FloatingWindow (nesting)
     }
-
 
     /// <summary>
     /// Handles the SizeChanged event of the ContentRoot control to update window position 
@@ -2334,21 +2243,21 @@ namespace SilverFlow.Controls
     /// </summary>
     protected virtual void OnOpened()
     {
-#if SILVERLIGHT
-        if (!Focus())
-        {
-            // If the Focus() fails it means there is no focusable element in the window.
-            // In this case we set IsTabStop to true to have the keyboard functionality
-            IsTabStop = true;
-            Focus();
-        }
-#else
+      #if SILVERLIGHT
+      if (!Focus())
+      {
+        // If the Focus() fails it means there is no focusable element in the window.
+        // In this case we set IsTabStop to true to have the keyboard functionality
+        IsTabStop = true;
+        Focus();
+      }
+      #else
       Focus();
 
       // Set focus to the first focusable element in the window
       TraversalRequest request = new TraversalRequest(FocusNavigationDirection.First);
       this.MoveFocus(request);
-#endif
+      #endif
     }
 
     /// <summary>
@@ -2391,27 +2300,26 @@ namespace SilverFlow.Controls
     /// <param name="e">The <see cref="System.Windows.Input.MouseButtonEventArgs"/> instance containing the event data.</param>
     private void FloatingWindow_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
     {
-      // Gets the element with keyboard focus
+      // Gets the element with keyboard focus (must do before calling "SetTopmost")
       Control elementWithFocus =
-#if SILVERLIGHT
+        #if SILVERLIGHT
         FocusManager.GetFocusedElement() as Control;
-#else
- Keyboard.FocusedElement as Control;
-#endif
+        #else
+        Keyboard.FocusedElement as Control;
+        #endif
 
       // Brings current window to the front
       SetTopmost(); //TODO: add property AutoBringToFront (default true) to select whether we want it to be brought to front automatically
 
-      if (elementWithFocus != null /*&& elementWithFocus.GetType() != Hyperlink*/) //TODO: filter hyperlinkbutton and hyperlink here (remove some other related patch we had)
+      if (elementWithFocus != null)
       {
-#if SILVERLIGHT
+        #if SILVERLIGHT
         if (IsControlInVisualTree(elementWithFocus)) //TODO: maybe use WPF code for Silverlight too here?
-#else
+        #else
         if ((this as DependencyObject).IsVisualAncestorOf(elementWithFocus))
-#endif
+        #endif
           elementWithFocus.Focus();
-        else
-          // Try to set focus on the window
+        else // Try to set focus on the window
           Focus();
       }
 
@@ -2436,58 +2344,6 @@ namespace SilverFlow.Controls
       }
 
       this.RemoveHandler(UIElement.MouseLeftButtonDownEvent, new MouseButtonEventHandler(FloatingWindow_MouseLeftButtonDown));
-    }
-
-    /// <summary>
-    /// Subscribes to the events on the storyboards. 
-    /// </summary>
-    private void SubscribeToStoryBoardEvents()
-    {
-      if (closingStoryboard != null)
-        closingStoryboard.Completed += new EventHandler(Closing_Completed);
-
-      if (openingStoryboard != null)
-        openingStoryboard.Completed += new EventHandler(Opening_Completed);
-
-      if (inertialMotionStoryboard != null)
-        inertialMotionStoryboard.Completed += new EventHandler(InertialMotion_Completed);
-
-#if !SILVERLIGHT
-      if (maximizingStoryboard != null)
-        maximizingStoryboard.Completed += new EventHandler(Maximizing_Completed);
-
-      if (restoringStoryboard != null)
-        restoringStoryboard.Completed += new EventHandler(RestoringMinimized_Completed);
-
-      if (restoreMaximizedStoryboard != null)
-        restoreMaximizedStoryboard.Completed += new EventHandler(RestoringMaximized_Completed);
-#endif
-    }
-
-    /// <summary>
-    /// Unsubscribe from events that are subscribed on the storyboards. 
-    /// </summary>
-    private void UnsubscribeFromStoryBoardEvents()
-    {
-      if (closingStoryboard != null)
-        closingStoryboard.Completed -= new EventHandler(Closing_Completed);
-
-      if (openingStoryboard != null)
-        openingStoryboard.Completed -= new EventHandler(Opening_Completed);
-
-      if (inertialMotionStoryboard != null)
-        inertialMotionStoryboard.Completed -= new EventHandler(InertialMotion_Completed);
-
-#if !SILVERLIGHT
-      if (maximizingStoryboard != null)
-        maximizingStoryboard.Completed -= new EventHandler(Maximizing_Completed);
-
-      if (restoringStoryboard != null)
-        restoringStoryboard.Completed -= new EventHandler(RestoringMinimized_Completed);
-
-      if (restoreMaximizedStoryboard != null)
-        restoreMaximizedStoryboard.Completed -= new EventHandler(RestoringMaximized_Completed);
-#endif
     }
 
     /// <summary>
@@ -2544,6 +2400,612 @@ namespace SilverFlow.Controls
         minimizeButton.Click -= new RoutedEventHandler(MinimizeButton_Click);
     }
 
+    #endregion
+
+    #region Animation
+
+    /// <summary>
+    /// Gets the storyboards defined in the <see cref="FloatingWindow" /> style.
+    /// </summary>
+    private void GetStoryboards()
+    {
+      if (root != null)
+      {
+        var groups = VisualStateManager.GetVisualStateGroups(root) as Collection<VisualStateGroup>;
+        if (groups != null)
+        {
+          var states = (from stategroup in groups
+                        where stategroup.Name == FloatingWindow.VSMGROUP_Window
+                        select stategroup.States).FirstOrDefault() as 
+#if SILVERLIGHT
+                        Collection
+#else
+                        FreezableCollection
+#endif
+                        <VisualState>;
+
+          if (states != null)
+          {
+            closingStoryboard = (from state in states
+                                 where state.Name == FloatingWindow.VSMSTATE_StateClosed
+                                 select state.Storyboard).FirstOrDefault();
+
+            openingStoryboard = (from state in states
+                                 where state.Name == FloatingWindow.VSMSTATE_StateOpen
+                                 select state.Storyboard).FirstOrDefault();
+
+            #if !SILVERLIGHT
+            restoringStoryboard = (from state in states
+                                   where state.Name == FloatingWindow.VSMSTATE_StateRestored
+                                   select state.Storyboard).FirstOrDefault();
+            #endif
+          }
+        }
+
+        if (inertialMotionStoryboard == null)
+          inertialMotionStoryboard = new Storyboard();
+
+        if (maximizingStoryboard == null)
+          maximizingStoryboard = new Storyboard();
+
+        if (restoreMaximizedStoryboard == null)
+          restoreMaximizedStoryboard = new Storyboard();
+      }
+    }
+
+    /// <summary>
+    /// Subscribes to the events on the storyboards. 
+    /// </summary>
+    private void SubscribeToStoryBoardEvents()
+    {
+      if (closingStoryboard != null)
+        closingStoryboard.Completed += new EventHandler(Closing_Completed);
+
+      if (openingStoryboard != null)
+        openingStoryboard.Completed += new EventHandler(Opening_Completed);
+
+      if (inertialMotionStoryboard != null)
+        inertialMotionStoryboard.Completed += new EventHandler(InertialMotion_Completed);
+
+      #if !SILVERLIGHT
+      if (maximizingStoryboard != null)
+        maximizingStoryboard.Completed += new EventHandler(Maximizing_Completed);
+
+      if (restoringStoryboard != null)
+        restoringStoryboard.Completed += new EventHandler(RestoringMinimized_Completed);
+
+      if (restoreMaximizedStoryboard != null)
+        restoreMaximizedStoryboard.Completed += new EventHandler(RestoringMaximized_Completed);
+      #endif
+    }
+
+    /// <summary>
+    /// Unsubscribe from events that are subscribed on the storyboards. 
+    /// </summary>
+    private void UnsubscribeFromStoryBoardEvents()
+    {
+      if (closingStoryboard != null)
+        closingStoryboard.Completed -= new EventHandler(Closing_Completed);
+
+      if (openingStoryboard != null)
+        openingStoryboard.Completed -= new EventHandler(Opening_Completed);
+
+      if (inertialMotionStoryboard != null)
+        inertialMotionStoryboard.Completed -= new EventHandler(InertialMotion_Completed);
+
+      #if !SILVERLIGHT
+      if (maximizingStoryboard != null)
+        maximizingStoryboard.Completed -= new EventHandler(Maximizing_Completed);
+
+      if (restoringStoryboard != null)
+        restoringStoryboard.Completed -= new EventHandler(RestoringMinimized_Completed);
+
+      if (restoreMaximizedStoryboard != null)
+        restoreMaximizedStoryboard.Completed -= new EventHandler(RestoringMaximized_Completed);
+      #endif
+    }
+
+    /// <summary>
+    /// Starts maximizing animation.
+    /// </summary>
+    private void StartMaximizingAnimation()
+    {
+      SaveActualSize();
+
+      #if SILVERLIGHT
+      this.MoveAndResize(BoundingRectangleMaximized, MaximizingDurationInMilliseconds, Maximizing_Completed); //NOTE: MaximizedBounds takes in mind window's scale when resizing
+      #else
+      this.MoveAndResize(maximizingStoryboard, new Point(0, 0), HostPanel.ActualWidth, HostPanel.ActualHeight, MaximizingDurationInMilliseconds);
+      #endif
+    }
+
+    /// <summary>
+    /// Starts restoring animation.
+    /// </summary>
+    private void StartRestoringAnimation()
+    {
+      #if SILVERLIGHT
+      SaveActualSize(); //do we need this here?
+
+      this.MoveAndResize(previousPosition, previousSize.Width, previousSize.Height, RestoringDurationInMilliseconds, Restoring_Completed); 
+      #else
+      this.MoveAndResize(restoreMaximizedStoryboard, previousPosition, previousSize.Width, previousSize.Height, RestoringDurationInMilliseconds);
+      #endif
+    }
+
+    /// <summary>
+    /// Handles the Completed event of the Maximizing animation.
+    /// </summary>
+    /// <param name="sender">The source of the event.</param>
+    /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
+    private void Maximizing_Completed(object sender, EventArgs e)
+    {
+      #if !SILVERLIGHT
+      maximizingStoryboard.Stop();
+      maximizingStoryboard.Remove(this);
+
+      this.Width = HostPanel.ActualWidth;
+      this.Height = HostPanel.ActualHeight;
+      this.Position = new Point(0, 0);
+
+      Focus();
+      #endif
+      OnMaximized(EventArgs.Empty);
+    }
+
+    #if SILVERLIGHT
+
+    /// <summary>
+    /// Handles the Completed event of the Restoring animation.
+    /// </summary>
+    /// <param name="sender">The source of the event.</param>
+    /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
+    private void Restoring_Completed(object sender, EventArgs e)
+    {
+      OnRestored(EventArgs.Empty);
+    }
+
+    #endif
+
+    #if !SILVERLIGHT
+
+    /// <summary>
+    /// Handles the Completed event of the Restoring Maximized window animation.
+    /// </summary>
+    /// <param name="sender">The source of the event.</param>
+    /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
+    private void RestoringMaximized_Completed(object sender, EventArgs e)
+    {
+      restoreMaximizedStoryboard.Stop();
+      restoreMaximizedStoryboard.Remove(this);
+
+      this.Width = previousSize.Width;
+      this.Height = previousSize.Height;
+      this.Position = previousPosition;
+
+      Focus();
+      OnRestored(EventArgs.Empty);
+    }
+
+    /// <summary>
+    /// Handles the Completed event of the Restoring Minimized window animation.
+    /// </summary>
+    /// <param name="sender">The source of the event.</param>
+    /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
+    private void RestoringMinimized_Completed(object sender, EventArgs e)
+    {
+      SetTopmost();
+      Focus();
+      OnRestored(EventArgs.Empty);
+    }
+
+    #endif
+
+    #endregion
+
+    #region Inertial Motion
+
+    /// <summary>
+    /// Starts the inertial motion.
+    /// </summary>
+    private void StartInertialMotion()
+    {
+      snapinController.SnapinBounds = this.FloatingWindowHost.GetSnapinBounds(this);
+      CaptureMouseCursor();
+      windowAction = WindowAction.Move;
+      inertiaController.StartMotion(Position); //TODO: take in mind component's zoom to avoid jumpy motion
+    }
+
+    /// <summary>
+    /// Stops current inertial motion.
+    /// </summary>
+    private void StopInertialMotion()
+    {
+      if (inertialMotionStoryboard.Children.Count > 0 && 
+          inertialMotionStoryboard.GetCurrentState() != ClockState.Stopped)
+      {
+        inertialMotionStoryboard.Pause();
+
+        // The Position has rounded coordinates now, but real X and Y coordinates are fractional
+        Position = GetCurrentWindowPosition();
+
+        // Move the window to the rounded coordinates
+        MoveWindow(Position);
+
+        inertialMotionStoryboard.Stop();
+        inertialMotionStoryboard.Children.Clear(); //note: in WPF was inertialMotionStoryboard.Remove(contentRoot as FrameworkElement) - guess it's the same
+      }
+    }
+
+    /// <summary>
+    /// Handles the Completed event of the InertialMotionStoryboard.
+    /// </summary>
+    /// <param name="sender">The source of the event.</param>
+    /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
+    private void InertialMotion_Completed(object sender, EventArgs e)
+    {
+      // Save current window position reading it from the TranslateTransform object
+      Position = GetCurrentWindowPosition();
+
+      #if !SILVERLIGHT
+      // Stop the animation affecting its target property
+      inertialMotionStoryboard.Remove(contentRoot as FrameworkElement);
+      #endif
+      windowAction = WindowAction.None;
+    }
+
+    #endregion
+
+    #region Helpers
+
+    void HideBorder()
+    {
+      // Guarantee that the visual tree of an element is complete
+      if (!templateIsApplied)
+        ApplyTemplate();
+
+      // Hide the outer border
+      if (contentBorder != null)
+      {
+        contentBorderThickness = BorderThickness;
+        contentBorderCornerRadius = CornerRadius;
+        BorderThickness = new Thickness(0); //must not set contentBorder.BorderThickness directly, since we don't use two-way binding to TemplatedParent, but use simpler TemplateBinding instead
+        CornerRadius = new CornerRadius(0); //must not set contentBorder.CornerRadius directly
+      }
+
+      Border border = chrome as Border;
+      if (border != null)
+      {
+        chromeBorderCornerRadius = border.CornerRadius;
+        border.CornerRadius = new CornerRadius(0);
+      }
+    }
+
+    void RestoreBorder()
+    {
+      #if BORDER_ONLY_AT_RESIZABLE
+      if (!ResizeEnabled) return; //keep border hidden if window is not resizable
+      #endif
+
+      // Guarantee that the visual tree of an element is complete
+      if (!templateIsApplied)
+        ApplyTemplate();
+
+      // Restore the outer border
+      if (contentBorder != null)
+      {
+        BorderThickness = contentBorderThickness; //must not set contentBorder.BorderThickness directly, since we don't use two-way binding to TemplatedParent, but use simpler TemplateBinding instead
+        CornerRadius = contentBorderCornerRadius; //must not set contentBorder.CornerRadius directly
+      }
+
+      Border border = chrome as Border;
+      if (border != null)
+        border.CornerRadius = chromeBorderCornerRadius;
+    }
+
+    /// <summary>
+    /// Checks if the floating window was added to the FloatingWindowHost.
+    /// </summary>
+    private void CheckHost()
+    {
+      if (this.FloatingWindowHost == null)
+        throw new InvalidOperationException("The FloatingWindow was not added to the FloatingWindowHost.");
+    }
+
+    /// <summary>
+    /// Saves the actual size if it was not set explicitly set. 
+    /// E.g. the Width can be NaN, that means "Auto".
+    /// </summary>
+    private void SaveActualSize()
+    {
+      if (Width.IsNotSet())
+        Width = ActualWidth;
+
+      if (Height.IsNotSet())
+        Height = ActualHeight;
+    }
+
+    /// <summary>
+    /// Restores maximized window position and size.
+    /// </summary>
+    private void RestoreMaximizedWindow()
+    {
+      if (windowState != WindowState.Normal)
+      {
+        if (maximizeButton != null && restoreButton != null && HostPanel != null)
+        {
+          if (this.ShowMaximizeRestoreButton)
+          {
+            maximizeButton.SetVisible(true);
+            restoreButton.SetVisible(false);
+          }
+
+          VisualStateManager.GoToState(maximizeButton, VSMSTATE_StateNormal, true);
+        }
+
+        RestoreBorder();
+
+        StartRestoringAnimation();
+        windowState = WindowState.Normal;
+      }
+      else
+        Show(Position);
+    }
+
+    /// <summary>
+    /// Shift the root of the window to compensate its margins.
+    /// </summary>
+    private void SetInitialRootPosition()
+    {
+      double x = Math.Round(-this.Margin.Left);
+      double y = Math.Round(-this.Margin.Top);
+
+      var transformGroup = (root.RenderTransform as TransformGroup)
+      #if !SILVERLIGHT
+        .Clone()
+      #endif
+      ;
+      if (transformGroup == null)
+      {
+        transformGroup = new TransformGroup();
+        transformGroup.Children.Add(root.RenderTransform);
+        root.RenderTransform = transformGroup;
+      }
+
+      var translateTransform = transformGroup.Children.OfType<TranslateTransform>().FirstOrDefault();
+      if (translateTransform == null)
+      {
+        transformGroup.Children.Add(new TranslateTransform() { X = x, Y = y });
+      }
+      else
+      {
+        translateTransform.X = x;
+        translateTransform.Y = y;
+      }
+
+      #if !SILVERLIGHT
+      root.RenderTransform = transformGroup;
+      #endif
+    }
+
+    /// <summary>
+    /// Checks the TransformGroup of the content root or creates it if necesary.
+    /// </summary>
+    private void InitializeContentRootTransformGroup()
+    {
+      var transformGroup = contentRoot.RenderTransform as TransformGroup;
+      if (transformGroup == null)
+      {
+        transformGroup = new TransformGroup();
+        transformGroup.Children.Add(contentRoot.RenderTransform);
+        contentRoot.RenderTransform = transformGroup;
+      }
+
+      // Check that ScaleTransform exists in the TransformGroup
+      // ScaleTransform is used as a target in Storyboards 
+      var scaleTransform = transformGroup.Children.OfType<ScaleTransform>().FirstOrDefault();
+
+      if (scaleTransform == null)
+        transformGroup.Children.Insert(0, new ScaleTransform());
+
+      var translateTransform = transformGroup.Children.OfType<TranslateTransform>().FirstOrDefault();
+
+      if (translateTransform == null)
+        transformGroup.Children.Add(new TranslateTransform());
+    }
+
+    #if SILVERLIGHT
+    /// <summary>
+    /// Determines whether the control is in the visual tree of the window.
+    /// </summary>
+    /// <param name="control">The control to test.</param>
+    /// <returns>
+    /// <c>true</c> if the control is in the visual tree; otherwise, <c>false</c>.
+    /// </returns>
+    private bool IsControlInVisualTree(Control control) //TODO: see WPF's IsVisualAncestor (called elsewhere in this code) to maybe replace this (in WPF_Compatibility library)
+    {
+      if (control != null)
+      {
+        DependencyObject parent = control;
+        do
+        {
+          parent = VisualTreeHelper.GetParent(parent);
+          FloatingWindow window = parent as FloatingWindow;
+
+          if (window != null && window == this)
+            return true;
+        }
+        while (parent != null);
+      }
+
+      return false;
+    }
+    #endif
+
+    /// <summary>
+    /// Gets current window position taking into account animation effects.
+    /// </summary>
+    /// <returns>Current window position.</returns>
+    private Point GetCurrentWindowPosition()
+    {
+      var transformGroup = contentRoot.RenderTransform as TransformGroup;
+      var translateTransform = transformGroup.Children.OfType<TranslateTransform>().FirstOrDefault();
+      var position = new Point(translateTransform.X, translateTransform.Y);
+
+      // Round coordinates to avoid blured window
+      return position.Round();
+    }
+
+    /// <summary>
+    /// Captures the mouse cursor.
+    /// </summary>
+    private void CaptureMouseCursor()
+    {
+      contentRoot.CaptureMouse();
+      isMouseCaptured = true;
+    }
+
+    private bool CheckResizable()
+    {
+      return ResizeEnabled &&
+             (windowState == WindowState.Normal || (windowState == WindowState.Maximized && ResizeMaximizedEnabled));
+    }
+
+    /// <summary>
+    /// Determines whether the mouse is over buttons in the the specified mouse position.
+    /// </summary>
+    /// <param name="position">The mouse position.</param>
+    /// <param name="origin">Relative origin.</param>
+    /// <returns><c>true</c> if mouse is mouse over buttons.</returns>
+    private bool IsMouseOverButtons(Point position, UIElement origin)
+    {
+      return (minimizeButton.IsVisible() && minimizeButton.ContainsPoint(position, origin)) ||
+             (maximizeButton.IsVisible() && maximizeButton.ContainsPoint(position, origin)) ||
+             (restoreButton.IsVisible() && restoreButton.ContainsPoint(position, origin)) ||
+             (closeButton.IsVisible() && closeButton.ContainsPoint(position, origin)) ||
+             (screenshotButton.IsVisible() && screenshotButton.ContainsPoint(position, origin)) ||
+             (helpButton.IsVisible() && helpButton.ContainsPoint(position, origin)) ||
+             (optionsButton.IsVisible() && optionsButton.ContainsPoint(position, origin));
+    }
+
+    /// <summary>
+    /// Moves the window to the specified coordinates.
+    /// </summary>
+    /// <param name="point">Coordinates of the window.</param>
+    private void MoveWindow(Point point)
+    {
+      if (contentRoot != null && !point.IsNotSet())
+      {
+        // Round coordinates to avoid blured window
+        double x = Math.Round(Math.Max(0, point.X));
+        double y = Math.Round(Math.Max(0, point.Y));
+
+        var transformGroup = (contentRoot.RenderTransform as TransformGroup)
+          #if !SILVERLIGHT
+          .Clone()
+          #endif
+          ;
+        var translateTransform = transformGroup.Children.OfType<TranslateTransform>().FirstOrDefault();
+        if (translateTransform == null)
+        {
+          transformGroup.Children.Add(new TranslateTransform() { X = x, Y = y });
+          #if !SILVERLIGHT
+          contentRoot.RenderTransform = transformGroup;
+          #endif
+        }
+        else
+        {
+          translateTransform.X = x;
+          translateTransform.Y = y;
+        }
+
+        Point newPosition = new Point(x, y);
+
+        if (Position != newPosition)
+          Position = newPosition;
+      }
+    }
+
+    #endregion
+
+    #region Isolated Storage
+
+    /// <summary>
+    /// Restores the size and position stored in the IsolatedStorage on closing.
+    /// </summary>
+    public bool RestoreSizeAndPosition()
+    {
+      if (!IsWindowTagSet)
+        return false;
+
+      try
+      {
+        string positionKey = GetAppSettingsKey("Position");
+        string sizeKey = GetAppSettingsKey("Size");
+
+        bool loadPosition = localStorage.Contains(positionKey);
+        if (loadPosition)
+          Position = (Point)localStorage[positionKey];
+
+        bool loadSize = localStorage.Contains(sizeKey);
+        if (loadSize)
+        {
+          Size size = (Size)localStorage[sizeKey];
+          Width = size.Width == 0 ? double.NaN : size.Width;
+          Height = size.Height == 0 ? double.NaN : size.Height;
+        }
+
+        return (loadPosition || loadSize);
+      }
+      catch
+      {
+        return false;
+      }
+    }
+
+    /// <summary>
+    /// Saves current size and position of the window in the IsolatedStorage.
+    /// The key of the settings is the Tag of the window (if not null).
+    /// </summary>
+    public bool SaveSizeAndPosition()
+    {
+      if (!IsWindowTagSet)
+        return false;
+
+      try
+      {
+        string positionKey = GetAppSettingsKey("Position");
+        string sizeKey = GetAppSettingsKey("Size");
+
+        Point point = windowState == WindowState.Normal ? Position : previousPosition;
+        localStorage[positionKey] = point;
+
+        Size size = windowState == WindowState.Normal ? new Size(Width, Height) : previousSize; //do not use (ActualWidth, ActualHeight) here, since at RestoreSizeAndPosition this value will be assigned to (Width, Height)
+        localStorage[sizeKey] = size;
+
+        return true;
+      }
+      catch
+      {
+        return false;
+      }
+    }
+
+    /// <summary>
+    /// Gets the application settings key used to store properties in the IsolatedStorage.
+    /// </summary>
+    /// <param name="key">The key of the property, e.g. "Position".</param>
+    /// <returns>Combined settings key or empty string.</returns>
+    private string GetAppSettingsKey(string key)
+    {
+      string tag = this.Tag as string;
+      return tag + ":" + key;
+    }
+
+    #endregion
+
+    #region Event Handlers
+
     /// <summary>
     /// Handles the ActiveWindowChanged event of the Host control.
     /// </summary>
@@ -2586,173 +3048,6 @@ namespace SilverFlow.Controls
     private void MinimizeButton_Click(object sender, RoutedEventArgs e)
     {
       MinimizeWindow();
-    }
-
-    #endregion
-
-
-    #region Helpers
-
-    void HideBorder()
-    {
-      // Guarantee that the visual tree of an element is complete
-      if (!templateIsApplied)
-        ApplyTemplate();
-
-      // Hide the outer border
-      if (contentBorder != null)
-      {
-        contentBorderThickness = BorderThickness;
-        contentBorderCornerRadius = CornerRadius;
-        BorderThickness = new Thickness(0); //must not set contentBorder.BorderThickness directly, since we don't use two-way binding to TemplatedParent, but use simpler TemplateBinding instead
-        CornerRadius = new CornerRadius(0); //must not set contentBorder.CornerRadius directly
-      }
-
-      Border border = chrome as Border;
-      if (border != null)
-      {
-        chromeBorderCornerRadius = border.CornerRadius;
-        border.CornerRadius = new CornerRadius(0);
-      }
-    }
-
-    void RestoreBorder()
-    {
-#if BORDER_ONLY_AT_RESIZABLE
-      if (!ResizeEnabled) return; //keep border hidden if window is not resizable
-#endif
-
-      // Guarantee that the visual tree of an element is complete
-      if (!templateIsApplied)
-        ApplyTemplate();
-
-      // Restore the outer border
-      if (contentBorder != null)
-      {
-        BorderThickness = contentBorderThickness; //must not set contentBorder.BorderThickness directly, since we don't use two-way binding to TemplatedParent, but use simpler TemplateBinding instead
-        CornerRadius = contentBorderCornerRadius; //must not set contentBorder.CornerRadius directly
-      }
-
-      Border border = chrome as Border;
-      if (border != null)
-        border.CornerRadius = chromeBorderCornerRadius;
-    }
-
-    /// <summary>
-    /// Checks if the floating window was added to the FloatingWindowHost.
-    /// </summary>
-    private void CheckHost()
-    {
-      if (this.FloatingWindowHost == null)
-        throw new InvalidOperationException("The FloatingWindow was not added to the FloatingWindowHost.");
-    }
-
-    #endregion
-
-    /// <summary>
-    /// Starts maximizing animation.
-    /// </summary>
-    private void StartMaximizingAnimation()
-    {
-      SaveActualSize();
-
-      this.MoveAndResize(maximizingStoryboard, new Point(0, 0), HostPanel.ActualWidth, HostPanel.ActualHeight, MaximizingDurationInMilliseconds);
-    }
-
-    /// <summary>
-    /// Starts restoring animation.
-    /// </summary>
-    private void StartRestoringAnimation()
-    {
-      this.MoveAndResize(restoreMaximizedStoryboard, previousPosition, previousSize.Width, previousSize.Height, RestoringDurationInMilliseconds);
-    }
-
-    /// <summary>
-    /// Saves the actual size if it was not set explicitly set. 
-    /// E.g. the Width can be NaN, that means "Auto".
-    /// </summary>
-    private void SaveActualSize()
-    {
-      if (Width.IsNotSet())
-        Width = ActualWidth;
-
-      if (Height.IsNotSet())
-        Height = ActualHeight;
-    }
-
-    /// <summary>
-    /// Handles the Completed event of the Maximizing animation.
-    /// </summary>
-    /// <param name="sender">The source of the event.</param>
-    /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
-    private void Maximizing_Completed(object sender, EventArgs e)
-    {
-      maximizingStoryboard.Stop();
-      maximizingStoryboard.Remove(this);
-
-      this.Width = HostPanel.ActualWidth;
-      this.Height = HostPanel.ActualHeight;
-      this.Position = new Point(0, 0);
-
-      Focus();
-      OnMaximized(EventArgs.Empty);
-    }
-
-    /// <summary>
-    /// Handles the Completed event of the Restoring Maximized window animation.
-    /// </summary>
-    /// <param name="sender">The source of the event.</param>
-    /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
-    private void RestoringMaximized_Completed(object sender, EventArgs e)
-    {
-      restoreMaximizedStoryboard.Stop();
-      restoreMaximizedStoryboard.Remove(this);
-
-      this.Width = previousSize.Width;
-      this.Height = previousSize.Height;
-      this.Position = previousPosition;
-
-      Focus();
-      OnRestored(EventArgs.Empty);
-    }
-
-    /// <summary>
-    /// Handles the Completed event of the Restoring Minimized window animation.
-    /// </summary>
-    /// <param name="sender">The source of the event.</param>
-    /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
-    private void RestoringMinimized_Completed(object sender, EventArgs e)
-    {
-      SetTopmost();
-      Focus();
-      OnRestored(EventArgs.Empty);
-    }
-
-    /// <summary>
-    /// Restores maximized window position and size.
-    /// </summary>
-    private void RestoreMaximizedWindow()
-    {
-      if (windowState != WindowState.Normal)
-      {
-        if (maximizeButton != null && restoreButton != null && HostPanel != null)
-        {
-          if (this.ShowMaximizeRestoreButton)
-          {
-            maximizeButton.SetVisible(true);
-            restoreButton.SetVisible(false);
-          }
-
-          VisualStateManager.GoToState(maximizeButton, VSMSTATE_StateNormal, true);
-        }
-
-        RestoreBorder();
-
-        StartRestoringAnimation();
-        windowState = WindowState.Normal;
-      }
-      else
-        Show(Position);
     }
 
     /// <summary>
@@ -2806,13 +3101,18 @@ namespace SilverFlow.Controls
           Point point = e.GetPosition(chrome);
 
           if (MoveEnabled && chrome.ContainsPoint(point))
-          {
-            snapinController.SnapinBounds = this.FloatingWindowHost.GetSnapinBounds(this);
-            CaptureMouseCursor();
-            windowAction = WindowAction.Move;
-            inertiaController.StartMotion(Position); //TODO: take in mind component's zoom to avoid jumpy motion
-          }
+            StartInertialMotion();
         }
+
+        if (contentBorder != null)
+        {
+          // If the mouse was clicked on the contentBorder - start dragging the window
+          Point point = e.GetPosition(contentBorder);
+
+          if (MoveEnabled && contentBorder.ContainsPoint(point))
+            StartInertialMotion();
+        }
+
       }
     }
 
@@ -2849,64 +3149,6 @@ namespace SilverFlow.Controls
     }
 
     /// <summary>
-    /// Handles the Completed event of the InertialMotionStoryboard.
-    /// </summary>
-    /// <param name="sender">The source of the event.</param>
-    /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
-    private void InertialMotion_Completed(object sender, EventArgs e)
-    {
-      // Save current window position reading it from the TranslateTransform object
-      Position = GetCurrentWindowPosition();
-
-      // Stop the animation affecting its target property
-      inertialMotionStoryboard.Remove(contentRoot as FrameworkElement);
-      windowAction = WindowAction.None;
-    }
-
-    /// <summary>
-    /// Stops current inertial motion.
-    /// </summary>
-    private void StopInertialMotion()
-    {
-      if (inertialMotionStoryboard.Children.Count > 0 && inertialMotionStoryboard.GetCurrentState() != ClockState.Stopped)
-      {
-        inertialMotionStoryboard.Pause();
-
-        // The Position has rounded coordinates now, but real X and Y coordinates are fractional
-        Position = GetCurrentWindowPosition();
-
-        // Move the window to the rounded coordinates
-        MoveWindow(Position);
-
-        inertialMotionStoryboard.Stop();
-        inertialMotionStoryboard.Remove(contentRoot as FrameworkElement);
-      }
-    }
-
-    /// <summary>
-    /// Gets current window position taking into account animation effects.
-    /// </summary>
-    /// <returns>Current window position.</returns>
-    private Point GetCurrentWindowPosition()
-    {
-      var transformGroup = contentRoot.RenderTransform as TransformGroup;
-      var translateTransform = transformGroup.Children.OfType<TranslateTransform>().FirstOrDefault();
-      var position = new Point(translateTransform.X, translateTransform.Y);
-
-      // Round coordinates to avoid blured window
-      return position.Round();
-    }
-
-    /// <summary>
-    /// Captures the mouse cursor.
-    /// </summary>
-    private void CaptureMouseCursor()
-    {
-      contentRoot.CaptureMouse();
-      isMouseCaptured = true;
-    }
-
-    /// <summary>
     /// Executed when mouse moves.
     /// </summary>
     /// <param name="e">The data for the event.</param>
@@ -2914,7 +3156,7 @@ namespace SilverFlow.Controls
     {
       base.OnMouseMove(e);
 
-      if (windowState == WindowState.Normal && ResizeEnabled && windowAction == WindowAction.None)
+      if (CheckResizable() && windowAction == WindowAction.None)
       {
         Point mousePosition = e.GetPosition(contentRoot);
 
@@ -2931,9 +3173,10 @@ namespace SilverFlow.Controls
       if (windowAction == WindowAction.Resize)
         resizeController.Resize(dx, dy);
 
-      if (windowAction == WindowAction.Move)
+      else if (windowAction == WindowAction.Move)
       {
-        Point point = clickWindowPosition.Add(dx, dy);
+        double flow = (RTL) ? -1 : 1;
+        Point point = clickWindowPosition.Add(flow * dx, dy); //RTL only affects horizontal flow
         Rect rect = new Rect(point.X, point.Y, ActualWidth, ActualHeight);
 
         point = snapinController.SnapRectangle(rect);
@@ -2942,90 +3185,8 @@ namespace SilverFlow.Controls
         inertiaController.MoveToPoint(Position);
       }
     }
-    private bool CheckResizable()
-    {
-      return ResizeEnabled &&
-             (windowState == WindowState.Normal || (windowState == WindowState.Maximized && ResizeMaximizedEnabled));
-    }
 
-    /// <summary>
-    /// Determines whether the mouse is over buttons in the the specified mouse position.
-    /// </summary>
-    /// <param name="position">The mouse position.</param>
-    /// <param name="origin">Relative origin.</param>
-    /// <returns><c>true</c> if mouse is mouse over buttons.</returns>
-    private bool IsMouseOverButtons(Point position, UIElement origin)
-    {
-      return (minimizeButton.IsVisible() && minimizeButton.ContainsPoint(position, origin)) ||
-             (maximizeButton.IsVisible() && maximizeButton.ContainsPoint(position, origin)) ||
-             (restoreButton.IsVisible() && restoreButton.ContainsPoint(position, origin)) ||
-             (closeButton.IsVisible() && closeButton.ContainsPoint(position, origin));
-    }
+    #endregion
 
-    /// <summary>
-    /// Moves the window to the specified coordinates.
-    /// </summary>
-    /// <param name="point">Coordinates of the window.</param>
-    private void MoveWindow(Point point)
-    {
-      if (contentRoot != null && !point.IsNotSet())
-      {
-        // Round coordinates to avoid blured window
-        double x = Math.Round(Math.Max(0, point.X));
-        double y = Math.Round(Math.Max(0, point.Y));
-
-        var transformGroup = (contentRoot.RenderTransform as TransformGroup).Clone();
-        var translateTransform = transformGroup.Children.OfType<TranslateTransform>().FirstOrDefault();
-        translateTransform.X = x;
-        translateTransform.Y = y;
-
-        contentRoot.RenderTransform = transformGroup;
-
-        Point newPosition = new Point(x, y);
-
-        if (Position != newPosition)
-          Position = newPosition;
-      }
-    }
-
-    /// <summary>
-    /// Saves current size and position of the window in the IsolatedStorage.
-    /// The key of the settings is the Tag of the window (if not null).
-    /// </summary>
-    private void SaveSizeAndPosition()
-    {
-      if (IsWindowTagSet)
-      {
-        string positionKey = GetAppSettingsKey("Position");
-        string sizeKey = GetAppSettingsKey("Size");
-
-        Point point = windowState == WindowState.Normal ? Position : previousPosition;
-        localStorage[positionKey] = point;
-
-        Size size = windowState == WindowState.Normal ? new Size(ActualWidth, ActualHeight) : previousSize;
-        localStorage[sizeKey] = size;
-      }
-    }
-
-    /// <summary>
-    /// Gets the application settings key used to store properties in the IsolatedStorage.
-    /// </summary>
-    /// <param name="key">The key of the property, e.g. "Position".</param>
-    /// <returns>Combined settings key or empty string.</returns>
-    private string GetAppSettingsKey(string key)
-    {
-      string tag = this.Tag as string;
-      return tag + ":" + key;
-    }
-
-    /// <summary>
-    /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
-    /// </summary>
-    public void Dispose()
-    {
-      GC.Collect();
-      GC.WaitForPendingFinalizers();
-      GC.Collect();
-    }
   }
 }

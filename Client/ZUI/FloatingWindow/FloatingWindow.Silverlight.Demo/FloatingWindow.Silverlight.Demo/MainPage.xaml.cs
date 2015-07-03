@@ -1,4 +1,4 @@
-﻿//Version: 20140904
+﻿//Version: 20150703
 
 using System.Diagnostics;
 using System.Windows;
@@ -162,12 +162,12 @@ namespace FloatingWindowControl
 
     private void ShowIconbar_Click(object sender, RoutedEventArgs e)
     {
-      host.IsIconBarVisible = true;
+      host.IsIconbarVisible = true;
     }
 
     private void HideIconbar_Click(object sender, RoutedEventArgs e)
     {
-      host.IsIconBarVisible = false;
+      host.IsIconbarVisible = false;
     }
 
     private void CloseWindows_Click(object sender, RoutedEventArgs e)
