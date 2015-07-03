@@ -1,5 +1,5 @@
 //Filename: FloatingWindow.cs
-//Version: 20141111
+//Version: 20150703
 
 //#define BORDER_ONLY_AT_RESIZABLE //using BorderThickness instead to allow user to define when they want the border to be visible themselves
 
@@ -173,6 +173,13 @@ namespace SilverFlow.Controls
     #endregion
 
     #region --- Constructor ---
+
+    #if !SILVERLIGHT
+    static FloatingWindow()
+    {
+      DefaultStyleKeyProperty.OverrideMetadata(typeof(FloatingWindow), new FrameworkPropertyMetadata(typeof(FloatingWindow)));
+    }
+    #endif
 
     /// <summary>
     /// Initializes a new instance of the <see cref="FloatingWindow" /> class.
@@ -1179,7 +1186,7 @@ namespace SilverFlow.Controls
     /// </summary>
     protected virtual void OnRTLChanged(bool oldRTL, bool newRTL)
     {
-      FlowDirection = (newRTL) ? System.Windows.FlowDirection.RightToLeft : System.Windows.FlowDirection.LeftToRight; //this will also flip chrome and toolbar direction, scrollpanes etc.
+      FlowDirection = (newRTL) ? System.Windows.FlowDirection.RightToLeft : System.Windows.FlowDirection.LeftToRight; //this will also flip titlebar and toolbar direction, scrollpanes etc.
     }
 
     #endregion
@@ -1540,358 +1547,7 @@ namespace SilverFlow.Controls
 
     #endregion
 
-    #region --- Events ---
-
-    /// <summary>
-    /// Occurs when the <see cref="FloatingWindow" /> is activated.
-    /// </summary>
-    /// <remarks>Not visible <see cref="FloatingWindow" /> cannot be the active. </remarks>
-    public event EventHandler Activated;
-
-    /// <summary>
-    /// Occurs when the <see cref="FloatingWindow" /> is deactivated.
-    /// </summary>
-    public event EventHandler Deactivated;
-
-    /// <summary>
-    /// Occurs when screenshot is requested.
-    /// </summary>
-    public event EventHandler ScreenshotRequested;
-
-    /// <summary>
-    /// Occurs when help is requested.
-    /// </summary>
-    public event EventHandler HelpRequested;
-
-    /// <summary>
-    /// Occurs when options are requested.
-    /// </summary>
-    public event EventHandler OptionsRequested;
-
-    /// <summary>
-    /// Occurs when the <see cref="FloatingWindow" /> is closed.
-    /// </summary>
-    public event EventHandler Closed;
-
-    /// <summary>
-    /// Occurs when the <see cref="FloatingWindow" /> is maximized.
-    /// </summary>
-    public event EventHandler Maximized;
-
-    /// <summary>
-    /// Occurs when the <see cref="FloatingWindow" /> is minimized.
-    /// </summary>
-    public event EventHandler Minimized;
-
-    /// <summary>
-    /// Occurs when the <see cref="FloatingWindow" /> is restored.
-    /// </summary>
-    public event EventHandler Restored;
-
-    /// <summary>
-    /// Occurs when the <see cref="FloatingWindow" /> is closing.
-    /// </summary>
-    public event EventHandler<CancelEventArgs> Closing;
-
-    #endregion Events
-
-    #region Event Handlers
-
-    /// <summary>
-    /// Handles the SizeChanged event of the ContentRoot control to update window position 
-    /// only once when the window is opened.
-    /// </summary>
-    /// <param name="sender">The source of the event.</param>
-    /// <param name="e">The <see cref="System.Windows.SizeChangedEventArgs"/> instance containing the event data.</param>
-    private void ContentRoot_SizeChanged(object sender, SizeChangedEventArgs e)
-    {
-      contentRoot.SizeChanged -= new SizeChangedEventHandler(ContentRoot_SizeChanged);
-      double dx = -(e.NewSize.Width.ValueOrZero() - e.PreviousSize.Width.ValueOrZero()) / 2;
-      double dy = -(e.NewSize.Height.ValueOrZero() - e.PreviousSize.Height.ValueOrZero()) / 2;
-      Point point = Position.Add(dx, dy);
-      MoveWindow(point);
-    }
-
-    /// <summary>
-    /// Executed when the application is exited.
-    /// </summary>
-    /// <param name="sender">The sender.</param>
-    /// <param name="e">Event args.</param>
-    private void Application_Exit(object sender, EventArgs e)
-    {
-      isAppExit = true; //expecting FloatingWindowHost to close its hosted FloatingWindows
-      //Do not call Close here expliclity, since then Close handlers of FloatingWindows may get called at any order by the App which will cause problems if the FloatingWindowHost is also hosted in a FloatingWindow (nesting)
-    }
-
-    /// <summary>
-    /// Executed when the Screenshot button is clicked.
-    /// </summary>
-    /// <param name="sender">Sender object.</param>
-    /// <param name="e">Routed event args.</param>
-    private void ScreenshotButton_Click(object sender, RoutedEventArgs e)
-    {
-      Screenshot();
-    }
-
-    /// <summary>
-    /// Executed when the Help button is clicked.
-    /// </summary>
-    /// <param name="sender">Sender object.</param>
-    /// <param name="e">Routed event args.</param>
-    private void HelpButton_Click(object sender, RoutedEventArgs e)
-    {
-      Help();
-    }
-
-    /// <summary>
-    /// Executed when the Options button is clicked.
-    /// </summary>
-    /// <param name="sender">Sender object.</param>
-    /// <param name="e">Routed event args.</param>
-    private void OptionsButton_Click(object sender, RoutedEventArgs e)
-    {
-      Options();
-    }
-
-    /// <summary>
-    /// Executed when the Close button is clicked.
-    /// </summary>
-    /// <param name="sender">Sender object.</param>
-    /// <param name="e">Routed event args.</param>
-    private void CloseButton_Click(object sender, RoutedEventArgs e)
-    {
-      Close();
-    }
-
-    /// <summary>
-    /// Executed when the Closing storyboard ends.
-    /// </summary>
-    /// <param name="sender">Sender object.</param>
-    /// <param name="e">Event args.</param>
-    private void Closing_Completed(object sender, EventArgs e)
-    {
-      if (closingStoryboard != null)
-        closingStoryboard.Completed -= new EventHandler(Closing_Completed);
-
-      this.Visibility = Visibility.Collapsed;
-      OnClosed(EventArgs.Empty);
-    }
-
-    /// <summary>
-    /// Unsubscribe from events when the ChildWindow is closed.
-    /// </summary>
-    private void UnSubscribeFromEvents()
-    {
-      if (Application.Current != null)
-        Application.Current.Exit -= Application_Exit;
-
-      if (this.FloatingWindowHost != null)
-      {
-        this.FloatingWindowHost.SizeChanged -= new SizeChangedEventHandler(Host_SizeChanged);
-        this.FloatingWindowHost.ActiveWindowChanged -= new EventHandler<ActiveWindowChangedEventArgs>(ActiveWindowChanged);
-      }
-
-      this.RemoveHandler(UIElement.MouseLeftButtonDownEvent, new MouseButtonEventHandler(FloatingWindow_MouseLeftButtonDown));
-    }
-
-    /// <summary>
-    /// Handles the ActiveWindowChanged event of the Host control.
-    /// </summary>
-    /// <param name="sender">The sender.</param>
-    /// <param name="e">The <see cref="SilverFlow.Controls.ActiveWindowChangedEventArgs"/> instance containing the event data.</param>
-    private void ActiveWindowChanged(object sender, ActiveWindowChangedEventArgs e)
-    {
-      if (e.Old == this)
-        OnDeactivated(EventArgs.Empty);
-
-      if (e.New == this)
-        OnActivated(EventArgs.Empty);
-    }
-
-    /// <summary>
-    /// Handles the Click event of the MaximizeButton control.
-    /// </summary>
-    /// <param name="sender">The source of the event.</param>
-    /// <param name="e">The <see cref="System.Windows.RoutedEventArgs"/> instance containing the event data.</param>
-    private void MaximizeButton_Click(object sender, RoutedEventArgs e)
-    {
-      MaximizeWindow();
-    }
-
-    /// <summary>
-    /// Handles the Click event of the RestoreButton control.
-    /// </summary>
-    /// <param name="sender">The source of the event.</param>
-    /// <param name="e">The <see cref="System.Windows.RoutedEventArgs"/> instance containing the event data.</param>
-    private void RestoreButton_Click(object sender, RoutedEventArgs e)
-    {
-      RestoreMaximizedWindow();
-    }
-
-    /// <summary>
-    /// Handles the Click event of the MinimizeButton control.
-    /// </summary>
-    /// <param name="sender">The source of the event.</param>
-    /// <param name="e">The <see cref="System.Windows.RoutedEventArgs"/> instance containing the event data.</param>
-    private void MinimizeButton_Click(object sender, RoutedEventArgs e)
-    {
-      MinimizeWindow();
-    }
-
-    /// <summary>
-    /// Updates clipping region on host SizeChanged event.
-    /// </summary>
-    /// <param name="sender">The source of the event.</param>
-    /// <param name="e">The <see cref="System.Windows.SizeChangedEventArgs"/> instance containing the event data.</param>
-    private void Host_SizeChanged(object sender, SizeChangedEventArgs e)
-    {
-      if (windowState == WindowState.Maximized)
-      {
-        Width = HostPanel.ActualWidth;
-        Height = double.IsInfinity(MaxHeight) ? HostPanel.ActualHeight : MaxHeight;
-      }
-    } //TODO: maybe this needs different implementation on Silverlight, since setting bounds doesn't do cliping automatically as in WPF
-
-    /// <summary>
-    /// Executed when mouse left button is down.
-    /// </summary>
-    /// <param name="e">The data for the event.</param>
-    protected override void OnMouseLeftButtonDown(MouseButtonEventArgs e)
-    {
-      base.OnMouseLeftButtonDown(e);
-
-      //if (e.Handled) return;
-      e.Handled = true; //always handle events so that container doesn't get confused (e.g. when dragging the window title bar we don't want container to pan)
-
-      windowAction = WindowAction.None;
-
-      // Stop inertial motion before the mouse is captured
-      StopInertialMotion();
-
-      clickPoint = e.GetPosition(HostPanel);
-      clickWindowPosition = Position;
-      snapinController.SnapinDistance = this.FloatingWindowHost.SnapinDistance;
-      snapinController.SnapinMargin = this.FloatingWindowHost.SnapinMargin;
-      snapinController.SnapinEnabled = this.FloatingWindowHost.SnapinEnabled;
-
-      if (CheckResizable() && resizeController.CanResize)
-      {
-        snapinController.SnapinBounds = this.FloatingWindowHost.GetSnapinBounds(this);
-        resizeController.StartResizing();
-        CaptureMouseCursor();
-        windowAction = WindowAction.Resize;
-      }
-      else if (MoveMaximizedEnabled) //TODO: maybe should check MoveMaximizedEnabled maybe only when the window is maximized (use something like !Maximized || MoveMaximizedEnabled)
-      {
-        if (chrome != null)
-        {
-          // If the mouse was clicked on the chrome - start dragging the window
-          Point point = e.GetPosition(chrome);
-
-          if (MoveEnabled && chrome.ContainsPoint(point))
-          {
-            snapinController.SnapinBounds = this.FloatingWindowHost.GetSnapinBounds(this);
-            CaptureMouseCursor();
-            windowAction = WindowAction.Move;
-            inertiaController.StartMotion(Position); //TODO: take in mind component's zoom to avoid jumpy motion
-          }
-        }
-
-        if (contentBorder != null)
-        {
-          // If the mouse was clicked on the contentBorder - start dragging the window
-          Point point = e.GetPosition(contentBorder);
-
-          if (MoveEnabled && contentBorder.ContainsPoint(point))
-          {
-            snapinController.SnapinBounds = this.FloatingWindowHost.GetSnapinBounds(this);
-            CaptureMouseCursor();
-            windowAction = WindowAction.Move;
-            inertiaController.StartMotion(Position); //TODO: take in mind component's zoom to avoid jumpy motion
-          }
-        }
-
-      }
-    }
-
-    /// <summary>
-    /// Executed when mouse left button is up.
-    /// </summary>
-    /// <param name="e">The data for the event.</param>
-    protected override void OnMouseLeftButtonUp(MouseButtonEventArgs e)
-    {
-      base.OnMouseLeftButtonUp(e);
-
-      e.Handled = true; //always handle events so that container doesn't get confused (e.g. when dragging the window title bar we don't want container to pan)
-
-      if (windowAction == WindowAction.Move)
-      {
-        InertialMotion motion = inertiaController.GetInertialMotionParameters(
-            this.FloatingWindowHost.HostPanel.GetActualBoundingRectangle(), this.BoundingRectangle);
-
-        if (motion != null)
-        {
-          windowAction = WindowAction.InertialMotion;
-          contentRoot.AnimateTranslateTransform(inertialMotionStoryboard, motion.EndPosition, motion.Seconds, motion.EasingFunction);
-        }
-      }
-
-      if (isMouseCaptured)
-      {
-        contentRoot.ReleaseMouseCapture();
-        isMouseCaptured = false;
-      }
-
-      if (windowAction != WindowAction.InertialMotion)
-        windowAction = WindowAction.None;
-    }
-
-    /// <summary>
-    /// Executed when mouse moves.
-    /// </summary>
-    /// <param name="e">The data for the event.</param>
-    protected override void OnMouseMove(MouseEventArgs e)
-    {
-      base.OnMouseMove(e);
-
-      if (CheckResizable() && windowAction == WindowAction.None)
-      {
-        Point mousePosition = e.GetPosition(contentRoot);
-
-        if (IsMouseOverButtons(mousePosition, contentRoot))
-          this.Cursor = Cursors.Arrow;
-        else
-          resizeController.SetCursor(mousePosition);
-      }
-
-      Point p = e.GetPosition(HostPanel);
-      double dx = p.X - clickPoint.X;
-      double dy = p.Y - clickPoint.Y;
-
-      if (windowAction == WindowAction.Resize)
-        resizeController.Resize(dx, dy);
-
-      else if (windowAction == WindowAction.Move)
-      {
-        double flow = (RTL) ? -1 : 1;
-        Point point = clickWindowPosition.Add(flow * dx, dy); //RTL only affects horizontal flow
-        Rect rect = new Rect(point.X, point.Y, ActualWidth, ActualHeight);
-
-        point = snapinController.SnapRectangle(rect);
-        MoveWindow(point);
-
-        inertiaController.MoveToPoint(Position);
-      }
-    }
-    private bool CheckResizable()
-    {
-      return ResizeEnabled &&
-             (windowState == WindowState.Normal || (windowState == WindowState.Maximized && ResizeMaximizedEnabled));
-    }
-
-    #endregion
-
-    #region Methods
+    #region --- Methods ---
 
     /// <summary>
     /// Minimizes the window.
@@ -1929,7 +1585,11 @@ namespace SilverFlow.Controls
     /// <returns>Bitmap containing thumbnail image.</returns>
     public ImageSource GetThumbnailImage()
     {
-      // If an Icon is specified - use it as a thumbnail displayed on the iconbar
+      // If an Icon is an image - use it as a thumbnail displayed on the iconbar
+      if (Icon != null)
+        return (Icon is Image) ? (Icon as Image).Source : null;
+
+      // If other kind of Icon is specified - use it as a thumbnail displayed on the iconbar
       // Otherwise, display the window itself
       FrameworkElement icon = (Icon as FrameworkElement) ?? contentRoot;
       ImageSource bitmap = bitmapHelper.RenderVisual(icon, FloatingWindowHost.IconWidth, FloatingWindowHost.IconHeight);
@@ -2007,7 +1667,7 @@ namespace SilverFlow.Controls
     /// </summary>
     public void Show(bool bringToFront = true)
     {
-      Show(Position, centered:false, bringToFront:bringToFront);
+      Show(Position, centered: false, bringToFront: bringToFront);
     }
 
     /// <summary>
@@ -2356,7 +2016,7 @@ namespace SilverFlow.Controls
     /// </summary>
     protected virtual void OnOpened()
     {
-      #if SILVERLIGHT
+#if SILVERLIGHT
       if (!Focus())
       {
         // If the Focus() fails it means there is no focusable element in the window.
@@ -2364,13 +2024,13 @@ namespace SilverFlow.Controls
         IsTabStop = true;
         Focus();
       }
-      #else
+#else
       Focus();
 
       // Set focus to the first focusable element in the window
       TraversalRequest request = new TraversalRequest(FocusNavigationDirection.First);
       this.MoveFocus(request);
-      #endif
+#endif
     }
 
     /// <summary>
@@ -2415,22 +2075,22 @@ namespace SilverFlow.Controls
     {
       // Gets the element with keyboard focus (must do before calling "SetTopmost")
       Control elementWithFocus =
-        #if SILVERLIGHT
-        FocusManager.GetFocusedElement() as Control;
-        #else
+#if SILVERLIGHT
+ FocusManager.GetFocusedElement() as Control;
+#else
         Keyboard.FocusedElement as Control;
-        #endif
+#endif
 
       // Brings current window to the front
       SetTopmost(); //TODO: add property AutoBringToFront (default true) to select whether we want it to be brought to front automatically
 
       if (elementWithFocus != null)
       {
-        #if SILVERLIGHT
+#if SILVERLIGHT
         if (IsControlInVisualTree(elementWithFocus)) //TODO: maybe use WPF code for Silverlight too here?
-        #else
+#else
         if ((this as DependencyObject).IsVisualAncestorOf(elementWithFocus))
-        #endif
+#endif
           elementWithFocus.Focus();
         else // Try to set focus on the window
           Focus();
@@ -2440,6 +2100,342 @@ namespace SilverFlow.Controls
       StopInertialMotion();
 
       //FloatingWindowHost.IsIconbarVisible = false;
+    }
+
+    #endregion
+
+    #region --- Events ---
+
+    /// <summary>
+    /// Occurs when the <see cref="FloatingWindow" /> is activated.
+   // </summary>
+    /// <remarks>Not visible <see cref="FloatingWindow" /> cannot be the active. </remarks>
+    public event EventHandler Activated;
+
+    /// <summary>
+    /// Occurs when the <see cref="FloatingWindow" /> is deactivated.
+    /// </summary>
+    public event EventHandler Deactivated;
+
+    /// <summary>
+    /// Occurs when screenshot is requested.
+    /// </summary>
+    public event EventHandler ScreenshotRequested;
+
+    /// <summary>
+    /// Occurs when help is requested.
+    /// </summary>
+    public event EventHandler HelpRequested;
+
+    /// <summary>
+    /// Occurs when options are requested.
+    /// </summary>
+    public event EventHandler OptionsRequested;
+
+    /// <summary>
+    /// Occurs when the <see cref="FloatingWindow" /> is closed.
+    /// </summary>
+    public event EventHandler Closed;
+
+    /// <summary>
+    /// Occurs when the <see cref="FloatingWindow" /> is maximized.
+    /// </summary>
+    public event EventHandler Maximized;
+
+    /// <summary>
+    /// Occurs when the <see cref="FloatingWindow" /> is minimized.
+    /// </summary>
+    public event EventHandler Minimized;
+
+    /// <summary>
+    /// Occurs when the <see cref="FloatingWindow" /> is restored.
+    /// </summary>
+    public event EventHandler Restored;
+
+    /// <summary>
+    /// Occurs when the <see cref="FloatingWindow" /> is closing.
+    /// </summary>
+    public event EventHandler<CancelEventArgs> Closing;
+
+    #endregion
+
+    #region Event Handlers
+
+    /// <summary>
+    /// Handles the SizeChanged event of the ContentRoot control to update window position 
+    /// only once when the window is opened.
+    /// </summary>
+    /// <param name="sender">The source of the event.</param>
+    /// <param name="e">The <see cref="System.Windows.SizeChangedEventArgs"/> instance containing the event data.</param>
+    private void ContentRoot_SizeChanged(object sender, SizeChangedEventArgs e)
+    {
+      contentRoot.SizeChanged -= new SizeChangedEventHandler(ContentRoot_SizeChanged);
+      double dx = -(e.NewSize.Width.ValueOrZero() - e.PreviousSize.Width.ValueOrZero()) / 2;
+      double dy = -(e.NewSize.Height.ValueOrZero() - e.PreviousSize.Height.ValueOrZero()) / 2;
+      Point point = Position.Add(dx, dy);
+      MoveWindow(point);
+    }
+
+    /// <summary>
+    /// Executed when the application is exited.
+    /// </summary>
+    /// <param name="sender">The sender.</param>
+    /// <param name="e">Event args.</param>
+    private void Application_Exit(object sender, EventArgs e)
+    {
+      isAppExit = true; //expecting FloatingWindowHost to close its hosted FloatingWindows
+      //Do not call Close here expliclity, since then Close handlers of FloatingWindows may get called at any order by the App which will cause problems if the FloatingWindowHost is also hosted in a FloatingWindow (nesting)
+    }
+
+    /// <summary>
+    /// Executed when the Screenshot button is clicked.
+    /// </summary>
+    /// <param name="sender">Sender object.</param>
+    /// <param name="e">Routed event args.</param>
+    private void ScreenshotButton_Click(object sender, RoutedEventArgs e)
+    {
+      Screenshot();
+    }
+
+    /// <summary>
+    /// Executed when the Help button is clicked.
+    /// </summary>
+    /// <param name="sender">Sender object.</param>
+    /// <param name="e">Routed event args.</param>
+    private void HelpButton_Click(object sender, RoutedEventArgs e)
+    {
+      Help();
+    }
+
+    /// <summary>
+    /// Executed when the Options button is clicked.
+    /// </summary>
+    /// <param name="sender">Sender object.</param>
+    /// <param name="e">Routed event args.</param>
+    private void OptionsButton_Click(object sender, RoutedEventArgs e)
+    {
+      Options();
+    }
+
+    /// <summary>
+    /// Executed when the Close button is clicked.
+    /// </summary>
+    /// <param name="sender">Sender object.</param>
+    /// <param name="e">Routed event args.</param>
+    private void CloseButton_Click(object sender, RoutedEventArgs e)
+    {
+      Close();
+    }
+
+    /// <summary>
+    /// Executed when the Closing storyboard ends.
+    /// </summary>
+    /// <param name="sender">Sender object.</param>
+    /// <param name="e">Event args.</param>
+    private void Closing_Completed(object sender, EventArgs e)
+    {
+      if (closingStoryboard != null)
+        closingStoryboard.Completed -= new EventHandler(Closing_Completed);
+
+      this.Visibility = Visibility.Collapsed;
+      OnClosed(EventArgs.Empty);
+    }
+
+    /// <summary>
+    /// Unsubscribe from events when the ChildWindow is closed.
+    /// </summary>
+    private void UnSubscribeFromEvents()
+    {
+      if (Application.Current != null)
+        Application.Current.Exit -= Application_Exit;
+
+      if (this.FloatingWindowHost != null)
+      {
+        this.FloatingWindowHost.SizeChanged -= new SizeChangedEventHandler(Host_SizeChanged);
+        this.FloatingWindowHost.ActiveWindowChanged -= new EventHandler<ActiveWindowChangedEventArgs>(ActiveWindowChanged);
+      }
+
+      this.RemoveHandler(UIElement.MouseLeftButtonDownEvent, new MouseButtonEventHandler(FloatingWindow_MouseLeftButtonDown));
+    }
+
+    /// <summary>
+    /// Handles the ActiveWindowChanged event of the Host control.
+    /// </summary>
+    /// <param name="sender">The sender.</param>
+    /// <param name="e">The <see cref="SilverFlow.Controls.ActiveWindowChangedEventArgs"/> instance containing the event data.</param>
+    private void ActiveWindowChanged(object sender, ActiveWindowChangedEventArgs e)
+    {
+      if (e.Old == this)
+        OnDeactivated(EventArgs.Empty);
+
+      if (e.New == this)
+        OnActivated(EventArgs.Empty);
+    }
+
+    /// <summary>
+    /// Handles the Click event of the MaximizeButton control.
+    /// </summary>
+    /// <param name="sender">The source of the event.</param>
+    /// <param name="e">The <see cref="System.Windows.RoutedEventArgs"/> instance containing the event data.</param>
+    private void MaximizeButton_Click(object sender, RoutedEventArgs e)
+    {
+      MaximizeWindow();
+    }
+
+    /// <summary>
+    /// Handles the Click event of the RestoreButton control.
+    /// </summary>
+    /// <param name="sender">The source of the event.</param>
+    /// <param name="e">The <see cref="System.Windows.RoutedEventArgs"/> instance containing the event data.</param>
+    private void RestoreButton_Click(object sender, RoutedEventArgs e)
+    {
+      RestoreMaximizedWindow();
+    }
+
+    /// <summary>
+    /// Handles the Click event of the MinimizeButton control.
+    /// </summary>
+    /// <param name="sender">The source of the event.</param>
+    /// <param name="e">The <see cref="System.Windows.RoutedEventArgs"/> instance containing the event data.</param>
+    private void MinimizeButton_Click(object sender, RoutedEventArgs e)
+    {
+      MinimizeWindow();
+    }
+
+    /// <summary>
+    /// Updates clipping region on host SizeChanged event.
+    /// </summary>
+    /// <param name="sender">The source of the event.</param>
+    /// <param name="e">The <see cref="System.Windows.SizeChangedEventArgs"/> instance containing the event data.</param>
+    private void Host_SizeChanged(object sender, SizeChangedEventArgs e)
+    {
+      if (windowState == WindowState.Maximized)
+      {
+        Width = HostPanel.ActualWidth;
+        Height = double.IsInfinity(MaxHeight) ? HostPanel.ActualHeight : MaxHeight;
+      }
+    } //TODO: maybe this needs different implementation on Silverlight, since setting bounds doesn't do cliping automatically as in WPF
+
+    /// <summary>
+    /// Executed when mouse left button is down.
+    /// </summary>
+    /// <param name="e">The data for the event.</param>
+    protected override void OnMouseLeftButtonDown(MouseButtonEventArgs e)
+    {
+      base.OnMouseLeftButtonDown(e);
+
+      //if (e.Handled) return;
+      e.Handled = true; //always handle events so that container doesn't get confused (e.g. when dragging the window title bar we don't want container to pan)
+
+      windowAction = WindowAction.None;
+
+      // Stop inertial motion before the mouse is captured
+      StopInertialMotion();
+
+      clickPoint = e.GetPosition(HostPanel);
+      clickWindowPosition = Position;
+      snapinController.SnapinDistance = this.FloatingWindowHost.SnapinDistance;
+      snapinController.SnapinMargin = this.FloatingWindowHost.SnapinMargin;
+      snapinController.SnapinEnabled = this.FloatingWindowHost.SnapinEnabled;
+
+      if (CheckResizable() && resizeController.CanResize)
+      {
+        snapinController.SnapinBounds = this.FloatingWindowHost.GetSnapinBounds(this);
+        resizeController.StartResizing();
+        CaptureMouseCursor();
+        windowAction = WindowAction.Resize;
+      }
+      else if (MoveMaximizedEnabled) //TODO: maybe should check MoveMaximizedEnabled maybe only when the window is maximized (use something like !Maximized || MoveMaximizedEnabled)
+      {
+        if (chrome != null)
+        {
+          // If the mouse was clicked on the chrome - start dragging the window
+          Point point = e.GetPosition(chrome);
+
+          if (MoveEnabled && chrome.ContainsPoint(point))
+            StartInertialMotion();
+        }
+
+        if (contentBorder != null)
+        {
+          // If the mouse was clicked on the contentBorder - start dragging the window
+          Point point = e.GetPosition(contentBorder);
+
+          if (MoveEnabled && contentBorder.ContainsPoint(point))
+            StartInertialMotion();
+        }
+
+      }
+    }
+
+    /// <summary>
+    /// Executed when mouse left button is up.
+    /// </summary>
+    /// <param name="e">The data for the event.</param>
+    protected override void OnMouseLeftButtonUp(MouseButtonEventArgs e)
+    {
+      base.OnMouseLeftButtonUp(e);
+
+      e.Handled = true; //always handle events so that container doesn't get confused (e.g. when dragging the window title bar we don't want container to pan)
+
+      if (windowAction == WindowAction.Move)
+      {
+        InertialMotion motion = inertiaController.GetInertialMotionParameters(
+            this.FloatingWindowHost.HostPanel.GetActualBoundingRectangle(), this.BoundingRectangle);
+
+        if (motion != null)
+        {
+          windowAction = WindowAction.InertialMotion;
+          contentRoot.AnimateTranslateTransform(inertialMotionStoryboard, motion.EndPosition, motion.Seconds, motion.EasingFunction);
+        }
+      }
+
+      if (isMouseCaptured)
+      {
+        contentRoot.ReleaseMouseCapture();
+        isMouseCaptured = false;
+      }
+
+      if (windowAction != WindowAction.InertialMotion)
+        windowAction = WindowAction.None;
+    }
+
+    /// <summary>
+    /// Executed when mouse moves.
+    /// </summary>
+    /// <param name="e">The data for the event.</param>
+    protected override void OnMouseMove(MouseEventArgs e)
+    {
+      base.OnMouseMove(e);
+
+      if (CheckResizable() && windowAction == WindowAction.None)
+      {
+        Point mousePosition = e.GetPosition(contentRoot);
+
+        if (IsMouseOverButtons(mousePosition, contentRoot))
+          this.Cursor = Cursors.Arrow;
+        else
+          resizeController.SetCursor(mousePosition);
+      }
+
+      Point p = e.GetPosition(HostPanel);
+      double dx = p.X - clickPoint.X;
+      double dy = p.Y - clickPoint.Y;
+
+      if (windowAction == WindowAction.Resize)
+        resizeController.Resize(dx, dy);
+
+      else if (windowAction == WindowAction.Move)
+      {
+        double flow = (RTL) ? -1 : 1;
+        Point point = clickWindowPosition.Add(flow * dx, dy); //RTL only affects horizontal flow
+        Rect rect = new Rect(point.X, point.Y, ActualWidth, ActualHeight);
+
+        point = snapinController.SnapRectangle(rect);
+        MoveWindow(point);
+
+        inertiaController.MoveToPoint(Position);
+      }
     }
 
     #endregion
@@ -2608,7 +2604,13 @@ namespace SilverFlow.Controls
         {
           var states = (from stategroup in groups
                         where stategroup.Name == FloatingWindow.VSMGROUP_Window
-                        select stategroup.States).FirstOrDefault() as Collection<VisualState>;
+                        select stategroup.States).FirstOrDefault() as 
+#if SILVERLIGHT
+                        Collection
+#else
+                        FreezableCollection
+#endif
+                        <VisualState>;
 
           if (states != null)
           {
@@ -2619,6 +2621,12 @@ namespace SilverFlow.Controls
             openingStoryboard = (from state in states
                                  where state.Name == FloatingWindow.VSMSTATE_StateOpen
                                  select state.Storyboard).FirstOrDefault();
+
+            #if !SILVERLIGHT
+            restoringStoryboard = (from state in states
+                                   where state.Name == FloatingWindow.VSMSTATE_StateRestored
+                                   select state.Storyboard).FirstOrDefault();
+            #endif
           }
         }
 
@@ -2692,7 +2700,25 @@ namespace SilverFlow.Controls
     {
       SaveActualSize();
 
+      #if SILVERLIGHT
       this.MoveAndResize(BoundingRectangleMaximized, MaximizingDurationInMilliseconds, Maximizing_Completed); //NOTE: MaximizedBounds takes in mind window's scale when resizing
+      #else
+      this.MoveAndResize(maximizingStoryboard, new Point(0, 0), HostPanel.ActualWidth, HostPanel.ActualHeight, MaximizingDurationInMilliseconds);
+      #endif
+    }
+
+    /// <summary>
+    /// Starts restoring animation.
+    /// </summary>
+    private void StartRestoringAnimation()
+    {
+      #if SILVERLIGHT
+      SaveActualSize(); //do we need this here?
+
+      this.MoveAndResize(previousPosition, previousSize.Width, previousSize.Height, RestoringDurationInMilliseconds, Restoring_Completed); 
+      #else
+      this.MoveAndResize(restoreMaximizedStoryboard, previousPosition, previousSize.Width, previousSize.Height, RestoringDurationInMilliseconds);
+      #endif
     }
 
     /// <summary>
@@ -2702,19 +2728,20 @@ namespace SilverFlow.Controls
     /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
     private void Maximizing_Completed(object sender, EventArgs e)
     {
+      #if !SILVERLIGHT
+      maximizingStoryboard.Stop();
+      maximizingStoryboard.Remove(this);
+
+      this.Width = HostPanel.ActualWidth;
+      this.Height = HostPanel.ActualHeight;
+      this.Position = new Point(0, 0);
+
+      Focus();
+      #endif
       OnMaximized(EventArgs.Empty);
     }
 
-    /// <summary>
-    /// Starts restoring animation.
-    /// </summary>
-    private void StartRestoringAnimation()
-    {
-      SaveActualSize();
-
-      this.MoveAndResize(previousPosition, previousSize.Width, previousSize.Height,
-          RestoringDurationInMilliseconds, Restoring_Completed);
-    }
+    #if SILVERLIGHT
 
     /// <summary>
     /// Handles the Completed event of the Restoring animation.
@@ -2726,12 +2753,64 @@ namespace SilverFlow.Controls
       OnRestored(EventArgs.Empty);
     }
 
+    #endif
+
+    #if !SILVERLIGHT
+
+    /// <summary>
+    /// Handles the Completed event of the Restoring Maximized window animation.
+    /// </summary>
+    /// <param name="sender">The source of the event.</param>
+    /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
+    private void RestoringMaximized_Completed(object sender, EventArgs e)
+    {
+      restoreMaximizedStoryboard.Stop();
+      restoreMaximizedStoryboard.Remove(this);
+
+      this.Width = previousSize.Width;
+      this.Height = previousSize.Height;
+      this.Position = previousPosition;
+
+      Focus();
+      OnRestored(EventArgs.Empty);
+    }
+
+    /// <summary>
+    /// Handles the Completed event of the Restoring Minimized window animation.
+    /// </summary>
+    /// <param name="sender">The source of the event.</param>
+    /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
+    private void RestoringMinimized_Completed(object sender, EventArgs e)
+    {
+      SetTopmost();
+      Focus();
+      OnRestored(EventArgs.Empty);
+    }
+
+    #endif
+
+    #endregion
+
+    #region Inertial Motion
+
+    /// <summary>
+    /// Starts the inertial motion.
+    /// </summary>
+    private void StartInertialMotion()
+    {
+      snapinController.SnapinBounds = this.FloatingWindowHost.GetSnapinBounds(this);
+      CaptureMouseCursor();
+      windowAction = WindowAction.Move;
+      inertiaController.StartMotion(Position); //TODO: take in mind component's zoom to avoid jumpy motion
+    }
+
     /// <summary>
     /// Stops current inertial motion.
     /// </summary>
     private void StopInertialMotion()
     {
-      if (inertialMotionStoryboard.GetCurrentState() != ClockState.Stopped)
+      if (inertialMotionStoryboard.Children.Count > 0 && 
+          inertialMotionStoryboard.GetCurrentState() != ClockState.Stopped)
       {
         inertialMotionStoryboard.Pause();
 
@@ -2742,7 +2821,7 @@ namespace SilverFlow.Controls
         MoveWindow(Position);
 
         inertialMotionStoryboard.Stop();
-        inertialMotionStoryboard.Children.Clear();
+        inertialMotionStoryboard.Children.Clear(); //note: in WPF was inertialMotionStoryboard.Remove(contentRoot as FrameworkElement) - guess it's the same
       }
     }
 
@@ -2755,6 +2834,11 @@ namespace SilverFlow.Controls
     {
       // Save current window position reading it from the TranslateTransform object
       Position = GetCurrentWindowPosition();
+
+      #if !SILVERLIGHT
+      // Stop the animation affecting its target property
+      inertialMotionStoryboard.Remove(contentRoot as FrameworkElement);
+      #endif
       windowAction = WindowAction.None;
     }
 
@@ -2864,7 +2948,11 @@ namespace SilverFlow.Controls
       double x = Math.Round(-this.Margin.Left);
       double y = Math.Round(-this.Margin.Top);
 
-      var transformGroup = root.RenderTransform as TransformGroup;
+      var transformGroup = (root.RenderTransform as TransformGroup)
+      #if !SILVERLIGHT
+        .Clone()
+      #endif
+      ;
       if (transformGroup == null)
       {
         transformGroup = new TransformGroup();
@@ -2882,6 +2970,10 @@ namespace SilverFlow.Controls
         translateTransform.X = x;
         translateTransform.Y = y;
       }
+
+      #if !SILVERLIGHT
+      root.RenderTransform = transformGroup;
+      #endif
     }
 
     /// <summary>
@@ -2910,6 +3002,7 @@ namespace SilverFlow.Controls
         transformGroup.Children.Add(new TranslateTransform());
     }
 
+    #if SILVERLIGHT
     /// <summary>
     /// Determines whether the control is in the visual tree of the window.
     /// </summary>
@@ -2917,7 +3010,7 @@ namespace SilverFlow.Controls
     /// <returns>
     /// <c>true</c> if the control is in the visual tree; otherwise, <c>false</c>.
     /// </returns>
-    private bool IsControlInVisualTree(Control control)
+    private bool IsControlInVisualTree(Control control) //TODO: see WPF's IsVisualAncestor (called elsewhere in this code) to maybe replace this (in WPF_Compatibility library)
     {
       if (control != null)
       {
@@ -2935,6 +3028,7 @@ namespace SilverFlow.Controls
 
       return false;
     }
+    #endif
 
     /// <summary>
     /// Gets current window position taking into account animation effects.
@@ -2957,6 +3051,12 @@ namespace SilverFlow.Controls
     {
       contentRoot.CaptureMouse();
       isMouseCaptured = true;
+    }
+
+    private bool CheckResizable()
+    {
+      return ResizeEnabled &&
+             (windowState == WindowState.Normal || (windowState == WindowState.Maximized && ResizeMaximizedEnabled));
     }
 
     /// <summary>
@@ -2988,11 +3088,18 @@ namespace SilverFlow.Controls
         double x = Math.Round(Math.Max(0, point.X));
         double y = Math.Round(Math.Max(0, point.Y));
 
-        var transformGroup = contentRoot.RenderTransform as TransformGroup;
+        var transformGroup = (contentRoot.RenderTransform as TransformGroup)
+          #if !SILVERLIGHT
+          .Clone()
+          #endif
+          ;
         var translateTransform = transformGroup.Children.OfType<TranslateTransform>().FirstOrDefault();
         if (translateTransform == null)
         {
           transformGroup.Children.Add(new TranslateTransform() { X = x, Y = y });
+          #if !SILVERLIGHT
+          contentRoot.RenderTransform = transformGroup;
+          #endif
         }
         else
         {
@@ -3018,30 +3125,30 @@ namespace SilverFlow.Controls
     {
       if (!IsWindowTagSet)
         return false;
-      else
-        try
+
+      try
+      {
+        string positionKey = GetAppSettingsKey("Position");
+        string sizeKey = GetAppSettingsKey("Size");
+
+        bool loadPosition = localStorage.Contains(positionKey);
+        if (loadPosition)
+          Position = (Point)localStorage[positionKey];
+
+        bool loadSize = localStorage.Contains(sizeKey);
+        if (loadSize)
         {
-          string positionKey = GetAppSettingsKey("Position");
-          string sizeKey = GetAppSettingsKey("Size");
-
-          bool loadPosition = localStorage.Contains(positionKey);
-          if (loadPosition)
-            Position = (Point)localStorage[positionKey];
-
-          bool loadSize = localStorage.Contains(sizeKey);
-          if (loadSize)
-          {
-            Size size = (Size)localStorage[sizeKey];
-            Width = size.Width == 0 ? double.NaN : size.Width;
-            Height = size.Height == 0 ? double.NaN : size.Height;
-          }
-
-          return (loadPosition || loadSize);
+          Size size = (Size)localStorage[sizeKey];
+          Width = size.Width == 0 ? double.NaN : size.Width;
+          Height = size.Height == 0 ? double.NaN : size.Height;
         }
-        catch
-        {
-          return false;
-        }
+
+        return (loadPosition || loadSize);
+      }
+      catch
+      {
+        return false;
+      }
     }
 
     /// <summary>
@@ -3052,24 +3159,24 @@ namespace SilverFlow.Controls
     {
       if (!IsWindowTagSet)
         return false;
-      else
-        try
-        {
-          string positionKey = GetAppSettingsKey("Position");
-          string sizeKey = GetAppSettingsKey("Size");
 
-          Point point = windowState == WindowState.Normal ? Position : previousPosition;
-          localStorage[positionKey] = point;
+      try
+      {
+        string positionKey = GetAppSettingsKey("Position");
+        string sizeKey = GetAppSettingsKey("Size");
 
-          Size size = windowState == WindowState.Normal ? new Size(Width, Height) : previousSize; //do not use (ActualWidth, ActualHeight) here, since at RestoreSizeAndPosition this value will be assigned to (Width, Height)
-          localStorage[sizeKey] = size;
+        Point point = windowState == WindowState.Normal ? Position : previousPosition;
+        localStorage[positionKey] = point;
 
-          return true;
-        }
-        catch
-        {
-          return false;
-        }
+        Size size = windowState == WindowState.Normal ? new Size(Width, Height) : previousSize; //do not use (ActualWidth, ActualHeight) here, since at RestoreSizeAndPosition this value will be assigned to (Width, Height)
+        localStorage[sizeKey] = size;
+
+        return true;
+      }
+      catch
+      {
+        return false;
+      }
     }
 
     /// <summary>
