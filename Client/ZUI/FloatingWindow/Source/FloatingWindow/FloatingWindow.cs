@@ -1885,230 +1885,13 @@ namespace SilverFlow.Controls
       OnOptions(EventArgs.Empty);
     }
 
-    /// <summary>
-    /// Raises the <see cref="FloatingWindow.Activated" /> event.
-    /// </summary>
-    /// <param name="e">The event data.</param>
-    protected virtual void OnActivated(EventArgs e)
-    {
-      EventHandler handler = Activated;
-      if (handler != null)
-        handler(this, e);
-    }
-
-    /// <summary>
-    /// Raises the <see cref="FloatingWindow.Deactivated" /> event.
-    /// </summary>
-    /// <param name="e">The event data.</param>
-    protected virtual void OnDeactivated(EventArgs e)
-    {
-      EventHandler handler = Deactivated;
-      if (handler != null)
-        handler(this, e);
-    }
-
-    /// <summary>
-    /// Raises the <see cref="FloatingWindow.ScreenshotRequested" /> event.
-    /// </summary>
-    /// <param name="e">The event data.</param>
-    protected virtual void OnScreenshot(EventArgs e)
-    {
-      EventHandler handler = ScreenshotRequested;
-      if (handler != null)
-        handler(this, e);
-
-      SaveFileDialog dlg = new SaveFileDialog()
-      {
-        //DefaultFileName = ( (Title == null) || String.IsNullOrWhiteSpace(Title.ToString()) )? "" : Title + ".jpg", //not using this, because Silverlight would ask "Do you want to save..."
-        Filter = "JPEG image (*.jpg)|*.jpg"
-      };
-
-      if (dlg.ShowDialog() == true)
-        using (Stream stream = dlg.OpenFile())
-          bitmapHelper.SaveToJPEG((WriteableBitmap)GetImage(), stream);
-    }
-
-    /// <summary>
-    /// Raises the <see cref="FloatingWindow.HelpRequested" /> event.
-    /// </summary>
-    /// <param name="e">The event data.</param>
-    protected virtual void OnHelp(EventArgs e)
-    {
-      EventHandler handler = HelpRequested;
-      if (handler != null)
-        handler(this, e);
-    }
-
-    /// <summary>
-    /// Raises the <see cref="FloatingWindow.OptionsRequested" /> event.
-    /// </summary>
-    /// <param name="e">The event data.</param>
-    protected virtual void OnOptions(EventArgs e)
-    {
-      EventHandler handler = OptionsRequested;
-      if (handler != null)
-        handler(this, e);
-    }
-
-    /// <summary>
-    /// Raises the <see cref="FloatingWindow.Closed" /> event.
-    /// </summary>
-    /// <param name="e">The event data.</param>
-    protected virtual void OnClosed(EventArgs e)
-    {
-      this.FloatingWindowHost.Remove(this);
-      this.FloatingWindowHost.ActivateTopmostWindow();
-      UnsubscribeFromStoryBoardEvents();
-
-      EventHandler handler = Closed;
-      if (handler != null)
-        handler(this, e);
-
-      Dispose();
-    }
-
-    /// <summary>
-    /// Raises the <see cref="FloatingWindow.Closing" /> event.
-    /// </summary>
-    /// <param name="e">The event data.</param>
-    protected virtual void OnClosing(CancelEventArgs e)
-    {
-      EventHandler<CancelEventArgs> handler = Closing;
-      if (handler != null)
-        handler(this, e);
-    }
-
-    /// <summary>
-    /// Raises the <see cref="FloatingWindow.Maximized" /> event.
-    /// </summary>
-    /// <param name="e">The event data.</param>
-    protected virtual void OnMaximized(EventArgs e)
-    {
-      EventHandler handler = Maximized;
-      if (handler != null)
-        handler(this, e);
-    }
-
-    /// <summary>
-    /// Raises the <see cref="FloatingWindow.Minimized" /> event.
-    /// </summary>
-    /// <param name="e">The event data.</param>
-    protected virtual void OnMinimized(EventArgs e)
-    {
-      EventHandler handler = Minimized;
-      if (handler != null)
-        handler(this, e);
-    }
-
-    /// <summary>
-    /// Raises the <see cref="FloatingWindow.Restored" /> event.
-    /// </summary>
-    /// <param name="e">The event data.</param>
-    protected virtual void OnRestored(EventArgs e)
-    {
-      EventHandler handler = Restored;
-      if (handler != null)
-        handler(this, e);
-    }
-
-    /// <summary>
-    /// This method is called every time a <see cref="FloatingWindow" /> is displayed.
-    /// </summary>
-    protected virtual void OnOpened()
-    {
-#if SILVERLIGHT
-      if (!Focus())
-      {
-        // If the Focus() fails it means there is no focusable element in the window.
-        // In this case we set IsTabStop to true to have the keyboard functionality
-        IsTabStop = true;
-        Focus();
-      }
-#else
-      Focus();
-
-      // Set focus to the first focusable element in the window
-      TraversalRequest request = new TraversalRequest(FocusNavigationDirection.First);
-      this.MoveFocus(request);
-#endif
-    }
-
-    /// <summary>
-    /// Executed when the opening storyboard finishes.
-    /// </summary>
-    /// <param name="sender">Sender object.</param>
-    /// <param name="e">Event args.</param>
-    private void Opening_Completed(object sender, EventArgs e)
-    {
-      if (openingStoryboard != null)
-        openingStoryboard.Completed -= new EventHandler(Opening_Completed);
-
-      this.FloatingWindowHost.UpdateIconbar();
-      IsOpen = true;
-      OnOpened();
-    }
-
-    /// <summary>
-    /// Subscribes to events when the window is opened.
-    /// </summary>
-    private void SubscribeToEvents()
-    {
-      if (Application.Current != null)
-        Application.Current.Exit += Application_Exit;
-
-      if (this.FloatingWindowHost != null)
-      {
-        this.FloatingWindowHost.SizeChanged += new SizeChangedEventHandler(Host_SizeChanged);
-        this.FloatingWindowHost.ActiveWindowChanged += new EventHandler<ActiveWindowChangedEventArgs>(ActiveWindowChanged);
-      }
-
-      // Attach Mouse event handler to catch already handled events to bring the window to the front
-      this.AddHandler(UIElement.MouseLeftButtonDownEvent, new MouseButtonEventHandler(FloatingWindow_MouseLeftButtonDown), true);
-    }
-
-    /// <summary>
-    /// Handles the MouseLeftButtonDown event to bring the window to the front.
-    /// </summary>
-    /// <param name="sender">The source of the event.</param>
-    /// <param name="e">The <see cref="System.Windows.Input.MouseButtonEventArgs"/> instance containing the event data.</param>
-    private void FloatingWindow_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-    {
-      // Gets the element with keyboard focus (must do before calling "SetTopmost")
-      Control elementWithFocus =
-#if SILVERLIGHT
- FocusManager.GetFocusedElement() as Control;
-#else
-        Keyboard.FocusedElement as Control;
-#endif
-
-      // Brings current window to the front
-      SetTopmost(); //TODO: add property AutoBringToFront (default true) to select whether we want it to be brought to front automatically
-
-      if (elementWithFocus != null)
-      {
-#if SILVERLIGHT
-        if (IsControlInVisualTree(elementWithFocus)) //TODO: maybe use WPF code for Silverlight too here?
-#else
-        if ((this as DependencyObject).IsVisualAncestorOf(elementWithFocus))
-#endif
-          elementWithFocus.Focus();
-        else // Try to set focus on the window
-          Focus();
-      }
-
-      // Stop any inertial motion
-      StopInertialMotion();
-
-      //FloatingWindowHost.IsIconbarVisible = false;
-    }
-
     #endregion
 
     #region --- Events ---
 
     /// <summary>
     /// Occurs when the <see cref="FloatingWindow" /> is activated.
-   // </summary>
+    /// </summary>
     /// <remarks>Not visible <see cref="FloatingWindow" /> cannot be the active. </remarks>
     public event EventHandler Activated;
 
@@ -2242,6 +2025,223 @@ namespace SilverFlow.Controls
     }
 
     /// <summary>
+    /// Raises the <see cref="FloatingWindow.Activated" /> event.
+    /// </summary>
+    /// <param name="e">The event data.</param>
+    protected virtual void OnActivated(EventArgs e)
+    {
+      EventHandler handler = Activated;
+      if (handler != null)
+        handler(this, e);
+    }
+
+    /// <summary>
+    /// Raises the <see cref="FloatingWindow.Deactivated" /> event.
+    /// </summary>
+    /// <param name="e">The event data.</param>
+    protected virtual void OnDeactivated(EventArgs e)
+    {
+      EventHandler handler = Deactivated;
+      if (handler != null)
+        handler(this, e);
+    }
+
+    /// <summary>
+    /// Raises the <see cref="FloatingWindow.ScreenshotRequested" /> event.
+    /// </summary>
+    /// <param name="e">The event data.</param>
+    protected virtual void OnScreenshot(EventArgs e)
+    {
+      EventHandler handler = ScreenshotRequested;
+      if (handler != null)
+        handler(this, e);
+
+      SaveFileDialog dlg = new SaveFileDialog()
+      {
+        //DefaultFileName = ( (Title == null) || String.IsNullOrWhiteSpace(Title.ToString()) )? "" : Title + ".jpg", //not using this, because Silverlight would ask "Do you want to save..."
+        Filter = "JPEG image (*.jpg)|*.jpg"
+      };
+
+      if (dlg.ShowDialog() == true)
+        using (Stream stream = dlg.OpenFile())
+          bitmapHelper.SaveToJPEG((WriteableBitmap)GetImage(), stream);
+    }
+
+    /// <summary>
+    /// Raises the <see cref="FloatingWindow.HelpRequested" /> event.
+    /// </summary>
+    /// <param name="e">The event data.</param>
+    protected virtual void OnHelp(EventArgs e)
+    {
+      EventHandler handler = HelpRequested;
+      if (handler != null)
+        handler(this, e);
+    }
+
+    /// <summary>
+    /// Raises the <see cref="FloatingWindow.OptionsRequested" /> event.
+    /// </summary>
+    /// <param name="e">The event data.</param>
+    protected virtual void OnOptions(EventArgs e)
+    {
+      EventHandler handler = OptionsRequested;
+      if (handler != null)
+        handler(this, e);
+    }
+
+    /// <summary>
+    /// Raises the <see cref="FloatingWindow.Closed" /> event.
+    /// </summary>
+    /// <param name="e">The event data.</param>
+    protected virtual void OnClosed(EventArgs e)
+    {
+      this.FloatingWindowHost.Remove(this);
+      this.FloatingWindowHost.ActivateTopmostWindow();
+      UnsubscribeFromStoryBoardEvents();
+
+      EventHandler handler = Closed;
+      if (handler != null)
+        handler(this, e);
+
+      Dispose();
+    }
+
+    /// <summary>
+    /// Raises the <see cref="FloatingWindow.Closing" /> event.
+    /// </summary>
+    /// <param name="e">The event data.</param>
+    protected virtual void OnClosing(CancelEventArgs e)
+    {
+      EventHandler<CancelEventArgs> handler = Closing;
+      if (handler != null)
+        handler(this, e);
+    }
+
+    /// <summary>
+    /// Raises the <see cref="FloatingWindow.Maximized" /> event.
+    /// </summary>
+    /// <param name="e">The event data.</param>
+    protected virtual void OnMaximized(EventArgs e)
+    {
+      EventHandler handler = Maximized;
+      if (handler != null)
+        handler(this, e);
+    }
+
+    /// <summary>
+    /// Raises the <see cref="FloatingWindow.Minimized" /> event.
+    /// </summary>
+    /// <param name="e">The event data.</param>
+    protected virtual void OnMinimized(EventArgs e)
+    {
+      EventHandler handler = Minimized;
+      if (handler != null)
+        handler(this, e);
+    }
+
+    /// <summary>
+    /// Raises the <see cref="FloatingWindow.Restored" /> event.
+    /// </summary>
+    /// <param name="e">The event data.</param>
+    protected virtual void OnRestored(EventArgs e)
+    {
+      EventHandler handler = Restored;
+      if (handler != null)
+        handler(this, e);
+    }
+
+    /// <summary>
+    /// This method is called every time a <see cref="FloatingWindow" /> is displayed.
+    /// </summary>
+    protected virtual void OnOpened()
+    {
+      #if SILVERLIGHT
+      if (!Focus())
+      {
+        // If the Focus() fails it means there is no focusable element in the window.
+        // In this case we set IsTabStop to true to have the keyboard functionality
+        IsTabStop = true;
+        Focus();
+      }
+      #else
+      Focus();
+
+      // Set focus to the first focusable element in the window
+      TraversalRequest request = new TraversalRequest(FocusNavigationDirection.First);
+      this.MoveFocus(request);
+      #endif
+    }
+
+    /// <summary>
+    /// Executed when the opening storyboard finishes.
+    /// </summary>
+    /// <param name="sender">Sender object.</param>
+    /// <param name="e">Event args.</param>
+    private void Opening_Completed(object sender, EventArgs e)
+    {
+      if (openingStoryboard != null)
+        openingStoryboard.Completed -= new EventHandler(Opening_Completed);
+
+      this.FloatingWindowHost.UpdateIconbar();
+      IsOpen = true;
+      OnOpened();
+    }
+
+    /// <summary>
+    /// Subscribes to events when the window is opened.
+    /// </summary>
+    private void SubscribeToEvents()
+    {
+      if (Application.Current != null)
+        Application.Current.Exit += Application_Exit;
+
+      if (this.FloatingWindowHost != null)
+      {
+        this.FloatingWindowHost.SizeChanged += new SizeChangedEventHandler(Host_SizeChanged);
+        this.FloatingWindowHost.ActiveWindowChanged += new EventHandler<ActiveWindowChangedEventArgs>(ActiveWindowChanged);
+      }
+
+      // Attach Mouse event handler to catch already handled events to bring the window to the front
+      this.AddHandler(UIElement.MouseLeftButtonDownEvent, new MouseButtonEventHandler(FloatingWindow_MouseLeftButtonDown), true);
+    }
+
+    /// <summary>
+    /// Handles the MouseLeftButtonDown event to bring the window to the front.
+    /// </summary>
+    /// <param name="sender">The source of the event.</param>
+    /// <param name="e">The <see cref="System.Windows.Input.MouseButtonEventArgs"/> instance containing the event data.</param>
+    private void FloatingWindow_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+    {
+      // Gets the element with keyboard focus (must do before calling "SetTopmost")
+      Control elementWithFocus =
+        #if SILVERLIGHT
+        FocusManager.GetFocusedElement() as Control;
+        #else
+        Keyboard.FocusedElement as Control;
+        #endif
+
+      // Brings current window to the front
+      SetTopmost(); //TODO: add property AutoBringToFront (default true) to select whether we want it to be brought to front automatically
+
+      if (elementWithFocus != null)
+      {
+        #if SILVERLIGHT
+        if (IsControlInVisualTree(elementWithFocus)) //TODO: maybe use WPF code for Silverlight too here?
+        #else
+        if ((this as DependencyObject).IsVisualAncestorOf(elementWithFocus))
+        #endif
+          elementWithFocus.Focus();
+        else // Try to set focus on the window
+          Focus();
+      }
+
+      // Stop any inertial motion
+      StopInertialMotion();
+
+      //FloatingWindowHost.IsIconbarVisible = false;
+    }
+
+    /// <summary>
     /// Unsubscribe from events when the ChildWindow is closed.
     /// </summary>
     private void UnSubscribeFromEvents()
@@ -2257,6 +2257,10 @@ namespace SilverFlow.Controls
 
       this.RemoveHandler(UIElement.MouseLeftButtonDownEvent, new MouseButtonEventHandler(FloatingWindow_MouseLeftButtonDown));
     }
+
+    #endregion
+
+    #region Event Handlers
 
     /// <summary>
     /// Handles the ActiveWindowChanged event of the Host control.
@@ -2480,7 +2484,7 @@ namespace SilverFlow.Controls
       GetStoryboards();
       SetInitialRootPosition();
       InitializeContentRootTransformGroup();
-      
+
       //TODO: the following if...SetVisible clauses could be removed if databinding with BooleanToVisibilityConverter in XAML are used
       if (chrome != null)
         chrome.SetVisible(ShowChrome);
@@ -2605,11 +2609,11 @@ namespace SilverFlow.Controls
           var states = (from stategroup in groups
                         where stategroup.Name == FloatingWindow.VSMGROUP_Window
                         select stategroup.States).FirstOrDefault() as 
-#if SILVERLIGHT
+                        #if SILVERLIGHT
                         Collection
-#else
+                        #else
                         FreezableCollection
-#endif
+                        #endif
                         <VisualState>;
 
           if (states != null)

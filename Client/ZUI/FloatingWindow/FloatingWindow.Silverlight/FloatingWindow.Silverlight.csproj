@@ -117,6 +117,9 @@
     <Compile Include="..\Source\FloatingWindow\BootstrapButton.cs">
       <Link>FloatingWindow\BootstrapButton.cs</Link>
     </Compile>
+    <Compile Include="..\Source\FloatingWindow\FloatingWindow.cs">
+      <Link>FloatingWindow\FloatingWindow.cs</Link>
+    </Compile>
     <Compile Include="..\Source\FloatingWindow\FloatingWindowCollection.cs">
       <Link>FloatingWindow\FloatingWindowCollection.cs</Link>
     </Compile>
@@ -157,7 +160,6 @@
       <Link>Helpers\VisualHelper.cs</Link>
     </Compile>
     <Compile Include="Extensions\AnimationExtensions.cs" />
-    <Compile Include="FloatingWindow\FloatingWindow.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
