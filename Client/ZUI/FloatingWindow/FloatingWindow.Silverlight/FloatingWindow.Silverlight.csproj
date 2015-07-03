@@ -102,6 +102,9 @@
     <Compile Include="..\Source\Enums\WindowAction.cs">
       <Link>Enums\WindowAction.cs</Link>
     </Compile>
+    <Compile Include="..\Source\Extensions\AnimationExtensions.cs">
+      <Link>Extensions\AnimationExtensions.cs</Link>
+    </Compile>
     <Compile Include="..\Source\Extensions\ControlExtensions.cs">
       <Link>Extensions\ControlExtensions.cs</Link>
     </Compile>
@@ -159,7 +162,6 @@
     <Compile Include="..\Source\Helpers\VisualHelper.cs">
       <Link>Helpers\VisualHelper.cs</Link>
     </Compile>
-    <Compile Include="Extensions\AnimationExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
