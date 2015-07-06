@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: CaptionsGrid.xaml.cs
-//Version: 20150614
+//Version: 20150706
 
 using ClipFlair.AudioRecorder;
 using ClipFlair.CaptionsGrid.Resources;
@@ -930,21 +930,35 @@ namespace ClipFlair.CaptionsGrid
 
     public void Select(TimedTextElement captionToSelect)
     {
-      gridCaptions.SelectedItem = captionToSelect; //this should clear existing selection (even multiple one) and also set current row
+      try
+      {
+        gridCaptions.SelectedItem = captionToSelect; //this should clear existing selection (even multiple one) and also set current row
+      }
+      catch
+      {
+        DeselectAll(); //handling the case where the item passed for selection isn't (yet) in the grid
+      }
     }
 
     public void Select(IEnumerable<TimedTextElement> captionsToSelect)
     {
       if (captionsToSelect == null || Captions == null) return;
 
-      if (captionsToSelect.Count() != 0)
-        gridCaptions.SelectedItem = captionsToSelect.Last(); //set the last caption of the selection as the current grid row - MUST DO THIS BEFORE THE FOREACH LOOP THAT ADDS TO SELECTEDITEMS
+      try
+      {
+        if (captionsToSelect.Count() != 0)
+          gridCaptions.SelectedItem = captionsToSelect.Last(); //set the last caption of the selection as the current grid row - MUST DO THIS BEFORE THE FOREACH LOOP THAT ADDS TO SELECTEDITEMS
 
-      foreach (CaptionElement caption in Captions.Children) //this loop will cause SelectionChanged event to fire multiple times as captions are added and removed from the current selection (which will also cause inactive/deselected captions to stop playing audio and active ones to play)
-        if (captionsToSelect.Contains(caption))
-          gridCaptions.SelectedItems.Add(caption);
-        else
-          gridCaptions.SelectedItems.Remove(caption);
+        foreach (CaptionElement caption in Captions.Children) //this loop will cause SelectionChanged event to fire multiple times as captions are added and removed from the current selection (which will also cause inactive/deselected captions to stop playing audio and active ones to play)
+          if (captionsToSelect.Contains(caption))
+            gridCaptions.SelectedItems.Add(caption);
+          else
+            gridCaptions.SelectedItems.Remove(caption);
+      }
+      catch
+      {
+        DeselectAll(); //handling the case where the items passed for selection aren't (yet) in the grid
+      }
     }
 
     public void DeselectAll()
