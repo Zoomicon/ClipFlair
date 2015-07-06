@@ -1,5 +1,5 @@
 //Filename: FloatingWindow.cs
-//Version: 20150703
+//Version: 20150706
 
 //#define BORDER_ONLY_AT_RESIZABLE //using BorderThickness instead to allow user to define when they want the border to be visible themselves
 
@@ -227,11 +227,47 @@ namespace SilverFlow.Controls
 
     #endregion
 
+    #region Objects
+
     /// <summary>
     /// Gets or sets a reference to the FloatingWindowHost, containing the window.
     /// </summary>
     /// <value>The floating window host.</value>
     public FloatingWindowHost FloatingWindowHost { get; set; }
+
+    /// <summary>
+    /// Gets the host panel, containing the floating windows.
+    /// </summary>
+    /// <value>The host panel.</value>
+    public Panel HostPanel
+    {
+      get { return this.FloatingWindowHost == null ? null : this.FloatingWindowHost.HostPanel; }
+    }
+    
+    /// <summary>
+    /// Gets a Snapin controller.
+    /// </summary>
+    /// <value>Snapin controller.</value>
+    public ISnapinController SnapinController
+    {
+      get { return snapinController; }
+    }
+
+    /// <summary>
+    /// Gets the window thumbnail.
+    /// </summary>
+    /// <value>The window thumbnail.</value>
+    public ImageSource WindowThumbnail
+    {
+      get
+      {
+        return (windowState == WindowState.Minimized) ? minimizedWindowThumbnail : GetThumbnailImage();
+      }
+    }
+
+    #endregion
+
+    #region State
 
     /// <summary>
     /// Gets or sets a value indicating whether the window is always displayed in front of other windows.
@@ -252,18 +288,6 @@ namespace SilverFlow.Controls
     public bool IsModal { get; private set; }
 
     /// <summary>
-    /// Gets the window thumbnail.
-    /// </summary>
-    /// <value>The window thumbnail.</value>
-    public ImageSource WindowThumbnail
-    {
-      get
-      {
-        return (windowState == WindowState.Minimized) ? minimizedWindowThumbnail : GetThumbnailImage();
-      }
-    }
-
-    /// <summary>
     /// Gets the state of the window.
     /// </summary>
     /// <value>Current state of the window.</value>
@@ -280,6 +304,32 @@ namespace SilverFlow.Controls
         }
       }
     }
+
+    /// <summary>
+    /// Gets a value indicating whether window size is explicitly set.
+    /// </summary>
+    /// <value><c>true</c> if window size is set; otherwise, <c>false</c>.</value>
+    private bool IsWindowSizeSet
+    {
+      get { return !Width.IsNotSet() && !Height.IsNotSet(); }
+    }
+
+    /// <summary>
+    /// Gets a value indicating whether the window Tag property is set.
+    /// </summary>
+    /// <value><c>true</c> if the Tag set; otherwise, <c>false</c>.</value>
+    private bool IsWindowTagSet
+    {
+      get
+      {
+        string tag = this.Tag as string;
+        return !string.IsNullOrWhiteSpace(tag);
+      }
+    }
+
+    #endregion
+
+    #region Constraints
 
     /// <summary>
     /// Gets or sets the minimum height constraint of a <see cref="T:System.Windows.FrameworkElement"/>.
@@ -310,6 +360,19 @@ namespace SilverFlow.Controls
       }
     }
 
+    #endregion
+
+    #region Bounds
+
+    /// <summary>
+    /// Gets a bounding rectangle of the window.
+    /// </summary>
+    /// <value>Bounding rectangle.</value>
+    public Rect BoundingRectangle
+    {
+      get { return new Rect(Position.X, Position.Y, ActualWidth, ActualHeight); }
+    }
+    
     /// <summary>
     /// Gets the bounds of the maximized window.
     /// </summary>
@@ -322,69 +385,7 @@ namespace SilverFlow.Controls
       }
     }
 
-    /// <summary>
-    /// Gets a bounding rectangle of the window.
-    /// </summary>
-    /// <value>Bounding rectangle.</value>
-    public Rect BoundingRectangle
-    {
-      get { return new Rect(Position.X, Position.Y, ActualWidth, ActualHeight); }
-    }
-
-    /// <summary>
-    /// Gets a Snapin controller.
-    /// </summary>
-    /// <value>Snapin controller.</value>
-    public ISnapinController SnapinController
-    {
-      get { return snapinController; }
-    }
-
-    /// <summary>
-    /// Gets the host panel, containing the floating windows.
-    /// </summary>
-    /// <value>The host panel.</value>
-    public Panel HostPanel
-    {
-      get { return this.FloatingWindowHost == null ? null : this.FloatingWindowHost.HostPanel; }
-    }
-
-    /// <summary>
-    /// Gets a value indicating whether window size is explicitly set.
-    /// </summary>
-    /// <value><c>true</c> if window size is set; otherwise, <c>false</c>.</value>
-    private bool IsWindowSizeSet
-    {
-      get { return !Width.IsNotSet() && !Height.IsNotSet(); }
-    }
-
-    /// <summary>
-    /// Gets a value indicating whether the window Tag property is set.
-    /// </summary>
-    /// <value><c>true</c> if the Tag set; otherwise, <c>false</c>.</value>
-    private bool IsWindowTagSet
-    {
-      get
-      {
-        string tag = this.Tag as string;
-        return !string.IsNullOrWhiteSpace(tag);
-      }
-    }
-
-    /// <summary>
-    /// Gets coordinates of the window placed in the center of its host.
-    /// </summary>
-    /// <value>The centered window position.</value>
-    private Point CenteredWindowPosition
-    {
-      get
-      {
-        //return new Point((HostPanel.ActualWidth - ActualWidth.ValueOrZero()) / 2, (HostPanel.ActualHeight - ActualHeight.ValueOrZero()) / 2); //using ActualWidth/ActualHeight to cater for any applied ScaleTransform
-        //return new Point((HostPanel.ActualWidth - Width * Scale) / 2, (HostPanel.ActualHeight - Height * Scale) / 2); //using ActualWidth/ActualHeight to cater for any applied ScaleTransform
-        Point parentCenter = this.FloatingWindowHost.ViewCenter;
-        return new Point(parentCenter.X - Width / 2 * Scale, parentCenter.Y - Height / 2 * Scale);
-      } //TODO: need to have some flag on whether Window is allowed to be placed out of container bounds and if not use Max(...,0) to make negative values to 0
-    }
+    #endregion
 
     #region ShowChrome
 
@@ -1045,6 +1046,25 @@ namespace SilverFlow.Controls
 
     #endregion
 
+    #region CenteredWindowPosition (read-only)
+
+    /// <summary>
+    /// Gets coordinates of the window placed in the center of its host.
+    /// </summary>
+    /// <value>The centered window position.</value>
+    private Point CenteredWindowPosition
+    {
+      get
+      {
+        //return new Point((HostPanel.ActualWidth - ActualWidth.ValueOrZero()) / 2, (HostPanel.ActualHeight - ActualHeight.ValueOrZero()) / 2); //using ActualWidth/ActualHeight to cater for any applied ScaleTransform
+        //return new Point((HostPanel.ActualWidth - Width * Scale) / 2, (HostPanel.ActualHeight - Height * Scale) / 2); //using ActualWidth/ActualHeight to cater for any applied ScaleTransform
+        Point parentCenter = this.FloatingWindowHost.ViewCenter;
+        return new Point(parentCenter.X - Width / 2 * Scale, parentCenter.Y - Height / 2 * Scale);
+      } //TODO: need to have some flag on whether Window is allowed to be placed out of container bounds and if not use Max(...,0) to make negative values to 0
+    }
+
+    #endregion
+
     #region Scale
 
     /// <summary>
@@ -1191,8 +1211,7 @@ namespace SilverFlow.Controls
 
     #endregion
 
-    /*
-        #region FlowDirection
+    /*  #region FlowDirection
 
         /// <summary>
         /// Gets or sets the direction that title text flows within window's icon.
@@ -1218,7 +1237,7 @@ namespace SilverFlow.Controls
             new PropertyMetadata(FlowDirection.LeftToRight));
 
         #endregion
-*/
+    */
 
     #region TitleStyle
 
@@ -2257,10 +2276,6 @@ namespace SilverFlow.Controls
 
       this.RemoveHandler(UIElement.MouseLeftButtonDownEvent, new MouseButtonEventHandler(FloatingWindow_MouseLeftButtonDown));
     }
-
-    #endregion
-
-    #region Event Handlers
 
     /// <summary>
     /// Handles the ActiveWindowChanged event of the Host control.
