@@ -1569,36 +1569,6 @@ namespace SilverFlow.Controls
     #region --- Methods ---
 
     /// <summary>
-    /// Minimizes the window.
-    /// </summary>
-    private void MinimizeWindow()
-    {
-      if (windowState != WindowState.Minimized)
-      {
-        if (minimizeButton != null)
-          VisualStateManager.GoToState(minimizeButton, VSMSTATE_StateNormal, true);
-
-        if (windowState == WindowState.Normal)
-        {
-          // Store previous coordinates
-          previousPosition = Position;
-          previousSize = new Size(ActualWidth, ActualHeight);
-        }
-
-        minimizedWindowThumbnail = GetThumbnailImage();
-
-        previousWindowState = windowState;
-        VisualStateManager.GoToState(this, VSMSTATE_StateMinimized, true);
-        OnMinimized(EventArgs.Empty);
-      }
-
-      windowState = WindowState.Minimized;
-      OnDeactivated(EventArgs.Empty);
-
-      this.FloatingWindowHost.ActivateTopmostWindow();
-    }
-
-    /// <summary>
     /// Creates a thumbnail of the window.
     /// </summary>
     /// <returns>Bitmap containing thumbnail image.</returns>
@@ -1619,50 +1589,6 @@ namespace SilverFlow.Controls
     public ImageSource GetImage()
     {
       return bitmapHelper.RenderVisual(contentRoot, contentRoot.Width, contentRoot.Height);
-    }
-
-    /// <summary>
-    /// Resizing the window to current view bounds without setting it to maximized mode
-    /// </summary
-    public void ResizeToView()
-    {
-      Rect r = FloatingWindowHost.MaximizedWindowBounds;
-      Position = r.Position(); //there is no r.Location in Silverlight
-      Width = r.Width;
-      Height = r.Height;
-    }
-
-    /// <summary>
-    /// Maximizes the window.
-    /// </summary>
-    public void MaximizeWindow()
-    {
-      if (windowState != WindowState.Maximized)
-      {
-        if (maximizeButton != null && restoreButton != null && HostPanel != null)
-        {
-          if (this.ShowMaximizeRestoreButton)
-          {
-            maximizeButton.SetVisible(false);
-            restoreButton.SetVisible(true);
-          }
-
-          VisualStateManager.GoToState(restoreButton, VSMSTATE_StateNormal, true);
-
-          // Store previous coordinates
-          previousPosition = Position;
-          previousSize = new Size(ActualWidth, ActualHeight);
-
-          HideBorder();
-
-          SetTopmost(); //!!! this seems to be needed, else after maximize action, windows don't overlap correctly
-
-          StartMaximizingAnimation();
-        }
-
-        previousWindowState = windowState;
-        windowState = WindowState.Maximized;
-      }
     }
 
     #region Show
@@ -1784,6 +1710,40 @@ namespace SilverFlow.Controls
       IsOpen = true;
     }
 
+    #endregion
+
+    #region Minimize / Restore
+
+    /// <summary>
+    /// Minimizes the window.
+    /// </summary>
+    private void MinimizeWindow()
+    {
+      if (windowState != WindowState.Minimized)
+      {
+        if (minimizeButton != null)
+          VisualStateManager.GoToState(minimizeButton, VSMSTATE_StateNormal, true);
+
+        if (windowState == WindowState.Normal)
+        {
+          // Store previous coordinates
+          previousPosition = Position;
+          previousSize = new Size(ActualWidth, ActualHeight);
+        }
+
+        minimizedWindowThumbnail = GetThumbnailImage();
+
+        previousWindowState = windowState;
+        VisualStateManager.GoToState(this, VSMSTATE_StateMinimized, true);
+        OnMinimized(EventArgs.Empty);
+      }
+
+      windowState = WindowState.Minimized;
+      OnDeactivated(EventArgs.Empty);
+
+      this.FloatingWindowHost.ActivateTopmostWindow();
+    }
+
     /// <summary>
     /// Restores window state, size and its position.
     /// </summary>
@@ -1793,10 +1753,7 @@ namespace SilverFlow.Controls
       {
         case WindowState.Minimized:
           if (previousWindowState == WindowState.Maximized)
-          {
-            Width = HostPanel.ActualWidth;
-            Height = HostPanel.ActualHeight;
-          }
+            ResizeToView();
 
           SetTopmost();
           windowState = previousWindowState;
@@ -1816,6 +1773,56 @@ namespace SilverFlow.Controls
 
       Focus();
     }
+
+    #endregion
+
+    #region Maximize
+
+    /// <summary>
+    /// Resizing the window to current view bounds without setting it to maximized mode
+    /// </summary
+    public void ResizeToView()
+    {
+      Rect r = BoundingRectangleMaximized; //note: was FloatingWindowHost.MaximizedWindowBounds
+      Position = r.Position(); //there is no r.Location in Silverlight
+      Width = r.Width;
+      Height = r.Height;
+    }
+
+    /// <summary>
+    /// Maximizes the window.
+    /// </summary>
+    public void MaximizeWindow()
+    {
+      if (windowState != WindowState.Maximized)
+      {
+        if (maximizeButton != null && restoreButton != null && HostPanel != null)
+        {
+          if (this.ShowMaximizeRestoreButton)
+          {
+            maximizeButton.SetVisible(false);
+            restoreButton.SetVisible(true);
+          }
+
+          VisualStateManager.GoToState(restoreButton, VSMSTATE_StateNormal, true);
+
+          // Store previous coordinates
+          previousPosition = Position;
+          previousSize = new Size(ActualWidth, ActualHeight);
+
+          HideBorder();
+
+          SetTopmost(); //!!! this seems to be needed, else after maximize action, windows don't overlap correctly
+
+          StartMaximizingAnimation();
+        }
+
+        previousWindowState = windowState;
+        windowState = WindowState.Maximized;
+      }
+    }
+
+    #endregion
 
     /// <summary>
     /// Makes the window topmost and tries to set focus on it.
@@ -1844,8 +1851,6 @@ namespace SilverFlow.Controls
         Position = CenteredWindowPosition;
       }
     }
-
-    #endregion
 
     /// <summary>
     /// Closes a <see cref="FloatingWindow" />.
@@ -2329,11 +2334,8 @@ namespace SilverFlow.Controls
     private void Host_SizeChanged(object sender, SizeChangedEventArgs e)
     {
       if (windowState == WindowState.Maximized)
-      {
-        Width = HostPanel.ActualWidth;
-        Height = double.IsInfinity(MaxHeight) ? HostPanel.ActualHeight : MaxHeight;
-      }
-    } //TODO: maybe this needs different implementation on Silverlight, since setting bounds doesn't do cliping automatically as in WPF
+        ResizeToView();
+    } //TODO: check what was the original implementation here in both WPF and Silverlight - don't see anything related to clipping set here
 
     /// <summary>
     /// Executed when mouse left button is down.
