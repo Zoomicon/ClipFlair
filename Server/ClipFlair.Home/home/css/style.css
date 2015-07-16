@@ -26,7 +26,7 @@ body {
 	width: 40%;
 	max-width: 92.3em;
 	margin: 0 auto;
-	padding: 0px;
+	padding: 0;
 	position: relative;
 }
 
@@ -35,7 +35,7 @@ body {
 	width: 66%;
 	max-width: 92.3em;
 	margin: 0 auto;
-	padding: 10px 0px;
+	padding: 10px 0;
 	line-height: 1.5em;
 	position: relative;
 }
@@ -43,8 +43,8 @@ body {
 /* SECTIONS  */
 .section {
 	clear: both;
-	padding: 0px;
-	margin: 0px;
+	padding: 0;
+	margin: 0;
 	position:relative;
 }
 
@@ -183,8 +183,8 @@ a.share {
 }
 
 a.share img {
-	max-width:100%;
 	border:none;
+	max-width:100%;
 }
 
 /*ROLL-OVER TEXT*/
@@ -467,8 +467,8 @@ label.custom-select:before {
 /* CSS3 / SVG DETECTIONS FOR BROWSERS THAT DON'T SUPPORT ΙΤ */
 .lt-ie9 #logo,
 .no-svg #logo {
-  background: url("img/logo.png");
-  _background-image: url("img/logo.jpg");
+  background: url("../img/logo.png");
+  _background-image: url("../img/logo.jpg");
 	background-repeat: no-repeat !important;
 }
 
@@ -481,8 +481,8 @@ label.custom-select:before {
 
 .lt-ie9 #studio,
 .no-svg #studio {
-  background: url("img/studio.png");
-  _background-image: url("img/studio.jpg");
+  background: url("../img/studio.png");
+  _background-image: url("../img/studio.jpg");
 	background-repeat: no-repeat !important;
 }
 
@@ -495,10 +495,11 @@ label.custom-select:before {
 
 .lt-ie9 #gallery,
 .no-svg #gallery {
-  background: url("img/gallery.png");
-  _background-image: url("img/gallery.jpg");
+  background: url("../img/gallery.png");
+  _background-image: url("../img/gallery.jpg");
 	background-repeat: no-repeat !important;
 }
+
 .lt-ie9 #gallery img,
 .no-svg #gallery img {
   -moz-opacity: 0;
@@ -508,8 +509,8 @@ label.custom-select:before {
 
 .lt-ie9 #social,
 .no-svg #social {
-  background: url("img/social.png");
-  _background-image: url("img/social.jpg");
+  background: url("../img/social.png");
+  _background-image: url("../img/social.jpg");
 	background-repeat: no-repeat !important;
 }
 
@@ -522,8 +523,8 @@ label.custom-select:before {
 
 .lt-ie9 #video1,
 .no-svg #video1 {
-  background: url("img/video1.png");
-  _background-image: url("img/video01.jpg");
+  background: url("../img/video1.png");
+  _background-image: url("../img/video01.jpg");
   background-repeat: no-repeat !important;
 }
 
@@ -536,8 +537,8 @@ label.custom-select:before {
 
 .lt-ie9 #video2,
 .no-svg #video2 {
-  background: url("img/video02.png");
-  _background-image: url("img/video2.jpg");
+  background: url("../img/video02.png");
+  _background-image: url("../img/video2.jpg");
   background-repeat: no-repeat !important;
 }
 
@@ -550,10 +551,11 @@ label.custom-select:before {
 
 .lt-ie9 #info,
 .no-svg #info {
-  background: url("img/info.png");
-  _background-image: url("img/info.jpg");
+  background: url("../img/info.png");
+  _background-image: url("../img/info.jpg");
   background-repeat: no-repeat !important;
 }
+
 .lt-ie9 #info img,
 .no-svg #info img {
   -moz-opacity: 0;
@@ -563,8 +565,8 @@ label.custom-select:before {
 
 .lt-ie9 #contact,
 .no-svg #contact {
-  background: url("img/contact.png");
-  _background-image: url("img/contact.jpg");
+  background: url("../img/contact.png");
+  _background-image: url("../img/contact.jpg");
   background-repeat: no-repeat !important;
 }
 
@@ -577,8 +579,8 @@ label.custom-select:before {
 
 .lt-ie9 #help,
 .no-svg #help {
-  background: url("img/help.png");
-  _background-image: url("img/help.jpg");
+  background: url("../img/help.png");
+  _background-image: url("../img/help.jpg");
   background-repeat: no-repeat !important;
 }
 
@@ -591,8 +593,8 @@ label.custom-select:before {
 
 .lt-ie9 .share,
 .no-svg .share {
-  background: url("img/share-btn.png");
-  _background-image: url("img/share-btn.gif");
+  background: url("../img/share-btn.png");
+  _background-image: url("../img/share-btn.gif");
   background-repeat: no-repeat !important;
 }
 
@@ -605,8 +607,8 @@ label.custom-select:before {
 
 .lt-ie9 #language-select-wrapper,
 .no-svg #language-select-wrapper {
-  background: url("img/globe.png");
-  _background-image: url("img/globe.gif");
+  background: url("../img/globe.png");
+  _background-image: url("../img/globe.gif");
   background-repeat: no-repeat !important;
   background-position: center left !important;
 }

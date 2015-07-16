@@ -39,20 +39,20 @@
   <!--[if lt IE 9]>
     <link href="home/css/style-ie.css" rel="stylesheet" type="text/css" />
   <![endif]-->
+  
   <script src="home/js/modernizr.custom.07231.js"></script>
   <!-- <script src="home/js/css3-mediaqueries.js"></script> -->
+  
   <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
   
   <!--fancybox-->
   <!-- Add mousewheel plugin (this is optional) -->
   <script type="text/javascript" src="home/js/fancybox/lib/jquery.mousewheel-3.0.6.pack.js"></script>
   <!-- Add fancyBox -->
-  <link rel="stylesheet" href="home/js/fancybox/source/jquery.fancybox.css" type="text/css"
-    media="screen" />
+  <link rel="stylesheet" href="home/js/fancybox/source/jquery.fancybox.css" type="text/css" media="screen" />
   <script type="text/javascript" src="home/js/fancybox/source/jquery.fancybox.pack.js"></script>
   <!-- Optionally add helpers - button, thumbnail and/or media -->
-  <link rel="stylesheet" href="home/js/fancybox/source/helpers/jquery.fancybox-buttons.css"
-    type="text/css" media="screen" />
+  <link rel="stylesheet" href="home/js/fancybox/source/helpers/jquery.fancybox-buttons.css" type="text/css" media="screen" />
   <script type="text/javascript" src="home/js/fancybox/source/helpers/jquery.fancybox-buttons.js"></script>
   <script type="text/javascript" src="home/js/fancybox/source/helpers/jquery.fancybox-media.js"></script>
   <!--/fancybox-->
@@ -68,7 +68,6 @@
     }
 
     $(document).ready(function () {
-
       //load fancybox
       $(".fancyframe").fancybox({
         beforeLoad: function () {
@@ -209,13 +208,18 @@
   </script>
   <script type="text/javascript" src="//cdn.transifex.com/live.js"></script>
   <script type="text/javascript">
-    Transifex.live.onTranslatePage(function (lang) {
+    if (typeof Transifex !== 'undefined') 
+      Transifex.live.onTranslatePage(function (lang) {
+        fitTilesText();
+      })
+    else
       fitTilesText();
-    });
   </script>
+  
 </head>
 
 <body>
+
   <div id="wrapper">
 
     <!-- MAIN CONTENT -->
@@ -224,8 +228,7 @@
       <div id="maincontent">
 
         <div class="section group">
-          <a class="col span_1_of_3  smaller-text" id="logo" href="http://clipflair.net" target="_top"
-            title="">
+          <a class="col span_1_of_3  smaller-text" id="logo" href="http://clipflair.net" target="_top" title="">
             <div class="roll-over">
               <p class="text" style="background: #fff">
                 <span style="line-height: 1.15em; color: #a5ac2c; font-weight: 600; font-size: larger">
@@ -239,7 +242,12 @@
             <img src="home/img/logo.svg" border="none" width="100%" />
           </a>
           
+          <!--[if lt IE 8]>
+          <a class="col span_1_of_3" id="studio" href="http://studio.clipflair.net" style="left: 10px">
+          <![endif]-->
+          <!--[if gte IE 8]><!-->
           <a class="col span_1_of_3" id="studio" href="http://studio.clipflair.net">
+          <!--<![endif]-->       
             <div class="roll-over">
               <p class="text" style="background: #1878ec">
                 Create activities with ClipFlair Studio</p>
@@ -247,8 +255,7 @@
             <img src="home/img/studio.svg" border="none" width="100%" class="" />
           </a>
           
-          <a class="col span_1_of_3 fancybox.iframe fancyframe" href="http://player.vimeo.com/video/70558092?autoplay=1"
-            id="video1">
+          <a class="col span_1_of_3 fancybox.iframe fancyframe" href="http://player.vimeo.com/video/70558092?autoplay=1" id="video1">
             <div class="roll-over" style="background: #9f2baa">
               <p class="text" style="background: #9f2baa">
                 Watch 1' intro to ClipFlair</span></p>
@@ -266,7 +273,12 @@
             <img src="home/img/gallery.svg" border="none" width="100%" class="" />
           </a>
 
+          <!--[if lt IE 8]>
+          <a class="col span_1_of_3" id="social" href="http://social.clipflair.net" style="left: 10px">
+          <![endif]-->
+          <!--[if gte IE 8]><!-->
           <a class="col span_1_of_3" id="social" href="http://social.clipflair.net">
+          <!--<![endif]-->
             <div class="roll-over">
               <p class="text" style="background: #c32540">
                 Visit the ClipFlair Social Network</p>
@@ -295,7 +307,12 @@
             <img src="home/img/info.svg" border="none" width="100%" class="" />
           </a>
           
+          <!--[if lt IE 8]>
+          <a class="col span_1_of_3" id="contact" href="http://social.clipflair.net/MonoX/Pages/Contact.aspx" style="left: 10px">
+          <![endif]-->
+          <!--[if gte IE 8]><!-->
           <a class="col span_1_of_3" id="contact" href="http://social.clipflair.net/MonoX/Pages/Contact.aspx">
+          <!--<![endif]-->
             <div class="roll-over">
               <p class="text" style="background: #029eaf">
                 Send us a message</p>
@@ -345,4 +362,5 @@
     </div>
   </div>
 </body>
+
 </html>
