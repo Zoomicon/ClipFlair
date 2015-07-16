@@ -2366,7 +2366,7 @@ namespace SilverFlow.Controls
         CaptureMouseCursor();
         windowAction = WindowAction.Resize;
       }
-      else if (MoveMaximizedEnabled) //TODO: maybe should check MoveMaximizedEnabled maybe only when the window is maximized (use something like !Maximized || MoveMaximizedEnabled)
+      else if (MoveMaximizedEnabled || (WindowState != WindowState.Maximized))
       {
         if (chrome != null)
         {
