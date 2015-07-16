@@ -194,6 +194,15 @@
       <Name>WPF_Compatibility.WPF</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="..\Source\Images\Options.png">
+      <Link>Images\Options.png</Link>
+    </Resource>
+    <Resource Include="..\Source\Images\Screenshot.png">
+      <Link>Images\Screenshot.png</Link>
+    </Resource>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
