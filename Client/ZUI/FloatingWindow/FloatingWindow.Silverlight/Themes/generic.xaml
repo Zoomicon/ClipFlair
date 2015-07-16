@@ -1,6 +1,6 @@
 ﻿<!--
   Filename: Generic.xaml 
-  Version: 20141111
+  Version: 20150716
 -->
 
 <ResourceDictionary
@@ -122,7 +122,7 @@
                 </LinearGradientBrush>
               </Border.Background>
               <Canvas Width="8" Height="8">
-                <TextBlock x:Name="ButtonText" FontWeight="ExtraBold" FontSize="12" Foreground="{TemplateBinding Foreground}" UseLayoutRounding="True" Width="8" Height="8" Margin="0,-4,0,0"  VerticalAlignment="Center" HorizontalAlignment="Center" >?</TextBlock>
+                <TextBlock x:Name="ButtonText" FontWeight="ExtraBold" FontSize="12" Foreground="{TemplateBinding Foreground}" UseLayoutRounding="True" Width="16" Height="16" Margin="0,-4,0,0"  VerticalAlignment="Center" HorizontalAlignment="Center" >?</TextBlock>
               </Canvas>
             </Border>
           </Grid>
@@ -597,15 +597,16 @@
               VerticalAlignment="{TemplateBinding VerticalAlignment}" 
               RenderTransformOrigin="0,0"
               Height="{TemplateBinding Height}"
-              Width="{TemplateBinding Width}">
+              Width="{TemplateBinding Width}"
+              >
 
               <!-- Removed: this causes all Grid content to be non h/w accelerated. See workarround at:
              http://www.pitorque.de/MisterGoodcat/post/Silverlight-Fixing-the-BookShelf-Sample.aspx
-             
               <Grid.Effect>
                 <DropShadowEffect ShadowDepth="0.5" Opacity="0.35" BlurRadius="12" />
               </Grid.Effect>
-         -->
+              -->
+              
               <Grid.RenderTransform>
                 <TransformGroup>
                   <ScaleTransform />
@@ -622,7 +623,11 @@
                 CornerRadius="{TemplateBinding CornerRadius}"
                 Padding="0"
                 >
-                <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0">
+                <Grid
+                  HorizontalAlignment="Stretch"
+                  VerticalAlignment="Stretch"
+                  Margin="0"
+                  >
                   <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition/>
@@ -643,7 +648,7 @@
                     <!-- Note: the special Margin is needed to fix a small line gap between window border and titlebar that shows up when zooming the UI -->
                     <!-- Note: must set Canvas.ZIndex above, since some controls (like Bing Maps) can overflow their content off their container - using a higher ZIndex than 0 ensures that such content doesn't draw over the Chrome (Titlebar) -->
                     <!-- Note: changed to UseLayoutRounding="True" to help with GPU acceleration -->
-                    
+
                     <Grid Height="Auto" Width="Auto">
                       <Grid.ColumnDefinitions>
                         <ColumnDefinition/>
@@ -655,7 +660,7 @@
                         <ColumnDefinition Width="6"/>
                       </Grid.ColumnDefinitions>
 
-                      <ContentControl 
+                      <ContentControl
                         x:Name="TitleContent"
                         Content="{TemplateBinding Title}"
                         Style="{StaticResource FloatingWindowTitleStyle}"
@@ -681,7 +686,12 @@
                         </ToolTipService.ToolTip>
                       </Button>
 
-                      <StackPanel x:Name="MenuPanel" Orientation="Horizontal"  Grid.Column="4" VerticalAlignment="Top">
+                      <StackPanel
+                        x:Name="MenuPanel"
+                        Orientation="Horizontal"
+                        Grid.Column="4"
+                        VerticalAlignment="Top"
+                        >
                         <Button x:Name="MinimizeButton" Style="{StaticResource MinimizeButtonStyle}">
                           <ToolTipService.ToolTip>
                             <ToolTip Style="{StaticResource WindowButtonToolTipStyle}" Content="Minimize" />
@@ -718,6 +728,7 @@
                     >
                     <!-- the special Margin is needed to fix a small line gap between window border and titlebar that shows up when zooming the UI -->
                     <!-- not setting the background at the outer border, sice we want to be able to have titlebar color with transparency -->
+
                     <ContentPresenter
                       x:Name="ContentPresenter"
                       Content="{TemplateBinding Content}"
@@ -736,6 +747,7 @@
   </Style>
 
   <Style TargetType="controls:FloatingWindow" BasedOn="{StaticResource FloatingWindowStyle}" />
+  <!-- this is needed, else instantiating a FloatingWindow will fail to call FloatingWindow.OnApplyTemplate -->
 
   <Style x:Key="BootstrapButtonStyle" TargetType="controls:BootstrapButton">
     <Setter Property="Width" Value="24"/>
@@ -906,7 +918,7 @@
                   <Border Grid.Column="1">
                     <ContentControl
                       x:Name="PART_BarContent"
-                      Content="{TemplateBinding Bar}" 
+                      Content="{TemplateBinding Bar}"
                       VerticalContentAlignment="Stretch"
                       HorizontalContentAlignment="Stretch"
                       />
@@ -1042,7 +1054,14 @@
                 <Image x:Name="PART_Thumbnail" Stretch="None" />
               </Border>
               <Border Grid.Row="1" HorizontalAlignment="Center">
-                <TextBlock x:Name="PART_Title" Foreground="LightGray" VerticalAlignment="Center" Margin="5,2" TextTrimming="WordEllipsis" FontSize="10.667" />
+                <TextBlock
+                  x:Name="PART_Title"
+                  Foreground="LightGray"
+                  VerticalAlignment="Center"
+                  Margin="5,2"
+                  TextTrimming="WordEllipsis"
+                  FontSize="10.667"
+                  />
               </Border>
             </Grid>
           </Border>

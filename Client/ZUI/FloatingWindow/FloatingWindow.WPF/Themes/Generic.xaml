@@ -1,13 +1,14 @@
 ﻿<!--
   Filename: Generic.xaml 
-  Version: 20141111
+  Version: 20150716
 -->
 
 <ResourceDictionary
-    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:controls="clr-namespace:SilverFlow.Controls"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006">
+  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+  xmlns:controls="clr-namespace:SilverFlow.Controls"    
+  >
+  <!-- do not use ;assembly=SilverFlow.Controls suffix above, won't compile in WPF -->
 
   <!-- Window Button Brushes -->
   <SolidColorBrush x:Key="WindowButtonForeground">#FF9E9E9E</SolidColorBrush>
@@ -25,7 +26,165 @@
     <GradientStop Color="#FFe7ebed" Offset="1"/>
   </LinearGradientBrush>
 
+  <Style x:Key="ScreenshotButtonStyle" TargetType="Button">
+    <Setter Property="Cursor" Value="Hand"/>
+    <Setter Property="Foreground" Value="{StaticResource WindowButtonForeground}"/>
+    <Setter Property="BorderBrush" Value="{StaticResource WindowButtonBorderBrush}"/>
+    <Setter Property="BorderThickness" Value="1,0,1,1"/>
+    <Setter Property="Width" Value="25"/>
+    <Setter Property="Height" Value="15"/>
+    <Setter Property="IsTabStop" Value="False"/>
+    <Setter Property="VerticalAlignment" Value="Top"/>
+    <Setter Property="VerticalContentAlignment" Value="Top"/>
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="Button">
+          <Grid x:Name="Root" Background="Transparent" Width="{TemplateBinding Width}" Height="{TemplateBinding Height}" >
+            <VisualStateManager.VisualStateGroups>
+              <VisualStateGroup x:Name="CommonStates">
+                <VisualState x:Name="Normal" />
+                <VisualState x:Name="MouseOver">
+                  <Storyboard>
+                    <ColorAnimation Duration="0" To="#FFa9afa9" Storyboard.TargetProperty="(Border.Background).(GradientBrush.GradientStops)[0].(GradientStop.Color)" Storyboard.TargetName="ButtonBorder" />
+                    <ColorAnimation Duration="0" To="#FFa64ca6" Storyboard.TargetProperty="(Border.Background).(GradientBrush.GradientStops)[1].(GradientStop.Color)" Storyboard.TargetName="ButtonBorder" />
+                  </Storyboard>
+                </VisualState>
+                <VisualState x:Name="Pressed">
+                  <Storyboard>
+                    <ColorAnimation Duration="0" To="#FFaa80aa" Storyboard.TargetProperty="(Border.Background).(GradientBrush.GradientStops)[0].(GradientStop.Color)" Storyboard.TargetName="ButtonBorder" />
+                    <ColorAnimation Duration="0" To="#FF5a005a" Storyboard.TargetProperty="(Border.Background).(GradientBrush.GradientStops)[1].(GradientStop.Color)" Storyboard.TargetName="ButtonBorder" />
+                  </Storyboard>
+                </VisualState>
+                <VisualState x:Name="Disabled">
+                  <Storyboard>
+                    <DoubleAnimation Duration="0" Storyboard.TargetName="Root" Storyboard.TargetProperty="Opacity" To="0.5"/>
+                  </Storyboard>
+                </VisualState>
+              </VisualStateGroup>
+            </VisualStateManager.VisualStateGroups>
+            <Border x:Name="ButtonBorder" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" UseLayoutRounding="True">
+              <Border.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                  <GradientStop Offset="0"/>
+                  <GradientStop Offset="1"/>
+                </LinearGradientBrush>
+              </Border.Background>
+              <Image Source="/SilverFlow.Controls;component/Images/Screenshot.png" x:Name="BaseImage" Margin="1,1,1,1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Stretch="Uniform" />
+            </Border>
+          </Grid>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+
+  <Style x:Key="HelpButtonStyle" TargetType="Button">
+    <Setter Property="Cursor" Value="Hand"/>
+    <Setter Property="Foreground" Value="{StaticResource WindowButtonForeground}"/>
+    <Setter Property="BorderBrush" Value="{StaticResource WindowButtonBorderBrush}"/>
+    <Setter Property="BorderThickness" Value="1,0,1,1"/>
+    <Setter Property="Width" Value="25"/>
+    <Setter Property="Height" Value="15"/>
+    <Setter Property="IsTabStop" Value="False"/>
+    <Setter Property="VerticalAlignment" Value="Top"/>
+    <Setter Property="VerticalContentAlignment" Value="Top"/>
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="Button">
+          <Grid x:Name="Root" Background="Transparent" Width="{TemplateBinding Width}" Height="{TemplateBinding Height}" >
+            <VisualStateManager.VisualStateGroups>
+              <VisualStateGroup x:Name="CommonStates">
+                <VisualState x:Name="Normal" />
+                <VisualState x:Name="MouseOver">
+                  <Storyboard>
+                    <ColorAnimation Duration="0" To="{StaticResource WindowButtonOverColor}" Storyboard.TargetProperty="(TextBlock.Foreground).(SolidColorBrush.Color)" Storyboard.TargetName="ButtonText" />
+                    <ColorAnimation Duration="0" To="#FFacf9af" Storyboard.TargetProperty="(Border.Background).(GradientBrush.GradientStops)[0].(GradientStop.Color)" Storyboard.TargetName="ButtonBorder" />
+                    <ColorAnimation Duration="0" To="#FF4cf64c" Storyboard.TargetProperty="(Border.Background).(GradientBrush.GradientStops)[1].(GradientStop.Color)" Storyboard.TargetName="ButtonBorder" />
+                  </Storyboard>
+                </VisualState>
+                <VisualState x:Name="Pressed">
+                  <Storyboard>
+                    <ColorAnimation Duration="0" To="{StaticResource WindowButtonPressedColor}" Storyboard.TargetProperty="(TextBlock.Foreground).(SolidColorBrush.Color)" Storyboard.TargetName="ButtonText" />
+                    <ColorAnimation Duration="0" To="#FF89fa80" Storyboard.TargetProperty="(Border.Background).(GradientBrush.GradientStops)[0].(GradientStop.Color)" Storyboard.TargetName="ButtonBorder" />
+                    <ColorAnimation Duration="0" To="#FF009a00" Storyboard.TargetProperty="(Border.Background).(GradientBrush.GradientStops)[1].(GradientStop.Color)" Storyboard.TargetName="ButtonBorder" />
+                  </Storyboard>
+                </VisualState>
+                <VisualState x:Name="Disabled">
+                  <Storyboard>
+                    <DoubleAnimation Duration="0" Storyboard.TargetName="Root" Storyboard.TargetProperty="Opacity" To="0.5"/>
+                  </Storyboard>
+                </VisualState>
+              </VisualStateGroup>
+            </VisualStateManager.VisualStateGroups>
+            <Border x:Name="ButtonBorder" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" UseLayoutRounding="True">
+              <Border.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                  <GradientStop Offset="0"/>
+                  <GradientStop Offset="1"/>
+                </LinearGradientBrush>
+              </Border.Background>
+              <Canvas Width="8" Height="8">
+                <TextBlock x:Name="ButtonText" FontWeight="ExtraBold" FontSize="12" Foreground="{TemplateBinding Foreground}" UseLayoutRounding="True" Width="16" Height="16" Margin="0,-4,0,0"  VerticalAlignment="Center" HorizontalAlignment="Center" >?</TextBlock>
+              </Canvas>
+            </Border>
+          </Grid>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+
+  <Style x:Key="OptionsButtonStyle" TargetType="Button">
+    <Setter Property="Cursor" Value="Hand"/>
+    <Setter Property="Foreground" Value="{StaticResource WindowButtonForeground}"/>
+    <Setter Property="BorderBrush" Value="{StaticResource WindowButtonBorderBrush}"/>
+    <Setter Property="BorderThickness" Value="1,0,1,1"/>
+    <Setter Property="Width" Value="25"/>
+    <Setter Property="Height" Value="15"/>
+    <Setter Property="IsTabStop" Value="False"/>
+    <Setter Property="VerticalAlignment" Value="Top"/>
+    <Setter Property="VerticalContentAlignment" Value="Top"/>
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="Button">
+          <Grid x:Name="Root" Background="Transparent" Width="{TemplateBinding Width}" Height="{TemplateBinding Height}" >
+            <VisualStateManager.VisualStateGroups>
+              <VisualStateGroup x:Name="CommonStates">
+                <VisualState x:Name="Normal" />
+                <VisualState x:Name="MouseOver">
+                  <Storyboard>
+                    <ColorAnimation Duration="0" To="#FFf9aff9" Storyboard.TargetProperty="(Border.Background).(GradientBrush.GradientStops)[0].(GradientStop.Color)" Storyboard.TargetName="ButtonBorder" />
+                    <ColorAnimation Duration="0" To="#FFf64cf6" Storyboard.TargetProperty="(Border.Background).(GradientBrush.GradientStops)[1].(GradientStop.Color)" Storyboard.TargetName="ButtonBorder" />
+                  </Storyboard>
+                </VisualState>
+                <VisualState x:Name="Pressed">
+                  <Storyboard>
+                    <ColorAnimation Duration="0" To="#FFfa80fa" Storyboard.TargetProperty="(Border.Background).(GradientBrush.GradientStops)[0].(GradientStop.Color)" Storyboard.TargetName="ButtonBorder" />
+                    <ColorAnimation Duration="0" To="#FF9a009a" Storyboard.TargetProperty="(Border.Background).(GradientBrush.GradientStops)[1].(GradientStop.Color)" Storyboard.TargetName="ButtonBorder" />
+                  </Storyboard>
+                </VisualState>
+                <VisualState x:Name="Disabled">
+                  <Storyboard>
+                    <DoubleAnimation Duration="0" Storyboard.TargetName="Root" Storyboard.TargetProperty="Opacity" To="0.5"/>
+                  </Storyboard>
+                </VisualState>
+              </VisualStateGroup>
+            </VisualStateManager.VisualStateGroups>
+            <Border x:Name="ButtonBorder" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" UseLayoutRounding="True">
+              <Border.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                  <GradientStop Offset="0"/>
+                  <GradientStop Offset="1"/>
+                </LinearGradientBrush>
+              </Border.Background>
+              <Image Source="/SilverFlow.Controls;component/Images/Options.png" x:Name="BaseImage" Margin="1,1,1,1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Stretch="Uniform" />
+            </Border>
+          </Grid>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+
   <Style x:Key="CloseButtonStyle" TargetType="Button">
+    <Setter Property="Cursor" Value="Hand"/>
     <Setter Property="Foreground" Value="{StaticResource WindowButtonForeground}"/>
     <Setter Property="BorderBrush" Value="{StaticResource WindowButtonBorderBrush}"/>
     <Setter Property="BorderThickness" Value="1,0,1,1"/>
@@ -84,6 +243,7 @@
   </Style>
 
   <Style x:Key="MinimizeButtonStyle" TargetType="Button">
+    <Setter Property="Cursor" Value="Hand"/>
     <Setter Property="Foreground" Value="{StaticResource WindowButtonForeground}"/>
     <Setter Property="BorderBrush" Value="{StaticResource WindowButtonBorderBrush}"/>
     <Setter Property="BorderThickness" Value="1,0,1,1"/>
@@ -139,6 +299,7 @@
   </Style>
 
   <Style x:Key="MaximizeButtonStyle" TargetType="Button">
+    <Setter Property="Cursor" Value="Hand"/>
     <Setter Property="Foreground" Value="{StaticResource WindowButtonForeground}"/>
     <Setter Property="BorderBrush" Value="{StaticResource WindowButtonBorderBrush}"/>
     <Setter Property="BorderThickness" Value="1,0,1,1"/>
@@ -197,6 +358,7 @@
   </Style>
 
   <Style x:Key="RestoreButtonStyle" TargetType="Button">
+    <Setter Property="Cursor" Value="Hand"/>
     <Setter Property="Foreground" Value="{StaticResource WindowButtonForeground}"/>
     <Setter Property="BorderBrush" Value="{StaticResource WindowButtonBorderBrush}"/>
     <Setter Property="BorderThickness" Value="1,0,1,1"/>
@@ -328,7 +490,7 @@
     </Setter>
   </Style>
 
-  <Style TargetType="controls:FloatingWindow"> <!-- don't use x:Key="FloatingWindowStyle" here, fails to call FloatingWindow.OnApplyTemplate -->
+  <Style x:Key="FloatingWindowStyle" TargetType="controls:FloatingWindow">
     <Setter Property="Width" Value="300"/>
     <Setter Property="Height" Value="200"/>
     <Setter Property="IsTabStop" Value="False"/>
@@ -357,8 +519,10 @@
                 <TranslateTransform />
               </TransformGroup>
             </Grid.RenderTransform>
+
             <VisualStateManager.VisualStateGroups>
               <VisualStateGroup x:Name="WindowStates">
+
                 <VisualState x:Name="Open">
                   <Storyboard>
                     <DoubleAnimationUsingKeyFrames BeginTime="0" Storyboard.TargetName="ContentRoot" Storyboard.TargetProperty="Opacity">
@@ -374,6 +538,7 @@
                     </ObjectAnimationUsingKeyFrames>
                   </Storyboard>
                 </VisualState>
+
                 <VisualState x:Name="Closed">
                   <Storyboard>
                     <DoubleAnimationUsingKeyFrames BeginTime="0" Storyboard.TargetName="ContentRoot" Storyboard.TargetProperty="Opacity">
@@ -382,6 +547,7 @@
                     </DoubleAnimationUsingKeyFrames>
                   </Storyboard>
                 </VisualState>
+
                 <VisualState x:Name="Minimized">
                   <Storyboard>
                     <PointAnimation Duration="0" To="0,1" Storyboard.TargetProperty="(UIElement.RenderTransformOrigin)" Storyboard.TargetName="ContentRoot" />
@@ -406,6 +572,7 @@
                     </ObjectAnimationUsingKeyFrames>
                   </Storyboard>
                 </VisualState>
+
                 <VisualState x:Name="Restored">
                   <Storyboard>
                     <PointAnimation Duration="0" To="0,1" Storyboard.TargetProperty="(UIElement.RenderTransformOrigin)" Storyboard.TargetName="ContentRoot" />
@@ -432,11 +599,20 @@
                 </VisualState>
               </VisualStateGroup>
             </VisualStateManager.VisualStateGroups>
-            <Grid x:Name="ContentRoot" HorizontalAlignment="{TemplateBinding HorizontalAlignment}" VerticalAlignment="{TemplateBinding VerticalAlignment}" 
-                RenderTransformOrigin="0,0" Height="{TemplateBinding Height}" Width="{TemplateBinding Width}">
+
+            <Grid
+              x:Name="ContentRoot"
+              HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
+              VerticalAlignment="{TemplateBinding VerticalAlignment}" 
+              RenderTransformOrigin="0,0"
+              Height="{TemplateBinding Height}"
+              Width="{TemplateBinding Width}"
+              >
+
               <Grid.Effect>
                 <DropShadowEffect ShadowDepth="0.5" Opacity="0.35" BlurRadius="12" />
               </Grid.Effect>
+              
               <Grid.RenderTransform>
                 <TransformGroup>
                   <ScaleTransform />
@@ -447,12 +623,17 @@
               </Grid.RenderTransform>
 
               <Border
-                x:Name="ContentBorder" 
+                x:Name="ContentBorder"
                 BorderThickness="{TemplateBinding BorderThickness}" 
                 BorderBrush="{TemplateBinding BorderBrush}"
-                CornerRadius="3"
+                CornerRadius="{TemplateBinding CornerRadius}"
+                Padding="0"
                 >
-                <Grid>
+                <Grid
+                  HorizontalAlignment="Stretch"
+                  VerticalAlignment="Stretch"
+                  Margin="0"
+                  >
                   <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition/>
@@ -464,7 +645,8 @@
                     Width="Auto"
                     Background="{TemplateBinding TitleBackground}"
                     UseLayoutRounding="True"
-                    CornerRadius="2,2,0,0"
+                    BorderThickness="0"
+                    CornerRadius="0"
                     Margin="-1,-1,-1,0"
                     Padding="0"
                     Canvas.ZIndex="1"
@@ -479,6 +661,9 @@
                         <ColumnDefinition/>
                         <ColumnDefinition Width="Auto"/>
                         <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
                         <ColumnDefinition Width="6"/>
                       </Grid.ColumnDefinitions>
 
@@ -488,8 +673,32 @@
                         Style="{StaticResource FloatingWindowTitleStyle}"
                         Foreground="{TemplateBinding TitleForeground}"
                         />
+                      <!-- TODO: add control here in content that enters edit mode when double-clicked, to edit title with two-way binding (when title is a string object) -->
 
-                      <StackPanel x:Name="MenuPanel" Orientation="Horizontal"  Grid.Column="1" VerticalAlignment="Top">
+                      <Button x:Name="ScreenshotButton" Style="{StaticResource ScreenshotButtonStyle}" Grid.Column="1">
+                        <ToolTipService.ToolTip>
+                          <ToolTip Style="{StaticResource WindowButtonToolTipStyle}" Content="Screenshot" />
+                        </ToolTipService.ToolTip>
+                      </Button>
+
+                      <Button x:Name="HelpButton" Style="{StaticResource HelpButtonStyle}" Grid.Column="2">
+                        <ToolTipService.ToolTip>
+                          <ToolTip Style="{StaticResource WindowButtonToolTipStyle}" Content="Help" />
+                        </ToolTipService.ToolTip>
+                      </Button>
+
+                      <Button x:Name="OptionsButton" Style="{StaticResource OptionsButtonStyle}" Grid.Column="3">
+                        <ToolTipService.ToolTip>
+                          <ToolTip Style="{StaticResource WindowButtonToolTipStyle}" Content="Options" />
+                        </ToolTipService.ToolTip>
+                      </Button>
+
+                      <StackPanel
+                        x:Name="MenuPanel"
+                        Orientation="Horizontal"
+                        Grid.Column="4"
+                        VerticalAlignment="Top"
+                        >
                         <Button x:Name="MinimizeButton" Style="{StaticResource MinimizeButtonStyle}">
                           <ToolTipService.ToolTip>
                             <ToolTip Style="{StaticResource WindowButtonToolTipStyle}" Content="Minimize" />
@@ -506,30 +715,35 @@
                           </ToolTipService.ToolTip>
                         </Button>
                       </StackPanel>
-                      <Button x:Name="CloseButton" Style="{StaticResource CloseButtonStyle}" Grid.Column="2">
+
+                      <Button x:Name="CloseButton" Style="{StaticResource CloseButtonStyle}" Grid.Column="5">
                         <ToolTipService.ToolTip>
                           <ToolTip Style="{StaticResource WindowButtonToolTipStyle}" Content="Close" />
                         </ToolTipService.ToolTip>
                       </Button>
+
                     </Grid>
                   </Border>
-                  
+
                   <!-- Content -->
                   <Border
                     Grid.Row="1"
                     BorderThickness="0"
-                    Margin="-1"                    
+                    Margin="-1"
                     Padding="0"
                     Background="{TemplateBinding Background}"
                     >
                     <!-- the special Margin is needed to fix a small line gap between window border and titlebar that shows up when zooming the UI -->
                     <!-- not setting the background at the outer border, sice we want to be able to have titlebar color with transparency -->
 
-                    <ContentPresenter x:Name="ContentPresenter" Content="{TemplateBinding Content}"
-                        ContentTemplate="{TemplateBinding ContentTemplate}"
-                        HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                        VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                    <ContentPresenter
+                      x:Name="ContentPresenter"
+                      Content="{TemplateBinding Content}"
+                      ContentTemplate="{TemplateBinding ContentTemplate}"
+                      HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                      VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
                   </Border>
+
                 </Grid>
               </Border>
             </Grid>
@@ -539,13 +753,17 @@
     </Setter>
   </Style>
 
+  <Style TargetType="controls:FloatingWindow" BasedOn="{StaticResource FloatingWindowStyle}" />
+  <!-- this is needed, else instantiating a FloatingWindow will fail to call FloatingWindow.OnApplyTemplate -->
+
   <Style x:Key="BootstrapButtonStyle" TargetType="controls:BootstrapButton">
     <Setter Property="Width" Value="24"/>
     <Setter Property="Height" Value="24"/>
     <Setter Property="BorderBrush" Value="#FFA2ADB8"/>
     <Setter Property="Background" Value="#FF4E4E4E"/>
     <Setter Property="VerticalAlignment" Value="Top"/>
-    <Setter Property="IsTabStop" Value="false"/>
+    <Setter Property="IsTabStop" Value="true"/>
+    <Setter Property="ToolTipService.ToolTip" Value="Windows"/>
     <Setter Property="Template">
       <Setter.Value>
         <ControlTemplate TargetType="controls:BootstrapButton">
@@ -699,19 +917,29 @@
                     <ColumnDefinition Width="*" />
                   </Grid.ColumnDefinitions>
 
-                  <controls:BootstrapButton x:Name="PART_BootstrapButton" Style="{StaticResource BootstrapButtonStyle}"
-                    Margin="10,-4,10,0" IsOpen="{Binding IsOpen, ElementName=PART_Iconbar}" />
+                  <controls:BootstrapButton
+                    x:Name="PART_BootstrapButton"
+                    Style="{StaticResource BootstrapButtonStyle}"
+                    Margin="10,-4,10,0"
+                    IsOpen="{Binding IsOpen, ElementName=PART_Iconbar}"
+                    />
 
                   <Border Grid.Column="1">
-                    <ContentControl x:Name="PART_BarContent" Content="{TemplateBinding Bar}" IsTabStop="False"
-                                                        VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch" />
+                    <ContentControl
+                      x:Name="PART_BarContent"
+                      Content="{TemplateBinding Bar}"
+                      VerticalContentAlignment="Stretch"
+                      HorizontalContentAlignment="Stretch"
+                      />
                   </Border>
                 </Grid>
               </Border>
             </Grid>
 
             <Grid x:Name="PART_Overlay" Background="{TemplateBinding OverlayBrush}" Opacity="0" Visibility="Collapsed" />
+
             <Canvas x:Name="PART_ModalCanvas" />
+
           </Grid>
         </ControlTemplate>
       </Setter.Value>
@@ -843,8 +1071,15 @@
                 </Grid>
               </Border>
               <Border Grid.Row="1" HorizontalAlignment="Center">
-                <TextBlock x:Name="PART_Title" Foreground="LightGray" VerticalAlignment="Center" 
-                                           Margin="5,2" TextTrimming="WordEllipsis" FontSize="10.667" UseLayoutRounding="True" />
+                <TextBlock
+                  x:Name="PART_Title"
+                  Foreground="LightGray"
+                  VerticalAlignment="Center"
+                  Margin="5,2"
+                  TextTrimming="WordEllipsis"
+                  FontSize="10.667"
+                  UseLayoutRounding="True"
+                  />
               </Border>
             </Grid>
           </Border>
