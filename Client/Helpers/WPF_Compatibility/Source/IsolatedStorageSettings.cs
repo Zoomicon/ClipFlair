@@ -1,5 +1,5 @@
 ﻿//Filename: IsolatedStorageSettings.cs
-//Version: 20130501
+//Version: 20150706 (fix at "Save" method: George Birbilis / Zoomicon.com)
 
 //
 // System.IO.IsolatedStorage.IsolatedStorageSettings
@@ -163,13 +163,21 @@ namespace System.IO.IsolatedStorage {
 
     public void Save()
     {
-      using (IsolatedStorageFileStream fs = container.CreateFile (LocalSettings)) {
-        DataContractSerializer ser = new DataContractSerializer (settings.GetType()
-          #if !SILVERLIGHT
-          , new Type[]{typeof(System.Windows.Point), typeof(System.Windows.Size)}
-          #endif
-          );
-        ser.WriteObject(fs, settings);
+      try
+      {
+        using (IsolatedStorageFileStream fs = container.CreateFile(LocalSettings))
+        {
+          DataContractSerializer ser = new DataContractSerializer(settings.GetType()
+            #if !SILVERLIGHT
+            , new Type[] { typeof(System.Windows.Point), typeof(System.Windows.Size) }
+            #endif
+            );
+          ser.WriteObject(fs, settings);
+        }
+      }
+      catch (ObjectDisposedException) //if fs is for some reaosn already closed when "using" tries to return, it fails, so catch and ignore the exception here
+      {
+        //NOP
       }
     }
 

@@ -1,5 +1,5 @@
 //Filename: FloatingWindow.cs
-//Version: 20150706
+//Version: 20150716
 
 //#define BORDER_ONLY_AT_RESIZABLE //using BorderThickness instead to allow user to define when they want the border to be visible themselves
 
@@ -2088,7 +2088,7 @@ namespace SilverFlow.Controls
 
       if (dlg.ShowDialog() == true)
         using (Stream stream = dlg.OpenFile())
-          bitmapHelper.SaveToJPEG((WriteableBitmap)GetImage(), stream);
+          bitmapHelper.SaveToJPEG((WriteableBitmap)GetImage(), stream); //assuming ImageSource returned by GetImage is a WriteableBitmap in both WPF and Silverlight (and not just a RenderTargetBitmap in WPF)
     }
 
     /// <summary>

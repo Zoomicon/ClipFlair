@@ -3,7 +3,11 @@
                     xmlns:SilverFlow_Controls="clr-namespace:SilverFlow.Controls;assembly=SilverFlow.Controls" 
                     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006">
 
-    <Style x:Key="CloseButtonBlackStyle" TargetType="Button">
+  <ResourceDictionary.MergedDictionaries>
+    <ResourceDictionary Source="/SilverFlow.Controls;component/Themes/Generic.xaml"/>
+  </ResourceDictionary.MergedDictionaries>
+
+  <Style x:Key="CloseButtonBlackStyle" TargetType="Button">
         <Setter Property="Foreground" Value="#FFA8A8A8"/>
         <Setter Property="BorderBrush" Value="Transparent"/>
         <Setter Property="BorderThickness" Value="0"/>
@@ -51,7 +55,7 @@
                             </Border.Background>
                             <Canvas Width="8" Height="8">
                                 <Path x:Name="ButtonPath" Data="M0,0 L0.9371469,0 L4,3.0628543 L7.0628557,0 L8,0 L8,1.073151 L5.0731506,4 L8,6.9268494 L8,8 L6.9278555,8 L4,5.0721459 L1.0721471,8 L0,8 L0,7.0948515 L3.0948515,4 L0,0.90514863 z" 
-									          Fill="{TemplateBinding Foreground}" Stretch="None" StrokeThickness="0.5" Stroke="{TemplateBinding Foreground}"
+                            Fill="{TemplateBinding Foreground}" Stretch="None" StrokeThickness="0.5" Stroke="{TemplateBinding Foreground}"
                                               UseLayoutRounding="True" Width="8" Height="8" VerticalAlignment="Center" HorizontalAlignment="Center" />
                             </Canvas>
                         </Border>
