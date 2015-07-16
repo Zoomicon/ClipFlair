@@ -129,9 +129,7 @@ namespace SilverFlow.Controls
     private Storyboard openingStoryboard;
     private Storyboard closingStoryboard;
     private Storyboard maximizingStoryboard;
-    #if !SILVERLIGHT
     private Storyboard restoringStoryboard;
-    #endif
     private Storyboard restoreMaximizedStoryboard;
     private Storyboard inertialMotionStoryboard;
 
@@ -2643,11 +2641,9 @@ namespace SilverFlow.Controls
                                  where state.Name == FloatingWindow.VSMSTATE_StateOpen
                                  select state.Storyboard).FirstOrDefault();
 
-            #if !SILVERLIGHT
             restoringStoryboard = (from state in states
                                    where state.Name == FloatingWindow.VSMSTATE_StateRestored
                                    select state.Storyboard).FirstOrDefault();
-            #endif
           }
         }
 
@@ -2676,7 +2672,6 @@ namespace SilverFlow.Controls
       if (inertialMotionStoryboard != null)
         inertialMotionStoryboard.Completed += new EventHandler(InertialMotion_Completed);
 
-      #if !SILVERLIGHT
       if (maximizingStoryboard != null)
         maximizingStoryboard.Completed += new EventHandler(Maximizing_Completed);
 
@@ -2685,7 +2680,6 @@ namespace SilverFlow.Controls
 
       if (restoreMaximizedStoryboard != null)
         restoreMaximizedStoryboard.Completed += new EventHandler(RestoringMaximized_Completed);
-      #endif
     }
 
     /// <summary>
@@ -2702,7 +2696,6 @@ namespace SilverFlow.Controls
       if (inertialMotionStoryboard != null)
         inertialMotionStoryboard.Completed -= new EventHandler(InertialMotion_Completed);
 
-      #if !SILVERLIGHT
       if (maximizingStoryboard != null)
         maximizingStoryboard.Completed -= new EventHandler(Maximizing_Completed);
 
@@ -2711,7 +2704,6 @@ namespace SilverFlow.Controls
 
       if (restoreMaximizedStoryboard != null)
         restoreMaximizedStoryboard.Completed -= new EventHandler(RestoringMaximized_Completed);
-      #endif
     }
 
     /// <summary>
@@ -2736,9 +2728,9 @@ namespace SilverFlow.Controls
       #if SILVERLIGHT
       SaveActualSize(); //do we need this here?
 
-      this.MoveAndResize(previousPosition, previousSize.Width, previousSize.Height, RestoringDurationInMilliseconds, Restoring_Completed); 
+      this.MoveAndResize(previousPosition, previousSize.Width, previousSize.Height, RestoringDurationInMilliseconds, RestoringMaximized_Completed); 
       #else
-      this.MoveAndResize(restoreMaximizedStoryboard, previousPosition, previousSize.Width, previousSize.Height, RestoringDurationInMilliseconds);
+      this.MoveAndResize(restoreMaximizedStoryboard, previousPosition, previousSize.Width, previousSize.Height, RestoringDurationInMilliseconds); //the story board has its own completion event handler attached
       #endif
     }
 
@@ -2756,27 +2748,11 @@ namespace SilverFlow.Controls
       this.Width = HostPanel.ActualWidth;
       this.Height = HostPanel.ActualHeight;
       this.Position = new Point(0, 0);
+      #endif
 
       Focus();
-      #endif
       OnMaximized(EventArgs.Empty);
     }
-
-    #if SILVERLIGHT
-
-    /// <summary>
-    /// Handles the Completed event of the Restoring animation.
-    /// </summary>
-    /// <param name="sender">The source of the event.</param>
-    /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
-    private void Restoring_Completed(object sender, EventArgs e)
-    {
-      OnRestored(EventArgs.Empty);
-    }
-
-    #endif
-
-    #if !SILVERLIGHT
 
     /// <summary>
     /// Handles the Completed event of the Restoring Maximized window animation.
@@ -2785,12 +2761,14 @@ namespace SilverFlow.Controls
     /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
     private void RestoringMaximized_Completed(object sender, EventArgs e)
     {
+      #if !SILVERLIGHT
       restoreMaximizedStoryboard.Stop();
       restoreMaximizedStoryboard.Remove(this);
 
       this.Width = previousSize.Width;
       this.Height = previousSize.Height;
       this.Position = previousPosition;
+      #endif
 
       Focus();
       OnRestored(EventArgs.Empty);
@@ -2807,8 +2785,6 @@ namespace SilverFlow.Controls
       Focus();
       OnRestored(EventArgs.Empty);
     }
-
-    #endif
 
     #endregion
 
