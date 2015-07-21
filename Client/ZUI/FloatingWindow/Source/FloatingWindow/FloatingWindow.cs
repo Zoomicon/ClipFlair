@@ -1,5 +1,5 @@
 //Filename: FloatingWindow.cs
-//Version: 20150716
+//Version: 20150721
 
 //#define BORDER_ONLY_AT_RESIZABLE //using BorderThickness instead to allow user to define when they want the border to be visible themselves
 
@@ -2177,7 +2177,6 @@ namespace SilverFlow.Controls
     /// </summary>
     protected virtual void OnOpened()
     {
-      #if SILVERLIGHT
       if (!Focus())
       {
         // If the Focus() fails it means there is no focusable element in the window.
@@ -2185,10 +2184,9 @@ namespace SilverFlow.Controls
         IsTabStop = true;
         Focus();
       }
-      #else
-      Focus();
 
-      // Set focus to the first focusable element in the window
+      #if !SILVERLIGHT
+      // Set focus to the first focusable element in the window //TODO: is this necessary? Doesn't it go automatically to the first focusable element since the window itself isn't a tabstop by default?
       TraversalRequest request = new TraversalRequest(FocusNavigationDirection.First);
       this.MoveFocus(request);
       #endif
@@ -3015,9 +3013,7 @@ namespace SilverFlow.Controls
         do
         {
           parent = VisualTreeHelper.GetParent(parent);
-          FloatingWindow window = parent as FloatingWindow;
-
-          if (window != null && window == this)
+          if (parent == this)
             return true;
         }
         while (parent != null);
