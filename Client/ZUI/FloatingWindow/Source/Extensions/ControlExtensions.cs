@@ -1,5 +1,5 @@
 ﻿//Filename: ControlExtensions.cs
-//Version: 20140903
+//Version: 20150721
 
 using System;
 using System.Linq;
@@ -263,9 +263,11 @@ namespace SilverFlow.Controls.Extensions
     public static bool IsVisualDescendentOf(this DependencyObject element, DependencyObject ancestor) //this can throw exception "Reference is not a valid visual Dependency Object"
     {
       if (element == null) return false;
-#if !SILVERLIGHT
+      
+      #if !SILVERLIGHT
       if (!(element is Visual) && !(element is Visual3D)) return false;
-#endif
+      #endif
+      
       DependencyObject parent = VisualTreeHelper.GetParent(element);
       return (parent == ancestor) || IsVisualDescendentOf(parent, ancestor);
     }
@@ -277,31 +279,12 @@ namespace SilverFlow.Controls.Extensions
 
     public static bool IsFocused(this DependencyObject control)
     {
-#if SILVERLIGHT
+      #if SILVERLIGHT
       return FocusManager.GetFocusedElement() == control; //In Silverlight 5, passing an element parameter value that is not of type Window will result in a returned value of null according to http://msdn.microsoft.com/en-us/library/ms604088(v=vs.95).aspx
-#else
+      #else
       return Keyboard.FocusedElement == control;
-#endif
+      #endif
     }
-
- /*
-    /// <summary>
-    /// Gets the FrameworkElement template part with the specified name.
-    /// </summary>
-    /// <typeparam name="T">The template part type.</typeparam>
-    /// <param name="partName">The template part name.</param>
-    /// <returns>The requested element.</returns>
-    /// <exception cref="NotImplementedException">The template part not found.</exception>
-    public static T GetTemplatePart<T>(this FrameworkElement element, string partName) where T : class
-    {
-      T part = element.GetTemplateChild(partName) as T; //cannot call this without using Reflection since this is a protected method
-
-      if (part == null)
-        throw new NotImplementedException(string.Format(CultureInfo.InvariantCulture, "Template Part {0} is required.", partName));
-
-      return part;
-    }
-*/
 
   }
 }
