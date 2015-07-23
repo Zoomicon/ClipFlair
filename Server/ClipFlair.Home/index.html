@@ -35,13 +35,14 @@
   <!-- // end -->
   
   <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css' />
+
   <link href="home/css/style.css" rel="stylesheet" type="text/css" />
   <!--[if lt IE 9]>
     <link href="home/css/style-ie.css" rel="stylesheet" type="text/css" />
   <![endif]-->
   
   <script src="home/js/modernizr.custom.07231.js"></script>
-  <!-- <script src="home/js/css3-mediaqueries.js"></script> -->
+  <script src="home/js/css3-mediaqueries.js"></script>
   
   <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
   
@@ -68,6 +69,7 @@
     }
 
     $(document).ready(function () {
+      
       //load fancybox
       $(".fancyframe").fancybox({
         beforeLoad: function () {
@@ -100,51 +102,42 @@
       $("#logo").animate({
         opacity: 1.0
       }, 300, function () {
-        // Animation complete.
+        /* Animation complete */
+
         $("#studio").animate({
           opacity: 1.0
         }, 300, function () {
-          // Animation complete.
+          /* Animation complete */
           $("#video1").animate({
             opacity: 1.0
-          }, 300, function () {
-            // Animation complete.
-
-          });
+          }, 300, function () {});
         });
+        
         $("#gallery").animate({
           opacity: 1.0
         }, 300, function () {
-          // Animation complete.
+          /* Animation complete */
           $("#info").animate({
             opacity: 1.0
-          }, 300, function () {
-            // Animation complete.
-
-          });
+          }, 300, function () {});
         });
+        
         $("#social").animate({
           opacity: 1.0
         }, 300, function () {
-          // Animation complete.
+          /* Animation complete */
+
           $("#video2").animate({
             opacity: 1.0
-          }, 300, function () {
-            // Animation complete.
-
-          });
+          }, 300, function () {});
+          
           $("#contact").animate({
             opacity: 1.0
-          }, 300, function () {
-            // Animation complete.
-
-          });
+          }, 300, function () {});
+          
           $("#help").animate({
             opacity: 1.0
-          }, 300, function () {
-            // Animation complete.
-
-          });
+          }, 300, function () {});
         });
       });
 
@@ -152,6 +145,7 @@
         over: fadeIn,
         out: fadeOut
       });
+
       $(".text").hoverIntent({
         over: fadeIn,
         out: fadeOut
@@ -161,18 +155,14 @@
       function fadeIn() {
         $(this).animate({
           opacity: 1.0
-        }, 10, function () {
-          // Animation complete.
-        });
+        }, 10, function () {});
       }
 
       //fadeout
       function fadeOut() {
         $(this).animate({
           opacity: 0
-        }, 10, function () {
-          // Animation complete.
-        });
+        }, 10, function () {});
       }
 
       //hide an image title
@@ -226,8 +216,11 @@
 
     <div id="maincontentcontainer">
       <div id="maincontent">
+      
+        <!-- 1st row -->
 
         <div class="section group">
+        
           <a class="col span_1_of_3  smaller-text" id="logo" href="http://clipflair.net" target="_top" title="">
             <div class="roll-over">
               <p class="text" style="background: #fff">
@@ -262,9 +255,13 @@
             </div>
             <img src="home/img/video01.png" border="none" width="100%" class="" />
           </a>
+          
         </div>
 
+        <!-- 2nd row -->          
+
         <div class="section group">
+        
           <a class="col span_1_of_3" id="gallery" href="http://gallery.clipflair.net//">
             <div class="roll-over">
               <p class="text" style="background: #F67F00">
@@ -296,9 +293,13 @@
             </div>
             <img src="home/img/video02.png" border="none" width="100%" class="" />
           </a>
+          
         </div>
 
+        <!-- 3rd row -->          
+
         <div class="section group">
+        
           <a class="col span_1_of_3" id="info" href="http://clipflair.net/overview">
             <div class="roll-over">
               <p class="text" style="background: #b4b921">
@@ -327,6 +328,7 @@
             </div>
             <img src="home/img/help.svg" border="none" width="100%" class="imgover" />
           </a>
+          
         </div>
 
       </div>
@@ -336,8 +338,9 @@
       <div id="subfooter">
         <div id="subfootercontent">
           <p class="footer-text">
-            <span>Foreign Language Learning through Interactive</span> <span>Revoicing & Captioning
-              of Clips</span></p>
+            <span>Foreign Language Learning through Interactive</span>
+            <span>Revoicing & Captioning of Clips</span>
+          </p>
         </div>
       </div>
 
@@ -347,20 +350,23 @@
         <div id="footercontent">
           <div class="content_wrapper">
             <div class="llp_logo">
-              <img src="home/img/llp-logo.png" width="148" height="50" /></div>
+              <img src="home/img/llp-logo.png" width="148" height="50" />
+            </div>
             <p>
               This project has been funded with support from the European Commission. This publication
               reflects the views only of the author, and the Commission cannot be held responsible
-              for any use which may be made of the information contained therein.</p>
-            <a href="http://www.addthis.com/bookmark.php?url=http://clipflair.net&title=ClipFlair%20-%20Foreign%20Language%20Learning%20through%20Interactive%20Revoicing%20%26%20Captioning%20of%20Clips"
-              target="_blank" class="share">
-              <img src="home/img/share-btn.svg" width="82" height="25" align="left" /></a>
+              for any use which may be made of the information contained therein.
+            </p>
+            <a href="http://www.addthis.com/bookmark.php?url=http://clipflair.net&title=ClipFlair%20-%20Foreign%20Language%20Learning%20through%20Interactive%20Revoicing%20%26%20Captioning%20of%20Clips" target="_blank" class="share">
+              <img src="home/img/share-btn.svg" width="82" height="25" align="left" />
+            </a>
           </div>
         </div>
       </div>
 
     </div>
   </div>
+
 </body>
 
 </html>

@@ -1,43 +1,44 @@
 ﻿@charset "utf-8";
+/* CSS Document */
 
 body {
-	margin: 0 auto;
-	padding: 0;
-	font-family: 'Open Sans', sans-serif;
-	color: #fff;
-	text-align: center;
-	background: #243445;
-	width:100%;
+  margin: 0 auto;
+  padding: 0;
+  font-family: 'Open Sans', sans-serif;
+  color: #fff;
+  text-align: center;
+  background: #243445;
+  width:100%;
 }
 
 #wrapper {
-	width: 100%;
-	position: relative;
-	text-align: left;
+  width: 100%;
+  position: relative;
+  text-align: left;
 }
 
 #maincontentcontainer {
-	width: 100%;
-	background: #3c5773;
+  width: 100%;
+  background: #3c5773;
 }
 
 #maincontent {
-	clear: both;
-	width: 40%;
-	max-width: 92.3em;
-	margin: 0 auto;
-	padding: 0;
-	position: relative;
+  clear: both;
+  width: 40%;
+  max-width: 92.3em;
+  margin: 0 auto;
+  padding: 0;
+  position: relative;
 }
 
 #language-select-wrapper{
-	clear: both;
-	width: 66%;
-	max-width: 92.3em;
-	margin: 0 auto;
-	padding: 10px 0;
-	line-height: 1.5em;
-	position: relative;
+  clear: both;
+  width: 66%;
+  max-width: 92.3em;
+  margin: 0 auto;
+  padding: 10px 0;
+  line-height: 1.5em;
+  position: relative;
 }
 
 /* SECTIONS  */
@@ -165,7 +166,7 @@ body {
 }
 
 .llp_logo img {
-
+	/*max-width:100%;*/
 }
 
 #footercontent p {
@@ -196,8 +197,8 @@ a.span_1_of_3 .roll-over {
 	width:100%;
 	height:100%;
 	-moz-opacity: 0;
-  opacity: 0;
-  filter: alpha(opacity=0);
+    opacity: 0;
+    filter: alpha(opacity=0);
 }
 
 a.span_1_of_3:hover .roll-over {
@@ -388,7 +389,7 @@ a.span_1_of_3 .roll-over .text {
 }
 
 #logo, #studio, #video1, #second-line, #social, #gallery, #video2, #help, #contact, #info {
-	-moz-opacity: 0;
+  -moz-opacity: 0;
   opacity: 0;
   filter: alpha(opacity=0);
 }
@@ -516,7 +517,7 @@ label.custom-select:before {
 
 .lt-ie9 #social img,
 .no-svg #social img {
-	-moz-opacity: 0;
+  -moz-opacity: 0;
   opacity: 0;
   filter: alpha(opacity=0);
 }

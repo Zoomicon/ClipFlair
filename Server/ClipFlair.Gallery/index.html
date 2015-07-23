@@ -37,12 +37,12 @@
   <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css' />
 
   <link href="css/style.css" rel="stylesheet" type="text/css" />
+
   <!--[if lt IE 9]>
     <link href="css/style-ie.css" rel="stylesheet" type="text/css" />
   <![endif]-->
 
   <script src="js/modernizr.custom.07231.js"></script>
-
   <script src="js/css3-mediaqueries.js"></script>
 
   <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
@@ -60,8 +60,8 @@
   <!--/fancybox-->
 
   <script src="js/jquery.hoverIntent.minified.js"></script>
-  <script src="js/jquery.fittext.js"></script>
 
+  <script src="js/jquery.fittext.js"></script>
   <script type="text/javascript" charset="utf-8">
     function fitTilesText() {
       //TODO: should iterate and calculate ratio based on max word width and tile width maybe
@@ -69,9 +69,8 @@
       jQuery(".smaller-text").fitText(1);
     }
 
-    //When document is loaded:
     $(document).ready(function () {
-
+      
       //load fancybox
       $(".fancyframe").fancybox({
         beforeLoad: function () {
@@ -104,31 +103,26 @@
       $("#logo").animate({
         opacity: 1.0
       }, 300, function () {
-        // Animation complete.
+        /* Animation complete */
+
         $("#activity_gallery").animate({
           opacity: 1.0
-        }, 300, function () {
-          // Animation complete.
-
-        });
+        }, 300, function () {});
+        
         $("#video_gallery").animate({
           opacity: 1.0
-        }, 300, function () {
-          // Animation complete.
+        }, 300, function () {});
 
-        });
         $("#image_gallery").animate({
           opacity: 1.0
-        }, 300, function () {
-          // Animation complete.
-
-        });
+        }, 300, function () {});
       });
 
       $(".roll-over").hoverIntent({
         over: fadeIn,
         out: fadeOut
       });
+
       $(".text").hoverIntent({
         over: fadeIn,
         out: fadeOut
@@ -138,18 +132,14 @@
       function fadeIn() {
         $(this).animate({
           opacity: 1.0
-        }, 10, function () {
-          // Animation complete.
-        });
+        }, 10, function () {});
       }
 
       //fadeout
       function fadeOut() {
         $(this).animate({
           opacity: 0
-        }, 10, function () {
-          // Animation complete.
-        });
+        }, 10, function () {});
       }
 
       //hide an image title
@@ -185,9 +175,12 @@
   </script>
   <script type="text/javascript" src="//cdn.transifex.com/live.js"></script>
   <script type="text/javascript">
-    Transifex.live.onTranslatePage(function(lang) {
+    if (typeof Transifex !== 'undefined') 
+      Transifex.live.onTranslatePage(function (lang) {
+        fitTilesText();
+      })
+    else
       fitTilesText();
-    });
   </script>
 
 </head>
@@ -195,46 +188,80 @@
 <body>
 
   <div id="wrapper">
+
+    <!-- MAIN CONTENT -->
+
     <div id="maincontentcontainer">
       <div id="maincontent">
+      
+        <!-- 1st row -->
+      
         <div class="section group">
+  
           <a class="col span_1_of_2  smaller-text" id="logo" href="http://clipflair.net" target="_top" title="">
             <div class="roll-over"><p class="text" style="background:#fff"> <span style="line-height:1em; color:#a5ac2c; font-weight:600; font-size:larger">Foreign<br /> Language<br /> Learning</span> <br /> <span style="line-height:1.25em; color:#2e1c17; font-weight:lighter">through Interactive Revoicing & Captioning of Clips</span></p></div>
             <img src="img/logo.svg" border="none" width="100%" />
           </a>
+          
           <a class="col span_1_of_2" id="activity_gallery" href="http://gallery.clipflair.net/activity">
             <div class="roll-over"><p class="text" style="background:#f67f00">Browse language learning activities</p></div>
             <img src="img/activity_gallery.svg" border="none" width="100%" class="" />
           </a>
+          
         </div>
+        
+        <!-- 2nd row -->
+      
         <div class="section group">
+          
           <a class="col span_1_of_2" id="video_gallery" href="http://gallery.clipflair.net/video">
             <div class="roll-over"><p class="text" style="background:#977014">Pick a clip for a new activity</p></div>
             <img src="img/video_gallery.svg" border="none" width="100%" class="" />
           </a>
+          
           <a class="col span_1_of_2" id="image_gallery" href="http://gallery.clipflair.net/image">
             <div class="roll-over"><p class="text" style="background:#e0b000">Pick an image for a new activity</p></div>
             <img src="img/image_gallery.svg" border="none" width="100%" class="" />
           </a>
+          
         </div>
 
       </div>
+
+      <!-- SUBFOOTER -->
+      
       <div id="subfooter">
         <div id="subfootercontent">
-          <p class="footer-text"><span>Foreign Language Learning through Interactive</span> <span> Revoicing & Captioning of Clips</span></p>
+          <p class="footer-text">
+            <span>Foreign Language Learning through Interactive</span>
+            <span> Revoicing & Captioning of Clips</span>
+          </p>
         </div>
       </div>
+      
+      <!-- FOOTER -->
+
       <div id="footer">
         <div id="footercontent">
           <div class="content_wrapper">
-            <div class="llp_logo"><img src="img/llp-logo.png" width="148" height="50" /></div>
-            <p>This project has been funded with support from the European Commission. This publication reflects the views only of the author, and the Commission cannot be held responsible for any use which may be made of the information contained therein.</p>
-            <a href="http://www.addthis.com/bookmark.php?url=http://gallery.clipflair.net&title=ClipFlair Gallery%20-%20Foreign%20Language%20Learning%20through%20Interactive%20Revoicing%20%26%20Captioning%20of%20Clips" target="_blank" class="share"><img src="img/share-btn.svg" width="82" height="25" /></a>
+            <div class="llp_logo">
+              <img src="img/llp-logo.png" width="148" height="50" />
+            </div>
+            <p>
+              This project has been funded with support from the European Commission. This publication
+              reflects the views only of the author, and the Commission cannot be held responsible
+              for any use which may be made of the information contained therein.
+            </p>
+            <a href="http://www.addthis.com/bookmark.php?url=http://gallery.clipflair.net&title=ClipFlair Gallery%20-%20Foreign%20Language%20Learning%20through%20Interactive%20Revoicing%20%26%20Captioning%20of%20Clips" target="_blank" class="share">
+              <img src="img/share-btn.svg" width="82" height="25" align="left" />
+            </a>
           </div>
         </div>
       </div>
+      
     </div>
   </div>
+  
 </body>
 
 </html>
