@@ -1,9 +1,12 @@
 ﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" class="no-js">
+
 <head prefix="fb: http://ogp.me/ns/fb#, og: http://ogp.me/ns#">
+
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
   <title>ClipFlair Gallery | Foreign Language Learning through Interactive Revoicing and Captioning of Clips</title>
+
   <link rel="shortcut icon" type="image/ico" href='favicon.ico' />
 
   <!-- Pinned site shortcuts-->
@@ -32,7 +35,7 @@
 
   <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css' />
 
-  <link href="css/style-ie7.css" rel="stylesheet" type="text/css" />
+  <link href="css/style-ie5.css" rel="stylesheet" type="text/css" />
 
   <script src="js/css3-mediaqueries.js"></script>
 
@@ -51,8 +54,8 @@
   <!--/fancybox-->
 
   <script src="js/jquery.hoverIntent.minified.js"></script>
-  <script src="js/jquery.fittext.js"></script>
 
+  <script src="js/jquery.fittext.js"></script>
   <script type="text/javascript" charset="utf-8">
     function fitTilesText() {
       //TODO: should iterate and calculate ratio based on max word width and tile width maybe
@@ -61,7 +64,6 @@
     }
     
     $(document).ready(function () {
-
       //load fancybox
       $(".fancyframe").fancybox({
         beforeLoad: function () {
@@ -124,9 +126,12 @@
   </script>
   <script type="text/javascript" src="//cdn.transifex.com/live.js"></script>
   <script type="text/javascript">
-    Transifex.live.onTranslatePage(function(lang) {
+    if (typeof Transifex !== 'undefined') 
+      Transifex.live.onTranslatePage(function (lang) {
+        fitTilesText();
+      })
+    else
       fitTilesText();
-    });
   </script>
 
 </head>
@@ -134,46 +139,80 @@
 <body>
 
   <div id="wrapper">
+
+    <!-- MAIN CONTENT -->
+
     <div id="maincontentcontainer">
       <div id="maincontent">
+      
+        <!-- 1st row -->
+
         <div class="section group">
+        
           <a class="col span_1_of_2  smaller-text" id="logo" href="http://clipflair.net" target="_top" title="">
             <div class="roll-over"><p class="text" style="background:#fff"> <span style="line-height:1em; color:#a5ac2c; font-weight:600; font-size:1.1em">Foreign<br /> Language<br /> Learning</span> <br /> <span style="line-height:1.25em; color:#2e1c17; font-weight:lighter; font-size:0.8em">through Interactive Revoicing & Captioning of Clips</span></p></div>
             <img src="img/logo.jpg" border="none" width="100%" />
           </a>
+          
           <a class="col span_1_of_2" id="activity_gallery" href="http://gallery.clipflair.net/activity">
             <div class="roll-over"><p class="text" style="background:#f67f00">Browse language learning activities</p></div>
             <img src="img/activity_gallery.jpg" border="none" width="100%" class="" />
           </a>
+          
         </div>
+        
+        <!-- 2nd row -->
+        
         <div class="section group">
+        
           <a class="col span_1_of_2" id="video_gallery" href="http://gallery.clipflair.net/video">
             <div class="roll-over"><p class="text" style="background:#977014">Pick a clip for a new activity</p></div>
             <img src="img/video_gallery.jpg" border="none" width="100%" class="" />
           </a>
+          
           <a class="col span_1_of_2" id="image_gallery" href="http://gallery.clipflair.net/image">
             <div class="roll-over"><p class="text" style="background:#e0b000">Pick an image for a new activity</p></div>
             <img src="img/image_gallery.jpg" border="none" width="100%" class="" />
           </a>
+          
         </div>
 
       </div>
+
+      <!-- SUBFOOTER -->
+
       <div id="subfooter">
         <div id="subfootercontent">
-          <p class="footer-text"><span>Foreign Language Learning through Interactive</span> <span> Revoicing & Captioning of Clips</span></p>
+          <p class="footer-text">
+            <span>Foreign Language Learning through Interactive</span>
+            <span> Revoicing & Captioning of Clips</span>
+          </p>
         </div>
       </div>
+
+      <!-- FOOTER -->
+
       <div id="footer">
         <div id="footercontent">
           <div class="content_wrapper">
-            <div class="llp_logo"><img src="img/llp-logo.jpg" width="148" height="50" /></div>
-            <p>This project has been funded with support from the European Commission. This publication reflects the views only of the author, and the Commission cannot be held responsible for any use which may be made of the information contained therein.</p>
-            <a href="http://www.addthis.com/bookmark.php?url=http://gallery.clipflair.net&title=ClipFlair Gallery%20-%20Foreign%20Language%20Learning%20through%20Interactive%20Revoicing%20%26%20Captioning%20of%20Clips" target="_blank" class="share"><img src="img/share-btn.gif" width="82" height="25" /></a>
+            <div class="llp_logo">
+              <img src="img/llp-logo.jpg" width="148" height="50" />
+            </div>
+            <p>
+              This project has been funded with support from the European Commission. This publication
+              reflects the views only of the author, and the Commission cannot be held responsible
+              for any use which may be made of the information contained therein.
+            </p>
+            <a href="http://www.addthis.com/bookmark.php?url=http://gallery.clipflair.net&title=ClipFlair Gallery%20-%20Foreign%20Language%20Learning%20through%20Interactive%20Revoicing%20%26%20Captioning%20of%20Clips" target="_blank" class="share">
+              <img src="img/share-btn.gif" width="82" height="25" align="left" />
+            </a>
           </div>
         </div>
       </div>
+      
     </div>
   </div>
+ 
 </body>
 
 </html>
