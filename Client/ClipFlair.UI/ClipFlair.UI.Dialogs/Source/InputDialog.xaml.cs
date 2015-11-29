@@ -6,7 +6,7 @@ using System;
 using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
-using WPF_Compatibility;
+using Compatibility;
 
 namespace ClipFlair.UI.Dialogs
 {

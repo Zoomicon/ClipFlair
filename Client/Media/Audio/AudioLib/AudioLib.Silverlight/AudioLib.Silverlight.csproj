@@ -61,9 +61,29 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Compatibility, Version=1.0.5811.1317, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\..\packages\Compatibility.1.0.2\lib\sl5\Compatibility.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="FJ.Core, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\..\packages\ZUI.1.0.4\lib\sl50\FJ.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="FloatingWindowZUI, Version=1.0.5811.8707, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\..\packages\ZUI.1.0.4\lib\sl5\FloatingWindowZUI.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="mscorlib" />
+    <Reference Include="SilverFlow.Controls, Version=3.0.5811.12603, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\..\packages\ZUI.1.0.4\lib\sl5\SilverFlow.Controls.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="system" />
     <Reference Include="System.Windows" />
+    <Reference Include="ZoomAndPan, Version=2.0.5811.12599, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\..\packages\ZUI.1.0.4\lib\sl5\ZoomAndPan.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="..\Source\AudioFormatEx.cs">
@@ -108,6 +128,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="AudioLib.cd" />
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\ManagedMediaHelpers\Mp3MediaStreamSource.SL4\Mp3MediaStreamSource.SL4.csproj">

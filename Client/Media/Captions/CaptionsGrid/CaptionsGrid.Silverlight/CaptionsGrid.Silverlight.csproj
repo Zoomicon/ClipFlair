@@ -63,6 +63,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Compatibility, Version=1.0.5811.1317, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\..\packages\Compatibility.1.0.1\lib\sl5\Compatibility.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.SilverlightMediaFramework.Core, Version=2.2012.605.0, Culture=neutral, PublicKeyToken=6687ff884a90c6a6, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.SilverlightMediaFramework.Plugins, Version=2.2012.605.0, Culture=neutral, PublicKeyToken=3dd5df9571bfd1e7" />
     <Reference Include="Microsoft.SilverlightMediaFramework.Utilities, Version=2.2012.605.0, Culture=neutral, PublicKeyToken=2018901a52f7a62c, processorArchitecture=MSIL" />
@@ -137,10 +141,6 @@
       <Project>{E784B6A1-A300-4571-A881-B15240EEE377}</Project>
       <Name>Utils.Silverlight</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\..\Helpers\WPF_Compatibility\WPF_Compatibility.Silverlight\WPF_Compatibility.Silverlight.csproj">
-      <Project>{7DC832CC-2D97-4DBC-B963-3F77C1F20730}</Project>
-      <Name>WPF_Compatibility.Silverlight</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\..\..\ZUI\ImageButtons\ImageButtons.Silverlight\ImageButtons.Silverlight.csproj">
       <Project>{127105AF-C0F4-40F8-87C5-D6C391552936}</Project>
       <Name>ImageButtons.Silverlight</Name>
@@ -187,7 +187,9 @@
     <Resource Include="Images\ImportTimingCaptions_hover.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="CaptionsGrid.cd" />
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\LTR.png" />

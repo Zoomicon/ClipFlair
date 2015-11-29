@@ -61,13 +61,33 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Compatibility, Version=1.0.5811.1317, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Compatibility.1.0.1\lib\sl5\Compatibility.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="FJ.Core, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\ZUI.1.0.0\lib\sl50\FJ.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="FloatingWindowZUI, Version=1.0.5196.24000, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\ZUI.1.0.0\lib\sl5\FloatingWindowZUI.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="mscorlib" />
+    <Reference Include="SilverFlow.Controls, Version=3.0.5811.9464, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\ZUI.1.0.0\lib\sl5\SilverFlow.Controls.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Windows" />
     <Reference Include="system" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Net" />
     <Reference Include="System.Windows.Browser" />
+    <Reference Include="ZoomAndPan, Version=2.0.5811.9463, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\ZUI.1.0.0\lib\sl5\ZoomAndPan.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Models\IViewer.cs" />
@@ -82,17 +102,9 @@
       <Project>{E784B6A1-A300-4571-A881-B15240EEE377}</Project>
       <Name>Utils.Silverlight</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Helpers\WPF_Compatibility\WPF_Compatibility.Silverlight\WPF_Compatibility.Silverlight.csproj">
-      <Project>{7DC832CC-2D97-4DBC-B963-3F77C1F20730}</Project>
-      <Name>WPF_Compatibility.Silverlight</Name>
-    </ProjectReference>
     <ProjectReference Include="..\ImageButtons\ImageButtons.Silverlight\ImageButtons.Silverlight.csproj">
       <Project>{127105AF-C0F4-40F8-87C5-D6C391552936}</Project>
       <Name>ImageButtons.Silverlight</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\ZoomAndPan\ZoomAndPan.Silverlight\ZoomAndPan.Silverlight.csproj">
-      <Project>{8E75887A-A164-41B8-86D5-8DC37768B5A3}</Project>
-      <Name>ZoomAndPan.Silverlight</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
@@ -122,6 +134,7 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <None Include="packages.config" />
     <None Include="ZoomImage.cd" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Silverlight\$(SilverlightVersion)\Microsoft.Silverlight.CSharp.targets" />

@@ -61,6 +61,18 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Compatibility, Version=1.0.5811.1317, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Compatibility.1.0.2\lib\sl5\Compatibility.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="FJ.Core, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\ZUI.1.0.3\lib\sl50\FJ.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="FloatingWindowZUI, Version=1.0.5196.24000, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\ZUI.1.0.3\lib\sl5\FloatingWindowZUI.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Ionic.Zip, Version=1.9.1.8, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\Lib\DotNetZip\Ionic.Zip.dll</HintPath>
@@ -68,6 +80,10 @@
     <Reference Include="Microsoft.SilverlightMediaFramework.Core, Version=2.2012.605.0, Culture=neutral, PublicKeyToken=6687ff884a90c6a6, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.SilverlightMediaFramework.Plugins, Version=2.2012.605.0, Culture=neutral, PublicKeyToken=3dd5df9571bfd1e7, processorArchitecture=MSIL" />
     <Reference Include="mscorlib" />
+    <Reference Include="SilverFlow.Controls, Version=3.0.5811.9464, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\ZUI.1.0.3\lib\sl5\SilverFlow.Controls.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.ComponentModel.Composition, Version=5.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.ComponentModel.Composition.Initialization, Version=5.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Runtime.Serialization" />
@@ -80,6 +96,10 @@
     <Reference Include="System.Windows.Controls.Data.Input, Version=5.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Windows.Controls.Layout.Toolkit, Version=5.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Net" />
+    <Reference Include="ZoomAndPan, Version=2.0.5811.9463, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\ZUI.1.0.3\lib\sl5\ZoomAndPan.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="View\ActivityContainer.xaml.cs">
@@ -131,29 +151,13 @@
       <Project>{c44eabe3-1be9-4689-a5f5-0f36fd8059de}</Project>
       <Name>Browser.Silverlight</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\ZUI\FloatingWindowZUI\FloatingWindowZUI.Silverlight\FloatingWindowZUI.Silverlight.csproj">
-      <Project>{D7D67F52-7B9B-4DE5-9B72-534664F296B7}</Project>
-      <Name>FloatingWindowZUI.Silverlight</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\ZUI\FloatingWindow\FloatingWindow.Silverlight\FloatingWindow.Silverlight.csproj">
-      <Project>{3F3D3C8C-9724-4531-A04D-B92049F64686}</Project>
-      <Name>FloatingWindow.Silverlight</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\Helpers\Utils\Utils.Silverlight\Utils.Silverlight.csproj">
       <Project>{E784B6A1-A300-4571-A881-B15240EEE377}</Project>
       <Name>Utils.Silverlight</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Helpers\WPF_Compatibility\WPF_Compatibility.Silverlight\WPF_Compatibility.Silverlight.csproj">
-      <Project>{7DC832CC-2D97-4DBC-B963-3F77C1F20730}</Project>
-      <Name>WPF_Compatibility.Silverlight</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\ZUI\ImageButtons\ImageButtons.Silverlight\ImageButtons.Silverlight.csproj">
       <Project>{127105af-c0f4-40f8-87c5-d6c391552936}</Project>
       <Name>ImageButtons.Silverlight</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\ZUI\ZoomAndPan\ZoomAndPan.Silverlight\ZoomAndPan.Silverlight.csproj">
-      <Project>{8E75887A-A164-41B8-86D5-8DC37768B5A3}</Project>
-      <Name>ZoomAndPan.Silverlight</Name>
     </ProjectReference>
     <ProjectReference Include="..\ClipFlair.Windows.Base\Silverlight\ClipFlair.Windows.Base.csproj">
       <Project>{4ce71fc4-b8d9-4305-ae15-2f0501ca58b3}</Project>
@@ -206,6 +210,8 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Activity.cd" />
+    <None Include="app.config" />
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\AddBrowser.png" />

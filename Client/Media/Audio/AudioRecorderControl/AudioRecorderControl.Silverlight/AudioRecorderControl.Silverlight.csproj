@@ -61,6 +61,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Compatibility, Version=1.0.5811.1317, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\..\packages\Compatibility.1.0.1\lib\sl5\Compatibility.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="mscorlib" />
     <Reference Include="system" />
     <Reference Include="System.Windows" />
@@ -107,10 +111,6 @@
     <Resource Include="Images\Stop_hover.png" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\Helpers\WPF_Compatibility\WPF_Compatibility.Silverlight\WPF_Compatibility.Silverlight.csproj">
-      <Project>{7DC832CC-2D97-4DBC-B963-3F77C1F20730}</Project>
-      <Name>WPF_Compatibility.Silverlight</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\..\..\ZUI\ImageButtons\ImageButtons.Silverlight\ImageButtons.Silverlight.csproj">
       <Project>{127105AF-C0F4-40F8-87C5-D6C391552936}</Project>
       <Name>ImageButtons.Silverlight</Name>
@@ -122,6 +122,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="AudioRecorderControl.cd" />
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Silverlight\$(SilverlightVersion)\Microsoft.Silverlight.CSharp.targets" />
   <ProjectExtensions>

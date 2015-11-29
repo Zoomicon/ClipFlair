@@ -13,7 +13,7 @@ Version: 20141111
   xmlns:zui="clr-namespace:FloatingWindowZUI;assembly=FloatingWindowZUI"
   xmlns:clipflair="clr-namespace:ClipFlair.Windows"
   xmlns:widgets="clr-namespace:ClipFlair.UI.Widgets;assembly=ClipFlair.UI.Widgets"
-  xmlns:utils="clr-namespace:System.Windows.Controls;assembly=WPF_Compatibility"
+  xmlns:utils="clr-namespace:System.Windows.Controls;assembly=Compatibility"
   xmlns:btn="clr-namespace:ImageButtons;assembly=ImageButtons"
              
   BorderThickness="0"

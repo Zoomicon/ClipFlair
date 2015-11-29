@@ -61,11 +61,27 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Compatibility, Version=1.0.5811.1317, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\packages\Compatibility.1.0.2\lib\sl5\Compatibility.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="FJ.Core, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\packages\ZUI.1.0.3\lib\sl50\FJ.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="FloatingWindowZUI, Version=1.0.5196.24000, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\packages\ZUI.1.0.3\lib\sl5\FloatingWindowZUI.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Ionic.Zip, Version=1.9.1.8, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\Lib\DotNetZip\Ionic.Zip.dll</HintPath>
     </Reference>
     <Reference Include="mscorlib" />
+    <Reference Include="SilverFlow.Controls, Version=3.0.5811.9464, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\packages\ZUI.1.0.3\lib\sl5\SilverFlow.Controls.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.ComponentModel.Composition, Version=5.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Windows" />
@@ -76,6 +92,10 @@
     <Reference Include="System.Xml" />
     <Reference Include="System.Net" />
     <Reference Include="System.Windows.Browser" />
+    <Reference Include="ZoomAndPan, Version=2.0.5811.9463, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\packages\ZUI.1.0.3\lib\sl5\ZoomAndPan.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="..\Source\ViewModel\ITextEditorProperties.cs">
@@ -112,17 +132,9 @@
       <Project>{e784b6a1-a300-4571-a881-b15240eee377}</Project>
       <Name>Utils.Silverlight</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\Helpers\WPF_Compatibility\WPF_Compatibility.Silverlight\WPF_Compatibility.Silverlight.csproj">
-      <Project>{7DC832CC-2D97-4DBC-B963-3F77C1F20730}</Project>
-      <Name>WPF_Compatibility.Silverlight</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\..\Media\Text\SilverTextEditor\SilverTextEditor.Silverlight\SilverTextEditor.Silverlight.csproj">
       <Project>{52f76969-e7cd-414f-8e98-4ff90ee48b05}</Project>
       <Name>SilverTextEditor.Silverlight</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\ZUI\FloatingWindow\FloatingWindow.Silverlight\FloatingWindow.Silverlight.csproj">
-      <Project>{3f3d3c8c-9724-4531-a04d-b92049f64686}</Project>
-      <Name>FloatingWindow.Silverlight</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\ClipFlair.Windows.Base\Silverlight\ClipFlair.Windows.Base.csproj">
       <Project>{4ce71fc4-b8d9-4305-ae15-2f0501ca58b3}</Project>
@@ -157,6 +169,10 @@
     <None Include="..\Text.cd">
       <Link>Text.cd</Link>
     </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Silverlight\$(SilverlightVersion)\Microsoft.Silverlight.CSharp.targets" />
   <ProjectExtensions>

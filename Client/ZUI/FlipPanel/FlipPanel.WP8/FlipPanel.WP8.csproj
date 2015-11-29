@@ -152,10 +152,13 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Helpers\WPF_Compatibility\WPF_Compatibility.WP8\WPF_Compatibility.WP8.csproj">
-      <Project>{280683a7-e949-4e5f-87a3-d445c68a270f}</Project>
-      <Name>WPF_Compatibility.WP8</Name>
-    </ProjectReference>
+    <Reference Include="Compatibility, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\packages\Compatibility.1.0.3\lib\windowsphone8\Compatibility.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\$(TargetFrameworkIdentifier)\$(TargetFrameworkVersion)\Microsoft.$(TargetFrameworkIdentifier).$(TargetFrameworkVersion).Overrides.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\$(TargetFrameworkIdentifier)\$(TargetFrameworkVersion)\Microsoft.$(TargetFrameworkIdentifier).CSharp.targets" />
