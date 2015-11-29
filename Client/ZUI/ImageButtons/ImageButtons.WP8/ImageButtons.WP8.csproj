@@ -131,8 +131,8 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="Compatibility, Version=1.0.5811.1317, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\..\packages\Compatibility.1.0.2\lib\windowsphone8\Compatibility.dll</HintPath>
+    <Reference Include="Compatibility, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\packages\Compatibility.1.0.3\lib\windowsphone8\Compatibility.dll</HintPath>
       <Private>True</Private>
     </Reference>
   </ItemGroup>
