@@ -61,6 +61,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Compatibility, Version=1.0.5811.1317, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Compatibility.1.0.1\lib\sl5\Compatibility.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="mscorlib" />
     <Reference Include="System" />
     <Reference Include="System.Windows" />
@@ -88,6 +92,7 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <None Include="packages.config" />
     <None Include="PivotViewerExt.cd" />
   </ItemGroup>
   <ItemGroup>
@@ -104,10 +109,6 @@
     <ProjectReference Include="..\..\Helpers\Utils\Utils.Silverlight\Utils.Silverlight.csproj">
       <Project>{e784b6a1-a300-4571-a881-b15240eee377}</Project>
       <Name>Utils.Silverlight</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Helpers\WPF_Compatibility\WPF_Compatibility.Silverlight\WPF_Compatibility.Silverlight.csproj">
-      <Project>{7dc832cc-2d97-4dbc-b963-3f77c1f20730}</Project>
-      <Name>WPF_Compatibility.Silverlight</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Silverlight\$(SilverlightVersion)\Microsoft.Silverlight.CSharp.targets" />

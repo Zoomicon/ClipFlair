@@ -6,7 +6,7 @@ using System;
 using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
-using WPF_Compatibility;
+using Compatibility;
 
 namespace ClipFlair.UI.Dialogs
 {
@@ -23,7 +23,7 @@ namespace ClipFlair.UI.Dialogs
     public IClipFlairStartActions Actions { get; set; }
 
     #endregion
-    
+
     #region --- Methods ---
 
     /*
@@ -40,7 +40,7 @@ namespace ClipFlair.UI.Dialogs
     }
     */
 
-    public static void Show(IClipFlairStartActions actions, 
+    public static void Show(IClipFlairStartActions actions,
       #if SILVERLIGHT
       EventHandler<CancelEventArgs> closingHandler
       #else
@@ -51,7 +51,7 @@ namespace ClipFlair.UI.Dialogs
       StartDialog prompt = new StartDialog();
       prompt.Title = "";
       prompt.Actions = actions;
-      if (closingHandler != null) 
+      if (closingHandler != null)
         prompt.Closing += closingHandler;
       prompt.Show();
     }
@@ -84,7 +84,7 @@ namespace ClipFlair.UI.Dialogs
     {
       //do nothing
     }
-    
+
     #endregion
 
     #region --- Events ---
@@ -119,9 +119,9 @@ namespace ClipFlair.UI.Dialogs
     {
       Hide2ndLevelButtons();
 
-      btnOpenActivityFile.Visibility = 
-      btnOpenActivityURL.Visibility = 
-      btnOpenActivityGallery.Visibility = 
+      btnOpenActivityFile.Visibility =
+      btnOpenActivityURL.Visibility =
+      btnOpenActivityGallery.Visibility =
       btnOpenActivityTutorial.Visibility = Visibility.Visible;
     }
 
@@ -160,8 +160,8 @@ namespace ClipFlair.UI.Dialogs
     {
       Hide2ndLevelButtons();
 
-      btnOpenVideoFile.Visibility = 
-      btnOpenVideoURL.Visibility = 
+      btnOpenVideoFile.Visibility =
+      btnOpenVideoURL.Visibility =
       btnOpenVideoGallery.Visibility = Visibility.Visible;
     }
 
@@ -190,13 +190,13 @@ namespace ClipFlair.UI.Dialogs
     }
 
     //OpenImage//
-    
+
     private void btnOpenImage_Click(object sender, System.Windows.RoutedEventArgs e)
     {
       Hide2ndLevelButtons();
 
       btnOpenImageFile.Visibility =
-      btnOpenImageURL.Visibility = 
+      btnOpenImageURL.Visibility =
       btnOpenImageGallery.Visibility = Visibility.Visible;
     }
 
@@ -219,7 +219,7 @@ namespace ClipFlair.UI.Dialogs
     private void btnOpenImageGallery_Click(object sender, System.Windows.RoutedEventArgs e)
     {
       Hide2ndLevelButtons();
-      
+
       if (Actions != null && Actions.OpenImageGallery())
         Close();
     }
@@ -231,9 +231,9 @@ namespace ClipFlair.UI.Dialogs
       Hide2ndLevelButtons();
 
       btnHelpTutorialActivity.Visibility =
-      btnHelpTutorialVideos.Visibility = 
+      btnHelpTutorialVideos.Visibility =
       btnHelpManual.Visibility =
-      btnHelpFAQ.Visibility = 
+      btnHelpFAQ.Visibility =
       btnHelpContact.Visibility = Visibility.Visible;
     }
 
@@ -244,7 +244,7 @@ namespace ClipFlair.UI.Dialogs
       if (Actions != null && Actions.HelpTutorialActivity())
         Close();
     }
-    
+
     private void btnHelpTutorialVideos_Click(object sender, System.Windows.RoutedEventArgs e)
     {
       Hide2ndLevelButtons();
@@ -260,7 +260,7 @@ namespace ClipFlair.UI.Dialogs
       if (Actions != null && Actions.HelpManual())
         Nop(); //Close();
     }
-    
+
     private void btnHelpFAQ_Click(object sender, System.Windows.RoutedEventArgs e)
     {
       Hide2ndLevelButtons();
@@ -274,7 +274,7 @@ namespace ClipFlair.UI.Dialogs
       Hide2ndLevelButtons();
 
       if (Actions != null && Actions.HelpContact())
-        Nop(); //Close();    
+        Nop(); //Close();
     }
 
     //Social//

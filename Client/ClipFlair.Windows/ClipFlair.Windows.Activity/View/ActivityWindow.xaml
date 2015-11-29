@@ -10,7 +10,7 @@ Version: 20150204
   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
   xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
   xmlns:clipflair="clr-namespace:ClipFlair.Windows;assembly=ClipFlair.Windows.Base"
-  xmlns:utils="clr-namespace:System.Windows.Controls;assembly=WPF_Compatibility"
+  xmlns:utils="clr-namespace:System.Windows.Controls;assembly=Compatibility"
   xmlns:options="clr-namespace:ClipFlair.Windows.Options"                                            
   xmlns:local="clr-namespace:ClipFlair.Windows"
   mc:Ignorable="d"

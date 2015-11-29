@@ -3,7 +3,7 @@
 
 using System;
 using System.Windows;
-using WPF_Compatibility;
+using Compatibility;
 
 namespace SilverTextEditor
 {

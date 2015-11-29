@@ -3,12 +3,14 @@ Filename: SilverTextEditor.xaml
 Version: 20140921
 -->
 
+<!-- Note: if the XAML doesn't compile with error about an Easing function, then remove WPFToolkit and xceed.Wpf.Toolkit from project References -->
+
 <UserControl x:Class="SilverTextEditor.SilverTextEditor"
   xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d"
-  xmlns:d="http://schemas.microsoft.com/expression/blend/2008" d:DesignHeight="240" d:DesignWidth="593" 
-  xmlns:toolkit="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+  xmlns:d="http://schemas.microsoft.com/expression/blend/2008" d:DesignHeight="240" d:DesignWidth="593"
+  xmlns:toolkit="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
   xmlns:btn="clr-namespace:ImageButtons;assembly=ImageButtons"
   FontFamily="Calibri"
   BorderThickness="0"
@@ -61,7 +63,7 @@ Version: 20140921
 
       <!-- Toolbar -->
       <toolkit:WrapPanel x:Name="Toolbar"
-                    Orientation="Horizontal" 
+                    Orientation="Horizontal"
                     Grid.Row="0"
                     Background="{StaticResource ToolbarBackground}"
                     >
@@ -90,7 +92,7 @@ Version: 20140921
         <StackPanel Orientation="Horizontal">
 
           <btn:ImageButton
-              x:Name="btnOpen" Click="btnOpen_Click" 
+              x:Name="btnOpen" Click="btnOpen_Click"
               ToolTipService.ToolTip="{Binding tooltip_Open, Source={StaticResource localizedStrings}}"
               Visibility="{Binding Editable, Converter={StaticResource BooleanToVisibilityConverter}}"
               Image="Images/Import.png"
@@ -105,7 +107,7 @@ Version: 20140921
               />
 
           <btn:ImageButton
-              x:Name="btnClear" Click="btnClear_Click" 
+              x:Name="btnClear" Click="btnClear_Click"
               ToolTipService.ToolTip="{Binding tooltip_Clear, Source={StaticResource localizedStrings}}"
               Visibility="{Binding Editable, Converter={StaticResource BooleanToVisibilityConverter}}"
               Image="Images/Clear.png"
@@ -141,7 +143,7 @@ Version: 20140921
               />
 
           <btn:ImageButton
-              x:Name="btnPaste" Click="btnPaste_Click" 
+              x:Name="btnPaste" Click="btnPaste_Click"
               ToolTipService.ToolTip="{Binding tooltip_Paste, Source={StaticResource localizedStrings}}"
               Visibility="{Binding Editable, Converter={StaticResource BooleanToVisibilityConverter}}"
               Image="Images/Paste.png"
@@ -153,12 +155,12 @@ Version: 20140921
         <!--Fonts Toolbar-->
         <StackPanel Orientation="Horizontal">
 
-          <ComboBox x:Name="cmbFonts" 
+          <ComboBox x:Name="cmbFonts"
                       Visibility="{Binding Editable, Converter={StaticResource BooleanToVisibilityConverter}}"
-                      FontFamily="{Binding SelectedItem.FontFamily, RelativeSource={RelativeSource Self}}" 
-                      FontSize="{Binding SelectedItem.FontSize, RelativeSource={RelativeSource Self}}" 
-                      SelectionChanged="cmbFonts_SelectionChanged" 
-                      IsDropDownOpen="False"                      
+                      FontFamily="{Binding SelectedItem.FontFamily, RelativeSource={RelativeSource Self}}"
+                      FontSize="{Binding SelectedItem.FontSize, RelativeSource={RelativeSource Self}}"
+                      SelectionChanged="cmbFonts_SelectionChanged"
+                      IsDropDownOpen="False"
                       >
             <ComboBoxItem Content="Arial" Tag="Arial" FontFamily="Arial" FontSize="12"/>
             <ComboBoxItem Content="Arial Black" Tag="Arial Black" FontFamily="Arial Black" FontSize="12"/>
@@ -174,11 +176,11 @@ Version: 20140921
             <ComboBoxItem Content="Webdings" Tag="Webdings" FontSize="12"/>
           </ComboBox>
 
-          <ComboBox x:Name="cmbFontSizes" 
+          <ComboBox x:Name="cmbFontSizes"
                       Visibility="{Binding Editable, Converter={StaticResource BooleanToVisibilityConverter}}"
-                      FontSize="14" 
-                      SelectionChanged="cmbFontSizes_SelectionChanged" 
-                      IsDropDownOpen="False"                      
+                      FontSize="14"
+                      SelectionChanged="cmbFontSizes_SelectionChanged"
+                      IsDropDownOpen="False"
                       >
             <ComboBoxItem Content="8" Tag="8"/>
             <ComboBoxItem Content="9" Tag="9"/>
@@ -198,9 +200,9 @@ Version: 20140921
             <ComboBoxItem Content="72" Tag="72"/>
           </ComboBox>
 
-          <ComboBox x:Name="cmbFontColors" 
+          <ComboBox x:Name="cmbFontColors"
                       Visibility="{Binding Editable, Converter={StaticResource BooleanToVisibilityConverter}}"
-                      SelectionChanged="cmbFontColors_SelectionChanged" 
+                      SelectionChanged="cmbFontColors_SelectionChanged"
                       SelectedIndex="0"
                       IsDropDownOpen="False"
                       >
@@ -253,7 +255,7 @@ Version: 20140921
 
           <btn:ImageButton
               x:Name="btnBold"
-              Click="btnBold_Click" 
+              Click="btnBold_Click"
               ToolTipService.ToolTip="{Binding tooltip_Bold, Source={StaticResource localizedStrings}}"
               Visibility="{Binding Editable, Converter={StaticResource BooleanToVisibilityConverter}}"
               Image="Images/Bold.png"
@@ -261,7 +263,7 @@ Version: 20140921
               />
 
           <btn:ImageButton
-              x:Name="btnItalic" Click="btnItalic_Click" 
+              x:Name="btnItalic" Click="btnItalic_Click"
               ToolTipService.ToolTip="{Binding tooltip_Italic, Source={StaticResource localizedStrings}}"
               Visibility="{Binding Editable, Converter={StaticResource BooleanToVisibilityConverter}}"
               Image="Images/Italic.png"
@@ -269,7 +271,7 @@ Version: 20140921
               />
 
           <btn:ImageButton
-              x:Name="btnUnderline" Click="btnUnderline_Click" 
+              x:Name="btnUnderline" Click="btnUnderline_Click"
               ToolTipService.ToolTip="{Binding tooltip_Underline, Source={StaticResource localizedStrings}}"
               Visibility="{Binding Editable, Converter={StaticResource BooleanToVisibilityConverter}}"
               Image="Images/Underline.png"
@@ -292,7 +294,7 @@ Version: 20140921
             -->
 
           <btn:ImageButton
-              x:Name="btnHyperlink" Click="btnHyperlink_Click" 
+              x:Name="btnHyperlink" Click="btnHyperlink_Click"
               ToolTipService.ToolTip="{Binding tooltip_Hyperlink, Source={StaticResource localizedStrings}}"
               Visibility="{Binding Editable, Converter={StaticResource BooleanToVisibilityConverter}}"
               Image="Images/Hyperlink.png"
@@ -300,7 +302,7 @@ Version: 20140921
               />
 
           <btn:ImageButton
-              x:Name="btnTimestamp" Click="btnTimestamp_Click" 
+              x:Name="btnTimestamp" Click="btnTimestamp_Click"
               ToolTipService.ToolTip="{Binding tooltip_Timestamp, Source={StaticResource localizedStrings}}"
               Visibility="Collapsed"
               Image="Images/InsertTime.png"
@@ -347,7 +349,7 @@ Version: 20140921
 
           <!-- -->
           <ToggleButton
-            x:Name="btnMarkUp" 
+            x:Name="btnMarkUp"
             Checked="btnMarkUp_Checked"
             Unchecked="btnMarkUp_Checked"
             ToolTipService.ToolTip="{Binding txt_XAML, Source={StaticResource localizedStrings}}"
@@ -374,18 +376,18 @@ Version: 20140921
         <RichTextBox
           x:Name="rtb"
           Background="{Binding Background, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=UserControl}}"
-          AllowDrop="True" 
+          AllowDrop="True"
           BorderThickness="0"
           Style="{StaticResource RichTextBoxStyle1}"
           HorizontalScrollBarVisibility="Auto"
-          VerticalScrollBarVisibility="Auto" 
-          FontSize="20" 
-          
+          VerticalScrollBarVisibility="Auto"
+          FontSize="20"
+
           MouseLeftButtonDown="rtb_MouseLeftButtonDown"
-          MouseRightButtonDown="rtb_MouseRightButtonDown" MouseRightButtonUp="rtb_MouseRightButtonUp" 
-          MouseMove="rtb_MouseMove" 
-          Drop="rtb_Drop" 
-          DragEnter="rtb_DragEnter" DragLeave="rtb_DragLeave" 
+          MouseRightButtonDown="rtb_MouseRightButtonDown" MouseRightButtonUp="rtb_MouseRightButtonUp"
+          MouseMove="rtb_MouseMove"
+          Drop="rtb_Drop"
+          DragEnter="rtb_DragEnter" DragLeave="rtb_DragLeave"
           >
           <!-- TextWrapping="Wrap"     *** NO SUCH PROPERTY IN WPF RichTextBox, WRAPPING BY DEFAULT (see: http://stackoverflow.com/questions/1368047/c-wpf-disable-text-wrap-of-richtextbox) *** -->
           <!-- Margin="8,10,8,10" -->
@@ -426,11 +428,11 @@ Version: 20140921
                    BorderThickness="0"
                    TextWrapping="Wrap"
                    HorizontalScrollBarVisibility="Auto"
-                   VerticalScrollBarVisibility="Auto" 
-                   FontSize="20" 
-                   FontFamily="Lucida Console" 
+                   VerticalScrollBarVisibility="Auto"
+                   FontSize="20"
+                   FontFamily="Lucida Console"
                    Visibility="Collapsed"
-                   IsTabStop="False" 
+                   IsTabStop="False"
                    />
       </Grid>
 
