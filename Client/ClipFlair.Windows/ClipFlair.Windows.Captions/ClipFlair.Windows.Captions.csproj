@@ -61,16 +61,16 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Compatibility, Version=1.0.5811.1317, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\Compatibility.1.0.3\lib\sl5\Compatibility.dll</HintPath>
+    <Reference Include="Compatibility, Version=1.0.5812.27317, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Compatibility.1.1.1\lib\sl5\Compatibility.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="FJ.Core, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\ZUI.1.0.5\lib\sl50\FJ.Core.dll</HintPath>
+      <HintPath>..\..\..\packages\ZUI.1.0.8\lib\sl50\FJ.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="FloatingWindowZUI, Version=1.0.5811.8707, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\ZUI.1.0.5\lib\sl5\FloatingWindowZUI.dll</HintPath>
+    <Reference Include="FloatingWindowZUI, Version=1.0.5822.36010, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\ZUI.1.0.8\lib\sl5\FloatingWindowZUI.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Ionic.Zip, Version=1.9.1.8, Culture=neutral, processorArchitecture=MSIL">
@@ -81,8 +81,8 @@
     <Reference Include="Microsoft.SilverlightMediaFramework.Plugins, Version=2.2012.605.0, Culture=neutral, PublicKeyToken=3dd5df9571bfd1e7, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.SilverlightMediaFramework.Utilities, Version=2.2012.605.0, Culture=neutral, PublicKeyToken=2018901a52f7a62c, processorArchitecture=MSIL" />
     <Reference Include="mscorlib" />
-    <Reference Include="SilverFlow.Controls, Version=3.0.5811.12603, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\ZUI.1.0.5\lib\sl5\SilverFlow.Controls.dll</HintPath>
+    <Reference Include="SilverFlow.Controls, Version=3.0.5822.35999, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\ZUI.1.0.8\lib\sl5\SilverFlow.Controls.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System.ComponentModel.Composition, Version=5.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
@@ -95,8 +95,8 @@
     <Reference Include="System.Net" />
     <Reference Include="System.Windows.Controls.Input, Version=5.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Windows.Controls.Layout.Toolkit, Version=5.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
-    <Reference Include="ZoomAndPan, Version=2.0.5811.12599, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\ZUI.1.0.5\lib\sl5\ZoomAndPan.dll</HintPath>
+    <Reference Include="ZoomAndPan, Version=2.0.5822.35992, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\ZUI.1.0.8\lib\sl5\ZoomAndPan.dll</HintPath>
       <Private>True</Private>
     </Reference>
   </ItemGroup>

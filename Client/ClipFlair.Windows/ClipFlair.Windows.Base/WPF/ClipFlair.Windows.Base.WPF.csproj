@@ -32,12 +32,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Compatibility, Version=1.0.5811.1317, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\..\packages\Compatibility.1.0.3\lib\net40-client\Compatibility.dll</HintPath>
+    <Reference Include="Compatibility, Version=1.0.5812.27317, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\packages\Compatibility.1.1.1\lib\net40-client\Compatibility.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="FloatingWindowZUI, Version=1.0.5811.8704, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\..\packages\ZUI.1.0.5\lib\net40-client\FloatingWindowZUI.dll</HintPath>
+    <Reference Include="FloatingWindowZUI, Version=1.0.5822.35996, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\packages\ZUI.1.0.8\lib\net40-client\FloatingWindowZUI.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Ionic.Zip">
@@ -45,8 +45,8 @@
     </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
-    <Reference Include="SilverFlow.Controls, Version=3.0.5811.12600, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\..\packages\ZUI.1.0.5\lib\net40-client\SilverFlow.Controls.dll</HintPath>
+    <Reference Include="SilverFlow.Controls, Version=3.0.5822.35993, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\packages\ZUI.1.0.8\lib\net40-client\SilverFlow.Controls.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
@@ -76,7 +76,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="ZoomAndPan, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\..\packages\ZUI.1.0.5\lib\net40-client\ZoomAndPan.dll</HintPath>
+      <HintPath>..\..\..\..\packages\ZUI.1.0.8\lib\net40-client\ZoomAndPan.dll</HintPath>
       <Private>True</Private>
     </Reference>
   </ItemGroup>
