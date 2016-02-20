@@ -100,7 +100,7 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="css\metadata.css" />
-    <Content Include="css\style-ie7.css" />
+    <Content Include="css\style-ie5.css" />
     <Content Include="img\activity_gallery.jpg" />
     <Content Include="img\activity_gallery.png" />
     <Content Include="img\activity_gallery.svg" />
@@ -123,7 +123,7 @@
     <Content Include="img\video_gallery.jpg" />
     <Content Include="img\video_gallery.png" />
     <Content Include="img\video_gallery.svg" />
-    <Content Include="index-ie7.html" />
+    <Content Include="index-ie5.html" />
     <Content Include="favicon.ico" />
     <Content Include="image\Default.aspx" />
     <Content Include="image\favicon.ico" />
