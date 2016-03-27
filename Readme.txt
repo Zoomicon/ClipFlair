@@ -20,7 +20,7 @@ Features list
 1287 ClipFlair Social Network platform (MonoX Social CMS - ASP.net WebParts Framework)
 1334 Image component (ZoomImage + MultiScaleImage - DeepZoom)
 1335 Map component (Bing Maps)
-1360 Gallery component (PivotViewer), Gallery Home Page (NxN Grid Tiles, HTML / SVG), Metadata forms (ASP.net WebForms) and libraries (CXML parsing/generation)
+1360 Gallery component (PivotViewer [Silverlight & Seajax versions]), Gallery Home Page (NxN Grid Tiles, HTML / SVG), Metadata forms (ASP.net WebForms) and libraries (CXML parsing/generation)
 1383 News component (SilverNews - Atom/RSS)
 1384 Browser component and dialog for Studio's OOB version (Browser / BrowserDialog)
 1386 ClipFlair Home Page (NxN Grid Tiles, HTML / SVG)
