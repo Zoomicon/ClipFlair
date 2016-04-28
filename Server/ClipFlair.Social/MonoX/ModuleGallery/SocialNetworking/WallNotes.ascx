@@ -30,7 +30,7 @@
                     <div class="clearfix">   
                         <MonoX:StyledButton ID="btnSave" runat="server" OnClick="btnSave_Click" CssClass="main-button submit-btn float-right" />
                         <MonoXPrivacyManager:PrivacyEditor ID="privacyEditor" runat="server" CssClass="privacy"></MonoXPrivacyManager:PrivacyEditor>
-                        <MonoX:SilverlightUpload runat="server" ID="ctlUpload" EnableFileGallery="false" CssClass="upload-holder float-right" />
+                        <MonoX:SilverlightUpload width="300" runat="server" ID="ctlUpload" EnableFileGallery="false" CssClass="upload-holder float-right" />
                     </div>
                     <MonoX:FileGallery ID="ctlFileGallery" runat="server" />
                 </asp:Panel>  

@@ -56,7 +56,7 @@
                 <asp:Panel runat="server" ID="pnlUpload" Style="border: none;">
                     <dd>
                         <asp:Label ID="lblUpload" AssociatedControlID="ctlUpload" runat="server"></asp:Label>
-                        <MonoX:SilverlightUpload runat="server" ID="ctlUpload" Width="100%" EnableFileGallery="false" />
+                        <MonoX:SilverlightUpload width="300" runat="server" ID="ctlUpload" EnableFileGallery="false" />
                     </dd>
                     <dd class="upload-cont">
                         <asp:Label ID="lblFileGallery" AssociatedControlID="ctlFileGallery" runat="server">&nbsp;</asp:Label>

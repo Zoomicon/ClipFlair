@@ -24,7 +24,7 @@
                     </div>
                     <MonoXPrivacyManager:PrivacyEditor ID="privacyEditor" runat="server" Visible="false"></MonoXPrivacyManager:PrivacyEditor>
                     <MonoX:StyledButton ID="btnSave" runat="server" OnClick="btnSave_Click" CssClass="CommentButton" EnableNativeButtonMode="true" />
-                    <MonoX:SilverlightUpload runat="server" ID="ctlUpload" EnableFileGallery="false" CssClass="wall-file-upload" Visible="false" />
+                    <MonoX:SilverlightUpload width="300" runat="server" ID="ctlUpload" EnableFileGallery="false" CssClass="wall-file-upload" Visible="false" />
                     <MonoX:FileGallery ID="ctlFileGallery" runat="server" ParentEntityType="Note" Visible="false" />
                 </div>
             </asp:Panel>

@@ -83,7 +83,7 @@
             </dd>
             <dd>
                 <asp:Label ID="lblAttachments" AssociatedControlID="ctlUpload" runat="server"></asp:Label>
-                <MonoX:SilverlightUpload runat="server" ID="ctlUpload" EnableFileGallery="false" CssClass="blog-file-upload" />
+                <MonoX:SilverlightUpload width="300" runat="server" ID="ctlUpload" EnableFileGallery="false" CssClass="blog-file-upload" />
             </dd>
             <dd>
                 <MonoX:FileGallery ID="ctlFileGallery" runat="server" ParentEntityType="BlogPost" />

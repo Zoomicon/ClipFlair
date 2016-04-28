@@ -28,7 +28,7 @@
         <asp:Panel runat="server" ID="pnlUpload">
         <dd>
             <asp:Label ID="lblUpload" AssociatedControlID="ctlUpload" runat="server"></asp:Label>
-            <MonoX:SilverlightUpload runat="server" ID="ctlUpload" Width="100%" EnableFileGallery="false"  />
+            <MonoX:SilverlightUpload width="300" runat="server" ID="ctlUpload" EnableFileGallery="false"  />
         </dd>
         <dd>
             <MonoX:FileGallery ID="ctlFileGallery" runat="server" ParentEntityType="Message" CssClass="rightLabel file-gallery" />
