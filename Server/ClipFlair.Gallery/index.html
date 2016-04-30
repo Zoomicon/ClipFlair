@@ -47,18 +47,6 @@
 
   <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
 
-  <!--fancybox-->
-  <!-- Add mousewheel plugin (this is optional) -->
-  <script type="text/javascript" src="js/fancybox/lib/jquery.mousewheel-3.0.6.pack.js"></script>
-  <!-- Add fancyBox -->
-  <link rel="stylesheet" href="js/fancybox/source/jquery.fancybox.css" type="text/css" media="screen" />
-  <script type="text/javascript" src="js/fancybox/source/jquery.fancybox.pack.js"></script>
-  <!-- Optionally add helpers - button, thumbnail and/or media -->
-  <link rel="stylesheet" href="js/fancybox/source/helpers/jquery.fancybox-buttons.css" type="text/css" media="screen" />
-  <script type="text/javascript" src="js/fancybox/source/helpers/jquery.fancybox-buttons.js"></script>
-  <script type="text/javascript" src="js/fancybox/source/helpers/jquery.fancybox-media.js"></script>
-  <!--/fancybox-->
-
   <script src="js/jquery.hoverIntent.minified.js"></script>
 
   <script src="js/jquery.fittext.js"></script>
@@ -70,35 +58,6 @@
     }
 
     $(document).ready(function () {
-      
-      //load fancybox
-      $(".fancyframe").fancybox({
-        beforeLoad: function () {
-          var el, id = $(this.element).data('title-id');
-          if (id) {
-            el = $('#' + id);
-
-            if (el.length) {
-              this.title = el.html();
-            }
-          }
-        },
-        type: 'iframe',
-        maxWidth: 800,
-        maxHeight: 600,
-        fitToView: false,
-        width: '70%',
-        height: '70%',
-        autoSize: false,
-        closeClick: false,
-        openEffect: 'none',
-        closeEffect: 'none',
-        helpers: {
-          title: {
-            type: 'outside'
-          }
-        }
-      });
 
       $("#logo").animate({
         opacity: 1.0
@@ -141,23 +100,6 @@
           opacity: 0
         }, 10, function () {});
       }
-
-      //hide an image title
-      $("a[rel='videoWithTitle']").each(function (e) {
-        var title = $(this).attr('title');
-        $(this).mouseover(
-          function () {
-            $(this).attr('title', '');
-          }).mouseout(
-            function () {
-              $(this).attr('title', title);
-            });
-        $(this).click(
-        function () {
-          $(this).attr('title', title);
-        }
-        );
-      });
 
       fitTilesText();
     });
