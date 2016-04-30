@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
-//Filename: Controls.cs
-//Version: 20131104
+//Filename: UI.cs
+//Version: 20160430
 
 using System;
 using System.Collections.Generic;
@@ -12,42 +12,9 @@ namespace ClipFlair.Gallery
   public static class UI
   {
 
-    public static void LoadCheckBoxList(CheckBoxList list, string[] values)
-    {
-      foreach (ListItem item in list.Items)
-        item.Selected = values.Contains(item.Text);
-    }
-
-    public static void LoadCheckBox(CheckBox checkbox, bool value)
-    {
-      checkbox.Checked = value;
-    }
-    
-    public static void LoadLabel(Label label, string value)
-    {
-      label.Text = value;
-    }
-
-    public static void LoadTextBox(TextBox textbox, string value)
-    {
-      textbox.Text = value;
-    }
-
-    public static void LoadHyperlink(HyperLink hyperlink, Uri url)
-    {
-      string s = url.ToString();
-      hyperlink.Text = s;
-      hyperlink.NavigateUrl = s;
-    }
-
-    public static void LoadTextBox(TextBox textbox, string[] values)
-    {
-      textbox.Text = string.Join(",", values);
-    }
-
     public static string[] GetCommaSeparated(TextBox txt)
     {
-      return (string.IsNullOrWhiteSpace(txt.Text))? null : txt.Text.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
+      return (string.IsNullOrWhiteSpace(txt.Text)) ? null : txt.Text.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
     }
 
     public static string[] GetSelected(CheckBoxList clist)
@@ -59,6 +26,39 @@ namespace ClipFlair.Gallery
       return result.ToArray();
     }
 
+    public static void Load(CheckBoxList list, string[] values)
+    {
+      foreach (ListItem item in list.Items)
+        item.Selected = values.Contains(item.Text);
+    }
+
+    public static void Load(CheckBox checkbox, bool value)
+    {
+      checkbox.Checked = value;
+    }
+
+    public static void Load(Label label, string value)
+    {
+      label.Text = value;
+    }
+
+    public static void Load(HyperLink hyperlink, Uri url)
+    {
+      string s = url.ToString();
+      hyperlink.Text = s;
+      hyperlink.NavigateUrl = s;
+    }
+
+    public static void Load(TextBox textbox, string value)
+    {
+      textbox.Text = value;
+    }
+
+    public static void Load(TextBox textbox, string[] values)
+    {
+      textbox.Text = string.Join(",", values);
+    }
+
   }
-  
+
 }

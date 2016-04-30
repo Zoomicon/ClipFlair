@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: VideoMetadataPage.aspx.cs
-//Version: 20140620
+//Version: 20160430
 
 using ClipFlair.Metadata;
 using Metadata.CXML;
@@ -87,25 +87,25 @@ namespace ClipFlair.Gallery
 
     public void DisplayMetadata(string key, IVideoMetadata metadata)
     {
-      UI.LoadTextBox(txtTitle, metadata.Title);
-      UI.LoadHyperlink(linkUrl, new Uri("http://studio.clipflair.net/?video=" + key));
-      UI.LoadTextBox(txtDescription, metadata.Description);
+      UI.Load(txtTitle, metadata.Title);
+      UI.Load(linkUrl, new Uri("http://studio.clipflair.net/?video=" + key));
+      UI.Load(txtDescription, metadata.Description);
 
       //no need to show metadata.Filename since we calculate and show the URL, plus the filename is used as the key and shown at the dropdown list
-      UI.LoadLabel(lblFirstPublished, metadata.FirstPublished.ToString(CXML.DEFAULT_DATETIME_FORMAT));
-      UI.LoadLabel(lblLastUpdated, metadata.LastUpdated.ToString(CXML.DEFAULT_DATETIME_FORMAT));
+      UI.Load(lblFirstPublished, metadata.FirstPublished.ToString(CXML.DEFAULT_DATETIME_FORMAT));
+      UI.Load(lblLastUpdated, metadata.LastUpdated.ToString(CXML.DEFAULT_DATETIME_FORMAT));
 
-      UI.LoadCheckBoxList(clistAudioLanguage, metadata.AudioLanguage);
-      UI.LoadCheckBoxList(clistCaptionsLanguage, metadata.CaptionsLanguage);
-      UI.LoadCheckBoxList(clistGenre, metadata.Genre);
-      UI.LoadTextBox(txtDuration, metadata.Duration);
-      UI.LoadCheckBoxList(clistAudiovisualRichness, metadata.AudiovisualRichness);
-      UI.LoadCheckBox(cbPedagogicalAdaptability, metadata.PedagogicalAdaptability);
+      UI.Load(clistAudioLanguage, metadata.AudioLanguage);
+      UI.Load(clistCaptionsLanguage, metadata.CaptionsLanguage);
+      UI.Load(clistGenre, metadata.Genre);
+      UI.Load(txtDuration, metadata.Duration);
+      UI.Load(clistAudiovisualRichness, metadata.AudiovisualRichness);
+      UI.Load(cbPedagogicalAdaptability, metadata.PedagogicalAdaptability);
 
-      UI.LoadCheckBoxList(clistAgeGroup, metadata.AgeGroup);
-      UI.LoadTextBox(txtKeywords, metadata.Keywords);
-      UI.LoadTextBox(txtAuthorSource, metadata.AuthorSource);
-      UI.LoadTextBox(txtLicense, metadata.License);
+      UI.Load(clistAgeGroup, metadata.AgeGroup);
+      UI.Load(txtKeywords, metadata.Keywords);
+      UI.Load(txtAuthorSource, metadata.AuthorSource);
+      UI.Load(txtLicense, metadata.License);
     }
 
     #endregion

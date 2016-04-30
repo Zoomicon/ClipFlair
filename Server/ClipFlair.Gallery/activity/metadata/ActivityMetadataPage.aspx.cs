@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: ActivityMetadataPage.aspx.cs
-//Version: 20140620
+//Version: 20160430
 
 using Metadata.CXML;
 using ClipFlair.Metadata;
@@ -85,32 +85,32 @@ namespace ClipFlair.Gallery
 
     public void DisplayMetadata(string key, IActivityMetadata metadata)
     {
-      UI.LoadTextBox(txtTitle, metadata.Title);
-      UI.LoadHyperlink(linkUrl, new Uri("http://studio.clipflair.net/?activity=" + key));
-      UI.LoadTextBox(txtDescription, metadata.Description);
+      UI.Load(txtTitle, metadata.Title);
+      UI.Load(linkUrl, new Uri("http://studio.clipflair.net/?activity=" + key));
+      UI.Load(txtDescription, metadata.Description);
 
       //no need to show metadata.Filename since we calculate and show the URL, plus the filename is used as the key and shown at the dropdown list
-      UI.LoadLabel(lblFirstPublished, metadata.FirstPublished.ToString(CXML.DEFAULT_DATETIME_FORMAT));
-      UI.LoadLabel(lblLastUpdated, metadata.LastUpdated.ToString(CXML.DEFAULT_DATETIME_FORMAT));
+      UI.Load(lblFirstPublished, metadata.FirstPublished.ToString(CXML.DEFAULT_DATETIME_FORMAT));
+      UI.Load(lblLastUpdated, metadata.LastUpdated.ToString(CXML.DEFAULT_DATETIME_FORMAT));
 
-      UI.LoadCheckBoxList(clistForLearners, metadata.ForLearners);
-      UI.LoadCheckBoxList(clistForSpeakers, metadata.ForSpeakers);
-      UI.LoadCheckBoxList(clistLanguageCombination, metadata.LanguageCombination);
-      UI.LoadCheckBoxList(clistLevel, metadata.Level);
-      UI.LoadTextBox(txtEstimatedTime, metadata.EstimatedTimeMinutes);
-      UI.LoadCheckBoxList(clistFromSkills, metadata.FromSkills);
-      UI.LoadCheckBoxList(clistToSkills, metadata.ToSkills);
-      UI.LoadCheckBoxList(clistAVSkills, metadata.AVSkills);
-      UI.LoadCheckBoxList(clistResponses, metadata.Responses);
-      UI.LoadCheckBoxList(clistTasksRevoicing, metadata.TasksRevoicing);
-      UI.LoadCheckBoxList(clistTasksCaptioning, metadata.TasksCaptioning);
-      UI.LoadCheckBoxList(clistLearnerType, metadata.LearnerType);
-      UI.LoadTextBox(txtFeedbackModeToLearner, metadata.FeedbackModeToLearner);
+      UI.Load(clistForLearners, metadata.ForLearners);
+      UI.Load(clistForSpeakers, metadata.ForSpeakers);
+      UI.Load(clistLanguageCombination, metadata.LanguageCombination);
+      UI.Load(clistLevel, metadata.Level);
+      UI.Load(txtEstimatedTime, metadata.EstimatedTimeMinutes);
+      UI.Load(clistFromSkills, metadata.FromSkills);
+      UI.Load(clistToSkills, metadata.ToSkills);
+      UI.Load(clistAVSkills, metadata.AVSkills);
+      UI.Load(clistResponses, metadata.Responses);
+      UI.Load(clistTasksRevoicing, metadata.TasksRevoicing);
+      UI.Load(clistTasksCaptioning, metadata.TasksCaptioning);
+      UI.Load(clistLearnerType, metadata.LearnerType);
+      UI.Load(txtFeedbackModeToLearner, metadata.FeedbackModeToLearner);
 
-      UI.LoadCheckBoxList(clistAgeGroup, metadata.AgeGroup);
-      UI.LoadTextBox(txtKeywords, metadata.Keywords);
-      UI.LoadTextBox(txtAuthorSource, metadata.AuthorSource);
-      UI.LoadTextBox(txtLicense, metadata.License);
+      UI.Load(clistAgeGroup, metadata.AgeGroup);
+      UI.Load(txtKeywords, metadata.Keywords);
+      UI.Load(txtAuthorSource, metadata.AuthorSource);
+      UI.Load(txtLicense, metadata.License);
     }
 
     #endregion
