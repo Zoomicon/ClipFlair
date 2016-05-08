@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: UI.cs
-//Version: 20160430
+//Version: 20160509
 
 using System;
 using System.Collections.Generic;
@@ -17,7 +17,7 @@ namespace ClipFlair.Gallery
       return (string.IsNullOrWhiteSpace(txt.Text)) ? null : txt.Text.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
     }
 
-    public static string[] GetSelected(CheckBoxList clist)
+    public static string[] GetSelected(ListControl clist)
     {
       List<string> result = new List<string>();
       foreach (ListItem item in clist.Items)
@@ -26,10 +26,17 @@ namespace ClipFlair.Gallery
       return result.ToArray();
     }
 
-    public static void Load(CheckBoxList list, string[] values)
+    //
+
+    public static void Load(ListControl list, string[] values)
     {
       foreach (ListItem item in list.Items)
         item.Selected = values.Contains(item.Text);
+    }
+
+    public static void Load(ListControl list, string value)
+    {
+      list.SelectedValue = value;
     }
 
     public static void Load(CheckBox checkbox, bool value)
