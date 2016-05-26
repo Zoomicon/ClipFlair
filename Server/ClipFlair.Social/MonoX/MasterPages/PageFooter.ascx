@@ -49,10 +49,10 @@ Inherits="MonoSoftware.MonoX.MasterPages.PageFooter" %>
         <div class="container">
             <div class="row-fluid">
                 <a id="A1" runat="server" href="http://monox.mono-software.com" class="powered-by">
-                    <img id="Img1" runat="server" src="~/App_Themes/ClipFlair/img/PoweredBy/MonoXButton1.gif" alt="Powered by MonoX" />
+                    <img runat="server" src="~/App_Themes/ClipFlair/img/PoweredBy/MonoXButton1.gif" alt="Powered by MonoX" />
                 </a>
                 <div class="logo-eu">
-                    <img id="Img3" runat="server" src="~/App_Themes/ClipFlair/img/logo-eu.jpg" alt="Lifelong Learning Programme" class="footer-logo" />
+                    <img runat="server" src="~/App_Themes/ClipFlair/img/logo-eu.jpg" alt="Lifelong Learning Programme" class="footer-logo" />
                     <p>This project has been funded with support from the European Commission. This publication reflects the views only of the author, and the Commission cannot be held responsible for any use which may be made of the information contained therein.</p>
                 </div>
                 
