@@ -180,7 +180,7 @@
     <Compile Include="image\metadata\ImageMetadataPage.aspx.designer.cs">
       <DependentUpon>ImageMetadataPage.aspx</DependentUpon>
     </Compile>
-    <Compile Include="metadata\UI.cs" />
+    <Compile Include="utils\UI.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="video\metadata\VideoMetadataPage.aspx.cs">
       <DependentUpon>VideoMetadataPage.aspx</DependentUpon>
