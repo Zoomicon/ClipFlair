@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: UI.cs
-//Version: 20160509
+//Version: 20160528
 
 using System;
 using System.Collections.Generic;
@@ -28,14 +28,22 @@ namespace ClipFlair.Gallery
 
     //
 
+    public static void LoadContent(ListControl list, string[] values)
+    {
+      list.DataSource = values;
+      list.DataBind();
+    }
+
     public static void Load(ListControl list, string[] values)
     {
+      list.DataBind(); //load any items coming from a DataSource
       foreach (ListItem item in list.Items)
         item.Selected = values.Contains(item.Text);
     }
 
     public static void Load(ListControl list, string value)
     {
+      list.DataBind(); //load any items coming from a DataSource
       list.SelectedValue = value;
     }
 
@@ -51,7 +59,7 @@ namespace ClipFlair.Gallery
 
     public static void Load(HyperLink hyperlink, Uri url)
     {
-      string s = url.ToString();
+      string s = Uri.EscapeUriString(url.ToString());
       hyperlink.Text = s;
       hyperlink.NavigateUrl = s;
     }
