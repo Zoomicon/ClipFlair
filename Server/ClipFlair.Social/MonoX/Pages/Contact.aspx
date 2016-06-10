@@ -36,9 +36,16 @@
             <portal:PortalWebPartZoneTableless HeaderText='<%$ Code: PageResources.Zone_ContentZone %>' ID="contentPartZone" runat="server" Width="100%" ChromeTemplateFile="Standard.htm">
                 <ZoneTemplate>
                     <MonoX:ContactForm ID="ctlContact" runat="server" 
-                    A_WebSiteName="ClipFlair.net" A_Address="N.Kazantzaki" A_City="Patras" 
-                    A_ZipCode="26504 " A_Country="Greece" A_Phone="+302610960300" A_Fax="+302610960490"  EnableSSL="false" A_EMail="info@clipflair.net"           
-                    ></MonoX:ContactForm>
+                      A_WebSiteName="ClipFlair.net"
+                      A_Address="N.Kazantzaki"
+                      A_City="Patras" 
+                      A_ZipCode="26504"
+                      A_Country="Greece"
+                      A_Phone="+302610960300"
+                      A_Fax="+302610960490"
+                      EnableSSL="false"
+                      A_EMail="clipflair@cti.gr"           
+                    />
                 </ZoneTemplate>
             </portal:PortalWebPartZoneTableless>
         </div>

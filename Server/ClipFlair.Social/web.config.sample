@@ -638,9 +638,14 @@
   </system.webServer>
 	<system.net>
 		<mailSettings>
-           <smtp deliveryMethod="Network" from="clipflair@cti.gr">
-                <network defaultCredentials="false" host="mail.cti.gr" password="#######" port="25" userName="clipflair@cti.gr" />
-            </smtp>
+        <smtp deliveryMethod="Network" from="xx@gmail.com">
+        <!-- for setting up a local relay that forwards via a gmail account, see http://www.vsysad.com/2014/01/configure-iis-smtp-server-to-use-gmail-to-forward-messages/ -->
+          <network
+            defaultCredentials="false"
+            host="clipflair.net"
+            port="xx" <!-- the local relay port -->
+            />
+        </smtp>
 		</mailSettings>
 	</system.net>
 	<system.serviceModel>

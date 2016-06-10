@@ -1,0 +1,1 @@
+Do not forget to give Modify right on this folder to the AppPool (e.g. IIS APPPOOL\SomeAppPoolName) used for MonoX

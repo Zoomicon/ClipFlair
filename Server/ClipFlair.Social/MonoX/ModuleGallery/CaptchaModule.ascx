@@ -28,7 +28,7 @@
                 <label class="italic-style"><%= DefaultResources.Captcha_LongInfo %></label>
             </dd>
             <dd id="rowInvalidCaptcha" runat="server">
-                <asp:Label ID="labInvalidCaptcha" runat="server"></asp:Label>
+                <asp:Label ID="labInvalidCaptcha" runat="server" Style="color: red;"></asp:Label>
             </dd>
         </dl>
     </ContentTemplate>
