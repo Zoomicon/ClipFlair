@@ -48,13 +48,18 @@ Inherits="MonoSoftware.MonoX.MasterPages.PageFooter" %>
     <div class="copyright">
         <div class="container">
             <div class="row-fluid">
-                <a id="A1" runat="server" href="http://monox.mono-software.com" class="powered-by">
-                    <img runat="server" src="~/App_Themes/ClipFlair/img/PoweredBy/MonoXButton1.gif" alt="Powered by MonoX" />
-                </a>
+
                 <div class="logo-eu">
                     <img runat="server" src="~/App_Themes/ClipFlair/img/logo-eu.jpg" alt="Lifelong Learning Programme" class="footer-logo" />
                     <p>This project has been funded with support from the European Commission. This publication reflects the views only of the author, and the Commission cannot be held responsible for any use which may be made of the information contained therein.</p>
                 </div>
+
+                <p style="color:white">
+                Developed by: <a href="http://Zoomicon.com" target="Zoomicon" style="color:grey">Zoomicon</a> &amp; <a href="http://www.cti.gr" target="CTI" style="color:grey">CTI</a>
+                <a id="A1" runat="server" href="http://monox.mono-software.com" class="powered-by">
+                  <img runat="server" src="~/App_Themes/trafilm/img/PoweredBy/MonoXButton1.gif" alt="Powered by MonoX" />
+                </a>
+                </p>   
                 
             </div>
         </div>
