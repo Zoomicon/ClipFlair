@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <configuration>
-	<configSections>
-		<sectionGroup name="MonoSoftware.Web.WAO">
-			<section name="ViewState" type="MonoSoftware.Web.WAO.ViewState.Configuration.ViewStateConfiguration, MonoSoftware.Web.WAO" requirePermission="false" />
-			<section name="HttpCompress" type="MonoSoftware.Web.WAO.HttpCompress.Configuration.HttpCompressConfiguration, MonoSoftware.Web.WAO" requirePermission="false" />
-		</sectionGroup>
-		<sectionGroup name="MonoSoftware.Web">
-			<section name="SearchEngine" type="MonoSoftware.MonoX.SearchEngine.SearchEngineConfigurationHandler, MonoX" requirePermission="false" />
-			<section name="RssStorage" type="MonoSoftware.Web.Configuration.RssStorageConfiguration, MonoX" requirePermission="false" />      
+  <configSections>
+    <sectionGroup name="MonoSoftware.Web.WAO">
+      <section name="ViewState" type="MonoSoftware.Web.WAO.ViewState.Configuration.ViewStateConfiguration, MonoSoftware.Web.WAO" requirePermission="false" />
+      <section name="HttpCompress" type="MonoSoftware.Web.WAO.HttpCompress.Configuration.HttpCompressConfiguration, MonoSoftware.Web.WAO" requirePermission="false" />
+    </sectionGroup>
+    <sectionGroup name="MonoSoftware.Web">
+      <section name="SearchEngine" type="MonoSoftware.MonoX.SearchEngine.SearchEngineConfigurationHandler, MonoX" requirePermission="false" />
+      <section name="RssStorage" type="MonoSoftware.Web.Configuration.RssStorageConfiguration, MonoX" requirePermission="false" />      
       <section name="AntiSpam" type="MonoSoftware.Web.AntiSpam.AntiSpamConfigurationSection, MonoSoftware.Web" requirePermission="false" />
       <section name="Cache" type="MonoSoftware.Web.Caching.CacheConfigurationSection, MonoSoftware.Web" requirePermission="false" />
       <section name="FileContent" type="MonoSoftware.MonoX.FileSystem.FileContentConfigurationSection, MonoX" requirePermission="false" />
@@ -16,10 +16,10 @@
       <section name="UrlRewriter" type="MonoSoftware.UrlRewriter.Configuration.RewriterConfigurationSectionHandler, MonoSoftware.UrlRewriter" requirePermission="false" />
     </sectionGroup>
     <section name="ActiveDirectoryConfiguration" type="MonoSoftware.Web.Security.ActiveDirectoryConfigurationSection, MonoSoftware.Web" requirePermission="false" />
-		<section name="openSocial" type="OpenSocial.Configuration.OpenSocialConfiguration, OpenSocial" requirePermission="false" />
-		<section name="dotNetOpenAuth" type="DotNetOpenAuth.Configuration.DotNetOpenAuthSection" requirePermission="false" allowLocation="true" />
+    <section name="openSocial" type="OpenSocial.Configuration.OpenSocialConfiguration, OpenSocial" requirePermission="false" />
+    <section name="dotNetOpenAuth" type="DotNetOpenAuth.Configuration.DotNetOpenAuthSection" requirePermission="false" allowLocation="true" />
     <section name="SocialAuthConfiguration" type="Brickred.SocialAuth.NET.Core.SocialAuthConfiguration, SocialAuth-net, Version=2.1.0.0, Culture=neutral, PublicKeyToken=null" requirePermission="false" allowDefinition="Everywhere" allowLocation="true" />
-	</configSections>
+  </configSections>
   <ActiveDirectoryConfiguration server="" username="" password="" />
   <SocialAuthConfiguration>
     <Providers>      
@@ -33,65 +33,65 @@
     <IconFolder Path="~/App_Themes/Default/Sn/" />
     <Authentication Enabled="false" LoginUrl="Login.aspx" DefaultUrl="Login.aspx" />
   </SocialAuthConfiguration>
-	<dotNetOpenAuth>
-		<reporting enabled="false" />    
-	</dotNetOpenAuth>
+  <dotNetOpenAuth>
+    <reporting enabled="false" />    
+  </dotNetOpenAuth>
   <!--Note: In IIS 6, Css, js and other static content won't be compressed cause they aren't parsed by aspnet_isapi.dll, to enable compression configure it in the IIS Application configuration-->
-	<!--Note: customProperties are Case sensitive-->
-	<MonoSoftware.Web.WAO>
-		<ViewState turnedOn="true" defaultProvider="DiskProvider">
-			<providers>
-				<clear />
-				<add workingFolder="" sqlConnectionString="Data Source=;uid=;pwd=;database=;Connect Timeout=1500;" name="SqlProvider" type="MonoSoftware.Web.WAO.ViewState.Providers.SqlProvider, MonoSoftware.Web.WAO" customProperties="RecycleTime=60;ViewStateTimeout=480;" />
-				<add workingFolder="" sqlConnectionString="" name="CompressionProvider" type="MonoSoftware.Web.WAO.ViewState.Providers.CompressionProvider, MonoSoftware.Web.WAO" customProperties="" />
-				<add workingFolder="" sqlConnectionString="" name="CacheProvider" type="MonoSoftware.Web.WAO.ViewState.Providers.CacheProvider, MonoSoftware.Web.WAO" customProperties="ViewStateTimeout=120;" />
-				<add workingFolder="~/MonoX/ApplicationData/ViewState" sqlConnectionString="" name="DiskProvider" type="MonoSoftware.Web.WAO.ViewState.Providers.DiskProvider, MonoSoftware.Web.WAO" customProperties="RecycleTime=60;ViewStateTimeout=480;" />
-			</providers>
-		</ViewState>		
+  <!--Note: customProperties are Case sensitive-->
+  <MonoSoftware.Web.WAO>
+    <ViewState turnedOn="true" defaultProvider="DiskProvider">
+      <providers>
+        <clear />
+        <add workingFolder="" sqlConnectionString="Data Source=;uid=;pwd=;database=;Connect Timeout=1500;" name="SqlProvider" type="MonoSoftware.Web.WAO.ViewState.Providers.SqlProvider, MonoSoftware.Web.WAO" customProperties="RecycleTime=60;ViewStateTimeout=480;" />
+        <add workingFolder="" sqlConnectionString="" name="CompressionProvider" type="MonoSoftware.Web.WAO.ViewState.Providers.CompressionProvider, MonoSoftware.Web.WAO" customProperties="" />
+        <add workingFolder="" sqlConnectionString="" name="CacheProvider" type="MonoSoftware.Web.WAO.ViewState.Providers.CacheProvider, MonoSoftware.Web.WAO" customProperties="ViewStateTimeout=120;" />
+        <add workingFolder="~/MonoX/ApplicationData/ViewState" sqlConnectionString="" name="DiskProvider" type="MonoSoftware.Web.WAO.ViewState.Providers.DiskProvider, MonoSoftware.Web.WAO" customProperties="RecycleTime=60;ViewStateTimeout=480;" />
+      </providers>
+    </ViewState>		
     <HttpCompress turnedOn="true" defaultProvider="Deflate" useCaching="true">
-			<providers>
-				<clear />
-				<!--compressionLevel="high|normal|low|none"-->
-				<!--Note: If you use None as compression level you will turn off the http compressions-->
-				<add name="Deflate" type="MonoSoftware.Web.WAO.HttpCompress.Providers.DeflateProvider, MonoSoftware.Web.WAO" customProperties="CompressionLevel=High;" />
-				<add name="GZip" type="MonoSoftware.Web.WAO.HttpCompress.Providers.GZipProvider, MonoSoftware.Web.WAO" customProperties="CompressionLevel=High;" />
-			</providers>
-			<ExcludedMimeTypes>
-				<clear />
-				<add name="png" type="image/png" />
-				<add name="jpeg" type="image/jpeg" />
-				<add name="gif" type="image/gif" />
-				<add name="zip" type="application/zip" />
-				<add name="x-zip-compressed" type="application/x-zip-compressed" />
-				<add name="x-gzip-compressed" type="application/x-gzip-compressed" />
-				<add name="x-compressed" type="application/x-compressed" />
-				<add name="octet-stream" type="application/octet-stream" />
-				<add name="pdf" type="application/pdf" />
-                <add name="mp3" type="audio/mpeg" />
-                <add name="mp4" type="video/mp4" />
-                <add name="ogv" type="video/ogg" />
-                <add name="webm" type="video/webm" />
-                <add name="xls" type="application/vnd.ms-excel" />
-                <add name="txt" type="text/plain" />
-                <add name="doc" type="application/vnd.ms-word" />
-                <add name="doc0" type="application/msword" />
-                <add name="doc1" type="application/xhtml+xml" />
-                <add name="doc2" type="application/xml" />
-                <add name="woff" type="application/x-font-woff" />
-                <add name="eot" type="application/x-font-eot" />
-                <add name="svg" type="application/x-font-svg" />
-                <add name="ttf" type="application/x-font-ttf" />
-			</ExcludedMimeTypes>
-			<ExcludedPaths>
-				<clear />
-				<!--Example-->
-				<!--<add name="WebResource" path="WebResource.axd"/>-->
-        		<!--<add name="SEOPath" path="~/blog/posts/MonoX/"/>-->
+      <providers>
+        <clear />
+        <!--compressionLevel="high|normal|low|none"-->
+        <!--Note: If you use None as compression level you will turn off the http compressions-->
+        <add name="Deflate" type="MonoSoftware.Web.WAO.HttpCompress.Providers.DeflateProvider, MonoSoftware.Web.WAO" customProperties="CompressionLevel=High;" />
+        <add name="GZip" type="MonoSoftware.Web.WAO.HttpCompress.Providers.GZipProvider, MonoSoftware.Web.WAO" customProperties="CompressionLevel=High;" />
+      </providers>
+      <ExcludedMimeTypes>
+        <clear />
+        <add name="png" type="image/png" />
+        <add name="jpeg" type="image/jpeg" />
+        <add name="gif" type="image/gif" />
+        <add name="zip" type="application/zip" />
+        <add name="x-zip-compressed" type="application/x-zip-compressed" />
+        <add name="x-gzip-compressed" type="application/x-gzip-compressed" />
+        <add name="x-compressed" type="application/x-compressed" />
+        <add name="octet-stream" type="application/octet-stream" />
+        <add name="pdf" type="application/pdf" />
+        <add name="mp3" type="audio/mpeg" />
+        <add name="mp4" type="video/mp4" />
+        <add name="ogv" type="video/ogg" />
+        <add name="webm" type="video/webm" />
+        <add name="xls" type="application/vnd.ms-excel" />
+        <add name="txt" type="text/plain" />
+        <add name="doc" type="application/vnd.ms-word" />
+        <add name="doc0" type="application/msword" />
+        <add name="doc1" type="application/xhtml+xml" />
+        <add name="doc2" type="application/xml" />
+        <add name="woff" type="application/x-font-woff" />
+        <add name="eot" type="application/x-font-eot" />
+        <add name="svg" type="application/x-font-svg" />
+        <add name="ttf" type="application/x-font-ttf" />
+      </ExcludedMimeTypes>
+      <ExcludedPaths>
+        <clear />
+        <!--Example-->
+        <!--<add name="WebResource" path="WebResource.axd"/>-->
+        <!--<add name="SEOPath" path="~/blog/posts/MonoX/"/>-->
         <!--<add name="SEOPath" path="~/blog/posts/MonoX/*"/>-->        
       </ExcludedPaths>
-		</HttpCompress>
-	</MonoSoftware.Web.WAO>
-	<MonoSoftware.Web>
+    </HttpCompress>
+  </MonoSoftware.Web.WAO>
+  <MonoSoftware.Web>
     <ResourceProviderModel defaultProvider="ResourceManager">
       <providers>
         <clear />
@@ -99,27 +99,27 @@
         <add name="DBResourceManager" type="MonoSoftware.Web.ResourceProviderModel.Providers.DBResourceManager, MonoSoftware.Web.ResourceProviderModel" customProperties="" />
       </providers>
     </ResourceProviderModel>
-		<SearchEngine>
-			<providers>
-				<add name="PagesSearchProvider" type="MonoSoftware.MonoX.SearchEngine.Providers.PagesSearchProvider, MonoX" PagesDescriptionContentLength="255" BoldSearchPhrases="true" FullTextSearch="false" MaxNoOfResults="100" />
-                <add name="NewsSearchProvider" type="MonoSoftware.MonoX.SearchEngine.Providers.NewsSearchProvider, MonoX" NewsReadPagePath="~/MonoX/Pages/NewsDetails.aspx" NewsContentLength="255" BoldSearchPhrases="true" MaxNoOfResults="100" />
-				<add name="BlogSearchProvider" type="MonoSoftware.MonoX.SearchEngine.Providers.BlogSearchProvider, MonoX" BlogContentLength="255" BoldSearchPhrases="true" FullTextSearch="false" MaxNoOfResults="100" />
-                <add name="GroupSearchProvider" type="MonoSoftware.MonoX.SearchEngine.Providers.GroupSearchProvider, MonoX" GroupDescriptionLength="255" BoldSearchPhrases="true" FullTextSearch="false" MaxNoOfResults="100" />
+    <SearchEngine>
+      <providers>
+        <add name="PagesSearchProvider" type="MonoSoftware.MonoX.SearchEngine.Providers.PagesSearchProvider, MonoX" PagesDescriptionContentLength="255" BoldSearchPhrases="true" FullTextSearch="false" MaxNoOfResults="100" />
+        <add name="NewsSearchProvider" type="MonoSoftware.MonoX.SearchEngine.Providers.NewsSearchProvider, MonoX" NewsReadPagePath="~/MonoX/Pages/NewsDetails.aspx" NewsContentLength="255" BoldSearchPhrases="true" MaxNoOfResults="100" />
+        <add name="BlogSearchProvider" type="MonoSoftware.MonoX.SearchEngine.Providers.BlogSearchProvider, MonoX" BlogContentLength="255" BoldSearchPhrases="true" FullTextSearch="false" MaxNoOfResults="100" />
+        <add name="GroupSearchProvider" type="MonoSoftware.MonoX.SearchEngine.Providers.GroupSearchProvider, MonoX" GroupDescriptionLength="255" BoldSearchPhrases="true" FullTextSearch="false" MaxNoOfResults="100" />
         <add name="UserProfileSearchProvider" type="MonoSoftware.MonoX.SearchEngine.Providers.UserProfileSearchProvider, MonoX" UserDescriptionLength="255" BoldSearchPhrases="true" FullTextSearch="false" MaxNoOfResults="100" />
         <add name="DiscussionSearchProvider" type="MonoSoftware.MonoX.SearchEngine.Providers.DiscussionSearchProvider, MonoX" DiscussionDescriptionLength="255" BoldSearchPhrases="true" FullTextSearch="false" MaxNoOfResults="100" />
         <add name="PhotoGallerySearchProvider" type="MonoSoftware.MonoX.SearchEngine.Providers.PhotoGallerySearchProvider, MonoX" PhotoGalleryPagePath="~/MonoX/Pages/SocialNetworking/PhotoGallery.aspx" PhotoGalleryDescriptionLength="255" BoldSearchPhrases="true" FullTextSearch="false" MaxNoOfResults="100" />
         <add name="CalendarEventSearchProvider" type="MonoSoftware.MonoX.SearchEngine.Providers.CalendarEventSearchProvider, MonoX" BoldSearchPhrases="true" CalendarEventPreviewPagePath="~/MonoX/Pages/SocialNetworking/EventCalendar.aspx" MaxNoOfResults="100" />
         <!--<add name="LuceneFileSystemSearchProvider" type="MonoSoftware.MonoX.SearchEngine.Providers.LuceneFileSystemSearchProvider, MonoX" IndexingEngineInterval="60" IndexingEngineIndexFolder="~/MonoX/ApplicationData/FullTextIndexes" IndexingEngineDocDirectory="~/;" IndexedFileExtensions=".htm;.html;.pdf;.doc;.rtf;.xml;.xls;.csv;.txt;.pps;.ppt;.docx;.xlsx;"/>-->
-				<!--<add name="IndexingServiceSearchProvider" type="MonoSoftware.MonoX.SearchEngine.Providers.IndexingServiceSearchProvider, MonoX" Catalogs="MonoXSearch" IndexedFileExtensions=".htm;.html;.pdf;.doc;.rtf;.xml;.xls;.csv;.txt;.pps;.ppt;.docx;.xlsx;"/>-->
-			</providers>
-		</SearchEngine>
-		<RssStorage defaultProvider="RequestRssStorageProvider">
-			<providers>
-				<add name="DiskRssStorageProvider" type="MonoSoftware.Web.RssEngine.Providers.DiskRssStorageProvider, MonoX" workingFolder="~/MonoX/ApplicationData/RssStorage" sqlConnectionString="" timeout="30" />
-				<add name="CacheRssStorageProvider" type="MonoSoftware.Web.RssEngine.Providers.CacheRssStorageProvider, MonoX" workingFolder="" sqlConnectionString="" timeout="30" />
+        <!--<add name="IndexingServiceSearchProvider" type="MonoSoftware.MonoX.SearchEngine.Providers.IndexingServiceSearchProvider, MonoX" Catalogs="MonoXSearch" IndexedFileExtensions=".htm;.html;.pdf;.doc;.rtf;.xml;.xls;.csv;.txt;.pps;.ppt;.docx;.xlsx;"/>-->
+      </providers>
+    </SearchEngine>
+    <RssStorage defaultProvider="RequestRssStorageProvider">
+      <providers>
+        <add name="DiskRssStorageProvider" type="MonoSoftware.Web.RssEngine.Providers.DiskRssStorageProvider, MonoX" workingFolder="~/MonoX/ApplicationData/RssStorage" sqlConnectionString="" timeout="30" />
+        <add name="CacheRssStorageProvider" type="MonoSoftware.Web.RssEngine.Providers.CacheRssStorageProvider, MonoX" workingFolder="" sqlConnectionString="" timeout="30" />
         <add name="RequestRssStorageProvider" type="MonoSoftware.Web.RssEngine.Providers.RequestRssStorageProvider, MonoX" workingFolder="" sqlConnectionString="" timeout="30" />
       </providers>
-		</RssStorage>
+    </RssStorage>
     <AntiSpam>
       <providers>
         <add name="Akismet" type="MonoSoftware.Web.AntiSpam.AntiSpamProviders.Akismet.AkismetAntiSpamProvider, MonoSoftware.Web" apiKey="" />
@@ -147,7 +147,7 @@
         <add name="MonoXLocalizationHandler" type="MonoSoftware.MonoX.Localization.LocalizationHandler, MonoX" />
       </providers>
     </LocalizationHandler>
-	  <UrlRewriter>
+    <UrlRewriter>
       <default-documents>
         <document>Default.aspx</document>
       </default-documents>
@@ -213,17 +213,17 @@
       <rewrite url="^(.*)/(.*)/activeview/(.*)/albumview/(.*)/(.*)/(.*)/(\?(.+))?$" to="$1/$2.aspx?AlbumId=$4&amp;activeview=$3&amp;$5=$6&amp;$8" name="PhotoListPaged" defaultPage="~/MonoX/Pages/SocialNetworking/PhotoGallery.aspx" urlPattern="~/{PageName}/{ActiveControlAction}/{ActiveControlValue}/{AlbumView}/{AlbumId}/" />
       <rewrite url="^(.*)/(.*)/activeview/(.*)/albumview/(.*)/(\?(.+))?$" to="$1/$2.aspx?AlbumId=$4&amp;activeview=$3&amp;$6" name="PhotoList" defaultPage="~/MonoX/Pages/SocialNetworking/PhotoGallery.aspx" urlPattern="~/{PageName}/{ActiveControlAction}/{ActiveControlValue}/{AlbumView}/{AlbumId}/" />          
       <rewrite url="^(.*)/(.*)/activeview/(.*)/photoview/(.*)/(.*)/(\?(.+))?$" to="$1/$2.aspx?FileId=$4&amp;AlbumId=$5&amp;activeview=$3&amp;$7" name="PhotoView" defaultPage="~/MonoX/Pages/SocialNetworking/PhotoGallery.aspx" urlPattern="~/{PageName}/{ActiveControlAction}/{ActiveControlValue}/{PhotoView}/{PhotoId}/{AlbumId}/" />
-	  <!-- discussion board -->
+      <!-- discussion board -->
       <rewrite url="^(.*)/(.*)/dboard/(.*)/(.*)/(.*)/(.*)/(\?(.+))?$" to="$1/$2.aspx?boardId=$3&amp;$5=$6&amp;$8" name="DiscussionPaged" defaultPage="~/MonoX/Pages/SocialNetworking/Discussion.aspx" urlPattern="~/{PageName}/dboard/{BoardId}/{Slug}/" />
-	  <rewrite url="^(.*)/(.*)/dboard/(.*)/(.*)/(\?(.+))?$" to="$1/$2.aspx?boardId=$3&amp;$6" name="Discussion" defaultPage="~/MonoX/Pages/SocialNetworking/Discussion.aspx" urlPattern="~/{PageName}/dboard/{BoardId}/{Slug}/" />
+      <rewrite url="^(.*)/(.*)/dboard/(.*)/(.*)/(\?(.+))?$" to="$1/$2.aspx?boardId=$3&amp;$6" name="Discussion" defaultPage="~/MonoX/Pages/SocialNetworking/Discussion.aspx" urlPattern="~/{PageName}/dboard/{BoardId}/{Slug}/" />
       <rewrite url="^(.*)/(.*)/dtopic/(.*)/(.*)/(.*)/(.*)/(\?(.+))?$" to="$1/$2.aspx?topicId=$3&amp;$5=$6&amp;$8" name="DiscussionTopicPaged" defaultPage="~/MonoX/Pages/SocialNetworking/Discussion.aspx" urlPattern="~/{PageName}/dtopic/{TopicId}/{Slug}/" />
-	  <rewrite url="^(.*)/(.*)/dtopic/(.*)/(.*)/(\?(.+))?$" to="$1/$2.aspx?topicId=$3&amp;$6" name="DiscussionTopic" defaultPage="~/MonoX/Pages/SocialNetworking/Discussion.aspx" urlPattern="~/{PageName}/dtopic/{TopicId}/{Slug}/" />
+      <rewrite url="^(.*)/(.*)/dtopic/(.*)/(.*)/(\?(.+))?$" to="$1/$2.aspx?topicId=$3&amp;$6" name="DiscussionTopic" defaultPage="~/MonoX/Pages/SocialNetworking/Discussion.aspx" urlPattern="~/{PageName}/dtopic/{TopicId}/{Slug}/" />
       <rewrite url="^(.*)/(.*)/dfilter/(.*)/(.*)/(.*)/(.*)/(\?(.+))?$" to="$1/$2.aspx?tftype=$3&amp;$5=$6&amp;$8" name="DiscussionTopicFilterPaged" defaultPage="~/MonoX/Pages/SocialNetworking/Discussion.aspx" urlPattern="~/{PageName}/dfilter/{FilterType}/{Slug}/" />
       <rewrite url="^(.*)/(.*)/dfilter/(.*)/(.*)/(\?(.+))?$" to="$1/$2.aspx?tftype=$3&amp;$6" name="DiscussionTopicFilter" defaultPage="~/MonoX/Pages/SocialNetworking/Discussion.aspx" urlPattern="~/{PageName}/dfilter/{FilterType}/{Slug}/" />
       <rewrite url="^(.*)/(.*)/dfilter-tag/(.*)/(.*)/(.*)/(.*)/(\?(.+))?$" to="$1/$2.aspx?tftype=$3&amp;dbtTag=$4&amp;$5=$6&amp;$8" name="DiscussionTopicTagFilterPaged" defaultPage="~/MonoX/Pages/SocialNetworking/Discussion.aspx" urlPattern="~/{PageName}/dfilter-tag/{FilterType}/{Slug}/" />
       <rewrite url="^(.*)/(.*)/dfilter-tag/(.*)/(.*)/(\?(.+))?$" to="$1/$2.aspx?tftype=$3&amp;dbtTag=$4&amp;$6" name="DiscussionTopicTagFilter" defaultPage="~/MonoX/Pages/SocialNetworking/Discussion.aspx" urlPattern="~/{PageName}/dfilter-tag/{FilterType}/{Slug}/" />
       <rewrite url="^(.*)/(.*)/dmessage/(.*)/(.*)/(.*)/(.*)/(\?(.+))?$" to="$1/$2.aspx?dmsgId=$3&amp;dmsgMode=$4&amp;$5=$6&amp;$8" name="DiscussionEditMessagePaged" defaultPage="~/MonoX/Pages/SocialNetworking/Discussion.aspx" urlPattern="~/{PageName}/dmessage/{MessageId}/{Mode}/" />
-	  <rewrite url="^(.*)/(.*)/dmessage/(.*)/(.*)/(\?(.+))?$" to="$1/$2.aspx?dmsgId=$3&amp;dmsgMode=$4&amp;$6" name="DiscussionEditMessage" defaultPage="~/MonoX/Pages/SocialNetworking/Discussion.aspx" urlPattern="~/{PageName}/dmessage/{MessageId}/{Mode}/" />
+      <rewrite url="^(.*)/(.*)/dmessage/(.*)/(.*)/(\?(.+))?$" to="$1/$2.aspx?dmsgId=$3&amp;dmsgMode=$4&amp;$6" name="DiscussionEditMessage" defaultPage="~/MonoX/Pages/SocialNetworking/Discussion.aspx" urlPattern="~/{PageName}/dmessage/{MessageId}/{Mode}/" />
       <!-- dynamic content page -->
       <rewrite url="^(.*)/ContentPage/(.*)/(\?(.+))?$" to="$1/MonoX/Pages/Content.aspx?hdci=$2&amp;$4" name="ContentPage" urlPattern="~/ContentPage/{ContentId}/" />
       <!-- mobile dynamic content page -->
@@ -241,7 +241,7 @@
     <add key="NewsPublisherRoleName" value="Publishers" />
     <add key="AdManagerRoles" value="AdManager,Administrators" />
     <add key="BlogAdministratorRoles" value="Administrators,Publishers" />
-	  <add key="CalendarAdministratorRoles" value="Administrators,Publishers" />
+    <add key="CalendarAdministratorRoles" value="Administrators,Publishers" />
     <add key="DiscussionAdministratorRoles" value="Administrators,Publishers" />
     <add key="PhotoGalleryAdministratorRoles" value="Administrators,Publishers" />
     <add key="NewsEditorRoles" value="NewsEditors" />
@@ -410,48 +410,79 @@
     <add key="MetaViewportValue" value="width=device-width" />
     <!-- DOCTYPE declaration for all pages. If empty, defaults to XHTML. Enter like this: &lt;!DOCTYPE html&gt;" -->
     <add key="Doctype" value="&lt;!DOCTYPE html>" />
-  </appSettings>
-	<connectionStrings>
-		<remove name="LocalSqlServer" />
-    <add name="LocalSqlServer" connectionString="Data Source=(local);uid=MonoX;pwd=#######;database=MonoX2;Connect Timeout=300;" providerName="System.Data.SqlClient" />
-    <!--<add name="ADConnectionString" connectionString="LDAP://server.domain" />-->
-  </connectionStrings>
-	<system.web>
-    <securityPolicy>
-      <trustLevel name="MediumMonoX" policyFile="web_mediumtrust.monox.config" /> 
-    </securityPolicy>
-    <trust level="Full" legacyCasModel="true" />
-    <webParts enableExport="true">
-			<personalization defaultProvider="SqlBlobPersonalizationProvider">
-				<providers>
-					<add connectionStringName="LocalSqlServer" applicationName="MonoX" name="SqlBlobPersonalizationProvider" type="MonoSoftware.MonoX.VersionedPersonalizationProvider" varyByParams="none" varyByCustom="LanguageId" />
-				</providers>
-				<authorization>
-					<allow verbs="enterSharedScope, modifyState" roles="Administrators,Users" />
-				</authorization>
-			</personalization>
-		</webParts>
-		<membership defaultProvider="AspNetSqlMembershipProvider" hashAlgorithmType="SHA1">
-      <providers>
-				<remove name="AspNetSqlMembershipProvider" />				
-        <add connectionStringName="LocalSqlServer" enablePasswordRetrieval="true" enablePasswordReset="true" requiresQuestionAndAnswer="false" applicationName="MonoX" requiresUniqueEmail="true" passwordFormat="Clear" maxInvalidPasswordAttempts="5" minRequiredPasswordLength="7" minRequiredNonalphanumericCharacters="0" passwordAttemptWindow="10" passwordStrengthRegularExpression="" name="AspNetSqlMembershipProvider" type="MonoSoftware.MonoX.MonoXMembershipProvider, MonoX" />
-        <!-- <add name="ActiveDirectoryMembershipProvider" type="MonoSoftware.MonoX.ActiveDirectoryMembershipProvider" connectionStringName="ADConnectionString" attributeMapUsername="sAMAccountName" applicationName="MonoX"
+    </appSettings>
+    <connectionStrings>
+      <remove name="LocalSqlServer" />
+      <add name="LocalSqlServer" connectionString="Data Source=(local);uid=MonoX;pwd=#######;database=MonoX2;Connect Timeout=300;" providerName="System.Data.SqlClient" />
+      <!--<add name="ADConnectionString" connectionString="LDAP://server.domain" />-->
+    </connectionStrings>
+
+    <system.web>
+      <securityPolicy>
+        <trustLevel name="MediumMonoX" policyFile="web_mediumtrust.monox.config" /> 
+      </securityPolicy>
+
+      <trust level="Full" legacyCasModel="true" />
+
+      <webParts enableExport="true">
+        <personalization defaultProvider="SqlBlobPersonalizationProvider">
+          <providers>
+            <add connectionStringName="LocalSqlServer" applicationName="MonoX" name="SqlBlobPersonalizationProvider" type="MonoSoftware.MonoX.VersionedPersonalizationProvider" varyByParams="none" varyByCustom="LanguageId" />
+          </providers>
+          <authorization>
+            <allow verbs="enterSharedScope, modifyState" roles="Administrators,Users" />
+          </authorization>
+        </personalization>
+      </webParts>
+
+      <membership defaultProvider="AspNetSqlMembershipProvider" hashAlgorithmType="SHA1">
+        <providers>
+          <remove name="AspNetSqlMembershipProvider" />				
+          <add name="AspNetSqlMembershipProvider"
+            connectionStringName="LocalSqlServer"
+            enablePasswordRetrieval="true"
+            enablePasswordReset="true"
+            requiresQuestionAndAnswer="false"
+            applicationName="MonoX"
+            requiresUniqueEmail="true"
+            passwordFormat="Clear"
+            maxInvalidPasswordAttempts="5"
+            minRequiredPasswordLength="7"
+            minRequiredNonalphanumericCharacters="0"
+            passwordAttemptWindow="10"
+            passwordStrengthRegularExpression=""
+            type="MonoSoftware.MonoX.MonoXMembershipProvider, MonoX"
+            />
+          <!--
+          <add name="ActiveDirectoryMembershipProvider" type="MonoSoftware.MonoX.ActiveDirectoryMembershipProvider" connectionStringName="ADConnectionString" attributeMapUsername="sAMAccountName" applicationName="MonoX"
          connectionUsername="username@yourdomain"
-         connectionPassword="pwd" /> -->
-      </providers>
-		</membership>
-		<authentication mode="Forms">
-			<forms name=".MonoX2" slidingExpiration="true" cookieless="UseCookies" protection="All" timeout="129600" loginUrl="~/login.aspx" />
-		</authentication>
-    <identity impersonate="false" />
-    <globalization requestEncoding="utf-8" responseEncoding="utf-8" fileEncoding="utf-8" culture="en-US" uiCulture="en-US" />
-		<!--<globalization requestEncoding="utf-8" responseEncoding="utf-8" fileEncoding="utf-8" culture="auto:en" uiCulture="auto:en" />                 -->
-		<!--<globalization requestEncoding="windows-1250" responseEncoding="windows-1250" fileEncoding="windows-1250" culture="hr-HR" uiCulture="hr-HR"/>-->
-    <roleManager enabled="true" defaultProvider="AspNetSqlRoleProvider">
-			<providers>
-				<remove name="AspNetSqlRoleProvider" />
-				<add connectionStringName="LocalSqlServer" applicationName="MonoX" name="AspNetSqlRoleProvider" type="MonoSoftware.MonoX.MonoXRoleProvider, MonoX" />
-        <!--<add applicationName="MonoX" name="ActiveDirectoryRoleProvider" type="MonoSoftware.MonoX.ActiveDirectoryRoleProvider" connectionStringName="ADConnectionString" 
+         connectionPassword="pwd" />
+         -->
+        </providers>
+      </membership>
+
+      <authentication mode="Forms">
+        <forms name=".MonoX2"
+          slidingExpiration="true"
+          cookieless="UseCookies"
+          protection="All"
+          timeout="129600"
+          loginUrl="~/login.aspx"
+          domain="clipflair.net"          
+          />
+      </authentication>
+
+      <identity impersonate="false" />
+
+      <globalization requestEncoding="utf-8" responseEncoding="utf-8" fileEncoding="utf-8" culture="en-US" uiCulture="en-US" />
+      <!--<globalization requestEncoding="utf-8" responseEncoding="utf-8" fileEncoding="utf-8" culture="auto:en" uiCulture="auto:en" />                 -->
+      <!--<globalization requestEncoding="windows-1250" responseEncoding="windows-1250" fileEncoding="windows-1250" culture="hr-HR" uiCulture="hr-HR"/>-->
+
+      <roleManager enabled="true" defaultProvider="AspNetSqlRoleProvider">
+        <providers>
+          <remove name="AspNetSqlRoleProvider" />
+          <add connectionStringName="LocalSqlServer" applicationName="MonoX" name="AspNetSqlRoleProvider" type="MonoSoftware.MonoX.MonoXRoleProvider, MonoX" />
+          <!--<add applicationName="MonoX" name="ActiveDirectoryRoleProvider" type="MonoSoftware.MonoX.ActiveDirectoryRoleProvider" connectionStringName="ADConnectionString" 
           groupMode="Additive" 
           groupsToUse=""
           groupsToIgnore=""
@@ -462,22 +493,24 @@
           userName="username@domain"
           password="pwd"
         /> -->
-      </providers>
-		</roleManager>
-    <pages theme="Default" validateRequest="false" enableEventValidation="false" controlRenderingCompatibilityVersion="3.5" clientIDMode="AutoID">
+        </providers>
+      </roleManager>
+
+      <pages theme="Default" validateRequest="false" enableEventValidation="false" controlRenderingCompatibilityVersion="3.5" clientIDMode="AutoID">
         <controls>
-            <add tagPrefix="MonoX" tagName="StyledButton" src="~/MonoX/controls/StyledButton.ascx" />            
+          <add tagPrefix="MonoX" tagName="StyledButton" src="~/MonoX/controls/StyledButton.ascx" />            
         </controls>        
-    </pages>
-		<!--
+      </pages>
+
+      <!--
           Set compilation debug="true" to insert debugging
           symbols into the compiled page. Because this
           affects performance, set this value to true only
           during development.
     -->
-		<!-- batch="false" cause of Nested master page issue ... Case exception on nested Master page -->
-    <compilation debug="false" batch="true" defaultLanguage="c#" targetFramework="4.0">
-       <assemblies>
+      <!-- batch="false" cause of Nested master page issue ... Case exception on nested Master page -->
+      <compilation debug="false" batch="true" defaultLanguage="c#" targetFramework="4.0">
+        <assemblies>
           <add assembly="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=B77A5C561934E089" />
           <add assembly="System.Transactions, Version=4.0.0.0, Culture=neutral, PublicKeyToken=B77A5C561934E089" />
           <add assembly="System.Design, Version=4.0.0.0, Culture=neutral, PublicKeyToken=B03F5F7F11D50A3A" />
@@ -496,47 +529,52 @@
           <add assembly="System.Runtime.Remoting, Version=4.0.0.0, Culture=neutral, PublicKeyToken=B77A5C561934E089" />
           <add assembly="System.Web.Extensions.Design, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31BF3856AD364E35" />
           <add assembly="MonoX.Localization" />
-       </assemblies>
-       <expressionBuilders>
+        </assemblies>
+        <expressionBuilders>
           <add expressionPrefix="Code" type="MonoSoftware.Web.CodeExpressionBuilder" />
-       </expressionBuilders>
-    </compilation>
-		<httpHandlers>
-			<remove verb="POST,GET" path="MonoSoftware.MonoX.Upload.axd" />
-			<add verb="POST,GET" path="MonoSoftware.MonoX.Upload.axd" type="MonoSoftware.MonoX.Upload" />
-			<remove verb="POST,GET" path="MonoSoftware.MonoX.GetImage.axd" />
-			<add verb="POST,GET" path="MonoSoftware.MonoX.GetImage.axd" type="MonoSoftware.MonoX.GetImage" />
-            <add verb="*" path="Thumbnailer.ashx" type="MonoSoftware.MonoX.Thumbnailer, MonoX" />
-			<!--Note: These Hanlders will optimize css and script content-->
-			<!--Note: To Enable these handlers you need to set css and js files to be parsed by aspnet_isapi.dll in IIS Application configuration-->
-			<!--<add verb="*" path="*.css" type="MonoSoftware.Web.WAO.Handlers.CssHandler, MonoSoftware.Web.WAO" validate="false"/>-->
-			<!--<add verb="*" path="*.js" type="MonoSoftware.Web.WAO.Handlers.ScriptHandler, MonoSoftware.Web.WAO" validate="false"/>-->
-            <add path="Telerik.RadUploadProgressHandler.ashx" type="Telerik.Web.UI.RadUploadProgressHandler" verb="*" validate="false" />
-			<add verb="*" path="SiteMap.ashx" type="MonoSoftware.MonoX.SiteMap.SiteMap, MonoX" />
-            <add path="Telerik.Web.UI.DialogHandler.aspx" verb="*" type="Telerik.Web.UI.DialogHandler, Telerik.Web.UI" validate="false" />
-            <add path="Telerik.Web.UI.WebResource.axd" verb="*" type="Telerik.Web.UI.WebResource, Telerik.Web.UI" />
-            <add verb="*" path="CaptchaHandler.ashx" type="MonoSoftware.Web.Controls.Captcha.CaptchaHandler, MonoSoftware.Web" />
-            <add verb="*" path="*.sauth" type="Brickred.SocialAuth.NET.Core.CallbackHandler" />
-		</httpHandlers>
-		<httpRuntime maxRequestLength="1550000" enableVersionHeader="false" requestValidationMode="2.0" />
-		<httpModules>
-			<add type="MonoSoftware.UrlRewriter.RewriterHttpModule, MonoSoftware.UrlRewriter" name="UrlRewriter" />
-			<add name="CompressionModule" type="MonoSoftware.Web.WAO.HttpCompress.HttpCompressModule, MonoSoftware.Web.WAO" />
-            <add name="RadUploadModule" type="Telerik.Web.UI.RadUploadHttpModule" />
-            <add name="WildCardExtensionFix" type="MonoSoftware.MonoX.WildCardExtensionFix, MonoX" />
-			<add name="OpenSocialModule" type="MonoSoftware.MonoX.OpenSocial.OpenSocialHttpModule, MonoX" />
-            <add name="SocialAuthAuthentication" type="Brickred.SocialAuth.NET.Core.SocialAuthHttpModule" />
-        </httpModules>
-		<!-- Asp.Net compiles the profile to the App_Code.dll which can't be shiped with the MonoX CMS because custom projects needs to have ability of having custom code put in to the Asp.net folder App_Code (which is compile it to the App_Code.dll) -->
-    <!--"System.Collections.Specialized.StringCollection" type is added to show that complex types are ignored for now-->
-    <profile enabled="true" defaultProvider="AspNetSqlProfileProvider">
-      <providers>
-        <remove name="AspNetSqlProfileProvider" />
-        <add name="AspNetSqlProfileProvider" connectionStringName="LocalSqlServer" applicationName="MonoX" type="System.Web.Profile.SqlProfileProvider" />
-      </providers>
-      <properties />
-    </profile>
-    <!--<profile enabled="true" defaultProvider="AspNetSqlProfileProvider"  >
+        </expressionBuilders>
+      </compilation>
+
+      <httpHandlers>
+        <remove verb="POST,GET" path="MonoSoftware.MonoX.Upload.axd" />
+        <add verb="POST,GET" path="MonoSoftware.MonoX.Upload.axd" type="MonoSoftware.MonoX.Upload" />
+        <remove verb="POST,GET" path="MonoSoftware.MonoX.GetImage.axd" />
+        <add verb="POST,GET" path="MonoSoftware.MonoX.GetImage.axd" type="MonoSoftware.MonoX.GetImage" />
+        <add verb="*" path="Thumbnailer.ashx" type="MonoSoftware.MonoX.Thumbnailer, MonoX" />
+        <!--Note: These Hanlders will optimize css and script content-->
+        <!--Note: To Enable these handlers you need to set css and js files to be parsed by aspnet_isapi.dll in IIS Application configuration-->
+        <!--<add verb="*" path="*.css" type="MonoSoftware.Web.WAO.Handlers.CssHandler, MonoSoftware.Web.WAO" validate="false"/>-->
+        <!--<add verb="*" path="*.js" type="MonoSoftware.Web.WAO.Handlers.ScriptHandler, MonoSoftware.Web.WAO" validate="false"/>-->
+        <add path="Telerik.RadUploadProgressHandler.ashx" type="Telerik.Web.UI.RadUploadProgressHandler" verb="*" validate="false" />
+        <add verb="*" path="SiteMap.ashx" type="MonoSoftware.MonoX.SiteMap.SiteMap, MonoX" />
+        <add path="Telerik.Web.UI.DialogHandler.aspx" verb="*" type="Telerik.Web.UI.DialogHandler, Telerik.Web.UI" validate="false" />
+        <add path="Telerik.Web.UI.WebResource.axd" verb="*" type="Telerik.Web.UI.WebResource, Telerik.Web.UI" />
+        <add verb="*" path="CaptchaHandler.ashx" type="MonoSoftware.Web.Controls.Captcha.CaptchaHandler, MonoSoftware.Web" />
+        <add verb="*" path="*.sauth" type="Brickred.SocialAuth.NET.Core.CallbackHandler" />
+      </httpHandlers>
+
+      <httpRuntime maxRequestLength="1550000" enableVersionHeader="false" requestValidationMode="2.0" />
+
+      <httpModules>
+        <add type="MonoSoftware.UrlRewriter.RewriterHttpModule, MonoSoftware.UrlRewriter" name="UrlRewriter" />
+        <add name="CompressionModule" type="MonoSoftware.Web.WAO.HttpCompress.HttpCompressModule, MonoSoftware.Web.WAO" />
+        <add name="RadUploadModule" type="Telerik.Web.UI.RadUploadHttpModule" />
+        <add name="WildCardExtensionFix" type="MonoSoftware.MonoX.WildCardExtensionFix, MonoX" />
+        <add name="OpenSocialModule" type="MonoSoftware.MonoX.OpenSocial.OpenSocialHttpModule, MonoX" />
+        <add name="SocialAuthAuthentication" type="Brickred.SocialAuth.NET.Core.SocialAuthHttpModule" />
+      </httpModules>
+
+      <!-- Asp.Net compiles the profile to the App_Code.dll which can't be shiped with the MonoX CMS because custom projects needs to have ability of having custom code put in to the Asp.net folder App_Code (which is compile it to the App_Code.dll) -->
+      <!--"System.Collections.Specialized.StringCollection" type is added to show that complex types are ignored for now-->
+      <profile enabled="true" defaultProvider="AspNetSqlProfileProvider">
+        <providers>
+          <remove name="AspNetSqlProfileProvider" />
+          <add name="AspNetSqlProfileProvider" connectionStringName="LocalSqlServer" applicationName="MonoX" type="System.Web.Profile.SqlProfileProvider" />
+        </providers>
+        <properties />
+      </profile>
+      <!--
+    <profile enabled="true" defaultProvider="AspNetSqlProfileProvider"  >
         <providers>
           <remove name="AspNetSqlProfileProvider"/>
           <add name="AspNetSqlProfileProvider" connectionStringName="LocalSqlServer" applicationName="MonoX" type="System.Web.Profile.SqlProfileProvider" />
@@ -562,95 +600,116 @@
           <add name="ClubJoinedYear" type="int"  />
           <add name="MoneyDonated" type="decimal"  />          
         </properties>
-    </profile>-->
-    <customErrors mode="RemoteOnly" defaultRedirect="~/MonoX/Pages/MonoX/Error.aspx">
-			<!--<error statusCode="404" redirect="/ErrorPages/404.aspx" />-->
-		</customErrors>
-		<trace enabled="false" requestLimit="40" localOnly="false" pageOutput="true" />
-		<sessionState timeout="30" />
-    <machineKey validationKey="432F2F845871EE74036D6FA75A7994EE77E2236634DC2C16AE71FC1EC5E482E80E9D0F2ACC281C7EE90BC5427F9FEBB1EE1E1E6B7AD05D2D2FB5FC6EA95843E4" decryptionKey="011D8C69D3102FE12A4AD59D79F6F976706553F1CD9D069A" validation="SHA1" />
-	</system.web>
-	<system.web.extensions>        
-		<scripting>
-            <scriptResourceHandler enableCompression="true" enableCaching="true" />
-		</scripting>
-	</system.web.extensions>
-	<system.webServer>
-    <!-- Applications that require the use of the "+" character in the URL in IIS 7 (for example, for the search box) should leave this setting. This may make your application more vulnerable to malicious URLs so use it with care. -->
-    <security>
-      <requestFiltering allowDoubleEscaping="true">
-        <hiddenSegments>
-          <add segment="ViewState" />
-          <add segment="Logs" />
-          <add segment="FullTextIndexes" />
-          <add segment="RssStorage" />
-        </hiddenSegments>
-      </requestFiltering>
-    </security>
-    <validation validateIntegratedModeConfiguration="false" />
-		<modules runAllManagedModulesForAllRequests="true">
-      <add name="CompressionModule" type="MonoSoftware.Web.WAO.HttpCompress.HttpCompressModule, MonoSoftware.Web.WAO" />
-      <remove name="ScriptModule" />
-      <add name="ScriptModule" preCondition="managedHandler" type="System.Web.Handlers.ScriptModule, System.Web.Extensions, Version=3.5.0.0, Culture=neutral, PublicKeyToken=31BF3856AD364E35" />
-      <add type="MonoSoftware.UrlRewriter.RewriterHttpModule, MonoSoftware.UrlRewriter" name="UrlRewriter" />
-      <add name="RadUploadModule" preCondition="integratedMode" type="Telerik.Web.UI.RadUploadHttpModule" />      
-      <add name="SocialAuthAuthentication" type="Brickred.SocialAuth.NET.Core.SocialAuthHttpModule" />
-      <!-- needed for IIS 7 MVC style routing 
+    </profile>
+    -->
+
+      <customErrors mode="RemoteOnly" defaultRedirect="~/MonoX/Pages/MonoX/Error.aspx">
+        <!--<error statusCode="404" redirect="/ErrorPages/404.aspx" />-->
+      </customErrors>
+
+      <trace enabled="false" requestLimit="40" localOnly="false" pageOutput="true" />
+
+      <sessionState timeout="30" />
+
+      <machineKey
+      validationKey="2545495843598743598435B43598680505898385400BE030E03E09E0A3BAB3AA030B03BABAB3030F003F0030300F85867E1E1E6B7A89758203401EBEA9584325"
+      decryptionKey="123BBAEBEBEBAF2F1FF2F12F3F45562323BBABABDE435567"
+      validation="SHA1"
+      />
+
+    </system.web>
+
+    <system.web.extensions>        
+      <scripting>
+        <scriptResourceHandler enableCompression="true" enableCaching="true" />
+      </scripting>
+    </system.web.extensions>
+
+    <system.webServer>
+      <!-- Applications that require the use of the "+" character in the URL in IIS 7 (for example, for the search box) should leave this setting. This may make your application more vulnerable to malicious URLs so use it with care. -->
+      <security>
+        <requestFiltering allowDoubleEscaping="true">
+          <hiddenSegments>
+            <add segment="ViewState" />
+            <add segment="Logs" />
+            <add segment="FullTextIndexes" />
+            <add segment="RssStorage" />
+          </hiddenSegments>
+        </requestFiltering>
+      </security>
+      <validation validateIntegratedModeConfiguration="false" />
+      <modules runAllManagedModulesForAllRequests="true">
+        <add name="CompressionModule" type="MonoSoftware.Web.WAO.HttpCompress.HttpCompressModule, MonoSoftware.Web.WAO" />
+        <remove name="ScriptModule" />
+        <add name="ScriptModule" preCondition="managedHandler" type="System.Web.Handlers.ScriptModule, System.Web.Extensions, Version=3.5.0.0, Culture=neutral, PublicKeyToken=31BF3856AD364E35" />
+        <add type="MonoSoftware.UrlRewriter.RewriterHttpModule, MonoSoftware.UrlRewriter" name="UrlRewriter" />
+        <add name="RadUploadModule" preCondition="integratedMode" type="Telerik.Web.UI.RadUploadHttpModule" />      
+        <add name="SocialAuthAuthentication" type="Brickred.SocialAuth.NET.Core.SocialAuthHttpModule" />
+        <!-- needed for IIS 7 MVC style routing 
       <add name="UrlRoutingModule" type="System.Web.Routing.UrlRoutingModule, System.Web.Routing, Version=3.5.0.0, Culture=neutral, PublicKeyToken=31BF3856AD364E35" />
       -->
-    </modules>
-	<handlers>
-      <add name="Telerik_RadUploadProgressHandler_ashx" verb="*" preCondition="integratedMode" path="Telerik.RadUploadProgressHandler.ashx" type="Telerik.Web.UI.RadUploadProgressHandler" />
-      <add name="Telerik.Web.UI.DialogHandler" path="Telerik.Web.UI.DialogHandler.aspx" verb="*" type="Telerik.Web.UI.DialogHandler, Telerik.Web.UI" preCondition="integratedMode" />
-      <add name="Telerik.Web.UI.WebResource" path="Telerik.Web.UI.WebResource.axd" verb="*" type="Telerik.Web.UI.WebResource, Telerik.Web.UI" />
-      <add name="SiteMap" verb="*" path="SiteMap.ashx" type="MonoSoftware.MonoX.SiteMap.SiteMap, MonoX" />
-      <remove name="MonoSoftware.MonoX.Upload.axd" />
-      <add name="MonoSoftware.MonoX.Upload.axd" verb="POST,GET" path="MonoSoftware.MonoX.Upload.axd" type="MonoSoftware.MonoX.Upload" />
-      <remove name="MonoSoftware.MonoX.GetImage.axd" />
-      <add name="MonoSoftware.MonoX.GetImage.axd" verb="POST,GET" path="MonoSoftware.MonoX.GetImage.axd" type="MonoSoftware.MonoX.GetImage" />
-      <add name="MonoSoftware.MonoX.Thumbnailer" verb="*" path="Thumbnailer.ashx" type="MonoSoftware.MonoX.Thumbnailer, MonoX" />
-      <add name="CaptchaHandler" verb="*" path="CaptchaHandler.ashx" type="MonoSoftware.Web.Controls.Captcha.CaptchaHandler, MonoSoftware.Web" />
-      <add name="socialAuth.NET" verb="*" path="*.sauth" type="Brickred.SocialAuth.NET.Core.CallbackHandler" />
-      <!--<add name="MonoSoftware.Web.WAO.Handlers.CssHandler" verb="*" path="*.css" type="MonoSoftware.Web.WAO.Handlers.CssHandler, MonoSoftware.Web.WAO" validate="false"/>-->
-      <!--<add name="MonoSoftware.Web.WAO.Handlers.ScriptHandler" verb="*" path="*.js" type="MonoSoftware.Web.WAO.Handlers.ScriptHandler, MonoSoftware.Web.WAO" validate="false"/>-->
-    </handlers>
-    <httpProtocol>
-      <!-- the following are performance optimizations for IIS 7 and higher: remove unneccessary headers, apply client side caching (7 days) for static content and content compression. Remove the compression in case of unespected behavior. -->
-      <customHeaders>
-        <remove name="X-Powered-By" />
-      </customHeaders>
-    </httpProtocol>
-    <!--<httpErrors existingResponse="PassThrough" />-->
-    <httpErrors errorMode="Custom" existingResponse="Replace">
+      </modules>
+      <handlers>
+        <add name="Telerik_RadUploadProgressHandler_ashx" verb="*" preCondition="integratedMode" path="Telerik.RadUploadProgressHandler.ashx" type="Telerik.Web.UI.RadUploadProgressHandler" />
+        <add name="Telerik.Web.UI.DialogHandler" path="Telerik.Web.UI.DialogHandler.aspx" verb="*" type="Telerik.Web.UI.DialogHandler, Telerik.Web.UI" preCondition="integratedMode" />
+        <add name="Telerik.Web.UI.WebResource" path="Telerik.Web.UI.WebResource.axd" verb="*" type="Telerik.Web.UI.WebResource, Telerik.Web.UI" />
+        <add name="SiteMap" verb="*" path="SiteMap.ashx" type="MonoSoftware.MonoX.SiteMap.SiteMap, MonoX" />
+        <remove name="MonoSoftware.MonoX.Upload.axd" />
+        <add name="MonoSoftware.MonoX.Upload.axd" verb="POST,GET" path="MonoSoftware.MonoX.Upload.axd" type="MonoSoftware.MonoX.Upload" />
+        <remove name="MonoSoftware.MonoX.GetImage.axd" />
+        <add name="MonoSoftware.MonoX.GetImage.axd" verb="POST,GET" path="MonoSoftware.MonoX.GetImage.axd" type="MonoSoftware.MonoX.GetImage" />
+        <add name="MonoSoftware.MonoX.Thumbnailer" verb="*" path="Thumbnailer.ashx" type="MonoSoftware.MonoX.Thumbnailer, MonoX" />
+        <add name="CaptchaHandler" verb="*" path="CaptchaHandler.ashx" type="MonoSoftware.Web.Controls.Captcha.CaptchaHandler, MonoSoftware.Web" />
+        <add name="socialAuth.NET" verb="*" path="*.sauth" type="Brickred.SocialAuth.NET.Core.CallbackHandler" />
+        <!--<add name="MonoSoftware.Web.WAO.Handlers.CssHandler" verb="*" path="*.css" type="MonoSoftware.Web.WAO.Handlers.CssHandler, MonoSoftware.Web.WAO" validate="false"/>-->
+        <!--<add name="MonoSoftware.Web.WAO.Handlers.ScriptHandler" verb="*" path="*.js" type="MonoSoftware.Web.WAO.Handlers.ScriptHandler, MonoSoftware.Web.WAO" validate="false"/>-->
+      </handlers>
+      <httpProtocol>
+        <!-- the following are performance optimizations for IIS 7 and higher: remove unneccessary headers, apply client side caching (7 days) for static content and content compression. Remove the compression in case of unespected behavior. -->
+        <customHeaders>
+          <remove name="X-Powered-By" />
+        </customHeaders>
+      </httpProtocol>
+      <!--<httpErrors existingResponse="PassThrough" />-->
+      <httpErrors errorMode="Custom" existingResponse="Replace">
         <remove statusCode="404" subStatusCode="-1" />
         <error statusCode="404" path="/ErrorPages/404.aspx" responseMode="ExecuteURL" />
-    </httpErrors>
-    <staticContent>
-      <clientCache cacheControlMode="UseMaxAge" cacheControlMaxAge="7.00:00:00" />
-    </staticContent>
-    <urlCompression doStaticCompression="true" doDynamicCompression="true" />
-        <defaultDocument>
-            <files>
-                <clear />
-                <add value="Default.aspx" />
-            </files>
-        </defaultDocument>
-  </system.webServer>
-	<system.net>
-		<mailSettings>
+      </httpErrors>
+      <staticContent>
+        <clientCache cacheControlMode="UseMaxAge" cacheControlMaxAge="7.00:00:00" />
+      </staticContent>
+      <urlCompression doStaticCompression="true" doDynamicCompression="true" />
+      <defaultDocument>
+        <files>
+          <clear />
+          <add value="Default.aspx" />
+        </files>
+      </defaultDocument>
+    </system.webServer>
+
+    <system.net>
+      <mailSettings>
         <smtp deliveryMethod="Network" from="xx@gmail.com">
-        <!-- for setting up a local relay that forwards via a gmail account, see http://www.vsysad.com/2014/01/configure-iis-smtp-server-to-use-gmail-to-forward-messages/ -->
+          <!-- for setting up a local relay that forwards via a gmail account, see http://www.vsysad.com/2014/01/configure-iis-smtp-server-to-use-gmail-to-forward-messages/ -->
           <network
             defaultCredentials="false"
             host="clipflair.net"
-            port="xx" <!-- the local relay port -->
+            port="xx"
             />
+          <!-- xx is the local relay port -->
         </smtp>
-		</mailSettings>
-	</system.net>
-	<system.serviceModel>
-		<serviceHostingEnvironment aspNetCompatibilityEnabled="true"></serviceHostingEnvironment>
-	</system.serviceModel>
+      </mailSettings>
+    </system.net>
 
-	<openSocial tokenManager="MonoSoftware.MonoX.BusinessLayer.OAuthTokenManagerBLL, MonoX" authorizationEndpoint="~/MonoX/OpenSocial/OAuth.ashx" authenticationPage="~/MonoX/OpenSocial/OpenSocialAuthorizationPage.aspx" dataAccessAdapter="MonoSoftware.MonoX.OpenSocial.MonoXOpenSocialDataAccessAdpater, MonoX" />
-</configuration>
+    <system.serviceModel>
+      <serviceHostingEnvironment aspNetCompatibilityEnabled="true"/>
+    </system.serviceModel>
+
+    <openSocial
+      tokenManager="MonoSoftware.MonoX.BusinessLayer.OAuthTokenManagerBLL, MonoX"
+      authorizationEndpoint="~/MonoX/OpenSocial/OAuth.ashx"
+      authenticationPage="~/MonoX/OpenSocial/OpenSocialAuthorizationPage.aspx"
+      dataAccessAdapter="MonoSoftware.MonoX.OpenSocial.MonoXOpenSocialDataAccessAdpater, MonoX"
+      />
+  </configuration>
+  
