@@ -13,6 +13,7 @@ Version: 20130703
   <String Value="Concert" />
   <String Value="Documentary" />
   <String Value="Drama" />
+  <String Value="Romance" />
   <String Value="Educational" />
   <String Value="Factual" />
   <String Value="Fiction" />
