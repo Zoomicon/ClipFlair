@@ -3,6 +3,8 @@
 # use glob syntax
 syntax: glob
 
+web.config
+
 # Ignore Visual Studio files
 *.pfx
 *.obj
