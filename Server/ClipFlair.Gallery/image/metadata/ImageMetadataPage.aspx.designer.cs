@@ -40,6 +40,24 @@ namespace ClipFlair.Gallery {
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
         
         /// <summary>
+        /// loginName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LoginName loginName;
+        
+        /// <summary>
+        /// loginStatus control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LoginStatus loginStatus;
+        
+        /// <summary>
         /// listItems control.
         /// </summary>
         /// <remarks>

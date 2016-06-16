@@ -2,11 +2,12 @@
 
 <!--
 Project: ClipFlair (http://ClipFlair.codeplex.com)
-Filename: ClipFlair.Gallery/image/metadata/Language.xml
-Version: 20140206
+Filename: Language.xml
+Version: 20160616
 -->
 
 <Facet Name="Language">
+  <String Value="Any language" />
   <String Value="None" />
   <String Value="Albanian" />
   <String Value="Arabic" />
@@ -45,5 +46,5 @@ Version: 20140206
   <String Value="Swedish" />
   <String Value="Turkish" />
   <String Value="Ukrainian" />
-  <!-- TODO -->  
+  <!-- TODO -->
 </Facet>

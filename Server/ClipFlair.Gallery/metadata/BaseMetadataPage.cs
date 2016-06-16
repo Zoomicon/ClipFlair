@@ -1,6 +1,6 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
 //Filename: BaseMetadataPage.cs
-//Version: 20140620
+//Version: 20160616
 
 using Metadata.CXML;
 
@@ -66,7 +66,20 @@ namespace ClipFlair.Gallery
         return null;
       }
     }
-    
+
+    #region --- Authorization ---
+
+    protected bool IsUserAllowedToSave(string itemType)
+    {
+      return (Request.IsAuthenticated &&
+              (User.IsInRole("Administrators") ||
+               User.IsInRole("MetadataEditors") ||
+               User.IsInRole("MetadataEditors_" + itemType)
+              ));
+    }
+
+    #endregion
+
     #region --- Select ---
 
     public void UpdateSelection(string key)
