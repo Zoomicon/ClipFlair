@@ -5,7 +5,7 @@
 <!--
 Project: ClipFlair (http://ClipFlair.codeplex.com)
 Filename: ImageMetadataPage.aspx
-Version: 20140717
+Version: 20160616
 -->
 
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -17,10 +17,11 @@ Version: 20140717
   </head>
 
   <body>
-    <asp:XmlDataSource ID="xmlLanguage" runat="server" DataFile="~/video/metadata/Language.xml" XPath="Facet/String" />
-    <asp:XmlDataSource ID="xmlAgeGroup" runat="server" DataFile="~/activity/metadata/AgeGroup.xml" XPath="Facet/String" />
+    <asp:XmlDataSource ID="xmlLanguage" runat="server" DataFile="~/metadata/Language.xml" XPath="Facet/String" />
+    <asp:XmlDataSource ID="xmlAgeGroup" runat="server" DataFile="~/metadata/AgeGroup.xml" XPath="Facet/String" />
 
     <%-- NAVIGATION MENU --%>
+
     <div class="navigation">
        <a href="../../activity/metadata/">Activity Metadata</a>
        &nbsp;&nbsp;-&nbsp;&nbsp;
@@ -30,15 +31,21 @@ Version: 20140717
     </div>
 
     <%-- INSTRUCTIONS BOX --%>
+
     <div class="instructions">
-    Please fill in the following information for the image of your choice. Select the image from the dropdown list.<br />
-    Try to fill the metadata as fully and accurately as possible, as they will be used for searching and filtering images.<br />
-    Don't forget to press the SAVE METADATA button. Thank you!
+      Please fill in the following information for the image of your choice. Select the image from the dropdown list.<br />
+      Try to fill the metadata as fully and accurately as possible, as they will be used for searching and filtering images.<br />
+      Don't forget to press the SAVE METADATA button. Thank you!
     </div>
 
     <form id="form1" runat="server">
 
+      <%-- LOGIN STATUS --%>
+
+      <asp:LoginName ID="loginName" runat="server" FormatString="Welcome {0}!" /> [<asp:LoginStatus ID="loginStatus" runat="server"/>]
+
       <%-- INFO BOX --%>
+
       <div class="bar">
 
         <div class="label">Image file</div> 
@@ -62,6 +69,7 @@ Version: 20140717
       </div>
 
       <%-- METADATA INPUT UI --%>
+
       <asp:Panel ID="uiMetadata" runat="server" Visible="false">
 
         <div>

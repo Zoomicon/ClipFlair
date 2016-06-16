@@ -57,40 +57,44 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Web" />
+    <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System.XML" />
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="activity\Default.aspx" />
     <Content Include="activity\favicon.ico" />
-    <Content Include="activity\metadata\AgeGroup.xml">
+    <Content Include="Login.aspx" />
+    <Content Include="metadata\AgeGroup.xml">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="activity\metadata\AVSkills.xml">
+    <Content Include="metadata\AVSkills.xml">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="activity\metadata\LearnerType.xml">
+    <Content Include="metadata\LearnerType.xml">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="activity\metadata\TasksCaptioning.xml">
+    <Content Include="metadata\TasksCaptioning.xml">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="activity\metadata\TasksRevoicing.xml">
+    <Content Include="metadata\TasksRevoicing.xml">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="activity\metadata\Responses.xml">
+    <Content Include="metadata\Responses.xml">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="activity\metadata\Skills.xml">
+    <Content Include="metadata\Skills.xml">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="activity\metadata\Level.xml">
+    <Content Include="metadata\Level.xml">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="activity\metadata\LanguageCombination.xml">
+    <Content Include="metadata\LanguageCombination.xml">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="activity\metadata\Language.xml" />
+    <Content Include="metadata\Language.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="activity\metadata\ActivityMetadataPage.aspx" />
     <Content Include="ClientAccessPolicy.xml">
       <SubType>Designer</SubType>
@@ -129,11 +133,7 @@
     <Content Include="favicon.ico" />
     <Content Include="image\Default.aspx" />
     <Content Include="image\favicon.ico" />
-    <Content Include="image\metadata\AgeGroup.xml">
-      <SubType>Designer</SubType>
-    </Content>
     <Content Include="image\metadata\ImageMetadataPage.aspx" />
-    <Content Include="image\metadata\Language.xml" />
     <Content Include="index.html" />
     <Content Include="css\style-ie.css" />
     <Content Include="css\style.css" />
@@ -145,14 +145,10 @@
     <Content Include="metadata\Default.aspx" />
     <Content Include="video\Default.aspx" />
     <Content Include="video\favicon.ico" />
-    <Content Include="video\metadata\AgeGroup.xml">
+    <Content Include="metadata\Genre.xml">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="video\metadata\Genre.xml">
-      <SubType>Designer</SubType>
-    </Content>
-    <Content Include="video\metadata\Language.xml" />
-    <Content Include="video\metadata\AudiovisualRichness.xml" />
+    <Content Include="metadata\AudiovisualRichness.xml" />
     <Content Include="video\metadata\VideoMetadataPage.aspx" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -169,6 +165,13 @@
     </Compile>
     <Compile Include="activity\metadata\ActivityMetadataPage.aspx.designer.cs">
       <DependentUpon>ActivityMetadataPage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Login.aspx.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Login.aspx.designer.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
     </Compile>
     <Compile Include="metadata\BaseMetadataPage.cs">
       <SubType>ASPXCodeBehind</SubType>
@@ -194,40 +197,10 @@
     <Content Include="video\metadata\Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="video\metadata\Web.Debug.config">
-      <DependentUpon>Web.config</DependentUpon>
-    </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="video\metadata\Web.Release.config">
-      <DependentUpon>Web.config</DependentUpon>
-    </Content>
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="activity\metadata\Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="activity\metadata\Web.Debug.config">
-      <DependentUpon>Web.config</DependentUpon>
-    </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="activity\metadata\Web.Release.config">
-      <DependentUpon>Web.config</DependentUpon>
-    </Content>
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="image\metadata\Web.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="image\metadata\Web.Debug.config">
-      <DependentUpon>Web.config</DependentUpon>
-    </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="image\metadata\Web.Release.config">
-      <DependentUpon>Web.config</DependentUpon>
-    </Content>
   </ItemGroup>
   <ItemGroup>
     <Content Include="ClipFlair.Gallery.cd" />

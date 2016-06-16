@@ -5,7 +5,7 @@
 <!--
 Project: ClipFlair (http://ClipFlair.codeplex.com)
 Filename: ActivityMetadataPage.aspx
-Version: 20140717
+Version: 20160616
 -->
 
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -18,19 +18,21 @@ Version: 20140717
 
   <body>
         
-    <asp:XmlDataSource ID="xmlLanguage" runat="server" DataFile="~/activity/metadata/Language.xml" XPath="Facet/String" />
-    <asp:XmlDataSource ID="XmlLanguageCombination" runat="server" DataFile="~/activity/metadata/LanguageCombination.xml" XPath="Facet/String" />
-    <asp:XmlDataSource ID="XmlLevel" runat="server" DataFile="~/activity/metadata/Level.xml" XPath="Facet/String" />
-    <asp:XmlDataSource ID="xmlFromSkills" runat="server" DataFile="~/activity/metadata/Skills.xml" XPath="Facet/String" />
-    <asp:XmlDataSource ID="xmlToSkills" runat="server" DataFile="~/activity/metadata/Skills.xml" XPath="Facet/String" />
-    <asp:XmlDataSource ID="xmlAVSkills" runat="server" DataFile="~/activity/metadata/AVSkills.xml" XPath="Facet/String" />
-    <asp:XmlDataSource ID="xmlResponses" runat="server" DataFile="~/activity/metadata/Responses.xml" XPath="Facet/String" />
-    <asp:XmlDataSource ID="xmlTasksRevoicing" runat="server" DataFile="~/activity/metadata/TasksRevoicing.xml" XPath="Facet/String" />
-    <asp:XmlDataSource ID="xmlTasksCaptioning" runat="server" DataFile="~/activity/metadata/TasksCaptioning.xml" XPath="Facet/String" />
-    <asp:XmlDataSource ID="xmlLearnerType" runat="server" DataFile="~/activity/metadata/LearnerType.xml" XPath="Facet/String" />
-    <asp:XmlDataSource ID="xmlAgeGroup" runat="server" DataFile="~/activity/metadata/AgeGroup.xml" XPath="Facet/String" />
+    <%-- DATA SOURCES --%>
+    <asp:XmlDataSource ID="xmlLanguage" runat="server" DataFile="~/metadata/Language.xml" XPath="Facet/String" />
+    <asp:XmlDataSource ID="XmlLanguageCombination" runat="server" DataFile="~/metadata/LanguageCombination.xml" XPath="Facet/String" />
+    <asp:XmlDataSource ID="XmlLevel" runat="server" DataFile="~/metadata/Level.xml" XPath="Facet/String" />
+    <asp:XmlDataSource ID="xmlFromSkills" runat="server" DataFile="~/metadata/Skills.xml" XPath="Facet/String" />
+    <asp:XmlDataSource ID="xmlToSkills" runat="server" DataFile="~/metadata/Skills.xml" XPath="Facet/String" />
+    <asp:XmlDataSource ID="xmlAVSkills" runat="server" DataFile="~/metadata/AVSkills.xml" XPath="Facet/String" />
+    <asp:XmlDataSource ID="xmlResponses" runat="server" DataFile="~/metadata/Responses.xml" XPath="Facet/String" />
+    <asp:XmlDataSource ID="xmlTasksRevoicing" runat="server" DataFile="~/metadata/TasksRevoicing.xml" XPath="Facet/String" />
+    <asp:XmlDataSource ID="xmlTasksCaptioning" runat="server" DataFile="~/metadata/TasksCaptioning.xml" XPath="Facet/String" />
+    <asp:XmlDataSource ID="xmlLearnerType" runat="server" DataFile="~/metadata/LearnerType.xml" XPath="Facet/String" />
+    <asp:XmlDataSource ID="xmlAgeGroup" runat="server" DataFile="~/metadata/AgeGroup.xml" XPath="Facet/String" />
     
     <%-- NAVIGATION MENU --%>
+
     <div class="navigation">
        <a class="selected" href="../../activity/metadata/">Activity Metadata</a>
        &nbsp;&nbsp;-&nbsp;&nbsp;
@@ -40,15 +42,21 @@ Version: 20140717
     </div>
 
     <%-- INSTRUCTION BOX --%>
+
     <div class="instructions">
-    Please fill in the following information for the activity of your choice. Select the activity from the dropdown list.<br />
-    Try to fill the metadata as fully and accurately as possible, as they will be used for searching and filtering activities.<br />
-    Don't forget to press the SAVE METADATA button. Thank you!
+      Please fill in the following information for the activity of your choice. Select the activity from the dropdown list.<br />
+      Try to fill the metadata as fully and accurately as possible, as they will be used for searching and filtering activities.<br />
+      Don't forget to press the SAVE METADATA button. Thank you!
     </div>
 
     <form id="form1" runat="server">
 
+      <%-- LOGIN STATUS --%>
+
+      <asp:LoginName ID="loginName" runat="server" FormatString="Welcome {0}!" /> [<asp:LoginStatus ID="loginStatus" runat="server"/>]
+
       <%-- INFO BOX --%>
+
       <div class="bar">
 
         <div class="label">Activity file</div> 
@@ -72,6 +80,7 @@ Version: 20140717
       </div>
 
       <%-- METADATA INPUT UI --%>
+
       <asp:Panel ID="uiMetadata" runat="server" Visible="false">
 
         <div>
