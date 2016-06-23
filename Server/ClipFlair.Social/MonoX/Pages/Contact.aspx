@@ -16,8 +16,9 @@
 <script language="C#" runat="server">  
   private void ContactForm_BeforeSendMail(System.Net.Mail.MailMessage mailMessage, System.ComponentModel.CancelEventArgs e)
   {
-    mailMessage.Body = "from: " + mailMessage.From + "\n\n" + mailMessage.Body;  
-    mailMessage.From = new System.Net.Mail.MailAddress("ClipFlair@gmail.com");
+    mailMessage.IsBodyHtml = true;
+    mailMessage.Body = "From: " + mailMessage.From.DisplayName + " (" +  mailMessage.From.Address + ")<br /><br />" + mailMessage.Body.Replace("\n", "<br />");
+    mailMessage.From = new System.Net.Mail.MailAddress("ClipFlair <ClipFlair@gmail.com>");
   }
 </script>
 
