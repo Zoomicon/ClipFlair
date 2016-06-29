@@ -1315,20 +1315,24 @@ HEADER NAV UL LI.selected A
 /**** Main - END ****/
 
 /**** Search Results - START ****/
+
 .search-results
 {
 	padding: 75px 0 40px 0;
 }
+
 .search-results .separator
 {
 	margin: -90px 0px;
 }
+
 .search-results H1
 {
 	margin-bottom: 0px;
 	text-align: center;
 	font-size: 40px;
 }
+
 .search-results H2
 {
 	margin-bottom: 0px;
@@ -1338,6 +1342,7 @@ HEADER NAV UL LI.selected A
     padding-bottom:10px;
     /*/!!!*/
 }
+
 .search-results P
 {
 	margin-bottom: 0px;
@@ -1346,6 +1351,7 @@ HEADER NAV UL LI.selected A
     line-height: 28px !important;
     /*/!!!*/
 }
+
 .search-results .date
 {
 	/*!!!margin-bottom: 20px;*/
@@ -1370,9 +1376,11 @@ HEADER NAV UL LI.selected A
     /*/!!!*/
      
 }
+
 .search-results .search-item:first-child {
     padding-top:0;
 }
+
 .search-results .search-item B
 {
 	/*!!!background: #555;*/
@@ -1384,6 +1392,12 @@ HEADER NAV UL LI.selected A
 	font-weight: normal;
 	padding: 0px 3px;
 }
+
+.searchImage
+{
+  margin: 5px;
+}
+
 /**** Search Results - END ****/
 
 /**** Sidebar - START ****/
