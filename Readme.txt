@@ -26,6 +26,14 @@ Features list
 1386 ClipFlair Home Page (NxN Grid Tiles, HTML / SVG)
 
 
+NuGet packages
+--------------
+
+Some functionality has been split to separate repositories and is made available via NuGet packages, also used by this project:
+- Compatibility: http://github.com/Zoomicon/Compatibility
+- ZUI: http://github.com/Zoomicon/ZUI
+
+
 Prerequisites
 -------------
 
