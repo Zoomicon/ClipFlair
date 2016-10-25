@@ -1,5 +1,5 @@
 ﻿//Project: ClipFlair (http://ClipFlair.codeplex.com)
-//Filename: VideoMetadataPage.aspx.cs
+//Filename: default.aspx.cs
 //Version: 20160430
 
 using ClipFlair.Metadata;

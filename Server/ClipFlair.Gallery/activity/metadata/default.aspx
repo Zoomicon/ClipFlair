@@ -1,11 +1,11 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ActivityMetadataPage.aspx.cs" Inherits="ClipFlair.Gallery.ActivityMetadataPage" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="default.aspx.cs" Inherits="ClipFlair.Gallery.ActivityMetadataPage" %>
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 
 <!--
 Project: ClipFlair (http://ClipFlair.codeplex.com)
-Filename: ActivityMetadataPage.aspx
-Version: 20160616
+Filename: activity/metadata/default.aspx
+Version: 20161025
 -->
 
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -83,18 +83,18 @@ Version: 20160616
 
       <asp:Panel ID="uiMetadata" runat="server" Visible="false">
 
-        <div>
-          <div class="label">Title</div>
+        <div class="question" id="Title">
+          <div class="label">1. Title</div>
           <asp:TextBox ID="txtTitle" runat="server" Columns="150"></asp:TextBox>
         </div>
 
-        <div>
-          <div class="label">Description (What, How, Why)</div>
+        <div class="question" id="Description">
+          <div class="label">2. Description (What, How, Why)</div>
           <asp:TextBox ID="txtDescription" runat="server" TextMode="MultiLine" Rows="5" Columns="110"/>
         </div>
      
-        <div style="float: left">
-          <div class="label">For learners of</div>
+        <div class="question" id="ForLearnersOf" style="float: left">
+          <div class="label">3. For learners of</div>
           <asp:Panel runat="server" 
             Height="450" Width="250"
             ScrollBars="Auto">
@@ -105,8 +105,8 @@ Version: 20160616
            </asp:Panel>
         </div>
 
-        <div style="float: left">
-          <div class="label">For speakers of</div>
+        <div class="question" id="ForSpeakersOf" style="float: left">
+          <div class="label">4. For speakers of</div>
           <asp:Panel runat="server" 
             Height="450" Width="250"
             ScrollBars="Auto">
@@ -116,8 +116,8 @@ Version: 20160616
            </asp:Panel>
         </div>
 
-        <div style="float: left">
-          <div class="label">Language combination</div>
+        <div class="question" id="LanguageCombination" style="float: left">
+          <div class="label">5. Language combination</div>
           <asp:Panel runat="server" 
             Height="100" Width="250"
             ScrollBars="Auto">
@@ -127,8 +127,8 @@ Version: 20160616
            </asp:Panel>
         </div>
 
-        <div style="float: left">
-          <div class="label">Level</div>
+        <div class="question" id="Level" style="float: left">
+          <div class="label">6. Level</div>
           <asp:Panel runat="server" 
             Height="50" Width="250"
             ScrollBars="Auto">
@@ -140,13 +140,13 @@ Version: 20160616
            </asp:Panel>
         </div>
      
-        <div style="clear: left">
-          <div class="label">Estimated time (minutes)</div>
+        <div class="question" id="EstimatedTime" style="clear: left">
+          <div class="label">7. Estimated time (minutes)</div>
           <asp:TextBox ID="txtEstimatedTime" runat="server"></asp:TextBox>
         </div> <!-- TODO: add validator for integer -->
    
-        <div style="float: left">
-          <div class="label">From skills</div>
+        <div class="question" id="FromSkills" style="float: left">
+          <div class="label">8. From skills</div>
           <asp:Panel runat="server" 
             Height="100" Width="250"
             ScrollBars="Auto">
@@ -156,8 +156,8 @@ Version: 20160616
            </asp:Panel>
         </div>
 
-        <div style="float: left">
-          <div class="label">To skills</div>
+        <div class="question" id="ToSkills" style="float: left">
+          <div class="label">9. To skills</div>
           <asp:Panel runat="server" 
             Height="100" Width="250"
             ScrollBars="Auto">
@@ -167,8 +167,8 @@ Version: 20160616
            </asp:Panel>
         </div>
 
-        <div style="float: left">
-          <div class="label">AV skills</div>
+        <div class="question" id="AVskills" style="float: left">
+          <div class="label">10. AV skills</div>
           <asp:Panel runat="server" 
             Height="150" Width="250"
             ScrollBars="Auto">
@@ -180,8 +180,8 @@ Version: 20160616
 
         <div style="clear:left; height:0"></div>
 
-        <div style="float: left">
-          <div class="label">Responses</div>
+        <div class="question" id="Responses" style="float: left">
+          <div class="label">11. Responses</div>
           <asp:Panel runat="server" 
             Height="100" Width="250"
             ScrollBars="Auto">
@@ -191,8 +191,8 @@ Version: 20160616
            </asp:Panel>
         </div>
     
-        <div style="float: left">
-          <div class="label">Tasks - Revoicing</div>
+        <div class="question" id="TasksRevoicing" style="float: left">
+          <div class="label">12. Tasks - Revoicing</div>
           <asp:Panel runat="server" 
             Height="130" Width="250"
             ScrollBars="Auto">
@@ -202,8 +202,8 @@ Version: 20160616
            </asp:Panel>
         </div>
      
-        <div style="float: left">
-          <div class="label">Tasks - Captioning</div>
+        <div class="question" id="TasksCaptioning" style="float: left">
+          <div class="label">13. Tasks - Captioning</div>
           <asp:Panel runat="server" 
             Height="100" Width="250"
             ScrollBars="Auto">
@@ -215,8 +215,8 @@ Version: 20160616
 
         <div style="clear: left; height: 0" />
      
-        <div style="float: left">
-          <div class="label">Learner type</div>
+        <div class="question" id="LearnerType" style="float: left">
+          <div class="label">14. Learner type</div>
           <asp:Panel runat="server" 
             Height="100" Width="250"
             ScrollBars="Auto">
@@ -226,13 +226,13 @@ Version: 20160616
            </asp:Panel>
         </div>
 
-        <div style="clear: left">
-          <div class="label">Feedback mode to learner</div>
+        <div class="question" id="FeedbackModeToLearner" style="clear: left">
+          <div class="label">15. Feedback mode to learner</div>
           <asp:TextBox ID="txtFeedbackModeToLearner" runat="server" Columns="150"></asp:TextBox>
         </div>
 
-        <div>
-          <div class="label">Age group</div>
+        <div class="question" id="AgeGroup">
+          <div class="label">16. Age group</div>
           <asp:Panel runat="server" 
             Height="130" Width="250"
             ScrollBars="Auto">
@@ -242,18 +242,18 @@ Version: 20160616
            </asp:Panel>
         </div>     
      
-        <div>
-          <div class="label">Keywords (comma-separated)</div>
+        <div class="question" id="Keywords">
+          <div class="label">17. Keywords (comma-separated)</div>
           <asp:TextBox ID="txtKeywords" runat="server" Columns="150"></asp:TextBox>
         </div>
 
-        <div>
-          <div class="label">Authors / Source (comma-separated)</div>
+        <div class="question" id="AuthorsSource">
+          <div class="label">18. Authors / Source (comma-separated)</div>
           <asp:TextBox ID="txtAuthorSource" runat="server" Columns="150"></asp:TextBox>
         </div>
 
-        <div>
-          <div class="label">License</div>
+        <div class="question" id="License">
+          <div class="label">19. License</div>
           <asp:TextBox ID="txtLicense" runat="server" Columns="150" Text="CC BY-SA 3.0"></asp:TextBox>
         </div>
         
