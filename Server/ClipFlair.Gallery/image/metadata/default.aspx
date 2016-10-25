@@ -1,11 +1,11 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ImageMetadataPage.aspx.cs" Inherits="ClipFlair.Gallery.ImageMetadataPage" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="default.aspx.cs" Inherits="ClipFlair.Gallery.ImageMetadataPage" %>
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 
 <!--
 Project: ClipFlair (http://ClipFlair.codeplex.com)
-Filename: ImageMetadataPage.aspx
-Version: 20160616
+Filename: image/metadata/default.aspx
+Version: 20161025
 -->
 
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -72,18 +72,18 @@ Version: 20160616
 
       <asp:Panel ID="uiMetadata" runat="server" Visible="false">
 
-        <div>
-          <div class="label">Title</div>
+        <div class="question" id="Title">
+          <div class="label">1. Title</div>
           <asp:TextBox ID="txtTitle" runat="server" Columns="150"></asp:TextBox>
         </div>
 
-        <div>
-          <div class="label">Description</div>
+        <div class="question" id="Description">
+          <div class="label">2. Description</div>
           <asp:TextBox ID="txtDescription" runat="server" TextMode="MultiLine" Rows="5" Columns="110" />
         </div>
 
-        <div>
-          <div class="label">Captions language (on image)</div>
+        <div class="question" id="CaptionsLanguage">
+          <div class="label">3. Captions language (on image)</div>
           <asp:Panel runat="server" 
             Height="450" Width="250"
             ScrollBars="Auto">
@@ -93,8 +93,8 @@ Version: 20160616
            </asp:Panel>
         </div>
 
-        <div>
-          <div class="label">Age group</div>
+        <div class="question" id="AgeGroup">
+          <div class="label">4. Age group</div>
           <asp:Panel ID="Panel1" runat="server" 
             Height="130" Width="250"
             ScrollBars="Auto">
@@ -104,18 +104,18 @@ Version: 20160616
            </asp:Panel>
         </div>     
      
-        <div>
-          <div class="label">Keywords (comma-separated)</div>
+        <div class="question" id="Keywords">
+          <div class="label">5. Keywords (comma-separated)</div>
           <asp:TextBox ID="txtKeywords" runat="server" Columns="150"></asp:TextBox>
         </div>
 
-        <div>
-          <div class="label">Authors / Source (comma-separated)</div>
+        <div class="question" id="AuthorsSource">
+          <div class="label">6. Authors / Source (comma-separated)</div>
           <asp:TextBox ID="txtAuthorSource" runat="server" Columns="150"></asp:TextBox>
         </div>
 
-        <div>
-          <div class="label">License</div>
+        <div class="question" id="License">
+          <div class="label">7. License</div>
           <asp:TextBox ID="txtLicense" runat="server" Columns="150" Text="CC BY-SA 3.0"></asp:TextBox>
         </div>
 

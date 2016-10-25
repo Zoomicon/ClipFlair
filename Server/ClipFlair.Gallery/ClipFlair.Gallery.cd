@@ -12,7 +12,7 @@
     </InheritanceLine>
     <TypeIdentifier>
       <HashCode>CgACAYCAAYAJAASAAAADJAAMoAIAgRJApDSAIGoQAIE=</HashCode>
-      <FileName>activity\metadata\ActivityMetadataPage.aspx.cs</FileName>
+      <FileName>activity\metadata\default.aspx.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="ClipFlair.Gallery.ImageMetadataPage">
@@ -27,7 +27,7 @@
     </InheritanceLine>
     <TypeIdentifier>
       <HashCode>AAAAAICAAQABAAQAAAADMAAIIACAgRBBBACAAAoQAIE=</HashCode>
-      <FileName>image\metadata\ImageMetadataPage.aspx.cs</FileName>
+      <FileName>image\metadata\default.aspx.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="ClipFlair.Gallery.VideoMetadataPage">
@@ -42,7 +42,7 @@
     </InheritanceLine>
     <TypeIdentifier>
       <HashCode>AAAAAICAAQABABQACAgjIAAIIACAgRBBBACAAAoQgIE=</HashCode>
-      <FileName>video\metadata\VideoMetadataPage.aspx.cs</FileName>
+      <FileName>video\metadata\default.aspx.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="ClipFlair.Gallery.BaseMetadataPage">
