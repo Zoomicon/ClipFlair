@@ -14,7 +14,7 @@
     <asp:Literal runat="server" ID="ltlInfoText"></asp:Literal> 
     <asp:Panel ID="pnlSearch" runat="server">
         <div class="search-textbox">
-            <MonoX:UserSearch id="userSearch" runat="server" UserFilterMode="ShowFriends" AutoCompleteSeparator=""></MonoX:UserSearch>
+            <MonoX:UserSearch id="userSearch" runat="server" UserFilterMode="ShowAllUsers" AutoCompleteSeparator=""></MonoX:UserSearch>
         </div>
     </asp:Panel>
     <asp:Panel ID="pnlActionPanel" runat="server" CssClass="jq_monoxPeopleSearchCommand">
