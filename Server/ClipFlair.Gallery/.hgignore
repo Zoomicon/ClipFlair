@@ -15,6 +15,9 @@ syntax: glob
 # LocalHistory extension for VisualStudio
 .localhistory/
 
+# Visual Studio settings
+.vs/
+
 # User-specific files
 *.suo
 *.user
