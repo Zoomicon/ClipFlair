@@ -39,7 +39,7 @@ _ReSharper*/
 *.[Pp]ublish.xml
 desktop.ini
 Thumbs.db
-.localhistory*/
+**/.localhistory*/
 
 # Visual Studio 2015 cache/options directory
-.vs*/
+**/.vs*/
