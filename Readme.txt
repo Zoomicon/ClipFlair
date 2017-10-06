@@ -7,23 +7,22 @@ the rest are convered by the license mentioned at http://ClipFlair.codeplex.com
 
 Features list
 -------------
-(version control numbers - there are not codeplex WorkItems, are copied from our internal Redmine server)
 
-1220 Zoomable container (FloatingWindow / FloatingWindowZUI)
-1221 Runtime Property Pages (FlipPanel / backpanels with properties)
-1234 Text Component (SilverText - TXT, XAML, DOCX)
-1238 ClipFlair Studio - Activity Container / Component (supporting Nested Activities too)
-1240 Captions Component (CaptionsGrid)
-1241 Audio recording and playback (WAV/MP3 playback, in-memory recording, WAV export)
-1246 Clip Component (SMF - Progressive download videos, IIS Smooth Streaming and DASH streaming)
-1275 Standard Caption Formats support (CaptionsLib - SRT, TTS, Adobe Encore, FAB)
-1287 ClipFlair Social Network platform (MonoX Social CMS - ASP.net WebParts Framework)
-1334 Image component (ZoomImage + MultiScaleImage - DeepZoom)
-1335 Map component (Bing Maps)
-1360 Gallery component (PivotViewer [Silverlight & Seajax versions]), Gallery Home Page (NxN Grid Tiles, HTML / SVG), Metadata forms (ASP.net WebForms) and libraries (CXML parsing/generation)
-1383 News component (SilverNews - Atom/RSS)
-1384 Browser component and dialog for Studio's OOB version (Browser / BrowserDialog)
-1386 ClipFlair Home Page (NxN Grid Tiles, HTML / SVG)
+1. Zoomable container (FloatingWindow / FloatingWindowZUI)
+2. Runtime Property Pages (FlipPanel / backpanels with properties)
+3. Text Component (SilverText - TXT, XAML, DOCX)
+4. ClipFlair Studio - Activity Container / Component (supporting Nested Activities too)
+5. Captions Component (CaptionsGrid)
+6. Audio recording and playback (WAV/MP3 playback, in-memory recording, WAV export)
+7. Clip Component (SMF - Progressive download videos, IIS Smooth Streaming and DASH streaming)
+8. Standard Caption Formats support (CaptionsLib - SRT, TTS, Adobe Encore, FAB)
+9. ClipFlair Social Network platform (MonoX Social CMS - ASP.net WebParts Framework)
+10. Image component (ZoomImage + MultiScaleImage - DeepZoom)
+11. Map component (Bing Maps)
+12. Gallery component (PivotViewer [Silverlight & Seajax versions]), Gallery Home Page (NxN Grid Tiles, HTML / SVG), Metadata forms (ASP.net WebForms) and libraries (CXML parsing/generation)
+13. News component (SilverNews - Atom/RSS)
+14. Browser component and dialog for Studio's OOB version (Browser / BrowserDialog)
+15. ClipFlair Home Page (NxN Grid Tiles, HTML / SVG)
 
 
 NuGet packages
