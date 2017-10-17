@@ -29,6 +29,8 @@ NuGet packages
 --------------
 
 Some functionality has been split to separate repositories and is made available via NuGet packages, also used by this project:
+- Metadata.CXML: http://github.com/Zoomicon/Metadata.CXML
+- ClipFlair.Metadata: http://github.com/Zoomicon/ClipFlair.Metadata
 - Compatibility: http://github.com/Zoomicon/Compatibility
 - ZUI: http://github.com/Zoomicon/ZUI
 
