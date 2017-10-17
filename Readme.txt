@@ -1,8 +1,8 @@
 ClipFlair Project
 =================
 
-Can find individual licenses for third-party projects that have been enchanged in respective subfolders
-the rest are convered by the license mentioned at http://ClipFlair.codeplex.com
+Can find individual licenses for third-party projects that have been enhanced in their respective subfolders
+The rest is convered by the main license (see respective file)
 
 
 Features list
