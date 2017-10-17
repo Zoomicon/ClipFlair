@@ -1,6 +1,8 @@
 ClipFlair Project
 =================
 
+For description & documentation see http://github.com/zoomicon/ClipFlair/wiki
+
 Can find individual licenses for third-party projects that have been enhanced in their respective subfolders
 The rest is convered by the main license (see respective file)
 
