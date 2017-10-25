@@ -1,8 +1,10 @@
 ClipFlair Project
 =================
 
-Can find individual licenses for third-party projects that have been enchanged in respective subfolders
-the rest are convered by the license mentioned at http://ClipFlair.codeplex.com
+For description & documentation see http://github.com/zoomicon/ClipFlair/wiki
+
+Can find individual licenses for third-party projects that have been enhanced in their respective subfolders
+The rest is convered by the main license (see respective file)
 
 
 Features list
@@ -29,6 +31,8 @@ NuGet packages
 --------------
 
 Some functionality has been split to separate repositories and is made available via NuGet packages, also used by this project:
+- Metadata.CXML: http://github.com/Zoomicon/Metadata.CXML
+- ClipFlair.Metadata: http://github.com/Zoomicon/ClipFlair.Metadata
 - Compatibility: http://github.com/Zoomicon/Compatibility
 - ZUI: http://github.com/Zoomicon/ZUI
 
@@ -36,7 +40,7 @@ Some functionality has been split to separate repositories and is made available
 Prerequisites
 -------------
 
-- Visual Studio 2010+ (with latest updates)
+- Visual Studio 2010 up to 2015 (with latest updates)
 - Smooth Streaming Client 2.5 RTW (http://www.microsoft.com/en-us/download/details.aspx?id=42080)
 - Microsoft Silverlight 5 SDK (http://www.microsoft.com/en-us/download/details.aspx?id=42080)
 - Silverlight Toolkit (http://silverlight.codeplex.com)
