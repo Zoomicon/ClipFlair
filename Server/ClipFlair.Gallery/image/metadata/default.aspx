@@ -5,7 +5,7 @@
 <!--
 Project: ClipFlair (http://ClipFlair.codeplex.com)
 Filename: image/metadata/default.aspx
-Version: 20161025
+Version: 20171130
 -->
 
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -30,19 +30,19 @@ Version: 20161025
        <a class="selected" href="../../image/metadata/">Image Metadata</a>
     </div>
 
-    <%-- INSTRUCTIONS BOX --%>
-
-    <div class="instructions">
-      Please fill in the following information for the image of your choice. Select the image from the dropdown list.<br />
-      Try to fill the metadata as fully and accurately as possible, as they will be used for searching and filtering images.<br />
-      Don't forget to press the SAVE METADATA button. Thank you!
-    </div>
-
-    <form id="form1" runat="server">
+    <form id="form1" defaultbutton="btnSave" defaultfocus="listItems" runat="server">
 
       <%-- LOGIN STATUS --%>
 
       <asp:LoginName ID="loginName" runat="server" FormatString="Welcome {0}!" /> [<asp:LoginStatus ID="loginStatus" runat="server"/>]
+
+      <%-- INSTRUCTIONS BOX --%>
+
+      <asp:Panel runat="server" CssClass="instructions"> <%-- Visible="false" --%>
+        Please fill in the following information for the image of your choice. Select the image from the dropdown list.<br />
+        Try to fill the metadata as fully and accurately as possible, as they will be used for searching and filtering images.<br />
+        Don't forget to press the SAVE METADATA button. Thank you!
+      </asp:Panel>
 
       <%-- INFO BOX --%>
 

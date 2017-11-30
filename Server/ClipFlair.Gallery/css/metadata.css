@@ -1,7 +1,7 @@
 ﻿/*
 Project: ClipFlair (http://ClipFlair.codeplex.com)
 Filename: metadata.cs
-Version: 20131119
+Version: 20171130
 */
 
 div
@@ -36,10 +36,17 @@ div
   text-decoration: underline overline;
 }
 
+/* TODO: not used yet, merge with Trafilm gallery's CSS */
+.navigation .guide
+{
+  float: right;
+  color: khaki;
+}
+
 .instructions
 {
   border-style: dotted;
-  background-color: Yellow;
+  background-color: khaki;
   padding: 5px;
 }
 
