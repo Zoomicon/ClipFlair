@@ -38,9 +38,9 @@ Inherits="MonoSoftware.MonoX.MasterPages.PageFooter" %>
             <ul class="span3">
                 <li><h2><%= PageResources.PageFooter_ConnectWithUs %></h2></li>
                 <li class="contact"><a href='<% $Code: MonoSoftware.MonoX.Utilities.LocalizationUtility.RewriteLink("~/MonoX/Pages/Contact.aspx") %>' runat="server">Contact</a></li>
-                <li class="facebook"><a href="https://www.facebook.com/ClipFlair">Facebook</a></li>
-                <li class="twitter"><a href="https://twitter.com/ClipFlair">Twitter</a></li>
-		            <li class="slideshare"><a href="http://www.slideshare.net/ClipFlair">SlideShare</a></li>
+                <li class="facebook"><a href="https://www.facebook.com/ClipFlair" target="ClipFlair_Facebook">Facebook</a></li>
+                <li class="twitter"><a href="https://twitter.com/ClipFlair" target="ClipFlair_Twitter">Twitter</a></li>
+		            <li class="slideshare"><a href="http://www.slideshare.net/ClipFlair" target="ClipFlair_SlideShare">SlideShare</a></li>
             </ul>
         </div>
     </div>
