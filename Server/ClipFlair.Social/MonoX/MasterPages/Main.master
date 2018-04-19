@@ -11,10 +11,11 @@
 
 <html<asp:Literal runat="server" ID="ltlXmlns" /> <asp:Literal runat="server" ID="ltlRootHtml" />>
 <head runat="server">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <title></title>
     <!--[if lt IE 9]>
 		<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-	<![endif]--> 
+	  <![endif]--> 
     <link rel="apple-touch-icon" href="apple-touch-icon-ipad.png">
     <link rel="apple-touch-icon" sizes="72x72" href="apple-touch-icon-ipad3.png">
     <link rel="apple-touch-icon" sizes="114x114" href="apple-touch-icon-iphone.png">
