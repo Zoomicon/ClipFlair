@@ -56,7 +56,7 @@ Useful
   (in the Visual Studio Gallery exist releases of it various Visual Studio versions)
 
 
-Thanks
-------
+Sponsors
+--------
 
 ![Powered by MacStadium](0d94ec44-d66b-422c-bfe3-6e2f787d4c01.png "")
