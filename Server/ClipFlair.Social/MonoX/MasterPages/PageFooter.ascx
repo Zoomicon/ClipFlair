@@ -19,7 +19,7 @@ Inherits="MonoSoftware.MonoX.MasterPages.PageFooter" %>
                     </AnonymousTemplate>
                 </asp:LoginView>
                 <li><a href='<% $Code: MonoSoftware.MonoX.Utilities.LocalizationUtility.RewriteLink("~/Pages/PrivacyPolicy.aspx") %>' runat="server"><%= PageResources.PageFooter_PrivacyPolicy %></a></li>
-                <li><a href='<% $Code: MonoSoftware.MonoX.Utilities.LocalizationUtility.RewriteLink("~/Pages/TermsOfUse.aspx") %>' runat="server"><%= PageResources.PageFooter_TermsOfUse %></a></asp:HyperLink></li>
+                <li><a href='<% $Code: MonoSoftware.MonoX.Utilities.LocalizationUtility.RewriteLink("~/Pages/TermsOfUse.aspx") %>' runat="server"><%= PageResources.PageFooter_TermsOfUse %></a></li>
 		    </ul>
     	    <ul class="span3">
         	    <li><h2><%= PageResources.PageFooter_GeneralInfo %> & Tools</h2></li>
