@@ -59,4 +59,5 @@ Useful
 Sponsors
 --------
 
-![Powered by MacStadium](0d94ec44-d66b-422c-bfe3-6e2f787d4c01.png "")
+![https://macstadium.com](sponsors/MacStadium.png "")
+![https://www.browserstack.com](sponsors/BrowserStack.png "")
