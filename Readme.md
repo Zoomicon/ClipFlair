@@ -59,5 +59,5 @@ Useful
 Sponsors
 --------
 
-![https://macstadium.com](sponsors/MacStadium.png "")
-![https://www.browserstack.com](sponsors/BrowserStack.png "")
+[![Powered by MacStadium](sponsors/MacStadium.png)](https://macstadium.com)
+[![Powered by BrowserStack](sponsors/BrowserStack.png)](https://www.browserstack.com)
