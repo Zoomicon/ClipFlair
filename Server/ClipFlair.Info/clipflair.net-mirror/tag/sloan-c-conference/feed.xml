@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	>
+
+<channel>
+	<title>ClipFlair &#187; Sloan-C Conference</title>
+	<atom:link href="feed.xml" rel="self" type="application/rss+xml" />
+	<link>../../index.html</link>
+	<description>Foreign Language Learning through Interactive Captioning and Revoicing of Clips</description>
+	<lastBuildDate>Mon, 23 Mar 2015 10:20:59 +0000</lastBuildDate>
+	<language>en-US</language>
+		<sy:updatePeriod>hourly</sy:updatePeriod>
+		<sy:updateFrequency>1</sy:updateFrequency>
+	<generator>http://wordpress.org/?v=3.9.1</generator>
+	<item>
+		<title>ClipFlair at the Sloan-C conference</title>
+		<link>../../clipflair-at-the-sloan-c-conference.html</link>
+		<comments>../../clipflair-at-the-sloan-c-conference.html</comments>
+		<pubDate>Tue, 27 Aug 2013 09:29:37 +0000</pubDate>
+		<dc:creator><![CDATA[admin]]></dc:creator>
+				<category><![CDATA[Events]]></category>
+		<category><![CDATA[conference]]></category>
+		<category><![CDATA[Sloan-C Conference]]></category>
+
+		<guid isPermaLink="false">http://clipflair.net/?p=177</guid>
+		<description><![CDATA[ClipFlair has been selected for a 35-minute presentation at the 19th Annual  Sloan-C Conference , one of the worldwide premier forums for online learning.
+
+<a href="http://sloanconsortium.org/conference/2013/aln/language-learning-through-captioning-and-revoicing-clips"><img src="../../wp-content/uploads/2014/06/aln2013_attending_250x250.png" alt="Sloan-C Conference" width="250" height="250" class="alignnone size-full wp-image-180" /></a> <a href="../../clipflair-at-the-sloan-c-conference.html"><div class="read-more btn btn-default"><p>Read more &#8250;</p></div><!-- end of .read-more --></a>]]></description>
+		<wfw:commentRss>http://clipflair.net/clipflair-at-the-sloan-c-conference/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+	</channel>
+</rss>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	>
+
+<channel>
+	<title>ClipFlair &#187; Uncategorized</title>
+	<atom:link href="feed.xml" rel="self" type="application/rss+xml" />
+	<link>../../index.html</link>
+	<description>Foreign Language Learning through Interactive Captioning and Revoicing of Clips</description>
+	<lastBuildDate>Mon, 23 Mar 2015 10:20:59 +0000</lastBuildDate>
+	<language>en-US</language>
+		<sy:updatePeriod>hourly</sy:updatePeriod>
+		<sy:updateFrequency>1</sy:updateFrequency>
+	<generator>http://wordpress.org/?v=3.9.1</generator>
+	<item>
+		<title>More news</title>
+		<link>../../more-news.html</link>
+		<comments>../../more-news.html</comments>
+		<pubDate>Mon, 23 Mar 2015 08:47:21 +0000</pubDate>
+		<dc:creator><![CDATA[admin]]></dc:creator>
+				<category><![CDATA[Uncategorized]]></category>
+
+		<guid isPermaLink="false">../../index.html</guid>
+		<description><![CDATA[Thank you for visiting our info page!
+More news about the project are now posted in our blog at ClipFlair Social.
+Check it out! http://social.clipflair.net/Blog.aspx <a href="../../more-news.html"><div class="read-more btn btn-default"><p>Read more &#8250;</p></div><!-- end of .read-more --></a>]]></description>
+		<wfw:commentRss>http://clipflair.net/more-news/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+	</channel>
+</rss>

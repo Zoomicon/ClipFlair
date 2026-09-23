@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	>
+
+<channel>
+	<title>ClipFlair &#187; nominations</title>
+	<atom:link href="feed.xml" rel="self" type="application/rss+xml" />
+	<link>../../index.html</link>
+	<description>Foreign Language Learning through Interactive Captioning and Revoicing of Clips</description>
+	<lastBuildDate>Mon, 23 Mar 2015 10:20:59 +0000</lastBuildDate>
+	<language>en-US</language>
+		<sy:updatePeriod>hourly</sy:updatePeriod>
+		<sy:updateFrequency>1</sy:updateFrequency>
+	<generator>http://wordpress.org/?v=3.9.1</generator>
+	<item>
+		<title>ClipFlair receives nomination for UN-based Award in Sri Lanka!</title>
+		<link>../../clipflair-receives-nomination-for-un-based-award-in-sri-lanka.html</link>
+		<comments>../../clipflair-receives-nomination-for-un-based-award-in-sri-lanka.html</comments>
+		<pubDate>Thu, 08 Aug 2013 09:05:28 +0000</pubDate>
+		<dc:creator><![CDATA[admin]]></dc:creator>
+				<category><![CDATA[General]]></category>
+		<category><![CDATA[nominations]]></category>
+		<category><![CDATA[WSA award]]></category>
+
+		<guid isPermaLink="false">http://clipflair.net/?p=170</guid>
+		<description><![CDATA[ClipFlair is one of almost 500 nominees to be examined by an international Grand Jury in the city of Tallinn/Estonia.
+
+Patra, August 08, 2013
+
+ ClipFlair, funded by the European Commission (EACEA, LLP-KA2)  is nominated by an international jury of ICT experts to enter the next round of the 2013 World Summit Award (WSA) in e-Learning &#038; Science. ClipFlair will compete against almost 500 outstanding e-Content products and applications from 168 countries in front of the WSA’s Grand Jury from Aug. 29 to Aug. 31 in Estonia’s capital city, Tallinn. <a href="../../clipflair-receives-nomination-for-un-based-award-in-sri-lanka.html"><div class="read-more btn btn-default"><p>Read more &#8250;</p></div><!-- end of .read-more --></a>]]></description>
+		<wfw:commentRss>http://clipflair.net/clipflair-receives-nomination-for-un-based-award-in-sri-lanka/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+	</channel>
+</rss>
